@@ -1,0 +1,198 @@
+{
+  "bank": [],
+  "bank_seen_ms": 0,
+  "build_plan": {
+    "create_dex": 16,
+    "create_int": 8,
+    "create_skills": [
+      {
+        "skill": 45,
+        "tenths": 500
+      },
+      {
+        "skill": 7,
+        "tenths": 500
+      }
+    ],
+    "create_str": 56,
+    "family": "miner_smith",
+    "skills": [
+      {
+        "skill": 7,
+        "tenths": 1000
+      },
+      {
+        "skill": 45,
+        "tenths": 1000
+      },
+      {
+        "skill": 37,
+        "tenths": 500
+      },
+      {
+        "skill": 4,
+        "tenths": 500
+      }
+    ],
+    "target_dex": 45,
+    "target_int": 80,
+    "target_str": 100,
+    "unresolved_tenths": 4000
+  },
+  "checkpoint_ms": 1630168490,
+  "death_count": 0,
+  "goal": {
+    "active": true,
+    "attempts": 0,
+    "failure_reason": "",
+    "kind": "CRAFT",
+    "progress": 0,
+    "started_at_ms": 1630075417
+  },
+  "home_city": "Minoc",
+  "identity": {
+    "account_name": "RevGen3_01",
+    "character_name": "Draver",
+    "created_at_ms": 0,
+    "first_seen_at_ms": 1629988688,
+    "identity_id": "revgen3_01.draver",
+    "last_seen_at_ms": 1629988688,
+    "sessions": 1,
+    "total_play_time_ms": 182401
+  },
+  "last_death_ms": 0,
+  "last_server_report": {
+    "dead": false,
+    "dex": 16,
+    "gold": 9880,
+    "int": 8,
+    "skills": [
+      {
+        "skill": 7,
+        "tenths": 500
+      },
+      {
+        "skill": 45,
+        "tenths": 500
+      },
+      {
+        "skill": 37,
+        "tenths": 0
+      },
+      {
+        "skill": 4,
+        "tenths": 0
+      }
+    ],
+    "str": 56,
+    "x": 2467,
+    "y": 556
+  },
+  "ledger": [],
+  "memory": {
+    "creatures": [],
+    "danger": [],
+    "events": [
+      {
+        "at_ms": 1629988688,
+        "detail": "ore",
+        "kind": "common_knowledge_seeded",
+        "place": "",
+        "x": 2476,
+        "y": 413
+      },
+      {
+        "at_ms": 1629990791,
+        "detail": "no banker in sight",
+        "kind": "bank_no_answer",
+        "place": "",
+        "x": 2476,
+        "y": 413
+      }
+    ],
+    "places": [
+      {
+        "kind": "healer",
+        "last_verified_ms": 1630166135,
+        "learned_ms": 1630066427,
+        "name": "Erskine, the healer",
+        "visits": 2379,
+        "x": 2576,
+        "y": 600,
+        "z": 0
+      },
+      {
+        "kind": "safe",
+        "last_verified_ms": 1630168489,
+        "learned_ms": 1630168489,
+        "name": "logout point",
+        "visits": 1,
+        "x": 2467,
+        "y": 556,
+        "z": 5
+      }
+    ],
+    "resources": [
+      {
+        "failures": 0,
+        "hinted": true,
+        "label": "The Old Miner's Supplies",
+        "last_seen_ms": 1629988688,
+        "last_success_ms": 0,
+        "resource": "ore",
+        "successes": 0,
+        "x": 2460,
+        "y": 429,
+        "z": 15
+      },
+      {
+        "failures": 0,
+        "hinted": true,
+        "label": "Minoc Miner's Guild",
+        "last_seen_ms": 1629988688,
+        "last_success_ms": 0,
+        "resource": "ore",
+        "successes": 0,
+        "x": 2456,
+        "y": 493,
+        "z": 15
+      },
+      {
+        "failures": 0,
+        "hinted": true,
+        "label": "Minoc Mine 1",
+        "last_seen_ms": 1629988688,
+        "last_success_ms": 0,
+        "resource": "ore",
+        "successes": 0,
+        "x": 2558,
+        "y": 499,
+        "z": 0
+      }
+    ],
+    "suppliers": [],
+    "trainers": []
+  },
+  "prices": [],
+  "recent_deaths": 0,
+  "schema_version": 2,
+  "sessions": [
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 1630168490,
+      "goals_attempted": 4,
+      "goals_completed": 0,
+      "goals_failed": 0,
+      "gold_end": 9880,
+      "gold_start": 10000,
+      "logs_gathered": 0,
+      "places_learned": 2,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1000,
+      "skill_tenths_start": 1000,
+      "started_ms": 1629988688,
+      "suppliers_learned": 0
+    }
+  ]
+}

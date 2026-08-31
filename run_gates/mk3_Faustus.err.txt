@@ -1,0 +1,25 @@
+start: Faustus is a macer and lives in Britain -> starting city index 2
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+[00:20:42.426] WARN  [mk3_Faustus] [ACTION_RESULT] use_item_on timeout (no server confirmation)
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+[00:20:52.042] WARN  [mk3_Faustus] [bot] 0x20 resync; aborting path
+[00:20:57.212] WARN  [mk3_Faustus] [bot] no path to (1472,1610) avoiding 0 block(s); stopping (search 2054378.6us)
+[00:20:57.212] WARN  [mk3_Faustus] [bot] start (1476,1612,20) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 108 item(s), 6 mobile(s))
+[00:21:17.289] WARN  [mk3_Faustus] [bot] 0x20 resync; aborting path
+[00:21:28.176] WARN  [mk3_Faustus] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[00:21:38.302] WARN  [mk3_Faustus] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[00:21:48.458] WARN  [mk3_Faustus] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[00:22:17.224] WARN  [mk3_Faustus] [bot] no path to (1419,1550) avoiding 0 block(s); stopping (search 2688551.1us)
+[00:22:17.224] WARN  [mk3_Faustus] [bot] start (1418,1547,30) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 400 item(s), 2 mobile(s))
+[00:22:21.085] WARN  [mk3_Faustus] [bot] no path to (1416,1549) avoiding 0 block(s); stopping (search 2217711.5us)
+[00:22:21.085] WARN  [mk3_Faustus] [bot] start (1418,1547,30) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 400 item(s), 2 mobile(s))
+[00:22:26.138] WARN  [mk3_Faustus] [bot] no path to (1416,1549) avoiding 0 block(s); stopping (search 2213705.2us)
+[00:22:26.138] WARN  [mk3_Faustus] [bot] start (1418,1547,30) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 400 item(s), 2 mobile(s))
+[00:23:04.423] WARN  [mk3_Faustus] [bot] watchdog: oldest move unacked 5s; aborting path
+[00:23:04.594] WARN  [mk3_Faustus] [0x22] unsolicited ack seq=39
+[00:23:08.028] WARN  [mk3_Faustus] [bot] no path to (1451,1615) avoiding 0 block(s); stopping (search 2257192.2us)
+[00:23:08.028] WARN  [mk3_Faustus] [bot] start (1449,1603,20) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 401 item(s), 4 mobile(s))
+[00:23:13.148] WARN  [mk3_Faustus] [bot] no path to (1451,1615) avoiding 0 block(s); stopping (search 2288557.4us)
+[00:23:13.148] WARN  [mk3_Faustus] [bot] start (1449,1603,20) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 401 item(s), 3 mobile(s))
+[00:23:55.167] WARN  [mk3_Faustus] [0x21] move REJECTED seq=34; server says (1439,1693,0) facing=7
+[00:23:55.183] WARN  [mk3_Faustus] [bot] 0x20 resync; aborting path

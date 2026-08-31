@@ -82,6 +82,7 @@ BankErrandResult Acted(BankErrandResult r) {
 void BankErrand::Begin() {
     step_ = Step::Find;
     running_ = true;
+    atKnownBank_ = false;
     banker_ = 0;
     shouts_ = 0;
     scannedAtMs_ = 0;
@@ -130,6 +131,29 @@ BankErrandResult BankErrand::Tick(Client& client, const Observation& obs) {
 
     switch (step_) {
         case Step::Find: {
+            // KNOWN LOCATION: SPEAK, DO NOT HUNT FOR EYE CONTACT. See the
+            // header comment -- NPCBRAIN_BANKER waives Sphere's usual
+            // LOS-gated hearing, so a caller that already knows (from the
+            // atlas or its own memory) it is standing where a bank is need
+            // not find, walk to, or even see the specific mobile.
+            if (atKnownBank_) {
+                if (shouts_ >= kMaxShouts) {
+                    running_ = false;
+                    BankErrandResult r;
+                    r.status = ActivityStatus::RetryableFailure;
+                    r.why = Fmt("said 'bank' %d times at the known location "
+                                "and nobody answered", shouts_);
+                    return r;
+                }
+                ++shouts_;
+                client.ActionOpenBank(0, "bank");
+                return Acted(Working(Wake::AfterDelay,
+                                     kBankActionDeadlineMs + 1000,
+                                     Fmt("at the known bank -- saying 'bank' "
+                                         "aloud (%d of %d)", shouts_,
+                                         kMaxShouts)));
+            }
+
             // Skip the ones that have already ignored us -- but only those.
             const u32 found =
                 client.NearestMobileWithTrade("banker", rotation_.Skip());
@@ -148,25 +172,10 @@ BankErrandResult BankErrand::Tick(Client& client, const Observation& obs) {
                                      "asking who is standing in the bank"));
             }
 
-            // THE KEYWORD WORKS WITHOUT A NAMED BANKER. Sphere opens the box
-            // from SPEECH, so a character standing in a bank whose banker it
-            // cannot identify may still say the word and be served.
-            if (obs.atBank && ++shouts_ <= kMaxShouts) {
-                client.ActionOpenBank(0, "bank");
-                return Acted(Working(Wake::AfterDelay,
-                                     kBankActionDeadlineMs + 1000,
-                                     Fmt("no banker recognised here -- saying "
-                                         "'bank' aloud (%d of %d)", shouts_,
-                                         kMaxShouts)));
-            }
-
             running_ = false;
             BankErrandResult r;
             r.status = ActivityStatus::RetryableFailure;
-            r.why = obs.atBank
-                        ? Fmt("said 'bank' %d times where the box should be "
-                              "and nobody answered", shouts_ - 1)
-                        : std::string("no banker in sight");
+            r.why = "no banker in sight";
             return r;
         }
 

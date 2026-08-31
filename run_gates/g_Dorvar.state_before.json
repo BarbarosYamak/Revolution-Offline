@@ -1,0 +1,192 @@
+{
+  "bank": [],
+  "bank_seen_ms": 0,
+  "build_plan": {
+    "create_dex": 24,
+    "create_int": 16,
+    "create_skills": [
+      {
+        "skill": 18,
+        "tenths": 500
+      },
+      {
+        "skill": 13,
+        "tenths": 500
+      }
+    ],
+    "create_str": 40,
+    "family": "fisher",
+    "skills": [
+      {
+        "skill": 18,
+        "tenths": 1000
+      },
+      {
+        "skill": 13,
+        "tenths": 500
+      }
+    ],
+    "target_dex": 50,
+    "target_int": 45,
+    "target_str": 80,
+    "unresolved_tenths": 5500
+  },
+  "checkpoint_ms": 1630262963,
+  "death_count": 0,
+  "goal": {
+    "active": true,
+    "attempts": 1,
+    "failure_reason": "",
+    "kind": "REPLACE_EQUIPMENT",
+    "progress": 0,
+    "started_at_ms": 1630043008
+  },
+  "home_city": "Skara Brae",
+  "identity": {
+    "account_name": "RevGen3_18",
+    "character_name": "Dorvar",
+    "created_at_ms": 0,
+    "first_seen_at_ms": 1630040881,
+    "identity_id": "revgen3_18.dorvar",
+    "last_seen_at_ms": 1630040881,
+    "sessions": 1,
+    "total_play_time_ms": 224660
+  },
+  "last_death_ms": 0,
+  "last_server_report": {
+    "dead": false,
+    "dex": 24,
+    "gold": 10000,
+    "int": 16,
+    "skills": [
+      {
+        "skill": 18,
+        "tenths": 500
+      },
+      {
+        "skill": 13,
+        "tenths": 500
+      }
+    ],
+    "str": 40,
+    "x": 591,
+    "y": 2149
+  },
+  "ledger": [],
+  "memory": {
+    "creatures": [],
+    "danger": [],
+    "events": [
+      {
+        "at_ms": 1630040881,
+        "detail": "fish",
+        "kind": "common_knowledge_seeded",
+        "place": "",
+        "x": 618,
+        "y": 2234
+      },
+      {
+        "at_ms": 1630042946,
+        "detail": "no banker in sight",
+        "kind": "bank_no_answer",
+        "place": "",
+        "x": 618,
+        "y": 2234
+      }
+    ],
+    "places": [
+      {
+        "kind": "healer",
+        "last_verified_ms": 1630054895,
+        "learned_ms": 1630040959,
+        "name": "Aiken, the healer guildmaster",
+        "visits": 278,
+        "x": 625,
+        "y": 2218,
+        "z": 0
+      },
+      {
+        "kind": "healer",
+        "last_verified_ms": 1630218317,
+        "learned_ms": 1630054896,
+        "name": "Iolana, the healer",
+        "visits": 2958,
+        "x": 616,
+        "y": 2216,
+        "z": 0
+      },
+      {
+        "kind": "safe",
+        "last_verified_ms": 1630262901,
+        "learned_ms": 1630262901,
+        "name": "logout point",
+        "visits": 1,
+        "x": 591,
+        "y": 2149,
+        "z": 0
+      }
+    ],
+    "resources": [
+      {
+        "failures": 0,
+        "hinted": true,
+        "label": "Skara Brae Docks E",
+        "last_seen_ms": 1630040881,
+        "last_success_ms": 0,
+        "resource": "fish",
+        "successes": 0,
+        "x": 638,
+        "y": 2227,
+        "z": -3
+      },
+      {
+        "failures": 0,
+        "hinted": true,
+        "label": "Skara Brae Docks S",
+        "last_seen_ms": 1630040881,
+        "last_success_ms": 0,
+        "resource": "fish",
+        "successes": 0,
+        "x": 617,
+        "y": 2276,
+        "z": -3
+      },
+      {
+        "failures": 0,
+        "hinted": true,
+        "label": "Skara Brae Ferry Dock",
+        "last_seen_ms": 1630040881,
+        "last_success_ms": 0,
+        "resource": "fish",
+        "successes": 0,
+        "x": 726,
+        "y": 2236,
+        "z": -3
+      }
+    ],
+    "suppliers": [],
+    "trainers": []
+  },
+  "prices": [],
+  "recent_deaths": 0,
+  "schema_version": 2,
+  "sessions": [
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 1630262963,
+      "goals_attempted": 2,
+      "goals_completed": 0,
+      "goals_failed": 0,
+      "gold_end": 10000,
+      "gold_start": 10000,
+      "logs_gathered": 0,
+      "places_learned": 3,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1000,
+      "skill_tenths_start": 1000,
+      "started_ms": 1630040881,
+      "suppliers_learned": 0
+    }
+  ]
+}

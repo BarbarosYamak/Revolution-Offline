@@ -100,10 +100,11 @@ private:
     // because Sphere will not wear a second weapon over a full hand.
     bool        ArmAxe(Client& client, const Observation& obs);
     void        LearnFromObservation(Client& client, const Observation& obs);
-    // Seed the handful of named forests a new character would plausibly have
-    // heard of. Runs once per life; everything else is earned.
-    static constexpr int kSeedHints = 3;
-    void        SeedCommonKnowledge(Client& client, i64 nowMs);
+    // What every new player already knows: the home bank/healer/provisioner
+    // and a resource-area lead near home. Delegates to the pure
+    // uo::life::SeedNewbieKnowledge (newbie_knowledge.h); runs once per life,
+    // guarded by Memory event "newbie_knowledge_seeded". See Runner.cpp.
+    void        SeedNewbieKnowledge(Client& client, i64 nowMs);
     // Hold the build to its caps: LOCK a planned skill or stat that has
     // reached its target, keep the rest training up. Nothing here raises a
     // value -- it moves the arrow a player clicks.
@@ -150,6 +151,30 @@ private:
     bool        HandOff(GoalKind from, GoalKind to, i64 restMs, const char* why,
                         i64 nowMs);
 
+    // GENERALISES kMarketTripBudgetMs (below) past TRADE_WITH_PLAYER. A
+    // service pick can land far enough away that the walk alone eats the
+    // rest of the session -- BUY_SUPPLIES sent a Skara Brae fisher through a
+    // working moongate hop to an island 232 tiles and one gate away with 24
+    // minutes of session left, and nothing asked whether that fit before
+    // wind-down had to start (docs/LIFE_GATE_WAVE1.md theme 2,
+    // run_gates/g_Dorvar.console.txt 00:40-01:04: "wind-down: the trip has
+    // run past its deadline ... logging out where I stand", in the open,
+    // near Ocllo).
+    //
+    // Call this ONLY while `client.TravelBusy()` is already true: the tile
+    // count is not known until the route planner has actually run
+    // (Client::TravelLastPlannedTiles(), the same number the
+    // "[travel] plan ... ~N tiles" log line reports), which happens a tick
+    // after TravelToXxx() returns, not inside that call. Returns true when
+    // the trip in flight still fits (or the plan is not in yet, or session
+    // limits are off -- nothing to veto). Returns false AND ends the goal --
+    // aborts the trip, cools the goal down, calls planner_.Finish(false, ...)
+    // -- when the plan turns out to cost more than the session has left,
+    // after reserving kWindDownBudgetMs for wind-down itself.
+    bool VetoTripOverSessionBudget(Client& client, const Observation& obs,
+                                   GoalKind goal, const char* goalName,
+                                   i64 cooldownMs);
+
     // --- goal bodies. Each returns true when the goal is finished. --------
     bool DoSurvive(Client& client, const Observation& obs);
     bool DoHeal(Client& client, const Observation& obs);
@@ -178,6 +203,11 @@ private:
     // IS OPEN (Runner::Observe), so a buyer standing at the Britain bank with
     // a shut box would re-issue the journey forever.
     bool AtMarketBank(const Client& client) const;
+    // Standing near ANY bank -- geometry, judged against the nearest bank the
+    // atlas knows of at all, not the one designated market place AtMarketBank
+    // tests. DoBank's own "have I actually reached a counter yet" question,
+    // used before handing off to bankErrand_ (see DoBank).
+    bool NearAnyBank(Client& client, const Observation& obs) const;
     // THE BOX IS THE TRUTH; state_.bank is only a memory of it. Called when an
     // open box has been asked for a remembered stock and has none of it, so
     // the memory stops sending the character on trips it cannot honour.
@@ -214,6 +244,11 @@ private:
     bool DoTameAnimal(Client& client, const Observation& obs);
     bool DoUpgradeGear(Client& client, const Observation& obs);
     bool MayWear(const ArmorPiece& a, const Observation& obs) const;
+    // Is ANY armour piece this life may legally wear (MayWear) actually on
+    // the paperdoll right now? Same kArmorPieces table DoUpgradeGear's wear
+    // pass uses, read rather than acted on -- see the early-hunting-grounds
+    // gear-first check in DoTrainCombat.
+    bool HasBasicArmor(Client& client, const Observation& obs) const;
     bool BookHasGraphic(Client& client, u32 book, u16 graphic) const;
     // The same question in the book's own currency -- see the note on
     // BookHasSpell for why a spellbook row's GRAPHIC answers nothing.
@@ -407,6 +442,10 @@ private:
     // that has just been resurrected owns nothing else.
     bool WearBasicClothing(Client& client, const Observation& obs);
     life::BuyActivity clothingBuy_;
+    // A WantsToHunt fighter's own weapon-school basic (katana/kryss/club/
+    // bow), bought when arming from the pack finds nothing. See
+    // SchoolWeaponFor in Runner.cpp.
+    life::BuyActivity weaponBuy_;
     life::BankErrand   bankErrand_;
     life::VendorErrand foodErrand_;
     i32  toolTrips_ = 0;
@@ -469,6 +508,15 @@ private:
     // instead of camping its mouth -- "there is more space in the mine dont
     // only mine at the entrance" (project owner, 2026-08-29).
     bool mineRoam_ = false;
+    // FIRST VISIT, NO MEMORY: consecutive server refusals (kBadTile) at the
+    // current spot since the last genuine hit (ore or a failed-roll swing).
+    // Three in a row with no nearby remembered vein means the entrance is
+    // picked clean -- see the deeper-advance branch in DoMine. mineAdvances_
+    // bounds how many times a single goal attempt will walk deeper before
+    // falling back to the ordinary give-up path, so an actually rock-less
+    // cave still fails honestly instead of pacing forever.
+    i32  mineConsecRefusals_ = 0;
+    i32  mineAdvances_ = 0;
     i32  tameTrips_ = 0;
     i32  mineTrips_ = 0;
     std::string exploreTarget_;
@@ -561,6 +609,15 @@ private:
     std::string bankDepositItem_;
     int         bankDepositTries_ = 0;
     static constexpr int kMaxBankDepositTries = 5;
+    // A gold deposit ASKED FOR but not yet settled -- confirmed from the
+    // pack's own gold count on the next tick, never from having merely
+    // issued the drag (the same "ledger records what happened" rule
+    // pendingBuyItem_/pendingBuyGoldBefore_ already keep for BUY_SUPPLIES).
+    // Bounded by kMaxBankDepositTries exactly like bankDepositItem_ above:
+    // a box that keeps answering "landed elsewhere" is not really open.
+    bool bankGoldDepositPending_ = false;
+    i32  pendingGoldDepositBefore_ = 0;
+    int  bankGoldDepositTries_ = 0;
     // --- asking a banker for the box ------------------------------------
     // Bankers who were asked and never opened anything, so the next ask goes
     // to a DIFFERENT one. Hyman, two tiles away, was asked sixty-three times
@@ -595,6 +652,17 @@ private:
     wm::Service supplyService_ = wm::Service::None;
     int         supplyTrips_ = 0;
     static constexpr int kMaxSupplyTrips = 3;
+    // Places TravelToServiceSkipping has ever been SENT to for this input,
+    // success or not -- cleared alongside supplyTrips_ whenever supplyItem_
+    // changes. Without this, a failed trip re-ran PickServicePlace with an
+    // empty skip list and picked the SAME shop again: a Skara Brae fisher
+    // asked for kindling was sent through a moongate to "Ocllo provisioner"
+    // on trip 1, the transit stalled, and trip 2 sent him right back to the
+    // same island rather than falling through to the next-best candidate
+    // (docs/LIFE_GATE_WAVE1.md theme 2, run_gates/g_Dorvar.console.txt
+    // 00:40-00:50, "supplies: looking for a 'provisioner' ... (trip 1)" then
+    // "(trip 2)" both landing on 'Ocllo provisioner').
+    std::vector<std::string> supplySkipPlaces_;
     // A buy that has been ASKED FOR but not yet settled. The ledger entry is
     // written from the gold the server actually took, on the tick after the
     // action resolves -- never at request time. See DoBuySupplies.

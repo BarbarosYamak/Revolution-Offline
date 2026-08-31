@@ -1,0 +1,746 @@
+[00:19:17.626] INFO  session 0: 127.0.0.1:2593 user='RevGen3_08' char=Cyras tag='mk3_Cyras'
+[00:19:17.627] LOG   [mk3_Cyras] event session_start: text log opened
+[00:19:17.627] LOG   [mk3_Cyras] event net_connect_begin: connect 127.0.0.1:2593
+[00:19:17.627] INFO  [mk3_Cyras] [net] connecting to 127.0.0.1:2593 ...
+[00:19:17.628] LOG   [mk3_Cyras] event net_connected: connect 127.0.0.1:2593
+[00:19:17.628] INFO  [mk3_Cyras] [net] connected.
+[00:19:17.628] INFO  [mk3_Cyras] [seed] sent 0x7F000001 (plaintext)
+[00:19:17.628] LOG   [mk3_Cyras] event seed_out: 0x7F000001 hex=7f000001
+[00:19:17.628] INFO  [life] no prior state for revgen3_08.cyras: a new Lumberjack / Carpenter
+[00:19:17.628] INFO  [life] creation request: Lumberjacking 50.0 + Swordsmanship 50.0, stats 40/32/8 = 80
+[00:19:17.628] INFO  [life] needs: reading 'lumberjack_swordsman' from the profession catalogue
+[00:19:17.628] INFO  [life] home: Cyras lives in Britain
+[00:19:17.628] INFO  [life] build plan 'lumberjack_swordsman': 600.0 resolved + 100.0 unresolved = 700.0/700.0, stats 100/100/25 = 225
+[00:19:17.628] INFO  [mk3_Cyras] [life] autonomous player active for 'Cyras' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 3 min)
+[00:19:17.670] INFO  [mk3_Cyras] [0xA8] 1 server(s):
+[00:19:17.670] INFO  [mk3_Cyras]   [0] MyShard                   1.0.0.127  full=3%  tz=0
+[00:19:17.686] INFO  [mk3_Cyras] [0x8C] game server = 127.0.0.1:2593  seed=0x13F4CAD6
+[00:19:17.686] LOG   [mk3_Cyras] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x13F4CAD6
+[00:19:17.686] INFO  [mk3_Cyras] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[00:19:17.686] LOG   [mk3_Cyras] event relay_same_socket: no seed re-sent; 0x91 follows
+[00:19:17.686] INFO  [mk3_Cyras] [0xB9] server features = 0x0005
+[00:19:17.686] INFO  [mk3_Cyras] [0xA9] 5 slot(s) (populated 0):
+[00:19:17.686] INFO  [mk3_Cyras]   [0] <empty>
+[00:19:17.686] INFO  [mk3_Cyras]   [1] <empty>
+[00:19:17.686] INFO  [mk3_Cyras]   [2] <empty>
+[00:19:17.686] INFO  [mk3_Cyras]   [3] <empty>
+[00:19:17.686] INFO  [mk3_Cyras]   [4] <empty>
+[00:19:17.686] INFO  [mk3_Cyras] create: appearance sex=F skin=0x03EB hair=0x204A/0x045C shirt=0x027A pants=0x0296
+[00:19:17.686] INFO  [mk3_Cyras] [0x00] starting city index 2
+[00:19:17.686] INFO  [mk3_Cyras] [0x00] requested skills 44:50 40:50 48:0
+[00:19:17.686] INFO  [mk3_Cyras] [0x00] requested stats STR 40 DEX 32 INT 8
+[00:19:17.686] INFO  [mk3_Cyras] [0x00] creating character 'Cyras' in slot 0
+[00:19:17.686] LOG   [mk3_Cyras] event char_create_sent: Cyras
+[00:19:17.703] INFO  [mk3_Cyras] [0x1B] serial=0x00015725 body=0x0191 pos=(1496,1628,10)
+[00:19:17.703] LOG   [mk3_Cyras] event login_confirm: serial=0x00015725 body=0x0191 pos=(1496,1628,10)
+[00:19:17.703] INFO  [mk3_Cyras] [0x20] player @(1496,1628,10) facing=3
+[00:19:17.703] INFO  [mk3_Cyras] [0x55] login complete — entering world
+[00:19:17.703] LOG   [mk3_Cyras] event in_world: 0x55 received
+[00:19:17.703] INFO  [mk3_Cyras] [backpack] opening 0x40015723
+[00:19:17.703] INFO  [mk3_Cyras] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[00:19:17.703] INFO  [mk3_Cyras] [chat ascii] System: There are 7 other players here.
+[00:19:17.703] INFO  [mk3_Cyras] [chat ascii] System: You are under the protection of the city guards
+[00:19:17.707] INFO  [mk3_Cyras] [action] requesting the skill list
+[00:19:17.707] INFO  [life] in world; asked the server for the skill list
+[00:19:17.707] INFO  [mk3_Cyras] [0x24] open container 0x40015723 gump=60
+[00:19:17.707] INFO  [mk3_Cyras] [0x3C] container contents: 6 item(s)
+[00:19:17.707] LOG   [mk3_Cyras] event backpack_contents: serial=0x40015723 items=6
+[00:19:20.308] INFO  [mk3_Cyras] [bot] world data loaded (0 blacklisted spot(s)).
+[00:19:20.308] INFO  [life] reconciliation: first ever login, 7 field(s) differed
+[00:19:20.308] INFO  [life]   gold         persisted=0          server=10000      -> server value accepted
+[00:19:20.308] INFO  [life]   str          persisted=0          server=40         -> server value accepted
+[00:19:20.308] INFO  [life]   dex          persisted=0          server=32         -> server value accepted
+[00:19:20.308] INFO  [life]   int          persisted=0          server=8          -> server value accepted
+[00:19:20.308] INFO  [life]   skill_44     persisted=0.0        server=50.0       -> server value accepted
+[00:19:20.308] INFO  [life]   skill_40     persisted=0.0        server=50.0       -> server value accepted
+[00:19:20.308] INFO  [life]   skill_27     persisted=0.0        server=0.0        -> server value accepted
+[00:19:20.308] INFO  [life]   skill_1      persisted=0.0        server=0.0        -> server value accepted
+[00:19:20.308] INFO  [life]   skill_17     persisted=0.0        server=0.0        -> server value accepted
+[00:19:20.308] INFO  [life]   skill_11     persisted=0.0        server=0.0        -> server value accepted
+[00:19:20.308] INFO  [life]   position     persisted=0,0        server=1496,1628  -> server value accepted
+[00:19:20.308] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[00:19:20.308] INFO  [mk3_Cyras] [survival] on
+[00:19:20.308] LOG   [mk3_Cyras] event survival_mode: on
+[00:19:20.310] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_08.cyras/state.json
+[00:19:20.310] INFO  [mk3_Cyras] [survival] hp 40/40 (100%) -> fight
+[00:19:20.362] INFO  [life] goal=BANK reason="no goal was running"
+[00:19:20.362] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedMakeBandages(bandages BLOCKED 0.70) NeedSkillTraining(Carpentry 0.55) NeedEquipment(heal potions 0.50) NeedEquipment(bandages 0.50) NeedTraining(Swordsmanship 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedLogs(logs 0.40) NeedFood(food 0.25) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[00:19:20.362] INFO  [life]   score=150.0
+[00:19:20.362] INFO  [life]   reason: NeedBank urgency 0.75 x 240 = 180.0
+[00:19:20.362] INFO  [life]   reason: on_hand=10000 (total 10000) reserve=10000 carry=1300 spare=8700 risk=1.00
+[00:19:20.362] INFO  [life]   reason: no bank learned yet -30
+[00:19:20.362] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[00:19:20.362] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 10000 (buyable at 200))
+[00:19:20.362] INFO  [mk3_Cyras] [action] scanning nearby mobiles for names
+[00:19:20.363] INFO  [mk3_Cyras] [action] requested 4 paperdoll(s) for trade titles
+[00:19:20.363] INFO  [life] bank: asking who is standing in the bank
+[00:19:20.363] INFO  [mk3_Cyras] [mobiles] nearby (5):
+[00:19:20.363] INFO  [mk3_Cyras]   Halain 0x0001616D
+[00:19:20.363] INFO  [mk3_Cyras]   Delras 0x00015A59
+[00:19:20.363] INFO  [mk3_Cyras]   Vorar 0x00016305
+[00:19:20.363] INFO  [mk3_Cyras]   Audny 0x00001076
+[00:19:20.363] INFO  [mk3_Cyras]   Starling 0x000013C5
+[00:19:20.363] INFO  [mk3_Cyras] [0x20] player @(1496,1628,10) facing=0
+[00:19:20.363] INFO  [mk3_Cyras] [0x88] paperdoll 0x00001076: "Audny, the innkeeper"
+[00:19:20.363] INFO  [mk3_Cyras] [world] Audny, the innkeeper is a innkeeper at (1494,1614)
+[00:19:20.363] INFO  [mk3_Cyras] [0x20] player @(1496,1628,10) facing=6
+[00:19:20.363] INFO  [mk3_Cyras] [0x88] paperdoll 0x00016305: "Vorar, Apprentice Lumberjack"
+[00:19:20.377] INFO  [mk3_Cyras] [0x88] paperdoll 0x0001616D: "Halain, Apprentice Lumberjack"
+[00:19:20.377] INFO  [mk3_Cyras] [0x88] paperdoll 0x00015A59: "Delras, Apprentice Lumberjack"
+[00:19:20.736] INFO  [mk3_Cyras] [chat ascii] System: Rhaler has arrived in Minoc.
+[00:19:22.399] INFO  [life] bank: no banker in sight
+[00:19:22.399] INFO  [life] goal_failed=BANK status=retryable_failure reason="no banker in sight"
+[00:19:22.460] INFO  [life] goal=REPLACE_EQUIPMENT reason="previous goal abandoned: no banker answered"
+[00:19:22.461] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedMakeBandages(bandages BLOCKED 0.70) NeedSkillTraining(Carpentry 0.55) NeedEquipment(heal potions 0.50) NeedEquipment(bandages 0.50) NeedTraining(Swordsmanship 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedLogs(logs 0.40) NeedFood(food 0.25) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[00:19:22.461] INFO  [life]   score=130.0
+[00:19:22.461] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:19:22.461] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:19:22.461] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 299s after achieving nothing
+[00:19:22.461] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[00:19:22.461] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 10000 (buyable at 200))
+[00:19:23.783] INFO  [mk3_Cyras] [chat ascii] System: Ghalor has arrived in Minoc.
+[00:19:25.362] INFO  [mk3_Cyras] [survival] hp 40/40 (100%) -> fight
+[00:19:26.825] INFO  [mk3_Cyras] [chat ascii] System: Falen has arrived in Minoc.
+[00:19:27.440] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:19:27.440] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:19:27.443] INFO  [mk3_Cyras] [travel] place: skipping Cove healer -- 1344 tiles and 1 gate for a service Britain healer offers
+[00:19:27.443] INFO  [mk3_Cyras] [travel] place: skipping Minoc healer -- 1704 tiles and 0 gates for a service Britain healer offers
+[00:19:27.443] INFO  [mk3_Cyras] [travel] Britain healer -> (1471,1611) r=5 from (1496,1628)
+[00:19:27.443] LOG   [mk3_Cyras] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1496,1628)
+[00:19:27.443] INFO  [life] bandages: walking to a 'healer' (trip 1)
+[00:19:27.443] INFO  [mk3_Cyras] [travel] mode walk             usable   <- chosen
+[00:19:27.443] INFO  [mk3_Cyras] [travel] mode moongate         usable
+[00:19:27.443] INFO  [mk3_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:19:27.443] INFO  [mk3_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:19:27.443] LOG   [mk3_Cyras] event travel_mode: walk
+[00:19:27.443] INFO  [mk3_Cyras] [travel] plan Britain healer: ok legs=1 ~25 tiles transit=0 nodes=0
+[00:19:27.472] INFO  [mk3_Cyras] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:19:27.472] INFO  [mk3_Cyras] [action] goto (1471,1611) from (1496,1628,10)
+[00:19:27.472] LOG   [mk3_Cyras] event goto_start: target=(1471,1611) from=(1496,1628)
+[00:19:27.472] INFO  [mk3_Cyras] [bot] running from (1496,1628,10) to (1471,1611,z20)
+[00:19:27.472] INFO  [mk3_Cyras] [bot] planning path to (1471,1611) in background
+[00:19:27.534] INFO  [mk3_Cyras] [bot] replan to (1471,1611): 33 steps in 5302.8us
+[00:19:29.908] INFO  [mk3_Cyras] [chat ascii] System: Aelia has arrived in Britain.
+[00:19:30.387] INFO  [mk3_Cyras] [survival] hp 40/40 (100%) -> fight
+[00:19:32.739] INFO  [mk3_Cyras] [bot] lookahead patched around block at step 5: anchor=6 new segment=9 path=17 in 456.5us
+[00:19:33.079] INFO  [mk3_Cyras] [chat ascii] System: Amara has arrived in Britain.
+[00:19:34.681] INFO  [mk3_Cyras] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=10 in 150.8us
+[00:19:35.433] INFO  [mk3_Cyras] [survival] hp 40/40 (100%) -> fight
+[00:19:35.696] INFO  [mk3_Cyras] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=10 in 160.9us
+[00:19:36.131] INFO  [mk3_Cyras] [chat ascii] System: Elara has arrived in Magincia.
+[00:19:36.252] INFO  [mk3_Cyras] [chat ascii] Dale: Thou hast mine attention.
+[00:19:37.040] INFO  [mk3_Cyras] [travel] Britain healer ARRIVED at (1475,1613,20)
+[00:19:37.040] LOG   [mk3_Cyras] event travel_done: label='Britain healer' ok=1 at=(1475,1613) legs=1 plans=1 why=''
+[00:19:37.041] INFO  [mk3_Cyras] [action] scanning nearby mobiles for names
+[00:19:37.041] INFO  [mk3_Cyras] [action] requested 3 paperdoll(s) for trade titles
+[00:19:37.041] INFO  [life] bandages: at the shop, asking who is here (scan 1 of 3)
+[00:19:37.054] INFO  [mk3_Cyras] [mobiles] nearby (7):
+[00:19:37.054] INFO  [mk3_Cyras]   Delras 0x00015A59
+[00:19:37.054] INFO  [mk3_Cyras]   Vorar 0x00016305
+[00:19:37.055] INFO  [mk3_Cyras]   Halain 0x0001616D
+[00:19:37.055] INFO  [mk3_Cyras]   Natasha 0x00001194
+[00:19:37.055] INFO  [mk3_Cyras]   Dale 0x000010C1
+[00:19:37.055] INFO  [mk3_Cyras]   Caimile 0x00001239
+[00:19:37.055] INFO  [mk3_Cyras]   Audny 0x00001076
+[00:19:37.055] INFO  [mk3_Cyras] [0x20] player @(1475,1613,20) facing=7
+[00:19:37.055] INFO  [mk3_Cyras] [0x88] paperdoll 0x00001194: "Natasha, the healer guildmistress"
+[00:19:37.055] INFO  [mk3_Cyras] [world] Natasha, the healer guildmistress is a healer at (1472,1610)
+[00:19:37.055] INFO  [mk3_Cyras] [0x20] player @(1475,1613,20) facing=6
+[00:19:37.055] INFO  [mk3_Cyras] [0x88] paperdoll 0x000010C1: "Dale, the healer"
+[00:19:37.055] INFO  [mk3_Cyras] [world] Dale, the healer is a healer at (1470,1614)
+[00:19:37.055] INFO  [mk3_Cyras] [0x20] player @(1475,1613,20) facing=0
+[00:19:37.055] INFO  [mk3_Cyras] [0x88] paperdoll 0x00001239: "Caimile, the merchant guildmistress"
+[00:19:39.272] INFO  [mk3_Cyras] [chat ascii] System: Selene has arrived in Magincia.
+[00:19:40.064] INFO  [life] bandages: found a 'healer'
+[00:19:40.126] INFO  [mk3_Cyras] [travel] mobile 0x000010C1 -> (1470,1614) r=1 from (1475,1613)
+[00:19:40.126] LOG   [mk3_Cyras] event travel_start: label='mobile 0x000010C1' target=(1470,1614) radius=1 from=(1475,1613)
+[00:19:40.126] INFO  [life] bandages: the 'healer' is 5 tiles off (dz 0) -- walking into reach (chase 1 of 3)
+[00:19:40.126] INFO  [mk3_Cyras] [travel] mode walk             usable   <- chosen
+[00:19:40.126] INFO  [mk3_Cyras] [travel] mode moongate         usable
+[00:19:40.126] INFO  [mk3_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:19:40.126] INFO  [mk3_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:19:40.126] LOG   [mk3_Cyras] event travel_mode: walk
+[00:19:40.126] INFO  [mk3_Cyras] [travel] plan mobile 0x000010C1: ok legs=1 ~5 tiles transit=0 nodes=0
+[00:19:40.187] INFO  [mk3_Cyras] [action] goto finished at (1475,1613,20); target (1471,1611); stopped short (off by 6 tile(s))
+[00:19:40.187] LOG   [mk3_Cyras] event goto_done: at=(1475,1613) target=(1471,1611) arrived=0 off=6
+[00:19:40.187] INFO  [mk3_Cyras] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:19:40.187] INFO  [mk3_Cyras] [action] goto (1470,1614) from (1475,1613,20)
+[00:19:40.187] LOG   [mk3_Cyras] event goto_start: target=(1470,1614) from=(1475,1613)
+[00:19:40.187] INFO  [mk3_Cyras] [bot] running from (1475,1613,20) to (1470,1614,z20)
+[00:19:40.187] INFO  [mk3_Cyras] [bot] planning path to (1470,1614) in background
+[00:19:40.493] INFO  [mk3_Cyras] [survival] hp 40/40 (100%) -> fight
+[00:19:41.886] INFO  [mk3_Cyras] [action] goto finished at (1475,1613,20); target (1470,1614); stopped short (off by 6 tile(s))
+[00:19:41.886] LOG   [mk3_Cyras] event goto_done: at=(1475,1613) target=(1470,1614) arrived=0 off=6
+[00:19:42.349] INFO  [mk3_Cyras] [chat ascii] System: Lyra has arrived in Moonglow.
+[00:19:43.127] INFO  [mk3_Cyras] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:19:43.127] INFO  [mk3_Cyras] [action] goto (1470,1614) from (1475,1613,20)
+[00:19:43.127] LOG   [mk3_Cyras] event goto_start: target=(1470,1614) from=(1475,1613)
+[00:19:43.127] INFO  [mk3_Cyras] [bot] running from (1475,1613,20) to (1470,1614,z20)
+[00:19:43.127] INFO  [mk3_Cyras] [bot] planning path to (1470,1614) in background
+[00:19:44.420] INFO  [mk3_Cyras] [action] goto finished at (1475,1613,20); target (1470,1614); stopped short (off by 6 tile(s))
+[00:19:44.420] LOG   [mk3_Cyras] event goto_done: at=(1475,1613) target=(1470,1614) arrived=0 off=6
+[00:19:45.278] INFO  [mk3_Cyras] [chat uni  ] Vorar: Dale buy
+[00:19:45.278] INFO  [mk3_Cyras] [chat ascii] Dale: Thou mayst purchase supplies from me.
+[00:19:45.354] INFO  [mk3_Cyras] [chat ascii] Dale: Here you are, Vorar That will be 19 gold coins.  I thank thee for thy business.
+[00:19:45.357] INFO  [mk3_Cyras] [chat ascii] System: Thalia has arrived in Moonglow.
+[00:19:45.431] INFO  [mk3_Cyras] [chat uni  ] Vorar: Dale buy
+[00:19:45.431] INFO  [mk3_Cyras] [chat ascii] Dale: Thou mayst purchase supplies from me.
+[00:19:45.507] INFO  [mk3_Cyras] [survival] hp 40/40 (100%) -> fight
+[00:19:45.674] INFO  [mk3_Cyras] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:19:45.675] INFO  [mk3_Cyras] [action] goto (1470,1614) from (1475,1613,20)
+[00:19:45.675] LOG   [mk3_Cyras] event goto_start: target=(1470,1614) from=(1475,1613)
+[00:19:45.675] INFO  [mk3_Cyras] [bot] running from (1475,1613,20) to (1470,1614,z20)
+[00:19:45.675] INFO  [mk3_Cyras] [bot] planning path to (1470,1614) in background
+[00:19:45.736] INFO  [mk3_Cyras] [bot] replan to (1470,1614): 8 steps in 162.6us
+[00:19:45.737] INFO  [mk3_Cyras] [bot] lookahead patched around block at step 2: anchor=5 new segment=7 path=10 in 93.9us
+[00:19:46.167] INFO  [mk3_Cyras] [bot] lookahead patched around block at step 3: anchor=5 new segment=3 path=7 in 30.2us
+[00:19:46.227] INFO  [mk3_Cyras] [bot] lookahead patched around block at step 4: anchor=5 new segment=9 path=11 in 161.7us
+[00:19:46.569] INFO  [mk3_Cyras] [chat uni  ] Halain: Dale buy
+[00:19:46.569] INFO  [mk3_Cyras] [chat ascii] Dale: Excuse me Vorar, but Halain wants to speak to me
+[00:19:46.569] INFO  [mk3_Cyras] [chat ascii] Dale: Hello! ?
+[00:19:46.569] INFO  [mk3_Cyras] [chat ascii] Dale: I got lots to sell!
+[00:19:46.771] INFO  [mk3_Cyras] [bot] lookahead patched around block at step 3: anchor=8 new segment=4 path=6 in 107.6us
+[00:19:48.053] INFO  [mk3_Cyras] [travel] mobile 0x000010C1 ARRIVED at (1471,1613,20)
+[00:19:48.053] LOG   [mk3_Cyras] event travel_done: label='mobile 0x000010C1' ok=1 at=(1471,1613) legs=1 plans=1 why=''
+[00:19:48.114] INFO  [life] bandages: within reach
+[00:19:48.175] INFO  [mk3_Cyras] [ACTION] vendor_buy start
+[00:19:48.175] INFO  [mk3_Cyras] [VENDOR] open vendor=0x000010C1 say='Dale buy'
+[00:19:48.175] INFO  [life] bandages: asking the 'healer' to show clean bandages (attempt 1)
+[00:19:48.176] INFO  [mk3_Cyras] [chat uni  ] Delras: Dale buy
+[00:19:48.176] INFO  [mk3_Cyras] [chat ascii] Dale: Excuse me Halain, but Delras wants to speak to me
+[00:19:48.176] INFO  [mk3_Cyras] [chat ascii] Dale: Greetings. What can I help thee with?
+[00:19:48.176] INFO  [mk3_Cyras] [chat ascii] Dale: I'm here to sell thee supplies.
+[00:19:48.176] INFO  [life] bandages: an action is already in flight
+[00:19:48.190] INFO  [mk3_Cyras] [chat uni  ] : Dale buy
+[00:19:48.190] INFO  [mk3_Cyras] [chat ascii] Dale: Excuse me Delras, but Cyras wants to speak to me
+[00:19:48.190] INFO  [mk3_Cyras] [chat ascii] Dale: Hello!
+[00:19:48.190] INFO  [mk3_Cyras] [chat ascii] Dale: I got lots to sell!
+[00:19:48.190] INFO  [mk3_Cyras] [0x3C] container contents: 4 item(s)
+[00:19:48.190] INFO  [mk3_Cyras] [0x74] pairing: straight (straight 4, mirrored 0 of 4 rows)
+[00:19:48.190] INFO  [mk3_Cyras] [0x74] vendor shop data: cont=0x400010BB 4 item(s), layer=0x1A
+[00:19:48.190] INFO  [mk3_Cyras] [0x74]   Heal                         gfx=0x0F0C qty=10   price=30
+[00:19:48.190] INFO  [mk3_Cyras] [0x74]   Ginseng                      gfx=0x0F85 qty=20   price=3
+[00:19:48.190] INFO  [mk3_Cyras] [0x74]   Garlic                       gfx=0x0F84 qty=13   price=3
+[00:19:48.190] INFO  [mk3_Cyras] [0x74]   Refresh                      gfx=0x0F0B qty=19   price=16
+[00:19:48.190] INFO  [mk3_Cyras] [0x3C] container contents: 0 item(s)
+[00:19:48.190] INFO  [mk3_Cyras] [0x74] vendor shop data: cont=0x40000EF5 0 item(s), layer=0x1B
+[00:19:48.190] INFO  [mk3_Cyras] [VENDOR] offer from 0x000010C1: 4 item(s)
+[00:19:48.190] INFO  [mk3_Cyras] [VENDOR]   0x4001823F Heal                   x10  30 gp
+[00:19:48.190] INFO  [mk3_Cyras] [VENDOR]   0x40018237 Ginseng                x20  3 gp
+[00:19:48.190] INFO  [mk3_Cyras] [VENDOR]   0x40018236 Garlic                 x13  3 gp
+[00:19:48.190] INFO  [mk3_Cyras] [VENDOR]   0x40018232 Refresh                x19  16 gp
+[00:19:48.190] LOG   [mk3_Cyras] event vendor_offer: vendor=0x000010C1 items=4
+[00:19:48.190] INFO  [mk3_Cyras] [ACTION_RESULT] vendor_buy success (15ms) vendor offer received
+[00:19:48.190] LOG   [mk3_Cyras] event action_result: vendor_buy success took=15ms vendor offer received
+[00:19:48.190] INFO  [mk3_Cyras] [0x24] vendor buy gump for 0x000010C1
+[00:19:48.191] INFO  [life] bandages: the shop is open
+[00:19:48.192] INFO  [life] bandages: this 'healer' does not stock clean bandages
+[00:19:48.192] INFO  [life] goal_failed=REPLACE_EQUIPMENT status=failed reason="this 'healer' does not stock clean bandages"
+[00:19:48.192] INFO  [life] handoff=REPLACE_EQUIPMENT->MAKE_BANDAGES reason="no bandages bought"
+[00:19:48.252] INFO  [life] goal=GET_FOOD reason="previous goal abandoned: no bandages bought"
+[00:19:48.252] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedMakeBandages(bandages BLOCKED 0.70) NeedSkillTraining(Carpentry 0.55) NeedEquipment(heal potions 0.50) NeedEquipment(bandages 0.50) NeedTraining(Swordsmanship 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedLogs(logs 0.40) NeedFood(food 0.25) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[00:19:48.252] INFO  [life]   score=62.5
+[00:19:48.252] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[00:19:48.252] INFO  [life]   reason: food=0
+[00:19:48.252] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 239s after achieving nothing
+[00:19:48.252] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 274s after achieving nothing
+[00:19:48.252] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[00:19:48.252] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 10000 (buyable at 200))
+[00:19:48.422] INFO  [mk3_Cyras] [chat ascii] System: Dorvar has arrived in Skara Brae.
+[00:19:49.076] INFO  [mk3_Cyras] [chat ascii] System: You shove Vorar out of the way.
+[00:19:49.076] INFO  [mk3_Cyras] [bot] arrived at (1470,1614,20)
+[00:19:50.205] INFO  [mk3_Cyras] [travel] Britain baker -> (1450,1617) r=5 from (1470,1614)
+[00:19:50.205] LOG   [mk3_Cyras] event travel_start: label='Britain baker' target=(1450,1617) radius=5 from=(1470,1614)
+[00:19:50.205] INFO  [life] food: walking to a 'baker' (trip 1)
+[00:19:50.205] INFO  [mk3_Cyras] [travel] mode walk             usable   <- chosen
+[00:19:50.205] INFO  [mk3_Cyras] [travel] mode moongate         usable
+[00:19:50.205] INFO  [mk3_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:19:50.205] INFO  [mk3_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:19:50.205] LOG   [mk3_Cyras] event travel_mode: walk
+[00:19:50.205] INFO  [mk3_Cyras] [travel] plan Britain baker: ok legs=1 ~20 tiles transit=0 nodes=0
+[00:19:50.211] INFO  [mk3_Cyras] [action] goto finished at (1470,1614,20); target (1470,1614); ARRIVED (off by 0 tile(s))
+[00:19:50.211] LOG   [mk3_Cyras] event goto_done: at=(1470,1614) target=(1470,1614) arrived=1 off=0
+[00:19:50.211] INFO  [mk3_Cyras] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:19:50.211] INFO  [mk3_Cyras] [action] goto (1450,1617) from (1470,1614,20)
+[00:19:50.211] LOG   [mk3_Cyras] event goto_start: target=(1450,1617) from=(1470,1614)
+[00:19:50.211] INFO  [mk3_Cyras] [bot] running from (1470,1614,20) to (1450,1617,z20)
+[00:19:50.211] INFO  [mk3_Cyras] [bot] planning path to (1450,1617) in background
+[00:19:50.271] INFO  [mk3_Cyras] [bot] replan to (1450,1617): 50 steps in 2532.1us
+[00:19:50.501] INFO  [mk3_Cyras] [bot] reject at (1470,1613): mobile in the way — waiting 500ms, retrying (1) [no blacklist]
+[00:19:50.501] INFO  [mk3_Cyras] [bot] planning path to (1450,1617) in background
+[00:19:50.561] INFO  [mk3_Cyras] [action] goto finished at (1470,1614,20); target (1450,1617); stopped short (off by 23 tile(s))
+[00:19:50.562] LOG   [mk3_Cyras] event goto_done: at=(1470,1614) target=(1450,1617) arrived=0 off=23
+[00:19:50.562] INFO  [mk3_Cyras] [survival] hp 40/40 (100%) -> fight
+[00:19:51.483] INFO  [mk3_Cyras] [chat ascii] System: Ithion has arrived in Skara Brae.
+[00:19:51.821] INFO  [mk3_Cyras] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:19:51.821] INFO  [mk3_Cyras] [action] goto (1450,1617) from (1470,1614,20)
+[00:19:51.821] LOG   [mk3_Cyras] event goto_start: target=(1450,1617) from=(1470,1614)
+[00:19:51.821] INFO  [mk3_Cyras] [bot] running from (1470,1614,20) to (1450,1617,z20)
+[00:19:51.821] INFO  [mk3_Cyras] [bot] planning path to (1450,1617) in background
+[00:19:51.836] INFO  [mk3_Cyras] [bot] replan to (1450,1617): 49 steps in 2445.2us
+[00:19:52.476] INFO  [mk3_Cyras] [bot] lookahead patched around block at step 3: anchor=5 new segment=7 path=50 in 75.0us
+[00:19:52.905] INFO  [mk3_Cyras] [bot] lookahead patched around block at step 5: anchor=6 new segment=18 path=61 in 282.7us
+[00:19:54.532] INFO  [mk3_Cyras] [chat ascii] System: Odessa has arrived in Britain.
+[00:19:55.191] INFO  [mk3_Cyras] [bot] lookahead patched around block at step 5: anchor=7 new segment=9 path=56 in 139.2us
+[00:19:55.573] INFO  [mk3_Cyras] [survival] hp 40/40 (100%) -> fight
+[00:19:57.598] INFO  [mk3_Cyras] [chat ascii] System: Serena has arrived in Britain.
+[00:20:00.598] INFO  [mk3_Cyras] [survival] hp 40/40 (100%) -> fight
+[00:20:00.645] INFO  [mk3_Cyras] [chat ascii] System: Aurelius has arrived in Moonglow.
+[00:20:01.840] INFO  [mk3_Cyras] [bot] step (1479,1612,20)->(1480,1611,20) rejected; OpenDoor + retry
+[00:20:01.842] INFO  [mk3_Cyras] [chat ascii] System: Opening door...
+[00:20:01.842] INFO  [mk3_Cyras] [0x20] player @(1479,1612,20) facing=0
+[00:20:01.843] INFO  [mk3_Cyras] [action] goto finished at (1479,1612,20); target (1450,1617); stopped short (off by 34 tile(s))
+[00:20:01.843] LOG   [mk3_Cyras] event goto_done: at=(1479,1612) target=(1450,1617) arrived=0 off=34
+[00:20:03.051] INFO  [mk3_Cyras] [travel] mode walk             usable   <- chosen
+[00:20:03.052] INFO  [mk3_Cyras] [travel] mode moongate         usable
+[00:20:03.052] INFO  [mk3_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:03.052] INFO  [mk3_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:03.052] LOG   [mk3_Cyras] event travel_mode: walk
+[00:20:03.052] INFO  [mk3_Cyras] [travel] plan Britain baker: ok legs=1 ~29 tiles transit=0 nodes=0
+[00:20:03.868] INFO  [mk3_Cyras] [chat ascii] System: Leander has arrived in Moonglow.
+[00:20:04.558] INFO  [mk3_Cyras] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:20:04.558] INFO  [mk3_Cyras] [action] goto (1450,1617) from (1479,1612,20)
+[00:20:04.558] LOG   [mk3_Cyras] event goto_start: target=(1450,1617) from=(1479,1612)
+[00:20:04.558] INFO  [mk3_Cyras] [bot] running from (1479,1612,20) to (1450,1617,z20)
+[00:20:04.558] INFO  [mk3_Cyras] [bot] planning path to (1450,1617) in background
+[00:20:04.604] INFO  [mk3_Cyras] [bot] replan to (1450,1617): 37 steps in 3950.8us
+[00:20:05.004] INFO  [mk3_Cyras] [chat ascii] Dale: Hmm?
+[00:20:05.004] INFO  [mk3_Cyras] [chat ascii] Dale: Hmm?
+[00:20:05.019] INFO  [mk3_Cyras] [bot] door ahead at (1480,1610,z20); OpenDoor before step
+[00:20:05.020] INFO  [mk3_Cyras] [chat ascii] System: Opening door...
+[00:20:05.637] INFO  [mk3_Cyras] [survival] hp 40/40 (100%) -> fight
+[00:20:06.980] INFO  [mk3_Cyras] [chat ascii] System: Illyria has arrived in Britain.
+[00:20:10.022] INFO  [mk3_Cyras] [chat ascii] System: Hector has arrived in Trinsic.
+[00:20:10.674] INFO  [mk3_Cyras] [survival] hp 40/40 (100%) -> fight
+[00:20:11.291] INFO  [mk3_Cyras] [bot] door ahead at (1460,1610,z20); OpenDoor before step
+[00:20:11.292] INFO  [mk3_Cyras] [chat ascii] System: Opening door...
+[00:20:12.186] INFO  [mk3_Cyras] [chat uni  ] : Dale buy
+[00:20:12.186] INFO  [mk3_Cyras] [chat ascii] Dale: I got lots to sell!
+[00:20:12.262] INFO  [mk3_Cyras] [chat ascii] Dale: Here you are, Aelia That will be 120 gold coins.  I thank thee for thy business.
+[00:20:12.922] INFO  [mk3_Cyras] [bot] step (1460,1611,20)->(1459,1612,20) rejected; OpenDoor + retry
+[00:20:12.936] INFO  [mk3_Cyras] [chat ascii] System: Opening door...
+[00:20:12.936] INFO  [mk3_Cyras] [0x20] player @(1460,1611,20) facing=6
+[00:20:12.938] INFO  [mk3_Cyras] [action] goto finished at (1460,1611,20); target (1450,1617); stopped short (off by 16 tile(s))
+[00:20:12.938] LOG   [mk3_Cyras] event goto_done: at=(1460,1611) target=(1450,1617) arrived=0 off=16
+[00:20:13.076] INFO  [mk3_Cyras] [chat ascii] System: Castor has arrived in Trinsic.
+[00:20:14.164] INFO  [mk3_Cyras] [action] goto (1450,1617) from (1460,1611,20)
+[00:20:14.164] LOG   [mk3_Cyras] event goto_start: target=(1450,1617) from=(1460,1611)
+[00:20:14.164] INFO  [mk3_Cyras] [bot] running from (1460,1611,20) to (1450,1617,z20)
+[00:20:14.164] INFO  [mk3_Cyras] [bot] planning path to (1450,1617) in background
+[00:20:15.702] INFO  [mk3_Cyras] [survival] hp 40/40 (100%) -> fight
+[00:20:16.106] INFO  [mk3_Cyras] [chat ascii] System: Faustus has arrived in Britain.
+[00:20:16.168] INFO  [mk3_Cyras] [action] goto finished at (1460,1611,20); target (1450,1617); stopped short (off by 16 tile(s))
+[00:20:16.168] LOG   [mk3_Cyras] event goto_done: at=(1460,1611) target=(1450,1617) arrived=0 off=16
+[00:20:17.414] INFO  [mk3_Cyras] [action] goto (1450,1617) from (1460,1611,20)
+[00:20:17.414] LOG   [mk3_Cyras] event goto_start: target=(1450,1617) from=(1460,1611)
+[00:20:17.414] INFO  [mk3_Cyras] [bot] running from (1460,1611,20) to (1450,1617,z20)
+[00:20:17.414] INFO  [mk3_Cyras] [bot] planning path to (1450,1617) in background
+[00:20:19.161] INFO  [mk3_Cyras] [chat ascii] System: Titus has arrived in Skara Brae.
+[00:20:19.528] INFO  [mk3_Cyras] [action] goto finished at (1460,1611,20); target (1450,1617); stopped short (off by 16 tile(s))
+[00:20:19.528] LOG   [mk3_Cyras] event goto_done: at=(1460,1611) target=(1450,1617) arrived=0 off=16
+[00:20:20.360] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_08.cyras/state.json
+[00:20:20.745] INFO  [mk3_Cyras] [travel] mode walk             usable   <- chosen
+[00:20:20.745] INFO  [mk3_Cyras] [travel] mode moongate         usable
+[00:20:20.745] INFO  [mk3_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:20.745] INFO  [mk3_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:20.745] LOG   [mk3_Cyras] event travel_mode: walk
+[00:20:20.745] INFO  [mk3_Cyras] [travel] plan Britain baker: ok legs=1 ~10 tiles transit=0 nodes=0
+[00:20:20.745] INFO  [mk3_Cyras] [survival] hp 40/40 (100%) -> fight
+[00:20:21.726] INFO  [mk3_Cyras] [chat uni  ] : Dale buy
+[00:20:21.726] INFO  [mk3_Cyras] [chat ascii] Dale: Greetings. What can I help thee with?
+[00:20:21.726] INFO  [mk3_Cyras] [chat ascii] Dale: I'm here to sell thee supplies.
+[00:20:21.803] INFO  [mk3_Cyras] [chat ascii] Dale: Here you are, Odessa That will be 120 gold coins.  I thank thee for thy business.
+[00:20:22.309] INFO  [mk3_Cyras] [chat ascii] System: Rhea has arrived in Britain.
+[00:20:23.752] INFO  [mk3_Cyras] [action] goto (1450,1617) from (1460,1611,20)
+[00:20:23.752] LOG   [mk3_Cyras] event goto_start: target=(1450,1617) from=(1460,1611)
+[00:20:23.752] INFO  [mk3_Cyras] [bot] running from (1460,1611,20) to (1450,1617,z20)
+[00:20:23.752] INFO  [mk3_Cyras] [bot] planning path to (1450,1617) in background
+[00:20:25.070] INFO  [mk3_Cyras] [chat uni  ] : Dale buy
+[00:20:25.070] INFO  [mk3_Cyras] [chat ascii] Dale: Thou surely wants all the things that I can sell thee.
+[00:20:25.145] INFO  [mk3_Cyras] [chat ascii] Dale: Here you are, Amara That will be 60 gold coins.  I thank thee for thy business.
+[00:20:25.376] INFO  [mk3_Cyras] [chat ascii] System: Xerxes has arrived in Vesper.
+[00:20:25.773] INFO  [mk3_Cyras] [survival] hp 40/40 (100%) -> fight
+[00:20:25.972] INFO  [mk3_Cyras] [action] goto finished at (1460,1611,20); target (1450,1617); stopped short (off by 16 tile(s))
+[00:20:25.972] LOG   [mk3_Cyras] event goto_done: at=(1460,1611) target=(1450,1617) arrived=0 off=16
+[00:20:27.180] INFO  [mk3_Cyras] [action] goto (1450,1617) from (1460,1611,20)
+[00:20:27.180] LOG   [mk3_Cyras] event goto_start: target=(1450,1617) from=(1460,1611)
+[00:20:27.180] INFO  [mk3_Cyras] [bot] running from (1460,1611,20) to (1450,1617,z20)
+[00:20:27.180] INFO  [mk3_Cyras] [bot] planning path to (1450,1617) in background
+[00:20:29.542] INFO  [mk3_Cyras] [action] goto finished at (1460,1611,20); target (1450,1617); stopped short (off by 16 tile(s))
+[00:20:29.542] LOG   [mk3_Cyras] event goto_done: at=(1460,1611) target=(1450,1617) arrived=0 off=16
+[00:20:30.766] INFO  [mk3_Cyras] [travel] mode walk             usable   <- chosen
+[00:20:30.767] INFO  [mk3_Cyras] [travel] mode moongate         usable
+[00:20:30.767] INFO  [mk3_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:30.767] INFO  [mk3_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:30.767] LOG   [mk3_Cyras] event travel_mode: walk
+[00:20:30.767] INFO  [mk3_Cyras] [travel] plan Britain baker: ok legs=1 ~10 tiles transit=0 nodes=0
+[00:20:30.828] INFO  [mk3_Cyras] [survival] hp 40/40 (100%) -> fight
+[00:20:35.272] INFO  [mk3_Cyras] [action] goto (1450,1617) from (1460,1611,20)
+[00:20:35.272] LOG   [mk3_Cyras] event goto_start: target=(1450,1617) from=(1460,1611)
+[00:20:35.272] INFO  [mk3_Cyras] [bot] running from (1460,1611,20) to (1450,1617,z20)
+[00:20:35.272] INFO  [mk3_Cyras] [bot] planning path to (1450,1617) in background
+[00:20:35.837] INFO  [mk3_Cyras] [survival] hp 40/40 (100%) -> fight
+[00:20:37.594] INFO  [mk3_Cyras] [action] goto finished at (1460,1611,20); target (1450,1617); stopped short (off by 16 tile(s))
+[00:20:37.594] LOG   [mk3_Cyras] event goto_done: at=(1460,1611) target=(1450,1617) arrived=0 off=16
+[00:20:38.795] INFO  [mk3_Cyras] [action] goto (1450,1617) from (1460,1611,20)
+[00:20:38.795] LOG   [mk3_Cyras] event goto_start: target=(1450,1617) from=(1460,1611)
+[00:20:38.795] INFO  [mk3_Cyras] [bot] running from (1460,1611,20) to (1450,1617,z20)
+[00:20:38.795] INFO  [mk3_Cyras] [bot] planning path to (1450,1617) in background
+[00:20:40.861] INFO  [mk3_Cyras] [survival] hp 40/40 (100%) -> fight
+[00:20:41.649] INFO  [mk3_Cyras] [action] goto finished at (1460,1611,20); target (1450,1617); stopped short (off by 16 tile(s))
+[00:20:41.649] LOG   [mk3_Cyras] event goto_done: at=(1460,1611) target=(1450,1617) arrived=0 off=16
+[00:20:41.649] LOG   [mk3_Cyras] event travel_escape: from=(1460,1611,20) to=(1448,1608) attempt=1
+[00:20:41.649] INFO  [mk3_Cyras] [action] goto (1448,1608) from (1460,1611,20)
+[00:20:41.649] LOG   [mk3_Cyras] event goto_start: target=(1448,1608) from=(1460,1611)
+[00:20:41.649] INFO  [mk3_Cyras] [bot] running from (1460,1611,20) to (1448,1608,z20)
+[00:20:41.649] INFO  [mk3_Cyras] [bot] planning path to (1448,1608) in background
+[00:20:41.984] INFO  [mk3_Cyras] [chat uni  ] : Dale buy
+[00:20:41.984] INFO  [mk3_Cyras] [chat ascii] Dale: Yes?
+[00:20:41.984] INFO  [mk3_Cyras] [chat ascii] Dale: I'm here to sell thee supplies.
+[00:20:41.984] INFO  [mk3_Cyras] [chat uni  ] : Dale buy
+[00:20:41.984] INFO  [mk3_Cyras] [chat ascii] Dale: Excuse me Serena, but Illyria wants to speak to me
+[00:20:41.984] INFO  [mk3_Cyras] [chat ascii] Dale: Good morrow!  How can I help thee?
+[00:20:41.984] INFO  [mk3_Cyras] [chat ascii] Dale: Thou surely wants all the things that I can sell thee.
+[00:20:44.308] INFO  [mk3_Cyras] [action] goto finished at (1460,1611,20); target (1448,1608); stopped short (off by 15 tile(s))
+[00:20:44.308] LOG   [mk3_Cyras] event goto_done: at=(1460,1611) target=(1448,1608) arrived=0 off=15
+[00:20:44.308] INFO  [mk3_Cyras] [travel] recovery walk fell short at (1460,1611,20) (off 12); attempt 1/3
+[00:20:44.308] LOG   [mk3_Cyras] event travel_recovery_done: reached=0 at=(1460,1611,20) off=12 attempt=1
+[00:20:44.308] LOG   [mk3_Cyras] event travel_escape: from=(1460,1611,20) to=(1464,1624) attempt=2
+[00:20:44.308] INFO  [mk3_Cyras] [action] goto (1464,1624) from (1460,1611,20)
+[00:20:44.308] LOG   [mk3_Cyras] event goto_start: target=(1464,1624) from=(1460,1611)
+[00:20:44.308] INFO  [mk3_Cyras] [bot] running from (1460,1611,20) to (1464,1624,z20)
+[00:20:44.308] INFO  [mk3_Cyras] [bot] planning path to (1464,1624) in background
+[00:20:44.309] INFO  [mk3_Cyras] [bot] replan to (1464,1624): 13 steps in 545.4us
+[00:20:45.865] INFO  [mk3_Cyras] [survival] hp 40/40 (100%) -> fight
+[00:20:47.107] INFO  [mk3_Cyras] [chat uni  ] : Lionel buy
+[00:20:47.120] INFO  [mk3_Cyras] [chat uni  ] : Lionel buy
+[00:20:47.120] INFO  [mk3_Cyras] [chat ascii] Lionel: Yes?
+[00:20:47.120] INFO  [mk3_Cyras] [chat ascii] Lionel: I'm here to sell thee supplies.
+[00:20:47.196] INFO  [mk3_Cyras] [chat ascii] Lionel: Here you are, Halain That will be 16 gold coins.  I thank thee for thy business.
+[00:20:48.194] INFO  [mk3_Cyras] [bot] arrived at (1464,1624,20)
+[00:20:48.195] INFO  [mk3_Cyras] [action] goto finished at (1464,1624,20); target (1464,1624); ARRIVED (off by 0 tile(s))
+[00:20:48.195] LOG   [mk3_Cyras] event goto_done: at=(1464,1624) target=(1464,1624) arrived=1 off=0
+[00:20:48.195] INFO  [mk3_Cyras] [travel] recovery walk reached its anchor at (1464,1624,20) (off 0); attempt 1/3
+[00:20:48.195] LOG   [mk3_Cyras] event travel_recovery_done: reached=1 at=(1464,1624,20) off=0 attempt=1
+[00:20:48.196] INFO  [mk3_Cyras] [travel] mode walk             usable   <- chosen
+[00:20:48.196] INFO  [mk3_Cyras] [travel] mode moongate         usable
+[00:20:48.196] INFO  [mk3_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:48.196] INFO  [mk3_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:48.196] LOG   [mk3_Cyras] event travel_mode: walk
+[00:20:48.196] INFO  [mk3_Cyras] [travel] plan Britain baker: ok legs=1 ~14 tiles transit=0 nodes=0
+[00:20:48.208] INFO  [mk3_Cyras] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:20:48.208] INFO  [mk3_Cyras] [action] goto (1450,1617) from (1464,1624,20)
+[00:20:48.208] LOG   [mk3_Cyras] event goto_start: target=(1450,1617) from=(1464,1624)
+[00:20:48.208] INFO  [mk3_Cyras] [bot] running from (1464,1624,20) to (1450,1617,z20)
+[00:20:48.208] INFO  [mk3_Cyras] [bot] planning path to (1450,1617) in background
+[00:20:50.400] INFO  [mk3_Cyras] [chat uni  ] : Lionel buy
+[00:20:50.400] INFO  [mk3_Cyras] [chat ascii] Lionel: Excuse me Halain, but Amara wants to speak to me
+[00:20:50.400] INFO  [mk3_Cyras] [chat ascii] Lionel: Hello!
+[00:20:50.400] INFO  [mk3_Cyras] [chat ascii] Lionel: I'm here to sell thee supplies.
+[00:20:50.448] INFO  [mk3_Cyras] [chat ascii] Lionel: Here you are, Amara That will be 16 gold coins.  I thank thee for thy business.
+[00:20:50.600] INFO  [mk3_Cyras] [action] goto finished at (1464,1624,20); target (1450,1617); stopped short (off by 21 tile(s))
+[00:20:50.600] LOG   [mk3_Cyras] event goto_done: at=(1464,1624) target=(1450,1617) arrived=0 off=21
+[00:20:50.906] INFO  [mk3_Cyras] [survival] hp 40/40 (100%) -> fight
+[00:20:51.841] INFO  [mk3_Cyras] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:20:51.841] INFO  [mk3_Cyras] [action] goto (1450,1617) from (1464,1624,20)
+[00:20:51.841] LOG   [mk3_Cyras] event goto_start: target=(1450,1617) from=(1464,1624)
+[00:20:51.841] INFO  [mk3_Cyras] [bot] running from (1464,1624,20) to (1450,1617,z20)
+[00:20:51.841] INFO  [mk3_Cyras] [bot] planning path to (1450,1617) in background
+[00:20:51.903] INFO  [mk3_Cyras] [bot] replan to (1450,1617): 22 steps in 6088.3us
+[00:20:54.322] INFO  [mk3_Cyras] [bot] door ahead at (1460,1613,z20); OpenDoor before step
+[00:20:54.336] INFO  [mk3_Cyras] [chat ascii] System: Opening door...
+[00:20:56.078] INFO  [mk3_Cyras] [survival] hp 40/40 (100%) -> fight
+[00:20:56.685] INFO  [mk3_Cyras] [bot] door ahead at (1459,1612,z20); OpenDoor before step
+[00:20:56.710] INFO  [mk3_Cyras] [chat ascii] System: Opening door...
+[00:20:57.392] INFO  [mk3_Cyras] [chat uni  ] : Lionel buy
+[00:20:59.999] INFO  [mk3_Cyras] [chat uni  ] : Dale buy
+[00:20:59.999] INFO  [mk3_Cyras] [chat ascii] Dale: Greetings.  What might I help thee with?
+[00:20:59.999] INFO  [mk3_Cyras] [chat ascii] Dale: My shop sells many things.
+[00:21:00.417] INFO  [mk3_Cyras] [bot] reject at (1455,1614): mobile in the way — waiting 500ms, retrying (1) [no blacklist]
+[00:21:00.417] INFO  [mk3_Cyras] [bot] planning path to (1450,1617) in background
+[00:21:01.096] INFO  [mk3_Cyras] [survival] hp 40/40 (100%) -> fight
+[00:21:03.184] INFO  [mk3_Cyras] [action] goto finished at (1456,1614,20); target (1450,1617); stopped short (off by 9 tile(s))
+[00:21:03.184] LOG   [mk3_Cyras] event goto_done: at=(1456,1614) target=(1450,1617) arrived=0 off=9
+[00:21:04.424] INFO  [mk3_Cyras] [travel] mode walk             usable   <- chosen
+[00:21:04.424] INFO  [mk3_Cyras] [travel] mode moongate         usable
+[00:21:04.424] INFO  [mk3_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:04.424] INFO  [mk3_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:04.424] LOG   [mk3_Cyras] event travel_mode: walk
+[00:21:04.424] INFO  [mk3_Cyras] [travel] plan Britain baker: ok legs=1 ~6 tiles transit=0 nodes=0
+[00:21:05.955] INFO  [mk3_Cyras] [action] goto (1450,1617) from (1456,1614,20)
+[00:21:05.956] LOG   [mk3_Cyras] event goto_start: target=(1450,1617) from=(1456,1614)
+[00:21:05.956] INFO  [mk3_Cyras] [bot] running from (1456,1614,20) to (1450,1617,z20)
+[00:21:05.956] INFO  [mk3_Cyras] [bot] planning path to (1450,1617) in background
+[00:21:06.139] INFO  [mk3_Cyras] [survival] hp 40/40 (100%) -> fight
+[00:21:07.332] INFO  [mk3_Cyras] [chat uni  ] : Lionel buy
+[00:21:08.820] INFO  [mk3_Cyras] [action] goto finished at (1456,1614,20); target (1450,1617); stopped short (off by 9 tile(s))
+[00:21:08.820] LOG   [mk3_Cyras] event goto_done: at=(1456,1614) target=(1450,1617) arrived=0 off=9
+[00:21:09.019] INFO  [mk3_Cyras] [chat uni  ] : Lionel buy
+[00:21:10.048] INFO  [mk3_Cyras] [action] goto (1450,1617) from (1456,1614,20)
+[00:21:10.048] LOG   [mk3_Cyras] event goto_start: target=(1450,1617) from=(1456,1614)
+[00:21:10.048] INFO  [mk3_Cyras] [bot] running from (1456,1614,20) to (1450,1617,z20)
+[00:21:10.048] INFO  [mk3_Cyras] [bot] planning path to (1450,1617) in background
+[00:21:11.141] INFO  [mk3_Cyras] [survival] hp 40/40 (100%) -> fight
+[00:21:11.193] INFO  [mk3_Cyras] [chat ascii] System: Observer has arrived in Minoc.
+[00:21:12.741] INFO  [mk3_Cyras] [action] goto finished at (1456,1614,20); target (1450,1617); stopped short (off by 9 tile(s))
+[00:21:12.741] LOG   [mk3_Cyras] event goto_done: at=(1456,1614) target=(1450,1617) arrived=0 off=9
+[00:21:13.141] INFO  [mk3_Cyras] [chat ascii] Dale: Good morrow!  How can I help thee?
+[00:21:13.141] INFO  [mk3_Cyras] [chat ascii] Dale: I'm here to sell thee supplies.
+[00:21:13.971] INFO  [mk3_Cyras] [travel] mode walk             usable   <- chosen
+[00:21:13.971] INFO  [mk3_Cyras] [travel] mode moongate         usable
+[00:21:13.971] INFO  [mk3_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:13.971] INFO  [mk3_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:13.972] LOG   [mk3_Cyras] event travel_mode: walk
+[00:21:13.972] INFO  [mk3_Cyras] [travel] plan Britain baker: ok legs=1 ~6 tiles transit=0 nodes=0
+[00:21:14.571] INFO  [mk3_Cyras] [chat ascii] System: Observer has departed from Minoc.
+[00:21:16.142] INFO  [mk3_Cyras] [survival] hp 40/40 (100%) -> fight
+[00:21:17.015] INFO  [mk3_Cyras] [action] goto (1450,1617) from (1456,1614,20)
+[00:21:17.015] LOG   [mk3_Cyras] event goto_start: target=(1450,1617) from=(1456,1614)
+[00:21:17.015] INFO  [mk3_Cyras] [bot] running from (1456,1614,20) to (1450,1617,z20)
+[00:21:17.015] INFO  [mk3_Cyras] [bot] planning path to (1450,1617) in background
+[00:21:19.066] INFO  [mk3_Cyras] [chat uni  ] : Lionel buy
+[00:21:19.863] INFO  [mk3_Cyras] [action] goto finished at (1456,1614,20); target (1450,1617); stopped short (off by 9 tile(s))
+[00:21:19.863] LOG   [mk3_Cyras] event goto_done: at=(1456,1614) target=(1450,1617) arrived=0 off=9
+[00:21:20.172] INFO  [mk3_Cyras] [chat uni  ] : Lionel buy
+[00:21:20.373] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_08.cyras/state.json
+[00:21:20.569] INFO  [mk3_Cyras] [chat uni  ] : Lionel buy
+[00:21:20.569] INFO  [mk3_Cyras] [chat ascii] Lionel: Excuse me Amara, but Odessa wants to speak to me
+[00:21:20.569] INFO  [mk3_Cyras] [chat ascii] Lionel: Greetings. What can I do for thee?
+[00:21:20.569] INFO  [mk3_Cyras] [chat ascii] Lionel: I'm here to sell thee supplies.
+[00:21:21.092] INFO  [mk3_Cyras] [action] goto (1450,1617) from (1456,1614,20)
+[00:21:21.092] LOG   [mk3_Cyras] event goto_start: target=(1450,1617) from=(1456,1614)
+[00:21:21.092] INFO  [mk3_Cyras] [bot] running from (1456,1614,20) to (1450,1617,z20)
+[00:21:21.092] INFO  [mk3_Cyras] [bot] planning path to (1450,1617) in background
+[00:21:21.154] INFO  [mk3_Cyras] [survival] hp 40/40 (100%) -> fight
+[00:21:24.091] INFO  [mk3_Cyras] [action] goto finished at (1456,1614,20); target (1450,1617); stopped short (off by 9 tile(s))
+[00:21:24.091] LOG   [mk3_Cyras] event goto_done: at=(1456,1614) target=(1450,1617) arrived=0 off=9
+[00:21:25.352] INFO  [mk3_Cyras] [travel] mode walk             usable   <- chosen
+[00:21:25.352] INFO  [mk3_Cyras] [travel] mode moongate         usable
+[00:21:25.352] INFO  [mk3_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:25.352] INFO  [mk3_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:25.352] LOG   [mk3_Cyras] event travel_mode: walk
+[00:21:25.352] INFO  [mk3_Cyras] [travel] plan Britain baker: ok legs=1 ~6 tiles transit=0 nodes=0
+[00:21:26.167] INFO  [mk3_Cyras] [survival] hp 40/40 (100%) -> fight
+[00:21:29.207] INFO  [mk3_Cyras] [chat uni  ] : Lionel buy
+[00:21:29.853] INFO  [mk3_Cyras] [action] goto (1450,1617) from (1456,1614,20)
+[00:21:29.853] LOG   [mk3_Cyras] event goto_start: target=(1450,1617) from=(1456,1614)
+[00:21:29.853] INFO  [mk3_Cyras] [bot] running from (1456,1614,20) to (1450,1617,z20)
+[00:21:29.853] INFO  [mk3_Cyras] [bot] planning path to (1450,1617) in background
+[00:21:30.269] INFO  [mk3_Cyras] [chat uni  ] : Lionel buy
+[00:21:31.209] INFO  [mk3_Cyras] [survival] hp 40/40 (100%) -> fight
+[00:21:32.572] INFO  [mk3_Cyras] [action] goto finished at (1456,1614,20); target (1450,1617); stopped short (off by 9 tile(s))
+[00:21:32.572] LOG   [mk3_Cyras] event goto_done: at=(1456,1614) target=(1450,1617) arrived=0 off=9
+[00:21:33.798] INFO  [mk3_Cyras] [action] goto (1450,1617) from (1456,1614,20)
+[00:21:33.798] LOG   [mk3_Cyras] event goto_start: target=(1450,1617) from=(1456,1614)
+[00:21:33.798] INFO  [mk3_Cyras] [bot] running from (1456,1614,20) to (1450,1617,z20)
+[00:21:33.799] INFO  [mk3_Cyras] [bot] planning path to (1450,1617) in background
+[00:21:36.181] INFO  [mk3_Cyras] [action] goto finished at (1456,1614,20); target (1450,1617); stopped short (off by 9 tile(s))
+[00:21:36.181] LOG   [mk3_Cyras] event goto_done: at=(1456,1614) target=(1450,1617) arrived=0 off=9
+[00:21:36.181] INFO  [mk3_Cyras] [travel] Britain baker ARRIVED at (1456,1614,20) -- arrived nearby; the destination tile was not free
+[00:21:36.181] LOG   [mk3_Cyras] event travel_done: label='Britain baker' ok=1 at=(1456,1614) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[00:21:36.196] INFO  [mk3_Cyras] [action] scanning nearby mobiles for names
+[00:21:36.196] INFO  [mk3_Cyras] [action] requested 7 paperdoll(s) for trade titles
+[00:21:36.196] INFO  [life] food: at the shop, asking who is here (scan 1 of 3)
+[00:21:36.211] INFO  [mk3_Cyras] [mobiles] nearby (13):
+[00:21:36.211] INFO  [mk3_Cyras]   Rhea 0x00017DD9
+[00:21:36.211] INFO  [mk3_Cyras]   Serena 0x000193F7
+[00:21:36.211] INFO  [mk3_Cyras]   Vorar 0x00016305
+[00:21:36.211] INFO  [mk3_Cyras]   Odessa 0x000194DE
+[00:21:36.211] INFO  [mk3_Cyras]   Aelia 0x00013DA6
+[00:21:36.211] INFO  [mk3_Cyras]   Faustus 0x000181F7
+[00:21:36.211] INFO  [mk3_Cyras]   Lionel 0x000010B3
+[00:21:36.211] INFO  [mk3_Cyras]   Amara 0x00012E70
+[00:21:36.211] INFO  [mk3_Cyras]   Halain 0x0001616D
+[00:21:36.211] INFO  [mk3_Cyras]   Delras 0x00015A59
+[00:21:36.211] INFO  [mk3_Cyras]   Natasha 0x00001194
+[00:21:36.211] INFO  [mk3_Cyras]   Dale 0x000010C1
+[00:21:36.211] INFO  [mk3_Cyras]   Caimile 0x00001239
+[00:21:36.211] INFO  [mk3_Cyras] [0x88] paperdoll 0x000010B3: "Lionel, the baker"
+[00:21:36.211] INFO  [mk3_Cyras] [world] Lionel, the baker is a baker at (1451,1615)
+[00:21:36.211] INFO  [mk3_Cyras] [0x88] paperdoll 0x00013DA6: "Aelia, Apprentice Tailor"
+[00:21:36.211] INFO  [mk3_Cyras] [0x20] player @(1456,1614,20) facing=7
+[00:21:36.211] INFO  [mk3_Cyras] [0x88] paperdoll 0x000194DE: "Odessa, Apprentice Miner"
+[00:21:36.211] INFO  [mk3_Cyras] [0x20] player @(1456,1614,20) facing=6
+[00:21:36.211] INFO  [mk3_Cyras] [0x88] paperdoll 0x00012E70: "Amara, Apprentice Tailor"
+[00:21:36.211] INFO  [mk3_Cyras] [0x88] paperdoll 0x000193F7: "Serena, Apprentice Miner"
+[00:21:36.211] INFO  [mk3_Cyras] [0x20] player @(1456,1614,20) facing=7
+[00:21:36.211] INFO  [mk3_Cyras] [0x88] paperdoll 0x000181F7: "Faustus, Apprentice Armsman"
+[00:21:36.211] INFO  [mk3_Cyras] [0x88] paperdoll 0x00017DD9: "Rhea, Apprentice Tamer"
+[00:21:36.212] INFO  [mk3_Cyras] [survival] hp 40/40 (100%) -> fight
+[00:21:39.242] INFO  [life] food: found a 'baker'
+[00:21:39.303] INFO  [mk3_Cyras] [travel] mobile 0x000010B3 -> (1451,1615) r=1 from (1456,1614)
+[00:21:39.304] LOG   [mk3_Cyras] event travel_start: label='mobile 0x000010B3' target=(1451,1615) radius=1 from=(1456,1614)
+[00:21:39.304] INFO  [life] food: the 'baker' is 5 tiles off (dz 0) -- walking into reach (chase 1 of 3)
+[00:21:39.304] INFO  [mk3_Cyras] [travel] mode walk             usable   <- chosen
+[00:21:39.304] INFO  [mk3_Cyras] [travel] mode moongate         usable
+[00:21:39.304] INFO  [mk3_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:39.304] INFO  [mk3_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:39.304] LOG   [mk3_Cyras] event travel_mode: walk
+[00:21:39.304] INFO  [mk3_Cyras] [travel] plan mobile 0x000010B3: ok legs=1 ~5 tiles transit=0 nodes=0
+[00:21:39.365] INFO  [mk3_Cyras] [action] goto (1451,1615) from (1456,1614,20)
+[00:21:39.365] LOG   [mk3_Cyras] event goto_start: target=(1451,1615) from=(1456,1614)
+[00:21:39.365] INFO  [mk3_Cyras] [bot] running from (1456,1614,20) to (1451,1615,z20)
+[00:21:39.365] INFO  [mk3_Cyras] [bot] planning path to (1451,1615) in background
+[00:21:40.412] INFO  [mk3_Cyras] [chat uni  ] Faustus: Lionel buy
+[00:21:41.275] INFO  [mk3_Cyras] [survival] hp 40/40 (100%) -> fight
+[00:21:41.519] INFO  [mk3_Cyras] [action] goto finished at (1456,1614,20); target (1451,1615); stopped short (off by 6 tile(s))
+[00:21:41.519] LOG   [mk3_Cyras] event goto_done: at=(1456,1614) target=(1451,1615) arrived=0 off=6
+[00:21:42.751] INFO  [mk3_Cyras] [action] goto (1451,1615) from (1456,1614,20)
+[00:21:42.751] LOG   [mk3_Cyras] event goto_start: target=(1451,1615) from=(1456,1614)
+[00:21:42.751] INFO  [mk3_Cyras] [bot] running from (1456,1614,20) to (1451,1615,z20)
+[00:21:42.751] INFO  [mk3_Cyras] [bot] planning path to (1451,1615) in background
+[00:21:45.458] INFO  [mk3_Cyras] [action] goto finished at (1456,1614,20); target (1451,1615); stopped short (off by 6 tile(s))
+[00:21:45.458] LOG   [mk3_Cyras] event goto_done: at=(1456,1614) target=(1451,1615) arrived=0 off=6
+[00:21:46.332] INFO  [mk3_Cyras] [survival] hp 40/40 (100%) -> fight
+[00:21:46.699] INFO  [mk3_Cyras] [travel] mode walk             usable   <- chosen
+[00:21:46.700] INFO  [mk3_Cyras] [travel] mode moongate         usable
+[00:21:46.700] INFO  [mk3_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:46.700] INFO  [mk3_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:46.700] LOG   [mk3_Cyras] event travel_mode: walk
+[00:21:46.700] INFO  [mk3_Cyras] [travel] plan mobile 0x000010B3: ok legs=1 ~5 tiles transit=0 nodes=0
+[00:21:48.212] INFO  [mk3_Cyras] [action] goto (1451,1615) from (1456,1614,20)
+[00:21:48.212] LOG   [mk3_Cyras] event goto_start: target=(1451,1615) from=(1456,1614)
+[00:21:48.212] INFO  [mk3_Cyras] [bot] running from (1456,1614,20) to (1451,1615,z20)
+[00:21:48.212] INFO  [mk3_Cyras] [bot] planning path to (1451,1615) in background
+[00:21:50.857] INFO  [mk3_Cyras] [action] goto finished at (1456,1614,20); target (1451,1615); stopped short (off by 6 tile(s))
+[00:21:50.857] LOG   [mk3_Cyras] event goto_done: at=(1456,1614) target=(1451,1615) arrived=0 off=6
+[00:21:51.364] INFO  [mk3_Cyras] [survival] hp 40/40 (100%) -> fight
+[00:21:52.077] INFO  [mk3_Cyras] [action] goto (1451,1615) from (1456,1614,20)
+[00:21:52.077] LOG   [mk3_Cyras] event goto_start: target=(1451,1615) from=(1456,1614)
+[00:21:52.077] INFO  [mk3_Cyras] [bot] running from (1456,1614,20) to (1451,1615,z20)
+[00:21:52.077] INFO  [mk3_Cyras] [bot] planning path to (1451,1615) in background
+[00:21:54.624] INFO  [mk3_Cyras] [action] goto finished at (1456,1614,20); target (1451,1615); stopped short (off by 6 tile(s))
+[00:21:54.624] LOG   [mk3_Cyras] event goto_done: at=(1456,1614) target=(1451,1615) arrived=0 off=6
+[00:21:55.848] INFO  [mk3_Cyras] [travel] mode walk             usable   <- chosen
+[00:21:55.848] INFO  [mk3_Cyras] [travel] mode moongate         usable
+[00:21:55.848] INFO  [mk3_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:55.848] INFO  [mk3_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:55.848] LOG   [mk3_Cyras] event travel_mode: walk
+[00:21:55.848] INFO  [mk3_Cyras] [travel] plan mobile 0x000010B3: ok legs=1 ~5 tiles transit=0 nodes=0
+[00:21:56.399] INFO  [mk3_Cyras] [survival] hp 40/40 (100%) -> fight
+[00:21:58.644] INFO  [mk3_Cyras] [chat ascii] System: Draver has departed from Minoc.
+[00:21:58.862] INFO  [mk3_Cyras] [action] goto (1451,1615) from (1456,1614,20)
+[00:21:58.862] LOG   [mk3_Cyras] event goto_start: target=(1451,1615) from=(1456,1614)
+[00:21:58.862] INFO  [mk3_Cyras] [bot] running from (1456,1614,20) to (1451,1615,z20)
+[00:21:58.862] INFO  [mk3_Cyras] [bot] planning path to (1451,1615) in background
+[00:22:00.763] INFO  [mk3_Cyras] [action] goto finished at (1456,1614,20); target (1451,1615); stopped short (off by 6 tile(s))
+[00:22:00.763] LOG   [mk3_Cyras] event goto_done: at=(1456,1614) target=(1451,1615) arrived=0 off=6
+[00:22:01.408] INFO  [mk3_Cyras] [survival] hp 40/40 (100%) -> fight
+[00:22:01.979] INFO  [mk3_Cyras] [action] goto (1451,1615) from (1456,1614,20)
+[00:22:01.979] LOG   [mk3_Cyras] event goto_start: target=(1451,1615) from=(1456,1614)
+[00:22:01.979] INFO  [mk3_Cyras] [bot] running from (1456,1614,20) to (1451,1615,z20)
+[00:22:01.979] INFO  [mk3_Cyras] [bot] planning path to (1451,1615) in background
+[00:22:04.099] INFO  [mk3_Cyras] [action] goto finished at (1456,1614,20); target (1451,1615); stopped short (off by 6 tile(s))
+[00:22:04.099] LOG   [mk3_Cyras] event goto_done: at=(1456,1614) target=(1451,1615) arrived=0 off=6
+[00:22:05.315] INFO  [mk3_Cyras] [travel] mode walk             usable   <- chosen
+[00:22:05.315] INFO  [mk3_Cyras] [travel] mode moongate         usable
+[00:22:05.315] INFO  [mk3_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:05.315] INFO  [mk3_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:05.315] LOG   [mk3_Cyras] event travel_mode: walk
+[00:22:05.315] INFO  [mk3_Cyras] [travel] plan mobile 0x000010B3: ok legs=1 ~5 tiles transit=0 nodes=0
+[00:22:06.428] INFO  [mk3_Cyras] [survival] hp 40/40 (100%) -> fight
+[00:22:09.816] INFO  [mk3_Cyras] [action] goto (1451,1615) from (1456,1614,20)
+[00:22:09.816] LOG   [mk3_Cyras] event goto_start: target=(1451,1615) from=(1456,1614)
+[00:22:09.816] INFO  [mk3_Cyras] [bot] running from (1456,1614,20) to (1451,1615,z20)
+[00:22:09.816] INFO  [mk3_Cyras] [bot] planning path to (1451,1615) in background
+[00:22:11.479] INFO  [mk3_Cyras] [survival] hp 40/40 (100%) -> fight
+[00:22:12.280] INFO  [mk3_Cyras] [action] goto finished at (1456,1614,20); target (1451,1615); stopped short (off by 6 tile(s))
+[00:22:12.280] LOG   [mk3_Cyras] event goto_done: at=(1456,1614) target=(1451,1615) arrived=0 off=6
+[00:22:13.483] INFO  [mk3_Cyras] [action] goto (1451,1615) from (1456,1614,20)
+[00:22:13.483] LOG   [mk3_Cyras] event goto_start: target=(1451,1615) from=(1456,1614)
+[00:22:13.483] INFO  [mk3_Cyras] [bot] running from (1456,1614,20) to (1451,1615,z20)
+[00:22:13.483] INFO  [mk3_Cyras] [bot] planning path to (1451,1615) in background
+[00:22:15.967] INFO  [mk3_Cyras] [action] goto finished at (1456,1614,20); target (1451,1615); stopped short (off by 6 tile(s))
+[00:22:15.967] LOG   [mk3_Cyras] event goto_done: at=(1456,1614) target=(1451,1615) arrived=0 off=6
+[00:22:15.967] LOG   [mk3_Cyras] event travel_escape: from=(1456,1614,20) to=(1448,1608) attempt=1
+[00:22:15.967] INFO  [mk3_Cyras] [action] goto (1448,1608) from (1456,1614,20)
+[00:22:15.967] LOG   [mk3_Cyras] event goto_start: target=(1448,1608) from=(1456,1614)
+[00:22:15.967] INFO  [mk3_Cyras] [bot] running from (1456,1614,20) to (1448,1608,z20)
+[00:22:15.967] INFO  [mk3_Cyras] [bot] planning path to (1448,1608) in background
+[00:22:16.028] INFO  [mk3_Cyras] [bot] replan to (1448,1608): 19 steps in 333.4us
+[00:22:16.502] INFO  [mk3_Cyras] [survival] hp 40/40 (100%) -> fight
+[00:22:17.734] INFO  [life] session_end_requested reason="session time limit reached"
+[00:22:18.814] INFO  [mk3_Cyras] [travel] mobile 0x000010B3 ARRIVED at (1452,1616,20)
+[00:22:18.814] LOG   [mk3_Cyras] event travel_done: label='mobile 0x000010B3' ok=1 at=(1452,1616) legs=1 plans=4 why=''
+[00:22:18.877] INFO  [life] wind-down: no bank learned yet; asking the world for one (attempt 1)
+[00:22:18.880] INFO  [mk3_Cyras] [travel] place: skipping Minoc banker -- 1792 tiles and 0 gates for a service Britain banker offers
+[00:22:18.880] INFO  [mk3_Cyras] [travel] Britain banker -> (1425,1690) r=5 from (1452,1616)
+[00:22:18.880] LOG   [mk3_Cyras] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1452,1616)
+[00:22:18.880] INFO  [mk3_Cyras] [travel] mode moongate         usable   <- chosen
+[00:22:18.880] INFO  [mk3_Cyras] [travel] mode walk             usable
+[00:22:18.880] INFO  [mk3_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:18.880] INFO  [mk3_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:18.880] LOG   [mk3_Cyras] event travel_mode: moongate
+[00:22:18.880] INFO  [mk3_Cyras] [travel] plan Britain banker: ok legs=2 ~88 tiles transit=0 nodes=11
+[00:22:21.561] INFO  [mk3_Cyras] [survival] hp 40/40 (100%) -> fight
+[00:22:22.930] INFO  [mk3_Cyras] [bot] arrived at (1448,1608,20)
+[00:22:22.930] INFO  [mk3_Cyras] [action] goto finished at (1448,1608,20); target (1448,1608); ARRIVED (off by 0 tile(s))
+[00:22:22.930] LOG   [mk3_Cyras] event goto_done: at=(1448,1608) target=(1448,1608) arrived=1 off=0
+[00:22:22.930] INFO  [mk3_Cyras] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:22:22.930] INFO  [mk3_Cyras] [action] goto (1464,1656) from (1448,1608,20)
+[00:22:22.930] LOG   [mk3_Cyras] event goto_start: target=(1464,1656) from=(1448,1608)
+[00:22:22.930] INFO  [mk3_Cyras] [bot] running from (1448,1608,20) to (1464,1656)
+[00:22:22.930] INFO  [mk3_Cyras] [bot] planning path to (1464,1656) in background
+[00:22:22.991] INFO  [mk3_Cyras] [bot] replan to (1464,1656): 66 steps in 3770.2us
+[00:22:26.615] INFO  [mk3_Cyras] [survival] hp 40/40 (100%) -> fight
+[00:22:29.494] INFO  [mk3_Cyras] [bot] door ahead at (1459,1612,z20); OpenDoor before step
+[00:22:29.509] INFO  [mk3_Cyras] [chat ascii] System: Opening door...
+[00:22:30.884] INFO  [mk3_Cyras] [bot] step (1460,1612,20)->(1461,1613,20) rejected; OpenDoor + retry
+[00:22:30.900] INFO  [mk3_Cyras] [chat ascii] System: Opening door...
+[00:22:30.900] INFO  [mk3_Cyras] [0x20] player @(1460,1612,20) facing=4
+[00:22:30.900] INFO  [mk3_Cyras] [action] goto finished at (1460,1612,20); target (1464,1656); stopped short (off by 48 tile(s))
+[00:22:30.900] LOG   [mk3_Cyras] event goto_done: at=(1460,1612) target=(1464,1656) arrived=0 off=48
+[00:22:31.667] INFO  [mk3_Cyras] [survival] hp 40/40 (100%) -> fight
+[00:22:31.852] INFO  [mk3_Cyras] [chat ascii] Lionel: Nice speaking to you Odessa
+[00:22:32.158] INFO  [mk3_Cyras] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:22:32.158] INFO  [mk3_Cyras] [action] goto (1464,1656) from (1460,1612,20)
+[00:22:32.158] LOG   [mk3_Cyras] event goto_start: target=(1464,1656) from=(1460,1612)
+[00:22:32.158] INFO  [mk3_Cyras] [bot] running from (1460,1612,20) to (1464,1656)
+[00:22:32.158] INFO  [mk3_Cyras] [bot] planning path to (1464,1656) in background
+[00:22:32.219] INFO  [mk3_Cyras] [bot] replan to (1464,1656): 44 steps in 2591.7us
+[00:22:32.851] INFO  [mk3_Cyras] [chat ascii] Lionel: What's thee wantin'?
+[00:22:32.851] INFO  [mk3_Cyras] [chat ascii] Lionel: What's thee wantin'?
+[00:22:36.675] INFO  [mk3_Cyras] [survival] hp 40/40 (100%) -> fight
+[00:22:38.419] INFO  [mk3_Cyras] [chat ascii] System: Vorar has departed from Britain.
+[00:22:39.439] INFO  [mk3_Cyras] [chat ascii] System: Selene has departed from Magincia.
+[00:22:41.700] INFO  [mk3_Cyras] [survival] hp 40/40 (100%) -> fight
+[00:22:45.387] INFO  [mk3_Cyras] [bot] arrived at (1464,1656,10)
+[00:22:45.387] INFO  [mk3_Cyras] [action] goto finished at (1464,1656,10); target (1464,1656); ARRIVED (off by 0 tile(s))
+[00:22:45.387] LOG   [mk3_Cyras] event goto_done: at=(1464,1656) target=(1464,1656) arrived=1 off=0
+[00:22:45.387] INFO  [mk3_Cyras] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:22:45.387] INFO  [mk3_Cyras] [action] goto (1425,1690) from (1464,1656,10)
+[00:22:45.387] LOG   [mk3_Cyras] event goto_start: target=(1425,1690) from=(1464,1656)
+[00:22:45.387] INFO  [mk3_Cyras] [bot] running from (1464,1656,10) to (1425,1690,z0)
+[00:22:45.387] INFO  [mk3_Cyras] [bot] planning path to (1425,1690) in background
+[00:22:45.449] INFO  [mk3_Cyras] [bot] replan to (1425,1690): 60 steps in 19802.7us
+[00:22:46.710] INFO  [mk3_Cyras] [survival] hp 40/40 (100%) -> fight
+[00:22:46.897] INFO  [mk3_Cyras] [chat ascii] System: Zarthal has departed from Minoc.
+[00:22:49.377] INFO  [mk3_Cyras] [chat ascii] System: World save in 10 seconds
+[00:22:50.319] INFO  [mk3_Cyras] [chat ascii] System: Thalia has departed from Moonglow.
+[00:22:51.737] INFO  [mk3_Cyras] [survival] hp 40/40 (100%) -> fight
+[00:22:53.217] INFO  [mk3_Cyras] [chat ascii] System: Elvar has departed from Minoc.
+[00:22:55.671] INFO  [mk3_Cyras] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=24 in 163.4us
+[00:22:56.750] INFO  [mk3_Cyras] [survival] hp 40/40 (100%) -> fight
+[00:22:57.803] INFO  [mk3_Cyras] [bot] door ahead at (1440,1693,z0); OpenDoor before step
+[00:22:57.803] INFO  [mk3_Cyras] [chat ascii] System: Opening door...
+[00:22:57.848] INFO  [mk3_Cyras] [chat ascii] System: Falen has departed from Minoc.
+[00:22:59.294] INFO  [mk3_Cyras] [bot] door ahead at (1438,1692,z0); OpenDoor before step
+[00:22:59.309] INFO  [mk3_Cyras] [chat ascii] System: Opening door...
+[00:22:59.429] INFO  [mk3_Cyras] [chat ascii] System: World save has been initiated.
+[00:23:01.801] INFO  [mk3_Cyras] [survival] hp 40/40 (100%) -> fight
+[00:23:05.777] INFO  [mk3_Cyras] [chat ascii] System: Ghalor has departed from Minoc.
+[00:23:06.840] INFO  [mk3_Cyras] [survival] hp 40/40 (100%) -> fight
+[00:23:06.978] INFO  [mk3_Cyras] [chat ascii] Lyndon: I'm listenin'.
+[00:23:07.457] INFO  [mk3_Cyras] [travel] Britain banker ARRIVED at (1430,1690,0)
+[00:23:07.457] LOG   [mk3_Cyras] event travel_done: label='Britain banker' ok=1 at=(1430,1690) legs=2 plans=1 why=''
+[00:23:07.518] INFO  [life] wind-down: arrived somewhere safe at 1430,1690
+[00:23:07.580] INFO  [life] session_summary duration=229s goals=0/3 gold=10000->10000 skills=100.0->100.0 logs=+0 kills=0 deaths=0 places=2 suppliers=0
+[00:23:07.580] INFO  [life] session_goals families=1 picks=3 top=100% varied=0 self_superseded=0 | upkeep=3(100%) | REPLACE_EQUIPMENT=1(33%) BANK=1(33%) GET_FOOD=1(33%)
+[00:23:07.582] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_08.cyras/state.json
+[00:23:07.582] INFO  [life] logging out
+[00:23:07.582] INFO  [mk3_Cyras] [action] logout requested
+[00:23:07.582] LOG   [mk3_Cyras] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[00:23:07.596] INFO  [mk3_Cyras] [0xD1] logout acknowledged (accepted=1)
+[00:23:07.596] LOG   [mk3_Cyras] event logout_ack: accepted
+[00:23:07.596] INFO  [mk3_Cyras] [net] closing connection (logout acknowledged)
+[00:23:07.596] LOG   [mk3_Cyras] event logout_complete: acked

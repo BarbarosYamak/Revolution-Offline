@@ -1,0 +1,632 @@
+[00:20:00.588] INFO  session 0: 127.0.0.1:2593 user='RevGen3_22' char=Aurelius tag='mk3_Aurelius'
+[00:20:00.589] LOG   [mk3_Aurelius] event session_start: text log opened
+[00:20:00.589] LOG   [mk3_Aurelius] event net_connect_begin: connect 127.0.0.1:2593
+[00:20:00.589] INFO  [mk3_Aurelius] [net] connecting to 127.0.0.1:2593 ...
+[00:20:00.590] LOG   [mk3_Aurelius] event net_connected: connect 127.0.0.1:2593
+[00:20:00.590] INFO  [mk3_Aurelius] [net] connected.
+[00:20:00.590] INFO  [mk3_Aurelius] [seed] sent 0x7F000001 (plaintext)
+[00:20:00.590] LOG   [mk3_Aurelius] event seed_out: 0x7F000001 hex=7f000001
+[00:20:00.590] INFO  [life] no prior state for revgen3_22.aurelius: a new Pure Mage
+[00:20:00.590] INFO  [life] creation request: Magery 50.0 + Meditation 50.0, stats 20/12/48 = 80
+[00:20:00.590] INFO  [life] needs: reading 'mage' from the profession catalogue
+[00:20:00.590] INFO  [life] home: Aurelius lives in Moonglow
+[00:20:00.590] INFO  [life] build plan 'mage': 300.0 resolved + 400.0 unresolved = 700.0/700.0, stats 25/25/100 = 150
+[00:20:00.590] INFO  [mk3_Aurelius] [life] autonomous player active for 'Aurelius' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 3 min)
+[00:20:00.612] INFO  [mk3_Aurelius] [0xA8] 1 server(s):
+[00:20:00.612] INFO  [mk3_Aurelius]   [0] MyShard                   1.0.0.127  full=8%  tz=0
+[00:20:00.628] INFO  [mk3_Aurelius] [0x8C] game server = 127.0.0.1:2593  seed=0xC117414A
+[00:20:00.628] LOG   [mk3_Aurelius] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xC117414A
+[00:20:00.628] INFO  [mk3_Aurelius] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[00:20:00.628] LOG   [mk3_Aurelius] event relay_same_socket: no seed re-sent; 0x91 follows
+[00:20:00.628] INFO  [mk3_Aurelius] [0xB9] server features = 0x0005
+[00:20:00.628] INFO  [mk3_Aurelius] [0xA9] 5 slot(s) (populated 0):
+[00:20:00.628] INFO  [mk3_Aurelius]   [0] <empty>
+[00:20:00.628] INFO  [mk3_Aurelius]   [1] <empty>
+[00:20:00.628] INFO  [mk3_Aurelius]   [2] <empty>
+[00:20:00.628] INFO  [mk3_Aurelius]   [3] <empty>
+[00:20:00.628] INFO  [mk3_Aurelius]   [4] <empty>
+[00:20:00.628] INFO  [mk3_Aurelius] create: appearance sex=F skin=0x0411 hair=0x2045/0x0470 shirt=0x03AF pants=0x032B
+[00:20:00.628] INFO  [mk3_Aurelius] [0x00] starting city index 3
+[00:20:00.628] INFO  [mk3_Aurelius] [0x00] requested skills 25:50 46:50 16:0
+[00:20:00.628] INFO  [mk3_Aurelius] [0x00] requested stats STR 20 DEX 12 INT 48
+[00:20:00.628] INFO  [mk3_Aurelius] [0x00] creating character 'Aurelius' in slot 0
+[00:20:00.628] LOG   [mk3_Aurelius] event char_create_sent: Aurelius
+[00:20:00.646] INFO  [mk3_Aurelius] [0x1B] serial=0x00019331 body=0x0191 pos=(4408,1168,0)
+[00:20:00.646] LOG   [mk3_Aurelius] event login_confirm: serial=0x00019331 body=0x0191 pos=(4408,1168,0)
+[00:20:00.646] INFO  [mk3_Aurelius] [0x20] player @(4408,1168,0) facing=3
+[00:20:00.646] INFO  [mk3_Aurelius] [0x55] login complete — entering world
+[00:20:00.646] LOG   [mk3_Aurelius] event in_world: 0x55 received
+[00:20:00.646] INFO  [mk3_Aurelius] [backpack] opening 0x40019272
+[00:20:00.646] INFO  [mk3_Aurelius] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[00:20:00.646] INFO  [mk3_Aurelius] [chat ascii] System: There are 21 other players here.
+[00:20:00.646] INFO  [mk3_Aurelius] [chat ascii] System: You are under the protection of the town guards
+[00:20:00.650] INFO  [mk3_Aurelius] [action] requesting the skill list
+[00:20:00.650] INFO  [life] in world; asked the server for the skill list
+[00:20:00.660] INFO  [mk3_Aurelius] [0x24] open container 0x40019272 gump=60
+[00:20:00.660] INFO  [mk3_Aurelius] [0x3C] container contents: 8 item(s)
+[00:20:00.660] LOG   [mk3_Aurelius] event backpack_contents: serial=0x40019272 items=8
+[00:20:03.274] INFO  [mk3_Aurelius] [bot] world data loaded (0 blacklisted spot(s)).
+[00:20:03.274] INFO  [life] reconciliation: first ever login, 7 field(s) differed
+[00:20:03.274] INFO  [life]   gold         persisted=0          server=10000      -> server value accepted
+[00:20:03.274] INFO  [life]   str          persisted=0          server=20         -> server value accepted
+[00:20:03.274] INFO  [life]   dex          persisted=0          server=12         -> server value accepted
+[00:20:03.274] INFO  [life]   int          persisted=0          server=48         -> server value accepted
+[00:20:03.274] INFO  [life]   skill_25     persisted=0.0        server=50.0       -> server value accepted
+[00:20:03.274] INFO  [life]   skill_46     persisted=0.0        server=50.0       -> server value accepted
+[00:20:03.274] INFO  [life]   skill_16     persisted=0.0        server=0.0        -> server value accepted
+[00:20:03.274] INFO  [life]   position     persisted=0,0        server=4408,1168  -> server value accepted
+[00:20:03.274] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[00:20:03.274] INFO  [mk3_Aurelius] [survival] on
+[00:20:03.274] LOG   [mk3_Aurelius] event survival_mode: on
+[00:20:03.277] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_22.aurelius/state.json
+[00:20:03.277] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:20:03.340] INFO  [life] goal=BANK reason="no goal was running"
+[00:20:03.340] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedTrade(buy from a player 0.55) NeedSkillTraining(Evaluating Intelligence 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Evaluating Intelligence 0.45) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Evaluating Intelligence (target 100.0)
+[00:20:03.340] INFO  [life]   score=150.0
+[00:20:03.340] INFO  [life]   reason: NeedBank urgency 0.75 x 240 = 180.0
+[00:20:03.341] INFO  [life]   reason: on_hand=10000 (total 10000) reserve=800 carry=1300 spare=8700 risk=1.00
+[00:20:03.341] INFO  [life]   reason: no bank learned yet -30
+[00:20:03.341] INFO  [mk3_Aurelius] [action] scanning nearby mobiles for names
+[00:20:03.341] INFO  [mk3_Aurelius] [action] requested 1 paperdoll(s) for trade titles
+[00:20:03.341] INFO  [life] bank: asking who is standing in the bank
+[00:20:03.357] INFO  [mk3_Aurelius] [mobiles] nearby (3):
+[00:20:03.357] INFO  [mk3_Aurelius]   Conway 0x0000A0B0
+[00:20:03.357] INFO  [mk3_Aurelius]   Cat 0x00014F8B
+[00:20:03.357] INFO  [mk3_Aurelius]   Cat 0x0000D101
+[00:20:03.357] INFO  [mk3_Aurelius] [0x20] player @(4408,1168,0) facing=6
+[00:20:03.357] INFO  [mk3_Aurelius] [0x88] paperdoll 0x0000A0B0: "Conway, the innkeeper"
+[00:20:03.357] INFO  [mk3_Aurelius] [world] Conway, the innkeeper is a innkeeper at (4402,1166)
+[00:20:03.869] INFO  [mk3_Aurelius] [chat ascii] System: Leander has arrived in Moonglow.
+[00:20:05.373] INFO  [life] bank: no banker in sight
+[00:20:05.373] INFO  [life] goal_failed=BANK status=retryable_failure reason="no banker in sight"
+[00:20:05.435] INFO  [life] goal=REPLACE_EQUIPMENT reason="previous goal abandoned: no banker answered"
+[00:20:05.435] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedTrade(buy from a player 0.55) NeedSkillTraining(Evaluating Intelligence 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Evaluating Intelligence 0.45) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Evaluating Intelligence (target 100.0)
+[00:20:05.435] INFO  [life]   score=130.0
+[00:20:05.435] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:20:05.435] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:20:05.435] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 299s after achieving nothing
+[00:20:06.980] INFO  [mk3_Aurelius] [chat ascii] System: Illyria has arrived in Britain.
+[00:20:08.327] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:20:10.022] INFO  [mk3_Aurelius] [chat ascii] System: Hector has arrived in Trinsic.
+[00:20:10.394] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:20:10.394] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 8
+[00:20:10.402] INFO  [mk3_Aurelius] [travel] place: skipping Wind healer -- 1596 tiles and 2 gates for a service Moonglow Healer healer offers
+[00:20:10.402] INFO  [mk3_Aurelius] [travel] Moonglow Healer healer -> (4394,1083) r=5 from (4408,1168)
+[00:20:10.402] LOG   [mk3_Aurelius] event travel_start: label='Moonglow Healer healer' target=(4394,1083) radius=5 from=(4408,1168)
+[00:20:10.402] INFO  [life] potions: walking to a 'healer' (trip 1)
+[00:20:10.402] INFO  [mk3_Aurelius] [travel] mode moongate         usable   <- chosen
+[00:20:10.402] INFO  [mk3_Aurelius] [travel] mode walk             usable
+[00:20:10.402] INFO  [mk3_Aurelius] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:10.402] INFO  [mk3_Aurelius] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:10.402] LOG   [mk3_Aurelius] event travel_mode: moongate
+[00:20:10.402] INFO  [mk3_Aurelius] [travel] plan Moonglow Healer healer: ok legs=3 ~152 tiles transit=0 nodes=54
+[00:20:10.457] INFO  [mk3_Aurelius] [travel] avoiding 4 teleporter pad(s) on this leg
+[00:20:10.457] INFO  [mk3_Aurelius] [action] goto (4424,1128) from (4408,1168,0)
+[00:20:10.457] LOG   [mk3_Aurelius] event goto_start: target=(4424,1128) from=(4408,1168)
+[00:20:10.457] INFO  [mk3_Aurelius] [bot] running from (4408,1168,0) to (4424,1128)
+[00:20:10.457] INFO  [mk3_Aurelius] [bot] planning path to (4424,1128) in background
+[00:20:10.518] INFO  [mk3_Aurelius] [bot] replan to (4424,1128): 44 steps in 2424.8us
+[00:20:13.077] INFO  [mk3_Aurelius] [chat ascii] System: Castor has arrived in Trinsic.
+[00:20:13.334] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:20:16.106] INFO  [mk3_Aurelius] [chat ascii] System: Faustus has arrived in Britain.
+[00:20:18.339] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:20:19.161] INFO  [mk3_Aurelius] [chat ascii] System: Titus has arrived in Skara Brae.
+[00:20:22.123] INFO  [mk3_Aurelius] [bot] arrived at (4424,1128,0)
+[00:20:22.124] INFO  [mk3_Aurelius] [action] goto finished at (4424,1128,0); target (4424,1128); ARRIVED (off by 0 tile(s))
+[00:20:22.124] LOG   [mk3_Aurelius] event goto_done: at=(4424,1128) target=(4424,1128) arrived=1 off=0
+[00:20:22.124] INFO  [mk3_Aurelius] [travel] avoiding 4 teleporter pad(s) on this leg
+[00:20:22.124] INFO  [mk3_Aurelius] [action] goto (4408,1096) from (4424,1128,0)
+[00:20:22.124] LOG   [mk3_Aurelius] event goto_start: target=(4408,1096) from=(4424,1128)
+[00:20:22.124] INFO  [mk3_Aurelius] [bot] running from (4424,1128,0) to (4408,1096)
+[00:20:22.124] INFO  [mk3_Aurelius] [bot] planning path to (4408,1096) in background
+[00:20:22.183] INFO  [mk3_Aurelius] [bot] replan to (4408,1096): 45 steps in 11921.1us
+[00:20:22.309] INFO  [mk3_Aurelius] [chat ascii] System: Rhea has arrived in Britain.
+[00:20:23.355] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:20:25.377] INFO  [mk3_Aurelius] [chat ascii] System: Xerxes has arrived in Vesper.
+[00:20:28.375] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:20:33.415] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:20:34.000] INFO  [mk3_Aurelius] [bot] arrived at (4408,1096,0)
+[00:20:34.000] INFO  [mk3_Aurelius] [action] goto finished at (4408,1096,0); target (4408,1096); ARRIVED (off by 0 tile(s))
+[00:20:34.000] LOG   [mk3_Aurelius] event goto_done: at=(4408,1096) target=(4408,1096) arrived=1 off=0
+[00:20:34.000] INFO  [mk3_Aurelius] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:20:34.000] INFO  [mk3_Aurelius] [action] goto (4394,1083) from (4408,1096,0)
+[00:20:34.000] LOG   [mk3_Aurelius] event goto_start: target=(4394,1083) from=(4408,1096)
+[00:20:34.000] INFO  [mk3_Aurelius] [bot] running from (4408,1096,0) to (4394,1083,z0)
+[00:20:34.000] INFO  [mk3_Aurelius] [bot] planning path to (4394,1083) in background
+[00:20:34.015] INFO  [mk3_Aurelius] [bot] replan to (4394,1083): 22 steps in 1719.0us
+[00:20:34.490] INFO  [mk3_Aurelius] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=23 in 96.1us
+[00:20:38.711] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:20:41.681] INFO  [mk3_Aurelius] [travel] Moonglow Healer healer ARRIVED at (4397,1088,0)
+[00:20:41.681] LOG   [mk3_Aurelius] event travel_done: label='Moonglow Healer healer' ok=1 at=(4397,1088) legs=3 plans=1 why=''
+[00:20:41.681] INFO  [mk3_Aurelius] [action] scanning nearby mobiles for names
+[00:20:41.681] INFO  [mk3_Aurelius] [action] requested 6 paperdoll(s) for trade titles
+[00:20:41.681] INFO  [life] potions: at the shop, asking who is here (scan 1 of 3)
+[00:20:41.693] INFO  [mk3_Aurelius] [chat ascii] System: You shove Thalia out of the way.
+[00:20:41.693] INFO  [mk3_Aurelius] [bot] lookahead patched around block at step 4: anchor=6 new segment=9 path=10 in 330.7us
+[00:20:41.694] INFO  [mk3_Aurelius] [mobiles] nearby (13):
+[00:20:41.694] INFO  [mk3_Aurelius]   Thalia 0x0000C45C
+[00:20:41.694] INFO  [mk3_Aurelius]   Nuthatch 0x000178D0
+[00:20:41.694] INFO  [mk3_Aurelius]   Xanthe 0x000095BA
+[00:20:41.694] INFO  [mk3_Aurelius]   Dog 0x0000D299
+[00:20:41.694] INFO  [mk3_Aurelius]   Ayuna 0x00009833
+[00:20:41.694] INFO  [mk3_Aurelius]   Lyra 0x0000C990
+[00:20:41.694] INFO  [mk3_Aurelius]   Rat 0x0001798E
+[00:20:41.694] INFO  [mk3_Aurelius]   Dog 0x0001155B
+[00:20:41.694] INFO  [mk3_Aurelius]   Leander 0x0001921F
+[00:20:41.694] INFO  [mk3_Aurelius]   Swift 0x0000D85D
+[00:20:41.694] INFO  [mk3_Aurelius]   Rat 0x00017DC2
+[00:20:41.694] INFO  [mk3_Aurelius]   Benton 0x0000957B
+[00:20:41.694] INFO  [mk3_Aurelius]   Anke 0x0000952D
+[00:20:41.694] INFO  [mk3_Aurelius] [0x20] player @(4397,1088,0) facing=3
+[00:20:41.694] INFO  [mk3_Aurelius] [0x88] paperdoll 0x0001921F: "Leander, Apprentice Stoic"
+[00:20:41.694] INFO  [mk3_Aurelius] [0x88] paperdoll 0x0000C45C: "Thalia, Apprentice Mage"
+[00:20:41.694] INFO  [mk3_Aurelius] [0x20] player @(4397,1088,0) facing=2
+[00:20:41.694] INFO  [mk3_Aurelius] [0x88] paperdoll 0x0000957B: "Benton, the architect"
+[00:20:41.694] INFO  [mk3_Aurelius] [0x20] player @(4397,1088,0) facing=7
+[00:20:41.694] INFO  [mk3_Aurelius] [0x88] paperdoll 0x000095BA: "Xanthe, the healer guildmistress"
+[00:20:41.694] INFO  [mk3_Aurelius] [world] Xanthe, the healer guildmistress is a healer at (4394,1085)
+[00:20:41.694] INFO  [mk3_Aurelius] [0x20] player @(4397,1088,0) facing=6
+[00:20:41.694] INFO  [mk3_Aurelius] [0x88] paperdoll 0x00009833: "Ayuna, the healer"
+[00:20:41.694] INFO  [mk3_Aurelius] [world] Ayuna, the healer is a healer at (4390,1085)
+[00:20:41.694] INFO  [mk3_Aurelius] [0x20] player @(4397,1088,0) facing=7
+[00:20:41.694] INFO  [mk3_Aurelius] [0x88] paperdoll 0x0000C990: "Lyra, Apprentice Mage"
+[00:20:43.712] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:20:44.691] INFO  [life] potions: found a 'healer'
+[00:20:44.754] INFO  [mk3_Aurelius] [travel] mobile 0x00009833 -> (4390,1085) r=1 from (4397,1088)
+[00:20:44.754] LOG   [mk3_Aurelius] event travel_start: label='mobile 0x00009833' target=(4390,1085) radius=1 from=(4397,1088)
+[00:20:44.754] INFO  [life] potions: the 'healer' is 7 tiles off (dz 0) -- walking into reach (chase 1 of 3)
+[00:20:44.754] INFO  [mk3_Aurelius] [travel] mode walk             usable   <- chosen
+[00:20:44.754] INFO  [mk3_Aurelius] [travel] mode moongate         usable
+[00:20:44.754] INFO  [mk3_Aurelius] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:44.754] INFO  [mk3_Aurelius] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:44.754] LOG   [mk3_Aurelius] event travel_mode: walk
+[00:20:44.754] INFO  [mk3_Aurelius] [travel] plan mobile 0x00009833: ok legs=1 ~7 tiles transit=0 nodes=0
+[00:20:44.785] INFO  [mk3_Aurelius] [action] goto finished at (4397,1088,0); target (4394,1083); stopped short (off by 8 tile(s))
+[00:20:44.785] LOG   [mk3_Aurelius] event goto_done: at=(4397,1088) target=(4394,1083) arrived=0 off=8
+[00:20:44.785] INFO  [mk3_Aurelius] [action] goto (4390,1085) from (4397,1088,0)
+[00:20:44.785] LOG   [mk3_Aurelius] event goto_start: target=(4390,1085) from=(4397,1088)
+[00:20:44.785] INFO  [mk3_Aurelius] [bot] running from (4397,1088,0) to (4390,1085,z0)
+[00:20:44.785] INFO  [mk3_Aurelius] [bot] planning path to (4390,1085) in background
+[00:20:47.469] INFO  [mk3_Aurelius] [action] goto finished at (4397,1088,0); target (4390,1085); stopped short (off by 10 tile(s))
+[00:20:47.469] LOG   [mk3_Aurelius] event goto_done: at=(4397,1088) target=(4390,1085) arrived=0 off=10
+[00:20:48.680] INFO  [mk3_Aurelius] [action] goto (4390,1085) from (4397,1088,0)
+[00:20:48.680] LOG   [mk3_Aurelius] event goto_start: target=(4390,1085) from=(4397,1088)
+[00:20:48.680] INFO  [mk3_Aurelius] [bot] running from (4397,1088,0) to (4390,1085,z0)
+[00:20:48.681] INFO  [mk3_Aurelius] [bot] planning path to (4390,1085) in background
+[00:20:48.741] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:20:50.781] INFO  [mk3_Aurelius] [action] goto finished at (4397,1088,0); target (4390,1085); stopped short (off by 10 tile(s))
+[00:20:50.781] LOG   [mk3_Aurelius] event goto_done: at=(4397,1088) target=(4390,1085) arrived=0 off=10
+[00:20:52.040] INFO  [mk3_Aurelius] [travel] mode walk             usable   <- chosen
+[00:20:52.040] INFO  [mk3_Aurelius] [travel] mode moongate         usable
+[00:20:52.040] INFO  [mk3_Aurelius] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:52.040] INFO  [mk3_Aurelius] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:52.040] LOG   [mk3_Aurelius] event travel_mode: walk
+[00:20:52.040] INFO  [mk3_Aurelius] [travel] plan mobile 0x00009833: ok legs=1 ~7 tiles transit=0 nodes=0
+[00:20:53.573] INFO  [mk3_Aurelius] [action] goto (4390,1085) from (4397,1088,0)
+[00:20:53.573] LOG   [mk3_Aurelius] event goto_start: target=(4390,1085) from=(4397,1088)
+[00:20:53.573] INFO  [mk3_Aurelius] [bot] running from (4397,1088,0) to (4390,1085,z0)
+[00:20:53.573] INFO  [mk3_Aurelius] [bot] planning path to (4390,1085) in background
+[00:20:53.758] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:20:55.686] INFO  [mk3_Aurelius] [action] goto finished at (4397,1088,0); target (4390,1085); stopped short (off by 10 tile(s))
+[00:20:55.686] LOG   [mk3_Aurelius] event goto_done: at=(4397,1088) target=(4390,1085) arrived=0 off=10
+[00:20:56.893] INFO  [mk3_Aurelius] [action] goto (4390,1085) from (4397,1088,0)
+[00:20:56.893] LOG   [mk3_Aurelius] event goto_start: target=(4390,1085) from=(4397,1088)
+[00:20:56.893] INFO  [mk3_Aurelius] [bot] running from (4397,1088,0) to (4390,1085,z0)
+[00:20:56.893] INFO  [mk3_Aurelius] [bot] planning path to (4390,1085) in background
+[00:20:58.817] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:20:59.169] INFO  [mk3_Aurelius] [action] goto finished at (4397,1088,0); target (4390,1085); stopped short (off by 10 tile(s))
+[00:20:59.169] LOG   [mk3_Aurelius] event goto_done: at=(4397,1088) target=(4390,1085) arrived=0 off=10
+[00:21:00.407] INFO  [mk3_Aurelius] [travel] mode walk             usable   <- chosen
+[00:21:00.407] INFO  [mk3_Aurelius] [travel] mode moongate         usable
+[00:21:00.407] INFO  [mk3_Aurelius] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:00.407] INFO  [mk3_Aurelius] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:00.407] LOG   [mk3_Aurelius] event travel_mode: walk
+[00:21:00.407] INFO  [mk3_Aurelius] [travel] plan mobile 0x00009833: ok legs=1 ~7 tiles transit=0 nodes=0
+[00:21:03.306] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_22.aurelius/state.json
+[00:21:03.427] INFO  [mk3_Aurelius] [action] goto (4390,1085) from (4397,1088,0)
+[00:21:03.427] LOG   [mk3_Aurelius] event goto_start: target=(4390,1085) from=(4397,1088)
+[00:21:03.427] INFO  [mk3_Aurelius] [bot] running from (4397,1088,0) to (4390,1085,z0)
+[00:21:03.427] INFO  [mk3_Aurelius] [bot] planning path to (4390,1085) in background
+[00:21:03.871] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:21:06.138] INFO  [mk3_Aurelius] [action] goto finished at (4397,1088,0); target (4390,1085); stopped short (off by 10 tile(s))
+[00:21:06.138] LOG   [mk3_Aurelius] event goto_done: at=(4397,1088) target=(4390,1085) arrived=0 off=10
+[00:21:07.362] INFO  [mk3_Aurelius] [action] goto (4390,1085) from (4397,1088,0)
+[00:21:07.362] LOG   [mk3_Aurelius] event goto_start: target=(4390,1085) from=(4397,1088)
+[00:21:07.362] INFO  [mk3_Aurelius] [bot] running from (4397,1088,0) to (4390,1085,z0)
+[00:21:07.362] INFO  [mk3_Aurelius] [bot] planning path to (4390,1085) in background
+[00:21:08.925] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:21:10.153] INFO  [mk3_Aurelius] [action] goto finished at (4397,1088,0); target (4390,1085); stopped short (off by 10 tile(s))
+[00:21:10.153] LOG   [mk3_Aurelius] event goto_done: at=(4397,1088) target=(4390,1085) arrived=0 off=10
+[00:21:11.193] INFO  [mk3_Aurelius] [chat ascii] System: Observer has arrived in Minoc.
+[00:21:11.370] INFO  [mk3_Aurelius] [travel] mode walk             usable   <- chosen
+[00:21:11.370] INFO  [mk3_Aurelius] [travel] mode moongate         usable
+[00:21:11.370] INFO  [mk3_Aurelius] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:11.370] INFO  [mk3_Aurelius] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:11.370] LOG   [mk3_Aurelius] event travel_mode: walk
+[00:21:11.370] INFO  [mk3_Aurelius] [travel] plan mobile 0x00009833: ok legs=1 ~7 tiles transit=0 nodes=0
+[00:21:13.939] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:21:14.571] INFO  [mk3_Aurelius] [chat ascii] System: Observer has departed from Minoc.
+[00:21:15.891] INFO  [mk3_Aurelius] [action] goto (4390,1085) from (4397,1088,0)
+[00:21:15.892] LOG   [mk3_Aurelius] event goto_start: target=(4390,1085) from=(4397,1088)
+[00:21:15.892] INFO  [mk3_Aurelius] [bot] running from (4397,1088,0) to (4390,1085,z0)
+[00:21:15.892] INFO  [mk3_Aurelius] [bot] planning path to (4390,1085) in background
+[00:21:18.651] INFO  [mk3_Aurelius] [action] goto finished at (4397,1088,0); target (4390,1085); stopped short (off by 10 tile(s))
+[00:21:18.651] LOG   [mk3_Aurelius] event goto_done: at=(4397,1088) target=(4390,1085) arrived=0 off=10
+[00:21:18.957] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:21:19.892] INFO  [mk3_Aurelius] [action] goto (4390,1085) from (4397,1088,0)
+[00:21:19.892] LOG   [mk3_Aurelius] event goto_start: target=(4390,1085) from=(4397,1088)
+[00:21:19.892] INFO  [mk3_Aurelius] [bot] running from (4397,1088,0) to (4390,1085,z0)
+[00:21:19.892] INFO  [mk3_Aurelius] [bot] planning path to (4390,1085) in background
+[00:21:22.504] INFO  [mk3_Aurelius] [travel] mobile 0x00009833 -> (4390,1085) r=1 from (4397,1088)
+[00:21:22.504] LOG   [mk3_Aurelius] event travel_start: label='mobile 0x00009833' target=(4390,1085) radius=1 from=(4397,1088)
+[00:21:22.505] INFO  [life] potions: the 'healer' is 7 tiles off (dz 0) -- walking into reach (chase 2 of 3)
+[00:21:22.505] INFO  [mk3_Aurelius] [travel] mode walk             usable   <- chosen
+[00:21:22.505] INFO  [mk3_Aurelius] [travel] mode moongate         usable
+[00:21:22.505] INFO  [mk3_Aurelius] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:22.505] INFO  [mk3_Aurelius] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:22.505] LOG   [mk3_Aurelius] event travel_mode: walk
+[00:21:22.505] INFO  [mk3_Aurelius] [travel] plan mobile 0x00009833: ok legs=1 ~7 tiles transit=0 nodes=0
+[00:21:22.566] INFO  [mk3_Aurelius] [action] goto finished at (4397,1088,0); target (4390,1085); stopped short (off by 10 tile(s))
+[00:21:22.566] LOG   [mk3_Aurelius] event goto_done: at=(4397,1088) target=(4390,1085) arrived=0 off=10
+[00:21:22.566] INFO  [mk3_Aurelius] [action] goto (4390,1085) from (4397,1088,0)
+[00:21:22.566] LOG   [mk3_Aurelius] event goto_start: target=(4390,1085) from=(4397,1088)
+[00:21:22.566] INFO  [mk3_Aurelius] [bot] running from (4397,1088,0) to (4390,1085,z0)
+[00:21:22.567] INFO  [mk3_Aurelius] [bot] planning path to (4390,1085) in background
+[00:21:23.967] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:21:25.089] INFO  [mk3_Aurelius] [action] goto finished at (4397,1088,0); target (4390,1085); stopped short (off by 10 tile(s))
+[00:21:25.089] LOG   [mk3_Aurelius] event goto_done: at=(4397,1088) target=(4390,1085) arrived=0 off=10
+[00:21:26.305] INFO  [mk3_Aurelius] [action] goto (4390,1085) from (4397,1088,0)
+[00:21:26.305] LOG   [mk3_Aurelius] event goto_start: target=(4390,1085) from=(4397,1088)
+[00:21:26.305] INFO  [mk3_Aurelius] [bot] running from (4397,1088,0) to (4390,1085,z0)
+[00:21:26.305] INFO  [mk3_Aurelius] [bot] planning path to (4390,1085) in background
+[00:21:29.005] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:21:29.191] INFO  [mk3_Aurelius] [action] goto finished at (4397,1088,0); target (4390,1085); stopped short (off by 10 tile(s))
+[00:21:29.191] LOG   [mk3_Aurelius] event goto_done: at=(4397,1088) target=(4390,1085) arrived=0 off=10
+[00:21:30.407] INFO  [mk3_Aurelius] [travel] mode walk             usable   <- chosen
+[00:21:30.407] INFO  [mk3_Aurelius] [travel] mode moongate         usable
+[00:21:30.407] INFO  [mk3_Aurelius] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:30.407] INFO  [mk3_Aurelius] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:30.407] LOG   [mk3_Aurelius] event travel_mode: walk
+[00:21:30.407] INFO  [mk3_Aurelius] [travel] plan mobile 0x00009833: ok legs=1 ~7 tiles transit=0 nodes=0
+[00:21:31.909] INFO  [mk3_Aurelius] [action] goto (4390,1085) from (4397,1088,0)
+[00:21:31.909] LOG   [mk3_Aurelius] event goto_start: target=(4390,1085) from=(4397,1088)
+[00:21:31.909] INFO  [mk3_Aurelius] [bot] running from (4397,1088,0) to (4390,1085,z0)
+[00:21:31.909] INFO  [mk3_Aurelius] [bot] planning path to (4390,1085) in background
+[00:21:34.045] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:21:34.046] INFO  [mk3_Aurelius] [action] goto finished at (4397,1088,0); target (4390,1085); stopped short (off by 10 tile(s))
+[00:21:34.046] LOG   [mk3_Aurelius] event goto_done: at=(4397,1088) target=(4390,1085) arrived=0 off=10
+[00:21:35.272] INFO  [mk3_Aurelius] [action] goto (4390,1085) from (4397,1088,0)
+[00:21:35.272] LOG   [mk3_Aurelius] event goto_start: target=(4390,1085) from=(4397,1088)
+[00:21:35.272] INFO  [mk3_Aurelius] [bot] running from (4397,1088,0) to (4390,1085,z0)
+[00:21:35.272] INFO  [mk3_Aurelius] [bot] planning path to (4390,1085) in background
+[00:21:37.346] INFO  [mk3_Aurelius] [action] goto finished at (4397,1088,0); target (4390,1085); stopped short (off by 10 tile(s))
+[00:21:37.346] LOG   [mk3_Aurelius] event goto_done: at=(4397,1088) target=(4390,1085) arrived=0 off=10
+[00:21:38.576] INFO  [mk3_Aurelius] [travel] mode walk             usable   <- chosen
+[00:21:38.576] INFO  [mk3_Aurelius] [travel] mode moongate         usable
+[00:21:38.576] INFO  [mk3_Aurelius] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:38.576] INFO  [mk3_Aurelius] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:38.576] LOG   [mk3_Aurelius] event travel_mode: walk
+[00:21:38.576] INFO  [mk3_Aurelius] [travel] plan mobile 0x00009833: ok legs=1 ~7 tiles transit=0 nodes=0
+[00:21:38.932] INFO  [mk3_Aurelius] [chat ascii] Ayuna: Well it was nice speaking to you Lyra but I must go about my business
+[00:21:39.055] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:21:41.578] INFO  [mk3_Aurelius] [action] goto (4390,1085) from (4397,1088,0)
+[00:21:41.578] LOG   [mk3_Aurelius] event goto_start: target=(4390,1085) from=(4397,1088)
+[00:21:41.578] INFO  [mk3_Aurelius] [bot] running from (4397,1088,0) to (4390,1085,z0)
+[00:21:41.578] INFO  [mk3_Aurelius] [bot] planning path to (4390,1085) in background
+[00:21:41.640] INFO  [mk3_Aurelius] [bot] replan to (4390,1085): 10 steps in 238.3us
+[00:21:41.657] INFO  [mk3_Aurelius] [bot] lookahead patched around block at step 3: anchor=5 new segment=4 path=9 in 150.5us
+[00:21:44.058] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:21:44.457] INFO  [mk3_Aurelius] [travel] mobile 0x00009833 ARRIVED at (4391,1085,0)
+[00:21:44.457] LOG   [mk3_Aurelius] event travel_done: label='mobile 0x00009833' ok=1 at=(4391,1085) legs=1 plans=3 why=''
+[00:21:44.520] INFO  [life] potions: within reach
+[00:21:44.581] INFO  [mk3_Aurelius] [ACTION] vendor_buy start
+[00:21:44.581] INFO  [mk3_Aurelius] [VENDOR] open vendor=0x00009833 say='Ayuna buy'
+[00:21:44.581] INFO  [life] potions: asking the 'healer' to show heal potion (attempt 1)
+[00:21:44.582] INFO  [mk3_Aurelius] [chat uni  ] : Ayuna buy
+[00:21:44.582] INFO  [mk3_Aurelius] [chat ascii] Ayuna: Greetings. What can I do for thee?
+[00:21:44.583] INFO  [mk3_Aurelius] [chat ascii] Ayuna: I got lots to sell!
+[00:21:44.583] INFO  [mk3_Aurelius] [0x3C] container contents: 5 item(s)
+[00:21:44.583] INFO  [mk3_Aurelius] [0x74] pairing: straight (straight 5, mirrored 1 of 5 rows)
+[00:21:44.583] INFO  [mk3_Aurelius] [0x74] vendor shop data: cont=0x400095EC 5 item(s), layer=0x1A
+[00:21:44.583] INFO  [mk3_Aurelius] [0x74]   clean bandages               gfx=0x0E21 qty=16   price=1
+[00:21:44.583] INFO  [mk3_Aurelius] [0x74]   Heal                         gfx=0x0F0C qty=6    price=30
+[00:21:44.583] INFO  [mk3_Aurelius] [0x74]   Ginseng                      gfx=0x0F85 qty=24   price=3
+[00:21:44.583] INFO  [mk3_Aurelius] [0x74]   Garlic                       gfx=0x0F84 qty=22   price=3
+[00:21:44.583] INFO  [mk3_Aurelius] [0x74]   Refresh                      gfx=0x0F0B qty=19   price=16
+[00:21:44.583] INFO  [mk3_Aurelius] [0x3C] container contents: 0 item(s)
+[00:21:44.583] INFO  [mk3_Aurelius] [0x74] vendor shop data: cont=0x4001006D 0 item(s), layer=0x1B
+[00:21:44.583] INFO  [mk3_Aurelius] [VENDOR] offer from 0x00009833: 5 item(s)
+[00:21:44.583] INFO  [mk3_Aurelius] [VENDOR]   0x4000CC3C clean bandages         x16  1 gp
+[00:21:44.583] INFO  [mk3_Aurelius] [VENDOR]   0x4000CC3B Heal                   x6   30 gp
+[00:21:44.583] INFO  [mk3_Aurelius] [VENDOR]   0x4000CC39 Ginseng                x24  3 gp
+[00:21:44.583] INFO  [mk3_Aurelius] [VENDOR]   0x4000CBD0 Garlic                 x22  3 gp
+[00:21:44.583] INFO  [mk3_Aurelius] [VENDOR]   0x4000CBCF Refresh                x19  16 gp
+[00:21:44.583] LOG   [mk3_Aurelius] event vendor_offer: vendor=0x00009833 items=5
+[00:21:44.583] INFO  [mk3_Aurelius] [ACTION_RESULT] vendor_buy success (2ms) vendor offer received
+[00:21:44.583] LOG   [mk3_Aurelius] event action_result: vendor_buy success took=2ms vendor offer received
+[00:21:44.583] INFO  [mk3_Aurelius] [0x24] vendor buy gump for 0x00009833
+[00:21:44.583] INFO  [mk3_Aurelius] [bot] arrived at (4390,1085,0)
+[00:21:44.583] INFO  [life] potions: the shop is open
+[00:21:44.643] INFO  [mk3_Aurelius] [ACTION] vendor_buy start
+[00:21:44.643] INFO  [mk3_Aurelius] [policy] allowed NPC purchase of i_potion_heal (0x0F0C): basic healing: a life with no Healing skill has no other way to treat itself, and the shard's own healer sells it [BASIC_HEALING]
+[00:21:44.643] INFO  [mk3_Aurelius] [VENDOR] buy item=0x4000CC3B qty=6 from vendor=0x00009833 gold=10000
+[00:21:44.643] INFO  [life] potions: buying 6 heal potion at 30 each from the 'healer' (shelf holds 6) -- waiting for the pack
+[00:21:44.644] INFO  [mk3_Aurelius] [ACTION_RESULT] vendor_buy success (1ms) purchased item delivered
+[00:21:44.644] LOG   [mk3_Aurelius] event action_result: vendor_buy success took=1ms purchased item delivered
+[00:21:44.644] INFO  [mk3_Aurelius] [chat ascii] Ayuna: Here you are, Aurelius That will be 180 gold coins.  I thank thee for thy business.
+[00:21:44.644] INFO  [mk3_Aurelius] [0x3B] vendor transaction closed: vendor=0x00009833 flag=0
+[00:21:44.644] INFO  [life] goal_changed=TRADE_WITH_PLAYER from=REPLACE_EQUIPMENT reason="TRADE_WITH_PLAYER 79.8 superseded REPLACE_EQUIPMENT 0.0"
+[00:21:44.644] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedTrade(buy from a player 0.55) NeedSkillTraining(Evaluating Intelligence 0.55) NeedPractice(Evaluating Intelligence 0.45) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Evaluating Intelligence (target 100.0)
+[00:21:44.644] INFO  [life]   score=79.8
+[00:21:44.644] INFO  [life]   reason: NeedTrade urgency 0.55 x 145 = 79.8
+[00:21:44.644] INFO  [life]   reason: 20 x i_scroll_blank short
+[00:21:44.644] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 200s after achieving nothing
+[00:21:44.644] INFO  [life] market: the market is britain_bank_2 (Britain banker) at 1425,1690, radius 5, guarded
+[00:21:44.644] INFO  [life] goal_blocked=TRADE_WITH_PLAYER reason="not enough session left for the trip" left=76s need=800s
+[00:21:44.704] INFO  [life] goal=FILL_SPELLBOOK reason="previous goal abandoned: not enough session left for the trip"
+[00:21:44.704] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedSkillTraining(Evaluating Intelligence 0.55) NeedPractice(Evaluating Intelligence 0.45) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25) NeedTrade(buy from a player BLOCKED 0.00)  | tools defined=1 held=[spellbook,] want_train=Evaluating Intelligence (target 100.0)
+[00:21:44.704] INFO  [life]   score=77.0
+[00:21:44.704] INFO  [life]   reason: NeedSpells urgency 0.70 x 110 = 77.0
+[00:21:44.704] INFO  [life]   reason: spells 0/24 book=carried magery 50.0 gold 10000 reserve 800 spare 9200 wealth 1.00
+[00:21:44.704] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 200s after achieving nothing
+[00:21:44.704] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 599s after achieving nothing
+[00:21:44.704] INFO  [life] spellbook: opening the book to see what is already in it
+[00:21:44.704] INFO  [mk3_Aurelius] [ACTION] use_object start
+[00:21:44.704] INFO  [mk3_Aurelius] [ACTION] use_object serial=0x4001925A
+[00:21:44.705] INFO  [mk3_Aurelius] [0x3C] container contents: 12 item(s)
+[00:21:44.705] INFO  [mk3_Aurelius] [ACTION_RESULT] use_object success (0ms) contents received
+[00:21:44.705] LOG   [mk3_Aurelius] event action_result: use_object success took=0ms contents received
+[00:21:47.209] INFO  [life] spellbook: adding scroll 0x1F31 to the book (12 spells so far)
+[00:21:47.209] INFO  [mk3_Aurelius] [ACTION] move_item start
+[00:21:47.209] INFO  [mk3_Aurelius] [ACTION] move_item serial=0x40019258 amount=1 dest=0x4001925A
+[00:21:47.209] INFO  [mk3_Aurelius] [ITEM] drag serial=0x40019258 amount=1
+[00:21:47.209] INFO  [mk3_Aurelius] [ITEM] drop container=0x4001925A
+[00:21:47.224] INFO  [mk3_Aurelius] [chat ascii] System: Can't add this to the spellbook
+[00:21:47.224] LOG   [mk3_Aurelius] event action_result: move_item server_failure took=16ms item 0x40019258 landed in 0x40019272, not the destination 0x4001925A
+[00:21:49.071] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:21:49.752] INFO  [life] spellbook: the book would not take scroll 0x1F31 (still 12 spells) -- it already knows that one; not offering it again
+[00:21:49.752] INFO  [life] spellbook: opening the book to see what is already in it
+[00:21:49.752] INFO  [mk3_Aurelius] [ACTION] use_object start
+[00:21:49.752] INFO  [mk3_Aurelius] [ACTION] use_object serial=0x4001925A
+[00:21:49.752] INFO  [mk3_Aurelius] [0x3C] container contents: 12 item(s)
+[00:21:49.752] INFO  [mk3_Aurelius] [ACTION_RESULT] use_object success (1ms) contents received
+[00:21:49.752] LOG   [mk3_Aurelius] event action_result: use_object success took=1ms contents received
+[00:21:52.274] INFO  [life] spellbook: adding scroll 0x1F3B to the book (12 spells so far)
+[00:21:52.274] INFO  [mk3_Aurelius] [ACTION] move_item start
+[00:21:52.274] INFO  [mk3_Aurelius] [ACTION] move_item serial=0x40019255 amount=1 dest=0x4001925A
+[00:21:52.274] INFO  [mk3_Aurelius] [ITEM] drag serial=0x40019255 amount=1
+[00:21:52.274] INFO  [mk3_Aurelius] [ITEM] drop container=0x4001925A
+[00:21:54.084] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:21:56.274] LOG   [mk3_Aurelius] event action_result: move_item timeout
+[00:21:56.337] INFO  [life] spellbook: opening the book to see what is already in it
+[00:21:56.337] INFO  [mk3_Aurelius] [ACTION] use_object start
+[00:21:56.337] INFO  [mk3_Aurelius] [ACTION] use_object serial=0x4001925A
+[00:21:56.338] INFO  [mk3_Aurelius] [0x3C] container contents: 13 item(s)
+[00:21:56.338] INFO  [mk3_Aurelius] [ACTION_RESULT] use_object success (1ms) contents received
+[00:21:56.338] LOG   [mk3_Aurelius] event action_result: use_object success took=1ms contents received
+[00:21:58.644] INFO  [mk3_Aurelius] [chat ascii] System: Draver has departed from Minoc.
+[00:21:58.843] INFO  [life] spellbook: adding scroll 0x1F44 to the book (13 spells so far)
+[00:21:58.843] INFO  [mk3_Aurelius] [ACTION] move_item start
+[00:21:58.843] INFO  [mk3_Aurelius] [ACTION] move_item serial=0x40019237 amount=1 dest=0x4001925A
+[00:21:58.844] INFO  [mk3_Aurelius] [ITEM] drag serial=0x40019237 amount=1
+[00:21:58.844] INFO  [mk3_Aurelius] [ITEM] drop container=0x4001925A
+[00:21:59.107] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:22:02.860] LOG   [mk3_Aurelius] event action_result: move_item timeout
+[00:22:02.921] INFO  [life] spellbook: opening the book to see what is already in it
+[00:22:02.921] INFO  [mk3_Aurelius] [ACTION] use_object start
+[00:22:02.921] INFO  [mk3_Aurelius] [ACTION] use_object serial=0x4001925A
+[00:22:02.921] INFO  [mk3_Aurelius] [0x3C] container contents: 14 item(s)
+[00:22:02.921] INFO  [mk3_Aurelius] [ACTION_RESULT] use_object success (0ms) contents received
+[00:22:02.921] LOG   [mk3_Aurelius] event action_result: use_object success took=0ms contents received
+[00:22:03.356] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_22.aurelius/state.json
+[00:22:04.143] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:22:05.467] INFO  [life] FILL_SPELLBOOK: looking for a 'scribe' to sell a spell this book lacks (trip 1)
+[00:22:05.485] INFO  [mk3_Aurelius] [travel] place: skipping Wind scribe -- 1676 tiles and 2 gates for a service Ocllo scribe offers
+[00:22:05.485] INFO  [mk3_Aurelius] [travel] place: skipping Wind scribe -- 1692 tiles and 2 gates for a service Ocllo scribe offers
+[00:22:05.485] INFO  [mk3_Aurelius] [travel] Ocllo scribe -> (3612,2466) r=5 from (4390,1085)
+[00:22:05.485] LOG   [mk3_Aurelius] event travel_start: label='Ocllo scribe' target=(3612,2466) radius=5 from=(4390,1085)
+[00:22:05.485] INFO  [mk3_Aurelius] [travel] mode moongate         usable   <- chosen
+[00:22:05.485] INFO  [mk3_Aurelius] [travel] mode walk             usable
+[00:22:05.485] INFO  [mk3_Aurelius] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:05.485] INFO  [mk3_Aurelius] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:05.485] LOG   [mk3_Aurelius] event travel_mode: moongate
+[00:22:05.485] INFO  [mk3_Aurelius] [travel] plan Ocllo scribe: ok legs=13 ~496 tiles transit=1 nodes=326
+[00:22:05.545] INFO  [mk3_Aurelius] [action] goto finished at (4390,1085,0); target (4390,1085); ARRIVED (off by 0 tile(s))
+[00:22:05.545] LOG   [mk3_Aurelius] event goto_done: at=(4390,1085) target=(4390,1085) arrived=1 off=0
+[00:22:05.545] INFO  [mk3_Aurelius] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:22:05.545] INFO  [mk3_Aurelius] [action] goto (4392,1110) from (4390,1085,0)
+[00:22:05.545] LOG   [mk3_Aurelius] event goto_start: target=(4392,1110) from=(4390,1085)
+[00:22:05.545] INFO  [mk3_Aurelius] [bot] running from (4390,1085,0) to (4392,1110)
+[00:22:05.545] INFO  [mk3_Aurelius] [bot] planning path to (4392,1110) in background
+[00:22:05.605] INFO  [mk3_Aurelius] [bot] replan to (4392,1110): 31 steps in 8908.7us
+[00:22:09.154] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:22:13.592] INFO  [mk3_Aurelius] [bot] arrived at (4392,1110,0)
+[00:22:13.592] INFO  [mk3_Aurelius] [action] goto finished at (4392,1110,0); target (4392,1110); ARRIVED (off by 0 tile(s))
+[00:22:13.592] LOG   [mk3_Aurelius] event goto_done: at=(4392,1110) target=(4392,1110) arrived=1 off=0
+[00:22:13.592] INFO  [mk3_Aurelius] [travel] avoiding 4 teleporter pad(s) on this leg
+[00:22:13.592] INFO  [mk3_Aurelius] [action] goto (4408,1144) from (4392,1110,0)
+[00:22:13.592] LOG   [mk3_Aurelius] event goto_start: target=(4408,1144) from=(4392,1110)
+[00:22:13.592] INFO  [mk3_Aurelius] [bot] running from (4392,1110,0) to (4408,1144)
+[00:22:13.592] INFO  [mk3_Aurelius] [bot] planning path to (4408,1144) in background
+[00:22:13.653] INFO  [mk3_Aurelius] [bot] replan to (4408,1144): 44 steps in 2203.8us
+[00:22:14.159] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:22:19.217] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:22:20.019] INFO  [mk3_Aurelius] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=24 in 100.2us
+[00:22:24.254] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:22:26.448] INFO  [mk3_Aurelius] [bot] arrived at (4408,1144,0)
+[00:22:26.448] INFO  [mk3_Aurelius] [action] goto finished at (4408,1144,0); target (4408,1144); ARRIVED (off by 0 tile(s))
+[00:22:26.448] LOG   [mk3_Aurelius] event goto_done: at=(4408,1144) target=(4408,1144) arrived=1 off=0
+[00:22:26.448] INFO  [mk3_Aurelius] [travel] avoiding 4 teleporter pad(s) on this leg
+[00:22:26.448] INFO  [mk3_Aurelius] [action] goto (4440,1176) from (4408,1144,0)
+[00:22:26.448] LOG   [mk3_Aurelius] event goto_start: target=(4440,1176) from=(4408,1144)
+[00:22:26.448] INFO  [mk3_Aurelius] [bot] running from (4408,1144,0) to (4440,1176)
+[00:22:26.448] INFO  [mk3_Aurelius] [bot] planning path to (4440,1176) in background
+[00:22:26.508] INFO  [mk3_Aurelius] [bot] replan to (4440,1176): 57 steps in 14696.4us
+[00:22:29.293] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:22:34.299] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:22:38.419] INFO  [mk3_Aurelius] [chat ascii] System: Vorar has departed from Britain.
+[00:22:39.301] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:22:39.439] INFO  [mk3_Aurelius] [chat ascii] System: Selene has departed from Magincia.
+[00:22:42.593] INFO  [mk3_Aurelius] [chat ascii] System: You have left the protection of the town guards
+[00:22:43.470] INFO  [mk3_Aurelius] [bot] arrived at (4440,1176,0)
+[00:22:43.470] INFO  [mk3_Aurelius] [action] goto finished at (4440,1176,0); target (4440,1176); ARRIVED (off by 0 tile(s))
+[00:22:43.470] LOG   [mk3_Aurelius] event goto_done: at=(4440,1176) target=(4440,1176) arrived=1 off=0
+[00:22:43.470] INFO  [mk3_Aurelius] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:22:43.470] INFO  [mk3_Aurelius] [action] goto (4440,1208) from (4440,1176,0)
+[00:22:43.470] LOG   [mk3_Aurelius] event goto_start: target=(4440,1208) from=(4440,1176)
+[00:22:43.470] INFO  [mk3_Aurelius] [bot] running from (4440,1176,0) to (4440,1208)
+[00:22:43.470] INFO  [mk3_Aurelius] [bot] planning path to (4440,1208) in background
+[00:22:43.531] INFO  [mk3_Aurelius] [bot] replan to (4440,1208): 32 steps in 432.6us
+[00:22:44.320] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:22:46.897] INFO  [mk3_Aurelius] [chat ascii] System: Zarthal has departed from Minoc.
+[00:22:49.362] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:22:49.378] INFO  [mk3_Aurelius] [chat ascii] System: World save in 10 seconds
+[00:22:50.319] INFO  [mk3_Aurelius] [chat ascii] System: Thalia has departed from Moonglow.
+[00:22:52.092] INFO  [mk3_Aurelius] [bot] arrived at (4440,1208,0)
+[00:22:52.092] INFO  [mk3_Aurelius] [action] goto finished at (4440,1208,0); target (4440,1208); ARRIVED (off by 0 tile(s))
+[00:22:52.092] LOG   [mk3_Aurelius] event goto_done: at=(4440,1208) target=(4440,1208) arrived=1 off=0
+[00:22:52.092] INFO  [mk3_Aurelius] [action] goto (4440,1240) from (4440,1208,0)
+[00:22:52.092] LOG   [mk3_Aurelius] event goto_start: target=(4440,1240) from=(4440,1208)
+[00:22:52.092] INFO  [mk3_Aurelius] [bot] running from (4440,1208,0) to (4440,1240)
+[00:22:52.092] INFO  [mk3_Aurelius] [bot] planning path to (4440,1240) in background
+[00:22:52.153] INFO  [mk3_Aurelius] [bot] replan to (4440,1240): 32 steps in 6538.8us
+[00:22:53.217] INFO  [mk3_Aurelius] [chat ascii] System: Elvar has departed from Minoc.
+[00:22:54.366] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:22:57.848] INFO  [mk3_Aurelius] [chat ascii] System: Falen has departed from Minoc.
+[00:22:59.416] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:22:59.430] INFO  [mk3_Aurelius] [chat ascii] System: World save has been initiated.
+[00:23:00.674] INFO  [life] session_end_requested reason="session time limit reached"
+[00:23:04.422] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:23:04.546] INFO  [mk3_Aurelius] [action] goto finished at (4442,1237,0); target (4440,1240); stopped short (off by 5 tile(s))
+[00:23:04.546] LOG   [mk3_Aurelius] event goto_done: at=(4442,1237) target=(4440,1240) arrived=0 off=5
+[00:23:04.546] INFO  [mk3_Aurelius] [action] goto (4456,1272) from (4442,1237,0)
+[00:23:04.546] LOG   [mk3_Aurelius] event goto_start: target=(4456,1272) from=(4442,1237)
+[00:23:04.546] INFO  [mk3_Aurelius] [bot] running from (4442,1237,0) to (4456,1272)
+[00:23:04.546] INFO  [mk3_Aurelius] [bot] planning path to (4456,1272) in background
+[00:23:04.594] INFO  [mk3_Aurelius] [bot] replan to (4456,1272): 38 steps in 8054.2us
+[00:23:05.777] INFO  [mk3_Aurelius] [chat ascii] System: Ghalor has departed from Minoc.
+[00:23:07.627] INFO  [mk3_Aurelius] [chat ascii] System: Cyras has departed from Britain.
+[00:23:09.430] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:23:10.033] INFO  [mk3_Aurelius] [chat ascii] System: Kharain has departed from Minoc.
+[00:23:12.347] INFO  [mk3_Aurelius] [chat ascii] System: Leander has departed from Moonglow.
+[00:23:14.462] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:23:17.446] INFO  [mk3_Aurelius] [bot] arrived at (4456,1272,0)
+[00:23:17.446] INFO  [mk3_Aurelius] [action] goto finished at (4456,1272,0); target (4456,1272); ARRIVED (off by 0 tile(s))
+[00:23:17.446] LOG   [mk3_Aurelius] event goto_done: at=(4456,1272) target=(4456,1272) arrived=1 off=0
+[00:23:17.446] INFO  [mk3_Aurelius] [action] goto (4472,1288) from (4456,1272,0)
+[00:23:17.446] LOG   [mk3_Aurelius] event goto_start: target=(4472,1288) from=(4456,1272)
+[00:23:17.446] INFO  [mk3_Aurelius] [bot] running from (4456,1272,0) to (4472,1288)
+[00:23:17.446] INFO  [mk3_Aurelius] [bot] planning path to (4472,1288) in background
+[00:23:17.508] INFO  [mk3_Aurelius] [bot] replan to (4472,1288): 18 steps in 2495.2us
+[00:23:19.495] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:23:22.868] INFO  [mk3_Aurelius] [bot] arrived at (4472,1288,0)
+[00:23:22.868] INFO  [mk3_Aurelius] [action] goto finished at (4472,1288,0); target (4472,1288); ARRIVED (off by 0 tile(s))
+[00:23:22.869] LOG   [mk3_Aurelius] event goto_done: at=(4472,1288) target=(4472,1288) arrived=1 off=0
+[00:23:22.869] INFO  [mk3_Aurelius] [action] goto (4467,1283) from (4472,1288,0)
+[00:23:22.869] LOG   [mk3_Aurelius] event goto_start: target=(4467,1283) from=(4472,1288)
+[00:23:22.869] INFO  [mk3_Aurelius] [bot] running from (4472,1288,0) to (4467,1283)
+[00:23:22.869] INFO  [mk3_Aurelius] [bot] planning path to (4467,1283) in background
+[00:23:22.930] INFO  [mk3_Aurelius] [bot] replan to (4467,1283): 7 steps in 342.0us
+[00:23:24.506] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:23:25.659] INFO  [mk3_Aurelius] [gump] 0x400028A1 context=0x80A0040F: 13 option(s), 15 text(s)
+[00:23:25.659] INFO  [mk3_Aurelius] [gump]   button 1000 = 'OKAY'
+[00:23:25.659] INFO  [mk3_Aurelius] [gump]   button 0 = 'CANCEL'
+[00:23:25.659] INFO  [mk3_Aurelius] [gump]   button 1 = 'Felucca'
+[00:23:25.659] INFO  [mk3_Aurelius] [gump]   choice 1 = 'Moonglow'
+[00:23:25.659] INFO  [mk3_Aurelius] [gump]   choice 2 = 'Britain'
+[00:23:25.659] INFO  [mk3_Aurelius] [gump]   choice 3 = 'Jhelom'
+[00:23:25.659] INFO  [mk3_Aurelius] [gump]   choice 4 = 'Yew'
+[00:23:25.659] INFO  [mk3_Aurelius] [gump]   choice 5 = 'New Magincia'
+[00:23:25.659] INFO  [mk3_Aurelius] [gump]   choice 6 = 'Minoc'
+[00:23:25.659] INFO  [mk3_Aurelius] [gump]   choice 7 = 'Trinsic'
+[00:23:25.659] INFO  [mk3_Aurelius] [gump]   choice 8 = 'Skara Brae'
+[00:23:25.659] INFO  [mk3_Aurelius] [gump]   choice 9 = 'Buccaneer's Den'
+[00:23:25.659] INFO  [mk3_Aurelius] [gump]   choice 10 = 'Ocllo (Newplayers)'
+[00:23:25.659] INFO  [mk3_Aurelius] [gump]   text 0 = 'Pick your destination:'
+[00:23:25.659] INFO  [mk3_Aurelius] [gump]   text 1 = 'OKAY'
+[00:23:25.659] INFO  [mk3_Aurelius] [gump]   text 2 = 'CANCEL'
+[00:23:25.659] INFO  [mk3_Aurelius] [gump]   text 3 = 'Felucca'
+[00:23:25.659] INFO  [mk3_Aurelius] [gump]   text 4 = 'Felucca'
+[00:23:25.659] INFO  [mk3_Aurelius] [gump]   text 5 = 'Moonglow'
+[00:23:25.659] INFO  [mk3_Aurelius] [gump]   text 6 = 'Britain'
+[00:23:25.659] INFO  [mk3_Aurelius] [gump]   text 7 = 'Jhelom'
+[00:23:25.659] INFO  [mk3_Aurelius] [gump]   text 8 = 'Yew'
+[00:23:25.659] INFO  [mk3_Aurelius] [gump]   text 9 = 'New Magincia'
+[00:23:25.659] INFO  [mk3_Aurelius] [gump]   text 10 = 'Minoc'
+[00:23:25.659] INFO  [mk3_Aurelius] [gump]   text 11 = 'Trinsic'
+[00:23:25.659] INFO  [mk3_Aurelius] [gump]   text 12 = 'Skara Brae'
+[00:23:25.659] INFO  [mk3_Aurelius] [gump]   text 13 = 'Buccaneer's Den'
+[00:23:25.659] INFO  [mk3_Aurelius] [gump]   text 14 = 'Ocllo (Newplayers)'
+[00:23:25.659] LOG   [mk3_Aurelius] event gump_open: serial=0x400028A1 context=0x80A0040F options=13
+[00:23:25.659] INFO  [mk3_Aurelius] [travel] gate gump: choosing 'Ocllo (Newplayers)' (choice 10, button 1000)
+[00:23:25.659] LOG   [mk3_Aurelius] event moongate_use: destination='Ocllo (Newplayers)' choice=10 button=1000
+[00:23:25.659] INFO  [mk3_Aurelius] [bot] arrived at (4467,1283,5)
+[00:23:25.659] INFO  [mk3_Aurelius] [action] goto finished at (4467,1283,5); target (4467,1283); ARRIVED (off by 0 tile(s))
+[00:23:25.659] LOG   [mk3_Aurelius] event goto_done: at=(4467,1283) target=(4467,1283) arrived=1 off=0
+[00:23:25.659] INFO  [mk3_Aurelius] [travel] using moongate 0x400028A1 for 'Ocllo (Newplayers)' (gump active=0 serial=0x00000000)
+[00:23:25.674] INFO  [mk3_Aurelius] [0x20] player @(3725,2498,11) facing=7
+[00:23:25.674] INFO  [mk3_Aurelius] [0x20] player @(3725,2498,11) facing=7
+[00:23:25.674] INFO  [mk3_Aurelius] [chat ascii] System: You can't see the target
+[00:23:25.736] INFO  [mk3_Aurelius] [chat ascii] System: Elara has departed from Magincia.
+[00:23:26.043] INFO  [mk3_Aurelius] [action] goto (3688,2488) from (3725,2498,11)
+[00:23:26.043] LOG   [mk3_Aurelius] event goto_start: target=(3688,2488) from=(3725,2498)
+[00:23:26.043] INFO  [mk3_Aurelius] [bot] running from (3725,2498,11) to (3688,2488)
+[00:23:26.043] INFO  [mk3_Aurelius] [bot] planning path to (3688,2488) in background
+[00:23:26.104] INFO  [mk3_Aurelius] [bot] replan to (3688,2488): 39 steps in 7869.2us
+[00:23:26.307] INFO  [mk3_Aurelius] [chat ascii] System: You have been revealed
+[00:23:26.431] INFO  [mk3_Aurelius] [chat ascii] System: Xerxes has departed from Vesper.
+[00:23:29.544] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:23:33.132] INFO  [mk3_Aurelius] [chat ascii] System: Dorvar has departed from Skara Brae.
+[00:23:34.547] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:23:37.865] INFO  [mk3_Aurelius] [chat ascii] System: Odessa has departed from Britain.
+[00:23:38.949] INFO  [mk3_Aurelius] [chat ascii] System: Rhea has departed from Lord British's Castle.
+[00:23:39.578] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:23:40.594] INFO  [mk3_Aurelius] [bot] arrived at (3688,2488,0)
+[00:23:40.594] INFO  [mk3_Aurelius] [action] goto finished at (3688,2488,0); target (3688,2488); ARRIVED (off by 0 tile(s))
+[00:23:40.594] LOG   [mk3_Aurelius] event goto_done: at=(3688,2488) target=(3688,2488) arrived=1 off=0
+[00:23:40.594] INFO  [mk3_Aurelius] [action] goto (3656,2488) from (3688,2488,0)
+[00:23:40.594] LOG   [mk3_Aurelius] event goto_start: target=(3656,2488) from=(3688,2488)
+[00:23:40.594] INFO  [mk3_Aurelius] [bot] running from (3688,2488,0) to (3656,2488)
+[00:23:40.594] INFO  [mk3_Aurelius] [bot] planning path to (3656,2488) in background
+[00:23:40.655] INFO  [mk3_Aurelius] [bot] replan to (3656,2488): 32 steps in 428.0us
+[00:23:43.199] INFO  [mk3_Aurelius] [chat ascii] System: Rhaler has departed from Minoc.
+[00:23:44.596] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:23:45.061] INFO  [mk3_Aurelius] [chat ascii] System: Ithion has departed from Skara Brae.
+[00:23:48.245] INFO  [mk3_Aurelius] [bot] arrived at (3656,2488,0)
+[00:23:48.245] INFO  [mk3_Aurelius] [action] goto finished at (3656,2488,0); target (3656,2488); ARRIVED (off by 0 tile(s))
+[00:23:48.245] LOG   [mk3_Aurelius] event goto_done: at=(3656,2488) target=(3656,2488) arrived=1 off=0
+[00:23:48.245] INFO  [mk3_Aurelius] [action] goto (3624,2472) from (3656,2488,0)
+[00:23:48.245] LOG   [mk3_Aurelius] event goto_start: target=(3624,2472) from=(3656,2488)
+[00:23:48.245] INFO  [mk3_Aurelius] [bot] running from (3656,2488,0) to (3624,2472)
+[00:23:48.245] INFO  [mk3_Aurelius] [bot] planning path to (3624,2472) in background
+[00:23:48.305] INFO  [mk3_Aurelius] [bot] replan to (3624,2472): 33 steps in 12475.2us
+[00:23:49.630] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:23:54.656] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:23:59.562] INFO  [mk3_Aurelius] [bot] arrived at (3624,2472,0)
+[00:23:59.562] INFO  [mk3_Aurelius] [action] goto finished at (3624,2472,0); target (3624,2472); ARRIVED (off by 0 tile(s))
+[00:23:59.562] LOG   [mk3_Aurelius] event goto_done: at=(3624,2472) target=(3624,2472) arrived=1 off=0
+[00:23:59.562] INFO  [mk3_Aurelius] [action] goto (3612,2466) from (3624,2472,0)
+[00:23:59.562] LOG   [mk3_Aurelius] event goto_start: target=(3612,2466) from=(3624,2472)
+[00:23:59.562] INFO  [mk3_Aurelius] [bot] running from (3624,2472,0) to (3612,2466,z0)
+[00:23:59.563] INFO  [mk3_Aurelius] [bot] planning path to (3612,2466) in background
+[00:23:59.624] INFO  [mk3_Aurelius] [bot] replan to (3612,2466): 29 steps in 7551.5us
+[00:23:59.685] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:24:00.423] INFO  [mk3_Aurelius] [chat ascii] System: Faustus has departed from Britain.
+[00:24:01.868] INFO  [mk3_Aurelius] [chat ascii] System: Hector has departed from Bank of Britannia - Trinsic Branch.
+[00:24:02.609] INFO  [mk3_Aurelius] [chat ascii] System: Titus has departed from Magincia.
+[00:24:02.934] INFO  [mk3_Aurelius] [bot] door ahead at (3620,2479,z0); OpenDoor before step
+[00:24:02.934] INFO  [mk3_Aurelius] [chat ascii] System: Opening door...
+[00:24:04.694] INFO  [mk3_Aurelius] [survival] hp 20/20 (100%) -> fight
+[00:24:07.655] INFO  [mk3_Aurelius] [travel] Ocllo scribe ARRIVED at (3611,2470,0)
+[00:24:07.655] LOG   [mk3_Aurelius] event travel_done: label='Ocllo scribe' ok=1 at=(3611,2470) legs=13 plans=1 why=''
+[00:24:07.716] INFO  [life] wind-down: arrived somewhere safe at 3611,2470
+[00:24:07.778] INFO  [life] session_summary duration=247s goals=0/4 gold=10000->9820 skills=100.0->100.0 logs=+0 kills=0 deaths=0 places=2 suppliers=0
+[00:24:07.778] INFO  [life] session_goals families=2 picks=4 top=75% varied=0 self_superseded=0 | upkeep=3(75%) social=1(25%) | REPLACE_EQUIPMENT=1(25%) BANK=1(25%) TRADE_WITH_PLAYER=1(25%) FILL_SPELLBOOK=1(25%)
+[00:24:07.780] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_22.aurelius/state.json
+[00:24:07.780] INFO  [life] logging out
+[00:24:07.780] INFO  [mk3_Aurelius] [action] logout requested
+[00:24:07.780] LOG   [mk3_Aurelius] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[00:24:07.794] INFO  [mk3_Aurelius] [0xD1] logout acknowledged (accepted=1)
+[00:24:07.794] LOG   [mk3_Aurelius] event logout_ack: accepted
+[00:24:07.794] INFO  [mk3_Aurelius] [net] closing connection (logout acknowledged)
+[00:24:07.794] LOG   [mk3_Aurelius] event logout_complete: acked

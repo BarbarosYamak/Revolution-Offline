@@ -1,0 +1,50 @@
+start: Elara is a alchemist and lives in Magincia -> starting city index 5
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+[00:20:00.782] WARN  [mk3_Elara] [bot] 0x20 resync; aborting path
+[00:20:04.788] WARN  [mk3_Elara] [bot] no path to (3688,2224) avoiding 0 block(s); stopping (search 906529.2us)
+[00:20:04.788] WARN  [mk3_Elara] [bot] start (3691,2232,20) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 7 item(s), 8 mobile(s))
+[00:20:06.762] WARN  [mk3_Elara] [bot] no path to (3688,2224) avoiding 0 block(s); stopping (search 705609.1us)
+[00:20:06.762] WARN  [mk3_Elara] [bot] start (3691,2232,20) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 7 item(s), 8 mobile(s))
+[00:20:09.069] WARN  [mk3_Elara] [bot] no path to (3688,2224) avoiding 0 block(s); stopping (search 994376.9us)
+[00:20:09.069] WARN  [mk3_Elara] [bot] start (3691,2232,20) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 7 item(s), 8 mobile(s))
+[00:20:12.951] WARN  [mk3_Elara] [bot] no path to (3688,2224) avoiding 0 block(s); stopping (search 1005449.6us)
+[00:20:12.951] WARN  [mk3_Elara] [bot] start (3691,2232,20) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 7 item(s), 8 mobile(s))
+[00:20:15.285] WARN  [mk3_Elara] [bot] no path to (3688,2224) avoiding 0 block(s); stopping (search 1011994.3us)
+[00:20:15.285] WARN  [mk3_Elara] [bot] start (3691,2232,20) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 7 item(s), 8 mobile(s))
+[00:20:17.674] WARN  [mk3_Elara] [bot] no path to (3688,2224) avoiding 0 block(s); stopping (search 1071363.2us)
+[00:20:17.674] WARN  [mk3_Elara] [bot] start (3691,2232,20) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 7 item(s), 9 mobile(s))
+[00:20:23.017] WARN  [mk3_Elara] [bot] no path to (3688,2224) avoiding 0 block(s); stopping (search 1073527.8us)
+[00:20:23.017] WARN  [mk3_Elara] [bot] start (3691,2232,20) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 7 item(s), 9 mobile(s))
+[00:20:28.036] WARN  [mk3_Elara] [bot] no path to (3691,2225) avoiding 0 block(s); stopping (search 1094872.4us)
+[00:20:28.036] WARN  [mk3_Elara] [bot] start (3688,2230,20) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 8 item(s), 9 mobile(s))
+[00:20:37.221] WARN  [mk3_Elara] [ACTION_RESULT] move_item timeout (no server confirmation)
+[00:20:37.221] WARN  [mk3_Elara] [ITEM] drag of 0x40010E57 abandoned after timeout
+[00:20:39.820] WARN  [mk3_Elara] [ACTION_RESULT] move_item server_failure (1ms) item 0x40010DEF landed in 0x40011013, not the destination 0x40010EB3
+[00:20:44.892] WARN  [mk3_Elara] [ACTION_RESULT] move_item server_failure (17ms) item 0x40010DEE landed in 0x40011013, not the destination 0x40010EB3
+[00:20:51.147] WARN  [mk3_Elara] [bot] no path to (3701,2222) avoiding 0 block(s); stopping (search 1184334.8us)
+[00:20:51.147] WARN  [mk3_Elara] [bot] start (3691,2225,20) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 9 item(s), 9 mobile(s))
+[00:21:02.076] WARN  [mk3_Elara] [bot] no path to (3698,2221) avoiding 0 block(s); stopping (search 1510588.4us)
+[00:21:02.076] WARN  [mk3_Elara] [bot] start (3711,2232,20) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 9 item(s), 12 mobile(s))
+[00:21:08.633] WARN  [mk3_Elara] [bot] no path to (3697,2218) avoiding 0 block(s); stopping (search 1678838.4us)
+[00:21:08.633] WARN  [mk3_Elara] [bot] start (3710,2220,20) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 10 item(s), 15 mobile(s))
+[00:21:11.555] WARN  [mk3_Elara] [bot] no path to (3697,2218) avoiding 0 block(s); stopping (search 1594208.9us)
+[00:21:11.555] WARN  [mk3_Elara] [bot] start (3710,2220,20) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 10 item(s), 15 mobile(s))
+[00:21:25.418] WARN  [mk3_Elara] [policy] REFUSED NPC purchase of unmapped item (0x1F2D): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:21:25.418] WARN  [mk3_Elara] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:21:25.418] WARN  [mk3_Elara] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[00:21:36.975] WARN  [mk3_Elara] [policy] REFUSED NPC purchase of unmapped item (0x1F2D): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:21:36.975] WARN  [mk3_Elara] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:21:36.975] WARN  [mk3_Elara] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[00:21:48.520] WARN  [mk3_Elara] [policy] REFUSED NPC purchase of unmapped item (0x1F2D): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:21:48.520] WARN  [mk3_Elara] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:21:48.520] WARN  [mk3_Elara] [ACTION_RESULT] vendor_buy rejected (1ms) Revolution vendor policy refuses this NPC purchase
+[00:22:00.087] WARN  [mk3_Elara] [policy] REFUSED NPC purchase of unmapped item (0x1F2D): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:22:00.087] WARN  [mk3_Elara] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:22:00.087] WARN  [mk3_Elara] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[00:22:11.615] WARN  [mk3_Elara] [policy] REFUSED NPC purchase of unmapped item (0x1F2D): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:22:11.616] WARN  [mk3_Elara] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:22:11.616] WARN  [mk3_Elara] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[00:22:20.653] WARN  [mk3_Elara] [ACTION_RESULT] cast_spell server_failure (0ms) The spell is not in your spellbook.
+[00:23:04.422] WARN  [mk3_Elara] [bot] watchdog: oldest move unacked 5s; aborting path
+[00:23:04.594] WARN  [mk3_Elara] [0x22] unsolicited ack seq=42

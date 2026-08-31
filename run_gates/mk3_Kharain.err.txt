@@ -1,0 +1,21 @@
+start: Kharain is a miner_smith and lives in Minoc -> starting city index 1
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+[00:20:22.261] WARN  [mk3_Kharain] [bot] 0x20 resync; aborting path
+[00:20:27.560] WARN  [mk3_Kharain] [bot] no path to (2579,599) avoiding 0 block(s); stopping (search 2174039.5us)
+[00:20:27.560] WARN  [mk3_Kharain] [bot] start (2582,603,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 489 item(s), 6 mobile(s))
+[00:21:08.098] WARN  [mk3_Kharain] [0x21] move REJECTED seq=47; server says (2489,585,0) facing=7
+[00:21:11.370] WARN  [mk3_Kharain] [bot] no path to (2488,584) avoiding 0 block(s); stopping (search 3255477.5us)
+[00:21:11.370] WARN  [mk3_Kharain] [bot] start (2489,585,0) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 526 item(s), 4 mobile(s))
+[00:21:14.091] WARN  [mk3_Kharain] [bot] no path to (2471,564) avoiding 0 block(s); stopping (search 2621051.3us)
+[00:21:14.091] WARN  [mk3_Kharain] [bot] start (2489,585,0) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 526 item(s), 5 mobile(s))
+[00:21:18.777] WARN  [mk3_Kharain] [bot] no path to (2471,564) avoiding 0 block(s); stopping (search 3345303.7us)
+[00:21:18.777] WARN  [mk3_Kharain] [bot] start (2489,585,0) exits: open=6 terrain=0 mobile=2 dynamic=0 door=0 blacklist=0 (overlay saw 526 item(s), 5 mobile(s))
+[00:21:24.889] WARN  [mk3_Kharain] [bot] no path to (2471,564) avoiding 0 block(s); stopping (search 3228487.6us)
+[00:21:24.889] WARN  [mk3_Kharain] [bot] start (2489,585,0) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 526 item(s), 6 mobile(s))
+[00:21:29.406] WARN  [mk3_Kharain] [bot] no path to (2471,564) avoiding 0 block(s); stopping (search 3242272.7us)
+[00:21:29.406] WARN  [mk3_Kharain] [bot] start (2489,585,0) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 526 item(s), 7 mobile(s))
+[00:21:54.654] WARN  [mk3_Kharain] [ITEM] drag cancelled by server: unspecified (code 5)
+[00:21:54.654] WARN  [mk3_Kharain] [ACTION_RESULT] equip rejected (0ms) unspecified
+[00:23:04.422] WARN  [mk3_Kharain] [bot] watchdog: oldest move unacked 5s; aborting path
+[00:23:04.594] WARN  [mk3_Kharain] [0x22] unsolicited ack seq=12

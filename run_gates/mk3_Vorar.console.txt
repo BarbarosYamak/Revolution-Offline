@@ -1,0 +1,848 @@
+[00:19:08.372] INFO  session 0: 127.0.0.1:2593 user='RevGen3_05' char=Vorar tag='mk3_Vorar'
+[00:19:08.373] LOG   [mk3_Vorar] event session_start: text log opened
+[00:19:08.374] LOG   [mk3_Vorar] event net_connect_begin: connect 127.0.0.1:2593
+[00:19:08.374] INFO  [mk3_Vorar] [net] connecting to 127.0.0.1:2593 ...
+[00:19:08.375] LOG   [mk3_Vorar] event net_connected: connect 127.0.0.1:2593
+[00:19:08.375] INFO  [mk3_Vorar] [net] connected.
+[00:19:08.375] INFO  [mk3_Vorar] [seed] sent 0x7F000001 (plaintext)
+[00:19:08.375] LOG   [mk3_Vorar] event seed_out: 0x7F000001 hex=7f000001
+[00:19:08.375] INFO  [life] no prior state for revgen3_05.vorar: a new Lumberjack / Carpenter
+[00:19:08.375] INFO  [life] creation request: Lumberjacking 50.0 + Swordsmanship 50.0, stats 40/32/8 = 80
+[00:19:08.375] INFO  [life] needs: reading 'lumberjack_swordsman' from the profession catalogue
+[00:19:08.375] INFO  [life] home: Vorar lives in Britain
+[00:19:08.375] INFO  [life] build plan 'lumberjack_swordsman': 600.0 resolved + 100.0 unresolved = 700.0/700.0, stats 100/100/25 = 225
+[00:19:08.375] INFO  [mk3_Vorar] [life] autonomous player active for 'Vorar' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 3 min)
+[00:19:08.400] INFO  [mk3_Vorar] [0xA8] 1 server(s):
+[00:19:08.400] INFO  [mk3_Vorar]   [0] MyShard                   1.0.0.127  full=1%  tz=0
+[00:19:08.415] INFO  [mk3_Vorar] [0x8C] game server = 127.0.0.1:2593  seed=0x6D45B66B
+[00:19:08.415] LOG   [mk3_Vorar] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x6D45B66B
+[00:19:08.415] INFO  [mk3_Vorar] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[00:19:08.415] LOG   [mk3_Vorar] event relay_same_socket: no seed re-sent; 0x91 follows
+[00:19:08.415] INFO  [mk3_Vorar] [0xB9] server features = 0x0005
+[00:19:08.415] INFO  [mk3_Vorar] [0xA9] 5 slot(s) (populated 0):
+[00:19:08.415] INFO  [mk3_Vorar]   [0] <empty>
+[00:19:08.415] INFO  [mk3_Vorar]   [1] <empty>
+[00:19:08.415] INFO  [mk3_Vorar]   [2] <empty>
+[00:19:08.415] INFO  [mk3_Vorar]   [3] <empty>
+[00:19:08.415] INFO  [mk3_Vorar]   [4] <empty>
+[00:19:08.415] INFO  [mk3_Vorar] create: appearance sex=F skin=0x0421 hair=0x2049/0x045D shirt=0x010C pants=0x011D
+[00:19:08.415] INFO  [mk3_Vorar] [0x00] starting city index 2
+[00:19:08.415] INFO  [mk3_Vorar] [0x00] requested skills 44:50 40:50 48:0
+[00:19:08.415] INFO  [mk3_Vorar] [0x00] requested stats STR 40 DEX 32 INT 8
+[00:19:08.415] INFO  [mk3_Vorar] [0x00] creating character 'Vorar' in slot 0
+[00:19:08.415] LOG   [mk3_Vorar] event char_create_sent: Vorar
+[00:19:08.432] INFO  [mk3_Vorar] [0x1B] serial=0x00016305 body=0x0191 pos=(1496,1628,10)
+[00:19:08.432] LOG   [mk3_Vorar] event login_confirm: serial=0x00016305 body=0x0191 pos=(1496,1628,10)
+[00:19:08.432] INFO  [mk3_Vorar] [0x20] player @(1496,1628,10) facing=3
+[00:19:08.432] INFO  [mk3_Vorar] [0x55] login complete — entering world
+[00:19:08.432] LOG   [mk3_Vorar] event in_world: 0x55 received
+[00:19:08.432] INFO  [mk3_Vorar] [backpack] opening 0x400162FA
+[00:19:08.432] INFO  [mk3_Vorar] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[00:19:08.432] INFO  [mk3_Vorar] [chat ascii] System: There are 4 other players here.
+[00:19:08.432] INFO  [mk3_Vorar] [chat ascii] System: You are under the protection of the city guards
+[00:19:08.436] INFO  [mk3_Vorar] [action] requesting the skill list
+[00:19:08.436] INFO  [life] in world; asked the server for the skill list
+[00:19:08.436] INFO  [mk3_Vorar] [0x24] open container 0x400162FA gump=60
+[00:19:08.436] INFO  [mk3_Vorar] [0x3C] container contents: 6 item(s)
+[00:19:08.436] LOG   [mk3_Vorar] event backpack_contents: serial=0x400162FA items=6
+[00:19:11.024] INFO  [mk3_Vorar] [bot] world data loaded (0 blacklisted spot(s)).
+[00:19:11.025] INFO  [life] reconciliation: first ever login, 7 field(s) differed
+[00:19:11.025] INFO  [life]   gold         persisted=0          server=10000      -> server value accepted
+[00:19:11.025] INFO  [life]   str          persisted=0          server=40         -> server value accepted
+[00:19:11.025] INFO  [life]   dex          persisted=0          server=32         -> server value accepted
+[00:19:11.025] INFO  [life]   int          persisted=0          server=8          -> server value accepted
+[00:19:11.025] INFO  [life]   skill_44     persisted=0.0        server=50.0       -> server value accepted
+[00:19:11.025] INFO  [life]   skill_40     persisted=0.0        server=50.0       -> server value accepted
+[00:19:11.025] INFO  [life]   skill_27     persisted=0.0        server=0.0        -> server value accepted
+[00:19:11.025] INFO  [life]   skill_1      persisted=0.0        server=0.0        -> server value accepted
+[00:19:11.025] INFO  [life]   skill_17     persisted=0.0        server=0.0        -> server value accepted
+[00:19:11.025] INFO  [life]   skill_11     persisted=0.0        server=0.0        -> server value accepted
+[00:19:11.025] INFO  [life]   position     persisted=0,0        server=1496,1628  -> server value accepted
+[00:19:11.025] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[00:19:11.025] INFO  [mk3_Vorar] [survival] on
+[00:19:11.025] LOG   [mk3_Vorar] event survival_mode: on
+[00:19:11.027] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_05.vorar/state.json
+[00:19:11.027] INFO  [mk3_Vorar] [survival] hp 40/40 (100%) -> fight
+[00:19:11.080] INFO  [life] goal=BANK reason="no goal was running"
+[00:19:11.080] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedMakeBandages(bandages BLOCKED 0.70) NeedSkillTraining(Carpentry 0.55) NeedEquipment(heal potions 0.50) NeedEquipment(bandages 0.50) NeedTraining(Swordsmanship 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedLogs(logs 0.40) NeedFood(food 0.25) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[00:19:11.080] INFO  [life]   score=150.0
+[00:19:11.080] INFO  [life]   reason: NeedBank urgency 0.75 x 240 = 180.0
+[00:19:11.080] INFO  [life]   reason: on_hand=10000 (total 10000) reserve=10000 carry=1300 spare=8700 risk=1.00
+[00:19:11.080] INFO  [life]   reason: no bank learned yet -30
+[00:19:11.080] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[00:19:11.080] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 10000 (buyable at 200))
+[00:19:11.080] INFO  [mk3_Vorar] [action] scanning nearby mobiles for names
+[00:19:11.080] INFO  [mk3_Vorar] [action] requested 1 paperdoll(s) for trade titles
+[00:19:11.080] INFO  [life] bank: asking who is standing in the bank
+[00:19:11.095] INFO  [mk3_Vorar] [mobiles] nearby (2):
+[00:19:11.095] INFO  [mk3_Vorar]   Audny 0x00001076
+[00:19:11.095] INFO  [mk3_Vorar]   Starling 0x000013C5
+[00:19:11.096] INFO  [mk3_Vorar] [0x20] player @(1496,1628,10) facing=0
+[00:19:11.096] INFO  [mk3_Vorar] [0x88] paperdoll 0x00001076: "Audny, the innkeeper"
+[00:19:11.096] INFO  [mk3_Vorar] [world] Audny, the innkeeper is a innkeeper at (1494,1614)
+[00:19:11.497] INFO  [mk3_Vorar] [chat ascii] System: Halain has arrived in Britain.
+[00:19:13.126] INFO  [life] bank: no banker in sight
+[00:19:13.126] INFO  [life] goal_failed=BANK status=retryable_failure reason="no banker in sight"
+[00:19:13.187] INFO  [life] goal=REPLACE_EQUIPMENT reason="previous goal abandoned: no banker answered"
+[00:19:13.187] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedMakeBandages(bandages BLOCKED 0.70) NeedSkillTraining(Carpentry 0.55) NeedEquipment(heal potions 0.50) NeedEquipment(bandages 0.50) NeedTraining(Swordsmanship 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedLogs(logs 0.40) NeedFood(food 0.25) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[00:19:13.187] INFO  [life]   score=130.0
+[00:19:13.187] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:19:13.187] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:19:13.187] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 299s after achieving nothing
+[00:19:13.187] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[00:19:13.187] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 10000 (buyable at 200))
+[00:19:14.637] INFO  [mk3_Vorar] [chat ascii] System: Delras has arrived in Britain.
+[00:19:16.055] INFO  [mk3_Vorar] [survival] hp 40/40 (100%) -> fight
+[00:19:17.703] INFO  [mk3_Vorar] [chat ascii] System: Cyras has arrived in Britain.
+[00:19:18.134] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:19:18.134] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:19:18.137] INFO  [mk3_Vorar] [travel] place: skipping Cove healer -- 1344 tiles and 1 gate for a service Britain healer offers
+[00:19:18.137] INFO  [mk3_Vorar] [travel] place: skipping Minoc healer -- 1704 tiles and 0 gates for a service Britain healer offers
+[00:19:18.137] INFO  [mk3_Vorar] [travel] Britain healer -> (1471,1611) r=5 from (1496,1628)
+[00:19:18.137] LOG   [mk3_Vorar] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1496,1628)
+[00:19:18.137] INFO  [life] bandages: walking to a 'healer' (trip 1)
+[00:19:18.137] INFO  [mk3_Vorar] [travel] mode walk             usable   <- chosen
+[00:19:18.137] INFO  [mk3_Vorar] [travel] mode moongate         usable
+[00:19:18.137] INFO  [mk3_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:19:18.137] INFO  [mk3_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:19:18.137] LOG   [mk3_Vorar] event travel_mode: walk
+[00:19:18.137] INFO  [mk3_Vorar] [travel] plan Britain healer: ok legs=1 ~25 tiles transit=0 nodes=0
+[00:19:18.195] INFO  [mk3_Vorar] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:19:18.195] INFO  [mk3_Vorar] [action] goto (1471,1611) from (1496,1628,10)
+[00:19:18.195] LOG   [mk3_Vorar] event goto_start: target=(1471,1611) from=(1496,1628)
+[00:19:18.195] INFO  [mk3_Vorar] [bot] running from (1496,1628,10) to (1471,1611,z20)
+[00:19:18.195] INFO  [mk3_Vorar] [bot] planning path to (1471,1611) in background
+[00:19:18.257] INFO  [mk3_Vorar] [bot] replan to (1471,1611): 32 steps in 2455.1us
+[00:19:20.736] INFO  [mk3_Vorar] [chat ascii] System: Rhaler has arrived in Minoc.
+[00:19:21.101] INFO  [mk3_Vorar] [survival] hp 40/40 (100%) -> fight
+[00:19:23.783] INFO  [mk3_Vorar] [chat ascii] System: Ghalor has arrived in Minoc.
+[00:19:25.883] INFO  [mk3_Vorar] [bot] door ahead at (1479,1612,z20); OpenDoor before step
+[00:19:25.884] INFO  [mk3_Vorar] [chat ascii] System: Opening door...
+[00:19:26.146] INFO  [mk3_Vorar] [survival] hp 40/40 (100%) -> fight
+[00:19:26.825] INFO  [mk3_Vorar] [chat ascii] System: Falen has arrived in Minoc.
+[00:19:27.794] INFO  [mk3_Vorar] [travel] Britain healer ARRIVED at (1475,1612,20)
+[00:19:27.794] LOG   [mk3_Vorar] event travel_done: label='Britain healer' ok=1 at=(1475,1612) legs=1 plans=1 why=''
+[00:19:27.811] INFO  [mk3_Vorar] [action] scanning nearby mobiles for names
+[00:19:27.811] INFO  [mk3_Vorar] [action] requested 4 paperdoll(s) for trade titles
+[00:19:27.811] INFO  [life] bandages: at the shop, asking who is here (scan 1 of 3)
+[00:19:27.824] INFO  [mk3_Vorar] [mobiles] nearby (4):
+[00:19:27.824] INFO  [mk3_Vorar]   Natasha 0x00001194
+[00:19:27.824] INFO  [mk3_Vorar]   Dale 0x000010C1
+[00:19:27.824] INFO  [mk3_Vorar]   Halain 0x0001616D
+[00:19:27.824] INFO  [mk3_Vorar]   Delras 0x00015A59
+[00:19:27.825] INFO  [mk3_Vorar] [0x20] player @(1474,1612,20) facing=2
+[00:19:27.825] INFO  [mk3_Vorar] [0x88] paperdoll 0x0001616D: "Halain, Apprentice Lumberjack"
+[00:19:27.825] INFO  [mk3_Vorar] [0x20] player @(1474,1612,20) facing=3
+[00:19:27.825] INFO  [mk3_Vorar] [0x88] paperdoll 0x00015A59: "Delras, Apprentice Lumberjack"
+[00:19:27.825] INFO  [mk3_Vorar] [0x20] player @(1474,1612,20) facing=0
+[00:19:27.825] INFO  [mk3_Vorar] [0x88] paperdoll 0x00001194: "Natasha, the healer guildmistress"
+[00:19:27.825] INFO  [mk3_Vorar] [world] Natasha, the healer guildmistress is a healer at (1474,1611)
+[00:19:27.825] INFO  [mk3_Vorar] [0x20] player @(1474,1612,20) facing=5
+[00:19:27.825] INFO  [mk3_Vorar] [0x88] paperdoll 0x000010C1: "Dale, the healer"
+[00:19:27.825] INFO  [mk3_Vorar] [world] Dale, the healer is a healer at (1470,1614)
+[00:19:29.908] INFO  [mk3_Vorar] [chat ascii] System: Aelia has arrived in Britain.
+[00:19:30.850] INFO  [life] bandages: found a 'healer'
+[00:19:30.851] INFO  [mk3_Vorar] [travel] mobile 0x000010C1 -> (1470,1614) r=1 from (1474,1612)
+[00:19:30.851] LOG   [mk3_Vorar] event travel_start: label='mobile 0x000010C1' target=(1470,1614) radius=1 from=(1474,1612)
+[00:19:30.851] INFO  [life] bandages: the 'healer' is 4 tiles off (dz 0) -- walking into reach (chase 1 of 3)
+[00:19:30.851] INFO  [mk3_Vorar] [travel] mode walk             usable   <- chosen
+[00:19:30.851] INFO  [mk3_Vorar] [travel] mode moongate         usable
+[00:19:30.851] INFO  [mk3_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:19:30.851] INFO  [mk3_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:19:30.851] LOG   [mk3_Vorar] event travel_mode: walk
+[00:19:30.851] INFO  [mk3_Vorar] [travel] plan mobile 0x000010C1: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:19:30.852] INFO  [mk3_Vorar] [action] goto finished at (1474,1612,20); target (1471,1611); stopped short (off by 4 tile(s))
+[00:19:30.852] LOG   [mk3_Vorar] event goto_done: at=(1474,1612) target=(1471,1611) arrived=0 off=4
+[00:19:30.852] INFO  [mk3_Vorar] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:19:30.852] INFO  [mk3_Vorar] [action] goto (1470,1614) from (1474,1612,20)
+[00:19:30.852] LOG   [mk3_Vorar] event goto_start: target=(1470,1614) from=(1474,1612)
+[00:19:30.852] INFO  [mk3_Vorar] [bot] running from (1474,1612,20) to (1470,1614,z20)
+[00:19:30.852] INFO  [mk3_Vorar] [bot] planning path to (1470,1614) in background
+[00:19:31.170] INFO  [mk3_Vorar] [survival] hp 40/40 (100%) -> fight
+[00:19:32.214] INFO  [mk3_Vorar] [action] goto finished at (1474,1612,20); target (1470,1614); stopped short (off by 6 tile(s))
+[00:19:32.214] LOG   [mk3_Vorar] event goto_done: at=(1474,1612) target=(1470,1614) arrived=0 off=6
+[00:19:33.079] INFO  [mk3_Vorar] [chat ascii] System: Amara has arrived in Britain.
+[00:19:33.430] INFO  [mk3_Vorar] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:19:33.431] INFO  [mk3_Vorar] [action] goto (1470,1614) from (1474,1612,20)
+[00:19:33.431] LOG   [mk3_Vorar] event goto_start: target=(1470,1614) from=(1474,1612)
+[00:19:33.431] INFO  [mk3_Vorar] [bot] running from (1474,1612,20) to (1470,1614,z20)
+[00:19:33.431] INFO  [mk3_Vorar] [bot] planning path to (1470,1614) in background
+[00:19:35.125] INFO  [mk3_Vorar] [action] goto finished at (1474,1612,20); target (1470,1614); stopped short (off by 6 tile(s))
+[00:19:35.125] LOG   [mk3_Vorar] event goto_done: at=(1474,1612) target=(1470,1614) arrived=0 off=6
+[00:19:36.131] INFO  [mk3_Vorar] [chat ascii] System: Elara has arrived in Magincia.
+[00:19:36.208] INFO  [mk3_Vorar] [survival] hp 40/40 (100%) -> fight
+[00:19:36.252] INFO  [mk3_Vorar] [chat ascii] Dale: Thou hast mine attention.
+[00:19:36.375] INFO  [mk3_Vorar] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:19:36.375] INFO  [mk3_Vorar] [action] goto (1470,1614) from (1474,1612,20)
+[00:19:36.375] LOG   [mk3_Vorar] event goto_start: target=(1470,1614) from=(1474,1612)
+[00:19:36.375] INFO  [mk3_Vorar] [bot] running from (1474,1612,20) to (1470,1614,z20)
+[00:19:36.375] INFO  [mk3_Vorar] [bot] planning path to (1470,1614) in background
+[00:19:38.099] INFO  [mk3_Vorar] [action] goto finished at (1474,1612,20); target (1470,1614); stopped short (off by 6 tile(s))
+[00:19:38.099] LOG   [mk3_Vorar] event goto_done: at=(1474,1612) target=(1470,1614) arrived=0 off=6
+[00:19:39.272] INFO  [mk3_Vorar] [chat ascii] System: Selene has arrived in Magincia.
+[00:19:39.332] INFO  [mk3_Vorar] [travel] mode walk             usable   <- chosen
+[00:19:39.332] INFO  [mk3_Vorar] [travel] mode moongate         usable
+[00:19:39.332] INFO  [mk3_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:19:39.332] INFO  [mk3_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:19:39.332] LOG   [mk3_Vorar] event travel_mode: walk
+[00:19:39.332] INFO  [mk3_Vorar] [travel] plan mobile 0x000010C1: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:19:40.862] INFO  [mk3_Vorar] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:19:40.862] INFO  [mk3_Vorar] [action] goto (1470,1614) from (1474,1612,20)
+[00:19:40.862] LOG   [mk3_Vorar] event goto_start: target=(1470,1614) from=(1474,1612)
+[00:19:40.862] INFO  [mk3_Vorar] [bot] running from (1474,1612,20) to (1470,1614,z20)
+[00:19:40.862] INFO  [mk3_Vorar] [bot] planning path to (1470,1614) in background
+[00:19:41.258] INFO  [mk3_Vorar] [survival] hp 40/40 (100%) -> fight
+[00:19:42.349] INFO  [mk3_Vorar] [chat ascii] System: Lyra has arrived in Moonglow.
+[00:19:42.823] INFO  [mk3_Vorar] [action] goto finished at (1474,1612,20); target (1470,1614); stopped short (off by 6 tile(s))
+[00:19:42.823] LOG   [mk3_Vorar] event goto_done: at=(1474,1612) target=(1470,1614) arrived=0 off=6
+[00:19:44.051] INFO  [mk3_Vorar] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:19:44.051] INFO  [mk3_Vorar] [action] goto (1470,1614) from (1474,1612,20)
+[00:19:44.051] LOG   [mk3_Vorar] event goto_start: target=(1470,1614) from=(1474,1612)
+[00:19:44.051] INFO  [mk3_Vorar] [bot] running from (1474,1612,20) to (1470,1614,z20)
+[00:19:44.051] INFO  [mk3_Vorar] [bot] planning path to (1470,1614) in background
+[00:19:44.112] INFO  [mk3_Vorar] [bot] replan to (1470,1614): 5 steps in 74.8us
+[00:19:45.246] INFO  [mk3_Vorar] [travel] mobile 0x000010C1 ARRIVED at (1471,1613,20)
+[00:19:45.246] LOG   [mk3_Vorar] event travel_done: label='mobile 0x000010C1' ok=1 at=(1471,1613) legs=1 plans=2 why=''
+[00:19:45.262] INFO  [life] bandages: within reach
+[00:19:45.277] INFO  [mk3_Vorar] [ACTION] vendor_buy start
+[00:19:45.277] INFO  [mk3_Vorar] [VENDOR] open vendor=0x000010C1 say='Dale buy'
+[00:19:45.278] INFO  [life] bandages: asking the 'healer' to show clean bandages (attempt 1)
+[00:19:45.278] INFO  [mk3_Vorar] [chat uni  ] : Dale buy
+[00:19:45.278] INFO  [mk3_Vorar] [chat ascii] Dale: Thou mayst purchase supplies from me.
+[00:19:45.278] INFO  [mk3_Vorar] [0x3C] container contents: 5 item(s)
+[00:19:45.278] INFO  [mk3_Vorar] [0x74] pairing: straight (straight 5, mirrored 1 of 5 rows)
+[00:19:45.278] INFO  [mk3_Vorar] [0x74] vendor shop data: cont=0x400010BB 5 item(s), layer=0x1A
+[00:19:45.278] INFO  [mk3_Vorar] [0x74]   clean bandages               gfx=0x0E21 qty=19   price=1
+[00:19:45.278] INFO  [mk3_Vorar] [0x74]   Heal                         gfx=0x0F0C qty=10   price=30
+[00:19:45.278] INFO  [mk3_Vorar] [0x74]   Ginseng                      gfx=0x0F85 qty=20   price=3
+[00:19:45.278] INFO  [mk3_Vorar] [0x74]   Garlic                       gfx=0x0F84 qty=13   price=3
+[00:19:45.278] INFO  [mk3_Vorar] [0x74]   Refresh                      gfx=0x0F0B qty=19   price=16
+[00:19:45.278] INFO  [mk3_Vorar] [0x3C] container contents: 0 item(s)
+[00:19:45.278] INFO  [mk3_Vorar] [0x74] vendor shop data: cont=0x40000EF5 0 item(s), layer=0x1B
+[00:19:45.278] INFO  [mk3_Vorar] [VENDOR] offer from 0x000010C1: 5 item(s)
+[00:19:45.278] INFO  [mk3_Vorar] [VENDOR]   0x40018247 clean bandages         x19  1 gp
+[00:19:45.278] INFO  [mk3_Vorar] [VENDOR]   0x4001823F Heal                   x10  30 gp
+[00:19:45.278] INFO  [mk3_Vorar] [VENDOR]   0x40018237 Ginseng                x20  3 gp
+[00:19:45.278] INFO  [mk3_Vorar] [VENDOR]   0x40018236 Garlic                 x13  3 gp
+[00:19:45.278] INFO  [mk3_Vorar] [VENDOR]   0x40018232 Refresh                x19  16 gp
+[00:19:45.278] LOG   [mk3_Vorar] event vendor_offer: vendor=0x000010C1 items=5
+[00:19:45.278] INFO  [mk3_Vorar] [ACTION_RESULT] vendor_buy success (1ms) vendor offer received
+[00:19:45.278] LOG   [mk3_Vorar] event action_result: vendor_buy success took=1ms vendor offer received
+[00:19:45.278] INFO  [mk3_Vorar] [0x24] vendor buy gump for 0x000010C1
+[00:19:45.279] INFO  [life] bandages: the shop is open
+[00:19:45.339] INFO  [mk3_Vorar] [ACTION] vendor_buy start
+[00:19:45.339] INFO  [mk3_Vorar] [policy] allowed NPC purchase of i_bandage (0x0E21): basic healing: a life with no Healing skill has no other way to treat itself, and the shard's own healer sells it [BASIC_HEALING]
+[00:19:45.339] INFO  [mk3_Vorar] [VENDOR] buy item=0x40018247 qty=19 from vendor=0x000010C1 gold=10000
+[00:19:45.339] INFO  [life] bandages: buying 19 clean bandages at 1 each from the 'healer' (shelf holds 19) -- waiting for the pack
+[00:19:45.340] INFO  [life] bandages: an action is already in flight
+[00:19:45.354] INFO  [mk3_Vorar] [ACTION_RESULT] vendor_buy success (15ms) purchased item delivered
+[00:19:45.354] LOG   [mk3_Vorar] event action_result: vendor_buy success took=15ms purchased item delivered
+[00:19:45.354] INFO  [mk3_Vorar] [chat ascii] Dale: Here you are, Vorar That will be 19 gold coins.  I thank thee for thy business.
+[00:19:45.354] INFO  [mk3_Vorar] [0x3B] vendor transaction closed: vendor=0x000010C1 flag=0
+[00:19:45.355] INFO  [life] bandages: 19 clean bandages in the pack, 0 gold gone -- the goods arrived; the purse did not move -- bank paid
+[00:19:45.356] INFO  [mk3_Vorar] [chat ascii] System: Thalia has arrived in Moonglow.
+[00:19:45.358] INFO  [life] bandages: found a 'healer'
+[00:19:45.370] INFO  [life] bandages: within reach
+[00:19:45.430] INFO  [mk3_Vorar] [ACTION] vendor_buy start
+[00:19:45.430] INFO  [mk3_Vorar] [VENDOR] open vendor=0x000010C1 say='Dale buy'
+[00:19:45.430] INFO  [life] bandages: asking the 'healer' to show clean bandages (attempt 1)
+[00:19:45.431] INFO  [mk3_Vorar] [chat uni  ] : Dale buy
+[00:19:45.431] INFO  [mk3_Vorar] [chat ascii] Dale: Thou mayst purchase supplies from me.
+[00:19:45.431] INFO  [mk3_Vorar] [0x3C] container contents: 4 item(s)
+[00:19:45.431] INFO  [mk3_Vorar] [0x74] pairing: straight (straight 4, mirrored 0 of 4 rows)
+[00:19:45.431] INFO  [mk3_Vorar] [0x74] vendor shop data: cont=0x400010BB 4 item(s), layer=0x1A
+[00:19:45.431] INFO  [mk3_Vorar] [0x74]   Heal                         gfx=0x0F0C qty=10   price=30
+[00:19:45.431] INFO  [mk3_Vorar] [0x74]   Ginseng                      gfx=0x0F85 qty=20   price=3
+[00:19:45.431] INFO  [mk3_Vorar] [0x74]   Garlic                       gfx=0x0F84 qty=13   price=3
+[00:19:45.431] INFO  [mk3_Vorar] [0x74]   Refresh                      gfx=0x0F0B qty=19   price=16
+[00:19:45.431] INFO  [mk3_Vorar] [0x3C] container contents: 0 item(s)
+[00:19:45.431] INFO  [mk3_Vorar] [0x74] vendor shop data: cont=0x40000EF5 0 item(s), layer=0x1B
+[00:19:45.431] INFO  [mk3_Vorar] [VENDOR] offer from 0x000010C1: 4 item(s)
+[00:19:45.431] INFO  [mk3_Vorar] [VENDOR]   0x4001823F Heal                   x10  30 gp
+[00:19:45.431] INFO  [mk3_Vorar] [VENDOR]   0x40018237 Ginseng                x20  3 gp
+[00:19:45.431] INFO  [mk3_Vorar] [VENDOR]   0x40018236 Garlic                 x13  3 gp
+[00:19:45.431] INFO  [mk3_Vorar] [VENDOR]   0x40018232 Refresh                x19  16 gp
+[00:19:45.431] LOG   [mk3_Vorar] event vendor_offer: vendor=0x000010C1 items=4
+[00:19:45.431] INFO  [mk3_Vorar] [ACTION_RESULT] vendor_buy success (1ms) vendor offer received
+[00:19:45.431] LOG   [mk3_Vorar] event action_result: vendor_buy success took=1ms vendor offer received
+[00:19:45.431] INFO  [mk3_Vorar] [0x24] vendor buy gump for 0x000010C1
+[00:19:45.432] INFO  [life] bandages: the shop is open
+[00:19:45.492] INFO  [life] bandages: this 'healer' does not stock clean bandages
+[00:19:45.492] INFO  [life] goal_failed=REPLACE_EQUIPMENT status=failed reason="this 'healer' does not stock clean bandages"
+[00:19:45.492] INFO  [life] handoff=REPLACE_EQUIPMENT->MAKE_BANDAGES reason="no bandages bought"
+[00:19:45.493] INFO  [life] goal=GET_FOOD reason="previous goal abandoned: no bandages bought"
+[00:19:45.493] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSkillTraining(Carpentry 0.55) NeedEquipment(heal potions 0.50) NeedTraining(Swordsmanship 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedLogs(logs 0.40) NeedFood(food 0.25) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[00:19:45.493] INFO  [life]   score=62.5
+[00:19:45.493] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[00:19:45.493] INFO  [life]   reason: food=0
+[00:19:45.493] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 239s after achieving nothing
+[00:19:45.493] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 267s after achieving nothing
+[00:19:45.493] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[00:19:46.289] INFO  [mk3_Vorar] [survival] hp 40/40 (100%) -> fight
+[00:19:46.351] INFO  [mk3_Vorar] [bot] arrived at (1470,1614,20)
+[00:19:46.569] INFO  [mk3_Vorar] [chat uni  ] Halain: Dale buy
+[00:19:46.569] INFO  [mk3_Vorar] [chat ascii] Dale: Excuse me Vorar, but Halain wants to speak to me
+[00:19:46.569] INFO  [mk3_Vorar] [chat ascii] Dale: Hello! ?
+[00:19:46.569] INFO  [mk3_Vorar] [chat ascii] Dale: I got lots to sell!
+[00:19:47.527] INFO  [mk3_Vorar] [travel] Britain baker -> (1450,1617) r=5 from (1470,1614)
+[00:19:47.527] LOG   [mk3_Vorar] event travel_start: label='Britain baker' target=(1450,1617) radius=5 from=(1470,1614)
+[00:19:47.527] INFO  [life] food: walking to a 'baker' (trip 1)
+[00:19:47.527] INFO  [mk3_Vorar] [travel] mode walk             usable   <- chosen
+[00:19:47.527] INFO  [mk3_Vorar] [travel] mode moongate         usable
+[00:19:47.528] INFO  [mk3_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:19:47.528] INFO  [mk3_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:19:47.528] LOG   [mk3_Vorar] event travel_mode: walk
+[00:19:47.528] INFO  [mk3_Vorar] [travel] plan Britain baker: ok legs=1 ~20 tiles transit=0 nodes=0
+[00:19:47.528] INFO  [mk3_Vorar] [action] goto finished at (1470,1614,20); target (1470,1614); ARRIVED (off by 0 tile(s))
+[00:19:47.528] LOG   [mk3_Vorar] event goto_done: at=(1470,1614) target=(1470,1614) arrived=1 off=0
+[00:19:47.528] INFO  [mk3_Vorar] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:19:47.528] INFO  [mk3_Vorar] [action] goto (1450,1617) from (1470,1614,20)
+[00:19:47.528] LOG   [mk3_Vorar] event goto_start: target=(1450,1617) from=(1470,1614)
+[00:19:47.528] INFO  [mk3_Vorar] [bot] running from (1470,1614,20) to (1450,1617,z20)
+[00:19:47.528] INFO  [mk3_Vorar] [bot] planning path to (1450,1617) in background
+[00:19:47.594] INFO  [mk3_Vorar] [action] goto finished at (1470,1614,20); target (1450,1617); stopped short (off by 23 tile(s))
+[00:19:47.594] LOG   [mk3_Vorar] event goto_done: at=(1470,1614) target=(1450,1617) arrived=0 off=23
+[00:19:48.175] INFO  [mk3_Vorar] [chat uni  ] Delras: Dale buy
+[00:19:48.176] INFO  [mk3_Vorar] [chat ascii] Dale: Excuse me Halain, but Delras wants to speak to me
+[00:19:48.176] INFO  [mk3_Vorar] [chat ascii] Dale: Greetings. What can I help thee with?
+[00:19:48.176] INFO  [mk3_Vorar] [chat ascii] Dale: I'm here to sell thee supplies.
+[00:19:48.190] INFO  [mk3_Vorar] [chat uni  ] : Dale buy
+[00:19:48.190] INFO  [mk3_Vorar] [chat ascii] Dale: Excuse me Delras, but Cyras wants to speak to me
+[00:19:48.190] INFO  [mk3_Vorar] [chat ascii] Dale: Hello!
+[00:19:48.190] INFO  [mk3_Vorar] [chat ascii] Dale: I got lots to sell!
+[00:19:48.422] INFO  [mk3_Vorar] [chat ascii] System: Dorvar has arrived in Skara Brae.
+[00:19:48.832] INFO  [mk3_Vorar] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:19:48.832] INFO  [mk3_Vorar] [action] goto (1450,1617) from (1470,1614,20)
+[00:19:48.832] LOG   [mk3_Vorar] event goto_start: target=(1450,1617) from=(1470,1614)
+[00:19:48.832] INFO  [mk3_Vorar] [bot] running from (1470,1614,20) to (1450,1617,z20)
+[00:19:48.832] INFO  [mk3_Vorar] [bot] planning path to (1450,1617) in background
+[00:19:48.847] INFO  [mk3_Vorar] [bot] replan to (1450,1617): 47 steps in 2926.9us
+[00:19:49.077] INFO  [mk3_Vorar] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=48 in 32.1us
+[00:19:49.486] INFO  [mk3_Vorar] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=48 in 88.9us
+[00:19:49.750] INFO  [mk3_Vorar] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=47 in 71.5us
+[00:19:50.913] INFO  [mk3_Vorar] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=43 in 65.4us
+[00:19:51.299] INFO  [mk3_Vorar] [survival] hp 40/40 (100%) -> fight
+[00:19:51.330] INFO  [mk3_Vorar] [bot] lookahead patched around block at step 1: anchor=5 new segment=10 path=47 in 140.1us
+[00:19:51.483] INFO  [mk3_Vorar] [chat ascii] System: Ithion has arrived in Skara Brae.
+[00:19:53.565] INFO  [mk3_Vorar] [bot] lookahead patched around block at step 3: anchor=5 new segment=7 path=42 in 68.0us
+[00:19:54.056] INFO  [mk3_Vorar] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=42 in 136.1us
+[00:19:54.532] INFO  [mk3_Vorar] [chat ascii] System: Odessa has arrived in Britain.
+[00:19:54.547] INFO  [mk3_Vorar] [bot] step (1478,1611,20)->(1479,1612,20) rejected; OpenDoor + retry
+[00:19:54.548] INFO  [mk3_Vorar] [chat ascii] System: Opening door...
+[00:19:54.548] INFO  [mk3_Vorar] [0x20] player @(1478,1611,20) facing=2
+[00:19:54.548] INFO  [mk3_Vorar] [action] goto finished at (1478,1611,20); target (1450,1617); stopped short (off by 34 tile(s))
+[00:19:54.548] LOG   [mk3_Vorar] event goto_done: at=(1478,1611) target=(1450,1617) arrived=0 off=34
+[00:19:55.789] INFO  [mk3_Vorar] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:19:55.789] INFO  [mk3_Vorar] [action] goto (1450,1617) from (1478,1611,20)
+[00:19:55.789] LOG   [mk3_Vorar] event goto_start: target=(1450,1617) from=(1478,1611)
+[00:19:55.789] INFO  [mk3_Vorar] [bot] running from (1478,1611,20) to (1450,1617,z20)
+[00:19:55.789] INFO  [mk3_Vorar] [bot] planning path to (1450,1617) in background
+[00:19:55.805] INFO  [mk3_Vorar] [bot] replan to (1450,1617): 37 steps in 1439.7us
+[00:19:56.007] INFO  [mk3_Vorar] [bot] lookahead patched around block at step 1: anchor=5 new segment=9 path=40 in 145.3us
+[00:19:56.329] INFO  [mk3_Vorar] [survival] hp 40/40 (100%) -> fight
+[00:19:57.261] INFO  [mk3_Vorar] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=37 in 89.7us
+[00:19:57.598] INFO  [mk3_Vorar] [chat ascii] System: Serena has arrived in Britain.
+[00:19:57.874] INFO  [mk3_Vorar] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=37 in 38.9us
+[00:19:58.074] INFO  [mk3_Vorar] [bot] lookahead patched around block at step 5: anchor=6 new segment=4 path=34 in 39.1us
+[00:19:58.104] INFO  [mk3_Vorar] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=36 in 101.6us
+[00:19:58.502] INFO  [mk3_Vorar] [bot] lookahead patched around block at step 3: anchor=5 new segment=6 path=36 in 35.8us
+[00:20:00.645] INFO  [mk3_Vorar] [chat ascii] System: Aurelius has arrived in Moonglow.
+[00:20:01.365] INFO  [mk3_Vorar] [survival] hp 40/40 (100%) -> fight
+[00:20:03.868] INFO  [mk3_Vorar] [chat ascii] System: Leander has arrived in Moonglow.
+[00:20:05.004] INFO  [mk3_Vorar] [chat ascii] Dale: Hmm?
+[00:20:05.004] INFO  [mk3_Vorar] [chat ascii] Dale: Hmm?
+[00:20:06.129] INFO  [mk3_Vorar] [bot] lookahead patched around block at step 5: anchor=6 new segment=9 path=12 in 270.0us
+[00:20:06.392] INFO  [mk3_Vorar] [survival] hp 40/40 (100%) -> fight
+[00:20:06.980] INFO  [mk3_Vorar] [chat ascii] System: Illyria has arrived in Britain.
+[00:20:07.485] INFO  [mk3_Vorar] [travel] Britain baker ARRIVED at (1454,1612,20)
+[00:20:07.485] LOG   [mk3_Vorar] event travel_done: label='Britain baker' ok=1 at=(1454,1612) legs=1 plans=1 why=''
+[00:20:07.486] INFO  [mk3_Vorar] [action] scanning nearby mobiles for names
+[00:20:07.486] INFO  [mk3_Vorar] [action] requested 1 paperdoll(s) for trade titles
+[00:20:07.486] INFO  [life] food: at the shop, asking who is here (scan 1 of 3)
+[00:20:07.499] INFO  [mk3_Vorar] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=8 in 142.6us
+[00:20:07.499] INFO  [mk3_Vorar] [mobiles] nearby (5):
+[00:20:07.499] INFO  [mk3_Vorar]   Halain 0x0001616D
+[00:20:07.499] INFO  [mk3_Vorar]   Delras 0x00015A59
+[00:20:07.499] INFO  [mk3_Vorar]   Lionel 0x000010B3
+[00:20:07.499] INFO  [mk3_Vorar]   Natasha 0x00001194
+[00:20:07.499] INFO  [mk3_Vorar]   Dale 0x000010C1
+[00:20:07.499] INFO  [mk3_Vorar] [0x20] player @(1454,1612,20) facing=5
+[00:20:07.499] INFO  [mk3_Vorar] [0x88] paperdoll 0x000010B3: "Lionel, the baker"
+[00:20:07.499] INFO  [mk3_Vorar] [world] Lionel, the baker is a baker at (1449,1616)
+[00:20:08.761] INFO  [mk3_Vorar] [chat uni  ] Delras: Lionel buy
+[00:20:08.761] INFO  [mk3_Vorar] [chat ascii] Lionel: Greetings. What can I do for thee?
+[00:20:08.761] INFO  [mk3_Vorar] [chat ascii] Lionel: I'm here to sell thee supplies.
+[00:20:08.824] INFO  [mk3_Vorar] [chat ascii] Lionel: Here you are, Delras That will be 16 gold coins.  I thank thee for thy business.
+[00:20:10.022] INFO  [mk3_Vorar] [chat ascii] System: Hector has arrived in Trinsic.
+[00:20:10.489] INFO  [life] food: found a 'baker'
+[00:20:10.550] INFO  [mk3_Vorar] [travel] mobile 0x000010B3 -> (1449,1616) r=1 from (1454,1612)
+[00:20:10.550] LOG   [mk3_Vorar] event travel_start: label='mobile 0x000010B3' target=(1449,1616) radius=1 from=(1454,1612)
+[00:20:10.550] INFO  [life] food: the 'baker' is 5 tiles off (dz 0) -- walking into reach (chase 1 of 3)
+[00:20:10.550] INFO  [mk3_Vorar] [travel] mode walk             usable   <- chosen
+[00:20:10.550] INFO  [mk3_Vorar] [travel] mode moongate         usable
+[00:20:10.550] INFO  [mk3_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:10.550] INFO  [mk3_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:10.550] LOG   [mk3_Vorar] event travel_mode: walk
+[00:20:10.550] INFO  [mk3_Vorar] [travel] plan mobile 0x000010B3: ok legs=1 ~5 tiles transit=0 nodes=0
+[00:20:10.612] INFO  [mk3_Vorar] [action] goto finished at (1454,1612,20); target (1450,1617); stopped short (off by 9 tile(s))
+[00:20:10.612] LOG   [mk3_Vorar] event goto_done: at=(1454,1612) target=(1450,1617) arrived=0 off=9
+[00:20:10.612] INFO  [mk3_Vorar] [action] goto (1449,1616) from (1454,1612,20)
+[00:20:10.612] LOG   [mk3_Vorar] event goto_start: target=(1449,1616) from=(1454,1612)
+[00:20:10.612] INFO  [mk3_Vorar] [bot] running from (1454,1612,20) to (1449,1616,z20)
+[00:20:10.612] INFO  [mk3_Vorar] [bot] planning path to (1449,1616) in background
+[00:20:11.032] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_05.vorar/state.json
+[00:20:11.414] INFO  [mk3_Vorar] [survival] hp 40/40 (100%) -> fight
+[00:20:12.186] INFO  [mk3_Vorar] [chat uni  ] : Dale buy
+[00:20:12.186] INFO  [mk3_Vorar] [chat ascii] Dale: I got lots to sell!
+[00:20:12.262] INFO  [mk3_Vorar] [chat ascii] Dale: Here you are, Aelia That will be 120 gold coins.  I thank thee for thy business.
+[00:20:12.263] INFO  [mk3_Vorar] [action] goto finished at (1454,1612,20); target (1449,1616); stopped short (off by 9 tile(s))
+[00:20:12.263] LOG   [mk3_Vorar] event goto_done: at=(1454,1612) target=(1449,1616) arrived=0 off=9
+[00:20:13.076] INFO  [mk3_Vorar] [chat ascii] System: Castor has arrived in Trinsic.
+[00:20:13.503] INFO  [mk3_Vorar] [action] goto (1449,1616) from (1454,1612,20)
+[00:20:13.504] LOG   [mk3_Vorar] event goto_start: target=(1449,1616) from=(1454,1612)
+[00:20:13.504] INFO  [mk3_Vorar] [bot] running from (1454,1612,20) to (1449,1616,z20)
+[00:20:13.504] INFO  [mk3_Vorar] [bot] planning path to (1449,1616) in background
+[00:20:15.564] INFO  [mk3_Vorar] [action] goto finished at (1454,1612,20); target (1449,1616); stopped short (off by 9 tile(s))
+[00:20:15.564] LOG   [mk3_Vorar] event goto_done: at=(1454,1612) target=(1449,1616) arrived=0 off=9
+[00:20:16.106] INFO  [mk3_Vorar] [chat ascii] System: Faustus has arrived in Britain.
+[00:20:16.475] INFO  [mk3_Vorar] [survival] hp 40/40 (100%) -> fight
+[00:20:16.798] INFO  [mk3_Vorar] [travel] mode walk             usable   <- chosen
+[00:20:16.798] INFO  [mk3_Vorar] [travel] mode moongate         usable
+[00:20:16.798] INFO  [mk3_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:16.798] INFO  [mk3_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:16.798] LOG   [mk3_Vorar] event travel_mode: walk
+[00:20:16.798] INFO  [mk3_Vorar] [travel] plan mobile 0x000010B3: ok legs=1 ~5 tiles transit=0 nodes=0
+[00:20:18.324] INFO  [mk3_Vorar] [action] goto (1449,1616) from (1454,1612,20)
+[00:20:18.324] LOG   [mk3_Vorar] event goto_start: target=(1449,1616) from=(1454,1612)
+[00:20:18.324] INFO  [mk3_Vorar] [bot] running from (1454,1612,20) to (1449,1616,z20)
+[00:20:18.324] INFO  [mk3_Vorar] [bot] planning path to (1449,1616) in background
+[00:20:19.161] INFO  [mk3_Vorar] [chat ascii] System: Titus has arrived in Skara Brae.
+[00:20:20.574] INFO  [mk3_Vorar] [action] goto finished at (1454,1612,20); target (1449,1616); stopped short (off by 9 tile(s))
+[00:20:20.574] LOG   [mk3_Vorar] event goto_done: at=(1454,1612) target=(1449,1616) arrived=0 off=9
+[00:20:21.527] INFO  [mk3_Vorar] [survival] hp 40/40 (100%) -> fight
+[00:20:21.726] INFO  [mk3_Vorar] [chat uni  ] : Dale buy
+[00:20:21.726] INFO  [mk3_Vorar] [chat ascii] Dale: Greetings. What can I help thee with?
+[00:20:21.726] INFO  [mk3_Vorar] [chat ascii] Dale: I'm here to sell thee supplies.
+[00:20:21.788] INFO  [mk3_Vorar] [action] goto (1449,1616) from (1454,1612,20)
+[00:20:21.788] LOG   [mk3_Vorar] event goto_start: target=(1449,1616) from=(1454,1612)
+[00:20:21.788] INFO  [mk3_Vorar] [bot] running from (1454,1612,20) to (1449,1616,z20)
+[00:20:21.788] INFO  [mk3_Vorar] [bot] planning path to (1449,1616) in background
+[00:20:21.803] INFO  [mk3_Vorar] [chat ascii] Dale: Here you are, Odessa That will be 120 gold coins.  I thank thee for thy business.
+[00:20:22.309] INFO  [mk3_Vorar] [chat ascii] System: Rhea has arrived in Britain.
+[00:20:24.057] INFO  [mk3_Vorar] [action] goto finished at (1454,1612,20); target (1449,1616); stopped short (off by 9 tile(s))
+[00:20:24.057] LOG   [mk3_Vorar] event goto_done: at=(1454,1612) target=(1449,1616) arrived=0 off=9
+[00:20:25.070] INFO  [mk3_Vorar] [chat uni  ] : Dale buy
+[00:20:25.070] INFO  [mk3_Vorar] [chat ascii] Dale: Thou surely wants all the things that I can sell thee.
+[00:20:25.145] INFO  [mk3_Vorar] [chat ascii] Dale: Here you are, Amara That will be 60 gold coins.  I thank thee for thy business.
+[00:20:25.269] INFO  [mk3_Vorar] [travel] mode walk             usable   <- chosen
+[00:20:25.269] INFO  [mk3_Vorar] [travel] mode moongate         usable
+[00:20:25.269] INFO  [mk3_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:25.269] INFO  [mk3_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:25.269] LOG   [mk3_Vorar] event travel_mode: walk
+[00:20:25.269] INFO  [mk3_Vorar] [travel] plan mobile 0x000010B3: ok legs=1 ~5 tiles transit=0 nodes=0
+[00:20:25.376] INFO  [mk3_Vorar] [chat ascii] System: Xerxes has arrived in Vesper.
+[00:20:26.537] INFO  [mk3_Vorar] [survival] hp 40/40 (100%) -> fight
+[00:20:28.285] INFO  [mk3_Vorar] [action] goto (1449,1616) from (1454,1612,20)
+[00:20:28.285] LOG   [mk3_Vorar] event goto_start: target=(1449,1616) from=(1454,1612)
+[00:20:28.285] INFO  [mk3_Vorar] [bot] running from (1454,1612,20) to (1449,1616,z20)
+[00:20:28.285] INFO  [mk3_Vorar] [bot] planning path to (1449,1616) in background
+[00:20:31.119] INFO  [mk3_Vorar] [action] goto finished at (1454,1612,20); target (1449,1616); stopped short (off by 9 tile(s))
+[00:20:31.119] LOG   [mk3_Vorar] event goto_done: at=(1454,1612) target=(1449,1616) arrived=0 off=9
+[00:20:31.595] INFO  [mk3_Vorar] [survival] hp 40/40 (100%) -> fight
+[00:20:32.375] INFO  [mk3_Vorar] [action] goto (1449,1616) from (1454,1612,20)
+[00:20:32.375] LOG   [mk3_Vorar] event goto_start: target=(1449,1616) from=(1454,1612)
+[00:20:32.375] INFO  [mk3_Vorar] [bot] running from (1454,1612,20) to (1449,1616,z20)
+[00:20:32.375] INFO  [mk3_Vorar] [bot] planning path to (1449,1616) in background
+[00:20:35.027] INFO  [mk3_Vorar] [action] goto finished at (1454,1612,20); target (1449,1616); stopped short (off by 9 tile(s))
+[00:20:35.027] LOG   [mk3_Vorar] event goto_done: at=(1454,1612) target=(1449,1616) arrived=0 off=9
+[00:20:36.235] INFO  [mk3_Vorar] [travel] mode walk             usable   <- chosen
+[00:20:36.235] INFO  [mk3_Vorar] [travel] mode moongate         usable
+[00:20:36.235] INFO  [mk3_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:36.235] INFO  [mk3_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:36.235] LOG   [mk3_Vorar] event travel_mode: walk
+[00:20:36.235] INFO  [mk3_Vorar] [travel] plan mobile 0x000010B3: ok legs=1 ~5 tiles transit=0 nodes=0
+[00:20:36.621] INFO  [mk3_Vorar] [survival] hp 40/40 (100%) -> fight
+[00:20:40.738] INFO  [mk3_Vorar] [action] goto (1449,1616) from (1454,1612,20)
+[00:20:40.738] LOG   [mk3_Vorar] event goto_start: target=(1449,1616) from=(1454,1612)
+[00:20:40.738] INFO  [mk3_Vorar] [bot] running from (1454,1612,20) to (1449,1616,z20)
+[00:20:40.738] INFO  [mk3_Vorar] [bot] planning path to (1449,1616) in background
+[00:20:41.649] INFO  [mk3_Vorar] [survival] hp 40/40 (100%) -> fight
+[00:20:43.530] INFO  [mk3_Vorar] [action] goto finished at (1454,1612,20); target (1449,1616); stopped short (off by 9 tile(s))
+[00:20:43.530] LOG   [mk3_Vorar] event goto_done: at=(1454,1612) target=(1449,1616) arrived=0 off=9
+[00:20:44.755] INFO  [mk3_Vorar] [action] goto (1449,1616) from (1454,1612,20)
+[00:20:44.755] LOG   [mk3_Vorar] event goto_start: target=(1449,1616) from=(1454,1612)
+[00:20:44.755] INFO  [mk3_Vorar] [bot] running from (1454,1612,20) to (1449,1616,z20)
+[00:20:44.755] INFO  [mk3_Vorar] [bot] planning path to (1449,1616) in background
+[00:20:46.661] INFO  [mk3_Vorar] [survival] hp 40/40 (100%) -> fight
+[00:20:47.044] INFO  [life] food: within reach
+[00:20:47.106] INFO  [mk3_Vorar] [ACTION] vendor_buy start
+[00:20:47.106] INFO  [mk3_Vorar] [VENDOR] open vendor=0x000010B3 say='Lionel buy'
+[00:20:47.106] INFO  [life] food: asking the 'baker' to show something to eat (attempt 1)
+[00:20:47.107] INFO  [mk3_Vorar] [chat uni  ] : Lionel buy
+[00:20:47.120] INFO  [mk3_Vorar] [chat uni  ] Halain: Lionel buy
+[00:20:47.120] INFO  [mk3_Vorar] [chat ascii] Lionel: Yes?
+[00:20:47.120] INFO  [mk3_Vorar] [chat ascii] Lionel: I'm here to sell thee supplies.
+[00:20:47.196] INFO  [mk3_Vorar] [chat ascii] Lionel: Here you are, Halain That will be 16 gold coins.  I thank thee for thy business.
+[00:20:50.400] INFO  [mk3_Vorar] [chat uni  ] : Lionel buy
+[00:20:50.400] INFO  [mk3_Vorar] [chat ascii] Lionel: Excuse me Halain, but Amara wants to speak to me
+[00:20:50.400] INFO  [mk3_Vorar] [chat ascii] Lionel: Hello!
+[00:20:50.400] INFO  [mk3_Vorar] [chat ascii] Lionel: I'm here to sell thee supplies.
+[00:20:50.448] INFO  [mk3_Vorar] [chat ascii] Lionel: Here you are, Amara That will be 16 gold coins.  I thank thee for thy business.
+[00:20:51.717] INFO  [mk3_Vorar] [survival] hp 40/40 (100%) -> fight
+[00:20:55.134] LOG   [mk3_Vorar] event action_result: vendor_buy timeout
+[00:20:55.196] INFO  [life] food: resting after a failure
+[00:20:56.772] INFO  [mk3_Vorar] [survival] hp 40/40 (100%) -> fight
+[00:20:57.198] INFO  [mk3_Vorar] [ACTION] vendor_buy start
+[00:20:57.198] INFO  [mk3_Vorar] [VENDOR] open vendor=0x000010B3 say='Lionel buy'
+[00:20:57.198] INFO  [life] food: asking the 'baker' to show something to eat (attempt 2)
+[00:20:57.212] INFO  [mk3_Vorar] [chat uni  ] : Lionel buy
+[00:20:59.899] INFO  [mk3_Vorar] [chat ascii] Dale: Greetings.  What might I help thee with?
+[00:20:59.899] INFO  [mk3_Vorar] [chat ascii] Dale: My shop sells many things.
+[00:21:01.831] INFO  [mk3_Vorar] [survival] hp 40/40 (100%) -> fight
+[00:21:05.223] LOG   [mk3_Vorar] event action_result: vendor_buy timeout
+[00:21:05.285] INFO  [life] food: resting after a failure
+[00:21:06.889] INFO  [mk3_Vorar] [survival] hp 40/40 (100%) -> fight
+[00:21:07.318] INFO  [mk3_Vorar] [ACTION] vendor_buy start
+[00:21:07.318] INFO  [mk3_Vorar] [VENDOR] open vendor=0x000010B3 say='Lionel buy'
+[00:21:07.318] INFO  [life] food: asking the 'baker' to show something to eat (attempt 3)
+[00:21:07.332] INFO  [mk3_Vorar] [chat uni  ] : Lionel buy
+[00:21:09.019] INFO  [mk3_Vorar] [chat uni  ] : Lionel buy
+[00:21:11.081] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_05.vorar/state.json
+[00:21:11.193] INFO  [mk3_Vorar] [chat ascii] System: Observer has arrived in Minoc.
+[00:21:11.926] INFO  [mk3_Vorar] [survival] hp 40/40 (100%) -> fight
+[00:21:13.141] INFO  [mk3_Vorar] [chat ascii] Dale: Good morrow!  How can I help thee?
+[00:21:13.141] INFO  [mk3_Vorar] [chat ascii] Dale: I'm here to sell thee supplies.
+[00:21:14.571] INFO  [mk3_Vorar] [chat ascii] System: Observer has departed from Minoc.
+[00:21:15.326] LOG   [mk3_Vorar] event action_result: vendor_buy timeout
+[00:21:15.387] INFO  [life] food: the 'baker' would not open a shop
+[00:21:15.387] INFO  [life] goal_failed=GET_FOOD status=retryable_failure reason="the 'baker' would not open a shop"
+[00:21:15.401] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: no food seller reachable"
+[00:21:15.401] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSkillTraining(Carpentry 0.55) NeedEquipment(heal potions 0.50) NeedTraining(Swordsmanship 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedLogs(logs 0.40) NeedFood(food 0.25) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[00:21:15.401] INFO  [life]   score=60.5
+[00:21:15.401] INFO  [life]   reason: NeedSkillTraining urgency 0.55 x 110 = 60.5
+[00:21:15.401] INFO  [life]   reason: Carpentry 0.0 -> 100.0, gold 9981 (fee is quoted on arrival, roughly 300)
+[00:21:15.401] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 150s after achieving nothing
+[00:21:15.401] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 177s after achieving nothing
+[00:21:15.401] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 29s after achieving nothing
+[00:21:15.401] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[00:21:15.401] INFO  [life] plan=buy reason="below the ceiling, worth buying, and affordable"
+[00:21:15.401] INFO  [life] training: looking for a 'carpenter' to teach Carpentry (trip 1)
+[00:21:15.405] INFO  [mk3_Vorar] [travel] place: skipping Minoc architect -- 1856 tiles and 0 gates for a service Britain carpenter offers
+[00:21:15.405] INFO  [mk3_Vorar] [travel] place: skipping Minoc carpenter -- 1856 tiles and 0 gates for a service Britain carpenter offers
+[00:21:15.405] INFO  [mk3_Vorar] [travel] place: skipping Vesper carpenter -- 1952 tiles and 0 gates for a service Britain carpenter offers
+[00:21:15.405] INFO  [mk3_Vorar] [travel] Britain carpenter -> (1430,1597) r=5 from (1454,1612)
+[00:21:15.405] LOG   [mk3_Vorar] event travel_start: label='Britain carpenter' target=(1430,1597) radius=5 from=(1454,1612)
+[00:21:15.405] INFO  [mk3_Vorar] [travel] mode walk             usable   <- chosen
+[00:21:15.405] INFO  [mk3_Vorar] [travel] mode moongate         usable
+[00:21:15.405] INFO  [mk3_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:15.405] INFO  [mk3_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:15.405] LOG   [mk3_Vorar] event travel_mode: walk
+[00:21:15.405] INFO  [mk3_Vorar] [travel] plan Britain carpenter: ok legs=1 ~24 tiles transit=0 nodes=0
+[00:21:15.464] INFO  [mk3_Vorar] [action] goto finished at (1454,1612,20); target (1449,1616); stopped short (off by 9 tile(s))
+[00:21:15.464] LOG   [mk3_Vorar] event goto_done: at=(1454,1612) target=(1449,1616) arrived=0 off=9
+[00:21:15.464] INFO  [mk3_Vorar] [action] goto (1430,1597) from (1454,1612,20)
+[00:21:15.464] LOG   [mk3_Vorar] event goto_start: target=(1430,1597) from=(1454,1612)
+[00:21:15.464] INFO  [mk3_Vorar] [bot] running from (1454,1612,20) to (1430,1597,z20)
+[00:21:15.464] INFO  [mk3_Vorar] [bot] planning path to (1430,1597) in background
+[00:21:15.587] INFO  [mk3_Vorar] [action] goto finished at (1454,1612,20); target (1430,1597); stopped short (off by 39 tile(s))
+[00:21:15.587] LOG   [mk3_Vorar] event goto_done: at=(1454,1612) target=(1430,1597) arrived=0 off=39
+[00:21:16.830] INFO  [mk3_Vorar] [action] goto (1430,1597) from (1454,1612,20)
+[00:21:16.830] LOG   [mk3_Vorar] event goto_start: target=(1430,1597) from=(1454,1612)
+[00:21:16.830] INFO  [mk3_Vorar] [bot] running from (1454,1612,20) to (1430,1597,z20)
+[00:21:16.830] INFO  [mk3_Vorar] [bot] planning path to (1430,1597) in background
+[00:21:16.892] INFO  [mk3_Vorar] [action] goto finished at (1454,1612,20); target (1430,1597); stopped short (off by 39 tile(s))
+[00:21:16.892] LOG   [mk3_Vorar] event goto_done: at=(1454,1612) target=(1430,1597) arrived=0 off=39
+[00:21:16.953] INFO  [mk3_Vorar] [survival] hp 40/40 (100%) -> fight
+[00:21:18.104] INFO  [mk3_Vorar] [action] goto (1430,1597) from (1454,1612,20)
+[00:21:18.104] LOG   [mk3_Vorar] event goto_start: target=(1430,1597) from=(1454,1612)
+[00:21:18.104] INFO  [mk3_Vorar] [bot] running from (1454,1612,20) to (1430,1597,z20)
+[00:21:18.104] INFO  [mk3_Vorar] [bot] planning path to (1430,1597) in background
+[00:21:18.165] INFO  [mk3_Vorar] [action] goto finished at (1454,1612,20); target (1430,1597); stopped short (off by 39 tile(s))
+[00:21:18.165] LOG   [mk3_Vorar] event goto_done: at=(1454,1612) target=(1430,1597) arrived=0 off=39
+[00:21:19.066] INFO  [mk3_Vorar] [chat uni  ] : Lionel buy
+[00:21:19.372] INFO  [mk3_Vorar] [travel] mode walk             usable   <- chosen
+[00:21:19.372] INFO  [mk3_Vorar] [travel] mode moongate         usable
+[00:21:19.372] INFO  [mk3_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:19.372] INFO  [mk3_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:19.372] LOG   [mk3_Vorar] event travel_mode: walk
+[00:21:19.372] INFO  [mk3_Vorar] [travel] plan Britain carpenter: ok legs=1 ~24 tiles transit=0 nodes=0
+[00:21:20.172] INFO  [mk3_Vorar] [chat uni  ] : Lionel buy
+[00:21:20.569] INFO  [mk3_Vorar] [chat uni  ] : Lionel buy
+[00:21:20.569] INFO  [mk3_Vorar] [chat ascii] Lionel: Excuse me Amara, but Odessa wants to speak to me
+[00:21:20.569] INFO  [mk3_Vorar] [chat ascii] Lionel: Greetings. What can I do for thee?
+[00:21:20.569] INFO  [mk3_Vorar] [chat ascii] Lionel: I'm here to sell thee supplies.
+[00:21:20.909] INFO  [mk3_Vorar] [action] goto (1430,1597) from (1454,1612,20)
+[00:21:20.909] LOG   [mk3_Vorar] event goto_start: target=(1430,1597) from=(1454,1612)
+[00:21:20.909] INFO  [mk3_Vorar] [bot] running from (1454,1612,20) to (1430,1597,z20)
+[00:21:20.909] INFO  [mk3_Vorar] [bot] planning path to (1430,1597) in background
+[00:21:21.031] INFO  [mk3_Vorar] [action] goto finished at (1454,1612,20); target (1430,1597); stopped short (off by 39 tile(s))
+[00:21:21.031] LOG   [mk3_Vorar] event goto_done: at=(1454,1612) target=(1430,1597) arrived=0 off=39
+[00:21:21.968] INFO  [mk3_Vorar] [survival] hp 40/40 (100%) -> fight
+[00:21:22.276] INFO  [mk3_Vorar] [action] goto (1430,1597) from (1454,1612,20)
+[00:21:22.276] LOG   [mk3_Vorar] event goto_start: target=(1430,1597) from=(1454,1612)
+[00:21:22.276] INFO  [mk3_Vorar] [bot] running from (1454,1612,20) to (1430,1597,z20)
+[00:21:22.276] INFO  [mk3_Vorar] [bot] planning path to (1430,1597) in background
+[00:21:22.338] INFO  [mk3_Vorar] [action] goto finished at (1454,1612,20); target (1430,1597); stopped short (off by 39 tile(s))
+[00:21:22.338] LOG   [mk3_Vorar] event goto_done: at=(1454,1612) target=(1430,1597) arrived=0 off=39
+[00:21:23.537] INFO  [mk3_Vorar] [action] goto (1430,1597) from (1454,1612,20)
+[00:21:23.538] LOG   [mk3_Vorar] event goto_start: target=(1430,1597) from=(1454,1612)
+[00:21:23.538] INFO  [mk3_Vorar] [bot] running from (1454,1612,20) to (1430,1597,z20)
+[00:21:23.538] INFO  [mk3_Vorar] [bot] planning path to (1430,1597) in background
+[00:21:23.599] INFO  [mk3_Vorar] [action] goto finished at (1454,1612,20); target (1430,1597); stopped short (off by 39 tile(s))
+[00:21:23.599] LOG   [mk3_Vorar] event goto_done: at=(1454,1612) target=(1430,1597) arrived=0 off=39
+[00:21:24.844] INFO  [mk3_Vorar] [travel] mode walk             usable   <- chosen
+[00:21:24.844] INFO  [mk3_Vorar] [travel] mode moongate         usable
+[00:21:24.844] INFO  [mk3_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:24.844] INFO  [mk3_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:24.844] LOG   [mk3_Vorar] event travel_mode: walk
+[00:21:24.844] INFO  [mk3_Vorar] [travel] plan Britain carpenter: ok legs=1 ~24 tiles transit=0 nodes=0
+[00:21:26.982] INFO  [mk3_Vorar] [survival] hp 40/40 (100%) -> fight
+[00:21:27.902] INFO  [mk3_Vorar] [action] goto (1430,1597) from (1454,1612,20)
+[00:21:27.903] LOG   [mk3_Vorar] event goto_start: target=(1430,1597) from=(1454,1612)
+[00:21:27.903] INFO  [mk3_Vorar] [bot] running from (1454,1612,20) to (1430,1597,z20)
+[00:21:27.903] INFO  [mk3_Vorar] [bot] planning path to (1430,1597) in background
+[00:21:27.963] INFO  [mk3_Vorar] [action] goto finished at (1454,1612,20); target (1430,1597); stopped short (off by 39 tile(s))
+[00:21:27.963] LOG   [mk3_Vorar] event goto_done: at=(1454,1612) target=(1430,1597) arrived=0 off=39
+[00:21:29.192] INFO  [mk3_Vorar] [action] goto (1430,1597) from (1454,1612,20)
+[00:21:29.192] LOG   [mk3_Vorar] event goto_start: target=(1430,1597) from=(1454,1612)
+[00:21:29.192] INFO  [mk3_Vorar] [bot] running from (1454,1612,20) to (1430,1597,z20)
+[00:21:29.192] INFO  [mk3_Vorar] [bot] planning path to (1430,1597) in background
+[00:21:29.206] INFO  [mk3_Vorar] [chat uni  ] : Lionel buy
+[00:21:29.269] INFO  [mk3_Vorar] [action] goto finished at (1454,1612,20); target (1430,1597); stopped short (off by 39 tile(s))
+[00:21:29.269] LOG   [mk3_Vorar] event goto_done: at=(1454,1612) target=(1430,1597) arrived=0 off=39
+[00:21:30.269] INFO  [mk3_Vorar] [chat uni  ] : Lionel buy
+[00:21:30.470] INFO  [mk3_Vorar] [action] goto (1430,1597) from (1454,1612,20)
+[00:21:30.470] LOG   [mk3_Vorar] event goto_start: target=(1430,1597) from=(1454,1612)
+[00:21:30.470] INFO  [mk3_Vorar] [bot] running from (1454,1612,20) to (1430,1597,z20)
+[00:21:30.470] INFO  [mk3_Vorar] [bot] planning path to (1430,1597) in background
+[00:21:30.593] INFO  [mk3_Vorar] [action] goto finished at (1454,1612,20); target (1430,1597); stopped short (off by 39 tile(s))
+[00:21:30.593] LOG   [mk3_Vorar] event goto_done: at=(1454,1612) target=(1430,1597) arrived=0 off=39
+[00:21:31.834] INFO  [mk3_Vorar] [travel] mode walk             usable   <- chosen
+[00:21:31.834] INFO  [mk3_Vorar] [travel] mode moongate         usable
+[00:21:31.834] INFO  [mk3_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:31.834] INFO  [mk3_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:31.834] LOG   [mk3_Vorar] event travel_mode: walk
+[00:21:31.834] INFO  [mk3_Vorar] [travel] plan Britain carpenter: ok legs=1 ~24 tiles transit=0 nodes=0
+[00:21:32.020] INFO  [mk3_Vorar] [survival] hp 40/40 (100%) -> fight
+[00:21:36.394] INFO  [mk3_Vorar] [action] goto (1430,1597) from (1454,1612,20)
+[00:21:36.394] LOG   [mk3_Vorar] event goto_start: target=(1430,1597) from=(1454,1612)
+[00:21:36.394] INFO  [mk3_Vorar] [bot] running from (1454,1612,20) to (1430,1597,z20)
+[00:21:36.394] INFO  [mk3_Vorar] [bot] planning path to (1430,1597) in background
+[00:21:36.518] INFO  [mk3_Vorar] [action] goto finished at (1454,1612,20); target (1430,1597); stopped short (off by 39 tile(s))
+[00:21:36.518] LOG   [mk3_Vorar] event goto_done: at=(1454,1612) target=(1430,1597) arrived=0 off=39
+[00:21:37.071] INFO  [mk3_Vorar] [survival] hp 40/40 (100%) -> fight
+[00:21:37.747] INFO  [mk3_Vorar] [action] goto (1430,1597) from (1454,1612,20)
+[00:21:37.747] LOG   [mk3_Vorar] event goto_start: target=(1430,1597) from=(1454,1612)
+[00:21:37.747] INFO  [mk3_Vorar] [bot] running from (1454,1612,20) to (1430,1597,z20)
+[00:21:37.747] INFO  [mk3_Vorar] [bot] planning path to (1430,1597) in background
+[00:21:37.808] INFO  [mk3_Vorar] [action] goto finished at (1454,1612,20); target (1430,1597); stopped short (off by 39 tile(s))
+[00:21:37.808] LOG   [mk3_Vorar] event goto_done: at=(1454,1612) target=(1430,1597) arrived=0 off=39
+[00:21:39.042] INFO  [mk3_Vorar] [action] goto (1430,1597) from (1454,1612,20)
+[00:21:39.042] LOG   [mk3_Vorar] event goto_start: target=(1430,1597) from=(1454,1612)
+[00:21:39.042] INFO  [mk3_Vorar] [bot] running from (1454,1612,20) to (1430,1597,z20)
+[00:21:39.042] INFO  [mk3_Vorar] [bot] planning path to (1430,1597) in background
+[00:21:39.102] INFO  [mk3_Vorar] [action] goto finished at (1454,1612,20); target (1430,1597); stopped short (off by 39 tile(s))
+[00:21:39.102] LOG   [mk3_Vorar] event goto_done: at=(1454,1612) target=(1430,1597) arrived=0 off=39
+[00:21:39.102] LOG   [mk3_Vorar] event travel_escape: from=(1454,1612,20) to=(1464,1608) attempt=1
+[00:21:39.102] INFO  [mk3_Vorar] [action] goto (1464,1608) from (1454,1612,20)
+[00:21:39.102] LOG   [mk3_Vorar] event goto_start: target=(1464,1608) from=(1454,1612)
+[00:21:39.102] INFO  [mk3_Vorar] [bot] running from (1454,1612,20) to (1464,1608,z20)
+[00:21:39.102] INFO  [mk3_Vorar] [bot] planning path to (1464,1608) in background
+[00:21:39.163] INFO  [mk3_Vorar] [bot] replan to (1464,1608): 10 steps in 302.2us
+[00:21:40.288] INFO  [mk3_Vorar] [bot] door ahead at (1459,1611,z20); OpenDoor before step
+[00:21:40.289] INFO  [mk3_Vorar] [chat ascii] System: Opening door...
+[00:21:40.412] INFO  [mk3_Vorar] [chat uni  ] : Lionel buy
+[00:21:41.766] INFO  [mk3_Vorar] [bot] step (1460,1611,20)->(1461,1610,20) rejected; OpenDoor + retry
+[00:21:41.767] INFO  [mk3_Vorar] [chat ascii] System: Opening door...
+[00:21:41.767] INFO  [mk3_Vorar] [0x20] player @(1460,1611,20) facing=0
+[00:21:41.769] INFO  [mk3_Vorar] [action] goto finished at (1460,1611,20); target (1464,1608); stopped short (off by 7 tile(s))
+[00:21:41.769] LOG   [mk3_Vorar] event goto_done: at=(1460,1611) target=(1464,1608) arrived=0 off=7
+[00:21:41.769] INFO  [mk3_Vorar] [travel] recovery walk fell short at (1460,1611,20) (off 4); attempt 1/3
+[00:21:41.769] LOG   [mk3_Vorar] event travel_recovery_done: reached=0 at=(1460,1611,20) off=4 attempt=1
+[00:21:41.769] LOG   [mk3_Vorar] event travel_escape: from=(1460,1611,20) to=(1448,1608) attempt=2
+[00:21:41.769] INFO  [mk3_Vorar] [action] goto (1448,1608) from (1460,1611,20)
+[00:21:41.769] LOG   [mk3_Vorar] event goto_start: target=(1448,1608) from=(1460,1611)
+[00:21:41.769] INFO  [mk3_Vorar] [bot] running from (1460,1611,20) to (1448,1608,z20)
+[00:21:41.769] INFO  [mk3_Vorar] [bot] planning path to (1448,1608) in background
+[00:21:42.073] INFO  [mk3_Vorar] [survival] hp 40/40 (100%) -> fight
+[00:21:44.782] INFO  [mk3_Vorar] [action] goto finished at (1460,1611,20); target (1448,1608); stopped short (off by 15 tile(s))
+[00:21:44.782] LOG   [mk3_Vorar] event goto_done: at=(1460,1611) target=(1448,1608) arrived=0 off=15
+[00:21:44.782] INFO  [mk3_Vorar] [travel] recovery walk fell short at (1460,1611,20) (off 12); attempt 1/3
+[00:21:44.782] LOG   [mk3_Vorar] event travel_recovery_done: reached=0 at=(1460,1611,20) off=12 attempt=1
+[00:21:44.782] LOG   [mk3_Vorar] event travel_escape: from=(1460,1611,20) to=(1464,1624) attempt=3
+[00:21:44.782] INFO  [mk3_Vorar] [action] goto (1464,1624) from (1460,1611,20)
+[00:21:44.782] LOG   [mk3_Vorar] event goto_start: target=(1464,1624) from=(1460,1611)
+[00:21:44.782] INFO  [mk3_Vorar] [bot] running from (1460,1611,20) to (1464,1624,z20)
+[00:21:44.783] INFO  [mk3_Vorar] [bot] planning path to (1464,1624) in background
+[00:21:44.844] INFO  [mk3_Vorar] [bot] replan to (1464,1624): 13 steps in 566.0us
+[00:21:47.134] INFO  [mk3_Vorar] [survival] hp 40/40 (100%) -> fight
+[00:21:48.905] INFO  [mk3_Vorar] [bot] arrived at (1464,1624,20)
+[00:21:48.907] INFO  [mk3_Vorar] [action] goto finished at (1464,1624,20); target (1464,1624); ARRIVED (off by 0 tile(s))
+[00:21:48.907] LOG   [mk3_Vorar] event goto_done: at=(1464,1624) target=(1464,1624) arrived=1 off=0
+[00:21:48.907] INFO  [mk3_Vorar] [travel] recovery walk reached its anchor at (1464,1624,20) (off 0); attempt 1/3
+[00:21:48.907] LOG   [mk3_Vorar] event travel_recovery_done: reached=1 at=(1464,1624,20) off=0 attempt=1
+[00:21:48.966] INFO  [mk3_Vorar] [travel] mode walk             usable   <- chosen
+[00:21:48.966] INFO  [mk3_Vorar] [travel] mode moongate         usable
+[00:21:48.966] INFO  [mk3_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:48.966] INFO  [mk3_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:48.966] LOG   [mk3_Vorar] event travel_mode: walk
+[00:21:48.966] INFO  [mk3_Vorar] [travel] plan Britain carpenter: ok legs=1 ~34 tiles transit=0 nodes=0
+[00:21:49.026] INFO  [mk3_Vorar] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:49.026] INFO  [mk3_Vorar] [action] goto (1430,1597) from (1464,1624,20)
+[00:21:49.026] LOG   [mk3_Vorar] event goto_start: target=(1430,1597) from=(1464,1624)
+[00:21:49.026] INFO  [mk3_Vorar] [bot] running from (1464,1624,20) to (1430,1597,z20)
+[00:21:49.026] INFO  [mk3_Vorar] [bot] planning path to (1430,1597) in background
+[00:21:49.150] INFO  [mk3_Vorar] [action] goto finished at (1464,1624,20); target (1430,1597); stopped short (off by 61 tile(s))
+[00:21:49.150] LOG   [mk3_Vorar] event goto_done: at=(1464,1624) target=(1430,1597) arrived=0 off=61
+[00:21:50.368] INFO  [mk3_Vorar] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:50.368] INFO  [mk3_Vorar] [action] goto (1430,1597) from (1464,1624,20)
+[00:21:50.368] LOG   [mk3_Vorar] event goto_start: target=(1430,1597) from=(1464,1624)
+[00:21:50.368] INFO  [mk3_Vorar] [bot] running from (1464,1624,20) to (1430,1597,z20)
+[00:21:50.368] INFO  [mk3_Vorar] [bot] planning path to (1430,1597) in background
+[00:21:50.370] INFO  [mk3_Vorar] [action] goto finished at (1464,1624,20); target (1430,1597); stopped short (off by 61 tile(s))
+[00:21:50.370] LOG   [mk3_Vorar] event goto_done: at=(1464,1624) target=(1430,1597) arrived=0 off=61
+[00:21:51.612] INFO  [mk3_Vorar] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:51.612] INFO  [mk3_Vorar] [action] goto (1430,1597) from (1464,1624,20)
+[00:21:51.612] LOG   [mk3_Vorar] event goto_start: target=(1430,1597) from=(1464,1624)
+[00:21:51.612] INFO  [mk3_Vorar] [bot] running from (1464,1624,20) to (1430,1597,z20)
+[00:21:51.612] INFO  [mk3_Vorar] [bot] planning path to (1430,1597) in background
+[00:21:51.674] INFO  [mk3_Vorar] [action] goto finished at (1464,1624,20); target (1430,1597); stopped short (off by 61 tile(s))
+[00:21:51.674] LOG   [mk3_Vorar] event goto_done: at=(1464,1624) target=(1430,1597) arrived=0 off=61
+[00:21:52.154] INFO  [mk3_Vorar] [survival] hp 40/40 (100%) -> fight
+[00:21:52.879] INFO  [mk3_Vorar] [travel] mode walk             usable   <- chosen
+[00:21:52.879] INFO  [mk3_Vorar] [travel] mode moongate         usable
+[00:21:52.879] INFO  [mk3_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:52.879] INFO  [mk3_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:52.879] LOG   [mk3_Vorar] event travel_mode: walk
+[00:21:52.879] INFO  [mk3_Vorar] [travel] plan Britain carpenter: ok legs=1 ~34 tiles transit=0 nodes=0
+[00:21:54.425] INFO  [mk3_Vorar] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:54.425] INFO  [mk3_Vorar] [action] goto (1430,1597) from (1464,1624,20)
+[00:21:54.425] LOG   [mk3_Vorar] event goto_start: target=(1430,1597) from=(1464,1624)
+[00:21:54.425] INFO  [mk3_Vorar] [bot] running from (1464,1624,20) to (1430,1597,z20)
+[00:21:54.425] INFO  [mk3_Vorar] [bot] planning path to (1430,1597) in background
+[00:21:54.502] INFO  [mk3_Vorar] [action] goto finished at (1464,1624,20); target (1430,1597); stopped short (off by 61 tile(s))
+[00:21:54.502] LOG   [mk3_Vorar] event goto_done: at=(1464,1624) target=(1430,1597) arrived=0 off=61
+[00:21:55.710] INFO  [mk3_Vorar] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:55.711] INFO  [mk3_Vorar] [action] goto (1430,1597) from (1464,1624,20)
+[00:21:55.711] LOG   [mk3_Vorar] event goto_start: target=(1430,1597) from=(1464,1624)
+[00:21:55.711] INFO  [mk3_Vorar] [bot] running from (1464,1624,20) to (1430,1597,z20)
+[00:21:55.711] INFO  [mk3_Vorar] [bot] planning path to (1430,1597) in background
+[00:21:55.772] INFO  [mk3_Vorar] [action] goto finished at (1464,1624,20); target (1430,1597); stopped short (off by 61 tile(s))
+[00:21:55.772] LOG   [mk3_Vorar] event goto_done: at=(1464,1624) target=(1430,1597) arrived=0 off=61
+[00:21:56.982] INFO  [mk3_Vorar] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:56.982] INFO  [mk3_Vorar] [action] goto (1430,1597) from (1464,1624,20)
+[00:21:56.982] LOG   [mk3_Vorar] event goto_start: target=(1430,1597) from=(1464,1624)
+[00:21:56.982] INFO  [mk3_Vorar] [bot] running from (1464,1624,20) to (1430,1597,z20)
+[00:21:56.982] INFO  [mk3_Vorar] [bot] planning path to (1430,1597) in background
+[00:21:57.045] INFO  [mk3_Vorar] [action] goto finished at (1464,1624,20); target (1430,1597); stopped short (off by 61 tile(s))
+[00:21:57.045] LOG   [mk3_Vorar] event goto_done: at=(1464,1624) target=(1430,1597) arrived=0 off=61
+[00:21:57.182] INFO  [mk3_Vorar] [survival] hp 40/40 (100%) -> fight
+[00:21:58.245] INFO  [mk3_Vorar] [travel] mode walk             usable   <- chosen
+[00:21:58.245] INFO  [mk3_Vorar] [travel] mode moongate         usable
+[00:21:58.245] INFO  [mk3_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:58.245] INFO  [mk3_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:58.245] LOG   [mk3_Vorar] event travel_mode: walk
+[00:21:58.245] INFO  [mk3_Vorar] [travel] plan Britain carpenter: ok legs=1 ~34 tiles transit=0 nodes=0
+[00:21:58.644] INFO  [mk3_Vorar] [chat ascii] System: Draver has departed from Minoc.
+[00:22:01.268] INFO  [mk3_Vorar] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:22:01.268] INFO  [mk3_Vorar] [action] goto (1430,1597) from (1464,1624,20)
+[00:22:01.268] LOG   [mk3_Vorar] event goto_start: target=(1430,1597) from=(1464,1624)
+[00:22:01.268] INFO  [mk3_Vorar] [bot] running from (1464,1624,20) to (1430,1597,z20)
+[00:22:01.268] INFO  [mk3_Vorar] [bot] planning path to (1430,1597) in background
+[00:22:01.285] INFO  [mk3_Vorar] [action] goto finished at (1464,1624,20); target (1430,1597); stopped short (off by 61 tile(s))
+[00:22:01.285] LOG   [mk3_Vorar] event goto_done: at=(1464,1624) target=(1430,1597) arrived=0 off=61
+[00:22:02.196] INFO  [mk3_Vorar] [survival] hp 40/40 (100%) -> fight
+[00:22:02.505] INFO  [mk3_Vorar] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:22:02.505] INFO  [mk3_Vorar] [action] goto (1430,1597) from (1464,1624,20)
+[00:22:02.505] LOG   [mk3_Vorar] event goto_start: target=(1430,1597) from=(1464,1624)
+[00:22:02.505] INFO  [mk3_Vorar] [bot] running from (1464,1624,20) to (1430,1597,z20)
+[00:22:02.505] INFO  [mk3_Vorar] [bot] planning path to (1430,1597) in background
+[00:22:02.583] INFO  [mk3_Vorar] [action] goto finished at (1464,1624,20); target (1430,1597); stopped short (off by 61 tile(s))
+[00:22:02.583] LOG   [mk3_Vorar] event goto_done: at=(1464,1624) target=(1430,1597) arrived=0 off=61
+[00:22:03.787] INFO  [mk3_Vorar] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:22:03.787] INFO  [mk3_Vorar] [action] goto (1430,1597) from (1464,1624,20)
+[00:22:03.787] LOG   [mk3_Vorar] event goto_start: target=(1430,1597) from=(1464,1624)
+[00:22:03.787] INFO  [mk3_Vorar] [bot] running from (1464,1624,20) to (1430,1597,z20)
+[00:22:03.787] INFO  [mk3_Vorar] [bot] planning path to (1430,1597) in background
+[00:22:03.898] INFO  [mk3_Vorar] [action] goto finished at (1464,1624,20); target (1430,1597); stopped short (off by 61 tile(s))
+[00:22:03.898] LOG   [mk3_Vorar] event goto_done: at=(1464,1624) target=(1430,1597) arrived=0 off=61
+[00:22:05.132] INFO  [mk3_Vorar] [travel] mode walk             usable   <- chosen
+[00:22:05.132] INFO  [mk3_Vorar] [travel] mode moongate         usable
+[00:22:05.132] INFO  [mk3_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:05.132] INFO  [mk3_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:05.132] LOG   [mk3_Vorar] event travel_mode: walk
+[00:22:05.132] INFO  [mk3_Vorar] [travel] plan Britain carpenter: ok legs=1 ~34 tiles transit=0 nodes=0
+[00:22:07.234] INFO  [mk3_Vorar] [survival] hp 40/40 (100%) -> fight
+[00:22:07.744] INFO  [mk3_Vorar] [chat ascii] Delras: *Delras is attacking Starling!*
+[00:22:08.459] INFO  [life] session_end_requested reason="session time limit reached"
+[00:22:09.675] INFO  [mk3_Vorar] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:22:09.675] INFO  [mk3_Vorar] [action] goto (1430,1597) from (1464,1624,20)
+[00:22:09.675] LOG   [mk3_Vorar] event goto_start: target=(1430,1597) from=(1464,1624)
+[00:22:09.675] INFO  [mk3_Vorar] [bot] running from (1464,1624,20) to (1430,1597,z20)
+[00:22:09.675] INFO  [mk3_Vorar] [bot] planning path to (1430,1597) in background
+[00:22:09.736] INFO  [mk3_Vorar] [action] goto finished at (1464,1624,20); target (1430,1597); stopped short (off by 61 tile(s))
+[00:22:09.736] LOG   [mk3_Vorar] event goto_done: at=(1464,1624) target=(1430,1597) arrived=0 off=61
+[00:22:10.940] INFO  [mk3_Vorar] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:22:10.940] INFO  [mk3_Vorar] [action] goto (1430,1597) from (1464,1624,20)
+[00:22:10.940] LOG   [mk3_Vorar] event goto_start: target=(1430,1597) from=(1464,1624)
+[00:22:10.940] INFO  [mk3_Vorar] [bot] running from (1464,1624,20) to (1430,1597,z20)
+[00:22:10.940] INFO  [mk3_Vorar] [bot] planning path to (1430,1597) in background
+[00:22:11.001] INFO  [mk3_Vorar] [action] goto finished at (1464,1624,20); target (1430,1597); stopped short (off by 61 tile(s))
+[00:22:11.001] LOG   [mk3_Vorar] event goto_done: at=(1464,1624) target=(1430,1597) arrived=0 off=61
+[00:22:12.232] INFO  [mk3_Vorar] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:22:12.232] INFO  [mk3_Vorar] [action] goto (1430,1597) from (1464,1624,20)
+[00:22:12.232] LOG   [mk3_Vorar] event goto_start: target=(1430,1597) from=(1464,1624)
+[00:22:12.232] INFO  [mk3_Vorar] [bot] running from (1464,1624,20) to (1430,1597,z20)
+[00:22:12.232] INFO  [mk3_Vorar] [bot] planning path to (1430,1597) in background
+[00:22:12.294] INFO  [mk3_Vorar] [action] goto finished at (1464,1624,20); target (1430,1597); stopped short (off by 61 tile(s))
+[00:22:12.294] LOG   [mk3_Vorar] event goto_done: at=(1464,1624) target=(1430,1597) arrived=0 off=61
+[00:22:12.294] INFO  [mk3_Vorar] [travel] Britain carpenter FAILED at (1464,1624,20) -- tile route stopped short
+[00:22:12.294] LOG   [mk3_Vorar] event travel_failed: label='Britain carpenter' ok=0 at=(1464,1624) legs=1 plans=4 why='tile route stopped short'
+[00:22:12.294] INFO  [mk3_Vorar] [survival] hp 40/40 (100%) -> fight
+[00:22:12.356] INFO  [life] wind-down: the trip did not arrive (tile route stopped short)
+[00:22:12.418] INFO  [life] wind-down: no bank learned yet; asking the world for one (attempt 1)
+[00:22:12.421] INFO  [mk3_Vorar] [travel] place: skipping Minoc banker -- 1776 tiles and 0 gates for a service Britain banker offers
+[00:22:12.421] INFO  [mk3_Vorar] [travel] Britain banker -> (1425,1690) r=5 from (1464,1624)
+[00:22:12.421] LOG   [mk3_Vorar] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1464,1624)
+[00:22:12.421] INFO  [mk3_Vorar] [travel] mode moongate         usable   <- chosen
+[00:22:12.421] INFO  [mk3_Vorar] [travel] mode walk             usable
+[00:22:12.421] INFO  [mk3_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:12.421] INFO  [mk3_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:12.421] LOG   [mk3_Vorar] event travel_mode: moongate
+[00:22:12.421] INFO  [mk3_Vorar] [travel] plan Britain banker: ok legs=2 ~80 tiles transit=0 nodes=10
+[00:22:12.478] INFO  [mk3_Vorar] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:22:12.478] INFO  [mk3_Vorar] [action] goto (1464,1656) from (1464,1624,20)
+[00:22:12.478] LOG   [mk3_Vorar] event goto_start: target=(1464,1656) from=(1464,1624)
+[00:22:12.478] INFO  [mk3_Vorar] [bot] running from (1464,1624,20) to (1464,1656)
+[00:22:12.478] INFO  [mk3_Vorar] [bot] planning path to (1464,1656) in background
+[00:22:12.539] INFO  [mk3_Vorar] [bot] replan to (1464,1656): 32 steps in 1749.0us
+[00:22:17.333] INFO  [mk3_Vorar] [survival] hp 40/40 (100%) -> fight
+[00:22:21.963] INFO  [mk3_Vorar] [bot] arrived at (1464,1656,10)
+[00:22:21.963] INFO  [mk3_Vorar] [action] goto finished at (1464,1656,10); target (1464,1656); ARRIVED (off by 0 tile(s))
+[00:22:21.963] LOG   [mk3_Vorar] event goto_done: at=(1464,1656) target=(1464,1656) arrived=1 off=0
+[00:22:21.963] INFO  [mk3_Vorar] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:22:21.963] INFO  [mk3_Vorar] [action] goto (1425,1690) from (1464,1656,10)
+[00:22:21.963] LOG   [mk3_Vorar] event goto_start: target=(1425,1690) from=(1464,1656)
+[00:22:21.963] INFO  [mk3_Vorar] [bot] running from (1464,1656,10) to (1425,1690,z0)
+[00:22:21.964] INFO  [mk3_Vorar] [bot] planning path to (1425,1690) in background
+[00:22:22.024] INFO  [mk3_Vorar] [bot] replan to (1425,1690): 60 steps in 19998.7us
+[00:22:22.392] INFO  [mk3_Vorar] [survival] hp 40/40 (100%) -> fight
+[00:22:27.399] INFO  [mk3_Vorar] [survival] hp 40/40 (100%) -> fight
+[00:22:31.884] INFO  [mk3_Vorar] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=24 in 148.0us
+[00:22:32.451] INFO  [mk3_Vorar] [survival] hp 40/40 (100%) -> fight
+[00:22:34.809] INFO  [mk3_Vorar] [bot] door ahead at (1438,1692,z0); OpenDoor before step
+[00:22:34.824] INFO  [mk3_Vorar] [chat ascii] System: Opening door...
+[00:22:37.476] INFO  [mk3_Vorar] [survival] hp 40/40 (100%) -> fight
+[00:22:38.295] INFO  [mk3_Vorar] [travel] Britain banker ARRIVED at (1429,1691,0)
+[00:22:38.295] LOG   [mk3_Vorar] event travel_done: label='Britain banker' ok=1 at=(1429,1691) legs=2 plans=1 why=''
+[00:22:38.296] INFO  [life] wind-down: arrived somewhere safe at 1429,1691
+[00:22:38.357] INFO  [life] session_summary duration=209s goals=0/4 gold=10000->9981 skills=100.0->100.0 logs=+0 kills=0 deaths=0 places=2 suppliers=0
+[00:22:38.357] INFO  [life] session_goals families=2 picks=4 top=75% varied=0 self_superseded=0 | upkeep=3(75%) training=1(25%) | REPLACE_EQUIPMENT=1(25%) BANK=1(25%) TRAIN_AT_NPC=1(25%) GET_FOOD=1(25%)
+[00:22:38.359] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_05.vorar/state.json
+[00:22:38.359] INFO  [life] logging out
+[00:22:38.359] INFO  [mk3_Vorar] [action] logout requested
+[00:22:38.359] LOG   [mk3_Vorar] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[00:22:38.372] INFO  [mk3_Vorar] [0xD1] logout acknowledged (accepted=1)
+[00:22:38.372] LOG   [mk3_Vorar] event logout_ack: accepted
+[00:22:38.372] INFO  [mk3_Vorar] [net] closing connection (logout acknowledged)
+[00:22:38.372] LOG   [mk3_Vorar] event logout_complete: acked

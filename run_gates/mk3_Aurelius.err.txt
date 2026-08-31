@@ -1,0 +1,35 @@
+start: Aurelius is a mage and lives in Moonglow -> starting city index 3
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+[00:20:41.694] WARN  [mk3_Aurelius] [bot] 0x20 resync; aborting path
+[00:20:47.408] WARN  [mk3_Aurelius] [bot] no path to (4390,1085) avoiding 0 block(s); stopping (search 2604118.7us)
+[00:20:47.409] WARN  [mk3_Aurelius] [bot] start (4397,1088,0) exits: open=5 terrain=2 mobile=0 dynamic=0 door=1 blacklist=0 (overlay saw 165 item(s), 12 mobile(s))
+[00:20:50.721] WARN  [mk3_Aurelius] [bot] no path to (4390,1085) avoiding 0 block(s); stopping (search 1980597.0us)
+[00:20:50.721] WARN  [mk3_Aurelius] [bot] start (4397,1088,0) exits: open=5 terrain=2 mobile=0 dynamic=0 door=1 blacklist=0 (overlay saw 165 item(s), 11 mobile(s))
+[00:20:55.655] WARN  [mk3_Aurelius] [bot] no path to (4390,1085) avoiding 0 block(s); stopping (search 2050532.2us)
+[00:20:55.655] WARN  [mk3_Aurelius] [bot] start (4397,1088,0) exits: open=5 terrain=2 mobile=0 dynamic=0 door=1 blacklist=0 (overlay saw 165 item(s), 11 mobile(s))
+[00:20:59.109] WARN  [mk3_Aurelius] [bot] no path to (4390,1085) avoiding 0 block(s); stopping (search 2206594.3us)
+[00:20:59.109] WARN  [mk3_Aurelius] [bot] start (4397,1088,0) exits: open=5 terrain=2 mobile=0 dynamic=0 door=1 blacklist=0 (overlay saw 165 item(s), 11 mobile(s))
+[00:21:06.123] WARN  [mk3_Aurelius] [bot] no path to (4390,1085) avoiding 0 block(s); stopping (search 2676615.9us)
+[00:21:06.123] WARN  [mk3_Aurelius] [bot] start (4397,1088,0) exits: open=5 terrain=2 mobile=0 dynamic=0 door=1 blacklist=0 (overlay saw 165 item(s), 11 mobile(s))
+[00:21:10.107] WARN  [mk3_Aurelius] [bot] no path to (4390,1085) avoiding 0 block(s); stopping (search 2722507.3us)
+[00:21:10.107] WARN  [mk3_Aurelius] [bot] start (4397,1088,0) exits: open=5 terrain=2 mobile=0 dynamic=0 door=1 blacklist=0 (overlay saw 165 item(s), 11 mobile(s))
+[00:21:18.590] WARN  [mk3_Aurelius] [bot] no path to (4390,1085) avoiding 0 block(s); stopping (search 2674998.6us)
+[00:21:18.590] WARN  [mk3_Aurelius] [bot] start (4397,1088,0) exits: open=5 terrain=2 mobile=0 dynamic=0 door=1 blacklist=0 (overlay saw 165 item(s), 11 mobile(s))
+[00:21:22.442] WARN  [mk3_Aurelius] [bot] no path to (4390,1085) avoiding 0 block(s); stopping (search 2523286.2us)
+[00:21:22.442] WARN  [mk3_Aurelius] [bot] start (4397,1088,0) exits: open=5 terrain=2 mobile=0 dynamic=0 door=1 blacklist=0 (overlay saw 165 item(s), 11 mobile(s))
+[00:21:25.027] WARN  [mk3_Aurelius] [bot] no path to (4390,1085) avoiding 0 block(s); stopping (search 2413449.6us)
+[00:21:25.027] WARN  [mk3_Aurelius] [bot] start (4397,1088,0) exits: open=5 terrain=2 mobile=0 dynamic=0 door=1 blacklist=0 (overlay saw 165 item(s), 11 mobile(s))
+[00:21:29.128] WARN  [mk3_Aurelius] [bot] no path to (4390,1085) avoiding 0 block(s); stopping (search 2773764.1us)
+[00:21:29.128] WARN  [mk3_Aurelius] [bot] start (4397,1088,0) exits: open=5 terrain=2 mobile=0 dynamic=0 door=1 blacklist=0 (overlay saw 165 item(s), 11 mobile(s))
+[00:21:34.045] WARN  [mk3_Aurelius] [bot] no path to (4390,1085) avoiding 0 block(s); stopping (search 2111418.4us)
+[00:21:34.045] WARN  [mk3_Aurelius] [bot] start (4397,1088,0) exits: open=5 terrain=2 mobile=0 dynamic=0 door=1 blacklist=0 (overlay saw 165 item(s), 11 mobile(s))
+[00:21:37.284] WARN  [mk3_Aurelius] [bot] no path to (4390,1085) avoiding 0 block(s); stopping (search 1960182.1us)
+[00:21:37.284] WARN  [mk3_Aurelius] [bot] start (4397,1088,0) exits: open=5 terrain=2 mobile=0 dynamic=0 door=1 blacklist=0 (overlay saw 165 item(s), 11 mobile(s))
+[00:21:47.224] WARN  [mk3_Aurelius] [ACTION_RESULT] move_item server_failure (16ms) item 0x40019258 landed in 0x40019272, not the destination 0x4001925A
+[00:21:56.274] WARN  [mk3_Aurelius] [ACTION_RESULT] move_item timeout (no server confirmation)
+[00:21:56.274] WARN  [mk3_Aurelius] [ITEM] drag of 0x40019255 abandoned after timeout
+[00:22:02.860] WARN  [mk3_Aurelius] [ACTION_RESULT] move_item timeout (no server confirmation)
+[00:22:02.860] WARN  [mk3_Aurelius] [ITEM] drag of 0x40019237 abandoned after timeout
+[00:23:04.484] WARN  [mk3_Aurelius] [bot] watchdog: oldest move unacked 5s; aborting path
+[00:23:04.594] WARN  [mk3_Aurelius] [0x22] unsolicited ack seq=30

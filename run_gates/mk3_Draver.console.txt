@@ -1,0 +1,467 @@
+[00:18:56.167] INFO  session 0: 127.0.0.1:2593 user='RevGen3_01' char=Draver tag='mk3_Draver'
+[00:18:56.168] LOG   [mk3_Draver] event session_start: text log opened
+[00:18:56.168] LOG   [mk3_Draver] event net_connect_begin: connect 127.0.0.1:2593
+[00:18:56.168] INFO  [mk3_Draver] [net] connecting to 127.0.0.1:2593 ...
+[00:18:56.169] LOG   [mk3_Draver] event net_connected: connect 127.0.0.1:2593
+[00:18:56.169] INFO  [mk3_Draver] [net] connected.
+[00:18:56.169] INFO  [mk3_Draver] [seed] sent 0x7F000001 (plaintext)
+[00:18:56.169] LOG   [mk3_Draver] event seed_out: 0x7F000001 hex=7f000001
+[00:18:56.169] INFO  [life] no prior state for revgen3_01.draver: a new Miner / Blacksmith
+[00:18:56.169] INFO  [life] creation request: Mining 50.0 + Blacksmithing 50.0, stats 56/16/8 = 80
+[00:18:56.169] INFO  [life] needs: reading 'miner_smith' from the profession catalogue
+[00:18:56.169] INFO  [life] home: Draver lives in Minoc
+[00:18:56.169] INFO  [life] build plan 'miner_smith': 300.0 resolved + 400.0 unresolved = 700.0/700.0, stats 100/45/80 = 225
+[00:18:56.169] INFO  [mk3_Draver] [life] autonomous player active for 'Draver' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 3 min)
+[00:18:56.175] INFO  [mk3_Draver] [0xA8] 1 server(s):
+[00:18:56.175] INFO  [mk3_Draver]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[00:18:56.191] INFO  [mk3_Draver] [0x8C] game server = 127.0.0.1:2593  seed=0x6A287272
+[00:18:56.191] LOG   [mk3_Draver] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x6A287272
+[00:18:56.191] INFO  [mk3_Draver] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[00:18:56.191] LOG   [mk3_Draver] event relay_same_socket: no seed re-sent; 0x91 follows
+[00:18:56.191] INFO  [mk3_Draver] [0xB9] server features = 0x0005
+[00:18:56.191] INFO  [mk3_Draver] [0xA9] 5 slot(s) (populated 0):
+[00:18:56.191] INFO  [mk3_Draver]   [0] <empty>
+[00:18:56.191] INFO  [mk3_Draver]   [1] <empty>
+[00:18:56.191] INFO  [mk3_Draver]   [2] <empty>
+[00:18:56.191] INFO  [mk3_Draver]   [3] <empty>
+[00:18:56.191] INFO  [mk3_Draver]   [4] <empty>
+[00:18:56.191] INFO  [mk3_Draver] create: appearance sex=F skin=0x03ED hair=0x203C/0x046A shirt=0x02DD pants=0x0228
+[00:18:56.191] INFO  [mk3_Draver] [0x00] starting city index 1
+[00:18:56.191] INFO  [mk3_Draver] [0x00] requested skills 45:50 7:50 37:0
+[00:18:56.191] INFO  [mk3_Draver] [0x00] requested stats STR 56 DEX 16 INT 8
+[00:18:56.191] INFO  [mk3_Draver] [0x00] creating character 'Draver' in slot 0
+[00:18:56.191] LOG   [mk3_Draver] event char_create_sent: Draver
+[00:18:56.209] INFO  [mk3_Draver] [0x1B] serial=0x00016DBB body=0x0191 pos=(2476,413,15)
+[00:18:56.209] LOG   [mk3_Draver] event login_confirm: serial=0x00016DBB body=0x0191 pos=(2476,413,15)
+[00:18:56.209] INFO  [mk3_Draver] [0x20] player @(2476,413,15) facing=3
+[00:18:56.209] INFO  [mk3_Draver] [0x55] login complete — entering world
+[00:18:56.209] LOG   [mk3_Draver] event in_world: 0x55 received
+[00:18:56.209] INFO  [mk3_Draver] [backpack] opening 0x40016DB8
+[00:18:56.209] INFO  [mk3_Draver] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[00:18:56.209] INFO  [mk3_Draver] [chat ascii] System: There are 0 other players here.
+[00:18:56.209] INFO  [mk3_Draver] [chat ascii] System: You are under the protection of the town guards
+[00:18:56.212] INFO  [mk3_Draver] [action] requesting the skill list
+[00:18:56.212] INFO  [life] in world; asked the server for the skill list
+[00:18:56.212] INFO  [mk3_Draver] [0x24] open container 0x40016DB8 gump=60
+[00:18:56.212] INFO  [mk3_Draver] [0x3C] container contents: 9 item(s)
+[00:18:56.212] LOG   [mk3_Draver] event backpack_contents: serial=0x40016DB8 items=9
+[00:18:58.818] INFO  [mk3_Draver] [bot] world data loaded (0 blacklisted spot(s)).
+[00:18:58.818] INFO  [life] common knowledge: The Old Miner's Supplies at 2460,429 (16 tiles away)
+[00:18:58.818] INFO  [life] common knowledge: Minoc Miner's Guild at 2456,493 (80 tiles away)
+[00:18:58.818] INFO  [life] common knowledge: Minoc Mine 1 at 2558,499 (86 tiles away)
+[00:18:58.818] INFO  [life] seeded 3 ore hint(s) of 29 the atlas knows -- everything else is earned
+[00:18:58.818] INFO  [life] reconciliation: first ever login, 7 field(s) differed
+[00:18:58.818] INFO  [life]   gold         persisted=0          server=10000      -> server value accepted
+[00:18:58.819] INFO  [life]   str          persisted=0          server=56         -> server value accepted
+[00:18:58.819] INFO  [life]   dex          persisted=0          server=16         -> server value accepted
+[00:18:58.819] INFO  [life]   int          persisted=0          server=8          -> server value accepted
+[00:18:58.819] INFO  [life]   skill_7      persisted=0.0        server=50.0       -> server value accepted
+[00:18:58.819] INFO  [life]   skill_45     persisted=0.0        server=50.0       -> server value accepted
+[00:18:58.819] INFO  [life]   skill_37     persisted=0.0        server=0.0        -> server value accepted
+[00:18:58.819] INFO  [life]   skill_4      persisted=0.0        server=0.0        -> server value accepted
+[00:18:58.819] INFO  [life]   position     persisted=0,0        server=2476,413   -> server value accepted
+[00:18:58.819] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[00:18:58.819] INFO  [mk3_Draver] [survival] on
+[00:18:58.819] LOG   [mk3_Draver] event survival_mode: on
+[00:18:58.820] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_01.draver/state.json
+[00:18:58.820] INFO  [mk3_Draver] [survival] hp 56/56 (100%) -> fight
+[00:18:58.873] INFO  [life] goal=BANK reason="no goal was running"
+[00:18:58.873] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedOre(ore 0.60) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedSkillTraining(Tinkering 0.55) NeedEquipment(heal potions 0.50) NeedCraft(make goods to sell 0.50) NeedBank(put unsold stock away 0.40) NeedFood(food 0.25)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=Tinkering (target 50.0)
+[00:18:58.873] INFO  [life]   score=150.0
+[00:18:58.873] INFO  [life]   reason: NeedBank urgency 0.75 x 240 = 180.0
+[00:18:58.873] INFO  [life]   reason: on_hand=10000 (total 10000) reserve=500 carry=1000 spare=9000 risk=1.00
+[00:18:58.873] INFO  [life]   reason: no bank learned yet -30
+[00:18:58.873] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (30 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[00:18:58.873] INFO  [mk3_Draver] [action] scanning nearby mobiles for names
+[00:18:58.873] INFO  [mk3_Draver] [action] requested 5 paperdoll(s) for trade titles
+[00:18:58.873] INFO  [life] bank: asking who is standing in the bank
+[00:18:58.889] INFO  [mk3_Draver] [mobiles] nearby (5):
+[00:18:58.889] INFO  [mk3_Draver]   Jarvia 0x0000911D
+[00:18:58.889] INFO  [mk3_Draver]   Einar 0x0000913A
+[00:18:58.889] INFO  [mk3_Draver]   Gabrielle 0x0000912C
+[00:18:58.889] INFO  [mk3_Draver]   Bavol 0x0000910D
+[00:18:58.889] INFO  [mk3_Draver]   Autumn 0x000090E3
+[00:18:58.889] INFO  [mk3_Draver] [0x20] player @(2476,413,15) facing=0
+[00:18:58.889] INFO  [mk3_Draver] [0x88] paperdoll 0x0000913A: "Einar, the cook"
+[00:18:58.889] INFO  [mk3_Draver] [world] Einar, the cook is a cook at (2478,397)
+[00:18:58.889] INFO  [mk3_Draver] [0x88] paperdoll 0x0000912C: "Gabrielle, the waitress"
+[00:18:58.889] INFO  [mk3_Draver] [0x20] player @(2476,413,15) facing=3
+[00:18:58.889] INFO  [mk3_Draver] [0x88] paperdoll 0x0000911D: "Jarvia, the warrior guildmistress"
+[00:18:58.889] INFO  [mk3_Draver] [0x20] player @(2476,413,15) facing=0
+[00:18:58.889] INFO  [mk3_Draver] [0x88] paperdoll 0x0000910D: "Bavol, the tavernkeeper"
+[00:18:58.889] INFO  [mk3_Draver] [world] Bavol, the tavernkeeper is a innkeeper at (2476,397)
+[00:18:58.889] INFO  [mk3_Draver] [0x88] paperdoll 0x000090E3: "Autumn, the tavernkeeper"
+[00:18:58.889] INFO  [mk3_Draver] [world] Autumn, the tavernkeeper is a innkeeper at (2475,397)
+[00:18:59.275] INFO  [mk3_Draver] [chat ascii] System: Kharain has arrived in Minoc.
+[00:19:00.915] INFO  [life] bank: no banker in sight
+[00:19:00.915] INFO  [life] goal_failed=BANK status=retryable_failure reason="no banker in sight"
+[00:19:00.977] INFO  [life] goal=REPLACE_EQUIPMENT reason="previous goal abandoned: no banker answered"
+[00:19:00.977] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedOre(ore 0.60) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedSkillTraining(Tinkering 0.55) NeedEquipment(heal potions 0.50) NeedCraft(make goods to sell 0.50) NeedBank(put unsold stock away 0.40) NeedFood(food 0.25)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=Tinkering (target 50.0)
+[00:19:00.977] INFO  [life]   score=130.0
+[00:19:00.977] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:19:00.977] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:19:00.977] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 299s after achieving nothing
+[00:19:00.977] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (30 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[00:19:02.303] INFO  [mk3_Draver] [chat ascii] System: Elvar has arrived in Minoc.
+[00:19:03.825] INFO  [mk3_Draver] [survival] hp 56/56 (100%) -> fight
+[00:19:05.373] INFO  [mk3_Draver] [chat ascii] System: Zarthal has arrived in Minoc.
+[00:19:05.971] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:19:05.971] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[00:19:05.974] INFO  [mk3_Draver] [travel] Minoc healer -> (2577,599) r=5 from (2476,413)
+[00:19:05.974] LOG   [mk3_Draver] event travel_start: label='Minoc healer' target=(2577,599) radius=5 from=(2476,413)
+[00:19:05.974] INFO  [life] potions: walking to a 'healer' (trip 1)
+[00:19:05.974] INFO  [mk3_Draver] [travel] mode moongate         usable   <- chosen
+[00:19:05.974] INFO  [mk3_Draver] [travel] mode walk             usable
+[00:19:05.974] INFO  [mk3_Draver] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:19:05.974] INFO  [mk3_Draver] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:19:05.974] LOG   [mk3_Draver] event travel_mode: moongate
+[00:19:05.974] INFO  [mk3_Draver] [travel] plan Minoc healer: ok legs=6 ~248 tiles transit=0 nodes=67
+[00:19:06.033] INFO  [mk3_Draver] [action] goto (2488,440) from (2476,413,15)
+[00:19:06.033] LOG   [mk3_Draver] event goto_start: target=(2488,440) from=(2476,413)
+[00:19:06.033] INFO  [mk3_Draver] [bot] running from (2476,413,15) to (2488,440)
+[00:19:06.033] INFO  [mk3_Draver] [bot] planning path to (2488,440) in background
+[00:19:06.095] INFO  [mk3_Draver] [bot] replan to (2488,440): 30 steps in 602.4us
+[00:19:08.432] INFO  [mk3_Draver] [chat ascii] System: Vorar has arrived in Britain.
+[00:19:08.861] INFO  [mk3_Draver] [survival] hp 56/56 (100%) -> fight
+[00:19:11.497] INFO  [mk3_Draver] [chat ascii] System: Halain has arrived in Britain.
+[00:19:13.618] INFO  [mk3_Draver] [bot] arrived at (2488,440,15)
+[00:19:13.618] INFO  [mk3_Draver] [action] goto finished at (2488,440,15); target (2488,440); ARRIVED (off by 0 tile(s))
+[00:19:13.618] LOG   [mk3_Draver] event goto_done: at=(2488,440) target=(2488,440) arrived=1 off=0
+[00:19:13.618] INFO  [mk3_Draver] [action] goto (2504,472) from (2488,440,15)
+[00:19:13.618] LOG   [mk3_Draver] event goto_start: target=(2504,472) from=(2488,440)
+[00:19:13.618] INFO  [mk3_Draver] [bot] running from (2488,440,15) to (2504,472)
+[00:19:13.618] INFO  [mk3_Draver] [bot] planning path to (2504,472) in background
+[00:19:13.678] INFO  [mk3_Draver] [bot] replan to (2504,472): 32 steps in 1562.0us
+[00:19:13.864] INFO  [mk3_Draver] [survival] hp 56/56 (100%) -> fight
+[00:19:14.637] INFO  [mk3_Draver] [chat ascii] System: Delras has arrived in Britain.
+[00:19:17.703] INFO  [mk3_Draver] [chat ascii] System: Cyras has arrived in Britain.
+[00:19:18.902] INFO  [mk3_Draver] [survival] hp 56/56 (100%) -> fight
+[00:19:20.736] INFO  [mk3_Draver] [chat ascii] System: Rhaler has arrived in Minoc.
+[00:19:23.658] INFO  [mk3_Draver] [bot] arrived at (2504,472,15)
+[00:19:23.658] INFO  [mk3_Draver] [action] goto finished at (2504,472,15); target (2504,472); ARRIVED (off by 0 tile(s))
+[00:19:23.658] LOG   [mk3_Draver] event goto_done: at=(2504,472) target=(2504,472) arrived=1 off=0
+[00:19:23.658] INFO  [mk3_Draver] [action] goto (2504,502) from (2504,472,15)
+[00:19:23.658] LOG   [mk3_Draver] event goto_start: target=(2504,502) from=(2504,472)
+[00:19:23.658] INFO  [mk3_Draver] [bot] running from (2504,472,15) to (2504,502)
+[00:19:23.658] INFO  [mk3_Draver] [bot] planning path to (2504,502) in background
+[00:19:23.720] INFO  [mk3_Draver] [bot] replan to (2504,502): 31 steps in 7159.9us
+[00:19:23.783] INFO  [mk3_Draver] [chat ascii] System: Ghalor has arrived in Minoc.
+[00:19:23.920] INFO  [mk3_Draver] [survival] hp 56/56 (100%) -> fight
+[00:19:26.825] INFO  [mk3_Draver] [chat ascii] System: Falen has arrived in Minoc.
+[00:19:28.932] INFO  [mk3_Draver] [survival] hp 56/56 (100%) -> fight
+[00:19:29.908] INFO  [mk3_Draver] [chat ascii] System: Aelia has arrived in Britain.
+[00:19:32.476] INFO  [mk3_Draver] [bot] arrived at (2504,502,15)
+[00:19:32.476] INFO  [mk3_Draver] [action] goto finished at (2504,502,15); target (2504,502); ARRIVED (off by 0 tile(s))
+[00:19:32.476] LOG   [mk3_Draver] event goto_done: at=(2504,502) target=(2504,502) arrived=1 off=0
+[00:19:32.476] INFO  [mk3_Draver] [action] goto (2520,536) from (2504,502,15)
+[00:19:32.476] LOG   [mk3_Draver] event goto_start: target=(2520,536) from=(2504,502)
+[00:19:32.476] INFO  [mk3_Draver] [bot] running from (2504,502,15) to (2520,536)
+[00:19:32.476] INFO  [mk3_Draver] [bot] planning path to (2520,536) in background
+[00:19:32.537] INFO  [mk3_Draver] [bot] replan to (2520,536): 40 steps in 6971.4us
+[00:19:33.079] INFO  [mk3_Draver] [chat ascii] System: Amara has arrived in Britain.
+[00:19:33.955] INFO  [mk3_Draver] [survival] hp 56/56 (100%) -> fight
+[00:19:36.130] INFO  [mk3_Draver] [chat ascii] System: Elara has arrived in Magincia.
+[00:19:38.961] INFO  [mk3_Draver] [survival] hp 56/56 (100%) -> fight
+[00:19:39.272] INFO  [mk3_Draver] [chat ascii] System: Selene has arrived in Magincia.
+[00:19:42.349] INFO  [mk3_Draver] [chat ascii] System: Lyra has arrived in Moonglow.
+[00:19:44.019] INFO  [mk3_Draver] [survival] hp 56/56 (100%) -> fight
+[00:19:44.770] INFO  [mk3_Draver] [bot] arrived at (2520,536,0)
+[00:19:44.770] INFO  [mk3_Draver] [action] goto finished at (2520,536,0); target (2520,536); ARRIVED (off by 0 tile(s))
+[00:19:44.770] LOG   [mk3_Draver] event goto_done: at=(2520,536) target=(2520,536) arrived=1 off=0
+[00:19:44.770] INFO  [mk3_Draver] [action] goto (2552,568) from (2520,536,0)
+[00:19:44.770] LOG   [mk3_Draver] event goto_start: target=(2552,568) from=(2520,536)
+[00:19:44.770] INFO  [mk3_Draver] [bot] running from (2520,536,0) to (2552,568)
+[00:19:44.770] INFO  [mk3_Draver] [bot] planning path to (2552,568) in background
+[00:19:44.829] INFO  [mk3_Draver] [bot] replan to (2552,568): 52 steps in 5423.7us
+[00:19:45.356] INFO  [mk3_Draver] [chat ascii] System: Thalia has arrived in Moonglow.
+[00:19:48.421] INFO  [mk3_Draver] [chat ascii] System: Dorvar has arrived in Skara Brae.
+[00:19:49.060] INFO  [mk3_Draver] [survival] hp 56/56 (100%) -> fight
+[00:19:51.483] INFO  [mk3_Draver] [chat ascii] System: Ithion has arrived in Skara Brae.
+[00:19:54.071] INFO  [mk3_Draver] [survival] hp 56/56 (100%) -> fight
+[00:19:54.532] INFO  [mk3_Draver] [chat ascii] System: Odessa has arrived in Britain.
+[00:19:57.598] INFO  [mk3_Draver] [chat ascii] System: Serena has arrived in Britain.
+[00:19:58.840] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_01.draver/state.json
+[00:19:59.081] INFO  [mk3_Draver] [survival] hp 56/56 (100%) -> fight
+[00:20:00.582] INFO  [mk3_Draver] [bot] arrived at (2552,568,0)
+[00:20:00.582] INFO  [mk3_Draver] [action] goto finished at (2552,568,0); target (2552,568); ARRIVED (off by 0 tile(s))
+[00:20:00.582] LOG   [mk3_Draver] event goto_done: at=(2552,568) target=(2552,568) arrived=1 off=0
+[00:20:00.582] INFO  [mk3_Draver] [action] goto (2577,599) from (2552,568,0)
+[00:20:00.582] LOG   [mk3_Draver] event goto_start: target=(2577,599) from=(2552,568)
+[00:20:00.582] INFO  [mk3_Draver] [bot] running from (2552,568,0) to (2577,599,z0)
+[00:20:00.582] INFO  [mk3_Draver] [bot] planning path to (2577,599) in background
+[00:20:00.643] INFO  [mk3_Draver] [bot] replan to (2577,599): 46 steps in 23328.4us
+[00:20:00.645] INFO  [mk3_Draver] [chat ascii] System: Aurelius has arrived in Moonglow.
+[00:20:03.868] INFO  [mk3_Draver] [chat ascii] System: Leander has arrived in Moonglow.
+[00:20:04.110] INFO  [mk3_Draver] [survival] hp 56/56 (100%) -> fight
+[00:20:06.980] INFO  [mk3_Draver] [chat ascii] System: Illyria has arrived in Britain.
+[00:20:09.146] INFO  [mk3_Draver] [survival] hp 56/56 (100%) -> fight
+[00:20:10.022] INFO  [mk3_Draver] [chat ascii] System: Hector has arrived in Trinsic.
+[00:20:10.111] INFO  [mk3_Draver] [bot] lookahead patched around block at step 5: anchor=6 new segment=42 path=53 in 13412.1us
+[00:20:13.076] INFO  [mk3_Draver] [chat ascii] System: Castor has arrived in Trinsic.
+[00:20:14.178] INFO  [mk3_Draver] [survival] hp 56/56 (100%) -> fight
+[00:20:16.106] INFO  [mk3_Draver] [chat ascii] System: Faustus has arrived in Britain.
+[00:20:16.489] INFO  [mk3_Draver] [travel] Minoc healer ARRIVED at (2580,603,0)
+[00:20:16.489] LOG   [mk3_Draver] event travel_done: label='Minoc healer' ok=1 at=(2580,603) legs=6 plans=1 why=''
+[00:20:16.550] INFO  [mk3_Draver] [action] scanning nearby mobiles for names
+[00:20:16.551] INFO  [mk3_Draver] [action] requested 2 paperdoll(s) for trade titles
+[00:20:16.551] INFO  [life] potions: at the shop, asking who is here (scan 1 of 3)
+[00:20:16.551] INFO  [mk3_Draver] [mobiles] nearby (4):
+[00:20:16.551] INFO  [mk3_Draver]   Erskine 0x00009619
+[00:20:16.551] INFO  [mk3_Draver]   Riley 0x0000960A
+[00:20:16.551] INFO  [mk3_Draver]   Rat 0x0000960B
+[00:20:16.551] INFO  [mk3_Draver]   Kharain 0x00016AE8
+[00:20:16.551] INFO  [mk3_Draver] [0x20] player @(2580,603,0) facing=7
+[00:20:16.551] INFO  [mk3_Draver] [0x88] paperdoll 0x00009619: "Erskine, the healer"
+[00:20:16.551] INFO  [mk3_Draver] [world] Erskine, the healer is a healer at (2576,600)
+[00:20:16.551] INFO  [mk3_Draver] [0x20] player @(2580,603,0) facing=0
+[00:20:16.551] INFO  [mk3_Draver] [0x88] paperdoll 0x0000960A: "Riley, the healer guildmaster"
+[00:20:16.551] INFO  [mk3_Draver] [world] Riley, the healer guildmaster is a healer at (2579,596)
+[00:20:19.161] INFO  [mk3_Draver] [chat ascii] System: Titus has arrived in Skara Brae.
+[00:20:19.220] INFO  [mk3_Draver] [survival] hp 56/56 (100%) -> fight
+[00:20:19.557] INFO  [life] potions: found a 'healer'
+[00:20:19.618] INFO  [mk3_Draver] [travel] mobile 0x00009619 -> (2578,599) r=1 from (2580,603)
+[00:20:19.618] LOG   [mk3_Draver] event travel_start: label='mobile 0x00009619' target=(2578,599) radius=1 from=(2580,603)
+[00:20:19.618] INFO  [life] potions: the 'healer' is 4 tiles off (dz 0) -- walking into reach (chase 1 of 3)
+[00:20:19.618] INFO  [mk3_Draver] [travel] mode walk             usable   <- chosen
+[00:20:19.618] INFO  [mk3_Draver] [travel] mode moongate         usable
+[00:20:19.618] INFO  [mk3_Draver] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:19.618] INFO  [mk3_Draver] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:19.618] LOG   [mk3_Draver] event travel_mode: walk
+[00:20:19.618] INFO  [mk3_Draver] [travel] plan mobile 0x00009619: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:20:19.679] INFO  [mk3_Draver] [action] goto finished at (2580,603,0); target (2577,599); stopped short (off by 7 tile(s))
+[00:20:19.679] LOG   [mk3_Draver] event goto_done: at=(2580,603) target=(2577,599) arrived=0 off=7
+[00:20:19.679] INFO  [mk3_Draver] [action] goto (2578,599) from (2580,603,0)
+[00:20:19.679] LOG   [mk3_Draver] event goto_start: target=(2578,599) from=(2580,603)
+[00:20:19.679] INFO  [mk3_Draver] [bot] running from (2580,603,0) to (2578,599,z0)
+[00:20:19.679] INFO  [mk3_Draver] [bot] planning path to (2578,599) in background
+[00:20:22.309] INFO  [mk3_Draver] [chat ascii] System: Rhea has arrived in Britain.
+[00:20:22.633] INFO  [mk3_Draver] [action] goto finished at (2580,603,0); target (2578,599); stopped short (off by 6 tile(s))
+[00:20:22.633] LOG   [mk3_Draver] event goto_done: at=(2580,603) target=(2578,599) arrived=0 off=6
+[00:20:23.843] INFO  [mk3_Draver] [action] goto (2578,599) from (2580,603,0)
+[00:20:23.843] LOG   [mk3_Draver] event goto_start: target=(2578,599) from=(2580,603)
+[00:20:23.843] INFO  [mk3_Draver] [bot] running from (2580,603,0) to (2578,599,z0)
+[00:20:23.843] INFO  [mk3_Draver] [bot] planning path to (2578,599) in background
+[00:20:23.904] INFO  [mk3_Draver] [bot] replan to (2578,599): 6 steps in 86.2us
+[00:20:24.243] INFO  [mk3_Draver] [survival] hp 56/56 (100%) -> fight
+[00:20:25.361] INFO  [mk3_Draver] [travel] mobile 0x00009619 ARRIVED at (2578,600,0)
+[00:20:25.361] LOG   [mk3_Draver] event travel_done: label='mobile 0x00009619' ok=1 at=(2578,600) legs=1 plans=1 why=''
+[00:20:25.376] INFO  [mk3_Draver] [chat ascii] System: Xerxes has arrived in Vesper.
+[00:20:25.376] INFO  [life] potions: within reach
+[00:20:25.434] INFO  [mk3_Draver] [ACTION] vendor_buy start
+[00:20:25.434] INFO  [mk3_Draver] [VENDOR] open vendor=0x00009619 say='Erskine buy'
+[00:20:25.434] INFO  [life] potions: asking the 'healer' to show heal potion (attempt 1)
+[00:20:25.435] INFO  [mk3_Draver] [chat uni  ] : Erskine buy
+[00:20:25.435] INFO  [mk3_Draver] [chat ascii] Erskine: Yes?
+[00:20:25.435] INFO  [mk3_Draver] [chat ascii] Erskine: I'm here to sell thee supplies.
+[00:20:25.436] INFO  [mk3_Draver] [0x3C] container contents: 5 item(s)
+[00:20:25.436] INFO  [mk3_Draver] [0x74] pairing: straight (straight 5, mirrored 1 of 5 rows)
+[00:20:25.436] INFO  [mk3_Draver] [0x74] vendor shop data: cont=0x40009613 5 item(s), layer=0x1A
+[00:20:25.436] INFO  [mk3_Draver] [0x74]   clean bandages               gfx=0x0E21 qty=19   price=1
+[00:20:25.436] INFO  [mk3_Draver] [0x74]   Heal                         gfx=0x0F0C qty=12   price=30
+[00:20:25.436] INFO  [mk3_Draver] [0x74]   Ginseng                      gfx=0x0F85 qty=17   price=3
+[00:20:25.436] INFO  [mk3_Draver] [0x74]   Garlic                       gfx=0x0F84 qty=19   price=3
+[00:20:25.436] INFO  [mk3_Draver] [0x74]   Refresh                      gfx=0x0F0B qty=24   price=16
+[00:20:25.436] INFO  [mk3_Draver] [0x3C] container contents: 0 item(s)
+[00:20:25.436] INFO  [mk3_Draver] [0x74] vendor shop data: cont=0x40009215 0 item(s), layer=0x1B
+[00:20:25.436] INFO  [mk3_Draver] [VENDOR] offer from 0x00009619: 5 item(s)
+[00:20:25.436] INFO  [mk3_Draver] [VENDOR]   0x40017161 clean bandages         x19  1 gp
+[00:20:25.436] INFO  [mk3_Draver] [VENDOR]   0x40017151 Heal                   x12  30 gp
+[00:20:25.436] INFO  [mk3_Draver] [VENDOR]   0x40017141 Ginseng                x17  3 gp
+[00:20:25.436] INFO  [mk3_Draver] [VENDOR]   0x4001713E Garlic                 x19  3 gp
+[00:20:25.436] INFO  [mk3_Draver] [VENDOR]   0x4001713B Refresh                x24  16 gp
+[00:20:25.436] LOG   [mk3_Draver] event vendor_offer: vendor=0x00009619 items=5
+[00:20:25.436] INFO  [mk3_Draver] [ACTION_RESULT] vendor_buy success (2ms) vendor offer received
+[00:20:25.436] LOG   [mk3_Draver] event action_result: vendor_buy success took=2ms vendor offer received
+[00:20:25.436] INFO  [mk3_Draver] [0x24] vendor buy gump for 0x00009619
+[00:20:25.436] INFO  [life] potions: the shop is open
+[00:20:25.497] INFO  [mk3_Draver] [ACTION] vendor_buy start
+[00:20:25.497] INFO  [mk3_Draver] [policy] allowed NPC purchase of i_potion_heal (0x0F0C): basic healing: a life with no Healing skill has no other way to treat itself, and the shard's own healer sells it [BASIC_HEALING]
+[00:20:25.497] INFO  [mk3_Draver] [VENDOR] buy item=0x40017151 qty=4 from vendor=0x00009619 gold=10000
+[00:20:25.497] INFO  [life] potions: buying 4 heal potion at 30 each from the 'healer' (shelf holds 12) -- waiting for the pack
+[00:20:25.512] INFO  [mk3_Draver] [ACTION_RESULT] vendor_buy success (15ms) purchased item delivered
+[00:20:25.512] LOG   [mk3_Draver] event action_result: vendor_buy success took=15ms purchased item delivered
+[00:20:25.512] INFO  [mk3_Draver] [chat ascii] Erskine: Here you are, Draver That will be 120 gold coins.  I thank thee for thy business.
+[00:20:25.512] INFO  [mk3_Draver] [0x3B] vendor transaction closed: vendor=0x00009619 flag=0
+[00:20:25.512] INFO  [life] goal_changed=TRADE_WITH_PLAYER from=REPLACE_EQUIPMENT reason="TRADE_WITH_PLAYER 79.8 superseded REPLACE_EQUIPMENT 0.0"
+[00:20:25.512] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedSkillTraining(Tinkering 0.55) NeedCraft(make goods to sell 0.50) NeedOre(ore 0.42) NeedBank(put unsold stock away 0.40) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=Tinkering (target 50.0)
+[00:20:25.512] INFO  [life]   score=79.8
+[00:20:25.512] INFO  [life]   reason: NeedTrade urgency 0.55 x 145 = 79.8
+[00:20:25.512] INFO  [life]   reason: 30 x i_ingot_iron spare
+[00:20:25.512] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 215s after achieving nothing
+[00:20:25.512] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (30 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[00:20:25.512] INFO  [life] market: the market is britain_bank_2 (Britain banker) at 1425,1690, radius 5, guarded
+[00:20:25.512] INFO  [life] goal_blocked=TRADE_WITH_PLAYER reason="not enough session left for the trip" left=90s need=800s
+[00:20:25.541] INFO  [life] goal=CRAFT reason="previous goal abandoned: not enough session left for the trip"
+[00:20:25.541] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedGold(sell surplus BLOCKED 0.55) NeedSkillTraining(Tinkering 0.55) NeedCraft(make goods to sell 0.50) NeedOre(ore 0.42) NeedBank(put unsold stock away 0.40) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20) NeedTrade(sell to a player BLOCKED 0.00)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=Tinkering (target 50.0)
+[00:20:25.541] INFO  [life]   score=65.0
+[00:20:25.541] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
+[00:20:25.541] INFO  [life]   reason: i_dagger: every input is in the pack
+[00:20:25.541] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 215s after achieving nothing
+[00:20:25.541] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (30 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[00:20:25.541] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 599s after achieving nothing
+[00:20:25.541] INFO  [life] craft: i_dagger needs a forge -- going to find a smithy
+[00:20:25.568] INFO  [mk3_Draver] [travel] Minoc blacksmith -> (2471,564) r=5 from (2578,600)
+[00:20:25.568] LOG   [mk3_Draver] event travel_start: label='Minoc blacksmith' target=(2471,564) radius=5 from=(2578,600)
+[00:20:25.568] INFO  [mk3_Draver] [travel] mode moongate         usable   <- chosen
+[00:20:25.568] INFO  [mk3_Draver] [travel] mode walk             usable
+[00:20:25.568] INFO  [mk3_Draver] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:25.568] INFO  [mk3_Draver] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:25.568] LOG   [mk3_Draver] event travel_mode: moongate
+[00:20:25.568] INFO  [mk3_Draver] [travel] plan Minoc blacksmith: ok legs=4 ~128 tiles transit=0 nodes=33
+[00:20:25.757] INFO  [mk3_Draver] [bot] arrived at (2578,599,0)
+[00:20:25.757] INFO  [mk3_Draver] [action] goto finished at (2578,599,0); target (2578,599); ARRIVED (off by 0 tile(s))
+[00:20:25.757] LOG   [mk3_Draver] event goto_done: at=(2578,599) target=(2578,599) arrived=1 off=0
+[00:20:25.757] INFO  [mk3_Draver] [action] goto (2552,598) from (2578,599,0)
+[00:20:25.757] LOG   [mk3_Draver] event goto_start: target=(2552,598) from=(2578,599)
+[00:20:25.757] INFO  [mk3_Draver] [bot] running from (2578,599,0) to (2552,598)
+[00:20:25.757] INFO  [mk3_Draver] [bot] planning path to (2552,598) in background
+[00:20:25.817] INFO  [mk3_Draver] [bot] replan to (2552,598): 31 steps in 10172.6us
+[00:20:29.294] INFO  [mk3_Draver] [survival] hp 56/56 (100%) -> fight
+[00:20:31.149] INFO  [mk3_Draver] [chat uni  ] Kharain: Erskine buy
+[00:20:31.149] INFO  [mk3_Draver] [chat ascii] Erskine: Good morrow!  How can I help thee?
+[00:20:31.149] INFO  [mk3_Draver] [chat ascii] Erskine: I'm here to sell thee supplies.
+[00:20:31.164] INFO  [mk3_Draver] [chat ascii] Erskine: Here you are, Kharain That will be 120 gold coins.  I thank thee for thy business.
+[00:20:34.320] INFO  [mk3_Draver] [survival] hp 56/56 (100%) -> fight
+[00:20:37.563] INFO  [mk3_Draver] [bot] step (2552,598,0)->(2551,597,0) rejected; OpenDoor + retry
+[00:20:38.273] INFO  [mk3_Draver] [bot] step (2552,598,0)->(2551,597,0) rejected; avoiding edge + rerouting
+[00:20:38.273] INFO  [mk3_Draver] [bot] planning path to (2552,598) in background
+[00:20:38.394] INFO  [mk3_Draver] [action] goto finished at (2552,598,0); target (2552,598); ARRIVED (off by 0 tile(s))
+[00:20:38.394] LOG   [mk3_Draver] event goto_done: at=(2552,598) target=(2552,598) arrived=1 off=0
+[00:20:38.394] INFO  [mk3_Draver] [action] goto (2520,600) from (2552,598,0)
+[00:20:38.394] LOG   [mk3_Draver] event goto_start: target=(2520,600) from=(2552,598)
+[00:20:38.394] INFO  [mk3_Draver] [bot] running from (2552,598,0) to (2520,600)
+[00:20:38.394] INFO  [mk3_Draver] [bot] planning path to (2520,600) in background
+[00:20:38.455] INFO  [mk3_Draver] [bot] replan to (2520,600): 32 steps in 16852.7us
+[00:20:39.346] INFO  [mk3_Draver] [survival] hp 56/56 (100%) -> fight
+[00:20:44.369] INFO  [mk3_Draver] [survival] hp 56/56 (100%) -> fight
+[00:20:49.416] INFO  [mk3_Draver] [survival] hp 56/56 (100%) -> fight
+[00:20:50.767] INFO  [mk3_Draver] [bot] arrived at (2520,600,0)
+[00:20:50.767] INFO  [mk3_Draver] [action] goto finished at (2520,600,0); target (2520,600); ARRIVED (off by 0 tile(s))
+[00:20:50.767] LOG   [mk3_Draver] event goto_done: at=(2520,600) target=(2520,600) arrived=1 off=0
+[00:20:50.767] INFO  [mk3_Draver] [action] goto (2488,584) from (2520,600,0)
+[00:20:50.767] LOG   [mk3_Draver] event goto_start: target=(2488,584) from=(2520,600)
+[00:20:50.767] INFO  [mk3_Draver] [bot] running from (2520,600,0) to (2488,584)
+[00:20:50.767] INFO  [mk3_Draver] [bot] planning path to (2488,584) in background
+[00:20:50.796] INFO  [mk3_Draver] [bot] replan to (2488,584): 35 steps in 15941.1us
+[00:20:54.429] INFO  [mk3_Draver] [survival] hp 56/56 (100%) -> fight
+[00:20:58.850] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_01.draver/state.json
+[00:20:59.448] INFO  [mk3_Draver] [survival] hp 56/56 (100%) -> fight
+[00:21:02.478] INFO  [mk3_Draver] [bot] arrived at (2488,584,0)
+[00:21:02.479] INFO  [mk3_Draver] [action] goto finished at (2488,584,0); target (2488,584); ARRIVED (off by 0 tile(s))
+[00:21:02.479] LOG   [mk3_Draver] event goto_done: at=(2488,584) target=(2488,584) arrived=1 off=0
+[00:21:02.479] INFO  [mk3_Draver] [action] goto (2471,564) from (2488,584,0)
+[00:21:02.479] LOG   [mk3_Draver] event goto_start: target=(2471,564) from=(2488,584)
+[00:21:02.479] INFO  [mk3_Draver] [bot] running from (2488,584,0) to (2471,564,z5)
+[00:21:02.479] INFO  [mk3_Draver] [bot] planning path to (2471,564) in background
+[00:21:04.453] INFO  [mk3_Draver] [survival] hp 56/56 (100%) -> fight
+[00:21:05.878] INFO  [mk3_Draver] [action] goto finished at (2488,584,0); target (2471,564); stopped short (off by 37 tile(s))
+[00:21:05.878] LOG   [mk3_Draver] event goto_done: at=(2488,584) target=(2471,564) arrived=0 off=37
+[00:21:07.132] INFO  [mk3_Draver] [action] goto (2471,564) from (2488,584,0)
+[00:21:07.132] LOG   [mk3_Draver] event goto_start: target=(2471,564) from=(2488,584)
+[00:21:07.132] INFO  [mk3_Draver] [bot] running from (2488,584,0) to (2471,564,z5)
+[00:21:07.132] INFO  [mk3_Draver] [bot] planning path to (2471,564) in background
+[00:21:07.501] INFO  [mk3_Draver] [chat uni  ] : Curtis buy
+[00:21:07.501] INFO  [mk3_Draver] [chat ascii] Curtis: I'm here to sell thee supplies.
+[00:21:09.464] INFO  [mk3_Draver] [survival] hp 56/56 (100%) -> fight
+[00:21:10.031] INFO  [mk3_Draver] [chat ascii] Curtis: Here you are, Ghalor That will be 38 gold coins.  I thank thee for thy business.
+[00:21:10.524] INFO  [mk3_Draver] [action] goto finished at (2488,584,0); target (2471,564); stopped short (off by 37 tile(s))
+[00:21:10.524] LOG   [mk3_Draver] event goto_done: at=(2488,584) target=(2471,564) arrived=0 off=37
+[00:21:11.192] INFO  [mk3_Draver] [chat ascii] System: Observer has arrived in Minoc.
+[00:21:11.755] INFO  [mk3_Draver] [travel] mode walk             usable   <- chosen
+[00:21:11.755] INFO  [mk3_Draver] [travel] mode moongate         usable
+[00:21:11.755] INFO  [mk3_Draver] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:11.755] INFO  [mk3_Draver] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:11.755] LOG   [mk3_Draver] event travel_mode: walk
+[00:21:11.755] INFO  [mk3_Draver] [travel] plan Minoc blacksmith: ok legs=1 ~20 tiles transit=0 nodes=0
+[00:21:13.263] INFO  [mk3_Draver] [action] goto (2471,564) from (2488,584,0)
+[00:21:13.263] LOG   [mk3_Draver] event goto_start: target=(2471,564) from=(2488,584)
+[00:21:13.263] INFO  [mk3_Draver] [bot] running from (2488,584,0) to (2471,564,z5)
+[00:21:13.263] INFO  [mk3_Draver] [bot] planning path to (2471,564) in background
+[00:21:14.492] INFO  [mk3_Draver] [survival] hp 56/56 (100%) -> fight
+[00:21:14.570] INFO  [mk3_Draver] [chat ascii] System: Observer has departed from Minoc.
+[00:21:16.781] INFO  [mk3_Draver] [action] goto finished at (2488,584,0); target (2471,564); stopped short (off by 37 tile(s))
+[00:21:16.781] LOG   [mk3_Draver] event goto_done: at=(2488,584) target=(2471,564) arrived=0 off=37
+[00:21:18.009] INFO  [mk3_Draver] [action] goto (2471,564) from (2488,584,0)
+[00:21:18.009] LOG   [mk3_Draver] event goto_start: target=(2471,564) from=(2488,584)
+[00:21:18.009] INFO  [mk3_Draver] [bot] running from (2488,584,0) to (2471,564,z5)
+[00:21:18.009] INFO  [mk3_Draver] [bot] planning path to (2471,564) in background
+[00:21:19.506] INFO  [mk3_Draver] [survival] hp 56/56 (100%) -> fight
+[00:21:21.276] INFO  [mk3_Draver] [action] goto finished at (2488,584,0); target (2471,564); stopped short (off by 37 tile(s))
+[00:21:21.276] LOG   [mk3_Draver] event goto_done: at=(2488,584) target=(2471,564) arrived=0 off=37
+[00:21:22.489] INFO  [mk3_Draver] [travel] mode walk             usable   <- chosen
+[00:21:22.489] INFO  [mk3_Draver] [travel] mode moongate         usable
+[00:21:22.489] INFO  [mk3_Draver] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:22.489] INFO  [mk3_Draver] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:22.489] LOG   [mk3_Draver] event travel_mode: walk
+[00:21:22.489] INFO  [mk3_Draver] [travel] plan Minoc blacksmith: ok legs=1 ~20 tiles transit=0 nodes=0
+[00:21:24.506] INFO  [mk3_Draver] [survival] hp 56/56 (100%) -> fight
+[00:21:25.534] INFO  [mk3_Draver] [action] goto (2471,564) from (2488,584,0)
+[00:21:25.534] LOG   [mk3_Draver] event goto_start: target=(2471,564) from=(2488,584)
+[00:21:25.534] INFO  [mk3_Draver] [bot] running from (2488,584,0) to (2471,564,z5)
+[00:21:25.534] INFO  [mk3_Draver] [bot] planning path to (2471,564) in background
+[00:21:28.761] INFO  [mk3_Draver] [action] goto finished at (2488,584,0); target (2471,564); stopped short (off by 37 tile(s))
+[00:21:28.761] LOG   [mk3_Draver] event goto_done: at=(2488,584) target=(2471,564) arrived=0 off=37
+[00:21:29.545] INFO  [mk3_Draver] [survival] hp 56/56 (100%) -> fight
+[00:21:29.990] INFO  [mk3_Draver] [action] goto (2471,564) from (2488,584,0)
+[00:21:29.990] LOG   [mk3_Draver] event goto_start: target=(2471,564) from=(2488,584)
+[00:21:29.990] INFO  [mk3_Draver] [bot] running from (2488,584,0) to (2471,564,z5)
+[00:21:29.990] INFO  [mk3_Draver] [bot] planning path to (2471,564) in background
+[00:21:33.213] INFO  [mk3_Draver] [action] goto finished at (2488,584,0); target (2471,564); stopped short (off by 37 tile(s))
+[00:21:33.213] LOG   [mk3_Draver] event goto_done: at=(2488,584) target=(2471,564) arrived=0 off=37
+[00:21:34.444] INFO  [mk3_Draver] [travel] mode walk             usable   <- chosen
+[00:21:34.444] INFO  [mk3_Draver] [travel] mode moongate         usable
+[00:21:34.444] INFO  [mk3_Draver] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:34.444] INFO  [mk3_Draver] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:34.444] LOG   [mk3_Draver] event travel_mode: walk
+[00:21:34.444] INFO  [mk3_Draver] [travel] plan Minoc blacksmith: ok legs=1 ~20 tiles transit=0 nodes=0
+[00:21:34.567] INFO  [mk3_Draver] [survival] hp 56/56 (100%) -> fight
+[00:21:35.181] INFO  [mk3_Draver] [chat ascii] Curtis: What's thee wantin'?
+[00:21:35.181] INFO  [mk3_Draver] [chat ascii] Curtis: Hmm?
+[00:21:38.948] INFO  [mk3_Draver] [action] goto (2471,564) from (2488,584,0)
+[00:21:38.948] LOG   [mk3_Draver] event goto_start: target=(2471,564) from=(2488,584)
+[00:21:38.948] INFO  [mk3_Draver] [bot] running from (2488,584,0) to (2471,564,z5)
+[00:21:38.949] INFO  [mk3_Draver] [bot] planning path to (2471,564) in background
+[00:21:38.964] INFO  [mk3_Draver] [bot] replan to (2471,564): 43 steps in 13282.0us
+[00:21:39.594] INFO  [mk3_Draver] [survival] hp 56/56 (100%) -> fight
+[00:21:44.597] INFO  [mk3_Draver] [survival] hp 56/56 (100%) -> fight
+[00:21:49.024] INFO  [mk3_Draver] [chat ascii] Olin: Aye?
+[00:21:49.025] INFO  [mk3_Draver] [chat ascii] Olin: I'm listenin'.
+[00:21:49.643] INFO  [mk3_Draver] [survival] hp 56/56 (100%) -> fight
+[00:21:50.578] INFO  [mk3_Draver] [travel] Minoc blacksmith ARRIVED at (2475,569,5)
+[00:21:50.578] LOG   [mk3_Draver] event travel_done: label='Minoc blacksmith' ok=1 at=(2475,569) legs=1 plans=4 why=''
+[00:21:50.579] INFO  [life] craft: i_dagger needs a forge -- walking to the one in sight
+[00:21:50.579] INFO  [mk3_Draver] [travel] forge -> (2466,556) r=0 from (2475,569)
+[00:21:50.579] LOG   [mk3_Draver] event travel_start: label='forge' target=(2466,556) radius=0 from=(2475,569)
+[00:21:50.579] INFO  [mk3_Draver] [travel] mode walk             usable   <- chosen
+[00:21:50.579] INFO  [mk3_Draver] [travel] mode moongate         usable
+[00:21:50.579] INFO  [mk3_Draver] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:50.579] INFO  [mk3_Draver] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:50.579] LOG   [mk3_Draver] event travel_mode: walk
+[00:21:50.579] INFO  [mk3_Draver] [travel] plan forge: ok legs=1 ~13 tiles transit=0 nodes=0
+[00:21:51.040] INFO  [mk3_Draver] [chat ascii] Olin: What's thee wantin'?
+[00:21:51.040] INFO  [mk3_Draver] [chat ascii] Olin: What's thee wantin'?
+[00:21:51.378] INFO  [mk3_Draver] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=6 in 149.0us
+[00:21:53.740] INFO  [mk3_Draver] [bot] arrived at (2471,564,5)
+[00:21:53.740] INFO  [mk3_Draver] [action] goto finished at (2471,564,5); target (2471,564); ARRIVED (off by 0 tile(s))
+[00:21:53.740] LOG   [mk3_Draver] event goto_done: at=(2471,564) target=(2471,564) arrived=1 off=0
+[00:21:53.740] INFO  [mk3_Draver] [action] goto (2466,556) from (2471,564,5)
+[00:21:53.740] LOG   [mk3_Draver] event goto_start: target=(2466,556) from=(2471,564)
+[00:21:53.740] INFO  [mk3_Draver] [bot] running from (2471,564,5) to (2466,556)
+[00:21:53.740] INFO  [mk3_Draver] [bot] planning path to (2466,556) in background
+[00:21:53.756] INFO  [mk3_Draver] [bot] replan to (2466,556): 15 steps in 1328.3us
+[00:21:54.240] INFO  [mk3_Draver] [chat ascii] Curtis: Aye?
+[00:21:54.653] INFO  [mk3_Draver] [survival] hp 56/56 (100%) -> fight
+[00:21:56.259] INFO  [life] session_end_requested reason="session time limit reached"
+[00:21:58.552] INFO  [mk3_Draver] [travel] forge ARRIVED at (2467,556,5)
+[00:21:58.552] LOG   [mk3_Draver] event travel_done: label='forge' ok=1 at=(2467,556) legs=1 plans=1 why=''
+[00:21:58.613] INFO  [life] wind-down: arrived somewhere safe at 2467,556
+[00:21:58.613] INFO  [life] session_summary duration=182s goals=0/4 gold=10000->9880 skills=100.0->100.0 logs=+0 kills=0 deaths=0 places=2 suppliers=0
+[00:21:58.613] INFO  [life] session_goals families=3 picks=4 top=50% varied=0 self_superseded=0 | upkeep=2(50%) work=1(25%) social=1(25%) | REPLACE_EQUIPMENT=1(25%) BANK=1(25%) TRADE_WITH_PLAYER=1(25%) CRAFT=1(25%)
+[00:21:58.615] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_01.draver/state.json
+[00:21:58.615] INFO  [life] logging out
+[00:21:58.615] INFO  [mk3_Draver] [action] logout requested
+[00:21:58.615] LOG   [mk3_Draver] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[00:21:58.615] INFO  [mk3_Draver] [0xD1] logout acknowledged (accepted=1)
+[00:21:58.615] LOG   [mk3_Draver] event logout_ack: accepted
+[00:21:58.615] INFO  [mk3_Draver] [net] closing connection (logout acknowledged)
+[00:21:58.615] LOG   [mk3_Draver] event logout_complete: acked

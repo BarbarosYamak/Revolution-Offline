@@ -201,6 +201,15 @@ set(UO_WORLD_SOURCES
     src/world/RoutePlanner.cpp
     src/world/ServiceSelection.cpp
     src/world/SharedWorld.cpp
+    # Pure geometry over an atlas Region's own RECTs -- no world/MUL state --
+    # used by DoMine's first-visit deeper-advance (M-fix9). See
+    # tests/mine_advance.cpp for the real-atlas Minoc Mine 1 case.
+    src/world/MiningAdvance.cpp
+    # Same shape, opposite direction: step OUT of a guarded region's RECTs
+    # rather than deeper into one, for DoGatherLogs' no-lead fallback
+    # (M-fix11, owner: "if he left the guard zone at Britain he would see
+    # farmable trees"). See tests/guard_zone_advance.cpp.
+    src/world/GuardZoneAdvance.cpp
 )
 # NavGrid's edge pass runs the bot's own tile A*, so the world library carries
 # the pathfinder: what the router believes is crossable is measured with the

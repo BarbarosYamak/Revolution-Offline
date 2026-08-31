@@ -169,6 +169,16 @@ target_include_directories(m4_economy_invariant PRIVATE
 add_test(NAME m4_economy_invariant COMMAND m4_economy_invariant
          ${CMAKE_SOURCE_DIR}/../../docs/tns_exports/economy_arbitrage_loops.tsv)
 
+# Wave-1 fix 2: the trip-veto arithmetic (uo::life::EstimateTripTimeMs /
+# TripFitsSessionBudget, include/uo/life.h). Pure -- header-only, no Client,
+# no server, no world data -- so a single-file test links it directly.
+add_executable(trip_budget trip_budget.cpp)
+target_include_directories(trip_budget PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+
+add_test(NAME trip_budget COMMAND trip_budget)
+
 # --- M5.1: the profession catalogue ----------------------------------------
 # Checks every entry against BOTH rulesets -- Revolution's creation rule
 # (two skills at 50.0, 50 stat points) and the finished-build caps (700/225).
@@ -544,7 +554,44 @@ target_include_directories(m9_service_selection PRIVATE
     ${CMAKE_SOURCE_DIR}/src)
 target_link_libraries(m9_service_selection PRIVATE uo_world)
 
+# TEMP diagnostic probe -- not a ctest, remove before done.
+add_executable(_probe_ocllo _probe_ocllo.cpp)
+target_include_directories(_probe_ocllo PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+target_link_libraries(_probe_ocllo PRIVATE uo_world)
+
 add_test(NAME m9_service_selection COMMAND m9_service_selection ${CMAKE_SOURCE_DIR}/data)
+
+# --- mine_advance: first-visit deeper-into-the-mine target (M-fix9) --------
+# world_atlas::DeeperMiningPoint (src/world/MiningAdvance.cpp) is the pure
+# geometry Client::DeeperMiningTarget / Runner::DoMine use so a newborn miner
+# with no remembered vein walks past a picked-clean mine mouth instead of
+# refusing at it forever (owner, 2026-08-31: "it is not going to mine deep").
+# Section B needs the real generated atlas for Minoc Mine 1's actual RECTs;
+# the data dir arrives as argv[1], same convention as m9_service_selection.
+add_executable(mine_advance mine_advance.cpp)
+target_include_directories(mine_advance PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+target_link_libraries(mine_advance PRIVATE uo_world)
+
+add_test(NAME mine_advance COMMAND mine_advance ${CMAKE_SOURCE_DIR}/data)
+
+# --- hunt_ground: early-hunting-grounds resolver ---------------------------
+#
+# world_atlas::Atlas::NearestHuntingGround (memory: early-hunting-grounds.md,
+# owner 2026-08-31) -- the pure, Client-free half of "hunting ground can be
+# graveyards for early hunting". m25_world.cpp style, but against the real
+# generated atlas so a regenerated atlas that drops Britain's or Yew's
+# graveyard fails this suite; the data dir arrives as argv[1].
+add_executable(hunt_ground hunt_ground.cpp)
+target_include_directories(hunt_ground PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+target_link_libraries(hunt_ground PRIVATE uo_world)
+
+add_test(NAME hunt_ground COMMAND hunt_ground ${CMAKE_SOURCE_DIR}/data)
 
 # --- S4: the gear half of the trade predicate ------------------------------
 #
@@ -561,6 +608,9 @@ add_test(NAME m9_service_selection COMMAND m9_service_selection ${CMAKE_SOURCE_D
 add_executable(trade_gear trade_gear.cpp
     ${CMAKE_SOURCE_DIR}/src/economy/Market.cpp
     ${CMAKE_SOURCE_DIR}/src/economy/Faucets.cpp
+    # SchoolWeaponFor/WantsToHunt -- the school-weapon-mapping test below.
+    # Pure and Client-free, the same reason AcquirePlan.cpp is split out.
+    ${CMAKE_SOURCE_DIR}/src/life/Identity.cpp
     ${CMAKE_SOURCE_DIR}/src/life/activities/AcquirePlan.cpp
     ${CMAKE_SOURCE_DIR}/src/progression/Production.cpp
     ${CMAKE_SOURCE_DIR}/src/progression/VendorPolicy.cpp

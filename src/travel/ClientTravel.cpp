@@ -15,6 +15,8 @@
 #include "uo/combat_policy.h"
 #include "uo/rules.h"
 #include "uo/world.h"
+#include "world/GuardZoneAdvance.h"
+#include "world/MiningAdvance.h"
 #include "world/ServiceSelection.h"
 
 #include "uo/endian.h"
@@ -85,6 +87,15 @@ const char* Client::WorldKnowledgeError() {
 const wm::Region* Client::CurrentRegion() const {
     if (!world_knowledge_ || !world_knowledge_->ok) return nullptr;
     return world_knowledge_->atlas.RegionAt(playerX_, playerY_);
+}
+
+// The atlas itself, for callers that need more than one narrow lookup out of
+// it (life::SeedNewbieKnowledge takes the whole thing so it stays Client-free
+// and unit-testable against the real data file). World DATA, not personal
+// knowledge -- the same shard-wide atlas every session shares (SharedWorld.h).
+const world_atlas::Atlas* Client::WorldAtlas() const {
+    if (!world_knowledge_ || !world_knowledge_->ok) return nullptr;
+    return &world_knowledge_->atlas;
 }
 
 const wm::Place* Client::NearestServicePlace(wm::Service s) const {
@@ -439,6 +450,52 @@ bool Client::NearestMiningSpot(i32 x, i32 y, i8 z, int radius,
     return false;
 }
 
+// How far a single deeper-advance walks into a cave before DoMine rescans.
+// Bounded so an advance is a step, not a leap at ground nothing has looked
+// at yet -- kMineScanRadius (24, Runner.cpp) then comfortably covers the
+// newly-reached ground on the next scan. Three of these covers Minoc Mine
+// 1's full depth (its RECT reaches 27 tiles from the south mouth) with room
+// to spare.
+constexpr i32 kMineAdvanceStep = 20;
+
+bool Client::DeeperMiningTarget(i32 curX, i32 curY, i32* outX,
+                                i32* outY) const {
+    if (!(world_knowledge_ && world_knowledge_->ok)) return false;
+    // Resolve the mining PLACE the same way TravelToResource does, then walk
+    // its regionId to the REGION -- more reliable than RegionAt(curX,curY),
+    // since TravelToResource's own arrival radius can leave the character on
+    // the wrong side of a RECT boundary from the exact point it was aiming
+    // at.
+    const wm::Place* p = world_knowledge_->atlas.NearestPlaceWithResource(
+        wm::ResourceKind::Mining, curX, curY);
+    if (!p || p->regionId.empty()) return false;
+    const wm::Region* r = world_knowledge_->atlas.RegionById(
+        p->regionId.c_str());
+    // ONLY CAVES HAVE A MOUTH TO BE PICKED CLEAN AT. Open-air mountainside
+    // rock (Wilderness/Unknown regions) has no entrance geometry for this to
+    // reason about; the ordinary small jitter DoMine already does is the
+    // right roam there.
+    if (!r || r->kind != wm::RegionKind::Cave) return false;
+    return world_atlas::DeeperMiningPoint(*r, curX, curY, kMineAdvanceStep,
+                                          outX, outY);
+}
+
+// How far a single "step out of the guard line" walks before DoGatherLogs
+// rescans. Sized for a town AREADEF rather than a cave mouth -- Britain's own
+// RECT (data/revolution_atlas.txt, a_townBritain) runs roughly 260 tiles
+// across, so a handful of these clears it.
+constexpr i32 kGuardZoneStepLimit = 40;
+
+bool Client::StepOutOfGuardZone(i32 curX, i32 curY, i32* outX,
+                                i32* outY) const {
+    if (!(world_knowledge_ && world_knowledge_->ok)) return false;
+    const wm::Region* r = world_knowledge_->atlas.RegionAt(curX, curY);
+    if (!r || !r->flags.guarded) return false;
+    return world_atlas::StepOutOfGuardedRegion(*r, curX, curY,
+                                               kGuardZoneStepLimit, outX,
+                                               outY);
+}
+
 bool Client::TileIsWalkable(i32 x, i32 y, i8 fromZ) const {
     if (!world_ || x < 0 || y < 0) return false;
     world::WalkQuery q{};
@@ -656,6 +713,27 @@ bool Client::TravelToPlaceCategory(wm::PlaceCategory c) {
     travelEntitySerial_ = 0;
     // Arrive INSIDE it, not at its rim: a graveyard is a place to stand in the
     // middle of, and the things worth meeting are spread across it.
+    const i32 radius = p->radius > 8 ? 8 : p->radius;
+    return TravelBegin(p->name.c_str(), p->position.x, p->position.y, radius,
+                       /*hasZ=*/true, p->position.z);
+}
+
+bool Client::TravelToHuntingGround(std::string* chosenName) {
+    if (!EnsureWorldKnowledge()) {
+        travelFailure_ = WorldKnowledgeError();
+        return false;
+    }
+    const wm::Place* p = world_knowledge_->atlas.NearestHuntingGround(
+        playerX_, playerY_);
+    if (!p) {
+        travelFailure_ = "no known hunting ground";
+        LogWarn("[travel] no hunting ground is known\n");
+        return false;
+    }
+    if (chosenName) *chosenName = p->name;
+    travelEntitySerial_ = 0;
+    // Same "arrive inside it, not at its rim" reasoning as
+    // TravelToPlaceCategory -- a graveyard's dead are spread across it.
     const i32 radius = p->radius > 8 ? 8 : p->radius;
     return TravelBegin(p->name.c_str(), p->position.x, p->position.y, radius,
                        /*hasZ=*/true, p->position.z);
@@ -906,6 +984,11 @@ void Client::TravelPlanRoute() {
     LogInfo("[travel] plan %s: %s legs=%zu ~%d tiles transit=%zu nodes=%u\n",
             travelLabel_.c_str(), r.ok ? "ok" : r.failure, r.legs.size(),
             r.estimatedTiles, r.transitHops, r.nodesExpanded);
+
+    // Recorded even when the plan failed (0 tiles is a fine answer then) so a
+    // caller reading TravelLastPlannedTiles() right after a TravelToXxx() call
+    // never sees a stale number from a previous, unrelated trip.
+    travelPlannedTiles_ = r.ok ? r.estimatedTiles : 0;
 
     journey_.SetRoute(r, NowMs());
     journey_.NoteCommandIssued(travel::Command::PlanRoute, NowMs());

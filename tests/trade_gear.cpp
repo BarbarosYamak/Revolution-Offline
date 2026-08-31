@@ -19,6 +19,7 @@
 //
 // No server, no MULs, no world data.
 
+#include "uo/life.h"
 #include "uo/market.h"
 #include "uo/production.h"
 #include "uo/professions.h"
@@ -235,6 +236,68 @@ void TestTheMaterialHalfIsUnchanged() {
     Check(!sword.accept, "the smith makes the sword; it does not want one");
 }
 
+// --------------------------------------------------------------------------
+// SCHOOL -> WEAPON. The gap this fix closes: DoReplaceEquipment could only
+// ARM a weapon already in the pack, so a WantsToHunt fighter created
+// bare-handed, or stripped of its weapon by death, had no path back to one.
+// `life::SchoolWeaponFor` is the pure half of the buy that closes it -- no
+// Client, so it is exercised here directly rather than through the live bot.
+//
+// Every profession below is the catalogue's own (prof::Find), not a
+// hand-built fixture, so this checks the same records DoReplaceEquipment
+// reads. Each maps to the exact defname the newbie kit hands that skill and
+// the fix report cites -- see life/Identity.cpp for the itemdef/tm_vend.scp
+// line numbers.
+// --------------------------------------------------------------------------
+void TestSchoolWeaponMapping() {
+    Section("trade: every WantsToHunt family maps to an existing defname");
+
+    struct Want { const char* profId; const char* defname; int skill; };
+    const Want kWants[] = {
+        {"lumberjack_swordsman", "i_katana", rules::kSwordsmanship},
+        {"fencer",               "i_kryss",  rules::kFencing},
+        {"macer",                "i_club",   rules::kMaceFighting},
+        {"archer",               "i_bow",    rules::kArchery},
+    };
+    for (const Want& w : kWants) {
+        const prof::Profession* p = prof::Find(w.profId);
+        if (!p) { Check(false, w.profId); continue; }
+        Check(life::WantsToHunt(*p), w.profId);
+
+        const life::SchoolWeapon* sw = life::SchoolWeaponFor(*p);
+        if (!sw) { Check(false, w.profId); continue; }
+        Check(std::string(sw->defname) == w.defname, w.profId);
+        Check(sw->skill == w.skill, w.profId);
+        // Both graphics of the flip pair are real (non-zero) -- an unset
+        // DUPELIST entry would leave FindAny(client, graphics, 2) blind to
+        // half of what the server can hand back on the wire.
+        Check(sw->graphics[0] != 0 && sw->graphics[1] != 0, w.profId);
+        Check(sw->defname != nullptr && sw->defname[0] != '\0', w.profId);
+        Check(sw->item != nullptr && sw->item[0] != '\0', w.profId);
+    }
+
+    // Archery is the one school sold at an unambiguously-titled shop (the
+    // bowyer) in ADDITION to the weaponsmith -- see the citation in
+    // life/Identity.cpp. The other three are weaponsmith-only.
+    if (const prof::Profession* archer = prof::Find("archer")) {
+        const life::SchoolWeapon* sw = life::SchoolWeaponFor(*archer);
+        if (sw) Check(sw->bowyerFallback, "archer: the bowyer is offered as a second seller");
+    }
+    if (const prof::Profession* sword = prof::Find("lumberjack_swordsman")) {
+        const life::SchoolWeapon* sw = life::SchoolWeaponFor(*sword);
+        if (sw) Check(!sw->bowyerFallback, "swordsman: no bowyer fallback");
+    }
+
+    // A LIFE WITH NO WEAPON SCHOOL AT ALL gets nothing to buy -- the smith
+    // makes the katana, it does not need to shop for one (same predicate
+    // TestTheMaterialHalfIsUnchanged already exercises for the sword itself).
+    if (const prof::Profession* ms = prof::Find("miner_smith")) {
+        Check(!life::WantsToHunt(*ms), "miner_smith: not a hunter");
+        Check(life::SchoolWeaponFor(*ms) == nullptr,
+              "miner_smith: no school weapon to buy");
+    }
+}
+
 }  // namespace
 
 int main() {
@@ -243,6 +306,7 @@ int main() {
     TestWhoWantsASword();
     TestTheRefusalsAreSpecific();
     TestTheMaterialHalfIsUnchanged();
+    TestSchoolWeaponMapping();
     std::printf("%d checks, %d failures\n", g_checks, g_failures);
     return g_failures == 0 ? 0 : 1;
 }

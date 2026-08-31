@@ -11,6 +11,7 @@
 #include "uo/activities/train_confirm.h"
 #include "uo/interaction/progress.h"
 #include "uo/market.h"
+#include "uo/newbie_knowledge.h"
 #include "uo/trade.h"
 #include "uo/combat.h"
 #include "uo/professions.h"
@@ -86,6 +87,9 @@ u32 ClothingOnHand(Client& client, const ClothingPiece& p, bool* worn) {
     return 0;
 }
 constexpr u16 kKatana[]   = {0x13FE, 0x13FF};
+// The other three weapon-school basics (kryss/club/bow) live as
+// life::SchoolWeapon rows in uo/life.h / life/Identity.cpp, not here --
+// see SchoolWeaponFor, used by DoReplaceEquipment below.
 // WHAT THIS SHARD ACTUALLY SELLS AS FOOD, read from its own itemdefs rather
 // than from generic UO. The first three were all the old list had, and a
 // baker's window is mostly none of them -- Voris stood in front of pizzas and
@@ -304,6 +308,17 @@ constexpr i64 kGearCooldownMs = 240000;
 // A rest, not a write-off. RetryableFailure means THIS door said no and
 // another may not -- one silent shop is not evidence about a trade.
 constexpr i64 kShortRestMs = 30000;
+// TRAIN_COMBAT stand-downs (early-hunting-grounds, 2026-08-31): a goal that
+// ends its tick having decided NOT to fight or NOT to travel must still
+// Finish(false) with an explicit Cooldown -- Finish(false) alone only stops
+// counting as success, Score() still reads the goal as feasible a moment
+// later (see goal-that-did-nothing-must-stand-down). kHuntStandDownMs is for
+// a condition this life expects to clear on its own shortly (too hurt, too
+// loaded); kNoHuntingGroundCooldownMs is for the structural one (the atlas
+// has nothing reachable), so a life does not re-walk the same failed trip on
+// the very next tick.
+constexpr i64 kHuntStandDownMs = kShortRestMs;
+constexpr i64 kNoHuntingGroundCooldownMs = 180000;
 // How many times to answer "you can't reach that" by moving before
 // concluding the forge itself is the problem. Three, matching the
 // vendor chase: enough to get round a wall, not enough to spend a
@@ -598,6 +613,14 @@ constexpr i32 kMineScanRadius = 24;
 // radius -- the point is to reach INSIDE the mine from its mouth -- but not
 // so far that a miner walks to another county for it.
 constexpr i32 kMineKnownSpotWithin = 60;
+// Consecutive server refusals at the mouth (no nearby memory) before DoMine
+// stops re-jittering the doorway and walks deeper into the cave instead.
+// Three, same escalation point as everywhere else in this codebase.
+constexpr i32 kMineRefusalsBeforeAdvance = 3;
+// How many deeper-advances a single goal attempt will make before falling
+// back to the ordinary give-up path. Bounds the walk so a genuinely
+// rock-less cave still fails honestly rather than pacing forever.
+constexpr i32 kMaxMineAdvances = 3;
 // One mining attempt is 2-6 strokes (CCharSkill.cpp:1463) at DELAY=1.6s
 // (skill45_mining.scp), so ~10s of silence is NORMAL. Poll the journal gently
 // and only give up on a verdict well past the longest legitimate attempt.
@@ -1697,52 +1720,58 @@ void Runner::MaintainBuildLocks(Client& client, const Observation& obs) {
 }
 
 // ---------------------------------------------------------------------------
-// A SMALL HINT, and no more.
+// WHAT EVERY NEW PLAYER ALREADY KNOWS (docs/LIFE_GATE_WAVE1.md theme 1).
 //
-// The M4 brief's Phase 15 rule: "Seed only what the character would reasonably
-// know at creation ... Everything else should be learned."
+// The M4 brief's Phase 15 rule still holds: "Seed only what the character
+// would reasonably know at creation ... Everything else should be learned."
+// It used to mean only "a lumberjack knows Yew has woods" -- but wave-1's
+// evidence was two failures of the SAME shape, not one:
 //
-// A player who rolls a lumberjack knows that Yew has woods. They do NOT know
-// which tree still holds wood, nor where the good stands are -- that is earned
-// by swinging an axe. So this seeds the few NAMED forests nearest home, marked
-// as hints, and nothing else. No global map, no yields, no confidence.
+//   Vorar (lumberjack): GATHER_LOGS spun on "no known source of that
+//   resource" with an empty places/resources memory.
+//   Draver / Lyra (smith / scribe): the very first BANK goal failed "no
+//   banker in sight" at 00:32-00:33 -- DoBank only ever scans mobiles
+//   already in view, and nothing had ever told either of them where a
+//   counter was.
 //
-// Runs once per life: after the first session the character has its own
-// experience and the hints only matter as fallback leads.
-void Runner::SeedCommonKnowledge(Client& client, i64 nowMs) {
-    if (state_.memory.HasEvent("common_knowledge_seeded")) return;
+// So this now delegates to the pure uo::life::SeedNewbieKnowledge
+// (newbie_knowledge.h, unit-tested directly against the shipped atlas in
+// tests/newbie_knowledge.cpp), which seeds the home bank and healer and
+// provisioner alongside the resource lead this always seeded. This wrapper's
+// only job is what a live session alone can supply: the atlas itself, the
+// moment "world knowledge is ready", and the once-per-life guard.
+//
+// ANCHORED ON state_.homeCity, NOT ON WHEREVER THE CHARACTER IS STANDING.
+// The shard's own chargen spawn point (map0_starts.scp) is not driven by
+// Profession::homeCities, so the two can differ -- and what a lumberjack
+// knows on day one is "Yew has woods", not "wherever I happened to spawn has
+// woods nearby".
+//
+// A DIFFERENT EVENT NAME ON PURPOSE. A character already carrying the older
+// "common_knowledge_seeded" mark from a prior run is not "already seeded" by
+// today's fuller definition -- it never got a bank, healer or provisioner --
+// so re-seeding under a new name picks it up on its next load rather than
+// silently skipping it forever.
+void Runner::SeedNewbieKnowledge(Client& client, i64 nowMs) {
+    if (state_.memory.HasEvent("newbie_knowledge_seeded")) return;
     if (!client.WorldKnowledgeReady()) return;
 
-    // SEED WHAT THIS LIFE GATHERS. Every character was seeded with forest
-    // hints regardless of profession -- a miner learned three woods it would
-    // never chop and no mine at all, and a fisher no dock.
-    const std::string gathers =
-        needCfg_.profession ? needCfg_.profession->gathers : std::string("logs");
-    if (gathers.empty()) return;      // a mage gathers nothing; seed nothing
-    const wm::ResourceKind kind = ResourceKindFor(gathers);
-    if (kind == wm::ResourceKind::None) return;
+    const world_atlas::Atlas* atlas = client.WorldAtlas();
+    if (!atlas) return;
 
-    std::vector<const wm::Place*> forests;
-    client.ResourcePlacesNear(kind, client.PlayerX(),
-                              client.PlayerY(), forests);
-    if (forests.empty()) return;
+    const usize placesBefore = state_.memory.Places().size();
+    const usize resourcesBefore = state_.memory.Resources().size();
 
-    int seeded = 0;
-    for (const wm::Place* p : forests) {
-        if (seeded >= kSeedHints) break;
-        state_.memory.HintResource(gathers.c_str(), p->name.c_str(),
-                                   p->position.x,
-                                   p->position.y, p->position.z, nowMs);
-        LogLine("common knowledge: %s at %d,%d (%d tiles away)", p->name.c_str(),
-                p->position.x, p->position.y,
-                TileDist(p->position.x, p->position.y, client.PlayerX(),
-                         client.PlayerY()));
-        ++seeded;
-    }
-    state_.memory.NoteEvent("common_knowledge_seeded", gathers.c_str(),
+    life::SeedNewbieKnowledge(state_, needCfg_.profession, state_.homeCity,
+                              *atlas, nowMs);
+
+    state_.memory.NoteEvent("newbie_knowledge_seeded", state_.homeCity.c_str(),
                             "", client.PlayerX(), client.PlayerY(), nowMs);
-    LogLine("seeded %d %s hint(s) of %zu the atlas knows -- everything else "
-            "is earned", seeded, gathers.c_str(), forests.size());
+    LogLine("newbie knowledge: %zu place(s) and %zu resource hint(s) seeded "
+            "near home (%s) -- everything else is earned",
+            state_.memory.Places().size() - placesBefore,
+            state_.memory.Resources().size() - resourcesBefore,
+            state_.homeCity.empty() ? "nowhere yet" : state_.homeCity.c_str());
 }
 
 void Runner::LearnFromObservation(Client& client, const Observation& obs) {
@@ -1905,7 +1934,7 @@ void Runner::Tick(Client& client, i64 nowMs) {
 
         case Phase::Reconcile: {
             const Observation obs = Observe(client, nowMs);
-            SeedCommonKnowledge(client, nowMs);
+            SeedNewbieKnowledge(client, nowMs);
             const ReconcileReport rep = Reconcile(&state_, obs);
 
             LogLine("reconciliation: %s, %d field(s) differed",
@@ -2161,8 +2190,20 @@ void Runner::Tick(Client& client, i64 nowMs) {
 
             const KnownPlace* bank = state_.memory.NearestPlace(
                 "bank", client.PlayerX(), client.PlayerY());
+            // A REACHED GUARDED SPOT IS SAFE ALREADY -- do not walk PAST it
+            // looking for a bank. Without this a character standing in the
+            // middle of a guarded town, but more than 6 tiles from any bank
+            // this life has personally learned, read as unsafe and set off
+            // on "asking the world for one" (below), which is a fresh
+            // cross-world walk exactly like the one that just stranded
+            // Dorvar: the abort at the top of this block only fires once a
+            // trip is ALREADY committed and stalled, so the fix is to not
+            // start an avoidable one in the first place when where we are
+            // standing already answers to a guard.
+            const wm::Region* hereRegion = client.CurrentRegion();
             const bool safeHere = client.BankContainer() != 0 ||
                                   windDownArrived_ ||
+                                  (hereRegion && hereRegion->flags.guarded) ||
                                   (bank && TileDist(bank->x, bank->y, client.PlayerX(),
                                                     client.PlayerY()) <= 6);
 
@@ -2430,6 +2471,33 @@ bool Runner::HandOff(GoalKind from, GoalKind to, i64 restMs, const char* why,
     LogLine("handoff=%s->%s reason=\"%s\"", GoalKindName(from), GoalKindName(to),
             why);
     nextActionMs_ = nowMs + 2000;
+    return false;
+}
+
+bool Runner::VetoTripOverSessionBudget(Client& client, const Observation& obs,
+                                       GoalKind goal, const char* goalName,
+                                       i64 cooldownMs) {
+    if (cfg_.sessionLimitMs <= 0) return true;   // no session clock to run out
+    const i32 tiles = client.TravelLastPlannedTiles();
+    // 0 means no plan has landed yet (this trip's TravelPlanRoute runs on a
+    // later Client tick than the TravelToXxx() call that started it) or the
+    // plan failed outright -- either way there is nothing here yet to judge,
+    // and the ordinary travel-failure/replan machinery will be heard from on
+    // its own. Vetoing on a stale zero would only ever wave a real trip
+    // through, never wrongly block one, so that side is safe to skip too.
+    if (tiles <= 0) return true;
+    const i64 remainingMs = cfg_.sessionLimitMs - (obs.nowMs - sessionStartMs_);
+    if (TripFitsSessionBudget(remainingMs, tiles, kWindDownBudgetMs)) return true;
+
+    LogLine("goal_blocked=%s reason=\"not enough session left for the trip\" "
+            "tiles=%d left=%llds need=%llds", goalName, tiles,
+            static_cast<long long>(remainingMs / 1000),
+            static_cast<long long>(
+                (EstimateTripTimeMs(tiles) + kWindDownBudgetMs) / 1000));
+    client.TravelAbort("not enough session left for the trip");
+    travelInFlight_ = false;
+    planner_.Cooldown(goal, obs.nowMs + cooldownMs);
+    planner_.Finish(false, "not enough session left for the trip", obs.nowMs);
     return false;
 }
 
@@ -3518,7 +3586,11 @@ bool Runner::DoGetTool(Client& client, const Observation& obs) {
     // and a half seconds without ever arriving anywhere.
     if (FetchCoinForPurchase(client, obs, kToolMoneyToCarry)) return false;
 
-    if (client.TravelBusy()) return false;
+    if (client.TravelBusy()) {
+        VetoTripOverSessionBudget(client, obs, GoalKind::GetTool, "GET_TOOL",
+                                  kNoToolCooldownMs);
+        return false;
+    }
 
     const u32 vendor = client.VendorOfferFrom();
     if (vendor == 0) {
@@ -3793,6 +3865,12 @@ bool Runner::WearBasicClothing(Client& client, const Observation& obs) {
     return false;
 }
 
+// The weapon-school basic (katana/kryss/club/bow) for a WantsToHunt fighter
+// with empty hands -- SchoolWeapon and SchoolWeaponFor live in uo/life.h /
+// life/Identity.cpp, pure and Client-free, next to WantsToHunt itself (same
+// weapon-skill target, same threshold, so the two never disagree). See there
+// for the per-weapon citations.
+
 bool Runner::DoReplaceEquipment(Client& client, const Observation& obs) {
     // FREE BANDAGES BEFORE BOUGHT ONES.
     if (CutResurrectionRobe(client, obs)) {
@@ -3818,6 +3896,103 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs) {
             planner_.NoteProgress();
             nextActionMs_ = obs.nowMs + 1500;
             return false;
+        }
+
+        // THE BUILD'S OWN SCHOOL WEAPON, ARMED FROM THE PACK OR BOUGHT.
+        //
+        // Reached only when the axe and the generic katana fallback above
+        // both found nothing to ARM. That katana fallback only ever equips
+        // one already sitting in the pack -- it never buys -- so a
+        // swordsman with none carried falls through to here too, same as a
+        // fencer, macefighter or archer. This is the gap the fix closes: the
+        // FindAny just below is one more (harmless, redundant) look for a
+        // swordsman, and the Buy path below it is the part that was missing
+        // for every school, swordsman included.
+        if (const SchoolWeapon* school =
+                needCfg_.profession ? SchoolWeaponFor(*needCfg_.profession)
+                                    : nullptr) {
+            const u32 have = FindAny(client, school->graphics, 2);
+            if (have) {
+                if (client.ActionBusy()) return false;
+                LogLine("arming: a %s is in the pack -- equipping it",
+                        school->item);
+                client.ActionEquip(have, kLayerServerChooses);
+                planner_.NoteProgress();
+                nextActionMs_ = obs.nowMs + 1500;
+                return false;
+            }
+
+            // Buy it, or -- decided the same way bandages/garment/potions
+            // above decide -- Done (nothing to do) or Refuse. `held` is
+            // always 0 here: if it were not, the FindAny check just above
+            // would already have armed it and returned.
+            life::AcquireRequest req;
+            req.graphic = school->graphics[0];
+            req.item = school->item;
+            req.desiredTotal = 1;
+            req.mustWear = false;   // arming is handled above, from the pack
+            req.wearable = true;
+            req.minimumGoldReserve = 100;
+            const life::AcquirePlan plan = life::DecideAcquire(req, 0, 0);
+
+            if (plan.step == life::AcquireStep::Buy || weaponBuy_.Running()) {
+                // VENDOR POLICY, ASKED BEFORE THE WALK. Every basic school
+                // weapon here is a live smithing/carpentry/bowcraft recipe
+                // (SKILLMAKE on each ITEMDEF) -- exactly the "a player craft
+                // produces this" class M3.7 exists to keep off an NPC's
+                // counter. i_katana/i_kryss/i_club/i_bow carry no
+                // VendorPolicy row at all (Unknown, fails safe); i_dagger,
+                // the one bladed weapon that IS graded, is PlayerCrafted.
+                // Both refuse. This is deliberately NOT loosened here --
+                // see the fix report -- so the refusal is asked and obeyed
+                // the same way the bandage errand already asks it, rather
+                // than silently skipped.
+                const econ::VendorRuling ruling =
+                    econ::CanUseNPCVendorForGraphic(school->graphics[0]);
+                if (!ruling.allowed) {
+                    LogLine("goal_blocked=REPLACE_EQUIPMENT reason=\"the "
+                            "vendor policy grades a %s %s, and no player "
+                            "supplier is known\"", school->item,
+                            econ::VendorClassName(ruling.klass));
+                    state_.memory.NoteEvent("policy_refused", school->defname,
+                                            econ::VendorClassName(ruling.klass),
+                                            obs.x, obs.y, obs.nowMs);
+                    planner_.Finish(false, "no legitimate source of a weapon",
+                                    obs.nowMs);
+                    return false;
+                }
+                if (client.TravelBusy()) return false;
+                if (!weaponBuy_.Running()) {
+                    life::BuyRequest breq;
+                    breq.graphic = school->graphics[0];
+                    breq.item = school->item;
+                    breq.desiredTotal = 1;
+                    breq.minimumGoldReserve = 100;
+                    breq.Sell("weaponsmith", wm::Service::Blacksmith);
+                    if (school->bowyerFallback)
+                        breq.Sell("bowyer", wm::Service::Bowyer);
+                    weaponBuy_.Begin(breq);
+                }
+                const life::ActivityTickResult wr =
+                    weaponBuy_.Tick(client, obs);
+                LogErrandReason("weapon", wr.reason, obs.nowMs);
+                if (wr.wake == life::Wake::AfterDelay && wr.delayMs > 0)
+                    nextActionMs_ = obs.nowMs + wr.delayMs;
+                if (!life::IsTerminal(wr.status)) {
+                    if (wr.acted) planner_.NoteAttempt(obs.nowMs);
+                    return false;
+                }
+                if (wr.status == life::ActivityStatus::Success) {
+                    planner_.NoteProgress();
+                    return false;   // armed on the next pass, see FindAny above
+                }
+                LogLine("weapon: no %s bought (%s)", school->item, wr.reason);
+                const i64 rest =
+                    (wr.status == life::ActivityStatus::RetryableFailure)
+                        ? kShortRestMs : kGearCooldownMs;
+                return HandOff(GoalKind::ReplaceEquipment, GoalKind::Bank,
+                               rest, "no weapon bought", obs.nowMs);
+            }
         }
     }
     // --- BANDAGES, THE MISSING GARMENT, HEAL POTIONS -----------------------
@@ -4177,6 +4352,42 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
         bankErrand_.Cancel();
         if (client.ActionBusy()) return false;
 
+        // SETTLE THE GOLD DEPOSIT ASKED FOR LAST TICK, from what actually
+        // left the pack -- never from having merely issued the drag. The
+        // deposit below used to call NoteProgress() the instant it ISSUED
+        // the move, not once it LANDED, which hid a real failure mode:
+        // Lyra's box kept answering "item landed in 0x4000C91D, not the
+        // destination 0x4000C944" -- the exact "this box is not really
+        // open" case the item-deposit loop already recovers from below --
+        // fifteen times a minute, each one credited as progress. That both
+        // defeated the "progress==0 -> stand down" guard further down this
+        // function and meant NeedBank never went quiet, so BANK kept
+        // outscoring FILL_SPELLBOOK every ~20 s for the rest of the session
+        // (docs/LIFE_GATE_WAVE1.md theme 3, run_gates/g_Lyra.console.txt
+        // 00:40:09-00:42:21).
+        if (bankGoldDepositPending_) {
+            bankGoldDepositPending_ = false;
+            const DepositOutcome out = SettleDeposit(
+                pendingGoldDepositBefore_, obs.goldOnHand,
+                bankGoldDepositTries_, kMaxBankDepositTries);
+            if (out.progressed) {
+                planner_.NoteProgress();
+            } else if (out.giveUp) {
+                LogLine("bank: %d attempts to deposit gold all landed "
+                        "elsewhere -- this box is not really open",
+                        bankGoldDepositTries_);
+                client.ForgetBankContainer();
+                bankGoldDepositTries_ = 0;
+                planner_.NoteAttempt(obs.nowMs);
+                nextActionMs_ = obs.nowMs + 3000;
+                return false;
+            } else {
+                LogLine("bank: gold did not leave the pack (attempt %d of "
+                        "%d) -- asking the box again",
+                        bankGoldDepositTries_, kMaxBankDepositTries);
+            }
+        }
+
         // TAKE OUT BEFORE PUTTING IN. A purchase waiting on coin is the reason
         // this trip was made at all, and depositing first would empty the pack
         // it is trying to fill.
@@ -4264,7 +4475,11 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
                 LogLine("bank: depositing %d gold, keeping %d for this life's "
                         "own errands", spare, keep);
                 client.ActionMoveItem(coin, static_cast<u16>(spare), box);
-                planner_.NoteProgress();
+                // An ASK, not yet progress -- settled at the top of this
+                // block on the tick after it lands (or does not).
+                pendingGoldDepositBefore_ = obs.goldOnHand;
+                bankGoldDepositPending_ = true;
+                planner_.NoteAttempt(obs.nowMs);
                 nextActionMs_ = obs.nowMs + 1500;
                 return false;
             }
@@ -4570,6 +4785,66 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
 
     if (client.TravelBusy()) return false;
 
+    // GET TO A BANK BEFORE ASKING FOR ONE.
+    //
+    // BankErrand only ever scans mobiles already in view (NearestMobileWithTrade)
+    // -- it never travels anywhere. DoBank used to hand straight to it from
+    // wherever the character happened to be standing, which right after
+    // creation is nowhere near a counter: Draver and Lyra's very first BANK
+    // goal failed "no banker in sight" in two seconds flat
+    // (run_gates/g_Draver.console.txt, g_Lyra.console.txt, 00:32:06-00:32:11
+    // and 00:32:19-00:33:51). Both only ever banked once an UNRELATED market
+    // trip happened to walk them past a real banker five minutes later
+    // (g_Draver: "market: taking 10 i_ingot_iron to britain_bank_2" at
+    // 00:32:52, banker found at 00:37:35) -- proof the census itself is fine
+    // once actually at a bank; the goal simply never travelled there on its
+    // own. Every other service errand in this file travels first and asks
+    // second (DoHeal, EARN_GOLD's buyer trip, ...); this one now does too.
+    if (!bankErrand_.Running() && !NearAnyBank(client, obs)) {
+        if (!travelInFlight_) {
+            const KnownPlace* proven =
+                state_.memory.NearestPlace("bank", obs.x, obs.y);
+            const KnownPlace* seeded =
+                proven ? nullptr
+                       : state_.memory.NearestPlace("common_knowledge_bank",
+                                                    obs.x, obs.y);
+            if (proven) {
+                LogLine("bank: walking back to a bank we have used before, "
+                        "%d,%d", proven->x, proven->y);
+                travelInFlight_ =
+                    client.TravelToPoint(proven->x, proven->y, 3, "known_bank");
+            } else if (seeded) {
+                LogLine("bank: nothing proven yet -- trying what common "
+                        "knowledge says is here, %s at %d,%d",
+                        seeded->name.c_str(), seeded->x, seeded->y);
+                travelInFlight_ = client.TravelToPoint(seeded->x, seeded->y, 5,
+                                                       "seeded_bank");
+            } else {
+                LogLine("bank: nothing known or seeded -- asking the world "
+                        "for a bank");
+                travelInFlight_ = client.TravelToService(
+                    wm::Service::Banker, HomeOrNearest(state_.homeCity));
+            }
+            if (!travelInFlight_) {
+                LogLine("goal_blocked=BANK reason=\"%s\"",
+                        client.TravelFailureText());
+                planner_.NoteAttempt(obs.nowMs);
+                nextActionMs_ = obs.nowMs + 10000;
+            }
+            return false;
+        }
+        travelInFlight_ = false;
+        if (!NearAnyBank(client, obs)) {
+            LogLine("bank: trip reported %s but no bank is within reach of "
+                    "%d,%d",
+                    client.TravelSucceeded() ? "success" : "failure",
+                    client.PlayerX(), client.PlayerY());
+            planner_.NoteAttempt(obs.nowMs);
+            nextActionMs_ = obs.nowMs + 3000;
+        }
+        return false;
+    }
+
     // WAIT FOR THE ASK BEFORE ASKING AGAIN.
     //
     // open_bank's deadline is 6 s (kBankTimeoutMs) and this used to re-issue
@@ -4598,17 +4873,27 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
     //     no 0x3C, so waiting for contents re-opened the bank forever;
     //   * the keyword works without a named banker, so a character standing
     //     in a bank may say "bank" aloud and be served.
+    //
+    // GEOMETRY, NOT EYE CONTACT. We only ever reach this line because the
+    // block above already confirmed NearAnyBank -- so tell the errand it is
+    // at a known location and let it speak straight away rather than hunt
+    // for a banker mobile (owner ruling, 2026-08-31: bankers hear through
+    // walls; see bank_errand.h).
     if (!bankErrand_.Running()) bankErrand_.Begin();
+    bankErrand_.SetAtKnownBank(true);
     const life::BankErrandResult br = bankErrand_.Tick(client, obs);
     LogErrandReason("bank", br.why.c_str(), obs.nowMs);
     if (br.wake == life::Wake::AfterDelay && br.delayMs > 0)
         nextActionMs_ = obs.nowMs + br.delayMs;
 
     if (br.status == life::ActivityStatus::Success) {
-        // Remember where the counter is, now that one has actually served us.
-        i32 bx = 0, by = 0; i8 bz = 0;
-        if (br.banker && client.MobilePosition(br.banker, &bx, &by, &bz))
-            state_.memory.NotePlace("bank", "bank", bx, by, bz, obs.nowMs);
+        // Remember where the counter is, now that one has actually served
+        // us. A keyword ask never named a banker (br.banker == 0 -- we did
+        // not need to see one), so the character's own position is the best
+        // evidence of where the bank is.
+        i32 bx = obs.x, by = obs.y; i8 bz = obs.z;
+        if (br.banker) client.MobilePosition(br.banker, &bx, &by, &bz);
+        state_.memory.NotePlace("bank", "bank", bx, by, bz, obs.nowMs);
         // The box is open; the next tick takes the deposit branch above.
         planner_.NoteProgress();
         return false;
@@ -4733,8 +5018,29 @@ bool Runner::DoGatherLogs(Client& client, const Observation& obs) {
                 travelInFlight_ =
                     client.TravelToPoint(hint->x, hint->y, 6, "forest_hint");
             } else {
-                LogLine("gather: no stand and no lead left; asking the world for lumber");
-                travelInFlight_ = client.TravelToResource(wm::ResourceKind::Lumber);
+                // WALK OUT AND LOOK, RATHER THAN WAIT FOR AN ATLAS ENTRY
+                // THAT DOES NOT EXIST. Project owner, 2026-08-31: "if he
+                // left the guard zone at Britain he would see farmable
+                // trees" -- and the atlas backs this up literally:
+                // data/revolution_atlas.txt has zero PLACE rows with
+                // resources=lumber (grep -i "\tlumber$"), so
+                // TravelToResource(Lumber) can never succeed here. A real
+                // player in this position walks out of town; this is that,
+                // bounded (world/GuardZoneAdvance.h -- same shape as
+                // DoMine's DeeperMiningTarget, opposite direction).
+                i32 stepX = 0, stepY = 0;
+                if (client.StepOutOfGuardZone(obs.x, obs.y, &stepX, &stepY)) {
+                    LogLine("gather: no stand and no lead left, and this is "
+                            "guarded ground -- walking out to where trees can "
+                            "actually be worked");
+                    travelInFlight_ =
+                        client.TravelToPoint(stepX, stepY, 4, "past_guard_line");
+                } else {
+                    LogLine("gather: no stand and no lead left; asking the "
+                            "world for lumber");
+                    travelInFlight_ =
+                        client.TravelToResource(wm::ResourceKind::Lumber);
+                }
             }
             if (!travelInFlight_) {
                 LogLine("goal_blocked=GATHER_LOGS reason=\"%s\"",
@@ -5092,18 +5398,54 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
     // A fighter with no fight in reach should go and find one.
     if (!needCfg_.profession || !WantsToHunt(*needCfg_.profession)) return true;
 
+    // GEAR UP BEFORE THE FIRST HUNT. "hunting ground can be graveyards for
+    // early hunting, brit sewers maybe, but they need gear too" (project
+    // owner, 2026-08-31). Affordability is not the issue -- a fresh fighter
+    // starts with 10,000 gold -- ORDERING is: a fighter that walks to the
+    // graveyard bare-handed and unarmoured because nothing ever checked is
+    // the mistake, not the shopping trip itself. Checked the same way
+    // DoReplaceEquipment/DoUpgradeGear already check (obs.weaponEquipped,
+    // MayWear/HasBasicArmor), and handed off rather than acquired here --
+    // this goal fights, it does not shop.
+    if (!obs.weaponEquipped) {
+        return HandOff(GoalKind::TrainCombat, GoalKind::ReplaceEquipment,
+                       kGearCooldownMs, "no gear yet -- shopping before the "
+                       "graveyard", obs.nowMs);
+    }
+    if (!HasBasicArmor(client, obs)) {
+        return HandOff(GoalKind::TrainCombat, GoalKind::UpgradeGear,
+                       kGearCooldownMs, "no gear yet -- shopping before the "
+                       "graveyard", obs.nowMs);
+    }
+
     // Not while hurt, and not while loaded: the goal scorer already docks
     // both, but arriving at a graveyard at half health is a death rather than
     // a lesson, and that is a decision this goal should make for itself.
+    //
+    // FINISH(FALSE) WITH A COOLDOWN, NOT "return true". Returning true here
+    // reports the goal COMPLETE -- Tick() calls planner_.Finish(true, ...)
+    // right after -- so nothing happened and the planner is told it
+    // succeeded. w_Kaelen logged this exact line into a five-times-in-five-
+    // seconds spin (run_r4/w_Kaelen.console.txt:620-710, 25/32 health every
+    // time) because Finish(true) carries no cooldown and TRAIN_COMBAT was the
+    // very next need re-picked. A goal that decided not to act did nothing,
+    // and "did nothing" stands down (goal-that-did-nothing-must-stand-down),
+    // it does not report success.
     if (obs.hp * 100 < obs.hpMax * 80) {
         LogLine("hunt: %d/%d health -- not going looking for a fight",
                 obs.hp, obs.hpMax);
-        return true;
+        planner_.Cooldown(GoalKind::TrainCombat, obs.nowMs + kHuntStandDownMs);
+        planner_.Finish(false, "too hurt to go looking for a fight", obs.nowMs);
+        nextActionMs_ = obs.nowMs + 3000;
+        return false;
     }
     if (obs.WeightFraction() >= 0.7) {
         LogLine("hunt: carrying too much to fight (%.0f%%)",
                 obs.WeightFraction() * 100.0);
-        return true;
+        planner_.Cooldown(GoalKind::TrainCombat, obs.nowMs + kHuntStandDownMs);
+        planner_.Finish(false, "carrying too much to fight", obs.nowMs);
+        nextActionMs_ = obs.nowMs + 3000;
+        return false;
     }
 
     if (client.TravelBusy()) return false;
@@ -5111,15 +5453,23 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
         if (++huntTrips_ > kMaxHuntTrips) {
             LogLine("goal_failed=TRAIN_COMBAT reason=\"no hunting ground "
                     "reachable after %d trips\"", huntTrips_);
+            planner_.Cooldown(GoalKind::TrainCombat,
+                              obs.nowMs + kNoHuntingGroundCooldownMs);
             planner_.Finish(false, "no hunting ground reachable", obs.nowMs);
             huntTrips_ = 0;
             nextActionMs_ = obs.nowMs + 60000;
             return false;
         }
-        LogLine("hunt: no fight in reach -- going to the nearest graveyard "
-                "(trip %d)", huntTrips_);
-        travelInFlight_ = client.TravelToPlaceCategory(wm::PlaceCategory::Graveyard);
-        if (!travelInFlight_) {
+        // TravelToHuntingGround resolves the nearest graveyard-category place
+        // from world_atlas::Atlas::NearestHuntingGround -- the early-tier
+        // hunting ground the owner named -- and logs where it is actually
+        // going, not just "the nearest graveyard".
+        std::string huntPlace;
+        travelInFlight_ = client.TravelToHuntingGround(&huntPlace);
+        if (travelInFlight_) {
+            LogLine("hunt: heading to %s to train (trip %d)",
+                    huntPlace.c_str(), huntTrips_);
+        } else {
             LogLine("goal_blocked=TRAIN_COMBAT reason=\"%s\"",
                     client.TravelFailureText());
             planner_.NoteAttempt(obs.nowMs);
@@ -6470,6 +6820,23 @@ bool Runner::AtMarketBank(const Client& client) const {
                     p->position.y) <= p->radius + 2;
 }
 
+// A DIFFERENT QUESTION FROM AtMarketBank: that one asks "am I at THE market
+// bank" (market::kMarketBankPlaceId, the one designated trade rendezvous);
+// this asks "am I near A bank at all" -- the nearest one the atlas knows of,
+// full stop. DoBank's own arrival test, so a fresh character's first BANK
+// goal knows whether it has to travel before BankErrand's mobile scan has
+// anything to find.
+bool Runner::NearAnyBank(Client& client, const Observation& obs) const {
+    const wm::Place* p = client.NearestServicePlace(wm::Service::Banker);
+    if (!p) return false;
+    // The place's own radius plus a few tiles of slack -- same shape as
+    // AtMarketBank's "+2", widened a little because BankErrand's own mobile
+    // scan (NearestMobileWithTrade) needs the banker in view, not merely the
+    // place's rim.
+    return TileDist(obs.x, obs.y, p->position.x, p->position.y) <=
+           p->radius + 4;
+}
+
 void Runner::ForgetBankedStock(const char* item) {
     if (!item || !item[0]) return;
     for (usize i = 0; i < state_.bank.size(); ++i) {
@@ -7442,6 +7809,7 @@ bool Runner::DoBuySupplies(Client& client, const Observation& obs) {
     if (supplyItem_ != want.item) {
         supplyItem_ = want.item;
         supplyTrips_ = 0;
+        supplySkipPlaces_.clear();
         const char* trade = SupplierTradeFor(supplyItem_);
         supplyTrade_ = trade ? trade : "";
         // The service the trade word maps to, so a shopkeeper wearing a
@@ -7487,7 +7855,11 @@ bool Runner::DoBuySupplies(Client& client, const Observation& obs) {
         return false;
     }
 
-    if (client.TravelBusy()) return false;
+    if (client.TravelBusy()) {
+        VetoTripOverSessionBudget(client, obs, GoalKind::BuySupplies,
+                                  "BUY_SUPPLIES", kCraftStuckCooldownMs);
+        return false;
+    }
 
     const u32 vendor = client.VendorOfferFrom();
     if (vendor == 0) {
@@ -7519,11 +7891,19 @@ bool Runner::DoBuySupplies(Client& client, const Observation& obs) {
                 nextActionMs_ = obs.nowMs + 30000;
                 return false;
             }
-            LogLine("supplies: looking for a '%s' to sell %d %s (trip %d)",
+            LogLine("supplies: looking for a '%s' to sell %d %s (trip %d, %zu "
+                    "place(s) already tried)",
                     supplyTrade_.c_str(), want.qty, supplyItem_.c_str(),
-                    supplyTrips_);
-            travelInFlight_ = client.TravelToService(
-                ServiceForTrade(supplyTrade_.c_str()), HomeOrNearest(state_.homeCity));
+                    supplyTrips_, supplySkipPlaces_.size());
+            // SKIP WHAT WAS ALREADY SENT TO. Without a persistent skip list
+            // every retry re-ran PickServicePlace with an empty one and
+            // picked the SAME shop -- trip 2 walked Dorvar right back to the
+            // Ocllo provisioner whose transit had just stalled, instead of
+            // falling through to the next-best candidate. See
+            // supplySkipPlaces_.
+            travelInFlight_ = client.TravelToServiceSkipping(
+                ServiceForTrade(supplyTrade_.c_str()),
+                HomeOrNearest(state_.homeCity), {}, &supplySkipPlaces_);
             if (!travelInFlight_) {
                 LogLine("goal_blocked=BUY_SUPPLIES reason=\"%s\" (%s)",
                         faucet::RefusalName(faucet::Refusal::VendorUnreachable),
@@ -9911,6 +10291,25 @@ const ArmorPiece* ArmorFor(u16 graphic) {
     return nullptr;
 }
 
+// IS ANYTHING FROM kArmorPieces ON THE BODY RIGHT NOW.
+//
+// Not "is every slot full" -- one real piece (a leather tunic, a chainmail
+// coif) is enough to say this life is not walking into a graveyard in
+// ordinary clothes. Ordinary clothing has no entry in kArmorPieces at all,
+// so a shirt and trousers do not count. Read the same way DoUpgradeGear's
+// wear pass reads the paperdoll (line ~9985): per candidate piece, ask the
+// tiledata layer, then ask what is actually worn there.
+bool Runner::HasBasicArmor(Client& client, const Observation& obs) const {
+    for (const ArmorPiece& a : kArmorPieces) {
+        if (!MayWear(a, obs)) continue;
+        const u8 layer = client.ItemEquipLayer(a.graphic);
+        if (!layer) continue;
+        const u16 wornGfx = client.EquippedGraphicAt(layer);
+        if (wornGfx && ArmorFor(wornGfx)) return true;
+    }
+    return false;
+}
+
 bool Runner::MayWear(const ArmorPiece& a, const Observation& obs) const {
     // THE PROFESSION ANSWERS FIRST, because it knows before login.
     //
@@ -10254,6 +10653,11 @@ bool Runner::DoMine(Client& client, const Observation& obs) {
                 if (deadTargets_.size() > 32)
                     deadTargets_.erase(deadTargets_.begin());
                 mineRoam_ = true;   // this vein is done; wander before rescanning
+                // Counts toward the first-visit deeper-advance below. A
+                // veteran with a remembered vein never gets this far off
+                // course; a newborn at the mouth racks these up one entrance
+                // rock at a time.
+                ++mineConsecRefusals_;
                 resolved = true;
                 break;
             }
@@ -10268,6 +10672,10 @@ bool Runner::DoMine(Client& client, const Observation& obs) {
                                     mineJournalMs_)) {
             LogLine("mine: failed the roll at %d,%d -- that is how gains "
                     "happen; striking again", mineX_, mineY_);
+            // The roll failed, not the tile -- this IS genuine resource
+            // ground, so the refusal streak that would send DoMine looking
+            // deeper is no longer honest. Clear it.
+            mineConsecRefusals_ = 0;
             resolved = true;
         }
         if (!resolved && client.JournalSaidSince("You put", mineJournalMs_)) {
@@ -10275,6 +10683,8 @@ bool Runner::DoMine(Client& client, const Observation& obs) {
             state_.memory.NoteResource("ore", mineX_, mineY_, mineZ_, true,
                                        obs.nowMs);
             planner_.NoteProgress();
+            mineConsecRefusals_ = 0;
+            mineAdvances_ = 0;
             resolved = true;
         }
         if (!resolved) {
@@ -10363,12 +10773,41 @@ bool Runner::DoMine(Client& client, const Observation& obs) {
     // is close enough to walk to. The existing jitter still spreads him
     // around inside once he is there, and the dead list still retires worked
     // ground.
+    bool haveNearbyMemory = false;
     if (const KnownResourceSource* known =
             state_.memory.BestResource("ore", obs.x, obs.y, obs.nowMs)) {
         if (known->successes > 0 &&
             TileDist(known->x, known->y, obs.x, obs.y) <= kMineKnownSpotWithin) {
             scanX = known->x;
             scanY = known->y;
+            haveNearbyMemory = true;
+        }
+    }
+
+    // THE MOUTH IS PICKED CLEAN -- HEAD DEEPER IN. First-visit only: a
+    // newborn has no memory (haveNearbyMemory stays false above), so every
+    // scan keeps restarting from wherever he is standing, which is the
+    // mouth. Three refusals in a row there ("try mining elsewhere" and kin)
+    // means the entrance's rock-graphic tiles are exhausted, and the real
+    // vein can sit past the ordinary scan radius -- walking further into
+    // the mine's own RECTs is what finds it, not another jittered rescan of
+    // the same doorway. Bounded by mineAdvances_ so a genuinely empty cave
+    // still fails honestly (owner: "it is not going to mine deep -- that is
+    // the problem", 2026-08-31; DeeperMiningTarget only fires inside a
+    // Cave-kind region, so open-air rock is unaffected).
+    if (!haveNearbyMemory &&
+        mineConsecRefusals_ >= kMineRefusalsBeforeAdvance &&
+        mineAdvances_ < kMaxMineAdvances) {
+        i32 deepX = 0, deepY = 0;
+        if (client.DeeperMiningTarget(obs.x, obs.y, &deepX, &deepY)) {
+            LogLine("mine: the mouth is picked clean -- heading deeper in");
+            ++mineAdvances_;
+            mineConsecRefusals_ = 0;
+            mineRoam_ = false;
+            travelInFlight_ =
+                client.TravelToPoint(deepX, deepY, 2, "deeper into the mine");
+            nextActionMs_ = obs.nowMs + 2500;
+            return false;
         }
     }
 
@@ -10440,6 +10879,10 @@ bool Runner::DoMine(Client& client, const Observation& obs) {
         }
         deadTargets_.clear();
         mineTrips_ = 0;
+        // Give up honestly rather than carry a maxed-out advance count into
+        // whatever mine this character tries next.
+        mineConsecRefusals_ = 0;
+        mineAdvances_ = 0;
         planner_.Cooldown(GoalKind::Mine, obs.nowMs + kNoOreCooldownMs);
         planner_.Finish(false, "no rock in reach", obs.nowMs);
         return false;

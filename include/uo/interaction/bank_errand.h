@@ -25,6 +25,19 @@
 //
 // Everything else -- the deadline rule, the refusal rule, the silent-NPC
 // rotation -- is the shared machinery, not another copy of it.
+//
+// AT A KNOWN LOCATION, SPEAK -- DO NOT HUNT FOR EYE CONTACT (project owner,
+// 2026-08-31): "we know the bank location, you don't need to see the banker
+// itself". NPCBRAIN_BANKER waives Sphere's usual LOS-gated hearing
+// (Source-X e6e77557) -- a banker answers through a wall -- so a caller that
+// already knows (from the atlas or its own memory) it is standing where a
+// bank is should set SetAtKnownBank(true) before Tick(). Step::Find then
+// skips NearestMobileWithTrade and ActionScanMobiles entirely and goes
+// straight to the keyword ask: hunting for the specific mobile is
+// unnecessary work with its own failure mode (v3_Corwyn: two visible
+// bankers, 95 attempts, no box ever opened). Defaults to false and resets
+// on every Begin(), so callers that never call it -- the market/trade and
+// wind-down errands -- keep the original find-a-mobile behaviour unchanged.
 // ---------------------------------------------------------------------------
 
 #include "uo/interaction/activity_result.h"
@@ -61,6 +74,12 @@ public:
     bool Running() const { return running_; }
     void Cancel() { running_ = false; }
 
+    // Tell the errand it is already standing where a bank is -- see the
+    // header comment. Call this every tick before Tick() when it applies;
+    // it is read once per Tick() and defaults (and resets on Begin()) to
+    // false, so a caller that never calls it gets the original behaviour.
+    void SetAtKnownBank(bool v) { atKnownBank_ = v; }
+
     BankErrandResult Tick(Client& client, const Observation& obs);
 
 private:
@@ -68,6 +87,7 @@ private:
 
     Step        step_ = Step::Find;
     bool        running_ = false;
+    bool        atKnownBank_ = false;
     u32         banker_ = 0;
     i32         shouts_ = 0;
     i64         scannedAtMs_ = 0;

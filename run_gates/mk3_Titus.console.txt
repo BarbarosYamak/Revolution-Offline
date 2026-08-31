@@ -1,0 +1,877 @@
+[00:20:19.116] INFO  session 0: 127.0.0.1:2593 user='RevGen3_28' char=Titus tag='mk3_Titus'
+[00:20:19.117] LOG   [mk3_Titus] event session_start: text log opened
+[00:20:19.117] LOG   [mk3_Titus] event net_connect_begin: connect 127.0.0.1:2593
+[00:20:19.117] INFO  [mk3_Titus] [net] connecting to 127.0.0.1:2593 ...
+[00:20:19.119] LOG   [mk3_Titus] event net_connected: connect 127.0.0.1:2593
+[00:20:19.119] INFO  [mk3_Titus] [net] connected.
+[00:20:19.119] INFO  [mk3_Titus] [seed] sent 0x7F000001 (plaintext)
+[00:20:19.119] LOG   [mk3_Titus] event seed_out: 0x7F000001 hex=7f000001
+[00:20:19.119] INFO  [life] no prior state for revgen3_28.titus: a new Archer
+[00:20:19.119] INFO  [life] creation request: skill 31 50.0 + Bowcraft 50.0, stats 24/48/8 = 80
+[00:20:19.119] INFO  [life] needs: reading 'archer' from the profession catalogue
+[00:20:19.119] INFO  [life] home: Titus lives in Skara Brae
+[00:20:19.119] INFO  [life] build plan 'archer': 400.0 resolved + 300.0 unresolved = 700.0/700.0, stats 70/100/55 = 225
+[00:20:19.119] INFO  [mk3_Titus] [life] autonomous player active for 'Titus' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 3 min)
+[00:20:19.129] INFO  [mk3_Titus] [0xA8] 1 server(s):
+[00:20:19.129] INFO  [mk3_Titus]   [0] MyShard                   1.0.0.127  full=10%  tz=0
+[00:20:19.144] INFO  [mk3_Titus] [0x8C] game server = 127.0.0.1:2593  seed=0x21C2A854
+[00:20:19.144] LOG   [mk3_Titus] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x21C2A854
+[00:20:19.144] INFO  [mk3_Titus] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[00:20:19.144] LOG   [mk3_Titus] event relay_same_socket: no seed re-sent; 0x91 follows
+[00:20:19.144] INFO  [mk3_Titus] [0xB9] server features = 0x0005
+[00:20:19.144] INFO  [mk3_Titus] [0xA9] 5 slot(s) (populated 0):
+[00:20:19.144] INFO  [mk3_Titus]   [0] <empty>
+[00:20:19.144] INFO  [mk3_Titus]   [1] <empty>
+[00:20:19.144] INFO  [mk3_Titus]   [2] <empty>
+[00:20:19.144] INFO  [mk3_Titus]   [3] <empty>
+[00:20:19.144] INFO  [mk3_Titus]   [4] <empty>
+[00:20:19.144] INFO  [mk3_Titus] create: appearance sex=F skin=0x0420 hair=0x2049/0x0475 shirt=0x018A pants=0x0240
+[00:20:19.144] INFO  [mk3_Titus] [0x00] starting city index 7
+[00:20:19.144] INFO  [mk3_Titus] [0x00] requested skills 31:50 8:50 48:0
+[00:20:19.144] INFO  [mk3_Titus] [0x00] requested stats STR 24 DEX 48 INT 8
+[00:20:19.144] INFO  [mk3_Titus] [0x00] creating character 'Titus' in slot 0
+[00:20:19.144] LOG   [mk3_Titus] event char_create_sent: Titus
+[00:20:19.162] INFO  [mk3_Titus] [0x1B] serial=0x000180D0 body=0x0191 pos=(618,2234,0)
+[00:20:19.162] LOG   [mk3_Titus] event login_confirm: serial=0x000180D0 body=0x0191 pos=(618,2234,0)
+[00:20:19.162] INFO  [mk3_Titus] [0x20] player @(618,2234,0) facing=3
+[00:20:19.162] INFO  [mk3_Titus] [0x55] login complete — entering world
+[00:20:19.162] LOG   [mk3_Titus] event in_world: 0x55 received
+[00:20:19.162] INFO  [mk3_Titus] [backpack] opening 0x4001807D
+[00:20:19.162] INFO  [mk3_Titus] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[00:20:19.162] INFO  [mk3_Titus] [chat ascii] System: There are 27 other players here.
+[00:20:19.162] INFO  [mk3_Titus] [chat ascii] System: You are under the protection of the town guards
+[00:20:19.166] INFO  [mk3_Titus] [action] requesting the skill list
+[00:20:19.166] INFO  [life] in world; asked the server for the skill list
+[00:20:19.166] INFO  [mk3_Titus] [0x24] open container 0x4001807D gump=60
+[00:20:19.166] INFO  [mk3_Titus] [0x3C] container contents: 9 item(s)
+[00:20:19.166] LOG   [mk3_Titus] event backpack_contents: serial=0x4001807D items=9
+[00:20:21.748] INFO  [mk3_Titus] [bot] world data loaded (0 blacklisted spot(s)).
+[00:20:21.748] INFO  [life] reconciliation: first ever login, 7 field(s) differed
+[00:20:21.748] INFO  [life]   gold         persisted=0          server=10000      -> server value accepted
+[00:20:21.748] INFO  [life]   str          persisted=0          server=24         -> server value accepted
+[00:20:21.748] INFO  [life]   dex          persisted=0          server=48         -> server value accepted
+[00:20:21.748] INFO  [life]   int          persisted=0          server=8          -> server value accepted
+[00:20:21.748] INFO  [life]   skill_31     persisted=0.0        server=50.0       -> server value accepted
+[00:20:21.748] INFO  [life]   skill_8      persisted=0.0        server=50.0       -> server value accepted
+[00:20:21.748] INFO  [life]   skill_27     persisted=0.0        server=0.0        -> server value accepted
+[00:20:21.748] INFO  [life]   skill_1      persisted=0.0        server=0.0        -> server value accepted
+[00:20:21.748] INFO  [life]   skill_17     persisted=0.0        server=0.0        -> server value accepted
+[00:20:21.748] INFO  [life]   position     persisted=0,0        server=618,2234   -> server value accepted
+[00:20:21.748] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[00:20:21.748] INFO  [mk3_Titus] [survival] on
+[00:20:21.748] LOG   [mk3_Titus] event survival_mode: on
+[00:20:21.750] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_28.titus/state.json
+[00:20:21.750] INFO  [mk3_Titus] [survival] hp 24/24 (100%) -> fight
+[00:20:21.756] INFO  [life] goal=BANK reason="no goal was running"
+[00:20:21.756] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedMakeBandages(bandages BLOCKED 0.70) NeedTraining(skill 31 0.65) NeedTraining(Tactics 0.65) NeedTraining(Anatomy 0.65) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedSkillTraining(Tactics 0.55) NeedEquipment(heal potions 0.50) NeedEquipment(bandages 0.50) NeedBank(put unsold stock away 0.40) NeedFood(food 0.25) NeedGear(gear 0.22) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=0 held=[] want_train=Tactics (targ
+[00:20:21.756] INFO  [life]   score=150.0
+[00:20:21.756] INFO  [life]   reason: NeedBank urgency 0.75 x 240 = 180.0
+[00:20:21.756] INFO  [life]   reason: on_hand=10000 (total 10000) reserve=300 carry=800 spare=9200 risk=1.00
+[00:20:21.756] INFO  [life]   reason: no bank learned yet -30
+[00:20:21.756] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (25 x i_arrow spare, and no buyer known -- on this shard it is a player-market good)
+[00:20:21.756] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of an input no NPC may legitimately sell it (i_bow needs 35 x i_log -- and the vendor policy refuses that purchase)
+[00:20:21.756] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 10000 (buyable at 200))
+[00:20:21.756] INFO  [mk3_Titus] [action] scanning nearby mobiles for names
+[00:20:21.757] INFO  [mk3_Titus] [action] requested 4 paperdoll(s) for trade titles
+[00:20:21.757] INFO  [life] bank: asking who is standing in the bank
+[00:20:21.772] INFO  [mk3_Titus] [mobiles] nearby (11):
+[00:20:21.772] INFO  [mk3_Titus]   Cat 0x00014BAA
+[00:20:21.772] INFO  [mk3_Titus]   jungle bird 0x0000D6AF
+[00:20:21.772] INFO  [mk3_Titus]   Aiken 0x000027DC
+[00:20:21.772] INFO  [mk3_Titus]   Cat 0x0000D0F8
+[00:20:21.772] INFO  [mk3_Titus]   Dorvar 0x00019D4B
+[00:20:21.772] INFO  [mk3_Titus]   Rat 0x00015CD6
+[00:20:21.772] INFO  [mk3_Titus]   Ithion 0x00019837
+[00:20:21.772] INFO  [mk3_Titus]   Li 0x00002822
+[00:20:21.772] INFO  [mk3_Titus]   jungle bird 0x00011AA9
+[00:20:21.772] INFO  [mk3_Titus]   Iolana 0x000027ED
+[00:20:21.772] INFO  [mk3_Titus]   Rat 0x00010AC3
+[00:20:21.772] INFO  [mk3_Titus] [0x20] player @(618,2234,0) facing=0
+[00:20:21.772] INFO  [mk3_Titus] [0x88] paperdoll 0x000027DC: "Aiken, the healer guildmaster"
+[00:20:21.772] INFO  [mk3_Titus] [world] Aiken, the healer guildmaster is a healer at (618,2222)
+[00:20:21.772] INFO  [mk3_Titus] [0x88] paperdoll 0x00019D4B: "Dorvar, Apprentice Fisherman"
+[00:20:21.772] INFO  [mk3_Titus] [0x88] paperdoll 0x00019837: "Ithion, Apprentice Fisherman"
+[00:20:21.772] INFO  [mk3_Titus] [0x20] player @(618,2234,0) facing=6
+[00:20:21.772] INFO  [mk3_Titus] [0x88] paperdoll 0x00002822: "Li, the innkeeper"
+[00:20:21.772] INFO  [mk3_Titus] [world] Li, the innkeeper is a innkeeper at (604,2239)
+[00:20:22.310] INFO  [mk3_Titus] [chat ascii] System: Rhea has arrived in Britain.
+[00:20:23.797] INFO  [life] bank: no banker in sight
+[00:20:23.797] INFO  [life] goal_failed=BANK status=retryable_failure reason="no banker in sight"
+[00:20:23.813] INFO  [life] goal=REPLACE_EQUIPMENT reason="previous goal abandoned: no banker answered"
+[00:20:23.813] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedMakeBandages(bandages BLOCKED 0.70) NeedTraining(skill 31 0.65) NeedTraining(Tactics 0.65) NeedTraining(Anatomy 0.65) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedSkillTraining(Tactics 0.55) NeedEquipment(heal potions 0.50) NeedEquipment(bandages 0.50) NeedBank(put unsold stock away 0.40) NeedFood(food 0.25) NeedGear(gear 0.22) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=0 held=[] want_train=Tactics (targ
+[00:20:23.813] INFO  [life]   score=130.0
+[00:20:23.813] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:20:23.813] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:20:23.813] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 299s after achieving nothing
+[00:20:23.813] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (25 x i_arrow spare, and no buyer known -- on this shard it is a player-market good)
+[00:20:23.813] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of an input no NPC may legitimately sell it (i_bow needs 35 x i_log -- and the vendor policy refuses that purchase)
+[00:20:23.813] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 10000 (buyable at 200))
+[00:20:25.377] INFO  [mk3_Titus] [chat ascii] System: Xerxes has arrived in Vesper.
+[00:20:26.810] INFO  [mk3_Titus] [survival] hp 24/24 (100%) -> fight
+[00:20:28.819] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:20:28.819] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:20:28.819] INFO  [mk3_Titus] [travel] healer (seen) -> (618,2222) r=2 from (618,2234)
+[00:20:28.820] LOG   [mk3_Titus] event travel_start: label='healer (seen)' target=(618,2222) radius=2 from=(618,2234)
+[00:20:28.820] INFO  [life] bandages: walking to a 'healer' (trip 1)
+[00:20:28.820] INFO  [mk3_Titus] [travel] mode walk             usable   <- chosen
+[00:20:28.820] INFO  [mk3_Titus] [travel] mode moongate         usable
+[00:20:28.820] INFO  [mk3_Titus] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:28.820] INFO  [mk3_Titus] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:28.820] LOG   [mk3_Titus] event travel_mode: walk
+[00:20:28.820] INFO  [mk3_Titus] [travel] plan healer (seen): ok legs=1 ~18 tiles transit=0 nodes=0
+[00:20:28.882] INFO  [mk3_Titus] [action] goto (619,2216) from (618,2234,0)
+[00:20:28.882] LOG   [mk3_Titus] event goto_start: target=(619,2216) from=(618,2234)
+[00:20:28.882] INFO  [mk3_Titus] [bot] running from (618,2234,0) to (619,2216,z0)
+[00:20:28.882] INFO  [mk3_Titus] [bot] planning path to (619,2216) in background
+[00:20:29.923] INFO  [mk3_Titus] [action] goto finished at (618,2234,0); target (619,2216); stopped short (off by 19 tile(s))
+[00:20:29.923] LOG   [mk3_Titus] event goto_done: at=(618,2234) target=(619,2216) arrived=0 off=19
+[00:20:31.148] INFO  [mk3_Titus] [action] goto (619,2216) from (618,2234,0)
+[00:20:31.148] LOG   [mk3_Titus] event goto_start: target=(619,2216) from=(618,2234)
+[00:20:31.149] INFO  [mk3_Titus] [bot] running from (618,2234,0) to (619,2216,z0)
+[00:20:31.149] INFO  [mk3_Titus] [bot] planning path to (619,2216) in background
+[00:20:31.869] INFO  [mk3_Titus] [survival] hp 24/24 (100%) -> fight
+[00:20:32.054] INFO  [mk3_Titus] [action] goto finished at (618,2234,0); target (619,2216); stopped short (off by 19 tile(s))
+[00:20:32.054] LOG   [mk3_Titus] event goto_done: at=(618,2234) target=(619,2216) arrived=0 off=19
+[00:20:33.309] INFO  [mk3_Titus] [action] goto (619,2216) from (618,2234,0)
+[00:20:33.309] LOG   [mk3_Titus] event goto_start: target=(619,2216) from=(618,2234)
+[00:20:33.309] INFO  [mk3_Titus] [bot] running from (618,2234,0) to (619,2216,z0)
+[00:20:33.309] INFO  [mk3_Titus] [bot] planning path to (619,2216) in background
+[00:20:34.196] INFO  [mk3_Titus] [action] goto finished at (618,2234,0); target (619,2216); stopped short (off by 19 tile(s))
+[00:20:34.197] LOG   [mk3_Titus] event goto_done: at=(618,2234) target=(619,2216) arrived=0 off=19
+[00:20:35.454] INFO  [mk3_Titus] [travel] mode walk             usable   <- chosen
+[00:20:35.454] INFO  [mk3_Titus] [travel] mode moongate         usable
+[00:20:35.454] INFO  [mk3_Titus] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:35.454] INFO  [mk3_Titus] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:35.454] LOG   [mk3_Titus] event travel_mode: walk
+[00:20:35.454] INFO  [mk3_Titus] [travel] plan healer (seen): ok legs=1 ~18 tiles transit=0 nodes=0
+[00:20:36.929] INFO  [mk3_Titus] [survival] hp 24/24 (100%) -> fight
+[00:20:36.990] INFO  [mk3_Titus] [action] goto (619,2216) from (618,2234,0)
+[00:20:36.990] LOG   [mk3_Titus] event goto_start: target=(619,2216) from=(618,2234)
+[00:20:36.990] INFO  [mk3_Titus] [bot] running from (618,2234,0) to (619,2216,z0)
+[00:20:36.990] INFO  [mk3_Titus] [bot] planning path to (619,2216) in background
+[00:20:37.051] INFO  [mk3_Titus] [bot] replan to (619,2216): 21 steps in 2576.7us
+[00:20:40.006] INFO  [mk3_Titus] [bot] step (622,2225,0)->(623,2224,0) rejected; OpenDoor + retry
+[00:20:40.022] INFO  [mk3_Titus] [chat ascii] System: Opening door...
+[00:20:40.022] INFO  [mk3_Titus] [0x20] player @(622,2225,0) facing=0
+[00:20:40.022] INFO  [mk3_Titus] [action] goto finished at (622,2225,0); target (619,2216); stopped short (off by 12 tile(s))
+[00:20:40.022] LOG   [mk3_Titus] event goto_done: at=(622,2225) target=(619,2216) arrived=0 off=12
+[00:20:41.262] INFO  [mk3_Titus] [action] goto (619,2216) from (622,2225,0)
+[00:20:41.262] LOG   [mk3_Titus] event goto_start: target=(619,2216) from=(622,2225)
+[00:20:41.262] INFO  [mk3_Titus] [bot] running from (622,2225,0) to (619,2216,z0)
+[00:20:41.262] INFO  [mk3_Titus] [bot] planning path to (619,2216) in background
+[00:20:41.324] INFO  [mk3_Titus] [bot] replan to (619,2216): 14 steps in 917.8us
+[00:20:41.388] INFO  [mk3_Titus] [bot] lookahead patched around block at step 1: anchor=5 new segment=4 path=13 in 31.7us
+[00:20:41.571] INFO  [mk3_Titus] [bot] door ahead at (622,2224,z0); OpenDoor before step
+[00:20:41.571] INFO  [mk3_Titus] [chat ascii] System: Opening door...
+[00:20:41.967] INFO  [mk3_Titus] [survival] hp 24/24 (100%) -> fight
+[00:20:42.981] INFO  [mk3_Titus] [bot] door ahead at (623,2223,z0); OpenDoor before step
+[00:20:42.981] INFO  [mk3_Titus] [chat ascii] System: Opening door...
+[00:20:45.063] INFO  [mk3_Titus] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=7 in 144.2us
+[00:20:46.857] INFO  [mk3_Titus] [travel] healer (seen) ARRIVED at (618,2218,0)
+[00:20:46.857] LOG   [mk3_Titus] event travel_done: label='healer (seen)' ok=1 at=(618,2218) legs=1 plans=2 why=''
+[00:20:46.918] INFO  [mk3_Titus] [action] scanning nearby mobiles for names
+[00:20:46.919] INFO  [mk3_Titus] [action] requested 1 paperdoll(s) for trade titles
+[00:20:46.919] INFO  [life] bandages: at the shop, asking who is here (scan 1 of 3)
+[00:20:46.920] INFO  [mk3_Titus] [mobiles] nearby (10):
+[00:20:46.920] INFO  [mk3_Titus]   Aiken 0x000027DC
+[00:20:46.920] INFO  [mk3_Titus]   Iolana 0x000027ED
+[00:20:46.920] INFO  [mk3_Titus]   Ithion 0x00019837
+[00:20:46.920] INFO  [mk3_Titus]   Cat 0x0000D0F8
+[00:20:46.920] INFO  [mk3_Titus]   Rat 0x00010AC3
+[00:20:46.920] INFO  [mk3_Titus]   Rat 0x00015CD6
+[00:20:46.920] INFO  [mk3_Titus]   Cat 0x00014BAA
+[00:20:46.920] INFO  [mk3_Titus]   jungle bird 0x0000D6AF
+[00:20:46.920] INFO  [mk3_Titus]   Dorvar 0x00019D4B
+[00:20:46.920] INFO  [mk3_Titus]   Li 0x00002822
+[00:20:46.920] INFO  [mk3_Titus] [0x20] player @(618,2218,0) facing=7
+[00:20:46.920] INFO  [mk3_Titus] [0x88] paperdoll 0x000027ED: "Iolana, the healer"
+[00:20:46.920] INFO  [mk3_Titus] [world] Iolana, the healer is a healer at (616,2216)
+[00:20:46.920] INFO  [mk3_Titus] [0x21] stale reject seq=20 (block already handled); pose resynced
+[00:20:46.980] INFO  [mk3_Titus] [survival] hp 24/24 (100%) -> fight
+[00:20:49.957] INFO  [life] bandages: found a 'healer'
+[00:20:50.017] INFO  [life] bandages: within reach
+[00:20:50.079] INFO  [mk3_Titus] [ACTION] vendor_buy start
+[00:20:50.079] INFO  [mk3_Titus] [VENDOR] open vendor=0x000027ED say='Iolana buy'
+[00:20:50.079] INFO  [life] bandages: asking the 'healer' to show clean bandages (attempt 1)
+[00:20:50.080] INFO  [mk3_Titus] [chat uni  ] : Iolana buy
+[00:20:50.080] INFO  [mk3_Titus] [chat ascii] Iolana: Greetings. What can I help thee with?
+[00:20:50.080] INFO  [mk3_Titus] [chat ascii] Iolana: I'm here to sell thee supplies.
+[00:20:50.080] INFO  [mk3_Titus] [0x3C] container contents: 5 item(s)
+[00:20:50.080] INFO  [mk3_Titus] [0x74] pairing: straight (straight 5, mirrored 1 of 5 rows)
+[00:20:50.080] INFO  [mk3_Titus] [0x74] vendor shop data: cont=0x400027E7 5 item(s), layer=0x1A
+[00:20:50.080] INFO  [mk3_Titus] [0x74]   clean bandages               gfx=0x0E21 qty=16   price=1
+[00:20:50.080] INFO  [mk3_Titus] [0x74]   Heal                         gfx=0x0F0C qty=10   price=30
+[00:20:50.080] INFO  [mk3_Titus] [0x74]   Ginseng                      gfx=0x0F85 qty=22   price=3
+[00:20:50.080] INFO  [mk3_Titus] [0x74]   Garlic                       gfx=0x0F84 qty=7    price=3
+[00:20:50.080] INFO  [mk3_Titus] [0x74]   Refresh                      gfx=0x0F0B qty=32   price=16
+[00:20:50.080] INFO  [mk3_Titus] [0x3C] container contents: 0 item(s)
+[00:20:50.080] INFO  [mk3_Titus] [0x74] vendor shop data: cont=0x40012259 0 item(s), layer=0x1B
+[00:20:50.080] INFO  [mk3_Titus] [VENDOR] offer from 0x000027ED: 5 item(s)
+[00:20:50.080] INFO  [mk3_Titus] [VENDOR]   0x40000A38 clean bandages         x16  1 gp
+[00:20:50.081] INFO  [mk3_Titus] [VENDOR]   0x400001BD Heal                   x10  30 gp
+[00:20:50.081] INFO  [mk3_Titus] [VENDOR]   0x400001BC Ginseng                x22  3 gp
+[00:20:50.081] INFO  [mk3_Titus] [VENDOR]   0x400001A4 Garlic                 x7   3 gp
+[00:20:50.081] INFO  [mk3_Titus] [VENDOR]   0x4000019F Refresh                x32  16 gp
+[00:20:50.081] LOG   [mk3_Titus] event vendor_offer: vendor=0x000027ED items=5
+[00:20:50.081] INFO  [mk3_Titus] [ACTION_RESULT] vendor_buy success (1ms) vendor offer received
+[00:20:50.081] LOG   [mk3_Titus] event action_result: vendor_buy success took=1ms vendor offer received
+[00:20:50.081] INFO  [mk3_Titus] [0x24] vendor buy gump for 0x000027ED
+[00:20:50.081] INFO  [life] bandages: the shop is open
+[00:20:50.140] INFO  [mk3_Titus] [ACTION] vendor_buy start
+[00:20:50.140] INFO  [mk3_Titus] [policy] allowed NPC purchase of i_bandage (0x0E21): basic healing: a life with no Healing skill has no other way to treat itself, and the shard's own healer sells it [BASIC_HEALING]
+[00:20:50.141] INFO  [mk3_Titus] [VENDOR] buy item=0x40000A38 qty=16 from vendor=0x000027ED gold=10000
+[00:20:50.141] INFO  [life] bandages: buying 16 clean bandages at 1 each from the 'healer' (shelf holds 16) -- waiting for the pack
+[00:20:50.141] INFO  [mk3_Titus] [ACTION_RESULT] vendor_buy success (0ms) purchased item delivered
+[00:20:50.141] LOG   [mk3_Titus] event action_result: vendor_buy success took=0ms purchased item delivered
+[00:20:50.141] INFO  [mk3_Titus] [chat ascii] Iolana: Here you are, Titus That will be 16 gold coins.  I thank thee for thy business.
+[00:20:50.141] INFO  [mk3_Titus] [0x3B] vendor transaction closed: vendor=0x000027ED flag=0
+[00:20:50.141] INFO  [life] bandages: 16 clean bandages in the pack, 0 gold gone -- the goods arrived; the purse did not move -- bank paid
+[00:20:50.171] INFO  [life] bandages: found a 'healer'
+[00:20:50.231] INFO  [life] bandages: within reach
+[00:20:50.247] INFO  [mk3_Titus] [ACTION] vendor_buy start
+[00:20:50.247] INFO  [mk3_Titus] [VENDOR] open vendor=0x000027ED say='Iolana buy'
+[00:20:50.247] INFO  [life] bandages: asking the 'healer' to show clean bandages (attempt 1)
+[00:20:50.263] INFO  [mk3_Titus] [chat uni  ] : Iolana buy
+[00:20:50.263] INFO  [mk3_Titus] [chat ascii] Iolana: Thou surely wants all the things that I can sell thee.
+[00:20:50.263] INFO  [mk3_Titus] [0x3C] container contents: 4 item(s)
+[00:20:50.263] INFO  [mk3_Titus] [0x74] pairing: straight (straight 4, mirrored 0 of 4 rows)
+[00:20:50.263] INFO  [mk3_Titus] [0x74] vendor shop data: cont=0x400027E7 4 item(s), layer=0x1A
+[00:20:50.263] INFO  [mk3_Titus] [0x74]   Heal                         gfx=0x0F0C qty=10   price=30
+[00:20:50.263] INFO  [mk3_Titus] [0x74]   Ginseng                      gfx=0x0F85 qty=22   price=3
+[00:20:50.263] INFO  [mk3_Titus] [0x74]   Garlic                       gfx=0x0F84 qty=7    price=3
+[00:20:50.263] INFO  [mk3_Titus] [0x74]   Refresh                      gfx=0x0F0B qty=32   price=16
+[00:20:50.263] INFO  [mk3_Titus] [0x3C] container contents: 0 item(s)
+[00:20:50.263] INFO  [mk3_Titus] [0x74] vendor shop data: cont=0x40012259 0 item(s), layer=0x1B
+[00:20:50.263] INFO  [mk3_Titus] [VENDOR] offer from 0x000027ED: 4 item(s)
+[00:20:50.263] INFO  [mk3_Titus] [VENDOR]   0x400001BD Heal                   x10  30 gp
+[00:20:50.263] INFO  [mk3_Titus] [VENDOR]   0x400001BC Ginseng                x22  3 gp
+[00:20:50.263] INFO  [mk3_Titus] [VENDOR]   0x400001A4 Garlic                 x7   3 gp
+[00:20:50.263] INFO  [mk3_Titus] [VENDOR]   0x4000019F Refresh                x32  16 gp
+[00:20:50.263] LOG   [mk3_Titus] event vendor_offer: vendor=0x000027ED items=4
+[00:20:50.263] INFO  [mk3_Titus] [ACTION_RESULT] vendor_buy success (17ms) vendor offer received
+[00:20:50.263] LOG   [mk3_Titus] event action_result: vendor_buy success took=17ms vendor offer received
+[00:20:50.263] INFO  [mk3_Titus] [0x24] vendor buy gump for 0x000027ED
+[00:20:50.263] INFO  [life] bandages: the shop is open
+[00:20:50.322] INFO  [life] bandages: this 'healer' does not stock clean bandages
+[00:20:50.322] INFO  [life] goal_failed=REPLACE_EQUIPMENT status=failed reason="this 'healer' does not stock clean bandages"
+[00:20:50.322] INFO  [life] handoff=REPLACE_EQUIPMENT->MAKE_BANDAGES reason="no bandages bought"
+[00:20:50.383] INFO  [life] goal=TRAIN_COMBAT reason="previous goal abandoned: no bandages bought"
+[00:20:50.383] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedTraining(skill 31 0.65) NeedTraining(Tactics 0.65) NeedTraining(Anatomy 0.65) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedSkillTraining(Tactics 0.55) NeedEquipment(heal potions 0.50) NeedBank(put unsold stock away 0.40) NeedFood(food 0.25) NeedGear(gear 0.22) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=0 held=[] want_train=Tactics (target 100.0)
+[00:20:50.383] INFO  [life]   score=84.5
+[00:20:50.383] INFO  [life]   reason: NeedTraining urgency 0.65 x 130 = 84.5
+[00:20:50.383] INFO  [life]   reason: skill 31 50.0 -> 100.0
+[00:20:50.383] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 239s after achieving nothing
+[00:20:50.383] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 273s after achieving nothing
+[00:20:50.383] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (25 x i_arrow spare, and no buyer known -- on this shard it is a player-market good)
+[00:20:50.383] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of an input no NPC may legitimately sell it (i_bow needs 35 x i_log -- and the vendor policy refuses that purchase)
+[00:20:52.025] INFO  [mk3_Titus] [survival] hp 24/24 (100%) -> fight
+[00:20:52.346] INFO  [life] hunt: picked 'Rat' at 4 tiles -- verdict=lawful threat=0.15 learned_danger=0.00 (neutral: lawful to attack)
+[00:20:52.346] INFO  [mk3_Titus] [ACTION] attack start
+[00:20:52.346] INFO  [mk3_Titus] [ACTION] attack serial=0x00010AC3
+[00:20:52.347] INFO  [mk3_Titus] [0xAA] attacking 0x00010AC3
+[00:20:52.347] INFO  [mk3_Titus] [ACTION_RESULT] attack success (1ms) server accepted the target
+[00:20:52.347] LOG   [mk3_Titus] event action_result: attack success took=1ms server accepted the target
+[00:20:54.905] INFO  [life] combat: drawing a weapon before swinging -- it was in the pack
+[00:20:54.905] INFO  [mk3_Titus] [ACTION] equip start
+[00:20:54.905] INFO  [mk3_Titus] [ACTION] equip serial=0x40018047 layer=1
+[00:20:54.906] INFO  [mk3_Titus] [ITEM] drag serial=0x40018047 amount=1
+[00:20:54.906] INFO  [mk3_Titus] [chat ascii] System: You put the bow in your pack.
+[00:20:54.906] INFO  [mk3_Titus] [ACTION_RESULT] equip success (1ms) worn on the requested layer
+[00:20:54.906] LOG   [mk3_Titus] event action_result: equip success took=1ms worn on the requested layer
+[00:20:57.074] INFO  [mk3_Titus] [survival] hp 24/24 (100%) -> fight
+[00:20:57.456] INFO  [life] engaging Rat (noto 3) at 618,2221
+[00:20:57.456] INFO  [mk3_Titus] [ACTION] attack start
+[00:20:57.456] INFO  [mk3_Titus] [ACTION] attack serial=0x00015CD6
+[00:20:57.456] INFO  [mk3_Titus] [action] goto finished at (618,2218,0); target (619,2216); stopped short (off by 3 tile(s))
+[00:20:57.456] LOG   [mk3_Titus] event goto_done: at=(618,2218) target=(619,2216) arrived=0 off=3
+[00:20:57.456] INFO  [mk3_Titus] [action] goto_mobile 0x00015CD6 at (618,2221)
+[00:20:57.456] INFO  [mk3_Titus] [action] goto (618,2221) from (618,2218,0)
+[00:20:57.456] LOG   [mk3_Titus] event goto_start: target=(618,2221) from=(618,2218)
+[00:20:57.456] INFO  [mk3_Titus] [bot] running from (618,2218,0) to (618,2221)
+[00:20:57.456] INFO  [mk3_Titus] [bot] planning path to (618,2221) in background
+[00:20:57.473] INFO  [mk3_Titus] [0xAA] attacking 0x00015CD6
+[00:20:57.473] INFO  [mk3_Titus] [ACTION_RESULT] attack success (16ms) server accepted the target
+[00:20:57.473] LOG   [mk3_Titus] event action_result: attack success took=16ms server accepted the target
+[00:20:58.710] INFO  [mk3_Titus] [ACTION] attack start
+[00:20:58.710] INFO  [mk3_Titus] [ACTION] attack serial=0x00015CD6
+[00:20:58.710] INFO  [mk3_Titus] [action] goto finished at (618,2218,0); target (618,2221); stopped short (off by 3 tile(s))
+[00:20:58.710] LOG   [mk3_Titus] event goto_done: at=(618,2218) target=(618,2221) arrived=0 off=3
+[00:20:58.710] INFO  [mk3_Titus] [action] goto_mobile 0x00015CD6 at (618,2221)
+[00:20:58.710] INFO  [mk3_Titus] [action] goto (618,2221) from (618,2218,0)
+[00:20:58.710] LOG   [mk3_Titus] event goto_start: target=(618,2221) from=(618,2218)
+[00:20:58.710] INFO  [mk3_Titus] [bot] running from (618,2218,0) to (618,2221)
+[00:20:58.710] INFO  [mk3_Titus] [bot] planning path to (618,2221) in background
+[00:20:58.726] INFO  [mk3_Titus] [0xAA] attacking 0x00015CD6
+[00:20:58.726] INFO  [mk3_Titus] [ACTION_RESULT] attack success (16ms) server accepted the target
+[00:20:58.726] LOG   [mk3_Titus] event action_result: attack success took=16ms server accepted the target
+[00:20:59.929] INFO  [mk3_Titus] [ACTION] attack start
+[00:20:59.929] INFO  [mk3_Titus] [ACTION] attack serial=0x00015CD6
+[00:20:59.929] INFO  [mk3_Titus] [action] goto finished at (618,2218,0); target (618,2221); stopped short (off by 3 tile(s))
+[00:20:59.929] LOG   [mk3_Titus] event goto_done: at=(618,2218) target=(618,2221) arrived=0 off=3
+[00:20:59.929] INFO  [mk3_Titus] [action] goto_mobile 0x00015CD6 at (617,2221)
+[00:20:59.929] INFO  [mk3_Titus] [action] goto (618,2221) from (618,2218,0)
+[00:20:59.929] LOG   [mk3_Titus] event goto_start: target=(618,2221) from=(618,2218)
+[00:20:59.929] INFO  [mk3_Titus] [bot] running from (618,2218,0) to (618,2221)
+[00:20:59.929] INFO  [mk3_Titus] [bot] planning path to (618,2221) in background
+[00:20:59.929] INFO  [mk3_Titus] [0xAA] attacking 0x00015CD6
+[00:20:59.929] INFO  [mk3_Titus] [ACTION_RESULT] attack success (1ms) server accepted the target
+[00:20:59.929] LOG   [mk3_Titus] event action_result: attack success took=1ms server accepted the target
+[00:20:59.929] INFO  [mk3_Titus] [bot] replan to (618,2221): 3 steps in 76.5us
+[00:21:00.849] INFO  [mk3_Titus] [bot] arrived at (618,2221,0)
+[00:21:01.171] INFO  [mk3_Titus] [ACTION] attack start
+[00:21:01.171] INFO  [mk3_Titus] [ACTION] attack serial=0x00015CD6
+[00:21:01.186] INFO  [mk3_Titus] [0xAA] attacking 0x00015CD6
+[00:21:01.186] INFO  [mk3_Titus] [ACTION_RESULT] attack success (15ms) server accepted the target
+[00:21:01.186] LOG   [mk3_Titus] event action_result: attack success took=15ms server accepted the target
+[00:21:01.323] INFO  [mk3_Titus] [0x20] player @(618,2221,0) facing=6
+[00:21:02.122] INFO  [mk3_Titus] [survival] hp 24/24 (100%) -> fight
+[00:21:02.430] INFO  [mk3_Titus] [ACTION] attack start
+[00:21:02.430] INFO  [mk3_Titus] [ACTION] attack serial=0x00015CD6
+[00:21:02.430] INFO  [mk3_Titus] [0xAA] attacking 0x00015CD6
+[00:21:02.430] INFO  [mk3_Titus] [ACTION_RESULT] attack success (1ms) server accepted the target
+[00:21:02.430] LOG   [mk3_Titus] event action_result: attack success took=1ms server accepted the target
+[00:21:03.671] INFO  [mk3_Titus] [ACTION] attack start
+[00:21:03.671] INFO  [mk3_Titus] [ACTION] attack serial=0x00015CD6
+[00:21:03.687] INFO  [mk3_Titus] [0xAA] attacking 0x00015CD6
+[00:21:03.687] INFO  [mk3_Titus] [ACTION_RESULT] attack success (16ms) server accepted the target
+[00:21:03.687] LOG   [mk3_Titus] event action_result: attack success took=16ms server accepted the target
+[00:21:04.916] INFO  [mk3_Titus] [ACTION] attack start
+[00:21:04.916] INFO  [mk3_Titus] [ACTION] attack serial=0x00015CD6
+[00:21:04.932] INFO  [mk3_Titus] [0xAA] attacking 0x00015CD6
+[00:21:04.932] INFO  [mk3_Titus] [ACTION_RESULT] attack success (16ms) server accepted the target
+[00:21:04.932] LOG   [mk3_Titus] event action_result: attack success took=16ms server accepted the target
+[00:21:06.123] INFO  [mk3_Titus] [ACTION] attack start
+[00:21:06.123] INFO  [mk3_Titus] [ACTION] attack serial=0x00015CD6
+[00:21:06.123] INFO  [mk3_Titus] [0xAA] attacking 0x00015CD6
+[00:21:06.123] INFO  [mk3_Titus] [ACTION_RESULT] attack success (0ms) server accepted the target
+[00:21:06.123] LOG   [mk3_Titus] event action_result: attack success took=0ms server accepted the target
+[00:21:07.132] INFO  [mk3_Titus] [survival] hp 24/24 (100%) -> fight
+[00:21:07.333] INFO  [mk3_Titus] [ACTION] attack start
+[00:21:07.333] INFO  [mk3_Titus] [ACTION] attack serial=0x00015CD6
+[00:21:07.333] INFO  [mk3_Titus] [0xAA] attacking 0x00015CD6
+[00:21:07.333] INFO  [mk3_Titus] [ACTION_RESULT] attack success (0ms) server accepted the target
+[00:21:07.333] LOG   [mk3_Titus] event action_result: attack success took=0ms server accepted the target
+[00:21:08.587] INFO  [mk3_Titus] [ACTION] attack start
+[00:21:08.587] INFO  [mk3_Titus] [ACTION] attack serial=0x00015CD6
+[00:21:08.602] INFO  [mk3_Titus] [0xAA] attacking 0x00015CD6
+[00:21:08.602] INFO  [mk3_Titus] [ACTION_RESULT] attack success (16ms) server accepted the target
+[00:21:08.602] LOG   [mk3_Titus] event action_result: attack success took=16ms server accepted the target
+[00:21:09.802] INFO  [mk3_Titus] [ACTION] attack start
+[00:21:09.802] INFO  [mk3_Titus] [ACTION] attack serial=0x00015CD6
+[00:21:09.817] INFO  [mk3_Titus] [0xAA] attacking 0x00015CD6
+[00:21:09.817] INFO  [mk3_Titus] [ACTION_RESULT] attack success (15ms) server accepted the target
+[00:21:09.817] LOG   [mk3_Titus] event action_result: attack success took=15ms server accepted the target
+[00:21:10.385] INFO  [life] goal_changed=SURVIVE from=TRAIN_COMBAT reason="SURVIVE 550.0 superseded TRAIN_COMBAT 52.0"
+[00:21:10.385] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) StayAlive(a fight already started 0.55) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedSkillTraining(Tactics 0.55) NeedEquipment(heal potions 0.50) NeedBank(put unsold stock away 0.40) NeedTraining(Tactics 0.40) NeedTraining(Anatomy 0.40) NeedTraining(skill 31 0.28) NeedFood(food 0.25) NeedGear(gear 0.22) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=0 held=[] want_train=Tactics (target 100.0)
+[00:21:10.385] INFO  [life]   score=550.0
+[00:21:10.385] INFO  [life]   reason: StayAlive urgency 0.55 x 1000 = 550.0
+[00:21:10.385] INFO  [life]   reason: attackers=1 hostiles_seen=2 hp=100%
+[00:21:10.385] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 219s after achieving nothing
+[00:21:10.385] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 253s after achieving nothing
+[00:21:10.385] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (25 x i_arrow spare, and no buyer known -- on this shard it is a player-market good)
+[00:21:10.385] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of an input no NPC may legitimately sell it (i_bow needs 35 x i_log -- and the vendor policy refuses that purchase)
+[00:21:11.032] INFO  [mk3_Titus] [ACTION] attack start
+[00:21:11.032] INFO  [mk3_Titus] [ACTION] attack serial=0x00015CD6
+[00:21:11.047] INFO  [mk3_Titus] [0xAA] attacking 0x00015CD6
+[00:21:11.047] INFO  [mk3_Titus] [ACTION_RESULT] attack success (15ms) server accepted the target
+[00:21:11.047] LOG   [mk3_Titus] event action_result: attack success took=15ms server accepted the target
+[00:21:11.193] INFO  [mk3_Titus] [chat ascii] System: Observer has arrived in Minoc.
+[00:21:12.156] INFO  [mk3_Titus] [survival] hp 24/24 (100%) -> fight
+[00:21:12.248] INFO  [mk3_Titus] [ACTION] attack start
+[00:21:12.248] INFO  [mk3_Titus] [ACTION] attack serial=0x00015CD6
+[00:21:12.264] INFO  [mk3_Titus] [0xAA] attacking 0x00015CD6
+[00:21:12.264] INFO  [mk3_Titus] [ACTION_RESULT] attack success (15ms) server accepted the target
+[00:21:12.264] LOG   [mk3_Titus] event action_result: attack success took=15ms server accepted the target
+[00:21:13.477] INFO  [mk3_Titus] [ACTION] attack start
+[00:21:13.478] INFO  [mk3_Titus] [ACTION] attack serial=0x00015CD6
+[00:21:13.478] INFO  [mk3_Titus] [0xAA] attacking 0x00015CD6
+[00:21:13.478] INFO  [mk3_Titus] [ACTION_RESULT] attack success (0ms) server accepted the target
+[00:21:13.478] LOG   [mk3_Titus] event action_result: attack success took=0ms server accepted the target
+[00:21:14.572] INFO  [mk3_Titus] [chat ascii] System: Observer has departed from Minoc.
+[00:21:14.709] INFO  [mk3_Titus] [ACTION] attack start
+[00:21:14.709] INFO  [mk3_Titus] [ACTION] attack serial=0x00015CD6
+[00:21:14.709] INFO  [mk3_Titus] [0xAA] attacking 0x00015CD6
+[00:21:14.709] INFO  [mk3_Titus] [ACTION_RESULT] attack success (1ms) server accepted the target
+[00:21:14.709] LOG   [mk3_Titus] event action_result: attack success took=1ms server accepted the target
+[00:21:15.186] INFO  [mk3_Titus] [chat ascii] Rat: *Rat is attacking you!*
+[00:21:15.186] INFO  [mk3_Titus] [chat ascii] System: You have gained a bit of karma.
+[00:21:15.938] INFO  [mk3_Titus] [ACTION] attack start
+[00:21:15.938] INFO  [mk3_Titus] [ACTION] attack serial=0x00015CD6
+[00:21:17.168] LOG   [mk3_Titus] event action_result: attack invalid_state took=1230ms superseded
+[00:21:17.168] INFO  [mk3_Titus] [ACTION] attack start
+[00:21:17.168] INFO  [mk3_Titus] [ACTION] attack serial=0x00015CD6
+[00:21:17.168] INFO  [mk3_Titus] [survival] hp 24/24 (100%) -> fight
+[00:21:18.407] LOG   [mk3_Titus] event action_result: attack invalid_state took=1239ms superseded
+[00:21:18.407] INFO  [mk3_Titus] [ACTION] attack start
+[00:21:18.407] INFO  [mk3_Titus] [ACTION] attack serial=0x00015CD6
+[00:21:19.660] LOG   [mk3_Titus] event action_result: attack invalid_state took=1254ms superseded
+[00:21:19.660] INFO  [mk3_Titus] [ACTION] attack start
+[00:21:19.660] INFO  [mk3_Titus] [ACTION] attack serial=0x00015CD6
+[00:21:20.876] LOG   [mk3_Titus] event action_result: attack invalid_state took=1215ms superseded
+[00:21:20.876] INFO  [mk3_Titus] [ACTION] attack start
+[00:21:20.876] INFO  [mk3_Titus] [ACTION] attack serial=0x00015CD6
+[00:21:21.753] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_28.titus/state.json
+[00:21:22.120] LOG   [mk3_Titus] event action_result: attack invalid_state took=1244ms superseded
+[00:21:22.120] INFO  [mk3_Titus] [ACTION] attack start
+[00:21:22.120] INFO  [mk3_Titus] [ACTION] attack serial=0x00015CD6
+[00:21:22.181] INFO  [mk3_Titus] [survival] hp 24/24 (100%) -> fight
+[00:21:23.322] LOG   [mk3_Titus] event action_result: attack invalid_state took=1202ms superseded
+[00:21:23.322] INFO  [mk3_Titus] [ACTION] attack start
+[00:21:23.322] INFO  [mk3_Titus] [ACTION] attack serial=0x00015CD6
+[00:21:24.536] LOG   [mk3_Titus] event action_result: attack invalid_state took=1214ms superseded
+[00:21:24.536] INFO  [mk3_Titus] [ACTION] attack start
+[00:21:24.536] INFO  [mk3_Titus] [ACTION] attack serial=0x00015CD6
+[00:21:25.767] LOG   [mk3_Titus] event action_result: attack invalid_state took=1231ms superseded
+[00:21:25.767] INFO  [mk3_Titus] [ACTION] attack start
+[00:21:25.767] INFO  [mk3_Titus] [ACTION] attack serial=0x00015CD6
+[00:21:27.026] LOG   [mk3_Titus] event action_result: attack invalid_state took=1259ms superseded
+[00:21:27.026] INFO  [mk3_Titus] [ACTION] attack start
+[00:21:27.026] INFO  [mk3_Titus] [ACTION] attack serial=0x00015CD6
+[00:21:27.195] INFO  [mk3_Titus] [survival] hp 24/24 (100%) -> fight
+[00:21:28.268] LOG   [mk3_Titus] event action_result: attack invalid_state took=1242ms superseded
+[00:21:28.268] INFO  [mk3_Titus] [ACTION] attack start
+[00:21:28.268] INFO  [mk3_Titus] [ACTION] attack serial=0x00015CD6
+[00:21:29.500] LOG   [mk3_Titus] event action_result: attack invalid_state took=1232ms superseded
+[00:21:29.500] INFO  [mk3_Titus] [ACTION] attack start
+[00:21:29.500] INFO  [mk3_Titus] [ACTION] attack serial=0x00015CD6
+[00:21:30.222] INFO  [mk3_Titus] [war] dropping war mode: war mode idle with no target
+[00:21:30.222] LOG   [mk3_Titus] event war_timeout: war mode idle with no target
+[00:21:30.222] INFO  [mk3_Titus] [war] leaving war mode
+[00:21:30.422] INFO  [life] goal_changed=TRAIN_COMBAT from=SURVIVE reason="TRAIN_COMBAT 84.5 superseded SURVIVE 0.0"
+[00:21:30.422] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedTraining(skill 31 0.65) NeedTraining(Tactics 0.65) NeedTraining(Anatomy 0.65) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedSkillTraining(Tactics 0.55) NeedEquipment(heal potions 0.50) NeedBank(put unsold stock away 0.40) NeedFood(food 0.25) NeedGear(gear 0.22) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=0 held=[] want_train=Tactics (target 100.0)
+[00:21:30.422] INFO  [life]   score=84.5
+[00:21:30.422] INFO  [life]   reason: NeedTraining urgency 0.65 x 130 = 84.5
+[00:21:30.422] INFO  [life]   reason: skill 31 50.0 -> 100.0
+[00:21:30.422] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 199s after achieving nothing
+[00:21:30.422] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 233s after achieving nothing
+[00:21:30.422] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (25 x i_arrow spare, and no buyer known -- on this shard it is a player-market good)
+[00:21:30.422] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of an input no NPC may legitimately sell it (i_bow needs 35 x i_log -- and the vendor policy refuses that purchase)
+[00:21:30.730] INFO  [mk3_Titus] [war] entering war mode
+[00:21:30.730] LOG   [mk3_Titus] event action_result: attack invalid_state took=1230ms superseded
+[00:21:30.730] INFO  [mk3_Titus] [ACTION] attack start
+[00:21:30.730] INFO  [mk3_Titus] [ACTION] attack serial=0x00015CD6
+[00:21:31.956] LOG   [mk3_Titus] event action_result: attack invalid_state took=1226ms superseded
+[00:21:31.956] INFO  [mk3_Titus] [ACTION] attack start
+[00:21:31.956] INFO  [mk3_Titus] [ACTION] attack serial=0x00015CD6
+[00:21:32.204] INFO  [mk3_Titus] [survival] hp 24/24 (100%) -> fight
+[00:21:33.197] LOG   [mk3_Titus] event action_result: attack invalid_state took=1241ms superseded
+[00:21:33.197] INFO  [mk3_Titus] [ACTION] attack start
+[00:21:33.197] INFO  [mk3_Titus] [ACTION] attack serial=0x00015CD6
+[00:21:34.414] LOG   [mk3_Titus] event action_result: attack invalid_state took=1217ms superseded
+[00:21:34.414] INFO  [mk3_Titus] [ACTION] attack start
+[00:21:34.414] INFO  [mk3_Titus] [ACTION] attack serial=0x00015CD6
+[00:21:35.655] LOG   [mk3_Titus] event action_result: attack invalid_state took=1241ms superseded
+[00:21:35.655] INFO  [mk3_Titus] [ACTION] attack start
+[00:21:35.655] INFO  [mk3_Titus] [ACTION] attack serial=0x00015CD6
+[00:21:36.914] LOG   [mk3_Titus] event action_result: attack invalid_state took=1259ms superseded
+[00:21:36.914] INFO  [mk3_Titus] [ACTION] attack start
+[00:21:36.914] INFO  [mk3_Titus] [ACTION] attack serial=0x00015CD6
+[00:21:37.222] INFO  [mk3_Titus] [survival] hp 24/24 (100%) -> fight
+[00:21:38.131] LOG   [mk3_Titus] event action_result: attack invalid_state took=1217ms superseded
+[00:21:38.131] INFO  [mk3_Titus] [ACTION] attack start
+[00:21:38.131] INFO  [mk3_Titus] [ACTION] attack serial=0x00015CD6
+[00:21:39.362] INFO  [life] interrupt=DISENGAGE reason="20s of fighting and Rat is still at the same health; this is a stalemate"
+[00:21:39.362] INFO  [mk3_Titus] [war] leaving war mode
+[00:21:39.362] INFO  [life] goal_completed=TRAIN_COMBAT progress=0
+[00:21:39.364] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_28.titus/state.json
+[00:21:39.378] INFO  [life] goal=TRAIN_COMBAT reason="no goal was running"
+[00:21:39.378] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedTraining(skill 31 0.65) NeedTraining(Tactics 0.65) NeedTraining(Anatomy 0.65) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedSkillTraining(Tactics 0.55) NeedEquipment(heal potions 0.50) NeedBank(put unsold stock away 0.40) NeedFood(food 0.25) NeedGear(gear 0.22) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=0 held=[] want_train=Tactics (target 100.0)
+[00:21:39.378] INFO  [life]   score=84.5
+[00:21:39.378] INFO  [life]   reason: NeedTraining urgency 0.65 x 130 = 84.5
+[00:21:39.378] INFO  [life]   reason: skill 31 50.0 -> 100.0
+[00:21:39.378] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 190s after achieving nothing
+[00:21:39.378] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 224s after achieving nothing
+[00:21:39.378] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (25 x i_arrow spare, and no buyer known -- on this shard it is a player-market good)
+[00:21:39.379] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of an input no NPC may legitimately sell it (i_bow needs 35 x i_log -- and the vendor policy refuses that purchase)
+[00:21:39.379] INFO  [life] engaging Rat (noto 3) at 614,2216
+[00:21:39.379] INFO  [mk3_Titus] [war] entering war mode
+[00:21:39.379] LOG   [mk3_Titus] event action_result: attack invalid_state took=1248ms superseded
+[00:21:39.379] INFO  [mk3_Titus] [ACTION] attack start
+[00:21:39.379] INFO  [mk3_Titus] [ACTION] attack serial=0x00010AC3
+[00:21:39.379] INFO  [mk3_Titus] [action] goto finished at (618,2221,0); target (618,2221); ARRIVED (off by 0 tile(s))
+[00:21:39.379] LOG   [mk3_Titus] event goto_done: at=(618,2221) target=(618,2221) arrived=1 off=0
+[00:21:39.379] INFO  [mk3_Titus] [action] goto_mobile 0x00010AC3 at (614,2216)
+[00:21:39.379] INFO  [mk3_Titus] [action] goto (615,2216) from (618,2221,0)
+[00:21:39.379] LOG   [mk3_Titus] event goto_start: target=(615,2216) from=(618,2221)
+[00:21:39.379] INFO  [mk3_Titus] [bot] running from (618,2221,0) to (615,2216)
+[00:21:39.379] INFO  [mk3_Titus] [bot] planning path to (615,2216) in background
+[00:21:39.393] INFO  [mk3_Titus] [0xAA] attacking 0x00010AC3
+[00:21:39.393] INFO  [mk3_Titus] [ACTION_RESULT] attack success (14ms) server accepted the target
+[00:21:39.393] LOG   [mk3_Titus] event action_result: attack success took=14ms server accepted the target
+[00:21:40.612] INFO  [mk3_Titus] [ACTION] attack start
+[00:21:40.612] INFO  [mk3_Titus] [ACTION] attack serial=0x00010AC3
+[00:21:40.612] INFO  [mk3_Titus] [action] goto finished at (618,2221,0); target (615,2216); stopped short (off by 8 tile(s))
+[00:21:40.612] LOG   [mk3_Titus] event goto_done: at=(618,2221) target=(615,2216) arrived=0 off=8
+[00:21:40.612] INFO  [mk3_Titus] [action] goto_mobile 0x00010AC3 at (614,2216)
+[00:21:40.612] INFO  [mk3_Titus] [action] goto (615,2216) from (618,2221,0)
+[00:21:40.612] LOG   [mk3_Titus] event goto_start: target=(615,2216) from=(618,2221)
+[00:21:40.612] INFO  [mk3_Titus] [bot] running from (618,2221,0) to (615,2216)
+[00:21:40.612] INFO  [mk3_Titus] [bot] planning path to (615,2216) in background
+[00:21:40.612] INFO  [mk3_Titus] [0xAA] attacking 0x00010AC3
+[00:21:40.612] INFO  [mk3_Titus] [ACTION_RESULT] attack success (1ms) server accepted the target
+[00:21:40.612] LOG   [mk3_Titus] event action_result: attack success took=1ms server accepted the target
+[00:21:41.826] INFO  [mk3_Titus] [ACTION] attack start
+[00:21:41.826] INFO  [mk3_Titus] [ACTION] attack serial=0x00010AC3
+[00:21:41.826] INFO  [mk3_Titus] [action] goto finished at (618,2221,0); target (615,2216); stopped short (off by 8 tile(s))
+[00:21:41.826] LOG   [mk3_Titus] event goto_done: at=(618,2221) target=(615,2216) arrived=0 off=8
+[00:21:41.826] INFO  [mk3_Titus] [action] goto_mobile 0x00010AC3 at (614,2216)
+[00:21:41.826] INFO  [mk3_Titus] [action] goto (615,2216) from (618,2221,0)
+[00:21:41.826] LOG   [mk3_Titus] event goto_start: target=(615,2216) from=(618,2221)
+[00:21:41.826] INFO  [mk3_Titus] [bot] running from (618,2221,0) to (615,2216)
+[00:21:41.826] INFO  [mk3_Titus] [bot] planning path to (615,2216) in background
+[00:21:41.826] INFO  [mk3_Titus] [0xAA] attacking 0x00010AC3
+[00:21:41.826] INFO  [mk3_Titus] [ACTION_RESULT] attack success (1ms) server accepted the target
+[00:21:41.826] LOG   [mk3_Titus] event action_result: attack success took=1ms server accepted the target
+[00:21:42.255] INFO  [mk3_Titus] [survival] hp 24/24 (100%) -> fight
+[00:21:43.072] INFO  [mk3_Titus] [ACTION] attack start
+[00:21:43.072] INFO  [mk3_Titus] [ACTION] attack serial=0x00010AC3
+[00:21:43.072] INFO  [mk3_Titus] [action] goto finished at (618,2221,0); target (615,2216); stopped short (off by 8 tile(s))
+[00:21:43.072] LOG   [mk3_Titus] event goto_done: at=(618,2221) target=(615,2216) arrived=0 off=8
+[00:21:43.072] INFO  [mk3_Titus] [action] goto_mobile 0x00010AC3 at (614,2216)
+[00:21:43.072] INFO  [mk3_Titus] [action] goto (615,2216) from (618,2221,0)
+[00:21:43.072] LOG   [mk3_Titus] event goto_start: target=(615,2216) from=(618,2221)
+[00:21:43.072] INFO  [mk3_Titus] [bot] running from (618,2221,0) to (615,2216)
+[00:21:43.072] INFO  [mk3_Titus] [bot] planning path to (615,2216) in background
+[00:21:43.072] INFO  [mk3_Titus] [0xAA] attacking 0x00010AC3
+[00:21:43.072] INFO  [mk3_Titus] [ACTION_RESULT] attack success (1ms) server accepted the target
+[00:21:43.072] LOG   [mk3_Titus] event action_result: attack success took=1ms server accepted the target
+[00:21:44.320] INFO  [mk3_Titus] [ACTION] attack start
+[00:21:44.320] INFO  [mk3_Titus] [ACTION] attack serial=0x00010AC3
+[00:21:44.320] INFO  [mk3_Titus] [action] goto finished at (618,2221,0); target (615,2216); stopped short (off by 8 tile(s))
+[00:21:44.320] LOG   [mk3_Titus] event goto_done: at=(618,2221) target=(615,2216) arrived=0 off=8
+[00:21:44.320] INFO  [mk3_Titus] [action] goto_mobile 0x00010AC3 at (614,2216)
+[00:21:44.320] INFO  [mk3_Titus] [action] goto (615,2216) from (618,2221,0)
+[00:21:44.320] LOG   [mk3_Titus] event goto_start: target=(615,2216) from=(618,2221)
+[00:21:44.320] INFO  [mk3_Titus] [bot] running from (618,2221,0) to (615,2216)
+[00:21:44.320] INFO  [mk3_Titus] [bot] planning path to (615,2216) in background
+[00:21:44.320] INFO  [mk3_Titus] [0xAA] attacking 0x00010AC3
+[00:21:44.320] INFO  [mk3_Titus] [ACTION_RESULT] attack success (0ms) server accepted the target
+[00:21:44.320] LOG   [mk3_Titus] event action_result: attack success took=0ms server accepted the target
+[00:21:45.564] INFO  [mk3_Titus] [ACTION] attack start
+[00:21:45.564] INFO  [mk3_Titus] [ACTION] attack serial=0x00010AC3
+[00:21:45.564] INFO  [mk3_Titus] [action] goto finished at (618,2221,0); target (615,2216); stopped short (off by 8 tile(s))
+[00:21:45.564] LOG   [mk3_Titus] event goto_done: at=(618,2221) target=(615,2216) arrived=0 off=8
+[00:21:45.564] INFO  [mk3_Titus] [action] goto_mobile 0x00010AC3 at (614,2216)
+[00:21:45.564] INFO  [mk3_Titus] [action] goto (615,2216) from (618,2221,0)
+[00:21:45.564] LOG   [mk3_Titus] event goto_start: target=(615,2216) from=(618,2221)
+[00:21:45.564] INFO  [mk3_Titus] [bot] running from (618,2221,0) to (615,2216)
+[00:21:45.564] INFO  [mk3_Titus] [bot] planning path to (615,2216) in background
+[00:21:45.564] INFO  [mk3_Titus] [0xAA] attacking 0x00010AC3
+[00:21:45.564] INFO  [mk3_Titus] [ACTION_RESULT] attack success (1ms) server accepted the target
+[00:21:45.564] LOG   [mk3_Titus] event action_result: attack success took=1ms server accepted the target
+[00:21:46.806] INFO  [mk3_Titus] [ACTION] attack start
+[00:21:46.806] INFO  [mk3_Titus] [ACTION] attack serial=0x00010AC3
+[00:21:46.806] INFO  [mk3_Titus] [action] goto finished at (618,2221,0); target (615,2216); stopped short (off by 8 tile(s))
+[00:21:46.806] LOG   [mk3_Titus] event goto_done: at=(618,2221) target=(615,2216) arrived=0 off=8
+[00:21:46.806] INFO  [mk3_Titus] [action] goto_mobile 0x00010AC3 at (614,2216)
+[00:21:46.806] INFO  [mk3_Titus] [action] goto (615,2216) from (618,2221,0)
+[00:21:46.806] LOG   [mk3_Titus] event goto_start: target=(615,2216) from=(618,2221)
+[00:21:46.806] INFO  [mk3_Titus] [bot] running from (618,2221,0) to (615,2216)
+[00:21:46.806] INFO  [mk3_Titus] [bot] planning path to (615,2216) in background
+[00:21:46.821] INFO  [mk3_Titus] [0xAA] attacking 0x00010AC3
+[00:21:46.821] INFO  [mk3_Titus] [ACTION_RESULT] attack success (15ms) server accepted the target
+[00:21:46.821] LOG   [mk3_Titus] event action_result: attack success took=15ms server accepted the target
+[00:21:47.255] INFO  [mk3_Titus] [survival] hp 24/24 (100%) -> fight
+[00:21:48.009] INFO  [life] interrupt=DISENGAGE reason="cannot close on Rat in 8s (best 5 tiles); it is not worth the chase"
+[00:21:48.009] INFO  [mk3_Titus] [war] leaving war mode
+[00:21:48.009] INFO  [life] goal_completed=TRAIN_COMBAT progress=0
+[00:21:48.011] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_28.titus/state.json
+[00:21:48.011] INFO  [life] goal=TRADE_WITH_PLAYER reason="no goal was running"
+[00:21:48.011] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedTraining(skill 31 0.65) NeedTraining(Tactics 0.65) NeedTraining(Anatomy 0.65) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedSkillTraining(Tactics 0.55) NeedEquipment(heal potions 0.50) NeedBank(put unsold stock away 0.40) NeedFood(food 0.25) NeedGear(gear 0.22) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=0 held=[] want_train=Tactics (target 100.0)
+[00:21:48.011] INFO  [life]   score=79.8
+[00:21:48.011] INFO  [life]   reason: NeedTrade urgency 0.55 x 145 = 79.8
+[00:21:48.011] INFO  [life]   reason: 25 x i_arrow spare
+[00:21:48.011] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 182s after achieving nothing
+[00:21:48.011] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 215s after achieving nothing
+[00:21:48.011] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (25 x i_arrow spare, and no buyer known -- on this shard it is a player-market good)
+[00:21:48.011] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of an input no NPC may legitimately sell it (i_bow needs 35 x i_log -- and the vendor policy refuses that purchase)
+[00:21:48.011] INFO  [life] market: the market is britain_bank_2 (Britain banker) at 1425,1690, radius 5, guarded
+[00:21:48.011] INFO  [life] goal_blocked=TRADE_WITH_PLAYER reason="not enough session left for the trip" left=91s need=800s
+[00:21:48.069] INFO  [life] goal=TRAIN_COMBAT reason="previous goal abandoned: not enough session left for the trip"
+[00:21:48.070] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedTraining(skill 31 0.65) NeedTraining(Tactics 0.65) NeedTraining(Anatomy 0.65) NeedGold(sell surplus BLOCKED 0.55) NeedSkillTraining(Tactics 0.55) NeedEquipment(heal potions 0.50) NeedBank(put unsold stock away 0.40) NeedFood(food 0.25) NeedGear(gear 0.22) NeedTrade(sell to a player BLOCKED 0.00) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=0 held=[] want_train=Tactics (target 100.0)
+[00:21:48.070] INFO  [life]   score=74.4
+[00:21:48.070] INFO  [life]   reason: NeedTraining urgency 0.65 x 130 = 84.5
+[00:21:48.070] INFO  [life]   reason: skill 31 50.0 -> 100.0
+[00:21:48.070] INFO  [life]   reason: same errand just now, easing off 12% (84.5 -> 74.4)
+[00:21:48.070] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 182s after achieving nothing
+[00:21:48.070] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 215s after achieving nothing
+[00:21:48.070] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (25 x i_arrow spare, and no buyer known -- on this shard it is a player-market good)
+[00:21:48.070] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 599s after achieving nothing
+[00:21:48.070] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of an input no NPC may legitimately sell it (i_bow needs 35 x i_log -- and the vendor policy refuses that purchase)
+[00:21:48.070] INFO  [life] hunt: picked 'Rat' at 5 tiles -- verdict=lawful threat=0.25 learned_danger=0.00 (neutral: lawful to attack)
+[00:21:48.070] INFO  [mk3_Titus] [ACTION] attack start
+[00:21:48.070] INFO  [mk3_Titus] [ACTION] attack serial=0x00010AC3
+[00:21:48.086] INFO  [mk3_Titus] [0xAA] attacking 0x00010AC3
+[00:21:48.086] INFO  [mk3_Titus] [ACTION_RESULT] attack success (16ms) server accepted the target
+[00:21:48.086] LOG   [mk3_Titus] event action_result: attack success took=16ms server accepted the target
+[00:21:50.594] INFO  [mk3_Titus] [war] leaving war mode
+[00:21:50.594] INFO  [life] goal_completed=TRAIN_COMBAT progress=1
+[00:21:50.596] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_28.titus/state.json
+[00:21:50.596] INFO  [life] goal=TRAIN_COMBAT reason="no goal was running"
+[00:21:50.596] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedTraining(skill 31 0.65) NeedTraining(Tactics 0.65) NeedTraining(Anatomy 0.65) NeedGold(sell surplus BLOCKED 0.55) NeedSkillTraining(Tactics 0.55) NeedEquipment(heal potions 0.50) NeedBank(put unsold stock away 0.40) NeedFood(food 0.25) NeedGear(gear 0.22) NeedTrade(sell to a player BLOCKED 0.00) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=0 held=[] want_train=Tactics (target 100.0)
+[00:21:50.596] INFO  [life]   score=64.2
+[00:21:50.596] INFO  [life]   reason: NeedTraining urgency 0.65 x 130 = 84.5
+[00:21:50.596] INFO  [life]   reason: skill 31 50.0 -> 100.0
+[00:21:50.596] INFO  [life]   reason: same errand just now, easing off 24% (84.5 -> 64.2)
+[00:21:50.596] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 179s after achieving nothing
+[00:21:50.596] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 213s after achieving nothing
+[00:21:50.596] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (25 x i_arrow spare, and no buyer known -- on this shard it is a player-market good)
+[00:21:50.596] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 597s after achieving nothing
+[00:21:50.596] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of an input no NPC may legitimately sell it (i_bow needs 35 x i_log -- and the vendor policy refuses that purchase)
+[00:21:50.596] INFO  [life] hunt: picked 'Rat' at 5 tiles -- verdict=lawful threat=0.25 learned_danger=0.00 (neutral: lawful to attack)
+[00:21:50.596] INFO  [mk3_Titus] [ACTION] attack start
+[00:21:50.596] INFO  [mk3_Titus] [ACTION] attack serial=0x00010AC3
+[00:21:50.597] INFO  [mk3_Titus] [0xAA] attacking 0x00010AC3
+[00:21:50.597] INFO  [mk3_Titus] [ACTION_RESULT] attack success (0ms) server accepted the target
+[00:21:50.597] LOG   [mk3_Titus] event action_result: attack success took=0ms server accepted the target
+[00:21:52.305] INFO  [mk3_Titus] [survival] hp 24/24 (100%) -> fight
+[00:21:53.109] INFO  [mk3_Titus] [war] leaving war mode
+[00:21:53.109] INFO  [life] goal_completed=TRAIN_COMBAT progress=1
+[00:21:53.112] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_28.titus/state.json
+[00:21:53.112] INFO  [life] goal=GET_FOOD reason="no goal was running"
+[00:21:53.112] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedTraining(skill 31 0.65) NeedTraining(Tactics 0.65) NeedTraining(Anatomy 0.65) NeedGold(sell surplus BLOCKED 0.55) NeedSkillTraining(Tactics 0.55) NeedEquipment(heal potions 0.50) NeedBank(put unsold stock away 0.40) NeedFood(food 0.25) NeedGear(gear 0.22) NeedTrade(sell to a player BLOCKED 0.00) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=0 held=[] want_train=Tactics (target 100.0)
+[00:21:53.112] INFO  [life]   score=62.5
+[00:21:53.112] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[00:21:53.112] INFO  [life]   reason: food=0
+[00:21:53.112] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 177s after achieving nothing
+[00:21:53.112] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 210s after achieving nothing
+[00:21:53.112] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (25 x i_arrow spare, and no buyer known -- on this shard it is a player-market good)
+[00:21:53.112] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 594s after achieving nothing
+[00:21:53.112] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of an input no NPC may legitimately sell it (i_bow needs 35 x i_log -- and the vendor policy refuses that purchase)
+[00:21:53.121] INFO  [mk3_Titus] [travel] Magincia baker -> (3683,2171) r=5 from (618,2221)
+[00:21:53.121] LOG   [mk3_Titus] event travel_start: label='Magincia baker' target=(3683,2171) radius=5 from=(618,2221)
+[00:21:53.121] INFO  [life] food: walking to a 'baker' (trip 1)
+[00:21:53.121] INFO  [mk3_Titus] [travel] mode moongate         usable   <- chosen
+[00:21:53.121] INFO  [mk3_Titus] [travel] mode walk             usable
+[00:21:53.121] INFO  [mk3_Titus] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:53.121] INFO  [mk3_Titus] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:53.121] LOG   [mk3_Titus] event travel_mode: moongate
+[00:21:53.121] INFO  [mk3_Titus] [travel] plan Magincia baker: ok legs=11 ~448 tiles transit=1 nodes=113
+[00:21:53.186] INFO  [mk3_Titus] [action] goto finished at (618,2221,0); target (615,2216); stopped short (off by 8 tile(s))
+[00:21:53.186] LOG   [mk3_Titus] event goto_done: at=(618,2221) target=(615,2216) arrived=0 off=8
+[00:21:53.186] INFO  [mk3_Titus] [action] goto (648,2200) from (618,2221,0)
+[00:21:53.186] LOG   [mk3_Titus] event goto_start: target=(648,2200) from=(618,2221)
+[00:21:53.186] INFO  [mk3_Titus] [bot] running from (618,2221,0) to (648,2200)
+[00:21:53.186] INFO  [mk3_Titus] [bot] planning path to (648,2200) in background
+[00:21:53.248] INFO  [mk3_Titus] [bot] replan to (648,2200): 41 steps in 4476.7us
+[00:21:54.684] INFO  [mk3_Titus] [bot] door ahead at (624,2223,z0); OpenDoor before step
+[00:21:54.699] INFO  [mk3_Titus] [chat ascii] System: Opening door...
+[00:21:56.093] INFO  [mk3_Titus] [chat uni  ] Ithion: Iolana buy
+[00:21:56.093] INFO  [mk3_Titus] [chat ascii] Iolana: Hello! ?
+[00:21:56.093] INFO  [mk3_Titus] [chat ascii] Iolana: I'm here to sell thee supplies.
+[00:21:56.154] INFO  [mk3_Titus] [bot] door ahead at (625,2224,z0); OpenDoor before step
+[00:21:56.168] INFO  [mk3_Titus] [chat ascii] System: Opening door...
+[00:21:57.333] INFO  [mk3_Titus] [survival] hp 24/24 (100%) -> fight
+[00:21:58.645] INFO  [mk3_Titus] [chat ascii] System: Draver has departed from Minoc.
+[00:22:02.381] INFO  [mk3_Titus] [survival] hp 24/24 (100%) -> fight
+[00:22:06.708] INFO  [mk3_Titus] [chat ascii] System: You have retreated from the battle with Rat
+[00:22:07.358] INFO  [mk3_Titus] [bot] arrived at (648,2200,0)
+[00:22:07.358] INFO  [mk3_Titus] [action] goto finished at (648,2200,0); target (648,2200); ARRIVED (off by 0 tile(s))
+[00:22:07.358] LOG   [mk3_Titus] event goto_done: at=(648,2200) target=(648,2200) arrived=1 off=0
+[00:22:07.358] INFO  [mk3_Titus] [action] goto (664,2168) from (648,2200,0)
+[00:22:07.358] LOG   [mk3_Titus] event goto_start: target=(664,2168) from=(648,2200)
+[00:22:07.358] INFO  [mk3_Titus] [bot] running from (648,2200,0) to (664,2168)
+[00:22:07.358] INFO  [mk3_Titus] [bot] planning path to (664,2168) in background
+[00:22:07.419] INFO  [mk3_Titus] [survival] hp 24/24 (100%) -> fight
+[00:22:07.419] INFO  [mk3_Titus] [bot] replan to (664,2168): 32 steps in 1972.8us
+[00:22:12.478] INFO  [mk3_Titus] [survival] hp 24/24 (100%) -> fight
+[00:22:15.796] INFO  [mk3_Titus] [bot] arrived at (664,2168,0)
+[00:22:15.796] INFO  [mk3_Titus] [action] goto finished at (664,2168,0); target (664,2168); ARRIVED (off by 0 tile(s))
+[00:22:15.796] LOG   [mk3_Titus] event goto_done: at=(664,2168) target=(664,2168) arrived=1 off=0
+[00:22:15.796] INFO  [mk3_Titus] [action] goto (648,2136) from (664,2168,0)
+[00:22:15.796] LOG   [mk3_Titus] event goto_start: target=(648,2136) from=(664,2168)
+[00:22:15.797] INFO  [mk3_Titus] [bot] running from (664,2168,0) to (648,2136)
+[00:22:15.797] INFO  [mk3_Titus] [bot] planning path to (648,2136) in background
+[00:22:15.857] INFO  [mk3_Titus] [bot] replan to (648,2136): 32 steps in 1266.2us
+[00:22:17.488] INFO  [mk3_Titus] [survival] hp 24/24 (100%) -> fight
+[00:22:22.531] INFO  [mk3_Titus] [survival] hp 24/24 (100%) -> fight
+[00:22:24.765] INFO  [mk3_Titus] [bot] arrived at (648,2136,0)
+[00:22:24.765] INFO  [mk3_Titus] [action] goto finished at (648,2136,0); target (648,2136); ARRIVED (off by 0 tile(s))
+[00:22:24.765] LOG   [mk3_Titus] event goto_done: at=(648,2136) target=(648,2136) arrived=1 off=0
+[00:22:24.765] INFO  [mk3_Titus] [action] goto (648,2104) from (648,2136,0)
+[00:22:24.765] LOG   [mk3_Titus] event goto_start: target=(648,2104) from=(648,2136)
+[00:22:24.765] INFO  [mk3_Titus] [bot] running from (648,2136,0) to (648,2104)
+[00:22:24.766] INFO  [mk3_Titus] [bot] planning path to (648,2104) in background
+[00:22:24.826] INFO  [mk3_Titus] [bot] replan to (648,2104): 37 steps in 19138.7us
+[00:22:27.554] INFO  [mk3_Titus] [survival] hp 24/24 (100%) -> fight
+[00:22:32.574] INFO  [mk3_Titus] [survival] hp 24/24 (100%) -> fight
+[00:22:35.226] INFO  [mk3_Titus] [chat ascii] System: You have left the protection of the town guards
+[00:22:37.614] INFO  [mk3_Titus] [survival] hp 24/24 (100%) -> fight
+[00:22:37.753] INFO  [mk3_Titus] [bot] arrived at (648,2104,0)
+[00:22:37.753] INFO  [mk3_Titus] [action] goto finished at (648,2104,0); target (648,2104); ARRIVED (off by 0 tile(s))
+[00:22:37.753] LOG   [mk3_Titus] event goto_done: at=(648,2104) target=(648,2104) arrived=1 off=0
+[00:22:37.753] INFO  [mk3_Titus] [action] goto (648,2072) from (648,2104,0)
+[00:22:37.753] LOG   [mk3_Titus] event goto_start: target=(648,2072) from=(648,2104)
+[00:22:37.753] INFO  [mk3_Titus] [bot] running from (648,2104,0) to (648,2072)
+[00:22:37.753] INFO  [mk3_Titus] [bot] planning path to (648,2072) in background
+[00:22:37.814] INFO  [mk3_Titus] [bot] replan to (648,2072): 35 steps in 16806.7us
+[00:22:38.419] INFO  [mk3_Titus] [chat ascii] System: Vorar has departed from Britain.
+[00:22:39.440] INFO  [mk3_Titus] [chat ascii] System: Selene has departed from Magincia.
+[00:22:42.639] INFO  [mk3_Titus] [survival] hp 24/24 (100%) -> fight
+[00:22:46.897] INFO  [mk3_Titus] [chat ascii] System: Zarthal has departed from Minoc.
+[00:22:47.641] INFO  [mk3_Titus] [survival] hp 24/24 (100%) -> fight
+[00:22:49.378] INFO  [mk3_Titus] [chat ascii] System: World save in 10 seconds
+[00:22:50.319] INFO  [mk3_Titus] [chat ascii] System: Thalia has departed from Moonglow.
+[00:22:51.507] INFO  [mk3_Titus] [bot] arrived at (648,2072,0)
+[00:22:51.508] INFO  [mk3_Titus] [action] goto finished at (648,2072,0); target (648,2072); ARRIVED (off by 0 tile(s))
+[00:22:51.508] LOG   [mk3_Titus] event goto_done: at=(648,2072) target=(648,2072) arrived=1 off=0
+[00:22:51.508] INFO  [mk3_Titus] [action] goto (643,2067) from (648,2072,0)
+[00:22:51.508] LOG   [mk3_Titus] event goto_start: target=(643,2067) from=(648,2072)
+[00:22:51.508] INFO  [mk3_Titus] [bot] running from (648,2072,0) to (643,2067)
+[00:22:51.508] INFO  [mk3_Titus] [bot] planning path to (643,2067) in background
+[00:22:51.568] INFO  [mk3_Titus] [bot] replan to (643,2067): 7 steps in 136.0us
+[00:22:52.691] INFO  [mk3_Titus] [survival] hp 24/24 (100%) -> fight
+[00:22:53.140] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_28.titus/state.json
+[00:22:53.217] INFO  [mk3_Titus] [chat ascii] System: Elvar has departed from Minoc.
+[00:22:54.475] INFO  [mk3_Titus] [gump] 0x4000289B context=0x80A0040F: 13 option(s), 15 text(s)
+[00:22:54.475] INFO  [mk3_Titus] [gump]   button 1000 = 'OKAY'
+[00:22:54.475] INFO  [mk3_Titus] [gump]   button 0 = 'CANCEL'
+[00:22:54.475] INFO  [mk3_Titus] [gump]   button 1 = 'Felucca'
+[00:22:54.475] INFO  [mk3_Titus] [gump]   choice 1 = 'Moonglow'
+[00:22:54.475] INFO  [mk3_Titus] [gump]   choice 2 = 'Britain'
+[00:22:54.475] INFO  [mk3_Titus] [gump]   choice 3 = 'Jhelom'
+[00:22:54.475] INFO  [mk3_Titus] [gump]   choice 4 = 'Yew'
+[00:22:54.475] INFO  [mk3_Titus] [gump]   choice 5 = 'New Magincia'
+[00:22:54.475] INFO  [mk3_Titus] [gump]   choice 6 = 'Minoc'
+[00:22:54.475] INFO  [mk3_Titus] [gump]   choice 7 = 'Trinsic'
+[00:22:54.475] INFO  [mk3_Titus] [gump]   choice 8 = 'Skara Brae'
+[00:22:54.475] INFO  [mk3_Titus] [gump]   choice 9 = 'Buccaneer's Den'
+[00:22:54.475] INFO  [mk3_Titus] [gump]   choice 10 = 'Ocllo (Newplayers)'
+[00:22:54.475] INFO  [mk3_Titus] [gump]   text 0 = 'Pick your destination:'
+[00:22:54.475] INFO  [mk3_Titus] [gump]   text 1 = 'OKAY'
+[00:22:54.475] INFO  [mk3_Titus] [gump]   text 2 = 'CANCEL'
+[00:22:54.475] INFO  [mk3_Titus] [gump]   text 3 = 'Felucca'
+[00:22:54.475] INFO  [mk3_Titus] [gump]   text 4 = 'Felucca'
+[00:22:54.475] INFO  [mk3_Titus] [gump]   text 5 = 'Moonglow'
+[00:22:54.475] INFO  [mk3_Titus] [gump]   text 6 = 'Britain'
+[00:22:54.475] INFO  [mk3_Titus] [gump]   text 7 = 'Jhelom'
+[00:22:54.475] INFO  [mk3_Titus] [gump]   text 8 = 'Yew'
+[00:22:54.475] INFO  [mk3_Titus] [gump]   text 9 = 'New Magincia'
+[00:22:54.475] INFO  [mk3_Titus] [gump]   text 10 = 'Minoc'
+[00:22:54.475] INFO  [mk3_Titus] [gump]   text 11 = 'Trinsic'
+[00:22:54.475] INFO  [mk3_Titus] [gump]   text 12 = 'Skara Brae'
+[00:22:54.475] INFO  [mk3_Titus] [gump]   text 13 = 'Buccaneer's Den'
+[00:22:54.475] INFO  [mk3_Titus] [gump]   text 14 = 'Ocllo (Newplayers)'
+[00:22:54.475] LOG   [mk3_Titus] event gump_open: serial=0x4000289B context=0x80A0040F options=13
+[00:22:54.475] INFO  [mk3_Titus] [travel] gate gump: choosing 'New Magincia' (choice 5, button 1000)
+[00:22:54.475] LOG   [mk3_Titus] event moongate_use: destination='New Magincia' choice=5 button=1000
+[00:22:54.475] INFO  [mk3_Titus] [bot] arrived at (643,2067,5)
+[00:22:54.475] INFO  [mk3_Titus] [action] goto finished at (643,2067,5); target (643,2067); ARRIVED (off by 0 tile(s))
+[00:22:54.475] LOG   [mk3_Titus] event goto_done: at=(643,2067) target=(643,2067) arrived=1 off=0
+[00:22:54.475] INFO  [mk3_Titus] [travel] using moongate 0x4000289B for 'New Magincia' (gump active=0 serial=0x00000000)
+[00:22:54.475] INFO  [mk3_Titus] [0x20] player @(3564,2140,34) facing=7
+[00:22:54.475] INFO  [mk3_Titus] [0x20] player @(3564,2140,34) facing=7
+[00:22:54.490] INFO  [mk3_Titus] [chat ascii] System: You can't see the target
+[00:22:54.674] INFO  [mk3_Titus] [action] goto (3592,2136) from (3564,2140,34)
+[00:22:54.674] LOG   [mk3_Titus] event goto_start: target=(3592,2136) from=(3564,2140)
+[00:22:54.674] INFO  [mk3_Titus] [bot] running from (3564,2140,34) to (3592,2136)
+[00:22:54.674] INFO  [mk3_Titus] [bot] planning path to (3592,2136) in background
+[00:22:54.736] INFO  [mk3_Titus] [bot] replan to (3592,2136): 28 steps in 6367.1us
+[00:22:54.996] INFO  [mk3_Titus] [chat ascii] System: You have been revealed
+[00:22:57.726] INFO  [mk3_Titus] [survival] hp 24/24 (100%) -> fight
+[00:22:57.848] INFO  [mk3_Titus] [chat ascii] System: Falen has departed from Minoc.
+[00:22:59.430] INFO  [mk3_Titus] [chat ascii] System: World save has been initiated.
+[00:23:02.732] INFO  [mk3_Titus] [survival] hp 24/24 (100%) -> fight
+[00:23:04.595] INFO  [mk3_Titus] [action] goto finished at (3579,2136,46); target (3592,2136); stopped short (off by 13 tile(s))
+[00:23:04.595] LOG   [mk3_Titus] event goto_done: at=(3579,2136) target=(3592,2136) arrived=0 off=13
+[00:23:05.777] INFO  [mk3_Titus] [chat ascii] System: Ghalor has departed from Minoc.
+[00:23:05.839] INFO  [mk3_Titus] [action] goto (3592,2136) from (3579,2136,46)
+[00:23:05.840] LOG   [mk3_Titus] event goto_start: target=(3592,2136) from=(3579,2136)
+[00:23:05.840] INFO  [mk3_Titus] [bot] running from (3579,2136,46) to (3592,2136)
+[00:23:05.840] INFO  [mk3_Titus] [bot] planning path to (3592,2136) in background
+[00:23:05.900] INFO  [mk3_Titus] [bot] replan to (3592,2136): 13 steps in 1815.6us
+[00:23:07.627] INFO  [mk3_Titus] [chat ascii] System: Cyras has departed from Britain.
+[00:23:07.765] INFO  [mk3_Titus] [survival] hp 24/24 (100%) -> fight
+[00:23:09.493] INFO  [mk3_Titus] [bot] arrived at (3592,2136,66)
+[00:23:09.493] INFO  [mk3_Titus] [action] goto finished at (3592,2136,66); target (3592,2136); ARRIVED (off by 0 tile(s))
+[00:23:09.493] LOG   [mk3_Titus] event goto_done: at=(3592,2136) target=(3592,2136) arrived=1 off=0
+[00:23:09.493] INFO  [mk3_Titus] [action] goto (3624,2136) from (3592,2136,66)
+[00:23:09.493] LOG   [mk3_Titus] event goto_start: target=(3624,2136) from=(3592,2136)
+[00:23:09.493] INFO  [mk3_Titus] [bot] running from (3592,2136,66) to (3624,2136)
+[00:23:09.493] INFO  [mk3_Titus] [bot] planning path to (3624,2136) in background
+[00:23:09.555] INFO  [mk3_Titus] [bot] replan to (3624,2136): 34 steps in 8150.5us
+[00:23:10.033] INFO  [mk3_Titus] [chat ascii] System: Kharain has departed from Minoc.
+[00:23:12.348] INFO  [mk3_Titus] [chat ascii] System: Leander has departed from Moonglow.
+[00:23:12.794] INFO  [mk3_Titus] [survival] hp 24/24 (100%) -> fight
+[00:23:17.817] INFO  [mk3_Titus] [survival] hp 24/24 (100%) -> fight
+[00:23:19.186] INFO  [life] session_end_requested reason="session time limit reached"
+[00:23:19.820] INFO  [mk3_Titus] [bot] step (3623,2139,86)->(3624,2138,85) rejected; OpenDoor + retry
+[00:23:20.565] INFO  [mk3_Titus] [bot] step (3623,2139,86)->(3624,2138,85) rejected; avoiding edge + rerouting
+[00:23:20.565] INFO  [mk3_Titus] [bot] planning path to (3624,2136) in background
+[00:23:20.626] INFO  [mk3_Titus] [bot] replan to (3624,2136): 4 steps in 131.0us
+[00:23:22.654] INFO  [mk3_Titus] [bot] arrived at (3624,2136,84)
+[00:23:22.654] INFO  [mk3_Titus] [action] goto finished at (3624,2136,84); target (3624,2136); ARRIVED (off by 0 tile(s))
+[00:23:22.654] LOG   [mk3_Titus] event goto_done: at=(3624,2136) target=(3624,2136) arrived=1 off=0
+[00:23:22.654] INFO  [mk3_Titus] [action] goto (3656,2152) from (3624,2136,84)
+[00:23:22.654] LOG   [mk3_Titus] event goto_start: target=(3656,2152) from=(3624,2136)
+[00:23:22.654] INFO  [mk3_Titus] [bot] running from (3624,2136,84) to (3656,2152)
+[00:23:22.654] INFO  [mk3_Titus] [bot] planning path to (3656,2152) in background
+[00:23:22.715] INFO  [mk3_Titus] [bot] replan to (3656,2152): 36 steps in 4187.3us
+[00:23:22.837] INFO  [mk3_Titus] [survival] hp 24/24 (100%) -> fight
+[00:23:25.736] INFO  [mk3_Titus] [chat ascii] System: Elara has departed from Magincia.
+[00:23:26.431] INFO  [mk3_Titus] [chat ascii] System: Xerxes has departed from Vesper.
+[00:23:27.847] INFO  [mk3_Titus] [survival] hp 24/24 (100%) -> fight
+[00:23:32.902] INFO  [mk3_Titus] [survival] hp 24/24 (100%) -> fight
+[00:23:33.025] INFO  [mk3_Titus] [chat ascii] System: You are now under the protection of the town guards
+[00:23:33.133] INFO  [mk3_Titus] [chat ascii] System: Dorvar has departed from Skara Brae.
+[00:23:34.132] INFO  [mk3_Titus] [bot] arrived at (3656,2152,29)
+[00:23:34.132] INFO  [mk3_Titus] [action] goto finished at (3656,2152,29); target (3656,2152); ARRIVED (off by 0 tile(s))
+[00:23:34.132] LOG   [mk3_Titus] event goto_done: at=(3656,2152) target=(3656,2152) arrived=1 off=0
+[00:23:34.132] INFO  [mk3_Titus] [action] goto (3683,2171) from (3656,2152,29)
+[00:23:34.132] LOG   [mk3_Titus] event goto_start: target=(3683,2171) from=(3656,2152)
+[00:23:34.132] INFO  [mk3_Titus] [bot] running from (3656,2152,29) to (3683,2171,z20)
+[00:23:34.132] INFO  [mk3_Titus] [bot] planning path to (3683,2171) in background
+[00:23:34.193] INFO  [mk3_Titus] [bot] replan to (3683,2171): 34 steps in 14482.3us
+[00:23:37.865] INFO  [mk3_Titus] [chat ascii] System: Odessa has departed from Britain.
+[00:23:37.926] INFO  [mk3_Titus] [survival] hp 24/24 (100%) -> fight
+[00:23:38.950] INFO  [mk3_Titus] [chat ascii] System: Rhea has departed from Lord British's Castle.
+[00:23:39.641] INFO  [mk3_Titus] [travel] Magincia baker ARRIVED at (3678,2174,20)
+[00:23:39.641] LOG   [mk3_Titus] event travel_done: label='Magincia baker' ok=1 at=(3678,2174) legs=11 plans=1 why=''
+[00:23:39.703] INFO  [life] wind-down: no bank learned yet; asking the world for one (attempt 1)
+[00:23:39.711] INFO  [mk3_Titus] [travel] Magincia banker -> (3734,2149) r=5 from (3678,2174)
+[00:23:39.711] LOG   [mk3_Titus] event travel_start: label='Magincia banker' target=(3734,2149) radius=5 from=(3678,2174)
+[00:23:39.711] INFO  [mk3_Titus] [travel] mode moongate         usable   <- chosen
+[00:23:39.711] INFO  [mk3_Titus] [travel] mode walk             usable
+[00:23:39.711] INFO  [mk3_Titus] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:23:39.711] INFO  [mk3_Titus] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:23:39.711] LOG   [mk3_Titus] event travel_mode: moongate
+[00:23:39.711] INFO  [mk3_Titus] [travel] plan Magincia banker: ok legs=2 ~72 tiles transit=0 nodes=9
+[00:23:42.935] INFO  [mk3_Titus] [survival] hp 24/24 (100%) -> fight
+[00:23:43.184] INFO  [mk3_Titus] [bot] arrived at (3683,2171,20)
+[00:23:43.184] INFO  [mk3_Titus] [action] goto finished at (3683,2171,20); target (3683,2171); ARRIVED (off by 0 tile(s))
+[00:23:43.184] LOG   [mk3_Titus] event goto_done: at=(3683,2171) target=(3683,2171) arrived=1 off=0
+[00:23:43.184] INFO  [mk3_Titus] [action] goto (3704,2168) from (3683,2171,20)
+[00:23:43.184] LOG   [mk3_Titus] event goto_start: target=(3704,2168) from=(3683,2171)
+[00:23:43.184] INFO  [mk3_Titus] [bot] running from (3683,2171,20) to (3704,2168)
+[00:23:43.184] INFO  [mk3_Titus] [bot] planning path to (3704,2168) in background
+[00:23:43.199] INFO  [mk3_Titus] [chat ascii] System: Rhaler has departed from Minoc.
+[00:23:43.199] INFO  [mk3_Titus] [bot] replan to (3704,2168): 27 steps in 2480.6us
+[00:23:43.551] INFO  [mk3_Titus] [chat ascii] Kers: What's thee wantin'?
+[00:23:45.061] INFO  [mk3_Titus] [chat ascii] System: Ithion has departed from Skara Brae.
+[00:23:47.938] INFO  [mk3_Titus] [survival] hp 24/24 (100%) -> fight
+[00:23:52.057] INFO  [mk3_Titus] [bot] arrived at (3704,2168,20)
+[00:23:52.057] INFO  [mk3_Titus] [action] goto finished at (3704,2168,20); target (3704,2168); ARRIVED (off by 0 tile(s))
+[00:23:52.057] LOG   [mk3_Titus] event goto_done: at=(3704,2168) target=(3704,2168) arrived=1 off=0
+[00:23:52.057] INFO  [mk3_Titus] [action] goto (3734,2149) from (3704,2168,20)
+[00:23:52.057] LOG   [mk3_Titus] event goto_start: target=(3734,2149) from=(3704,2168)
+[00:23:52.057] INFO  [mk3_Titus] [bot] running from (3704,2168,20) to (3734,2149,z20)
+[00:23:52.057] INFO  [mk3_Titus] [bot] planning path to (3734,2149) in background
+[00:23:52.119] INFO  [mk3_Titus] [bot] replan to (3734,2149): 36 steps in 4685.5us
+[00:23:52.967] INFO  [mk3_Titus] [survival] hp 24/24 (100%) -> fight
+[00:23:58.021] INFO  [mk3_Titus] [survival] hp 24/24 (100%) -> fight
+[00:24:00.424] INFO  [mk3_Titus] [chat ascii] System: Faustus has departed from Britain.
+[00:24:01.007] INFO  [mk3_Titus] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=11 in 168.8us
+[00:24:01.869] INFO  [mk3_Titus] [chat ascii] System: Hector has departed from Bank of Britannia - Trinsic Branch.
+[00:24:02.470] INFO  [mk3_Titus] [travel] Magincia banker ARRIVED at (3729,2154,20)
+[00:24:02.470] LOG   [mk3_Titus] event travel_done: label='Magincia banker' ok=1 at=(3729,2154) legs=2 plans=1 why=''
+[00:24:02.471] INFO  [life] wind-down: arrived somewhere safe at 3729,2153
+[00:24:02.531] INFO  [life] session_summary duration=223s goals=4/10 gold=10000->9984 skills=100.0->100.0 logs=+0 kills=0 deaths=0 places=2 suppliers=0
+[00:24:02.531] INFO  [life] session_goals families=4 picks=10 top=50% varied=1 self_superseded=0 | emergency=1(10%) upkeep=3(30%) training=5(50%) social=1(10%) | SURVIVE=1(10%) REPLACE_EQUIPMENT=1(10%) BANK=1(10%) TRAIN_COMBAT=5(50%) TRADE_WITH_PLAYER=1(10%) GET_FOOD=1(10%)
+[00:24:02.533] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_28.titus/state.json
+[00:24:02.533] INFO  [life] logging out
+[00:24:02.533] INFO  [mk3_Titus] [action] logout requested
+[00:24:02.533] LOG   [mk3_Titus] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[00:24:02.547] INFO  [mk3_Titus] [0xD1] logout acknowledged (accepted=1)
+[00:24:02.547] LOG   [mk3_Titus] event logout_ack: accepted
+[00:24:02.547] INFO  [mk3_Titus] [net] closing connection (logout acknowledged)
+[00:24:02.547] LOG   [mk3_Titus] event logout_complete: acked

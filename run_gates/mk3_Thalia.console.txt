@@ -1,0 +1,689 @@
+[00:19:45.324] INFO  session 0: 127.0.0.1:2593 user='RevGen3_17' char=Thalia tag='mk3_Thalia'
+[00:19:45.325] LOG   [mk3_Thalia] event session_start: text log opened
+[00:19:45.325] LOG   [mk3_Thalia] event net_connect_begin: connect 127.0.0.1:2593
+[00:19:45.325] INFO  [mk3_Thalia] [net] connecting to 127.0.0.1:2593 ...
+[00:19:45.327] LOG   [mk3_Thalia] event net_connected: connect 127.0.0.1:2593
+[00:19:45.327] INFO  [mk3_Thalia] [net] connected.
+[00:19:45.327] INFO  [mk3_Thalia] [seed] sent 0x7F000001 (plaintext)
+[00:19:45.327] LOG   [mk3_Thalia] event seed_out: 0x7F000001 hex=7f000001
+[00:19:45.327] INFO  [life] no prior state for revgen3_17.thalia: a new Scribe
+[00:19:45.327] INFO  [life] creation request: Inscription 50.0 + Magery 50.0, stats 16/16/48 = 80
+[00:19:45.327] INFO  [life] needs: reading 'scribe' from the profession catalogue
+[00:19:45.327] INFO  [life] home: Thalia lives in Moonglow
+[00:19:45.327] INFO  [life] build plan 'scribe': 240.0 resolved + 460.0 unresolved = 700.0/700.0, stats 30/20/100 = 150
+[00:19:45.327] INFO  [mk3_Thalia] [life] autonomous player active for 'Thalia' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 3 min)
+[00:19:45.327] INFO  [mk3_Thalia] [0xA8] 1 server(s):
+[00:19:45.327] INFO  [mk3_Thalia]   [0] MyShard                   1.0.0.127  full=6%  tz=0
+[00:19:45.338] INFO  [mk3_Thalia] [0x8C] game server = 127.0.0.1:2593  seed=0x9A50E606
+[00:19:45.338] LOG   [mk3_Thalia] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x9A50E606
+[00:19:45.338] INFO  [mk3_Thalia] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[00:19:45.338] LOG   [mk3_Thalia] event relay_same_socket: no seed re-sent; 0x91 follows
+[00:19:45.354] INFO  [mk3_Thalia] [0xB9] server features = 0x0005
+[00:19:45.354] INFO  [mk3_Thalia] [0xA9] 5 slot(s) (populated 0):
+[00:19:45.354] INFO  [mk3_Thalia]   [0] <empty>
+[00:19:45.354] INFO  [mk3_Thalia]   [1] <empty>
+[00:19:45.354] INFO  [mk3_Thalia]   [2] <empty>
+[00:19:45.354] INFO  [mk3_Thalia]   [3] <empty>
+[00:19:45.354] INFO  [mk3_Thalia]   [4] <empty>
+[00:19:45.354] INFO  [mk3_Thalia] create: appearance sex=F skin=0x0410 hair=0x2047/0x0464 shirt=0x02A9 pants=0x00E2
+[00:19:45.354] INFO  [mk3_Thalia] [0x00] starting city index 3
+[00:19:45.354] INFO  [mk3_Thalia] [0x00] requested skills 23:50 25:50 46:0
+[00:19:45.354] INFO  [mk3_Thalia] [0x00] requested stats STR 16 DEX 16 INT 48
+[00:19:45.354] INFO  [mk3_Thalia] [0x00] creating character 'Thalia' in slot 0
+[00:19:45.354] LOG   [mk3_Thalia] event char_create_sent: Thalia
+[00:19:45.357] INFO  [mk3_Thalia] [0x1B] serial=0x0000C45C body=0x0191 pos=(4408,1168,0)
+[00:19:45.357] LOG   [mk3_Thalia] event login_confirm: serial=0x0000C45C body=0x0191 pos=(4408,1168,0)
+[00:19:45.357] INFO  [mk3_Thalia] [0x20] player @(4408,1168,0) facing=3
+[00:19:45.357] INFO  [mk3_Thalia] [0x55] login complete — entering world
+[00:19:45.357] LOG   [mk3_Thalia] event in_world: 0x55 received
+[00:19:45.357] INFO  [mk3_Thalia] [backpack] opening 0x4000AB4F
+[00:19:45.357] INFO  [mk3_Thalia] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[00:19:45.357] INFO  [mk3_Thalia] [chat ascii] System: There are 16 other players here.
+[00:19:45.357] INFO  [mk3_Thalia] [chat ascii] System: You are under the protection of the town guards
+[00:19:45.361] INFO  [mk3_Thalia] [action] requesting the skill list
+[00:19:45.361] INFO  [life] in world; asked the server for the skill list
+[00:19:45.369] INFO  [mk3_Thalia] [0x24] open container 0x4000AB4F gump=60
+[00:19:45.369] INFO  [mk3_Thalia] [0x3C] container contents: 10 item(s)
+[00:19:45.369] LOG   [mk3_Thalia] event backpack_contents: serial=0x4000AB4F items=10
+[00:19:47.967] INFO  [mk3_Thalia] [bot] world data loaded (0 blacklisted spot(s)).
+[00:19:47.967] INFO  [life] reconciliation: first ever login, 7 field(s) differed
+[00:19:47.967] INFO  [life]   gold         persisted=0          server=10000      -> server value accepted
+[00:19:47.967] INFO  [life]   str          persisted=0          server=16         -> server value accepted
+[00:19:47.967] INFO  [life]   dex          persisted=0          server=16         -> server value accepted
+[00:19:47.967] INFO  [life]   int          persisted=0          server=48         -> server value accepted
+[00:19:47.967] INFO  [life]   skill_23     persisted=0.0        server=50.0       -> server value accepted
+[00:19:47.967] INFO  [life]   skill_25     persisted=0.0        server=50.0       -> server value accepted
+[00:19:47.967] INFO  [life]   skill_46     persisted=0.0        server=0.0        -> server value accepted
+[00:19:47.967] INFO  [life]   position     persisted=0,0        server=4408,1168  -> server value accepted
+[00:19:47.967] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[00:19:47.967] INFO  [mk3_Thalia] [survival] on
+[00:19:47.967] LOG   [mk3_Thalia] event survival_mode: on
+[00:19:47.969] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_17.thalia/state.json
+[00:19:47.969] INFO  [mk3_Thalia] [survival] hp 16/16 (100%) -> fight
+[00:19:48.022] INFO  [life] goal=BANK reason="no goal was running"
+[00:19:48.022] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedSkillTraining(Meditation 0.55) NeedTrade(buy from a player 0.51) NeedEquipment(heal potions 0.50) NeedPractice(Meditation 0.45) NeedSupplies(buy craft inputs 0.44) NeedPractice(Magery 0.33) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
+[00:19:48.022] INFO  [life]   score=150.0
+[00:19:48.022] INFO  [life]   reason: NeedBank urgency 0.75 x 240 = 180.0
+[00:19:48.022] INFO  [life]   reason: on_hand=10000 (total 10000) reserve=5000 carry=1300 spare=8700 risk=1.00
+[00:19:48.022] INFO  [life]   reason: no bank learned yet -30
+[00:19:48.022] INFO  [mk3_Thalia] [action] scanning nearby mobiles for names
+[00:19:48.022] INFO  [mk3_Thalia] [action] requested 2 paperdoll(s) for trade titles
+[00:19:48.022] INFO  [life] bank: asking who is standing in the bank
+[00:19:48.022] INFO  [mk3_Thalia] [mobiles] nearby (5):
+[00:19:48.022] INFO  [mk3_Thalia]   Lyra 0x0000C990
+[00:19:48.022] INFO  [mk3_Thalia]   Conway 0x0000A0B0
+[00:19:48.022] INFO  [mk3_Thalia]   Cat 0x0000D101
+[00:19:48.022] INFO  [mk3_Thalia]   Cat 0x00014F8B
+[00:19:48.022] INFO  [mk3_Thalia]   Rat 0x00014BA5
+[00:19:48.022] INFO  [mk3_Thalia] [0x20] player @(4408,1168,0) facing=7
+[00:19:48.022] INFO  [mk3_Thalia] [0x88] paperdoll 0x0000A0B0: "Conway, the innkeeper"
+[00:19:48.022] INFO  [mk3_Thalia] [world] Conway, the innkeeper is a innkeeper at (4405,1162)
+[00:19:48.022] INFO  [mk3_Thalia] [0x88] paperdoll 0x0000C990: "Lyra, Apprentice Mage"
+[00:19:48.422] INFO  [mk3_Thalia] [chat ascii] System: Dorvar has arrived in Skara Brae.
+[00:19:50.041] INFO  [life] bank: no banker in sight
+[00:19:50.041] INFO  [life] goal_failed=BANK status=retryable_failure reason="no banker in sight"
+[00:19:50.101] INFO  [life] goal=REPLACE_EQUIPMENT reason="previous goal abandoned: no banker answered"
+[00:19:50.101] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedSkillTraining(Meditation 0.55) NeedTrade(buy from a player 0.51) NeedEquipment(heal potions 0.50) NeedPractice(Meditation 0.45) NeedSupplies(buy craft inputs 0.44) NeedPractice(Magery 0.33) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
+[00:19:50.101] INFO  [life]   score=130.0
+[00:19:50.101] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:19:50.101] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:19:50.102] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 299s after achieving nothing
+[00:19:51.484] INFO  [mk3_Thalia] [chat ascii] System: Ithion has arrived in Skara Brae.
+[00:19:53.025] INFO  [mk3_Thalia] [survival] hp 16/16 (100%) -> fight
+[00:19:54.532] INFO  [mk3_Thalia] [chat ascii] System: Odessa has arrived in Britain.
+[00:19:55.098] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:19:55.098] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[00:19:55.106] INFO  [mk3_Thalia] [travel] place: skipping Wind healer -- 1596 tiles and 2 gates for a service Moonglow Healer healer offers
+[00:19:55.106] INFO  [mk3_Thalia] [travel] Moonglow Healer healer -> (4394,1083) r=5 from (4408,1168)
+[00:19:55.106] LOG   [mk3_Thalia] event travel_start: label='Moonglow Healer healer' target=(4394,1083) radius=5 from=(4408,1168)
+[00:19:55.106] INFO  [life] potions: walking to a 'healer' (trip 1)
+[00:19:55.106] INFO  [mk3_Thalia] [travel] mode moongate         usable   <- chosen
+[00:19:55.106] INFO  [mk3_Thalia] [travel] mode walk             usable
+[00:19:55.106] INFO  [mk3_Thalia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:19:55.106] INFO  [mk3_Thalia] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:19:55.106] LOG   [mk3_Thalia] event travel_mode: moongate
+[00:19:55.106] INFO  [mk3_Thalia] [travel] plan Moonglow Healer healer: ok legs=3 ~152 tiles transit=0 nodes=54
+[00:19:55.160] INFO  [mk3_Thalia] [travel] avoiding 4 teleporter pad(s) on this leg
+[00:19:55.160] INFO  [mk3_Thalia] [action] goto (4424,1128) from (4408,1168,0)
+[00:19:55.160] LOG   [mk3_Thalia] event goto_start: target=(4424,1128) from=(4408,1168)
+[00:19:55.160] INFO  [mk3_Thalia] [bot] running from (4408,1168,0) to (4424,1128)
+[00:19:55.160] INFO  [mk3_Thalia] [bot] planning path to (4424,1128) in background
+[00:19:55.222] INFO  [mk3_Thalia] [bot] replan to (4424,1128): 44 steps in 2488.6us
+[00:19:57.598] INFO  [mk3_Thalia] [chat ascii] System: Serena has arrived in Britain.
+[00:19:58.041] INFO  [mk3_Thalia] [survival] hp 16/16 (100%) -> fight
+[00:20:00.645] INFO  [mk3_Thalia] [chat ascii] System: Aurelius has arrived in Moonglow.
+[00:20:03.064] INFO  [mk3_Thalia] [survival] hp 16/16 (100%) -> fight
+[00:20:03.869] INFO  [mk3_Thalia] [chat ascii] System: Leander has arrived in Moonglow.
+[00:20:06.980] INFO  [mk3_Thalia] [chat ascii] System: Illyria has arrived in Britain.
+[00:20:07.437] INFO  [mk3_Thalia] [bot] arrived at (4424,1128,0)
+[00:20:07.437] INFO  [mk3_Thalia] [action] goto finished at (4424,1128,0); target (4424,1128); ARRIVED (off by 0 tile(s))
+[00:20:07.437] LOG   [mk3_Thalia] event goto_done: at=(4424,1128) target=(4424,1128) arrived=1 off=0
+[00:20:07.437] INFO  [mk3_Thalia] [travel] avoiding 4 teleporter pad(s) on this leg
+[00:20:07.437] INFO  [mk3_Thalia] [action] goto (4408,1096) from (4424,1128,0)
+[00:20:07.437] LOG   [mk3_Thalia] event goto_start: target=(4408,1096) from=(4424,1128)
+[00:20:07.437] INFO  [mk3_Thalia] [bot] running from (4424,1128,0) to (4408,1096)
+[00:20:07.437] INFO  [mk3_Thalia] [bot] planning path to (4408,1096) in background
+[00:20:07.498] INFO  [mk3_Thalia] [bot] replan to (4408,1096): 45 steps in 9990.4us
+[00:20:08.096] INFO  [mk3_Thalia] [survival] hp 16/16 (100%) -> fight
+[00:20:10.022] INFO  [mk3_Thalia] [chat ascii] System: Hector has arrived in Trinsic.
+[00:20:13.077] INFO  [mk3_Thalia] [chat ascii] System: Castor has arrived in Trinsic.
+[00:20:13.134] INFO  [mk3_Thalia] [survival] hp 16/16 (100%) -> fight
+[00:20:16.106] INFO  [mk3_Thalia] [chat ascii] System: Faustus has arrived in Britain.
+[00:20:18.154] INFO  [mk3_Thalia] [survival] hp 16/16 (100%) -> fight
+[00:20:19.161] INFO  [mk3_Thalia] [chat ascii] System: Titus has arrived in Skara Brae.
+[00:20:19.818] INFO  [mk3_Thalia] [bot] arrived at (4408,1096,0)
+[00:20:19.819] INFO  [mk3_Thalia] [action] goto finished at (4408,1096,0); target (4408,1096); ARRIVED (off by 0 tile(s))
+[00:20:19.819] LOG   [mk3_Thalia] event goto_done: at=(4408,1096) target=(4408,1096) arrived=1 off=0
+[00:20:19.819] INFO  [mk3_Thalia] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:20:19.819] INFO  [mk3_Thalia] [action] goto (4394,1083) from (4408,1096,0)
+[00:20:19.819] LOG   [mk3_Thalia] event goto_start: target=(4394,1083) from=(4408,1096)
+[00:20:19.819] INFO  [mk3_Thalia] [bot] running from (4408,1096,0) to (4394,1083,z0)
+[00:20:19.819] INFO  [mk3_Thalia] [bot] planning path to (4394,1083) in background
+[00:20:22.199] INFO  [mk3_Thalia] [action] goto finished at (4408,1096,0); target (4394,1083); stopped short (off by 27 tile(s))
+[00:20:22.199] LOG   [mk3_Thalia] event goto_done: at=(4408,1096) target=(4394,1083) arrived=0 off=27
+[00:20:22.309] INFO  [mk3_Thalia] [chat ascii] System: Rhea has arrived in Britain.
+[00:20:23.154] INFO  [mk3_Thalia] [survival] hp 16/16 (100%) -> fight
+[00:20:23.401] INFO  [mk3_Thalia] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:20:23.401] INFO  [mk3_Thalia] [action] goto (4394,1083) from (4408,1096,0)
+[00:20:23.401] LOG   [mk3_Thalia] event goto_start: target=(4394,1083) from=(4408,1096)
+[00:20:23.401] INFO  [mk3_Thalia] [bot] running from (4408,1096,0) to (4394,1083,z0)
+[00:20:23.401] INFO  [mk3_Thalia] [bot] planning path to (4394,1083) in background
+[00:20:25.377] INFO  [mk3_Thalia] [chat ascii] System: Xerxes has arrived in Vesper.
+[00:20:25.377] INFO  [mk3_Thalia] [action] goto finished at (4408,1096,0); target (4394,1083); stopped short (off by 27 tile(s))
+[00:20:25.377] LOG   [mk3_Thalia] event goto_done: at=(4408,1096) target=(4394,1083) arrived=0 off=27
+[00:20:26.597] INFO  [mk3_Thalia] [travel] mode walk             usable   <- chosen
+[00:20:26.597] INFO  [mk3_Thalia] [travel] mode moongate         usable
+[00:20:26.597] INFO  [mk3_Thalia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:26.597] INFO  [mk3_Thalia] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:26.597] LOG   [mk3_Thalia] event travel_mode: walk
+[00:20:26.597] INFO  [mk3_Thalia] [travel] plan Moonglow Healer healer: ok legs=1 ~14 tiles transit=0 nodes=0
+[00:20:28.097] INFO  [mk3_Thalia] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:20:28.097] INFO  [mk3_Thalia] [action] goto (4394,1083) from (4408,1096,0)
+[00:20:28.097] LOG   [mk3_Thalia] event goto_start: target=(4394,1083) from=(4408,1096)
+[00:20:28.097] INFO  [mk3_Thalia] [bot] running from (4408,1096,0) to (4394,1083,z0)
+[00:20:28.097] INFO  [mk3_Thalia] [bot] planning path to (4394,1083) in background
+[00:20:28.191] INFO  [mk3_Thalia] [survival] hp 16/16 (100%) -> fight
+[00:20:30.414] INFO  [mk3_Thalia] [action] goto finished at (4408,1096,0); target (4394,1083); stopped short (off by 27 tile(s))
+[00:20:30.414] LOG   [mk3_Thalia] event goto_done: at=(4408,1096) target=(4394,1083) arrived=0 off=27
+[00:20:31.669] INFO  [mk3_Thalia] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:20:31.669] INFO  [mk3_Thalia] [action] goto (4394,1083) from (4408,1096,0)
+[00:20:31.669] LOG   [mk3_Thalia] event goto_start: target=(4394,1083) from=(4408,1096)
+[00:20:31.669] INFO  [mk3_Thalia] [bot] running from (4408,1096,0) to (4394,1083,z0)
+[00:20:31.669] INFO  [mk3_Thalia] [bot] planning path to (4394,1083) in background
+[00:20:31.717] INFO  [mk3_Thalia] [bot] replan to (4394,1083): 23 steps in 2814.6us
+[00:20:33.035] INFO  [mk3_Thalia] [chat uni  ] Lyra: Ayuna buy
+[00:20:33.035] INFO  [mk3_Thalia] [chat ascii] Ayuna: What's thou need?
+[00:20:33.035] INFO  [mk3_Thalia] [chat ascii] Ayuna: I'm here to sell thee supplies.
+[00:20:33.049] INFO  [mk3_Thalia] [chat ascii] Ayuna: Here you are, Lyra That will be 120 gold coins.  I thank thee for thy business.
+[00:20:33.216] INFO  [mk3_Thalia] [survival] hp 16/16 (100%) -> fight
+[00:20:35.897] INFO  [mk3_Thalia] [travel] Moonglow Healer healer ARRIVED at (4397,1088,0)
+[00:20:35.897] LOG   [mk3_Thalia] event travel_done: label='Moonglow Healer healer' ok=1 at=(4397,1088) legs=1 plans=2 why=''
+[00:20:35.913] INFO  [mk3_Thalia] [action] scanning nearby mobiles for names
+[00:20:35.913] INFO  [mk3_Thalia] [action] requested 4 paperdoll(s) for trade titles
+[00:20:35.913] INFO  [life] potions: at the shop, asking who is here (scan 1 of 3)
+[00:20:35.927] INFO  [mk3_Thalia] [mobiles] nearby (13):
+[00:20:35.927] INFO  [mk3_Thalia]   Nuthatch 0x000178D0
+[00:20:35.927] INFO  [mk3_Thalia]   Dog 0x0000D299
+[00:20:35.927] INFO  [mk3_Thalia]   Xanthe 0x000095BA
+[00:20:35.927] INFO  [mk3_Thalia]   Lyra 0x0000C990
+[00:20:35.927] INFO  [mk3_Thalia]   Ayuna 0x00009833
+[00:20:35.927] INFO  [mk3_Thalia]   Rat 0x0001798E
+[00:20:35.927] INFO  [mk3_Thalia]   Aurelius 0x00019331
+[00:20:35.927] INFO  [mk3_Thalia]   Dog 0x0001155B
+[00:20:35.927] INFO  [mk3_Thalia]   Swift 0x0000D85D
+[00:20:35.927] INFO  [mk3_Thalia]   Rat 0x00017DC2
+[00:20:35.927] INFO  [mk3_Thalia]   Benton 0x0000957B
+[00:20:35.927] INFO  [mk3_Thalia]   Anke 0x0000952D
+[00:20:35.927] INFO  [mk3_Thalia]   Rat 0x00010136
+[00:20:35.927] INFO  [mk3_Thalia] [0x20] player @(4397,1088,0) facing=2
+[00:20:35.927] INFO  [mk3_Thalia] [0x88] paperdoll 0x0000957B: "Benton, the architect"
+[00:20:35.927] INFO  [mk3_Thalia] [0x20] player @(4397,1088,0) facing=3
+[00:20:35.927] INFO  [mk3_Thalia] [0x88] paperdoll 0x00019331: "Aurelius, Apprentice Stoic"
+[00:20:35.927] INFO  [mk3_Thalia] [0x20] player @(4397,1088,0) facing=7
+[00:20:35.927] INFO  [mk3_Thalia] [0x88] paperdoll 0x000095BA: "Xanthe, the healer guildmistress"
+[00:20:35.927] INFO  [mk3_Thalia] [world] Xanthe, the healer guildmistress is a healer at (4391,1084)
+[00:20:35.927] INFO  [mk3_Thalia] [0x20] player @(4397,1088,0) facing=6
+[00:20:35.927] INFO  [mk3_Thalia] [0x88] paperdoll 0x00009833: "Ayuna, the healer"
+[00:20:35.927] INFO  [mk3_Thalia] [world] Ayuna, the healer is a healer at (4390,1085)
+[00:20:38.242] INFO  [mk3_Thalia] [survival] hp 16/16 (100%) -> fight
+[00:20:38.948] INFO  [life] potions: found a 'healer'
+[00:20:39.008] INFO  [mk3_Thalia] [travel] mobile 0x00009833 -> (4390,1085) r=1 from (4397,1088)
+[00:20:39.008] LOG   [mk3_Thalia] event travel_start: label='mobile 0x00009833' target=(4390,1085) radius=1 from=(4397,1088)
+[00:20:39.008] INFO  [life] potions: the 'healer' is 7 tiles off (dz 0) -- walking into reach (chase 1 of 3)
+[00:20:39.008] INFO  [mk3_Thalia] [travel] mode walk             usable   <- chosen
+[00:20:39.008] INFO  [mk3_Thalia] [travel] mode moongate         usable
+[00:20:39.008] INFO  [mk3_Thalia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:39.008] INFO  [mk3_Thalia] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:39.008] LOG   [mk3_Thalia] event travel_mode: walk
+[00:20:39.008] INFO  [mk3_Thalia] [travel] plan mobile 0x00009833: ok legs=1 ~7 tiles transit=0 nodes=0
+[00:20:39.069] INFO  [mk3_Thalia] [action] goto finished at (4397,1088,0); target (4394,1083); stopped short (off by 8 tile(s))
+[00:20:39.069] LOG   [mk3_Thalia] event goto_done: at=(4397,1088) target=(4394,1083) arrived=0 off=8
+[00:20:39.069] INFO  [mk3_Thalia] [action] goto (4390,1085) from (4397,1088,0)
+[00:20:39.069] LOG   [mk3_Thalia] event goto_start: target=(4390,1085) from=(4397,1088)
+[00:20:39.069] INFO  [mk3_Thalia] [bot] running from (4397,1088,0) to (4390,1085,z0)
+[00:20:39.069] INFO  [mk3_Thalia] [bot] planning path to (4390,1085) in background
+[00:20:41.678] INFO  [mk3_Thalia] [action] goto finished at (4397,1088,0); target (4390,1085); stopped short (off by 10 tile(s))
+[00:20:41.678] LOG   [mk3_Thalia] event goto_done: at=(4397,1088) target=(4390,1085) arrived=0 off=10
+[00:20:42.903] INFO  [mk3_Thalia] [action] goto (4390,1085) from (4397,1088,0)
+[00:20:42.903] LOG   [mk3_Thalia] event goto_start: target=(4390,1085) from=(4397,1088)
+[00:20:42.903] INFO  [mk3_Thalia] [bot] running from (4397,1088,0) to (4390,1085,z0)
+[00:20:42.903] INFO  [mk3_Thalia] [bot] planning path to (4390,1085) in background
+[00:20:43.284] INFO  [mk3_Thalia] [survival] hp 16/16 (100%) -> fight
+[00:20:45.139] INFO  [mk3_Thalia] [action] goto finished at (4397,1088,0); target (4390,1085); stopped short (off by 10 tile(s))
+[00:20:45.139] LOG   [mk3_Thalia] event goto_done: at=(4397,1088) target=(4390,1085) arrived=0 off=10
+[00:20:46.382] INFO  [mk3_Thalia] [travel] mode walk             usable   <- chosen
+[00:20:46.382] INFO  [mk3_Thalia] [travel] mode moongate         usable
+[00:20:46.382] INFO  [mk3_Thalia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:46.382] INFO  [mk3_Thalia] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:46.382] LOG   [mk3_Thalia] event travel_mode: walk
+[00:20:46.382] INFO  [mk3_Thalia] [travel] plan mobile 0x00009833: ok legs=1 ~7 tiles transit=0 nodes=0
+[00:20:47.902] INFO  [mk3_Thalia] [action] goto (4390,1085) from (4397,1088,0)
+[00:20:47.902] LOG   [mk3_Thalia] event goto_start: target=(4390,1085) from=(4397,1088)
+[00:20:47.902] INFO  [mk3_Thalia] [bot] running from (4397,1088,0) to (4390,1085,z0)
+[00:20:47.902] INFO  [mk3_Thalia] [bot] planning path to (4390,1085) in background
+[00:20:48.011] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_17.thalia/state.json
+[00:20:48.314] INFO  [mk3_Thalia] [survival] hp 16/16 (100%) -> fight
+[00:20:49.973] INFO  [mk3_Thalia] [action] goto finished at (4397,1088,0); target (4390,1085); stopped short (off by 10 tile(s))
+[00:20:49.973] LOG   [mk3_Thalia] event goto_done: at=(4397,1088) target=(4390,1085) arrived=0 off=10
+[00:20:51.208] INFO  [mk3_Thalia] [action] goto (4390,1085) from (4397,1088,0)
+[00:20:51.208] LOG   [mk3_Thalia] event goto_start: target=(4390,1085) from=(4397,1088)
+[00:20:51.208] INFO  [mk3_Thalia] [bot] running from (4397,1088,0) to (4390,1085,z0)
+[00:20:51.208] INFO  [mk3_Thalia] [bot] planning path to (4390,1085) in background
+[00:20:53.296] INFO  [mk3_Thalia] [action] goto finished at (4397,1088,0); target (4390,1085); stopped short (off by 10 tile(s))
+[00:20:53.296] LOG   [mk3_Thalia] event goto_done: at=(4397,1088) target=(4390,1085) arrived=0 off=10
+[00:20:53.357] INFO  [mk3_Thalia] [survival] hp 16/16 (100%) -> fight
+[00:20:54.549] INFO  [mk3_Thalia] [travel] mode walk             usable   <- chosen
+[00:20:54.549] INFO  [mk3_Thalia] [travel] mode moongate         usable
+[00:20:54.549] INFO  [mk3_Thalia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:54.549] INFO  [mk3_Thalia] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:54.549] LOG   [mk3_Thalia] event travel_mode: walk
+[00:20:54.549] INFO  [mk3_Thalia] [travel] plan mobile 0x00009833: ok legs=1 ~7 tiles transit=0 nodes=0
+[00:20:57.581] INFO  [mk3_Thalia] [action] goto (4390,1085) from (4397,1088,0)
+[00:20:57.581] LOG   [mk3_Thalia] event goto_start: target=(4390,1085) from=(4397,1088)
+[00:20:57.581] INFO  [mk3_Thalia] [bot] running from (4397,1088,0) to (4390,1085,z0)
+[00:20:57.581] INFO  [mk3_Thalia] [bot] planning path to (4390,1085) in background
+[00:20:58.388] INFO  [mk3_Thalia] [survival] hp 16/16 (100%) -> fight
+[00:20:59.914] INFO  [mk3_Thalia] [action] goto finished at (4397,1088,0); target (4390,1085); stopped short (off by 10 tile(s))
+[00:20:59.914] LOG   [mk3_Thalia] event goto_done: at=(4397,1088) target=(4390,1085) arrived=0 off=10
+[00:21:01.141] INFO  [mk3_Thalia] [action] goto (4390,1085) from (4397,1088,0)
+[00:21:01.141] LOG   [mk3_Thalia] event goto_start: target=(4390,1085) from=(4397,1088)
+[00:21:01.141] INFO  [mk3_Thalia] [bot] running from (4397,1088,0) to (4390,1085,z0)
+[00:21:01.141] INFO  [mk3_Thalia] [bot] planning path to (4390,1085) in background
+[00:21:03.427] INFO  [mk3_Thalia] [survival] hp 16/16 (100%) -> fight
+[00:21:04.055] INFO  [mk3_Thalia] [action] goto finished at (4397,1088,0); target (4390,1085); stopped short (off by 10 tile(s))
+[00:21:04.055] LOG   [mk3_Thalia] event goto_done: at=(4397,1088) target=(4390,1085) arrived=0 off=10
+[00:21:05.313] INFO  [mk3_Thalia] [travel] mode walk             usable   <- chosen
+[00:21:05.313] INFO  [mk3_Thalia] [travel] mode moongate         usable
+[00:21:05.313] INFO  [mk3_Thalia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:05.313] INFO  [mk3_Thalia] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:05.313] LOG   [mk3_Thalia] event travel_mode: walk
+[00:21:05.313] INFO  [mk3_Thalia] [travel] plan mobile 0x00009833: ok legs=1 ~7 tiles transit=0 nodes=0
+[00:21:08.448] INFO  [mk3_Thalia] [survival] hp 16/16 (100%) -> fight
+[00:21:09.863] INFO  [mk3_Thalia] [action] goto (4390,1085) from (4397,1088,0)
+[00:21:09.863] LOG   [mk3_Thalia] event goto_start: target=(4390,1085) from=(4397,1088)
+[00:21:09.863] INFO  [mk3_Thalia] [bot] running from (4397,1088,0) to (4390,1085,z0)
+[00:21:09.863] INFO  [mk3_Thalia] [bot] planning path to (4390,1085) in background
+[00:21:11.193] INFO  [mk3_Thalia] [chat ascii] System: Observer has arrived in Minoc.
+[00:21:12.524] INFO  [mk3_Thalia] [action] goto finished at (4397,1088,0); target (4390,1085); stopped short (off by 10 tile(s))
+[00:21:12.524] LOG   [mk3_Thalia] event goto_done: at=(4397,1088) target=(4390,1085) arrived=0 off=10
+[00:21:13.508] INFO  [mk3_Thalia] [survival] hp 16/16 (100%) -> fight
+[00:21:13.756] INFO  [mk3_Thalia] [action] goto (4390,1085) from (4397,1088,0)
+[00:21:13.756] LOG   [mk3_Thalia] event goto_start: target=(4390,1085) from=(4397,1088)
+[00:21:13.756] INFO  [mk3_Thalia] [bot] running from (4397,1088,0) to (4390,1085,z0)
+[00:21:13.756] INFO  [mk3_Thalia] [bot] planning path to (4390,1085) in background
+[00:21:14.571] INFO  [mk3_Thalia] [chat ascii] System: Observer has departed from Minoc.
+[00:21:16.337] INFO  [mk3_Thalia] [travel] mobile 0x00009833 -> (4390,1085) r=1 from (4397,1088)
+[00:21:16.337] LOG   [mk3_Thalia] event travel_start: label='mobile 0x00009833' target=(4390,1085) radius=1 from=(4397,1088)
+[00:21:16.337] INFO  [life] potions: the 'healer' is 7 tiles off (dz 0) -- walking into reach (chase 2 of 3)
+[00:21:16.337] INFO  [mk3_Thalia] [travel] mode walk             usable   <- chosen
+[00:21:16.337] INFO  [mk3_Thalia] [travel] mode moongate         usable
+[00:21:16.337] INFO  [mk3_Thalia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:16.337] INFO  [mk3_Thalia] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:16.337] LOG   [mk3_Thalia] event travel_mode: walk
+[00:21:16.337] INFO  [mk3_Thalia] [travel] plan mobile 0x00009833: ok legs=1 ~7 tiles transit=0 nodes=0
+[00:21:16.858] INFO  [mk3_Thalia] [action] goto finished at (4397,1088,0); target (4390,1085); stopped short (off by 10 tile(s))
+[00:21:16.858] LOG   [mk3_Thalia] event goto_done: at=(4397,1088) target=(4390,1085) arrived=0 off=10
+[00:21:16.858] INFO  [mk3_Thalia] [action] goto (4390,1085) from (4397,1088,0)
+[00:21:16.858] LOG   [mk3_Thalia] event goto_start: target=(4390,1085) from=(4397,1088)
+[00:21:16.858] INFO  [mk3_Thalia] [bot] running from (4397,1088,0) to (4390,1085,z0)
+[00:21:16.859] INFO  [mk3_Thalia] [bot] planning path to (4390,1085) in background
+[00:21:18.529] INFO  [mk3_Thalia] [survival] hp 16/16 (100%) -> fight
+[00:21:19.551] INFO  [mk3_Thalia] [action] goto finished at (4397,1088,0); target (4390,1085); stopped short (off by 10 tile(s))
+[00:21:19.551] LOG   [mk3_Thalia] event goto_done: at=(4397,1088) target=(4390,1085) arrived=0 off=10
+[00:21:20.752] INFO  [mk3_Thalia] [action] goto (4390,1085) from (4397,1088,0)
+[00:21:20.752] LOG   [mk3_Thalia] event goto_start: target=(4390,1085) from=(4397,1088)
+[00:21:20.752] INFO  [mk3_Thalia] [bot] running from (4397,1088,0) to (4390,1085,z0)
+[00:21:20.752] INFO  [mk3_Thalia] [bot] planning path to (4390,1085) in background
+[00:21:23.535] INFO  [mk3_Thalia] [action] goto finished at (4397,1088,0); target (4390,1085); stopped short (off by 10 tile(s))
+[00:21:23.535] LOG   [mk3_Thalia] event goto_done: at=(4397,1088) target=(4390,1085) arrived=0 off=10
+[00:21:23.535] INFO  [mk3_Thalia] [survival] hp 16/16 (100%) -> fight
+[00:21:24.782] INFO  [mk3_Thalia] [travel] mode walk             usable   <- chosen
+[00:21:24.782] INFO  [mk3_Thalia] [travel] mode moongate         usable
+[00:21:24.782] INFO  [mk3_Thalia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:24.782] INFO  [mk3_Thalia] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:24.782] LOG   [mk3_Thalia] event travel_mode: walk
+[00:21:24.782] INFO  [mk3_Thalia] [travel] plan mobile 0x00009833: ok legs=1 ~7 tiles transit=0 nodes=0
+[00:21:26.305] INFO  [mk3_Thalia] [action] goto (4390,1085) from (4397,1088,0)
+[00:21:26.305] LOG   [mk3_Thalia] event goto_start: target=(4390,1085) from=(4397,1088)
+[00:21:26.305] INFO  [mk3_Thalia] [bot] running from (4397,1088,0) to (4390,1085,z0)
+[00:21:26.305] INFO  [mk3_Thalia] [bot] planning path to (4390,1085) in background
+[00:21:28.546] INFO  [mk3_Thalia] [survival] hp 16/16 (100%) -> fight
+[00:21:29.190] INFO  [mk3_Thalia] [action] goto finished at (4397,1088,0); target (4390,1085); stopped short (off by 10 tile(s))
+[00:21:29.191] LOG   [mk3_Thalia] event goto_done: at=(4397,1088) target=(4390,1085) arrived=0 off=10
+[00:21:30.407] INFO  [mk3_Thalia] [action] goto (4390,1085) from (4397,1088,0)
+[00:21:30.407] LOG   [mk3_Thalia] event goto_start: target=(4390,1085) from=(4397,1088)
+[00:21:30.407] INFO  [mk3_Thalia] [bot] running from (4397,1088,0) to (4390,1085,z0)
+[00:21:30.407] INFO  [mk3_Thalia] [bot] planning path to (4390,1085) in background
+[00:21:33.089] INFO  [mk3_Thalia] [action] goto finished at (4397,1088,0); target (4390,1085); stopped short (off by 10 tile(s))
+[00:21:33.089] LOG   [mk3_Thalia] event goto_done: at=(4397,1088) target=(4390,1085) arrived=0 off=10
+[00:21:33.550] INFO  [mk3_Thalia] [survival] hp 16/16 (100%) -> fight
+[00:21:34.292] INFO  [mk3_Thalia] [travel] mode walk             usable   <- chosen
+[00:21:34.292] INFO  [mk3_Thalia] [travel] mode moongate         usable
+[00:21:34.292] INFO  [mk3_Thalia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:34.292] INFO  [mk3_Thalia] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:34.292] LOG   [mk3_Thalia] event travel_mode: walk
+[00:21:34.292] INFO  [mk3_Thalia] [travel] plan mobile 0x00009833: ok legs=1 ~7 tiles transit=0 nodes=0
+[00:21:37.346] INFO  [mk3_Thalia] [action] goto (4390,1085) from (4397,1088,0)
+[00:21:37.346] LOG   [mk3_Thalia] event goto_start: target=(4390,1085) from=(4397,1088)
+[00:21:37.346] INFO  [mk3_Thalia] [bot] running from (4397,1088,0) to (4390,1085,z0)
+[00:21:37.346] INFO  [mk3_Thalia] [bot] planning path to (4390,1085) in background
+[00:21:38.576] INFO  [mk3_Thalia] [survival] hp 16/16 (100%) -> fight
+[00:21:38.932] INFO  [mk3_Thalia] [chat ascii] Ayuna: Well it was nice speaking to you Lyra but I must go about my business
+[00:21:39.731] INFO  [mk3_Thalia] [action] goto finished at (4397,1088,0); target (4390,1085); stopped short (off by 10 tile(s))
+[00:21:39.731] LOG   [mk3_Thalia] event goto_done: at=(4397,1088) target=(4390,1085) arrived=0 off=10
+[00:21:40.950] INFO  [mk3_Thalia] [action] goto (4390,1085) from (4397,1088,0)
+[00:21:40.950] LOG   [mk3_Thalia] event goto_start: target=(4390,1085) from=(4397,1088)
+[00:21:40.950] INFO  [mk3_Thalia] [bot] running from (4397,1088,0) to (4390,1085,z0)
+[00:21:40.950] INFO  [mk3_Thalia] [bot] planning path to (4390,1085) in background
+[00:21:43.335] INFO  [mk3_Thalia] [action] goto finished at (4397,1088,0); target (4390,1085); stopped short (off by 10 tile(s))
+[00:21:43.335] LOG   [mk3_Thalia] event goto_done: at=(4397,1088) target=(4390,1085) arrived=0 off=10
+[00:21:43.612] INFO  [mk3_Thalia] [survival] hp 16/16 (100%) -> fight
+[00:21:44.581] INFO  [mk3_Thalia] [travel] mode walk             usable   <- chosen
+[00:21:44.581] INFO  [mk3_Thalia] [travel] mode moongate         usable
+[00:21:44.581] INFO  [mk3_Thalia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:44.581] INFO  [mk3_Thalia] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:44.581] LOG   [mk3_Thalia] event travel_mode: walk
+[00:21:44.581] INFO  [mk3_Thalia] [travel] plan mobile 0x00009833: ok legs=1 ~7 tiles transit=0 nodes=0
+[00:21:44.582] INFO  [mk3_Thalia] [chat uni  ] Aurelius: Ayuna buy
+[00:21:44.582] INFO  [mk3_Thalia] [chat ascii] Ayuna: Greetings. What can I do for thee?
+[00:21:44.582] INFO  [mk3_Thalia] [chat ascii] Ayuna: I got lots to sell!
+[00:21:44.644] INFO  [mk3_Thalia] [chat ascii] Ayuna: Here you are, Aurelius That will be 180 gold coins.  I thank thee for thy business.
+[00:21:48.041] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_17.thalia/state.json
+[00:21:48.642] INFO  [mk3_Thalia] [survival] hp 16/16 (100%) -> fight
+[00:21:49.133] INFO  [mk3_Thalia] [action] goto (4390,1085) from (4397,1088,0)
+[00:21:49.133] LOG   [mk3_Thalia] event goto_start: target=(4390,1085) from=(4397,1088)
+[00:21:49.133] INFO  [mk3_Thalia] [bot] running from (4397,1088,0) to (4390,1085,z0)
+[00:21:49.133] INFO  [mk3_Thalia] [bot] planning path to (4390,1085) in background
+[00:21:51.441] INFO  [mk3_Thalia] [action] goto finished at (4397,1088,0); target (4390,1085); stopped short (off by 10 tile(s))
+[00:21:51.441] LOG   [mk3_Thalia] event goto_done: at=(4397,1088) target=(4390,1085) arrived=0 off=10
+[00:21:52.662] INFO  [mk3_Thalia] [action] goto (4390,1085) from (4397,1088,0)
+[00:21:52.662] LOG   [mk3_Thalia] event goto_start: target=(4390,1085) from=(4397,1088)
+[00:21:52.662] INFO  [mk3_Thalia] [bot] running from (4397,1088,0) to (4390,1085,z0)
+[00:21:52.662] INFO  [mk3_Thalia] [bot] planning path to (4390,1085) in background
+[00:21:53.677] INFO  [mk3_Thalia] [survival] hp 16/16 (100%) -> fight
+[00:21:55.082] INFO  [mk3_Thalia] [action] goto finished at (4397,1088,0); target (4390,1085); stopped short (off by 10 tile(s))
+[00:21:55.082] LOG   [mk3_Thalia] event goto_done: at=(4397,1088) target=(4390,1085) arrived=0 off=10
+[00:21:55.082] LOG   [mk3_Thalia] event travel_escape: from=(4397,1088,0) to=(4392,1078) attempt=1
+[00:21:55.082] INFO  [mk3_Thalia] [action] goto (4392,1078) from (4397,1088,0)
+[00:21:55.082] LOG   [mk3_Thalia] event goto_start: target=(4392,1078) from=(4397,1088)
+[00:21:55.082] INFO  [mk3_Thalia] [bot] running from (4397,1088,0) to (4392,1078,z0)
+[00:21:55.082] INFO  [mk3_Thalia] [bot] planning path to (4392,1078) in background
+[00:21:55.143] INFO  [mk3_Thalia] [bot] replan to (4392,1078): 21 steps in 1673.1us
+[00:21:58.644] INFO  [mk3_Thalia] [chat ascii] System: Draver has departed from Minoc.
+[00:21:58.705] INFO  [mk3_Thalia] [survival] hp 16/16 (100%) -> fight
+[00:22:00.747] INFO  [mk3_Thalia] [bot] arrived at (4392,1078,0)
+[00:22:00.747] INFO  [mk3_Thalia] [action] goto finished at (4392,1078,0); target (4392,1078); ARRIVED (off by 0 tile(s))
+[00:22:00.747] LOG   [mk3_Thalia] event goto_done: at=(4392,1078) target=(4392,1078) arrived=1 off=0
+[00:22:00.747] INFO  [mk3_Thalia] [travel] recovery walk reached its anchor at (4392,1078,0) (off 0); attempt 1/3
+[00:22:00.747] LOG   [mk3_Thalia] event travel_recovery_done: reached=1 at=(4392,1078,0) off=0 attempt=1
+[00:22:00.808] INFO  [mk3_Thalia] [travel] mode walk             usable   <- chosen
+[00:22:00.808] INFO  [mk3_Thalia] [travel] mode moongate         usable
+[00:22:00.808] INFO  [mk3_Thalia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:00.808] INFO  [mk3_Thalia] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:00.808] LOG   [mk3_Thalia] event travel_mode: walk
+[00:22:00.808] INFO  [mk3_Thalia] [travel] plan mobile 0x00009833: ok legs=1 ~7 tiles transit=0 nodes=0
+[00:22:00.867] INFO  [mk3_Thalia] [action] goto (4390,1085) from (4392,1078,0)
+[00:22:00.867] LOG   [mk3_Thalia] event goto_start: target=(4390,1085) from=(4392,1078)
+[00:22:00.867] INFO  [mk3_Thalia] [bot] running from (4392,1078,0) to (4390,1085,z0)
+[00:22:00.867] INFO  [mk3_Thalia] [bot] planning path to (4390,1085) in background
+[00:22:02.724] INFO  [mk3_Thalia] [action] goto finished at (4392,1078,0); target (4390,1085); stopped short (off by 9 tile(s))
+[00:22:02.724] LOG   [mk3_Thalia] event goto_done: at=(4392,1078) target=(4390,1085) arrived=0 off=9
+[00:22:03.709] INFO  [mk3_Thalia] [survival] hp 16/16 (100%) -> fight
+[00:22:03.941] INFO  [mk3_Thalia] [action] goto (4390,1085) from (4392,1078,0)
+[00:22:03.941] LOG   [mk3_Thalia] event goto_start: target=(4390,1085) from=(4392,1078)
+[00:22:03.941] INFO  [mk3_Thalia] [bot] running from (4392,1078,0) to (4390,1085,z0)
+[00:22:03.942] INFO  [mk3_Thalia] [bot] planning path to (4390,1085) in background
+[00:22:06.023] INFO  [mk3_Thalia] [action] goto finished at (4392,1078,0); target (4390,1085); stopped short (off by 9 tile(s))
+[00:22:06.023] LOG   [mk3_Thalia] event goto_done: at=(4392,1078) target=(4390,1085) arrived=0 off=9
+[00:22:07.264] INFO  [mk3_Thalia] [travel] mode walk             usable   <- chosen
+[00:22:07.264] INFO  [mk3_Thalia] [travel] mode moongate         usable
+[00:22:07.265] INFO  [mk3_Thalia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:07.265] INFO  [mk3_Thalia] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:07.265] LOG   [mk3_Thalia] event travel_mode: walk
+[00:22:07.265] INFO  [mk3_Thalia] [travel] plan mobile 0x00009833: ok legs=1 ~7 tiles transit=0 nodes=0
+[00:22:08.753] INFO  [mk3_Thalia] [survival] hp 16/16 (100%) -> fight
+[00:22:08.816] INFO  [mk3_Thalia] [action] goto (4390,1085) from (4392,1078,0)
+[00:22:08.816] LOG   [mk3_Thalia] event goto_start: target=(4390,1085) from=(4392,1078)
+[00:22:08.816] INFO  [mk3_Thalia] [bot] running from (4392,1078,0) to (4390,1085,z0)
+[00:22:08.816] INFO  [mk3_Thalia] [bot] planning path to (4390,1085) in background
+[00:22:08.877] INFO  [mk3_Thalia] [bot] replan to (4390,1085): 30 steps in 4983.8us
+[00:22:13.777] INFO  [mk3_Thalia] [survival] hp 16/16 (100%) -> fight
+[00:22:16.304] INFO  [mk3_Thalia] [chat uni  ] : Ayuna buy
+[00:22:17.115] INFO  [mk3_Thalia] [travel] mobile 0x00009833 ARRIVED at (4391,1085,0)
+[00:22:17.115] LOG   [mk3_Thalia] event travel_done: label='mobile 0x00009833' ok=1 at=(4391,1085) legs=1 plans=2 why=''
+[00:22:17.177] INFO  [life] potions: within reach
+[00:22:17.240] INFO  [mk3_Thalia] [ACTION] vendor_buy start
+[00:22:17.240] INFO  [mk3_Thalia] [VENDOR] open vendor=0x00009833 say='Ayuna buy'
+[00:22:17.240] INFO  [life] potions: asking the 'healer' to show heal potion (attempt 1)
+[00:22:17.241] INFO  [mk3_Thalia] [chat uni  ] : Ayuna buy
+[00:22:17.241] INFO  [mk3_Thalia] [chat ascii] Ayuna: Hello!
+[00:22:17.241] INFO  [mk3_Thalia] [chat ascii] Ayuna: I got lots to sell!
+[00:22:17.241] INFO  [mk3_Thalia] [0x3C] container contents: 4 item(s)
+[00:22:17.241] INFO  [mk3_Thalia] [0x74] pairing: straight (straight 4, mirrored 0 of 4 rows)
+[00:22:17.241] INFO  [mk3_Thalia] [0x74] vendor shop data: cont=0x400095EC 4 item(s), layer=0x1A
+[00:22:17.241] INFO  [mk3_Thalia] [0x74]   clean bandages               gfx=0x0E21 qty=16   price=1
+[00:22:17.241] INFO  [mk3_Thalia] [0x74]   Ginseng                      gfx=0x0F85 qty=24   price=3
+[00:22:17.241] INFO  [mk3_Thalia] [0x74]   Garlic                       gfx=0x0F84 qty=22   price=3
+[00:22:17.241] INFO  [mk3_Thalia] [0x74]   Refresh                      gfx=0x0F0B qty=19   price=16
+[00:22:17.241] INFO  [mk3_Thalia] [0x3C] container contents: 0 item(s)
+[00:22:17.241] INFO  [mk3_Thalia] [0x74] vendor shop data: cont=0x4001006D 0 item(s), layer=0x1B
+[00:22:17.241] INFO  [mk3_Thalia] [VENDOR] offer from 0x00009833: 4 item(s)
+[00:22:17.241] INFO  [mk3_Thalia] [VENDOR]   0x4000CC3C clean bandages         x16  1 gp
+[00:22:17.241] INFO  [mk3_Thalia] [VENDOR]   0x4000CC39 Ginseng                x24  3 gp
+[00:22:17.241] INFO  [mk3_Thalia] [VENDOR]   0x4000CBD0 Garlic                 x22  3 gp
+[00:22:17.241] INFO  [mk3_Thalia] [VENDOR]   0x4000CBCF Refresh                x19  16 gp
+[00:22:17.241] LOG   [mk3_Thalia] event vendor_offer: vendor=0x00009833 items=4
+[00:22:17.241] INFO  [mk3_Thalia] [ACTION_RESULT] vendor_buy success (1ms) vendor offer received
+[00:22:17.241] LOG   [mk3_Thalia] event action_result: vendor_buy success took=1ms vendor offer received
+[00:22:17.241] INFO  [mk3_Thalia] [0x24] vendor buy gump for 0x00009833
+[00:22:17.241] INFO  [life] potions: the shop is open
+[00:22:17.302] INFO  [life] potions: this 'healer' does not stock heal potion
+[00:22:17.302] INFO  [life] potions: none bought (this 'healer' does not stock heal potion)
+[00:22:17.302] INFO  [life] goal_completed=REPLACE_EQUIPMENT progress=0
+[00:22:17.304] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_17.thalia/state.json
+[00:22:17.363] INFO  [life] goal=REPLACE_EQUIPMENT reason="no goal was running"
+[00:22:17.363] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedSkillTraining(Meditation 0.55) NeedTrade(buy from a player 0.51) NeedEquipment(heal potions 0.50) NeedPractice(Meditation 0.45) NeedSupplies(buy craft inputs 0.44) NeedPractice(Magery 0.33) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
+[00:22:17.363] INFO  [life]   score=130.0
+[00:22:17.363] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:22:17.363] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:22:17.363] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 152s after achieving nothing
+[00:22:17.363] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:22:17.363] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[00:22:17.363] INFO  [life] potions: found a 'healer'
+[00:22:17.426] INFO  [life] potions: within reach
+[00:22:17.427] INFO  [mk3_Thalia] [chat ascii] Ayuna: Don't stand so close.
+[00:22:17.427] INFO  [mk3_Thalia] [chat ascii] System: You shove Ayuna out of the way.
+[00:22:17.427] INFO  [mk3_Thalia] [bot] arrived at (4390,1085,0)
+[00:22:17.427] INFO  [life] potions: the shop is open
+[00:22:17.473] INFO  [life] potions: this 'healer' does not stock heal potion
+[00:22:17.473] INFO  [life] potions: none bought (this 'healer' does not stock heal potion)
+[00:22:17.473] INFO  [life] goal_completed=REPLACE_EQUIPMENT progress=0
+[00:22:17.476] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_17.thalia/state.json
+[00:22:17.535] INFO  [life] goal=REPLACE_EQUIPMENT reason="no goal was running"
+[00:22:17.535] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedSkillTraining(Meditation 0.55) NeedTrade(buy from a player 0.51) NeedEquipment(heal potions 0.50) NeedPractice(Meditation 0.45) NeedSupplies(buy craft inputs 0.44) NeedPractice(Magery 0.33) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
+[00:22:17.535] INFO  [life]   score=114.4
+[00:22:17.535] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:22:17.535] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:22:17.535] INFO  [life]   reason: same errand just now, easing off 12% (130.0 -> 114.4)
+[00:22:17.535] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 152s after achieving nothing
+[00:22:17.535] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:22:17.535] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[00:22:17.535] INFO  [life] potions: found a 'healer'
+[00:22:17.550] INFO  [life] potions: within reach
+[00:22:17.611] INFO  [life] potions: the shop is open
+[00:22:17.671] INFO  [life] potions: this 'healer' does not stock heal potion
+[00:22:17.672] INFO  [life] potions: none bought (this 'healer' does not stock heal potion)
+[00:22:17.672] INFO  [life] goal_completed=REPLACE_EQUIPMENT progress=0
+[00:22:17.673] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_17.thalia/state.json
+[00:22:17.734] INFO  [life] goal=REPLACE_EQUIPMENT reason="no goal was running"
+[00:22:17.734] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedSkillTraining(Meditation 0.55) NeedTrade(buy from a player 0.51) NeedEquipment(heal potions 0.50) NeedPractice(Meditation 0.45) NeedSupplies(buy craft inputs 0.44) NeedPractice(Magery 0.33) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
+[00:22:17.734] INFO  [life]   score=98.8
+[00:22:17.734] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:22:17.734] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:22:17.734] INFO  [life]   reason: same errand just now, easing off 24% (130.0 -> 98.8)
+[00:22:17.734] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 152s after achieving nothing
+[00:22:17.734] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:22:17.734] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[00:22:17.734] INFO  [life] potions: found a 'healer'
+[00:22:17.796] INFO  [life] potions: within reach
+[00:22:17.858] INFO  [life] potions: the shop is open
+[00:22:17.920] INFO  [life] potions: this 'healer' does not stock heal potion
+[00:22:17.920] INFO  [life] potions: none bought (this 'healer' does not stock heal potion)
+[00:22:17.920] INFO  [life] goal_completed=REPLACE_EQUIPMENT progress=0
+[00:22:17.922] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_17.thalia/state.json
+[00:22:17.980] INFO  [life] goal=REPLACE_EQUIPMENT reason="no goal was running"
+[00:22:17.980] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedSkillTraining(Meditation 0.55) NeedTrade(buy from a player 0.51) NeedEquipment(heal potions 0.50) NeedPractice(Meditation 0.45) NeedSupplies(buy craft inputs 0.44) NeedPractice(Magery 0.33) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
+[00:22:17.980] INFO  [life]   score=78.0
+[00:22:17.980] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:22:17.980] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:22:17.980] INFO  [life]   reason: upkeep just now, easing off 40% (130.0 -> 78.0)
+[00:22:17.980] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 152s after achieving nothing
+[00:22:17.980] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:22:17.980] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[00:22:17.980] INFO  [life] potions: found a 'healer'
+[00:22:18.042] INFO  [life] potions: within reach
+[00:22:18.102] INFO  [life] potions: the shop is open
+[00:22:18.117] INFO  [life] potions: this 'healer' does not stock heal potion
+[00:22:18.117] INFO  [life] potions: none bought (this 'healer' does not stock heal potion)
+[00:22:18.117] INFO  [life] goal_completed=REPLACE_EQUIPMENT progress=0
+[00:22:18.117] INFO  [life] goal_spinning=REPLACE_EQUIPMENT reason="completed 5 times in a row with progress 0 -- cooled off for a minute; this is a bug in that goal, not pacing"
+[00:22:18.119] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_17.thalia/state.json
+[00:22:18.178] INFO  [life] goal=TRADE_WITH_PLAYER reason="no goal was running"
+[00:22:18.178] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedSkillTraining(Meditation 0.55) NeedTrade(buy from a player 0.51) NeedEquipment(heal potions 0.50) NeedPractice(Meditation 0.45) NeedSupplies(buy craft inputs 0.44) NeedPractice(Magery 0.33) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
+[00:22:18.178] INFO  [life]   score=74.0
+[00:22:18.178] INFO  [life]   reason: NeedTrade urgency 0.51 x 145 = 74.0
+[00:22:18.178] INFO  [life]   reason: 18 x i_scroll_blank short
+[00:22:18.178] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 59s after achieving nothing
+[00:22:18.178] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 151s after achieving nothing
+[00:22:18.178] INFO  [life] market: the market is britain_bank_2 (Britain banker) at 1425,1690, radius 5, guarded
+[00:22:18.178] INFO  [life] goal_blocked=TRADE_WITH_PLAYER reason="not enough session left for the trip" left=27s need=800s
+[00:22:18.239] INFO  [life] goal=BUY_SUPPLIES reason="previous goal abandoned: not enough session left for the trip"
+[00:22:18.239] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedSkillTraining(Meditation 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Meditation 0.45) NeedSupplies(buy craft inputs 0.44) NeedPractice(Magery 0.33) NeedFood(food 0.25) NeedTrade(buy from a player BLOCKED 0.00)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
+[00:22:18.239] INFO  [life]   score=61.6
+[00:22:18.239] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[00:22:18.239] INFO  [life]   reason: i_scroll_poison needs 3 x i_scroll_blank
+[00:22:18.239] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 59s after achieving nothing
+[00:22:18.239] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 151s after achieving nothing
+[00:22:18.239] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 599s after achieving nothing
+[00:22:18.239] INFO  [life] goal_failed=BUY_SUPPLIES reason="REFUSE_VENDOR_NOT_OBSERVED" this 'mage' does not stock i_scroll_blank
+[00:22:18.301] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: this vendor does not stock it"
+[00:22:18.301] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedSkillTraining(Meditation 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Meditation 0.45) NeedSupplies(buy craft inputs 0.44) NeedPractice(Magery 0.33) NeedFood(food 0.25) NeedTrade(buy from a player BLOCKED 0.00)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
+[00:22:18.301] INFO  [life]   score=60.5
+[00:22:18.301] INFO  [life]   reason: NeedSkillTraining urgency 0.55 x 110 = 60.5
+[00:22:18.301] INFO  [life]   reason: Meditation 0.0 -> 40.0, gold 10000 (fee is quoted on arrival, roughly 300)
+[00:22:18.301] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 59s after achieving nothing
+[00:22:18.301] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 151s after achieving nothing
+[00:22:18.301] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 599s after achieving nothing
+[00:22:18.301] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 59s after achieving nothing
+[00:22:18.301] INFO  [life] plan=buy reason="below the ceiling, worth buying, and affordable"
+[00:22:18.301] INFO  [life] training: looking for a 'mage' to teach Meditation (trip 1)
+[00:22:18.316] INFO  [mk3_Thalia] [travel] place: skipping Wind mage -- 1772 tiles and 2 gates for a service Guild of Arcane Arts mage offers
+[00:22:18.316] INFO  [mk3_Thalia] [travel] place: skipping Wind mage -- 1812 tiles and 2 gates for a service Guild of Arcane Arts mage offers
+[00:22:18.316] INFO  [mk3_Thalia] [travel] Guild of Arcane Arts mage -> (4448,1090) r=5 from (4390,1085)
+[00:22:18.316] LOG   [mk3_Thalia] event travel_start: label='Guild of Arcane Arts mage' target=(4448,1090) radius=5 from=(4390,1085)
+[00:22:18.316] INFO  [mk3_Thalia] [travel] mode moongate         usable   <- chosen
+[00:22:18.316] INFO  [mk3_Thalia] [travel] mode walk             usable
+[00:22:18.316] INFO  [mk3_Thalia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:18.316] INFO  [mk3_Thalia] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:18.316] LOG   [mk3_Thalia] event travel_mode: moongate
+[00:22:18.316] INFO  [mk3_Thalia] [travel] plan Guild of Arcane Arts mage: ok legs=2 ~72 tiles transit=0 nodes=7
+[00:22:18.378] INFO  [mk3_Thalia] [action] goto finished at (4390,1085,0); target (4390,1085); ARRIVED (off by 0 tile(s))
+[00:22:18.378] LOG   [mk3_Thalia] event goto_done: at=(4390,1085) target=(4390,1085) arrived=1 off=0
+[00:22:18.378] INFO  [mk3_Thalia] [travel] avoiding 4 teleporter pad(s) on this leg
+[00:22:18.378] INFO  [mk3_Thalia] [action] goto (4424,1096) from (4390,1085,0)
+[00:22:18.378] LOG   [mk3_Thalia] event goto_start: target=(4424,1096) from=(4390,1085)
+[00:22:18.378] INFO  [mk3_Thalia] [bot] running from (4390,1085,0) to (4424,1096)
+[00:22:18.378] INFO  [mk3_Thalia] [bot] planning path to (4424,1096) in background
+[00:22:18.440] INFO  [mk3_Thalia] [bot] replan to (4424,1096): 40 steps in 7526.1us
+[00:22:18.799] INFO  [mk3_Thalia] [survival] hp 16/16 (100%) -> fight
+[00:22:18.799] INFO  [mk3_Thalia] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=40 in 201.1us
+[00:22:23.821] INFO  [mk3_Thalia] [survival] hp 16/16 (100%) -> fight
+[00:22:26.448] INFO  [mk3_Thalia] [chat uni  ] : Ayuna buy
+[00:22:26.448] INFO  [mk3_Thalia] [chat ascii] Ayuna: Yes?
+[00:22:26.448] INFO  [mk3_Thalia] [chat ascii] Ayuna: I'm here to sell thee supplies.
+[00:22:28.875] INFO  [mk3_Thalia] [survival] hp 16/16 (100%) -> fight
+[00:22:30.095] INFO  [mk3_Thalia] [bot] arrived at (4424,1096,0)
+[00:22:30.096] INFO  [mk3_Thalia] [action] goto finished at (4424,1096,0); target (4424,1096); ARRIVED (off by 0 tile(s))
+[00:22:30.096] LOG   [mk3_Thalia] event goto_done: at=(4424,1096) target=(4424,1096) arrived=1 off=0
+[00:22:30.096] INFO  [mk3_Thalia] [travel] avoiding 4 teleporter pad(s) on this leg
+[00:22:30.096] INFO  [mk3_Thalia] [action] goto (4448,1090) from (4424,1096,0)
+[00:22:30.096] LOG   [mk3_Thalia] event goto_start: target=(4448,1090) from=(4424,1096)
+[00:22:30.096] INFO  [mk3_Thalia] [bot] running from (4424,1096,0) to (4448,1090,z0)
+[00:22:30.096] INFO  [mk3_Thalia] [bot] planning path to (4448,1090) in background
+[00:22:30.157] INFO  [mk3_Thalia] [bot] replan to (4448,1090): 46 steps in 15329.4us
+[00:22:33.930] INFO  [mk3_Thalia] [survival] hp 16/16 (100%) -> fight
+[00:22:35.363] INFO  [mk3_Thalia] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=25 in 61.9us
+[00:22:37.997] INFO  [mk3_Thalia] [travel] Guild of Arcane Arts mage ARRIVED at (4452,1095,0)
+[00:22:37.997] LOG   [mk3_Thalia] event travel_done: label='Guild of Arcane Arts mage' ok=1 at=(4452,1095) legs=2 plans=1 why=''
+[00:22:38.060] INFO  [life] training: arrived at 4452,1095 -- asking who is here
+[00:22:38.061] INFO  [mk3_Thalia] [action] scanning nearby mobiles for names
+[00:22:38.061] INFO  [mk3_Thalia] [action] requested 4 paperdoll(s) for trade titles
+[00:22:38.077] INFO  [mk3_Thalia] [mobiles] nearby (10):
+[00:22:38.077] INFO  [mk3_Thalia]   Wren 0x00012730
+[00:22:38.077] INFO  [mk3_Thalia]   Nightingale 0x00017924
+[00:22:38.077] INFO  [mk3_Thalia]   Killian 0x00004C79
+[00:22:38.077] INFO  [mk3_Thalia]   Chander 0x000094A9
+[00:22:38.077] INFO  [mk3_Thalia]   Ambrose 0x0000E086
+[00:22:38.077] INFO  [mk3_Thalia]   Neva 0x000092F4
+[00:22:38.077] INFO  [mk3_Thalia]   Plover 0x0000D544
+[00:22:38.077] INFO  [mk3_Thalia]   Dog 0x0000E9E2
+[00:22:38.077] INFO  [mk3_Thalia]   Plover 0x00016CEC
+[00:22:38.077] INFO  [mk3_Thalia]   Cat 0x00004C4F
+[00:22:38.077] INFO  [mk3_Thalia] [0x20] player @(4452,1095,0) facing=7
+[00:22:38.077] INFO  [mk3_Thalia] [0x88] paperdoll 0x0000E086: "Ambrose, the scribe"
+[00:22:38.077] INFO  [mk3_Thalia] [world] Ambrose, the scribe is a scribe at (4445,1086)
+[00:22:38.077] INFO  [mk3_Thalia] [0x20] player @(4452,1095,0) facing=6
+[00:22:38.077] INFO  [mk3_Thalia] [0x88] paperdoll 0x00004C79: "Killian, the mage guildmaster"
+[00:22:38.077] INFO  [mk3_Thalia] [world] Killian, the mage guildmaster is a mage at (4445,1092)
+[00:22:38.078] INFO  [mk3_Thalia] [0x88] paperdoll 0x000094A9: "Chander, the mage"
+[00:22:38.078] INFO  [mk3_Thalia] [world] Chander, the mage is a mage at (4445,1094)
+[00:22:38.078] INFO  [mk3_Thalia] [0x88] paperdoll 0x000092F4: "Neva, the alchemist"
+[00:22:38.078] INFO  [mk3_Thalia] [world] Neva, the alchemist is a alchemist at (4443,1093)
+[00:22:38.419] INFO  [mk3_Thalia] [chat ascii] System: Vorar has departed from Britain.
+[00:22:38.977] INFO  [mk3_Thalia] [survival] hp 16/16 (100%) -> fight
+[00:22:39.439] INFO  [mk3_Thalia] [chat ascii] System: Selene has departed from Magincia.
+[00:22:40.559] INFO  [life] training: a 'mage guildmaster' is here -- asking them rather than the shopkeeper
+[00:22:40.559] INFO  [life] training: 'mage' is 9 tiles and 0 z away -- walking to them before speaking (approach 1 of 3)
+[00:22:40.559] INFO  [mk3_Thalia] [travel] mobile 0x00004C79 -> (4443,1090) r=1 from (4452,1095)
+[00:22:40.559] LOG   [mk3_Thalia] event travel_start: label='mobile 0x00004C79' target=(4443,1090) radius=1 from=(4452,1095)
+[00:22:40.560] INFO  [mk3_Thalia] [travel] mode walk             usable   <- chosen
+[00:22:40.560] INFO  [mk3_Thalia] [travel] mode moongate         usable
+[00:22:40.560] INFO  [mk3_Thalia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:40.560] INFO  [mk3_Thalia] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:40.560] LOG   [mk3_Thalia] event travel_mode: walk
+[00:22:40.560] INFO  [mk3_Thalia] [travel] plan mobile 0x00004C79: ok legs=1 ~9 tiles transit=0 nodes=0
+[00:22:40.621] INFO  [mk3_Thalia] [action] goto finished at (4452,1095,0); target (4448,1090); stopped short (off by 9 tile(s))
+[00:22:40.621] LOG   [mk3_Thalia] event goto_done: at=(4452,1095) target=(4448,1090) arrived=0 off=9
+[00:22:40.621] INFO  [mk3_Thalia] [travel] avoiding 3 teleporter pad(s) on this leg
+[00:22:40.621] INFO  [mk3_Thalia] [action] goto (4443,1090) from (4452,1095,0)
+[00:22:40.621] LOG   [mk3_Thalia] event goto_start: target=(4443,1090) from=(4452,1095)
+[00:22:40.621] INFO  [mk3_Thalia] [bot] running from (4452,1095,0) to (4443,1090,z0)
+[00:22:40.621] INFO  [mk3_Thalia] [bot] planning path to (4443,1090) in background
+[00:22:42.396] INFO  [mk3_Thalia] [action] goto finished at (4452,1095,0); target (4443,1090); stopped short (off by 14 tile(s))
+[00:22:42.396] LOG   [mk3_Thalia] event goto_done: at=(4452,1095) target=(4443,1090) arrived=0 off=14
+[00:22:43.624] INFO  [mk3_Thalia] [travel] avoiding 3 teleporter pad(s) on this leg
+[00:22:43.624] INFO  [mk3_Thalia] [action] goto (4443,1090) from (4452,1095,0)
+[00:22:43.624] LOG   [mk3_Thalia] event goto_start: target=(4443,1090) from=(4452,1095)
+[00:22:43.624] INFO  [mk3_Thalia] [bot] running from (4452,1095,0) to (4443,1090,z0)
+[00:22:43.624] INFO  [mk3_Thalia] [bot] planning path to (4443,1090) in background
+[00:22:43.686] INFO  [mk3_Thalia] [bot] replan to (4443,1090): 15 steps in 3535.9us
+[00:22:44.026] INFO  [mk3_Thalia] [survival] hp 16/16 (100%) -> fight
+[00:22:44.689] INFO  [mk3_Thalia] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=13 in 65.4us
+[00:22:44.813] INFO  [mk3_Thalia] [travel] mode walk             usable   <- chosen
+[00:22:44.813] INFO  [mk3_Thalia] [travel] mode moongate         usable
+[00:22:44.813] INFO  [mk3_Thalia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:44.813] INFO  [mk3_Thalia] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:44.813] LOG   [mk3_Thalia] event travel_mode: walk
+[00:22:44.813] INFO  [mk3_Thalia] [travel] plan mobile 0x00004C79: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:22:44.875] INFO  [mk3_Thalia] [action] goto finished at (4449,1096,0); target (4443,1090); stopped short (off by 12 tile(s))
+[00:22:44.875] LOG   [mk3_Thalia] event goto_done: at=(4449,1096) target=(4443,1090) arrived=0 off=12
+[00:22:44.875] INFO  [mk3_Thalia] [travel] avoiding 3 teleporter pad(s) on this leg
+[00:22:44.875] INFO  [mk3_Thalia] [action] goto (4445,1093) from (4449,1096,0)
+[00:22:44.875] LOG   [mk3_Thalia] event goto_start: target=(4445,1093) from=(4449,1096)
+[00:22:44.875] INFO  [mk3_Thalia] [bot] running from (4449,1096,0) to (4445,1093,z0)
+[00:22:44.875] INFO  [mk3_Thalia] [bot] planning path to (4445,1093) in background
+[00:22:45.417] INFO  [life] session_end_requested reason="session time limit reached"
+[00:22:46.495] INFO  [mk3_Thalia] [action] goto finished at (4449,1096,0); target (4445,1093); stopped short (off by 7 tile(s))
+[00:22:46.495] LOG   [mk3_Thalia] event goto_done: at=(4449,1096) target=(4445,1093) arrived=0 off=7
+[00:22:46.897] INFO  [mk3_Thalia] [chat ascii] System: Zarthal has departed from Minoc.
+[00:22:47.702] INFO  [mk3_Thalia] [travel] avoiding 3 teleporter pad(s) on this leg
+[00:22:47.702] INFO  [mk3_Thalia] [action] goto (4445,1093) from (4449,1096,0)
+[00:22:47.702] LOG   [mk3_Thalia] event goto_start: target=(4445,1093) from=(4449,1096)
+[00:22:47.702] INFO  [mk3_Thalia] [bot] running from (4449,1096,0) to (4445,1093,z0)
+[00:22:47.702] INFO  [mk3_Thalia] [bot] planning path to (4445,1093) in background
+[00:22:47.762] INFO  [mk3_Thalia] [bot] replan to (4445,1093): 9 steps in 1044.5us
+[00:22:49.054] INFO  [mk3_Thalia] [survival] hp 16/16 (100%) -> fight
+[00:22:49.378] INFO  [mk3_Thalia] [chat ascii] System: World save in 10 seconds
+[00:22:50.133] INFO  [mk3_Thalia] [travel] mobile 0x00004C79 ARRIVED at (4444,1094,0)
+[00:22:50.133] LOG   [mk3_Thalia] event travel_done: label='mobile 0x00004C79' ok=1 at=(4444,1094) legs=1 plans=1 why=''
+[00:22:50.195] INFO  [life] wind-down: arrived somewhere safe at 4444,1094
+[00:22:50.257] INFO  [life] session_summary duration=184s goals=5/9 gold=10000->10000 skills=100.0->100.0 logs=+0 kills=0 deaths=0 places=2 suppliers=0
+[00:22:50.257] INFO  [life] session_goals families=4 picks=9 top=67% varied=0 self_superseded=0 | upkeep=6(67%) work=1(11%) training=1(11%) social=1(11%) | REPLACE_EQUIPMENT=5(56%) BANK=1(11%) TRAIN_AT_NPC=1(11%) TRADE_WITH_PLAYER=1(11%) BUY_SUPPLIES=1(11%)
+[00:22:50.259] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_17.thalia/state.json
+[00:22:50.259] INFO  [life] logging out
+[00:22:50.259] INFO  [mk3_Thalia] [action] logout requested
+[00:22:50.259] LOG   [mk3_Thalia] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[00:22:50.259] INFO  [mk3_Thalia] [0xD1] logout acknowledged (accepted=1)
+[00:22:50.259] LOG   [mk3_Thalia] event logout_ack: accepted
+[00:22:50.259] INFO  [mk3_Thalia] [net] closing connection (logout acknowledged)
+[00:22:50.259] LOG   [mk3_Thalia] event logout_complete: acked

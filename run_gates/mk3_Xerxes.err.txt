@@ -1,0 +1,25 @@
+start: Xerxes is a treasure_hunter and lives in Vesper -> starting city index 8
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+[00:20:45.217] WARN  [mk3_Xerxes] [0x21] move REJECTED seq=71; server says (2801,953,2) facing=1
+[00:20:45.972] WARN  [mk3_Xerxes] [0x21] move REJECTED seq=0; server says (2801,953,2) facing=1
+[00:20:48.788] WARN  [mk3_Xerxes] [bot] no path to (2802,952) avoiding 1 block(s); stopping (search 2810783.3us)
+[00:20:48.788] WARN  [mk3_Xerxes] [bot] start (2801,953,2) exits: open=4 terrain=2 mobile=0 dynamic=1 door=0 blacklist=1 (overlay saw 67 item(s), 1 mobile(s))
+[00:21:02.478] WARN  [mk3_Xerxes] [0x21] move REJECTED seq=57; server says (2827,927,0) facing=1
+[00:21:03.213] WARN  [mk3_Xerxes] [0x21] move REJECTED seq=0; server says (2827,927,0) facing=1
+[00:21:14.307] WARN  [mk3_Xerxes] [0x21] move REJECTED seq=35; server says (2828,890,0) facing=7
+[00:21:15.078] WARN  [mk3_Xerxes] [0x21] move REJECTED seq=0; server says (2828,890,0) facing=7
+[00:22:45.108] WARN  [mk3_Xerxes] [bot] 0x20 resync; aborting path
+[00:22:49.561] WARN  [mk3_Xerxes] [bot] no path to (2921,669) avoiding 0 block(s); stopping (search 1817525.5us)
+[00:22:49.561] WARN  [mk3_Xerxes] [bot] start (2915,677,0) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 485 item(s), 5 mobile(s))
+[00:22:53.183] WARN  [mk3_Xerxes] [bot] no path to (2921,669) avoiding 0 block(s); stopping (search 2251881.6us)
+[00:22:53.184] WARN  [mk3_Xerxes] [bot] start (2915,677,0) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 485 item(s), 5 mobile(s))
+[00:22:57.649] WARN  [mk3_Xerxes] [bot] no path to (2921,669) avoiding 0 block(s); stopping (search 1625943.2us)
+[00:22:57.649] WARN  [mk3_Xerxes] [bot] start (2915,677,0) exits: open=5 terrain=2 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 485 item(s), 5 mobile(s))
+[00:23:01.237] WARN  [mk3_Xerxes] [bot] no path to (2921,669) avoiding 0 block(s); stopping (search 2343251.3us)
+[00:23:01.238] WARN  [mk3_Xerxes] [bot] start (2915,677,0) exits: open=5 terrain=2 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 485 item(s), 5 mobile(s))
+[00:23:07.627] WARN  [mk3_Xerxes] [bot] no path to (2921,669) avoiding 0 block(s); stopping (search 2056523.9us)
+[00:23:07.627] WARN  [mk3_Xerxes] [bot] start (2915,677,0) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 485 item(s), 5 mobile(s))
+[00:23:16.910] WARN  [mk3_Xerxes] [0x21] move REJECTED seq=31; server says (2922,666,0) facing=6
+[00:23:18.512] WARN  [mk3_Xerxes] [bot] no path to (2921,669) avoiding 0 block(s); stopping (search 1547984.3us)
+[00:23:18.512] WARN  [mk3_Xerxes] [bot] start (2922,666,0) exits: open=3 terrain=4 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 485 item(s), 5 mobile(s))

@@ -90,13 +90,33 @@ struct ServiceRejection {
 //      not a geography-policy call, and is not what `rejections` reports.
 //
 // `maxCandidates` bounds how many places actually get a route plan (each is
-// a RoutePlanner::Plan call); candidates arrive distance-sorted from the
-// atlas, so the ones worth planning are tried first.
+// a RoutePlanner::Plan call); candidates arrive RAW-DISTANCE-sorted from the
+// atlas, nearest first.
+//
+// That sort is exactly the thing this file's own ranking exists to correct
+// (raw distance lies once moongates exist), so a small cap here silently
+// reintroduces defect 4 one layer up: a character standing near an island
+// cluster has every genuinely-nearby raw-distance neighbour also clustered
+// there, so an 8-candidate cap tested nothing but that cluster and a
+// Skara Brae fisher's OWN home-town provisioner -- 19th out of 19 by raw
+// distance from Magincia, but one cheap moongate hop away by real trip cost
+// -- never got a route plan at all and was silently absent from both the
+// winner and the `rejections` list (docs/LIFE_GATE_WAVE1.md theme 2,
+// run_gates/g_Dorvar.console.txt 00:40:59: only 'Ocllo provisioner' and
+// 'Delucia provisioner' were ever ranked; runtime/scripts/templates/
+// tm_vend.scp VENDOR_S_PROVISIONER template -- SELL=i_kindling -- confirms
+// every provisioner using it, Skara Brae's and Britain's included, actually
+// stocks kindling). 64 comfortably covers every service this shard's atlas
+// offers today (innkeeper is the busiest at 49 places) while staying far
+// short of "plan a route to literally everything" for a shard with
+// thousands of PLACE rows.
+constexpr usize kMaxServiceCandidatesPlanned = 64;
+
 ServicePick PickServicePlace(const Atlas& atlas, const route::RoutePlanner& planner,
                              wm::Service s, i32 x, i32 y,
                              const std::vector<std::string>& skipIds,
                              bool farOk,
                              std::vector<ServiceRejection>* rejections = nullptr,
-                             usize maxCandidates = 8);
+                             usize maxCandidates = kMaxServiceCandidatesPlanned);
 
 } // namespace uo::world_atlas

@@ -1,0 +1,21 @@
+start: Elvar is a miner_smith and lives in Minoc -> starting city index 1
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+[00:20:27.026] WARN  [mk3_Elvar] [bot] 0x20 resync; aborting path
+[00:20:33.154] WARN  [mk3_Elvar] [bot] no path to (2577,598) avoiding 0 block(s); stopping (search 2965570.4us)
+[00:20:33.154] WARN  [mk3_Elvar] [bot] start (2581,604,0) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 494 item(s), 6 mobile(s))
+[00:20:37.282] WARN  [mk3_Elvar] [bot] no path to (2577,598) avoiding 0 block(s); stopping (search 2824360.6us)
+[00:20:37.282] WARN  [mk3_Elvar] [bot] start (2581,604,0) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 494 item(s), 5 mobile(s))
+[00:21:17.731] WARN  [mk3_Elvar] [0x21] move REJECTED seq=51; server says (2490,586,0) facing=7
+[00:21:20.907] WARN  [mk3_Elvar] [bot] no path to (2488,584) avoiding 0 block(s); stopping (search 3167836.5us)
+[00:21:20.907] WARN  [mk3_Elvar] [bot] start (2490,586,0) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 530 item(s), 3 mobile(s))
+[00:21:41.273] WARN  [mk3_Elvar] [ITEM] drag cancelled by server: unspecified (code 5)
+[00:21:41.273] WARN  [mk3_Elvar] [ACTION_RESULT] equip rejected (17ms) unspecified
+[00:21:41.547] WARN  [mk3_Elvar] [0x21] move REJECTED seq=19; server says (2466,557,5) facing=0
+[00:21:44.720] WARN  [mk3_Elvar] [bot] no path to (2466,556) avoiding 0 block(s); stopping (search 3149657.5us)
+[00:21:44.720] WARN  [mk3_Elvar] [bot] start (2466,557,5) exits: open=4 terrain=0 mobile=1 dynamic=3 door=0 blacklist=0 (overlay saw 557 item(s), 3 mobile(s))
+[00:21:45.457] WARN  [mk3_Elvar] [bot] no path to (2456,520) avoiding 0 block(s); stopping (search 1377.6us)
+[00:21:45.457] WARN  [mk3_Elvar] [bot] start (2466,557,5) exits: open=5 terrain=0 mobile=0 dynamic=3 door=0 blacklist=0 (overlay saw 557 item(s), 4 mobile(s))
+[00:21:52.029] WARN  [mk3_Elvar] [0x21] move REJECTED seq=23; server says (2472,567,5) facing=4
+[00:21:52.091] WARN  [mk3_Elvar] [bot] no path to (2456,520) avoiding 0 block(s); stopping (search 2168.9us)
+[00:21:52.091] WARN  [mk3_Elvar] [bot] start (2472,567,5) exits: open=6 terrain=1 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 557 item(s), 6 mobile(s))

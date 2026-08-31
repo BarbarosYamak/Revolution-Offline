@@ -286,6 +286,66 @@ bool WantsToHunt(const prof::Profession& p) {
     return false;
 }
 
+// --- the weapon-school basic, for a WantsToHunt fighter with empty hands ---
+//
+// "no gear yet -- shopping before the graveyard" (life/Runner.cpp, DoTrainCombat)
+// hands off to REPLACE_EQUIPMENT when obs.weaponEquipped is false, but until
+// this existed that errand could only ARM a weapon already sitting in the
+// pack -- nothing could BUY one, so a WantsToHunt fighter created bare-handed,
+// or stripped of its weapon by death, had no way back to a weapon at all.
+//
+// One row per weapon school, keyed by the SAME skill id WantsToHunt checks
+// above, so the two can never disagree about which fighters this applies to.
+// Each pick is BOTH the newbie kit's own choice for that skill AND the
+// cheapest weapon of its school an NPC on this shard actually stocks.
+const SchoolWeapon kSchoolWeapons[] = {
+    // Swordsmanship -> katana. The newbie kit's own pick
+    // (templates_special/sp_tm_newbie.scp:572-573) and
+    // VENDOR_S_WEAPONS_BLADED's cheapest ACTUAL sword
+    // (items/weapons/i_weapons.scp:966-988, VALUE=56;
+    // templates/tm_vend.scp:1810/1842). i_cleaver_meat (VALUE=16) and
+    // i_knife_butcher (VALUE=11) are technically cheaper and SKILL=
+    // Swordsmanship too, but they are a cook's cleaver and a butcher's
+    // knife -- kitchen tools with a mismatched TYPE, not this shard's idea
+    // of a swordsman's first weapon -- and i_hatchet (VALUE=33) is the
+    // lumberjack's own tool, already claimed by ArmAxe in Runner.cpp.
+    { rules::kSwordsmanship, {0x13FE, 0x13FF}, "i_katana", "katana", false },
+    // Fencing -> kryss. Newbie kit (sp_tm_newbie.scp:439-440); VALUE=51,
+    // items/weapons/i_weapons.scp:994-1016. Sold at the SAME shop as the
+    // katana, c_weaponsmith_blade (tm_vend.scp:1811/1843,
+    // npcs/c_vendor_human.scp:6033 "the weaponsmith"). i_dagger is cheaper
+    // (VALUE=21) and is every newbie's generic starting item
+    // (sp_tm_newbie.scp:61), but [NEWBIE FENCING] overrides it with the
+    // kryss specifically -- Revolution's own newbie kit treats the dagger
+    // as a default, not a fencer's weapon.
+    { rules::kFencing,       {0x1400, 0x1401}, "i_kryss",  "kryss",  false },
+    // Macefighting -> club. Newbie kit (sp_tm_newbie.scp:499-500); VALUE=12,
+    // items/weapons/i_weapons.scp:713-739. i_staff_gnarled is cheaper
+    // (VALUE=8) but is the BEGGING template's staff
+    // (sp_tm_newbie.scp:346-347), not a macefighter's. Sold by
+    // c_weaponsmith_blunt -- a DIFFERENT NPC than the blade smith above but
+    // the SAME paperdoll title "the weaponsmith"
+    // (tm_vend.scp:1866-1876, npcs/c_vendor_human.scp:6199).
+    { rules::kMaceFighting,  {0x13B3, 0x13B4}, "i_club",   "club",   false },
+    // Archery -> bow. Newbie kit (sp_tm_newbie.scp:330-332); VALUE=20, the
+    // cheapest of the school (items/weapons/i_weapons_archery.scp:11-38).
+    // Sold both by c_bowyer (tm_vend.scp:1616/1628, unambiguous title "the
+    // bowyer") and by c_weaponsmith_blade (tm_vend.scp:1802/1834) -- the
+    // bowyer is offered as a second seller by the caller precisely because
+    // its title, unlike "the weaponsmith", is never shared with a shop that
+    // stocks something else.
+    { rules::kArchery,       {0x13B1, 0x13B2}, "i_bow",    "bow",    true  },
+};
+
+const SchoolWeapon* SchoolWeaponFor(const prof::Profession& p) {
+    for (const prof::SkillTargetSpec& t : p.targets) {
+        if (t.tenths <= 500) continue;
+        for (const SchoolWeapon& w : kSchoolWeapons)
+            if (t.skillId == w.skill) return &w;
+    }
+    return nullptr;
+}
+
 CraftIntent ChooseCraft(const prof::Profession& p, const Observation& obs,
                         i32 batch) {
     CraftIntent out;

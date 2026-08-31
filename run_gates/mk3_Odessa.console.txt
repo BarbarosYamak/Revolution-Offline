@@ -1,0 +1,647 @@
+[00:19:54.487] INFO  session 0: 127.0.0.1:2593 user='RevGen3_20' char=Odessa tag='mk3_Odessa'
+[00:19:54.488] LOG   [mk3_Odessa] event session_start: text log opened
+[00:19:54.488] LOG   [mk3_Odessa] event net_connect_begin: connect 127.0.0.1:2593
+[00:19:54.488] INFO  [mk3_Odessa] [net] connecting to 127.0.0.1:2593 ...
+[00:19:54.489] LOG   [mk3_Odessa] event net_connected: connect 127.0.0.1:2593
+[00:19:54.489] INFO  [mk3_Odessa] [net] connected.
+[00:19:54.489] INFO  [mk3_Odessa] [seed] sent 0x7F000001 (plaintext)
+[00:19:54.489] LOG   [mk3_Odessa] event seed_out: 0x7F000001 hex=7f000001
+[00:19:54.490] INFO  [life] no prior state for revgen3_20.odessa: a new Merchant / Tinker
+[00:19:54.490] INFO  [life] creation request: Tinkering 50.0 + Mining 50.0, stats 50/16/14 = 80
+[00:19:54.490] INFO  [life] needs: reading 'merchant_tinker' from the profession catalogue
+[00:19:54.490] INFO  [life] home: Odessa lives in Britain
+[00:19:54.490] INFO  [life] build plan 'merchant_tinker': 150.0 resolved + 550.0 unresolved = 700.0/700.0, stats 100/50/75 = 225
+[00:19:54.490] INFO  [mk3_Odessa] [life] autonomous player active for 'Odessa' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 3 min)
+[00:19:54.500] INFO  [mk3_Odessa] [0xA8] 1 server(s):
+[00:19:54.500] INFO  [mk3_Odessa]   [0] MyShard                   1.0.0.127  full=7%  tz=0
+[00:19:54.515] INFO  [mk3_Odessa] [0x8C] game server = 127.0.0.1:2593  seed=0x2F192066
+[00:19:54.515] LOG   [mk3_Odessa] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x2F192066
+[00:19:54.515] INFO  [mk3_Odessa] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[00:19:54.515] LOG   [mk3_Odessa] event relay_same_socket: no seed re-sent; 0x91 follows
+[00:19:54.515] INFO  [mk3_Odessa] [0xB9] server features = 0x0005
+[00:19:54.515] INFO  [mk3_Odessa] [0xA9] 5 slot(s) (populated 0):
+[00:19:54.515] INFO  [mk3_Odessa]   [0] <empty>
+[00:19:54.515] INFO  [mk3_Odessa]   [1] <empty>
+[00:19:54.515] INFO  [mk3_Odessa]   [2] <empty>
+[00:19:54.515] INFO  [mk3_Odessa]   [3] <empty>
+[00:19:54.515] INFO  [mk3_Odessa]   [4] <empty>
+[00:19:54.515] INFO  [mk3_Odessa] create: appearance sex=F skin=0x0401 hair=0x2045/0x046B shirt=0x030B pants=0x03C8
+[00:19:54.515] INFO  [mk3_Odessa] [0x00] starting city index 2
+[00:19:54.515] INFO  [mk3_Odessa] [0x00] requested skills 37:50 45:50 48:0
+[00:19:54.515] INFO  [mk3_Odessa] [0x00] requested stats STR 50 DEX 16 INT 14
+[00:19:54.515] INFO  [mk3_Odessa] [0x00] creating character 'Odessa' in slot 0
+[00:19:54.515] LOG   [mk3_Odessa] event char_create_sent: Odessa
+[00:19:54.533] INFO  [mk3_Odessa] [0x1B] serial=0x000194DE body=0x0191 pos=(1496,1628,10)
+[00:19:54.533] LOG   [mk3_Odessa] event login_confirm: serial=0x000194DE body=0x0191 pos=(1496,1628,10)
+[00:19:54.533] INFO  [mk3_Odessa] [0x20] player @(1496,1628,10) facing=3
+[00:19:54.533] INFO  [mk3_Odessa] [0x55] login complete — entering world
+[00:19:54.533] LOG   [mk3_Odessa] event in_world: 0x55 received
+[00:19:54.533] INFO  [mk3_Odessa] [backpack] opening 0x400194D9
+[00:19:54.533] INFO  [mk3_Odessa] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[00:19:54.533] INFO  [mk3_Odessa] [chat ascii] System: There are 19 other players here.
+[00:19:54.533] INFO  [mk3_Odessa] [chat ascii] System: You are under the protection of the city guards
+[00:19:54.536] INFO  [mk3_Odessa] [action] requesting the skill list
+[00:19:54.537] INFO  [life] in world; asked the server for the skill list
+[00:19:54.547] INFO  [mk3_Odessa] [0x24] open container 0x400194D9 gump=60
+[00:19:54.547] INFO  [mk3_Odessa] [0x3C] container contents: 6 item(s)
+[00:19:54.547] LOG   [mk3_Odessa] event backpack_contents: serial=0x400194D9 items=6
+[00:19:57.143] INFO  [mk3_Odessa] [bot] world data loaded (0 blacklisted spot(s)).
+[00:19:57.143] INFO  [life] reconciliation: first ever login, 7 field(s) differed
+[00:19:57.143] INFO  [life]   gold         persisted=0          server=10000      -> server value accepted
+[00:19:57.143] INFO  [life]   str          persisted=0          server=50         -> server value accepted
+[00:19:57.143] INFO  [life]   dex          persisted=0          server=16         -> server value accepted
+[00:19:57.143] INFO  [life]   int          persisted=0          server=14         -> server value accepted
+[00:19:57.143] INFO  [life]   skill_37     persisted=0.0        server=50.0       -> server value accepted
+[00:19:57.143] INFO  [life]   skill_45     persisted=0.0        server=50.0       -> server value accepted
+[00:19:57.143] INFO  [life]   position     persisted=0,0        server=1496,1628  -> server value accepted
+[00:19:57.143] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[00:19:57.143] INFO  [mk3_Odessa] [survival] on
+[00:19:57.143] LOG   [mk3_Odessa] event survival_mode: on
+[00:19:57.144] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_20.odessa/state.json
+[00:19:57.144] INFO  [mk3_Odessa] [survival] hp 50/50 (100%) -> fight
+[00:19:57.153] INFO  [life] goal=BANK reason="no goal was running"
+[00:19:57.153] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedTrade(buy from a player 0.55) NeedEquipment(heal potions 0.50) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=2 held=[tinker tools,pickaxe,] want_train=nothing (target 0.0)
+[00:19:57.153] INFO  [life]   score=150.0
+[00:19:57.153] INFO  [life]   reason: NeedBank urgency 0.75 x 240 = 180.0
+[00:19:57.153] INFO  [life]   reason: on_hand=10000 (total 10000) reserve=250 carry=750 spare=9250 risk=1.00
+[00:19:57.153] INFO  [life]   reason: no bank learned yet -30
+[00:19:57.153] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[00:19:57.153] INFO  [mk3_Odessa] [action] scanning nearby mobiles for names
+[00:19:57.154] INFO  [mk3_Odessa] [action] requested 2 paperdoll(s) for trade titles
+[00:19:57.154] INFO  [life] bank: asking who is standing in the bank
+[00:19:57.166] INFO  [mk3_Odessa] [mobiles] nearby (3):
+[00:19:57.166] INFO  [mk3_Odessa]   Audny 0x00001076
+[00:19:57.166] INFO  [mk3_Odessa]   Vorar 0x00016305
+[00:19:57.166] INFO  [mk3_Odessa]   Starling 0x000013C5
+[00:19:57.166] INFO  [mk3_Odessa] [0x20] player @(1496,1628,10) facing=0
+[00:19:57.166] INFO  [mk3_Odessa] [0x88] paperdoll 0x00001076: "Audny, the innkeeper"
+[00:19:57.166] INFO  [mk3_Odessa] [world] Audny, the innkeeper is a innkeeper at (1495,1618)
+[00:19:57.166] INFO  [mk3_Odessa] [0x20] player @(1496,1628,10) facing=7
+[00:19:57.166] INFO  [mk3_Odessa] [0x88] paperdoll 0x00016305: "Vorar, Apprentice Lumberjack"
+[00:19:57.599] INFO  [mk3_Odessa] [chat ascii] System: Serena has arrived in Britain.
+[00:19:59.174] INFO  [life] bank: no banker in sight
+[00:19:59.174] INFO  [life] goal_failed=BANK status=retryable_failure reason="no banker in sight"
+[00:19:59.233] INFO  [life] goal=REPLACE_EQUIPMENT reason="previous goal abandoned: no banker answered"
+[00:19:59.233] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedTrade(buy from a player 0.55) NeedEquipment(heal potions 0.50) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=2 held=[tinker tools,pickaxe,] want_train=nothing (target 0.0)
+[00:19:59.233] INFO  [life]   score=130.0
+[00:19:59.233] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:19:59.233] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:19:59.233] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 299s after achieving nothing
+[00:19:59.233] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[00:20:00.645] INFO  [mk3_Odessa] [chat ascii] System: Aurelius has arrived in Moonglow.
+[00:20:02.146] INFO  [mk3_Odessa] [survival] hp 50/50 (100%) -> fight
+[00:20:03.869] INFO  [mk3_Odessa] [chat ascii] System: Leander has arrived in Moonglow.
+[00:20:04.233] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:20:04.233] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[00:20:04.237] INFO  [mk3_Odessa] [travel] place: skipping Cove healer -- 1344 tiles and 1 gate for a service Britain healer offers
+[00:20:04.237] INFO  [mk3_Odessa] [travel] place: skipping Minoc healer -- 1704 tiles and 0 gates for a service Britain healer offers
+[00:20:04.237] INFO  [mk3_Odessa] [travel] Britain healer -> (1471,1611) r=5 from (1496,1628)
+[00:20:04.237] LOG   [mk3_Odessa] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1496,1628)
+[00:20:04.237] INFO  [life] potions: walking to a 'healer' (trip 1)
+[00:20:04.237] INFO  [mk3_Odessa] [travel] mode walk             usable   <- chosen
+[00:20:04.237] INFO  [mk3_Odessa] [travel] mode moongate         usable
+[00:20:04.237] INFO  [mk3_Odessa] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:04.237] INFO  [mk3_Odessa] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:04.237] LOG   [mk3_Odessa] event travel_mode: walk
+[00:20:04.237] INFO  [mk3_Odessa] [travel] plan Britain healer: ok legs=1 ~25 tiles transit=0 nodes=0
+[00:20:04.294] INFO  [mk3_Odessa] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:20:04.295] INFO  [mk3_Odessa] [action] goto (1471,1611) from (1496,1628,10)
+[00:20:04.295] LOG   [mk3_Odessa] event goto_start: target=(1471,1611) from=(1496,1628)
+[00:20:04.295] INFO  [mk3_Odessa] [bot] running from (1496,1628,10) to (1471,1611,z20)
+[00:20:04.295] INFO  [mk3_Odessa] [bot] planning path to (1471,1611) in background
+[00:20:04.357] INFO  [mk3_Odessa] [bot] replan to (1471,1611): 33 steps in 4941.2us
+[00:20:06.980] INFO  [mk3_Odessa] [chat ascii] System: Illyria has arrived in Britain.
+[00:20:07.163] INFO  [mk3_Odessa] [survival] hp 50/50 (100%) -> fight
+[00:20:10.022] INFO  [mk3_Odessa] [chat ascii] System: Hector has arrived in Trinsic.
+[00:20:11.014] INFO  [mk3_Odessa] [bot] door ahead at (1480,1613,z20); OpenDoor before step
+[00:20:11.015] INFO  [mk3_Odessa] [chat ascii] System: Opening door...
+[00:20:11.954] INFO  [mk3_Odessa] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=10 in 171.7us
+[00:20:12.170] INFO  [mk3_Odessa] [bot] door ahead at (1479,1612,z20); OpenDoor before step
+[00:20:12.170] INFO  [mk3_Odessa] [survival] hp 50/50 (100%) -> fight
+[00:20:12.170] INFO  [mk3_Odessa] [chat ascii] System: Opening door...
+[00:20:12.186] INFO  [mk3_Odessa] [chat uni  ] : Dale buy
+[00:20:12.186] INFO  [mk3_Odessa] [chat ascii] Dale: I got lots to sell!
+[00:20:12.262] INFO  [mk3_Odessa] [chat ascii] Dale: Here you are, Aelia That will be 120 gold coins.  I thank thee for thy business.
+[00:20:13.077] INFO  [mk3_Odessa] [chat ascii] System: Castor has arrived in Trinsic.
+[00:20:13.288] INFO  [mk3_Odessa] [bot] lookahead patched around block at step 3: anchor=5 new segment=6 path=9 in 182.1us
+[00:20:13.703] INFO  [mk3_Odessa] [bot] lookahead patched around block at step 1: anchor=5 new segment=3 path=6 in 30.0us
+[00:20:13.764] INFO  [mk3_Odessa] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=7 in 88.3us
+[00:20:14.317] INFO  [mk3_Odessa] [travel] Britain healer ARRIVED at (1475,1612,20)
+[00:20:14.317] LOG   [mk3_Odessa] event travel_done: label='Britain healer' ok=1 at=(1475,1612) legs=1 plans=1 why=''
+[00:20:14.377] INFO  [mk3_Odessa] [action] scanning nearby mobiles for names
+[00:20:14.377] INFO  [mk3_Odessa] [action] requested 7 paperdoll(s) for trade titles
+[00:20:14.377] INFO  [life] potions: at the shop, asking who is here (scan 1 of 3)
+[00:20:14.393] INFO  [mk3_Odessa] [mobiles] nearby (7):
+[00:20:14.393] INFO  [mk3_Odessa]   Amara 0x00012E70
+[00:20:14.393] INFO  [mk3_Odessa]   Aelia 0x00013DA6
+[00:20:14.393] INFO  [mk3_Odessa]   Dale 0x000010C1
+[00:20:14.393] INFO  [mk3_Odessa]   Serena 0x000193F7
+[00:20:14.393] INFO  [mk3_Odessa]   Natasha 0x00001194
+[00:20:14.393] INFO  [mk3_Odessa]   Caimile 0x00001239
+[00:20:14.393] INFO  [mk3_Odessa]   Cyras 0x00015725
+[00:20:14.393] INFO  [mk3_Odessa] [0x20] player @(1475,1612,20) facing=2
+[00:20:14.393] INFO  [mk3_Odessa] [0x88] paperdoll 0x000193F7: "Serena, Apprentice Miner"
+[00:20:14.393] INFO  [mk3_Odessa] [0x20] player @(1475,1612,20) facing=1
+[00:20:14.393] INFO  [mk3_Odessa] [0x88] paperdoll 0x00012E70: "Amara, Apprentice Tailor"
+[00:20:14.393] INFO  [mk3_Odessa] [0x20] player @(1475,1612,20) facing=2
+[00:20:14.393] INFO  [mk3_Odessa] [0x88] paperdoll 0x00013DA6: "Aelia, Apprentice Tailor"
+[00:20:14.393] INFO  [mk3_Odessa] [0x20] player @(1475,1612,20) facing=6
+[00:20:14.393] INFO  [mk3_Odessa] [0x88] paperdoll 0x000010C1: "Dale, the healer"
+[00:20:14.393] INFO  [mk3_Odessa] [world] Dale, the healer is a healer at (1472,1611)
+[00:20:14.393] INFO  [mk3_Odessa] [0x88] paperdoll 0x00001194: "Natasha, the healer guildmistress"
+[00:20:14.393] INFO  [mk3_Odessa] [world] Natasha, the healer guildmistress is a healer at (1468,1611)
+[00:20:14.393] INFO  [mk3_Odessa] [0x20] player @(1475,1612,20) facing=0
+[00:20:14.393] INFO  [mk3_Odessa] [0x88] paperdoll 0x00001239: "Caimile, the merchant guildmistress"
+[00:20:14.393] INFO  [mk3_Odessa] [0x20] player @(1475,1612,20) facing=6
+[00:20:14.393] INFO  [mk3_Odessa] [0x88] paperdoll 0x00015725: "Cyras, Apprentice Lumberjack"
+[00:20:16.106] INFO  [mk3_Odessa] [chat ascii] System: Faustus has arrived in Britain.
+[00:20:17.196] INFO  [mk3_Odessa] [survival] hp 50/50 (100%) -> fight
+[00:20:17.382] INFO  [life] potions: found a 'healer'
+[00:20:17.443] INFO  [mk3_Odessa] [travel] mobile 0x000010C1 -> (1471,1613) r=1 from (1475,1612)
+[00:20:17.443] LOG   [mk3_Odessa] event travel_start: label='mobile 0x000010C1' target=(1471,1613) radius=1 from=(1475,1612)
+[00:20:17.443] INFO  [life] potions: the 'healer' is 4 tiles off (dz 0) -- walking into reach (chase 1 of 3)
+[00:20:17.443] INFO  [mk3_Odessa] [travel] mode walk             usable   <- chosen
+[00:20:17.443] INFO  [mk3_Odessa] [travel] mode moongate         usable
+[00:20:17.443] INFO  [mk3_Odessa] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:17.443] INFO  [mk3_Odessa] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:17.443] LOG   [mk3_Odessa] event travel_mode: walk
+[00:20:17.443] INFO  [mk3_Odessa] [travel] plan mobile 0x000010C1: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:20:17.505] INFO  [mk3_Odessa] [action] goto finished at (1475,1612,20); target (1471,1611); stopped short (off by 5 tile(s))
+[00:20:17.505] LOG   [mk3_Odessa] event goto_done: at=(1475,1612) target=(1471,1611) arrived=0 off=5
+[00:20:17.505] INFO  [mk3_Odessa] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:20:17.505] INFO  [mk3_Odessa] [action] goto (1471,1613) from (1475,1612,20)
+[00:20:17.505] LOG   [mk3_Odessa] event goto_start: target=(1471,1613) from=(1475,1612)
+[00:20:17.505] INFO  [mk3_Odessa] [bot] running from (1475,1612,20) to (1471,1613,z20)
+[00:20:17.505] INFO  [mk3_Odessa] [bot] planning path to (1471,1613) in background
+[00:20:19.161] INFO  [mk3_Odessa] [chat ascii] System: Titus has arrived in Skara Brae.
+[00:20:19.542] INFO  [mk3_Odessa] [action] goto finished at (1475,1612,20); target (1471,1613); stopped short (off by 5 tile(s))
+[00:20:19.542] LOG   [mk3_Odessa] event goto_done: at=(1475,1612) target=(1471,1613) arrived=0 off=5
+[00:20:20.775] INFO  [mk3_Odessa] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:20:20.775] INFO  [mk3_Odessa] [action] goto (1471,1613) from (1475,1612,20)
+[00:20:20.775] LOG   [mk3_Odessa] event goto_start: target=(1471,1613) from=(1475,1612)
+[00:20:20.775] INFO  [mk3_Odessa] [bot] running from (1475,1612,20) to (1471,1613,z20)
+[00:20:20.775] INFO  [mk3_Odessa] [bot] planning path to (1471,1613) in background
+[00:20:20.821] INFO  [mk3_Odessa] [bot] replan to (1471,1613): 4 steps in 101.1us
+[00:20:21.649] INFO  [mk3_Odessa] [travel] mobile 0x000010C1 ARRIVED at (1472,1612,20)
+[00:20:21.649] LOG   [mk3_Odessa] event travel_done: label='mobile 0x000010C1' ok=1 at=(1472,1612) legs=1 plans=1 why=''
+[00:20:21.649] INFO  [life] potions: within reach
+[00:20:21.709] INFO  [mk3_Odessa] [ACTION] vendor_buy start
+[00:20:21.709] INFO  [mk3_Odessa] [VENDOR] open vendor=0x000010C1 say='Dale buy'
+[00:20:21.709] INFO  [life] potions: asking the 'healer' to show heal potion (attempt 1)
+[00:20:21.726] INFO  [mk3_Odessa] [chat uni  ] : Dale buy
+[00:20:21.726] INFO  [mk3_Odessa] [chat ascii] Dale: Greetings. What can I help thee with?
+[00:20:21.726] INFO  [mk3_Odessa] [chat ascii] Dale: I'm here to sell thee supplies.
+[00:20:21.726] INFO  [mk3_Odessa] [0x3C] container contents: 4 item(s)
+[00:20:21.726] INFO  [mk3_Odessa] [0x74] pairing: straight (straight 4, mirrored 0 of 4 rows)
+[00:20:21.726] INFO  [mk3_Odessa] [0x74] vendor shop data: cont=0x400010BB 4 item(s), layer=0x1A
+[00:20:21.726] INFO  [mk3_Odessa] [0x74]   Heal                         gfx=0x0F0C qty=6    price=30
+[00:20:21.726] INFO  [mk3_Odessa] [0x74]   Ginseng                      gfx=0x0F85 qty=20   price=3
+[00:20:21.726] INFO  [mk3_Odessa] [0x74]   Garlic                       gfx=0x0F84 qty=13   price=3
+[00:20:21.726] INFO  [mk3_Odessa] [0x74]   Refresh                      gfx=0x0F0B qty=19   price=16
+[00:20:21.726] INFO  [mk3_Odessa] [0x3C] container contents: 0 item(s)
+[00:20:21.726] INFO  [mk3_Odessa] [0x74] vendor shop data: cont=0x40000EF5 0 item(s), layer=0x1B
+[00:20:21.726] INFO  [mk3_Odessa] [VENDOR] offer from 0x000010C1: 4 item(s)
+[00:20:21.726] INFO  [mk3_Odessa] [VENDOR]   0x4001823F Heal                   x6   30 gp
+[00:20:21.726] INFO  [mk3_Odessa] [VENDOR]   0x40018237 Ginseng                x20  3 gp
+[00:20:21.726] INFO  [mk3_Odessa] [VENDOR]   0x40018236 Garlic                 x13  3 gp
+[00:20:21.726] INFO  [mk3_Odessa] [VENDOR]   0x40018232 Refresh                x19  16 gp
+[00:20:21.726] LOG   [mk3_Odessa] event vendor_offer: vendor=0x000010C1 items=4
+[00:20:21.726] INFO  [mk3_Odessa] [ACTION_RESULT] vendor_buy success (17ms) vendor offer received
+[00:20:21.726] LOG   [mk3_Odessa] event action_result: vendor_buy success took=17ms vendor offer received
+[00:20:21.726] INFO  [mk3_Odessa] [0x24] vendor buy gump for 0x000010C1
+[00:20:21.726] INFO  [life] potions: the shop is open
+[00:20:21.787] INFO  [mk3_Odessa] [ACTION] vendor_buy start
+[00:20:21.787] INFO  [mk3_Odessa] [policy] allowed NPC purchase of i_potion_heal (0x0F0C): basic healing: a life with no Healing skill has no other way to treat itself, and the shard's own healer sells it [BASIC_HEALING]
+[00:20:21.787] INFO  [mk3_Odessa] [VENDOR] buy item=0x4001823F qty=4 from vendor=0x000010C1 gold=10000
+[00:20:21.787] INFO  [life] potions: buying 4 heal potion at 30 each from the 'healer' (shelf holds 6) -- waiting for the pack
+[00:20:21.803] INFO  [mk3_Odessa] [ACTION_RESULT] vendor_buy success (16ms) purchased item delivered
+[00:20:21.803] LOG   [mk3_Odessa] event action_result: vendor_buy success took=16ms purchased item delivered
+[00:20:21.803] INFO  [mk3_Odessa] [chat ascii] Dale: Here you are, Odessa That will be 120 gold coins.  I thank thee for thy business.
+[00:20:21.803] INFO  [mk3_Odessa] [0x3B] vendor transaction closed: vendor=0x000010C1 flag=0
+[00:20:21.803] INFO  [life] goal_changed=TRADE_WITH_PLAYER from=REPLACE_EQUIPMENT reason="TRADE_WITH_PLAYER 79.8 superseded REPLACE_EQUIPMENT 0.0"
+[00:20:21.803] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedTrade(buy from a player 0.55) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=2 held=[tinker tools,pickaxe,] want_train=nothing (target 0.0)
+[00:20:21.803] INFO  [life]   score=79.8
+[00:20:21.803] INFO  [life]   reason: NeedTrade urgency 0.55 x 145 = 79.8
+[00:20:21.803] INFO  [life]   reason: 20 x i_ingot_iron short
+[00:20:21.803] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 277s after achieving nothing
+[00:20:21.803] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[00:20:21.803] INFO  [life] market: the market is britain_bank_2 (Britain banker) at 1425,1690, radius 5, guarded
+[00:20:21.803] INFO  [life] goal_blocked=TRADE_WITH_PLAYER reason="not enough session left for the trip" left=152s need=800s
+[00:20:21.863] INFO  [life] goal=GET_FOOD reason="previous goal abandoned: not enough session left for the trip"
+[00:20:21.863] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedFood(food 0.25) NeedTrade(buy from a player BLOCKED 0.00) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=2 held=[tinker tools,pickaxe,] want_train=nothing (target 0.0)
+[00:20:21.863] INFO  [life]   score=62.5
+[00:20:21.863] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[00:20:21.863] INFO  [life]   reason: food=0
+[00:20:21.863] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 277s after achieving nothing
+[00:20:21.863] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 599s after achieving nothing
+[00:20:21.863] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[00:20:21.875] INFO  [mk3_Odessa] [travel] Britain baker -> (1450,1617) r=5 from (1472,1612)
+[00:20:21.875] LOG   [mk3_Odessa] event travel_start: label='Britain baker' target=(1450,1617) radius=5 from=(1472,1612)
+[00:20:21.875] INFO  [life] food: walking to a 'baker' (trip 1)
+[00:20:21.875] INFO  [mk3_Odessa] [travel] mode walk             usable   <- chosen
+[00:20:21.875] INFO  [mk3_Odessa] [travel] mode moongate         usable
+[00:20:21.875] INFO  [mk3_Odessa] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:21.875] INFO  [mk3_Odessa] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:21.875] LOG   [mk3_Odessa] event travel_mode: walk
+[00:20:21.875] INFO  [mk3_Odessa] [travel] plan Britain baker: ok legs=1 ~22 tiles transit=0 nodes=0
+[00:20:22.062] INFO  [mk3_Odessa] [bot] arrived at (1471,1613,20)
+[00:20:22.062] INFO  [mk3_Odessa] [action] goto finished at (1471,1613,20); target (1471,1613); ARRIVED (off by 0 tile(s))
+[00:20:22.062] LOG   [mk3_Odessa] event goto_done: at=(1471,1613) target=(1471,1613) arrived=1 off=0
+[00:20:22.062] INFO  [mk3_Odessa] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:20:22.063] INFO  [mk3_Odessa] [action] goto (1450,1617) from (1471,1613,20)
+[00:20:22.063] LOG   [mk3_Odessa] event goto_start: target=(1450,1617) from=(1471,1613)
+[00:20:22.063] INFO  [mk3_Odessa] [bot] running from (1471,1613,20) to (1450,1617,z20)
+[00:20:22.063] INFO  [mk3_Odessa] [bot] planning path to (1450,1617) in background
+[00:20:22.092] INFO  [mk3_Odessa] [bot] replan to (1450,1617): 47 steps in 8480.8us
+[00:20:22.215] INFO  [mk3_Odessa] [survival] hp 50/50 (100%) -> fight
+[00:20:22.309] INFO  [mk3_Odessa] [chat ascii] System: Rhea has arrived in Britain.
+[00:20:24.072] INFO  [mk3_Odessa] [bot] door ahead at (1479,1612,z20); OpenDoor before step
+[00:20:24.072] INFO  [mk3_Odessa] [chat ascii] System: Opening door...
+[00:20:24.810] INFO  [mk3_Odessa] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=41 in 150.5us
+[00:20:25.070] INFO  [mk3_Odessa] [chat uni  ] Amara: Dale buy
+[00:20:25.070] INFO  [mk3_Odessa] [chat ascii] Dale: Thou surely wants all the things that I can sell thee.
+[00:20:25.146] INFO  [mk3_Odessa] [chat ascii] Dale: Here you are, Amara That will be 60 gold coins.  I thank thee for thy business.
+[00:20:25.377] INFO  [mk3_Odessa] [chat ascii] System: Xerxes has arrived in Vesper.
+[00:20:25.971] INFO  [mk3_Odessa] [bot] door ahead at (1480,1610,z20); OpenDoor before step
+[00:20:25.971] INFO  [mk3_Odessa] [chat ascii] System: Opening door...
+[00:20:27.224] INFO  [mk3_Odessa] [survival] hp 50/50 (100%) -> fight
+[00:20:32.250] INFO  [mk3_Odessa] [survival] hp 50/50 (100%) -> fight
+[00:20:37.456] INFO  [mk3_Odessa] [survival] hp 50/50 (100%) -> fight
+[00:20:37.720] INFO  [mk3_Odessa] [travel] Britain baker ARRIVED at (1454,1613,20)
+[00:20:37.720] LOG   [mk3_Odessa] event travel_done: label='Britain baker' ok=1 at=(1454,1613) legs=1 plans=1 why=''
+[00:20:37.720] INFO  [mk3_Odessa] [action] scanning nearby mobiles for names
+[00:20:37.720] INFO  [mk3_Odessa] [action] requested 3 paperdoll(s) for trade titles
+[00:20:37.720] INFO  [life] food: at the shop, asking who is here (scan 1 of 3)
+[00:20:37.870] INFO  [mk3_Odessa] [mobiles] nearby (8):
+[00:20:37.870] INFO  [mk3_Odessa]   Halain 0x0001616D
+[00:20:37.870] INFO  [mk3_Odessa]   Vorar 0x00016305
+[00:20:37.870] INFO  [mk3_Odessa]   Aelia 0x00013DA6
+[00:20:37.870] INFO  [mk3_Odessa]   Delras 0x00015A59
+[00:20:37.870] INFO  [mk3_Odessa]   Lionel 0x000010B3
+[00:20:37.870] INFO  [mk3_Odessa]   Cyras 0x00015725
+[00:20:37.870] INFO  [mk3_Odessa]   Amara 0x00012E70
+[00:20:37.870] INFO  [mk3_Odessa]   Natasha 0x00001194
+[00:20:37.870] INFO  [mk3_Odessa] [0x20] player @(1454,1613,20) facing=4
+[00:20:37.870] INFO  [mk3_Odessa] [0x88] paperdoll 0x0001616D: "Halain, Apprentice Lumberjack"
+[00:20:37.870] INFO  [mk3_Odessa] [0x20] player @(1454,1613,20) facing=5
+[00:20:37.870] INFO  [mk3_Odessa] [0x88] paperdoll 0x00015A59: "Delras, Apprentice Lumberjack"
+[00:20:37.870] INFO  [mk3_Odessa] [0x88] paperdoll 0x000010B3: "Lionel, the baker"
+[00:20:37.870] INFO  [mk3_Odessa] [world] Lionel, the baker is a baker at (1449,1616)
+[00:20:40.737] INFO  [life] food: found a 'baker'
+[00:20:40.797] INFO  [mk3_Odessa] [travel] mobile 0x000010B3 -> (1449,1616) r=1 from (1454,1613)
+[00:20:40.797] LOG   [mk3_Odessa] event travel_start: label='mobile 0x000010B3' target=(1449,1616) radius=1 from=(1454,1613)
+[00:20:40.797] INFO  [life] food: the 'baker' is 5 tiles off (dz 0) -- walking into reach (chase 1 of 3)
+[00:20:40.797] INFO  [mk3_Odessa] [travel] mode walk             usable   <- chosen
+[00:20:40.797] INFO  [mk3_Odessa] [travel] mode moongate         usable
+[00:20:40.797] INFO  [mk3_Odessa] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:40.797] INFO  [mk3_Odessa] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:40.797] LOG   [mk3_Odessa] event travel_mode: walk
+[00:20:40.797] INFO  [mk3_Odessa] [travel] plan mobile 0x000010B3: ok legs=1 ~5 tiles transit=0 nodes=0
+[00:20:40.859] INFO  [mk3_Odessa] [action] goto finished at (1454,1613,20); target (1450,1617); stopped short (off by 8 tile(s))
+[00:20:40.859] LOG   [mk3_Odessa] event goto_done: at=(1454,1613) target=(1450,1617) arrived=0 off=8
+[00:20:40.859] INFO  [mk3_Odessa] [action] goto (1449,1616) from (1454,1613,20)
+[00:20:40.859] LOG   [mk3_Odessa] event goto_start: target=(1449,1616) from=(1454,1613)
+[00:20:40.859] INFO  [mk3_Odessa] [bot] running from (1454,1613,20) to (1449,1616,z20)
+[00:20:40.860] INFO  [mk3_Odessa] [bot] planning path to (1449,1616) in background
+[00:20:42.517] INFO  [mk3_Odessa] [survival] hp 50/50 (100%) -> fight
+[00:20:43.650] INFO  [mk3_Odessa] [action] goto finished at (1454,1613,20); target (1449,1616); stopped short (off by 8 tile(s))
+[00:20:43.650] LOG   [mk3_Odessa] event goto_done: at=(1454,1613) target=(1449,1616) arrived=0 off=8
+[00:20:44.892] INFO  [mk3_Odessa] [action] goto (1449,1616) from (1454,1613,20)
+[00:20:44.892] LOG   [mk3_Odessa] event goto_start: target=(1449,1616) from=(1454,1613)
+[00:20:44.892] INFO  [mk3_Odessa] [bot] running from (1454,1613,20) to (1449,1616,z20)
+[00:20:44.892] INFO  [mk3_Odessa] [bot] planning path to (1449,1616) in background
+[00:20:47.107] INFO  [mk3_Odessa] [chat uni  ] Vorar: Lionel buy
+[00:20:47.120] INFO  [mk3_Odessa] [chat uni  ] Halain: Lionel buy
+[00:20:47.120] INFO  [mk3_Odessa] [chat ascii] Lionel: Yes?
+[00:20:47.120] INFO  [mk3_Odessa] [chat ascii] Lionel: I'm here to sell thee supplies.
+[00:20:47.197] INFO  [mk3_Odessa] [chat ascii] Lionel: Here you are, Halain That will be 16 gold coins.  I thank thee for thy business.
+[00:20:47.563] INFO  [mk3_Odessa] [survival] hp 50/50 (100%) -> fight
+[00:20:47.917] INFO  [mk3_Odessa] [action] goto finished at (1454,1613,20); target (1449,1616); stopped short (off by 8 tile(s))
+[00:20:47.917] LOG   [mk3_Odessa] event goto_done: at=(1454,1613) target=(1449,1616) arrived=0 off=8
+[00:20:49.172] INFO  [mk3_Odessa] [travel] mode walk             usable   <- chosen
+[00:20:49.172] INFO  [mk3_Odessa] [travel] mode moongate         usable
+[00:20:49.172] INFO  [mk3_Odessa] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:49.172] INFO  [mk3_Odessa] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:49.172] LOG   [mk3_Odessa] event travel_mode: walk
+[00:20:49.172] INFO  [mk3_Odessa] [travel] plan mobile 0x000010B3: ok legs=1 ~5 tiles transit=0 nodes=0
+[00:20:50.400] INFO  [mk3_Odessa] [chat uni  ] Amara: Lionel buy
+[00:20:50.400] INFO  [mk3_Odessa] [chat ascii] Lionel: Excuse me Halain, but Amara wants to speak to me
+[00:20:50.400] INFO  [mk3_Odessa] [chat ascii] Lionel: Hello!
+[00:20:50.400] INFO  [mk3_Odessa] [chat ascii] Lionel: I'm here to sell thee supplies.
+[00:20:50.448] INFO  [mk3_Odessa] [chat ascii] Lionel: Here you are, Amara That will be 16 gold coins.  I thank thee for thy business.
+[00:20:50.721] INFO  [mk3_Odessa] [action] goto (1449,1616) from (1454,1613,20)
+[00:20:50.721] LOG   [mk3_Odessa] event goto_start: target=(1449,1616) from=(1454,1613)
+[00:20:50.721] INFO  [mk3_Odessa] [bot] running from (1454,1613,20) to (1449,1616,z20)
+[00:20:50.721] INFO  [mk3_Odessa] [bot] planning path to (1449,1616) in background
+[00:20:52.607] INFO  [mk3_Odessa] [survival] hp 50/50 (100%) -> fight
+[00:20:53.112] INFO  [mk3_Odessa] [action] goto finished at (1454,1613,20); target (1449,1616); stopped short (off by 8 tile(s))
+[00:20:53.112] LOG   [mk3_Odessa] event goto_done: at=(1454,1613) target=(1449,1616) arrived=0 off=8
+[00:20:54.321] INFO  [mk3_Odessa] [action] goto (1449,1616) from (1454,1613,20)
+[00:20:54.321] LOG   [mk3_Odessa] event goto_start: target=(1449,1616) from=(1454,1613)
+[00:20:54.321] INFO  [mk3_Odessa] [bot] running from (1454,1613,20) to (1449,1616,z20)
+[00:20:54.321] INFO  [mk3_Odessa] [bot] planning path to (1449,1616) in background
+[00:20:56.710] INFO  [mk3_Odessa] [action] goto finished at (1454,1613,20); target (1449,1616); stopped short (off by 8 tile(s))
+[00:20:56.710] LOG   [mk3_Odessa] event goto_done: at=(1454,1613) target=(1449,1616) arrived=0 off=8
+[00:20:57.199] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_20.odessa/state.json
+[00:20:57.213] INFO  [mk3_Odessa] [chat uni  ] Vorar: Lionel buy
+[00:20:57.642] INFO  [mk3_Odessa] [survival] hp 50/50 (100%) -> fight
+[00:20:57.945] INFO  [mk3_Odessa] [travel] mode walk             usable   <- chosen
+[00:20:57.945] INFO  [mk3_Odessa] [travel] mode moongate         usable
+[00:20:57.945] INFO  [mk3_Odessa] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:57.945] INFO  [mk3_Odessa] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:57.945] LOG   [mk3_Odessa] event travel_mode: walk
+[00:20:57.945] INFO  [mk3_Odessa] [travel] plan mobile 0x000010B3: ok legs=1 ~5 tiles transit=0 nodes=0
+[00:20:59.899] INFO  [mk3_Odessa] [chat ascii] Dale: Greetings.  What might I help thee with?
+[00:20:59.899] INFO  [mk3_Odessa] [chat ascii] Dale: My shop sells many things.
+[00:21:00.971] INFO  [mk3_Odessa] [action] goto (1449,1616) from (1454,1613,20)
+[00:21:00.971] LOG   [mk3_Odessa] event goto_start: target=(1449,1616) from=(1454,1613)
+[00:21:00.971] INFO  [mk3_Odessa] [bot] running from (1454,1613,20) to (1449,1616,z20)
+[00:21:00.971] INFO  [mk3_Odessa] [bot] planning path to (1449,1616) in background
+[00:21:02.663] INFO  [mk3_Odessa] [survival] hp 50/50 (100%) -> fight
+[00:21:04.055] INFO  [mk3_Odessa] [action] goto finished at (1454,1613,20); target (1449,1616); stopped short (off by 8 tile(s))
+[00:21:04.055] LOG   [mk3_Odessa] event goto_done: at=(1454,1613) target=(1449,1616) arrived=0 off=8
+[00:21:05.283] INFO  [mk3_Odessa] [action] goto (1449,1616) from (1454,1613,20)
+[00:21:05.283] LOG   [mk3_Odessa] event goto_start: target=(1449,1616) from=(1454,1613)
+[00:21:05.283] INFO  [mk3_Odessa] [bot] running from (1454,1613,20) to (1449,1616,z20)
+[00:21:05.283] INFO  [mk3_Odessa] [bot] planning path to (1449,1616) in background
+[00:21:07.332] INFO  [mk3_Odessa] [chat uni  ] Vorar: Lionel buy
+[00:21:07.715] INFO  [mk3_Odessa] [survival] hp 50/50 (100%) -> fight
+[00:21:07.959] INFO  [mk3_Odessa] [action] goto finished at (1454,1613,20); target (1449,1616); stopped short (off by 8 tile(s))
+[00:21:07.960] LOG   [mk3_Odessa] event goto_done: at=(1454,1613) target=(1449,1616) arrived=0 off=8
+[00:21:09.019] INFO  [mk3_Odessa] [chat uni  ] Aelia: Lionel buy
+[00:21:09.202] INFO  [mk3_Odessa] [travel] mode walk             usable   <- chosen
+[00:21:09.202] INFO  [mk3_Odessa] [travel] mode moongate         usable
+[00:21:09.202] INFO  [mk3_Odessa] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:09.202] INFO  [mk3_Odessa] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:09.202] LOG   [mk3_Odessa] event travel_mode: walk
+[00:21:09.202] INFO  [mk3_Odessa] [travel] plan mobile 0x000010B3: ok legs=1 ~5 tiles transit=0 nodes=0
+[00:21:11.193] INFO  [mk3_Odessa] [chat ascii] System: Observer has arrived in Minoc.
+[00:21:12.740] INFO  [mk3_Odessa] [survival] hp 50/50 (100%) -> fight
+[00:21:13.141] INFO  [mk3_Odessa] [chat ascii] Dale: Good morrow!  How can I help thee?
+[00:21:13.141] INFO  [mk3_Odessa] [chat ascii] Dale: I'm here to sell thee supplies.
+[00:21:13.756] INFO  [mk3_Odessa] [action] goto (1449,1616) from (1454,1613,20)
+[00:21:13.756] LOG   [mk3_Odessa] event goto_start: target=(1449,1616) from=(1454,1613)
+[00:21:13.756] INFO  [mk3_Odessa] [bot] running from (1454,1613,20) to (1449,1616,z20)
+[00:21:13.756] INFO  [mk3_Odessa] [bot] planning path to (1449,1616) in background
+[00:21:14.571] INFO  [mk3_Odessa] [chat ascii] System: Observer has departed from Minoc.
+[00:21:17.013] INFO  [mk3_Odessa] [action] goto finished at (1454,1613,20); target (1449,1616); stopped short (off by 8 tile(s))
+[00:21:17.013] LOG   [mk3_Odessa] event goto_done: at=(1454,1613) target=(1449,1616) arrived=0 off=8
+[00:21:17.793] INFO  [mk3_Odessa] [survival] hp 50/50 (100%) -> fight
+[00:21:18.224] INFO  [mk3_Odessa] [action] goto (1449,1616) from (1454,1613,20)
+[00:21:18.224] LOG   [mk3_Odessa] event goto_start: target=(1449,1616) from=(1454,1613)
+[00:21:18.224] INFO  [mk3_Odessa] [bot] running from (1454,1613,20) to (1449,1616,z20)
+[00:21:18.224] INFO  [mk3_Odessa] [bot] planning path to (1449,1616) in background
+[00:21:19.066] INFO  [mk3_Odessa] [chat uni  ] Aelia: Lionel buy
+[00:21:20.170] INFO  [mk3_Odessa] [chat uni  ] : Lionel buy
+[00:21:20.491] INFO  [life] food: within reach
+[00:21:20.552] INFO  [mk3_Odessa] [ACTION] vendor_buy start
+[00:21:20.552] INFO  [mk3_Odessa] [VENDOR] open vendor=0x000010B3 say='Lionel buy'
+[00:21:20.552] INFO  [life] food: asking the 'baker' to show something to eat (attempt 1)
+[00:21:20.569] INFO  [mk3_Odessa] [chat uni  ] : Lionel buy
+[00:21:20.569] INFO  [mk3_Odessa] [chat ascii] Lionel: Excuse me Amara, but Odessa wants to speak to me
+[00:21:20.569] INFO  [mk3_Odessa] [chat ascii] Lionel: Greetings. What can I do for thee?
+[00:21:20.569] INFO  [mk3_Odessa] [chat ascii] Lionel: I'm here to sell thee supplies.
+[00:21:20.569] INFO  [mk3_Odessa] [0x3C] container contents: 11 item(s)
+[00:21:20.569] INFO  [mk3_Odessa] [0x74] pairing: straight (straight 1, mirrored 0 of 11 rows)
+[00:21:20.569] INFO  [mk3_Odessa] [0x74] vendor shop data: cont=0x400010A9 11 item(s), layer=0x1A
+[00:21:20.569] INFO  [mk3_Odessa] [0x74]   bread loaves                 gfx=0x103B qty=73   price=8
+[00:21:20.569] INFO  [mk3_Odessa] [0x74]   baked pie                    gfx=0x1041 qty=23   price=17
+[00:21:20.569] INFO  [mk3_Odessa] [0x74]   cake                         gfx=0x09E9 qty=22   price=38
+[00:21:20.569] INFO  [mk3_Odessa] [0x74]   muffins                      gfx=0x09EA qty=46   price=8
+[00:21:20.569] INFO  [mk3_Odessa] [0x74]   sack of flour                gfx=0x1039 qty=105  price=6
+[00:21:20.569] INFO  [mk3_Odessa] [0x74]   french bread                 gfx=0x098C qty=33   price=9
+[00:21:20.570] INFO  [mk3_Odessa] [0x74]   pan of cookies               gfx=0x160B qty=64   price=7
+[00:21:20.570] INFO  [mk3_Odessa] [0x74]   pizzas                       gfx=0x1040 qty=57   price=15
+[00:21:20.570] INFO  [mk3_Odessa] [0x74]   jars of honey                gfx=0x09EC qty=55   price=10
+[00:21:20.570] INFO  [mk3_Odessa] [0x74]   dough                        gfx=0x103D qty=45   price=12
+[00:21:20.570] INFO  [mk3_Odessa] [0x74]   rolling pin                  gfx=0x1043 qty=5    price=9
+[00:21:20.570] INFO  [mk3_Odessa] [0x3C] container contents: 0 item(s)
+[00:21:20.570] INFO  [mk3_Odessa] [0x74] vendor shop data: cont=0x40000E04 0 item(s), layer=0x1B
+[00:21:20.570] INFO  [mk3_Odessa] [VENDOR] offer from 0x000010B3: 11 item(s)
+[00:21:20.570] INFO  [mk3_Odessa] [VENDOR]   0x400193BC bread loaves           x73  8 gp
+[00:21:20.570] INFO  [mk3_Odessa] [VENDOR]   0x400193BB baked pie              x23  17 gp
+[00:21:20.570] INFO  [mk3_Odessa] [VENDOR]   0x400193B8 cake                   x22  38 gp
+[00:21:20.570] INFO  [mk3_Odessa] [VENDOR]   0x400193B7 muffins                x46  8 gp
+[00:21:20.570] INFO  [mk3_Odessa] [VENDOR]   0x400193B5 sack of flour          x105 6 gp
+[00:21:20.570] INFO  [mk3_Odessa] [VENDOR]   0x400193B4 french bread           x33  9 gp
+[00:21:20.570] INFO  [mk3_Odessa] [VENDOR]   0x400193B2 pan of cookies         x64  7 gp
+[00:21:20.570] INFO  [mk3_Odessa] [VENDOR]   0x400193AF pizzas                 x57  15 gp
+[00:21:20.570] LOG   [mk3_Odessa] event vendor_offer: vendor=0x000010B3 items=11
+[00:21:20.570] INFO  [mk3_Odessa] [ACTION_RESULT] vendor_buy success (18ms) vendor offer received
+[00:21:20.570] LOG   [mk3_Odessa] event action_result: vendor_buy success took=18ms vendor offer received
+[00:21:20.570] INFO  [mk3_Odessa] [0x24] vendor buy gump for 0x000010B3
+[00:21:20.570] INFO  [life] food: the shop is open
+[00:21:20.600] INFO  [life] food: the shop is open; the caller chooses
+[00:21:20.600] INFO  [life] food: buying bread loaves at 8 gold
+[00:21:20.600] INFO  [mk3_Odessa] [ACTION] vendor_buy start
+[00:21:20.600] INFO  [mk3_Odessa] [policy] allowed NPC purchase of i_bread_loaf (0x103B): basic food: a character with hunger enabled must be able to eat, and Revolution's cooking economy shows food was not an income good [BASIC_FOOD]
+[00:21:20.600] INFO  [mk3_Odessa] [VENDOR] buy item=0x400193BC qty=2 from vendor=0x000010B3 gold=9880
+[00:21:20.600] INFO  [mk3_Odessa] [chat ascii] System: You can't reach the Vendor
+[00:21:20.600] LOG   [mk3_Odessa] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[00:21:22.829] INFO  [mk3_Odessa] [survival] hp 50/50 (100%) -> fight
+[00:21:27.839] INFO  [mk3_Odessa] [survival] hp 50/50 (100%) -> fight
+[00:21:29.207] INFO  [mk3_Odessa] [chat uni  ] Aelia: Lionel buy
+[00:21:29.604] INFO  [life] food: buying bread loaves at 8 gold
+[00:21:29.604] INFO  [mk3_Odessa] [ACTION] vendor_buy start
+[00:21:29.604] INFO  [mk3_Odessa] [policy] allowed NPC purchase of i_bread_loaf (0x103B): basic food: a character with hunger enabled must be able to eat, and Revolution's cooking economy shows food was not an income good [BASIC_FOOD]
+[00:21:29.604] INFO  [mk3_Odessa] [VENDOR] buy item=0x400193BC qty=2 from vendor=0x000010B3 gold=9880
+[00:21:29.605] INFO  [mk3_Odessa] [chat ascii] System: You can't reach the Vendor
+[00:21:29.605] LOG   [mk3_Odessa] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[00:21:30.268] INFO  [mk3_Odessa] [chat uni  ] : Lionel buy
+[00:21:32.874] INFO  [mk3_Odessa] [survival] hp 50/50 (100%) -> fight
+[00:21:37.930] INFO  [mk3_Odessa] [survival] hp 50/50 (100%) -> fight
+[00:21:38.608] INFO  [life] food: buying bread loaves at 8 gold
+[00:21:38.608] INFO  [mk3_Odessa] [ACTION] vendor_buy start
+[00:21:38.608] INFO  [mk3_Odessa] [policy] allowed NPC purchase of i_bread_loaf (0x103B): basic food: a character with hunger enabled must be able to eat, and Revolution's cooking economy shows food was not an income good [BASIC_FOOD]
+[00:21:38.608] INFO  [mk3_Odessa] [VENDOR] buy item=0x400193BC qty=2 from vendor=0x000010B3 gold=9880
+[00:21:38.608] INFO  [mk3_Odessa] [chat ascii] System: You can't reach the Vendor
+[00:21:38.608] LOG   [mk3_Odessa] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[00:21:40.411] INFO  [mk3_Odessa] [chat uni  ] : Lionel buy
+[00:21:42.934] INFO  [mk3_Odessa] [survival] hp 50/50 (100%) -> fight
+[00:21:47.636] INFO  [life] food: buying bread loaves at 8 gold
+[00:21:47.636] INFO  [mk3_Odessa] [ACTION] vendor_buy start
+[00:21:47.636] INFO  [mk3_Odessa] [policy] allowed NPC purchase of i_bread_loaf (0x103B): basic food: a character with hunger enabled must be able to eat, and Revolution's cooking economy shows food was not an income good [BASIC_FOOD]
+[00:21:47.636] INFO  [mk3_Odessa] [VENDOR] buy item=0x400193BC qty=2 from vendor=0x000010B3 gold=9880
+[00:21:47.652] INFO  [mk3_Odessa] [chat ascii] System: You can't reach the Vendor
+[00:21:47.652] LOG   [mk3_Odessa] event action_result: vendor_buy rejected took=17ms You can't reach the Vendor
+[00:21:47.947] INFO  [mk3_Odessa] [survival] hp 50/50 (100%) -> fight
+[00:21:53.001] INFO  [mk3_Odessa] [survival] hp 50/50 (100%) -> fight
+[00:21:56.672] INFO  [life] food: buying bread loaves at 8 gold
+[00:21:56.672] INFO  [mk3_Odessa] [ACTION] vendor_buy start
+[00:21:56.672] INFO  [mk3_Odessa] [policy] allowed NPC purchase of i_bread_loaf (0x103B): basic food: a character with hunger enabled must be able to eat, and Revolution's cooking economy shows food was not an income good [BASIC_FOOD]
+[00:21:56.672] INFO  [mk3_Odessa] [VENDOR] buy item=0x400193BC qty=2 from vendor=0x000010B3 gold=9880
+[00:21:56.672] INFO  [mk3_Odessa] [chat ascii] System: You can't reach the Vendor
+[00:21:56.673] LOG   [mk3_Odessa] event action_result: vendor_buy rejected took=1ms You can't reach the Vendor
+[00:21:57.258] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_20.odessa/state.json
+[00:21:58.010] INFO  [mk3_Odessa] [survival] hp 50/50 (100%) -> fight
+[00:21:58.644] INFO  [mk3_Odessa] [chat ascii] System: Draver has departed from Minoc.
+[00:22:03.028] INFO  [mk3_Odessa] [survival] hp 50/50 (100%) -> fight
+[00:22:05.713] INFO  [life] food: buying bread loaves at 8 gold
+[00:22:05.713] INFO  [mk3_Odessa] [ACTION] vendor_buy start
+[00:22:05.713] INFO  [mk3_Odessa] [policy] allowed NPC purchase of i_bread_loaf (0x103B): basic food: a character with hunger enabled must be able to eat, and Revolution's cooking economy shows food was not an income good [BASIC_FOOD]
+[00:22:05.713] INFO  [mk3_Odessa] [VENDOR] buy item=0x400193BC qty=2 from vendor=0x000010B3 gold=9880
+[00:22:05.713] INFO  [mk3_Odessa] [chat ascii] System: You can't reach the Vendor
+[00:22:05.713] LOG   [mk3_Odessa] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[00:22:08.053] INFO  [mk3_Odessa] [survival] hp 50/50 (100%) -> fight
+[00:22:13.111] INFO  [mk3_Odessa] [survival] hp 50/50 (100%) -> fight
+[00:22:14.718] INFO  [life] food: buying bread loaves at 8 gold
+[00:22:14.718] INFO  [mk3_Odessa] [ACTION] vendor_buy start
+[00:22:14.718] INFO  [mk3_Odessa] [policy] allowed NPC purchase of i_bread_loaf (0x103B): basic food: a character with hunger enabled must be able to eat, and Revolution's cooking economy shows food was not an income good [BASIC_FOOD]
+[00:22:14.718] INFO  [mk3_Odessa] [VENDOR] buy item=0x400193BC qty=2 from vendor=0x000010B3 gold=9880
+[00:22:14.718] INFO  [mk3_Odessa] [chat ascii] System: You can't reach the Vendor
+[00:22:14.718] LOG   [mk3_Odessa] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[00:22:18.163] INFO  [mk3_Odessa] [survival] hp 50/50 (100%) -> fight
+[00:22:23.176] INFO  [mk3_Odessa] [survival] hp 50/50 (100%) -> fight
+[00:22:23.727] INFO  [life] food: the shop is open; the caller chooses
+[00:22:23.727] INFO  [life] food: buying bread loaves at 8 gold
+[00:22:23.727] INFO  [mk3_Odessa] [ACTION] vendor_buy start
+[00:22:23.727] INFO  [mk3_Odessa] [policy] allowed NPC purchase of i_bread_loaf (0x103B): basic food: a character with hunger enabled must be able to eat, and Revolution's cooking economy shows food was not an income good [BASIC_FOOD]
+[00:22:23.727] INFO  [mk3_Odessa] [VENDOR] buy item=0x400193BC qty=2 from vendor=0x000010B3 gold=9880
+[00:22:23.742] INFO  [mk3_Odessa] [chat ascii] System: You can't reach the Vendor
+[00:22:23.742] LOG   [mk3_Odessa] event action_result: vendor_buy rejected took=15ms You can't reach the Vendor
+[00:22:28.184] INFO  [mk3_Odessa] [survival] hp 50/50 (100%) -> fight
+[00:22:31.852] INFO  [mk3_Odessa] [chat ascii] Lionel: Nice speaking to you Odessa
+[00:22:32.758] INFO  [life] food: buying bread loaves at 8 gold
+[00:22:32.758] INFO  [mk3_Odessa] [ACTION] vendor_buy start
+[00:22:32.758] INFO  [mk3_Odessa] [policy] allowed NPC purchase of i_bread_loaf (0x103B): basic food: a character with hunger enabled must be able to eat, and Revolution's cooking economy shows food was not an income good [BASIC_FOOD]
+[00:22:32.758] INFO  [mk3_Odessa] [VENDOR] buy item=0x400193BC qty=2 from vendor=0x000010B3 gold=9880
+[00:22:32.758] INFO  [mk3_Odessa] [chat ascii] System: You can't reach the Vendor
+[00:22:32.758] LOG   [mk3_Odessa] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[00:22:32.851] INFO  [mk3_Odessa] [chat ascii] Lionel: What's thee wantin'?
+[00:22:32.851] INFO  [mk3_Odessa] [chat ascii] Lionel: What's thee wantin'?
+[00:22:33.221] INFO  [mk3_Odessa] [survival] hp 50/50 (100%) -> fight
+[00:22:38.234] INFO  [mk3_Odessa] [survival] hp 50/50 (100%) -> fight
+[00:22:38.419] INFO  [mk3_Odessa] [chat ascii] System: Vorar has departed from Britain.
+[00:22:39.439] INFO  [mk3_Odessa] [chat ascii] System: Selene has departed from Magincia.
+[00:22:41.762] INFO  [life] food: buying bread loaves at 8 gold
+[00:22:41.762] INFO  [mk3_Odessa] [ACTION] vendor_buy start
+[00:22:41.762] INFO  [mk3_Odessa] [policy] allowed NPC purchase of i_bread_loaf (0x103B): basic food: a character with hunger enabled must be able to eat, and Revolution's cooking economy shows food was not an income good [BASIC_FOOD]
+[00:22:41.762] INFO  [mk3_Odessa] [VENDOR] buy item=0x400193BC qty=2 from vendor=0x000010B3 gold=9880
+[00:22:41.763] INFO  [mk3_Odessa] [chat ascii] System: You can't reach the Vendor
+[00:22:41.763] LOG   [mk3_Odessa] event action_result: vendor_buy rejected took=1ms You can't reach the Vendor
+[00:22:43.269] INFO  [mk3_Odessa] [survival] hp 50/50 (100%) -> fight
+[00:22:45.293] INFO  [mk3_Odessa] [chat uni  ] : Lionel buy
+[00:22:45.293] INFO  [mk3_Odessa] [chat ascii] Lionel: I got lots to sell!
+[00:22:45.356] INFO  [mk3_Odessa] [chat ascii] Lionel: Here you are, Rhea That will be 16 gold coins.  I thank thee for thy business.
+[00:22:46.897] INFO  [mk3_Odessa] [chat ascii] System: Zarthal has departed from Minoc.
+[00:22:48.317] INFO  [mk3_Odessa] [survival] hp 50/50 (100%) -> fight
+[00:22:49.378] INFO  [mk3_Odessa] [chat ascii] System: World save in 10 seconds
+[00:22:50.319] INFO  [mk3_Odessa] [chat ascii] System: Thalia has departed from Moonglow.
+[00:22:50.779] INFO  [life] food: buying bread loaves at 8 gold
+[00:22:50.779] INFO  [mk3_Odessa] [ACTION] vendor_buy start
+[00:22:50.779] INFO  [mk3_Odessa] [policy] allowed NPC purchase of i_bread_loaf (0x103B): basic food: a character with hunger enabled must be able to eat, and Revolution's cooking economy shows food was not an income good [BASIC_FOOD]
+[00:22:50.779] INFO  [mk3_Odessa] [VENDOR] buy item=0x400193BC qty=2 from vendor=0x000010B3 gold=9880
+[00:22:50.780] INFO  [mk3_Odessa] [chat ascii] System: You can't reach the Vendor
+[00:22:50.780] LOG   [mk3_Odessa] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[00:22:53.217] INFO  [mk3_Odessa] [chat ascii] System: Elvar has departed from Minoc.
+[00:22:53.337] INFO  [mk3_Odessa] [survival] hp 50/50 (100%) -> fight
+[00:22:54.596] INFO  [life] session_end_requested reason="session time limit reached"
+[00:22:54.658] INFO  [life] wind-down: no bank learned yet; asking the world for one (attempt 1)
+[00:22:54.660] INFO  [mk3_Odessa] [travel] place: skipping Minoc banker -- 1784 tiles and 0 gates for a service Britain banker offers
+[00:22:54.660] INFO  [mk3_Odessa] [travel] Britain banker -> (1425,1690) r=5 from (1454,1613)
+[00:22:54.660] LOG   [mk3_Odessa] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1454,1613)
+[00:22:54.660] INFO  [mk3_Odessa] [travel] mode moongate         usable   <- chosen
+[00:22:54.660] INFO  [mk3_Odessa] [travel] mode walk             usable
+[00:22:54.660] INFO  [mk3_Odessa] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:54.660] INFO  [mk3_Odessa] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:54.660] LOG   [mk3_Odessa] event travel_mode: moongate
+[00:22:54.660] INFO  [mk3_Odessa] [travel] plan Britain banker: ok legs=3 ~104 tiles transit=0 nodes=19
+[00:22:54.720] INFO  [mk3_Odessa] [action] goto finished at (1454,1613,20); target (1449,1616); stopped short (off by 8 tile(s))
+[00:22:54.720] LOG   [mk3_Odessa] event goto_done: at=(1454,1613) target=(1449,1616) arrived=0 off=8
+[00:22:54.720] INFO  [mk3_Odessa] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:22:54.720] INFO  [mk3_Odessa] [action] goto (1464,1640) from (1454,1613,20)
+[00:22:54.720] LOG   [mk3_Odessa] event goto_start: target=(1464,1640) from=(1454,1613)
+[00:22:54.720] INFO  [mk3_Odessa] [bot] running from (1454,1613,20) to (1464,1640)
+[00:22:54.720] INFO  [mk3_Odessa] [bot] planning path to (1464,1640) in background
+[00:22:54.782] INFO  [mk3_Odessa] [bot] replan to (1464,1640): 34 steps in 1878.9us
+[00:22:56.271] INFO  [mk3_Odessa] [bot] door ahead at (1459,1612,z20); OpenDoor before step
+[00:22:56.286] INFO  [mk3_Odessa] [chat ascii] System: Opening door...
+[00:22:57.650] INFO  [mk3_Odessa] [bot] step (1460,1612,20)->(1461,1613,20) rejected; OpenDoor + retry
+[00:22:57.664] INFO  [mk3_Odessa] [chat ascii] System: Opening door...
+[00:22:57.664] INFO  [mk3_Odessa] [0x20] player @(1460,1612,20) facing=4
+[00:22:57.664] INFO  [mk3_Odessa] [action] goto finished at (1460,1612,20); target (1464,1640); stopped short (off by 32 tile(s))
+[00:22:57.664] LOG   [mk3_Odessa] event goto_done: at=(1460,1612) target=(1464,1640) arrived=0 off=32
+[00:22:57.848] INFO  [mk3_Odessa] [chat ascii] System: Falen has departed from Minoc.
+[00:22:58.340] INFO  [mk3_Odessa] [survival] hp 50/50 (100%) -> fight
+[00:22:58.924] INFO  [mk3_Odessa] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:22:58.924] INFO  [mk3_Odessa] [action] goto (1464,1640) from (1460,1612,20)
+[00:22:58.924] LOG   [mk3_Odessa] event goto_start: target=(1464,1640) from=(1460,1612)
+[00:22:58.924] INFO  [mk3_Odessa] [bot] running from (1460,1612,20) to (1464,1640)
+[00:22:58.924] INFO  [mk3_Odessa] [bot] planning path to (1464,1640) in background
+[00:22:58.984] INFO  [mk3_Odessa] [bot] replan to (1464,1640): 28 steps in 1274.3us
+[00:22:59.232] INFO  [mk3_Odessa] [bot] step (1460,1612,20)->(1461,1613,20) rejected; OpenDoor + retry
+[00:22:59.248] INFO  [mk3_Odessa] [chat ascii] System: Opening door...
+[00:22:59.248] INFO  [mk3_Odessa] [0x20] player @(1460,1612,20) facing=4
+[00:22:59.248] INFO  [mk3_Odessa] [action] goto finished at (1460,1612,20); target (1464,1640); stopped short (off by 32 tile(s))
+[00:22:59.248] LOG   [mk3_Odessa] event goto_done: at=(1460,1612) target=(1464,1640) arrived=0 off=32
+[00:22:59.430] INFO  [mk3_Odessa] [chat ascii] System: World save has been initiated.
+[00:23:00.487] INFO  [mk3_Odessa] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:23:00.487] INFO  [mk3_Odessa] [action] goto (1464,1640) from (1460,1612,20)
+[00:23:00.487] LOG   [mk3_Odessa] event goto_start: target=(1464,1640) from=(1460,1612)
+[00:23:00.487] INFO  [mk3_Odessa] [bot] running from (1460,1612,20) to (1464,1640)
+[00:23:00.487] INFO  [mk3_Odessa] [bot] planning path to (1464,1640) in background
+[00:23:00.549] INFO  [mk3_Odessa] [bot] replan to (1464,1640): 28 steps in 1409.5us
+[00:23:03.357] INFO  [mk3_Odessa] [survival] hp 50/50 (100%) -> fight
+[00:23:03.924] INFO  [mk3_Odessa] [travel] mode moongate         usable   <- chosen
+[00:23:03.924] INFO  [mk3_Odessa] [travel] mode walk             usable
+[00:23:03.924] INFO  [mk3_Odessa] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:23:03.924] INFO  [mk3_Odessa] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:23:03.924] LOG   [mk3_Odessa] event travel_mode: moongate
+[00:23:03.924] INFO  [mk3_Odessa] [travel] plan Britain banker: ok legs=3 ~112 tiles transit=0 nodes=14
+[00:23:05.777] INFO  [mk3_Odessa] [chat ascii] System: Ghalor has departed from Minoc.
+[00:23:07.627] INFO  [mk3_Odessa] [chat ascii] System: Cyras has departed from Britain.
+[00:23:08.398] INFO  [mk3_Odessa] [survival] hp 50/50 (100%) -> fight
+[00:23:10.033] INFO  [mk3_Odessa] [chat ascii] System: Kharain has departed from Minoc.
+[00:23:12.347] INFO  [mk3_Odessa] [chat ascii] System: Leander has departed from Moonglow.
+[00:23:12.488] INFO  [mk3_Odessa] [bot] arrived at (1464,1640,20)
+[00:23:12.488] INFO  [mk3_Odessa] [action] goto finished at (1464,1640,20); target (1464,1640); ARRIVED (off by 0 tile(s))
+[00:23:12.488] LOG   [mk3_Odessa] event goto_done: at=(1464,1640) target=(1464,1640) arrived=1 off=0
+[00:23:12.488] INFO  [mk3_Odessa] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:23:12.488] INFO  [mk3_Odessa] [action] goto (1448,1672) from (1464,1640,20)
+[00:23:12.488] LOG   [mk3_Odessa] event goto_start: target=(1448,1672) from=(1464,1640)
+[00:23:12.488] INFO  [mk3_Odessa] [bot] running from (1464,1640,20) to (1448,1672)
+[00:23:12.488] INFO  [mk3_Odessa] [bot] planning path to (1448,1672) in background
+[00:23:12.548] INFO  [mk3_Odessa] [bot] replan to (1448,1672): 37 steps in 3666.9us
+[00:23:13.411] INFO  [mk3_Odessa] [survival] hp 50/50 (100%) -> fight
+[00:23:18.418] INFO  [mk3_Odessa] [survival] hp 50/50 (100%) -> fight
+[00:23:23.471] INFO  [mk3_Odessa] [survival] hp 50/50 (100%) -> fight
+[00:23:23.594] INFO  [mk3_Odessa] [bot] arrived at (1448,1672,10)
+[00:23:23.594] INFO  [mk3_Odessa] [action] goto finished at (1448,1672,10); target (1448,1672); ARRIVED (off by 0 tile(s))
+[00:23:23.594] LOG   [mk3_Odessa] event goto_done: at=(1448,1672) target=(1448,1672) arrived=1 off=0
+[00:23:23.594] INFO  [mk3_Odessa] [action] goto (1425,1690) from (1448,1672,10)
+[00:23:23.594] LOG   [mk3_Odessa] event goto_start: target=(1425,1690) from=(1448,1672)
+[00:23:23.594] INFO  [mk3_Odessa] [bot] running from (1448,1672,10) to (1425,1690,z0)
+[00:23:23.594] INFO  [mk3_Odessa] [bot] planning path to (1425,1690) in background
+[00:23:23.655] INFO  [mk3_Odessa] [bot] replan to (1425,1690): 41 steps in 7491.9us
+[00:23:25.736] INFO  [mk3_Odessa] [chat ascii] System: Elara has departed from Magincia.
+[00:23:26.431] INFO  [mk3_Odessa] [chat ascii] System: Xerxes has departed from Vesper.
+[00:23:28.527] INFO  [mk3_Odessa] [survival] hp 50/50 (100%) -> fight
+[00:23:28.544] INFO  [mk3_Odessa] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=24 in 184.9us
+[00:23:30.603] INFO  [mk3_Odessa] [bot] door ahead at (1440,1693,z0); OpenDoor before step
+[00:23:30.618] INFO  [mk3_Odessa] [chat ascii] System: Opening door...
+[00:23:32.313] INFO  [mk3_Odessa] [bot] step (1439,1693,0)->(1438,1692,0) rejected; OpenDoor + retry
+[00:23:32.328] INFO  [mk3_Odessa] [chat ascii] System: Opening door...
+[00:23:32.328] INFO  [mk3_Odessa] [0x20] player @(1439,1693,0) facing=0
+[00:23:32.328] INFO  [mk3_Odessa] [action] goto finished at (1439,1693,0); target (1425,1690); stopped short (off by 17 tile(s))
+[00:23:32.328] LOG   [mk3_Odessa] event goto_done: at=(1439,1693) target=(1425,1690) arrived=0 off=17
+[00:23:33.132] INFO  [mk3_Odessa] [chat ascii] System: Dorvar has departed from Skara Brae.
+[00:23:33.564] INFO  [mk3_Odessa] [action] goto (1425,1690) from (1439,1693,0)
+[00:23:33.564] LOG   [mk3_Odessa] event goto_start: target=(1425,1690) from=(1439,1693)
+[00:23:33.564] INFO  [mk3_Odessa] [bot] running from (1439,1693,0) to (1425,1690,z0)
+[00:23:33.564] INFO  [mk3_Odessa] [bot] planning path to (1425,1690) in background
+[00:23:33.564] INFO  [mk3_Odessa] [survival] hp 50/50 (100%) -> fight
+[00:23:33.625] INFO  [mk3_Odessa] [bot] replan to (1425,1690): 15 steps in 880.3us
+[00:23:37.744] INFO  [mk3_Odessa] [travel] Britain banker ARRIVED at (1429,1689,0)
+[00:23:37.744] LOG   [mk3_Odessa] event travel_done: label='Britain banker' ok=1 at=(1429,1689) legs=3 plans=2 why=''
+[00:23:37.745] INFO  [life] wind-down: arrived somewhere safe at 1429,1689
+[00:23:37.805] INFO  [life] session_summary duration=223s goals=0/4 gold=10000->9880 skills=100.0->100.0 logs=+0 kills=0 deaths=0 places=2 suppliers=0
+[00:23:37.805] INFO  [life] session_goals families=2 picks=4 top=75% varied=0 self_superseded=0 | upkeep=3(75%) social=1(25%) | REPLACE_EQUIPMENT=1(25%) BANK=1(25%) TRADE_WITH_PLAYER=1(25%) GET_FOOD=1(25%)
+[00:23:37.807] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_20.odessa/state.json
+[00:23:37.807] INFO  [life] logging out
+[00:23:37.807] INFO  [mk3_Odessa] [action] logout requested
+[00:23:37.807] LOG   [mk3_Odessa] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[00:23:37.820] INFO  [mk3_Odessa] [chat ascii] Lyndon: I'm listenin'.
+[00:23:37.820] INFO  [mk3_Odessa] [0xD1] logout acknowledged (accepted=1)
+[00:23:37.820] LOG   [mk3_Odessa] event logout_ack: accepted
+[00:23:37.820] INFO  [mk3_Odessa] [net] closing connection (logout acknowledged)
+[00:23:37.820] LOG   [mk3_Odessa] event logout_complete: acked

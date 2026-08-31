@@ -1,0 +1,783 @@
+[00:20:09.978] INFO  session 0: 127.0.0.1:2593 user='RevGen3_25' char=Hector tag='mk3_Hector'
+[00:20:09.979] LOG   [mk3_Hector] event session_start: text log opened
+[00:20:09.979] LOG   [mk3_Hector] event net_connect_begin: connect 127.0.0.1:2593
+[00:20:09.979] INFO  [mk3_Hector] [net] connecting to 127.0.0.1:2593 ...
+[00:20:09.980] LOG   [mk3_Hector] event net_connected: connect 127.0.0.1:2593
+[00:20:09.980] INFO  [mk3_Hector] [net] connected.
+[00:20:09.980] INFO  [mk3_Hector] [seed] sent 0x7F000001 (plaintext)
+[00:20:09.980] LOG   [mk3_Hector] event seed_out: 0x7F000001 hex=7f000001
+[00:20:09.981] INFO  [life] no prior state for revgen3_25.hector: a new Fencer
+[00:20:09.981] INFO  [life] creation request: skill 42 50.0 + Tactics 50.0, stats 32/40/8 = 80
+[00:20:09.981] INFO  [life] needs: reading 'fencer' from the profession catalogue
+[00:20:09.981] INFO  [life] home: Hector lives in Trinsic
+[00:20:09.981] INFO  [life] build plan 'fencer': 600.0 resolved + 100.0 unresolved = 700.0/700.0, stats 100/100/25 = 225
+[00:20:09.981] INFO  [mk3_Hector] [life] autonomous player active for 'Hector' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 3 min)
+[00:20:09.988] INFO  [mk3_Hector] [0xA8] 1 server(s):
+[00:20:09.988] INFO  [mk3_Hector]   [0] MyShard                   1.0.0.127  full=9%  tz=0
+[00:20:10.004] INFO  [mk3_Hector] [0x8C] game server = 127.0.0.1:2593  seed=0x5F73D4E9
+[00:20:10.004] LOG   [mk3_Hector] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x5F73D4E9
+[00:20:10.004] INFO  [mk3_Hector] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[00:20:10.004] LOG   [mk3_Hector] event relay_same_socket: no seed re-sent; 0x91 follows
+[00:20:10.004] INFO  [mk3_Hector] [0xB9] server features = 0x0005
+[00:20:10.004] INFO  [mk3_Hector] [0xA9] 5 slot(s) (populated 0):
+[00:20:10.004] INFO  [mk3_Hector]   [0] <empty>
+[00:20:10.004] INFO  [mk3_Hector]   [1] <empty>
+[00:20:10.004] INFO  [mk3_Hector]   [2] <empty>
+[00:20:10.004] INFO  [mk3_Hector]   [3] <empty>
+[00:20:10.004] INFO  [mk3_Hector]   [4] <empty>
+[00:20:10.004] INFO  [mk3_Hector] create: appearance sex=M skin=0x0400 hair=0x2044/0x045D shirt=0x0257 pants=0x03A6
+[00:20:10.004] INFO  [mk3_Hector] [0x00] starting city index 4
+[00:20:10.004] INFO  [mk3_Hector] [0x00] requested skills 42:50 27:50 48:0
+[00:20:10.004] INFO  [mk3_Hector] [0x00] requested stats STR 32 DEX 40 INT 8
+[00:20:10.004] INFO  [mk3_Hector] [0x00] creating character 'Hector' in slot 0
+[00:20:10.004] LOG   [mk3_Hector] event char_create_sent: Hector
+[00:20:10.022] INFO  [mk3_Hector] [0x1B] serial=0x00018452 body=0x0190 pos=(1845,2745,0)
+[00:20:10.023] LOG   [mk3_Hector] event login_confirm: serial=0x00018452 body=0x0190 pos=(1845,2745,0)
+[00:20:10.023] INFO  [mk3_Hector] [0x20] player @(1845,2745,0) facing=3
+[00:20:10.023] INFO  [mk3_Hector] [0x55] login complete — entering world
+[00:20:10.023] LOG   [mk3_Hector] event in_world: 0x55 received
+[00:20:10.023] INFO  [mk3_Hector] [backpack] opening 0x40018316
+[00:20:10.023] INFO  [mk3_Hector] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[00:20:10.023] INFO  [mk3_Hector] [chat ascii] System: There are 24 other players here.
+[00:20:10.023] INFO  [mk3_Hector] [chat ascii] System: You are under the protection of the town guards
+[00:20:10.027] INFO  [mk3_Hector] [action] requesting the skill list
+[00:20:10.027] INFO  [life] in world; asked the server for the skill list
+[00:20:10.036] INFO  [mk3_Hector] [0x24] open container 0x40018316 gump=60
+[00:20:10.036] INFO  [mk3_Hector] [0x3C] container contents: 6 item(s)
+[00:20:10.036] LOG   [mk3_Hector] event backpack_contents: serial=0x40018316 items=6
+[00:20:12.652] INFO  [mk3_Hector] [bot] world data loaded (0 blacklisted spot(s)).
+[00:20:12.652] INFO  [life] reconciliation: first ever login, 7 field(s) differed
+[00:20:12.652] INFO  [life]   gold         persisted=0          server=10000      -> server value accepted
+[00:20:12.652] INFO  [life]   str          persisted=0          server=32         -> server value accepted
+[00:20:12.652] INFO  [life]   dex          persisted=0          server=40         -> server value accepted
+[00:20:12.652] INFO  [life]   int          persisted=0          server=8          -> server value accepted
+[00:20:12.652] INFO  [life]   skill_42     persisted=0.0        server=50.0       -> server value accepted
+[00:20:12.652] INFO  [life]   skill_27     persisted=0.0        server=50.0       -> server value accepted
+[00:20:12.652] INFO  [life]   skill_1      persisted=0.0        server=0.0        -> server value accepted
+[00:20:12.652] INFO  [life]   skill_17     persisted=0.0        server=0.0        -> server value accepted
+[00:20:12.652] INFO  [life]   skill_30     persisted=0.0        server=0.0        -> server value accepted
+[00:20:12.652] INFO  [life]   skill_5      persisted=0.0        server=0.0        -> server value accepted
+[00:20:12.652] INFO  [life]   position     persisted=0,0        server=1845,2745  -> server value accepted
+[00:20:12.652] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[00:20:12.652] INFO  [mk3_Hector] [survival] on
+[00:20:12.652] LOG   [mk3_Hector] event survival_mode: on
+[00:20:12.654] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_25.hector/state.json
+[00:20:12.654] INFO  [mk3_Hector] [survival] hp 32/32 (100%) -> fight
+[00:20:12.707] INFO  [life] goal=BANK reason="no goal was running"
+[00:20:12.707] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedMakeBandages(bandages BLOCKED 0.70) NeedSkillTraining(Anatomy 0.55) NeedEquipment(heal potions 0.50) NeedEquipment(bandages 0.50) NeedTraining(skill 42 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedTraining(skill 5 0.45) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=Anatomy (target 100.0)
+[00:20:12.707] INFO  [life]   score=150.0
+[00:20:12.707] INFO  [life]   reason: NeedBank urgency 0.75 x 240 = 180.0
+[00:20:12.707] INFO  [life]   reason: on_hand=10000 (total 10000) reserve=350 carry=850 spare=9150 risk=1.00
+[00:20:12.707] INFO  [life]   reason: no bank learned yet -30
+[00:20:12.707] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 10000 (buyable at 200))
+[00:20:12.707] INFO  [mk3_Hector] [action] scanning nearby mobiles for names
+[00:20:12.707] INFO  [mk3_Hector] [action] requested 1 paperdoll(s) for trade titles
+[00:20:12.707] INFO  [life] bank: asking who is standing in the bank
+[00:20:12.707] INFO  [mk3_Hector] [mobiles] nearby (2):
+[00:20:12.707] INFO  [mk3_Hector]   Neona 0x0000FB39
+[00:20:12.707] INFO  [mk3_Hector]   Anson 0x0000FB7D
+[00:20:12.707] INFO  [mk3_Hector] [0x20] player @(1845,2745,0) facing=0
+[00:20:12.707] INFO  [mk3_Hector] [0x88] paperdoll 0x0000FB39: "Neona, the innkeeper"
+[00:20:12.707] INFO  [mk3_Hector] [world] Neona, the innkeeper is a innkeeper at (1848,2734)
+[00:20:13.077] INFO  [mk3_Hector] [chat ascii] System: Castor has arrived in Trinsic.
+[00:20:14.733] INFO  [life] bank: no banker in sight
+[00:20:14.733] INFO  [life] goal_failed=BANK status=retryable_failure reason="no banker in sight"
+[00:20:14.794] INFO  [life] goal=REPLACE_EQUIPMENT reason="previous goal abandoned: no banker answered"
+[00:20:14.794] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedMakeBandages(bandages BLOCKED 0.70) NeedSkillTraining(Anatomy 0.55) NeedEquipment(heal potions 0.50) NeedEquipment(bandages 0.50) NeedTraining(skill 42 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedTraining(skill 5 0.45) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=Anatomy (target 100.0)
+[00:20:14.794] INFO  [life]   score=130.0
+[00:20:14.794] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:20:14.794] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:20:14.794] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 299s after achieving nothing
+[00:20:14.794] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 10000 (buyable at 200))
+[00:20:16.106] INFO  [mk3_Hector] [chat ascii] System: Faustus has arrived in Britain.
+[00:20:17.689] INFO  [mk3_Hector] [survival] hp 32/32 (100%) -> fight
+[00:20:19.162] INFO  [mk3_Hector] [chat ascii] System: Titus has arrived in Skara Brae.
+[00:20:19.771] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:20:19.771] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:20:19.775] INFO  [mk3_Hector] [travel] place: skipping Britain healer -- 1512 tiles and 0 gates for a service Trinsic Healer healer offers
+[00:20:19.775] INFO  [mk3_Hector] [travel] place: skipping Cove healer -- 2008 tiles and 1 gate for a service Trinsic Healer healer offers
+[00:20:19.775] INFO  [mk3_Hector] [travel] place: skipping Deep Forest Healing healer -- 1624 tiles and 1 gate for a service Trinsic Healer healer offers
+[00:20:19.775] INFO  [mk3_Hector] [travel] place: skipping Yew healer -- 1576 tiles and 1 gate for a service Trinsic Healer healer offers
+[00:20:19.775] INFO  [mk3_Hector] [travel] Trinsic Healer healer -> (1911,2805) r=5 from (1845,2745)
+[00:20:19.775] LOG   [mk3_Hector] event travel_start: label='Trinsic Healer healer' target=(1911,2805) radius=5 from=(1845,2745)
+[00:20:19.775] INFO  [life] bandages: walking to a 'healer' (trip 1)
+[00:20:19.775] INFO  [mk3_Hector] [travel] mode moongate         usable   <- chosen
+[00:20:19.775] INFO  [mk3_Hector] [travel] mode walk             usable
+[00:20:19.775] INFO  [mk3_Hector] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:19.775] INFO  [mk3_Hector] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:19.775] LOG   [mk3_Hector] event travel_mode: moongate
+[00:20:19.775] INFO  [mk3_Hector] [travel] plan Trinsic Healer healer: ok legs=4 ~136 tiles transit=0 nodes=33
+[00:20:19.833] INFO  [mk3_Hector] [action] goto (1864,2776) from (1845,2745,0)
+[00:20:19.833] LOG   [mk3_Hector] event goto_start: target=(1864,2776) from=(1845,2745)
+[00:20:19.833] INFO  [mk3_Hector] [bot] running from (1845,2745,0) to (1864,2776)
+[00:20:19.833] INFO  [mk3_Hector] [bot] planning path to (1864,2776) in background
+[00:20:19.895] INFO  [mk3_Hector] [bot] replan to (1864,2776): 44 steps in 5808.7us
+[00:20:22.310] INFO  [mk3_Hector] [chat ascii] System: Rhea has arrived in Britain.
+[00:20:22.709] INFO  [mk3_Hector] [survival] hp 32/32 (100%) -> fight
+[00:20:25.377] INFO  [mk3_Hector] [chat ascii] System: Xerxes has arrived in Vesper.
+[00:20:27.713] INFO  [mk3_Hector] [survival] hp 32/32 (100%) -> fight
+[00:20:30.842] INFO  [mk3_Hector] [bot] arrived at (1864,2776,0)
+[00:20:30.842] INFO  [mk3_Hector] [action] goto finished at (1864,2776,0); target (1864,2776); ARRIVED (off by 0 tile(s))
+[00:20:30.843] LOG   [mk3_Hector] event goto_done: at=(1864,2776) target=(1864,2776) arrived=1 off=0
+[00:20:30.843] INFO  [mk3_Hector] [action] goto (1864,2808) from (1864,2776,0)
+[00:20:30.843] LOG   [mk3_Hector] event goto_start: target=(1864,2808) from=(1864,2776)
+[00:20:30.843] INFO  [mk3_Hector] [bot] running from (1864,2776,0) to (1864,2808)
+[00:20:30.843] INFO  [mk3_Hector] [bot] planning path to (1864,2808) in background
+[00:20:30.903] INFO  [mk3_Hector] [bot] replan to (1864,2808): 32 steps in 598.0us
+[00:20:32.726] INFO  [mk3_Hector] [survival] hp 32/32 (100%) -> fight
+[00:20:37.733] INFO  [mk3_Hector] [survival] hp 32/32 (100%) -> fight
+[00:20:38.456] INFO  [mk3_Hector] [bot] arrived at (1864,2808,0)
+[00:20:38.456] INFO  [mk3_Hector] [action] goto finished at (1864,2808,0); target (1864,2808); ARRIVED (off by 0 tile(s))
+[00:20:38.456] LOG   [mk3_Hector] event goto_done: at=(1864,2808) target=(1864,2808) arrived=1 off=0
+[00:20:38.456] INFO  [mk3_Hector] [action] goto (1896,2824) from (1864,2808,0)
+[00:20:38.456] LOG   [mk3_Hector] event goto_start: target=(1896,2824) from=(1864,2808)
+[00:20:38.456] INFO  [mk3_Hector] [bot] running from (1864,2808,0) to (1896,2824)
+[00:20:38.456] INFO  [mk3_Hector] [bot] planning path to (1896,2824) in background
+[00:20:38.516] INFO  [mk3_Hector] [bot] replan to (1896,2824): 32 steps in 8667.2us
+[00:20:42.794] INFO  [mk3_Hector] [survival] hp 32/32 (100%) -> fight
+[00:20:47.840] INFO  [mk3_Hector] [survival] hp 32/32 (100%) -> fight
+[00:20:49.035] INFO  [mk3_Hector] [bot] arrived at (1896,2824,6)
+[00:20:49.036] INFO  [mk3_Hector] [action] goto finished at (1896,2824,6); target (1896,2824); ARRIVED (off by 0 tile(s))
+[00:20:49.036] LOG   [mk3_Hector] event goto_done: at=(1896,2824) target=(1896,2824) arrived=1 off=0
+[00:20:49.036] INFO  [mk3_Hector] [action] goto (1911,2805) from (1896,2824,6)
+[00:20:49.036] LOG   [mk3_Hector] event goto_start: target=(1911,2805) from=(1896,2824)
+[00:20:49.036] INFO  [mk3_Hector] [bot] running from (1896,2824,6) to (1911,2805,z0)
+[00:20:49.036] INFO  [mk3_Hector] [bot] planning path to (1911,2805) in background
+[00:20:49.096] INFO  [mk3_Hector] [bot] replan to (1911,2805): 27 steps in 6984.6us
+[00:20:52.849] INFO  [mk3_Hector] [survival] hp 32/32 (100%) -> fight
+[00:20:54.705] INFO  [mk3_Hector] [bot] door ahead at (1915,2812,z0); OpenDoor before step
+[00:20:54.719] INFO  [mk3_Hector] [chat ascii] System: Opening door...
+[00:20:56.418] INFO  [mk3_Hector] [travel] Trinsic Healer healer ARRIVED at (1915,2809,0)
+[00:20:56.418] LOG   [mk3_Hector] event travel_done: label='Trinsic Healer healer' ok=1 at=(1915,2809) legs=4 plans=1 why=''
+[00:20:56.419] INFO  [mk3_Hector] [action] scanning nearby mobiles for names
+[00:20:56.419] INFO  [mk3_Hector] [action] requested 3 paperdoll(s) for trade titles
+[00:20:56.419] INFO  [life] bandages: at the shop, asking who is here (scan 1 of 3)
+[00:20:56.433] INFO  [mk3_Hector] [mobiles] nearby (4):
+[00:20:56.433] INFO  [mk3_Hector]   Castor 0x000182D0
+[00:20:56.433] INFO  [mk3_Hector]   Devin 0x0000F7B0
+[00:20:56.433] INFO  [mk3_Hector]   Ryanne 0x0000F775
+[00:20:56.433] INFO  [mk3_Hector]   Burr 0x0000F7ED
+[00:20:56.433] INFO  [mk3_Hector] [0x20] player @(1915,2809,0) facing=5
+[00:20:56.433] INFO  [mk3_Hector] [0x88] paperdoll 0x000182D0: "Castor, Apprentice Fencer"
+[00:20:56.433] INFO  [mk3_Hector] [0x20] player @(1915,2809,0) facing=7
+[00:20:56.433] INFO  [mk3_Hector] [0x88] paperdoll 0x0000F7B0: "Devin, the healer"
+[00:20:56.433] INFO  [mk3_Hector] [world] Devin, the healer is a healer at (1912,2803)
+[00:20:56.433] INFO  [mk3_Hector] [0x20] player @(1915,2809,0) facing=0
+[00:20:56.433] INFO  [mk3_Hector] [0x88] paperdoll 0x0000F775: "Ryanne, the healer guildmistress"
+[00:20:56.434] INFO  [mk3_Hector] [world] Ryanne, the healer guildmistress is a healer at (1912,2802)
+[00:20:57.900] INFO  [mk3_Hector] [survival] hp 32/32 (100%) -> fight
+[00:20:59.448] INFO  [life] bandages: found a 'healer'
+[00:20:59.510] INFO  [mk3_Hector] [travel] mobile 0x0000F7B0 -> (1912,2803) r=1 from (1915,2809)
+[00:20:59.510] LOG   [mk3_Hector] event travel_start: label='mobile 0x0000F7B0' target=(1912,2803) radius=1 from=(1915,2809)
+[00:20:59.510] INFO  [life] bandages: the 'healer' is 6 tiles off (dz 0) -- walking into reach (chase 1 of 3)
+[00:20:59.510] INFO  [mk3_Hector] [travel] mode walk             usable   <- chosen
+[00:20:59.510] INFO  [mk3_Hector] [travel] mode moongate         usable
+[00:20:59.510] INFO  [mk3_Hector] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:59.510] INFO  [mk3_Hector] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:59.510] LOG   [mk3_Hector] event travel_mode: walk
+[00:20:59.510] INFO  [mk3_Hector] [travel] plan mobile 0x0000F7B0: ok legs=1 ~6 tiles transit=0 nodes=0
+[00:20:59.543] INFO  [mk3_Hector] [action] goto finished at (1915,2809,0); target (1911,2805); stopped short (off by 8 tile(s))
+[00:20:59.543] LOG   [mk3_Hector] event goto_done: at=(1915,2809) target=(1911,2805) arrived=0 off=8
+[00:20:59.543] INFO  [mk3_Hector] [action] goto (1912,2803) from (1915,2809,0)
+[00:20:59.543] LOG   [mk3_Hector] event goto_start: target=(1912,2803) from=(1915,2809)
+[00:20:59.543] INFO  [mk3_Hector] [bot] running from (1915,2809,0) to (1912,2803,z0)
+[00:20:59.543] INFO  [mk3_Hector] [bot] planning path to (1912,2803) in background
+[00:21:02.152] INFO  [mk3_Hector] [action] goto finished at (1915,2809,0); target (1912,2803); stopped short (off by 9 tile(s))
+[00:21:02.152] LOG   [mk3_Hector] event goto_done: at=(1915,2809) target=(1912,2803) arrived=0 off=9
+[00:21:02.907] INFO  [mk3_Hector] [survival] hp 32/32 (100%) -> fight
+[00:21:03.396] INFO  [mk3_Hector] [action] goto (1912,2803) from (1915,2809,0)
+[00:21:03.396] LOG   [mk3_Hector] event goto_start: target=(1912,2803) from=(1915,2809)
+[00:21:03.396] INFO  [mk3_Hector] [bot] running from (1915,2809,0) to (1912,2803,z0)
+[00:21:03.396] INFO  [mk3_Hector] [bot] planning path to (1912,2803) in background
+[00:21:04.454] INFO  [mk3_Hector] [chat uni  ] Castor: Devin buy
+[00:21:04.454] INFO  [mk3_Hector] [chat ascii] Devin: Yes?
+[00:21:04.454] INFO  [mk3_Hector] [chat ascii] Devin: I would gladly sell to thee of my many wares.
+[00:21:04.531] INFO  [mk3_Hector] [chat ascii] Devin: Here you are, Castor That will be 10 gold coins.  I thank thee for thy business.
+[00:21:04.655] INFO  [mk3_Hector] [chat uni  ] Castor: Devin buy
+[00:21:04.655] INFO  [mk3_Hector] [chat ascii] Devin: My shop sells many things.
+[00:21:06.551] INFO  [mk3_Hector] [action] goto finished at (1915,2809,0); target (1912,2803); stopped short (off by 9 tile(s))
+[00:21:06.551] LOG   [mk3_Hector] event goto_done: at=(1915,2809) target=(1912,2803) arrived=0 off=9
+[00:21:07.776] INFO  [mk3_Hector] [travel] mode walk             usable   <- chosen
+[00:21:07.776] INFO  [mk3_Hector] [travel] mode moongate         usable
+[00:21:07.776] INFO  [mk3_Hector] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:07.776] INFO  [mk3_Hector] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:07.776] LOG   [mk3_Hector] event travel_mode: walk
+[00:21:07.776] INFO  [mk3_Hector] [travel] plan mobile 0x0000F7B0: ok legs=1 ~6 tiles transit=0 nodes=0
+[00:21:07.959] INFO  [mk3_Hector] [survival] hp 32/32 (100%) -> fight
+[00:21:09.311] INFO  [mk3_Hector] [action] goto (1912,2803) from (1915,2809,0)
+[00:21:09.311] LOG   [mk3_Hector] event goto_start: target=(1912,2803) from=(1915,2809)
+[00:21:09.311] INFO  [mk3_Hector] [bot] running from (1915,2809,0) to (1912,2803,z0)
+[00:21:09.311] INFO  [mk3_Hector] [bot] planning path to (1912,2803) in background
+[00:21:11.193] INFO  [mk3_Hector] [chat ascii] System: Observer has arrived in Minoc.
+[00:21:12.416] INFO  [mk3_Hector] [action] goto finished at (1915,2809,0); target (1912,2803); stopped short (off by 9 tile(s))
+[00:21:12.416] LOG   [mk3_Hector] event goto_done: at=(1915,2809) target=(1912,2803) arrived=0 off=9
+[00:21:12.664] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_25.hector/state.json
+[00:21:12.972] INFO  [mk3_Hector] [survival] hp 32/32 (100%) -> fight
+[00:21:13.647] INFO  [mk3_Hector] [action] goto (1912,2803) from (1915,2809,0)
+[00:21:13.647] LOG   [mk3_Hector] event goto_start: target=(1912,2803) from=(1915,2809)
+[00:21:13.647] INFO  [mk3_Hector] [bot] running from (1915,2809,0) to (1912,2803,z0)
+[00:21:13.647] INFO  [mk3_Hector] [bot] planning path to (1912,2803) in background
+[00:21:14.571] INFO  [mk3_Hector] [chat ascii] System: Observer has departed from Minoc.
+[00:21:17.151] INFO  [mk3_Hector] [action] goto finished at (1915,2809,0); target (1912,2803); stopped short (off by 9 tile(s))
+[00:21:17.151] LOG   [mk3_Hector] event goto_done: at=(1915,2809) target=(1912,2803) arrived=0 off=9
+[00:21:18.009] INFO  [mk3_Hector] [survival] hp 32/32 (100%) -> fight
+[00:21:18.376] INFO  [mk3_Hector] [travel] mode walk             usable   <- chosen
+[00:21:18.376] INFO  [mk3_Hector] [travel] mode moongate         usable
+[00:21:18.376] INFO  [mk3_Hector] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:18.376] INFO  [mk3_Hector] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:18.376] LOG   [mk3_Hector] event travel_mode: walk
+[00:21:18.376] INFO  [mk3_Hector] [travel] plan mobile 0x0000F7B0: ok legs=1 ~6 tiles transit=0 nodes=0
+[00:21:21.381] INFO  [mk3_Hector] [action] goto (1912,2803) from (1915,2809,0)
+[00:21:21.381] LOG   [mk3_Hector] event goto_start: target=(1912,2803) from=(1915,2809)
+[00:21:21.381] INFO  [mk3_Hector] [bot] running from (1915,2809,0) to (1912,2803,z0)
+[00:21:21.381] INFO  [mk3_Hector] [bot] planning path to (1912,2803) in background
+[00:21:23.043] INFO  [mk3_Hector] [survival] hp 32/32 (100%) -> fight
+[00:21:24.642] INFO  [mk3_Hector] [action] goto finished at (1915,2809,0); target (1912,2803); stopped short (off by 9 tile(s))
+[00:21:24.642] LOG   [mk3_Hector] event goto_done: at=(1915,2809) target=(1912,2803) arrived=0 off=9
+[00:21:25.875] INFO  [mk3_Hector] [action] goto (1912,2803) from (1915,2809,0)
+[00:21:25.875] LOG   [mk3_Hector] event goto_start: target=(1912,2803) from=(1915,2809)
+[00:21:25.875] INFO  [mk3_Hector] [bot] running from (1915,2809,0) to (1912,2803,z0)
+[00:21:25.875] INFO  [mk3_Hector] [bot] planning path to (1912,2803) in background
+[00:21:28.083] INFO  [mk3_Hector] [survival] hp 32/32 (100%) -> fight
+[00:21:29.128] INFO  [mk3_Hector] [action] goto finished at (1915,2809,0); target (1912,2803); stopped short (off by 9 tile(s))
+[00:21:29.128] LOG   [mk3_Hector] event goto_done: at=(1915,2809) target=(1912,2803) arrived=0 off=9
+[00:21:30.360] INFO  [mk3_Hector] [travel] mode walk             usable   <- chosen
+[00:21:30.360] INFO  [mk3_Hector] [travel] mode moongate         usable
+[00:21:30.360] INFO  [mk3_Hector] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:30.360] INFO  [mk3_Hector] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:30.360] LOG   [mk3_Hector] event travel_mode: walk
+[00:21:30.361] INFO  [mk3_Hector] [travel] plan mobile 0x0000F7B0: ok legs=1 ~6 tiles transit=0 nodes=0
+[00:21:33.120] INFO  [mk3_Hector] [survival] hp 32/32 (100%) -> fight
+[00:21:34.873] INFO  [mk3_Hector] [action] goto (1912,2803) from (1915,2809,0)
+[00:21:34.873] LOG   [mk3_Hector] event goto_start: target=(1912,2803) from=(1915,2809)
+[00:21:34.874] INFO  [mk3_Hector] [bot] running from (1915,2809,0) to (1912,2803,z0)
+[00:21:34.874] INFO  [mk3_Hector] [bot] planning path to (1912,2803) in background
+[00:21:34.935] INFO  [mk3_Hector] [bot] replan to (1912,2803): 7 steps in 585.3us
+[00:21:36.516] INFO  [mk3_Hector] [travel] mobile 0x0000F7B0 ARRIVED at (1913,2804,0)
+[00:21:36.516] LOG   [mk3_Hector] event travel_done: label='mobile 0x0000F7B0' ok=1 at=(1913,2804) legs=1 plans=4 why=''
+[00:21:36.577] INFO  [life] bandages: within reach
+[00:21:36.639] INFO  [mk3_Hector] [ACTION] vendor_buy start
+[00:21:36.640] INFO  [mk3_Hector] [VENDOR] open vendor=0x0000F7B0 say='Devin buy'
+[00:21:36.640] INFO  [life] bandages: asking the 'healer' to show clean bandages (attempt 1)
+[00:21:36.656] INFO  [mk3_Hector] [chat uni  ] : Devin buy
+[00:21:36.656] INFO  [mk3_Hector] [chat ascii] Devin: Greetings.  What might I do for thee?
+[00:21:36.656] INFO  [mk3_Hector] [chat ascii] Devin: I would gladly sell to thee of my many wares.
+[00:21:36.656] INFO  [mk3_Hector] [0x3C] container contents: 4 item(s)
+[00:21:36.656] INFO  [mk3_Hector] [0x74] pairing: straight (straight 4, mirrored 0 of 4 rows)
+[00:21:36.656] INFO  [mk3_Hector] [0x74] vendor shop data: cont=0x4000F7AA 4 item(s), layer=0x1A
+[00:21:36.656] INFO  [mk3_Hector] [0x74]   Heal                         gfx=0x0F0C qty=8    price=30
+[00:21:36.656] INFO  [mk3_Hector] [0x74]   Ginseng                      gfx=0x0F85 qty=21   price=3
+[00:21:36.656] INFO  [mk3_Hector] [0x74]   Garlic                       gfx=0x0F84 qty=21   price=3
+[00:21:36.656] INFO  [mk3_Hector] [0x74]   Refresh                      gfx=0x0F0B qty=27   price=16
+[00:21:36.656] INFO  [mk3_Hector] [0x3C] container contents: 0 item(s)
+[00:21:36.656] INFO  [mk3_Hector] [0x74] vendor shop data: cont=0x400132C3 0 item(s), layer=0x1B
+[00:21:36.656] INFO  [mk3_Hector] [VENDOR] offer from 0x0000F7B0: 4 item(s)
+[00:21:36.656] INFO  [mk3_Hector] [VENDOR]   0x4000C33E Heal                   x8   30 gp
+[00:21:36.656] INFO  [mk3_Hector] [VENDOR]   0x4000C33D Ginseng                x21  3 gp
+[00:21:36.656] INFO  [mk3_Hector] [VENDOR]   0x4000C33B Garlic                 x21  3 gp
+[00:21:36.656] INFO  [mk3_Hector] [VENDOR]   0x4000C33A Refresh                x27  16 gp
+[00:21:36.656] LOG   [mk3_Hector] event vendor_offer: vendor=0x0000F7B0 items=4
+[00:21:36.656] INFO  [mk3_Hector] [ACTION_RESULT] vendor_buy success (17ms) vendor offer received
+[00:21:36.656] LOG   [mk3_Hector] event action_result: vendor_buy success took=17ms vendor offer received
+[00:21:36.656] INFO  [mk3_Hector] [0x24] vendor buy gump for 0x0000F7B0
+[00:21:36.657] INFO  [life] bandages: the shop is open
+[00:21:36.716] INFO  [life] bandages: this 'healer' does not stock clean bandages
+[00:21:36.716] INFO  [life] goal_failed=REPLACE_EQUIPMENT status=failed reason="this 'healer' does not stock clean bandages"
+[00:21:36.716] INFO  [life] handoff=REPLACE_EQUIPMENT->MAKE_BANDAGES reason="no bandages bought"
+[00:21:36.777] INFO  [life] goal=GET_FOOD reason="previous goal abandoned: no bandages bought"
+[00:21:36.777] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedMakeBandages(bandages BLOCKED 0.70) NeedSkillTraining(Anatomy 0.55) NeedEquipment(heal potions 0.50) NeedEquipment(bandages 0.50) NeedTraining(skill 42 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedTraining(skill 5 0.45) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=Anatomy (target 100.0)
+[00:21:36.777] INFO  [life]   score=62.5
+[00:21:36.777] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[00:21:36.777] INFO  [life]   reason: food=0
+[00:21:36.777] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 239s after achieving nothing
+[00:21:36.777] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 217s after achieving nothing
+[00:21:36.777] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 10000 (buyable at 200))
+[00:21:37.514] INFO  [mk3_Hector] [bot] arrived at (1912,2803,0)
+[00:21:38.177] INFO  [mk3_Hector] [survival] hp 32/32 (100%) -> fight
+[00:21:38.744] INFO  [mk3_Hector] [travel] place: skipping Britain baker -- 1552 tiles and 0 gates for a service Baked Delights baker offers
+[00:21:38.744] INFO  [mk3_Hector] [travel] place: skipping Yew baker -- 1632 tiles and 1 gate for a service Baked Delights baker offers
+[00:21:38.744] INFO  [mk3_Hector] [travel] Baked Delights baker -> (1880,2802) r=5 from (1912,2803)
+[00:21:38.744] LOG   [mk3_Hector] event travel_start: label='Baked Delights baker' target=(1880,2802) radius=5 from=(1912,2803)
+[00:21:38.744] INFO  [life] food: walking to a 'baker' (trip 1)
+[00:21:38.744] INFO  [mk3_Hector] [travel] mode walk             usable   <- chosen
+[00:21:38.744] INFO  [mk3_Hector] [travel] mode moongate         usable
+[00:21:38.744] INFO  [mk3_Hector] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:38.744] INFO  [mk3_Hector] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:38.744] LOG   [mk3_Hector] event travel_mode: walk
+[00:21:38.744] INFO  [mk3_Hector] [travel] plan Baked Delights baker: ok legs=1 ~32 tiles transit=0 nodes=0
+[00:21:38.795] INFO  [mk3_Hector] [action] goto finished at (1912,2803,0); target (1912,2803); ARRIVED (off by 0 tile(s))
+[00:21:38.795] LOG   [mk3_Hector] event goto_done: at=(1912,2803) target=(1912,2803) arrived=1 off=0
+[00:21:38.795] INFO  [mk3_Hector] [action] goto (1880,2802) from (1912,2803,0)
+[00:21:38.795] LOG   [mk3_Hector] event goto_start: target=(1880,2802) from=(1912,2803)
+[00:21:38.795] INFO  [mk3_Hector] [bot] running from (1912,2803,0) to (1880,2802,z0)
+[00:21:38.795] INFO  [mk3_Hector] [bot] planning path to (1880,2802) in background
+[00:21:38.856] INFO  [mk3_Hector] [action] goto finished at (1912,2803,0); target (1880,2802); stopped short (off by 33 tile(s))
+[00:21:38.856] LOG   [mk3_Hector] event goto_done: at=(1912,2803) target=(1880,2802) arrived=0 off=33
+[00:21:40.086] INFO  [mk3_Hector] [action] goto (1880,2802) from (1912,2803,0)
+[00:21:40.086] LOG   [mk3_Hector] event goto_start: target=(1880,2802) from=(1912,2803)
+[00:21:40.086] INFO  [mk3_Hector] [bot] running from (1912,2803,0) to (1880,2802,z0)
+[00:21:40.086] INFO  [mk3_Hector] [bot] planning path to (1880,2802) in background
+[00:21:40.147] INFO  [mk3_Hector] [action] goto finished at (1912,2803,0); target (1880,2802); stopped short (off by 33 tile(s))
+[00:21:40.147] LOG   [mk3_Hector] event goto_done: at=(1912,2803) target=(1880,2802) arrived=0 off=33
+[00:21:41.394] INFO  [mk3_Hector] [action] goto (1880,2802) from (1912,2803,0)
+[00:21:41.394] LOG   [mk3_Hector] event goto_start: target=(1880,2802) from=(1912,2803)
+[00:21:41.394] INFO  [mk3_Hector] [bot] running from (1912,2803,0) to (1880,2802,z0)
+[00:21:41.394] INFO  [mk3_Hector] [bot] planning path to (1880,2802) in background
+[00:21:41.455] INFO  [mk3_Hector] [action] goto finished at (1912,2803,0); target (1880,2802); stopped short (off by 33 tile(s))
+[00:21:41.455] LOG   [mk3_Hector] event goto_done: at=(1912,2803) target=(1880,2802) arrived=0 off=33
+[00:21:42.702] INFO  [mk3_Hector] [travel] mode walk             usable   <- chosen
+[00:21:42.702] INFO  [mk3_Hector] [travel] mode moongate         usable
+[00:21:42.702] INFO  [mk3_Hector] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:42.702] INFO  [mk3_Hector] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:42.702] LOG   [mk3_Hector] event travel_mode: walk
+[00:21:42.702] INFO  [mk3_Hector] [travel] plan Baked Delights baker: ok legs=1 ~32 tiles transit=0 nodes=0
+[00:21:43.194] INFO  [mk3_Hector] [survival] hp 32/32 (100%) -> fight
+[00:21:43.335] INFO  [mk3_Hector] [chat ascii] Raven: Thou wishest to speak with me?
+[00:21:44.242] INFO  [mk3_Hector] [action] goto (1880,2802) from (1912,2803,0)
+[00:21:44.242] LOG   [mk3_Hector] event goto_start: target=(1880,2802) from=(1912,2803)
+[00:21:44.242] INFO  [mk3_Hector] [bot] running from (1912,2803,0) to (1880,2802,z0)
+[00:21:44.242] INFO  [mk3_Hector] [bot] planning path to (1880,2802) in background
+[00:21:44.365] INFO  [mk3_Hector] [action] goto finished at (1912,2803,0); target (1880,2802); stopped short (off by 33 tile(s))
+[00:21:44.365] LOG   [mk3_Hector] event goto_done: at=(1912,2803) target=(1880,2802) arrived=0 off=33
+[00:21:45.579] INFO  [mk3_Hector] [action] goto (1880,2802) from (1912,2803,0)
+[00:21:45.579] LOG   [mk3_Hector] event goto_start: target=(1880,2802) from=(1912,2803)
+[00:21:45.579] INFO  [mk3_Hector] [bot] running from (1912,2803,0) to (1880,2802,z0)
+[00:21:45.579] INFO  [mk3_Hector] [bot] planning path to (1880,2802) in background
+[00:21:45.640] INFO  [mk3_Hector] [action] goto finished at (1912,2803,0); target (1880,2802); stopped short (off by 33 tile(s))
+[00:21:45.640] LOG   [mk3_Hector] event goto_done: at=(1912,2803) target=(1880,2802) arrived=0 off=33
+[00:21:46.884] INFO  [mk3_Hector] [action] goto (1880,2802) from (1912,2803,0)
+[00:21:46.884] LOG   [mk3_Hector] event goto_start: target=(1880,2802) from=(1912,2803)
+[00:21:46.884] INFO  [mk3_Hector] [bot] running from (1912,2803,0) to (1880,2802,z0)
+[00:21:46.884] INFO  [mk3_Hector] [bot] planning path to (1880,2802) in background
+[00:21:46.946] INFO  [mk3_Hector] [action] goto finished at (1912,2803,0); target (1880,2802); stopped short (off by 33 tile(s))
+[00:21:46.946] LOG   [mk3_Hector] event goto_done: at=(1912,2803) target=(1880,2802) arrived=0 off=33
+[00:21:48.148] INFO  [mk3_Hector] [travel] mode walk             usable   <- chosen
+[00:21:48.148] INFO  [mk3_Hector] [travel] mode moongate         usable
+[00:21:48.148] INFO  [mk3_Hector] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:48.148] INFO  [mk3_Hector] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:48.148] LOG   [mk3_Hector] event travel_mode: walk
+[00:21:48.148] INFO  [mk3_Hector] [travel] plan Baked Delights baker: ok legs=1 ~32 tiles transit=0 nodes=0
+[00:21:48.210] INFO  [mk3_Hector] [survival] hp 32/32 (100%) -> fight
+[00:21:51.164] INFO  [mk3_Hector] [action] goto (1880,2802) from (1912,2803,0)
+[00:21:51.164] LOG   [mk3_Hector] event goto_start: target=(1880,2802) from=(1912,2803)
+[00:21:51.164] INFO  [mk3_Hector] [bot] running from (1912,2803,0) to (1880,2802,z0)
+[00:21:51.164] INFO  [mk3_Hector] [bot] planning path to (1880,2802) in background
+[00:21:51.224] INFO  [mk3_Hector] [action] goto finished at (1912,2803,0); target (1880,2802); stopped short (off by 33 tile(s))
+[00:21:51.224] LOG   [mk3_Hector] event goto_done: at=(1912,2803) target=(1880,2802) arrived=0 off=33
+[00:21:52.429] INFO  [mk3_Hector] [action] goto (1880,2802) from (1912,2803,0)
+[00:21:52.429] LOG   [mk3_Hector] event goto_start: target=(1880,2802) from=(1912,2803)
+[00:21:52.429] INFO  [mk3_Hector] [bot] running from (1912,2803,0) to (1880,2802,z0)
+[00:21:52.429] INFO  [mk3_Hector] [bot] planning path to (1880,2802) in background
+[00:21:52.554] INFO  [mk3_Hector] [action] goto finished at (1912,2803,0); target (1880,2802); stopped short (off by 33 tile(s))
+[00:21:52.554] LOG   [mk3_Hector] event goto_done: at=(1912,2803) target=(1880,2802) arrived=0 off=33
+[00:21:53.232] INFO  [mk3_Hector] [survival] hp 32/32 (100%) -> fight
+[00:21:53.770] INFO  [mk3_Hector] [action] goto (1880,2802) from (1912,2803,0)
+[00:21:53.771] LOG   [mk3_Hector] event goto_start: target=(1880,2802) from=(1912,2803)
+[00:21:53.771] INFO  [mk3_Hector] [bot] running from (1912,2803,0) to (1880,2802,z0)
+[00:21:53.771] INFO  [mk3_Hector] [bot] planning path to (1880,2802) in background
+[00:21:53.834] INFO  [mk3_Hector] [action] goto finished at (1912,2803,0); target (1880,2802); stopped short (off by 33 tile(s))
+[00:21:53.834] LOG   [mk3_Hector] event goto_done: at=(1912,2803) target=(1880,2802) arrived=0 off=33
+[00:21:55.037] INFO  [mk3_Hector] [travel] mode walk             usable   <- chosen
+[00:21:55.037] INFO  [mk3_Hector] [travel] mode moongate         usable
+[00:21:55.037] INFO  [mk3_Hector] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:55.037] INFO  [mk3_Hector] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:55.037] LOG   [mk3_Hector] event travel_mode: walk
+[00:21:55.037] INFO  [mk3_Hector] [travel] plan Baked Delights baker: ok legs=1 ~32 tiles transit=0 nodes=0
+[00:21:58.242] INFO  [mk3_Hector] [survival] hp 32/32 (100%) -> fight
+[00:21:58.644] INFO  [mk3_Hector] [chat ascii] System: Draver has departed from Minoc.
+[00:21:59.552] INFO  [mk3_Hector] [action] goto (1880,2802) from (1912,2803,0)
+[00:21:59.552] LOG   [mk3_Hector] event goto_start: target=(1880,2802) from=(1912,2803)
+[00:21:59.552] INFO  [mk3_Hector] [bot] running from (1912,2803,0) to (1880,2802,z0)
+[00:21:59.552] INFO  [mk3_Hector] [bot] planning path to (1880,2802) in background
+[00:21:59.553] INFO  [mk3_Hector] [action] goto finished at (1912,2803,0); target (1880,2802); stopped short (off by 33 tile(s))
+[00:21:59.553] LOG   [mk3_Hector] event goto_done: at=(1912,2803) target=(1880,2802) arrived=0 off=33
+[00:22:00.761] INFO  [mk3_Hector] [action] goto (1880,2802) from (1912,2803,0)
+[00:22:00.761] LOG   [mk3_Hector] event goto_start: target=(1880,2802) from=(1912,2803)
+[00:22:00.761] INFO  [mk3_Hector] [bot] running from (1912,2803,0) to (1880,2802,z0)
+[00:22:00.761] INFO  [mk3_Hector] [bot] planning path to (1880,2802) in background
+[00:22:00.882] INFO  [mk3_Hector] [action] goto finished at (1912,2803,0); target (1880,2802); stopped short (off by 33 tile(s))
+[00:22:00.882] LOG   [mk3_Hector] event goto_done: at=(1912,2803) target=(1880,2802) arrived=0 off=33
+[00:22:02.101] INFO  [mk3_Hector] [action] goto (1880,2802) from (1912,2803,0)
+[00:22:02.101] LOG   [mk3_Hector] event goto_start: target=(1880,2802) from=(1912,2803)
+[00:22:02.101] INFO  [mk3_Hector] [bot] running from (1912,2803,0) to (1880,2802,z0)
+[00:22:02.102] INFO  [mk3_Hector] [bot] planning path to (1880,2802) in background
+[00:22:02.195] INFO  [mk3_Hector] [action] goto finished at (1912,2803,0); target (1880,2802); stopped short (off by 33 tile(s))
+[00:22:02.195] LOG   [mk3_Hector] event goto_done: at=(1912,2803) target=(1880,2802) arrived=0 off=33
+[00:22:02.195] LOG   [mk3_Hector] event travel_escape: from=(1912,2803,0) to=(1928,2792) attempt=1
+[00:22:02.195] INFO  [mk3_Hector] [action] goto (1928,2792) from (1912,2803,0)
+[00:22:02.195] LOG   [mk3_Hector] event goto_start: target=(1928,2792) from=(1912,2803)
+[00:22:02.195] INFO  [mk3_Hector] [bot] running from (1912,2803,0) to (1928,2792,z0)
+[00:22:02.195] INFO  [mk3_Hector] [bot] planning path to (1928,2792) in background
+[00:22:02.257] INFO  [mk3_Hector] [bot] replan to (1928,2792): 61 steps in 43558.5us
+[00:22:03.261] INFO  [mk3_Hector] [survival] hp 32/32 (100%) -> fight
+[00:22:05.560] INFO  [mk3_Hector] [bot] door ahead at (1915,2812,z0); OpenDoor before step
+[00:22:05.560] INFO  [mk3_Hector] [chat ascii] System: Opening door...
+[00:22:06.953] INFO  [mk3_Hector] [bot] door ahead at (1917,2813,z0); OpenDoor before step
+[00:22:06.968] INFO  [mk3_Hector] [chat ascii] System: Opening door...
+[00:22:08.286] INFO  [mk3_Hector] [survival] hp 32/32 (100%) -> fight
+[00:22:12.681] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_25.hector/state.json
+[00:22:13.342] INFO  [mk3_Hector] [survival] hp 32/32 (100%) -> fight
+[00:22:14.220] INFO  [mk3_Hector] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=24 in 212.2us
+[00:22:17.442] INFO  [mk3_Hector] [bot] door ahead at (1941,2794,z0); OpenDoor before step
+[00:22:17.442] INFO  [mk3_Hector] [chat ascii] System: Opening door...
+[00:22:18.362] INFO  [mk3_Hector] [survival] hp 32/32 (100%) -> fight
+[00:22:19.141] INFO  [mk3_Hector] [chat ascii] Ambrose: Aye?
+[00:22:20.822] INFO  [mk3_Hector] [chat ascii] Ghislaine: Hmm?
+[00:22:21.918] INFO  [mk3_Hector] [bot] arrived at (1928,2792,0)
+[00:22:21.918] INFO  [mk3_Hector] [action] goto finished at (1928,2792,0); target (1928,2792); ARRIVED (off by 0 tile(s))
+[00:22:21.918] LOG   [mk3_Hector] event goto_done: at=(1928,2792) target=(1928,2792) arrived=1 off=0
+[00:22:21.918] INFO  [mk3_Hector] [travel] recovery walk reached its anchor at (1928,2792,0) (off 0); attempt 1/3
+[00:22:21.918] LOG   [mk3_Hector] event travel_recovery_done: reached=1 at=(1928,2792,0) off=0 attempt=1
+[00:22:21.978] INFO  [mk3_Hector] [travel] mode walk             usable   <- chosen
+[00:22:21.978] INFO  [mk3_Hector] [travel] mode moongate         usable
+[00:22:21.978] INFO  [mk3_Hector] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:21.978] INFO  [mk3_Hector] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:21.978] LOG   [mk3_Hector] event travel_mode: walk
+[00:22:21.987] INFO  [mk3_Hector] [travel] plan Baked Delights baker: no world route to the destination legs=0 ~0 tiles transit=0 nodes=23707
+[00:22:21.987] LOG   [mk3_Hector] event travel_escape: from=(1928,2792,0) to=(1912,2776) attempt=2
+[00:22:21.987] INFO  [mk3_Hector] [action] goto (1912,2776) from (1928,2792,0)
+[00:22:21.987] LOG   [mk3_Hector] event goto_start: target=(1912,2776) from=(1928,2792)
+[00:22:21.987] INFO  [mk3_Hector] [bot] running from (1928,2792,0) to (1912,2776,z0)
+[00:22:21.987] INFO  [mk3_Hector] [bot] planning path to (1912,2776) in background
+[00:22:22.040] INFO  [mk3_Hector] [bot] replan to (1912,2776): 53 steps in 7651.7us
+[00:22:23.422] INFO  [mk3_Hector] [survival] hp 32/32 (100%) -> fight
+[00:22:26.246] INFO  [mk3_Hector] [bot] door ahead at (1942,2792,z0); OpenDoor before step
+[00:22:26.261] INFO  [mk3_Hector] [chat ascii] System: Opening door...
+[00:22:28.430] INFO  [mk3_Hector] [survival] hp 32/32 (100%) -> fight
+[00:22:28.446] INFO  [life] goal_changed=TRAIN_COMBAT from=GET_FOOD reason="TRAIN_COMBAT 84.5 superseded GET_FOOD 62.5"
+[00:22:28.446] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedMakeBandages(bandages BLOCKED 0.70) NeedTraining(skill 42 0.65) NeedTraining(Tactics 0.65) NeedTraining(Anatomy 0.65) NeedTraining(skill 5 0.65) NeedSkillTraining(Anatomy 0.55) NeedEquipment(heal potions 0.50) NeedEquipment(bandages 0.50) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=Anatomy (target 100.0)
+[00:22:28.446] INFO  [life]   score=84.5
+[00:22:28.446] INFO  [life]   reason: NeedTraining urgency 0.65 x 130 = 84.5
+[00:22:28.446] INFO  [life]   reason: skill 42 50.0 -> 100.0
+[00:22:28.446] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 188s after achieving nothing
+[00:22:28.446] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 166s after achieving nothing
+[00:22:28.446] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 10000 (buyable at 200))
+[00:22:28.447] INFO  [life] hunt: 1 hostile(s) in sight and none worth starting on
+[00:22:28.447] INFO  [life] engaging a hostile (noto 3) at 1943,2774
+[00:22:28.447] INFO  [mk3_Hector] [war] entering war mode
+[00:22:28.447] INFO  [mk3_Hector] [ACTION] attack start
+[00:22:28.447] INFO  [mk3_Hector] [ACTION] attack serial=0x0001119B
+[00:22:28.461] INFO  [mk3_Hector] [0xAA] attacking 0x0001119B
+[00:22:28.461] INFO  [mk3_Hector] [ACTION_RESULT] attack success (14ms) server accepted the target
+[00:22:28.461] LOG   [mk3_Hector] event action_result: attack success took=14ms server accepted the target
+[00:22:29.646] INFO  [mk3_Hector] [ACTION] attack start
+[00:22:29.646] INFO  [mk3_Hector] [ACTION] attack serial=0x0001119B
+[00:22:29.647] INFO  [mk3_Hector] [0xAA] attacking 0x0001119B
+[00:22:29.647] INFO  [mk3_Hector] [ACTION_RESULT] attack success (1ms) server accepted the target
+[00:22:29.647] LOG   [mk3_Hector] event action_result: attack success took=1ms server accepted the target
+[00:22:30.853] INFO  [mk3_Hector] [ACTION] attack start
+[00:22:30.853] INFO  [mk3_Hector] [ACTION] attack serial=0x0001119B
+[00:22:30.869] INFO  [mk3_Hector] [0xAA] attacking 0x0001119B
+[00:22:30.869] INFO  [mk3_Hector] [ACTION_RESULT] attack success (16ms) server accepted the target
+[00:22:30.869] LOG   [mk3_Hector] event action_result: attack success took=16ms server accepted the target
+[00:22:32.113] INFO  [mk3_Hector] [ACTION] attack start
+[00:22:32.113] INFO  [mk3_Hector] [ACTION] attack serial=0x0001119B
+[00:22:32.113] INFO  [mk3_Hector] [0xAA] attacking 0x0001119B
+[00:22:32.113] INFO  [mk3_Hector] [ACTION_RESULT] attack success (1ms) server accepted the target
+[00:22:32.113] LOG   [mk3_Hector] event action_result: attack success took=1ms server accepted the target
+[00:22:33.361] INFO  [mk3_Hector] [war] leaving war mode
+[00:22:33.361] INFO  [life] goal_completed=TRAIN_COMBAT progress=0
+[00:22:33.363] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_25.hector/state.json
+[00:22:33.377] INFO  [life] goal=GET_FOOD reason="no goal was running"
+[00:22:33.377] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedMakeBandages(bandages BLOCKED 0.70) NeedSkillTraining(Anatomy 0.55) NeedEquipment(heal potions 0.50) NeedEquipment(bandages 0.50) NeedTraining(skill 42 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedTraining(skill 5 0.45) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=Anatomy (target 100.0)
+[00:22:33.377] INFO  [life]   score=62.5
+[00:22:33.377] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[00:22:33.377] INFO  [life]   reason: food=0
+[00:22:33.377] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 183s after achieving nothing
+[00:22:33.377] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 161s after achieving nothing
+[00:22:33.377] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 10000 (buyable at 200))
+[00:22:33.437] INFO  [mk3_Hector] [survival] hp 32/32 (100%) -> fight
+[00:22:38.156] INFO  [mk3_Hector] [bot] arrived at (1912,2776,0)
+[00:22:38.156] INFO  [mk3_Hector] [action] goto finished at (1912,2776,0); target (1912,2776); ARRIVED (off by 0 tile(s))
+[00:22:38.156] LOG   [mk3_Hector] event goto_done: at=(1912,2776) target=(1912,2776) arrived=1 off=0
+[00:22:38.156] INFO  [mk3_Hector] [travel] recovery walk reached its anchor at (1912,2776,0) (off 0); attempt 2/3
+[00:22:38.156] LOG   [mk3_Hector] event travel_recovery_done: reached=1 at=(1912,2776,0) off=0 attempt=2
+[00:22:38.217] INFO  [mk3_Hector] [travel] mode walk             usable   <- chosen
+[00:22:38.217] INFO  [mk3_Hector] [travel] mode moongate         usable
+[00:22:38.217] INFO  [mk3_Hector] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:38.217] INFO  [mk3_Hector] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:38.217] LOG   [mk3_Hector] event travel_mode: walk
+[00:22:38.217] INFO  [mk3_Hector] [travel] plan Baked Delights baker: ok legs=1 ~32 tiles transit=0 nodes=0
+[00:22:38.279] INFO  [mk3_Hector] [action] goto (1880,2802) from (1912,2776,0)
+[00:22:38.279] LOG   [mk3_Hector] event goto_start: target=(1880,2802) from=(1912,2776)
+[00:22:38.279] INFO  [mk3_Hector] [bot] running from (1912,2776,0) to (1880,2802,z0)
+[00:22:38.279] INFO  [mk3_Hector] [bot] planning path to (1880,2802) in background
+[00:22:38.403] INFO  [mk3_Hector] [action] goto finished at (1912,2776,0); target (1880,2802); stopped short (off by 58 tile(s))
+[00:22:38.403] LOG   [mk3_Hector] event goto_done: at=(1912,2776) target=(1880,2802) arrived=0 off=58
+[00:22:38.419] INFO  [mk3_Hector] [chat ascii] System: Vorar has departed from Britain.
+[00:22:38.481] INFO  [mk3_Hector] [survival] hp 32/32 (100%) -> fight
+[00:22:39.440] INFO  [mk3_Hector] [chat ascii] System: Selene has departed from Magincia.
+[00:22:39.625] INFO  [mk3_Hector] [action] goto (1880,2802) from (1912,2776,0)
+[00:22:39.625] LOG   [mk3_Hector] event goto_start: target=(1880,2802) from=(1912,2776)
+[00:22:39.625] INFO  [mk3_Hector] [bot] running from (1912,2776,0) to (1880,2802,z0)
+[00:22:39.625] INFO  [mk3_Hector] [bot] planning path to (1880,2802) in background
+[00:22:39.685] INFO  [mk3_Hector] [action] goto finished at (1912,2776,0); target (1880,2802); stopped short (off by 58 tile(s))
+[00:22:39.685] LOG   [mk3_Hector] event goto_done: at=(1912,2776) target=(1880,2802) arrived=0 off=58
+[00:22:40.915] INFO  [mk3_Hector] [action] goto (1880,2802) from (1912,2776,0)
+[00:22:40.915] LOG   [mk3_Hector] event goto_start: target=(1880,2802) from=(1912,2776)
+[00:22:40.915] INFO  [mk3_Hector] [bot] running from (1912,2776,0) to (1880,2802,z0)
+[00:22:40.915] INFO  [mk3_Hector] [bot] planning path to (1880,2802) in background
+[00:22:41.038] INFO  [mk3_Hector] [action] goto finished at (1912,2776,0); target (1880,2802); stopped short (off by 58 tile(s))
+[00:22:41.038] LOG   [mk3_Hector] event goto_done: at=(1912,2776) target=(1880,2802) arrived=0 off=58
+[00:22:42.273] INFO  [mk3_Hector] [travel] mode walk             usable   <- chosen
+[00:22:42.273] INFO  [mk3_Hector] [travel] mode moongate         usable
+[00:22:42.273] INFO  [mk3_Hector] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:42.273] INFO  [mk3_Hector] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:42.273] LOG   [mk3_Hector] event travel_mode: walk
+[00:22:42.273] INFO  [mk3_Hector] [travel] plan Baked Delights baker: ok legs=1 ~32 tiles transit=0 nodes=0
+[00:22:43.501] INFO  [mk3_Hector] [survival] hp 32/32 (100%) -> fight
+[00:22:43.809] INFO  [mk3_Hector] [action] goto (1880,2802) from (1912,2776,0)
+[00:22:43.809] LOG   [mk3_Hector] event goto_start: target=(1880,2802) from=(1912,2776)
+[00:22:43.809] INFO  [mk3_Hector] [bot] running from (1912,2776,0) to (1880,2802,z0)
+[00:22:43.809] INFO  [mk3_Hector] [bot] planning path to (1880,2802) in background
+[00:22:43.933] INFO  [mk3_Hector] [action] goto finished at (1912,2776,0); target (1880,2802); stopped short (off by 58 tile(s))
+[00:22:43.933] LOG   [mk3_Hector] event goto_done: at=(1912,2776) target=(1880,2802) arrived=0 off=58
+[00:22:45.168] INFO  [mk3_Hector] [action] goto (1880,2802) from (1912,2776,0)
+[00:22:45.168] LOG   [mk3_Hector] event goto_start: target=(1880,2802) from=(1912,2776)
+[00:22:45.168] INFO  [mk3_Hector] [bot] running from (1912,2776,0) to (1880,2802,z0)
+[00:22:45.168] INFO  [mk3_Hector] [bot] planning path to (1880,2802) in background
+[00:22:45.230] INFO  [mk3_Hector] [action] goto finished at (1912,2776,0); target (1880,2802); stopped short (off by 58 tile(s))
+[00:22:45.230] LOG   [mk3_Hector] event goto_done: at=(1912,2776) target=(1880,2802) arrived=0 off=58
+[00:22:46.464] INFO  [mk3_Hector] [action] goto (1880,2802) from (1912,2776,0)
+[00:22:46.464] LOG   [mk3_Hector] event goto_start: target=(1880,2802) from=(1912,2776)
+[00:22:46.464] INFO  [mk3_Hector] [bot] running from (1912,2776,0) to (1880,2802,z0)
+[00:22:46.464] INFO  [mk3_Hector] [bot] planning path to (1880,2802) in background
+[00:22:46.526] INFO  [mk3_Hector] [action] goto finished at (1912,2776,0); target (1880,2802); stopped short (off by 58 tile(s))
+[00:22:46.526] LOG   [mk3_Hector] event goto_done: at=(1912,2776) target=(1880,2802) arrived=0 off=58
+[00:22:46.897] INFO  [mk3_Hector] [chat ascii] System: Zarthal has departed from Minoc.
+[00:22:47.762] INFO  [mk3_Hector] [travel] mode walk             usable   <- chosen
+[00:22:47.762] INFO  [mk3_Hector] [travel] mode moongate         usable
+[00:22:47.762] INFO  [mk3_Hector] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:47.762] INFO  [mk3_Hector] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:47.762] LOG   [mk3_Hector] event travel_mode: walk
+[00:22:47.762] INFO  [mk3_Hector] [travel] plan Baked Delights baker: ok legs=1 ~32 tiles transit=0 nodes=0
+[00:22:48.562] INFO  [mk3_Hector] [survival] hp 32/32 (100%) -> fight
+[00:22:49.378] INFO  [mk3_Hector] [chat ascii] System: World save in 10 seconds
+[00:22:50.319] INFO  [mk3_Hector] [chat ascii] System: Thalia has departed from Moonglow.
+[00:22:50.811] INFO  [mk3_Hector] [action] goto (1880,2802) from (1912,2776,0)
+[00:22:50.811] LOG   [mk3_Hector] event goto_start: target=(1880,2802) from=(1912,2776)
+[00:22:50.811] INFO  [mk3_Hector] [bot] running from (1912,2776,0) to (1880,2802,z0)
+[00:22:50.811] INFO  [mk3_Hector] [bot] planning path to (1880,2802) in background
+[00:22:50.871] INFO  [mk3_Hector] [action] goto finished at (1912,2776,0); target (1880,2802); stopped short (off by 58 tile(s))
+[00:22:50.871] LOG   [mk3_Hector] event goto_done: at=(1912,2776) target=(1880,2802) arrived=0 off=58
+[00:22:52.106] INFO  [mk3_Hector] [action] goto (1880,2802) from (1912,2776,0)
+[00:22:52.106] LOG   [mk3_Hector] event goto_start: target=(1880,2802) from=(1912,2776)
+[00:22:52.106] INFO  [mk3_Hector] [bot] running from (1912,2776,0) to (1880,2802,z0)
+[00:22:52.106] INFO  [mk3_Hector] [bot] planning path to (1880,2802) in background
+[00:22:52.229] INFO  [mk3_Hector] [action] goto finished at (1912,2776,0); target (1880,2802); stopped short (off by 58 tile(s))
+[00:22:52.229] LOG   [mk3_Hector] event goto_done: at=(1912,2776) target=(1880,2802) arrived=0 off=58
+[00:22:53.217] INFO  [mk3_Hector] [chat ascii] System: Elvar has departed from Minoc.
+[00:22:53.458] INFO  [mk3_Hector] [action] goto (1880,2802) from (1912,2776,0)
+[00:22:53.459] LOG   [mk3_Hector] event goto_start: target=(1880,2802) from=(1912,2776)
+[00:22:53.459] INFO  [mk3_Hector] [bot] running from (1912,2776,0) to (1880,2802,z0)
+[00:22:53.459] INFO  [mk3_Hector] [bot] planning path to (1880,2802) in background
+[00:22:53.581] INFO  [mk3_Hector] [action] goto finished at (1912,2776,0); target (1880,2802); stopped short (off by 58 tile(s))
+[00:22:53.581] LOG   [mk3_Hector] event goto_done: at=(1912,2776) target=(1880,2802) arrived=0 off=58
+[00:22:53.581] INFO  [mk3_Hector] [survival] hp 32/32 (100%) -> fight
+[00:22:54.812] INFO  [mk3_Hector] [travel] mode walk             usable   <- chosen
+[00:22:54.813] INFO  [mk3_Hector] [travel] mode moongate         usable
+[00:22:54.813] INFO  [mk3_Hector] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:54.813] INFO  [mk3_Hector] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:54.813] LOG   [mk3_Hector] event travel_mode: walk
+[00:22:54.813] INFO  [mk3_Hector] [travel] plan Baked Delights baker: ok legs=1 ~32 tiles transit=0 nodes=0
+[00:22:57.848] INFO  [mk3_Hector] [chat ascii] System: Falen has departed from Minoc.
+[00:22:58.586] INFO  [mk3_Hector] [survival] hp 32/32 (100%) -> fight
+[00:22:59.324] INFO  [mk3_Hector] [action] goto (1880,2802) from (1912,2776,0)
+[00:22:59.324] LOG   [mk3_Hector] event goto_start: target=(1880,2802) from=(1912,2776)
+[00:22:59.324] INFO  [mk3_Hector] [bot] running from (1912,2776,0) to (1880,2802,z0)
+[00:22:59.324] INFO  [mk3_Hector] [bot] planning path to (1880,2802) in background
+[00:22:59.385] INFO  [mk3_Hector] [action] goto finished at (1912,2776,0); target (1880,2802); stopped short (off by 58 tile(s))
+[00:22:59.385] LOG   [mk3_Hector] event goto_done: at=(1912,2776) target=(1880,2802) arrived=0 off=58
+[00:22:59.430] INFO  [mk3_Hector] [chat ascii] System: World save has been initiated.
+[00:23:00.611] INFO  [mk3_Hector] [action] goto (1880,2802) from (1912,2776,0)
+[00:23:00.612] LOG   [mk3_Hector] event goto_start: target=(1880,2802) from=(1912,2776)
+[00:23:00.612] INFO  [mk3_Hector] [bot] running from (1912,2776,0) to (1880,2802,z0)
+[00:23:00.612] INFO  [mk3_Hector] [bot] planning path to (1880,2802) in background
+[00:23:00.737] INFO  [mk3_Hector] [action] goto finished at (1912,2776,0); target (1880,2802); stopped short (off by 58 tile(s))
+[00:23:00.737] LOG   [mk3_Hector] event goto_done: at=(1912,2776) target=(1880,2802) arrived=0 off=58
+[00:23:01.988] INFO  [mk3_Hector] [action] goto (1880,2802) from (1912,2776,0)
+[00:23:01.988] LOG   [mk3_Hector] event goto_start: target=(1880,2802) from=(1912,2776)
+[00:23:01.988] INFO  [mk3_Hector] [bot] running from (1912,2776,0) to (1880,2802,z0)
+[00:23:01.988] INFO  [mk3_Hector] [bot] planning path to (1880,2802) in background
+[00:23:02.113] INFO  [mk3_Hector] [action] goto finished at (1912,2776,0); target (1880,2802); stopped short (off by 58 tile(s))
+[00:23:02.113] LOG   [mk3_Hector] event goto_done: at=(1912,2776) target=(1880,2802) arrived=0 off=58
+[00:23:02.113] LOG   [mk3_Hector] event travel_escape: from=(1912,2776,0) to=(1912,2784) attempt=3
+[00:23:02.113] INFO  [mk3_Hector] [action] goto (1912,2784) from (1912,2776,0)
+[00:23:02.113] LOG   [mk3_Hector] event goto_start: target=(1912,2784) from=(1912,2776)
+[00:23:02.113] INFO  [mk3_Hector] [bot] running from (1912,2776,0) to (1912,2784,z0)
+[00:23:02.113] INFO  [mk3_Hector] [bot] planning path to (1912,2784) in background
+[00:23:02.175] INFO  [mk3_Hector] [bot] replan to (1912,2784): 8 steps in 489.3us
+[00:23:03.608] INFO  [mk3_Hector] [survival] hp 32/32 (100%) -> fight
+[00:23:05.777] INFO  [mk3_Hector] [chat ascii] System: Ghalor has departed from Minoc.
+[00:23:06.411] INFO  [mk3_Hector] [bot] arrived at (1912,2784,0)
+[00:23:06.411] INFO  [mk3_Hector] [action] goto finished at (1912,2784,0); target (1912,2784); ARRIVED (off by 0 tile(s))
+[00:23:06.411] LOG   [mk3_Hector] event goto_done: at=(1912,2784) target=(1912,2784) arrived=1 off=0
+[00:23:06.411] INFO  [mk3_Hector] [travel] recovery walk reached its anchor at (1912,2784,0) (off 0); attempt 3/3
+[00:23:06.411] LOG   [mk3_Hector] event travel_recovery_done: reached=1 at=(1912,2784,0) off=0 attempt=3
+[00:23:06.472] INFO  [mk3_Hector] [travel] mode walk             usable   <- chosen
+[00:23:06.472] INFO  [mk3_Hector] [travel] mode moongate         usable
+[00:23:06.472] INFO  [mk3_Hector] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:23:06.472] INFO  [mk3_Hector] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:23:06.472] LOG   [mk3_Hector] event travel_mode: walk
+[00:23:06.472] INFO  [mk3_Hector] [travel] plan Baked Delights baker: ok legs=1 ~32 tiles transit=0 nodes=0
+[00:23:06.533] INFO  [mk3_Hector] [action] goto (1880,2802) from (1912,2784,0)
+[00:23:06.533] LOG   [mk3_Hector] event goto_start: target=(1880,2802) from=(1912,2784)
+[00:23:06.533] INFO  [mk3_Hector] [bot] running from (1912,2784,0) to (1880,2802,z0)
+[00:23:06.533] INFO  [mk3_Hector] [bot] planning path to (1880,2802) in background
+[00:23:06.654] INFO  [mk3_Hector] [action] goto finished at (1912,2784,0); target (1880,2802); stopped short (off by 50 tile(s))
+[00:23:06.655] LOG   [mk3_Hector] event goto_done: at=(1912,2784) target=(1880,2802) arrived=0 off=50
+[00:23:07.627] INFO  [mk3_Hector] [chat ascii] System: Cyras has departed from Britain.
+[00:23:07.873] INFO  [mk3_Hector] [action] goto (1880,2802) from (1912,2784,0)
+[00:23:07.873] LOG   [mk3_Hector] event goto_start: target=(1880,2802) from=(1912,2784)
+[00:23:07.873] INFO  [mk3_Hector] [bot] running from (1912,2784,0) to (1880,2802,z0)
+[00:23:07.874] INFO  [mk3_Hector] [bot] planning path to (1880,2802) in background
+[00:23:07.935] INFO  [mk3_Hector] [action] goto finished at (1912,2784,0); target (1880,2802); stopped short (off by 50 tile(s))
+[00:23:07.935] LOG   [mk3_Hector] event goto_done: at=(1912,2784) target=(1880,2802) arrived=0 off=50
+[00:23:08.612] INFO  [mk3_Hector] [survival] hp 32/32 (100%) -> fight
+[00:23:09.167] INFO  [mk3_Hector] [action] goto (1880,2802) from (1912,2784,0)
+[00:23:09.167] LOG   [mk3_Hector] event goto_start: target=(1880,2802) from=(1912,2784)
+[00:23:09.167] INFO  [mk3_Hector] [bot] running from (1912,2784,0) to (1880,2802,z0)
+[00:23:09.167] INFO  [mk3_Hector] [bot] planning path to (1880,2802) in background
+[00:23:09.290] INFO  [mk3_Hector] [action] goto finished at (1912,2784,0); target (1880,2802); stopped short (off by 50 tile(s))
+[00:23:09.291] LOG   [mk3_Hector] event goto_done: at=(1912,2784) target=(1880,2802) arrived=0 off=50
+[00:23:10.033] INFO  [life] session_end_requested reason="session time limit reached"
+[00:23:10.033] INFO  [mk3_Hector] [chat ascii] System: Kharain has departed from Minoc.
+[00:23:10.527] INFO  [mk3_Hector] [travel] mode walk             usable   <- chosen
+[00:23:10.527] INFO  [mk3_Hector] [travel] mode moongate         usable
+[00:23:10.527] INFO  [mk3_Hector] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:23:10.527] INFO  [mk3_Hector] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:23:10.527] LOG   [mk3_Hector] event travel_mode: walk
+[00:23:10.527] INFO  [mk3_Hector] [travel] plan Baked Delights baker: ok legs=1 ~32 tiles transit=0 nodes=0
+[00:23:12.072] INFO  [mk3_Hector] [action] goto (1880,2802) from (1912,2784,0)
+[00:23:12.072] LOG   [mk3_Hector] event goto_start: target=(1880,2802) from=(1912,2784)
+[00:23:12.072] INFO  [mk3_Hector] [bot] running from (1912,2784,0) to (1880,2802,z0)
+[00:23:12.072] INFO  [mk3_Hector] [bot] planning path to (1880,2802) in background
+[00:23:12.133] INFO  [mk3_Hector] [action] goto finished at (1912,2784,0); target (1880,2802); stopped short (off by 50 tile(s))
+[00:23:12.133] LOG   [mk3_Hector] event goto_done: at=(1912,2784) target=(1880,2802) arrived=0 off=50
+[00:23:12.347] INFO  [mk3_Hector] [chat ascii] System: Leander has departed from Moonglow.
+[00:23:13.333] INFO  [mk3_Hector] [action] goto (1880,2802) from (1912,2784,0)
+[00:23:13.334] LOG   [mk3_Hector] event goto_start: target=(1880,2802) from=(1912,2784)
+[00:23:13.334] INFO  [mk3_Hector] [bot] running from (1912,2784,0) to (1880,2802,z0)
+[00:23:13.334] INFO  [mk3_Hector] [bot] planning path to (1880,2802) in background
+[00:23:13.396] INFO  [mk3_Hector] [action] goto finished at (1912,2784,0); target (1880,2802); stopped short (off by 50 tile(s))
+[00:23:13.396] LOG   [mk3_Hector] event goto_done: at=(1912,2784) target=(1880,2802) arrived=0 off=50
+[00:23:13.644] INFO  [mk3_Hector] [survival] hp 32/32 (100%) -> fight
+[00:23:14.632] INFO  [mk3_Hector] [action] goto (1880,2802) from (1912,2784,0)
+[00:23:14.632] LOG   [mk3_Hector] event goto_start: target=(1880,2802) from=(1912,2784)
+[00:23:14.632] INFO  [mk3_Hector] [bot] running from (1912,2784,0) to (1880,2802,z0)
+[00:23:14.632] INFO  [mk3_Hector] [bot] planning path to (1880,2802) in background
+[00:23:14.696] INFO  [mk3_Hector] [action] goto finished at (1912,2784,0); target (1880,2802); stopped short (off by 50 tile(s))
+[00:23:14.696] LOG   [mk3_Hector] event goto_done: at=(1912,2784) target=(1880,2802) arrived=0 off=50
+[00:23:15.926] INFO  [mk3_Hector] [travel] mode walk             usable   <- chosen
+[00:23:15.926] INFO  [mk3_Hector] [travel] mode moongate         usable
+[00:23:15.926] INFO  [mk3_Hector] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:23:15.926] INFO  [mk3_Hector] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:23:15.926] LOG   [mk3_Hector] event travel_mode: walk
+[00:23:15.926] INFO  [mk3_Hector] [travel] plan Baked Delights baker: ok legs=1 ~32 tiles transit=0 nodes=0
+[00:23:18.695] INFO  [mk3_Hector] [survival] hp 32/32 (100%) -> fight
+[00:23:18.942] INFO  [mk3_Hector] [action] goto (1880,2802) from (1912,2784,0)
+[00:23:18.942] LOG   [mk3_Hector] event goto_start: target=(1880,2802) from=(1912,2784)
+[00:23:18.942] INFO  [mk3_Hector] [bot] running from (1912,2784,0) to (1880,2802,z0)
+[00:23:18.942] INFO  [mk3_Hector] [bot] planning path to (1880,2802) in background
+[00:23:19.004] INFO  [mk3_Hector] [action] goto finished at (1912,2784,0); target (1880,2802); stopped short (off by 50 tile(s))
+[00:23:19.004] LOG   [mk3_Hector] event goto_done: at=(1912,2784) target=(1880,2802) arrived=0 off=50
+[00:23:20.241] INFO  [mk3_Hector] [action] goto (1880,2802) from (1912,2784,0)
+[00:23:20.241] LOG   [mk3_Hector] event goto_start: target=(1880,2802) from=(1912,2784)
+[00:23:20.241] INFO  [mk3_Hector] [bot] running from (1912,2784,0) to (1880,2802,z0)
+[00:23:20.241] INFO  [mk3_Hector] [bot] planning path to (1880,2802) in background
+[00:23:20.304] INFO  [mk3_Hector] [action] goto finished at (1912,2784,0); target (1880,2802); stopped short (off by 50 tile(s))
+[00:23:20.304] LOG   [mk3_Hector] event goto_done: at=(1912,2784) target=(1880,2802) arrived=0 off=50
+[00:23:21.537] INFO  [mk3_Hector] [action] goto (1880,2802) from (1912,2784,0)
+[00:23:21.537] LOG   [mk3_Hector] event goto_start: target=(1880,2802) from=(1912,2784)
+[00:23:21.537] INFO  [mk3_Hector] [bot] running from (1912,2784,0) to (1880,2802,z0)
+[00:23:21.537] INFO  [mk3_Hector] [bot] planning path to (1880,2802) in background
+[00:23:21.598] INFO  [mk3_Hector] [action] goto finished at (1912,2784,0); target (1880,2802); stopped short (off by 50 tile(s))
+[00:23:21.598] LOG   [mk3_Hector] event goto_done: at=(1912,2784) target=(1880,2802) arrived=0 off=50
+[00:23:22.837] INFO  [mk3_Hector] [travel] mode walk             usable   <- chosen
+[00:23:22.837] INFO  [mk3_Hector] [travel] mode moongate         usable
+[00:23:22.837] INFO  [mk3_Hector] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:23:22.837] INFO  [mk3_Hector] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:23:22.837] LOG   [mk3_Hector] event travel_mode: walk
+[00:23:22.837] INFO  [mk3_Hector] [travel] plan Baked Delights baker: ok legs=1 ~32 tiles transit=0 nodes=0
+[00:23:23.700] INFO  [mk3_Hector] [survival] hp 32/32 (100%) -> fight
+[00:23:25.736] INFO  [mk3_Hector] [chat ascii] System: Elara has departed from Magincia.
+[00:23:26.431] INFO  [mk3_Hector] [chat ascii] System: Xerxes has departed from Vesper.
+[00:23:27.356] INFO  [mk3_Hector] [action] goto (1880,2802) from (1912,2784,0)
+[00:23:27.356] LOG   [mk3_Hector] event goto_start: target=(1880,2802) from=(1912,2784)
+[00:23:27.356] INFO  [mk3_Hector] [bot] running from (1912,2784,0) to (1880,2802,z0)
+[00:23:27.356] INFO  [mk3_Hector] [bot] planning path to (1880,2802) in background
+[00:23:27.416] INFO  [mk3_Hector] [action] goto finished at (1912,2784,0); target (1880,2802); stopped short (off by 50 tile(s))
+[00:23:27.416] LOG   [mk3_Hector] event goto_done: at=(1912,2784) target=(1880,2802) arrived=0 off=50
+[00:23:28.651] INFO  [mk3_Hector] [action] goto (1880,2802) from (1912,2784,0)
+[00:23:28.651] LOG   [mk3_Hector] event goto_start: target=(1880,2802) from=(1912,2784)
+[00:23:28.651] INFO  [mk3_Hector] [bot] running from (1912,2784,0) to (1880,2802,z0)
+[00:23:28.651] INFO  [mk3_Hector] [bot] planning path to (1880,2802) in background
+[00:23:28.712] INFO  [mk3_Hector] [survival] hp 32/32 (100%) -> fight
+[00:23:28.774] INFO  [mk3_Hector] [action] goto finished at (1912,2784,0); target (1880,2802); stopped short (off by 50 tile(s))
+[00:23:28.774] LOG   [mk3_Hector] event goto_done: at=(1912,2784) target=(1880,2802) arrived=0 off=50
+[00:23:30.004] INFO  [mk3_Hector] [action] goto (1880,2802) from (1912,2784,0)
+[00:23:30.004] LOG   [mk3_Hector] event goto_start: target=(1880,2802) from=(1912,2784)
+[00:23:30.004] INFO  [mk3_Hector] [bot] running from (1912,2784,0) to (1880,2802,z0)
+[00:23:30.004] INFO  [mk3_Hector] [bot] planning path to (1880,2802) in background
+[00:23:30.066] INFO  [mk3_Hector] [action] goto finished at (1912,2784,0); target (1880,2802); stopped short (off by 50 tile(s))
+[00:23:30.066] LOG   [mk3_Hector] event goto_done: at=(1912,2784) target=(1880,2802) arrived=0 off=50
+[00:23:30.066] INFO  [mk3_Hector] [travel] Baked Delights baker FAILED at (1912,2784,0) -- tile route stopped short
+[00:23:30.066] LOG   [mk3_Hector] event travel_failed: label='Baked Delights baker' ok=0 at=(1912,2784) legs=1 plans=4 why='tile route stopped short'
+[00:23:30.127] INFO  [life] wind-down: no bank learned yet; asking the world for one (attempt 1)
+[00:23:30.130] INFO  [mk3_Hector] [travel] place: skipping Britain banker -- 1440 tiles and 0 gates for a service Bank of Britannia - Trinsic Branch banker offers
+[00:23:30.130] INFO  [mk3_Hector] [travel] place: skipping Britain banker -- 1688 tiles and 0 gates for a service Bank of Britannia - Trinsic Branch banker offers
+[00:23:30.130] INFO  [mk3_Hector] [travel] Bank of Britannia - Trinsic Branch banker -> (1813,2825) r=5 from (1912,2784)
+[00:23:30.130] LOG   [mk3_Hector] event travel_start: label='Bank of Britannia - Trinsic Branch banker' target=(1813,2825) radius=5 from=(1912,2784)
+[00:23:30.130] INFO  [mk3_Hector] [travel] mode moongate         usable   <- chosen
+[00:23:30.130] INFO  [mk3_Hector] [travel] mode walk             usable
+[00:23:30.130] INFO  [mk3_Hector] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:23:30.130] INFO  [mk3_Hector] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:23:30.130] LOG   [mk3_Hector] event travel_mode: moongate
+[00:23:30.130] INFO  [mk3_Hector] [travel] plan Bank of Britannia - Trinsic Branch banker: ok legs=3 ~112 tiles transit=0 nodes=17
+[00:23:30.190] INFO  [mk3_Hector] [action] goto (1872,2792) from (1912,2784,0)
+[00:23:30.190] LOG   [mk3_Hector] event goto_start: target=(1872,2792) from=(1912,2784)
+[00:23:30.190] INFO  [mk3_Hector] [bot] running from (1912,2784,0) to (1872,2792)
+[00:23:30.190] INFO  [mk3_Hector] [bot] planning path to (1872,2792) in background
+[00:23:30.251] INFO  [mk3_Hector] [bot] replan to (1872,2792): 51 steps in 7945.6us
+[00:23:31.972] INFO  [mk3_Hector] [chat ascii] System: You have retreated from the battle with Rat
+[00:23:33.133] INFO  [mk3_Hector] [chat ascii] System: Dorvar has departed from Skara Brae.
+[00:23:33.764] INFO  [mk3_Hector] [survival] hp 32/32 (100%) -> fight
+[00:23:37.865] INFO  [mk3_Hector] [chat ascii] System: Odessa has departed from Britain.
+[00:23:38.765] INFO  [mk3_Hector] [survival] hp 32/32 (100%) -> fight
+[00:23:38.949] INFO  [mk3_Hector] [chat ascii] System: Rhea has departed from Lord British's Castle.
+[00:23:43.199] INFO  [mk3_Hector] [chat ascii] System: Rhaler has departed from Minoc.
+[00:23:43.811] INFO  [mk3_Hector] [survival] hp 32/32 (100%) -> fight
+[00:23:43.811] INFO  [mk3_Hector] [bot] arrived at (1872,2792,0)
+[00:23:43.811] INFO  [mk3_Hector] [action] goto finished at (1872,2792,0); target (1872,2792); ARRIVED (off by 0 tile(s))
+[00:23:43.811] LOG   [mk3_Hector] event goto_done: at=(1872,2792) target=(1872,2792) arrived=1 off=0
+[00:23:43.811] INFO  [mk3_Hector] [action] goto (1832,2824) from (1872,2792,0)
+[00:23:43.811] LOG   [mk3_Hector] event goto_start: target=(1832,2824) from=(1872,2792)
+[00:23:43.811] INFO  [mk3_Hector] [bot] running from (1872,2792,0) to (1832,2824)
+[00:23:43.811] INFO  [mk3_Hector] [bot] planning path to (1832,2824) in background
+[00:23:43.873] INFO  [mk3_Hector] [bot] replan to (1832,2824): 42 steps in 12658.7us
+[00:23:45.061] INFO  [mk3_Hector] [chat ascii] System: Ithion has departed from Skara Brae.
+[00:23:48.814] INFO  [mk3_Hector] [survival] hp 32/32 (100%) -> fight
+[00:23:53.858] INFO  [mk3_Hector] [survival] hp 32/32 (100%) -> fight
+[00:23:57.372] INFO  [mk3_Hector] [bot] arrived at (1832,2824,0)
+[00:23:57.372] INFO  [mk3_Hector] [action] goto finished at (1832,2824,0); target (1832,2824); ARRIVED (off by 0 tile(s))
+[00:23:57.372] LOG   [mk3_Hector] event goto_done: at=(1832,2824) target=(1832,2824) arrived=1 off=0
+[00:23:57.372] INFO  [mk3_Hector] [action] goto (1813,2825) from (1832,2824,0)
+[00:23:57.372] LOG   [mk3_Hector] event goto_start: target=(1813,2825) from=(1832,2824)
+[00:23:57.372] INFO  [mk3_Hector] [bot] running from (1832,2824,0) to (1813,2825,z0)
+[00:23:57.372] INFO  [mk3_Hector] [bot] planning path to (1813,2825) in background
+[00:23:57.433] INFO  [mk3_Hector] [bot] replan to (1813,2825): 25 steps in 6694.7us
+[00:23:58.870] INFO  [mk3_Hector] [survival] hp 32/32 (100%) -> fight
+[00:24:00.424] INFO  [mk3_Hector] [chat ascii] System: Faustus has departed from Britain.
+[00:24:01.728] INFO  [mk3_Hector] [travel] Bank of Britannia - Trinsic Branch banker ARRIVED at (1817,2822,0)
+[00:24:01.728] LOG   [mk3_Hector] event travel_done: label='Bank of Britannia - Trinsic Branch banker' ok=1 at=(1817,2822) legs=3 plans=1 why=''
+[00:24:01.791] INFO  [life] wind-down: arrived somewhere safe at 1817,2822
+[00:24:01.807] INFO  [life] session_summary duration=231s goals=1/5 gold=10000->10000 skills=100.0->100.0 logs=+0 kills=0 deaths=0 places=2 suppliers=0
+[00:24:01.807] INFO  [life] session_goals families=2 picks=5 top=80% varied=0 self_superseded=0 | upkeep=4(80%) training=1(20%) | REPLACE_EQUIPMENT=1(20%) BANK=1(20%) TRAIN_COMBAT=1(20%) GET_FOOD=2(40%)
+[00:24:01.809] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_25.hector/state.json
+[00:24:01.809] INFO  [life] logging out
+[00:24:01.809] INFO  [mk3_Hector] [action] logout requested
+[00:24:01.809] LOG   [mk3_Hector] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[00:24:01.822] INFO  [mk3_Hector] [0xD1] logout acknowledged (accepted=1)
+[00:24:01.822] LOG   [mk3_Hector] event logout_ack: accepted
+[00:24:01.822] INFO  [mk3_Hector] [net] closing connection (logout acknowledged)
+[00:24:01.822] LOG   [mk3_Hector] event logout_complete: acked

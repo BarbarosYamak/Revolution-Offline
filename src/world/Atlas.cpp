@@ -455,6 +455,10 @@ const Place* Atlas::NearestPlaceOfCategory(wm::PlaceCategory c, i32 x, i32 y,
     return best;
 }
 
+const Place* Atlas::NearestHuntingGround(i32 x, i32 y, i32 maxDist) const {
+    return NearestPlaceOfCategory(wm::PlaceCategory::Graveyard, x, y, maxDist);
+}
+
 const Place* Atlas::NearestPlaceWithServiceInRegion(wm::Service s,
                                                     const char* regionId,
                                                     i32 x, i32 y) const {

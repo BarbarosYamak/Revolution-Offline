@@ -563,6 +563,12 @@ public:
     // the dungeon mouth, the shrine. What a character needs when it is looking
     // for a fight rather than for a shopkeeper.
     bool TravelToPlaceCategory(wm::PlaceCategory c);
+    // The early-hunting-grounds resolver (world_atlas::Atlas::
+    // NearestHuntingGround): a graveyard, today. `chosenName` receives the
+    // place's label when travel starts, purely so the caller can log where
+    // it is actually going ("hunt: heading to <place> to train") without
+    // reaching into Client's private travel state.
+    bool TravelToHuntingGround(std::string* chosenName = nullptr);
     // Walk somewhere this character has never been. `seen` are place ids it
     // already knows, so exploring means going where the map is still blank.
     //
@@ -643,6 +649,27 @@ public:
                            const std::vector<std::pair<i32, i32>>* exclude =
                                nullptr,
                            bool* allGuarded = nullptr);
+    // FIRST-VISIT ADVANCE: a newborn miner has no remembered vein, so every
+    // scan starts wherever travel left him -- the mine's own boundary
+    // nearest town, i.e. the mouth. Cave-wall statics there pass RockAt but
+    // sit outside the shard's scripted resource RECT, and the true vein can
+    // be past the ordinary scan radius (Minoc Mine 1's RECT reaches 27+
+    // tiles from the south mouth). Only fires inside a Cave-kind region --
+    // open-air mountainside rock has no mouth to be picked clean at, and the
+    // existing small jitter is the right roam for it. `out{X,Y}` receives a
+    // point up to a bounded number of tiles deeper into the region's own
+    // RECTs; the caller still vets and walks it through the ordinary goto
+    // machinery, exactly like any other stand tile.
+    bool DeeperMiningTarget(i32 curX, i32 curY, i32* outX, i32* outY) const;
+    // Same shape, opposite direction: (curX, curY) is inside a GUARDED
+    // region and there is nothing left to gather from a seeded/proven lead,
+    // so step OUT of it toward the nearest RECT edge instead (M-fix11,
+    // world/GuardZoneAdvance.h). False when the point is not inside a
+    // guarded region at all -- the caller's ordinary local scan is the right
+    // move there, not a walk. `out{X,Y}` receives a point up to a bounded
+    // number of tiles past the region's own boundary; the caller still vets
+    // and walks it through the ordinary goto machinery.
+    bool StepOutOfGuardZone(i32 curX, i32 curY, i32* outX, i32* outY) const;
     // Walk to a mobile the server has shown us. NPCs wander, so the goal is
     // re-aimed at the live position as we close in.
     bool TravelToEntity(u32 serial, i32 within = 2);
@@ -661,9 +688,19 @@ public:
     const char* TravelFailureText() const { return travelFailure_.c_str(); }
     void TravelAbort(const char* why);
     const char* TravelPhaseName() const;
+    // The tile estimate from the most recent route plan (TravelPlanRoute),
+    // the same number the "[travel] plan ... ~N tiles" log line reports. Set
+    // the instant a plan is made, before the first step of it is walked, so a
+    // caller can veto a trip it just started -- TravelAbort it right back out
+    // -- once it knows what the trip actually costs. 0 before any plan.
+    i32 TravelLastPlannedTiles() const { return travelPlannedTiles_; }
 
     // World knowledge, for scenarios/tests that want to assert on it.
     const wm::Region* CurrentRegion() const;
+    // The whole atlas, null until world knowledge has loaded. For callers
+    // that need more than one lookup out of it -- life::SeedNewbieKnowledge
+    // takes the atlas itself so it stays Client-free and unit-testable.
+    const world_atlas::Atlas* WorldAtlas() const;
     const wm::Place*  NearestServicePlace(wm::Service s) const;
     const wm::Place*  NearestResourcePlace(wm::ResourceKind r) const;
     // Every named place yielding `r`, nearest to (x, y) first. This is ATLAS
@@ -1730,6 +1767,7 @@ private:
     std::string travelFailure_;
     std::string travelLabel_;
     bool  travelSucceeded_ = false;
+    i32   travelPlannedTiles_ = 0;    // last route plan's estimatedTiles
     u32   travelEntitySerial_ = 0;    // non-zero while chasing a mobile
     i32   travelEntityWithin_ = 2;
     i64   travelLastSampleMs_ = 0;

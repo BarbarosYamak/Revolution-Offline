@@ -91,6 +91,17 @@ public:
                                               i32 maxDist = 0) const;
     const wm::Place* NearestPlaceOfCategory(wm::PlaceCategory c, i32 x, i32 y,
                                             i32 maxDist = 0) const;
+    // Nearest EARLY-TIER hunting ground, for a fighter with no fight in
+    // reach: "hunting ground can be graveyards for early hunting, brit
+    // sewers maybe" (project owner). Today that is exactly
+    // NearestPlaceOfCategory(Graveyard, ...) -- a graveyard's dead are
+    // lawful to swing at everywhere on this shard -- named separately so the
+    // hunt path has one place to widen later (Britain's sewers are a
+    // `dungeon`-category REGION, a_brit_sewers_1, not a PLACE this resolver
+    // can rank the same way; UNKNOWN whether it should auto-resolve there
+    // too, or whether sewers stay a deliberate destination). Null when no
+    // graveyard is known within `maxDist` (<= 0 means "anywhere").
+    const wm::Place* NearestHuntingGround(i32 x, i32 y, i32 maxDist = 0) const;
     // Nearest place inside a named region, so "the bank in Yew" is expressible
     // without hard-coding which bank that is.
     const wm::Place* NearestPlaceWithServiceInRegion(wm::Service s,

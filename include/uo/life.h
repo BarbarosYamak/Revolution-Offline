@@ -45,6 +45,86 @@ namespace uo::life {
 inline constexpr int kSchemaVersion = 2;
 
 // ===========================================================================
+// Trip budget arithmetic -- pure, so it links into ctest without dragging
+// Client along (see CMakeLists.txt "the arithmetic links into ctest without
+// dragging Client" note on BuyPlan.cpp for the same split applied here).
+//
+// Generalises the TRADE_WITH_PLAYER-only clock check
+// (life::Planner::kMarketTripBudgetMs is a Runner.h constant, itself
+// measured from real market-trip legs) to any goal whose service pick can
+// land far enough away to matter. BUY_SUPPLIES sent a Skara Brae fisher
+// through a working moongate hop to an island 232 tiles and one gate away,
+// with no check anywhere for whether the session had room for the walk
+// AND the wind-down that still had to follow it -- wind-down caught the
+// stalled trip 24 minutes later and logged the character out in the open,
+// near Ocllo (docs/LIFE_GATE_WAVE1.md theme 2,
+// run_gates/g_Dorvar.console.txt 00:40-01:04).
+// ===========================================================================
+
+// Client's running cadence (bot-client.md "Cadence": runStepMs = 200).
+inline constexpr i64 kTripMsPerTile = 200;
+
+// How long, in milliseconds, a planned trip of this many tiles is expected
+// to take. The bare cadence is a floor, not a forecast -- a real trip
+// crosses doors, answers gate gumps, and stops to fight, none of which the
+// tile count alone sees -- so this pads the floor rather than reporting it
+// bare. 50% slack is generous enough that a trip which really can finish is
+// not vetoed by rounding, and tight enough that one which plainly cannot is
+// still caught with the wind-down reserve intact.
+inline constexpr i64 EstimateTripTimeMs(i32 estimatedTiles) {
+    const i64 tiles = estimatedTiles > 0 ? static_cast<i64>(estimatedTiles) : 0;
+    return tiles * kTripMsPerTile * 3 / 2;
+}
+
+// True when a trip of this many tiles can be walked AND wind-down can still
+// happen afterwards, out of the session time actually left. `remainingMs`
+// is what Observe() already computes per goal (sessionLimitMs minus
+// elapsed); `windDownBudgetMs` is the same reserve wind-down itself is
+// bounded by. The walk alone is not the trip -- logging out has to fit too.
+inline bool TripFitsSessionBudget(i64 remainingMs, i32 estimatedTiles,
+                                  i64 windDownBudgetMs) {
+    if (remainingMs <= 0) return false;
+    return remainingMs >= EstimateTripTimeMs(estimatedTiles) + windDownBudgetMs;
+}
+
+// ===========================================================================
+// Deposit settlement -- confirm a bank deposit from what actually left the
+// pack, never from having merely issued the drag.
+//
+// Lyra's gold deposit called NoteProgress() the instant it ISSUED the move,
+// not once it LANDED -- and the box kept answering "item landed in
+// 0x4000C91D, not the destination 0x4000C944", the same "this box is not
+// really open" case the item-deposit loop (Runner::bankDepositItem_) already
+// bounds and recovers from. Crediting an ask as progress hid the failure
+// from the "progress==0 -> stand down" guard and NeedBank never went quiet:
+// BANK kept outscoring FILL_SPELLBOOK every ~20 s for the rest of the
+// session (docs/LIFE_GATE_WAVE1.md theme 3,
+// run_gates/g_Lyra.console.txt 00:40:09-00:42:21).
+// ===========================================================================
+
+struct DepositOutcome {
+    bool progressed = false;  // the pack's count actually went down
+    bool giveUp = false;      // tries exhausted -- treat the box as not open
+};
+
+// `before`/`after` are the pack's own count of the thing being deposited,
+// sampled immediately before the drag was issued and again once the action
+// has resolved. `tries` is the caller's own persistent counter, passed by
+// reference: reset to 0 the moment real progress is seen, incremented on
+// every landing that moved nothing. Once it exceeds `maxTries`, giveUp asks
+// the caller to stop trusting this box (Client::ForgetBankContainer and try
+// a different one) rather than dragging at it forever.
+inline DepositOutcome SettleDeposit(i32 before, i32 after, int& tries,
+                                    int maxTries) {
+    if (before - after > 0) {
+        tries = 0;
+        return DepositOutcome{true, false};
+    }
+    ++tries;
+    return DepositOutcome{false, tries > maxTries};
+}
+
+// ===========================================================================
 // Build plan -- the character's long-term intention about what it will be
 // ===========================================================================
 
@@ -595,6 +675,23 @@ CraftIntent ChooseCraft(const prof::Profession& p, const Observation& obs,
 // grant in a weapon school intends to use it. Shared because two systems ask:
 // the need model (is there a reason to travel?) and the goal that travels.
 bool WantsToHunt(const prof::Profession& p);
+
+// The build's own weapon-school basic -- katana, kryss, club or bow -- read
+// off the SAME weapon-skill target WantsToHunt reads (life/Identity.cpp), so
+// the two can never disagree about which fighters this applies to.
+//
+// Pure and Client-free on purpose, the same split AcquirePlan.cpp and
+// BuyPlan.cpp already made for their own decisions ("so the decision links
+// without Client") -- this is what lets ctest exercise the mapping directly
+// rather than through the live bot.
+struct SchoolWeapon {
+    int         skill = 0;             // rules::kSwordsmanship etc.
+    u16         graphics[2] = {0, 0};  // {base, DUPELIST flip}; see FindAny
+    const char* defname = "";          // for vendor-policy lookups/memory
+    const char* item = "";             // human-readable, for log lines
+    bool        bowyerFallback = false; // also try the unambiguous bowyer
+};
+const SchoolWeapon* SchoolWeaponFor(const prof::Profession& p);
 
 int NextSkillToBuy(const BuildPlan& plan, const Observation& obs,
                    i32 trainerCeilingTenths);

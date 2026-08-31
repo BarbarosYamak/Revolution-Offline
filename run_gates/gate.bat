@@ -40,7 +40,7 @@ setlocal
 set ROOT=C:\Projects\RevolutionOffline
 set BOT=%ROOT%\bot\uo-client
 set GATES=%BOT%\run_gates
-set UO_BOT_PASS=Fr3sh20BotsRevol
+set UO_BOT_PASS=Gen3Fr3shRevBots
 
 set FAMILY=%1
 set CHAR=%2

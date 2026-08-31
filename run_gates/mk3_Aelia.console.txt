@@ -1,0 +1,896 @@
+[00:19:29.831] INFO  session 0: 127.0.0.1:2593 user='RevGen3_12' char=Aelia tag='mk3_Aelia'
+[00:19:29.832] LOG   [mk3_Aelia] event session_start: text log opened
+[00:19:29.832] LOG   [mk3_Aelia] event net_connect_begin: connect 127.0.0.1:2593
+[00:19:29.832] INFO  [mk3_Aelia] [net] connecting to 127.0.0.1:2593 ...
+[00:19:29.833] LOG   [mk3_Aelia] event net_connected: connect 127.0.0.1:2593
+[00:19:29.833] INFO  [mk3_Aelia] [net] connected.
+[00:19:29.833] INFO  [mk3_Aelia] [seed] sent 0x7F000001 (plaintext)
+[00:19:29.833] LOG   [mk3_Aelia] event seed_out: 0x7F000001 hex=7f000001
+[00:19:29.834] INFO  [life] no prior state for revgen3_12.aelia: a new Tailor
+[00:19:29.834] INFO  [life] creation request: Tailoring 50.0 + Arms Lore 50.0, stats 24/24/32 = 80
+[00:19:29.834] INFO  [life] needs: reading 'tailor' from the profession catalogue
+[00:19:29.834] INFO  [life] home: Aelia lives in Britain
+[00:19:29.834] INFO  [life] build plan 'tailor': 225.0 resolved + 475.0 unresolved = 700.0/700.0, stats 40/60/100 = 200
+[00:19:29.834] INFO  [mk3_Aelia] [life] autonomous player active for 'Aelia' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 3 min)
+[00:19:29.876] INFO  [mk3_Aelia] [0xA8] 1 server(s):
+[00:19:29.876] INFO  [mk3_Aelia]   [0] MyShard                   1.0.0.127  full=4%  tz=0
+[00:19:29.892] INFO  [mk3_Aelia] [0x8C] game server = 127.0.0.1:2593  seed=0xEA3A1289
+[00:19:29.892] LOG   [mk3_Aelia] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xEA3A1289
+[00:19:29.892] INFO  [mk3_Aelia] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[00:19:29.892] LOG   [mk3_Aelia] event relay_same_socket: no seed re-sent; 0x91 follows
+[00:19:29.892] INFO  [mk3_Aelia] [0xB9] server features = 0x0005
+[00:19:29.892] INFO  [mk3_Aelia] [0xA9] 5 slot(s) (populated 0):
+[00:19:29.892] INFO  [mk3_Aelia]   [0] <empty>
+[00:19:29.892] INFO  [mk3_Aelia]   [1] <empty>
+[00:19:29.892] INFO  [mk3_Aelia]   [2] <empty>
+[00:19:29.892] INFO  [mk3_Aelia]   [3] <empty>
+[00:19:29.892] INFO  [mk3_Aelia]   [4] <empty>
+[00:19:29.892] INFO  [mk3_Aelia] create: appearance sex=F skin=0x03EA hair=0x2047/0x046D shirt=0x0072 pants=0x0379
+[00:19:29.892] INFO  [mk3_Aelia] [0x00] starting city index 2
+[00:19:29.892] INFO  [mk3_Aelia] [0x00] requested skills 34:50 4:50 37:0
+[00:19:29.892] INFO  [mk3_Aelia] [0x00] requested stats STR 24 DEX 24 INT 32
+[00:19:29.892] INFO  [mk3_Aelia] [0x00] creating character 'Aelia' in slot 0
+[00:19:29.892] LOG   [mk3_Aelia] event char_create_sent: Aelia
+[00:19:29.909] INFO  [mk3_Aelia] [0x1B] serial=0x00013DA6 body=0x0191 pos=(1496,1628,10)
+[00:19:29.909] LOG   [mk3_Aelia] event login_confirm: serial=0x00013DA6 body=0x0191 pos=(1496,1628,10)
+[00:19:29.909] INFO  [mk3_Aelia] [0x20] player @(1496,1628,10) facing=3
+[00:19:29.909] INFO  [mk3_Aelia] [0x55] login complete — entering world
+[00:19:29.909] LOG   [mk3_Aelia] event in_world: 0x55 received
+[00:19:29.909] INFO  [mk3_Aelia] [backpack] opening 0x40013D80
+[00:19:29.909] INFO  [mk3_Aelia] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[00:19:29.909] INFO  [mk3_Aelia] [chat ascii] System: There are 11 other players here.
+[00:19:29.909] INFO  [mk3_Aelia] [chat ascii] System: You are under the protection of the city guards
+[00:19:29.913] INFO  [mk3_Aelia] [action] requesting the skill list
+[00:19:29.913] INFO  [life] in world; asked the server for the skill list
+[00:19:29.913] INFO  [mk3_Aelia] [0x24] open container 0x40013D80 gump=60
+[00:19:29.913] INFO  [mk3_Aelia] [0x3C] container contents: 8 item(s)
+[00:19:29.913] LOG   [mk3_Aelia] event backpack_contents: serial=0x40013D80 items=8
+[00:19:32.497] INFO  [mk3_Aelia] [bot] world data loaded (0 blacklisted spot(s)).
+[00:19:32.498] INFO  [life] reconciliation: first ever login, 7 field(s) differed
+[00:19:32.498] INFO  [life]   gold         persisted=0          server=10000      -> server value accepted
+[00:19:32.498] INFO  [life]   str          persisted=0          server=24         -> server value accepted
+[00:19:32.498] INFO  [life]   dex          persisted=0          server=24         -> server value accepted
+[00:19:32.498] INFO  [life]   int          persisted=0          server=32         -> server value accepted
+[00:19:32.498] INFO  [life]   skill_34     persisted=0.0        server=50.0       -> server value accepted
+[00:19:32.498] INFO  [life]   skill_4      persisted=0.0        server=50.0       -> server value accepted
+[00:19:32.498] INFO  [life]   skill_37     persisted=0.0        server=0.0        -> server value accepted
+[00:19:32.498] INFO  [life]   skill_25     persisted=0.0        server=0.0        -> server value accepted
+[00:19:32.498] INFO  [life]   position     persisted=0,0        server=1496,1628  -> server value accepted
+[00:19:32.498] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[00:19:32.498] INFO  [mk3_Aelia] [survival] on
+[00:19:32.498] LOG   [mk3_Aelia] event survival_mode: on
+[00:19:32.500] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_12.aelia/state.json
+[00:19:32.500] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:19:32.523] INFO  [life] goal=BANK reason="no goal was running"
+[00:19:32.523] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSkillTraining(Tinkering 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Magery 0.45) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=2 held=[sewing kit,scissors,] want_train=Tinkering (target 50.0)
+[00:19:32.523] INFO  [life]   score=150.0
+[00:19:32.524] INFO  [life]   reason: NeedBank urgency 0.75 x 240 = 180.0
+[00:19:32.524] INFO  [life]   reason: on_hand=10000 (total 10000) reserve=400 carry=900 spare=9100 risk=1.00
+[00:19:32.524] INFO  [life]   reason: no bank learned yet -30
+[00:19:32.524] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[00:19:32.524] INFO  [mk3_Aelia] [action] scanning nearby mobiles for names
+[00:19:32.524] INFO  [mk3_Aelia] [action] requested 3 paperdoll(s) for trade titles
+[00:19:32.524] INFO  [life] bank: asking who is standing in the bank
+[00:19:32.537] INFO  [mk3_Aelia] [mobiles] nearby (4):
+[00:19:32.537] INFO  [mk3_Aelia]   Audny 0x00001076
+[00:19:32.537] INFO  [mk3_Aelia]   Cyras 0x00015725
+[00:19:32.537] INFO  [mk3_Aelia]   Delras 0x00015A59
+[00:19:32.537] INFO  [mk3_Aelia]   Starling 0x000013C5
+[00:19:32.537] INFO  [mk3_Aelia] [0x20] player @(1496,1628,10) facing=0
+[00:19:32.537] INFO  [mk3_Aelia] [0x88] paperdoll 0x00001076: "Audny, the innkeeper"
+[00:19:32.537] INFO  [mk3_Aelia] [world] Audny, the innkeeper is a innkeeper at (1493,1614)
+[00:19:32.537] INFO  [mk3_Aelia] [0x20] player @(1496,1628,10) facing=7
+[00:19:32.537] INFO  [mk3_Aelia] [0x88] paperdoll 0x00015A59: "Delras, Apprentice Lumberjack"
+[00:19:32.537] INFO  [mk3_Aelia] [0x88] paperdoll 0x00015725: "Cyras, Apprentice Lumberjack"
+[00:19:33.079] INFO  [mk3_Aelia] [chat ascii] System: Amara has arrived in Britain.
+[00:19:34.573] INFO  [life] bank: no banker in sight
+[00:19:34.573] INFO  [life] goal_failed=BANK status=retryable_failure reason="no banker in sight"
+[00:19:34.635] INFO  [life] goal=REPLACE_EQUIPMENT reason="previous goal abandoned: no banker answered"
+[00:19:34.635] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSkillTraining(Tinkering 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Magery 0.45) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=2 held=[sewing kit,scissors,] want_train=Tinkering (target 50.0)
+[00:19:34.635] INFO  [life]   score=130.0
+[00:19:34.635] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:19:34.635] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:19:34.635] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 299s after achieving nothing
+[00:19:34.635] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[00:19:36.131] INFO  [mk3_Aelia] [chat ascii] System: Elara has arrived in Magincia.
+[00:19:37.560] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:19:39.272] INFO  [mk3_Aelia] [chat ascii] System: Selene has arrived in Magincia.
+[00:19:39.576] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:19:39.576] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[00:19:39.579] INFO  [mk3_Aelia] [travel] place: skipping Cove healer -- 1344 tiles and 1 gate for a service Britain healer offers
+[00:19:39.579] INFO  [mk3_Aelia] [travel] place: skipping Minoc healer -- 1704 tiles and 0 gates for a service Britain healer offers
+[00:19:39.579] INFO  [mk3_Aelia] [travel] Britain healer -> (1471,1611) r=5 from (1496,1628)
+[00:19:39.579] LOG   [mk3_Aelia] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1496,1628)
+[00:19:39.579] INFO  [life] potions: walking to a 'healer' (trip 1)
+[00:19:39.579] INFO  [mk3_Aelia] [travel] mode walk             usable   <- chosen
+[00:19:39.579] INFO  [mk3_Aelia] [travel] mode moongate         usable
+[00:19:39.579] INFO  [mk3_Aelia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:19:39.579] INFO  [mk3_Aelia] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:19:39.579] LOG   [mk3_Aelia] event travel_mode: walk
+[00:19:39.579] INFO  [mk3_Aelia] [travel] plan Britain healer: ok legs=1 ~25 tiles transit=0 nodes=0
+[00:19:39.637] INFO  [mk3_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:19:39.637] INFO  [mk3_Aelia] [action] goto (1471,1611) from (1496,1628,10)
+[00:19:39.637] LOG   [mk3_Aelia] event goto_start: target=(1471,1611) from=(1496,1628)
+[00:19:39.637] INFO  [mk3_Aelia] [bot] running from (1496,1628,10) to (1471,1611,z20)
+[00:19:39.637] INFO  [mk3_Aelia] [bot] planning path to (1471,1611) in background
+[00:19:39.699] INFO  [mk3_Aelia] [bot] replan to (1471,1611): 32 steps in 2599.4us
+[00:19:42.349] INFO  [mk3_Aelia] [chat ascii] System: Lyra has arrived in Moonglow.
+[00:19:42.607] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:19:45.278] INFO  [mk3_Aelia] [chat uni  ] : Dale buy
+[00:19:45.278] INFO  [mk3_Aelia] [chat ascii] Dale: Thou mayst purchase supplies from me.
+[00:19:45.354] INFO  [mk3_Aelia] [chat ascii] Dale: Here you are, Vorar That will be 19 gold coins.  I thank thee for thy business.
+[00:19:45.357] INFO  [mk3_Aelia] [chat ascii] System: Thalia has arrived in Moonglow.
+[00:19:45.431] INFO  [mk3_Aelia] [chat uni  ] : Dale buy
+[00:19:45.431] INFO  [mk3_Aelia] [chat ascii] Dale: Thou mayst purchase supplies from me.
+[00:19:46.569] INFO  [mk3_Aelia] [chat uni  ] : Dale buy
+[00:19:46.569] INFO  [mk3_Aelia] [chat ascii] Dale: Excuse me Vorar, but Halain wants to speak to me
+[00:19:46.569] INFO  [mk3_Aelia] [chat ascii] Dale: Hello! ?
+[00:19:46.569] INFO  [mk3_Aelia] [chat ascii] Dale: I got lots to sell!
+[00:19:46.645] INFO  [mk3_Aelia] [bot] door ahead at (1480,1613,z20); OpenDoor before step
+[00:19:46.646] INFO  [mk3_Aelia] [chat ascii] System: Opening door...
+[00:19:47.655] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:19:47.840] INFO  [mk3_Aelia] [bot] door ahead at (1479,1612,z20); OpenDoor before step
+[00:19:47.854] INFO  [mk3_Aelia] [chat ascii] System: Opening door...
+[00:19:48.176] INFO  [mk3_Aelia] [chat uni  ] : Dale buy
+[00:19:48.176] INFO  [mk3_Aelia] [chat ascii] Dale: Excuse me Halain, but Delras wants to speak to me
+[00:19:48.176] INFO  [mk3_Aelia] [chat ascii] Dale: Greetings. What can I help thee with?
+[00:19:48.176] INFO  [mk3_Aelia] [chat ascii] Dale: I'm here to sell thee supplies.
+[00:19:48.190] INFO  [mk3_Aelia] [chat uni  ] : Dale buy
+[00:19:48.190] INFO  [mk3_Aelia] [chat ascii] Dale: Excuse me Delras, but Cyras wants to speak to me
+[00:19:48.190] INFO  [mk3_Aelia] [chat ascii] Dale: Hello!
+[00:19:48.190] INFO  [mk3_Aelia] [chat ascii] Dale: I got lots to sell!
+[00:19:48.422] INFO  [mk3_Aelia] [chat ascii] System: Dorvar has arrived in Skara Brae.
+[00:19:49.608] INFO  [mk3_Aelia] [travel] Britain healer ARRIVED at (1475,1612,20)
+[00:19:49.608] LOG   [mk3_Aelia] event travel_done: label='Britain healer' ok=1 at=(1475,1612) legs=1 plans=1 why=''
+[00:19:49.672] INFO  [mk3_Aelia] [action] scanning nearby mobiles for names
+[00:19:49.672] INFO  [mk3_Aelia] [action] requested 5 paperdoll(s) for trade titles
+[00:19:49.672] INFO  [life] potions: at the shop, asking who is here (scan 1 of 3)
+[00:19:49.686] INFO  [mk3_Aelia] [mobiles] nearby (10):
+[00:19:49.686] INFO  [mk3_Aelia]   Halain 0x0001616D
+[00:19:49.687] INFO  [mk3_Aelia]   Dale 0x000010C1
+[00:19:49.687] INFO  [mk3_Aelia]   Delras 0x00015A59
+[00:19:49.687] INFO  [mk3_Aelia]   Cyras 0x00015725
+[00:19:49.687] INFO  [mk3_Aelia]   Vorar 0x00016305
+[00:19:49.687] INFO  [mk3_Aelia]   Amara 0x00012E70
+[00:19:49.687] INFO  [mk3_Aelia]   Natasha 0x00001194
+[00:19:49.687] INFO  [mk3_Aelia]   Dog 0x00000230
+[00:19:49.687] INFO  [mk3_Aelia]   Caimile 0x00001239
+[00:19:49.687] INFO  [mk3_Aelia]   Audny 0x00001076
+[00:19:49.687] INFO  [mk3_Aelia] [0x20] player @(1475,1612,20) facing=2
+[00:19:49.687] INFO  [mk3_Aelia] [0x88] paperdoll 0x00012E70: "Amara, Apprentice Tailor"
+[00:19:49.687] INFO  [mk3_Aelia] [0x20] player @(1475,1612,20) facing=6
+[00:19:49.687] INFO  [mk3_Aelia] [0x88] paperdoll 0x0001616D: "Halain, Apprentice Lumberjack"
+[00:19:49.687] INFO  [mk3_Aelia] [0x88] paperdoll 0x00016305: "Vorar, Apprentice Lumberjack"
+[00:19:49.687] INFO  [mk3_Aelia] [0x88] paperdoll 0x000010C1: "Dale, the healer"
+[00:19:49.687] INFO  [mk3_Aelia] [world] Dale, the healer is a healer at (1471,1612)
+[00:19:49.687] INFO  [mk3_Aelia] [0x88] paperdoll 0x00001194: "Natasha, the healer guildmistress"
+[00:19:49.687] INFO  [mk3_Aelia] [world] Natasha, the healer guildmistress is a healer at (1468,1611)
+[00:19:49.687] INFO  [mk3_Aelia] [0x21] stale reject seq=39 (block already handled); pose resynced
+[00:19:51.483] INFO  [mk3_Aelia] [chat ascii] System: Ithion has arrived in Skara Brae.
+[00:19:52.675] INFO  [life] potions: found a 'healer'
+[00:19:52.675] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:19:52.676] INFO  [mk3_Aelia] [travel] mobile 0x000010C1 -> (1471,1612) r=1 from (1475,1612)
+[00:19:52.676] LOG   [mk3_Aelia] event travel_start: label='mobile 0x000010C1' target=(1471,1612) radius=1 from=(1475,1612)
+[00:19:52.676] INFO  [life] potions: the 'healer' is 4 tiles off (dz 0) -- walking into reach (chase 1 of 3)
+[00:19:52.676] INFO  [mk3_Aelia] [travel] mode walk             usable   <- chosen
+[00:19:52.676] INFO  [mk3_Aelia] [travel] mode moongate         usable
+[00:19:52.676] INFO  [mk3_Aelia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:19:52.676] INFO  [mk3_Aelia] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:19:52.676] LOG   [mk3_Aelia] event travel_mode: walk
+[00:19:52.676] INFO  [mk3_Aelia] [travel] plan mobile 0x000010C1: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:19:52.690] INFO  [mk3_Aelia] [action] goto finished at (1475,1612,20); target (1471,1611); stopped short (off by 5 tile(s))
+[00:19:52.690] LOG   [mk3_Aelia] event goto_done: at=(1475,1612) target=(1471,1611) arrived=0 off=5
+[00:19:52.690] INFO  [mk3_Aelia] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:19:52.690] INFO  [mk3_Aelia] [action] goto (1471,1612) from (1475,1612,20)
+[00:19:52.690] LOG   [mk3_Aelia] event goto_start: target=(1471,1612) from=(1475,1612)
+[00:19:52.690] INFO  [mk3_Aelia] [bot] running from (1475,1612,20) to (1471,1612,z20)
+[00:19:52.690] INFO  [mk3_Aelia] [bot] planning path to (1471,1612) in background
+[00:19:54.041] INFO  [mk3_Aelia] [action] goto finished at (1475,1612,20); target (1471,1612); stopped short (off by 4 tile(s))
+[00:19:54.041] LOG   [mk3_Aelia] event goto_done: at=(1475,1612) target=(1471,1612) arrived=0 off=4
+[00:19:54.532] INFO  [mk3_Aelia] [chat ascii] System: Odessa has arrived in Britain.
+[00:19:55.253] INFO  [mk3_Aelia] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:19:55.253] INFO  [mk3_Aelia] [action] goto (1471,1612) from (1475,1612,20)
+[00:19:55.253] LOG   [mk3_Aelia] event goto_start: target=(1471,1612) from=(1475,1612)
+[00:19:55.253] INFO  [mk3_Aelia] [bot] running from (1475,1612,20) to (1471,1612,z20)
+[00:19:55.253] INFO  [mk3_Aelia] [bot] planning path to (1471,1612) in background
+[00:19:55.315] INFO  [mk3_Aelia] [action] goto finished at (1475,1612,20); target (1471,1612); stopped short (off by 4 tile(s))
+[00:19:55.315] LOG   [mk3_Aelia] event goto_done: at=(1475,1612) target=(1471,1612) arrived=0 off=4
+[00:19:56.527] INFO  [mk3_Aelia] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:19:56.527] INFO  [mk3_Aelia] [action] goto (1471,1612) from (1475,1612,20)
+[00:19:56.527] LOG   [mk3_Aelia] event goto_start: target=(1471,1612) from=(1475,1612)
+[00:19:56.527] INFO  [mk3_Aelia] [bot] running from (1475,1612,20) to (1471,1612,z20)
+[00:19:56.527] INFO  [mk3_Aelia] [bot] planning path to (1471,1612) in background
+[00:19:56.587] INFO  [mk3_Aelia] [action] goto finished at (1475,1612,20); target (1471,1612); stopped short (off by 4 tile(s))
+[00:19:56.587] LOG   [mk3_Aelia] event goto_done: at=(1475,1612) target=(1471,1612) arrived=0 off=4
+[00:19:57.598] INFO  [mk3_Aelia] [chat ascii] System: Serena has arrived in Britain.
+[00:19:57.719] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:19:57.796] INFO  [mk3_Aelia] [travel] mode walk             usable   <- chosen
+[00:19:57.796] INFO  [mk3_Aelia] [travel] mode moongate         usable
+[00:19:57.796] INFO  [mk3_Aelia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:19:57.796] INFO  [mk3_Aelia] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:19:57.796] LOG   [mk3_Aelia] event travel_mode: walk
+[00:19:57.796] INFO  [mk3_Aelia] [travel] plan mobile 0x000010C1: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:19:59.311] INFO  [mk3_Aelia] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:19:59.311] INFO  [mk3_Aelia] [action] goto (1471,1612) from (1475,1612,20)
+[00:19:59.311] LOG   [mk3_Aelia] event goto_start: target=(1471,1612) from=(1475,1612)
+[00:19:59.311] INFO  [mk3_Aelia] [bot] running from (1475,1612,20) to (1471,1612,z20)
+[00:19:59.311] INFO  [mk3_Aelia] [bot] planning path to (1471,1612) in background
+[00:20:00.645] INFO  [mk3_Aelia] [chat ascii] System: Aurelius has arrived in Moonglow.
+[00:20:00.922] INFO  [mk3_Aelia] [action] goto finished at (1475,1612,20); target (1471,1612); stopped short (off by 4 tile(s))
+[00:20:00.922] LOG   [mk3_Aelia] event goto_done: at=(1475,1612) target=(1471,1612) arrived=0 off=4
+[00:20:02.148] INFO  [mk3_Aelia] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:20:02.148] INFO  [mk3_Aelia] [action] goto (1471,1612) from (1475,1612,20)
+[00:20:02.148] LOG   [mk3_Aelia] event goto_start: target=(1471,1612) from=(1475,1612)
+[00:20:02.148] INFO  [mk3_Aelia] [bot] running from (1475,1612,20) to (1471,1612,z20)
+[00:20:02.148] INFO  [mk3_Aelia] [bot] planning path to (1471,1612) in background
+[00:20:02.731] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:20:03.868] INFO  [mk3_Aelia] [chat ascii] System: Leander has arrived in Moonglow.
+[00:20:03.870] INFO  [mk3_Aelia] [action] goto finished at (1475,1612,20); target (1471,1612); stopped short (off by 4 tile(s))
+[00:20:03.870] LOG   [mk3_Aelia] event goto_done: at=(1475,1612) target=(1471,1612) arrived=0 off=4
+[00:20:05.004] INFO  [mk3_Aelia] [chat ascii] Dale: Hmm?
+[00:20:05.004] INFO  [mk3_Aelia] [chat ascii] Dale: Hmm?
+[00:20:05.081] INFO  [mk3_Aelia] [travel] mode walk             usable   <- chosen
+[00:20:05.081] INFO  [mk3_Aelia] [travel] mode moongate         usable
+[00:20:05.081] INFO  [mk3_Aelia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:05.081] INFO  [mk3_Aelia] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:05.081] LOG   [mk3_Aelia] event travel_mode: walk
+[00:20:05.081] INFO  [mk3_Aelia] [travel] plan mobile 0x000010C1: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:20:06.980] INFO  [mk3_Aelia] [chat ascii] System: Illyria has arrived in Britain.
+[00:20:07.761] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:20:08.128] INFO  [mk3_Aelia] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:20:08.128] INFO  [mk3_Aelia] [action] goto (1471,1612) from (1475,1612,20)
+[00:20:08.128] LOG   [mk3_Aelia] event goto_start: target=(1471,1612) from=(1475,1612)
+[00:20:08.128] INFO  [mk3_Aelia] [bot] running from (1475,1612,20) to (1471,1612,z20)
+[00:20:08.128] INFO  [mk3_Aelia] [bot] planning path to (1471,1612) in background
+[00:20:09.982] INFO  [mk3_Aelia] [action] goto finished at (1475,1612,20); target (1471,1612); stopped short (off by 4 tile(s))
+[00:20:09.982] LOG   [mk3_Aelia] event goto_done: at=(1475,1612) target=(1471,1612) arrived=0 off=4
+[00:20:10.022] INFO  [mk3_Aelia] [chat ascii] System: Hector has arrived in Trinsic.
+[00:20:11.213] INFO  [mk3_Aelia] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:20:11.213] INFO  [mk3_Aelia] [action] goto (1471,1612) from (1475,1612,20)
+[00:20:11.213] LOG   [mk3_Aelia] event goto_start: target=(1471,1612) from=(1475,1612)
+[00:20:11.213] INFO  [mk3_Aelia] [bot] running from (1475,1612,20) to (1471,1612,z20)
+[00:20:11.213] INFO  [mk3_Aelia] [bot] planning path to (1471,1612) in background
+[00:20:11.275] INFO  [mk3_Aelia] [bot] replan to (1471,1612): 4 steps in 66.0us
+[00:20:12.093] INFO  [mk3_Aelia] [bot] arrived at (1471,1612,20)
+[00:20:12.094] INFO  [mk3_Aelia] [action] goto finished at (1471,1612,20); target (1471,1612); ARRIVED (off by 0 tile(s))
+[00:20:12.094] LOG   [mk3_Aelia] event goto_done: at=(1471,1612) target=(1471,1612) arrived=1 off=0
+[00:20:12.094] INFO  [mk3_Aelia] [travel] mobile 0x000010C1 ARRIVED at (1471,1612,20)
+[00:20:12.094] LOG   [mk3_Aelia] event travel_done: label='mobile 0x000010C1' ok=1 at=(1471,1612) legs=1 plans=3 why=''
+[00:20:12.157] INFO  [life] potions: within reach
+[00:20:12.171] INFO  [mk3_Aelia] [ACTION] vendor_buy start
+[00:20:12.171] INFO  [mk3_Aelia] [VENDOR] open vendor=0x000010C1 say='Dale buy'
+[00:20:12.171] INFO  [life] potions: asking the 'healer' to show heal potion (attempt 1)
+[00:20:12.172] INFO  [life] potions: an action is already in flight
+[00:20:12.186] INFO  [mk3_Aelia] [chat uni  ] : Dale buy
+[00:20:12.186] INFO  [mk3_Aelia] [chat ascii] Dale: I got lots to sell!
+[00:20:12.186] INFO  [mk3_Aelia] [0x3C] container contents: 4 item(s)
+[00:20:12.186] INFO  [mk3_Aelia] [0x74] pairing: straight (straight 4, mirrored 0 of 4 rows)
+[00:20:12.186] INFO  [mk3_Aelia] [0x74] vendor shop data: cont=0x400010BB 4 item(s), layer=0x1A
+[00:20:12.186] INFO  [mk3_Aelia] [0x74]   Heal                         gfx=0x0F0C qty=10   price=30
+[00:20:12.186] INFO  [mk3_Aelia] [0x74]   Ginseng                      gfx=0x0F85 qty=20   price=3
+[00:20:12.186] INFO  [mk3_Aelia] [0x74]   Garlic                       gfx=0x0F84 qty=13   price=3
+[00:20:12.186] INFO  [mk3_Aelia] [0x74]   Refresh                      gfx=0x0F0B qty=19   price=16
+[00:20:12.186] INFO  [mk3_Aelia] [0x3C] container contents: 0 item(s)
+[00:20:12.186] INFO  [mk3_Aelia] [0x74] vendor shop data: cont=0x40000EF5 0 item(s), layer=0x1B
+[00:20:12.186] INFO  [mk3_Aelia] [VENDOR] offer from 0x000010C1: 4 item(s)
+[00:20:12.186] INFO  [mk3_Aelia] [VENDOR]   0x4001823F Heal                   x10  30 gp
+[00:20:12.186] INFO  [mk3_Aelia] [VENDOR]   0x40018237 Ginseng                x20  3 gp
+[00:20:12.186] INFO  [mk3_Aelia] [VENDOR]   0x40018236 Garlic                 x13  3 gp
+[00:20:12.186] INFO  [mk3_Aelia] [VENDOR]   0x40018232 Refresh                x19  16 gp
+[00:20:12.186] LOG   [mk3_Aelia] event vendor_offer: vendor=0x000010C1 items=4
+[00:20:12.186] INFO  [mk3_Aelia] [ACTION_RESULT] vendor_buy success (16ms) vendor offer received
+[00:20:12.186] LOG   [mk3_Aelia] event action_result: vendor_buy success took=16ms vendor offer received
+[00:20:12.186] INFO  [mk3_Aelia] [0x24] vendor buy gump for 0x000010C1
+[00:20:12.188] INFO  [life] potions: the shop is open
+[00:20:12.248] INFO  [mk3_Aelia] [ACTION] vendor_buy start
+[00:20:12.248] INFO  [mk3_Aelia] [policy] allowed NPC purchase of i_potion_heal (0x0F0C): basic healing: a life with no Healing skill has no other way to treat itself, and the shard's own healer sells it [BASIC_HEALING]
+[00:20:12.248] INFO  [mk3_Aelia] [VENDOR] buy item=0x4001823F qty=4 from vendor=0x000010C1 gold=10000
+[00:20:12.248] INFO  [life] potions: buying 4 heal potion at 30 each from the 'healer' (shelf holds 10) -- waiting for the pack
+[00:20:12.262] INFO  [mk3_Aelia] [ACTION_RESULT] vendor_buy success (14ms) purchased item delivered
+[00:20:12.262] LOG   [mk3_Aelia] event action_result: vendor_buy success took=14ms purchased item delivered
+[00:20:12.262] INFO  [mk3_Aelia] [chat ascii] Dale: Here you are, Aelia That will be 120 gold coins.  I thank thee for thy business.
+[00:20:12.262] INFO  [mk3_Aelia] [0x3B] vendor transaction closed: vendor=0x000010C1 flag=0
+[00:20:12.263] INFO  [life] goal_changed=GET_FOOD from=REPLACE_EQUIPMENT reason="GET_FOOD 62.5 superseded REPLACE_EQUIPMENT 0.0"
+[00:20:12.263] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSkillTraining(Tinkering 0.55) NeedPractice(Magery 0.45) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=2 held=[sewing kit,scissors,] want_train=Tinkering (target 50.0)
+[00:20:12.263] INFO  [life]   score=62.5
+[00:20:12.263] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[00:20:12.263] INFO  [life]   reason: food=0
+[00:20:12.263] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 262s after achieving nothing
+[00:20:12.263] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[00:20:12.274] INFO  [mk3_Aelia] [travel] Britain baker -> (1450,1617) r=5 from (1471,1612)
+[00:20:12.274] LOG   [mk3_Aelia] event travel_start: label='Britain baker' target=(1450,1617) radius=5 from=(1471,1612)
+[00:20:12.274] INFO  [life] food: walking to a 'baker' (trip 1)
+[00:20:12.275] INFO  [mk3_Aelia] [travel] mode walk             usable   <- chosen
+[00:20:12.275] INFO  [mk3_Aelia] [travel] mode moongate         usable
+[00:20:12.275] INFO  [mk3_Aelia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:12.275] INFO  [mk3_Aelia] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:12.275] LOG   [mk3_Aelia] event travel_mode: walk
+[00:20:12.275] INFO  [mk3_Aelia] [travel] plan Britain baker: ok legs=1 ~21 tiles transit=0 nodes=0
+[00:20:12.293] INFO  [mk3_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:20:12.293] INFO  [mk3_Aelia] [action] goto (1450,1617) from (1471,1612,20)
+[00:20:12.293] LOG   [mk3_Aelia] event goto_start: target=(1450,1617) from=(1471,1612)
+[00:20:12.293] INFO  [mk3_Aelia] [bot] running from (1471,1612,20) to (1450,1617,z20)
+[00:20:12.293] INFO  [mk3_Aelia] [bot] planning path to (1450,1617) in background
+[00:20:12.323] INFO  [mk3_Aelia] [bot] replan to (1450,1617): 46 steps in 2579.2us
+[00:20:12.786] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:20:13.076] INFO  [mk3_Aelia] [chat ascii] System: Castor has arrived in Trinsic.
+[00:20:13.137] INFO  [mk3_Aelia] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=44 in 61.2us
+[00:20:13.351] INFO  [mk3_Aelia] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=43 in 77.8us
+[00:20:14.658] INFO  [mk3_Aelia] [bot] lookahead patched around block at step 3: anchor=5 new segment=7 path=42 in 123.9us
+[00:20:16.106] INFO  [mk3_Aelia] [chat ascii] System: Faustus has arrived in Britain.
+[00:20:16.814] INFO  [mk3_Aelia] [bot] step (1481,1610,20)->(1480,1609,20) rejected; OpenDoor + retry
+[00:20:16.829] INFO  [mk3_Aelia] [chat ascii] System: Opening door...
+[00:20:16.829] INFO  [mk3_Aelia] [0x20] player @(1481,1610,20) facing=6
+[00:20:16.830] INFO  [mk3_Aelia] [action] goto finished at (1481,1610,20); target (1450,1617); stopped short (off by 38 tile(s))
+[00:20:16.830] LOG   [mk3_Aelia] event goto_done: at=(1481,1610) target=(1450,1617) arrived=0 off=38
+[00:20:17.832] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:20:18.031] INFO  [mk3_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:20:18.031] INFO  [mk3_Aelia] [action] goto (1450,1617) from (1481,1610,20)
+[00:20:18.031] LOG   [mk3_Aelia] event goto_start: target=(1450,1617) from=(1481,1610)
+[00:20:18.031] INFO  [mk3_Aelia] [bot] running from (1481,1610,20) to (1450,1617,z20)
+[00:20:18.031] INFO  [mk3_Aelia] [bot] planning path to (1450,1617) in background
+[00:20:18.094] INFO  [mk3_Aelia] [bot] replan to (1450,1617): 34 steps in 2304.5us
+[00:20:19.161] INFO  [mk3_Aelia] [chat ascii] System: Titus has arrived in Skara Brae.
+[00:20:21.726] INFO  [mk3_Aelia] [chat uni  ] : Dale buy
+[00:20:21.726] INFO  [mk3_Aelia] [chat ascii] Dale: Greetings. What can I help thee with?
+[00:20:21.726] INFO  [mk3_Aelia] [chat ascii] Dale: I'm here to sell thee supplies.
+[00:20:21.803] INFO  [mk3_Aelia] [chat ascii] Dale: Here you are, Odessa That will be 120 gold coins.  I thank thee for thy business.
+[00:20:22.309] INFO  [mk3_Aelia] [chat ascii] System: Rhea has arrived in Britain.
+[00:20:22.850] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:20:23.003] INFO  [mk3_Aelia] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=16 in 336.7us
+[00:20:25.041] INFO  [mk3_Aelia] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=11 in 184.5us
+[00:20:25.070] INFO  [mk3_Aelia] [chat uni  ] Amara: Dale buy
+[00:20:25.070] INFO  [mk3_Aelia] [chat ascii] Dale: Thou surely wants all the things that I can sell thee.
+[00:20:25.145] INFO  [mk3_Aelia] [chat ascii] Dale: Here you are, Amara That will be 60 gold coins.  I thank thee for thy business.
+[00:20:25.376] INFO  [mk3_Aelia] [chat ascii] System: Xerxes has arrived in Vesper.
+[00:20:27.027] INFO  [mk3_Aelia] [travel] Britain baker ARRIVED at (1454,1613,20)
+[00:20:27.027] LOG   [mk3_Aelia] event travel_done: label='Britain baker' ok=1 at=(1454,1613) legs=1 plans=1 why=''
+[00:20:27.043] INFO  [mk3_Aelia] [action] scanning nearby mobiles for names
+[00:20:27.043] INFO  [mk3_Aelia] [action] requested 1 paperdoll(s) for trade titles
+[00:20:27.043] INFO  [life] food: at the shop, asking who is here (scan 1 of 3)
+[00:20:27.057] INFO  [mk3_Aelia] [mobiles] nearby (6):
+[00:20:27.057] INFO  [mk3_Aelia]   Halain 0x0001616D
+[00:20:27.057] INFO  [mk3_Aelia]   Vorar 0x00016305
+[00:20:27.057] INFO  [mk3_Aelia]   Delras 0x00015A59
+[00:20:27.057] INFO  [mk3_Aelia]   Lionel 0x000010B3
+[00:20:27.057] INFO  [mk3_Aelia]   Cyras 0x00015725
+[00:20:27.057] INFO  [mk3_Aelia]   Natasha 0x00001194
+[00:20:27.058] INFO  [mk3_Aelia] [0x20] player @(1453,1613,20) facing=5
+[00:20:27.058] INFO  [mk3_Aelia] [0x88] paperdoll 0x000010B3: "Lionel, the baker"
+[00:20:27.058] INFO  [mk3_Aelia] [world] Lionel, the baker is a baker at (1449,1616)
+[00:20:27.853] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:20:30.079] INFO  [life] food: found a 'baker'
+[00:20:30.140] INFO  [mk3_Aelia] [travel] mobile 0x000010B3 -> (1449,1616) r=1 from (1453,1613)
+[00:20:30.140] LOG   [mk3_Aelia] event travel_start: label='mobile 0x000010B3' target=(1449,1616) radius=1 from=(1453,1613)
+[00:20:30.140] INFO  [life] food: the 'baker' is 4 tiles off (dz 0) -- walking into reach (chase 1 of 3)
+[00:20:30.141] INFO  [mk3_Aelia] [travel] mode walk             usable   <- chosen
+[00:20:30.141] INFO  [mk3_Aelia] [travel] mode moongate         usable
+[00:20:30.141] INFO  [mk3_Aelia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:30.141] INFO  [mk3_Aelia] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:30.141] LOG   [mk3_Aelia] event travel_mode: walk
+[00:20:30.141] INFO  [mk3_Aelia] [travel] plan mobile 0x000010B3: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:20:30.202] INFO  [mk3_Aelia] [action] goto finished at (1453,1613,20); target (1450,1617); stopped short (off by 7 tile(s))
+[00:20:30.202] LOG   [mk3_Aelia] event goto_done: at=(1453,1613) target=(1450,1617) arrived=0 off=7
+[00:20:30.202] INFO  [mk3_Aelia] [action] goto (1449,1616) from (1453,1613,20)
+[00:20:30.202] LOG   [mk3_Aelia] event goto_start: target=(1449,1616) from=(1453,1613)
+[00:20:30.202] INFO  [mk3_Aelia] [bot] running from (1453,1613,20) to (1449,1616,z20)
+[00:20:30.202] INFO  [mk3_Aelia] [bot] planning path to (1449,1616) in background
+[00:20:32.530] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_12.aelia/state.json
+[00:20:32.882] INFO  [mk3_Aelia] [action] goto finished at (1453,1613,20); target (1449,1616); stopped short (off by 7 tile(s))
+[00:20:32.882] LOG   [mk3_Aelia] event goto_done: at=(1453,1613) target=(1449,1616) arrived=0 off=7
+[00:20:32.882] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:20:34.137] INFO  [mk3_Aelia] [action] goto (1449,1616) from (1453,1613,20)
+[00:20:34.137] LOG   [mk3_Aelia] event goto_start: target=(1449,1616) from=(1453,1613)
+[00:20:34.137] INFO  [mk3_Aelia] [bot] running from (1453,1613,20) to (1449,1616,z20)
+[00:20:34.137] INFO  [mk3_Aelia] [bot] planning path to (1449,1616) in background
+[00:20:36.743] INFO  [mk3_Aelia] [action] goto finished at (1453,1613,20); target (1449,1616); stopped short (off by 7 tile(s))
+[00:20:36.744] LOG   [mk3_Aelia] event goto_done: at=(1453,1613) target=(1449,1616) arrived=0 off=7
+[00:20:37.936] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:20:37.997] INFO  [mk3_Aelia] [travel] mode walk             usable   <- chosen
+[00:20:37.997] INFO  [mk3_Aelia] [travel] mode moongate         usable
+[00:20:37.997] INFO  [mk3_Aelia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:37.997] INFO  [mk3_Aelia] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:37.997] LOG   [mk3_Aelia] event travel_mode: walk
+[00:20:37.997] INFO  [mk3_Aelia] [travel] plan mobile 0x000010B3: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:20:39.532] INFO  [mk3_Aelia] [action] goto (1449,1616) from (1453,1613,20)
+[00:20:39.532] LOG   [mk3_Aelia] event goto_start: target=(1449,1616) from=(1453,1613)
+[00:20:39.532] INFO  [mk3_Aelia] [bot] running from (1453,1613,20) to (1449,1616,z20)
+[00:20:39.532] INFO  [mk3_Aelia] [bot] planning path to (1449,1616) in background
+[00:20:42.398] INFO  [mk3_Aelia] [action] goto finished at (1453,1613,20); target (1449,1616); stopped short (off by 7 tile(s))
+[00:20:42.398] LOG   [mk3_Aelia] event goto_done: at=(1453,1613) target=(1449,1616) arrived=0 off=7
+[00:20:42.966] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:20:43.652] INFO  [mk3_Aelia] [action] goto (1449,1616) from (1453,1613,20)
+[00:20:43.652] LOG   [mk3_Aelia] event goto_start: target=(1449,1616) from=(1453,1613)
+[00:20:43.652] INFO  [mk3_Aelia] [bot] running from (1453,1613,20) to (1449,1616,z20)
+[00:20:43.652] INFO  [mk3_Aelia] [bot] planning path to (1449,1616) in background
+[00:20:46.125] INFO  [mk3_Aelia] [action] goto finished at (1453,1613,20); target (1449,1616); stopped short (off by 7 tile(s))
+[00:20:46.125] LOG   [mk3_Aelia] event goto_done: at=(1453,1613) target=(1449,1616) arrived=0 off=7
+[00:20:47.107] INFO  [mk3_Aelia] [chat uni  ] Vorar: Lionel buy
+[00:20:47.120] INFO  [mk3_Aelia] [chat uni  ] Halain: Lionel buy
+[00:20:47.120] INFO  [mk3_Aelia] [chat ascii] Lionel: Yes?
+[00:20:47.120] INFO  [mk3_Aelia] [chat ascii] Lionel: I'm here to sell thee supplies.
+[00:20:47.197] INFO  [mk3_Aelia] [chat ascii] Lionel: Here you are, Halain That will be 16 gold coins.  I thank thee for thy business.
+[00:20:47.326] INFO  [mk3_Aelia] [travel] mode walk             usable   <- chosen
+[00:20:47.326] INFO  [mk3_Aelia] [travel] mode moongate         usable
+[00:20:47.326] INFO  [mk3_Aelia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:47.326] INFO  [mk3_Aelia] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:47.326] LOG   [mk3_Aelia] event travel_mode: walk
+[00:20:47.326] INFO  [mk3_Aelia] [travel] plan mobile 0x000010B3: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:20:47.979] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:20:50.384] INFO  [mk3_Aelia] [action] goto (1449,1616) from (1453,1613,20)
+[00:20:50.384] LOG   [mk3_Aelia] event goto_start: target=(1449,1616) from=(1453,1613)
+[00:20:50.384] INFO  [mk3_Aelia] [bot] running from (1453,1613,20) to (1449,1616,z20)
+[00:20:50.385] INFO  [mk3_Aelia] [bot] planning path to (1449,1616) in background
+[00:20:50.400] INFO  [mk3_Aelia] [chat uni  ] : Lionel buy
+[00:20:50.400] INFO  [mk3_Aelia] [chat ascii] Lionel: Excuse me Halain, but Amara wants to speak to me
+[00:20:50.400] INFO  [mk3_Aelia] [chat ascii] Lionel: Hello!
+[00:20:50.400] INFO  [mk3_Aelia] [chat ascii] Lionel: I'm here to sell thee supplies.
+[00:20:50.448] INFO  [mk3_Aelia] [chat ascii] Lionel: Here you are, Amara That will be 16 gold coins.  I thank thee for thy business.
+[00:20:52.730] INFO  [mk3_Aelia] [action] goto finished at (1453,1613,20); target (1449,1616); stopped short (off by 7 tile(s))
+[00:20:52.730] LOG   [mk3_Aelia] event goto_done: at=(1453,1613) target=(1449,1616) arrived=0 off=7
+[00:20:52.990] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:20:53.974] INFO  [mk3_Aelia] [action] goto (1449,1616) from (1453,1613,20)
+[00:20:53.974] LOG   [mk3_Aelia] event goto_start: target=(1449,1616) from=(1453,1613)
+[00:20:53.974] INFO  [mk3_Aelia] [bot] running from (1453,1613,20) to (1449,1616,z20)
+[00:20:53.974] INFO  [mk3_Aelia] [bot] planning path to (1449,1616) in background
+[00:20:56.389] INFO  [mk3_Aelia] [action] goto finished at (1453,1613,20); target (1449,1616); stopped short (off by 7 tile(s))
+[00:20:56.389] LOG   [mk3_Aelia] event goto_done: at=(1453,1613) target=(1449,1616) arrived=0 off=7
+[00:20:57.212] INFO  [mk3_Aelia] [chat uni  ] Vorar: Lionel buy
+[00:20:57.644] INFO  [mk3_Aelia] [travel] mode walk             usable   <- chosen
+[00:20:57.644] INFO  [mk3_Aelia] [travel] mode moongate         usable
+[00:20:57.644] INFO  [mk3_Aelia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:57.644] INFO  [mk3_Aelia] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:57.644] LOG   [mk3_Aelia] event travel_mode: walk
+[00:20:57.644] INFO  [mk3_Aelia] [travel] plan mobile 0x000010B3: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:20:58.008] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:21:02.200] INFO  [mk3_Aelia] [action] goto (1449,1616) from (1453,1613,20)
+[00:21:02.201] LOG   [mk3_Aelia] event goto_start: target=(1449,1616) from=(1453,1613)
+[00:21:02.201] INFO  [mk3_Aelia] [bot] running from (1453,1613,20) to (1449,1616,z20)
+[00:21:02.201] INFO  [mk3_Aelia] [bot] planning path to (1449,1616) in background
+[00:21:03.047] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:21:05.285] INFO  [mk3_Aelia] [action] goto finished at (1453,1613,20); target (1449,1616); stopped short (off by 7 tile(s))
+[00:21:05.285] LOG   [mk3_Aelia] event goto_done: at=(1453,1613) target=(1449,1616) arrived=0 off=7
+[00:21:06.522] INFO  [mk3_Aelia] [action] goto (1449,1616) from (1453,1613,20)
+[00:21:06.522] LOG   [mk3_Aelia] event goto_start: target=(1449,1616) from=(1453,1613)
+[00:21:06.522] INFO  [mk3_Aelia] [bot] running from (1453,1613,20) to (1449,1616,z20)
+[00:21:06.522] INFO  [mk3_Aelia] [bot] planning path to (1449,1616) in background
+[00:21:07.332] INFO  [mk3_Aelia] [chat uni  ] Vorar: Lionel buy
+[00:21:08.083] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:21:08.927] INFO  [mk3_Aelia] [travel] mobile 0x000010B3 ARRIVED at (1453,1613,20) -- arrived nearby; the destination tile was not free
+[00:21:08.927] LOG   [mk3_Aelia] event travel_done: label='mobile 0x000010B3' ok=1 at=(1453,1613) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[00:21:08.943] INFO  [life] food: within reach
+[00:21:09.004] INFO  [mk3_Aelia] [ACTION] vendor_buy start
+[00:21:09.004] INFO  [mk3_Aelia] [VENDOR] open vendor=0x000010B3 say='Lionel buy'
+[00:21:09.005] INFO  [life] food: asking the 'baker' to show something to eat (attempt 1)
+[00:21:09.019] INFO  [mk3_Aelia] [chat uni  ] : Lionel buy
+[00:21:11.193] INFO  [mk3_Aelia] [chat ascii] System: Observer has arrived in Minoc.
+[00:21:13.125] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:21:13.141] INFO  [mk3_Aelia] [chat ascii] Dale: Good morrow!  How can I help thee?
+[00:21:13.141] INFO  [mk3_Aelia] [chat ascii] Dale: I'm here to sell thee supplies.
+[00:21:14.571] INFO  [mk3_Aelia] [chat ascii] System: Observer has departed from Minoc.
+[00:21:17.015] LOG   [mk3_Aelia] event action_result: vendor_buy timeout
+[00:21:17.016] INFO  [life] food: resting after a failure
+[00:21:18.165] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:21:19.053] INFO  [mk3_Aelia] [ACTION] vendor_buy start
+[00:21:19.053] INFO  [mk3_Aelia] [VENDOR] open vendor=0x000010B3 say='Lionel buy'
+[00:21:19.053] INFO  [life] food: asking the 'baker' to show something to eat (attempt 2)
+[00:21:19.066] INFO  [mk3_Aelia] [chat uni  ] : Lionel buy
+[00:21:20.172] INFO  [mk3_Aelia] [chat uni  ] : Lionel buy
+[00:21:20.569] INFO  [mk3_Aelia] [chat uni  ] : Lionel buy
+[00:21:20.569] INFO  [mk3_Aelia] [chat ascii] Lionel: Excuse me Amara, but Odessa wants to speak to me
+[00:21:20.569] INFO  [mk3_Aelia] [chat ascii] Lionel: Greetings. What can I do for thee?
+[00:21:20.569] INFO  [mk3_Aelia] [chat ascii] Lionel: I'm here to sell thee supplies.
+[00:21:23.214] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:21:27.105] LOG   [mk3_Aelia] event action_result: vendor_buy timeout
+[00:21:27.166] INFO  [life] food: resting after a failure
+[00:21:28.238] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:21:29.192] INFO  [mk3_Aelia] [ACTION] vendor_buy start
+[00:21:29.192] INFO  [mk3_Aelia] [VENDOR] open vendor=0x000010B3 say='Lionel buy'
+[00:21:29.192] INFO  [life] food: asking the 'baker' to show something to eat (attempt 3)
+[00:21:29.207] INFO  [mk3_Aelia] [chat uni  ] : Lionel buy
+[00:21:30.269] INFO  [mk3_Aelia] [chat uni  ] : Lionel buy
+[00:21:32.574] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_12.aelia/state.json
+[00:21:33.291] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:21:37.193] LOG   [mk3_Aelia] event action_result: vendor_buy timeout
+[00:21:37.255] INFO  [life] food: the 'baker' would not open a shop
+[00:21:37.255] INFO  [life] goal_failed=GET_FOOD status=retryable_failure reason="the 'baker' would not open a shop"
+[00:21:37.315] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: no food seller reachable"
+[00:21:37.316] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSkillTraining(Tinkering 0.55) NeedPractice(Magery 0.45) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=2 held=[sewing kit,scissors,] want_train=Tinkering (target 50.0)
+[00:21:37.316] INFO  [life]   score=60.5
+[00:21:37.316] INFO  [life]   reason: NeedSkillTraining urgency 0.55 x 110 = 60.5
+[00:21:37.316] INFO  [life]   reason: Tinkering 0.0 -> 50.0, gold 9880 (fee is quoted on arrival, roughly 300)
+[00:21:37.316] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 177s after achieving nothing
+[00:21:37.316] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 29s after achieving nothing
+[00:21:37.316] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[00:21:37.316] INFO  [life] plan=buy reason="below the ceiling, worth buying, and affordable"
+[00:21:37.316] INFO  [life] training: looking for a 'tinker' to teach Tinkering (trip 1)
+[00:21:37.319] INFO  [mk3_Aelia] [travel] place: skipping Minoc tinker -- 1904 tiles and 0 gates for a service Britain tinkerguildmaster offers
+[00:21:37.319] INFO  [mk3_Aelia] [travel] place: skipping Vesper tinker -- 1952 tiles and 0 gates for a service Britain tinkerguildmaster offers
+[00:21:37.319] INFO  [mk3_Aelia] [travel] place: skipping Papua tinkerguildmaster -- 1276 tiles and 3 gates for a service Britain tinkerguildmaster offers
+[00:21:37.319] INFO  [mk3_Aelia] [travel] Britain tinkerguildmaster -> (1422,1654) r=5 from (1453,1613)
+[00:21:37.319] LOG   [mk3_Aelia] event travel_start: label='Britain tinkerguildmaster' target=(1422,1654) radius=5 from=(1453,1613)
+[00:21:37.319] INFO  [mk3_Aelia] [travel] mode walk             usable   <- chosen
+[00:21:37.319] INFO  [mk3_Aelia] [travel] mode moongate         usable
+[00:21:37.319] INFO  [mk3_Aelia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:37.319] INFO  [mk3_Aelia] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:37.319] LOG   [mk3_Aelia] event travel_mode: walk
+[00:21:37.319] INFO  [mk3_Aelia] [travel] plan Britain tinkerguildmaster: ok legs=2 ~64 tiles transit=0 nodes=8
+[00:21:37.379] INFO  [mk3_Aelia] [action] goto finished at (1453,1613,20); target (1449,1616); stopped short (off by 7 tile(s))
+[00:21:37.379] LOG   [mk3_Aelia] event goto_done: at=(1453,1613) target=(1449,1616) arrived=0 off=7
+[00:21:37.379] INFO  [mk3_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:37.379] INFO  [mk3_Aelia] [action] goto (1416,1640) from (1453,1613,20)
+[00:21:37.379] LOG   [mk3_Aelia] event goto_start: target=(1416,1640) from=(1453,1613)
+[00:21:37.379] INFO  [mk3_Aelia] [bot] running from (1453,1613,20) to (1416,1640)
+[00:21:37.379] INFO  [mk3_Aelia] [bot] planning path to (1416,1640) in background
+[00:21:37.500] INFO  [mk3_Aelia] [action] goto finished at (1453,1613,20); target (1416,1640); stopped short (off by 64 tile(s))
+[00:21:37.500] LOG   [mk3_Aelia] event goto_done: at=(1453,1613) target=(1416,1640) arrived=0 off=64
+[00:21:38.304] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:21:38.734] INFO  [mk3_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:38.734] INFO  [mk3_Aelia] [action] goto (1416,1640) from (1453,1613,20)
+[00:21:38.734] LOG   [mk3_Aelia] event goto_start: target=(1416,1640) from=(1453,1613)
+[00:21:38.735] INFO  [mk3_Aelia] [bot] running from (1453,1613,20) to (1416,1640)
+[00:21:38.735] INFO  [mk3_Aelia] [bot] planning path to (1416,1640) in background
+[00:21:38.858] INFO  [mk3_Aelia] [action] goto finished at (1453,1613,20); target (1416,1640); stopped short (off by 64 tile(s))
+[00:21:38.858] LOG   [mk3_Aelia] event goto_done: at=(1453,1613) target=(1416,1640) arrived=0 off=64
+[00:21:40.072] INFO  [mk3_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:40.072] INFO  [mk3_Aelia] [action] goto (1416,1640) from (1453,1613,20)
+[00:21:40.072] LOG   [mk3_Aelia] event goto_start: target=(1416,1640) from=(1453,1613)
+[00:21:40.072] INFO  [mk3_Aelia] [bot] running from (1453,1613,20) to (1416,1640)
+[00:21:40.072] INFO  [mk3_Aelia] [bot] planning path to (1416,1640) in background
+[00:21:40.148] INFO  [mk3_Aelia] [action] goto finished at (1453,1613,20); target (1416,1640); stopped short (off by 64 tile(s))
+[00:21:40.149] LOG   [mk3_Aelia] event goto_done: at=(1453,1613) target=(1416,1640) arrived=0 off=64
+[00:21:40.412] INFO  [mk3_Aelia] [chat uni  ] : Lionel buy
+[00:21:41.396] INFO  [mk3_Aelia] [travel] mode walk             usable   <- chosen
+[00:21:41.396] INFO  [mk3_Aelia] [travel] mode moongate         usable
+[00:21:41.396] INFO  [mk3_Aelia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:41.396] INFO  [mk3_Aelia] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:41.396] LOG   [mk3_Aelia] event travel_mode: walk
+[00:21:41.396] INFO  [mk3_Aelia] [travel] plan Britain tinkerguildmaster: ok legs=3 ~96 tiles transit=0 nodes=21
+[00:21:42.936] INFO  [mk3_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:42.936] INFO  [mk3_Aelia] [action] goto (1464,1640) from (1453,1613,20)
+[00:21:42.936] LOG   [mk3_Aelia] event goto_start: target=(1464,1640) from=(1453,1613)
+[00:21:42.936] INFO  [mk3_Aelia] [bot] running from (1453,1613,20) to (1464,1640)
+[00:21:42.936] INFO  [mk3_Aelia] [bot] planning path to (1464,1640) in background
+[00:21:43.059] INFO  [mk3_Aelia] [action] goto finished at (1453,1613,20); target (1464,1640); stopped short (off by 38 tile(s))
+[00:21:43.059] LOG   [mk3_Aelia] event goto_done: at=(1453,1613) target=(1464,1640) arrived=0 off=38
+[00:21:43.367] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:21:44.290] INFO  [mk3_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:44.290] INFO  [mk3_Aelia] [action] goto (1464,1640) from (1453,1613,20)
+[00:21:44.290] LOG   [mk3_Aelia] event goto_start: target=(1464,1640) from=(1453,1613)
+[00:21:44.290] INFO  [mk3_Aelia] [bot] running from (1453,1613,20) to (1464,1640)
+[00:21:44.290] INFO  [mk3_Aelia] [bot] planning path to (1464,1640) in background
+[00:21:44.413] INFO  [mk3_Aelia] [action] goto finished at (1453,1613,20); target (1464,1640); stopped short (off by 38 tile(s))
+[00:21:44.413] LOG   [mk3_Aelia] event goto_done: at=(1453,1613) target=(1464,1640) arrived=0 off=38
+[00:21:45.641] INFO  [mk3_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:45.641] INFO  [mk3_Aelia] [action] goto (1464,1640) from (1453,1613,20)
+[00:21:45.641] LOG   [mk3_Aelia] event goto_start: target=(1464,1640) from=(1453,1613)
+[00:21:45.641] INFO  [mk3_Aelia] [bot] running from (1453,1613,20) to (1464,1640)
+[00:21:45.641] INFO  [mk3_Aelia] [bot] planning path to (1464,1640) in background
+[00:21:45.763] INFO  [mk3_Aelia] [action] goto finished at (1453,1613,20); target (1464,1640); stopped short (off by 38 tile(s))
+[00:21:45.763] LOG   [mk3_Aelia] event goto_done: at=(1453,1613) target=(1464,1640) arrived=0 off=38
+[00:21:47.010] INFO  [mk3_Aelia] [travel] mode walk             usable   <- chosen
+[00:21:47.011] INFO  [mk3_Aelia] [travel] mode moongate         usable
+[00:21:47.011] INFO  [mk3_Aelia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:47.011] INFO  [mk3_Aelia] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:47.011] LOG   [mk3_Aelia] event travel_mode: walk
+[00:21:47.011] INFO  [mk3_Aelia] [travel] plan Britain tinkerguildmaster: ok legs=3 ~120 tiles transit=0 nodes=30
+[00:21:48.399] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:21:50.045] INFO  [mk3_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:50.045] INFO  [mk3_Aelia] [action] goto (1480,1640) from (1453,1613,20)
+[00:21:50.045] LOG   [mk3_Aelia] event goto_start: target=(1480,1640) from=(1453,1613)
+[00:21:50.045] INFO  [mk3_Aelia] [bot] running from (1453,1613,20) to (1480,1640)
+[00:21:50.045] INFO  [mk3_Aelia] [bot] planning path to (1480,1640) in background
+[00:21:50.107] INFO  [mk3_Aelia] [bot] replan to (1480,1640): 36 steps in 2106.7us
+[00:21:52.556] INFO  [mk3_Aelia] [bot] step (1460,1612,20)->(1461,1613,20) rejected; OpenDoor + retry
+[00:21:52.570] INFO  [mk3_Aelia] [chat ascii] System: Opening door...
+[00:21:52.570] INFO  [mk3_Aelia] [0x20] player @(1460,1612,20) facing=7
+[00:21:52.571] INFO  [mk3_Aelia] [action] goto finished at (1460,1612,20); target (1480,1640); stopped short (off by 48 tile(s))
+[00:21:52.571] LOG   [mk3_Aelia] event goto_done: at=(1460,1612) target=(1480,1640) arrived=0 off=48
+[00:21:53.403] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:21:53.803] INFO  [mk3_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:53.803] INFO  [mk3_Aelia] [action] goto (1480,1640) from (1460,1612,20)
+[00:21:53.803] LOG   [mk3_Aelia] event goto_start: target=(1480,1640) from=(1460,1612)
+[00:21:53.803] INFO  [mk3_Aelia] [bot] running from (1460,1612,20) to (1480,1640)
+[00:21:53.803] INFO  [mk3_Aelia] [bot] planning path to (1480,1640) in background
+[00:21:53.820] INFO  [mk3_Aelia] [bot] replan to (1480,1640): 28 steps in 1961.9us
+[00:21:54.038] INFO  [mk3_Aelia] [bot] step (1460,1612,20)->(1461,1613,20) rejected; OpenDoor + retry
+[00:21:54.041] INFO  [mk3_Aelia] [chat ascii] System: Opening door...
+[00:21:54.041] INFO  [mk3_Aelia] [0x20] player @(1460,1612,20) facing=4
+[00:21:54.042] INFO  [mk3_Aelia] [action] goto finished at (1460,1612,20); target (1480,1640); stopped short (off by 48 tile(s))
+[00:21:54.042] LOG   [mk3_Aelia] event goto_done: at=(1460,1612) target=(1480,1640) arrived=0 off=48
+[00:21:55.298] INFO  [mk3_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:55.298] INFO  [mk3_Aelia] [action] goto (1480,1640) from (1460,1612,20)
+[00:21:55.298] LOG   [mk3_Aelia] event goto_start: target=(1480,1640) from=(1460,1612)
+[00:21:55.298] INFO  [mk3_Aelia] [bot] running from (1460,1612,20) to (1480,1640)
+[00:21:55.298] INFO  [mk3_Aelia] [bot] planning path to (1480,1640) in background
+[00:21:55.345] INFO  [mk3_Aelia] [bot] replan to (1480,1640): 28 steps in 1606.8us
+[00:21:58.429] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:21:58.644] INFO  [mk3_Aelia] [chat ascii] System: Draver has departed from Minoc.
+[00:22:03.462] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:22:03.538] INFO  [mk3_Aelia] [bot] arrived at (1480,1640,20)
+[00:22:03.539] INFO  [mk3_Aelia] [action] goto finished at (1480,1640,20); target (1480,1640); ARRIVED (off by 0 tile(s))
+[00:22:03.539] LOG   [mk3_Aelia] event goto_done: at=(1480,1640) target=(1480,1640) arrived=1 off=0
+[00:22:03.539] INFO  [mk3_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:22:03.539] INFO  [mk3_Aelia] [action] goto (1448,1656) from (1480,1640,20)
+[00:22:03.539] LOG   [mk3_Aelia] event goto_start: target=(1448,1656) from=(1480,1640)
+[00:22:03.539] INFO  [mk3_Aelia] [bot] running from (1480,1640,20) to (1448,1656)
+[00:22:03.539] INFO  [mk3_Aelia] [bot] planning path to (1448,1656) in background
+[00:22:03.601] INFO  [mk3_Aelia] [bot] replan to (1448,1656): 34 steps in 2766.6us
+[00:22:07.744] INFO  [mk3_Aelia] [chat ascii] Delras: *Delras is attacking Starling!*
+[00:22:08.521] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:22:13.312] INFO  [mk3_Aelia] [bot] arrived at (1448,1656,10)
+[00:22:13.313] INFO  [mk3_Aelia] [action] goto finished at (1448,1656,10); target (1448,1656); ARRIVED (off by 0 tile(s))
+[00:22:13.313] LOG   [mk3_Aelia] event goto_done: at=(1448,1656) target=(1448,1656) arrived=1 off=0
+[00:22:13.313] INFO  [mk3_Aelia] [action] goto (1422,1654) from (1448,1656,10)
+[00:22:13.313] LOG   [mk3_Aelia] event goto_start: target=(1422,1654) from=(1448,1656)
+[00:22:13.313] INFO  [mk3_Aelia] [bot] running from (1448,1656,10) to (1422,1654,z10)
+[00:22:13.313] INFO  [mk3_Aelia] [bot] planning path to (1422,1654) in background
+[00:22:13.375] INFO  [mk3_Aelia] [bot] replan to (1422,1654): 28 steps in 3054.8us
+[00:22:13.561] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:22:17.457] INFO  [mk3_Aelia] [bot] door ahead at (1431,1658,z10); OpenDoor before step
+[00:22:17.473] INFO  [mk3_Aelia] [chat ascii] System: Opening door...
+[00:22:18.582] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:22:19.433] INFO  [mk3_Aelia] [travel] Britain tinkerguildmaster ARRIVED at (1426,1658,10)
+[00:22:19.433] LOG   [mk3_Aelia] event travel_done: label='Britain tinkerguildmaster' ok=1 at=(1426,1658) legs=3 plans=3 why=''
+[00:22:19.434] INFO  [life] training: arrived at 1426,1658 -- asking who is here
+[00:22:19.434] INFO  [mk3_Aelia] [action] scanning nearby mobiles for names
+[00:22:19.434] INFO  [mk3_Aelia] [action] requested 1 paperdoll(s) for trade titles
+[00:22:19.447] INFO  [mk3_Aelia] [mobiles] nearby (3):
+[00:22:19.447] INFO  [mk3_Aelia]   Justine 0x00001080
+[00:22:19.447] INFO  [mk3_Aelia]   Amara 0x00012E70
+[00:22:19.447] INFO  [mk3_Aelia]   Halain 0x0001616D
+[00:22:19.447] INFO  [mk3_Aelia] [0x20] player @(1426,1658,10) facing=0
+[00:22:19.447] INFO  [mk3_Aelia] [0x88] paperdoll 0x00001080: "Justine, the engineer guildmistress"
+[00:22:21.979] INFO  [life] training: looking for a 'tinker' to teach Tinkering (trip 2)
+[00:22:21.983] INFO  [mk3_Aelia] [travel] place: skipping Minoc tinker -- 1952 tiles and 0 gates for a service Jhelom tinker offers
+[00:22:21.983] INFO  [mk3_Aelia] [travel] place: skipping Vesper tinker -- 2000 tiles and 0 gates for a service Jhelom tinker offers
+[00:22:21.983] INFO  [mk3_Aelia] [travel] place: skipping Papua tinkerguildmaster -- 1300 tiles and 3 gates for a service Jhelom tinker offers
+[00:22:21.983] INFO  [mk3_Aelia] [travel] Jhelom tinker -> (1404,3802) r=5 from (1426,1658)
+[00:22:21.983] LOG   [mk3_Aelia] event travel_start: label='Jhelom tinker' target=(1404,3802) radius=5 from=(1426,1658)
+[00:22:21.983] INFO  [mk3_Aelia] [travel] mode moongate         usable   <- chosen
+[00:22:21.983] INFO  [mk3_Aelia] [travel] mode walk             usable
+[00:22:21.983] INFO  [mk3_Aelia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:21.983] INFO  [mk3_Aelia] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:21.983] LOG   [mk3_Aelia] event travel_mode: moongate
+[00:22:21.984] INFO  [mk3_Aelia] [travel] plan Jhelom tinker: ok legs=15 ~616 tiles transit=1 nodes=215
+[00:22:22.041] INFO  [mk3_Aelia] [action] goto finished at (1426,1658,10); target (1422,1654); stopped short (off by 8 tile(s))
+[00:22:22.041] LOG   [mk3_Aelia] event goto_done: at=(1426,1658) target=(1422,1654) arrived=0 off=8
+[00:22:22.041] INFO  [mk3_Aelia] [action] goto (1432,1688) from (1426,1658,10)
+[00:22:22.041] LOG   [mk3_Aelia] event goto_start: target=(1432,1688) from=(1426,1658)
+[00:22:22.041] INFO  [mk3_Aelia] [bot] running from (1426,1658,10) to (1432,1688)
+[00:22:22.041] INFO  [mk3_Aelia] [bot] planning path to (1432,1688) in background
+[00:22:22.056] INFO  [mk3_Aelia] [bot] replan to (1432,1688): 51 steps in 13551.7us
+[00:22:23.637] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:22:24.160] INFO  [mk3_Aelia] [bot] door ahead at (1432,1660,z10); OpenDoor before step
+[00:22:24.162] INFO  [mk3_Aelia] [chat ascii] System: Opening door...
+[00:22:28.646] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:22:29.924] INFO  [life] session_end_requested reason="session time limit reached"
+[00:22:30.189] INFO  [mk3_Aelia] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=24 in 65.9us
+[00:22:31.053] INFO  [mk3_Aelia] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=22 in 75.7us
+[00:22:31.497] INFO  [mk3_Aelia] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=20 in 77.2us
+[00:22:31.884] INFO  [mk3_Aelia] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=18 in 69.5us
+[00:22:32.328] INFO  [mk3_Aelia] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=16 in 90.6us
+[00:22:32.590] INFO  [mk3_Aelia] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=17 in 229.9us
+[00:22:33.038] INFO  [mk3_Aelia] [bot] lookahead patched around block at step 3: anchor=5 new segment=7 path=17 in 261.6us
+[00:22:33.683] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:22:33.745] INFO  [mk3_Aelia] [bot] lookahead patched around block at step 4: anchor=5 new segment=7 path=16 in 320.2us
+[00:22:34.608] INFO  [mk3_Aelia] [bot] lookahead patched around block at step 4: anchor=5 new segment=2 path=11 in 55.6us
+[00:22:34.608] INFO  [mk3_Aelia] [bot] lookahead patched around block at step 3: anchor=5 new segment=6 path=12 in 118.6us
+[00:22:35.534] INFO  [mk3_Aelia] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=10 in 129.3us
+[00:22:35.984] INFO  [mk3_Aelia] [bot] lookahead patched around block at step 3: anchor=5 new segment=6 path=10 in 232.0us
+[00:22:36.644] INFO  [mk3_Aelia] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=8 in 148.0us
+[00:22:36.830] INFO  [mk3_Aelia] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=7 in 164.5us
+[00:22:38.419] INFO  [mk3_Aelia] [chat ascii] System: Vorar has departed from Britain.
+[00:22:38.729] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:22:39.256] INFO  [mk3_Aelia] [bot] arrived at (1432,1688,0)
+[00:22:39.256] INFO  [mk3_Aelia] [action] goto finished at (1432,1688,0); target (1432,1688); ARRIVED (off by 0 tile(s))
+[00:22:39.256] LOG   [mk3_Aelia] event goto_done: at=(1432,1688) target=(1432,1688) arrived=1 off=0
+[00:22:39.256] INFO  [mk3_Aelia] [action] goto (1416,1720) from (1432,1688,0)
+[00:22:39.256] LOG   [mk3_Aelia] event goto_start: target=(1416,1720) from=(1432,1688)
+[00:22:39.256] INFO  [mk3_Aelia] [bot] running from (1432,1688,0) to (1416,1720)
+[00:22:39.256] INFO  [mk3_Aelia] [bot] planning path to (1416,1720) in background
+[00:22:39.316] INFO  [mk3_Aelia] [bot] replan to (1416,1720): 38 steps in 2822.8us
+[00:22:39.439] INFO  [mk3_Aelia] [chat ascii] System: Selene has departed from Magincia.
+[00:22:42.395] INFO  [mk3_Aelia] [bot] step (1438,1693,0)->(1437,1694,0) rejected; OpenDoor + retry
+[00:22:42.396] INFO  [mk3_Aelia] [chat ascii] System: Opening door...
+[00:22:42.396] INFO  [mk3_Aelia] [0x20] player @(1438,1693,0) facing=6
+[00:22:42.396] INFO  [mk3_Aelia] [action] goto finished at (1438,1693,0); target (1416,1720); stopped short (off by 49 tile(s))
+[00:22:42.396] LOG   [mk3_Aelia] event goto_done: at=(1438,1693) target=(1416,1720) arrived=0 off=49
+[00:22:43.624] INFO  [mk3_Aelia] [action] goto (1416,1720) from (1438,1693,0)
+[00:22:43.624] LOG   [mk3_Aelia] event goto_start: target=(1416,1720) from=(1438,1693)
+[00:22:43.624] INFO  [mk3_Aelia] [bot] running from (1438,1693,0) to (1416,1720)
+[00:22:43.624] INFO  [mk3_Aelia] [bot] planning path to (1416,1720) in background
+[00:22:43.686] INFO  [mk3_Aelia] [bot] replan to (1416,1720): 30 steps in 1663.7us
+[00:22:43.747] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:22:44.275] INFO  [mk3_Aelia] [chat ascii] Hyman: Hmm?
+[00:22:46.897] INFO  [mk3_Aelia] [chat ascii] System: Zarthal has departed from Minoc.
+[00:22:48.807] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:22:49.163] INFO  [mk3_Aelia] [chat ascii] Lyndon: What's thee wantin'?
+[00:22:49.378] INFO  [mk3_Aelia] [chat ascii] System: World save in 10 seconds
+[00:22:50.319] INFO  [mk3_Aelia] [chat ascii] System: Thalia has departed from Moonglow.
+[00:22:53.184] INFO  [mk3_Aelia] [bot] arrived at (1416,1720,20)
+[00:22:53.184] INFO  [mk3_Aelia] [action] goto finished at (1416,1720,20); target (1416,1720); ARRIVED (off by 0 tile(s))
+[00:22:53.184] LOG   [mk3_Aelia] event goto_done: at=(1416,1720) target=(1416,1720) arrived=1 off=0
+[00:22:53.184] INFO  [mk3_Aelia] [action] goto (1402,1760) from (1416,1720,20)
+[00:22:53.184] LOG   [mk3_Aelia] event goto_start: target=(1402,1760) from=(1416,1720)
+[00:22:53.184] INFO  [mk3_Aelia] [bot] running from (1416,1720,20) to (1402,1760)
+[00:22:53.184] INFO  [mk3_Aelia] [bot] planning path to (1402,1760) in background
+[00:22:53.217] INFO  [mk3_Aelia] [chat ascii] System: Elvar has departed from Minoc.
+[00:22:53.217] INFO  [mk3_Aelia] [bot] replan to (1402,1760): 40 steps in 19637.3us
+[00:22:53.857] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:22:57.848] INFO  [mk3_Aelia] [chat ascii] System: Falen has departed from Minoc.
+[00:22:58.863] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:22:59.429] INFO  [mk3_Aelia] [chat ascii] System: World save has been initiated.
+[00:23:03.924] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:23:04.484] INFO  [mk3_Aelia] [action] goto finished at (1407,1740,5); target (1402,1760); stopped short (off by 25 tile(s))
+[00:23:04.484] LOG   [mk3_Aelia] event goto_done: at=(1407,1740) target=(1402,1760) arrived=0 off=25
+[00:23:05.729] INFO  [mk3_Aelia] [action] goto (1402,1760) from (1407,1740,5)
+[00:23:05.729] LOG   [mk3_Aelia] event goto_start: target=(1402,1760) from=(1407,1740)
+[00:23:05.729] INFO  [mk3_Aelia] [bot] running from (1407,1740,5) to (1402,1760)
+[00:23:05.730] INFO  [mk3_Aelia] [bot] planning path to (1402,1760) in background
+[00:23:05.762] INFO  [mk3_Aelia] [bot] replan to (1402,1760): 20 steps in 7136.5us
+[00:23:05.777] INFO  [mk3_Aelia] [chat ascii] System: Ghalor has departed from Minoc.
+[00:23:07.627] INFO  [mk3_Aelia] [chat ascii] System: Cyras has departed from Britain.
+[00:23:08.949] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:23:10.033] INFO  [mk3_Aelia] [chat ascii] System: Kharain has departed from Minoc.
+[00:23:11.639] INFO  [mk3_Aelia] [bot] arrived at (1402,1760,0)
+[00:23:11.639] INFO  [mk3_Aelia] [action] goto finished at (1402,1760,0); target (1402,1760); ARRIVED (off by 0 tile(s))
+[00:23:11.639] LOG   [mk3_Aelia] event goto_done: at=(1402,1760) target=(1402,1760) arrived=1 off=0
+[00:23:11.639] INFO  [mk3_Aelia] [action] goto (1368,1800) from (1402,1760,0)
+[00:23:11.639] LOG   [mk3_Aelia] event goto_start: target=(1368,1800) from=(1402,1760)
+[00:23:11.639] INFO  [mk3_Aelia] [bot] running from (1402,1760,0) to (1368,1800)
+[00:23:11.639] INFO  [mk3_Aelia] [bot] planning path to (1368,1800) in background
+[00:23:11.701] INFO  [mk3_Aelia] [bot] replan to (1368,1800): 79 steps in 43488.6us
+[00:23:12.347] INFO  [mk3_Aelia] [chat ascii] System: Leander has departed from Moonglow.
+[00:23:13.997] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:23:16.034] INFO  [mk3_Aelia] [chat ascii] System: You have left the protection of the city guards
+[00:23:19.033] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:23:24.089] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:23:25.736] INFO  [mk3_Aelia] [chat ascii] System: Elara has departed from Magincia.
+[00:23:26.431] INFO  [mk3_Aelia] [chat ascii] System: Xerxes has departed from Vesper.
+[00:23:29.129] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:23:33.132] INFO  [mk3_Aelia] [chat ascii] System: Dorvar has departed from Skara Brae.
+[00:23:34.178] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:23:35.099] INFO  [mk3_Aelia] [bot] arrived at (1368,1800,3)
+[00:23:35.099] INFO  [mk3_Aelia] [action] goto finished at (1368,1800,3); target (1368,1800); ARRIVED (off by 0 tile(s))
+[00:23:35.099] LOG   [mk3_Aelia] event goto_done: at=(1368,1800) target=(1368,1800) arrived=1 off=0
+[00:23:35.099] INFO  [mk3_Aelia] [action] goto (1368,1832) from (1368,1800,3)
+[00:23:35.099] LOG   [mk3_Aelia] event goto_start: target=(1368,1832) from=(1368,1800)
+[00:23:35.099] INFO  [mk3_Aelia] [bot] running from (1368,1800,3) to (1368,1832)
+[00:23:35.099] INFO  [mk3_Aelia] [bot] planning path to (1368,1832) in background
+[00:23:35.160] INFO  [mk3_Aelia] [bot] replan to (1368,1832): 32 steps in 6146.1us
+[00:23:37.865] INFO  [mk3_Aelia] [chat ascii] System: Odessa has departed from Britain.
+[00:23:38.949] INFO  [mk3_Aelia] [chat ascii] System: Rhea has departed from Lord British's Castle.
+[00:23:39.193] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:23:43.199] INFO  [mk3_Aelia] [chat ascii] System: Rhaler has departed from Minoc.
+[00:23:44.215] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:23:45.061] INFO  [mk3_Aelia] [chat ascii] System: Ithion has departed from Skara Brae.
+[00:23:45.124] INFO  [mk3_Aelia] [bot] arrived at (1368,1832,0)
+[00:23:45.124] INFO  [mk3_Aelia] [action] goto finished at (1368,1832,0); target (1368,1832); ARRIVED (off by 0 tile(s))
+[00:23:45.124] LOG   [mk3_Aelia] event goto_done: at=(1368,1832) target=(1368,1832) arrived=1 off=0
+[00:23:45.124] INFO  [mk3_Aelia] [action] goto (1368,1864) from (1368,1832,0)
+[00:23:45.124] LOG   [mk3_Aelia] event goto_start: target=(1368,1864) from=(1368,1832)
+[00:23:45.124] INFO  [mk3_Aelia] [bot] running from (1368,1832,0) to (1368,1864)
+[00:23:45.124] INFO  [mk3_Aelia] [bot] planning path to (1368,1864) in background
+[00:23:45.184] INFO  [mk3_Aelia] [bot] replan to (1368,1864): 38 steps in 6550.5us
+[00:23:49.260] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:23:54.285] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:23:57.512] INFO  [mk3_Aelia] [bot] arrived at (1368,1864,0)
+[00:23:57.512] INFO  [mk3_Aelia] [action] goto finished at (1368,1864,0); target (1368,1864); ARRIVED (off by 0 tile(s))
+[00:23:57.512] LOG   [mk3_Aelia] event goto_done: at=(1368,1864) target=(1368,1864) arrived=1 off=0
+[00:23:57.512] INFO  [mk3_Aelia] [action] goto (1368,1894) from (1368,1864,0)
+[00:23:57.512] LOG   [mk3_Aelia] event goto_start: target=(1368,1894) from=(1368,1864)
+[00:23:57.512] INFO  [mk3_Aelia] [bot] running from (1368,1864,0) to (1368,1894)
+[00:23:57.512] INFO  [mk3_Aelia] [bot] planning path to (1368,1894) in background
+[00:23:57.574] INFO  [mk3_Aelia] [bot] replan to (1368,1894): 31 steps in 20492.9us
+[00:23:59.301] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:24:00.423] INFO  [mk3_Aelia] [chat ascii] System: Faustus has departed from Britain.
+[00:24:01.868] INFO  [mk3_Aelia] [chat ascii] System: Hector has departed from Bank of Britannia - Trinsic Branch.
+[00:24:02.609] INFO  [mk3_Aelia] [chat ascii] System: Titus has departed from Magincia.
+[00:24:04.310] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:24:07.794] INFO  [mk3_Aelia] [bot] arrived at (1368,1894,0)
+[00:24:07.794] INFO  [mk3_Aelia] [action] goto finished at (1368,1894,0); target (1368,1894); ARRIVED (off by 0 tile(s))
+[00:24:07.794] LOG   [mk3_Aelia] event goto_done: at=(1368,1894) target=(1368,1894) arrived=1 off=0
+[00:24:07.794] INFO  [mk3_Aelia] [action] goto (1368,1928) from (1368,1894,0)
+[00:24:07.794] LOG   [mk3_Aelia] event goto_start: target=(1368,1928) from=(1368,1894)
+[00:24:07.794] INFO  [mk3_Aelia] [bot] running from (1368,1894,0) to (1368,1928)
+[00:24:07.794] INFO  [mk3_Aelia] [bot] planning path to (1368,1928) in background
+[00:24:07.840] INFO  [mk3_Aelia] [chat ascii] System: Aurelius has departed from Ocllo.
+[00:24:07.840] INFO  [mk3_Aelia] [bot] replan to (1368,1928): 34 steps in 14004.7us
+[00:24:09.319] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:24:10.180] INFO  [mk3_Aelia] [chat ascii] System: Serena has departed from Britain.
+[00:24:14.324] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:24:19.340] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:24:19.417] INFO  [mk3_Aelia] [bot] arrived at (1368,1928,0)
+[00:24:19.417] INFO  [mk3_Aelia] [action] goto finished at (1368,1928,0); target (1368,1928); ARRIVED (off by 0 tile(s))
+[00:24:19.417] LOG   [mk3_Aelia] event goto_done: at=(1368,1928) target=(1368,1928) arrived=1 off=0
+[00:24:19.417] INFO  [mk3_Aelia] [action] goto (1368,1960) from (1368,1928,0)
+[00:24:19.417] LOG   [mk3_Aelia] event goto_start: target=(1368,1960) from=(1368,1928)
+[00:24:19.417] INFO  [mk3_Aelia] [bot] running from (1368,1928,0) to (1368,1960)
+[00:24:19.417] INFO  [mk3_Aelia] [bot] planning path to (1368,1960) in background
+[00:24:19.480] INFO  [mk3_Aelia] [bot] replan to (1368,1960): 39 steps in 17590.8us
+[00:24:24.367] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:24:29.403] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:24:33.785] INFO  [mk3_Aelia] [bot] arrived at (1368,1960,0)
+[00:24:33.786] INFO  [mk3_Aelia] [action] goto finished at (1368,1960,0); target (1368,1960); ARRIVED (off by 0 tile(s))
+[00:24:33.786] LOG   [mk3_Aelia] event goto_done: at=(1368,1960) target=(1368,1960) arrived=1 off=0
+[00:24:33.786] INFO  [mk3_Aelia] [action] goto (1336,1992) from (1368,1960,0)
+[00:24:33.786] LOG   [mk3_Aelia] event goto_start: target=(1336,1992) from=(1368,1960)
+[00:24:33.786] INFO  [mk3_Aelia] [bot] running from (1368,1960,0) to (1336,1992)
+[00:24:33.786] INFO  [mk3_Aelia] [bot] planning path to (1336,1992) in background
+[00:24:33.848] INFO  [mk3_Aelia] [bot] replan to (1336,1992): 43 steps in 38496.5us
+[00:24:34.446] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:24:39.469] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:24:40.592] INFO  [mk3_Aelia] [chat ascii] Kitaki: *Kitaki is attacking Delras!*
+[00:24:42.578] INFO  [mk3_Aelia] [chat ascii] System: Lyra has departed from Moonglow.
+[00:24:43.858] INFO  [mk3_Aelia] [chat ascii] Kitaki: *Kitaki is attacking you!*
+[00:24:44.259] INFO  [mk3_Aelia] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=10 in 286.4us
+[00:24:44.505] INFO  [mk3_Aelia] [survival] hp 24/24 (100%) -> fight
+[00:24:46.411] INFO  [mk3_Aelia] [war] leaving war mode
+[00:24:46.519] LOG   [mk3_Aelia] event threat: HP 24 -> 19
+[00:24:46.519] INFO  [mk3_Aelia] [action] goto finished at (1340,1991,0); target (1336,1992); stopped short (off by 5 tile(s))
+[00:24:46.519] LOG   [mk3_Aelia] event goto_done: at=(1340,1991) target=(1336,1992) arrived=0 off=5
+[00:24:47.735] INFO  [mk3_Aelia] [action] goto (1336,1992) from (1340,1991,0)
+[00:24:47.735] LOG   [mk3_Aelia] event goto_start: target=(1336,1992) from=(1340,1991)
+[00:24:47.735] INFO  [mk3_Aelia] [bot] running from (1340,1991,0) to (1336,1992)
+[00:24:47.735] INFO  [mk3_Aelia] [bot] planning path to (1336,1992) in background
+[00:24:47.797] INFO  [mk3_Aelia] [bot] replan to (1336,1992): 4 steps in 321.3us
+[00:24:48.955] INFO  [mk3_Aelia] [bot] arrived at (1336,1992,0)
+[00:24:48.955] INFO  [mk3_Aelia] [action] goto finished at (1336,1992,0); target (1336,1992); ARRIVED (off by 0 tile(s))
+[00:24:48.955] LOG   [mk3_Aelia] event goto_done: at=(1336,1992) target=(1336,1992) arrived=1 off=0
+[00:24:48.955] INFO  [mk3_Aelia] [action] goto (1336,1997) from (1336,1992,0)
+[00:24:48.955] LOG   [mk3_Aelia] event goto_start: target=(1336,1997) from=(1336,1992)
+[00:24:48.955] INFO  [mk3_Aelia] [bot] running from (1336,1992,0) to (1336,1997)
+[00:24:48.955] INFO  [mk3_Aelia] [bot] planning path to (1336,1997) in background
+[00:24:49.017] INFO  [mk3_Aelia] [bot] replan to (1336,1997): 5 steps in 224.2us
+[00:24:49.555] INFO  [mk3_Aelia] [survival] hp 19/24 (79%) -> fight
+[00:24:49.602] INFO  [mk3_Aelia] [war] leaving war mode
+[00:24:49.664] LOG   [mk3_Aelia] event threat: HP 19 -> 14
+[00:24:49.664] INFO  [mk3_Aelia] [action] goto finished at (1336,1994,0); target (1336,1997); stopped short (off by 3 tile(s))
+[00:24:49.664] LOG   [mk3_Aelia] event goto_done: at=(1336,1994) target=(1336,1997) arrived=0 off=3
+[00:24:49.664] INFO  [mk3_Aelia] [travel] using moongate 0x400028A0 for 'Jhelom' (gump active=0 serial=0x00000000)
+[00:24:49.664] INFO  [mk3_Aelia] [survival] hp 14/24 (58%) -> drink_potion
+[00:24:49.664] LOG   [mk3_Aelia] event survival_potion: 
+[00:24:49.664] INFO  [mk3_Aelia] [ACTION] use_object start
+[00:24:49.664] INFO  [mk3_Aelia] [ACTION] use_object serial=0x400182DF
+[00:24:49.664] INFO  [mk3_Aelia] [chat ascii] System: You can't reach that.
+[00:24:49.664] LOG   [mk3_Aelia] event action_result: use_object rejected took=0ms You can't reach that.
+[00:24:50.926] INFO  [mk3_Aelia] [war] leaving war mode
+[00:24:51.715] INFO  [mk3_Aelia] [survival] hp 19/24 (79%) -> fight
+[00:24:56.214] INFO  [mk3_Aelia] [war] leaving war mode
+[00:24:56.290] INFO  [mk3_Aelia] [survival] hp 14/24 (58%) -> drink_potion
+[00:24:56.290] LOG   [mk3_Aelia] event survival_potion: 
+[00:24:56.290] INFO  [mk3_Aelia] [ACTION] use_object start
+[00:24:56.290] INFO  [mk3_Aelia] [ACTION] use_object serial=0x400182DF
+[00:24:56.290] INFO  [mk3_Aelia] [chat ascii] System: You can't drink another potion yet
+[00:24:58.305] INFO  [mk3_Aelia] [survival] hp 15/24 (62%) -> fight
+[00:24:58.336] INFO  [mk3_Aelia] [war] leaving war mode
+[00:24:58.336] INFO  [mk3_Aelia] [survival] hp 11/24 (45%) -> drink_potion
+[00:24:58.336] LOG   [mk3_Aelia] event survival_potion: 
+[00:24:58.336] LOG   [mk3_Aelia] event action_result: use_object invalid_state took=2046ms superseded
+[00:24:58.336] INFO  [mk3_Aelia] [ACTION] use_object start
+[00:24:58.336] INFO  [mk3_Aelia] [ACTION] use_object serial=0x400182DF
+[00:24:58.351] INFO  [mk3_Aelia] [chat ascii] System: You can't drink another potion yet
+[00:24:59.274] INFO  [mk3_Aelia] [travel] using moongate 0x400028A0 for 'Jhelom' (gump active=0 serial=0x00000000)
+[00:24:59.274] INFO  [mk3_Aelia] [chat ascii] System: You can't reach that.
+[00:24:59.274] LOG   [mk3_Aelia] event action_result: use_object rejected took=939ms You can't reach that.
+[00:24:59.382] INFO  [mk3_Aelia] [war] leaving war mode
+[00:25:00.382] LOG   [mk3_Aelia] event survival_potion: 
+[00:25:00.382] INFO  [mk3_Aelia] [ACTION] use_object start
+[00:25:00.382] INFO  [mk3_Aelia] [ACTION] use_object serial=0x400182DF
+[00:25:00.382] INFO  [mk3_Aelia] [chat ascii] System: You can't drink another potion yet
+[00:25:00.428] INFO  [mk3_Aelia] [war] leaving war mode
+[00:25:01.644] INFO  [life] wind-down: the trip has run past its deadline (151s, not moving); abandoning it and logging out where I stand
+[00:25:01.644] INFO  [mk3_Aelia] [travel] Jhelom tinker FAILED at (1336,1994,0) -- wind-down deadline
+[00:25:01.644] LOG   [mk3_Aelia] event travel_failed: label='Jhelom tinker' ok=0 at=(1336,1994) legs=15 plans=1 why='wind-down deadline'
+[00:25:01.706] INFO  [life] wind-down: giving up on reaching a safe spot after 0 attempt(s); logging out at 1336,1994 and recording it
+[00:25:01.706] INFO  [life] session_summary duration=331s goals=0/4 gold=10000->9880 skills=100.0->100.0 logs=+0 kills=0 deaths=0 places=1 suppliers=0
+[00:25:01.706] INFO  [life] session_goals families=2 picks=4 top=75% varied=0 self_superseded=0 | upkeep=3(75%) training=1(25%) | REPLACE_EQUIPMENT=1(25%) BANK=1(25%) TRAIN_AT_NPC=1(25%) GET_FOOD=1(25%)
+[00:25:01.708] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_12.aelia/state.json
+[00:25:01.708] INFO  [life] logging out
+[00:25:01.708] INFO  [mk3_Aelia] [action] logout requested
+[00:25:01.708] LOG   [mk3_Aelia] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[00:25:01.708] INFO  [mk3_Aelia] [0xD1] logout acknowledged (accepted=1)
+[00:25:01.708] LOG   [mk3_Aelia] event logout_ack: accepted
+[00:25:01.708] INFO  [mk3_Aelia] [net] closing connection (logout acknowledged)
+[00:25:01.708] LOG   [mk3_Aelia] event logout_complete: acked

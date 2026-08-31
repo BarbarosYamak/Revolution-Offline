@@ -1,0 +1,723 @@
+[00:20:03.787] INFO  session 0: 127.0.0.1:2593 user='RevGen3_23' char=Leander tag='mk3_Leander'
+[00:20:03.789] LOG   [mk3_Leander] event session_start: text log opened
+[00:20:03.789] LOG   [mk3_Leander] event net_connect_begin: connect 127.0.0.1:2593
+[00:20:03.789] INFO  [mk3_Leander] [net] connecting to 127.0.0.1:2593 ...
+[00:20:03.790] LOG   [mk3_Leander] event net_connected: connect 127.0.0.1:2593
+[00:20:03.790] INFO  [mk3_Leander] [net] connected.
+[00:20:03.790] INFO  [mk3_Leander] [seed] sent 0x7F000001 (plaintext)
+[00:20:03.790] LOG   [mk3_Leander] event seed_out: 0x7F000001 hex=7f000001
+[00:20:03.791] INFO  [life] no prior state for revgen3_23.leander: a new Pure Mage
+[00:20:03.791] INFO  [life] creation request: Magery 50.0 + Meditation 50.0, stats 20/12/48 = 80
+[00:20:03.791] INFO  [life] needs: reading 'mage' from the profession catalogue
+[00:20:03.791] INFO  [life] home: Leander lives in Moonglow
+[00:20:03.791] INFO  [life] build plan 'mage': 300.0 resolved + 400.0 unresolved = 700.0/700.0, stats 25/25/100 = 150
+[00:20:03.791] INFO  [mk3_Leander] [life] autonomous player active for 'Leander' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 3 min)
+[00:20:03.834] INFO  [mk3_Leander] [0xA8] 1 server(s):
+[00:20:03.834] INFO  [mk3_Leander]   [0] MyShard                   1.0.0.127  full=8%  tz=0
+[00:20:03.849] INFO  [mk3_Leander] [0x8C] game server = 127.0.0.1:2593  seed=0xB61071DC
+[00:20:03.849] LOG   [mk3_Leander] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xB61071DC
+[00:20:03.850] INFO  [mk3_Leander] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[00:20:03.850] LOG   [mk3_Leander] event relay_same_socket: no seed re-sent; 0x91 follows
+[00:20:03.850] INFO  [mk3_Leander] [0xB9] server features = 0x0005
+[00:20:03.850] INFO  [mk3_Leander] [0xA9] 5 slot(s) (populated 0):
+[00:20:03.850] INFO  [mk3_Leander]   [0] <empty>
+[00:20:03.850] INFO  [mk3_Leander]   [1] <empty>
+[00:20:03.850] INFO  [mk3_Leander]   [2] <empty>
+[00:20:03.850] INFO  [mk3_Leander]   [3] <empty>
+[00:20:03.850] INFO  [mk3_Leander]   [4] <empty>
+[00:20:03.850] INFO  [mk3_Leander] create: appearance sex=F skin=0x0404 hair=0x2047/0x046E shirt=0x023E pants=0x01EA
+[00:20:03.850] INFO  [mk3_Leander] [0x00] starting city index 3
+[00:20:03.850] INFO  [mk3_Leander] [0x00] requested skills 25:50 46:50 16:0
+[00:20:03.850] INFO  [mk3_Leander] [0x00] requested stats STR 20 DEX 12 INT 48
+[00:20:03.850] INFO  [mk3_Leander] [0x00] creating character 'Leander' in slot 0
+[00:20:03.850] LOG   [mk3_Leander] event char_create_sent: Leander
+[00:20:03.869] INFO  [mk3_Leander] [0x1B] serial=0x0001921F body=0x0191 pos=(4408,1168,0)
+[00:20:03.869] LOG   [mk3_Leander] event login_confirm: serial=0x0001921F body=0x0191 pos=(4408,1168,0)
+[00:20:03.869] INFO  [mk3_Leander] [0x20] player @(4408,1168,0) facing=3
+[00:20:03.869] INFO  [mk3_Leander] [0x55] login complete — entering world
+[00:20:03.869] LOG   [mk3_Leander] event in_world: 0x55 received
+[00:20:03.869] INFO  [mk3_Leander] [backpack] opening 0x4001921D
+[00:20:03.869] INFO  [mk3_Leander] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[00:20:03.869] INFO  [mk3_Leander] [chat ascii] System: There are 22 other players here.
+[00:20:03.869] INFO  [mk3_Leander] [chat ascii] System: You are under the protection of the town guards
+[00:20:03.874] INFO  [mk3_Leander] [action] requesting the skill list
+[00:20:03.875] INFO  [life] in world; asked the server for the skill list
+[00:20:03.880] INFO  [mk3_Leander] [0x24] open container 0x4001921D gump=60
+[00:20:03.880] INFO  [mk3_Leander] [0x3C] container contents: 8 item(s)
+[00:20:03.880] LOG   [mk3_Leander] event backpack_contents: serial=0x4001921D items=8
+[00:20:06.492] INFO  [mk3_Leander] [bot] world data loaded (0 blacklisted spot(s)).
+[00:20:06.492] INFO  [life] reconciliation: first ever login, 7 field(s) differed
+[00:20:06.492] INFO  [life]   gold         persisted=0          server=10000      -> server value accepted
+[00:20:06.492] INFO  [life]   str          persisted=0          server=20         -> server value accepted
+[00:20:06.492] INFO  [life]   dex          persisted=0          server=12         -> server value accepted
+[00:20:06.492] INFO  [life]   int          persisted=0          server=48         -> server value accepted
+[00:20:06.492] INFO  [life]   skill_25     persisted=0.0        server=50.0       -> server value accepted
+[00:20:06.492] INFO  [life]   skill_46     persisted=0.0        server=50.0       -> server value accepted
+[00:20:06.492] INFO  [life]   skill_16     persisted=0.0        server=0.0        -> server value accepted
+[00:20:06.492] INFO  [life]   position     persisted=0,0        server=4408,1168  -> server value accepted
+[00:20:06.492] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[00:20:06.492] INFO  [mk3_Leander] [survival] on
+[00:20:06.492] LOG   [mk3_Leander] event survival_mode: on
+[00:20:06.494] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_23.leander/state.json
+[00:20:06.494] INFO  [mk3_Leander] [survival] hp 20/20 (100%) -> fight
+[00:20:06.546] INFO  [life] goal=BANK reason="no goal was running"
+[00:20:06.546] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedTrade(buy from a player 0.55) NeedSkillTraining(Evaluating Intelligence 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Evaluating Intelligence 0.45) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Evaluating Intelligence (target 100.0)
+[00:20:06.546] INFO  [life]   score=150.0
+[00:20:06.546] INFO  [life]   reason: NeedBank urgency 0.75 x 240 = 180.0
+[00:20:06.546] INFO  [life]   reason: on_hand=10000 (total 10000) reserve=800 carry=1300 spare=8700 risk=1.00
+[00:20:06.546] INFO  [life]   reason: no bank learned yet -30
+[00:20:06.546] INFO  [mk3_Leander] [action] scanning nearby mobiles for names
+[00:20:06.547] INFO  [mk3_Leander] [action] requested 2 paperdoll(s) for trade titles
+[00:20:06.547] INFO  [life] bank: asking who is standing in the bank
+[00:20:06.562] INFO  [mk3_Leander] [mobiles] nearby (5):
+[00:20:06.562] INFO  [mk3_Leander]   Aurelius 0x00019331
+[00:20:06.562] INFO  [mk3_Leander]   Conway 0x0000A0B0
+[00:20:06.562] INFO  [mk3_Leander]   Cat 0x00014F8B
+[00:20:06.562] INFO  [mk3_Leander]   Cat 0x0000D101
+[00:20:06.562] INFO  [mk3_Leander]   Cat 0x0001615E
+[00:20:06.562] INFO  [mk3_Leander] [0x20] player @(4408,1168,0) facing=6
+[00:20:06.562] INFO  [mk3_Leander] [0x88] paperdoll 0x0000A0B0: "Conway, the innkeeper"
+[00:20:06.562] INFO  [mk3_Leander] [world] Conway, the innkeeper is a innkeeper at (4400,1165)
+[00:20:06.562] INFO  [mk3_Leander] [0x88] paperdoll 0x00019331: "Aurelius, Apprentice Stoic"
+[00:20:06.980] INFO  [mk3_Leander] [chat ascii] System: Illyria has arrived in Britain.
+[00:20:08.574] INFO  [life] bank: no banker in sight
+[00:20:08.575] INFO  [life] goal_failed=BANK status=retryable_failure reason="no banker in sight"
+[00:20:08.637] INFO  [life] goal=REPLACE_EQUIPMENT reason="previous goal abandoned: no banker answered"
+[00:20:08.637] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedTrade(buy from a player 0.55) NeedSkillTraining(Evaluating Intelligence 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Evaluating Intelligence 0.45) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Evaluating Intelligence (target 100.0)
+[00:20:08.637] INFO  [life]   score=130.0
+[00:20:08.637] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:20:08.637] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:20:08.637] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 299s after achieving nothing
+[00:20:10.022] INFO  [mk3_Leander] [chat ascii] System: Hector has arrived in Trinsic.
+[00:20:11.537] INFO  [mk3_Leander] [survival] hp 20/20 (100%) -> fight
+[00:20:13.077] INFO  [mk3_Leander] [chat ascii] System: Castor has arrived in Trinsic.
+[00:20:13.610] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:20:13.610] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 8
+[00:20:13.619] INFO  [mk3_Leander] [travel] place: skipping Wind healer -- 1596 tiles and 2 gates for a service Moonglow Healer healer offers
+[00:20:13.619] INFO  [mk3_Leander] [travel] Moonglow Healer healer -> (4394,1083) r=5 from (4408,1168)
+[00:20:13.619] LOG   [mk3_Leander] event travel_start: label='Moonglow Healer healer' target=(4394,1083) radius=5 from=(4408,1168)
+[00:20:13.619] INFO  [life] potions: walking to a 'healer' (trip 1)
+[00:20:13.619] INFO  [mk3_Leander] [travel] mode moongate         usable   <- chosen
+[00:20:13.619] INFO  [mk3_Leander] [travel] mode walk             usable
+[00:20:13.619] INFO  [mk3_Leander] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:13.619] INFO  [mk3_Leander] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:13.619] LOG   [mk3_Leander] event travel_mode: moongate
+[00:20:13.619] INFO  [mk3_Leander] [travel] plan Moonglow Healer healer: ok legs=3 ~152 tiles transit=0 nodes=54
+[00:20:13.620] INFO  [mk3_Leander] [travel] avoiding 4 teleporter pad(s) on this leg
+[00:20:13.620] INFO  [mk3_Leander] [action] goto (4424,1128) from (4408,1168,0)
+[00:20:13.620] LOG   [mk3_Leander] event goto_start: target=(4424,1128) from=(4408,1168)
+[00:20:13.620] INFO  [mk3_Leander] [bot] running from (4408,1168,0) to (4424,1128)
+[00:20:13.620] INFO  [mk3_Leander] [bot] planning path to (4424,1128) in background
+[00:20:13.673] INFO  [mk3_Leander] [bot] replan to (4424,1128): 44 steps in 2682.3us
+[00:20:16.106] INFO  [mk3_Leander] [chat ascii] System: Faustus has arrived in Britain.
+[00:20:16.551] INFO  [mk3_Leander] [survival] hp 20/20 (100%) -> fight
+[00:20:19.161] INFO  [mk3_Leander] [chat ascii] System: Titus has arrived in Skara Brae.
+[00:20:21.557] INFO  [mk3_Leander] [survival] hp 20/20 (100%) -> fight
+[00:20:22.309] INFO  [mk3_Leander] [chat ascii] System: Rhea has arrived in Britain.
+[00:20:25.377] INFO  [mk3_Leander] [chat ascii] System: Xerxes has arrived in Vesper.
+[00:20:25.833] INFO  [mk3_Leander] [bot] arrived at (4424,1128,0)
+[00:20:25.834] INFO  [mk3_Leander] [action] goto finished at (4424,1128,0); target (4424,1128); ARRIVED (off by 0 tile(s))
+[00:20:25.834] LOG   [mk3_Leander] event goto_done: at=(4424,1128) target=(4424,1128) arrived=1 off=0
+[00:20:25.834] INFO  [mk3_Leander] [travel] avoiding 4 teleporter pad(s) on this leg
+[00:20:25.834] INFO  [mk3_Leander] [action] goto (4408,1096) from (4424,1128,0)
+[00:20:25.834] LOG   [mk3_Leander] event goto_start: target=(4408,1096) from=(4424,1128)
+[00:20:25.834] INFO  [mk3_Leander] [bot] running from (4424,1128,0) to (4408,1096)
+[00:20:25.834] INFO  [mk3_Leander] [bot] planning path to (4408,1096) in background
+[00:20:25.894] INFO  [mk3_Leander] [bot] replan to (4408,1096): 45 steps in 8496.1us
+[00:20:26.581] INFO  [mk3_Leander] [survival] hp 20/20 (100%) -> fight
+[00:20:31.593] INFO  [mk3_Leander] [survival] hp 20/20 (100%) -> fight
+[00:20:36.635] INFO  [mk3_Leander] [survival] hp 20/20 (100%) -> fight
+[00:20:38.486] INFO  [mk3_Leander] [bot] arrived at (4408,1096,0)
+[00:20:38.487] INFO  [mk3_Leander] [action] goto finished at (4408,1096,0); target (4408,1096); ARRIVED (off by 0 tile(s))
+[00:20:38.487] LOG   [mk3_Leander] event goto_done: at=(4408,1096) target=(4408,1096) arrived=1 off=0
+[00:20:38.487] INFO  [mk3_Leander] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:20:38.487] INFO  [mk3_Leander] [action] goto (4394,1083) from (4408,1096,0)
+[00:20:38.487] LOG   [mk3_Leander] event goto_start: target=(4394,1083) from=(4408,1096)
+[00:20:38.487] INFO  [mk3_Leander] [bot] running from (4408,1096,0) to (4394,1083,z0)
+[00:20:38.487] INFO  [mk3_Leander] [bot] planning path to (4394,1083) in background
+[00:20:40.768] INFO  [mk3_Leander] [action] goto finished at (4408,1096,0); target (4394,1083); stopped short (off by 27 tile(s))
+[00:20:40.768] LOG   [mk3_Leander] event goto_done: at=(4408,1096) target=(4394,1083) arrived=0 off=27
+[00:20:41.662] INFO  [mk3_Leander] [survival] hp 20/20 (100%) -> fight
+[00:20:41.998] INFO  [mk3_Leander] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:20:41.998] INFO  [mk3_Leander] [action] goto (4394,1083) from (4408,1096,0)
+[00:20:41.998] LOG   [mk3_Leander] event goto_start: target=(4394,1083) from=(4408,1096)
+[00:20:41.998] INFO  [mk3_Leander] [bot] running from (4408,1096,0) to (4394,1083,z0)
+[00:20:41.998] INFO  [mk3_Leander] [bot] planning path to (4394,1083) in background
+[00:20:44.385] INFO  [mk3_Leander] [action] goto finished at (4408,1096,0); target (4394,1083); stopped short (off by 27 tile(s))
+[00:20:44.385] LOG   [mk3_Leander] event goto_done: at=(4408,1096) target=(4394,1083) arrived=0 off=27
+[00:20:45.599] INFO  [mk3_Leander] [travel] mode walk             usable   <- chosen
+[00:20:45.599] INFO  [mk3_Leander] [travel] mode moongate         usable
+[00:20:45.599] INFO  [mk3_Leander] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:45.599] INFO  [mk3_Leander] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:45.599] LOG   [mk3_Leander] event travel_mode: walk
+[00:20:45.599] INFO  [mk3_Leander] [travel] plan Moonglow Healer healer: ok legs=1 ~14 tiles transit=0 nodes=0
+[00:20:46.720] INFO  [mk3_Leander] [survival] hp 20/20 (100%) -> fight
+[00:20:47.150] INFO  [mk3_Leander] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:20:47.150] INFO  [mk3_Leander] [action] goto (4394,1083) from (4408,1096,0)
+[00:20:47.150] LOG   [mk3_Leander] event goto_start: target=(4394,1083) from=(4408,1096)
+[00:20:47.150] INFO  [mk3_Leander] [bot] running from (4408,1096,0) to (4394,1083,z0)
+[00:20:47.150] INFO  [mk3_Leander] [bot] planning path to (4394,1083) in background
+[00:20:49.478] INFO  [mk3_Leander] [action] goto finished at (4408,1096,0); target (4394,1083); stopped short (off by 27 tile(s))
+[00:20:49.478] LOG   [mk3_Leander] event goto_done: at=(4408,1096) target=(4394,1083) arrived=0 off=27
+[00:20:50.721] INFO  [mk3_Leander] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:20:50.721] INFO  [mk3_Leander] [action] goto (4394,1083) from (4408,1096,0)
+[00:20:50.721] LOG   [mk3_Leander] event goto_start: target=(4394,1083) from=(4408,1096)
+[00:20:50.721] INFO  [mk3_Leander] [bot] running from (4408,1096,0) to (4394,1083,z0)
+[00:20:50.721] INFO  [mk3_Leander] [bot] planning path to (4394,1083) in background
+[00:20:51.762] INFO  [mk3_Leander] [survival] hp 20/20 (100%) -> fight
+[00:20:52.834] INFO  [mk3_Leander] [action] goto finished at (4408,1096,0); target (4394,1083); stopped short (off by 27 tile(s))
+[00:20:52.834] LOG   [mk3_Leander] event goto_done: at=(4408,1096) target=(4394,1083) arrived=0 off=27
+[00:20:54.063] INFO  [mk3_Leander] [travel] mode walk             usable   <- chosen
+[00:20:54.064] INFO  [mk3_Leander] [travel] mode moongate         usable
+[00:20:54.064] INFO  [mk3_Leander] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:54.064] INFO  [mk3_Leander] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:54.064] LOG   [mk3_Leander] event travel_mode: walk
+[00:20:54.064] INFO  [mk3_Leander] [travel] plan Moonglow Healer healer: ok legs=1 ~14 tiles transit=0 nodes=0
+[00:20:56.771] INFO  [mk3_Leander] [survival] hp 20/20 (100%) -> fight
+[00:20:57.074] INFO  [mk3_Leander] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:20:57.074] INFO  [mk3_Leander] [action] goto (4394,1083) from (4408,1096,0)
+[00:20:57.074] LOG   [mk3_Leander] event goto_start: target=(4394,1083) from=(4408,1096)
+[00:20:57.074] INFO  [mk3_Leander] [bot] running from (4408,1096,0) to (4394,1083,z0)
+[00:20:57.074] INFO  [mk3_Leander] [bot] planning path to (4394,1083) in background
+[00:20:59.387] INFO  [mk3_Leander] [action] goto finished at (4408,1096,0); target (4394,1083); stopped short (off by 27 tile(s))
+[00:20:59.387] LOG   [mk3_Leander] event goto_done: at=(4408,1096) target=(4394,1083) arrived=0 off=27
+[00:21:00.634] INFO  [mk3_Leander] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:21:00.634] INFO  [mk3_Leander] [action] goto (4394,1083) from (4408,1096,0)
+[00:21:00.634] LOG   [mk3_Leander] event goto_start: target=(4394,1083) from=(4408,1096)
+[00:21:00.634] INFO  [mk3_Leander] [bot] running from (4408,1096,0) to (4394,1083,z0)
+[00:21:00.634] INFO  [mk3_Leander] [bot] planning path to (4394,1083) in background
+[00:21:01.828] INFO  [mk3_Leander] [survival] hp 20/20 (100%) -> fight
+[00:21:03.365] INFO  [mk3_Leander] [action] goto finished at (4408,1096,0); target (4394,1083); stopped short (off by 27 tile(s))
+[00:21:03.365] LOG   [mk3_Leander] event goto_done: at=(4408,1096) target=(4394,1083) arrived=0 off=27
+[00:21:04.623] INFO  [mk3_Leander] [travel] mode walk             usable   <- chosen
+[00:21:04.623] INFO  [mk3_Leander] [travel] mode moongate         usable
+[00:21:04.623] INFO  [mk3_Leander] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:04.623] INFO  [mk3_Leander] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:04.623] LOG   [mk3_Leander] event travel_mode: walk
+[00:21:04.623] INFO  [mk3_Leander] [travel] plan Moonglow Healer healer: ok legs=1 ~14 tiles transit=0 nodes=0
+[00:21:06.493] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_23.leander/state.json
+[00:21:06.857] INFO  [mk3_Leander] [survival] hp 20/20 (100%) -> fight
+[00:21:09.125] INFO  [mk3_Leander] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:21:09.125] INFO  [mk3_Leander] [action] goto (4394,1083) from (4408,1096,0)
+[00:21:09.125] LOG   [mk3_Leander] event goto_start: target=(4394,1083) from=(4408,1096)
+[00:21:09.125] INFO  [mk3_Leander] [bot] running from (4408,1096,0) to (4394,1083,z0)
+[00:21:09.125] INFO  [mk3_Leander] [bot] planning path to (4394,1083) in background
+[00:21:11.193] INFO  [mk3_Leander] [chat ascii] System: Observer has arrived in Minoc.
+[00:21:11.800] INFO  [mk3_Leander] [action] goto finished at (4408,1096,0); target (4394,1083); stopped short (off by 27 tile(s))
+[00:21:11.800] LOG   [mk3_Leander] event goto_done: at=(4408,1096) target=(4394,1083) arrived=0 off=27
+[00:21:11.909] INFO  [mk3_Leander] [survival] hp 20/20 (100%) -> fight
+[00:21:13.002] INFO  [mk3_Leander] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:21:13.002] INFO  [mk3_Leander] [action] goto (4394,1083) from (4408,1096,0)
+[00:21:13.002] LOG   [mk3_Leander] event goto_start: target=(4394,1083) from=(4408,1096)
+[00:21:13.002] INFO  [mk3_Leander] [bot] running from (4408,1096,0) to (4394,1083,z0)
+[00:21:13.002] INFO  [mk3_Leander] [bot] planning path to (4394,1083) in background
+[00:21:14.571] INFO  [mk3_Leander] [chat ascii] System: Observer has departed from Minoc.
+[00:21:15.507] INFO  [mk3_Leander] [action] scanning nearby mobiles for names
+[00:21:15.507] INFO  [mk3_Leander] [action] requested 6 paperdoll(s) for trade titles
+[00:21:15.507] INFO  [life] potions: at the shop, asking who is here (scan 1 of 3)
+[00:21:15.524] INFO  [mk3_Leander] [mobiles] nearby (14):
+[00:21:15.524] INFO  [mk3_Leander]   Benton 0x0000957B
+[00:21:15.524] INFO  [mk3_Leander]   Aurelius 0x00019331
+[00:21:15.524] INFO  [mk3_Leander]   Thalia 0x0000C45C
+[00:21:15.524] INFO  [mk3_Leander]   Xanthe 0x000095BA
+[00:21:15.524] INFO  [mk3_Leander]   Anke 0x0000952D
+[00:21:15.524] INFO  [mk3_Leander]   Earl 0x00004C3E
+[00:21:15.524] INFO  [mk3_Leander]   Dog 0x0001155B
+[00:21:15.524] INFO  [mk3_Leander]   Nantan 0x0000956C
+[00:21:15.524] INFO  [mk3_Leander]   Dog 0x0000D299
+[00:21:15.524] INFO  [mk3_Leander]   Rat 0x0001798E
+[00:21:15.524] INFO  [mk3_Leander]   Pandita 0x00004C59
+[00:21:15.524] INFO  [mk3_Leander]   Nuthatch 0x000178D0
+[00:21:15.524] INFO  [mk3_Leander]   Ayuna 0x00009833
+[00:21:15.524] INFO  [mk3_Leander]   Lyra 0x0000C990
+[00:21:15.524] INFO  [mk3_Leander] [0x20] player @(4408,1096,0) facing=4
+[00:21:15.524] INFO  [mk3_Leander] [0x88] paperdoll 0x00004C3E: "Earl, the herbalist"
+[00:21:15.524] INFO  [mk3_Leander] [0x20] player @(4408,1096,0) facing=1
+[00:21:15.524] INFO  [mk3_Leander] [0x88] paperdoll 0x0000952D: "Anke, the carpenter"
+[00:21:15.524] INFO  [mk3_Leander] [world] Anke, the carpenter is a carpenter at (4417,1083)
+[00:21:15.524] INFO  [mk3_Leander] [0x88] paperdoll 0x0000957B: "Benton, the architect"
+[00:21:15.524] INFO  [mk3_Leander] [0x88] paperdoll 0x0000956C: "Nantan, the architect"
+[00:21:15.524] INFO  [mk3_Leander] [0x20] player @(4408,1096,0) facing=7
+[00:21:15.524] INFO  [mk3_Leander] [0x88] paperdoll 0x0000C45C: "Thalia, Apprentice Mage"
+[00:21:15.524] INFO  [mk3_Leander] [0x88] paperdoll 0x000095BA: "Xanthe, the healer guildmistress"
+[00:21:15.524] INFO  [mk3_Leander] [world] Xanthe, the healer guildmistress is a healer at (4398,1085)
+[00:21:16.952] INFO  [mk3_Leander] [survival] hp 20/20 (100%) -> fight
+[00:21:18.529] INFO  [mk3_Leander] [action] scanning nearby mobiles for names
+[00:21:18.529] INFO  [life] potions: at the shop, asking who is here (scan 2 of 3)
+[00:21:18.544] INFO  [mk3_Leander] [mobiles] nearby (14):
+[00:21:18.544] INFO  [mk3_Leander]   Benton 0x0000957B
+[00:21:18.545] INFO  [mk3_Leander]   Aurelius 0x00019331
+[00:21:18.545] INFO  [mk3_Leander]   Thalia 0x0000C45C
+[00:21:18.545] INFO  [mk3_Leander]   Xanthe 0x000095BA
+[00:21:18.545] INFO  [mk3_Leander]   Anke 0x0000952D
+[00:21:18.545] INFO  [mk3_Leander]   Earl 0x00004C3E
+[00:21:18.545] INFO  [mk3_Leander]   Dog 0x0001155B
+[00:21:18.545] INFO  [mk3_Leander]   Dog 0x0000D299
+[00:21:18.545] INFO  [mk3_Leander]   Nantan 0x0000956C
+[00:21:18.545] INFO  [mk3_Leander]   Rat 0x0001798E
+[00:21:18.545] INFO  [mk3_Leander]   Pandita 0x00004C59
+[00:21:18.545] INFO  [mk3_Leander]   Nuthatch 0x000178D0
+[00:21:18.545] INFO  [mk3_Leander]   Ayuna 0x00009833
+[00:21:18.545] INFO  [mk3_Leander]   Lyra 0x0000C990
+[00:21:21.550] INFO  [mk3_Leander] [action] scanning nearby mobiles for names
+[00:21:21.550] INFO  [life] potions: at the shop, asking who is here (scan 3 of 3)
+[00:21:21.550] INFO  [mk3_Leander] [mobiles] nearby (14):
+[00:21:21.550] INFO  [mk3_Leander]   Benton 0x0000957B
+[00:21:21.551] INFO  [mk3_Leander]   Xanthe 0x000095BA
+[00:21:21.551] INFO  [mk3_Leander]   Aurelius 0x00019331
+[00:21:21.551] INFO  [mk3_Leander]   Thalia 0x0000C45C
+[00:21:21.551] INFO  [mk3_Leander]   Anke 0x0000952D
+[00:21:21.551] INFO  [mk3_Leander]   Dog 0x0001155B
+[00:21:21.551] INFO  [mk3_Leander]   Nantan 0x0000956C
+[00:21:21.551] INFO  [mk3_Leander]   Dog 0x0000D299
+[00:21:21.551] INFO  [mk3_Leander]   Rat 0x0001798E
+[00:21:21.551] INFO  [mk3_Leander]   Pandita 0x00004C59
+[00:21:21.551] INFO  [mk3_Leander]   Earl 0x00004C3E
+[00:21:21.551] INFO  [mk3_Leander]   Nuthatch 0x000178D0
+[00:21:21.551] INFO  [mk3_Leander]   Ayuna 0x00009833
+[00:21:21.551] INFO  [mk3_Leander]   Lyra 0x0000C990
+[00:21:21.981] INFO  [mk3_Leander] [survival] hp 20/20 (100%) -> fight
+[00:21:24.596] INFO  [mk3_Leander] [travel] healer (seen) -> (4398,1085) r=2 from (4408,1096)
+[00:21:24.596] LOG   [mk3_Leander] event travel_start: label='healer (seen)' target=(4398,1085) radius=2 from=(4408,1096)
+[00:21:24.596] INFO  [life] potions: walking to a 'healer' (trip 2)
+[00:21:24.596] INFO  [mk3_Leander] [travel] mode walk             usable   <- chosen
+[00:21:24.596] INFO  [mk3_Leander] [travel] mode moongate         usable
+[00:21:24.596] INFO  [mk3_Leander] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:24.596] INFO  [mk3_Leander] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:24.596] LOG   [mk3_Leander] event travel_mode: walk
+[00:21:24.596] INFO  [mk3_Leander] [travel] plan healer (seen): ok legs=1 ~11 tiles transit=0 nodes=0
+[00:21:24.658] INFO  [mk3_Leander] [action] goto finished at (4408,1096,0); target (4394,1083); stopped short (off by 27 tile(s))
+[00:21:24.658] LOG   [mk3_Leander] event goto_done: at=(4408,1096) target=(4394,1083) arrived=0 off=27
+[00:21:24.658] INFO  [mk3_Leander] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:21:24.658] INFO  [mk3_Leander] [action] goto (4398,1085) from (4408,1096,0)
+[00:21:24.658] LOG   [mk3_Leander] event goto_start: target=(4398,1085) from=(4408,1096)
+[00:21:24.658] INFO  [mk3_Leander] [bot] running from (4408,1096,0) to (4398,1085,z0)
+[00:21:24.658] INFO  [mk3_Leander] [bot] planning path to (4398,1085) in background
+[00:21:26.289] INFO  [mk3_Leander] [action] goto finished at (4408,1096,0); target (4398,1085); stopped short (off by 21 tile(s))
+[00:21:26.289] LOG   [mk3_Leander] event goto_done: at=(4408,1096) target=(4398,1085) arrived=0 off=21
+[00:21:26.734] INFO  [mk3_Leander] [travel] mode walk             usable   <- chosen
+[00:21:26.734] INFO  [mk3_Leander] [travel] mode moongate         usable
+[00:21:26.734] INFO  [mk3_Leander] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:26.734] INFO  [mk3_Leander] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:26.734] LOG   [mk3_Leander] event travel_mode: walk
+[00:21:26.734] INFO  [mk3_Leander] [travel] plan healer (seen): ok legs=1 ~13 tiles transit=0 nodes=0
+[00:21:26.796] INFO  [mk3_Leander] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:21:26.796] INFO  [mk3_Leander] [action] goto (4395,1085) from (4408,1096,0)
+[00:21:26.796] LOG   [mk3_Leander] event goto_start: target=(4395,1085) from=(4408,1096)
+[00:21:26.796] INFO  [mk3_Leander] [bot] running from (4408,1096,0) to (4395,1085,z0)
+[00:21:26.796] INFO  [mk3_Leander] [bot] planning path to (4395,1085) in background
+[00:21:27.011] INFO  [mk3_Leander] [survival] hp 20/20 (100%) -> fight
+[00:21:29.500] INFO  [mk3_Leander] [action] goto finished at (4408,1096,0); target (4395,1085); stopped short (off by 24 tile(s))
+[00:21:29.500] LOG   [mk3_Leander] event goto_done: at=(4408,1096) target=(4395,1085) arrived=0 off=24
+[00:21:29.975] INFO  [mk3_Leander] [travel] mode walk             usable   <- chosen
+[00:21:29.975] INFO  [mk3_Leander] [travel] mode moongate         usable
+[00:21:29.975] INFO  [mk3_Leander] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:29.975] INFO  [mk3_Leander] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:29.975] LOG   [mk3_Leander] event travel_mode: walk
+[00:21:29.975] INFO  [mk3_Leander] [travel] plan healer (seen): ok legs=1 ~14 tiles transit=0 nodes=0
+[00:21:30.036] INFO  [mk3_Leander] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:21:30.036] INFO  [mk3_Leander] [action] goto (4394,1082) from (4408,1096,0)
+[00:21:30.036] LOG   [mk3_Leander] event goto_start: target=(4394,1082) from=(4408,1096)
+[00:21:30.036] INFO  [mk3_Leander] [bot] running from (4408,1096,0) to (4394,1082,z0)
+[00:21:30.036] INFO  [mk3_Leander] [bot] planning path to (4394,1082) in background
+[00:21:32.063] INFO  [mk3_Leander] [survival] hp 20/20 (100%) -> fight
+[00:21:32.585] INFO  [mk3_Leander] [action] goto finished at (4408,1096,0); target (4394,1082); stopped short (off by 28 tile(s))
+[00:21:32.585] LOG   [mk3_Leander] event goto_done: at=(4408,1096) target=(4394,1082) arrived=0 off=28
+[00:21:33.797] INFO  [mk3_Leander] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:21:33.797] INFO  [mk3_Leander] [action] goto (4394,1082) from (4408,1096,0)
+[00:21:33.797] LOG   [mk3_Leander] event goto_start: target=(4394,1082) from=(4408,1096)
+[00:21:33.797] INFO  [mk3_Leander] [bot] running from (4408,1096,0) to (4394,1082,z0)
+[00:21:33.797] INFO  [mk3_Leander] [bot] planning path to (4394,1082) in background
+[00:21:35.933] INFO  [mk3_Leander] [travel] mode walk             usable   <- chosen
+[00:21:35.933] INFO  [mk3_Leander] [travel] mode moongate         usable
+[00:21:35.933] INFO  [mk3_Leander] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:35.933] INFO  [mk3_Leander] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:35.933] LOG   [mk3_Leander] event travel_mode: walk
+[00:21:35.933] INFO  [mk3_Leander] [travel] plan healer (seen): ok legs=1 ~14 tiles transit=0 nodes=0
+[00:21:35.950] INFO  [mk3_Leander] [action] goto finished at (4408,1096,0); target (4394,1082); stopped short (off by 28 tile(s))
+[00:21:35.950] LOG   [mk3_Leander] event goto_done: at=(4408,1096) target=(4394,1082) arrived=0 off=28
+[00:21:35.950] INFO  [mk3_Leander] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:21:35.950] INFO  [mk3_Leander] [action] goto (4394,1085) from (4408,1096,0)
+[00:21:35.950] LOG   [mk3_Leander] event goto_start: target=(4394,1085) from=(4408,1096)
+[00:21:35.950] INFO  [mk3_Leander] [bot] running from (4408,1096,0) to (4394,1085,z0)
+[00:21:35.950] INFO  [mk3_Leander] [bot] planning path to (4394,1085) in background
+[00:21:37.115] INFO  [mk3_Leander] [survival] hp 20/20 (100%) -> fight
+[00:21:37.899] INFO  [mk3_Leander] [action] goto finished at (4408,1096,0); target (4394,1085); stopped short (off by 25 tile(s))
+[00:21:37.899] LOG   [mk3_Leander] event goto_done: at=(4408,1096) target=(4394,1085) arrived=0 off=25
+[00:21:38.932] INFO  [mk3_Leander] [chat ascii] Ayuna: Well it was nice speaking to you Lyra but I must go about my business
+[00:21:39.115] INFO  [mk3_Leander] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:21:39.115] INFO  [mk3_Leander] [action] goto (4394,1085) from (4408,1096,0)
+[00:21:39.115] LOG   [mk3_Leander] event goto_start: target=(4394,1085) from=(4408,1096)
+[00:21:39.115] INFO  [mk3_Leander] [bot] running from (4408,1096,0) to (4394,1085,z0)
+[00:21:39.115] INFO  [mk3_Leander] [bot] planning path to (4394,1085) in background
+[00:21:41.149] INFO  [mk3_Leander] [action] goto finished at (4408,1096,0); target (4394,1085); stopped short (off by 25 tile(s))
+[00:21:41.149] LOG   [mk3_Leander] event goto_done: at=(4408,1096) target=(4394,1085) arrived=0 off=25
+[00:21:41.842] INFO  [mk3_Leander] [travel] mode walk             usable   <- chosen
+[00:21:41.842] INFO  [mk3_Leander] [travel] mode moongate         usable
+[00:21:41.842] INFO  [mk3_Leander] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:41.842] INFO  [mk3_Leander] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:41.842] LOG   [mk3_Leander] event travel_mode: walk
+[00:21:41.842] INFO  [mk3_Leander] [travel] plan healer (seen): ok legs=1 ~11 tiles transit=0 nodes=0
+[00:21:41.843] INFO  [mk3_Leander] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:21:41.843] INFO  [mk3_Leander] [action] goto (4397,1085) from (4408,1096,0)
+[00:21:41.843] LOG   [mk3_Leander] event goto_start: target=(4397,1085) from=(4408,1096)
+[00:21:41.843] INFO  [mk3_Leander] [bot] running from (4408,1096,0) to (4397,1085,z0)
+[00:21:41.843] INFO  [mk3_Leander] [bot] planning path to (4397,1085) in background
+[00:21:42.162] INFO  [mk3_Leander] [survival] hp 20/20 (100%) -> fight
+[00:21:44.582] INFO  [mk3_Leander] [chat uni  ] Aurelius: Ayuna buy
+[00:21:44.583] INFO  [mk3_Leander] [chat ascii] Ayuna: Greetings. What can I do for thee?
+[00:21:44.583] INFO  [mk3_Leander] [chat ascii] Ayuna: I got lots to sell!
+[00:21:44.583] INFO  [mk3_Leander] [action] goto finished at (4408,1096,0); target (4397,1085); stopped short (off by 22 tile(s))
+[00:21:44.583] LOG   [mk3_Leander] event goto_done: at=(4408,1096) target=(4397,1085) arrived=0 off=22
+[00:21:44.644] INFO  [mk3_Leander] [chat ascii] Ayuna: Here you are, Aurelius That will be 180 gold coins.  I thank thee for thy business.
+[00:21:45.823] INFO  [mk3_Leander] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:21:45.823] INFO  [mk3_Leander] [action] goto (4397,1085) from (4408,1096,0)
+[00:21:45.823] LOG   [mk3_Leander] event goto_start: target=(4397,1085) from=(4408,1096)
+[00:21:45.823] INFO  [mk3_Leander] [bot] running from (4408,1096,0) to (4397,1085,z0)
+[00:21:45.823] INFO  [mk3_Leander] [bot] planning path to (4397,1085) in background
+[00:21:47.163] INFO  [mk3_Leander] [survival] hp 20/20 (100%) -> fight
+[00:21:47.546] INFO  [mk3_Leander] [action] goto finished at (4408,1096,0); target (4397,1085); stopped short (off by 22 tile(s))
+[00:21:47.546] LOG   [mk3_Leander] event goto_done: at=(4408,1096) target=(4397,1085) arrived=0 off=22
+[00:21:48.764] INFO  [mk3_Leander] [travel] mode walk             usable   <- chosen
+[00:21:48.764] INFO  [mk3_Leander] [travel] mode moongate         usable
+[00:21:48.764] INFO  [mk3_Leander] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:48.764] INFO  [mk3_Leander] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:48.764] LOG   [mk3_Leander] event travel_mode: walk
+[00:21:48.764] INFO  [mk3_Leander] [travel] plan healer (seen): ok legs=1 ~11 tiles transit=0 nodes=0
+[00:21:50.272] INFO  [mk3_Leander] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:21:50.272] INFO  [mk3_Leander] [action] goto (4397,1085) from (4408,1096,0)
+[00:21:50.272] LOG   [mk3_Leander] event goto_start: target=(4397,1085) from=(4408,1096)
+[00:21:50.272] INFO  [mk3_Leander] [bot] running from (4408,1096,0) to (4397,1085,z0)
+[00:21:50.272] INFO  [mk3_Leander] [bot] planning path to (4397,1085) in background
+[00:21:52.213] INFO  [mk3_Leander] [survival] hp 20/20 (100%) -> fight
+[00:21:52.398] INFO  [mk3_Leander] [action] goto finished at (4408,1096,0); target (4397,1085); stopped short (off by 22 tile(s))
+[00:21:52.398] LOG   [mk3_Leander] event goto_done: at=(4408,1096) target=(4397,1085) arrived=0 off=22
+[00:21:53.616] INFO  [mk3_Leander] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:21:53.616] INFO  [mk3_Leander] [action] goto (4397,1085) from (4408,1096,0)
+[00:21:53.616] LOG   [mk3_Leander] event goto_start: target=(4397,1085) from=(4408,1096)
+[00:21:53.616] INFO  [mk3_Leander] [bot] running from (4408,1096,0) to (4397,1085,z0)
+[00:21:53.616] INFO  [mk3_Leander] [bot] planning path to (4397,1085) in background
+[00:21:55.893] INFO  [mk3_Leander] [action] goto finished at (4408,1096,0); target (4397,1085); stopped short (off by 22 tile(s))
+[00:21:55.893] LOG   [mk3_Leander] event goto_done: at=(4408,1096) target=(4397,1085) arrived=0 off=22
+[00:21:57.104] INFO  [mk3_Leander] [travel] mode walk             usable   <- chosen
+[00:21:57.104] INFO  [mk3_Leander] [travel] mode moongate         usable
+[00:21:57.104] INFO  [mk3_Leander] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:57.104] INFO  [mk3_Leander] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:57.104] LOG   [mk3_Leander] event travel_mode: walk
+[00:21:57.104] INFO  [mk3_Leander] [travel] plan healer (seen): ok legs=1 ~11 tiles transit=0 nodes=0
+[00:21:57.226] INFO  [mk3_Leander] [survival] hp 20/20 (100%) -> fight
+[00:21:58.644] INFO  [mk3_Leander] [chat ascii] System: Draver has departed from Minoc.
+[00:22:00.117] INFO  [mk3_Leander] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:22:00.117] INFO  [mk3_Leander] [action] goto (4397,1085) from (4408,1096,0)
+[00:22:00.117] LOG   [mk3_Leander] event goto_start: target=(4397,1085) from=(4408,1096)
+[00:22:00.117] INFO  [mk3_Leander] [bot] running from (4408,1096,0) to (4397,1085,z0)
+[00:22:00.117] INFO  [mk3_Leander] [bot] planning path to (4397,1085) in background
+[00:22:00.178] INFO  [mk3_Leander] [bot] replan to (4397,1085): 18 steps in 690.1us
+[00:22:02.287] INFO  [mk3_Leander] [survival] hp 20/20 (100%) -> fight
+[00:22:04.281] INFO  [mk3_Leander] [travel] mode walk             usable   <- chosen
+[00:22:04.281] INFO  [mk3_Leander] [travel] mode moongate         usable
+[00:22:04.281] INFO  [mk3_Leander] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:04.281] INFO  [mk3_Leander] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:04.281] LOG   [mk3_Leander] event travel_mode: walk
+[00:22:04.281] INFO  [mk3_Leander] [travel] plan healer (seen): ok legs=1 ~6 tiles transit=0 nodes=0
+[00:22:04.327] INFO  [mk3_Leander] [action] goto finished at (4400,1091,0); target (4397,1085); stopped short (off by 9 tile(s))
+[00:22:04.327] LOG   [mk3_Leander] event goto_done: at=(4400,1091) target=(4397,1085) arrived=0 off=9
+[00:22:04.327] INFO  [mk3_Leander] [action] goto (4394,1085) from (4400,1091,0)
+[00:22:04.327] LOG   [mk3_Leander] event goto_start: target=(4394,1085) from=(4400,1091)
+[00:22:04.327] INFO  [mk3_Leander] [bot] running from (4400,1091,0) to (4394,1085,z0)
+[00:22:04.327] INFO  [mk3_Leander] [bot] planning path to (4394,1085) in background
+[00:22:06.426] INFO  [mk3_Leander] [action] goto finished at (4400,1091,0); target (4394,1085); stopped short (off by 12 tile(s))
+[00:22:06.426] LOG   [mk3_Leander] event goto_done: at=(4400,1091) target=(4394,1085) arrived=0 off=12
+[00:22:06.552] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_23.leander/state.json
+[00:22:07.326] INFO  [mk3_Leander] [survival] hp 20/20 (100%) -> fight
+[00:22:07.451] INFO  [mk3_Leander] [travel] mode walk             usable   <- chosen
+[00:22:07.451] INFO  [mk3_Leander] [travel] mode moongate         usable
+[00:22:07.451] INFO  [mk3_Leander] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:07.451] INFO  [mk3_Leander] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:07.451] LOG   [mk3_Leander] event travel_mode: walk
+[00:22:07.451] INFO  [mk3_Leander] [travel] plan healer (seen): ok legs=1 ~9 tiles transit=0 nodes=0
+[00:22:07.512] INFO  [mk3_Leander] [action] goto (4393,1082) from (4400,1091,0)
+[00:22:07.513] LOG   [mk3_Leander] event goto_start: target=(4393,1082) from=(4400,1091)
+[00:22:07.513] INFO  [mk3_Leander] [bot] running from (4400,1091,0) to (4393,1082,z0)
+[00:22:07.513] INFO  [mk3_Leander] [bot] planning path to (4393,1082) in background
+[00:22:09.232] INFO  [mk3_Leander] [action] goto finished at (4400,1091,0); target (4393,1082); stopped short (off by 16 tile(s))
+[00:22:09.232] LOG   [mk3_Leander] event goto_done: at=(4400,1091) target=(4393,1082) arrived=0 off=16
+[00:22:10.458] INFO  [mk3_Leander] [action] goto (4393,1082) from (4400,1091,0)
+[00:22:10.458] LOG   [mk3_Leander] event goto_start: target=(4393,1082) from=(4400,1091)
+[00:22:10.458] INFO  [mk3_Leander] [bot] running from (4400,1091,0) to (4393,1082,z0)
+[00:22:10.458] INFO  [mk3_Leander] [bot] planning path to (4393,1082) in background
+[00:22:10.474] INFO  [mk3_Leander] [bot] replan to (4393,1082): 10 steps in 375.8us
+[00:22:12.356] INFO  [mk3_Leander] [survival] hp 20/20 (100%) -> fight
+[00:22:13.220] INFO  [mk3_Leander] [travel] healer (seen) ARRIVED at (4394,1084,0)
+[00:22:13.220] LOG   [mk3_Leander] event travel_done: label='healer (seen)' ok=1 at=(4394,1084) legs=1 plans=1 why=''
+[00:22:13.236] INFO  [mk3_Leander] [action] scanning nearby mobiles for names
+[00:22:13.236] INFO  [mk3_Leander] [action] requested 3 paperdoll(s) for trade titles
+[00:22:13.236] INFO  [life] potions: at the shop, asking who is here (scan 1 of 3)
+[00:22:13.251] INFO  [mk3_Leander] [mobiles] nearby (13):
+[00:22:13.251] INFO  [mk3_Leander]   Rat 0x00017DC2
+[00:22:13.251] INFO  [mk3_Leander]   Xanthe 0x000095BA
+[00:22:13.251] INFO  [mk3_Leander]   Ayuna 0x00009833
+[00:22:13.251] INFO  [mk3_Leander]   Nuthatch 0x000178D0
+[00:22:13.251] INFO  [mk3_Leander]   Rat 0x0001798E
+[00:22:13.251] INFO  [mk3_Leander]   Lyra 0x0000C990
+[00:22:13.251] INFO  [mk3_Leander]   Thalia 0x0000C45C
+[00:22:13.251] INFO  [mk3_Leander]   Swift 0x0000D85D
+[00:22:13.251] INFO  [mk3_Leander]   Dog 0x0001155B
+[00:22:13.251] INFO  [mk3_Leander]   Eric 0x00009A2B
+[00:22:13.251] INFO  [mk3_Leander]   Anke 0x0000952D
+[00:22:13.251] INFO  [mk3_Leander]   Benton 0x0000957B
+[00:22:13.251] INFO  [mk3_Leander]   Nantan 0x0000956C
+[00:22:13.251] INFO  [mk3_Leander] [0x20] player @(4394,1084,0) facing=6
+[00:22:13.251] INFO  [mk3_Leander] [0x88] paperdoll 0x00009833: "Ayuna, the healer"
+[00:22:13.251] INFO  [mk3_Leander] [world] Ayuna, the healer is a healer at (4391,1084)
+[00:22:13.251] INFO  [mk3_Leander] [0x88] paperdoll 0x0000C990: "Lyra, Apprentice Mage"
+[00:22:13.251] INFO  [mk3_Leander] [0x20] player @(4394,1084,0) facing=0
+[00:22:13.251] INFO  [mk3_Leander] [0x88] paperdoll 0x00009A2B: "Eric, the baker"
+[00:22:13.251] INFO  [mk3_Leander] [world] Eric, the baker is a baker at (4389,1070)
+[00:22:16.257] INFO  [life] potions: found a 'healer'
+[00:22:16.273] INFO  [life] potions: within reach
+[00:22:16.288] INFO  [mk3_Leander] [ACTION] vendor_buy start
+[00:22:16.288] INFO  [mk3_Leander] [VENDOR] open vendor=0x00009833 say='Ayuna buy'
+[00:22:16.288] INFO  [life] potions: asking the 'healer' to show heal potion (attempt 1)
+[00:22:16.304] INFO  [mk3_Leander] [chat uni  ] : Ayuna buy
+[00:22:16.304] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[00:22:16.304] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedTrade(buy from a player 0.55) NeedSkillTraining(Evaluating Intelligence 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Evaluating Intelligence 0.45) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Evaluating Intelligence (target 100.0)
+[00:22:16.304] INFO  [life]   score=130.0
+[00:22:16.304] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:22:16.304] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:22:16.304] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 172s after achieving nothing
+[00:22:16.304] INFO  [life] potions: an action is already in flight
+[00:22:17.241] INFO  [mk3_Leander] [chat uni  ] Thalia: Ayuna buy
+[00:22:17.241] INFO  [mk3_Leander] [chat ascii] Ayuna: Hello!
+[00:22:17.241] INFO  [mk3_Leander] [chat ascii] Ayuna: I got lots to sell!
+[00:22:17.363] INFO  [mk3_Leander] [survival] hp 20/20 (100%) -> fight
+[00:22:17.427] INFO  [mk3_Leander] [chat ascii] Ayuna: Don't stand so close.
+[00:22:22.378] INFO  [mk3_Leander] [survival] hp 20/20 (100%) -> fight
+[00:22:24.331] LOG   [mk3_Leander] event action_result: vendor_buy timeout
+[00:22:24.393] INFO  [life] potions: resting after a failure
+[00:22:26.447] INFO  [mk3_Leander] [ACTION] vendor_buy start
+[00:22:26.447] INFO  [mk3_Leander] [VENDOR] open vendor=0x00009833 say='Ayuna buy'
+[00:22:26.447] INFO  [life] potions: asking the 'healer' to show heal potion (attempt 2)
+[00:22:26.448] INFO  [mk3_Leander] [chat uni  ] : Ayuna buy
+[00:22:26.448] INFO  [mk3_Leander] [chat ascii] Ayuna: Yes?
+[00:22:26.448] INFO  [mk3_Leander] [chat ascii] Ayuna: I'm here to sell thee supplies.
+[00:22:26.448] INFO  [mk3_Leander] [0x3C] container contents: 4 item(s)
+[00:22:26.448] INFO  [mk3_Leander] [0x74] pairing: straight (straight 4, mirrored 0 of 4 rows)
+[00:22:26.448] INFO  [mk3_Leander] [0x74] vendor shop data: cont=0x400095EC 4 item(s), layer=0x1A
+[00:22:26.448] INFO  [mk3_Leander] [0x74]   clean bandages               gfx=0x0E21 qty=16   price=1
+[00:22:26.448] INFO  [mk3_Leander] [0x74]   Ginseng                      gfx=0x0F85 qty=24   price=3
+[00:22:26.448] INFO  [mk3_Leander] [0x74]   Garlic                       gfx=0x0F84 qty=22   price=3
+[00:22:26.448] INFO  [mk3_Leander] [0x74]   Refresh                      gfx=0x0F0B qty=19   price=16
+[00:22:26.448] INFO  [mk3_Leander] [0x3C] container contents: 0 item(s)
+[00:22:26.448] INFO  [mk3_Leander] [0x74] vendor shop data: cont=0x4001006D 0 item(s), layer=0x1B
+[00:22:26.448] INFO  [mk3_Leander] [VENDOR] offer from 0x00009833: 4 item(s)
+[00:22:26.448] INFO  [mk3_Leander] [VENDOR]   0x4000CC3C clean bandages         x16  1 gp
+[00:22:26.448] INFO  [mk3_Leander] [VENDOR]   0x4000CC39 Ginseng                x24  3 gp
+[00:22:26.448] INFO  [mk3_Leander] [VENDOR]   0x4000CBD0 Garlic                 x22  3 gp
+[00:22:26.448] INFO  [mk3_Leander] [VENDOR]   0x4000CBCF Refresh                x19  16 gp
+[00:22:26.448] LOG   [mk3_Leander] event vendor_offer: vendor=0x00009833 items=4
+[00:22:26.448] INFO  [mk3_Leander] [ACTION_RESULT] vendor_buy success (1ms) vendor offer received
+[00:22:26.448] LOG   [mk3_Leander] event action_result: vendor_buy success took=1ms vendor offer received
+[00:22:26.448] INFO  [mk3_Leander] [0x24] vendor buy gump for 0x00009833
+[00:22:26.448] INFO  [life] potions: the shop is open
+[00:22:26.508] INFO  [life] potions: this 'healer' does not stock heal potion
+[00:22:26.508] INFO  [life] potions: none bought (this 'healer' does not stock heal potion)
+[00:22:26.508] INFO  [life] goal_completed=REPLACE_EQUIPMENT progress=0
+[00:22:26.510] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_23.leander/state.json
+[00:22:26.569] INFO  [life] goal=REPLACE_EQUIPMENT reason="no goal was running"
+[00:22:26.569] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedTrade(buy from a player 0.55) NeedSkillTraining(Evaluating Intelligence 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Evaluating Intelligence 0.45) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Evaluating Intelligence (target 100.0)
+[00:22:26.570] INFO  [life]   score=130.0
+[00:22:26.570] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:22:26.570] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:22:26.570] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 162s after achieving nothing
+[00:22:26.570] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:22:26.570] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 8
+[00:22:26.570] INFO  [life] potions: found a 'healer'
+[00:22:26.570] INFO  [life] potions: within reach
+[00:22:26.630] INFO  [life] potions: the shop is open
+[00:22:26.690] INFO  [life] potions: this 'healer' does not stock heal potion
+[00:22:26.690] INFO  [life] potions: none bought (this 'healer' does not stock heal potion)
+[00:22:26.690] INFO  [life] goal_completed=REPLACE_EQUIPMENT progress=0
+[00:22:26.692] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_23.leander/state.json
+[00:22:26.752] INFO  [life] goal=REPLACE_EQUIPMENT reason="no goal was running"
+[00:22:26.752] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedTrade(buy from a player 0.55) NeedSkillTraining(Evaluating Intelligence 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Evaluating Intelligence 0.45) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Evaluating Intelligence (target 100.0)
+[00:22:26.752] INFO  [life]   score=114.4
+[00:22:26.752] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:22:26.752] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:22:26.752] INFO  [life]   reason: same errand just now, easing off 12% (130.0 -> 114.4)
+[00:22:26.752] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 161s after achieving nothing
+[00:22:26.752] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:22:26.752] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 8
+[00:22:26.752] INFO  [life] potions: found a 'healer'
+[00:22:26.783] INFO  [life] potions: within reach
+[00:22:26.844] INFO  [life] potions: the shop is open
+[00:22:26.905] INFO  [life] potions: this 'healer' does not stock heal potion
+[00:22:26.905] INFO  [life] potions: none bought (this 'healer' does not stock heal potion)
+[00:22:26.905] INFO  [life] goal_completed=REPLACE_EQUIPMENT progress=0
+[00:22:26.907] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_23.leander/state.json
+[00:22:26.966] INFO  [life] goal=REPLACE_EQUIPMENT reason="no goal was running"
+[00:22:26.966] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedTrade(buy from a player 0.55) NeedSkillTraining(Evaluating Intelligence 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Evaluating Intelligence 0.45) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Evaluating Intelligence (target 100.0)
+[00:22:26.966] INFO  [life]   score=98.8
+[00:22:26.966] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:22:26.966] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:22:26.966] INFO  [life]   reason: same errand just now, easing off 24% (130.0 -> 98.8)
+[00:22:26.966] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 161s after achieving nothing
+[00:22:26.966] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:22:26.966] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 8
+[00:22:26.966] INFO  [life] potions: found a 'healer'
+[00:22:27.029] INFO  [life] potions: within reach
+[00:22:27.029] INFO  [life] potions: the shop is open
+[00:22:27.045] INFO  [life] potions: this 'healer' does not stock heal potion
+[00:22:27.045] INFO  [life] potions: none bought (this 'healer' does not stock heal potion)
+[00:22:27.045] INFO  [life] goal_completed=REPLACE_EQUIPMENT progress=0
+[00:22:27.045] INFO  [life] goal_spinning=REPLACE_EQUIPMENT reason="completed 5 times in a row with progress 0 -- cooled off for a minute; this is a bug in that goal, not pacing"
+[00:22:27.047] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_23.leander/state.json
+[00:22:27.106] INFO  [life] goal=TRADE_WITH_PLAYER reason="no goal was running"
+[00:22:27.106] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedTrade(buy from a player 0.55) NeedSkillTraining(Evaluating Intelligence 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Evaluating Intelligence 0.45) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Evaluating Intelligence (target 100.0)
+[00:22:27.107] INFO  [life]   score=79.8
+[00:22:27.107] INFO  [life]   reason: NeedTrade urgency 0.55 x 145 = 79.8
+[00:22:27.107] INFO  [life]   reason: 20 x i_scroll_blank short
+[00:22:27.107] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 59s after achieving nothing
+[00:22:27.107] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 161s after achieving nothing
+[00:22:27.107] INFO  [life] market: the market is britain_bank_2 (Britain banker) at 1425,1690, radius 5, guarded
+[00:22:27.107] INFO  [life] goal_blocked=TRADE_WITH_PLAYER reason="not enough session left for the trip" left=36s need=800s
+[00:22:27.167] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: not enough session left for the trip"
+[00:22:27.167] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedSkillTraining(Evaluating Intelligence 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Evaluating Intelligence 0.45) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25) NeedTrade(buy from a player BLOCKED 0.00)  | tools defined=1 held=[spellbook,] want_train=Evaluating Intelligence (target 100.0)
+[00:22:27.167] INFO  [life]   score=60.5
+[00:22:27.167] INFO  [life]   reason: NeedSkillTraining urgency 0.55 x 110 = 60.5
+[00:22:27.167] INFO  [life]   reason: Evaluating Intelligence 0.0 -> 100.0, gold 10000 (fee is quoted on arrival, roughly 300)
+[00:22:27.167] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 59s after achieving nothing
+[00:22:27.167] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 161s after achieving nothing
+[00:22:27.167] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 599s after achieving nothing
+[00:22:27.167] INFO  [life] plan=buy reason="below the ceiling, worth buying, and affordable"
+[00:22:27.167] INFO  [life] training: looking for a 'mage' to teach Evaluating Intelligence (trip 1)
+[00:22:27.183] INFO  [mk3_Leander] [travel] place: skipping Wind mage -- 1772 tiles and 2 gates for a service Guild of Arcane Arts mage offers
+[00:22:27.183] INFO  [mk3_Leander] [travel] place: skipping Wind mage -- 1812 tiles and 2 gates for a service Guild of Arcane Arts mage offers
+[00:22:27.183] INFO  [mk3_Leander] [travel] Guild of Arcane Arts mage -> (4448,1090) r=5 from (4394,1084)
+[00:22:27.183] LOG   [mk3_Leander] event travel_start: label='Guild of Arcane Arts mage' target=(4448,1090) radius=5 from=(4394,1084)
+[00:22:27.183] INFO  [mk3_Leander] [travel] mode walk             usable   <- chosen
+[00:22:27.183] INFO  [mk3_Leander] [travel] mode moongate         usable
+[00:22:27.183] INFO  [mk3_Leander] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:27.183] INFO  [mk3_Leander] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:27.183] LOG   [mk3_Leander] event travel_mode: walk
+[00:22:27.183] INFO  [mk3_Leander] [travel] plan Guild of Arcane Arts mage: ok legs=2 ~72 tiles transit=0 nodes=7
+[00:22:27.244] INFO  [mk3_Leander] [action] goto finished at (4394,1084,0); target (4393,1082); stopped short (off by 3 tile(s))
+[00:22:27.244] LOG   [mk3_Leander] event goto_done: at=(4394,1084) target=(4393,1082) arrived=0 off=3
+[00:22:27.244] INFO  [mk3_Leander] [travel] avoiding 4 teleporter pad(s) on this leg
+[00:22:27.244] INFO  [mk3_Leander] [action] goto (4424,1096) from (4394,1084,0)
+[00:22:27.244] LOG   [mk3_Leander] event goto_start: target=(4424,1096) from=(4394,1084)
+[00:22:27.244] INFO  [mk3_Leander] [bot] running from (4394,1084,0) to (4424,1096)
+[00:22:27.244] INFO  [mk3_Leander] [bot] planning path to (4424,1096) in background
+[00:22:27.367] INFO  [mk3_Leander] [action] goto finished at (4394,1084,0); target (4424,1096); stopped short (off by 42 tile(s))
+[00:22:27.367] LOG   [mk3_Leander] event goto_done: at=(4394,1084) target=(4424,1096) arrived=0 off=42
+[00:22:27.383] INFO  [mk3_Leander] [survival] hp 20/20 (100%) -> fight
+[00:22:28.585] INFO  [mk3_Leander] [travel] avoiding 4 teleporter pad(s) on this leg
+[00:22:28.585] INFO  [mk3_Leander] [action] goto (4424,1096) from (4394,1084,0)
+[00:22:28.585] LOG   [mk3_Leander] event goto_start: target=(4424,1096) from=(4394,1084)
+[00:22:28.585] INFO  [mk3_Leander] [bot] running from (4394,1084,0) to (4424,1096)
+[00:22:28.585] INFO  [mk3_Leander] [bot] planning path to (4424,1096) in background
+[00:22:28.706] INFO  [mk3_Leander] [action] goto finished at (4394,1084,0); target (4424,1096); stopped short (off by 42 tile(s))
+[00:22:28.706] LOG   [mk3_Leander] event goto_done: at=(4394,1084) target=(4424,1096) arrived=0 off=42
+[00:22:29.955] INFO  [mk3_Leander] [travel] avoiding 4 teleporter pad(s) on this leg
+[00:22:29.955] INFO  [mk3_Leander] [action] goto (4424,1096) from (4394,1084,0)
+[00:22:29.955] LOG   [mk3_Leander] event goto_start: target=(4424,1096) from=(4394,1084)
+[00:22:29.955] INFO  [mk3_Leander] [bot] running from (4394,1084,0) to (4424,1096)
+[00:22:29.955] INFO  [mk3_Leander] [bot] planning path to (4424,1096) in background
+[00:22:30.079] INFO  [mk3_Leander] [action] goto finished at (4394,1084,0); target (4424,1096); stopped short (off by 42 tile(s))
+[00:22:30.079] LOG   [mk3_Leander] event goto_done: at=(4394,1084) target=(4424,1096) arrived=0 off=42
+[00:22:31.326] INFO  [mk3_Leander] [travel] mode walk             usable   <- chosen
+[00:22:31.327] INFO  [mk3_Leander] [travel] mode moongate         usable
+[00:22:31.327] INFO  [mk3_Leander] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:31.327] INFO  [mk3_Leander] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:31.327] LOG   [mk3_Leander] event travel_mode: walk
+[00:22:31.327] INFO  [mk3_Leander] [travel] plan Guild of Arcane Arts mage: ok legs=2 ~88 tiles transit=0 nodes=14
+[00:22:32.435] INFO  [mk3_Leander] [survival] hp 20/20 (100%) -> fight
+[00:22:32.866] INFO  [mk3_Leander] [travel] avoiding 3 teleporter pad(s) on this leg
+[00:22:32.866] INFO  [mk3_Leander] [action] goto (4424,1064) from (4394,1084,0)
+[00:22:32.867] LOG   [mk3_Leander] event goto_start: target=(4424,1064) from=(4394,1084)
+[00:22:32.867] INFO  [mk3_Leander] [bot] running from (4394,1084,0) to (4424,1064)
+[00:22:32.867] INFO  [mk3_Leander] [bot] planning path to (4424,1064) in background
+[00:22:32.989] INFO  [mk3_Leander] [action] goto finished at (4394,1084,0); target (4424,1064); stopped short (off by 50 tile(s))
+[00:22:32.989] LOG   [mk3_Leander] event goto_done: at=(4394,1084) target=(4424,1064) arrived=0 off=50
+[00:22:34.207] INFO  [mk3_Leander] [travel] avoiding 3 teleporter pad(s) on this leg
+[00:22:34.207] INFO  [mk3_Leander] [action] goto (4424,1064) from (4394,1084,0)
+[00:22:34.207] LOG   [mk3_Leander] event goto_start: target=(4424,1064) from=(4394,1084)
+[00:22:34.207] INFO  [mk3_Leander] [bot] running from (4394,1084,0) to (4424,1064)
+[00:22:34.207] INFO  [mk3_Leander] [bot] planning path to (4424,1064) in background
+[00:22:34.330] INFO  [mk3_Leander] [action] goto finished at (4394,1084,0); target (4424,1064); stopped short (off by 50 tile(s))
+[00:22:34.330] LOG   [mk3_Leander] event goto_done: at=(4394,1084) target=(4424,1064) arrived=0 off=50
+[00:22:35.564] INFO  [mk3_Leander] [travel] avoiding 3 teleporter pad(s) on this leg
+[00:22:35.564] INFO  [mk3_Leander] [action] goto (4424,1064) from (4394,1084,0)
+[00:22:35.564] LOG   [mk3_Leander] event goto_start: target=(4424,1064) from=(4394,1084)
+[00:22:35.564] INFO  [mk3_Leander] [bot] running from (4394,1084,0) to (4424,1064)
+[00:22:35.564] INFO  [mk3_Leander] [bot] planning path to (4424,1064) in background
+[00:22:35.687] INFO  [mk3_Leander] [action] goto finished at (4394,1084,0); target (4424,1064); stopped short (off by 50 tile(s))
+[00:22:35.687] LOG   [mk3_Leander] event goto_done: at=(4394,1084) target=(4424,1064) arrived=0 off=50
+[00:22:36.922] INFO  [mk3_Leander] [travel] mode walk             usable   <- chosen
+[00:22:36.922] INFO  [mk3_Leander] [travel] mode moongate         usable
+[00:22:36.922] INFO  [mk3_Leander] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:36.922] INFO  [mk3_Leander] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:36.922] LOG   [mk3_Leander] event travel_mode: walk
+[00:22:36.922] INFO  [mk3_Leander] [travel] plan Guild of Arcane Arts mage: ok legs=2 ~88 tiles transit=0 nodes=12
+[00:22:37.491] INFO  [mk3_Leander] [survival] hp 20/20 (100%) -> fight
+[00:22:37.615] INFO  [mk3_Leander] [chat uni  ] Lyra: Eric buy
+[00:22:37.615] INFO  [mk3_Leander] [chat ascii] Eric: Hello! ?
+[00:22:37.615] INFO  [mk3_Leander] [chat ascii] Eric: Thou surely wants all the things that I can sell thee.
+[00:22:37.691] INFO  [mk3_Leander] [chat ascii] Eric: Here you are, Lyra That will be 16 gold coins.  I thank thee for thy business.
+[00:22:38.419] INFO  [mk3_Leander] [chat ascii] System: Vorar has departed from Britain.
+[00:22:39.439] INFO  [mk3_Leander] [chat ascii] System: Selene has departed from Magincia.
+[00:22:39.932] INFO  [mk3_Leander] [travel] avoiding 3 teleporter pad(s) on this leg
+[00:22:39.932] INFO  [mk3_Leander] [action] goto (4424,1080) from (4394,1084,0)
+[00:22:39.932] LOG   [mk3_Leander] event goto_start: target=(4424,1080) from=(4394,1084)
+[00:22:39.932] INFO  [mk3_Leander] [bot] running from (4394,1084,0) to (4424,1080)
+[00:22:39.932] INFO  [mk3_Leander] [bot] planning path to (4424,1080) in background
+[00:22:39.992] INFO  [mk3_Leander] [bot] replan to (4424,1080): 45 steps in 8220.7us
+[00:22:41.362] INFO  [mk3_Leander] [bot] door ahead at (4397,1087,z0); OpenDoor before step
+[00:22:41.377] INFO  [mk3_Leander] [chat ascii] System: Opening door...
+[00:22:42.531] INFO  [mk3_Leander] [survival] hp 20/20 (100%) -> fight
+[00:22:46.897] INFO  [mk3_Leander] [chat ascii] System: Zarthal has departed from Minoc.
+[00:22:47.547] INFO  [mk3_Leander] [survival] hp 20/20 (100%) -> fight
+[00:22:49.378] INFO  [mk3_Leander] [chat ascii] System: World save in 10 seconds
+[00:22:50.319] INFO  [mk3_Leander] [chat ascii] System: Thalia has departed from Moonglow.
+[00:22:52.552] INFO  [mk3_Leander] [survival] hp 20/20 (100%) -> fight
+[00:22:53.217] INFO  [mk3_Leander] [chat ascii] System: Elvar has departed from Minoc.
+[00:22:53.628] INFO  [mk3_Leander] [bot] arrived at (4424,1080,0)
+[00:22:53.628] INFO  [mk3_Leander] [action] goto finished at (4424,1080,0); target (4424,1080); ARRIVED (off by 0 tile(s))
+[00:22:53.628] LOG   [mk3_Leander] event goto_done: at=(4424,1080) target=(4424,1080) arrived=1 off=0
+[00:22:53.628] INFO  [mk3_Leander] [travel] avoiding 3 teleporter pad(s) on this leg
+[00:22:53.628] INFO  [mk3_Leander] [action] goto (4448,1090) from (4424,1080,0)
+[00:22:53.628] LOG   [mk3_Leander] event goto_start: target=(4448,1090) from=(4424,1080)
+[00:22:53.628] INFO  [mk3_Leander] [bot] running from (4424,1080,0) to (4448,1090,z0)
+[00:22:53.628] INFO  [mk3_Leander] [bot] planning path to (4448,1090) in background
+[00:22:53.687] INFO  [mk3_Leander] [bot] replan to (4448,1090): 58 steps in 25658.3us
+[00:22:57.571] INFO  [mk3_Leander] [survival] hp 20/20 (100%) -> fight
+[00:22:57.848] INFO  [mk3_Leander] [chat ascii] System: Falen has departed from Minoc.
+[00:22:59.430] INFO  [mk3_Leander] [chat ascii] System: World save has been initiated.
+[00:23:02.608] INFO  [mk3_Leander] [survival] hp 20/20 (100%) -> fight
+[00:23:03.924] INFO  [life] session_end_requested reason="session time limit reached"
+[00:23:04.594] INFO  [mk3_Leander] [action] goto finished at (4434,1096,0); target (4448,1090); stopped short (off by 20 tile(s))
+[00:23:04.594] LOG   [mk3_Leander] event goto_done: at=(4434,1096) target=(4448,1090) arrived=0 off=20
+[00:23:05.777] INFO  [mk3_Leander] [chat ascii] System: Ghalor has departed from Minoc.
+[00:23:05.839] INFO  [mk3_Leander] [travel] avoiding 3 teleporter pad(s) on this leg
+[00:23:05.839] INFO  [mk3_Leander] [action] goto (4448,1090) from (4434,1096,0)
+[00:23:05.839] LOG   [mk3_Leander] event goto_start: target=(4448,1090) from=(4434,1096)
+[00:23:05.839] INFO  [mk3_Leander] [bot] running from (4434,1096,0) to (4448,1090,z0)
+[00:23:05.839] INFO  [mk3_Leander] [bot] planning path to (4448,1090) in background
+[00:23:05.900] INFO  [mk3_Leander] [bot] replan to (4448,1090): 36 steps in 8693.0us
+[00:23:07.273] INFO  [mk3_Leander] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=30 in 189.1us
+[00:23:07.627] INFO  [mk3_Leander] [chat ascii] System: Cyras has departed from Britain.
+[00:23:07.627] INFO  [mk3_Leander] [survival] hp 20/20 (100%) -> fight
+[00:23:10.033] INFO  [mk3_Leander] [chat ascii] System: Kharain has departed from Minoc.
+[00:23:12.194] INFO  [mk3_Leander] [travel] Guild of Arcane Arts mage ARRIVED at (4452,1094,0)
+[00:23:12.194] LOG   [mk3_Leander] event travel_done: label='Guild of Arcane Arts mage' ok=1 at=(4452,1094) legs=2 plans=3 why=''
+[00:23:12.240] INFO  [life] wind-down: arrived somewhere safe at 4452,1094
+[00:23:12.301] INFO  [life] session_summary duration=188s goals=4/8 gold=10000->10000 skills=100.0->100.0 logs=+0 kills=0 deaths=0 places=3 suppliers=0
+[00:23:12.301] INFO  [life] session_goals families=3 picks=8 top=75% varied=0 self_superseded=1 | upkeep=6(75%) training=1(12%) social=1(12%) | REPLACE_EQUIPMENT=5(62%) BANK=1(12%) TRAIN_AT_NPC=1(12%) TRADE_WITH_PLAYER=1(12%)
+[00:23:12.303] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_23.leander/state.json
+[00:23:12.303] INFO  [life] logging out
+[00:23:12.303] INFO  [mk3_Leander] [action] logout requested
+[00:23:12.303] LOG   [mk3_Leander] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[00:23:12.303] INFO  [mk3_Leander] [0xD1] logout acknowledged (accepted=1)
+[00:23:12.303] LOG   [mk3_Leander] event logout_ack: accepted
+[00:23:12.303] INFO  [mk3_Leander] [net] closing connection (logout acknowledged)
+[00:23:12.303] LOG   [mk3_Leander] event logout_complete: acked

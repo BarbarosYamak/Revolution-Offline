@@ -1,0 +1,981 @@
+[00:20:06.932] INFO  session 0: 127.0.0.1:2593 user='RevGen3_24' char=Illyria tag='mk3_Illyria'
+[00:20:06.934] LOG   [mk3_Illyria] event session_start: text log opened
+[00:20:06.934] LOG   [mk3_Illyria] event net_connect_begin: connect 127.0.0.1:2593
+[00:20:06.934] INFO  [mk3_Illyria] [net] connecting to 127.0.0.1:2593 ...
+[00:20:06.935] LOG   [mk3_Illyria] event net_connected: connect 127.0.0.1:2593
+[00:20:06.935] INFO  [mk3_Illyria] [net] connected.
+[00:20:06.935] INFO  [mk3_Illyria] [seed] sent 0x7F000001 (plaintext)
+[00:20:06.935] LOG   [mk3_Illyria] event seed_out: 0x7F000001 hex=7f000001
+[00:20:06.936] INFO  [life] no prior state for revgen3_24.illyria: a new Pure Mage
+[00:20:06.936] INFO  [life] creation request: Magery 50.0 + Meditation 50.0, stats 20/12/48 = 80
+[00:20:06.936] INFO  [life] needs: reading 'mage' from the profession catalogue
+[00:20:06.936] INFO  [life] home: Illyria lives in Nujel'm
+[00:20:06.937] INFO  [life] build plan 'mage': 300.0 resolved + 400.0 unresolved = 700.0/700.0, stats 25/25/100 = 150
+[00:20:06.937] INFO  [mk3_Illyria] [life] autonomous player active for 'Illyria' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 3 min)
+[00:20:06.944] INFO  [mk3_Illyria] [0xA8] 1 server(s):
+[00:20:06.944] INFO  [mk3_Illyria]   [0] MyShard                   1.0.0.127  full=9%  tz=0
+[00:20:06.963] INFO  [mk3_Illyria] [0x8C] game server = 127.0.0.1:2593  seed=0x2874E47F
+[00:20:06.963] LOG   [mk3_Illyria] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x2874E47F
+[00:20:06.963] INFO  [mk3_Illyria] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[00:20:06.963] LOG   [mk3_Illyria] event relay_same_socket: no seed re-sent; 0x91 follows
+[00:20:06.963] INFO  [mk3_Illyria] [0xB9] server features = 0x0005
+[00:20:06.963] INFO  [mk3_Illyria] [0xA9] 5 slot(s) (populated 0):
+[00:20:06.964] INFO  [mk3_Illyria]   [0] <empty>
+[00:20:06.964] INFO  [mk3_Illyria]   [1] <empty>
+[00:20:06.964] INFO  [mk3_Illyria]   [2] <empty>
+[00:20:06.964] INFO  [mk3_Illyria]   [3] <empty>
+[00:20:06.964] INFO  [mk3_Illyria]   [4] <empty>
+[00:20:06.964] INFO  [mk3_Illyria] create: appearance sex=M skin=0x03F6 hair=0x204A/0x0478 shirt=0x0073 pants=0x03CE
+[00:20:06.964] INFO  [mk3_Illyria] [0x00] starting city index 2
+[00:20:06.964] INFO  [mk3_Illyria] [0x00] requested skills 25:50 46:50 16:0
+[00:20:06.964] INFO  [mk3_Illyria] [0x00] requested stats STR 20 DEX 12 INT 48
+[00:20:06.964] INFO  [mk3_Illyria] [0x00] creating character 'Illyria' in slot 0
+[00:20:06.964] LOG   [mk3_Illyria] event char_create_sent: Illyria
+[00:20:06.980] INFO  [mk3_Illyria] [0x1B] serial=0x0001916B body=0x0190 pos=(1496,1628,10)
+[00:20:06.981] LOG   [mk3_Illyria] event login_confirm: serial=0x0001916B body=0x0190 pos=(1496,1628,10)
+[00:20:06.981] INFO  [mk3_Illyria] [0x20] player @(1496,1628,10) facing=3
+[00:20:06.981] INFO  [mk3_Illyria] [0x55] login complete — entering world
+[00:20:06.981] LOG   [mk3_Illyria] event in_world: 0x55 received
+[00:20:06.981] INFO  [mk3_Illyria] [backpack] opening 0x40019164
+[00:20:06.981] INFO  [mk3_Illyria] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[00:20:06.981] INFO  [mk3_Illyria] [chat ascii] System: There are 23 other players here.
+[00:20:06.981] INFO  [mk3_Illyria] [chat ascii] System: You are under the protection of the city guards
+[00:20:06.984] INFO  [mk3_Illyria] [action] requesting the skill list
+[00:20:06.984] INFO  [life] in world; asked the server for the skill list
+[00:20:06.993] INFO  [mk3_Illyria] [0x24] open container 0x40019164 gump=60
+[00:20:06.993] INFO  [mk3_Illyria] [0x3C] container contents: 8 item(s)
+[00:20:06.993] LOG   [mk3_Illyria] event backpack_contents: serial=0x40019164 items=8
+[00:20:09.552] INFO  [mk3_Illyria] [bot] world data loaded (0 blacklisted spot(s)).
+[00:20:09.552] INFO  [life] reconciliation: first ever login, 7 field(s) differed
+[00:20:09.552] INFO  [life]   gold         persisted=0          server=10000      -> server value accepted
+[00:20:09.552] INFO  [life]   str          persisted=0          server=20         -> server value accepted
+[00:20:09.553] INFO  [life]   dex          persisted=0          server=12         -> server value accepted
+[00:20:09.553] INFO  [life]   int          persisted=0          server=48         -> server value accepted
+[00:20:09.553] INFO  [life]   skill_25     persisted=0.0        server=50.0       -> server value accepted
+[00:20:09.553] INFO  [life]   skill_46     persisted=0.0        server=50.0       -> server value accepted
+[00:20:09.553] INFO  [life]   skill_16     persisted=0.0        server=0.0        -> server value accepted
+[00:20:09.553] INFO  [life]   position     persisted=0,0        server=1496,1628  -> server value accepted
+[00:20:09.553] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[00:20:09.553] INFO  [mk3_Illyria] [survival] on
+[00:20:09.553] LOG   [mk3_Illyria] event survival_mode: on
+[00:20:09.554] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_24.illyria/state.json
+[00:20:09.554] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:20:09.605] INFO  [life] goal=BANK reason="no goal was running"
+[00:20:09.605] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedTrade(buy from a player 0.55) NeedSkillTraining(Evaluating Intelligence 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Evaluating Intelligence 0.45) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Evaluating Intelligence (target 100.0)
+[00:20:09.605] INFO  [life]   score=150.0
+[00:20:09.605] INFO  [life]   reason: NeedBank urgency 0.75 x 240 = 180.0
+[00:20:09.605] INFO  [life]   reason: on_hand=10000 (total 10000) reserve=800 carry=1300 spare=8700 risk=1.00
+[00:20:09.605] INFO  [life]   reason: no bank learned yet -30
+[00:20:09.605] INFO  [mk3_Illyria] [action] scanning nearby mobiles for names
+[00:20:09.605] INFO  [mk3_Illyria] [action] requested 3 paperdoll(s) for trade titles
+[00:20:09.605] INFO  [life] bank: asking who is standing in the bank
+[00:20:09.621] INFO  [mk3_Illyria] [mobiles] nearby (4):
+[00:20:09.621] INFO  [mk3_Illyria]   Serena 0x000193F7
+[00:20:09.621] INFO  [mk3_Illyria]   Audny 0x00001076
+[00:20:09.621] INFO  [mk3_Illyria]   Odessa 0x000194DE
+[00:20:09.621] INFO  [mk3_Illyria]   Starling 0x000013C5
+[00:20:09.621] INFO  [mk3_Illyria] [0x20] player @(1496,1628,10) facing=0
+[00:20:09.621] INFO  [mk3_Illyria] [0x88] paperdoll 0x00001076: "Audny, the innkeeper"
+[00:20:09.621] INFO  [mk3_Illyria] [world] Audny, the innkeeper is a innkeeper at (1496,1618)
+[00:20:09.621] INFO  [mk3_Illyria] [0x20] player @(1496,1628,10) facing=7
+[00:20:09.621] INFO  [mk3_Illyria] [0x88] paperdoll 0x000194DE: "Odessa, Apprentice Miner"
+[00:20:09.621] INFO  [mk3_Illyria] [0x20] player @(1496,1628,10) facing=6
+[00:20:09.621] INFO  [mk3_Illyria] [0x88] paperdoll 0x000193F7: "Serena, Apprentice Miner"
+[00:20:10.022] INFO  [mk3_Illyria] [chat ascii] System: Hector has arrived in Trinsic.
+[00:20:11.659] INFO  [life] bank: no banker in sight
+[00:20:11.659] INFO  [life] goal_failed=BANK status=retryable_failure reason="no banker in sight"
+[00:20:11.676] INFO  [life] goal=REPLACE_EQUIPMENT reason="previous goal abandoned: no banker answered"
+[00:20:11.676] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedTrade(buy from a player 0.55) NeedSkillTraining(Evaluating Intelligence 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Evaluating Intelligence 0.45) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Evaluating Intelligence (target 100.0)
+[00:20:11.676] INFO  [life]   score=130.0
+[00:20:11.676] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:20:11.676] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:20:11.676] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 299s after achieving nothing
+[00:20:13.077] INFO  [mk3_Illyria] [chat ascii] System: Castor has arrived in Trinsic.
+[00:20:14.578] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:20:16.106] INFO  [mk3_Illyria] [chat ascii] System: Faustus has arrived in Britain.
+[00:20:16.674] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:20:16.674] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 8
+[00:20:16.677] INFO  [mk3_Illyria] [travel] place: skipping Cove healer -- 1344 tiles and 1 gate for a service Britain healer offers
+[00:20:16.677] INFO  [mk3_Illyria] [travel] place: skipping Minoc healer -- 1704 tiles and 0 gates for a service Britain healer offers
+[00:20:16.677] INFO  [mk3_Illyria] [travel] Britain healer -> (1471,1611) r=5 from (1496,1628)
+[00:20:16.677] LOG   [mk3_Illyria] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1496,1628)
+[00:20:16.677] INFO  [life] potions: walking to a 'healer' (trip 1)
+[00:20:16.677] INFO  [mk3_Illyria] [travel] mode walk             usable   <- chosen
+[00:20:16.677] INFO  [mk3_Illyria] [travel] mode moongate         usable
+[00:20:16.677] INFO  [mk3_Illyria] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:16.677] INFO  [mk3_Illyria] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:16.677] LOG   [mk3_Illyria] event travel_mode: walk
+[00:20:16.677] INFO  [mk3_Illyria] [travel] plan Britain healer: ok legs=1 ~25 tiles transit=0 nodes=0
+[00:20:16.735] INFO  [mk3_Illyria] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:20:16.735] INFO  [mk3_Illyria] [action] goto (1471,1611) from (1496,1628,10)
+[00:20:16.735] LOG   [mk3_Illyria] event goto_start: target=(1471,1611) from=(1496,1628)
+[00:20:16.735] INFO  [mk3_Illyria] [bot] running from (1496,1628,10) to (1471,1611,z20)
+[00:20:16.735] INFO  [mk3_Illyria] [bot] planning path to (1471,1611) in background
+[00:20:16.797] INFO  [mk3_Illyria] [bot] replan to (1471,1611): 32 steps in 4943.4us
+[00:20:19.162] INFO  [mk3_Illyria] [chat ascii] System: Titus has arrived in Skara Brae.
+[00:20:19.603] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:20:21.726] INFO  [mk3_Illyria] [chat uni  ] : Dale buy
+[00:20:21.726] INFO  [mk3_Illyria] [chat ascii] Dale: Greetings. What can I help thee with?
+[00:20:21.726] INFO  [mk3_Illyria] [chat ascii] Dale: I'm here to sell thee supplies.
+[00:20:21.803] INFO  [mk3_Illyria] [chat ascii] Dale: Here you are, Odessa That will be 120 gold coins.  I thank thee for thy business.
+[00:20:22.310] INFO  [mk3_Illyria] [chat ascii] System: Rhea has arrived in Britain.
+[00:20:23.326] INFO  [mk3_Illyria] [bot] door ahead at (1480,1613,z20); OpenDoor before step
+[00:20:23.340] INFO  [mk3_Illyria] [chat ascii] System: Opening door...
+[00:20:24.056] INFO  [mk3_Illyria] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=12 in 155.8us
+[00:20:24.611] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:20:25.042] INFO  [mk3_Illyria] [bot] lookahead patched around block at step 1: anchor=5 new segment=4 path=8 in 60.7us
+[00:20:25.070] INFO  [mk3_Illyria] [chat uni  ] : Dale buy
+[00:20:25.070] INFO  [mk3_Illyria] [chat ascii] Dale: Thou surely wants all the things that I can sell thee.
+[00:20:25.146] INFO  [mk3_Illyria] [chat ascii] Dale: Here you are, Amara That will be 60 gold coins.  I thank thee for thy business.
+[00:20:25.377] INFO  [mk3_Illyria] [chat ascii] System: Xerxes has arrived in Vesper.
+[00:20:26.093] INFO  [mk3_Illyria] [travel] Britain healer ARRIVED at (1476,1612,20)
+[00:20:26.093] LOG   [mk3_Illyria] event travel_done: label='Britain healer' ok=1 at=(1476,1612) legs=1 plans=1 why=''
+[00:20:26.140] INFO  [mk3_Illyria] [action] scanning nearby mobiles for names
+[00:20:26.140] INFO  [mk3_Illyria] [action] requested 5 paperdoll(s) for trade titles
+[00:20:26.140] INFO  [life] potions: at the shop, asking who is here (scan 1 of 3)
+[00:20:26.155] INFO  [mk3_Illyria] [mobiles] nearby (7):
+[00:20:26.155] INFO  [mk3_Illyria]   Serena 0x000193F7
+[00:20:26.155] INFO  [mk3_Illyria]   Odessa 0x000194DE
+[00:20:26.155] INFO  [mk3_Illyria]   Dale 0x000010C1
+[00:20:26.155] INFO  [mk3_Illyria]   Amara 0x00012E70
+[00:20:26.155] INFO  [mk3_Illyria]   Natasha 0x00001194
+[00:20:26.155] INFO  [mk3_Illyria]   Caimile 0x00001239
+[00:20:26.155] INFO  [mk3_Illyria]   Cyras 0x00015725
+[00:20:26.155] INFO  [mk3_Illyria] [0x88] paperdoll 0x00012E70: "Amara, Apprentice Tailor"
+[00:20:26.155] INFO  [mk3_Illyria] [0x20] player @(1476,1612,20) facing=5
+[00:20:26.155] INFO  [mk3_Illyria] [0x88] paperdoll 0x000010C1: "Dale, the healer"
+[00:20:26.155] INFO  [mk3_Illyria] [world] Dale, the healer is a healer at (1472,1614)
+[00:20:26.155] INFO  [mk3_Illyria] [0x20] player @(1476,1612,20) facing=6
+[00:20:26.155] INFO  [mk3_Illyria] [0x88] paperdoll 0x00001194: "Natasha, the healer guildmistress"
+[00:20:26.155] INFO  [mk3_Illyria] [world] Natasha, the healer guildmistress is a healer at (1468,1611)
+[00:20:26.155] INFO  [mk3_Illyria] [0x20] player @(1476,1612,20) facing=0
+[00:20:26.155] INFO  [mk3_Illyria] [0x88] paperdoll 0x00001239: "Caimile, the merchant guildmistress"
+[00:20:26.155] INFO  [mk3_Illyria] [0x20] player @(1476,1612,20) facing=6
+[00:20:26.155] INFO  [mk3_Illyria] [0x88] paperdoll 0x00015725: "Cyras, Apprentice Lumberjack"
+[00:20:29.187] INFO  [life] potions: found a 'healer'
+[00:20:29.203] INFO  [mk3_Illyria] [travel] mobile 0x000010C1 -> (1472,1614) r=1 from (1476,1612)
+[00:20:29.203] LOG   [mk3_Illyria] event travel_start: label='mobile 0x000010C1' target=(1472,1614) radius=1 from=(1476,1612)
+[00:20:29.203] INFO  [life] potions: the 'healer' is 4 tiles off (dz 0) -- walking into reach (chase 1 of 3)
+[00:20:29.203] INFO  [mk3_Illyria] [travel] mode walk             usable   <- chosen
+[00:20:29.203] INFO  [mk3_Illyria] [travel] mode moongate         usable
+[00:20:29.204] INFO  [mk3_Illyria] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:29.204] INFO  [mk3_Illyria] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:29.204] LOG   [mk3_Illyria] event travel_mode: walk
+[00:20:29.204] INFO  [mk3_Illyria] [travel] plan mobile 0x000010C1: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:20:29.264] INFO  [mk3_Illyria] [action] goto finished at (1476,1612,20); target (1471,1611); stopped short (off by 6 tile(s))
+[00:20:29.264] LOG   [mk3_Illyria] event goto_done: at=(1476,1612) target=(1471,1611) arrived=0 off=6
+[00:20:29.264] INFO  [mk3_Illyria] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:20:29.264] INFO  [mk3_Illyria] [action] goto (1472,1614) from (1476,1612,20)
+[00:20:29.264] LOG   [mk3_Illyria] event goto_start: target=(1472,1614) from=(1476,1612)
+[00:20:29.264] INFO  [mk3_Illyria] [bot] running from (1476,1612,20) to (1472,1614,z20)
+[00:20:29.264] INFO  [mk3_Illyria] [bot] planning path to (1472,1614) in background
+[00:20:29.631] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:20:31.949] INFO  [mk3_Illyria] [action] goto finished at (1476,1612,20); target (1472,1614); stopped short (off by 6 tile(s))
+[00:20:31.949] LOG   [mk3_Illyria] event goto_done: at=(1476,1612) target=(1472,1614) arrived=0 off=6
+[00:20:33.170] INFO  [mk3_Illyria] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:20:33.170] INFO  [mk3_Illyria] [action] goto (1472,1614) from (1476,1612,20)
+[00:20:33.170] LOG   [mk3_Illyria] event goto_start: target=(1472,1614) from=(1476,1612)
+[00:20:33.170] INFO  [mk3_Illyria] [bot] running from (1476,1612,20) to (1472,1614,z20)
+[00:20:33.170] INFO  [mk3_Illyria] [bot] planning path to (1472,1614) in background
+[00:20:34.658] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:20:35.774] INFO  [mk3_Illyria] [action] goto finished at (1476,1612,20); target (1472,1614); stopped short (off by 6 tile(s))
+[00:20:35.774] LOG   [mk3_Illyria] event goto_done: at=(1476,1612) target=(1472,1614) arrived=0 off=6
+[00:20:37.021] INFO  [mk3_Illyria] [travel] mode walk             usable   <- chosen
+[00:20:37.021] INFO  [mk3_Illyria] [travel] mode moongate         usable
+[00:20:37.021] INFO  [mk3_Illyria] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:37.021] INFO  [mk3_Illyria] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:37.021] LOG   [mk3_Illyria] event travel_mode: walk
+[00:20:37.021] INFO  [mk3_Illyria] [travel] plan mobile 0x000010C1: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:20:37.082] INFO  [mk3_Illyria] [travel] mode walk             usable   <- chosen
+[00:20:37.082] INFO  [mk3_Illyria] [travel] mode moongate         usable
+[00:20:37.082] INFO  [mk3_Illyria] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:37.082] INFO  [mk3_Illyria] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:37.082] LOG   [mk3_Illyria] event travel_mode: walk
+[00:20:37.082] INFO  [mk3_Illyria] [travel] plan mobile 0x000010C1: ok legs=1 ~3 tiles transit=0 nodes=0
+[00:20:37.143] INFO  [mk3_Illyria] [action] goto (1473,1611) from (1476,1612,20)
+[00:20:37.143] LOG   [mk3_Illyria] event goto_start: target=(1473,1611) from=(1476,1612)
+[00:20:37.143] INFO  [mk3_Illyria] [bot] running from (1476,1612,20) to (1473,1611,z20)
+[00:20:37.143] INFO  [mk3_Illyria] [bot] planning path to (1473,1611) in background
+[00:20:39.346] INFO  [mk3_Illyria] [action] goto finished at (1476,1612,20); target (1473,1611); stopped short (off by 4 tile(s))
+[00:20:39.346] LOG   [mk3_Illyria] event goto_done: at=(1476,1612) target=(1473,1611) arrived=0 off=4
+[00:20:39.713] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:20:40.582] INFO  [mk3_Illyria] [travel] mode walk             usable   <- chosen
+[00:20:40.582] INFO  [mk3_Illyria] [travel] mode moongate         usable
+[00:20:40.582] INFO  [mk3_Illyria] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:40.582] INFO  [mk3_Illyria] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:40.582] LOG   [mk3_Illyria] event travel_mode: walk
+[00:20:40.582] INFO  [mk3_Illyria] [travel] plan mobile 0x000010C1: ok legs=1 ~3 tiles transit=0 nodes=0
+[00:20:41.845] INFO  [mk3_Illyria] [travel] mobile 0x000010C1 ARRIVED at (1476,1612,20)
+[00:20:41.845] LOG   [mk3_Illyria] event travel_done: label='mobile 0x000010C1' ok=1 at=(1476,1612) legs=0 plans=0 why=''
+[00:20:41.907] INFO  [life] potions: within reach
+[00:20:41.967] INFO  [mk3_Illyria] [ACTION] vendor_buy start
+[00:20:41.967] INFO  [mk3_Illyria] [VENDOR] open vendor=0x000010C1 say='Dale buy'
+[00:20:41.967] INFO  [life] potions: asking the 'healer' to show heal potion (attempt 1)
+[00:20:41.984] INFO  [mk3_Illyria] [chat uni  ] Serena: Dale buy
+[00:20:41.984] INFO  [mk3_Illyria] [chat ascii] Dale: Yes?
+[00:20:41.984] INFO  [mk3_Illyria] [chat ascii] Dale: I'm here to sell thee supplies.
+[00:20:41.984] INFO  [mk3_Illyria] [chat uni  ] : Dale buy
+[00:20:41.984] INFO  [mk3_Illyria] [chat ascii] Dale: Excuse me Serena, but Illyria wants to speak to me
+[00:20:41.984] INFO  [mk3_Illyria] [chat ascii] Dale: Good morrow!  How can I help thee?
+[00:20:41.984] INFO  [mk3_Illyria] [chat ascii] Dale: Thou surely wants all the things that I can sell thee.
+[00:20:41.984] INFO  [mk3_Illyria] [0x3C] container contents: 3 item(s)
+[00:20:41.984] INFO  [mk3_Illyria] [0x74] pairing: straight (straight 3, mirrored 1 of 3 rows)
+[00:20:41.984] INFO  [mk3_Illyria] [0x74] vendor shop data: cont=0x400010BB 3 item(s), layer=0x1A
+[00:20:41.984] INFO  [mk3_Illyria] [0x74]   Ginseng                      gfx=0x0F85 qty=20   price=3
+[00:20:41.984] INFO  [mk3_Illyria] [0x74]   Garlic                       gfx=0x0F84 qty=13   price=3
+[00:20:41.984] INFO  [mk3_Illyria] [0x74]   Refresh                      gfx=0x0F0B qty=19   price=16
+[00:20:41.984] INFO  [mk3_Illyria] [0x3C] container contents: 0 item(s)
+[00:20:41.984] INFO  [mk3_Illyria] [0x74] vendor shop data: cont=0x40000EF5 0 item(s), layer=0x1B
+[00:20:41.984] INFO  [mk3_Illyria] [VENDOR] offer from 0x000010C1: 3 item(s)
+[00:20:41.984] INFO  [mk3_Illyria] [VENDOR]   0x40018237 Ginseng                x20  3 gp
+[00:20:41.984] INFO  [mk3_Illyria] [VENDOR]   0x40018236 Garlic                 x13  3 gp
+[00:20:41.984] INFO  [mk3_Illyria] [VENDOR]   0x40018232 Refresh                x19  16 gp
+[00:20:41.984] LOG   [mk3_Illyria] event vendor_offer: vendor=0x000010C1 items=3
+[00:20:41.984] INFO  [mk3_Illyria] [ACTION_RESULT] vendor_buy success (17ms) vendor offer received
+[00:20:41.984] LOG   [mk3_Illyria] event action_result: vendor_buy success took=17ms vendor offer received
+[00:20:41.984] INFO  [mk3_Illyria] [0x24] vendor buy gump for 0x000010C1
+[00:20:41.984] INFO  [life] potions: the shop is open
+[00:20:42.043] INFO  [life] potions: this 'healer' does not stock heal potion
+[00:20:42.043] INFO  [life] potions: none bought (this 'healer' does not stock heal potion)
+[00:20:42.043] INFO  [life] goal_completed=REPLACE_EQUIPMENT progress=0
+[00:20:42.047] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_24.illyria/state.json
+[00:20:42.105] INFO  [life] goal=REPLACE_EQUIPMENT reason="no goal was running"
+[00:20:42.106] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedTrade(buy from a player 0.55) NeedSkillTraining(Evaluating Intelligence 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Evaluating Intelligence 0.45) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Evaluating Intelligence (target 100.0)
+[00:20:42.106] INFO  [life]   score=130.0
+[00:20:42.106] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:20:42.106] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:20:42.106] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 269s after achieving nothing
+[00:20:42.106] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:20:42.106] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 8
+[00:20:42.106] INFO  [life] potions: found a 'healer'
+[00:20:42.106] INFO  [life] potions: within reach
+[00:20:42.167] INFO  [life] potions: the shop is open
+[00:20:42.214] INFO  [life] potions: this 'healer' does not stock heal potion
+[00:20:42.214] INFO  [life] potions: none bought (this 'healer' does not stock heal potion)
+[00:20:42.214] INFO  [life] goal_completed=REPLACE_EQUIPMENT progress=0
+[00:20:42.217] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_24.illyria/state.json
+[00:20:42.274] INFO  [life] goal=REPLACE_EQUIPMENT reason="no goal was running"
+[00:20:42.274] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedTrade(buy from a player 0.55) NeedSkillTraining(Evaluating Intelligence 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Evaluating Intelligence 0.45) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Evaluating Intelligence (target 100.0)
+[00:20:42.274] INFO  [life]   score=114.4
+[00:20:42.274] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:20:42.274] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:20:42.274] INFO  [life]   reason: same errand just now, easing off 12% (130.0 -> 114.4)
+[00:20:42.274] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 269s after achieving nothing
+[00:20:42.274] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:20:42.274] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 8
+[00:20:42.274] INFO  [life] potions: found a 'healer'
+[00:20:42.335] INFO  [life] potions: within reach
+[00:20:42.396] INFO  [life] potions: the shop is open
+[00:20:42.457] INFO  [life] potions: this 'healer' does not stock heal potion
+[00:20:42.457] INFO  [life] potions: none bought (this 'healer' does not stock heal potion)
+[00:20:42.457] INFO  [life] goal_completed=REPLACE_EQUIPMENT progress=0
+[00:20:42.459] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_24.illyria/state.json
+[00:20:42.517] INFO  [life] goal=REPLACE_EQUIPMENT reason="no goal was running"
+[00:20:42.517] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedTrade(buy from a player 0.55) NeedSkillTraining(Evaluating Intelligence 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Evaluating Intelligence 0.45) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Evaluating Intelligence (target 100.0)
+[00:20:42.517] INFO  [life]   score=98.8
+[00:20:42.517] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:20:42.517] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:20:42.517] INFO  [life]   reason: same errand just now, easing off 24% (130.0 -> 98.8)
+[00:20:42.517] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 269s after achieving nothing
+[00:20:42.517] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:20:42.517] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 8
+[00:20:42.517] INFO  [life] potions: found a 'healer'
+[00:20:42.579] INFO  [life] potions: within reach
+[00:20:42.641] INFO  [life] potions: the shop is open
+[00:20:42.702] INFO  [life] potions: this 'healer' does not stock heal potion
+[00:20:42.702] INFO  [life] potions: none bought (this 'healer' does not stock heal potion)
+[00:20:42.702] INFO  [life] goal_completed=REPLACE_EQUIPMENT progress=0
+[00:20:42.704] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_24.illyria/state.json
+[00:20:42.763] INFO  [life] goal=TRADE_WITH_PLAYER reason="no goal was running"
+[00:20:42.763] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedTrade(buy from a player 0.55) NeedSkillTraining(Evaluating Intelligence 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Evaluating Intelligence 0.45) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Evaluating Intelligence (target 100.0)
+[00:20:42.763] INFO  [life]   score=79.8
+[00:20:42.763] INFO  [life]   reason: NeedTrade urgency 0.55 x 145 = 79.8
+[00:20:42.763] INFO  [life]   reason: 20 x i_scroll_blank short
+[00:20:42.763] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 268s after achieving nothing
+[00:20:42.764] INFO  [life] market: the market is britain_bank_2 (Britain banker) at 1425,1690, radius 5, guarded
+[00:20:42.764] INFO  [life] goal_blocked=TRADE_WITH_PLAYER reason="not enough session left for the trip" left=144s need=800s
+[00:20:42.825] INFO  [life] goal=REPLACE_EQUIPMENT reason="previous goal abandoned: not enough session left for the trip"
+[00:20:42.825] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedSkillTraining(Evaluating Intelligence 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Evaluating Intelligence 0.45) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25) NeedTrade(buy from a player BLOCKED 0.00)  | tools defined=1 held=[spellbook,] want_train=Evaluating Intelligence (target 100.0)
+[00:20:42.825] INFO  [life]   score=78.0
+[00:20:42.825] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:20:42.825] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:20:42.825] INFO  [life]   reason: upkeep just now, easing off 40% (130.0 -> 78.0)
+[00:20:42.825] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 268s after achieving nothing
+[00:20:42.825] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 599s after achieving nothing
+[00:20:42.825] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:20:42.825] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 8
+[00:20:42.825] INFO  [life] potions: found a 'healer'
+[00:20:42.857] INFO  [life] potions: within reach
+[00:20:42.918] INFO  [life] potions: the shop is open
+[00:20:42.980] INFO  [life] potions: this 'healer' does not stock heal potion
+[00:20:42.980] INFO  [life] potions: none bought (this 'healer' does not stock heal potion)
+[00:20:42.980] INFO  [life] goal_completed=REPLACE_EQUIPMENT progress=0
+[00:20:42.980] INFO  [life] goal_spinning=REPLACE_EQUIPMENT reason="completed 5 times in a row with progress 0 -- cooled off for a minute; this is a bug in that goal, not pacing"
+[00:20:42.983] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_24.illyria/state.json
+[00:20:43.040] INFO  [life] goal=TRAIN_AT_NPC reason="no goal was running"
+[00:20:43.040] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedSkillTraining(Evaluating Intelligence 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Evaluating Intelligence 0.45) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25) NeedTrade(buy from a player BLOCKED 0.00)  | tools defined=1 held=[spellbook,] want_train=Evaluating Intelligence (target 100.0)
+[00:20:43.040] INFO  [life]   score=60.5
+[00:20:43.040] INFO  [life]   reason: NeedSkillTraining urgency 0.55 x 110 = 60.5
+[00:20:43.040] INFO  [life]   reason: Evaluating Intelligence 0.0 -> 100.0, gold 10000 (fee is quoted on arrival, roughly 300)
+[00:20:43.040] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 59s after achieving nothing
+[00:20:43.040] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 268s after achieving nothing
+[00:20:43.040] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 599s after achieving nothing
+[00:20:43.040] INFO  [life] plan=buy reason="below the ceiling, worth buying, and affordable"
+[00:20:43.040] INFO  [life] training: looking for a 'mage' to teach Evaluating Intelligence (trip 1)
+[00:20:43.044] INFO  [mk3_Illyria] [travel] place: skipping Vesper mage -- 2064 tiles and 0 gates for a service Britain mage offers
+[00:20:43.044] INFO  [mk3_Illyria] [travel] place: skipping Vesper mage -- 2032 tiles and 0 gates for a service Britain mage offers
+[00:20:43.044] INFO  [mk3_Illyria] [travel] Britain mage -> (1485,1550) r=5 from (1476,1612)
+[00:20:43.044] LOG   [mk3_Illyria] event travel_start: label='Britain mage' target=(1485,1550) radius=5 from=(1476,1612)
+[00:20:43.044] INFO  [mk3_Illyria] [travel] mode moongate         usable   <- chosen
+[00:20:43.044] INFO  [mk3_Illyria] [travel] mode walk             usable
+[00:20:43.044] INFO  [mk3_Illyria] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:43.044] INFO  [mk3_Illyria] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:43.044] LOG   [mk3_Illyria] event travel_mode: moongate
+[00:20:43.044] INFO  [mk3_Illyria] [travel] plan Britain mage: ok legs=2 ~80 tiles transit=0 nodes=20
+[00:20:43.101] INFO  [mk3_Illyria] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:20:43.101] INFO  [mk3_Illyria] [action] goto (1496,1576) from (1476,1612,20)
+[00:20:43.101] LOG   [mk3_Illyria] event goto_start: target=(1496,1576) from=(1476,1612)
+[00:20:43.101] INFO  [mk3_Illyria] [bot] running from (1476,1612,20) to (1496,1576)
+[00:20:43.101] INFO  [mk3_Illyria] [bot] planning path to (1496,1576) in background
+[00:20:43.117] INFO  [mk3_Illyria] [bot] replan to (1496,1576): 39 steps in 2583.4us
+[00:20:43.850] INFO  [mk3_Illyria] [bot] door ahead at (1479,1611,z20); OpenDoor before step
+[00:20:43.850] INFO  [mk3_Illyria] [chat ascii] System: Opening door...
+[00:20:44.754] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:20:44.755] INFO  [mk3_Illyria] [bot] lookahead patched around block at step 1: anchor=5 new segment=8 path=39 in 97.6us
+[00:20:49.756] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:20:54.782] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:20:55.640] INFO  [mk3_Illyria] [bot] arrived at (1496,1576,30)
+[00:20:55.640] INFO  [mk3_Illyria] [action] goto finished at (1496,1576,30); target (1496,1576); ARRIVED (off by 0 tile(s))
+[00:20:55.640] LOG   [mk3_Illyria] event goto_done: at=(1496,1576) target=(1496,1576) arrived=1 off=0
+[00:20:55.640] INFO  [mk3_Illyria] [action] goto (1485,1550) from (1496,1576,30)
+[00:20:55.640] LOG   [mk3_Illyria] event goto_start: target=(1485,1550) from=(1496,1576)
+[00:20:55.640] INFO  [mk3_Illyria] [bot] running from (1496,1576,30) to (1485,1550,z30)
+[00:20:55.640] INFO  [mk3_Illyria] [bot] planning path to (1485,1550) in background
+[00:20:55.700] INFO  [mk3_Illyria] [bot] replan to (1485,1550): 28 steps in 2118.0us
+[00:20:59.836] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:21:01.967] INFO  [mk3_Illyria] [travel] Britain mage ARRIVED at (1489,1555,30)
+[00:21:01.968] LOG   [mk3_Illyria] event travel_done: label='Britain mage' ok=1 at=(1489,1555) legs=2 plans=1 why=''
+[00:21:02.029] INFO  [life] training: arrived at 1489,1555 -- asking who is here
+[00:21:02.029] INFO  [mk3_Illyria] [action] scanning nearby mobiles for names
+[00:21:02.029] INFO  [mk3_Illyria] [action] requested 4 paperdoll(s) for trade titles
+[00:21:02.045] INFO  [mk3_Illyria] [mobiles] nearby (4):
+[00:21:02.045] INFO  [mk3_Illyria]   Alenne 0x00001145
+[00:21:02.045] INFO  [mk3_Illyria]   Xanthe 0x00001211
+[00:21:02.045] INFO  [mk3_Illyria]   Caedmon 0x000012EE
+[00:21:02.045] INFO  [mk3_Illyria]   Shunnar 0x0000E14F
+[00:21:02.045] INFO  [mk3_Illyria] [0x88] paperdoll 0x00001211: "Xanthe, the alchemist"
+[00:21:02.045] INFO  [mk3_Illyria] [world] Xanthe, the alchemist is a alchemist at (1489,1553)
+[00:21:02.046] INFO  [mk3_Illyria] [0x20] player @(1489,1555,30) facing=6
+[00:21:02.046] INFO  [mk3_Illyria] [0x88] paperdoll 0x00001145: "Alenne, the mage"
+[00:21:02.046] INFO  [mk3_Illyria] [world] Alenne, the mage is a mage at (1488,1555)
+[00:21:02.046] INFO  [mk3_Illyria] [0x20] player @(1489,1555,30) facing=0
+[00:21:02.046] INFO  [mk3_Illyria] [0x88] paperdoll 0x000012EE: "Caedmon, the mage guildmaster"
+[00:21:02.046] INFO  [mk3_Illyria] [world] Caedmon, the mage guildmaster is a mage at (1488,1548)
+[00:21:02.046] INFO  [mk3_Illyria] [0x88] paperdoll 0x0000E14F: "Shunnar, the scribe"
+[00:21:02.046] INFO  [mk3_Illyria] [world] Shunnar, the scribe is a scribe at (1486,1548)
+[00:21:02.617] INFO  [mk3_Illyria] [chat ascii] Xanthe: What's thee wantin'?
+[00:21:04.532] INFO  [life] training: a 'mage guildmaster' is here -- asking them rather than the shopkeeper
+[00:21:04.532] INFO  [life] training: 'mage' is 6 tiles and 2 z away -- walking to them before speaking (approach 1 of 3)
+[00:21:04.532] INFO  [mk3_Illyria] [travel] mobile 0x000012EE -> (1486,1549) r=1 from (1489,1555)
+[00:21:04.532] LOG   [mk3_Illyria] event travel_start: label='mobile 0x000012EE' target=(1486,1549) radius=1 from=(1489,1555)
+[00:21:04.532] INFO  [mk3_Illyria] [travel] mode walk             usable   <- chosen
+[00:21:04.532] INFO  [mk3_Illyria] [travel] mode moongate         usable
+[00:21:04.532] INFO  [mk3_Illyria] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:04.532] INFO  [mk3_Illyria] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:04.532] LOG   [mk3_Illyria] event travel_mode: walk
+[00:21:04.532] INFO  [mk3_Illyria] [travel] plan mobile 0x000012EE: ok legs=1 ~6 tiles transit=0 nodes=0
+[00:21:04.592] INFO  [mk3_Illyria] [action] goto finished at (1489,1555,30); target (1485,1550); stopped short (off by 9 tile(s))
+[00:21:04.592] LOG   [mk3_Illyria] event goto_done: at=(1489,1555) target=(1485,1550) arrived=0 off=9
+[00:21:04.592] INFO  [mk3_Illyria] [action] goto (1486,1549) from (1489,1555,30)
+[00:21:04.592] LOG   [mk3_Illyria] event goto_start: target=(1486,1549) from=(1489,1555)
+[00:21:04.592] INFO  [mk3_Illyria] [bot] running from (1489,1555,30) to (1486,1549,z32)
+[00:21:04.592] INFO  [mk3_Illyria] [bot] planning path to (1486,1549) in background
+[00:21:04.838] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:21:07.209] INFO  [mk3_Illyria] [action] goto finished at (1489,1555,30); target (1486,1549); stopped short (off by 9 tile(s))
+[00:21:07.209] LOG   [mk3_Illyria] event goto_done: at=(1489,1555) target=(1486,1549) arrived=0 off=9
+[00:21:08.463] INFO  [mk3_Illyria] [action] goto (1486,1549) from (1489,1555,30)
+[00:21:08.463] LOG   [mk3_Illyria] event goto_start: target=(1486,1549) from=(1489,1555)
+[00:21:08.463] INFO  [mk3_Illyria] [bot] running from (1489,1555,30) to (1486,1549,z30)
+[00:21:08.463] INFO  [mk3_Illyria] [bot] planning path to (1486,1549) in background
+[00:21:08.587] INFO  [mk3_Illyria] [action] goto finished at (1489,1555,30); target (1486,1549); stopped short (off by 9 tile(s))
+[00:21:08.587] LOG   [mk3_Illyria] event goto_done: at=(1489,1555) target=(1486,1549) arrived=0 off=9
+[00:21:09.802] INFO  [mk3_Illyria] [travel] mode walk             usable   <- chosen
+[00:21:09.802] INFO  [mk3_Illyria] [travel] mode moongate         usable
+[00:21:09.802] INFO  [mk3_Illyria] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:09.802] INFO  [mk3_Illyria] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:09.802] LOG   [mk3_Illyria] event travel_mode: walk
+[00:21:09.802] INFO  [mk3_Illyria] [travel] plan mobile 0x000012EE: ok legs=1 ~6 tiles transit=0 nodes=0
+[00:21:09.863] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:21:11.193] INFO  [mk3_Illyria] [chat ascii] System: Observer has arrived in Minoc.
+[00:21:11.308] INFO  [mk3_Illyria] [action] goto (1486,1549) from (1489,1555,30)
+[00:21:11.308] LOG   [mk3_Illyria] event goto_start: target=(1486,1549) from=(1489,1555)
+[00:21:11.308] INFO  [mk3_Illyria] [bot] running from (1489,1555,30) to (1486,1549,z30)
+[00:21:11.308] INFO  [mk3_Illyria] [bot] planning path to (1486,1549) in background
+[00:21:11.370] INFO  [mk3_Illyria] [action] goto finished at (1489,1555,30); target (1486,1549); stopped short (off by 9 tile(s))
+[00:21:11.370] LOG   [mk3_Illyria] event goto_done: at=(1489,1555) target=(1486,1549) arrived=0 off=9
+[00:21:12.585] INFO  [mk3_Illyria] [action] goto (1486,1549) from (1489,1555,30)
+[00:21:12.585] LOG   [mk3_Illyria] event goto_start: target=(1486,1549) from=(1489,1555)
+[00:21:12.585] INFO  [mk3_Illyria] [bot] running from (1489,1555,30) to (1486,1549,z30)
+[00:21:12.585] INFO  [mk3_Illyria] [bot] planning path to (1486,1549) in background
+[00:21:12.709] INFO  [mk3_Illyria] [action] goto finished at (1489,1555,30); target (1486,1549); stopped short (off by 9 tile(s))
+[00:21:12.709] LOG   [mk3_Illyria] event goto_done: at=(1489,1555) target=(1486,1549) arrived=0 off=9
+[00:21:13.923] INFO  [mk3_Illyria] [action] goto (1486,1549) from (1489,1555,30)
+[00:21:13.923] LOG   [mk3_Illyria] event goto_start: target=(1486,1549) from=(1489,1555)
+[00:21:13.923] INFO  [mk3_Illyria] [bot] running from (1489,1555,30) to (1486,1549,z30)
+[00:21:13.923] INFO  [mk3_Illyria] [bot] planning path to (1486,1549) in background
+[00:21:13.985] INFO  [mk3_Illyria] [action] goto finished at (1489,1555,30); target (1486,1549); stopped short (off by 9 tile(s))
+[00:21:13.985] LOG   [mk3_Illyria] event goto_done: at=(1489,1555) target=(1486,1549) arrived=0 off=9
+[00:21:14.571] INFO  [mk3_Illyria] [chat ascii] System: Observer has departed from Minoc.
+[00:21:14.910] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:21:15.215] INFO  [mk3_Illyria] [travel] mode walk             usable   <- chosen
+[00:21:15.215] INFO  [mk3_Illyria] [travel] mode moongate         usable
+[00:21:15.215] INFO  [mk3_Illyria] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:15.215] INFO  [mk3_Illyria] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:15.215] LOG   [mk3_Illyria] event travel_mode: walk
+[00:21:15.215] INFO  [mk3_Illyria] [travel] plan mobile 0x000012EE: ok legs=1 ~6 tiles transit=0 nodes=0
+[00:21:18.239] INFO  [mk3_Illyria] [action] goto (1486,1549) from (1489,1555,30)
+[00:21:18.239] LOG   [mk3_Illyria] event goto_start: target=(1486,1549) from=(1489,1555)
+[00:21:18.239] INFO  [mk3_Illyria] [bot] running from (1489,1555,30) to (1486,1549,z32)
+[00:21:18.239] INFO  [mk3_Illyria] [bot] planning path to (1486,1549) in background
+[00:21:18.299] INFO  [mk3_Illyria] [bot] replan to (1486,1549): 6 steps in 450.6us
+[00:21:19.908] INFO  [mk3_Illyria] [bot] arrived at (1486,1549,35)
+[00:21:19.908] INFO  [mk3_Illyria] [action] goto finished at (1486,1549,35); target (1486,1549); ARRIVED (off by 0 tile(s))
+[00:21:19.908] LOG   [mk3_Illyria] event goto_done: at=(1486,1549) target=(1486,1549) arrived=1 off=0
+[00:21:19.908] INFO  [mk3_Illyria] [travel] mobile 0x000012EE ARRIVED at (1486,1549,35)
+[00:21:19.908] LOG   [mk3_Illyria] event travel_done: label='mobile 0x000012EE' ok=1 at=(1486,1549) legs=1 plans=3 why=''
+[00:21:19.969] INFO  [life] training: 'mage' is 3 tiles and 3 z away -- walking to them before speaking (approach 2 of 3)
+[00:21:19.969] INFO  [mk3_Illyria] [travel] mobile 0x000012EE -> (1489,1548) r=1 from (1486,1549)
+[00:21:19.969] LOG   [mk3_Illyria] event travel_start: label='mobile 0x000012EE' target=(1489,1548) radius=1 from=(1486,1549)
+[00:21:19.969] INFO  [mk3_Illyria] [travel] mode walk             usable   <- chosen
+[00:21:19.969] INFO  [mk3_Illyria] [travel] mode moongate         usable
+[00:21:19.969] INFO  [mk3_Illyria] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:19.969] INFO  [mk3_Illyria] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:19.969] LOG   [mk3_Illyria] event travel_mode: walk
+[00:21:19.969] INFO  [mk3_Illyria] [travel] plan mobile 0x000012EE: ok legs=1 ~3 tiles transit=0 nodes=0
+[00:21:19.969] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:21:20.030] INFO  [mk3_Illyria] [action] goto (1489,1548) from (1486,1549,35)
+[00:21:20.030] LOG   [mk3_Illyria] event goto_start: target=(1489,1548) from=(1486,1549)
+[00:21:20.030] INFO  [mk3_Illyria] [bot] running from (1486,1549,35) to (1489,1548,z32)
+[00:21:20.030] INFO  [mk3_Illyria] [bot] planning path to (1489,1548) in background
+[00:21:23.043] INFO  [mk3_Illyria] [action] goto finished at (1486,1549,35); target (1489,1548); stopped short (off by 4 tile(s))
+[00:21:23.043] LOG   [mk3_Illyria] event goto_done: at=(1486,1549) target=(1489,1548) arrived=0 off=4
+[00:21:24.303] INFO  [mk3_Illyria] [travel] mode walk             usable   <- chosen
+[00:21:24.304] INFO  [mk3_Illyria] [travel] mode moongate         usable
+[00:21:24.304] INFO  [mk3_Illyria] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:24.304] INFO  [mk3_Illyria] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:24.304] LOG   [mk3_Illyria] event travel_mode: walk
+[00:21:24.304] INFO  [mk3_Illyria] [travel] plan mobile 0x000012EE: ok legs=1 ~3 tiles transit=0 nodes=0
+[00:21:24.981] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:21:25.844] INFO  [mk3_Illyria] [action] goto (1489,1548) from (1486,1549,35)
+[00:21:25.844] LOG   [mk3_Illyria] event goto_start: target=(1489,1548) from=(1486,1549)
+[00:21:25.844] INFO  [mk3_Illyria] [bot] running from (1486,1549,35) to (1489,1548,z35)
+[00:21:25.844] INFO  [mk3_Illyria] [bot] planning path to (1489,1548) in background
+[00:21:25.906] INFO  [mk3_Illyria] [bot] replan to (1489,1548): 3 steps in 201.1us
+[00:21:26.996] INFO  [mk3_Illyria] [travel] mobile 0x000012EE ARRIVED at (1488,1548,35)
+[00:21:26.996] LOG   [mk3_Illyria] event travel_done: label='mobile 0x000012EE' ok=1 at=(1488,1548) legs=1 plans=2 why=''
+[00:21:27.057] INFO  [life] training: asking the trainer about Evaluating Intelligence
+[00:21:27.057] INFO  [mk3_Illyria] [ACTION] npc_train start
+[00:21:27.057] INFO  [mk3_Illyria] [TRAIN] ask 0x000012EE say='Caedmon train EvaluatingIntel'
+[00:21:27.057] LOG   [mk3_Illyria] event npc_train_ask: Caedmon train EvaluatingIntel
+[00:21:27.072] INFO  [mk3_Illyria] [chat uni  ] : Caedmon train EvaluatingIntel
+[00:21:27.073] INFO  [mk3_Illyria] [chat ascii] Caedmon: For 300 gold I will train you in all I know of EvaluatingIntel. For less gold I will teach you less
+[00:21:27.073] INFO  [mk3_Illyria] [ACTION_RESULT] npc_train success (16ms) For 300 gold I will train you in all I know of EvaluatingIntel. For less gold I will teach you less
+[00:21:27.073] LOG   [mk3_Illyria] event action_result: npc_train success took=16ms For 300 gold I will train you in all I know of EvaluatingIntel. For less gold I will teach you less
+[00:21:27.073] INFO  [mk3_Illyria] [bot] arrived at (1489,1548,35)
+[00:21:29.576] INFO  [mk3_Illyria] [action] open backpack
+[00:21:29.576] INFO  [mk3_Illyria] [backpack] opening 0x40019164
+[00:21:29.576] INFO  [mk3_Illyria] [0x24] open container 0x40019164 gump=60
+[00:21:29.576] INFO  [mk3_Illyria] [0x3C] container contents: 8 item(s)
+[00:21:30.005] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:21:30.837] INFO  [life] training: paying the quoted 300 gold for Evaluating Intelligence (purse 10000)
+[00:21:30.837] INFO  [mk3_Illyria] [GIVE] 0x40019151 x300 -> 0x000012EE (gold 10000)
+[00:21:30.837] INFO  [mk3_Illyria] [ITEM] drag serial=0x40019151 amount=300
+[00:21:30.837] INFO  [mk3_Illyria] [ITEM] drop container=0x000012EE
+[00:21:30.837] LOG   [mk3_Illyria] event npc_give: item=0x40019151 amount=300 to=0x000012EE
+[00:21:33.274] INFO  [mk3_Illyria] [chat ascii] Shunnar: Hmm?
+[00:21:34.844] INFO  [mk3_Illyria] [action] requesting the skill list
+[00:21:35.027] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:21:40.056] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:21:43.012] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=TRAIN_AT_NPC reason="REPLACE_EQUIPMENT 78.0 superseded TRAIN_AT_NPC 60.5"
+[00:21:43.012] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedSkillTraining(Evaluating Intelligence 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Evaluating Intelligence 0.45) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25) NeedTrade(buy from a player BLOCKED 0.00)  | tools defined=1 held=[spellbook,] want_train=Evaluating Intelligence (target 100.0)
+[00:21:43.012] INFO  [life]   score=78.0
+[00:21:43.012] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:21:43.012] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:21:43.012] INFO  [life]   reason: upkeep just now, easing off 40% (130.0 -> 78.0)
+[00:21:43.012] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 208s after achieving nothing
+[00:21:43.012] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 539s after achieving nothing
+[00:21:43.014] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_24.illyria/state.json
+[00:21:44.043] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:21:44.043] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 8
+[00:21:44.043] INFO  [mk3_Illyria] [travel] healer (seen) -> (1472,1614) r=2 from (1489,1548)
+[00:21:44.043] LOG   [mk3_Illyria] event travel_start: label='healer (seen)' target=(1472,1614) radius=2 from=(1489,1548)
+[00:21:44.043] INFO  [life] potions: walking to a 'healer' (trip 1)
+[00:21:44.043] INFO  [mk3_Illyria] [travel] mode moongate         usable   <- chosen
+[00:21:44.043] INFO  [mk3_Illyria] [travel] mode walk             usable
+[00:21:44.043] INFO  [mk3_Illyria] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:44.043] INFO  [mk3_Illyria] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:44.043] LOG   [mk3_Illyria] event travel_mode: moongate
+[00:21:44.043] INFO  [mk3_Illyria] [travel] plan healer (seen): ok legs=2 ~88 tiles transit=0 nodes=9
+[00:21:44.104] INFO  [mk3_Illyria] [action] goto finished at (1489,1548,35); target (1489,1548); ARRIVED (off by 0 tile(s))
+[00:21:44.104] LOG   [mk3_Illyria] event goto_done: at=(1489,1548) target=(1489,1548) arrived=1 off=0
+[00:21:44.104] INFO  [mk3_Illyria] [action] goto (1480,1574) from (1489,1548,35)
+[00:21:44.104] LOG   [mk3_Illyria] event goto_start: target=(1480,1574) from=(1489,1548)
+[00:21:44.104] INFO  [mk3_Illyria] [bot] running from (1489,1548,35) to (1480,1574)
+[00:21:44.104] INFO  [mk3_Illyria] [bot] planning path to (1480,1574) in background
+[00:21:44.165] INFO  [mk3_Illyria] [bot] replan to (1480,1574): 34 steps in 4138.4us
+[00:21:45.090] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:21:50.105] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:21:53.632] INFO  [mk3_Illyria] [bot] arrived at (1480,1574,30)
+[00:21:53.632] INFO  [mk3_Illyria] [action] goto finished at (1480,1574,30); target (1480,1574); ARRIVED (off by 0 tile(s))
+[00:21:53.632] LOG   [mk3_Illyria] event goto_done: at=(1480,1574) target=(1480,1574) arrived=1 off=0
+[00:21:53.632] INFO  [mk3_Illyria] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:53.632] INFO  [mk3_Illyria] [action] goto (1472,1614) from (1480,1574,30)
+[00:21:53.632] LOG   [mk3_Illyria] event goto_start: target=(1472,1614) from=(1480,1574)
+[00:21:53.632] INFO  [mk3_Illyria] [bot] running from (1480,1574,30) to (1472,1614,z20)
+[00:21:53.632] INFO  [mk3_Illyria] [bot] planning path to (1472,1614) in background
+[00:21:53.693] INFO  [mk3_Illyria] [bot] replan to (1472,1614): 52 steps in 12482.8us
+[00:21:55.143] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:21:57.012] INFO  [mk3_Illyria] [bot] step (1488,1579,27)->(1488,1580,20) rejected; OpenDoor + retry
+[00:21:57.751] INFO  [mk3_Illyria] [bot] step (1488,1579,27)->(1488,1580,20) rejected; avoiding edge + rerouting
+[00:21:57.751] INFO  [mk3_Illyria] [bot] planning path to (1472,1614) in background
+[00:21:57.811] INFO  [mk3_Illyria] [bot] replan to (1472,1614): 43 steps in 6860.6us
+[00:21:58.644] INFO  [mk3_Illyria] [chat ascii] System: Draver has departed from Minoc.
+[00:22:00.194] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:22:04.097] INFO  [mk3_Illyria] [travel] mode walk             usable   <- chosen
+[00:22:04.097] INFO  [mk3_Illyria] [travel] mode moongate         usable
+[00:22:04.097] INFO  [mk3_Illyria] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:04.097] INFO  [mk3_Illyria] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:04.097] LOG   [mk3_Illyria] event travel_mode: walk
+[00:22:04.097] INFO  [mk3_Illyria] [travel] plan healer (seen): ok legs=1 ~18 tiles transit=0 nodes=0
+[00:22:04.158] INFO  [mk3_Illyria] [action] goto finished at (1486,1600,14); target (1472,1614); stopped short (off by 28 tile(s))
+[00:22:04.158] LOG   [mk3_Illyria] event goto_done: at=(1486,1600) target=(1472,1614) arrived=0 off=28
+[00:22:04.158] INFO  [mk3_Illyria] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:22:04.158] INFO  [mk3_Illyria] [action] goto (1468,1609) from (1486,1600,14)
+[00:22:04.158] LOG   [mk3_Illyria] event goto_start: target=(1468,1609) from=(1486,1600)
+[00:22:04.158] INFO  [mk3_Illyria] [bot] running from (1486,1600,14) to (1468,1609,z20)
+[00:22:04.158] INFO  [mk3_Illyria] [bot] planning path to (1468,1609) in background
+[00:22:05.206] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:22:06.644] INFO  [mk3_Illyria] [action] goto finished at (1486,1600,14); target (1468,1609); stopped short (off by 27 tile(s))
+[00:22:06.644] LOG   [mk3_Illyria] event goto_done: at=(1486,1600) target=(1468,1609) arrived=0 off=27
+[00:22:07.882] INFO  [mk3_Illyria] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:22:07.882] INFO  [mk3_Illyria] [action] goto (1468,1609) from (1486,1600,14)
+[00:22:07.882] LOG   [mk3_Illyria] event goto_start: target=(1468,1609) from=(1486,1600)
+[00:22:07.882] INFO  [mk3_Illyria] [bot] running from (1486,1600,14) to (1468,1609,z20)
+[00:22:07.882] INFO  [mk3_Illyria] [bot] planning path to (1468,1609) in background
+[00:22:10.229] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:22:10.350] INFO  [mk3_Illyria] [action] goto finished at (1486,1600,14); target (1468,1609); stopped short (off by 27 tile(s))
+[00:22:10.350] LOG   [mk3_Illyria] event goto_done: at=(1486,1600) target=(1468,1609) arrived=0 off=27
+[00:22:11.600] INFO  [mk3_Illyria] [travel] mode walk             usable   <- chosen
+[00:22:11.600] INFO  [mk3_Illyria] [travel] mode moongate         usable
+[00:22:11.600] INFO  [mk3_Illyria] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:11.600] INFO  [mk3_Illyria] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:11.600] LOG   [mk3_Illyria] event travel_mode: walk
+[00:22:11.600] INFO  [mk3_Illyria] [travel] plan healer (seen): ok legs=1 ~18 tiles transit=0 nodes=0
+[00:22:13.126] INFO  [mk3_Illyria] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:22:13.126] INFO  [mk3_Illyria] [action] goto (1468,1609) from (1486,1600,14)
+[00:22:13.127] LOG   [mk3_Illyria] event goto_start: target=(1468,1609) from=(1486,1600)
+[00:22:13.127] INFO  [mk3_Illyria] [bot] running from (1486,1600,14) to (1468,1609,z20)
+[00:22:13.127] INFO  [mk3_Illyria] [bot] planning path to (1468,1609) in background
+[00:22:15.286] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:22:15.780] INFO  [mk3_Illyria] [action] goto finished at (1486,1600,14); target (1468,1609); stopped short (off by 27 tile(s))
+[00:22:15.780] LOG   [mk3_Illyria] event goto_done: at=(1486,1600) target=(1468,1609) arrived=0 off=27
+[00:22:17.037] INFO  [mk3_Illyria] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:22:17.037] INFO  [mk3_Illyria] [action] goto (1468,1609) from (1486,1600,14)
+[00:22:17.037] LOG   [mk3_Illyria] event goto_start: target=(1468,1609) from=(1486,1600)
+[00:22:17.037] INFO  [mk3_Illyria] [bot] running from (1486,1600,14) to (1468,1609,z20)
+[00:22:17.037] INFO  [mk3_Illyria] [bot] planning path to (1468,1609) in background
+[00:22:19.386] INFO  [mk3_Illyria] [action] goto finished at (1486,1600,14); target (1468,1609); stopped short (off by 27 tile(s))
+[00:22:19.387] LOG   [mk3_Illyria] event goto_done: at=(1486,1600) target=(1468,1609) arrived=0 off=27
+[00:22:20.313] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:22:20.621] INFO  [mk3_Illyria] [travel] mode walk             usable   <- chosen
+[00:22:20.621] INFO  [mk3_Illyria] [travel] mode moongate         usable
+[00:22:20.621] INFO  [mk3_Illyria] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:20.621] INFO  [mk3_Illyria] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:20.621] LOG   [mk3_Illyria] event travel_mode: walk
+[00:22:20.621] INFO  [mk3_Illyria] [travel] plan healer (seen): ok legs=1 ~18 tiles transit=0 nodes=0
+[00:22:23.621] INFO  [mk3_Illyria] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:22:23.621] INFO  [mk3_Illyria] [action] goto (1468,1609) from (1486,1600,14)
+[00:22:23.621] LOG   [mk3_Illyria] event goto_start: target=(1468,1609) from=(1486,1600)
+[00:22:23.621] INFO  [mk3_Illyria] [bot] running from (1486,1600,14) to (1468,1609,z20)
+[00:22:23.621] INFO  [mk3_Illyria] [bot] planning path to (1468,1609) in background
+[00:22:25.366] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:22:25.736] INFO  [mk3_Illyria] [action] goto finished at (1486,1600,14); target (1468,1609); stopped short (off by 27 tile(s))
+[00:22:25.736] LOG   [mk3_Illyria] event goto_done: at=(1486,1600) target=(1468,1609) arrived=0 off=27
+[00:22:26.935] INFO  [mk3_Illyria] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:22:26.935] INFO  [mk3_Illyria] [action] goto (1468,1609) from (1486,1600,14)
+[00:22:26.935] LOG   [mk3_Illyria] event goto_start: target=(1468,1609) from=(1486,1600)
+[00:22:26.935] INFO  [mk3_Illyria] [bot] running from (1486,1600,14) to (1468,1609,z20)
+[00:22:26.935] INFO  [mk3_Illyria] [bot] planning path to (1468,1609) in background
+[00:22:28.797] INFO  [mk3_Illyria] [action] goto finished at (1486,1600,14); target (1468,1609); stopped short (off by 27 tile(s))
+[00:22:28.797] LOG   [mk3_Illyria] event goto_done: at=(1486,1600) target=(1468,1609) arrived=0 off=27
+[00:22:30.033] INFO  [mk3_Illyria] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:22:30.033] INFO  [mk3_Illyria] [action] goto (1468,1609) from (1486,1600,14)
+[00:22:30.033] LOG   [mk3_Illyria] event goto_start: target=(1468,1609) from=(1486,1600)
+[00:22:30.033] INFO  [mk3_Illyria] [bot] running from (1486,1600,14) to (1468,1609,z20)
+[00:22:30.033] INFO  [mk3_Illyria] [bot] planning path to (1468,1609) in background
+[00:22:30.420] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:22:31.729] INFO  [mk3_Illyria] [action] goto finished at (1486,1600,14); target (1468,1609); stopped short (off by 27 tile(s))
+[00:22:31.729] LOG   [mk3_Illyria] event goto_done: at=(1486,1600) target=(1468,1609) arrived=0 off=27
+[00:22:32.989] INFO  [mk3_Illyria] [travel] mode walk             usable   <- chosen
+[00:22:32.989] INFO  [mk3_Illyria] [travel] mode moongate         usable
+[00:22:32.989] INFO  [mk3_Illyria] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:32.989] INFO  [mk3_Illyria] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:32.989] LOG   [mk3_Illyria] event travel_mode: walk
+[00:22:32.989] INFO  [mk3_Illyria] [travel] plan healer (seen): ok legs=1 ~18 tiles transit=0 nodes=0
+[00:22:35.472] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:22:37.491] INFO  [mk3_Illyria] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:22:37.491] INFO  [mk3_Illyria] [action] goto (1468,1609) from (1486,1600,14)
+[00:22:37.491] LOG   [mk3_Illyria] event goto_start: target=(1468,1609) from=(1486,1600)
+[00:22:37.492] INFO  [mk3_Illyria] [bot] running from (1486,1600,14) to (1468,1609,z20)
+[00:22:37.492] INFO  [mk3_Illyria] [bot] planning path to (1468,1609) in background
+[00:22:38.419] INFO  [mk3_Illyria] [chat ascii] System: Vorar has departed from Britain.
+[00:22:39.179] INFO  [mk3_Illyria] [action] goto finished at (1486,1600,14); target (1468,1609); stopped short (off by 27 tile(s))
+[00:22:39.179] LOG   [mk3_Illyria] event goto_done: at=(1486,1600) target=(1468,1609) arrived=0 off=27
+[00:22:39.439] INFO  [mk3_Illyria] [chat ascii] System: Selene has departed from Magincia.
+[00:22:40.391] INFO  [mk3_Illyria] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:22:40.391] INFO  [mk3_Illyria] [action] goto (1468,1609) from (1486,1600,14)
+[00:22:40.391] LOG   [mk3_Illyria] event goto_start: target=(1468,1609) from=(1486,1600)
+[00:22:40.391] INFO  [mk3_Illyria] [bot] running from (1486,1600,14) to (1468,1609,z20)
+[00:22:40.391] INFO  [mk3_Illyria] [bot] planning path to (1468,1609) in background
+[00:22:40.484] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:22:42.517] INFO  [mk3_Illyria] [action] goto finished at (1486,1600,14); target (1468,1609); stopped short (off by 27 tile(s))
+[00:22:42.517] LOG   [mk3_Illyria] event goto_done: at=(1486,1600) target=(1468,1609) arrived=0 off=27
+[00:22:42.517] LOG   [mk3_Illyria] event travel_escape: from=(1486,1600,14) to=(1480,1592) attempt=1
+[00:22:42.517] INFO  [mk3_Illyria] [action] goto (1480,1592) from (1486,1600,14)
+[00:22:42.517] LOG   [mk3_Illyria] event goto_start: target=(1480,1592) from=(1486,1600)
+[00:22:42.517] INFO  [mk3_Illyria] [bot] running from (1486,1600,14) to (1480,1592,z20)
+[00:22:42.517] INFO  [mk3_Illyria] [bot] planning path to (1480,1592) in background
+[00:22:42.577] INFO  [mk3_Illyria] [bot] replan to (1480,1592): 22 steps in 2863.5us
+[00:22:43.023] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_24.illyria/state.json
+[00:22:45.524] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:22:46.433] INFO  [mk3_Illyria] [bot] door ahead at (1475,1599,z20); OpenDoor before step
+[00:22:46.448] INFO  [mk3_Illyria] [chat ascii] System: Opening door...
+[00:22:46.897] INFO  [mk3_Illyria] [chat ascii] System: Zarthal has departed from Minoc.
+[00:22:49.378] INFO  [mk3_Illyria] [chat ascii] System: World save in 10 seconds
+[00:22:50.319] INFO  [mk3_Illyria] [chat ascii] System: Thalia has departed from Moonglow.
+[00:22:50.564] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:22:50.996] INFO  [mk3_Illyria] [bot] arrived at (1480,1592,20)
+[00:22:50.996] INFO  [mk3_Illyria] [action] goto finished at (1480,1592,20); target (1480,1592); ARRIVED (off by 0 tile(s))
+[00:22:50.996] LOG   [mk3_Illyria] event goto_done: at=(1480,1592) target=(1480,1592) arrived=1 off=0
+[00:22:50.996] INFO  [mk3_Illyria] [travel] recovery walk reached its anchor at (1480,1592,20) (off 0); attempt 1/3
+[00:22:50.996] LOG   [mk3_Illyria] event travel_recovery_done: reached=1 at=(1480,1592,20) off=0 attempt=1
+[00:22:51.057] INFO  [mk3_Illyria] [travel] mode walk             usable   <- chosen
+[00:22:51.058] INFO  [mk3_Illyria] [travel] mode moongate         usable
+[00:22:51.058] INFO  [mk3_Illyria] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:51.058] INFO  [mk3_Illyria] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:51.058] LOG   [mk3_Illyria] event travel_mode: walk
+[00:22:51.058] INFO  [mk3_Illyria] [travel] plan healer (seen): ok legs=1 ~17 tiles transit=0 nodes=0
+[00:22:51.119] INFO  [mk3_Illyria] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:22:51.119] INFO  [mk3_Illyria] [action] goto (1468,1609) from (1480,1592,20)
+[00:22:51.119] LOG   [mk3_Illyria] event goto_start: target=(1468,1609) from=(1480,1592)
+[00:22:51.119] INFO  [mk3_Illyria] [bot] running from (1480,1592,20) to (1468,1609,z20)
+[00:22:51.119] INFO  [mk3_Illyria] [bot] planning path to (1468,1609) in background
+[00:22:53.217] INFO  [mk3_Illyria] [chat ascii] System: Elvar has departed from Minoc.
+[00:22:53.397] INFO  [mk3_Illyria] [action] goto finished at (1480,1592,20); target (1468,1609); stopped short (off by 29 tile(s))
+[00:22:53.397] LOG   [mk3_Illyria] event goto_done: at=(1480,1592) target=(1468,1609) arrived=0 off=29
+[00:22:54.596] INFO  [mk3_Illyria] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:22:54.596] INFO  [mk3_Illyria] [action] goto (1468,1609) from (1480,1592,20)
+[00:22:54.596] LOG   [mk3_Illyria] event goto_start: target=(1468,1609) from=(1480,1592)
+[00:22:54.596] INFO  [mk3_Illyria] [bot] running from (1480,1592,20) to (1468,1609,z20)
+[00:22:54.596] INFO  [mk3_Illyria] [bot] planning path to (1468,1609) in background
+[00:22:55.594] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:22:56.332] INFO  [mk3_Illyria] [action] goto finished at (1480,1592,20); target (1468,1609); stopped short (off by 29 tile(s))
+[00:22:56.332] LOG   [mk3_Illyria] event goto_done: at=(1480,1592) target=(1468,1609) arrived=0 off=29
+[00:22:57.540] INFO  [mk3_Illyria] [travel] mode walk             usable   <- chosen
+[00:22:57.540] INFO  [mk3_Illyria] [travel] mode moongate         usable
+[00:22:57.540] INFO  [mk3_Illyria] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:57.540] INFO  [mk3_Illyria] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:57.540] LOG   [mk3_Illyria] event travel_mode: walk
+[00:22:57.540] INFO  [mk3_Illyria] [travel] plan healer (seen): ok legs=1 ~17 tiles transit=0 nodes=0
+[00:22:57.848] INFO  [mk3_Illyria] [chat ascii] System: Falen has departed from Minoc.
+[00:22:59.062] INFO  [mk3_Illyria] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:22:59.062] INFO  [mk3_Illyria] [action] goto (1468,1609) from (1480,1592,20)
+[00:22:59.062] LOG   [mk3_Illyria] event goto_start: target=(1468,1609) from=(1480,1592)
+[00:22:59.062] INFO  [mk3_Illyria] [bot] running from (1480,1592,20) to (1468,1609,z20)
+[00:22:59.062] INFO  [mk3_Illyria] [bot] planning path to (1468,1609) in background
+[00:22:59.430] INFO  [mk3_Illyria] [chat ascii] System: World save has been initiated.
+[00:23:00.611] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:23:01.487] INFO  [mk3_Illyria] [action] goto finished at (1480,1592,20); target (1468,1609); stopped short (off by 29 tile(s))
+[00:23:01.487] LOG   [mk3_Illyria] event goto_done: at=(1480,1592) target=(1468,1609) arrived=0 off=29
+[00:23:02.732] INFO  [mk3_Illyria] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:23:02.732] INFO  [mk3_Illyria] [action] goto (1468,1609) from (1480,1592,20)
+[00:23:02.732] LOG   [mk3_Illyria] event goto_start: target=(1468,1609) from=(1480,1592)
+[00:23:02.732] INFO  [mk3_Illyria] [bot] running from (1480,1592,20) to (1468,1609,z20)
+[00:23:02.732] INFO  [mk3_Illyria] [bot] planning path to (1468,1609) in background
+[00:23:04.423] INFO  [mk3_Illyria] [action] goto finished at (1480,1592,20); target (1468,1609); stopped short (off by 29 tile(s))
+[00:23:04.423] LOG   [mk3_Illyria] event goto_done: at=(1480,1592) target=(1468,1609) arrived=0 off=29
+[00:23:05.652] INFO  [mk3_Illyria] [travel] mode walk             usable   <- chosen
+[00:23:05.652] INFO  [mk3_Illyria] [travel] mode moongate         usable
+[00:23:05.652] INFO  [mk3_Illyria] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:23:05.652] INFO  [mk3_Illyria] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:23:05.652] LOG   [mk3_Illyria] event travel_mode: walk
+[00:23:05.652] INFO  [mk3_Illyria] [travel] plan healer (seen): ok legs=1 ~17 tiles transit=0 nodes=0
+[00:23:05.652] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:23:05.777] INFO  [mk3_Illyria] [chat ascii] System: Ghalor has departed from Minoc.
+[00:23:06.993] INFO  [life] session_end_requested reason="session time limit reached"
+[00:23:07.627] INFO  [mk3_Illyria] [chat ascii] System: Cyras has departed from Britain.
+[00:23:08.673] INFO  [mk3_Illyria] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:23:08.673] INFO  [mk3_Illyria] [action] goto (1468,1609) from (1480,1592,20)
+[00:23:08.673] LOG   [mk3_Illyria] event goto_start: target=(1468,1609) from=(1480,1592)
+[00:23:08.673] INFO  [mk3_Illyria] [bot] running from (1480,1592,20) to (1468,1609,z20)
+[00:23:08.673] INFO  [mk3_Illyria] [bot] planning path to (1468,1609) in background
+[00:23:10.033] INFO  [mk3_Illyria] [chat ascii] System: Kharain has departed from Minoc.
+[00:23:10.465] INFO  [mk3_Illyria] [action] goto finished at (1480,1592,20); target (1468,1609); stopped short (off by 29 tile(s))
+[00:23:10.465] LOG   [mk3_Illyria] event goto_done: at=(1480,1592) target=(1468,1609) arrived=0 off=29
+[00:23:10.711] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:23:11.686] INFO  [mk3_Illyria] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:23:11.686] INFO  [mk3_Illyria] [action] goto (1468,1609) from (1480,1592,20)
+[00:23:11.686] LOG   [mk3_Illyria] event goto_start: target=(1468,1609) from=(1480,1592)
+[00:23:11.686] INFO  [mk3_Illyria] [bot] running from (1480,1592,20) to (1468,1609,z20)
+[00:23:11.686] INFO  [mk3_Illyria] [bot] planning path to (1468,1609) in background
+[00:23:12.347] INFO  [mk3_Illyria] [chat ascii] System: Leander has departed from Moonglow.
+[00:23:13.797] INFO  [mk3_Illyria] [action] goto finished at (1480,1592,20); target (1468,1609); stopped short (off by 29 tile(s))
+[00:23:13.797] LOG   [mk3_Illyria] event goto_done: at=(1480,1592) target=(1468,1609) arrived=0 off=29
+[00:23:15.033] INFO  [mk3_Illyria] [travel] mode walk             usable   <- chosen
+[00:23:15.033] INFO  [mk3_Illyria] [travel] mode moongate         usable
+[00:23:15.033] INFO  [mk3_Illyria] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:23:15.033] INFO  [mk3_Illyria] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:23:15.033] LOG   [mk3_Illyria] event travel_mode: walk
+[00:23:15.033] INFO  [mk3_Illyria] [travel] plan healer (seen): ok legs=1 ~17 tiles transit=0 nodes=0
+[00:23:15.772] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:23:19.543] INFO  [mk3_Illyria] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:23:19.543] INFO  [mk3_Illyria] [action] goto (1468,1609) from (1480,1592,20)
+[00:23:19.543] LOG   [mk3_Illyria] event goto_start: target=(1468,1609) from=(1480,1592)
+[00:23:19.543] INFO  [mk3_Illyria] [bot] running from (1480,1592,20) to (1468,1609,z20)
+[00:23:19.543] INFO  [mk3_Illyria] [bot] planning path to (1468,1609) in background
+[00:23:20.781] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:23:21.398] INFO  [mk3_Illyria] [action] goto finished at (1480,1592,20); target (1468,1609); stopped short (off by 29 tile(s))
+[00:23:21.398] LOG   [mk3_Illyria] event goto_done: at=(1480,1592) target=(1468,1609) arrived=0 off=29
+[00:23:22.638] INFO  [mk3_Illyria] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:23:22.638] INFO  [mk3_Illyria] [action] goto (1468,1609) from (1480,1592,20)
+[00:23:22.638] LOG   [mk3_Illyria] event goto_start: target=(1468,1609) from=(1480,1592)
+[00:23:22.638] INFO  [mk3_Illyria] [bot] running from (1480,1592,20) to (1468,1609,z20)
+[00:23:22.638] INFO  [mk3_Illyria] [bot] planning path to (1468,1609) in background
+[00:23:24.644] INFO  [mk3_Illyria] [action] goto finished at (1480,1592,20); target (1468,1609); stopped short (off by 29 tile(s))
+[00:23:24.644] LOG   [mk3_Illyria] event goto_done: at=(1480,1592) target=(1468,1609) arrived=0 off=29
+[00:23:24.644] LOG   [mk3_Illyria] event travel_escape: from=(1480,1592,20) to=(1464,1576) attempt=2
+[00:23:24.644] INFO  [mk3_Illyria] [action] goto (1464,1576) from (1480,1592,20)
+[00:23:24.644] LOG   [mk3_Illyria] event goto_start: target=(1464,1576) from=(1480,1592)
+[00:23:24.644] INFO  [mk3_Illyria] [bot] running from (1480,1592,20) to (1464,1576,z29)
+[00:23:24.644] INFO  [mk3_Illyria] [bot] planning path to (1464,1576) in background
+[00:23:24.705] INFO  [mk3_Illyria] [bot] replan to (1464,1576): 43 steps in 1640.7us
+[00:23:25.736] INFO  [mk3_Illyria] [chat ascii] System: Elara has departed from Magincia.
+[00:23:25.798] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:23:26.431] INFO  [mk3_Illyria] [chat ascii] System: Xerxes has departed from Vesper.
+[00:23:28.697] INFO  [mk3_Illyria] [bot] door ahead at (1473,1600,z20); OpenDoor before step
+[00:23:28.713] INFO  [mk3_Illyria] [chat ascii] System: Opening door...
+[00:23:30.834] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:23:33.132] INFO  [mk3_Illyria] [chat ascii] System: Dorvar has departed from Skara Brae.
+[00:23:35.856] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:23:37.865] INFO  [mk3_Illyria] [chat ascii] System: Odessa has departed from Britain.
+[00:23:38.236] INFO  [mk3_Illyria] [bot] arrived at (1464,1576,29)
+[00:23:38.236] INFO  [mk3_Illyria] [action] goto finished at (1464,1576,29); target (1464,1576); ARRIVED (off by 0 tile(s))
+[00:23:38.236] LOG   [mk3_Illyria] event goto_done: at=(1464,1576) target=(1464,1576) arrived=1 off=0
+[00:23:38.236] INFO  [mk3_Illyria] [travel] recovery walk reached its anchor at (1464,1576,29) (off 0); attempt 2/3
+[00:23:38.236] LOG   [mk3_Illyria] event travel_recovery_done: reached=1 at=(1464,1576,29) off=0 attempt=2
+[00:23:38.297] INFO  [mk3_Illyria] [travel] mode walk             usable   <- chosen
+[00:23:38.297] INFO  [mk3_Illyria] [travel] mode moongate         usable
+[00:23:38.297] INFO  [mk3_Illyria] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:23:38.297] INFO  [mk3_Illyria] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:23:38.297] LOG   [mk3_Illyria] event travel_mode: walk
+[00:23:38.297] INFO  [mk3_Illyria] [travel] plan healer (seen): ok legs=1 ~33 tiles transit=0 nodes=0
+[00:23:38.360] INFO  [mk3_Illyria] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:23:38.360] INFO  [mk3_Illyria] [action] goto (1468,1609) from (1464,1576,29)
+[00:23:38.360] LOG   [mk3_Illyria] event goto_start: target=(1468,1609) from=(1464,1576)
+[00:23:38.360] INFO  [mk3_Illyria] [bot] running from (1464,1576,29) to (1468,1609,z20)
+[00:23:38.360] INFO  [mk3_Illyria] [bot] planning path to (1468,1609) in background
+[00:23:38.422] INFO  [mk3_Illyria] [bot] replan to (1468,1609): 55 steps in 12756.9us
+[00:23:38.949] INFO  [mk3_Illyria] [chat ascii] System: Rhea has departed from Lord British's Castle.
+[00:23:40.887] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:23:43.199] INFO  [mk3_Illyria] [chat ascii] System: Rhaler has departed from Minoc.
+[00:23:45.061] INFO  [mk3_Illyria] [chat ascii] System: Ithion has departed from Skara Brae.
+[00:23:45.922] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:23:50.597] INFO  [mk3_Illyria] [bot] door ahead at (1479,1611,z20); OpenDoor before step
+[00:23:50.597] INFO  [mk3_Illyria] [chat ascii] System: Opening door...
+[00:23:50.934] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:23:54.239] INFO  [mk3_Illyria] [travel] healer (seen) ARRIVED at (1469,1609,20)
+[00:23:54.239] LOG   [mk3_Illyria] event travel_done: label='healer (seen)' ok=1 at=(1469,1609) legs=1 plans=1 why=''
+[00:23:54.300] INFO  [life] wind-down: no bank learned yet; asking the world for one (attempt 1)
+[00:23:54.302] INFO  [mk3_Illyria] [travel] place: skipping Minoc banker -- 1768 tiles and 0 gates for a service Britain banker offers
+[00:23:54.302] INFO  [mk3_Illyria] [travel] Britain banker -> (1425,1690) r=5 from (1469,1609)
+[00:23:54.302] LOG   [mk3_Illyria] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1469,1609)
+[00:23:54.302] INFO  [mk3_Illyria] [travel] mode moongate         usable   <- chosen
+[00:23:54.302] INFO  [mk3_Illyria] [travel] mode walk             usable
+[00:23:54.302] INFO  [mk3_Illyria] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:23:54.302] INFO  [mk3_Illyria] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:23:54.302] LOG   [mk3_Illyria] event travel_mode: moongate
+[00:23:54.302] INFO  [mk3_Illyria] [travel] plan Britain banker: ok legs=3 ~96 tiles transit=0 nodes=11
+[00:23:54.610] INFO  [mk3_Illyria] [chat ascii] Dale: Wherefore dost thou press me so closely?
+[00:23:54.611] INFO  [mk3_Illyria] [chat ascii] System: You shove Dale out of the way.
+[00:23:54.611] INFO  [mk3_Illyria] [bot] arrived at (1468,1609,20)
+[00:23:54.611] INFO  [mk3_Illyria] [action] goto finished at (1468,1609,20); target (1468,1609); ARRIVED (off by 0 tile(s))
+[00:23:54.611] LOG   [mk3_Illyria] event goto_done: at=(1468,1609) target=(1468,1609) arrived=1 off=0
+[00:23:54.611] INFO  [mk3_Illyria] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:23:54.611] INFO  [mk3_Illyria] [action] goto (1464,1640) from (1468,1609,20)
+[00:23:54.611] LOG   [mk3_Illyria] event goto_start: target=(1464,1640) from=(1468,1609)
+[00:23:54.611] INFO  [mk3_Illyria] [bot] running from (1468,1609,20) to (1464,1640)
+[00:23:54.611] INFO  [mk3_Illyria] [bot] planning path to (1464,1640) in background
+[00:23:54.671] INFO  [mk3_Illyria] [bot] replan to (1464,1640): 40 steps in 2019.7us
+[00:23:55.968] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:23:58.364] INFO  [mk3_Illyria] [bot] door ahead at (1480,1613,z20); OpenDoor before step
+[00:23:58.364] INFO  [mk3_Illyria] [chat ascii] System: Opening door...
+[00:24:00.424] INFO  [mk3_Illyria] [chat ascii] System: Faustus has departed from Britain.
+[00:24:00.991] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:24:01.869] INFO  [mk3_Illyria] [chat ascii] System: Hector has departed from Bank of Britannia - Trinsic Branch.
+[00:24:02.609] INFO  [mk3_Illyria] [chat ascii] System: Titus has departed from Magincia.
+[00:24:06.042] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:24:07.377] INFO  [mk3_Illyria] [bot] arrived at (1464,1640,20)
+[00:24:07.377] INFO  [mk3_Illyria] [action] goto finished at (1464,1640,20); target (1464,1640); ARRIVED (off by 0 tile(s))
+[00:24:07.377] LOG   [mk3_Illyria] event goto_done: at=(1464,1640) target=(1464,1640) arrived=1 off=0
+[00:24:07.377] INFO  [mk3_Illyria] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:24:07.377] INFO  [mk3_Illyria] [action] goto (1448,1672) from (1464,1640,20)
+[00:24:07.377] LOG   [mk3_Illyria] event goto_start: target=(1448,1672) from=(1464,1640)
+[00:24:07.377] INFO  [mk3_Illyria] [bot] running from (1464,1640,20) to (1448,1672)
+[00:24:07.377] INFO  [mk3_Illyria] [bot] planning path to (1448,1672) in background
+[00:24:07.393] INFO  [mk3_Illyria] [bot] replan to (1448,1672): 37 steps in 2362.2us
+[00:24:07.840] INFO  [mk3_Illyria] [chat ascii] System: Aurelius has departed from Ocllo.
+[00:24:10.180] INFO  [mk3_Illyria] [chat ascii] System: Serena has departed from Britain.
+[00:24:11.070] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:24:16.076] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:24:18.723] INFO  [mk3_Illyria] [bot] arrived at (1448,1672,10)
+[00:24:18.723] INFO  [mk3_Illyria] [action] goto finished at (1448,1672,10); target (1448,1672); ARRIVED (off by 0 tile(s))
+[00:24:18.723] LOG   [mk3_Illyria] event goto_done: at=(1448,1672) target=(1448,1672) arrived=1 off=0
+[00:24:18.723] INFO  [mk3_Illyria] [action] goto (1425,1690) from (1448,1672,10)
+[00:24:18.723] LOG   [mk3_Illyria] event goto_start: target=(1425,1690) from=(1448,1672)
+[00:24:18.723] INFO  [mk3_Illyria] [bot] running from (1448,1672,10) to (1425,1690,z0)
+[00:24:18.723] INFO  [mk3_Illyria] [bot] planning path to (1425,1690) in background
+[00:24:18.785] INFO  [mk3_Illyria] [bot] replan to (1425,1690): 41 steps in 7069.5us
+[00:24:21.095] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:24:23.692] INFO  [mk3_Illyria] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=24 in 234.0us
+[00:24:25.830] INFO  [mk3_Illyria] [bot] door ahead at (1440,1693,z0); OpenDoor before step
+[00:24:25.846] INFO  [mk3_Illyria] [chat ascii] System: Opening door...
+[00:24:26.154] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:24:27.446] INFO  [mk3_Illyria] [bot] step (1439,1693,0)->(1438,1692,0) rejected; OpenDoor + retry
+[00:24:27.461] INFO  [mk3_Illyria] [chat ascii] System: Opening door...
+[00:24:27.461] INFO  [mk3_Illyria] [0x20] player @(1439,1693,0) facing=0
+[00:24:27.461] INFO  [mk3_Illyria] [action] goto finished at (1439,1693,0); target (1425,1690); stopped short (off by 17 tile(s))
+[00:24:27.461] LOG   [mk3_Illyria] event goto_done: at=(1439,1693) target=(1425,1690) arrived=0 off=17
+[00:24:28.681] INFO  [mk3_Illyria] [action] goto (1425,1690) from (1439,1693,0)
+[00:24:28.681] LOG   [mk3_Illyria] event goto_start: target=(1425,1690) from=(1439,1693)
+[00:24:28.681] INFO  [mk3_Illyria] [bot] running from (1439,1693,0) to (1425,1690,z0)
+[00:24:28.681] INFO  [mk3_Illyria] [bot] planning path to (1425,1690) in background
+[00:24:30.753] INFO  [mk3_Illyria] [action] goto finished at (1439,1693,0); target (1425,1690); stopped short (off by 17 tile(s))
+[00:24:30.753] LOG   [mk3_Illyria] event goto_done: at=(1439,1693) target=(1425,1690) arrived=0 off=17
+[00:24:31.185] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:24:32.002] INFO  [mk3_Illyria] [action] goto (1425,1690) from (1439,1693,0)
+[00:24:32.002] LOG   [mk3_Illyria] event goto_start: target=(1425,1690) from=(1439,1693)
+[00:24:32.002] INFO  [mk3_Illyria] [bot] running from (1439,1693,0) to (1425,1690,z0)
+[00:24:32.002] INFO  [mk3_Illyria] [bot] planning path to (1425,1690) in background
+[00:24:34.108] INFO  [mk3_Illyria] [action] goto finished at (1439,1693,0); target (1425,1690); stopped short (off by 17 tile(s))
+[00:24:34.108] LOG   [mk3_Illyria] event goto_done: at=(1439,1693) target=(1425,1690) arrived=0 off=17
+[00:24:35.338] INFO  [mk3_Illyria] [travel] mode walk             usable   <- chosen
+[00:24:35.338] INFO  [mk3_Illyria] [travel] mode moongate         usable
+[00:24:35.338] INFO  [mk3_Illyria] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:24:35.338] INFO  [mk3_Illyria] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:24:35.338] LOG   [mk3_Illyria] event travel_mode: walk
+[00:24:35.338] INFO  [mk3_Illyria] [travel] plan Britain banker: ok legs=1 ~14 tiles transit=0 nodes=0
+[00:24:36.200] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:24:36.877] INFO  [mk3_Illyria] [action] goto (1425,1690) from (1439,1693,0)
+[00:24:36.877] LOG   [mk3_Illyria] event goto_start: target=(1425,1690) from=(1439,1693)
+[00:24:36.877] INFO  [mk3_Illyria] [bot] running from (1439,1693,0) to (1425,1690,z0)
+[00:24:36.877] INFO  [mk3_Illyria] [bot] planning path to (1425,1690) in background
+[00:24:38.418] INFO  [mk3_Illyria] [action] goto finished at (1439,1693,0); target (1425,1690); stopped short (off by 17 tile(s))
+[00:24:38.418] LOG   [mk3_Illyria] event goto_done: at=(1439,1693) target=(1425,1690) arrived=0 off=17
+[00:24:39.639] INFO  [mk3_Illyria] [action] goto (1425,1690) from (1439,1693,0)
+[00:24:39.639] LOG   [mk3_Illyria] event goto_start: target=(1425,1690) from=(1439,1693)
+[00:24:39.639] INFO  [mk3_Illyria] [bot] running from (1439,1693,0) to (1425,1690,z0)
+[00:24:39.640] INFO  [mk3_Illyria] [bot] planning path to (1425,1690) in background
+[00:24:41.239] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:24:41.606] INFO  [mk3_Illyria] [action] goto finished at (1439,1693,0); target (1425,1690); stopped short (off by 17 tile(s))
+[00:24:41.606] LOG   [mk3_Illyria] event goto_done: at=(1439,1693) target=(1425,1690) arrived=0 off=17
+[00:24:42.578] INFO  [mk3_Illyria] [chat ascii] System: Lyra has departed from Moonglow.
+[00:24:42.826] INFO  [mk3_Illyria] [action] goto (1425,1690) from (1439,1693,0)
+[00:24:42.826] LOG   [mk3_Illyria] event goto_start: target=(1425,1690) from=(1439,1693)
+[00:24:42.826] INFO  [mk3_Illyria] [bot] running from (1439,1693,0) to (1425,1690,z0)
+[00:24:42.826] INFO  [mk3_Illyria] [bot] planning path to (1425,1690) in background
+[00:24:44.736] INFO  [mk3_Illyria] [action] goto finished at (1439,1693,0); target (1425,1690); stopped short (off by 17 tile(s))
+[00:24:44.736] LOG   [mk3_Illyria] event goto_done: at=(1439,1693) target=(1425,1690) arrived=0 off=17
+[00:24:45.950] INFO  [mk3_Illyria] [travel] mode walk             usable   <- chosen
+[00:24:45.950] INFO  [mk3_Illyria] [travel] mode moongate         usable
+[00:24:45.950] INFO  [mk3_Illyria] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:24:45.950] INFO  [mk3_Illyria] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:24:45.950] LOG   [mk3_Illyria] event travel_mode: walk
+[00:24:45.950] INFO  [mk3_Illyria] [travel] plan Britain banker: ok legs=1 ~14 tiles transit=0 nodes=0
+[00:24:46.245] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:24:48.970] INFO  [mk3_Illyria] [action] goto (1425,1690) from (1439,1693,0)
+[00:24:48.970] LOG   [mk3_Illyria] event goto_start: target=(1425,1690) from=(1439,1693)
+[00:24:48.970] INFO  [mk3_Illyria] [bot] running from (1439,1693,0) to (1425,1690,z0)
+[00:24:48.970] INFO  [mk3_Illyria] [bot] planning path to (1425,1690) in background
+[00:24:50.696] INFO  [mk3_Illyria] [action] goto finished at (1439,1693,0); target (1425,1690); stopped short (off by 17 tile(s))
+[00:24:50.696] LOG   [mk3_Illyria] event goto_done: at=(1439,1693) target=(1425,1690) arrived=0 off=17
+[00:24:51.299] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:24:51.915] INFO  [mk3_Illyria] [action] goto (1425,1690) from (1439,1693,0)
+[00:24:51.915] LOG   [mk3_Illyria] event goto_start: target=(1425,1690) from=(1439,1693)
+[00:24:51.915] INFO  [mk3_Illyria] [bot] running from (1439,1693,0) to (1425,1690,z0)
+[00:24:51.915] INFO  [mk3_Illyria] [bot] planning path to (1425,1690) in background
+[00:24:53.460] INFO  [mk3_Illyria] [action] goto finished at (1439,1693,0); target (1425,1690); stopped short (off by 17 tile(s))
+[00:24:53.460] LOG   [mk3_Illyria] event goto_done: at=(1439,1693) target=(1425,1690) arrived=0 off=17
+[00:24:54.687] INFO  [mk3_Illyria] [travel] mode walk             usable   <- chosen
+[00:24:54.687] INFO  [mk3_Illyria] [travel] mode moongate         usable
+[00:24:54.687] INFO  [mk3_Illyria] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:24:54.687] INFO  [mk3_Illyria] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:24:54.687] LOG   [mk3_Illyria] event travel_mode: walk
+[00:24:54.687] INFO  [mk3_Illyria] [travel] plan Britain banker: ok legs=1 ~14 tiles transit=0 nodes=0
+[00:24:56.321] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:24:59.212] INFO  [mk3_Illyria] [action] goto (1425,1690) from (1439,1693,0)
+[00:24:59.212] LOG   [mk3_Illyria] event goto_start: target=(1425,1690) from=(1439,1693)
+[00:24:59.212] INFO  [mk3_Illyria] [bot] running from (1439,1693,0) to (1425,1690,z0)
+[00:24:59.212] INFO  [mk3_Illyria] [bot] planning path to (1425,1690) in background
+[00:25:00.874] INFO  [mk3_Illyria] [action] goto finished at (1439,1693,0); target (1425,1690); stopped short (off by 17 tile(s))
+[00:25:00.874] LOG   [mk3_Illyria] event goto_done: at=(1439,1693) target=(1425,1690) arrived=0 off=17
+[00:25:01.365] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:25:01.769] INFO  [mk3_Illyria] [chat ascii] System: Aelia has departed from Britain Territory.
+[00:25:02.126] INFO  [mk3_Illyria] [action] goto (1425,1690) from (1439,1693,0)
+[00:25:02.126] LOG   [mk3_Illyria] event goto_start: target=(1425,1690) from=(1439,1693)
+[00:25:02.126] INFO  [mk3_Illyria] [bot] running from (1439,1693,0) to (1425,1690,z0)
+[00:25:02.126] INFO  [mk3_Illyria] [bot] planning path to (1425,1690) in background
+[00:25:03.663] INFO  [mk3_Illyria] [action] goto finished at (1439,1693,0); target (1425,1690); stopped short (off by 17 tile(s))
+[00:25:03.663] LOG   [mk3_Illyria] event goto_done: at=(1439,1693) target=(1425,1690) arrived=0 off=17
+[00:25:03.663] LOG   [mk3_Illyria] event travel_escape: from=(1439,1693,0) to=(1448,1688) attempt=1
+[00:25:03.663] INFO  [mk3_Illyria] [action] goto (1448,1688) from (1439,1693,0)
+[00:25:03.663] LOG   [mk3_Illyria] event goto_start: target=(1448,1688) from=(1439,1693)
+[00:25:03.663] INFO  [mk3_Illyria] [bot] running from (1439,1693,0) to (1448,1688,z0)
+[00:25:03.664] INFO  [mk3_Illyria] [bot] planning path to (1448,1688) in background
+[00:25:03.725] INFO  [mk3_Illyria] [bot] replan to (1448,1688): 9 steps in 175.9us
+[00:25:06.406] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:25:06.590] INFO  [mk3_Illyria] [bot] arrived at (1448,1688,0)
+[00:25:06.590] INFO  [mk3_Illyria] [action] goto finished at (1448,1688,0); target (1448,1688); ARRIVED (off by 0 tile(s))
+[00:25:06.590] LOG   [mk3_Illyria] event goto_done: at=(1448,1688) target=(1448,1688) arrived=1 off=0
+[00:25:06.590] INFO  [mk3_Illyria] [travel] recovery walk reached its anchor at (1448,1688,0) (off 0); attempt 1/3
+[00:25:06.590] LOG   [mk3_Illyria] event travel_recovery_done: reached=1 at=(1448,1688,0) off=0 attempt=1
+[00:25:06.652] INFO  [mk3_Illyria] [travel] mode walk             usable   <- chosen
+[00:25:06.652] INFO  [mk3_Illyria] [travel] mode moongate         usable
+[00:25:06.652] INFO  [mk3_Illyria] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:25:06.652] INFO  [mk3_Illyria] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:25:06.652] LOG   [mk3_Illyria] event travel_mode: walk
+[00:25:06.652] INFO  [mk3_Illyria] [travel] plan Britain banker: ok legs=1 ~23 tiles transit=0 nodes=0
+[00:25:06.714] INFO  [mk3_Illyria] [action] goto (1425,1690) from (1448,1688,0)
+[00:25:06.714] LOG   [mk3_Illyria] event goto_start: target=(1425,1690) from=(1448,1688)
+[00:25:06.714] INFO  [mk3_Illyria] [bot] running from (1448,1688,0) to (1425,1690,z0)
+[00:25:06.714] INFO  [mk3_Illyria] [bot] planning path to (1425,1690) in background
+[00:25:06.776] INFO  [mk3_Illyria] [bot] replan to (1425,1690): 24 steps in 1348.4us
+[00:25:09.546] INFO  [mk3_Illyria] [bot] door ahead at (1438,1692,z0); OpenDoor before step
+[00:25:09.546] INFO  [mk3_Illyria] [chat ascii] System: Opening door...
+[00:25:11.408] INFO  [mk3_Illyria] [survival] hp 20/20 (100%) -> fight
+[00:25:12.586] INFO  [mk3_Illyria] [chat ascii] Hyman: Hello!
+[00:25:12.586] INFO  [mk3_Illyria] [chat ascii] Hyman: How old are ye really? No, really, ye're so famous an' all...
+[00:25:13.684] INFO  [mk3_Illyria] [bot] reject at (1429,1691): mobile in the way — waiting 500ms, retrying (1) [no blacklist]
+[00:25:13.684] INFO  [mk3_Illyria] [bot] planning path to (1425,1690) in background
+[00:25:13.684] INFO  [mk3_Illyria] [travel] Britain banker ARRIVED at (1430,1691,0)
+[00:25:13.684] LOG   [mk3_Illyria] event travel_done: label='Britain banker' ok=1 at=(1430,1691) legs=1 plans=1 why=''
+[00:25:13.746] INFO  [life] wind-down: arrived somewhere safe at 1430,1691
+[00:25:13.807] INFO  [life] session_summary duration=306s goals=5/9 gold=10000->10000 skills=100.0->100.0 logs=+0 kills=0 deaths=0 places=2 suppliers=0
+[00:25:13.807] INFO  [life] session_goals families=3 picks=9 top=78% varied=0 self_superseded=0 | upkeep=7(78%) training=1(11%) social=1(11%) | REPLACE_EQUIPMENT=6(67%) BANK=1(11%) TRAIN_AT_NPC=1(11%) TRADE_WITH_PLAYER=1(11%)
+[00:25:13.809] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_24.illyria/state.json
+[00:25:13.809] INFO  [life] logging out
+[00:25:13.809] INFO  [mk3_Illyria] [action] logout requested
+[00:25:13.809] LOG   [mk3_Illyria] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[00:25:13.809] INFO  [mk3_Illyria] [0xD1] logout acknowledged (accepted=1)
+[00:25:13.809] LOG   [mk3_Illyria] event logout_ack: accepted
+[00:25:13.809] INFO  [mk3_Illyria] [net] closing connection (logout acknowledged)
+[00:25:13.809] LOG   [mk3_Illyria] event logout_complete: acked

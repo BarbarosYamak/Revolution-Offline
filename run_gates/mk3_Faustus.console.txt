@@ -1,0 +1,654 @@
+[00:20:16.077] INFO  session 0: 127.0.0.1:2593 user='RevGen3_27' char=Faustus tag='mk3_Faustus'
+[00:20:16.078] LOG   [mk3_Faustus] event session_start: text log opened
+[00:20:16.078] LOG   [mk3_Faustus] event net_connect_begin: connect 127.0.0.1:2593
+[00:20:16.078] INFO  [mk3_Faustus] [net] connecting to 127.0.0.1:2593 ...
+[00:20:16.079] LOG   [mk3_Faustus] event net_connected: connect 127.0.0.1:2593
+[00:20:16.079] INFO  [mk3_Faustus] [net] connected.
+[00:20:16.079] INFO  [mk3_Faustus] [seed] sent 0x7F000001 (plaintext)
+[00:20:16.079] LOG   [mk3_Faustus] event seed_out: 0x7F000001 hex=7f000001
+[00:20:16.080] INFO  [life] no prior state for revgen3_27.faustus: a new Macer
+[00:20:16.080] INFO  [life] creation request: skill 41 50.0 + Anatomy 50.0, stats 48/24/8 = 80
+[00:20:16.080] INFO  [life] needs: reading 'macer' from the profession catalogue
+[00:20:16.080] INFO  [life] home: Faustus lives in Britain
+[00:20:16.080] INFO  [life] build plan 'macer': 550.0 resolved + 150.0 unresolved = 700.0/700.0, stats 100/75/50 = 225
+[00:20:16.080] INFO  [mk3_Faustus] [life] autonomous player active for 'Faustus' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 3 min)
+[00:20:16.080] INFO  [mk3_Faustus] [0xA8] 1 server(s):
+[00:20:16.080] INFO  [mk3_Faustus]   [0] MyShard                   1.0.0.127  full=10%  tz=0
+[00:20:16.089] INFO  [mk3_Faustus] [0x8C] game server = 127.0.0.1:2593  seed=0xB17DB5C5
+[00:20:16.089] LOG   [mk3_Faustus] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xB17DB5C5
+[00:20:16.089] INFO  [mk3_Faustus] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[00:20:16.089] LOG   [mk3_Faustus] event relay_same_socket: no seed re-sent; 0x91 follows
+[00:20:16.089] INFO  [mk3_Faustus] [0xB9] server features = 0x0005
+[00:20:16.089] INFO  [mk3_Faustus] [0xA9] 5 slot(s) (populated 0):
+[00:20:16.089] INFO  [mk3_Faustus]   [0] <empty>
+[00:20:16.089] INFO  [mk3_Faustus]   [1] <empty>
+[00:20:16.089] INFO  [mk3_Faustus]   [2] <empty>
+[00:20:16.089] INFO  [mk3_Faustus]   [3] <empty>
+[00:20:16.089] INFO  [mk3_Faustus]   [4] <empty>
+[00:20:16.089] INFO  [mk3_Faustus] create: appearance sex=M skin=0x03F3 hair=0x2048/0x0471 shirt=0x0366 pants=0x0329
+[00:20:16.089] INFO  [mk3_Faustus] [0x00] starting city index 2
+[00:20:16.089] INFO  [mk3_Faustus] [0x00] requested skills 41:50 1:50 48:0
+[00:20:16.089] INFO  [mk3_Faustus] [0x00] requested stats STR 48 DEX 24 INT 8
+[00:20:16.089] INFO  [mk3_Faustus] [0x00] creating character 'Faustus' in slot 0
+[00:20:16.089] LOG   [mk3_Faustus] event char_create_sent: Faustus
+[00:20:16.107] INFO  [mk3_Faustus] [0x1B] serial=0x000181F7 body=0x0190 pos=(1496,1628,10)
+[00:20:16.107] LOG   [mk3_Faustus] event login_confirm: serial=0x000181F7 body=0x0190 pos=(1496,1628,10)
+[00:20:16.107] INFO  [mk3_Faustus] [0x20] player @(1496,1628,10) facing=3
+[00:20:16.107] INFO  [mk3_Faustus] [0x55] login complete — entering world
+[00:20:16.107] LOG   [mk3_Faustus] event in_world: 0x55 received
+[00:20:16.107] INFO  [mk3_Faustus] [backpack] opening 0x400181D9
+[00:20:16.107] INFO  [mk3_Faustus] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[00:20:16.107] INFO  [mk3_Faustus] [chat ascii] System: There are 26 other players here.
+[00:20:16.107] INFO  [mk3_Faustus] [chat ascii] System: You are under the protection of the city guards
+[00:20:16.110] INFO  [mk3_Faustus] [action] requesting the skill list
+[00:20:16.110] INFO  [life] in world; asked the server for the skill list
+[00:20:16.110] INFO  [mk3_Faustus] [0x24] open container 0x400181D9 gump=60
+[00:20:16.110] INFO  [mk3_Faustus] [0x3C] container contents: 6 item(s)
+[00:20:16.110] LOG   [mk3_Faustus] event backpack_contents: serial=0x400181D9 items=6
+[00:20:18.686] INFO  [mk3_Faustus] [bot] world data loaded (0 blacklisted spot(s)).
+[00:20:18.687] INFO  [life] reconciliation: first ever login, 7 field(s) differed
+[00:20:18.687] INFO  [life]   gold         persisted=0          server=10000      -> server value accepted
+[00:20:18.687] INFO  [life]   str          persisted=0          server=48         -> server value accepted
+[00:20:18.687] INFO  [life]   dex          persisted=0          server=24         -> server value accepted
+[00:20:18.687] INFO  [life]   int          persisted=0          server=8          -> server value accepted
+[00:20:18.687] INFO  [life]   skill_41     persisted=0.0        server=50.0       -> server value accepted
+[00:20:18.687] INFO  [life]   skill_27     persisted=0.0        server=0.0        -> server value accepted
+[00:20:18.687] INFO  [life]   skill_1      persisted=0.0        server=50.0       -> server value accepted
+[00:20:18.687] INFO  [life]   skill_17     persisted=0.0        server=0.0        -> server value accepted
+[00:20:18.687] INFO  [life]   skill_5      persisted=0.0        server=0.0        -> server value accepted
+[00:20:18.687] INFO  [life]   skill_30     persisted=0.0        server=0.0        -> server value accepted
+[00:20:18.687] INFO  [life]   position     persisted=0,0        server=1496,1628  -> server value accepted
+[00:20:18.687] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[00:20:18.687] INFO  [mk3_Faustus] [survival] on
+[00:20:18.687] LOG   [mk3_Faustus] event survival_mode: on
+[00:20:18.688] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_27.faustus/state.json
+[00:20:18.688] INFO  [mk3_Faustus] [survival] hp 48/48 (100%) -> fight
+[00:20:18.740] INFO  [life] goal=BANK reason="no goal was running"
+[00:20:18.740] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedTrade(buy from a player 0.55) NeedSkillTraining(Tactics 0.55) NeedMakeBandages(bandages BLOCKED 0.53) NeedEquipment(heal potions 0.50) NeedEquipment(bandages 0.50) NeedTraining(skill 41 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedTraining(skill 5 0.45) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=Tactics (target 100.0)
+[00:20:18.740] INFO  [life]   score=150.0
+[00:20:18.740] INFO  [life]   reason: NeedBank urgency 0.75 x 240 = 180.0
+[00:20:18.740] INFO  [life]   reason: on_hand=10000 (total 10000) reserve=350 carry=850 spare=9150 risk=1.00
+[00:20:18.740] INFO  [life]   reason: no bank learned yet -30
+[00:20:18.740] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 3/8 gold 10000 (buyable at 200))
+[00:20:18.740] INFO  [mk3_Faustus] [action] scanning nearby mobiles for names
+[00:20:18.741] INFO  [mk3_Faustus] [action] requested 2 paperdoll(s) for trade titles
+[00:20:18.741] INFO  [life] bank: asking who is standing in the bank
+[00:20:18.741] INFO  [mk3_Faustus] [mobiles] nearby (3):
+[00:20:18.741] INFO  [mk3_Faustus]   Illyria 0x0001916B
+[00:20:18.741] INFO  [mk3_Faustus]   Audny 0x00001076
+[00:20:18.741] INFO  [mk3_Faustus]   Starling 0x000013C5
+[00:20:18.741] INFO  [mk3_Faustus] [0x20] player @(1496,1628,10) facing=0
+[00:20:18.741] INFO  [mk3_Faustus] [0x88] paperdoll 0x00001076: "Audny, the innkeeper"
+[00:20:18.741] INFO  [mk3_Faustus] [world] Audny, the innkeeper is a innkeeper at (1496,1614)
+[00:20:18.741] INFO  [mk3_Faustus] [0x20] player @(1496,1628,10) facing=6
+[00:20:18.741] INFO  [mk3_Faustus] [0x88] paperdoll 0x0001916B: "Illyria, Apprentice Stoic"
+[00:20:19.162] INFO  [mk3_Faustus] [chat ascii] System: Titus has arrived in Skara Brae.
+[00:20:20.775] INFO  [life] bank: no banker in sight
+[00:20:20.775] INFO  [life] goal_failed=BANK status=retryable_failure reason="no banker in sight"
+[00:20:20.837] INFO  [life] goal=REPLACE_EQUIPMENT reason="previous goal abandoned: no banker answered"
+[00:20:20.837] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedTrade(buy from a player 0.55) NeedSkillTraining(Tactics 0.55) NeedMakeBandages(bandages BLOCKED 0.53) NeedEquipment(heal potions 0.50) NeedEquipment(bandages 0.50) NeedTraining(skill 41 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedTraining(skill 5 0.45) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=Tactics (target 100.0)
+[00:20:20.837] INFO  [life]   score=130.0
+[00:20:20.837] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:20:20.837] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:20:20.837] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 299s after achieving nothing
+[00:20:20.837] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 3/8 gold 10000 (buyable at 200))
+[00:20:22.310] INFO  [mk3_Faustus] [chat ascii] System: Rhea has arrived in Britain.
+[00:20:23.705] INFO  [mk3_Faustus] [survival] hp 48/48 (100%) -> fight
+[00:20:25.377] INFO  [mk3_Faustus] [chat ascii] System: Xerxes has arrived in Vesper.
+[00:20:25.833] INFO  [life] robe: taking off the resurrection robe -- it is worth sixteen bandages
+[00:20:25.833] INFO  [mk3_Faustus] [ACTION] unequip start
+[00:20:25.833] INFO  [mk3_Faustus] [ACTION] unequip serial=0x4001813A -> backpack 0x400181D9
+[00:20:25.833] INFO  [mk3_Faustus] [ITEM] drag serial=0x4001813A amount=1
+[00:20:25.833] INFO  [mk3_Faustus] [ITEM] drop container=0x400181D9
+[00:20:25.834] INFO  [mk3_Faustus] [ACTION_RESULT] unequip success (1ms) item is in the destination
+[00:20:25.834] LOG   [mk3_Faustus] event action_result: unequip success took=1ms item is in the destination
+[00:20:27.394] INFO  [life] robe: cutting the resurrection robe into bandages
+[00:20:27.394] INFO  [mk3_Faustus] [ACTION] use_item_on start
+[00:20:27.394] INFO  [mk3_Faustus] [ACTION] use_item_on item=0x40018146 target=0x4001813A
+[00:20:27.395] INFO  [mk3_Faustus] [chat ascii] System: What do you want to use this on?
+[00:20:27.395] INFO  [mk3_Faustus] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=1
+[00:20:27.395] LOG   [mk3_Faustus] event target_requested: id=0x000002CE type=0 subtype=1 gen=1
+[00:20:27.395] INFO  [mk3_Faustus] [TARGET] auto-reply for use_item_on -> 0x4001813A
+[00:20:27.395] INFO  [mk3_Faustus] [TARGET] reply serial=0x4001813A gen=1
+[00:20:27.395] INFO  [mk3_Faustus] [target] object 0x4001813A (0,0,0) model 0x0000
+[00:20:27.409] INFO  [mk3_Faustus] [chat ascii] System: You put the clean bandages in your pack.
+[00:20:28.713] INFO  [mk3_Faustus] [survival] hp 48/48 (100%) -> fight
+[00:20:29.431] INFO  [life] plan=buy reason="some held, more wanted"
+[00:20:29.431] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:20:29.431] INFO  [life] bandages: an action is already in flight
+[00:20:33.769] INFO  [mk3_Faustus] [survival] hp 48/48 (100%) -> fight
+[00:20:38.778] INFO  [mk3_Faustus] [survival] hp 48/48 (100%) -> fight
+[00:20:42.426] LOG   [mk3_Faustus] event action_result: use_item_on timeout
+[00:20:42.490] INFO  [mk3_Faustus] [travel] place: skipping Cove healer -- 1344 tiles and 1 gate for a service Britain healer offers
+[00:20:42.490] INFO  [mk3_Faustus] [travel] place: skipping Minoc healer -- 1704 tiles and 0 gates for a service Britain healer offers
+[00:20:42.490] INFO  [mk3_Faustus] [travel] Britain healer -> (1471,1611) r=5 from (1496,1628)
+[00:20:42.490] LOG   [mk3_Faustus] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1496,1628)
+[00:20:42.490] INFO  [life] bandages: walking to a 'healer' (trip 1)
+[00:20:42.490] INFO  [mk3_Faustus] [travel] mode walk             usable   <- chosen
+[00:20:42.490] INFO  [mk3_Faustus] [travel] mode moongate         usable
+[00:20:42.490] INFO  [mk3_Faustus] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:42.490] INFO  [mk3_Faustus] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:42.490] LOG   [mk3_Faustus] event travel_mode: walk
+[00:20:42.490] INFO  [mk3_Faustus] [travel] plan Britain healer: ok legs=1 ~25 tiles transit=0 nodes=0
+[00:20:42.549] INFO  [mk3_Faustus] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:20:42.549] INFO  [mk3_Faustus] [action] goto (1471,1611) from (1496,1628,10)
+[00:20:42.549] LOG   [mk3_Faustus] event goto_start: target=(1471,1611) from=(1496,1628)
+[00:20:42.549] INFO  [mk3_Faustus] [bot] running from (1496,1628,10) to (1471,1611,z20)
+[00:20:42.549] INFO  [mk3_Faustus] [bot] planning path to (1471,1611) in background
+[00:20:42.611] INFO  [mk3_Faustus] [bot] replan to (1471,1611): 32 steps in 5823.2us
+[00:20:43.834] INFO  [mk3_Faustus] [survival] hp 48/48 (100%) -> fight
+[00:20:48.895] INFO  [mk3_Faustus] [survival] hp 48/48 (100%) -> fight
+[00:20:49.356] INFO  [mk3_Faustus] [bot] door ahead at (1480,1613,z20); OpenDoor before step
+[00:20:49.371] INFO  [mk3_Faustus] [chat ascii] System: Opening door...
+[00:20:50.507] INFO  [mk3_Faustus] [bot] door ahead at (1479,1612,z20); OpenDoor before step
+[00:20:50.522] INFO  [mk3_Faustus] [chat ascii] System: Opening door...
+[00:20:51.979] INFO  [mk3_Faustus] [travel] Britain healer ARRIVED at (1476,1612,20)
+[00:20:51.979] LOG   [mk3_Faustus] event travel_done: label='Britain healer' ok=1 at=(1476,1612) legs=1 plans=1 why=''
+[00:20:52.040] INFO  [mk3_Faustus] [action] scanning nearby mobiles for names
+[00:20:52.040] INFO  [mk3_Faustus] [action] requested 5 paperdoll(s) for trade titles
+[00:20:52.040] INFO  [life] bandages: at the shop, asking who is here (scan 1 of 3)
+[00:20:52.042] INFO  [mk3_Faustus] [mobiles] nearby (7):
+[00:20:52.042] INFO  [mk3_Faustus]   Dale 0x000010C1
+[00:20:52.042] INFO  [mk3_Faustus]   Natasha 0x00001194
+[00:20:52.042] INFO  [mk3_Faustus]   Cyras 0x00015725
+[00:20:52.042] INFO  [mk3_Faustus]   Serena 0x000193F7
+[00:20:52.042] INFO  [mk3_Faustus]   Rhea 0x00017DD9
+[00:20:52.042] INFO  [mk3_Faustus]   Dog 0x00000230
+[00:20:52.042] INFO  [mk3_Faustus]   Caimile 0x00001239
+[00:20:52.042] INFO  [mk3_Faustus] [0x20] player @(1476,1612,20) facing=3
+[00:20:52.042] INFO  [mk3_Faustus] [0x88] paperdoll 0x00017DD9: "Rhea, Apprentice Tamer"
+[00:20:52.042] INFO  [mk3_Faustus] [0x20] player @(1476,1612,20) facing=6
+[00:20:52.042] INFO  [mk3_Faustus] [0x88] paperdoll 0x000010C1: "Dale, the healer"
+[00:20:52.042] INFO  [mk3_Faustus] [world] Dale, the healer is a healer at (1472,1611)
+[00:20:52.042] INFO  [mk3_Faustus] [0x20] player @(1476,1612,20) facing=7
+[00:20:52.042] INFO  [mk3_Faustus] [0x88] paperdoll 0x00001194: "Natasha, the healer guildmistress"
+[00:20:52.042] INFO  [mk3_Faustus] [world] Natasha, the healer guildmistress is a healer at (1470,1609)
+[00:20:52.042] INFO  [mk3_Faustus] [0x20] player @(1476,1612,20) facing=6
+[00:20:52.042] INFO  [mk3_Faustus] [0x88] paperdoll 0x000193F7: "Serena, Apprentice Miner"
+[00:20:52.042] INFO  [mk3_Faustus] [0x20] player @(1476,1612,20) facing=5
+[00:20:52.042] INFO  [mk3_Faustus] [0x88] paperdoll 0x00015725: "Cyras, Apprentice Lumberjack"
+[00:20:53.911] INFO  [mk3_Faustus] [survival] hp 48/48 (100%) -> fight
+[00:20:55.057] INFO  [life] bandages: found a 'healer'
+[00:20:55.075] INFO  [mk3_Faustus] [travel] mobile 0x000010C1 -> (1472,1610) r=1 from (1476,1612)
+[00:20:55.075] LOG   [mk3_Faustus] event travel_start: label='mobile 0x000010C1' target=(1472,1610) radius=1 from=(1476,1612)
+[00:20:55.075] INFO  [life] bandages: the 'healer' is 4 tiles off (dz 0) -- walking into reach (chase 1 of 3)
+[00:20:55.075] INFO  [mk3_Faustus] [travel] mode walk             usable   <- chosen
+[00:20:55.075] INFO  [mk3_Faustus] [travel] mode moongate         usable
+[00:20:55.075] INFO  [mk3_Faustus] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:55.075] INFO  [mk3_Faustus] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:55.075] LOG   [mk3_Faustus] event travel_mode: walk
+[00:20:55.075] INFO  [mk3_Faustus] [travel] plan mobile 0x000010C1: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:20:55.133] INFO  [mk3_Faustus] [action] goto finished at (1476,1612,20); target (1471,1611); stopped short (off by 6 tile(s))
+[00:20:55.133] LOG   [mk3_Faustus] event goto_done: at=(1476,1612) target=(1471,1611) arrived=0 off=6
+[00:20:55.133] INFO  [mk3_Faustus] [action] goto (1472,1610) from (1476,1612,20)
+[00:20:55.133] LOG   [mk3_Faustus] event goto_start: target=(1472,1610) from=(1476,1612)
+[00:20:55.133] INFO  [mk3_Faustus] [bot] running from (1476,1612,20) to (1472,1610,z20)
+[00:20:55.133] INFO  [mk3_Faustus] [bot] planning path to (1472,1610) in background
+[00:20:57.273] INFO  [mk3_Faustus] [action] goto finished at (1476,1612,20); target (1472,1610); stopped short (off by 6 tile(s))
+[00:20:57.273] LOG   [mk3_Faustus] event goto_done: at=(1476,1612) target=(1472,1610) arrived=0 off=6
+[00:20:58.526] INFO  [mk3_Faustus] [action] goto (1472,1610) from (1476,1612,20)
+[00:20:58.526] LOG   [mk3_Faustus] event goto_start: target=(1472,1610) from=(1476,1612)
+[00:20:58.526] INFO  [mk3_Faustus] [bot] running from (1476,1612,20) to (1472,1610,z20)
+[00:20:58.526] INFO  [mk3_Faustus] [bot] planning path to (1472,1610) in background
+[00:20:58.527] INFO  [mk3_Faustus] [bot] replan to (1472,1610): 5 steps in 261.0us
+[00:20:58.925] INFO  [mk3_Faustus] [survival] hp 48/48 (100%) -> fight
+[00:20:59.820] INFO  [mk3_Faustus] [travel] mobile 0x000010C1 ARRIVED at (1473,1611,20)
+[00:20:59.820] LOG   [mk3_Faustus] event travel_done: label='mobile 0x000010C1' ok=1 at=(1473,1611) legs=1 plans=1 why=''
+[00:20:59.883] INFO  [life] bandages: within reach
+[00:20:59.883] INFO  [mk3_Faustus] [ACTION] vendor_buy start
+[00:20:59.883] INFO  [mk3_Faustus] [VENDOR] open vendor=0x000010C1 say='Dale buy'
+[00:20:59.883] INFO  [life] bandages: asking the 'healer' to show clean bandages (attempt 1)
+[00:20:59.899] INFO  [mk3_Faustus] [chat uni  ] : Dale buy
+[00:20:59.899] INFO  [mk3_Faustus] [chat ascii] Dale: Greetings.  What might I help thee with?
+[00:20:59.899] INFO  [mk3_Faustus] [chat ascii] Dale: My shop sells many things.
+[00:20:59.899] INFO  [mk3_Faustus] [0x3C] container contents: 3 item(s)
+[00:20:59.899] INFO  [mk3_Faustus] [0x74] pairing: straight (straight 3, mirrored 1 of 3 rows)
+[00:20:59.899] INFO  [mk3_Faustus] [0x74] vendor shop data: cont=0x400010BB 3 item(s), layer=0x1A
+[00:20:59.899] INFO  [mk3_Faustus] [0x74]   Ginseng                      gfx=0x0F85 qty=20   price=3
+[00:20:59.899] INFO  [mk3_Faustus] [0x74]   Garlic                       gfx=0x0F84 qty=13   price=3
+[00:20:59.899] INFO  [mk3_Faustus] [0x74]   Refresh                      gfx=0x0F0B qty=19   price=16
+[00:20:59.899] INFO  [mk3_Faustus] [0x3C] container contents: 0 item(s)
+[00:20:59.899] INFO  [mk3_Faustus] [0x74] vendor shop data: cont=0x40000EF5 0 item(s), layer=0x1B
+[00:20:59.899] INFO  [mk3_Faustus] [VENDOR] offer from 0x000010C1: 3 item(s)
+[00:20:59.899] INFO  [mk3_Faustus] [VENDOR]   0x40018237 Ginseng                x20  3 gp
+[00:20:59.899] INFO  [mk3_Faustus] [VENDOR]   0x40018236 Garlic                 x13  3 gp
+[00:20:59.899] INFO  [mk3_Faustus] [VENDOR]   0x40018232 Refresh                x19  16 gp
+[00:20:59.899] LOG   [mk3_Faustus] event vendor_offer: vendor=0x000010C1 items=3
+[00:20:59.899] INFO  [mk3_Faustus] [ACTION_RESULT] vendor_buy success (16ms) vendor offer received
+[00:20:59.899] LOG   [mk3_Faustus] event action_result: vendor_buy success took=16ms vendor offer received
+[00:20:59.899] INFO  [mk3_Faustus] [0x24] vendor buy gump for 0x000010C1
+[00:20:59.899] INFO  [life] bandages: the shop is open
+[00:20:59.960] INFO  [life] bandages: this 'healer' does not stock clean bandages
+[00:20:59.960] INFO  [life] goal_failed=REPLACE_EQUIPMENT status=failed reason="this 'healer' does not stock clean bandages"
+[00:20:59.960] INFO  [life] handoff=REPLACE_EQUIPMENT->MAKE_BANDAGES reason="no bandages bought"
+[00:20:59.976] INFO  [life] goal=TRADE_WITH_PLAYER reason="previous goal abandoned: no bandages bought"
+[00:20:59.976] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedTrade(buy from a player 0.55) NeedSkillTraining(Tactics 0.55) NeedEquipment(heal potions 0.50) NeedTraining(skill 41 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedTraining(skill 5 0.45) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=Tactics (target 100.0)
+[00:20:59.976] INFO  [life]   score=79.8
+[00:20:59.976] INFO  [life]   reason: NeedTrade urgency 0.55 x 145 = 79.8
+[00:20:59.976] INFO  [life]   reason: 20 x i_potion_cure short
+[00:20:59.976] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 239s after achieving nothing
+[00:20:59.976] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 260s after achieving nothing
+[00:21:00.848] INFO  [mk3_Faustus] [bot] arrived at (1472,1610,20)
+[00:21:02.014] INFO  [life] market: the market is britain_bank_2 (Britain banker) at 1425,1690, radius 5, guarded
+[00:21:02.014] INFO  [life] goal_blocked=TRADE_WITH_PLAYER reason="not enough session left for the trip" left=134s need=800s
+[00:21:02.076] INFO  [life] goal=GET_FOOD reason="previous goal abandoned: not enough session left for the trip"
+[00:21:02.076] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSkillTraining(Tactics 0.55) NeedEquipment(heal potions 0.50) NeedTraining(skill 41 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedTraining(skill 5 0.45) NeedFood(food 0.25) NeedGear(gear 0.22) NeedTrade(buy from a player BLOCKED 0.00)  | tools defined=0 held=[] want_train=Tactics (target 100.0)
+[00:21:02.076] INFO  [life]   score=62.5
+[00:21:02.076] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[00:21:02.076] INFO  [life]   reason: food=0
+[00:21:02.076] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 237s after achieving nothing
+[00:21:02.076] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 258s after achieving nothing
+[00:21:02.076] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 599s after achieving nothing
+[00:21:02.087] INFO  [mk3_Faustus] [travel] Britain baker -> (1450,1617) r=5 from (1472,1610)
+[00:21:02.087] LOG   [mk3_Faustus] event travel_start: label='Britain baker' target=(1450,1617) radius=5 from=(1472,1610)
+[00:21:02.087] INFO  [life] food: walking to a 'baker' (trip 1)
+[00:21:02.087] INFO  [mk3_Faustus] [travel] mode walk             usable   <- chosen
+[00:21:02.087] INFO  [mk3_Faustus] [travel] mode moongate         usable
+[00:21:02.088] INFO  [mk3_Faustus] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:02.088] INFO  [mk3_Faustus] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:02.088] LOG   [mk3_Faustus] event travel_mode: walk
+[00:21:02.088] INFO  [mk3_Faustus] [travel] plan Britain baker: ok legs=1 ~22 tiles transit=0 nodes=0
+[00:21:02.151] INFO  [mk3_Faustus] [action] goto finished at (1472,1610,20); target (1472,1610); ARRIVED (off by 0 tile(s))
+[00:21:02.151] LOG   [mk3_Faustus] event goto_done: at=(1472,1610) target=(1472,1610) arrived=1 off=0
+[00:21:02.152] INFO  [mk3_Faustus] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:02.152] INFO  [mk3_Faustus] [action] goto (1450,1617) from (1472,1610,20)
+[00:21:02.152] LOG   [mk3_Faustus] event goto_start: target=(1450,1617) from=(1472,1610)
+[00:21:02.152] INFO  [mk3_Faustus] [bot] running from (1472,1610,20) to (1450,1617,z20)
+[00:21:02.152] INFO  [mk3_Faustus] [bot] planning path to (1450,1617) in background
+[00:21:02.215] INFO  [mk3_Faustus] [bot] replan to (1450,1617): 48 steps in 6439.3us
+[00:21:02.984] INFO  [mk3_Faustus] [chat uni  ] Rhea: Dale buy
+[00:21:03.932] INFO  [mk3_Faustus] [survival] hp 48/48 (100%) -> fight
+[00:21:04.932] INFO  [mk3_Faustus] [bot] door ahead at (1480,1610,z20); OpenDoor before step
+[00:21:04.932] INFO  [mk3_Faustus] [chat ascii] System: Opening door...
+[00:21:08.941] INFO  [mk3_Faustus] [survival] hp 48/48 (100%) -> fight
+[00:21:11.193] INFO  [mk3_Faustus] [chat ascii] System: Observer has arrived in Minoc.
+[00:21:13.776] INFO  [mk3_Faustus] [chat ascii] Dale: Good morrow!  How can I help thee?
+[00:21:13.776] INFO  [mk3_Faustus] [chat ascii] Dale: I'm here to sell thee supplies.
+[00:21:14.566] INFO  [mk3_Faustus] [survival] hp 48/48 (100%) -> fight
+[00:21:14.572] INFO  [mk3_Faustus] [chat ascii] System: Observer has departed from Minoc.
+[00:21:16.651] INFO  [mk3_Faustus] [travel] Britain baker ARRIVED at (1453,1612,20)
+[00:21:16.651] LOG   [mk3_Faustus] event travel_done: label='Britain baker' ok=1 at=(1453,1612) legs=1 plans=1 why=''
+[00:21:16.998] INFO  [mk3_Faustus] [action] scanning nearby mobiles for names
+[00:21:16.998] INFO  [mk3_Faustus] [action] requested 7 paperdoll(s) for trade titles
+[00:21:16.998] INFO  [life] food: at the shop, asking who is here (scan 1 of 3)
+[00:21:17.289] INFO  [mk3_Faustus] [mobiles] nearby (11):
+[00:21:17.289] INFO  [mk3_Faustus]   Vorar 0x00016305
+[00:21:17.289] INFO  [mk3_Faustus]   Odessa 0x000194DE
+[00:21:17.289] INFO  [mk3_Faustus]   Aelia 0x00013DA6
+[00:21:17.289] INFO  [mk3_Faustus]   Serena 0x000193F7
+[00:21:17.289] INFO  [mk3_Faustus]   Cyras 0x00015725
+[00:21:17.289] INFO  [mk3_Faustus]   Lionel 0x000010B3
+[00:21:17.289] INFO  [mk3_Faustus]   Amara 0x00012E70
+[00:21:17.289] INFO  [mk3_Faustus]   Halain 0x0001616D
+[00:21:17.289] INFO  [mk3_Faustus]   Delras 0x00015A59
+[00:21:17.289] INFO  [mk3_Faustus]   Dale 0x000010C1
+[00:21:17.289] INFO  [mk3_Faustus]   Natasha 0x00001194
+[00:21:17.289] INFO  [mk3_Faustus] [0x20] player @(1453,1612,20) facing=2
+[00:21:17.289] INFO  [mk3_Faustus] [0x88] paperdoll 0x00016305: "Vorar, Apprentice Lumberjack"
+[00:21:17.289] INFO  [mk3_Faustus] [0x20] player @(1453,1612,20) facing=3
+[00:21:17.289] INFO  [mk3_Faustus] [0x88] paperdoll 0x000194DE: "Odessa, Apprentice Miner"
+[00:21:17.289] INFO  [mk3_Faustus] [0x20] player @(1453,1612,20) facing=4
+[00:21:17.289] INFO  [mk3_Faustus] [0x88] paperdoll 0x00013DA6: "Aelia, Apprentice Tailor"
+[00:21:17.289] INFO  [mk3_Faustus] [0x20] player @(1453,1612,20) facing=5
+[00:21:17.289] INFO  [mk3_Faustus] [0x88] paperdoll 0x000010B3: "Lionel, the baker"
+[00:21:17.289] INFO  [mk3_Faustus] [world] Lionel, the baker is a baker at (1451,1615)
+[00:21:17.289] INFO  [mk3_Faustus] [0x88] paperdoll 0x00012E70: "Amara, Apprentice Tailor"
+[00:21:17.289] INFO  [mk3_Faustus] [0x88] paperdoll 0x0001616D: "Halain, Apprentice Lumberjack"
+[00:21:17.289] INFO  [mk3_Faustus] [0x20] player @(1453,1612,20) facing=7
+[00:21:17.289] INFO  [mk3_Faustus] [0x88] paperdoll 0x00015A59: "Delras, Apprentice Lumberjack"
+[00:21:17.304] INFO  [mk3_Faustus] [0x21] stale reject seq=49 (block already handled); pose resynced
+[00:21:18.717] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_27.faustus/state.json
+[00:21:19.066] INFO  [mk3_Faustus] [chat uni  ] Aelia: Lionel buy
+[00:21:19.613] INFO  [mk3_Faustus] [survival] hp 48/48 (100%) -> fight
+[00:21:20.045] INFO  [life] food: found a 'baker'
+[00:21:20.107] INFO  [life] food: within reach
+[00:21:20.170] INFO  [mk3_Faustus] [ACTION] vendor_buy start
+[00:21:20.170] INFO  [mk3_Faustus] [VENDOR] open vendor=0x000010B3 say='Lionel buy'
+[00:21:20.170] INFO  [life] food: asking the 'baker' to show something to eat (attempt 1)
+[00:21:20.170] INFO  [mk3_Faustus] [chat uni  ] : Lionel buy
+[00:21:20.569] INFO  [mk3_Faustus] [chat uni  ] Odessa: Lionel buy
+[00:21:20.569] INFO  [mk3_Faustus] [chat ascii] Lionel: Excuse me Amara, but Odessa wants to speak to me
+[00:21:20.569] INFO  [mk3_Faustus] [chat ascii] Lionel: Greetings. What can I do for thee?
+[00:21:20.569] INFO  [mk3_Faustus] [chat ascii] Lionel: I'm here to sell thee supplies.
+[00:21:24.642] INFO  [mk3_Faustus] [survival] hp 48/48 (100%) -> fight
+[00:21:28.176] LOG   [mk3_Faustus] event action_result: vendor_buy timeout
+[00:21:28.237] INFO  [life] food: resting after a failure
+[00:21:29.207] INFO  [mk3_Faustus] [chat uni  ] Aelia: Lionel buy
+[00:21:29.667] INFO  [mk3_Faustus] [survival] hp 48/48 (100%) -> fight
+[00:21:30.268] INFO  [mk3_Faustus] [ACTION] vendor_buy start
+[00:21:30.268] INFO  [mk3_Faustus] [VENDOR] open vendor=0x000010B3 say='Lionel buy'
+[00:21:30.268] INFO  [life] food: asking the 'baker' to show something to eat (attempt 2)
+[00:21:30.268] INFO  [mk3_Faustus] [chat uni  ] : Lionel buy
+[00:21:34.721] INFO  [mk3_Faustus] [survival] hp 48/48 (100%) -> fight
+[00:21:38.302] LOG   [mk3_Faustus] event action_result: vendor_buy timeout
+[00:21:38.363] INFO  [life] food: resting after a failure
+[00:21:39.746] INFO  [mk3_Faustus] [survival] hp 48/48 (100%) -> fight
+[00:21:40.411] INFO  [mk3_Faustus] [ACTION] vendor_buy start
+[00:21:40.411] INFO  [mk3_Faustus] [VENDOR] open vendor=0x000010B3 say='Lionel buy'
+[00:21:40.411] INFO  [life] food: asking the 'baker' to show something to eat (attempt 3)
+[00:21:40.411] INFO  [mk3_Faustus] [chat uni  ] : Lionel buy
+[00:21:44.781] INFO  [mk3_Faustus] [survival] hp 48/48 (100%) -> fight
+[00:21:48.458] LOG   [mk3_Faustus] event action_result: vendor_buy timeout
+[00:21:48.463] INFO  [life] food: the 'baker' would not open a shop
+[00:21:48.463] INFO  [life] goal_failed=GET_FOOD status=retryable_failure reason="the 'baker' would not open a shop"
+[00:21:48.520] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: no food seller reachable"
+[00:21:48.520] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSkillTraining(Tactics 0.55) NeedEquipment(heal potions 0.50) NeedTraining(skill 41 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedTraining(skill 5 0.45) NeedFood(food 0.25) NeedGear(gear 0.22) NeedTrade(buy from a player BLOCKED 0.00)  | tools defined=0 held=[] want_train=Tactics (target 100.0)
+[00:21:48.520] INFO  [life]   score=60.5
+[00:21:48.520] INFO  [life]   reason: NeedSkillTraining urgency 0.55 x 110 = 60.5
+[00:21:48.521] INFO  [life]   reason: Tactics 0.0 -> 100.0, gold 10000 (fee is quoted on arrival, roughly 300)
+[00:21:48.521] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 191s after achieving nothing
+[00:21:48.521] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 212s after achieving nothing
+[00:21:48.521] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 29s after achieving nothing
+[00:21:48.521] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 553s after achieving nothing
+[00:21:48.521] INFO  [life] plan=buy reason="below the ceiling, worth buying, and affordable"
+[00:21:48.521] INFO  [life] training: looking for a 'weaponsmith' to teach Tactics (trip 1)
+[00:21:48.551] INFO  [mk3_Faustus] [travel] place: skipping Minoc blacksmith -- 1784 tiles and 0 gates for a service Britain blacksmith offers
+[00:21:48.551] INFO  [mk3_Faustus] [travel] Britain blacksmith -> (1418,1547) r=5 from (1453,1612)
+[00:21:48.551] LOG   [mk3_Faustus] event travel_start: label='Britain blacksmith' target=(1418,1547) radius=5 from=(1453,1612)
+[00:21:48.551] INFO  [mk3_Faustus] [travel] mode moongate         usable   <- chosen
+[00:21:48.551] INFO  [mk3_Faustus] [travel] mode walk             usable
+[00:21:48.551] INFO  [mk3_Faustus] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:48.551] INFO  [mk3_Faustus] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:48.551] LOG   [mk3_Faustus] event travel_mode: moongate
+[00:21:48.551] INFO  [mk3_Faustus] [travel] plan Britain blacksmith: ok legs=2 ~104 tiles transit=0 nodes=26
+[00:21:48.611] INFO  [mk3_Faustus] [action] goto finished at (1453,1612,20); target (1450,1617); stopped short (off by 8 tile(s))
+[00:21:48.611] LOG   [mk3_Faustus] event goto_done: at=(1453,1612) target=(1450,1617) arrived=0 off=8
+[00:21:48.611] INFO  [mk3_Faustus] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:48.611] INFO  [mk3_Faustus] [action] goto (1432,1576) from (1453,1612,20)
+[00:21:48.611] LOG   [mk3_Faustus] event goto_start: target=(1432,1576) from=(1453,1612)
+[00:21:48.611] INFO  [mk3_Faustus] [bot] running from (1453,1612,20) to (1432,1576)
+[00:21:48.611] INFO  [mk3_Faustus] [bot] planning path to (1432,1576) in background
+[00:21:48.659] INFO  [mk3_Faustus] [bot] replan to (1432,1576): 50 steps in 7060.2us
+[00:21:49.782] INFO  [mk3_Faustus] [survival] hp 48/48 (100%) -> fight
+[00:21:50.106] INFO  [mk3_Faustus] [bot] door ahead at (1459,1611,z20); OpenDoor before step
+[00:21:50.121] INFO  [mk3_Faustus] [chat ascii] System: Opening door...
+[00:21:51.286] INFO  [mk3_Faustus] [bot] door ahead at (1460,1610,z20); OpenDoor before step
+[00:21:51.301] INFO  [mk3_Faustus] [chat ascii] System: Opening door...
+[00:21:54.824] INFO  [mk3_Faustus] [survival] hp 48/48 (100%) -> fight
+[00:21:58.645] INFO  [mk3_Faustus] [chat ascii] System: Draver has departed from Minoc.
+[00:21:59.873] INFO  [mk3_Faustus] [survival] hp 48/48 (100%) -> fight
+[00:22:03.631] INFO  [mk3_Faustus] [bot] arrived at (1432,1576,30)
+[00:22:03.631] INFO  [mk3_Faustus] [action] goto finished at (1432,1576,30); target (1432,1576); ARRIVED (off by 0 tile(s))
+[00:22:03.631] LOG   [mk3_Faustus] event goto_done: at=(1432,1576) target=(1432,1576) arrived=1 off=0
+[00:22:03.631] INFO  [mk3_Faustus] [action] goto (1418,1547) from (1432,1576,30)
+[00:22:03.631] LOG   [mk3_Faustus] event goto_start: target=(1418,1547) from=(1432,1576)
+[00:22:03.631] INFO  [mk3_Faustus] [bot] running from (1432,1576,30) to (1418,1547,z30)
+[00:22:03.631] INFO  [mk3_Faustus] [bot] planning path to (1418,1547) in background
+[00:22:03.694] INFO  [mk3_Faustus] [bot] replan to (1418,1547): 31 steps in 4565.1us
+[00:22:04.901] INFO  [mk3_Faustus] [survival] hp 48/48 (100%) -> fight
+[00:22:07.806] INFO  [mk3_Faustus] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=16 in 167.1us
+[00:22:09.861] INFO  [mk3_Faustus] [bot] door ahead at (1421,1555,z30); OpenDoor before step
+[00:22:09.876] INFO  [mk3_Faustus] [chat ascii] System: Opening door...
+[00:22:09.937] INFO  [mk3_Faustus] [survival] hp 48/48 (100%) -> fight
+[00:22:11.463] INFO  [mk3_Faustus] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=6 in 163.5us
+[00:22:11.847] INFO  [mk3_Faustus] [chat ascii] Thora: Hmm?
+[00:22:11.968] INFO  [mk3_Faustus] [travel] Britain blacksmith ARRIVED at (1417,1552,30)
+[00:22:11.968] LOG   [mk3_Faustus] event travel_done: label='Britain blacksmith' ok=1 at=(1417,1552) legs=2 plans=1 why=''
+[00:22:11.968] INFO  [life] training: arrived at 1417,1552 -- asking who is here
+[00:22:11.968] INFO  [mk3_Faustus] [action] scanning nearby mobiles for names
+[00:22:11.968] INFO  [mk3_Faustus] [action] requested 2 paperdoll(s) for trade titles
+[00:22:11.969] INFO  [mk3_Faustus] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=5 in 87.4us
+[00:22:11.984] INFO  [mk3_Faustus] [mobiles] nearby (2):
+[00:22:11.984] INFO  [mk3_Faustus]   Thora 0x00001189
+[00:22:11.984] INFO  [mk3_Faustus]   Rhett 0x00001026
+[00:22:11.984] INFO  [mk3_Faustus] [0x88] paperdoll 0x00001189: "Thora, the blacksmith"
+[00:22:11.984] INFO  [mk3_Faustus] [world] Thora, the blacksmith is a blacksmith at (1418,1549)
+[00:22:11.984] INFO  [mk3_Faustus] [0x88] paperdoll 0x00001026: "Rhett, the blacksmith"
+[00:22:11.984] INFO  [mk3_Faustus] [world] Rhett, the blacksmith is a blacksmith at (1417,1544)
+[00:22:13.685] INFO  [mk3_Faustus] [bot] arrived at (1418,1547,30)
+[00:22:14.469] INFO  [life] training: 'weaponsmith' is 3 tiles and 0 z away -- walking to them before speaking (approach 1 of 3)
+[00:22:14.469] INFO  [mk3_Faustus] [travel] mobile 0x00001189 -> (1419,1550) r=1 from (1418,1547)
+[00:22:14.469] LOG   [mk3_Faustus] event travel_start: label='mobile 0x00001189' target=(1419,1550) radius=1 from=(1418,1547)
+[00:22:14.469] INFO  [mk3_Faustus] [travel] mode walk             usable   <- chosen
+[00:22:14.469] INFO  [mk3_Faustus] [travel] mode moongate         usable
+[00:22:14.469] INFO  [mk3_Faustus] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:14.469] INFO  [mk3_Faustus] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:14.469] LOG   [mk3_Faustus] event travel_mode: walk
+[00:22:14.469] INFO  [mk3_Faustus] [travel] plan mobile 0x00001189: ok legs=1 ~3 tiles transit=0 nodes=0
+[00:22:14.531] INFO  [mk3_Faustus] [action] goto finished at (1418,1547,30); target (1418,1547); ARRIVED (off by 0 tile(s))
+[00:22:14.531] LOG   [mk3_Faustus] event goto_done: at=(1418,1547) target=(1418,1547) arrived=1 off=0
+[00:22:14.531] INFO  [mk3_Faustus] [action] goto (1419,1550) from (1418,1547,30)
+[00:22:14.531] LOG   [mk3_Faustus] event goto_start: target=(1419,1550) from=(1418,1547)
+[00:22:14.531] INFO  [mk3_Faustus] [bot] running from (1418,1547,30) to (1419,1550,z30)
+[00:22:14.531] INFO  [mk3_Faustus] [bot] planning path to (1419,1550) in background
+[00:22:14.961] INFO  [mk3_Faustus] [survival] hp 48/48 (100%) -> fight
+[00:22:17.286] INFO  [mk3_Faustus] [action] goto finished at (1418,1547,30); target (1419,1550); stopped short (off by 4 tile(s))
+[00:22:17.287] LOG   [mk3_Faustus] event goto_done: at=(1418,1547) target=(1419,1550) arrived=0 off=4
+[00:22:18.487] INFO  [mk3_Faustus] [travel] mode walk             usable   <- chosen
+[00:22:18.487] INFO  [mk3_Faustus] [travel] mode moongate         usable
+[00:22:18.487] INFO  [mk3_Faustus] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:18.487] INFO  [mk3_Faustus] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:18.487] LOG   [mk3_Faustus] event travel_mode: walk
+[00:22:18.487] INFO  [mk3_Faustus] [travel] plan mobile 0x00001189: ok legs=1 ~3 tiles transit=0 nodes=0
+[00:22:18.738] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_27.faustus/state.json
+[00:22:18.798] INFO  [mk3_Faustus] [travel] mode walk             usable   <- chosen
+[00:22:18.798] INFO  [mk3_Faustus] [travel] mode moongate         usable
+[00:22:18.798] INFO  [mk3_Faustus] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:18.798] INFO  [mk3_Faustus] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:18.799] LOG   [mk3_Faustus] event travel_mode: walk
+[00:22:18.799] INFO  [mk3_Faustus] [travel] plan mobile 0x00001189: ok legs=1 ~2 tiles transit=0 nodes=0
+[00:22:18.862] INFO  [mk3_Faustus] [action] goto (1416,1549) from (1418,1547,30)
+[00:22:18.862] LOG   [mk3_Faustus] event goto_start: target=(1416,1549) from=(1418,1547)
+[00:22:18.862] INFO  [mk3_Faustus] [bot] running from (1418,1547,30) to (1416,1549,z30)
+[00:22:18.862] INFO  [mk3_Faustus] [bot] planning path to (1416,1549) in background
+[00:22:19.972] INFO  [mk3_Faustus] [survival] hp 48/48 (100%) -> fight
+[00:22:21.146] INFO  [mk3_Faustus] [action] goto finished at (1418,1547,30); target (1416,1549); stopped short (off by 4 tile(s))
+[00:22:21.146] LOG   [mk3_Faustus] event goto_done: at=(1418,1547) target=(1416,1549) arrived=0 off=4
+[00:22:22.378] INFO  [mk3_Faustus] [travel] mode walk             usable   <- chosen
+[00:22:22.378] INFO  [mk3_Faustus] [travel] mode moongate         usable
+[00:22:22.378] INFO  [mk3_Faustus] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:22.378] INFO  [mk3_Faustus] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:22.378] LOG   [mk3_Faustus] event travel_mode: walk
+[00:22:22.378] INFO  [mk3_Faustus] [travel] plan mobile 0x00001189: ok legs=1 ~2 tiles transit=0 nodes=0
+[00:22:23.914] INFO  [mk3_Faustus] [action] goto (1416,1549) from (1418,1547,30)
+[00:22:23.914] LOG   [mk3_Faustus] event goto_start: target=(1416,1549) from=(1418,1547)
+[00:22:23.914] INFO  [mk3_Faustus] [bot] running from (1418,1547,30) to (1416,1549,z30)
+[00:22:23.914] INFO  [mk3_Faustus] [bot] planning path to (1416,1549) in background
+[00:22:25.027] INFO  [mk3_Faustus] [survival] hp 48/48 (100%) -> fight
+[00:22:26.199] INFO  [mk3_Faustus] [action] goto finished at (1418,1547,30); target (1416,1549); stopped short (off by 4 tile(s))
+[00:22:26.199] LOG   [mk3_Faustus] event goto_done: at=(1418,1547) target=(1416,1549) arrived=0 off=4
+[00:22:27.415] INFO  [mk3_Faustus] [travel] mode walk             usable   <- chosen
+[00:22:27.415] INFO  [mk3_Faustus] [travel] mode moongate         usable
+[00:22:27.415] INFO  [mk3_Faustus] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:27.415] INFO  [mk3_Faustus] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:27.415] LOG   [mk3_Faustus] event travel_mode: walk
+[00:22:27.415] INFO  [mk3_Faustus] [travel] plan mobile 0x00001189: ok legs=1 ~2 tiles transit=0 nodes=0
+[00:22:30.064] INFO  [mk3_Faustus] [survival] hp 48/48 (100%) -> fight
+[00:22:30.435] INFO  [mk3_Faustus] [action] goto (1416,1549) from (1418,1547,30)
+[00:22:30.435] LOG   [mk3_Faustus] event goto_start: target=(1416,1549) from=(1418,1547)
+[00:22:30.435] INFO  [mk3_Faustus] [bot] running from (1418,1547,30) to (1416,1549,z30)
+[00:22:30.435] INFO  [mk3_Faustus] [bot] planning path to (1416,1549) in background
+[00:22:30.497] INFO  [mk3_Faustus] [bot] replan to (1416,1549): 3 steps in 134.5us
+[00:22:30.605] INFO  [mk3_Faustus] [chat ascii] Rhett: What's thee wantin'?
+[00:22:30.960] INFO  [mk3_Faustus] [travel] mobile 0x00001189 ARRIVED at (1417,1548,30)
+[00:22:30.960] LOG   [mk3_Faustus] event travel_done: label='mobile 0x00001189' ok=1 at=(1417,1548) legs=1 plans=3 why=''
+[00:22:30.961] INFO  [life] training: asking the trainer about Tactics
+[00:22:30.961] INFO  [mk3_Faustus] [ACTION] npc_train start
+[00:22:30.961] INFO  [mk3_Faustus] [TRAIN] ask 0x00001189 say='Thora train Tactics'
+[00:22:30.961] LOG   [mk3_Faustus] event npc_train_ask: Thora train Tactics
+[00:22:30.976] INFO  [mk3_Faustus] [chat uni  ] : Thora train Tactics
+[00:22:30.976] INFO  [mk3_Faustus] [chat ascii] Thora: For 80 gold I will train you in all I know of Tactics. For less gold I will teach you less
+[00:22:30.976] INFO  [mk3_Faustus] [ACTION_RESULT] npc_train success (15ms) For 80 gold I will train you in all I know of Tactics. For less gold I will teach you less
+[00:22:30.976] LOG   [mk3_Faustus] event action_result: npc_train success took=15ms For 80 gold I will train you in all I know of Tactics. For less gold I will teach you less
+[00:22:32.098] INFO  [mk3_Faustus] [bot] arrived at (1416,1549,30)
+[00:22:33.499] INFO  [mk3_Faustus] [action] open backpack
+[00:22:33.499] INFO  [mk3_Faustus] [backpack] opening 0x400181D9
+[00:22:33.500] INFO  [mk3_Faustus] [0x24] open container 0x400181D9 gump=60
+[00:22:33.500] INFO  [mk3_Faustus] [0x3C] container contents: 7 item(s)
+[00:22:34.715] INFO  [life] training: paying the quoted 80 gold for Tactics (purse 10000)
+[00:22:34.716] INFO  [mk3_Faustus] [GIVE] 0x400181C5 x80 -> 0x00001189 (gold 10000)
+[00:22:34.716] INFO  [mk3_Faustus] [ITEM] drag serial=0x400181C5 amount=80
+[00:22:34.716] INFO  [mk3_Faustus] [ITEM] drop container=0x00001189
+[00:22:34.716] LOG   [mk3_Faustus] event npc_give: item=0x400181C5 amount=80 to=0x00001189
+[00:22:34.716] INFO  [mk3_Faustus] [chat ascii] Thora: Let me show you something of how this is done
+[00:22:34.716] INFO  [mk3_Faustus] [chat ascii] Thora: That is all I can teach.
+[00:22:35.071] INFO  [mk3_Faustus] [survival] hp 48/48 (100%) -> fight
+[00:22:38.419] INFO  [mk3_Faustus] [chat ascii] System: Vorar has departed from Britain.
+[00:22:38.729] INFO  [mk3_Faustus] [action] requesting the skill list
+[00:22:38.746] INFO  [life] goal_changed=GET_FOOD from=TRAIN_AT_NPC reason="GET_FOOD 62.5 superseded TRAIN_AT_NPC 49.5"
+[00:22:38.746] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedEquipment(heal potions 0.50) NeedTraining(skill 41 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedTraining(skill 5 0.45) NeedSkillTraining(Tactics 0.45) NeedFood(food 0.25) NeedGear(gear 0.22) NeedTrade(buy from a player BLOCKED 0.00)  | tools defined=0 held=[] want_train=Tactics (target 100.0)
+[00:22:38.746] INFO  [life]   score=62.5
+[00:22:38.746] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[00:22:38.746] INFO  [life]   reason: food=0
+[00:22:38.746] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 141s after achieving nothing
+[00:22:38.746] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 162s after achieving nothing
+[00:22:38.746] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 503s after achieving nothing
+[00:22:39.440] INFO  [mk3_Faustus] [chat ascii] System: Selene has departed from Magincia.
+[00:22:40.115] INFO  [mk3_Faustus] [survival] hp 48/48 (100%) -> fight
+[00:22:40.240] INFO  [mk3_Faustus] [travel] baker (seen) -> (1451,1615) r=2 from (1416,1549)
+[00:22:40.240] LOG   [mk3_Faustus] event travel_start: label='baker (seen)' target=(1451,1615) radius=2 from=(1416,1549)
+[00:22:40.240] INFO  [life] food: walking to a 'baker' (trip 1)
+[00:22:40.240] INFO  [mk3_Faustus] [travel] mode moongate         usable   <- chosen
+[00:22:40.240] INFO  [mk3_Faustus] [travel] mode walk             usable
+[00:22:40.240] INFO  [mk3_Faustus] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:40.240] INFO  [mk3_Faustus] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:40.240] LOG   [mk3_Faustus] event travel_mode: moongate
+[00:22:40.240] INFO  [mk3_Faustus] [travel] plan baker (seen): ok legs=2 ~104 tiles transit=0 nodes=18
+[00:22:40.300] INFO  [mk3_Faustus] [action] goto finished at (1416,1549,30); target (1416,1549); ARRIVED (off by 0 tile(s))
+[00:22:40.300] LOG   [mk3_Faustus] event goto_done: at=(1416,1549) target=(1416,1549) arrived=1 off=0
+[00:22:40.300] INFO  [mk3_Faustus] [action] goto (1432,1576) from (1416,1549,30)
+[00:22:40.300] LOG   [mk3_Faustus] event goto_start: target=(1432,1576) from=(1416,1549)
+[00:22:40.300] INFO  [mk3_Faustus] [bot] running from (1416,1549,30) to (1432,1576)
+[00:22:40.300] INFO  [mk3_Faustus] [bot] planning path to (1432,1576) in background
+[00:22:40.360] INFO  [mk3_Faustus] [bot] replan to (1432,1576): 29 steps in 1209.4us
+[00:22:43.240] INFO  [mk3_Faustus] [bot] door ahead at (1422,1556,z30); OpenDoor before step
+[00:22:43.240] INFO  [mk3_Faustus] [chat ascii] System: Opening door...
+[00:22:45.168] INFO  [mk3_Faustus] [survival] hp 48/48 (100%) -> fight
+[00:22:46.897] INFO  [mk3_Faustus] [chat ascii] System: Zarthal has departed from Minoc.
+[00:22:49.378] INFO  [mk3_Faustus] [chat ascii] System: World save in 10 seconds
+[00:22:50.195] INFO  [mk3_Faustus] [survival] hp 48/48 (100%) -> fight
+[00:22:50.196] INFO  [mk3_Faustus] [bot] arrived at (1432,1576,30)
+[00:22:50.196] INFO  [mk3_Faustus] [action] goto finished at (1432,1576,30); target (1432,1576); ARRIVED (off by 0 tile(s))
+[00:22:50.196] LOG   [mk3_Faustus] event goto_done: at=(1432,1576) target=(1432,1576) arrived=1 off=0
+[00:22:50.196] INFO  [mk3_Faustus] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:22:50.196] INFO  [mk3_Faustus] [action] goto (1451,1615) from (1432,1576,30)
+[00:22:50.196] LOG   [mk3_Faustus] event goto_start: target=(1451,1615) from=(1432,1576)
+[00:22:50.196] INFO  [mk3_Faustus] [bot] running from (1432,1576,30) to (1451,1615,z20)
+[00:22:50.196] INFO  [mk3_Faustus] [bot] planning path to (1451,1615) in background
+[00:22:50.258] INFO  [mk3_Faustus] [bot] replan to (1451,1615): 52 steps in 25336.3us
+[00:22:50.319] INFO  [mk3_Faustus] [chat ascii] System: Thalia has departed from Moonglow.
+[00:22:53.217] INFO  [mk3_Faustus] [chat ascii] System: Elvar has departed from Minoc.
+[00:22:55.211] INFO  [mk3_Faustus] [survival] hp 48/48 (100%) -> fight
+[00:22:57.848] INFO  [mk3_Faustus] [chat ascii] System: Falen has departed from Minoc.
+[00:22:59.430] INFO  [mk3_Faustus] [chat ascii] System: World save has been initiated.
+[00:23:00.240] INFO  [mk3_Faustus] [survival] hp 48/48 (100%) -> fight
+[00:23:04.484] INFO  [mk3_Faustus] [action] goto finished at (1449,1603,20); target (1451,1615); stopped short (off by 14 tile(s))
+[00:23:04.484] LOG   [mk3_Faustus] event goto_done: at=(1449,1603) target=(1451,1615) arrived=0 off=14
+[00:23:05.285] INFO  [mk3_Faustus] [survival] hp 48/48 (100%) -> fight
+[00:23:05.715] INFO  [mk3_Faustus] [action] goto (1451,1615) from (1449,1603,20)
+[00:23:05.715] LOG   [mk3_Faustus] event goto_start: target=(1451,1615) from=(1449,1603)
+[00:23:05.715] INFO  [mk3_Faustus] [bot] running from (1449,1603,20) to (1451,1615,z20)
+[00:23:05.715] INFO  [mk3_Faustus] [bot] planning path to (1451,1615) in background
+[00:23:05.777] INFO  [mk3_Faustus] [chat ascii] System: Ghalor has departed from Minoc.
+[00:23:07.627] INFO  [mk3_Faustus] [chat ascii] System: Cyras has departed from Britain.
+[00:23:08.089] INFO  [mk3_Faustus] [action] goto finished at (1449,1603,20); target (1451,1615); stopped short (off by 14 tile(s))
+[00:23:08.089] LOG   [mk3_Faustus] event goto_done: at=(1449,1603) target=(1451,1615) arrived=0 off=14
+[00:23:09.291] INFO  [mk3_Faustus] [travel] mode walk             usable   <- chosen
+[00:23:09.291] INFO  [mk3_Faustus] [travel] mode moongate         usable
+[00:23:09.291] INFO  [mk3_Faustus] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:23:09.291] INFO  [mk3_Faustus] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:23:09.291] LOG   [mk3_Faustus] event travel_mode: walk
+[00:23:09.291] INFO  [mk3_Faustus] [travel] plan baker (seen): ok legs=1 ~12 tiles transit=0 nodes=0
+[00:23:10.033] INFO  [mk3_Faustus] [chat ascii] System: Kharain has departed from Minoc.
+[00:23:10.295] INFO  [mk3_Faustus] [survival] hp 48/48 (100%) -> fight
+[00:23:10.802] INFO  [mk3_Faustus] [action] goto (1451,1615) from (1449,1603,20)
+[00:23:10.802] LOG   [mk3_Faustus] event goto_start: target=(1451,1615) from=(1449,1603)
+[00:23:10.802] INFO  [mk3_Faustus] [bot] running from (1449,1603,20) to (1451,1615,z20)
+[00:23:10.802] INFO  [mk3_Faustus] [bot] planning path to (1451,1615) in background
+[00:23:12.348] INFO  [mk3_Faustus] [chat ascii] System: Leander has departed from Moonglow.
+[00:23:13.210] INFO  [mk3_Faustus] [action] goto finished at (1449,1603,20); target (1451,1615); stopped short (off by 14 tile(s))
+[00:23:13.210] LOG   [mk3_Faustus] event goto_done: at=(1449,1603) target=(1451,1615) arrived=0 off=14
+[00:23:14.432] INFO  [mk3_Faustus] [action] goto (1451,1615) from (1449,1603,20)
+[00:23:14.432] LOG   [mk3_Faustus] event goto_start: target=(1451,1615) from=(1449,1603)
+[00:23:14.432] INFO  [mk3_Faustus] [bot] running from (1449,1603,20) to (1451,1615,z20)
+[00:23:14.432] INFO  [mk3_Faustus] [bot] planning path to (1451,1615) in background
+[00:23:14.494] INFO  [mk3_Faustus] [bot] replan to (1451,1615): 26 steps in 5206.6us
+[00:23:15.313] INFO  [mk3_Faustus] [survival] hp 48/48 (100%) -> fight
+[00:23:16.143] INFO  [life] session_end_requested reason="session time limit reached"
+[00:23:18.079] INFO  [mk3_Faustus] [bot] door ahead at (1460,1610,z20); OpenDoor before step
+[00:23:18.095] INFO  [mk3_Faustus] [chat ascii] System: Opening door...
+[00:23:19.295] INFO  [mk3_Faustus] [bot] door ahead at (1459,1612,z20); OpenDoor before step
+[00:23:19.295] INFO  [mk3_Faustus] [chat ascii] System: Opening door...
+[00:23:20.365] INFO  [mk3_Faustus] [survival] hp 48/48 (100%) -> fight
+[00:23:22.884] INFO  [mk3_Faustus] [travel] baker (seen) ARRIVED at (1453,1614,20)
+[00:23:22.884] LOG   [mk3_Faustus] event travel_done: label='baker (seen)' ok=1 at=(1453,1614) legs=1 plans=2 why=''
+[00:23:22.884] INFO  [life] wind-down: no bank learned yet; asking the world for one (attempt 1)
+[00:23:22.887] INFO  [mk3_Faustus] [travel] place: skipping Minoc banker -- 1784 tiles and 0 gates for a service Britain banker offers
+[00:23:22.887] INFO  [mk3_Faustus] [travel] Britain banker -> (1425,1690) r=5 from (1453,1615)
+[00:23:22.887] LOG   [mk3_Faustus] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1453,1615)
+[00:23:22.887] INFO  [mk3_Faustus] [travel] mode moongate         usable   <- chosen
+[00:23:22.887] INFO  [mk3_Faustus] [travel] mode walk             usable
+[00:23:22.887] INFO  [mk3_Faustus] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:23:22.887] INFO  [mk3_Faustus] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:23:22.887] LOG   [mk3_Faustus] event travel_mode: moongate
+[00:23:22.887] INFO  [mk3_Faustus] [travel] plan Britain banker: ok legs=3 ~104 tiles transit=0 nodes=19
+[00:23:23.780] INFO  [mk3_Faustus] [bot] arrived at (1451,1615,20)
+[00:23:23.780] INFO  [mk3_Faustus] [action] goto finished at (1451,1615,20); target (1451,1615); ARRIVED (off by 0 tile(s))
+[00:23:23.780] LOG   [mk3_Faustus] event goto_done: at=(1451,1615) target=(1451,1615) arrived=1 off=0
+[00:23:23.780] INFO  [mk3_Faustus] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:23:23.780] INFO  [mk3_Faustus] [action] goto (1464,1640) from (1451,1615,20)
+[00:23:23.780] LOG   [mk3_Faustus] event goto_start: target=(1464,1640) from=(1451,1615)
+[00:23:23.780] INFO  [mk3_Faustus] [bot] running from (1451,1615,20) to (1464,1640)
+[00:23:23.780] INFO  [mk3_Faustus] [bot] planning path to (1464,1640) in background
+[00:23:23.840] INFO  [mk3_Faustus] [bot] replan to (1464,1640): 38 steps in 3269.9us
+[00:23:25.411] INFO  [mk3_Faustus] [survival] hp 48/48 (100%) -> fight
+[00:23:25.736] INFO  [mk3_Faustus] [chat ascii] System: Elara has departed from Magincia.
+[00:23:25.984] INFO  [mk3_Faustus] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=33 in 85.4us
+[00:23:26.245] INFO  [mk3_Faustus] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=33 in 154.5us
+[00:23:26.431] INFO  [mk3_Faustus] [chat ascii] System: Xerxes has departed from Vesper.
+[00:23:26.847] INFO  [mk3_Faustus] [bot] lookahead patched around block at step 3: anchor=5 new segment=7 path=33 in 200.5us
+[00:23:30.449] INFO  [mk3_Faustus] [survival] hp 48/48 (100%) -> fight
+[00:23:33.133] INFO  [mk3_Faustus] [chat ascii] System: Dorvar has departed from Skara Brae.
+[00:23:35.471] INFO  [mk3_Faustus] [survival] hp 48/48 (100%) -> fight
+[00:23:36.122] INFO  [mk3_Faustus] [bot] arrived at (1464,1640,20)
+[00:23:36.122] INFO  [mk3_Faustus] [action] goto finished at (1464,1640,20); target (1464,1640); ARRIVED (off by 0 tile(s))
+[00:23:36.122] LOG   [mk3_Faustus] event goto_done: at=(1464,1640) target=(1464,1640) arrived=1 off=0
+[00:23:36.122] INFO  [mk3_Faustus] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:23:36.122] INFO  [mk3_Faustus] [action] goto (1448,1672) from (1464,1640,20)
+[00:23:36.122] LOG   [mk3_Faustus] event goto_start: target=(1448,1672) from=(1464,1640)
+[00:23:36.122] INFO  [mk3_Faustus] [bot] running from (1464,1640,20) to (1448,1672)
+[00:23:36.122] INFO  [mk3_Faustus] [bot] planning path to (1448,1672) in background
+[00:23:36.182] INFO  [mk3_Faustus] [bot] replan to (1448,1672): 37 steps in 4281.0us
+[00:23:37.865] INFO  [mk3_Faustus] [chat ascii] System: Odessa has departed from Britain.
+[00:23:38.949] INFO  [mk3_Faustus] [chat ascii] System: Rhea has departed from Lord British's Castle.
+[00:23:40.517] INFO  [mk3_Faustus] [survival] hp 48/48 (100%) -> fight
+[00:23:43.199] INFO  [mk3_Faustus] [chat ascii] System: Rhaler has departed from Minoc.
+[00:23:45.061] INFO  [mk3_Faustus] [chat ascii] System: Ithion has departed from Skara Brae.
+[00:23:45.553] INFO  [mk3_Faustus] [survival] hp 48/48 (100%) -> fight
+[00:23:46.565] INFO  [mk3_Faustus] [bot] arrived at (1448,1672,10)
+[00:23:46.565] INFO  [mk3_Faustus] [action] goto finished at (1448,1672,10); target (1448,1672); ARRIVED (off by 0 tile(s))
+[00:23:46.565] LOG   [mk3_Faustus] event goto_done: at=(1448,1672) target=(1448,1672) arrived=1 off=0
+[00:23:46.565] INFO  [mk3_Faustus] [action] goto (1425,1690) from (1448,1672,10)
+[00:23:46.565] LOG   [mk3_Faustus] event goto_start: target=(1425,1690) from=(1448,1672)
+[00:23:46.565] INFO  [mk3_Faustus] [bot] running from (1448,1672,10) to (1425,1690,z0)
+[00:23:46.565] INFO  [mk3_Faustus] [bot] planning path to (1425,1690) in background
+[00:23:46.626] INFO  [mk3_Faustus] [bot] replan to (1425,1690): 41 steps in 10082.0us
+[00:23:48.905] INFO  [mk3_Faustus] [chat ascii] Hyman: Hmm?
+[00:23:50.612] INFO  [mk3_Faustus] [survival] hp 48/48 (100%) -> fight
+[00:23:51.459] INFO  [mk3_Faustus] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=24 in 281.0us
+[00:23:53.551] INFO  [mk3_Faustus] [bot] door ahead at (1440,1693,z0); OpenDoor before step
+[00:23:53.551] INFO  [mk3_Faustus] [chat ascii] System: Opening door...
+[00:23:55.167] INFO  [mk3_Faustus] [bot] step (1439,1693,0)->(1438,1692,0) rejected; OpenDoor + retry
+[00:23:55.183] INFO  [mk3_Faustus] [chat ascii] System: Opening door...
+[00:23:55.183] INFO  [mk3_Faustus] [0x20] player @(1439,1693,0) facing=0
+[00:23:55.183] INFO  [mk3_Faustus] [action] goto finished at (1439,1693,0); target (1425,1690); stopped short (off by 17 tile(s))
+[00:23:55.183] LOG   [mk3_Faustus] event goto_done: at=(1439,1693) target=(1425,1690) arrived=0 off=17
+[00:23:55.630] INFO  [mk3_Faustus] [survival] hp 48/48 (100%) -> fight
+[00:23:56.432] INFO  [mk3_Faustus] [action] goto (1425,1690) from (1439,1693,0)
+[00:23:56.432] LOG   [mk3_Faustus] event goto_start: target=(1425,1690) from=(1439,1693)
+[00:23:56.432] INFO  [mk3_Faustus] [bot] running from (1439,1693,0) to (1425,1690,z0)
+[00:23:56.432] INFO  [mk3_Faustus] [bot] planning path to (1425,1690) in background
+[00:23:56.494] INFO  [mk3_Faustus] [bot] replan to (1425,1690): 15 steps in 1255.8us
+[00:24:00.299] INFO  [mk3_Faustus] [travel] Britain banker ARRIVED at (1430,1688,0)
+[00:24:00.299] LOG   [mk3_Faustus] event travel_done: label='Britain banker' ok=1 at=(1430,1688) legs=3 plans=1 why=''
+[00:24:00.299] INFO  [life] wind-down: arrived somewhere safe at 1430,1688
+[00:24:00.361] INFO  [life] session_summary duration=224s goals=0/6 gold=10000->9920 skills=100.0->108.0 logs=+0 kills=0 deaths=0 places=2 suppliers=0
+[00:24:00.361] INFO  [life] session_goals families=3 picks=6 top=67% varied=0 self_superseded=0 | upkeep=4(67%) training=1(17%) social=1(17%) | REPLACE_EQUIPMENT=1(17%) BANK=1(17%) TRAIN_AT_NPC=1(17%) TRADE_WITH_PLAYER=1(17%) GET_FOOD=2(33%)
+[00:24:00.363] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_27.faustus/state.json
+[00:24:00.363] INFO  [life] logging out
+[00:24:00.363] INFO  [mk3_Faustus] [action] logout requested
+[00:24:00.363] LOG   [mk3_Faustus] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[00:24:00.364] INFO  [mk3_Faustus] [0xD1] logout acknowledged (accepted=1)
+[00:24:00.364] LOG   [mk3_Faustus] event logout_ack: accepted
+[00:24:00.364] INFO  [mk3_Faustus] [net] closing connection (logout acknowledged)
+[00:24:00.364] LOG   [mk3_Faustus] event logout_complete: acked

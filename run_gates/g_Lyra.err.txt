@@ -1,0 +1,647 @@
+start: Lyra is a scribe and lives in Moonglow -> starting city index 3
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+[00:32:01.788] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x4000C629 landed in 0x4000C91D, not the destination 0x4000C63D
+[00:32:06.830] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x4000C5F5 landed in 0x4000C91D, not the destination 0x4000C63D
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+[00:33:49.206] WARN  [g_Lyra] [bot] 0x20 resync; aborting path
+[00:39:38.156] WARN  [g_Lyra] [bot] no path to (1427,1687) avoiding 0 block(s); stopping (search 1629249.2us)
+[00:39:38.156] WARN  [g_Lyra] [bot] start (1425,1690,0) exits: open=5 terrain=2 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 687 item(s), 4 mobile(s))
+[00:39:42.446] WARN  [g_Lyra] [bot] no path to (1427,1687) avoiding 0 block(s); stopping (search 1510839.4us)
+[00:39:42.446] WARN  [g_Lyra] [bot] start (1425,1690,0) exits: open=5 terrain=2 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 687 item(s), 4 mobile(s))
+[00:39:48.409] WARN  [g_Lyra] [bot] no path to (1427,1687) avoiding 0 block(s); stopping (search 1596939.3us)
+[00:39:48.409] WARN  [g_Lyra] [bot] start (1425,1690,0) exits: open=5 terrain=2 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 687 item(s), 4 mobile(s))
+[00:39:56.064] WARN  [g_Lyra] [bot] no path to (1427,1687) avoiding 0 block(s); stopping (search 1791658.5us)
+[00:39:56.064] WARN  [g_Lyra] [bot] start (1425,1690,0) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 687 item(s), 4 mobile(s))
+[00:39:58.262] WARN  [g_Lyra] [bot] no path to (1427,1687) avoiding 0 block(s); stopping (search 2018547.8us)
+[00:39:58.262] WARN  [g_Lyra] [bot] start (1425,1690,0) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 687 item(s), 4 mobile(s))
+[00:40:02.978] WARN  [g_Lyra] [bot] no path to (1427,1687) avoiding 0 block(s); stopping (search 1875615.5us)
+[00:40:02.979] WARN  [g_Lyra] [bot] start (1425,1690,0) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 687 item(s), 4 mobile(s))
+[00:40:09.014] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:40:10.562] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:40:12.111] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:40:17.163] WARN  [g_Lyra] [0x21] move REJECTED seq=15; server says (1438,1691,0) facing=3
+[00:40:17.163] WARN  [g_Lyra] [bot] 0x20 resync; aborting path
+[00:40:19.698] WARN  [g_Lyra] [0x21] move REJECTED seq=5; server says (1439,1693,0) facing=3
+[00:40:19.698] WARN  [g_Lyra] [bot] 0x20 resync; aborting path
+[00:40:32.126] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:40:33.677] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:40:35.210] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:40:36.710] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:40:38.276] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:40:39.811] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:40:41.381] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:40:42.885] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:40:44.419] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:40:45.956] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:40:47.489] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:40:48.997] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:40:50.552] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:40:52.097] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:40:53.621] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:40:55.128] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:41:15.181] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:41:16.669] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:41:18.228] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:41:19.780] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:41:21.290] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:41:22.795] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:41:24.305] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:41:25.841] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:41:27.392] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:41:28.946] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:41:30.458] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:41:31.488] WARN  [g_Lyra] [0x21] move REJECTED seq=44; server says (1559,1689,30) facing=1
+[00:41:32.000] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:41:32.244] WARN  [g_Lyra] [0x21] move REJECTED seq=0; server says (1559,1689,30) facing=1
+[00:41:33.534] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:41:34.151] WARN  [g_Lyra] [bot] no path to (1560,1688) avoiding 1 block(s); stopping (search 1851070.1us)
+[00:41:34.151] WARN  [g_Lyra] [bot] start (1559,1689,30) exits: open=6 terrain=0 mobile=0 dynamic=1 door=0 blacklist=1 (overlay saw 978 item(s), 1 mobile(s))
+[00:41:35.070] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:41:36.614] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:41:38.123] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:41:39.630] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:41:41.167] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:41:42.675] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:41:44.231] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:41:45.756] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:41:47.287] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:41:48.837] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (17ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:41:50.391] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:41:51.948] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:41:53.455] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:41:59.121] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:42:00.653] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:42:02.147] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:42:03.680] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:42:05.176] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:42:06.736] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:42:08.258] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:42:09.760] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:42:11.265] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:42:12.834] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:42:14.327] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:42:15.885] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:42:17.429] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:42:18.984] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:42:20.496] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:42:21.985] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:42:29.910] WARN  [g_Lyra] [bot] no path to (1590,1656) avoiding 0 block(s); stopping (search 1779775.1us)
+[00:42:29.910] WARN  [g_Lyra] [bot] start (1590,1654,10) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1030 item(s), 5 mobile(s))
+[00:42:35.382] WARN  [g_Lyra] [bot] no path to (1593,1654) avoiding 0 block(s); stopping (search 1860395.7us)
+[00:42:35.382] WARN  [g_Lyra] [bot] start (1590,1656,10) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1030 item(s), 5 mobile(s))
+[00:42:41.793] WARN  [g_Lyra] [bot] no path to (1591,1651) avoiding 0 block(s); stopping (search 1791026.6us)
+[00:42:41.793] WARN  [g_Lyra] [bot] start (1590,1656,10) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1030 item(s), 5 mobile(s))
+[00:42:42.023] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:42:43.544] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:42:45.098] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:42:46.633] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:42:48.191] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:42:49.696] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:42:51.217] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:42:52.721] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:42:54.247] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (17ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:42:55.784] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:42:57.355] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:42:58.894] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:43:00.397] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:43:01.905] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:43:03.426] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:43:04.945] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:43:08.426] WARN  [g_Lyra] [bot] no path to (1593,1655) avoiding 0 block(s); stopping (search 1872217.3us)
+[00:43:08.426] WARN  [g_Lyra] [bot] start (1591,1651,10) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1030 item(s), 5 mobile(s))
+[00:43:12.988] WARN  [g_Lyra] [bot] no path to (1593,1656) avoiding 0 block(s); stopping (search 1854952.3us)
+[00:43:12.988] WARN  [g_Lyra] [bot] start (1593,1655,10) exits: open=5 terrain=2 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1030 item(s), 5 mobile(s))
+[00:43:27.041] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:43:28.544] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:43:30.054] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:43:31.593] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x4001267C landed in 0x4000C91D, not the destination 0x4000C944
+[00:43:33.109] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:43:34.648] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:43:36.186] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x4001267C landed in 0x4000C91D, not the destination 0x4000C944
+[00:43:37.728] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:43:39.232] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:43:40.737] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x4001267C landed in 0x4000C91D, not the destination 0x4000C944
+[00:43:42.263] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:43:43.818] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:43:45.363] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x4001267C landed in 0x4000C91D, not the destination 0x4000C944
+[00:43:46.885] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:43:57.485] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (12ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:43:59.026] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x4001267C landed in 0x4000C91D, not the destination 0x4000C944
+[00:44:00.570] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:44:02.126] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:44:03.638] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x4001267C landed in 0x4000C91D, not the destination 0x4000C944
+[00:44:05.206] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x40012247 landed in 0x4000C91D, not the destination 0x4000C944
+[00:44:06.761] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:44:08.287] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:44:09.808] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x4001267C landed in 0x4000C91D, not the destination 0x4000C944
+[00:44:11.347] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40012247 landed in 0x4000C91D, not the destination 0x4000C944
+[00:44:12.902] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:44:14.413] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:44:15.932] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x4001267C landed in 0x4000C91D, not the destination 0x4000C944
+[00:44:17.487] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40012247 landed in 0x4000C91D, not the destination 0x4000C944
+[00:44:19.018] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:44:20.575] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (17ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:44:22.127] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x4001267C landed in 0x4000C91D, not the destination 0x4000C944
+[00:44:23.659] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x40012247 landed in 0x4000C91D, not the destination 0x4000C944
+[00:44:25.197] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:44:30.754] WARN  [g_Lyra] [ACTION_RESULT] use_object timeout (no server confirmation)
+[00:44:39.579] WARN  [g_Lyra] [ACTION_RESULT] use_object timeout (no server confirmation)
+[00:44:45.801] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:44:47.309] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x4001267C landed in 0x4000C91D, not the destination 0x4000C944
+[00:44:48.832] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x40012247 landed in 0x4000C91D, not the destination 0x4000C944
+[00:44:50.369] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x4000C914 landed in 0x4000C91D, not the destination 0x4000C944
+[00:44:51.902] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:44:53.435] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x4001267C landed in 0x4000C91D, not the destination 0x4000C944
+[00:44:54.954] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40012247 landed in 0x4000C91D, not the destination 0x4000C944
+[00:44:54.954] WARN  [g_Lyra] [ITEM] drag cancelled by server: unspecified (code 5)
+[00:44:56.503] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:44:58.015] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x4001267C landed in 0x4000C91D, not the destination 0x4000C944
+[00:44:59.535] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x40012247 landed in 0x4000C91D, not the destination 0x4000C944
+[00:45:01.070] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400130B8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:45:01.070] WARN  [g_Lyra] [ITEM] drag cancelled by server: unspecified (code 5)
+[00:45:02.606] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x40011F29 landed in 0x4000C91D, not the destination 0x4000C944
+[00:45:04.141] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40012247 landed in 0x4000C91D, not the destination 0x4000C944
+[00:45:04.141] WARN  [g_Lyra] [ITEM] drag cancelled by server: unspecified (code 5)
+[00:45:05.676] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011F29 landed in 0x4000C91D, not the destination 0x4000C944
+[00:45:07.176] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x40012247 landed in 0x4000C91D, not the destination 0x4000C944
+[00:45:08.698] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x40011F29 landed in 0x4000C91D, not the destination 0x4000C944
+[00:45:10.263] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x40011ED6 landed in 0x4000C91D, not the destination 0x4000C944
+[00:45:11.782] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x40012247 landed in 0x4000C91D, not the destination 0x4000C944
+[00:45:13.304] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x40011F29 landed in 0x4000C91D, not the destination 0x4000C944
+[00:45:14.859] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (17ms) item 0x40011ED6 landed in 0x4000C91D, not the destination 0x4000C944
+[00:45:16.350] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x40012247 landed in 0x4000C91D, not the destination 0x4000C944
+[00:45:21.901] WARN  [g_Lyra] [ACTION_RESULT] use_object timeout (no server confirmation)
+[00:45:34.355] WARN  [g_Lyra] [ACTION_RESULT] use_object timeout (no server confirmation)
+[00:45:36.970] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011F29 landed in 0x4000C91D, not the destination 0x4000C944
+[00:45:38.473] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x40011ED6 landed in 0x4000C91D, not the destination 0x4000C944
+[00:45:39.999] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x40012247 landed in 0x4000C91D, not the destination 0x4000C944
+[00:45:41.507] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x40011F29 landed in 0x4000C91D, not the destination 0x4000C944
+[00:45:43.079] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011ED6 landed in 0x4000C91D, not the destination 0x4000C944
+[00:45:44.600] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x40012247 landed in 0x4000C91D, not the destination 0x4000C944
+[00:45:46.176] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x40011F29 landed in 0x4000C91D, not the destination 0x4000C944
+[00:45:47.667] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x40011ED6 landed in 0x4000C91D, not the destination 0x4000C944
+[00:45:49.214] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40012247 landed in 0x4000C91D, not the destination 0x4000C944
+[00:45:50.738] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x40011F29 landed in 0x4000C91D, not the destination 0x4000C944
+[00:45:52.311] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011ED6 landed in 0x4000C91D, not the destination 0x4000C944
+[00:45:53.846] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x40012247 landed in 0x4000C91D, not the destination 0x4000C944
+[00:45:55.367] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x40011F29 landed in 0x4000C91D, not the destination 0x4000C944
+[00:45:56.935] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x40011ED6 landed in 0x4000C91D, not the destination 0x4000C944
+[00:45:56.935] WARN  [g_Lyra] [ITEM] drag cancelled by server: unspecified (code 5)
+[00:45:58.492] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x40011F29 landed in 0x4000C91D, not the destination 0x4000C944
+[00:46:00.001] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x40011ED6 landed in 0x4000C91D, not the destination 0x4000C944
+[00:46:03.644] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x40011F29 landed in 0x4000C91D, not the destination 0x4000C944
+[00:46:05.171] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:46:06.690] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x40011ED6 landed in 0x4000C91D, not the destination 0x4000C944
+[00:46:08.197] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x40011F29 landed in 0x4000C91D, not the destination 0x4000C944
+[00:46:09.732] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:46:11.267] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011ED6 landed in 0x4000C91D, not the destination 0x4000C944
+[00:46:12.771] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x40011F29 landed in 0x4000C91D, not the destination 0x4000C944
+[00:46:14.325] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:46:15.875] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x40011ED6 landed in 0x4000C91D, not the destination 0x4000C944
+[00:46:17.399] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011F29 landed in 0x4000C91D, not the destination 0x4000C944
+[00:46:18.952] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:46:20.459] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x40011ED6 landed in 0x4000C91D, not the destination 0x4000C944
+[00:46:22.010] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011F29 landed in 0x4000C91D, not the destination 0x4000C944
+[00:46:23.543] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:46:25.061] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x40011ED6 landed in 0x4000C91D, not the destination 0x4000C944
+[00:46:26.597] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40012017 landed in 0x4000C91D, not the destination 0x4000C63D
+[00:46:33.527] WARN  [g_Lyra] [bot] no path to (1591,1651) avoiding 0 block(s); stopping (search 1784234.7us)
+[00:46:33.527] WARN  [g_Lyra] [bot] start (1593,1655,10) exits: open=5 terrain=2 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1030 item(s), 5 mobile(s))
+[00:46:36.691] WARN  [g_Lyra] [bot] no path to (1591,1651) avoiding 0 block(s); stopping (search 1817220.6us)
+[00:46:36.691] WARN  [g_Lyra] [bot] start (1593,1655,10) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1030 item(s), 5 mobile(s))
+[00:46:39.661] WARN  [g_Lyra] [bot] no path to (1591,1651) avoiding 0 block(s); stopping (search 1710690.7us)
+[00:46:39.661] WARN  [g_Lyra] [bot] start (1593,1655,10) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1030 item(s), 5 mobile(s))
+[00:46:44.421] WARN  [g_Lyra] [bot] no path to (1591,1651) avoiding 0 block(s); stopping (search 1925880.8us)
+[00:46:44.421] WARN  [g_Lyra] [bot] start (1593,1655,10) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1030 item(s), 5 mobile(s))
+[00:46:45.100] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011F29 landed in 0x4000C91D, not the destination 0x4000C944
+[00:46:46.618] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:46:48.170] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011ED6 landed in 0x4000C91D, not the destination 0x4000C944
+[00:46:49.720] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011F29 landed in 0x4000C91D, not the destination 0x4000C944
+[00:46:51.226] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:46:52.746] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x40011ED6 landed in 0x4000C91D, not the destination 0x4000C944
+[00:46:54.303] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x40011F29 landed in 0x4000C91D, not the destination 0x4000C944
+[00:46:55.859] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (17ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:46:57.366] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011ED6 landed in 0x4000C91D, not the destination 0x4000C944
+[00:46:58.890] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011F29 landed in 0x4000C91D, not the destination 0x4000C944
+[00:47:00.442] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:47:01.990] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011ED6 landed in 0x4000C91D, not the destination 0x4000C944
+[00:47:03.518] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x40011F29 landed in 0x4000C91D, not the destination 0x4000C944
+[00:47:05.010] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:47:06.541] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011ED6 landed in 0x4000C91D, not the destination 0x4000C944
+[00:47:17.063] WARN  [g_Lyra] [policy] REFUSED NPC purchase of unmapped item (0x1F43): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:47:17.063] WARN  [g_Lyra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:47:17.063] WARN  [g_Lyra] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[00:47:28.602] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x40011F29 landed in 0x4000C91D, not the destination 0x4000C944
+[00:47:30.153] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:47:31.678] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x40011ED6 landed in 0x4000C91D, not the destination 0x4000C944
+[00:47:33.219] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x40011F29 landed in 0x4000C91D, not the destination 0x4000C944
+[00:47:34.769] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:47:36.271] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x40011ED6 landed in 0x4000C91D, not the destination 0x4000C944
+[00:47:37.819] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x40011F29 landed in 0x4000C91D, not the destination 0x4000C944
+[00:47:39.343] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:47:40.898] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x40011ED6 landed in 0x4000C91D, not the destination 0x4000C944
+[00:47:42.405] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x40011F29 landed in 0x4000C91D, not the destination 0x4000C944
+[00:47:43.925] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:47:45.461] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011ED6 landed in 0x4000C91D, not the destination 0x4000C944
+[00:47:47.005] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011F29 landed in 0x4000C91D, not the destination 0x4000C944
+[00:47:48.546] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:47:50.115] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011ED6 landed in 0x4000C91D, not the destination 0x4000C944
+[00:47:51.627] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x40011F29 landed in 0x4000C91D, not the destination 0x4000C944
+[00:47:53.145] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:47:54.647] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011ED6 landed in 0x4000C91D, not the destination 0x4000C944
+[00:47:56.156] WARN  [g_Lyra] [policy] REFUSED NPC purchase of unmapped item (0x1F43): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:47:56.156] WARN  [g_Lyra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:47:56.156] WARN  [g_Lyra] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[00:48:07.751] WARN  [g_Lyra] [policy] REFUSED NPC purchase of unmapped item (0x1F43): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:48:07.751] WARN  [g_Lyra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:48:07.751] WARN  [g_Lyra] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[00:48:16.828] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011F29 landed in 0x4000C91D, not the destination 0x4000C944
+[00:48:18.354] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:48:19.888] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x40011ED6 landed in 0x4000C91D, not the destination 0x4000C944
+[00:48:21.412] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x40011F29 landed in 0x4000C91D, not the destination 0x4000C944
+[00:48:22.960] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:48:24.483] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x40011ED6 landed in 0x4000C91D, not the destination 0x4000C944
+[00:48:26.050] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011F29 landed in 0x4000C91D, not the destination 0x4000C944
+[00:48:27.560] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:48:29.128] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x40011ED6 landed in 0x4000C91D, not the destination 0x4000C944
+[00:48:30.650] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x40011F29 landed in 0x4000C91D, not the destination 0x4000C944
+[00:48:32.167] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:48:33.676] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011ED6 landed in 0x4000C91D, not the destination 0x4000C944
+[00:48:35.169] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x40011F29 landed in 0x4000C91D, not the destination 0x4000C944
+[00:48:36.739] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:48:38.237] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x40011ED6 landed in 0x4000C91D, not the destination 0x4000C944
+[00:48:43.791] WARN  [g_Lyra] [ACTION_RESULT] use_object timeout (no server confirmation)
+[00:48:56.158] WARN  [g_Lyra] [ACTION_RESULT] use_object timeout (no server confirmation)
+[00:48:58.705] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x40011F29 landed in 0x4000C91D, not the destination 0x4000C944
+[00:49:00.243] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:49:01.753] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x40011ED6 landed in 0x4000C91D, not the destination 0x4000C944
+[00:49:03.273] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x40011F29 landed in 0x4000C91D, not the destination 0x4000C944
+[00:49:04.809] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:49:06.382] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011ED6 landed in 0x4000C91D, not the destination 0x4000C944
+[00:49:07.889] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x40011F29 landed in 0x4000C91D, not the destination 0x4000C944
+[00:49:09.441] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:49:10.939] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x40011ED6 landed in 0x4000C91D, not the destination 0x4000C944
+[00:49:12.458] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011F29 landed in 0x4000C91D, not the destination 0x4000C944
+[00:49:13.983] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:49:15.518] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x40011ED6 landed in 0x4000C91D, not the destination 0x4000C944
+[00:49:17.040] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x40011F29 landed in 0x4000C91D, not the destination 0x4000C944
+[00:49:18.564] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:49:20.106] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x40011ED6 landed in 0x4000C91D, not the destination 0x4000C944
+[00:49:21.654] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x40011F29 landed in 0x4000C91D, not the destination 0x4000C944
+[00:49:23.191] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:49:24.712] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x40011ED6 landed in 0x4000C91D, not the destination 0x4000C944
+[00:49:26.280] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011F29 landed in 0x4000C91D, not the destination 0x4000C944
+[00:49:27.786] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:49:29.311] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x40011ED6 landed in 0x4000C91D, not the destination 0x4000C944
+[00:49:30.819] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x40011F29 landed in 0x4000C91D, not the destination 0x4000C944
+[00:49:32.338] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:49:33.863] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x40011ED6 landed in 0x4000C91D, not the destination 0x4000C944
+[00:49:39.441] WARN  [g_Lyra] [ACTION_RESULT] use_object timeout (no server confirmation)
+[00:49:49.802] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011F29 landed in 0x4000C91D, not the destination 0x4000C944
+[00:49:51.306] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:49:51.306] WARN  [g_Lyra] [ITEM] drag cancelled by server: unspecified (code 5)
+[00:49:52.826] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011F29 landed in 0x4000C91D, not the destination 0x4000C944
+[00:49:54.350] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:49:54.364] WARN  [g_Lyra] [ITEM] drag cancelled by server: unspecified (code 5)
+[00:49:55.920] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:49:57.469] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:49:58.997] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:50:00.501] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136C4 landed in 0x4000C91D, not the destination 0x4000C944
+[00:50:02.010] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:50:03.519] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:50:05.028] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x400136C4 landed in 0x4000C91D, not the destination 0x4000C944
+[00:50:06.568] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:50:08.081] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:50:09.630] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x400136C4 landed in 0x4000C91D, not the destination 0x4000C944
+[00:50:11.155] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:50:15.189] WARN  [g_Lyra] [policy] REFUSED NPC purchase of unmapped item (0x1F43): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:50:15.189] WARN  [g_Lyra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:50:15.189] WARN  [g_Lyra] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[00:50:26.766] WARN  [g_Lyra] [policy] REFUSED NPC purchase of unmapped item (0x1F43): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:50:26.766] WARN  [g_Lyra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:50:26.766] WARN  [g_Lyra] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[00:50:35.824] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:50:37.356] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (3ms) item 0x400136C4 landed in 0x4000C91D, not the destination 0x4000C944
+[00:50:38.911] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:50:40.437] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (2ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:50:41.960] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x400136C4 landed in 0x4000C91D, not the destination 0x4000C944
+[00:50:43.519] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:50:45.046] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (2ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:50:46.614] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136C4 landed in 0x4000C91D, not the destination 0x4000C944
+[00:50:48.167] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:50:49.697] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:50:51.240] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x400136C4 landed in 0x4000C91D, not the destination 0x4000C944
+[00:50:52.767] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (2ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:51:01.524] WARN  [g_Lyra] [bot] no path to (1589,1655) avoiding 0 block(s); stopping (search 4616903.8us)
+[00:51:01.524] WARN  [g_Lyra] [bot] start (1591,1651,10) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1030 item(s), 5 mobile(s))
+[00:51:04.214] WARN  [g_Lyra] [policy] REFUSED NPC purchase of unmapped item (0x1F43): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:51:04.214] WARN  [g_Lyra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:51:04.214] WARN  [g_Lyra] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[00:51:13.230] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:51:14.760] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x400136C4 landed in 0x4000C91D, not the destination 0x4000C944
+[00:51:16.320] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (2ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:51:17.874] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:51:19.372] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x400136C4 landed in 0x4000C91D, not the destination 0x4000C944
+[00:51:20.941] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (13ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:51:22.456] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (2ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:51:24.014] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136C4 landed in 0x4000C91D, not the destination 0x4000C944
+[00:51:25.509] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:51:27.037] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:51:28.568] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x400136C4 landed in 0x4000C91D, not the destination 0x4000C944
+[00:51:30.141] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (13ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:51:31.696] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (13ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:51:33.224] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136C4 landed in 0x4000C91D, not the destination 0x4000C944
+[00:51:34.766] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:51:36.310] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:51:37.821] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136C4 landed in 0x4000C91D, not the destination 0x4000C944
+[00:51:39.378] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:51:45.468] WARN  [g_Lyra] [bot] no path to (1593,1659) avoiding 0 block(s); stopping (search 1931023.7us)
+[00:51:45.468] WARN  [g_Lyra] [bot] start (1589,1655,10) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1030 item(s), 6 mobile(s))
+[00:51:49.313] WARN  [g_Lyra] [policy] REFUSED NPC purchase of unmapped item (0x1F43): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:51:49.313] WARN  [g_Lyra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:51:49.313] WARN  [g_Lyra] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[00:52:00.873] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:52:02.388] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x400136C4 landed in 0x4000C91D, not the destination 0x4000C944
+[00:52:03.908] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:52:05.459] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:52:06.965] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x400136C4 landed in 0x4000C91D, not the destination 0x4000C944
+[00:52:08.482] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:52:09.986] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:52:11.525] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136C4 landed in 0x4000C91D, not the destination 0x4000C944
+[00:52:13.035] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:52:14.556] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:52:16.077] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x400136C4 landed in 0x4000C91D, not the destination 0x4000C944
+[00:52:17.621] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:52:19.122] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:52:20.657] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x400136C4 landed in 0x4000C91D, not the destination 0x4000C944
+[00:52:22.172] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:52:27.730] WARN  [g_Lyra] [ACTION_RESULT] use_object timeout (no server confirmation)
+[00:52:40.177] WARN  [g_Lyra] [ACTION_RESULT] use_object timeout (no server confirmation)
+[00:52:42.732] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:52:44.236] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136C4 landed in 0x4000C91D, not the destination 0x4000C944
+[00:52:45.751] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:52:47.276] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:52:48.802] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136C4 landed in 0x4000C91D, not the destination 0x4000C944
+[00:52:50.335] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:52:51.858] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:52:53.361] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136C4 landed in 0x4000C91D, not the destination 0x4000C944
+[00:52:54.887] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:52:56.392] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:52:57.945] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136C4 landed in 0x4000C91D, not the destination 0x4000C944
+[00:52:59.469] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:53:01.005] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:53:02.513] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136C4 landed in 0x4000C91D, not the destination 0x4000C944
+[00:53:04.032] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:53:09.606] WARN  [g_Lyra] [ACTION_RESULT] use_object timeout (no server confirmation)
+[00:53:20.033] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:53:21.556] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136C4 landed in 0x4000C91D, not the destination 0x4000C944
+[00:53:23.048] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:53:24.588] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:53:26.096] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x400136C4 landed in 0x4000C91D, not the destination 0x4000C944
+[00:53:27.650] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011DBC landed in 0x4000C91D, not the destination 0x4000C944
+[00:53:29.202] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:53:30.715] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136C4 landed in 0x4000C91D, not the destination 0x4000C944
+[00:53:30.715] WARN  [g_Lyra] [ITEM] drag cancelled by server: unspecified (code 5)
+[00:53:32.235] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:53:32.235] WARN  [g_Lyra] [ITEM] drag cancelled by server: unspecified (code 5)
+[00:53:33.773] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:53:33.786] WARN  [g_Lyra] [ITEM] drag cancelled by server: unspecified (code 5)
+[00:53:35.308] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:53:36.847] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:53:38.353] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:53:39.847] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:53:41.400] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:53:44.863] WARN  [g_Lyra] [bot] no path to (1591,1651) avoiding 0 block(s); stopping (search 1882316.0us)
+[00:53:44.863] WARN  [g_Lyra] [bot] start (1593,1659,10) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1030 item(s), 6 mobile(s))
+[00:53:48.702] WARN  [g_Lyra] [policy] REFUSED NPC purchase of unmapped item (0x1F43): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:53:48.702] WARN  [g_Lyra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:53:48.702] WARN  [g_Lyra] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[00:54:00.281] WARN  [g_Lyra] [policy] REFUSED NPC purchase of unmapped item (0x1F43): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:54:00.281] WARN  [g_Lyra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:54:00.281] WARN  [g_Lyra] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[00:54:09.311] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:54:10.849] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:54:12.370] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:54:13.892] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:54:15.401] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:54:16.923] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:54:18.476] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:54:19.965] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:54:21.516] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:54:23.045] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:54:28.985] WARN  [g_Lyra] [bot] no path to (1591,1656) avoiding 0 block(s); stopping (search 1838374.8us)
+[00:54:28.985] WARN  [g_Lyra] [bot] start (1591,1651,10) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1030 item(s), 5 mobile(s))
+[00:54:32.749] WARN  [g_Lyra] [bot] no path to (1593,1653) avoiding 0 block(s); stopping (search 1893423.2us)
+[00:54:32.749] WARN  [g_Lyra] [bot] start (1591,1652,10) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1030 item(s), 5 mobile(s))
+[00:54:37.681] WARN  [g_Lyra] [bot] no path to (1590,1654) avoiding 0 block(s); stopping (search 2011533.2us)
+[00:54:37.681] WARN  [g_Lyra] [bot] start (1591,1652,10) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1030 item(s), 5 mobile(s))
+[00:54:42.249] WARN  [g_Lyra] [bot] no path to (1587,1656) avoiding 0 block(s); stopping (search 1913528.2us)
+[00:54:42.249] WARN  [g_Lyra] [bot] start (1591,1652,10) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1030 item(s), 5 mobile(s))
+[00:54:43.079] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:54:44.602] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:54:46.120] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:54:47.675] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:54:49.187] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:54:50.679] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:54:52.195] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:54:53.714] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:54:55.236] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:54:56.756] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:54:58.266] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:54:59.832] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:55:01.385] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:55:02.891] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:55:04.401] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:55:05.953] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:55:07.489] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:55:09.011] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:55:12.510] WARN  [g_Lyra] [bot] no path to (1594,1658) avoiding 0 block(s); stopping (search 1870829.5us)
+[00:55:12.510] WARN  [g_Lyra] [bot] start (1587,1656,10) exits: open=4 terrain=3 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1030 item(s), 5 mobile(s))
+[00:55:15.738] WARN  [g_Lyra] [bot] no path to (1594,1658) avoiding 0 block(s); stopping (search 1935030.7us)
+[00:55:15.738] WARN  [g_Lyra] [bot] start (1587,1656,10) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1030 item(s), 6 mobile(s))
+[00:55:20.469] WARN  [g_Lyra] [bot] no path to (1594,1658) avoiding 0 block(s); stopping (search 1887245.2us)
+[00:55:20.469] WARN  [g_Lyra] [bot] start (1587,1656,10) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1030 item(s), 6 mobile(s))
+[00:55:23.749] WARN  [g_Lyra] [policy] REFUSED NPC purchase of unmapped item (0x1F43): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:55:23.749] WARN  [g_Lyra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:55:23.749] WARN  [g_Lyra] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[00:55:32.768] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:55:34.324] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:55:35.827] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:55:37.336] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:55:38.878] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:55:40.392] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:55:41.913] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:55:43.452] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:55:44.973] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:55:46.533] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:55:48.089] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:55:49.607] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:55:55.174] WARN  [g_Lyra] [ACTION_RESULT] use_object timeout (no server confirmation)
+[00:56:07.535] WARN  [g_Lyra] [ACTION_RESULT] use_object timeout (no server confirmation)
+[00:56:10.104] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:56:11.628] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:56:13.164] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:56:14.706] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:56:16.230] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:56:17.786] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:56:19.331] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:56:20.849] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:56:22.358] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:56:23.859] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:56:25.408] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:56:26.945] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:56:28.449] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:56:29.953] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:56:31.492] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:56:33.011] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:56:38.569] WARN  [g_Lyra] [ACTION_RESULT] use_object timeout (no server confirmation)
+[00:56:49.020] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:56:50.546] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:56:52.098] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:56:53.624] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:56:55.160] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:56:56.669] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:56:58.234] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:56:59.730] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:57:01.263] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:57:02.787] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:57:04.324] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:57:05.823] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:57:07.378] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:57:08.915] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:57:10.460] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:57:11.984] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:57:17.955] WARN  [g_Lyra] [bot] no path to (1592,1654) avoiding 0 block(s); stopping (search 1821161.4us)
+[00:57:17.955] WARN  [g_Lyra] [bot] start (1594,1658,10) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1030 item(s), 7 mobile(s))
+[00:57:22.853] WARN  [g_Lyra] [bot] no path to (1593,1657) avoiding 0 block(s); stopping (search 1955684.2us)
+[00:57:22.853] WARN  [g_Lyra] [bot] start (1592,1655,10) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1030 item(s), 5 mobile(s))
+[00:57:27.015] WARN  [g_Lyra] [policy] REFUSED NPC purchase of unmapped item (0x1F43): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:57:27.015] WARN  [g_Lyra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:57:27.015] WARN  [g_Lyra] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[00:57:36.015] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:57:37.568] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:57:39.105] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:57:40.648] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:57:42.200] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:57:43.705] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (13ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:57:45.240] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:57:46.792] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:57:48.313] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:57:49.845] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:57:51.389] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:57:52.911] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:57:54.427] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:57:55.966] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:57:57.507] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:57:59.027] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:58:05.243] WARN  [g_Lyra] [bot] no path to (1592,1652) avoiding 0 block(s); stopping (search 2053817.8us)
+[00:58:05.243] WARN  [g_Lyra] [bot] start (1593,1657,10) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1030 item(s), 5 mobile(s))
+[00:58:08.365] WARN  [g_Lyra] [policy] REFUSED NPC purchase of unmapped item (0x1F43): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:58:08.365] WARN  [g_Lyra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:58:08.365] WARN  [g_Lyra] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[00:58:19.940] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:58:21.446] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:58:22.982] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:58:24.489] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:58:26.025] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:58:27.536] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:58:29.032] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:58:30.571] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:58:32.092] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:58:33.615] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:58:35.139] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:58:36.650] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:58:38.164] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:58:39.671] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:58:41.213] WARN  [g_Lyra] [policy] REFUSED NPC purchase of unmapped item (0x1F43): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:58:41.213] WARN  [g_Lyra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:58:41.213] WARN  [g_Lyra] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[00:58:57.959] WARN  [g_Lyra] [bot] no path to (1589,1656) avoiding 0 block(s); stopping (search 5112274.2us)
+[00:58:57.959] WARN  [g_Lyra] [bot] start (1592,1652,10) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1030 item(s), 5 mobile(s))
+[00:58:59.740] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:59:01.268] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:59:02.782] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:59:04.305] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:59:05.820] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:59:07.363] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:59:08.874] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (2ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:59:10.412] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (30ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:59:11.928] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (2ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:59:13.442] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:59:14.959] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:59:16.500] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:59:18.004] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (2ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:59:19.521] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:59:21.072] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (31ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:59:22.554] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (2ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:59:28.103] WARN  [g_Lyra] [ACTION_RESULT] use_object timeout (no server confirmation)
+[00:59:40.482] WARN  [g_Lyra] [ACTION_RESULT] use_object timeout (no server confirmation)
+[00:59:43.048] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:59:44.598] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:59:46.142] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:59:47.683] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:59:49.211] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:59:50.737] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (29ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:59:52.280] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:59:53.829] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:59:55.341] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:59:56.899] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[00:59:58.413] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[00:59:59.968] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[01:00:01.481] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[01:00:03.009] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[01:00:04.552] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[01:00:06.075] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[01:00:11.605] WARN  [g_Lyra] [ACTION_RESULT] use_object timeout (no server confirmation)
+[01:00:22.022] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[01:00:23.545] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[01:00:25.101] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[01:00:26.606] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[01:00:28.132] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[01:00:29.687] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[01:00:31.195] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[01:00:32.732] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[01:00:34.284] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[01:00:35.802] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[01:00:37.343] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[01:00:38.844] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[01:00:40.364] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x40011A46 landed in 0x4000C91D, not the destination 0x4000C944
+[01:00:41.905] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[01:00:41.905] WARN  [g_Lyra] [ITEM] drag cancelled by server: unspecified (code 5)
+[01:00:46.133] WARN  [g_Lyra] [bot] no path to (1589,1651) avoiding 0 block(s); stopping (search 2663318.6us)
+[01:00:46.133] WARN  [g_Lyra] [bot] start (1589,1656,10) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1030 item(s), 6 mobile(s))
+[01:00:50.064] WARN  [g_Lyra] [bot] no path to (1589,1651) avoiding 0 block(s); stopping (search 2647786.9us)
+[01:00:50.064] WARN  [g_Lyra] [bot] start (1589,1656,10) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1030 item(s), 6 mobile(s))
+[01:00:54.091] WARN  [g_Lyra] [policy] REFUSED NPC purchase of unmapped item (0x1F43): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[01:00:54.091] WARN  [g_Lyra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[01:00:54.091] WARN  [g_Lyra] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[01:01:03.147] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[01:01:04.667] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (16ms) item 0x40004810 landed in 0x4000C91D, not the destination 0x4000C944
+[01:01:06.152] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[01:01:07.675] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x40004810 landed in 0x4000C91D, not the destination 0x4000C944
+[01:01:09.209] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[01:01:10.732] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x40004810 landed in 0x4000C91D, not the destination 0x4000C944
+[01:01:12.254] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[01:01:13.820] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40004810 landed in 0x4000C91D, not the destination 0x4000C944
+[01:01:15.342] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (13ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[01:01:16.880] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40004810 landed in 0x4000C91D, not the destination 0x4000C944
+[01:01:18.420] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[01:01:19.976] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40004810 landed in 0x4000C91D, not the destination 0x4000C944
+[01:01:21.485] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[01:01:22.991] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x40004810 landed in 0x4000C91D, not the destination 0x4000C944
+[01:01:24.557] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[01:01:26.062] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40004810 landed in 0x4000C91D, not the destination 0x4000C944
+[01:01:27.582] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[01:01:33.544] WARN  [g_Lyra] [bot] no path to (1589,1655) avoiding 0 block(s); stopping (search 1872353.9us)
+[01:01:33.544] WARN  [g_Lyra] [bot] start (1589,1651,10) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1030 item(s), 6 mobile(s))
+[01:01:36.645] WARN  [g_Lyra] [bot] no path to (1589,1655) avoiding 0 block(s); stopping (search 1842884.0us)
+[01:01:36.645] WARN  [g_Lyra] [bot] start (1589,1651,10) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1030 item(s), 6 mobile(s))
+[01:01:39.318] WARN  [g_Lyra] [policy] REFUSED NPC purchase of unmapped item (0x1F43): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[01:01:39.318] WARN  [g_Lyra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[01:01:39.318] WARN  [g_Lyra] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[01:01:48.364] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40004810 landed in 0x4000C91D, not the destination 0x4000C944
+[01:01:49.918] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (14ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[01:01:51.405] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (1ms) item 0x40004810 landed in 0x4000C91D, not the destination 0x4000C944
+[01:01:52.954] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944
+[01:01:54.474] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40004810 landed in 0x4000C91D, not the destination 0x4000C944
+[01:01:56.000] WARN  [g_Lyra] [ACTION_RESULT] move_item server_failure (0ms) item 0x400136E8 landed in 0x4000C91D, not the destination 0x4000C944

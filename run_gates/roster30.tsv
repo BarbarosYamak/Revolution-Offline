@@ -1,0 +1,72 @@
+# The fresh thirty, composed 2026-08-30 for run_gates. A second independent
+# generation (RevGen3) alongside the RevolutionFresh twenty (run_m7/roster20.tsv)
+# and the archived fleet -- distinct names, distinct account block, same rules.
+#
+# COMPOSED BY CONSTRUCTION, so every economic relationship the project needs
+# has both a producer and a consumer present at once:
+#
+#   miner_smith (4)         -> ingots + smithed armor/weapons
+#                               consumed by: full_crafter (spears etc need
+#                               ingots+logs), the six fighters (fencer/macer/
+#                               archer/tamer/treasure_hunter) buy armor/weapons
+#   lumberjack_swordsman (4) -> logs
+#                               consumed by: full_crafter (bowcraft/carpentry),
+#                               tailor (bone/wood-handled tools)
+#   full_crafter (3)        -> mixed smith/carpentry/bowcraft goods
+#                               consumes: ingots (miner_smith), logs
+#                               (lumberjack_swordsman); sells finished goods
+#                               player-first
+#   tailor (2)              -> cloth armor/robes/bags
+#                               no NPC buyer at all (per RevolutionEconomy
+#                               rules): forces player-to-player trade with
+#                               the mages and fighters who need robes/bags
+#   alchemist (2)            -> heal/cure potions
+#                               consumed by: the six fighters and the three
+#                               mages (NPCs stopped selling potions
+#                               18.08.2009, so bots are their only source)
+#   scribe (2)               -> scrolls
+#                               the one proven NPC income on this shard;
+#                               also feeds the three mages' spellbooks
+#   fisher (2)               -> fish, sometimes treasure/message-in-bottle
+#                               feeds itself and the merchant_tinkers' stalls
+#   merchant_tinker (2)      -> tinkered tools/traps/gears, buys/resells
+#                               surplus from every other profession
+#   mage (3)                 -> reagent consumer, spellcasting income
+#                               buys reagents and robes from tailor/merchant
+#   fencer/macer/archer (4)  -> loot/PvM income
+#                               sold to merchant_tinker; buys potions from
+#                               alchemist and gear from miner_smith/full_crafter
+#   tamer (1)                -> tamed-pet services, loot
+#   treasure_hunter (1)      -> treasure-map loot, sold player-first
+#
+# name	account	profession
+Draver	RevGen3_01	miner_smith
+Kharain	RevGen3_02	miner_smith
+Elvar	RevGen3_03	miner_smith
+Zarthal	RevGen3_04	miner_smith
+Vorar	RevGen3_05	lumberjack_swordsman
+Halain	RevGen3_06	lumberjack_swordsman
+Delras	RevGen3_07	lumberjack_swordsman
+Cyras	RevGen3_08	lumberjack_swordsman
+Rhaler	RevGen3_09	full_crafter
+Ghalor	RevGen3_10	full_crafter
+Falen	RevGen3_11	full_crafter
+Aelia	RevGen3_12	tailor
+Amara	RevGen3_13	tailor
+Elara	RevGen3_14	alchemist
+Selene	RevGen3_15	alchemist
+Lyra	RevGen3_16	scribe
+Thalia	RevGen3_17	scribe
+Dorvar	RevGen3_18	fisher
+Ithion	RevGen3_19	fisher
+Odessa	RevGen3_20	merchant_tinker
+Serena	RevGen3_21	merchant_tinker
+Aurelius	RevGen3_22	mage
+Leander	RevGen3_23	mage
+Illyria	RevGen3_24	mage
+Hector	RevGen3_25	fencer
+Castor	RevGen3_26	fencer
+Faustus	RevGen3_27	macer
+Titus	RevGen3_28	archer
+Rhea	RevGen3_29	tamer
+Xerxes	RevGen3_30	treasure_hunter
