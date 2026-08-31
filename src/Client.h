@@ -520,7 +520,36 @@ public:
     // so a character can believe its bank is open from the far side of town
     // and push items into a container the server will not accept -- forget it
     // and the next deposit has to go and open a real one.
-    void ForgetBankContainer() { bankContainer_ = 0; }
+    void ForgetBankContainer() {
+        bankContainer_ = 0;
+        bankOpenX_ = -1;
+        bankOpenY_ = -1;
+    }
+
+    // TRUE while we are still standing on the tile the bank box was opened
+    // from -- the only place Sphere will let us put anything in it or take
+    // anything out.
+    //
+    // Source-X stamps the box at open time with the opener's top point
+    // (CItemContainer::OnOpenEvent, src/game/items/CItemContainer.cpp:1119)
+    // and then compares it against GetTopPoint() on EVERY touch:
+    //   - drop into it:  CClient::Event_Item_Drop,
+    //     src/game/clients/CClientEvent.cpp:448-467 -> Event_Item_Drop_Fail
+    //   - lift out of it: CChar::CanTouch,
+    //     src/game/chars/CCharStatus.cpp:1063-1069
+    // The comparison is an exact CPointBase equality, not a radius: ONE step
+    // is enough to fail it, and the refusal is silent -- no 0x27, no
+    // sysmessage, just a 0x25 putting the item back where it came from. That
+    // silence is why a walking deposit looked like an ordinary bounce.
+    //
+    // Returns true when the tile is unknown, so nothing new is blocked on a
+    // box whose open position we never observed.
+    bool BankOpenTileHeld() const {
+        if (bankOpenX_ < 0 || bankOpenY_ < 0) return true;
+        return playerX_ == bankOpenX_ && playerY_ == bankOpenY_;
+    }
+    i32 BankOpenX() const { return bankOpenX_; }
+    i32 BankOpenY() const { return bankOpenY_; }
 
     // Ask the server for the names of nearby mobiles (0x98 per mobile). NPC
     // names carry their trade ("<name> the provisioner"), which is the only
@@ -618,6 +647,20 @@ public:
     // entrance, while its productive floor is in the interior.
     bool MiningInteriorTarget(i32 nearX, i32 nearY, i32* outX,
                               i32* outY) const;
+
+    // Is (x,y) inside the SAME cave region MiningInteriorTarget(nearX,nearY)
+    // would resolve? "At the mine's interior" must not mean "within
+    // kMineReach of that one centroid point" -- Minoc Mine 1's own RECT is
+    // 26x27 tiles, so a rock worth striking is routinely farther from the
+    // centre than a small fixed reach allows. Runner::DoMine measured
+    // atHomeMineInterior against the centroid alone and it flipped false the
+    // moment a miner walked toward a real rock near the RECT's edge, which
+    // sent DoMine straight back to "go to the interior" every following tick
+    // -- Elvar ping-ponged between a rock at (2577,486) and the interior
+    // anchor (2568,487) for the last 13 minutes of a 30-minute session and
+    // never struck again (run_gates/wave15). Region containment has no such
+    // edge: any tile genuinely inside the mine's own RECTs counts.
+    bool WithinMiningRegion(i32 nearX, i32 nearY, i32 x, i32 y) const;
 
     // Can a character stand on this tile? (Pathfinder walkability; used by the
     // life layer to vet stand tiles.)
@@ -1728,6 +1771,12 @@ private:
     act::DragState drag_;
     act::LifeState life_ = act::LifeState::Alive;
     u32 bankContainer_ = 0;         // container the server opened as our bank
+    // The exact tile we stood on when the server opened that box. Sphere
+    // stamps the bank box with it (CItemContainer.cpp:1119,
+    // m_itEqBankBox.m_pntOpen) and refuses every later touch from anywhere
+    // else. See BankOpenTileHeld().
+    i32 bankOpenX_ = -1;
+    i32 bankOpenY_ = -1;
     u32 vendorOfferVendor_ = 0;     // vendor whose offer is in vendorOffer_
     std::vector<VendorItem> vendorOffer_;
     u32 vendorSellVendor_ = 0;      // vendor whose offer is in vendorSellOffer_
@@ -1741,6 +1790,11 @@ private:
     // use in ActionOnItemInContainer.
     u32 moveSourceContainer_ = 0;
     u16 moveSourceAmount_ = 0;
+    // Sphere sends a 0x25 for the ORIGINAL serial, still in the source
+    // container, the moment a partial lift splits the stack -- before the drop
+    // is judged. It is byte-identical to a later bounce of the same pile, so
+    // only arrival order tells them apart. See ActionOnItemInContainer.
+    bool moveSplitEchoSeen_ = false;
 
     // --- M2.5 travel state (all session-owned) ----------------------------
     // The atlas / navgrid / planner pointers are into the process-wide

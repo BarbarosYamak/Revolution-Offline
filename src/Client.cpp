@@ -3078,6 +3078,7 @@ void Client::SendDropToGround(u32 serial, i32 x, i32 y, i8 z) {
 void Client::NoteMoveSource(u32 serial) {
     moveSourceContainer_ = 0;
     moveSourceAmount_ = 0;
+    moveSplitEchoSeen_ = false;
     for (const auto& kv : containerItems_) {
         for (const auto& ci : kv.second) {
             if (ci.serial == serial) {
@@ -3100,6 +3101,29 @@ void Client::ActionMoveItem(u32 serial, u16 amount, u32 destContainer) {
     NoteMoveSource(serial);
     if (!serial || !destContainer) {
         FinishAction(act::Result::InvalidState, "null serial/destination");
+        return;
+    }
+    // A BANK MOVE ONLY WORKS FROM THE TILE THE BOX WAS OPENED ON.
+    //
+    // Source-X compares the box's stamped open point against the character's
+    // CURRENT top point on every drop (CClientEvent.cpp:448-467) and every
+    // lift (CCharStatus.cpp:1063-1069) and silently bounces when they differ.
+    // Sending the pair anyway costs a guaranteed round trip whose only answer
+    // is a 0x25 putting the item back -- indistinguishable, at this layer,
+    // from a full box or a refused item. Refuse it here instead, with the
+    // reason, so the caller re-opens the box rather than retrying blind.
+    // (wave15 Kharain 18:09:03-18:09:26: 1083 deposits issued while walking
+    // between (1429,1687) and (1416,1688), every one bounced to the pack.)
+    if (bankContainer_ != 0 && !BankOpenTileHeld() &&
+        (destContainer == bankContainer_ ||
+         moveSourceContainer_ == bankContainer_)) {
+        char why[160];
+        std::snprintf(why, sizeof(why),
+                      "bank box 0x%08X was opened at (%d,%d), we are at "
+                      "(%d,%d) -- the server will bounce it",
+                      bankContainer_, bankOpenX_, bankOpenY_, playerX_,
+                      playerY_);
+        FinishAction(act::Result::InvalidState, why);
         return;
     }
     LogInfo("[ACTION] move_item serial=0x%08X amount=%u dest=0x%08X\n",
@@ -3671,7 +3695,14 @@ void Client::ActionOnContainerOpened(u32 serial, u16 gumpId) {
     // open_bank action is outstanding.
     if (action_.Active() && action_.kind == act::Kind::OpenBank) {
         bankContainer_ = serial;
-        LogInfo("[STATE] bank container=0x%08X gump=0x%04X\n", serial, gumpId);
+        // Sphere stamps the box with the tile we were standing on right now
+        // (CItemContainer.cpp:1119) and will not accept a drop or a lift from
+        // anywhere else. Remember it so we can tell "the box is not open" from
+        // "we walked off the tile we opened it on". See BankOpenTileHeld().
+        bankOpenX_ = playerX_;
+        bankOpenY_ = playerY_;
+        LogInfo("[STATE] bank container=0x%08X gump=0x%04X opened at (%d,%d)\n",
+                serial, gumpId, playerX_, playerY_);
         LogEvent("bank_opened", "container recognised");
         FinishAction(act::Result::Success, "bank container opened");
         return;
@@ -3723,7 +3754,14 @@ void Client::ActionOnItemInContainer(u32 item, u32 container) {
         const bool inTradeWindow = trade_.Active() &&
             (container == trade_.MyContainer() ||
              container == trade_.TheirContainer());
-        const bool inBankBox = bankContainer_ != 0 && container == bankContainer_;
+        // ...but ONLY for a deposit. A WITHDRAWAL asks for the backpack, and
+        // an item reported still inside the bank box is that withdrawal
+        // failing, not an alternate spelling of where we wanted it.
+        // (wave15 Kharain 18:08:20.467: `dest=0x40016AE5` -- the pack --
+        // answered "is in the bank box 0x40016AE7" and was scored a success.)
+        const bool inBankBox = bankContainer_ != 0 &&
+                               container == bankContainer_ &&
+                               action_.destination != BackpackSerial();
         if (inTradeWindow || inBankBox) {
             char why[128];
             std::snprintf(why, sizeof(why),
@@ -3734,43 +3772,43 @@ void Client::ActionOnItemInContainer(u32 item, u32 container) {
             return;
         }
 
-        // A partial-stack move: Sphere keeps the ORIGINAL serial on the
-        // remainder left behind in the SOURCE container and reports that with
-        // its own 0x25, which can race the drop's confirmation and arrive
-        // first. If this is that same source container and the amount left
-        // behind is exactly what should remain after moving action_.amount,
-        // the move succeeded -- it was just reported in a container we were
-        // not looking at. (run_r4 pair_Durnholde.console.txt 20:34:17.897:
-        // 40-of-50 i_ingot_iron; pair_Tarath.console.txt 20:53:35.052:
-        // 47-of-133 i_log.) A refusal that bounces the WHOLE stack back
-        // unchanged does not satisfy this arithmetic and falls through to the
-        // failure below, same as before.
+        // THE SPLIT ECHO IS NOT AN ANSWER.
+        //
+        // Lifting PART of a stack makes Sphere split it during the PICKUP,
+        // before the drop is looked at at all
+        // (CChar::ItemPickup, src/game/chars/CCharAct.cpp:3007-3010):
+        //   CItem::UnStackSplit(amount) sets THIS item -- the ORIGINAL serial,
+        //   the one that goes on to be dragged -- to `amount`, and creates a
+        //   NEW item for the leftover (src/game/items/CItem.cpp:1251-1284).
+        //   SetAmountUpdate() then calls Update() -> addItem()
+        //   (src/game/items/CItem.cpp:2272-2286, 4204-4239), so the client is
+        //   sent a 0x25 naming the ORIGINAL serial, still in the SOURCE
+        //   container, carrying the amount being lifted.
+        //
+        // That echo says only "the stack was split", never where the item
+        // ended up. The previous reading of it -- "the remainder was left
+        // behind, so the move succeeded" -- matched only when the requested
+        // amount happened to be exactly half the stack, because both the echo
+        // and a bounce carry the same amount. wave15 is full of that
+        // coincidence (10 of 20 iron ingots) and scored 7 of the corpus's 11
+        // move_item successes on it while nothing ever reached a bank box.
+        //
+        // A bounce looks IDENTICAL on the wire, so order is the only
+        // discriminator: the split echo comes first, during the lift; a bounce
+        // can only arrive after it. Swallow the first one and keep waiting for
+        // the destination's own 0x25 (or the deadline). An unsplit move never
+        // produces the echo at all -- UnStackSplit is skipped when the whole
+        // stack is taken -- so a full-stack bounce still fails on the first
+        // packet, exactly as before.
         if (moveSourceContainer_ != 0 && container == moveSourceContainer_ &&
-            action_.amount > 0 && moveSourceAmount_ > action_.amount) {
-            const u16 expectedRemaining =
-                static_cast<u16>(moveSourceAmount_ - action_.amount);
-            u16 remaining = 0;
-            bool found = false;
-            auto it = containerItems_.find(container);
-            if (it != containerItems_.end()) {
-                for (const auto& ci : it->second) {
-                    if (ci.serial == item) {
-                        remaining = ci.amount;
-                        found = true;
-                        break;
-                    }
-                }
-            }
-            if (found && remaining == expectedRemaining) {
-                char why[144];
-                std::snprintf(why, sizeof(why),
-                              "partial stack: %u left in source 0x%08X after "
-                              "moving %u of %u to 0x%08X",
-                              remaining, container, action_.amount,
-                              moveSourceAmount_, action_.destination);
-                FinishAction(act::Result::Success, why);
-                return;
-            }
+            action_.amount > 0 && moveSourceAmount_ > action_.amount &&
+            !moveSplitEchoSeen_) {
+            moveSplitEchoSeen_ = true;
+            LogInfo("[ITEM] 0x%08X split off %u of %u in 0x%08X; still waiting "
+                    "for it to land in 0x%08X\n",
+                    item, action_.amount, moveSourceAmount_, container,
+                    action_.destination);
+            return;
         }
 
         // None of the above: a real bounce/refusal, e.g. the item reappeared

@@ -4370,6 +4370,50 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs) {
 
 // --- banking ---------------------------------------------------------------
 
+void Runner::IssueBankItemMove(Client& client, const Observation& obs,
+                               u32 serial, u16 amount, u32 box) {
+    client.ActionMoveItem(serial, amount, box);
+    bankItemMovePending_ = true;
+    nextActionMs_ = obs.nowMs + 1500;
+}
+
+bool Runner::SettleBankItemMove(Client& client, const Observation& obs) {
+    if (!bankItemMovePending_ || client.ActionBusy()) return false;
+    bankItemMovePending_ = false;
+
+    const act::Result r = client.ActionResult();
+    if (r == act::Result::Success) {
+        bankItemMoveFails_ = 0;
+        planner_.NoteProgress();
+        return false;
+    }
+
+    // A DEPOSIT THAT DID NOT LAND IS NOT PROGRESS, AND THE THIRD ONE IS THE
+    // LAST. Source-X refuses every drop into a bank box unless the character
+    // is standing on the exact tile the box was opened from
+    // (CClientEvent.cpp:448-467) and bounces the item back with a plain 0x25,
+    // so a character that walked one step deposits nothing, forever, in
+    // silence. Letting the box go forces the next tick to walk to a banker
+    // and open a fresh one, which re-stamps that tile.
+    ++bankItemMoveFails_;
+    client.ForgetBankContainer();
+    planner_.NoteAttempt(obs.nowMs);
+    if (bankItemMoveFails_ >= kMaxBankItemMoveFails) {
+        LogLine("bank: %d deposits in a row did not land (last: %s) -- "
+                "standing the bank goal down instead of asking again",
+                bankItemMoveFails_, act::ResultName(r));
+        bankItemMoveFails_ = 0;
+        nextActionMs_ = obs.nowMs + 20000;
+    } else {
+        LogLine("bank: the deposit did not land (%s, %d of %d) -- opening the "
+                "box again before trying",
+                act::ResultName(r), bankItemMoveFails_,
+                kMaxBankItemMoveFails);
+        nextActionMs_ = obs.nowMs + 2500;
+    }
+    return true;
+}
+
 bool Runner::DoBank(Client& client, const Observation& obs) {
     if (coinWanted_ > 0 && obs.goldOnHand >= coinWanted_) {
         LogLine("bank: %d gold is in the pack now -- the purchase can go ahead",
@@ -4391,6 +4435,25 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
         bankErrand_.Cancel();
         if (client.ActionBusy()) return false;
 
+        // Read the LAST deposit before asking for another one.
+        if (SettleBankItemMove(client, obs)) return false;
+
+        // STAND STILL TO USE THE BOX. The bank box only answers from the tile
+        // it was opened on (Source-X CClientEvent.cpp:448-467 for drops,
+        // CCharStatus.cpp:1063-1069 for lifts); a deposit issued mid-stride is
+        // a guaranteed silent bounce. The coin withdrawal below already knew
+        // this the hard way -- every branch needs it.
+        if (client.TravelBusy()) return false;
+        if (!client.BankOpenTileHeld()) {
+            LogLine("bank: the box was opened at (%d,%d) and we are at "
+                    "(%d,%d) -- opening it again from here",
+                    client.BankOpenX(), client.BankOpenY(), obs.x, obs.y);
+            client.ForgetBankContainer();
+            planner_.NoteAttempt(obs.nowMs);
+            nextActionMs_ = obs.nowMs + 1000;
+            return false;
+        }
+
         // Keep one working smithing batch but bank the rest.  The generic
         // keep-list below protects all declared crafting inputs; for miner
         // smiths that previously meant *every* ingot stayed in the pack even
@@ -4403,9 +4466,7 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
                 const u16 moving = static_cast<u16>(ingots - kCarryMetalBatch);
                 LogLine("banking %u iron ingots, keeping %d as the smithing batch",
                         moving, kCarryMetalBatch);
-                client.ActionMoveItem(ingot, moving, box);
-                planner_.NoteProgress();
-                nextActionMs_ = obs.nowMs + 1500;
+                IssueBankItemMove(client, obs, ingot, moving, box);
                 return false;
             }
         }
@@ -4584,9 +4645,8 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
                     bankDepositTries_ = 1;
                 }
                 LogLine("banking %d %s", amount, made.c_str());
-                client.ActionMoveItem(serial, static_cast<u16>(amount), box);
-                planner_.NoteProgress();
-                nextActionMs_ = obs.nowMs + 1500;
+                IssueBankItemMove(client, obs, serial,
+                                  static_cast<u16>(amount), box);
                 return false;
             }
         }
@@ -4632,9 +4692,8 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
                         "(keeping %d to work with; no NPC buys it and the "
                         "player market was quiet)",
                         put, made.c_str(), keepToWorkWith);
-                client.ActionMoveItem(serial, static_cast<u16>(put), box);
-                planner_.NoteProgress();
-                nextActionMs_ = obs.nowMs + 1500;
+                IssueBankItemMove(client, obs, serial, static_cast<u16>(put),
+                                  box);
                 return false;
             }
         }
@@ -4678,9 +4737,8 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
                 const i32 put = amount - keep;
                 LogLine("banking %d spare %s (keeping %d to work with)", put,
                         input.c_str(), keep);
-                client.ActionMoveItem(serial, static_cast<u16>(put), box);
-                planner_.NoteProgress();
-                nextActionMs_ = obs.nowMs + 1500;
+                IssueBankItemMove(client, obs, serial, static_cast<u16>(put),
+                                  box);
                 return false;
             }
         }
@@ -4691,9 +4749,7 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
         if (logs) {
             const u16 amount = static_cast<u16>(client.BackpackItemCount(kLog));
             LogLine("banking %u logs", amount);
-            client.ActionMoveItem(logs, amount, box);
-            planner_.NoteProgress();
-            nextActionMs_ = obs.nowMs + 1500;
+            IssueBankItemMove(client, obs, logs, amount, box);
             return false;
         }
         // AND THE DEAD WEIGHT -- what this life has no name for at all.
@@ -4796,9 +4852,7 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
                     LogLine("banking %d gold, keeping %d for this life's own "
                             "errands -- coin in the pack is coin at risk",
                             spare, keep);
-                    client.ActionMoveItem(serial, moving, box);
-                    planner_.NoteProgress();
-                    nextActionMs_ = obs.nowMs + 1500;
+                    IssueBankItemMove(client, obs, serial, moving, box);
                     return false;
                 }
 
@@ -4806,9 +4860,7 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
                         "this life has no use for it and the pack is at %.0f%%",
                         itemName ? itemName : "unnamed", gfx, hue, moving,
                         obs.WeightFraction() * 100.0);
-                client.ActionMoveItem(serial, moving, box);
-                planner_.NoteProgress();
-                nextActionMs_ = obs.nowMs + 1500;
+                IssueBankItemMove(client, obs, serial, moving, box);
                 return false;
             }
         }
@@ -10850,9 +10902,19 @@ bool Runner::DoMine(Client& client, const Observation& obs) {
             homeMineY = homeMine->y;
             homeMineInterior = client.MiningInteriorTarget(
                 homeMine->x, homeMine->y, &homeMineX, &homeMineY);
+            // Close to the centroid OR genuinely inside the cave's own RECTs.
+            // The centroid-only test flips false the moment a miner walks
+            // toward a real rock near the RECT's edge (Minoc Mine 1 is
+            // 26x27 tiles; kMineReach is 6), which sends the branch below
+            // straight back to "go to the interior" every following tick and
+            // undoes the walk to the rock -- Elvar ping-ponged between a rock
+            // and the interior anchor for the last 13 minutes of a session
+            // and never struck ore again (run_gates/wave15).
             atHomeMineInterior =
                 homeMineInterior &&
-                TileDist(homeMineX, homeMineY, hereX, hereY) <= kMineReach;
+                (TileDist(homeMineX, homeMineY, hereX, hereY) <= kMineReach ||
+                 client.WithinMiningRegion(homeMine->x, homeMine->y, hereX,
+                                           hereY));
         }
         if (homeMine &&
             TileDist(homeMineX, homeMineY, hereX, hereY) > kMineReach) {

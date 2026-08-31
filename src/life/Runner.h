@@ -182,6 +182,14 @@ private:
     bool DoGetTool(Client& client, const Observation& obs);
     bool DoReplaceEquipment(Client& client, const Observation& obs);
     bool DoBank(Client& client, const Observation& obs);
+    // Send one item into the bank box and remember that it is unsettled.
+    // Deliberately does NOT call NoteProgress() -- see bankItemMovePending_.
+    void IssueBankItemMove(Client& client, const Observation& obs, u32 serial,
+                           u16 amount, u32 box);
+    // Read the outcome of the last IssueBankItemMove. Returns true when the
+    // caller should give up this tick (the box was let go / the goal stood
+    // down); false when there is nothing outstanding or it landed.
+    bool SettleBankItemMove(Client& client, const Observation& obs);
     bool DoGatherLogs(Client& client, const Observation& obs);
     bool DoTrainCombat(Client& client, const Observation& obs);
     bool DoEarnGold(Client& client, const Observation& obs);
@@ -622,6 +630,18 @@ private:
     bool bankGoldDepositPending_ = false;
     i32  pendingGoldDepositBefore_ = 0;
     int  bankGoldDepositTries_ = 0;
+    // An ITEM deposit that has been ISSUED but whose outcome has not been
+    // read yet. Every deposit branch in DoBank used to credit NoteProgress()
+    // the instant it sent the drag, so a move that bounced straight back
+    // still counted -- 1083 of them for one character in one thirty-minute
+    // session, each one re-picking BANK and starving every other goal
+    // (run_gates/wave15/wave15_RevGen3_02_Kharain.console.txt 18:09:03
+    // onwards; Titus, 1626). Progress is now credited from
+    // Client::ActionResult(), and three failures in a row let the box go and
+    // stand the goal down instead of trying a fourth time.
+    bool bankItemMovePending_ = false;
+    int  bankItemMoveFails_ = 0;
+    static constexpr int kMaxBankItemMoveFails = 3;
     // --- asking a banker for the box ------------------------------------
     // Bankers who were asked and never opened anything, so the next ask goes
     // to a DIFFERENT one. Hyman, two tiles away, was asked sixty-three times

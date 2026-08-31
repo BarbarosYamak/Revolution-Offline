@@ -224,6 +224,60 @@ void TestRealMinocMine(const std::string& dataDir) {
           "far interior (y<=474) -- kMaxMineAdvances is actually enough");
 }
 
+// ---------------------------------------------------------------------------
+// C. Region containment, not centroid distance, decides "at the interior"
+// (wave15 Elvar, 18:23-18:36: ping-ponged between a rock at (2577,486) and
+// the interior anchor (2568,487) -- Runner::DoMine's atHomeMineInterior
+// tested only Chebyshev distance to that one centroid point against
+// kMineReach (6), and Minoc Mine 1's own RECT is 26x27 tiles, so a rock near
+// its edge is routinely farther than 6 from the centre. Client::
+// WithinMiningRegion (src/travel/ClientTravel.cpp) replaces that with region
+// containment; this section proves the fix's premise against the real atlas
+// without needing a live Client/socket).
+// ---------------------------------------------------------------------------
+void TestInteriorIsARegionNotAPoint(const std::string& dataDir) {
+    Section("C: 'at the interior' is region containment, not centroid reach");
+
+    world_atlas::Atlas atlas;
+    std::string err;
+    const std::string atlasPath = dataDir + "/revolution_atlas.txt";
+    if (!atlas.Load(atlasPath.c_str(), &err)) {
+        Check(false, "the generated atlas loads");
+        return;
+    }
+
+    const wm::Region* mine = atlas.RegionById("a_minoc_mine_1_1");
+    Check(mine != nullptr, "the atlas still has Minoc Mine 1");
+    if (!mine) return;
+
+    // The interior centroid Runner::DoMine actually walked to and logged
+    // ("mine: ... resident going directly to the interior of Minoc Mine 1
+    // at 2568,487"): the centre of the region's largest RECT.
+    const wm::Rect* largest = &mine->rects[0];
+    i64 largestArea = -1;
+    for (const wm::Rect& rect : mine->rects) {
+        const i64 area = (static_cast<i64>(rect.x2) - rect.x1 + 1) *
+                         (static_cast<i64>(rect.y2) - rect.y1 + 1);
+        if (area > largestArea) { largestArea = area; largest = &rect; }
+    }
+    const i32 centroidX = (largest->x1 + largest->x2) / 2;
+    const i32 centroidY = (largest->y1 + largest->y2) / 2;
+
+    // The rock the live session found and could never reach: real evidence,
+    // not an invented fixture.
+    const i32 rockX = 2577, rockY = 486;
+    constexpr i32 kMineReach = 6;  // Runner.cpp's own constant
+
+    Check(Chebyshev(centroidX, centroidY, rockX, rockY) > kMineReach,
+          "the rock sits outside kMineReach of the centroid -- this is "
+          "exactly the state that flipped atHomeMineInterior false and "
+          "restarted the trip to the interior every tick");
+    Check(mine->Contains(rockX, rockY),
+          "but the rock is still inside the mine's own RECTs -- region "
+          "containment (the fix) reports 'at the interior' where centroid "
+          "distance (the bug) did not");
+}
+
 }  // namespace
 
 int main(int argc, char** argv) {
@@ -233,6 +287,7 @@ int main(int argc, char** argv) {
     }
     TestSyntheticGeometry();
     TestRealMinocMine(argv[1]);
+    TestInteriorIsARegionNotAPoint(argv[1]);
 
     std::printf("%d checks, %d failed\n", g_checks, g_failures);
     return g_failures == 0 ? 0 : 1;

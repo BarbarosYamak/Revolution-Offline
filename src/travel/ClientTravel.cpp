@@ -562,6 +562,17 @@ bool Client::MiningInteriorTarget(i32 nearX, i32 nearY, i32* outX,
     return true;
 }
 
+bool Client::WithinMiningRegion(i32 nearX, i32 nearY, i32 x, i32 y) const {
+    if (!(world_knowledge_ && world_knowledge_->ok)) return false;
+    const wm::Place* p = world_knowledge_->atlas.NearestPlaceWithResource(
+        wm::ResourceKind::Mining, nearX, nearY);
+    if (!p || p->regionId.empty()) return false;
+    const wm::Region* r = world_knowledge_->atlas.RegionById(
+        p->regionId.c_str());
+    if (!r || r->kind != wm::RegionKind::Cave) return false;
+    return r->Contains(x, y);
+}
+
 bool Client::TravelToServiceSkipping(wm::Service s, const char* regionHint,
                                      const std::vector<u32>& skipSerials,
                                      std::vector<std::string>* skipPlaceIds,

@@ -9,13 +9,34 @@
 //           container instead of ours (pair_Tarath 20:53:35.052-053: item
 //           0x40010870 verified as a failure, then "is now in the our
 //           window" one log line later).
-//        b. A partial-stack move, where Sphere keeps the ORIGINAL serial on
-//           the remainder left behind in the SOURCE container and reports
-//           that with its own 0x25 (pair_Durnholde 20:34:17.897: 40-of-50
-//           i_ingot_iron banked; pair_Tarath 20:53:35.052: 47-of-133 i_log
-//           traded).
+//        b. A partial-stack move, whose SPLIT ECHO -- the 0x25 Sphere sends
+//           for the original serial while it is still in the source container
+//           -- was mistaken for a bounce.
 //      A REAL refusal -- the whole stack bouncing back to the source
-//      container unchanged -- must still fail; that path is asserted too.
+//      container -- must still fail; that path is asserted too.
+//
+//      The b. reading was itself wrong and is corrected here (wave15, 2026-08-31).
+//      Source-X splits during the PICKUP: CChar::ItemPickup
+//      (src/game/chars/CCharAct.cpp:3007-3010) calls
+//      CItem::UnStackSplit(amount) (src/game/items/CItem.cpp:1251-1284), which
+//      sets the ORIGINAL item -- the one about to be dragged -- to the amount
+//      being lifted and creates a NEW item for the leftover. SetAmountUpdate
+//      then Update()s it (CItem.cpp:2272-2286, 4204-4239), so the client is
+//      sent a 0x25 for the ORIGINAL serial, still in the SOURCE container,
+//      carrying the LIFTED amount. That packet says nothing about where the
+//      item ended up, and a bounce of the same pile is byte-identical to it;
+//      only arrival order separates them. Treating it as proof of success
+//      scored 7 of wave15's 11 move_item "successes" while nothing ever
+//      reached a bank box.
+//
+//   3. A bank box only answers from the tile it was opened on. Source-X
+//      stamps m_itEqBankBox.m_pntOpen at open time
+//      (src/game/items/CItemContainer.cpp:1119) and compares it against the
+//      character's current top point on every drop
+//      (src/game/clients/CClientEvent.cpp:448-467) and every lift
+//      (src/game/chars/CCharStatus.cpp:1063-1069) -- exact tile equality, no
+//      radius -- bouncing silently when they differ. wave15 Kharain issued
+//      1083 deposits while walking; every one bounced.
 //
 //   2. Unicode speech (0xAE, Client::OnUnicodeMessage) filed an empty
 //      speaker name whenever the packet's own name field was empty, even
@@ -99,6 +120,43 @@ std::vector<u8> MakeAddItem(u32 serial, u16 graphic, u16 amount, u32 container) 
     StoreBE16(&p[12], 0);
     StoreBE32(&p[14], container);
     StoreBE16(&p[18], 0);
+    return p;
+}
+
+// 0x1B LOGIN_CONFIRM (Client.cpp OnLoginConfirm, >=18 bytes):
+// serial(4) .. body@9(2) x@11(2) y@13(2) z@15(2) dir@17(1).
+std::vector<u8> MakeLoginConfirm(u32 serial, u16 x, u16 y) {
+    std::vector<u8> p(37, 0);
+    p[0] = 0x1B;
+    StoreBE32(&p[1], serial);
+    StoreBE16(&p[9], 0x0190);
+    StoreBE16(&p[11], x);
+    StoreBE16(&p[13], y);
+    StoreBE16(&p[15], 0);
+    p[17] = 0;
+    return p;
+}
+
+// 0x24 DRAW_CONTAINER (Client.cpp OnDrawContainer): serial(4) gumpId(2).
+std::vector<u8> MakeDrawContainer(u32 serial, u16 gumpId) {
+    std::vector<u8> p(7, 0);
+    p[0] = 0x24;
+    StoreBE32(&p[1], serial);
+    StoreBE16(&p[5], gumpId);
+    return p;
+}
+
+// 0x2E EQUIP_ITEM (Client.cpp OnEquipItem, 15 bytes):
+// serial(4) graphic(2) pad(1) layer(1) mobile(4) hue(2).
+std::vector<u8> MakeEquip(u32 item, u16 graphic, u8 layer, u32 mobile) {
+    std::vector<u8> p(15, 0);
+    p[0] = 0x2E;
+    StoreBE32(&p[1], item);
+    StoreBE16(&p[5], graphic);
+    p[7] = 0;
+    p[8] = layer;
+    StoreBE32(&p[9], mobile);
+    StoreBE16(&p[13], 0);
     return p;
 }
 
@@ -210,11 +268,11 @@ void TestTradeWindowAltContainerIsSuccess() {
 }
 
 // ---------------------------------------------------------------------------
-// 1b. Partial stack: the remainder left behind in the source container, at
-// the arithmetically-correct reduced amount, verifies as success.
+// 1b. Partial stack: the SPLIT ECHO is not an answer. It must leave the action
+// pending, and only the destination's own 0x25 may finish it.
 // ---------------------------------------------------------------------------
-void TestPartialStackRemainderIsSuccess() {
-    Section("partial stack: remainder in the source container verifies");
+void TestSplitEchoWaitsForTheDestination() {
+    Section("partial stack: the split echo waits, the destination verifies");
 
     auto c = MakeConnectedClient();
     const u32 pack = 0x40001000;
@@ -227,12 +285,132 @@ void TestPartialStackRemainderIsSuccess() {
     c->ActionMoveItem(0x400143D7, 40, bank);
     Check(c->ActionBusy(), "move_item action started");
 
-    // The leftover-in-source echo: same serial, back in the SAME container,
-    // amount reduced by exactly what moved (50 - 40 = 10).
-    auto leftover = MakeAddItem(0x400143D7, 0x1BF2, 10, pack);
-    c->DispatchPacketForTest(leftover.data(), leftover.size());
+    // The split echo Sphere sends during the LIFT: same serial, still in the
+    // SOURCE container, carrying the amount being lifted (CItem.cpp:1251-1284
+    // sets THIS item to `amount`, then SetAmountUpdate -> Update -> addItem).
+    auto echo = MakeAddItem(0x400143D7, 0x1BF2, 40, pack);
+    c->DispatchPacketForTest(echo.data(), echo.size());
+    Check(c->ActionBusy(),
+          "the split echo does not decide the move either way");
+    Check(c->ActionResult() == act::Result::Pending,
+          "the move is still pending after the split echo");
+
+    // Then the real answer: the dragged pile lands in the destination.
+    auto landed = MakeAddItem(0x400143D7, 0x1BF2, 40, bank);
+    c->DispatchPacketForTest(landed.data(), landed.size());
     Check(c->ActionResult() == act::Result::Success,
-          "40-of-50 partial move verifies from the source-container echo");
+          "the destination's own 0x25 is what verifies the move");
+}
+
+// ---------------------------------------------------------------------------
+// 1b-negative. The exact wave15 shape: a partial lift whose drop is refused.
+// The split echo comes first, the bounce of the same pile second -- identical
+// packets -- and the move must FAIL. Under the old arithmetic (10 of 20 iron
+// ingots, exactly half the stack) this was scored a success 1083 times.
+// ---------------------------------------------------------------------------
+void TestSplitEchoThenBounceIsAFailure() {
+    Section("partial stack: echo then bounce is still a failure");
+
+    auto c = MakeConnectedClient();
+    const u32 pack = 0x40016AE5;
+    const u32 bank = 0x40016AE7;
+
+    auto seed = MakeAddItem(0x400128E9, 0x1BF2, 20, pack);
+    c->DispatchPacketForTest(seed.data(), seed.size());
+
+    c->ActionMoveItem(0x400128E9, 10, bank);
+    Check(c->ActionBusy(), "move_item action started");
+
+    auto echo = MakeAddItem(0x400128E9, 0x1BF2, 10, pack);
+    c->DispatchPacketForTest(echo.data(), echo.size());
+    Check(c->ActionBusy(), "still pending after the split echo");
+
+    // Event_Item_Drop_Fail puts the dragged pile straight back
+    // (CClientEvent.cpp:248-271): the same serial, the same container, the
+    // same amount as the echo.
+    auto bounce = MakeAddItem(0x400128E9, 0x1BF2, 10, pack);
+    c->DispatchPacketForTest(bounce.data(), bounce.size());
+    Check(c->ActionResult() == act::Result::ServerFailure,
+          "the bounce after the split echo fails the move");
+}
+
+// ---------------------------------------------------------------------------
+// 3a. A bank move issued from a tile other than the one the box was opened on
+// is refused HERE, without sending a lift/drop the server can only bounce.
+// ---------------------------------------------------------------------------
+void TestBankMoveFromAnotherTileIsRefused() {
+    Section("bank: a move from off the open tile never leaves the client");
+
+    auto c = MakeConnectedClient();
+    const u32 me   = 0x00012345;
+    const u32 pack = 0x40001000;
+    const u32 bank = 0x40014400;
+
+    auto login = MakeLoginConfirm(me, 1426, 1687);
+    c->DispatchPacketForTest(login.data(), login.size());
+
+    // The bank box arrives as a container we did not double-click while an
+    // open_bank action is outstanding -- the live recognition path.
+    c->ActionOpenBank(0, "bank");
+    auto gump = MakeDrawContainer(bank, 0x004A);
+    c->DispatchPacketForTest(gump.data(), gump.size());
+    Check(c->BankContainer() == bank, "the bank box was recognised");
+    Check(c->BankOpenTileHeld(), "we are still on the tile it opened from");
+
+    auto seed = MakeAddItem(0x400143D7, 0x1BF2, 20, pack);
+    c->DispatchPacketForTest(seed.data(), seed.size());
+
+    // One step. That is all Source-X needs to refuse everything.
+    auto moved = MakeLoginConfirm(me, 1427, 1687);
+    c->DispatchPacketForTest(moved.data(), moved.size());
+    Check(!c->BankOpenTileHeld(), "one step off the tile is detected");
+
+    c->ActionMoveItem(0x400143D7, 10, bank);
+    Check(!c->ActionBusy(), "the doomed move is not left pending");
+    Check(c->ActionResult() == act::Result::InvalidState,
+          "a bank move from the wrong tile is refused before it is sent");
+
+    // Back on the tile, the same move goes out and waits for the server.
+    auto back = MakeLoginConfirm(me, 1426, 1687);
+    c->DispatchPacketForTest(back.data(), back.size());
+    c->ActionMoveItem(0x400143D7, 10, bank);
+    Check(c->ActionBusy(), "from the open tile the move is sent as normal");
+}
+
+// ---------------------------------------------------------------------------
+// 3b. A WITHDRAWAL that leaves the item sitting in the bank box is a failure,
+// not an alternate spelling of the destination. (wave15 Kharain 18:08:20.467
+// asked for the pack, was told "is in the bank box", and scored a success.)
+// ---------------------------------------------------------------------------
+void TestWithdrawalStuckInTheBoxIsAFailure() {
+    Section("bank: an item still in the box is a failed withdrawal");
+
+    auto c = MakeConnectedClient();
+    const u32 me   = 0x00012345;
+    const u32 pack = 0x40016AE5;
+    const u32 bank = 0x40016AE7;
+
+    auto login = MakeLoginConfirm(me, 1426, 1687);
+    c->DispatchPacketForTest(login.data(), login.size());
+    auto worn = MakeEquip(pack, 0x0E75, 0x15, me);   // layer 21 = backpack
+    c->DispatchPacketForTest(worn.data(), worn.size());
+    Check(c->BackpackSerial() == pack, "the backpack serial is known");
+
+    c->ActionOpenBank(0, "bank");
+    auto gump = MakeDrawContainer(bank, 0x004A);
+    c->DispatchPacketForTest(gump.data(), gump.size());
+    Check(c->BankContainer() == bank, "the bank box was recognised");
+
+    // 20 coins in the BOX; ask for all of them to come to the pack.
+    auto seed = MakeAddItem(0x400128E9, 0x0EED, 20, bank);
+    c->DispatchPacketForTest(seed.data(), seed.size());
+    c->ActionMoveItem(0x400128E9, 20, pack);
+    Check(c->ActionBusy(), "move_item action started");
+
+    auto stuck = MakeAddItem(0x400128E9, 0x0EED, 20, bank);
+    c->DispatchPacketForTest(stuck.data(), stuck.size());
+    Check(c->ActionResult() == act::Result::ServerFailure,
+          "still in the box means the withdrawal failed");
 }
 
 // ---------------------------------------------------------------------------
@@ -322,8 +500,11 @@ int main() {
     std::printf("trade verification + speech resolution tests\n\n");
 
     TestTradeWindowAltContainerIsSuccess();
-    TestPartialStackRemainderIsSuccess();
+    TestSplitEchoWaitsForTheDestination();
+    TestSplitEchoThenBounceIsAFailure();
     TestFullBounceBackIsStillAFailure();
+    TestBankMoveFromAnotherTileIsRefused();
+    TestWithdrawalStuckInTheBoxIsAFailure();
     TestUnicodeSpeechResolvesKnownSerial();
     TestUnicodeSpeechUnknownSerialStaysRaw();
 

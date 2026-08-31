@@ -3,7 +3,7 @@ REM ===========================================================================
 REM LIFE-GATE run harness -- ONE family per invocation.
 REM Rules, citations and the per-family table: docs/LIFE_GATES.md
 REM
-REM   gate.bat <family> <char> <account> <minutes>
+REM   gate.bat <family> <char> <account> <minutes> [password]
 REM
 REM   family    profession id from src/life/Professions.cpp
 REM             (miner_smith lumberjack_swordsman mage fencer full_crafter
@@ -11,6 +11,9 @@ REM              fisher scribe alchemist)
 REM   char      existing character name in bot_data -- NO --create-char here
 REM   account   the account that owns it
 REM   minutes   --life-minutes; the first wave uses 30 (LIFE_GATES.md section 8)
+REM   password  optional; defaults to the shared RevGen3 fleet password.
+REM             The three RevArchetype accounts have their own: Archetype31,
+REM             Archetype32, Archetype33 (runtime/accounts/sphereaccu.scp).
 REM
 REM Launcher shape copied from run_r4/smoke.bat: build-m1 exe, shared bot_data,
 REM tag g_<char>, console/err redirected into run_gates/.
@@ -40,12 +43,12 @@ setlocal
 set ROOT=C:\Projects\RevolutionOffline
 set BOT=%ROOT%\bot\uo-client
 set GATES=%BOT%\run_gates
-set UO_BOT_PASS=Gen3Fr3shRevBots
-
 set FAMILY=%1
 set CHAR=%2
 set ACCOUNT=%3
 set MINUTES=%4
+set UO_BOT_PASS=%5
+if "%UO_BOT_PASS%"=="" set UO_BOT_PASS=Gen3Fr3shRevBots
 
 if "%FAMILY%"==""  goto :usage
 if "%CHAR%"==""    goto :usage
