@@ -374,6 +374,10 @@ private:
     bool noCreateFoodSpell_ = false;
     i32  spellbookTrips_ = 0;
     GoalKind buyTripsOwner_ = GoalKind::Count;
+    // Every mage/scribe shop already attempted for the current spellbook
+    // errand.  A scroll buyer is allowed to travel between cities; retrying
+    // the same empty local shop three times is not exploration.
+    std::vector<std::string> spellbookSkipPlaces_;
     // Set when the scribe -- the only seller that lets a spell be CHOSEN --
     // turns out to be unreachable or to stock nothing this book lacks. After
     // that the mage shop's random scroll is better than no scroll.

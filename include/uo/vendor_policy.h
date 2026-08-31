@@ -136,8 +136,21 @@ struct VendorRuling {
 // The classification the audit assigned, or Unknown.
 VendorClass ClassifyForVendor(const char* item);
 
-// May an autonomous Revolution bot buy `item` from an NPC?
+// Historical/economic audit of an NPC purchase.  This is deliberately strict:
+// it records what Revolution evidence says about a good and remains useful for
+// reports and research.  It is NOT the live purchase gate; see
+// CanBuyFromNPC below.
 VendorRuling CanUseNPCVendorFor(const char* item);
+
+// May a bot buy an item an NPC has actually offered for sale?
+//
+// Yes. The owner ruling of 2026-08-31 is that NPC BUYING follows observed
+// stock, while NPC SELLING remains governed by the separate faucet/sale
+// policy. A caller with only a defname has not proved stock exists yet; this
+// answer means it may seek and inspect a vendor offer, never that an NPC will
+// necessarily have one. Unknown classifications remain visible in `klass`
+// for logging/research but do not veto a real offer.
+VendorRuling CanBuyFromNPC(const char* item);
 
 // Every item the audit graded, for tests and for reporting.
 const std::vector<std::pair<const char*, VendorClass>>& VendorMatrix();
@@ -150,6 +163,7 @@ const std::vector<std::pair<const char*, VendorClass>>& VendorMatrix();
 // default as an unlisted defname.
 VendorClass  ClassifyForVendorGraphic(u16 graphic);
 VendorRuling CanUseNPCVendorForGraphic(u16 graphic);
+VendorRuling CanBuyFromNPCGraphic(u16 graphic);
 
 // The defname a graphic maps to, or nullptr. For logging a refusal in words.
 const char*  ItemNameForGraphic(u16 graphic);
@@ -237,8 +251,9 @@ struct AcquisitionPlan {
     bool blocked = false;
 };
 
-// Choose how to obtain one unit of `item`. Only historically legal options are
-// ever returned -- an NPC purchase appears only if CanUseNPCVendorFor allows it.
+// Choose how to obtain one unit of `item`. An NPC purchase means the life may
+// inspect a real shop offer; the live buy action still requires that offer to
+// exist and never assumes stock from this planning result.
 AcquisitionPlan ChooseAcquisitionMethod(const char* item,
                                         const AcquisitionContext& ctx);
 

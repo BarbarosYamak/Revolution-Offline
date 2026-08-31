@@ -170,6 +170,12 @@ bool Client::TravelBegin(const char* label, i32 x, i32 y, i32 arriveRadius,
     travelFailure_.clear();
     travelLabel_ = label ? label : "";
     travelWalkOutstanding_ = false;
+    // A public gate can open its dialog merely by stepping on it.  A new
+    // journey must never inherit the previous journey's choice: otherwise a
+    // food trip that last selected Magincia can make the next mining trip
+    // select Magincia at the Minoc gate.
+    travelGateSerial_ = 0;
+    travelGateDestination_.clear();
     travelStartedDead_ = IsDead();
     // The destination's own floor, where the world data knows one. Britannia's
     // shops are two and three storeys and the shard's spawner rows carry the z
@@ -525,6 +531,37 @@ i32 Client::DistanceToResource(wm::ResourceKind r) const {
     return edge < 0 ? 0 : edge;
 }
 
+bool Client::MiningInteriorTarget(i32 nearX, i32 nearY, i32* outX,
+                                  i32* outY) const {
+    if (!outX || !outY || !(world_knowledge_ && world_knowledge_->ok))
+        return false;
+    const wm::Place* p = world_knowledge_->atlas.NearestPlaceWithResource(
+        wm::ResourceKind::Mining, nearX, nearY);
+    if (!p || p->regionId.empty()) return false;
+    const wm::Region* r = world_knowledge_->atlas.RegionById(
+        p->regionId.c_str());
+    if (!r || r->kind != wm::RegionKind::Cave || r->rects.empty()) return false;
+
+    // A cave AREADEF's P commonly marks its entrance.  Choose the centre of
+    // its largest declared interior instead of that edge point.  It keeps the
+    // target away from doors and cliff faces, while remaining wholly within a
+    // real cave RECT rather than inventing a coordinate.
+    const wm::Rect* largest = &r->rects[0];
+    i64 largestArea = -1;
+    for (const wm::Rect& rect : r->rects) {
+        const i64 w = static_cast<i64>(rect.x2) - rect.x1 + 1;
+        const i64 h = static_cast<i64>(rect.y2) - rect.y1 + 1;
+        const i64 area = w * h;
+        if (area > largestArea) {
+            largestArea = area;
+            largest = &rect;
+        }
+    }
+    *outX = (largest->x1 + largest->x2) / 2;
+    *outY = (largest->y1 + largest->y2) / 2;
+    return true;
+}
+
 bool Client::TravelToServiceSkipping(wm::Service s, const char* regionHint,
                                      const std::vector<u32>& skipSerials,
                                      std::vector<std::string>* skipPlaceIds,
@@ -831,6 +868,20 @@ void Client::TravelFinish(bool ok, const char* why) {
 
     travelSucceeded_ = ok;
     if (!ok) travelFailure_ = why ? why : "";
+
+    // A journey is allowed to finish inside its arrival radius, rather than
+    // only on the atlas anchor itself.  Do not leave the tile A* walking the
+    // last few tiles after reporting that arrival: Sphere binds an open bank
+    // box to the exact character position that said "bank", so continuing
+    // from that valid nearby tile made every subsequent deposit look like a
+    // remote/cheating drop and bounce back into the backpack.  This is not a
+    // banking special case -- any completed journey must relinquish its
+    // remaining movement before its caller performs an interaction.
+    if (nav_.bot.active || nav_.bot.planning)
+        BotAbortPath(ok ? "travel arrived within destination radius"
+                        : "travel failed");
+    travelWalkOutstanding_ = false;
+
     LogInfo("[travel] %s %s at (%d,%d,%d)%s%s\n", travelLabel_.c_str(),
             ok ? "ARRIVED" : "FAILED", playerX_, playerY_,
             static_cast<int>(playerZ_), why && *why ? " -- " : "",
@@ -1070,6 +1121,21 @@ void Client::TravelDriveLeg() {
 
     travelLegTargetX_ = tx;
     travelLegTargetY_ = ty;
+
+    // Sphere opens a public-gate gump as the character steps onto the gate,
+    // which can be before Journey advances from this approach walk to the
+    // transit leg.  Arm the intended choice *before* walking the last leg so
+    // OnGenericGump can answer that immediate dialog.  Waiting until
+    // TravelUseTransit was too late for Draver: the dialog had already timed
+    // out and a double-click thereafter received no reply.
+    const route::RouteLeg* next = journey_.NextLeg();
+    if (next && next->kind == route::LegKind::Moongate &&
+        !next->label.empty()) {
+        travelGateSerial_ = 0;
+        travelGateDestination_ = next->label;
+        LogInfo("[travel] pre-armed moongate destination '%s' while approaching\n",
+                travelGateDestination_.c_str());
+    }
     travelWalkOutstanding_ = true;
     TravelRefreshAvoidPads(tx, ty);
     journey_.NoteCommandIssued(travel::Command::WalkTo, NowMs());

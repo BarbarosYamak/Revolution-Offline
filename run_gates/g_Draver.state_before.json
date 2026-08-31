@@ -1,6 +1,6 @@
 {
   "bank": [],
-  "bank_seen_ms": 0,
+  "bank_seen_ms": 1632554215,
   "build_plan": {
     "create_dex": 16,
     "create_int": 8,
@@ -39,15 +39,15 @@
     "target_str": 100,
     "unresolved_tenths": 4000
   },
-  "checkpoint_ms": 1630168490,
+  "checkpoint_ms": 1632554277,
   "death_count": 0,
   "goal": {
     "active": true,
     "attempts": 0,
     "failure_reason": "",
-    "kind": "CRAFT",
+    "kind": "IDLE_BRIEFLY",
     "progress": 0,
-    "started_at_ms": 1630075417
+    "started_at_ms": 1632551139
   },
   "home_city": "Minoc",
   "identity": {
@@ -56,20 +56,20 @@
     "created_at_ms": 0,
     "first_seen_at_ms": 1629988688,
     "identity_id": "revgen3_01.draver",
-    "last_seen_at_ms": 1629988688,
-    "sessions": 1,
-    "total_play_time_ms": 182401
+    "last_seen_at_ms": 1630756780,
+    "sessions": 2,
+    "total_play_time_ms": 1982499
   },
   "last_death_ms": 0,
   "last_server_report": {
     "dead": false,
     "dex": 16,
-    "gold": 9880,
+    "gold": 9874,
     "int": 8,
     "skills": [
       {
         "skill": 7,
-        "tenths": 500
+        "tenths": 502
       },
       {
         "skill": 45,
@@ -77,7 +77,7 @@
       },
       {
         "skill": 37,
-        "tenths": 0
+        "tenths": 206
       },
       {
         "skill": 4,
@@ -85,10 +85,17 @@
       }
     ],
     "str": 56,
-    "x": 2467,
-    "y": 556
+    "x": 1400,
+    "y": 3784
   },
-  "ledger": [],
+  "ledger": [
+    {
+      "amount": 108,
+      "detail": "i_dagger",
+      "flow": 0,
+      "when_ms": 1632226152
+    }
+  ],
   "memory": {
     "creatures": [],
     "danger": [],
@@ -108,6 +115,62 @@
         "place": "",
         "x": 2476,
         "y": 413
+      },
+      {
+        "at_ms": 1630771725,
+        "detail": "i_dagger",
+        "kind": "first_craft",
+        "place": "",
+        "x": 2467,
+        "y": 556
+      },
+      {
+        "at_ms": 1630780852,
+        "detail": "no banker in sight",
+        "kind": "bank_no_answer",
+        "place": "",
+        "x": 2467,
+        "y": 556
+      },
+      {
+        "at_ms": 1631172366,
+        "detail": "opened a bank box",
+        "kind": "bank_learned",
+        "place": "bank",
+        "x": 1427,
+        "y": 1690
+      },
+      {
+        "at_ms": 1631219071,
+        "detail": "i_ingot_iron",
+        "kind": "no_player_buyer",
+        "place": "",
+        "x": 1426,
+        "y": 1691
+      },
+      {
+        "at_ms": 1632156151,
+        "detail": "i_dagger",
+        "kind": "sale_refused",
+        "place": "blacksmith",
+        "x": 1419,
+        "y": 3859
+      },
+      {
+        "at_ms": 1632224041,
+        "detail": "Tinkering",
+        "kind": "skill_trained",
+        "place": "tinker",
+        "x": 1320,
+        "y": 3736
+      },
+      {
+        "at_ms": 1632226152,
+        "detail": "i_dagger",
+        "kind": "sold_to_vendor",
+        "place": "blacksmith",
+        "x": 1320,
+        "y": 3736
       }
     ],
     "places": [
@@ -130,6 +193,46 @@
         "x": 2467,
         "y": 556,
         "z": 5
+      },
+      {
+        "kind": "healer",
+        "last_verified_ms": 1632554215,
+        "learned_ms": 1631819816,
+        "name": "Natasha, the healer guildmistress",
+        "visits": 14121,
+        "x": 1468,
+        "y": 1611,
+        "z": 20
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 1632308152,
+        "learned_ms": 1632308152,
+        "name": "jhelom_blacksmith",
+        "visits": 1,
+        "x": 1420,
+        "y": 3858,
+        "z": 0
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 1632325056,
+        "learned_ms": 1632325056,
+        "name": "jhelom_armorer_4",
+        "visits": 1,
+        "x": 1454,
+        "y": 3855,
+        "z": 0
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 1632342449,
+        "learned_ms": 1632342449,
+        "name": "jhelom_armorer_2",
+        "visits": 1,
+        "x": 1474,
+        "y": 3868,
+        "z": 0
       }
     ],
     "resources": [
@@ -170,10 +273,58 @@
         "z": 0
       }
     ],
-    "suppliers": [],
-    "trainers": []
+    "suppliers": [
+      {
+        "last_verified_ms": 1632224041,
+        "name": "tinker",
+        "need": "trainer:tinker",
+        "observed_price": 206,
+        "observed_quantity": 0,
+        "policy_allows": true,
+        "serial": 0,
+        "source_type": "npc_trainer",
+        "x": 1320,
+        "y": 3736,
+        "z": 0
+      },
+      {
+        "last_verified_ms": 1632226152,
+        "name": "blacksmith",
+        "need": "buyer:i_dagger",
+        "observed_price": 18,
+        "observed_quantity": 0,
+        "policy_allows": true,
+        "serial": 0,
+        "source_type": "npc_vendor",
+        "x": 1320,
+        "y": 3736,
+        "z": 0
+      }
+    ],
+    "trainers": [
+      {
+        "at_tenths": 206,
+        "npc": 69048,
+        "quoted": 206,
+        "skill": 37,
+        "taught": true,
+        "trade": "tinker",
+        "when_ms": 1632224041,
+        "why": "taught"
+      }
+    ]
   },
-  "prices": [],
+  "prices": [
+    {
+      "item": "i_dagger",
+      "price": 18,
+      "source": 1,
+      "when_ms": 1632226152,
+      "who": "blacksmith",
+      "x": 1320,
+      "y": 3736
+    }
+  ],
   "recent_deaths": 0,
   "schema_version": 2,
   "sessions": [
@@ -193,6 +344,23 @@
       "skill_tenths_start": 1000,
       "started_ms": 1629988688,
       "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 1632554277,
+      "goals_attempted": 60,
+      "goals_completed": 11,
+      "goals_failed": 0,
+      "gold_end": 9874,
+      "gold_start": 9880,
+      "logs_gathered": 0,
+      "places_learned": 6,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1208,
+      "skill_tenths_start": 1000,
+      "started_ms": 1630756780,
+      "suppliers_learned": 2
     }
   ]
 }

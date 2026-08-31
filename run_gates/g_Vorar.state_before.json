@@ -47,15 +47,15 @@
     "target_str": 100,
     "unresolved_tenths": 1000
   },
-  "checkpoint_ms": 1630208233,
+  "checkpoint_ms": 1632812969,
   "death_count": 0,
   "goal": {
     "active": true,
     "attempts": 0,
     "failure_reason": "",
-    "kind": "TRAIN_AT_NPC",
+    "kind": "BANK",
     "progress": 0,
-    "started_at_ms": 1630125275
+    "started_at_ms": 1632483977
   },
   "home_city": "Britain",
   "identity": {
@@ -64,15 +64,15 @@
     "created_at_ms": 0,
     "first_seen_at_ms": 1630000894,
     "identity_id": "revgen3_05.vorar",
-    "last_seen_at_ms": 1630000894,
-    "sessions": 1,
-    "total_play_time_ms": 209921
+    "last_seen_at_ms": 1630760891,
+    "sessions": 2,
+    "total_play_time_ms": 2264597
   },
   "last_death_ms": 0,
   "last_server_report": {
     "dead": false,
     "dex": 32,
-    "gold": 9981,
+    "gold": 9640,
     "int": 8,
     "skills": [
       {
@@ -97,17 +97,65 @@
       },
       {
         "skill": 11,
-        "tenths": 0
+        "tenths": 194
       }
     ],
     "str": 40,
-    "x": 1429,
+    "x": 1428,
     "y": 1691
   },
   "ledger": [],
   "memory": {
-    "creatures": [],
-    "danger": [],
+    "creatures": [
+      {
+        "at_ms": 1631340933,
+        "fights": 1,
+        "heat": -0.5,
+        "name": "Chickadee"
+      }
+    ],
+    "danger": [
+      {
+        "at_ms": 1631024059,
+        "heat": 0.5,
+        "radius": 14,
+        "threat": "",
+        "x": 1414,
+        "y": 1727
+      },
+      {
+        "at_ms": 1631087184,
+        "heat": 1.5,
+        "radius": 16,
+        "threat": "a stalemate foe",
+        "x": 1366,
+        "y": 1886
+      },
+      {
+        "at_ms": 1631484904,
+        "heat": 4,
+        "radius": 16,
+        "threat": "a stalemate foe",
+        "x": 1416,
+        "y": 3777
+      },
+      {
+        "at_ms": 1632295279,
+        "heat": 0.5,
+        "radius": 14,
+        "threat": "",
+        "x": 641,
+        "y": 2165
+      },
+      {
+        "at_ms": 1632300355,
+        "heat": 1,
+        "radius": 16,
+        "threat": "a stalemate foe",
+        "x": 642,
+        "y": 2147
+      }
+    ],
     "events": [
       {
         "at_ms": 1630003001,
@@ -116,33 +164,140 @@
         "place": "",
         "x": 1496,
         "y": 1628
+      },
+      {
+        "at_ms": 1630861969,
+        "detail": "no banker in sight",
+        "kind": "bank_no_answer",
+        "place": "",
+        "x": 1384,
+        "y": 1608
+      },
+      {
+        "at_ms": 1631211585,
+        "detail": "no banker in sight",
+        "kind": "bank_no_answer",
+        "place": "",
+        "x": 1464,
+        "y": 3768
+      },
+      {
+        "at_ms": 1631340933,
+        "detail": "Chickadee",
+        "kind": "first_kill",
+        "place": "",
+        "x": 1416,
+        "y": 3777
+      },
+      {
+        "at_ms": 1631537633,
+        "detail": "no banker in sight",
+        "kind": "bank_no_answer",
+        "place": "",
+        "x": 1425,
+        "y": 3770
+      },
+      {
+        "at_ms": 1631854781,
+        "detail": "no banker in sight",
+        "kind": "bank_no_answer",
+        "place": "",
+        "x": 627,
+        "y": 2163
+      },
+      {
+        "at_ms": 1631930126,
+        "detail": "Carpentry",
+        "kind": "training_no_answer",
+        "place": "carpenter",
+        "x": 627,
+        "y": 2163
+      },
+      {
+        "at_ms": 1631951804,
+        "detail": "Carpentry",
+        "kind": "training_no_answer",
+        "place": "carpenter",
+        "x": 627,
+        "y": 2163
+      },
+      {
+        "at_ms": 1632183922,
+        "detail": "no banker in sight",
+        "kind": "bank_no_answer",
+        "place": "",
+        "x": 627,
+        "y": 2163
+      },
+      {
+        "at_ms": 1632240677,
+        "detail": "Carpentry",
+        "kind": "skill_trained",
+        "place": "carpenter",
+        "x": 627,
+        "y": 2163
       }
     ],
     "places": [
       {
         "kind": "healer",
-        "last_verified_ms": 1630178334,
+        "last_verified_ms": 1632558301,
         "learned_ms": 1630017702,
-        "name": "Natasha, the healer guildmistress",
-        "visits": 3408,
+        "name": "Dale, the healer",
+        "visits": 30068,
         "x": 1474,
         "y": 1611,
         "z": 20
       },
       {
         "kind": "safe",
-        "last_verified_ms": 1630208172,
+        "last_verified_ms": 1632812952,
         "learned_ms": 1630208172,
         "name": "logout point",
-        "visits": 1,
+        "visits": 2,
         "x": 1429,
         "y": 1691,
+        "z": 0
+      },
+      {
+        "kind": "healer",
+        "last_verified_ms": 1631425859,
+        "learned_ms": 1631237884,
+        "name": "Marvin, the healer",
+        "visits": 3417,
+        "x": 1416,
+        "y": 3777,
         "z": 0
       }
     ],
     "resources": [],
-    "suppliers": [],
-    "trainers": []
+    "suppliers": [
+      {
+        "last_verified_ms": 1632240677,
+        "name": "carpenter",
+        "need": "trainer:carpenter",
+        "observed_price": 208,
+        "observed_quantity": 0,
+        "policy_allows": true,
+        "serial": 0,
+        "source_type": "npc_trainer",
+        "x": 627,
+        "y": 2163,
+        "z": 0
+      }
+    ],
+    "trainers": [
+      {
+        "at_tenths": 194,
+        "npc": 19021,
+        "quoted": 208,
+        "skill": 11,
+        "taught": true,
+        "trade": "carpenter",
+        "when_ms": 1632240677,
+        "why": "taught"
+      }
+    ]
   },
   "prices": [],
   "recent_deaths": 0,
@@ -164,6 +319,23 @@
       "skill_tenths_start": 1000,
       "started_ms": 1630000894,
       "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 1632812969,
+      "goals_attempted": 77,
+      "goals_completed": 32,
+      "goals_failed": 0,
+      "gold_end": 9640,
+      "gold_start": 9981,
+      "logs_gathered": 0,
+      "places_learned": 3,
+      "self_supersessions": 8,
+      "skill_tenths_end": 1194,
+      "skill_tenths_start": 1000,
+      "started_ms": 1630760891,
+      "suppliers_learned": 1
     }
   ]
 }

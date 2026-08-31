@@ -35,15 +35,15 @@
     "target_str": 30,
     "unresolved_tenths": 4600
   },
-  "checkpoint_ms": 1630332376,
+  "checkpoint_ms": 1632566550,
   "death_count": 0,
   "goal": {
     "active": true,
     "attempts": 0,
     "failure_reason": "",
-    "kind": "FILL_SPELLBOOK",
-    "progress": 0,
-    "started_at_ms": 1630207567
+    "kind": "BANK",
+    "progress": 6,
+    "started_at_ms": 1632557487
   },
   "home_city": "Moonglow",
   "identity": {
@@ -52,15 +52,15 @@
     "created_at_ms": 0,
     "first_seen_at_ms": 1630034844,
     "identity_id": "revgen3_16.lyra",
-    "last_seen_at_ms": 1630034844,
-    "sessions": 1,
-    "total_play_time_ms": 300146
+    "last_seen_at_ms": 1630769045,
+    "sessions": 2,
+    "total_play_time_ms": 2100253
   },
   "last_death_ms": 0,
   "last_server_report": {
     "dead": false,
     "dex": 16,
-    "gold": 9864,
+    "gold": 9831,
     "int": 48,
     "skills": [
       {
@@ -77,10 +77,23 @@
       }
     ],
     "str": 16,
-    "x": 4440,
-    "y": 1144
+    "x": 1589,
+    "y": 1655
   },
-  "ledger": [],
+  "ledger": [
+    {
+      "amount": 18,
+      "detail": "i_scroll_blank",
+      "flow": 6,
+      "when_ms": 1631454388
+    },
+    {
+      "amount": 15,
+      "detail": "i_reag_nightshade",
+      "flow": 6,
+      "when_ms": 1631487346
+    }
+  ],
   "memory": {
     "creatures": [],
     "danger": [],
@@ -100,6 +113,30 @@
         "place": "",
         "x": 4440,
         "y": 1144
+      },
+      {
+        "at_ms": 1630881083,
+        "detail": "no banker in sight",
+        "kind": "bank_no_answer",
+        "place": "",
+        "x": 3611,
+        "y": 2470
+      },
+      {
+        "at_ms": 1631224110,
+        "detail": "i_scroll_blank",
+        "kind": "no_player_seller",
+        "place": "",
+        "x": 1425,
+        "y": 1690
+      },
+      {
+        "at_ms": 1631522424,
+        "detail": "i_scroll_poison",
+        "kind": "first_craft",
+        "place": "",
+        "x": 1593,
+        "y": 1655
       }
     ],
     "places": [
@@ -118,7 +155,26 @@
     "suppliers": [],
     "trainers": []
   },
-  "prices": [],
+  "prices": [
+    {
+      "item": "i_scroll_blank",
+      "price": 6,
+      "source": 0,
+      "when_ms": 1631445345,
+      "who": "blank scrolls",
+      "x": 1593,
+      "y": 1655
+    },
+    {
+      "item": "i_reag_nightshade",
+      "price": 3,
+      "source": 0,
+      "when_ms": 1631478302,
+      "who": "Nightshade",
+      "x": 1593,
+      "y": 1655
+    }
+  ],
   "recent_deaths": 0,
   "schema_version": 2,
   "sessions": [
@@ -137,6 +193,23 @@
       "skill_tenths_end": 1000,
       "skill_tenths_start": 1000,
       "started_ms": 1630034844,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 1632566550,
+      "goals_attempted": 65,
+      "goals_completed": 1,
+      "goals_failed": 0,
+      "gold_end": 9831,
+      "gold_start": 9864,
+      "logs_gathered": 0,
+      "places_learned": 1,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1000,
+      "skill_tenths_start": 1000,
+      "started_ms": 1630769045,
       "suppliers_learned": 0
     }
   ]

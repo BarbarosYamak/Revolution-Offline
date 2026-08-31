@@ -69,7 +69,7 @@ void Registry::RecordVendorStock(u32 serial, const char* name, i32 x, i32 y, i8 
     // refuses is still a fact about the world worth remembering -- it just may
     // never be returned as usable. Recording the refusal here means the reason
     // survives to the caller instead of being recomputed and possibly diverging.
-    const auto ruling = econ::CanUseNPCVendorFor(item);
+    const auto ruling = econ::CanBuyFromNPC(item);
 
     for (auto& s : suppliers_) {
         if (s.serial == serial && SameWhat(s.what, item)) {

@@ -1,0 +1,218 @@
+start: Aurelius is a mage and lives in Moonglow -> starting city index 3
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+[12:09:30.904] WARN  [g_Aurelius] [ACTION_RESULT] move_item server_failure (0ms) item 0x40019258 landed in 0x40019272, not the destination 0x4001925A
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+[12:09:49.674] WARN  [g_Aurelius] [0x21] move REJECTED seq=21; server says (3620,2480,0) facing=3
+[12:09:49.675] WARN  [g_Aurelius] [bot] 0x20 resync; aborting path
+[12:10:15.119] WARN  [g_Aurelius] [0x21] move REJECTED seq=7; server says (3632,2539,0) facing=1
+[12:10:15.120] WARN  [g_Aurelius] [bot] 0x20 resync; aborting path
+[12:10:45.623] WARN  [g_Aurelius] [bot] 0x20 resync; aborting path
+[12:10:46.847] WARN  [g_Aurelius] [travel] leg to (3725,2498) is 1215 tiles from (4467,1283); the plan is stale, replanning
+[12:10:48.070] WARN  [g_Aurelius] [travel] leg to (3725,2498) is 1215 tiles from (4467,1283); the plan is stale, replanning
+[12:11:53.232] WARN  [g_Aurelius] [0x21] move REJECTED seq=113; server says (4469,1157,0) facing=1
+[12:11:54.628] WARN  [g_Aurelius] [bot] no path to (4471,1156) avoiding 0 block(s); stopping (search 1362553.8us)
+[12:11:54.628] WARN  [g_Aurelius] [bot] start (4469,1157,0) exits: open=5 terrain=0 mobile=1 dynamic=2 door=0 blacklist=0 (overlay saw 507 item(s), 9 mobile(s))
+[12:12:01.302] WARN  [g_Aurelius] [ACTION_RESULT] move_item server_failure (1ms) item 0x4001926B landed in 0x40019272, not the destination 0x4001932C
+[12:12:21.319] WARN  [g_Aurelius] [ACTION_RESULT] move_item server_failure (15ms) item 0x40019B3F landed in 0x40019272, not the destination 0x4001932C
+[12:12:22.873] WARN  [g_Aurelius] [ACTION_RESULT] move_item server_failure (15ms) item 0x4001926B landed in 0x40019272, not the destination 0x4001932C
+[12:12:24.382] WARN  [g_Aurelius] [ACTION_RESULT] move_item server_failure (15ms) item 0x40019B3F landed in 0x40019272, not the destination 0x4001932C
+[12:12:25.912] WARN  [g_Aurelius] [ACTION_RESULT] move_item server_failure (0ms) item 0x4001926B landed in 0x40019272, not the destination 0x4001932C
+[12:12:27.470] WARN  [g_Aurelius] [ACTION_RESULT] move_item server_failure (15ms) item 0x40019B3F landed in 0x40019272, not the destination 0x4001932C
+[12:15:05.804] WARN  [g_Aurelius] [bot] no path to (1425,1690) avoiding 0 block(s); stopping (search 1648535.1us)
+[12:15:05.804] WARN  [g_Aurelius] [bot] start (1432,1704,14) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 762 item(s), 9 mobile(s))
+[12:15:08.780] WARN  [g_Aurelius] [bot] no path to (1425,1690) avoiding 0 block(s); stopping (search 1648015.3us)
+[12:15:08.780] WARN  [g_Aurelius] [bot] start (1432,1704,14) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 762 item(s), 9 mobile(s))
+[12:15:13.346] WARN  [g_Aurelius] [bot] no path to (1425,1690) avoiding 0 block(s); stopping (search 1715459.1us)
+[12:15:13.346] WARN  [g_Aurelius] [bot] start (1432,1704,14) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 762 item(s), 9 mobile(s))
+[12:15:17.407] WARN  [g_Aurelius] [0x21] move REJECTED seq=11; server says (1437,1694,0) facing=1
+[12:15:17.408] WARN  [g_Aurelius] [bot] 0x20 resync; aborting path
+[12:15:32.020] WARN  [g_Aurelius] [ACTION_RESULT] move_item server_failure (0ms) item 0x4001926B landed in 0x40019272, not the destination 0x4001932C
+[12:18:34.403] WARN  [g_Aurelius] [ACTION_RESULT] move_item server_failure (16ms) item 0x40019B3F landed in 0x40019272, not the destination 0x4001932C
+[12:18:35.953] WARN  [g_Aurelius] [ACTION_RESULT] move_item server_failure (15ms) item 0x4001926B landed in 0x40019272, not the destination 0x4001932C
+[12:18:37.477] WARN  [g_Aurelius] [ACTION_RESULT] move_item server_failure (16ms) item 0x40019B3F landed in 0x40019272, not the destination 0x4001932C
+[12:18:38.965] WARN  [g_Aurelius] [ACTION_RESULT] move_item server_failure (1ms) item 0x4001926B landed in 0x40019272, not the destination 0x4001932C
+[12:18:40.483] WARN  [g_Aurelius] [ACTION_RESULT] move_item server_failure (1ms) item 0x40019B3F landed in 0x40019272, not the destination 0x4001932C
+[12:18:55.665] WARN  [g_Aurelius] [ACTION_RESULT] cast_spell server_failure (0ms) The spell is not in your spellbook.
+[12:19:06.882] WARN  [g_Aurelius] [0x21] move REJECTED seq=19; server says (1439,1693,0) facing=3
+[12:19:06.896] WARN  [g_Aurelius] [bot] 0x20 resync; aborting path
+[12:19:41.039] WARN  [g_Aurelius] [bot] 0x20 resync; aborting path
+[12:20:25.873] WARN  [g_Aurelius] [bot] no path to (1485,1547) avoiding 0 block(s); stopping (search 2082748.2us)
+[12:20:25.873] WARN  [g_Aurelius] [bot] start (1485,1550,30) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1233 item(s), 4 mobile(s))
+[12:20:28.462] WARN  [g_Aurelius] [bot] no path to (1487,1550) avoiding 0 block(s); stopping (search 2022688.1us)
+[12:20:28.462] WARN  [g_Aurelius] [bot] start (1485,1550,30) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1233 item(s), 4 mobile(s))
+[12:20:32.790] WARN  [g_Aurelius] [bot] no path to (1490,1553) avoiding 0 block(s); stopping (search 2080955.0us)
+[12:20:32.790] WARN  [g_Aurelius] [bot] start (1485,1550,30) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1233 item(s), 4 mobile(s))
+[12:21:05.100] WARN  [g_Aurelius] [ACTION_RESULT] npc_train timeout (no server confirmation)
+[12:21:11.979] WARN  [g_Aurelius] [bot] goal (1484,1548) is not walkable; skipping A* and stopping
+[12:21:13.316] WARN  [g_Aurelius] [bot] goal (1484,1548) is not walkable; skipping A* and stopping
+[12:21:16.603] WARN  [g_Aurelius] [bot] no path to (1487,1549) avoiding 0 block(s); stopping (search 1980282.5us)
+[12:21:16.603] WARN  [g_Aurelius] [bot] start (1490,1553,30) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1237 item(s), 4 mobile(s))
+[12:22:07.562] WARN  [g_Aurelius] [0x21] move REJECTED seq=27; server says (1492,1567,30) facing=3
+[12:22:14.642] WARN  [g_Aurelius] [0x21] move REJECTED seq=27; server says (1502,1564,22) facing=1
+[12:22:15.377] WARN  [g_Aurelius] [0x21] move REJECTED seq=0; server says (1502,1564,22) facing=1
+[12:22:15.377] WARN  [g_Aurelius] [bot] no path to (1510,1543) avoiding 1 block(s); stopping (search 62.1us)
+[12:22:15.377] WARN  [g_Aurelius] [bot] start (1502,1564,22) exits: open=5 terrain=2 mobile=0 dynamic=0 door=0 blacklist=1 (overlay saw 1283 item(s), 3 mobile(s))
+[12:22:16.742] WARN  [g_Aurelius] [bot] no path to (1510,1543) avoiding 0 block(s); stopping (search 8.0us)
+[12:22:16.742] WARN  [g_Aurelius] [bot] start (1502,1564,22) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1283 item(s), 3 mobile(s))
+[12:22:19.628] WARN  [g_Aurelius] [bot] no path to (1510,1543) avoiding 0 block(s); stopping (search 6.6us)
+[12:22:19.628] WARN  [g_Aurelius] [bot] start (1502,1564,22) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1283 item(s), 3 mobile(s))
+[12:22:20.893] WARN  [g_Aurelius] [bot] no path to (1510,1543) avoiding 0 block(s); stopping (search 6.7us)
+[12:22:20.893] WARN  [g_Aurelius] [bot] start (1502,1564,22) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1283 item(s), 3 mobile(s))
+[12:22:22.195] WARN  [g_Aurelius] [bot] no path to (1510,1543) avoiding 0 block(s); stopping (search 8.3us)
+[12:22:22.195] WARN  [g_Aurelius] [bot] start (1502,1564,22) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1283 item(s), 4 mobile(s))
+[12:22:26.530] WARN  [g_Aurelius] [bot] no path to (1510,1543) avoiding 0 block(s); stopping (search 9.8us)
+[12:22:26.530] WARN  [g_Aurelius] [bot] start (1502,1564,22) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1283 item(s), 4 mobile(s))
+[12:22:27.903] WARN  [g_Aurelius] [bot] no path to (1510,1543) avoiding 0 block(s); stopping (search 7.1us)
+[12:22:27.903] WARN  [g_Aurelius] [bot] start (1502,1564,22) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1283 item(s), 4 mobile(s))
+[12:22:29.254] WARN  [g_Aurelius] [bot] no path to (1510,1543) avoiding 0 block(s); stopping (search 6.1us)
+[12:22:29.254] WARN  [g_Aurelius] [bot] start (1502,1564,22) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1283 item(s), 4 mobile(s))
+[12:22:35.116] WARN  [g_Aurelius] [bot] no path to (1510,1543) avoiding 0 block(s); stopping (search 9.5us)
+[12:22:35.117] WARN  [g_Aurelius] [bot] start (1502,1564,22) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1283 item(s), 4 mobile(s))
+[12:22:36.499] WARN  [g_Aurelius] [bot] no path to (1510,1543) avoiding 0 block(s); stopping (search 8.4us)
+[12:22:36.500] WARN  [g_Aurelius] [bot] start (1502,1564,22) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1283 item(s), 3 mobile(s))
+[12:22:37.851] WARN  [g_Aurelius] [bot] no path to (1510,1543) avoiding 0 block(s); stopping (search 9.0us)
+[12:22:37.851] WARN  [g_Aurelius] [bot] start (1502,1564,22) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1283 item(s), 4 mobile(s))
+[12:22:37.912] WARN  [g_Aurelius] [travel] route exhausted at (1502,1564,22); trying to reach (1512,1560,20) to get somewhere routable (escape 1/3)
+[12:22:37.974] WARN  [g_Aurelius] [bot] no path to (1512,1560) avoiding 0 block(s); stopping (search 6.6us)
+[12:22:37.974] WARN  [g_Aurelius] [bot] start (1502,1564,22) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1283 item(s), 4 mobile(s))
+[12:22:38.035] WARN  [g_Aurelius] [travel] route exhausted at (1502,1564,22); trying to reach (1496,1576,30) to get somewhere routable (escape 2/3)
+[12:22:38.035] WARN  [g_Aurelius] [bot] no path to (1496,1576) avoiding 0 block(s); stopping (search 6.4us)
+[12:22:38.035] WARN  [g_Aurelius] [bot] start (1502,1564,22) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1283 item(s), 4 mobile(s))
+[12:22:38.065] WARN  [g_Aurelius] [travel] route exhausted at (1502,1564,22); trying to reach (1512,1576,20) to get somewhere routable (escape 3/3)
+[12:22:38.127] WARN  [g_Aurelius] [bot] no path to (1512,1576) avoiding 0 block(s); stopping (search 5.5us)
+[12:22:38.127] WARN  [g_Aurelius] [bot] start (1502,1564,22) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1283 item(s), 4 mobile(s))
+[12:22:41.328] WARN  [g_Aurelius] [bot] no path to (1481,1584) avoiding 0 block(s); stopping (search 26.6us)
+[12:22:41.328] WARN  [g_Aurelius] [bot] start (1502,1564,22) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1283 item(s), 5 mobile(s))
+[12:22:42.648] WARN  [g_Aurelius] [bot] no path to (1481,1584) avoiding 0 block(s); stopping (search 8.0us)
+[12:22:42.648] WARN  [g_Aurelius] [bot] start (1502,1564,22) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1283 item(s), 6 mobile(s))
+[12:22:43.988] WARN  [g_Aurelius] [bot] no path to (1481,1584) avoiding 0 block(s); stopping (search 8.9us)
+[12:22:43.988] WARN  [g_Aurelius] [bot] start (1502,1564,22) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1283 item(s), 6 mobile(s))
+[12:22:46.840] WARN  [g_Aurelius] [bot] no path to (1481,1584) avoiding 0 block(s); stopping (search 6.5us)
+[12:22:46.840] WARN  [g_Aurelius] [bot] start (1502,1564,22) exits: open=5 terrain=2 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1283 item(s), 6 mobile(s))
+[12:22:48.191] WARN  [g_Aurelius] [bot] no path to (1481,1584) avoiding 0 block(s); stopping (search 6.8us)
+[12:22:48.191] WARN  [g_Aurelius] [bot] start (1502,1564,22) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1283 item(s), 6 mobile(s))
+[12:22:49.528] WARN  [g_Aurelius] [bot] no path to (1481,1584) avoiding 0 block(s); stopping (search 6.3us)
+[12:22:49.528] WARN  [g_Aurelius] [bot] start (1502,1564,22) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1283 item(s), 6 mobile(s))
+[12:22:53.878] WARN  [g_Aurelius] [bot] no path to (1481,1584) avoiding 0 block(s); stopping (search 6.9us)
+[12:22:53.878] WARN  [g_Aurelius] [bot] start (1502,1564,22) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1283 item(s), 5 mobile(s))
+[12:22:55.217] WARN  [g_Aurelius] [bot] no path to (1481,1584) avoiding 0 block(s); stopping (search 7.0us)
+[12:22:55.217] WARN  [g_Aurelius] [bot] start (1502,1564,22) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1283 item(s), 5 mobile(s))
+[12:22:56.526] WARN  [g_Aurelius] [bot] no path to (1481,1584) avoiding 0 block(s); stopping (search 10.4us)
+[12:22:56.526] WARN  [g_Aurelius] [bot] start (1502,1564,22) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1283 item(s), 5 mobile(s))
+[12:23:02.391] WARN  [g_Aurelius] [bot] no path to (1481,1584) avoiding 0 block(s); stopping (search 7.5us)
+[12:23:02.391] WARN  [g_Aurelius] [bot] start (1502,1564,22) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1283 item(s), 4 mobile(s))
+[12:23:03.739] WARN  [g_Aurelius] [bot] no path to (1481,1584) avoiding 0 block(s); stopping (search 6.8us)
+[12:23:03.739] WARN  [g_Aurelius] [bot] start (1502,1564,22) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1283 item(s), 4 mobile(s))
+[12:23:05.091] WARN  [g_Aurelius] [bot] no path to (1481,1584) avoiding 0 block(s); stopping (search 6.6us)
+[12:23:05.091] WARN  [g_Aurelius] [bot] start (1502,1564,22) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1283 item(s), 4 mobile(s))
+[12:23:05.153] WARN  [g_Aurelius] [travel] route exhausted at (1502,1564,22); trying to reach (1512,1560,20) to get somewhere routable (escape 1/3)
+[12:23:05.213] WARN  [g_Aurelius] [bot] no path to (1512,1560) avoiding 0 block(s); stopping (search 5.3us)
+[12:23:05.213] WARN  [g_Aurelius] [bot] start (1502,1564,22) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1283 item(s), 4 mobile(s))
+[12:23:05.276] WARN  [g_Aurelius] [travel] route exhausted at (1502,1564,22); trying to reach (1496,1576,30) to get somewhere routable (escape 2/3)
+[12:23:05.338] WARN  [g_Aurelius] [bot] no path to (1496,1576) avoiding 0 block(s); stopping (search 6.7us)
+[12:23:05.338] WARN  [g_Aurelius] [bot] start (1502,1564,22) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1283 item(s), 4 mobile(s))
+[12:23:05.368] WARN  [g_Aurelius] [travel] route exhausted at (1502,1564,22); trying to reach (1512,1576,20) to get somewhere routable (escape 3/3)
+[12:23:05.430] WARN  [g_Aurelius] [bot] no path to (1512,1576) avoiding 0 block(s); stopping (search 6.7us)
+[12:23:05.430] WARN  [g_Aurelius] [bot] start (1502,1564,22) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1283 item(s), 4 mobile(s))
+[12:23:18.786] WARN  [g_Aurelius] [bot] 0x20 resync; aborting path
+[12:23:26.394] WARN  [g_Aurelius] [0x21] move REJECTED seq=19; server says (1488,1579,27) facing=4
+[12:23:27.143] WARN  [g_Aurelius] [0x21] move REJECTED seq=0; server says (1488,1579,27) facing=4
+[12:23:38.692] WARN  [g_Aurelius] [bot] 0x20 resync; aborting path
+[12:23:43.192] WARN  [g_Aurelius] [0x21] move REJECTED seq=6; server says (1480,1612,20) facing=3
+[12:23:43.193] WARN  [g_Aurelius] [bot] 0x20 resync; aborting path
+[12:24:17.455] WARN  [g_Aurelius] [bot] 0x20 resync; aborting path
+[12:24:31.037] WARN  [g_Aurelius] [bot] 0x20 resync; aborting path
+[12:25:19.341] WARN  [g_Aurelius] [bot] goal (1560,1656) is not walkable; skipping A* and stopping
+[12:25:20.697] WARN  [g_Aurelius] [bot] goal (1560,1656) is not walkable; skipping A* and stopping
+[12:25:21.969] WARN  [g_Aurelius] [bot] goal (1560,1656) is not walkable; skipping A* and stopping
+[12:25:28.013] WARN  [g_Aurelius] [0x21] move REJECTED seq=14; server says (1591,1664,10) facing=5
+[12:25:28.014] WARN  [g_Aurelius] [bot] 0x20 resync; aborting path
+[12:25:42.415] WARN  [g_Aurelius] [bot] 0x20 resync; aborting path
+[12:25:48.806] WARN  [g_Aurelius] [0x21] move REJECTED seq=14; server says (1556,1664,23) facing=3
+[12:25:48.806] WARN  [g_Aurelius] [bot] 0x20 resync; aborting path
+[12:26:51.692] WARN  [g_Aurelius] [bot] 0x20 resync; aborting path
+[12:27:36.283] WARN  [g_Aurelius] [bot] 0x20 resync; aborting path
+[12:28:08.635] WARN  [g_Aurelius] [0x21] move REJECTED seq=20; server says (1611,1592,0) facing=5
+[12:28:08.635] WARN  [g_Aurelius] [bot] 0x20 resync; aborting path
+[12:28:49.544] WARN  [g_Aurelius] [bot] goal (1496,1624) is not walkable; skipping A* and stopping
+[12:28:50.837] WARN  [g_Aurelius] [bot] goal (1496,1624) is not walkable; skipping A* and stopping
+[12:28:52.140] WARN  [g_Aurelius] [bot] goal (1496,1624) is not walkable; skipping A* and stopping
+[12:28:55.017] WARN  [g_Aurelius] [bot] goal (1498,1608) is not walkable; skipping A* and stopping
+[12:28:56.304] WARN  [g_Aurelius] [bot] goal (1498,1608) is not walkable; skipping A* and stopping
+[12:28:57.584] WARN  [g_Aurelius] [bot] goal (1498,1608) is not walkable; skipping A* and stopping
+[12:30:39.245] WARN  [g_Aurelius] [bot] no path to (1487,1548) avoiding 0 block(s); stopping (search 2123520.3us)
+[12:30:39.245] WARN  [g_Aurelius] [bot] start (1485,1549,35) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 2054 item(s), 4 mobile(s))
+[12:30:39.307] WARN  [g_Aurelius] [travel] reached (1485,1549,35) but the target is on another floor; not arrived
+[12:31:09.529] WARN  [g_Aurelius] [ACTION_RESULT] move_item timeout (no server confirmation)
+[12:31:09.529] WARN  [g_Aurelius] [ITEM] drag of 0x400118B0 abandoned after timeout
+[12:31:36.744] WARN  [g_Aurelius] [ACTION_RESULT] move_item timeout (no server confirmation)
+[12:31:36.744] WARN  [g_Aurelius] [ITEM] drag of 0x4001145A abandoned after timeout
+[12:32:03.952] WARN  [g_Aurelius] [ACTION_RESULT] move_item timeout (no server confirmation)
+[12:32:03.952] WARN  [g_Aurelius] [ITEM] drag of 0x400111EC abandoned after timeout
+[12:32:55.056] WARN  [g_Aurelius] [bot] 0x20 resync; aborting path
+[12:33:03.055] WARN  [g_Aurelius] [0x21] move REJECTED seq=20; server says (1475,1520,20) facing=5
+[12:33:03.069] WARN  [g_Aurelius] [bot] 0x20 resync; aborting path
+[12:33:25.512] WARN  [g_Aurelius] [bot] no path to (1418,1547) avoiding 0 block(s); stopping (search 7970086.8us)
+[12:33:25.512] WARN  [g_Aurelius] [bot] start (1432,1544,30) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 2223 item(s), 3 mobile(s))
+[12:33:31.518] WARN  [g_Aurelius] [0x21] move REJECTED seq=16; server says (1424,1552,30) facing=5
+[12:33:31.518] WARN  [g_Aurelius] [bot] 0x20 resync; aborting path
+[12:34:02.192] WARN  [g_Aurelius] [bot] 0x20 resync; aborting path
+[12:34:05.317] WARN  [g_Aurelius] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[12:34:06.619] WARN  [g_Aurelius] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[12:34:07.932] WARN  [g_Aurelius] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[12:34:10.789] WARN  [g_Aurelius] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[12:34:12.096] WARN  [g_Aurelius] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[12:34:13.312] WARN  [g_Aurelius] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[12:34:17.624] WARN  [g_Aurelius] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[12:34:18.933] WARN  [g_Aurelius] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[12:34:20.290] WARN  [g_Aurelius] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[12:34:26.092] WARN  [g_Aurelius] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[12:34:27.358] WARN  [g_Aurelius] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[12:34:28.653] WARN  [g_Aurelius] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[12:34:28.713] WARN  [g_Aurelius] [travel] route exhausted at (1414,1594,30); trying to reach (1416,1608,30) to get somewhere routable (escape 1/3)
+[12:34:31.573] WARN  [g_Aurelius] [bot] no path to (1416,1608) avoiding 0 block(s); stopping (search 2839092.9us)
+[12:34:31.573] WARN  [g_Aurelius] [bot] start (1414,1594,30) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 2417 item(s), 5 mobile(s))
+[12:34:31.635] WARN  [g_Aurelius] [travel] route exhausted at (1414,1594,30); trying to reach (1398,1592,30) to get somewhere routable (escape 2/3)
+[12:35:02.913] WARN  [g_Aurelius] [0x21] move REJECTED seq=129; server says (1379,1585,30) facing=1
+[12:35:03.620] WARN  [g_Aurelius] [0x21] move REJECTED seq=0; server says (1379,1585,30) facing=1
+[12:35:16.265] WARN  [g_Aurelius] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[12:35:17.602] WARN  [g_Aurelius] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[12:35:18.894] WARN  [g_Aurelius] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[12:35:21.690] WARN  [g_Aurelius] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[12:35:22.983] WARN  [g_Aurelius] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[12:35:24.275] WARN  [g_Aurelius] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[12:35:28.590] WARN  [g_Aurelius] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[12:35:29.910] WARN  [g_Aurelius] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[12:35:31.212] WARN  [g_Aurelius] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[12:35:37.055] WARN  [g_Aurelius] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[12:35:38.349] WARN  [g_Aurelius] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[12:35:39.656] WARN  [g_Aurelius] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[12:35:39.657] WARN  [g_Aurelius] [travel] route exhausted at (1398,1592,30); trying to reach (1384,1592,30) to get somewhere routable (escape 3/3)
+[12:36:20.680] WARN  [g_Aurelius] [0x21] move REJECTED seq=13; server says (1391,1595,30) facing=5
+[12:36:20.681] WARN  [g_Aurelius] [bot] 0x20 resync; aborting path
+[12:36:47.104] WARN  [g_Aurelius] [0x21] move REJECTED seq=25; server says (1372,1584,30) facing=3
+[12:36:47.120] WARN  [g_Aurelius] [bot] 0x20 resync; aborting path
+[12:38:02.251] WARN  [g_Aurelius] [bot] no path to (1484,1547) avoiding 0 block(s); stopping (search 2608185.1us)
+[12:38:02.251] WARN  [g_Aurelius] [bot] start (1485,1550,30) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 2619 item(s), 4 mobile(s))
+[12:38:02.312] WARN  [g_Aurelius] [travel] reached (1485,1550,30) but the target is on another floor; not arrived
+[12:38:06.289] WARN  [g_Aurelius] [bot] no path to (1484,1547) avoiding 0 block(s); stopping (search 2684325.2us)
+[12:38:06.289] WARN  [g_Aurelius] [bot] start (1485,1550,30) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 2619 item(s), 4 mobile(s))
+[12:38:06.350] WARN  [g_Aurelius] [travel] reached (1485,1550,30) but the target is on another floor; not arrived
+[12:38:11.706] WARN  [g_Aurelius] [bot] no path to (1484,1547) avoiding 0 block(s); stopping (search 2580104.5us)
+[12:38:11.706] WARN  [g_Aurelius] [bot] start (1485,1550,30) exits: open=6 terrain=0 mobile=2 dynamic=0 door=0 blacklist=0 (overlay saw 2619 item(s), 4 mobile(s))
+[12:38:11.769] WARN  [g_Aurelius] [travel] reached (1485,1550,30) but the target is on another floor; not arrived
+[12:38:15.545] WARN  [g_Aurelius] [bot] no path to (1484,1547) avoiding 0 block(s); stopping (search 2546218.2us)
+[12:38:15.545] WARN  [g_Aurelius] [bot] start (1485,1550,30) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 2619 item(s), 4 mobile(s))
+[12:38:15.606] WARN  [g_Aurelius] [travel] reached (1485,1550,30) but the target is on another floor; not arrived
+[12:38:22.431] WARN  [g_Aurelius] [bot] no path to (1484,1547) avoiding 0 block(s); stopping (search 2512154.3us)
+[12:38:22.431] WARN  [g_Aurelius] [bot] start (1485,1550,30) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 2619 item(s), 4 mobile(s))
+[12:38:22.492] WARN  [g_Aurelius] [travel] reached (1485,1550,30) but the target is on another floor; not arrived
+[12:38:26.227] WARN  [g_Aurelius] [bot] no path to (1484,1547) avoiding 0 block(s); stopping (search 2476091.6us)
+[12:38:26.228] WARN  [g_Aurelius] [bot] start (1485,1550,30) exits: open=6 terrain=0 mobile=2 dynamic=0 door=0 blacklist=0 (overlay saw 2619 item(s), 4 mobile(s))
+[12:38:26.289] WARN  [g_Aurelius] [travel] reached (1485,1550,30) but the target is on another floor; not arrived
+[12:38:34.619] WARN  [g_Aurelius] [bot] no path to (1484,1547) avoiding 0 block(s); stopping (search 2543988.2us)
+[12:38:34.619] WARN  [g_Aurelius] [bot] start (1485,1550,30) exits: open=6 terrain=0 mobile=2 dynamic=0 door=0 blacklist=0 (overlay saw 2619 item(s), 4 mobile(s))
+[12:38:34.665] WARN  [g_Aurelius] [travel] reached (1485,1550,30) but the target is on another floor; not arrived
+[12:38:38.421] WARN  [g_Aurelius] [bot] no path to (1484,1547) avoiding 0 block(s); stopping (search 2514778.5us)
+[12:38:38.421] WARN  [g_Aurelius] [bot] start (1485,1550,30) exits: open=6 terrain=0 mobile=2 dynamic=0 door=0 blacklist=0 (overlay saw 2619 item(s), 4 mobile(s))
+[12:38:38.482] WARN  [g_Aurelius] [travel] reached (1485,1550,30) but the target is on another floor; not arrived

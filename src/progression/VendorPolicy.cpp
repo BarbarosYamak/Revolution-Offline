@@ -700,6 +700,10 @@ VendorRuling CanUseNPCVendorForGraphic(u16 graphic) {
     return CanUseNPCVendorFor(item);
 }
 
+VendorRuling CanBuyFromNPCGraphic(u16 graphic) {
+    return CanBuyFromNPC(ItemNameForGraphic(graphic));
+}
+
 VendorClass ClassifyForVendor(const char* item) {
     for (const Row& r : kMatrix) {
         if (Same(r.item, item)) return r.klass;
@@ -765,6 +769,21 @@ VendorRuling CanUseNPCVendorFor(const char* item) {
             out.authenticityGap = true;
             break;
     }
+    return out;
+}
+
+VendorRuling CanBuyFromNPC(const char* item) {
+    // Purchasing consumes the bot's own gold. Unlike an NPC buy-back, it is
+    // not a faucet and cannot mint wealth. The owner ruling is therefore to
+    // accept every item a real vendor window offers; the wire offer is the
+    // stock proof. Keep the matrix classification attached so logs and the
+    // research report still say what evidence we have (or lack), but do not
+    // turn that research status into a purchase veto.
+    VendorRuling out;
+    out.allowed = true;
+    out.klass = ClassifyForVendor(item);
+    out.reason = "NPC purchase is allowed when the item is actually offered; "
+                 "NPC selling remains separately restricted";
     return out;
 }
 
@@ -854,7 +873,7 @@ AcquisitionPlan ChooseAcquisitionMethod(const char* item,
         return plan;
     }
 
-    const VendorRuling ruling = CanUseNPCVendorFor(item);
+    const VendorRuling ruling = CanBuyFromNPC(item);
     if (ruling.allowed) {
         if (ctx.observedNpcPrice < 0) {
             plan.method = Acquisition::NpcPurchase;

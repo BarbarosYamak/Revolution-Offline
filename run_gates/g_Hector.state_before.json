@@ -1,0 +1,178 @@
+{
+  "bank": [],
+  "bank_seen_ms": 0,
+  "build_plan": {
+    "create_dex": 40,
+    "create_int": 8,
+    "create_skills": [
+      {
+        "skill": 42,
+        "tenths": 500
+      },
+      {
+        "skill": 27,
+        "tenths": 500
+      }
+    ],
+    "create_str": 32,
+    "family": "fencer",
+    "skills": [
+      {
+        "skill": 42,
+        "tenths": 1000
+      },
+      {
+        "skill": 27,
+        "tenths": 1000
+      },
+      {
+        "skill": 1,
+        "tenths": 1000
+      },
+      {
+        "skill": 17,
+        "tenths": 1000
+      },
+      {
+        "skill": 30,
+        "tenths": 1000
+      },
+      {
+        "skill": 5,
+        "tenths": 1000
+      }
+    ],
+    "target_dex": 100,
+    "target_int": 25,
+    "target_str": 100,
+    "unresolved_tenths": 1000
+  },
+  "checkpoint_ms": 1630291683,
+  "death_count": 0,
+  "goal": {
+    "active": true,
+    "attempts": 0,
+    "failure_reason": "",
+    "kind": "GET_FOOD",
+    "progress": 0,
+    "started_at_ms": 1630203253
+  },
+  "home_city": "Trinsic",
+  "identity": {
+    "account_name": "RevGen3_25",
+    "character_name": "Hector",
+    "created_at_ms": 0,
+    "first_seen_at_ms": 1630062520,
+    "identity_id": "revgen3_25.hector",
+    "last_seen_at_ms": 1630062520,
+    "sessions": 1,
+    "total_play_time_ms": 231780
+  },
+  "last_death_ms": 0,
+  "last_server_report": {
+    "dead": false,
+    "dex": 40,
+    "gold": 10000,
+    "int": 8,
+    "skills": [
+      {
+        "skill": 42,
+        "tenths": 500
+      },
+      {
+        "skill": 27,
+        "tenths": 500
+      },
+      {
+        "skill": 1,
+        "tenths": 0
+      },
+      {
+        "skill": 17,
+        "tenths": 0
+      },
+      {
+        "skill": 30,
+        "tenths": 0
+      },
+      {
+        "skill": 5,
+        "tenths": 0
+      }
+    ],
+    "str": 32,
+    "x": 1817,
+    "y": 2822
+  },
+  "ledger": [],
+  "memory": {
+    "creatures": [],
+    "danger": [
+      {
+        "at_ms": 1630198322,
+        "heat": 0.5,
+        "radius": 14,
+        "threat": "",
+        "x": 1942,
+        "y": 2786
+      }
+    ],
+    "events": [
+      {
+        "at_ms": 1630064609,
+        "detail": "no banker in sight",
+        "kind": "bank_no_answer",
+        "place": "",
+        "x": 1845,
+        "y": 2745
+      }
+    ],
+    "places": [
+      {
+        "kind": "healer",
+        "last_verified_ms": 1630239909,
+        "learned_ms": 1630106310,
+        "name": "Devin, the healer",
+        "visits": 2467,
+        "x": 1912,
+        "y": 2803,
+        "z": 0
+      },
+      {
+        "kind": "safe",
+        "last_verified_ms": 1630291667,
+        "learned_ms": 1630291667,
+        "name": "logout point",
+        "visits": 1,
+        "x": 1817,
+        "y": 2822,
+        "z": 0
+      }
+    ],
+    "resources": [],
+    "suppliers": [],
+    "trainers": []
+  },
+  "prices": [],
+  "recent_deaths": 0,
+  "schema_version": 2,
+  "sessions": [
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 1630291683,
+      "goals_attempted": 5,
+      "goals_completed": 1,
+      "goals_failed": 0,
+      "gold_end": 10000,
+      "gold_start": 10000,
+      "logs_gathered": 0,
+      "places_learned": 2,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1000,
+      "skill_tenths_start": 1000,
+      "started_ms": 1630062520,
+      "suppliers_learned": 0
+    }
+  ]
+}

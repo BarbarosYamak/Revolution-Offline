@@ -440,6 +440,26 @@ void TestVendorPolicy() {
         if (!rr.reason || !*rr.reason) allExplained = false;
     }
     Check(allExplained, "every ruling carries a human-readable reason");
+
+    // Purchase and sale policy are intentionally separate. The strict audit
+    // above remains a research record, but the owner ruling on 2026-08-31 is
+    // that a bot may spend its own gold on anything it ACTUALLY sees stocked;
+    // no gold is created. NPC buy-back remains governed by Market/Faucets.
+    r = econ::CanBuyFromNPC("i_board");
+    Check(r.allowed && r.klass == econ::VendorClass::PlayerCrafted,
+          "a stocked player-crafted board may be purchased");
+    r = econ::CanBuyFromNPC("i_ore_iron");
+    Check(r.allowed && r.klass == econ::VendorClass::WorldGathered,
+          "a stocked raw resource may be purchased");
+    r = econ::CanBuyFromNPC("i_reag_batwing");
+    Check(r.allowed && r.klass == econ::VendorClass::EraConflict,
+          "the purchase gate does not turn a real stock offer into a veto");
+    r = econ::CanBuyFromNPC("i_something_never_graded");
+    Check(r.allowed && r.klass == econ::VendorClass::Unknown,
+          "an ungraded offer is buyable while remaining visibly ungraded");
+    r = econ::CanBuyFromNPCGraphic(0x0F51); // i_dagger
+    Check(r.allowed && r.klass == econ::VendorClass::PlayerCrafted,
+          "the wire-graphic purchase gate follows the same rule");
 }
 
 // ---------------------------------------------------------------------------
@@ -472,23 +492,23 @@ void TestAcquisition() {
     p = econ::ChooseAcquisitionMethod("i_yarn_ball", ctx);
     Check(p.method == econ::Acquisition::Process, "wool plus a wheel means process");
 
-    // THE PHASE 19 PROOF, in one assertion: an item a stock Sphere vendor
-    // really does sell, which the bot must refuse to buy even though it has the
-    // gold and a live quote in front of it.
+    // A real NPC quote is now a permitted source even for a gathered item.
+    // Purchase spends the bot's own gold; the strict restriction is on NPC
+    // buy-back/sale faucets, not observed stock.
     econ::AcquisitionContext broke;
     broke.capability = Char(0);          // no skills at all
     broke.gold = 10000;
     broke.observedNpcPrice = 3;          // the shepherd's real price
     p = econ::ChooseAcquisitionMethod("i_wool", broke);
-    Check(p.method != econ::Acquisition::NpcPurchase,
-          "a skill-less, rich bot still may not buy wool from the shepherd");
-    Check(p.blocked, "with no legal route the plan is BLOCKED, not improvised");
+    Check(p.method == econ::Acquisition::NpcPurchase,
+          "a skill-less, rich bot may buy wool when the shepherd quotes it");
+    Check(!p.blocked, "an observed affordable NPC source is a legal route");
 
     // A player selling it is always legitimate.
     broke.observedPlayerPrice = 20;
     p = econ::ChooseAcquisitionMethod("i_wool", broke);
     Check(p.method == econ::Acquisition::PlayerPurchase,
-          "buying wool from a PLAYER is legitimate where buying from an NPC is not");
+          "an observed player offer still wins over an observed NPC offer");
 
     // The permitted NPC case still works. Ammunition is the deliberate
     // exception: RevolutionUO's Bowcraft guide says bows sell "diger oyunculara
@@ -607,15 +627,16 @@ void TestGraphQueries() {
     Check(prod::ProvenanceOf("i_crystal_hardening") == prod::Provenance::Unknown,
           "query: the Hardening Crystal's provenance is honestly UNKNOWN");
 
-    // And a fabricated ask cannot be satisfied by the acquisition layer either:
-    // no legal route, so BLOCKED rather than an NPC purchase.
+    // An otherwise-unmodelled item may still be bought if an NPC has actually
+    // quoted it. The purchase plan never invents stock; the live action must
+    // still find that offer in a vendor window.
     econ::AcquisitionContext rich;
     rich.capability = full;
     rich.gold = 100000;
     rich.observedNpcPrice = 50;
     econ::AcquisitionPlan p = econ::ChooseAcquisitionMethod("i_robe_fire", rich);
-    Check(p.blocked && p.method != econ::Acquisition::NpcPurchase,
-          "query: an unmodelled Revolution item cannot be bought into existence");
+    Check(!p.blocked && p.method == econ::Acquisition::NpcPurchase,
+          "query: an unmodelled item may use an observed NPC quote");
 }
 
 // ---------------------------------------------------------------------------

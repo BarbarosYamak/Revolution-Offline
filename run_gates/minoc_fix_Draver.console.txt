@@ -1,0 +1,378 @@
+[12:41:12.996] INFO  session 0: 127.0.0.1:2593 user='RevGen3_01' char=Draver tag='minoc_fix_Draver'
+[12:41:12.998] LOG   [minoc_fix_Draver] event session_start: text log opened
+[12:41:12.999] LOG   [minoc_fix_Draver] event net_connect_begin: connect 127.0.0.1:2593
+[12:41:13.000] INFO  [minoc_fix_Draver] [net] connecting to 127.0.0.1:2593 ...
+[12:41:13.002] LOG   [minoc_fix_Draver] event net_connected: connect 127.0.0.1:2593
+[12:41:13.003] INFO  [minoc_fix_Draver] [net] connected.
+[12:41:13.004] INFO  [minoc_fix_Draver] [seed] sent 0x7F000001 (plaintext)
+[12:41:13.005] LOG   [minoc_fix_Draver] event seed_out: 0x7F000001 hex=7f000001
+[12:41:13.007] INFO  [life] loaded persistent state for Draver (36 places, 2 suppliers, 12 events, 3 prior sessions)
+[12:41:13.007] INFO  [life] needs: reading 'miner_smith' from the profession catalogue
+[12:41:13.007] INFO  [life] build plan 'miner_smith': 300.0 resolved + 400.0 unresolved = 700.0/700.0, stats 100/45/80 = 225
+[12:41:13.007] INFO  [minoc_fix_Draver] [life] autonomous player active for 'Draver' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 30 min)
+[12:41:13.016] INFO  [minoc_fix_Draver] [0xA8] 1 server(s):
+[12:41:13.016] INFO  [minoc_fix_Draver]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[12:41:13.031] INFO  [minoc_fix_Draver] [0x8C] game server = 127.0.0.1:2593  seed=0x6A287272
+[12:41:13.032] LOG   [minoc_fix_Draver] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x6A287272
+[12:41:13.032] INFO  [minoc_fix_Draver] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[12:41:13.032] LOG   [minoc_fix_Draver] event relay_same_socket: no seed re-sent; 0x91 follows
+[12:41:13.032] INFO  [minoc_fix_Draver] [0xB9] server features = 0x0005
+[12:41:13.032] INFO  [minoc_fix_Draver] [0xA9] 5 slot(s) (populated 1):
+[12:41:13.032] INFO  [minoc_fix_Draver]   [0] Draver
+[12:41:13.033] INFO  [minoc_fix_Draver]   [1] <empty>
+[12:41:13.033] INFO  [minoc_fix_Draver]   [2] <empty>
+[12:41:13.033] INFO  [minoc_fix_Draver]   [3] <empty>
+[12:41:13.033] INFO  [minoc_fix_Draver]   [4] <empty>
+[12:41:13.033] INFO  [minoc_fix_Draver] [ui] playing slot 0 ('Draver')
+[12:41:13.047] INFO  [minoc_fix_Draver] [0x1B] serial=0x00016DBB body=0x0191 pos=(1426,1581,30)
+[12:41:13.047] LOG   [minoc_fix_Draver] event login_confirm: serial=0x00016DBB body=0x0191 pos=(1426,1581,30)
+[12:41:13.047] INFO  [minoc_fix_Draver] [0x20] player @(1426,1581,30) facing=7
+[12:41:13.047] INFO  [minoc_fix_Draver] [0x55] login complete — entering world
+[12:41:13.048] LOG   [minoc_fix_Draver] event in_world: 0x55 received
+[12:41:13.048] INFO  [minoc_fix_Draver] [backpack] opening 0x40016DB8
+[12:41:13.048] INFO  [minoc_fix_Draver] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[12:41:13.048] INFO  [minoc_fix_Draver] [chat ascii] System: There is 1 other player here.
+[12:41:13.048] INFO  [minoc_fix_Draver] [chat ascii] System: Last logged: 2026/08/31 12:09:25
+[12:41:13.048] INFO  [minoc_fix_Draver] [chat ascii] System: You are under the protection of the city guards
+[12:41:13.052] INFO  [minoc_fix_Draver] [action] requesting the skill list
+[12:41:13.052] INFO  [life] in world; asked the server for the skill list
+[12:41:13.052] INFO  [minoc_fix_Draver] [0x24] open container 0x40016DB8 gump=60
+[12:41:13.052] INFO  [minoc_fix_Draver] [0x3C] container contents: 11 item(s)
+[12:41:13.053] LOG   [minoc_fix_Draver] event backpack_contents: serial=0x40016DB8 items=11
+[12:41:15.670] INFO  [minoc_fix_Draver] [bot] world data loaded (0 blacklisted spot(s)).
+[12:41:15.670] INFO  [life] reconciliation: resuming a life, 0 field(s) differed
+[12:41:15.670] INFO  [life]   gold         persisted=9874       server=9874       -> server value accepted
+[12:41:15.670] INFO  [life]   str          persisted=56         server=56         -> server value accepted
+[12:41:15.670] INFO  [life]   dex          persisted=16         server=16         -> server value accepted
+[12:41:15.670] INFO  [life]   int          persisted=8          server=8          -> server value accepted
+[12:41:15.670] INFO  [life]   skill_7      persisted=50.2       server=50.2       -> server value accepted
+[12:41:15.671] INFO  [life]   skill_45     persisted=50.0       server=50.0       -> server value accepted
+[12:41:15.671] INFO  [life]   skill_37     persisted=20.6       server=20.6       -> server value accepted
+[12:41:15.671] INFO  [life]   skill_4      persisted=0.0        server=0.0        -> server value accepted
+[12:41:15.671] INFO  [life]   position     persisted=1426,1581  server=1426,1581  -> server value accepted
+[12:41:15.671] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[12:41:15.671] INFO  [life]   restored objective KEPT: MINE (progress 0)
+[12:41:15.671] INFO  [minoc_fix_Draver] [survival] on
+[12:41:15.671] LOG   [minoc_fix_Draver] event survival_mode: on
+[12:41:15.674] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_01.draver/state.json
+[12:41:15.674] INFO  [minoc_fix_Draver] [survival] hp 56/56 (100%) -> fight
+[12:41:15.737] INFO  [life] mine: Minoc resident going to known Minoc Mine 1 at 2558,499 (trip 1)
+[12:41:15.738] INFO  [minoc_fix_Draver] [travel] Minoc Mine 1 -> (2558,499) r=2 from (1426,1581)
+[12:41:15.738] LOG   [minoc_fix_Draver] event travel_start: label='Minoc Mine 1' target=(2558,499) radius=2 from=(1426,1581)
+[12:41:15.738] INFO  [minoc_fix_Draver] [travel] mode moongate         usable   <- chosen
+[12:41:15.738] INFO  [minoc_fix_Draver] [travel] mode walk             usable
+[12:41:15.738] INFO  [minoc_fix_Draver] [travel] mode loose_rune_recall no: no rune marked at that destination
+[12:41:15.738] INFO  [minoc_fix_Draver] [travel] mode runebook_recall  no: no runebook page for that destination
+[12:41:15.739] LOG   [minoc_fix_Draver] event travel_mode: moongate
+[12:41:15.740] INFO  [minoc_fix_Draver] [travel] plan Minoc Mine 1: ok legs=43 ~1816 tiles transit=0 nodes=3155
+[12:41:15.800] INFO  [minoc_fix_Draver] [travel] avoiding 1 teleporter pad(s) on this leg
+[12:41:15.800] INFO  [minoc_fix_Draver] [action] goto (1464,1576) from (1426,1581,30)
+[12:41:15.800] LOG   [minoc_fix_Draver] event goto_start: target=(1464,1576) from=(1426,1581)
+[12:41:15.800] INFO  [minoc_fix_Draver] [bot] running from (1426,1581,30) to (1464,1576)
+[12:41:15.800] INFO  [minoc_fix_Draver] [bot] planning path to (1464,1576) in background
+[12:41:15.861] INFO  [minoc_fix_Draver] [bot] replan to (1464,1576): 49 steps in 3776.1us
+[12:41:16.365] INFO  [minoc_fix_Draver] [bot] door ahead at (1427,1583,z30); OpenDoor before step
+[12:41:16.366] INFO  [minoc_fix_Draver] [chat ascii] System: Opening door...
+[12:41:20.695] INFO  [minoc_fix_Draver] [survival] hp 56/56 (100%) -> fight
+[12:41:25.747] INFO  [minoc_fix_Draver] [survival] hp 56/56 (100%) -> fight
+[12:41:29.780] INFO  [minoc_fix_Draver] [bot] arrived at (1464,1576,29)
+[12:41:29.781] INFO  [minoc_fix_Draver] [action] goto finished at (1464,1576,29); target (1464,1576); ARRIVED (off by 0 tile(s))
+[12:41:29.781] LOG   [minoc_fix_Draver] event goto_done: at=(1464,1576) target=(1464,1576) arrived=1 off=0
+[12:41:29.781] INFO  [minoc_fix_Draver] [action] goto (1496,1576) from (1464,1576,29)
+[12:41:29.781] LOG   [minoc_fix_Draver] event goto_start: target=(1496,1576) from=(1464,1576)
+[12:41:29.781] INFO  [minoc_fix_Draver] [bot] running from (1464,1576,29) to (1496,1576)
+[12:41:29.781] INFO  [minoc_fix_Draver] [bot] planning path to (1496,1576) in background
+[12:41:29.826] INFO  [minoc_fix_Draver] [bot] replan to (1496,1576): 32 steps in 491.0us
+[12:41:30.759] INFO  [minoc_fix_Draver] [survival] hp 56/56 (100%) -> fight
+[12:41:35.766] INFO  [minoc_fix_Draver] [survival] hp 56/56 (100%) -> fight
+[12:41:37.447] INFO  [life] goal_changed=TRADE_WITH_PLAYER from=MINE reason="TRADE_WITH_PLAYER 79.8 superseded MINE 58.4"
+[12:41:37.448] INFO  [life] needs considered: NeedTrade(buy from a player 0.55) NeedSkillTraining(Tinkering 0.45) NeedOre(ore 0.45) NeedSupplies(buy craft inputs 0.44) NeedTravel(a place where work is possible 0.20)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=Tinkering (target 50.0)
+[12:41:37.448] INFO  [life]   score=79.8
+[12:41:37.448] INFO  [life]   reason: NeedTrade urgency 0.55 x 145 = 79.8
+[12:41:37.448] INFO  [life]   reason: 20 x i_log short
+[12:41:37.448] INFO  [life] market: the market is britain_bank_2 (Britain banker) at 1425,1690, radius 5, guarded
+[12:41:39.020] INFO  [minoc_fix_Draver] [bot] arrived at (1496,1576,30)
+[12:41:39.021] INFO  [minoc_fix_Draver] [action] goto finished at (1496,1576,30); target (1496,1576); ARRIVED (off by 0 tile(s))
+[12:41:39.021] LOG   [minoc_fix_Draver] event goto_done: at=(1496,1576) target=(1496,1576) arrived=1 off=0
+[12:41:39.022] INFO  [minoc_fix_Draver] [action] goto (1528,1544) from (1496,1576,30)
+[12:41:39.022] LOG   [minoc_fix_Draver] event goto_start: target=(1528,1544) from=(1496,1576)
+[12:41:39.022] INFO  [minoc_fix_Draver] [bot] running from (1496,1576,30) to (1528,1544)
+[12:41:39.022] INFO  [minoc_fix_Draver] [bot] planning path to (1528,1544) in background
+[12:41:39.083] INFO  [minoc_fix_Draver] [bot] replan to (1528,1544): 56 steps in 6322.9us
+[12:41:40.823] INFO  [minoc_fix_Draver] [survival] hp 56/56 (100%) -> fight
+[12:41:45.842] INFO  [minoc_fix_Draver] [survival] hp 56/56 (100%) -> fight
+[12:41:50.884] INFO  [minoc_fix_Draver] [survival] hp 56/56 (100%) -> fight
+[12:41:55.937] INFO  [minoc_fix_Draver] [survival] hp 56/56 (100%) -> fight
+[12:41:55.999] INFO  [minoc_fix_Draver] [bot] arrived at (1528,1544,25)
+[12:41:55.999] INFO  [minoc_fix_Draver] [action] goto finished at (1528,1544,25); target (1528,1544); ARRIVED (off by 0 tile(s))
+[12:41:55.999] LOG   [minoc_fix_Draver] event goto_done: at=(1528,1544) target=(1528,1544) arrived=1 off=0
+[12:41:55.999] INFO  [minoc_fix_Draver] [action] goto (1566,1524) from (1528,1544,25)
+[12:41:55.999] LOG   [minoc_fix_Draver] event goto_start: target=(1566,1524) from=(1528,1544)
+[12:41:56.000] INFO  [minoc_fix_Draver] [bot] running from (1528,1544,25) to (1566,1524)
+[12:41:56.000] INFO  [minoc_fix_Draver] [bot] planning path to (1566,1524) in background
+[12:41:56.059] INFO  [minoc_fix_Draver] [bot] replan to (1566,1524): 55 steps in 15338.5us
+[12:41:58.682] INFO  [minoc_fix_Draver] [chat ascii] System: World save in 10 seconds
+[12:42:00.985] INFO  [minoc_fix_Draver] [survival] hp 56/56 (100%) -> fight
+[12:42:06.011] INFO  [minoc_fix_Draver] [survival] hp 56/56 (100%) -> fight
+[12:42:08.698] INFO  [minoc_fix_Draver] [chat ascii] System: World save has been initiated.
+[12:42:11.027] INFO  [minoc_fix_Draver] [survival] hp 56/56 (100%) -> fight
+[12:42:11.743] INFO  [minoc_fix_Draver] [bot] arrived at (1566,1524,40)
+[12:42:11.743] INFO  [minoc_fix_Draver] [action] goto finished at (1566,1524,40); target (1566,1524); ARRIVED (off by 0 tile(s))
+[12:42:11.743] LOG   [minoc_fix_Draver] event goto_done: at=(1566,1524) target=(1566,1524) arrived=1 off=0
+[12:42:11.744] INFO  [minoc_fix_Draver] [action] goto (1582,1496) from (1566,1524,40)
+[12:42:11.744] LOG   [minoc_fix_Draver] event goto_start: target=(1582,1496) from=(1566,1524)
+[12:42:11.744] INFO  [minoc_fix_Draver] [bot] running from (1566,1524,40) to (1582,1496)
+[12:42:11.744] INFO  [minoc_fix_Draver] [bot] planning path to (1582,1496) in background
+[12:42:11.803] INFO  [minoc_fix_Draver] [bot] replan to (1582,1496): 28 steps in 6241.6us
+[12:42:15.665] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_01.draver/state.json
+[12:42:16.028] INFO  [minoc_fix_Draver] [survival] hp 56/56 (100%) -> fight
+[12:42:20.914] INFO  [minoc_fix_Draver] [bot] arrived at (1582,1496,35)
+[12:42:20.915] INFO  [minoc_fix_Draver] [action] goto finished at (1582,1496,35); target (1582,1496); ARRIVED (off by 0 tile(s))
+[12:42:20.915] LOG   [minoc_fix_Draver] event goto_done: at=(1582,1496) target=(1582,1496) arrived=1 off=0
+[12:42:20.915] INFO  [minoc_fix_Draver] [action] goto (1608,1464) from (1582,1496,35)
+[12:42:20.915] LOG   [minoc_fix_Draver] event goto_start: target=(1608,1464) from=(1582,1496)
+[12:42:20.915] INFO  [minoc_fix_Draver] [bot] running from (1582,1496,35) to (1608,1464)
+[12:42:20.915] INFO  [minoc_fix_Draver] [bot] planning path to (1608,1464) in background
+[12:42:20.975] INFO  [minoc_fix_Draver] [bot] replan to (1608,1464): 41 steps in 8546.1us
+[12:42:21.036] INFO  [minoc_fix_Draver] [survival] hp 56/56 (100%) -> fight
+[12:42:22.117] INFO  [minoc_fix_Draver] [chat ascii] System: You have left the protection of the city guards
+[12:42:26.066] INFO  [minoc_fix_Draver] [survival] hp 56/56 (100%) -> fight
+[12:42:31.095] INFO  [minoc_fix_Draver] [survival] hp 56/56 (100%) -> fight
+[12:42:33.165] INFO  [minoc_fix_Draver] [chat ascii] Subterranean Mongbat: *Subterranean Mongbat is attacking you!*
+[12:42:35.777] INFO  [minoc_fix_Draver] [bot] arrived at (1608,1464,13)
+[12:42:35.777] INFO  [minoc_fix_Draver] [action] goto finished at (1608,1464,13); target (1608,1464); ARRIVED (off by 0 tile(s))
+[12:42:35.777] LOG   [minoc_fix_Draver] event goto_done: at=(1608,1464) target=(1608,1464) arrived=1 off=0
+[12:42:35.778] INFO  [minoc_fix_Draver] [action] goto (1640,1432) from (1608,1464,13)
+[12:42:35.778] LOG   [minoc_fix_Draver] event goto_start: target=(1640,1432) from=(1608,1464)
+[12:42:35.778] INFO  [minoc_fix_Draver] [bot] running from (1608,1464,13) to (1640,1432)
+[12:42:35.778] INFO  [minoc_fix_Draver] [bot] planning path to (1640,1432) in background
+[12:42:35.837] INFO  [minoc_fix_Draver] [bot] replan to (1640,1432): 48 steps in 17445.7us
+[12:42:36.146] INFO  [minoc_fix_Draver] [survival] hp 56/56 (100%) -> fight
+[12:42:41.188] INFO  [minoc_fix_Draver] [survival] hp 56/56 (100%) -> fight
+[12:42:46.194] INFO  [minoc_fix_Draver] [survival] hp 56/56 (100%) -> fight
+[12:42:49.702] INFO  [minoc_fix_Draver] [bot] arrived at (1640,1432,0)
+[12:42:49.702] INFO  [minoc_fix_Draver] [action] goto finished at (1640,1432,0); target (1640,1432); ARRIVED (off by 0 tile(s))
+[12:42:49.703] LOG   [minoc_fix_Draver] event goto_done: at=(1640,1432) target=(1640,1432) arrived=1 off=0
+[12:42:49.703] INFO  [minoc_fix_Draver] [action] goto (1672,1400) from (1640,1432,0)
+[12:42:49.703] LOG   [minoc_fix_Draver] event goto_start: target=(1672,1400) from=(1640,1432)
+[12:42:49.703] INFO  [minoc_fix_Draver] [bot] running from (1640,1432,0) to (1672,1400)
+[12:42:49.703] INFO  [minoc_fix_Draver] [bot] planning path to (1672,1400) in background
+[12:42:49.795] INFO  [minoc_fix_Draver] [bot] replan to (1672,1400): 47 steps in 33528.9us
+[12:42:51.254] INFO  [minoc_fix_Draver] [survival] hp 56/56 (100%) -> fight
+[12:42:56.265] INFO  [minoc_fix_Draver] [survival] hp 56/56 (100%) -> fight
+[12:43:00.174] INFO  [minoc_fix_Draver] [chat ascii] Ettin: *Ettin is attacking you!*
+[12:43:01.286] INFO  [minoc_fix_Draver] [survival] hp 56/56 (100%) -> fight
+[12:43:04.760] INFO  [minoc_fix_Draver] [bot] arrived at (1672,1400,0)
+[12:43:04.761] INFO  [minoc_fix_Draver] [action] goto finished at (1672,1400,0); target (1672,1400); ARRIVED (off by 0 tile(s))
+[12:43:04.761] LOG   [minoc_fix_Draver] event goto_done: at=(1672,1400) target=(1672,1400) arrived=1 off=0
+[12:43:04.761] INFO  [minoc_fix_Draver] [action] goto (1704,1366) from (1672,1400,0)
+[12:43:04.761] LOG   [minoc_fix_Draver] event goto_start: target=(1704,1366) from=(1672,1400)
+[12:43:04.761] INFO  [minoc_fix_Draver] [bot] running from (1672,1400,0) to (1704,1366)
+[12:43:04.761] INFO  [minoc_fix_Draver] [bot] planning path to (1704,1366) in background
+[12:43:04.821] INFO  [minoc_fix_Draver] [bot] replan to (1704,1366): 45 steps in 20160.5us
+[12:43:06.344] INFO  [minoc_fix_Draver] [survival] hp 56/56 (100%) -> fight
+[12:43:11.368] INFO  [minoc_fix_Draver] [survival] hp 56/56 (100%) -> fight
+[12:43:15.698] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_01.draver/state.json
+[12:43:16.425] INFO  [minoc_fix_Draver] [survival] hp 56/56 (100%) -> fight
+[12:43:19.966] INFO  [minoc_fix_Draver] [bot] arrived at (1704,1366,0)
+[12:43:19.967] INFO  [minoc_fix_Draver] [action] goto finished at (1704,1366,0); target (1704,1366); ARRIVED (off by 0 tile(s))
+[12:43:19.967] LOG   [minoc_fix_Draver] event goto_done: at=(1704,1366) target=(1704,1366) arrived=1 off=0
+[12:43:19.968] INFO  [minoc_fix_Draver] [action] goto (1736,1336) from (1704,1366,0)
+[12:43:19.968] LOG   [minoc_fix_Draver] event goto_start: target=(1736,1336) from=(1704,1366)
+[12:43:19.968] INFO  [minoc_fix_Draver] [bot] running from (1704,1366,0) to (1736,1336)
+[12:43:19.968] INFO  [minoc_fix_Draver] [bot] planning path to (1736,1336) in background
+[12:43:20.024] INFO  [minoc_fix_Draver] [bot] replan to (1736,1336): 37 steps in 26548.9us
+[12:43:21.484] INFO  [minoc_fix_Draver] [survival] hp 56/56 (100%) -> fight
+[12:43:23.108] INFO  [minoc_fix_Draver] [chat ascii] dire wolf: *dire wolf is attacking you!*
+[12:43:23.509] INFO  [minoc_fix_Draver] [bot] lookahead patched around block at step 1: anchor=5 new segment=5 path=28 in 82.1us
+[12:43:26.493] INFO  [minoc_fix_Draver] [survival] hp 56/56 (100%) -> fight
+[12:43:31.546] INFO  [minoc_fix_Draver] [survival] hp 56/56 (100%) -> fight
+[12:43:32.480] INFO  [minoc_fix_Draver] [bot] arrived at (1736,1336,0)
+[12:43:32.480] INFO  [minoc_fix_Draver] [action] goto finished at (1736,1336,0); target (1736,1336); ARRIVED (off by 0 tile(s))
+[12:43:32.480] LOG   [minoc_fix_Draver] event goto_done: at=(1736,1336) target=(1736,1336) arrived=1 off=0
+[12:43:32.481] INFO  [minoc_fix_Draver] [action] goto (1768,1304) from (1736,1336,0)
+[12:43:32.481] LOG   [minoc_fix_Draver] event goto_start: target=(1768,1304) from=(1736,1336)
+[12:43:32.481] INFO  [minoc_fix_Draver] [bot] running from (1736,1336,0) to (1768,1304)
+[12:43:32.481] INFO  [minoc_fix_Draver] [bot] planning path to (1768,1304) in background
+[12:43:32.540] INFO  [minoc_fix_Draver] [bot] replan to (1768,1304): 46 steps in 23660.2us
+[12:43:33.503] INFO  [minoc_fix_Draver] [bot] lookahead patched around block at step 2: anchor=5 new segment=3 path=42 in 52.0us
+[12:43:34.821] INFO  [minoc_fix_Draver] [chat ascii] Subterranean Mongbat: *Subterranean Mongbat is attacking you!*
+[12:43:36.555] INFO  [minoc_fix_Draver] [survival] hp 56/56 (100%) -> fight
+[12:43:41.603] INFO  [minoc_fix_Draver] [survival] hp 56/56 (100%) -> fight
+[12:43:46.619] INFO  [minoc_fix_Draver] [survival] hp 56/56 (100%) -> fight
+[12:43:47.750] INFO  [minoc_fix_Draver] [bot] arrived at (1768,1304,0)
+[12:43:47.750] INFO  [minoc_fix_Draver] [action] goto finished at (1768,1304,0); target (1768,1304); ARRIVED (off by 0 tile(s))
+[12:43:47.750] LOG   [minoc_fix_Draver] event goto_done: at=(1768,1304) target=(1768,1304) arrived=1 off=0
+[12:43:47.751] INFO  [minoc_fix_Draver] [action] goto (1800,1270) from (1768,1304,0)
+[12:43:47.751] LOG   [minoc_fix_Draver] event goto_start: target=(1800,1270) from=(1768,1304)
+[12:43:47.751] INFO  [minoc_fix_Draver] [bot] running from (1768,1304,0) to (1800,1270)
+[12:43:47.751] INFO  [minoc_fix_Draver] [bot] planning path to (1800,1270) in background
+[12:43:47.780] INFO  [minoc_fix_Draver] [bot] replan to (1800,1270): 39 steps in 9526.0us
+[12:43:51.632] INFO  [minoc_fix_Draver] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=29 in 683.3us
+[12:43:51.632] INFO  [minoc_fix_Draver] [survival] hp 56/56 (100%) -> fight
+[12:43:52.796] INFO  [minoc_fix_Draver] [chat ascii] Subterranean Mongbat: *Subterranean Mongbat is attacking you!*
+[12:43:56.686] INFO  [minoc_fix_Draver] [survival] hp 56/56 (100%) -> fight
+[12:44:00.673] INFO  [minoc_fix_Draver] [bot] arrived at (1800,1270,0)
+[12:44:00.674] INFO  [minoc_fix_Draver] [action] goto finished at (1800,1270,0); target (1800,1270); ARRIVED (off by 0 tile(s))
+[12:44:00.674] LOG   [minoc_fix_Draver] event goto_done: at=(1800,1270) target=(1800,1270) arrived=1 off=0
+[12:44:00.674] INFO  [minoc_fix_Draver] [action] goto (1832,1240) from (1800,1270,0)
+[12:44:00.674] LOG   [minoc_fix_Draver] event goto_start: target=(1832,1240) from=(1800,1270)
+[12:44:00.675] INFO  [minoc_fix_Draver] [bot] running from (1800,1270,0) to (1832,1240)
+[12:44:00.675] INFO  [minoc_fix_Draver] [bot] planning path to (1832,1240) in background
+[12:44:00.703] INFO  [minoc_fix_Draver] [bot] replan to (1832,1240): 45 steps in 11673.5us
+[12:44:00.750] LOG   [minoc_fix_Draver] event threat: HP 56 -> 31
+[12:44:00.750] INFO  [minoc_fix_Draver] [action] goto finished at (1800,1270,0); target (1832,1240); stopped short (off by 62 tile(s))
+[12:44:00.751] LOG   [minoc_fix_Draver] event goto_done: at=(1800,1270) target=(1832,1240) arrived=0 off=62
+[12:44:00.751] INFO  [minoc_fix_Draver] [survival] hp 31/56 (55%) -> drink_potion
+[12:44:00.751] LOG   [minoc_fix_Draver] event survival_potion: 
+[12:44:00.751] INFO  [minoc_fix_Draver] [ACTION] use_object start
+[12:44:00.751] INFO  [minoc_fix_Draver] [ACTION] use_object serial=0x40016F0D
+[12:44:01.987] INFO  [minoc_fix_Draver] [action] goto (1832,1240) from (1800,1270,0)
+[12:44:01.988] LOG   [minoc_fix_Draver] event goto_start: target=(1832,1240) from=(1800,1270)
+[12:44:01.988] INFO  [minoc_fix_Draver] [bot] running from (1800,1270,0) to (1832,1240)
+[12:44:01.988] INFO  [minoc_fix_Draver] [bot] planning path to (1832,1240) in background
+[12:44:02.049] INFO  [minoc_fix_Draver] [bot] replan to (1832,1240): 45 steps in 10789.3us
+[12:44:02.771] INFO  [minoc_fix_Draver] [survival] hp 56/56 (100%) -> fight
+[12:44:04.158] INFO  [minoc_fix_Draver] [0x20] player @(1805,1275,0) facing=7
+[12:44:04.159] INFO  [minoc_fix_Draver] [action] goto finished at (1805,1275,0); target (1832,1240); stopped short (off by 62 tile(s))
+[12:44:04.159] LOG   [minoc_fix_Draver] event goto_done: at=(1805,1275) target=(1832,1240) arrived=0 off=62
+[12:44:04.807] LOG   [minoc_fix_Draver] event action_result: use_object timeout
+[12:44:05.371] INFO  [minoc_fix_Draver] [action] goto (1832,1240) from (1805,1275,0)
+[12:44:05.372] LOG   [minoc_fix_Draver] event goto_start: target=(1832,1240) from=(1805,1275)
+[12:44:05.372] INFO  [minoc_fix_Draver] [bot] running from (1805,1275,0) to (1832,1240)
+[12:44:05.372] INFO  [minoc_fix_Draver] [bot] planning path to (1832,1240) in background
+[12:44:05.433] INFO  [minoc_fix_Draver] [bot] replan to (1832,1240): 39 steps in 7555.9us
+[12:44:05.585] LOG   [minoc_fix_Draver] event threat: HP 56 -> 32
+[12:44:05.586] INFO  [minoc_fix_Draver] [action] goto finished at (1805,1275,0); target (1832,1240); stopped short (off by 62 tile(s))
+[12:44:05.586] LOG   [minoc_fix_Draver] event goto_done: at=(1805,1275) target=(1832,1240) arrived=0 off=62
+[12:44:05.586] INFO  [minoc_fix_Draver] [survival] hp 32/56 (57%) -> drink_potion
+[12:44:05.586] LOG   [minoc_fix_Draver] event survival_potion: 
+[12:44:05.586] INFO  [minoc_fix_Draver] [ACTION] use_object start
+[12:44:05.586] INFO  [minoc_fix_Draver] [ACTION] use_object serial=0x40016F0D
+[12:44:05.587] INFO  [minoc_fix_Draver] [chat ascii] System: You can't drink another potion yet
+[12:44:06.826] INFO  [minoc_fix_Draver] [travel] mode moongate         usable   <- chosen
+[12:44:06.826] INFO  [minoc_fix_Draver] [travel] mode walk             usable
+[12:44:06.827] INFO  [minoc_fix_Draver] [travel] mode loose_rune_recall no: no rune marked at that destination
+[12:44:06.827] INFO  [minoc_fix_Draver] [travel] mode runebook_recall  no: no runebook page for that destination
+[12:44:06.827] LOG   [minoc_fix_Draver] event travel_mode: moongate
+[12:44:06.828] INFO  [minoc_fix_Draver] [travel] plan Minoc Mine 1: ok legs=31 ~1280 tiles transit=0 nodes=1713
+[12:44:07.117] INFO  [minoc_fix_Draver] [0x20] player @(1805,1275,0) facing=7
+[12:44:07.593] LOG   [minoc_fix_Draver] event survival_potion: 
+[12:44:07.594] LOG   [minoc_fix_Draver] event action_result: use_object invalid_state took=2008ms superseded
+[12:44:07.594] INFO  [minoc_fix_Draver] [ACTION] use_object start
+[12:44:07.594] INFO  [minoc_fix_Draver] [ACTION] use_object serial=0x40016F0D
+[12:44:07.607] INFO  [minoc_fix_Draver] [chat ascii] System: You can't drink another potion yet
+[12:44:08.389] INFO  [minoc_fix_Draver] [action] goto (1816,1240) from (1805,1275,0)
+[12:44:08.389] LOG   [minoc_fix_Draver] event goto_start: target=(1816,1240) from=(1805,1275)
+[12:44:08.390] INFO  [minoc_fix_Draver] [bot] running from (1805,1275,0) to (1816,1240)
+[12:44:08.390] INFO  [minoc_fix_Draver] [bot] planning path to (1816,1240) in background
+[12:44:08.390] INFO  [minoc_fix_Draver] [chat ascii] Gargoyle: *Gargoyle is attacking you!*
+[12:44:08.434] INFO  [minoc_fix_Draver] [bot] replan to (1816,1240): 40 steps in 13616.2us
+[12:44:09.078] LOG   [minoc_fix_Draver] event threat: HP 32 -> 3
+[12:44:09.078] INFO  [minoc_fix_Draver] [action] goto finished at (1806,1275,0); target (1816,1240); stopped short (off by 45 tile(s))
+[12:44:09.078] LOG   [minoc_fix_Draver] event goto_done: at=(1806,1275) target=(1816,1240) arrived=0 off=45
+[12:44:09.613] LOG   [minoc_fix_Draver] event survival_potion: 
+[12:44:09.614] LOG   [minoc_fix_Draver] event action_result: use_object invalid_state took=2020ms superseded
+[12:44:09.614] INFO  [minoc_fix_Draver] [ACTION] use_object start
+[12:44:09.614] INFO  [minoc_fix_Draver] [ACTION] use_object serial=0x40016F0D
+[12:44:09.615] INFO  [minoc_fix_Draver] [chat ascii] System: You can't drink another potion yet
+[12:44:10.075] INFO  [minoc_fix_Draver] [0x20] player @(1806,1275,0) facing=6
+[12:44:10.167] INFO  [minoc_fix_Draver] [0x3C] container contents: 9 item(s)
+[12:44:10.168] INFO  [minoc_fix_Draver] [0x2C] resurrection menu action=0
+[12:44:10.168] LOG   [minoc_fix_Draver] event resurrect_menu: prompt
+[12:44:10.168] INFO  [minoc_fix_Draver] [STATE] dead (0x2C resurrect menu)
+[12:44:10.168] LOG   [minoc_fix_Draver] event state_dead: 0x2C received
+[12:44:10.168] LOG   [minoc_fix_Draver] event death_location: at=(1806,1275,0) region=a_britain_territory_1 via=0x2C resurrect menu
+[12:44:10.168] INFO  [minoc_fix_Draver] [travel] Minoc Mine 1 FAILED at (1806,1275,0) -- died
+[12:44:10.168] LOG   [minoc_fix_Draver] event travel_failed: label='Minoc Mine 1' ok=0 at=(1806,1275) legs=31 plans=2 why='died'
+[12:44:10.169] INFO  [minoc_fix_Draver] [0x6C] TARGET requested id=0x00000000 type=object subtype=3 gen=1
+[12:44:10.169] LOG   [minoc_fix_Draver] event target_requested: id=0x00000000 type=0 subtype=3 gen=1
+[12:44:10.169] INFO  [minoc_fix_Draver] [ACTION_RESULT] use_object success (555ms) server armed a target cursor
+[12:44:10.169] LOG   [minoc_fix_Draver] event action_result: use_object success took=555ms server armed a target cursor
+[12:44:10.169] INFO  [life] goal_changed=SURVIVE from=TRADE_WITH_PLAYER reason="SURVIVE 1000.0 superseded TRADE_WITH_PLAYER 0.0 (emergency preempt)"
+[12:44:10.169] INFO  [life] needs considered: StayAlive(resurrection 1.00)  | tools defined=2 held=[] want_train=Tinkering (target 50.0)
+[12:44:10.169] INFO  [life]   score=1000.0
+[12:44:10.169] INFO  [life]   reason: StayAlive urgency 1.00 x 1000 = 1000.0
+[12:44:10.169] INFO  [life]   reason: life=dead
+[12:44:10.170] INFO  [minoc_fix_Draver] [ACTION] resurrect start
+[12:44:10.170] INFO  [minoc_fix_Draver] [ACTION] resurrect: waiting for the server to raise us
+[12:44:10.170] INFO  [life] dead: walking to a healer (trip 1)
+[12:44:10.186] INFO  [minoc_fix_Draver] [travel] place: skipping Buccaneer's Den healer -- 1208 tiles and 1 gate for a service Britain healer offers
+[12:44:10.186] INFO  [minoc_fix_Draver] [travel] place: skipping Vesper healer -- 1360 tiles and 0 gates for a service Britain healer offers
+[12:44:10.186] INFO  [minoc_fix_Draver] [travel] place: skipping Deep Forest Healing healer -- 1664 tiles and 0 gates for a service Britain healer offers
+[12:44:10.186] INFO  [minoc_fix_Draver] [travel] place: skipping Skara Brae healer -- 1264 tiles and 1 gate for a service Britain healer offers
+[12:44:10.186] INFO  [minoc_fix_Draver] [travel] place: skipping Yew healer -- 1720 tiles and 0 gates for a service Britain healer offers
+[12:44:10.187] INFO  [minoc_fix_Draver] [travel] place: skipping Trinsic Healer healer -- 1448 tiles and 1 gate for a service Britain healer offers
+[12:44:10.187] INFO  [minoc_fix_Draver] [travel] place: skipping Ocllo healer -- 1472 tiles and 1 gate for a service Britain healer offers
+[12:44:10.187] INFO  [minoc_fix_Draver] [travel] place: skipping Magincia healer -- 1488 tiles and 1 gate for a service Britain healer offers
+[12:44:10.187] INFO  [minoc_fix_Draver] [travel] place: skipping Moonglow Healer healer -- 1560 tiles and 1 gate for a service Britain healer offers
+[12:44:10.187] INFO  [minoc_fix_Draver] [travel] place: skipping Delucia healer -- 2292 tiles and 3 gates for a service Britain healer offers
+[12:44:10.187] INFO  [minoc_fix_Draver] [travel] place: skipping Papua healerguildmaster -- 1600 tiles and 3 gates for a service Britain healer offers
+[12:44:10.187] INFO  [minoc_fix_Draver] [travel] Britain healer -> (1471,1611) r=5 from (1806,1275)
+[12:44:10.187] LOG   [minoc_fix_Draver] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1806,1275)
+[12:44:10.188] INFO  [minoc_fix_Draver] [travel] mode walk             usable   <- chosen
+[12:44:10.188] INFO  [minoc_fix_Draver] [travel] mode moongate         no: dead characters cannot use gates
+[12:44:10.188] INFO  [minoc_fix_Draver] [travel] mode loose_rune_recall no: no rune marked at that destination
+[12:44:10.188] INFO  [minoc_fix_Draver] [travel] mode runebook_recall  no: no runebook page for that destination
+[12:44:10.188] LOG   [minoc_fix_Draver] event travel_mode: walk
+[12:44:10.188] INFO  [minoc_fix_Draver] [travel] plan Britain healer: ok legs=11 ~528 tiles transit=0 nodes=411
+[12:44:10.188] INFO  [minoc_fix_Draver] [chat ascii] System: You are a ghost
+[12:44:10.188] INFO  [minoc_fix_Draver] [0x1B] serial=0x00016DBB body=0x0190 pos=(1806,1275,0)
+[12:44:10.189] LOG   [minoc_fix_Draver] event login_confirm: serial=0x00016DBB body=0x0190 pos=(1806,1275,0)
+[12:44:10.189] INFO  [minoc_fix_Draver] [STATE] alive (body 0x0190)
+[12:44:10.189] LOG   [minoc_fix_Draver] event state_resurrected: server body change
+[12:44:10.189] INFO  [minoc_fix_Draver] [ACTION_RESULT] resurrect success (20ms) character is alive again
+[12:44:10.189] LOG   [minoc_fix_Draver] event action_result: resurrect success took=20ms character is alive again
+[12:44:10.189] INFO  [minoc_fix_Draver] [0x20] player @(1806,1275,0) facing=6
+[12:44:10.189] LOG   [minoc_fix_Draver] event corpse_located: corpse=0x400140EA at=(1806,1275,0)
+[12:44:10.189] INFO  [minoc_fix_Draver] [0x3C] container contents: 9 item(s)
+[12:44:10.189] INFO  [minoc_fix_Draver] [0x55] login complete — entering world
+[12:44:10.190] LOG   [minoc_fix_Draver] event in_world: 0x55 received
+[12:44:10.190] INFO  [minoc_fix_Draver] [backpack] opening 0x40016DB8
+[12:44:10.190] INFO  [minoc_fix_Draver] [travel] Britain healer FAILED at (1806,1275,0) -- resurrected mid-journey
+[12:44:10.190] LOG   [minoc_fix_Draver] event travel_failed: label='Britain healer' ok=0 at=(1806,1275) legs=11 plans=1 why='resurrected mid-journey'
+[12:44:10.190] INFO  [minoc_fix_Draver] [chat ascii] System: Your ghostly hand passes through the object.
+[12:44:11.622] INFO  [minoc_fix_Draver] [survival] hp 0/56 (0%) -> flee
+[12:44:11.623] LOG   [minoc_fix_Draver] event survival_disengage: flee
+[12:44:11.623] INFO  [minoc_fix_Draver] [war] leaving war mode
+[12:44:13.138] INFO  [minoc_fix_Draver] [survival] hp 0/56 (0%) -> rest
+[12:44:15.225] INFO  [life] plan=disengage reason="this life does not fight for a living"
+[12:44:15.225] INFO  [life] interrupt=FLEE reason="HP 0%; 0 attacker(s); bail at 32%"
+[12:44:15.721] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_01.draver/state.json
+[12:44:17.262] INFO  [life] interrupt=FLEE reason="HP 0%; 0 attacker(s); bail at 32%"
+[12:44:19.148] INFO  [minoc_fix_Draver] [survival] hp 0/56 (0%) -> rest
+[12:44:19.300] INFO  [life] interrupt=FLEE reason="HP 0%; 0 attacker(s); bail at 32%"
+[12:44:21.355] INFO  [life] interrupt=FLEE reason="HP 0%; 0 attacker(s); bail at 32%"
+[12:44:23.372] INFO  [life] interrupt=FLEE reason="HP 0%; 0 attacker(s); bail at 32%"
+[12:44:23.435] INFO  [life] goal_changed=GET_TOOL from=SURVIVE reason="previous goal abandoned: attempts 5 >= 5"
+[12:44:23.435] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedTool(pickaxe 0.90) NeedTool(smith hammer 0.90) NeedEquipment(heal potions 0.50) NeedOre(ore 0.45) NeedSkillTraining(Tinkering 0.45) NeedSupplies(buy craft inputs 0.44) NeedEquipment(clothes 0.28) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20)  | tools defined=2 held=[] want_train=Tinkering (target 50.0)
+[12:44:23.435] INFO  [life]   score=468.0
+[12:44:23.436] INFO  [life]   reason: NeedTool urgency 0.90 x 520 = 468.0
+[12:44:23.436] INFO  [life]   reason: no known supplier of a pickaxe
+[12:44:23.436] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=0/56 bandages=0)
+[12:44:25.174] INFO  [minoc_fix_Draver] [survival] hp 0/56 (0%) -> rest
+[12:44:25.419] INFO  [life] plan=buy reason="none held, and it may be bought"
+[12:44:25.419] INFO  [life] GET_TOOL: 500 gold needed and 0 carried -- standing down so the bank goal can fetch it
+[12:44:25.481] INFO  [life] goal=BANK reason="previous goal abandoned: needs coin from the bank"
+[12:44:25.481] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedTool(pickaxe 0.90) NeedTool(smith hammer 0.90) NeedBank(withdraw for a purchase 0.80) NeedEquipment(heal potions 0.50) NeedOre(ore 0.45) NeedSkillTraining(Tinkering 0.45) NeedSupplies(buy craft inputs 0.44) NeedEquipment(clothes 0.28) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20)  | tools defined=2 held=[] want_train=Tinkering (target 50.0)
+[12:44:25.481] INFO  [life]   score=162.0
+[12:44:25.481] INFO  [life]   reason: NeedBank urgency 0.80 x 240 = 192.0
+[12:44:25.482] INFO  [life]   reason: wanted=500 on_hand=0 banked=8880
+[12:44:25.482] INFO  [life]   reason: no bank learned yet -30
+[12:44:25.482] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=0/56 bandages=0)
+[12:44:25.482] INFO  [life]   BLOCKED_NEED GET_TOOL: on cooldown for another 44s after achieving nothing
+[12:44:26.458] INFO  [life] bank: nothing proven yet -- trying what common knowledge says is here, Minoc banker at 2503,552
+[12:44:26.459] INFO  [minoc_fix_Draver] [travel] seeded_bank -> (2503,552) r=5 from (1806,1275)
+[12:44:26.459] LOG   [minoc_fix_Draver] event travel_start: label='seeded_bank' target=(2503,552) radius=5 from=(1806,1275)
+[12:44:26.459] INFO  [minoc_fix_Draver] [travel] mode moongate         usable   <- chosen
+[12:44:26.459] INFO  [minoc_fix_Draver] [travel] mode walk             usable
+[12:44:26.459] INFO  [minoc_fix_Draver] [travel] mode loose_rune_recall no: no rune marked at that destination
+[12:44:26.460] INFO  [minoc_fix_Draver] [travel] mode runebook_recall  no: no runebook page for that destination
+[12:44:26.460] LOG   [minoc_fix_Draver] event travel_mode: moongate
+[12:44:26.460] INFO  [minoc_fix_Draver] [travel] plan seeded_bank: ok legs=30 ~1240 tiles transit=0 nodes=1736
+[12:44:26.519] INFO  [minoc_fix_Draver] [action] goto (1832,1240) from (1806,1275,0)
+[12:44:26.519] LOG   [minoc_fix_Draver] event goto_start: target=(1832,1240) from=(1806,1275)
+[12:44:26.520] INFO  [minoc_fix_Draver] [bot] running from (1806,1275,0) to (1832,1240)
+[12:44:26.520] INFO  [minoc_fix_Draver] [bot] planning path to (1832,1240) in background
+[12:44:26.580] INFO  [minoc_fix_Draver] [bot] replan to (1832,1240): 38 steps in 7550.9us
+[12:44:31.232] INFO  [minoc_fix_Draver] [survival] hp 0/56 (0%) -> rest

@@ -1,0 +1,145 @@
+{
+  "bank": [],
+  "bank_seen_ms": 0,
+  "build_plan": {
+    "create_dex": 12,
+    "create_int": 48,
+    "create_skills": [
+      {
+        "skill": 25,
+        "tenths": 500
+      },
+      {
+        "skill": 46,
+        "tenths": 500
+      }
+    ],
+    "create_str": 20,
+    "family": "mage",
+    "skills": [
+      {
+        "skill": 25,
+        "tenths": 1000
+      },
+      {
+        "skill": 46,
+        "tenths": 1000
+      },
+      {
+        "skill": 16,
+        "tenths": 1000
+      }
+    ],
+    "target_dex": 25,
+    "target_int": 100,
+    "target_str": 25,
+    "unresolved_tenths": 4000
+  },
+  "checkpoint_ms": 1630297654,
+  "death_count": 0,
+  "goal": {
+    "active": true,
+    "attempts": 0,
+    "failure_reason": "",
+    "kind": "FILL_SPELLBOOK",
+    "progress": 2,
+    "started_at_ms": 1630154580
+  },
+  "home_city": "Moonglow",
+  "identity": {
+    "account_name": "RevGen3_22",
+    "character_name": "Aurelius",
+    "created_at_ms": 0,
+    "first_seen_at_ms": 1630053139,
+    "identity_id": "revgen3_22.aurelius",
+    "last_seen_at_ms": 1630053139,
+    "sessions": 1,
+    "total_play_time_ms": 247127
+  },
+  "last_death_ms": 0,
+  "last_server_report": {
+    "dead": false,
+    "dex": 12,
+    "gold": 9820,
+    "int": 48,
+    "skills": [
+      {
+        "skill": 25,
+        "tenths": 500
+      },
+      {
+        "skill": 46,
+        "tenths": 500
+      },
+      {
+        "skill": 16,
+        "tenths": 0
+      }
+    ],
+    "str": 20,
+    "x": 3611,
+    "y": 2470
+  },
+  "ledger": [],
+  "memory": {
+    "creatures": [],
+    "danger": [],
+    "events": [
+      {
+        "at_ms": 1630055249,
+        "detail": "no banker in sight",
+        "kind": "bank_no_answer",
+        "place": "",
+        "x": 4408,
+        "y": 1168
+      }
+    ],
+    "places": [
+      {
+        "kind": "healer",
+        "last_verified_ms": 1630230550,
+        "learned_ms": 1630091570,
+        "name": "Xanthe, the healer guildmistress",
+        "visits": 2719,
+        "x": 4394,
+        "y": 1085,
+        "z": 0
+      },
+      {
+        "kind": "safe",
+        "last_verified_ms": 1630297592,
+        "learned_ms": 1630297592,
+        "name": "logout point",
+        "visits": 1,
+        "x": 3611,
+        "y": 2470,
+        "z": 0
+      }
+    ],
+    "resources": [],
+    "suppliers": [],
+    "trainers": []
+  },
+  "prices": [],
+  "recent_deaths": 0,
+  "schema_version": 2,
+  "sessions": [
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 1630297654,
+      "goals_attempted": 4,
+      "goals_completed": 0,
+      "goals_failed": 0,
+      "gold_end": 9820,
+      "gold_start": 10000,
+      "logs_gathered": 0,
+      "places_learned": 2,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1000,
+      "skill_tenths_start": 1000,
+      "started_ms": 1630053139,
+      "suppliers_learned": 0
+    }
+  ]
+}

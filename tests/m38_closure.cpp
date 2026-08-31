@@ -406,17 +406,17 @@ void TestSupplierResolution() {
     Check(reg.Best(tools, 2460, 460, t0 + 10).usable,
           "a restock clears the invalidation");
 
-    // POLICY REFUSAL IS NOT IGNORANCE. Logs are WORLD_GATHERED, so an NPC
-    // selling them is refused -- but the observation is still recorded, and the
-    // reason must survive to the caller rather than being reported as "unknown".
+    // OBSERVED STOCK IS USABLE. Logs remain WorldGathered in the audit, but
+    // the purchase/sale split allows a bot to spend its own gold on an NPC's
+    // real offer; only the buy-back/faucet path remains restricted.
     Registry reg2;
     reg2.RecordVendorStock(0x1234, "a carpenter", 100, 100, 0,
                            "i_log", 50, 3, t0);
     Need logs{NeedKind::Item, "i_log", 1};
-    auto refused = reg2.Best(logs, 100, 100, t0);
-    Check(!refused.usable, "a policy-refused good is not usable");
-    Check(refused.why.find("policy") != std::string::npos,
-          "and the refusal says POLICY, not 'never seen'");
+    auto stocked = reg2.Best(logs, 100, 100, t0);
+    Check(stocked.usable, "an observed stocked good is usable for purchase");
+    Check(stocked.supplier.policyClass == econ::VendorClass::WorldGathered,
+          "the supplier retains the audit class for reporting");
     Check(reg2.Size() == 1, "the observation is still kept -- it is a world fact");
 
     // Quantity is checked against what was SEEN, not what a template promises.

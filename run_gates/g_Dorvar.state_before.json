@@ -1,6 +1,6 @@
 {
   "bank": [],
-  "bank_seen_ms": 0,
+  "bank_seen_ms": 1632562385,
   "build_plan": {
     "create_dex": 24,
     "create_int": 16,
@@ -31,15 +31,15 @@
     "target_str": 80,
     "unresolved_tenths": 5500
   },
-  "checkpoint_ms": 1630262963,
+  "checkpoint_ms": 1632705813,
   "death_count": 0,
   "goal": {
     "active": true,
-    "attempts": 1,
+    "attempts": 0,
     "failure_reason": "",
-    "kind": "REPLACE_EQUIPMENT",
+    "kind": "BUY_SUPPLIES",
     "progress": 0,
-    "started_at_ms": 1630043008
+    "started_at_ms": 1632510193
   },
   "home_city": "Skara Brae",
   "identity": {
@@ -48,15 +48,15 @@
     "created_at_ms": 0,
     "first_seen_at_ms": 1630040881,
     "identity_id": "revgen3_18.dorvar",
-    "last_seen_at_ms": 1630040881,
-    "sessions": 1,
-    "total_play_time_ms": 224660
+    "last_seen_at_ms": 1630764976,
+    "sessions": 2,
+    "total_play_time_ms": 2168117
   },
   "last_death_ms": 0,
   "last_server_report": {
     "dead": false,
     "dex": 24,
-    "gold": 10000,
+    "gold": 9880,
     "int": 16,
     "skills": [
       {
@@ -69,8 +69,8 @@
       }
     ],
     "str": 40,
-    "x": 591,
-    "y": 2149
+    "x": 3564,
+    "y": 2140
   },
   "ledger": [],
   "memory": {
@@ -92,6 +92,14 @@
         "place": "",
         "x": 618,
         "y": 2234
+      },
+      {
+        "at_ms": 1630887370,
+        "detail": "opened a bank box",
+        "kind": "bank_learned",
+        "place": "bank",
+        "x": 585,
+        "y": 2145
       }
     ],
     "places": [
@@ -162,6 +170,18 @@
         "x": 726,
         "y": 2236,
         "z": -3
+      },
+      {
+        "failures": 0,
+        "hinted": false,
+        "label": "",
+        "last_seen_ms": 1631284015,
+        "last_success_ms": 1631284015,
+        "resource": "fish",
+        "successes": 3,
+        "x": 3673,
+        "y": 2251,
+        "z": 20
       }
     ],
     "suppliers": [],
@@ -186,6 +206,23 @@
       "skill_tenths_end": 1000,
       "skill_tenths_start": 1000,
       "started_ms": 1630040881,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 1632705813,
+      "goals_attempted": 20,
+      "goals_completed": 2,
+      "goals_failed": 0,
+      "gold_end": 9880,
+      "gold_start": 10000,
+      "logs_gathered": 0,
+      "places_learned": 3,
+      "self_supersessions": 3,
+      "skill_tenths_end": 1000,
+      "skill_tenths_start": 1000,
+      "started_ms": 1630764976,
       "suppliers_learned": 0
     }
   ]

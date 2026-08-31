@@ -446,7 +446,7 @@ CraftIntent ChooseCraft(const prof::Profession& p, const Observation& obs,
         // nothing better exists.
         const bool buyable =
             !here.missing.empty() &&
-            econ::CanUseNPCVendorFor(here.missing.front().item).allowed;
+            econ::CanBuyFromNPC(here.missing.front().item).allowed;
         if (buyable) {
             if (!firstBuyable.item) firstBuyable = here;
         } else if (!firstWorkable.item) {

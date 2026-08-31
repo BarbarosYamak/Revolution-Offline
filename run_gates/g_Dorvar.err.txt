@@ -1,122 +1,216 @@
 start: Dorvar is a fisher and lives in Skara Brae -> starting city index 7
 map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
 map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
-[00:32:10.093] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:32:11.392] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:32:12.654] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:32:15.516] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:32:16.797] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:32:18.134] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:32:22.495] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:32:23.833] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:32:25.205] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:32:30.980] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:32:32.304] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:32:33.648] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:32:33.710] WARN  [g_Dorvar] [travel] route exhausted at (616,2184,0); trying to reach (600,2168,0) to get somewhere routable (escape 1/3)
-[00:32:41.970] WARN  [g_Dorvar] [travel] route exhausted at (600,2168,0); trying to reach (584,2152,0) to get somewhere routable (escape 2/3)
-[00:32:49.972] WARN  [g_Dorvar] [travel] route exhausted at (584,2152,0); trying to reach (568,2136,0) to get somewhere routable (escape 3/3)
-[00:32:59.631] WARN  [g_Dorvar] [bot] no path to (584,2144) avoiding 0 block(s); stopping (search 473120.4us)
-[00:32:59.631] WARN  [g_Dorvar] [bot] start (568,2136,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 280 item(s), 10 mobile(s))
-[00:33:01.497] WARN  [g_Dorvar] [bot] no path to (584,2144) avoiding 0 block(s); stopping (search 510615.6us)
-[00:33:01.497] WARN  [g_Dorvar] [bot] start (568,2136,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 280 item(s), 9 mobile(s))
-[00:33:03.333] WARN  [g_Dorvar] [bot] no path to (584,2144) avoiding 0 block(s); stopping (search 519978.0us)
-[00:33:03.333] WARN  [g_Dorvar] [bot] start (568,2136,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 280 item(s), 9 mobile(s))
-[00:33:06.766] WARN  [g_Dorvar] [bot] no path to (584,2144) avoiding 0 block(s); stopping (search 517909.7us)
-[00:33:06.766] WARN  [g_Dorvar] [bot] start (568,2136,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 280 item(s), 11 mobile(s))
-[00:33:08.525] WARN  [g_Dorvar] [bot] no path to (584,2144) avoiding 0 block(s); stopping (search 455010.9us)
-[00:33:08.525] WARN  [g_Dorvar] [bot] start (568,2136,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 280 item(s), 11 mobile(s))
-[00:33:10.327] WARN  [g_Dorvar] [bot] no path to (584,2144) avoiding 0 block(s); stopping (search 510069.7us)
-[00:33:10.327] WARN  [g_Dorvar] [bot] start (568,2136,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 280 item(s), 11 mobile(s))
-[00:33:15.167] WARN  [g_Dorvar] [bot] no path to (584,2144) avoiding 0 block(s); stopping (search 474834.6us)
-[00:33:15.167] WARN  [g_Dorvar] [bot] start (568,2136,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 280 item(s), 10 mobile(s))
-[00:33:16.915] WARN  [g_Dorvar] [bot] no path to (584,2144) avoiding 0 block(s); stopping (search 464765.3us)
-[00:33:16.915] WARN  [g_Dorvar] [bot] start (568,2136,0) exits: open=4 terrain=3 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 280 item(s), 10 mobile(s))
-[00:33:18.725] WARN  [g_Dorvar] [bot] no path to (584,2144) avoiding 0 block(s); stopping (search 476651.4us)
-[00:33:18.726] WARN  [g_Dorvar] [bot] start (568,2136,0) exits: open=4 terrain=3 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 280 item(s), 10 mobile(s))
-[00:33:25.108] WARN  [g_Dorvar] [bot] no path to (584,2144) avoiding 0 block(s); stopping (search 469114.7us)
-[00:33:25.108] WARN  [g_Dorvar] [bot] start (568,2136,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 280 item(s), 10 mobile(s))
-[00:33:26.877] WARN  [g_Dorvar] [bot] no path to (584,2144) avoiding 0 block(s); stopping (search 458632.5us)
-[00:33:26.877] WARN  [g_Dorvar] [bot] start (568,2136,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 280 item(s), 10 mobile(s))
-[00:33:28.645] WARN  [g_Dorvar] [bot] no path to (584,2144) avoiding 0 block(s); stopping (search 472987.6us)
-[00:33:28.645] WARN  [g_Dorvar] [bot] start (568,2136,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 280 item(s), 10 mobile(s))
-[00:33:28.707] WARN  [g_Dorvar] [travel] route exhausted at (568,2136,0); trying to reach (552,2120,0) to get somewhere routable (escape 1/3)
-[00:33:57.493] WARN  [g_Dorvar] [ACTION_RESULT] move_item server_failure (15ms) item 0x40019D24 landed in 0x40019D35, not the destination 0x40019D48
-[00:33:57.878] WARN  [g_Dorvar] [0x21] move REJECTED seq=87; server says (585,2144,0) facing=0
-[00:33:57.893] WARN  [g_Dorvar] [bot] 0x20 resync; aborting path
-[00:34:26.777] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:34:28.161] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:34:29.517] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:34:32.333] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:34:33.689] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:34:35.001] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:34:39.348] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:34:40.628] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:34:41.948] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:34:47.834] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:34:49.097] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:34:50.419] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:34:50.482] WARN  [g_Dorvar] [travel] route exhausted at (616,2184,0); trying to reach (600,2168,0) to get somewhere routable (escape 1/3)
-[00:34:59.293] WARN  [g_Dorvar] [travel] route exhausted at (600,2168,0); trying to reach (584,2152,0) to get somewhere routable (escape 2/3)
-[00:35:07.910] WARN  [g_Dorvar] [travel] route exhausted at (584,2152,0); trying to reach (568,2136,0) to get somewhere routable (escape 3/3)
-[00:35:49.571] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:35:50.952] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:35:52.305] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:35:55.175] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:35:56.486] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:35:57.861] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:36:02.192] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:36:03.485] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:36:04.765] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:36:10.673] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:36:11.964] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:36:13.287] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:36:13.318] WARN  [g_Dorvar] [travel] route exhausted at (616,2200,0); trying to reach (600,2184,0) to get somewhere routable (escape 1/3)
-[00:36:27.108] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:36:28.462] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:36:29.803] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:36:32.663] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:36:33.986] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:36:35.257] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:36:39.641] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:36:41.010] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:36:42.377] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:36:48.242] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:36:49.552] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:36:50.818] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; skipping A* and stopping
-[00:36:50.881] WARN  [g_Dorvar] [travel] route exhausted at (600,2184,0); trying to reach (600,2200,0) to get somewhere routable (escape 2/3)
-[00:36:51.498] WARN  [g_Dorvar] [bot] no path to (600,2200) avoiding 0 block(s); stopping (search 565484.9us)
-[00:36:51.498] WARN  [g_Dorvar] [bot] start (600,2184,0) exits: open=2 terrain=6 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 352 item(s), 9 mobile(s))
-[00:36:51.560] WARN  [g_Dorvar] [travel] route exhausted at (600,2184,0); trying to reach (600,2168,0) to get somewhere routable (escape 3/3)
-[00:37:18.168] WARN  [g_Dorvar] [bot] no path to (606,2182) avoiding 0 block(s); stopping (search 685489.9us)
-[00:37:18.168] WARN  [g_Dorvar] [bot] start (600,2168,0) exits: open=6 terrain=1 mobile=0 dynamic=1 door=0 blacklist=0 (overlay saw 352 item(s), 15 mobile(s))
-[00:37:19.983] WARN  [g_Dorvar] [bot] no path to (606,2182) avoiding 0 block(s); stopping (search 519673.6us)
-[00:37:19.983] WARN  [g_Dorvar] [bot] start (600,2168,0) exits: open=6 terrain=1 mobile=0 dynamic=1 door=0 blacklist=0 (overlay saw 352 item(s), 15 mobile(s))
-[00:37:39.590] WARN  [g_Dorvar] [ACTION_RESULT] use_object timeout (no server confirmation)
-[00:37:43.621] WARN  [g_Dorvar] [ACTION_RESULT] use_object timeout (no server confirmation)
-[00:37:47.711] WARN  [g_Dorvar] [ACTION_RESULT] use_object timeout (no server confirmation)
-[00:37:51.807] WARN  [g_Dorvar] [ACTION_RESULT] use_object timeout (no server confirmation)
-[00:37:55.874] WARN  [g_Dorvar] [ACTION_RESULT] use_object timeout (no server confirmation)
-[00:39:12.705] WARN  [g_Dorvar] [0x21] move REJECTED seq=44; server says (3623,2139,86) facing=1
-[00:39:13.430] WARN  [g_Dorvar] [0x21] move REJECTED seq=0; server says (3623,2139,86) facing=1
-[00:39:32.921] WARN  [g_Dorvar] [bot] 0x20 resync; aborting path
-[00:39:44.122] WARN  [g_Dorvar] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
-[00:39:54.247] WARN  [g_Dorvar] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
-[00:40:04.361] WARN  [g_Dorvar] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
-[00:40:42.022] WARN  [g_Dorvar] [bot] no path to (3666,2256) avoiding 0 block(s); stopping (search 891615.4us)
-[00:40:42.022] WARN  [g_Dorvar] [bot] start (3667,2257,20) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 425 item(s), 4 mobile(s))
-[00:40:54.256] WARN  [g_Dorvar] [action] use_item_on superseded by equip
-[00:40:54.256] WARN  [g_Dorvar] [ACTION_RESULT] use_item_on invalid_state (2021ms) superseded
-[00:41:45.972] WARN  [g_Dorvar] [0x21] move REJECTED seq=78; server says (3599,2169,34) facing=5
-[00:41:52.903] WARN  [g_Dorvar] [0x21] move REJECTED seq=11; server says (3593,2161,48) facing=7
-[00:41:53.670] WARN  [g_Dorvar] [0x21] move REJECTED seq=0; server says (3593,2161,48) facing=7
-[00:41:54.333] WARN  [g_Dorvar] [0x21] move REJECTED seq=1; server says (3593,2161,48) facing=0
-[00:41:55.069] WARN  [g_Dorvar] [0x21] move REJECTED seq=0; server says (3593,2161,48) facing=0
-[00:44:08.841] WARN  [g_Dorvar] [travel] route exhausted at (3564,2140,34); trying to reach (3576,2136,41) to get somewhere routable (escape 1/3)
-[00:46:21.888] WARN  [g_Dorvar] [travel] route exhausted at (3564,2140,34); trying to reach (3560,2152,27) to get somewhere routable (escape 2/3)
-[00:48:34.459] WARN  [g_Dorvar] [travel] route exhausted at (3564,2140,34); trying to reach (3576,2152,46) to get somewhere routable (escape 3/3)
-[00:52:51.627] WARN  [g_Dorvar] [travel] route exhausted at (3564,2140,34); trying to reach (3576,2136,41) to get somewhere routable (escape 1/3)
-[00:55:03.291] WARN  [g_Dorvar] [travel] route exhausted at (3564,2140,34); trying to reach (3560,2152,27) to get somewhere routable (escape 2/3)
-[00:57:15.839] WARN  [g_Dorvar] [travel] route exhausted at (3564,2140,34); trying to reach (3576,2152,46) to get somewhere routable (escape 3/3)
-[01:01:37.996] WARN  [g_Dorvar] [travel] route exhausted at (3564,2140,34); trying to reach (3576,2136,41) to get somewhere routable (escape 1/3)
-[01:03:50.945] WARN  [g_Dorvar] [travel] route exhausted at (3564,2140,34); trying to reach (3560,2152,27) to get somewhere routable (escape 2/3)
+[12:09:35.013] WARN  [g_Dorvar] [0x21] move REJECTED seq=27; server says (3581,2154,54) facing=3
+[12:09:48.324] WARN  [g_Dorvar] [0x21] move REJECTED seq=23; server says (3606,2169,35) facing=2
+[12:09:49.736] WARN  [g_Dorvar] [0x21] move REJECTED seq=3; server says (3606,2168,36) facing=3
+[12:09:50.439] WARN  [g_Dorvar] [0x21] move REJECTED seq=0; server says (3606,2168,36) facing=3
+[12:11:20.000] WARN  [g_Dorvar] [action] use_item_on superseded by equip
+[12:11:20.000] WARN  [g_Dorvar] [ACTION_RESULT] use_item_on invalid_state (2055ms) superseded
+[12:11:49.963] WARN  [g_Dorvar] [action] use_item_on superseded by equip
+[12:11:49.963] WARN  [g_Dorvar] [ACTION_RESULT] use_item_on invalid_state (2045ms) superseded
+[12:12:15.129] WARN  [g_Dorvar] [action] use_item_on superseded by equip
+[12:12:15.129] WARN  [g_Dorvar] [ACTION_RESULT] use_item_on invalid_state (2013ms) superseded
+[12:12:26.281] WARN  [g_Dorvar] [bot] 0x20 resync; aborting path
+[12:12:29.444] WARN  [g_Dorvar] [bot] no path to (3672,2289) avoiding 0 block(s); stopping (search 610630.4us)
+[12:12:29.444] WARN  [g_Dorvar] [bot] start (3671,2285,-2) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 12 item(s), 2 mobile(s))
+[12:14:15.161] WARN  [g_Dorvar] [action] use_item_on superseded by equip
+[12:14:15.161] WARN  [g_Dorvar] [ACTION_RESULT] use_item_on invalid_state (2008ms) superseded
+[12:14:35.883] WARN  [g_Dorvar] [action] use_item_on superseded by equip
+[12:14:35.883] WARN  [g_Dorvar] [ACTION_RESULT] use_item_on invalid_state (2037ms) superseded
+[12:15:11.303] WARN  [g_Dorvar] [action] use_item_on superseded by vendor_sell
+[12:15:11.303] WARN  [g_Dorvar] [ACTION_RESULT] use_item_on invalid_state (7775ms) superseded
+[12:15:48.696] WARN  [g_Dorvar] [action] use_item_on superseded by equip
+[12:15:48.696] WARN  [g_Dorvar] [ACTION_RESULT] use_item_on invalid_state (2059ms) superseded
+[12:16:09.544] WARN  [g_Dorvar] [action] use_item_on superseded by equip
+[12:16:09.545] WARN  [g_Dorvar] [ACTION_RESULT] use_item_on invalid_state (2035ms) superseded
+[12:16:20.649] WARN  [g_Dorvar] [ACTION_RESULT] vendor_sell timeout (no server confirmation)
+[12:16:48.885] WARN  [g_Dorvar] [action] use_item_on superseded by equip
+[12:16:48.885] WARN  [g_Dorvar] [ACTION_RESULT] use_item_on invalid_state (2025ms) superseded
+[12:17:10.034] WARN  [g_Dorvar] [action] use_item_on superseded by equip
+[12:17:10.034] WARN  [g_Dorvar] [ACTION_RESULT] use_item_on invalid_state (2003ms) superseded
+[12:18:06.210] WARN  [g_Dorvar] [action] use_item_on superseded by equip
+[12:18:06.210] WARN  [g_Dorvar] [ACTION_RESULT] use_item_on invalid_state (2039ms) superseded
+[12:18:43.984] WARN  [g_Dorvar] [action] use_item_on superseded by equip
+[12:18:43.984] WARN  [g_Dorvar] [ACTION_RESULT] use_item_on invalid_state (2018ms) superseded
+[12:19:04.623] WARN  [g_Dorvar] [action] use_item_on superseded by equip
+[12:19:04.623] WARN  [g_Dorvar] [ACTION_RESULT] use_item_on invalid_state (2045ms) superseded
+[12:20:08.058] WARN  [g_Dorvar] [action] use_item_on superseded by equip
+[12:20:08.058] WARN  [g_Dorvar] [ACTION_RESULT] use_item_on invalid_state (2044ms) superseded
+[12:20:29.839] WARN  [g_Dorvar] [action] use_item_on superseded by equip
+[12:20:29.839] WARN  [g_Dorvar] [ACTION_RESULT] use_item_on invalid_state (2042ms) superseded
+[12:21:00.243] WARN  [g_Dorvar] [action] use_item_on superseded by equip
+[12:21:00.243] WARN  [g_Dorvar] [ACTION_RESULT] use_item_on invalid_state (2053ms) superseded
+[12:21:30.029] WARN  [g_Dorvar] [action] use_item_on superseded by equip
+[12:21:30.029] WARN  [g_Dorvar] [ACTION_RESULT] use_item_on invalid_state (2028ms) superseded
+[12:21:50.851] WARN  [g_Dorvar] [action] use_item_on superseded by equip
+[12:21:50.851] WARN  [g_Dorvar] [ACTION_RESULT] use_item_on invalid_state (2032ms) superseded
+[12:22:13.180] WARN  [g_Dorvar] [action] use_item_on superseded by equip
+[12:22:13.180] WARN  [g_Dorvar] [ACTION_RESULT] use_item_on invalid_state (2060ms) superseded
+[12:22:33.965] WARN  [g_Dorvar] [action] use_item_on superseded by equip
+[12:22:33.965] WARN  [g_Dorvar] [ACTION_RESULT] use_item_on invalid_state (2004ms) superseded
+[12:22:46.732] WARN  [g_Dorvar] [action] use_item_on superseded by equip
+[12:22:46.732] WARN  [g_Dorvar] [ACTION_RESULT] use_item_on invalid_state (2057ms) superseded
+[12:24:02.249] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:24:03.611] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:24:04.961] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:24:07.849] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:24:09.147] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:24:10.435] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:24:14.723] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:24:16.091] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:24:17.425] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:24:23.289] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:24:24.671] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:24:26.017] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:24:26.078] WARN  [g_Dorvar] [travel] route exhausted at (3674,2289,-2); trying to reach (3672,2280,-2) to get somewhere routable (escape 1/3)
+[12:24:29.583] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:24:30.865] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:24:32.141] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:24:35.025] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:24:36.359] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:24:37.740] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:24:42.096] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:24:43.424] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:24:44.767] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:24:50.620] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:24:51.976] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:24:53.352] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:24:53.413] WARN  [g_Dorvar] [travel] route exhausted at (3672,2280,-2); trying to reach (3672,2264,21) to get somewhere routable (escape 2/3)
+[12:24:58.184] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:24:59.474] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:25:00.809] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:25:03.588] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:25:04.866] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:25:06.182] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:25:10.490] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:25:11.796] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:25:13.121] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:25:18.988] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:25:20.360] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:25:21.679] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:25:21.740] WARN  [g_Dorvar] [travel] route exhausted at (3672,2264,21); trying to reach (3658,2256,20) to get somewhere routable (escape 3/3)
+[12:25:32.879] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:25:34.259] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:25:35.563] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:25:38.360] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:25:39.590] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:25:40.882] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:25:45.241] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:25:46.535] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:25:47.840] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:25:53.630] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:25:54.922] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:25:56.210] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:26:14.346] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:26:15.652] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:26:16.938] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:26:19.752] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:26:21.108] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:26:22.404] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:26:26.754] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:26:28.120] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:26:29.384] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:26:35.239] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:26:36.617] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:26:37.974] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:26:38.035] WARN  [g_Dorvar] [travel] route exhausted at (3674,2289,-2); trying to reach (3672,2280,-2) to get somewhere routable (escape 1/3)
+[12:26:41.675] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:26:42.953] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:26:44.327] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:26:47.221] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:26:48.584] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:26:49.869] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:26:54.262] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:26:55.629] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:26:56.899] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:27:02.791] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:27:04.053] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:27:05.380] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:27:05.441] WARN  [g_Dorvar] [travel] route exhausted at (3672,2280,-2); trying to reach (3672,2264,21) to get somewhere routable (escape 2/3)
+[12:27:10.153] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:27:11.452] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:27:12.747] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:27:15.542] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:27:16.866] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:27:18.186] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:27:22.533] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:27:23.796] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:27:25.114] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:27:30.971] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:27:32.262] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:27:33.560] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:27:33.622] WARN  [g_Dorvar] [travel] route exhausted at (3672,2264,21); trying to reach (3658,2256,20) to get somewhere routable (escape 3/3)
+[12:27:44.539] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:27:45.890] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:27:47.207] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:27:50.062] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:27:51.314] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:27:52.602] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:27:57.002] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:27:58.270] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:27:59.616] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:28:05.429] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:28:06.738] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:28:08.085] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:28:25.307] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:28:26.602] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:28:27.949] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:28:30.818] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:28:32.170] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:28:33.453] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:28:37.831] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:28:39.151] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:28:40.445] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:28:46.310] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:28:47.586] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:28:48.916] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:28:48.978] WARN  [g_Dorvar] [travel] route exhausted at (3674,2289,-2); trying to reach (3672,2280,-2) to get somewhere routable (escape 1/3)
+[12:28:52.489] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:28:53.774] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:28:55.124] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:28:57.955] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:28:59.306] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:29:00.614] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:29:04.911] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:29:06.184] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:29:07.492] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:29:13.278] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:29:14.606] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:29:15.904] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:29:15.966] WARN  [g_Dorvar] [travel] route exhausted at (3672,2280,-2); trying to reach (3672,2264,21) to get somewhere routable (escape 2/3)
+[12:29:20.602] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:29:21.940] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:29:23.290] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:29:26.183] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:29:27.487] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:29:28.809] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:29:33.209] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:29:34.569] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:29:35.911] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:29:41.722] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:29:43.061] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:29:44.382] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:29:44.442] WARN  [g_Dorvar] [travel] route exhausted at (3672,2264,21); trying to reach (3658,2256,20) to get somewhere routable (escape 3/3)
+[12:29:55.302] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:29:56.575] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:29:57.950] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:30:00.766] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:30:02.117] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:30:03.442] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:30:07.757] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:30:09.066] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:30:10.329] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:30:16.147] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:30:17.495] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:30:18.806] WARN  [g_Dorvar] [bot] goal (3657,2278) is not walkable; skipping A* and stopping
+[12:31:02.648] WARN  [g_Dorvar] [bot] no path to (3726,2226) avoiding 0 block(s); stopping (search 561658.1us)
+[12:31:02.649] WARN  [g_Dorvar] [bot] start (3727,2224,20) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 18 item(s), 5 mobile(s))
+[12:31:23.165] WARN  [g_Dorvar] [ACTION_RESULT] vendor_sell timeout (no server confirmation)
+[12:32:38.934] WARN  [g_Dorvar] [0x21] move REJECTED seq=78; server says (3599,2169,34) facing=5
+[12:32:45.815] WARN  [g_Dorvar] [0x21] move REJECTED seq=11; server says (3593,2161,48) facing=7
+[12:32:46.548] WARN  [g_Dorvar] [0x21] move REJECTED seq=0; server says (3593,2161,48) facing=7
+[12:32:47.258] WARN  [g_Dorvar] [0x21] move REJECTED seq=1; server says (3593,2161,48) facing=0
+[12:32:48.014] WARN  [g_Dorvar] [0x21] move REJECTED seq=0; server says (3593,2161,48) facing=0
+[12:35:01.882] WARN  [g_Dorvar] [travel] route exhausted at (3564,2140,34); trying to reach (3576,2136,41) to get somewhere routable (escape 1/3)
+[12:37:15.318] WARN  [g_Dorvar] [travel] route exhausted at (3564,2140,34); trying to reach (3560,2152,27) to get somewhere routable (escape 2/3)

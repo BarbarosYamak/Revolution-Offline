@@ -1,0 +1,192 @@
+start: Hector is a fencer and lives in Trinsic -> starting city index 4
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+[12:09:39.368] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:09:40.719] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:09:42.037] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:09:44.854] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:09:46.232] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:09:47.522] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:09:51.835] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:09:53.145] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:09:54.503] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:10:00.420] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:10:01.783] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:10:03.127] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:10:03.188] WARN  [g_Hector] [travel] route exhausted at (1848,2840,10); trying to reach (1832,2824,0) to get somewhere routable (escape 1/3)
+[12:10:12.009] WARN  [g_Hector] [travel] route exhausted at (1832,2824,0); trying to reach (1816,2808,0) to get somewhere routable (escape 2/3)
+[12:10:18.650] WARN  [g_Hector] [travel] route exhausted at (1816,2808,0); trying to reach (1816,2822,0) to get somewhere routable (escape 3/3)
+[12:10:35.115] WARN  [g_Hector] [ACTION_RESULT] move_item server_failure (16ms) item 0x40018308 landed in 0x40018316, not the destination 0x40018437
+[12:11:09.553] WARN  [g_Hector] [bot] 0x20 resync; aborting path
+[12:11:13.959] WARN  [g_Hector] [bot] no path to (1907,2802) avoiding 0 block(s); stopping (search 1255118.6us)
+[12:11:13.959] WARN  [g_Hector] [bot] start (1915,2810,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 293 item(s), 4 mobile(s))
+[12:11:16.549] WARN  [g_Hector] [bot] no path to (1907,2802) avoiding 0 block(s); stopping (search 1268916.6us)
+[12:11:16.549] WARN  [g_Hector] [bot] start (1915,2810,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 293 item(s), 4 mobile(s))
+[12:11:19.110] WARN  [g_Hector] [bot] no path to (1907,2802) avoiding 0 block(s); stopping (search 1277931.8us)
+[12:11:19.110] WARN  [g_Hector] [bot] start (1915,2810,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 293 item(s), 5 mobile(s))
+[12:11:23.225] WARN  [g_Hector] [bot] no path to (1907,2802) avoiding 0 block(s); stopping (search 1220566.6us)
+[12:11:23.225] WARN  [g_Hector] [bot] start (1915,2810,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 293 item(s), 3 mobile(s))
+[12:11:25.842] WARN  [g_Hector] [bot] no path to (1907,2802) avoiding 0 block(s); stopping (search 1247454.7us)
+[12:11:25.842] WARN  [g_Hector] [bot] start (1915,2810,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 293 item(s), 3 mobile(s))
+[12:11:28.366] WARN  [g_Hector] [bot] no path to (1907,2802) avoiding 0 block(s); stopping (search 1232395.0us)
+[12:11:28.366] WARN  [g_Hector] [bot] start (1915,2810,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 293 item(s), 3 mobile(s))
+[12:11:33.926] WARN  [g_Hector] [bot] no path to (1907,2802) avoiding 0 block(s); stopping (search 1214557.5us)
+[12:11:33.926] WARN  [g_Hector] [bot] start (1915,2810,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 293 item(s), 4 mobile(s))
+[12:11:36.509] WARN  [g_Hector] [bot] no path to (1907,2802) avoiding 0 block(s); stopping (search 1232400.9us)
+[12:11:36.509] WARN  [g_Hector] [bot] start (1915,2810,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 293 item(s), 3 mobile(s))
+[12:11:43.585] WARN  [g_Hector] [bot] no path to (1907,2802) avoiding 0 block(s); stopping (search 1254482.9us)
+[12:11:43.585] WARN  [g_Hector] [bot] start (1915,2810,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 293 item(s), 4 mobile(s))
+[12:11:46.140] WARN  [g_Hector] [bot] no path to (1907,2802) avoiding 0 block(s); stopping (search 1245217.4us)
+[12:11:46.140] WARN  [g_Hector] [bot] start (1915,2810,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 293 item(s), 4 mobile(s))
+[12:11:48.690] WARN  [g_Hector] [bot] no path to (1907,2802) avoiding 0 block(s); stopping (search 1244909.7us)
+[12:11:48.690] WARN  [g_Hector] [bot] start (1915,2810,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 293 item(s), 4 mobile(s))
+[12:11:48.751] WARN  [g_Hector] [travel] route exhausted at (1915,2810,0); trying to reach (1928,2808,0) to get somewhere routable (escape 1/3)
+[12:12:19.924] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:12:21.289] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:12:22.566] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:12:25.377] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:12:26.663] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:12:27.941] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:12:32.234] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:12:33.507] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:12:34.872] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:12:40.746] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:12:42.078] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:12:43.425] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:12:43.486] WARN  [g_Hector] [travel] route exhausted at (1907,2802,0); trying to reach (1896,2808,0) to get somewhere routable (escape 1/3)
+[12:12:57.093] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:12:58.439] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:12:59.799] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:13:02.546] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:13:03.839] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:13:05.124] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:13:09.447] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:13:10.791] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:13:12.113] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:13:17.912] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:13:19.247] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:13:20.594] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:13:20.655] WARN  [g_Hector] [travel] route exhausted at (1896,2808,0); trying to reach (1896,2824,6) to get somewhere routable (escape 2/3)
+[12:13:35.180] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:13:36.495] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:13:37.765] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:13:40.607] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:13:41.927] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:13:43.226] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:13:47.575] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:13:48.892] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:13:50.191] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:13:55.996] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:13:57.278] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:13:58.609] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:13:58.670] WARN  [g_Hector] [travel] route exhausted at (1896,2824,6); trying to reach (1880,2808,10) to get somewhere routable (escape 3/3)
+[12:14:05.528] WARN  [g_Hector] [bot] 0x20 resync; aborting path
+[12:14:08.661] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:14:09.978] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:14:11.268] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:14:14.070] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:14:15.364] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:14:16.653] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:14:20.990] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:14:22.370] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:14:23.631] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:14:29.444] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:14:30.793] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:14:32.033] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:14:32.095] WARN  [g_Hector] [travel] route exhausted at (1883,2807,10); trying to reach (1896,2808,0) to get somewhere routable (escape 1/3)
+[12:29:00.829] WARN  [g_Hector] [0x21] move REJECTED seq=72; server says (1885,2812,10) facing=6
+[12:29:01.367] WARN  [g_Hector] [0x21] move REJECTED seq=0; server says (1885,2812,10) facing=6
+[12:31:38.185] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:31:39.481] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:31:40.769] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:31:43.658] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:31:44.959] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:31:46.231] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:31:50.539] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:31:51.870] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:31:53.160] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:31:58.931] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:32:00.202] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:32:01.554] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:32:01.614] WARN  [g_Hector] [travel] route exhausted at (1896,2808,0); trying to reach (1896,2824,6) to get somewhere routable (escape 2/3)
+[12:32:15.826] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:32:17.121] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:32:18.393] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:32:21.264] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:32:22.576] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:32:23.947] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:32:28.385] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:32:29.655] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:32:30.966] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:32:36.767] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:32:38.062] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:32:39.363] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:32:39.425] WARN  [g_Hector] [travel] route exhausted at (1896,2824,6); trying to reach (1880,2808,10) to get somewhere routable (escape 3/3)
+[12:32:47.828] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:32:49.126] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:32:50.476] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:32:53.372] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:32:54.670] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:32:55.968] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:33:00.279] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:33:01.628] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:33:02.917] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:33:08.752] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:33:10.062] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:33:11.366] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:33:30.626] WARN  [g_Hector] [bot] no path to (1907,2803) avoiding 0 block(s); stopping (search 3631408.8us)
+[12:33:30.626] WARN  [g_Hector] [bot] start (1911,2805,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 335 item(s), 3 mobile(s))
+[12:33:34.859] WARN  [g_Hector] [bot] no path to (1907,2803) avoiding 0 block(s); stopping (search 2917682.8us)
+[12:33:34.859] WARN  [g_Hector] [bot] start (1911,2805,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 335 item(s), 3 mobile(s))
+[12:33:50.403] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:33:51.729] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:33:53.011] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:33:55.913] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:33:57.234] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:33:58.518] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:34:02.886] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:34:04.188] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:34:05.489] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:34:11.311] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:34:12.588] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:34:13.900] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:34:13.962] WARN  [g_Hector] [travel] route exhausted at (1907,2803,0); trying to reach (1896,2808,0) to get somewhere routable (escape 1/3)
+[12:34:26.461] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:34:27.789] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:34:29.066] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:34:31.865] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:34:33.142] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:34:34.525] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:34:38.884] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:34:40.223] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:34:41.528] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:34:47.349] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:34:48.702] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:34:50.041] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:34:50.041] WARN  [g_Hector] [travel] route exhausted at (1896,2808,0); trying to reach (1896,2824,6) to get somewhere routable (escape 2/3)
+[12:35:04.390] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:35:05.689] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:35:07.029] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:35:09.919] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:35:11.244] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:35:12.538] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:35:16.883] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:35:18.172] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:35:19.465] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:35:25.352] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:35:26.641] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:35:27.929] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:35:27.991] WARN  [g_Hector] [travel] route exhausted at (1896,2824,6); trying to reach (1880,2808,10) to get somewhere routable (escape 3/3)
+[12:35:36.333] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:35:37.624] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:35:38.950] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:35:41.778] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:35:43.071] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:35:44.420] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:35:48.784] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:35:50.138] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:35:51.425] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:35:57.340] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:35:58.695] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:35:59.988] WARN  [g_Hector] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[12:36:00.050] WARN  [g_Hector] [travel] route exhausted at (1880,2808,10); trying to reach (1864,2792,0) to get somewhere routable (escape 1/3)

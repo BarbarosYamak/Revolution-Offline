@@ -91,6 +91,9 @@ set(UO_CLIENT_SOURCES
     # Pure function over an identity string; see tests/appearance.cpp.
     src/life/Appearance.cpp
     src/life/Memory.cpp
+    # One-time, atlas-scoped knowledge a freshly-created character begins
+    # with. This stays Client-free, but Runner invokes it during bootstrap.
+    src/life/NewbieKnowledge.cpp
     src/life/Needs.cpp
     src/life/Goals.cpp
     src/life/State.cpp
