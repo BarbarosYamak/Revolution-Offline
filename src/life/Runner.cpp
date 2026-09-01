@@ -745,6 +745,12 @@ constexpr i32 kCreateFoodMana  = 4;
 // skills/skill<N>_<name>.scp, not on our own label.
 const char* SkillKey(int id) {
     switch (id) {
+        // Keep these exact runtime KEY values in sync with
+        // runtime/scripts/skills/skill<N>_<name>.scp.  A missing row is not a
+        // harmless label issue: it turns "<name> train Parrying" into the
+        // generic "<name> train", which merely prints the trainer's list and
+        // never produces a price or a lesson.
+        case rules::kParrying:        return "Parrying";
         case rules::kLumberjacking:   return "Lumberjacking";
         case rules::kFishing:         return "Fishing";
         case rules::kCooking:         return "Cooking";
@@ -765,6 +771,8 @@ const char* SkillKey(int id) {
         case rules::kTaming:          return "Taming";
         case rules::kAnimalLore:      return "AnimalLore";
         case rules::kVeterinary:      return "Veterinary";
+        case rules::kTailoring:       return "Tailoring";
+        case rules::kCartography:     return "Cartography";
         default:                      return "";
     }
 }
@@ -1371,7 +1379,11 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
     obs.attackersOnMe = obs.underAttack ? std::max(1, adjacent) : 0;
 
     const travel::DeathRecord& death = client.Knowledge().LastDeath();
-    obs.corpseKnown = death.valid && death.corpseSerial != 0;
+    // The death location is enough to begin a recovery run.  The corpse serial
+    // is a transient world-object id and is normally learned only after we
+    // return to the death tile, so requiring it here made a logout turn every
+    // real corpse into "nowhere to go back to".
+    obs.corpseKnown = death.valid;
     obs.corpseX = death.x;
     obs.corpseY = death.y;
     obs.corpseRecoveryAttempts = death.recoveryAttempts;
@@ -1954,7 +1966,27 @@ void Runner::Tick(Client& client, i64 nowMs) {
         }
 
         case Phase::Reconcile: {
-            const Observation obs = Observe(client, nowMs);
+            Observation obs = Observe(client, nowMs);
+            // Rehydrate a pending corpse run after a reconnect.  Object
+            // serials are deliberately not persisted, but the recorded death
+            // tile is sufficient to travel back and discover the current
+            // corpse object there.
+            // A reconnect may happen after resurrection but before the corpse
+            // run.  The fresh client has no session-local DeathRecord in that
+            // case, yet the durable corpse_pending event is still authoritative.
+            if (!client.Knowledge().LastDeath().valid) {
+                for (auto it = state_.memory.Events().rbegin();
+                     it != state_.memory.Events().rend(); ++it) {
+                    if (it->kind == "corpse_recovered" || it->kind == "corpse_abandoned")
+                        break;
+                    if (it->kind == "corpse_pending") {
+                        client.Knowledge().NoteDeath(it->x, it->y, 0, "", nowMs);
+                        obs = Observe(client, nowMs);
+                        LogLine("corpse run: restored pending death at %d,%d", it->x, it->y);
+                        break;
+                    }
+                }
+            }
             SeedNewbieKnowledge(client, nowMs);
             const ReconcileReport rep = Reconcile(&state_, obs);
 
@@ -2700,6 +2732,12 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
         // that the graveyard is dangerous -- which it already knew.
         if (!deathBlamed_) {
             deathBlamed_ = true;
+            // A live corpse serial cannot survive a reconnect, but this
+            // location can.  Save it immediately: dying must not make loot
+            // recovery depend on keeping the original client process alive.
+            state_.memory.NoteEvent("corpse_pending", "recover after resurrection", "",
+                                    obs.x, obs.y, obs.nowMs);
+            Checkpoint(client, obs.nowMs, "death location recorded");
             if (!currentFoeName_.empty()) {
                 LogLine("dead: blaming '%s' -- it is what we were fighting",
                         currentFoeName_.c_str());
@@ -2709,18 +2747,31 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
             }
         }
 
-        // A player walks to a healer. So does this.
+        // A player walks to a healer. So does this.  A resurrection reply is
+        // valid only after the healer has offered it; sending one while still
+        // travelling creates a busy action and strands the ghost in place.
+        if (travelInFlight_ && !client.TravelBusy()) {
+            travelInFlight_ = false;
+            LogLine("dead: arrived at healer destination -- scanning nearby healers");
+            client.ActionScanMobiles();
+            nextActionMs_ = obs.nowMs + 2000;
+            return false;
+        }
         if (client.ActionBusy()) return false;
-        client.ActionResurrectAccept();
 
         const u32 healer = client.NearestMobileWithTrade("healer");
         if (healer) {
             i32 hx = 0, hy = 0; i8 hz = 0;
+            // Healers commonly stand behind a counter or in a small room.
+            // The interaction range is wider than adjacency, so path to an
+            // accessible tile in that range instead of attempting to occupy
+            // the NPC's sealed tile through the wall.
+            constexpr i32 kHealerReach = 4;
             if (client.MobilePosition(healer, &hx, &hy, &hz) &&
-                TileDist(obs.x, obs.y, hx, hy) > 1 && !client.TravelBusy()) {
+                TileDist(obs.x, obs.y, hx, hy) > kHealerReach && !client.TravelBusy()) {
                 LogLine("dead: a healer is here -- getting close enough to be "
                         "raised");
-                travelInFlight_ = client.TravelToEntity(healer, 1);
+                travelInFlight_ = client.TravelToEntity(healer, kHealerReach);
             }
             nextActionMs_ = obs.nowMs + 4000;
             return false;
@@ -2838,7 +2889,12 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
     const i32 extra = obs.attackersOnMe - 1;
     if (extra > 0) bailAt = std::min(0.90, bailAt + 0.08 * std::min(3, extra));
 
-    if (avoidCombatDisengage || obs.HpFraction() < bailAt) {
+    // A fresh warrior pulls ONE opponent.  Two actual attackers is not a
+    // tougher version of the same lesson: it is the boundary where the bot
+    // breaks contact immediately, even while healthy, so it can heal and
+    // choose a quieter part of the hunting ground.
+    if (avoidCombatDisengage || obs.attackersOnMe >= 2 ||
+        obs.HpFraction() < bailAt) {
         LogLine("interrupt=FLEE reason=\"HP %.0f%%; %d attacker(s); bail at %.0f%%\"",
                 obs.HpFraction() * 100.0, obs.attackersOnMe, bailAt * 100.0);
         client.EnsurePeaceMode();
@@ -2859,6 +2915,12 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
         state_.memory.NoteCreatureOutcome(hostiles.front().name.c_str(),
                                           kCreatureEvidenceNearDeathFlee,
                                           obs.nowMs);
+        // These are the creatures we just decided not to fight.  Without a
+        // temporary exclusion, the next SURVIVE tick re-selected one as soon
+        // as the attacker count flickered from two to one and cancelled the
+        // retreat by attacking again.
+        for (const Client::HostileHit& h : hostiles)
+            MarkUnreachable(h.serial, obs.nowMs);
         if (!state_.memory.HasEvent("first_near_death")) {
             state_.memory.NoteEvent("first_near_death", hostiles.front().name.c_str(),
                                     "", obs.x, obs.y, obs.nowMs);
@@ -2867,6 +2929,11 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
         const KnownPlace* bank = state_.memory.NearestPlace("bank", obs.x, obs.y);
         if (bank && !client.TravelBusy()) {
             client.TravelToPoint(bank->x, bank->y, 3, "flee_to_bank");
+        } else if (!client.TravelBusy()) {
+            // A new character may not have personally recorded a bank yet;
+            // the world atlas still knows where guarded bankers are.
+            client.TravelToService(wm::Service::Banker,
+                                   HomeOrNearest(state_.homeCity));
         }
         nextActionMs_ = obs.nowMs + 2000;
         planner_.NoteAttempt(obs.nowMs);
@@ -3064,7 +3131,17 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
     }
 
     if (!client.WarModeOn()) client.EnterWarMode();
-    client.ActionAttack(target->serial);
+    // Attack is a target-selection command, not a weapon swing.  Once the
+    // server has accepted it, it owns the normal melee cadence.  Reissuing it
+    // each 1.2-second life tick was resetting that cadence before the first
+    // hit could resolve, leaving a healthy Zombie and a dead newcomer.
+    constexpr i64 kAttackReassertMs = 6000;
+    if (lastAttackOrderTarget_ != target->serial ||
+        obs.nowMs - lastAttackOrderMs_ >= kAttackReassertMs) {
+        client.ActionAttack(target->serial);
+        lastAttackOrderTarget_ = target->serial;
+        lastAttackOrderMs_ = obs.nowMs;
+    }
     if (dist > 1 && !client.GotoBusy()) client.ActionGotoMobile(target->serial, 1);
     nextActionMs_ = obs.nowMs + 1200;
     return false;
@@ -3099,6 +3176,17 @@ bool Runner::DoHeal(Client& client, const Observation& obs) {
     // Under attack right now, not merely near a hostile -- a cow standing
     // next to the character is not a fight.
     see.inDanger = obs.underAttack;
+
+    // A bandage on an untrained healer only produces the shard's "barely
+    // help" one-point result.  A warrior must not consume its emergency kit
+    // that way: obtain a healing potion first, then resume healing/training.
+    constexpr i32 kUsableHealingTenths = 300;
+    if (obs.SkillTenths(rules::kHealing) < kUsableHealingTenths &&
+        see.healPotions == 0 && obs.gold >= 200) {
+        return HandOff(GoalKind::Heal, GoalKind::ReplaceEquipment, 60000,
+                       "Healing is untrained; buying a potion instead of wasting bandages",
+                       obs.nowMs);
+    }
 
     HealTuning tune;
     tune.healHpFraction = needCfg_.healHpFraction;
@@ -3219,6 +3307,18 @@ bool Runner::DoHeal(Client& client, const Observation& obs) {
 bool Runner::DoRecoverCorpse(Client& client, const Observation& obs) {
     const travel::DeathRecord& death = client.Knowledge().LastDeath();
 
+    // Corpse serials are intentionally session-local.  Once we are back at
+    // the recorded tile, the normal world-item stream makes the corpse visible
+    // again; bind that fresh serial before attempting to open it.
+    if (death.valid && death.corpseSerial == 0 &&
+        TileDist(death.x, death.y, obs.x, obs.y) <= 8) {
+        const u32 corpse = client.FindWorldItemByGraphic(0x2006, 8);
+        if (corpse) {
+            client.Knowledge().NoteCorpse(corpse, death.x, death.y, 0);
+            LogLine("corpse run: found own corpse 0x%08X at the death site", corpse);
+        }
+    }
+
     RecoverySight see;
     see.dead = obs.dead;
     see.corpseKnown = obs.corpseKnown;
@@ -3317,16 +3417,24 @@ bool Runner::DoRecoverCorpse(Client& client, const Observation& obs) {
 
         case RecoveryStep::Abandon:
             // A completed decision, not a failure -- never Finish(false).
+            {
+            const i32 deathX = death.x;
+            const i32 deathY = death.y;
             client.Knowledge().ClearDeath();
-            state_.memory.NoteEvent("corpse_abandoned", plan.reason, "", death.x,
-                                    death.y, obs.nowMs);
+            state_.memory.NoteEvent("corpse_abandoned", plan.reason, "", deathX,
+                                    deathY, obs.nowMs);
             return true;
+            }
 
         case RecoveryStep::Done:
+            {
+            const i32 deathX = death.x;
+            const i32 deathY = death.y;
             client.Knowledge().ClearDeath();
-            state_.memory.NoteEvent("corpse_recovered", "", "", death.x, death.y,
+            state_.memory.NoteEvent("corpse_recovered", "", "", deathX, deathY,
                                     obs.nowMs);
             return true;
+            }
     }
     return true;
 }
@@ -3927,8 +4035,12 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs) {
     // solves both needs at once.
     if (!obs.weaponEquipped) {
         if (ArmAxe(client, obs)) { planner_.NoteProgress(); return false; }
+        const SchoolWeapon* desiredSchool = needCfg_.profession
+                                                ? SchoolWeaponFor(*needCfg_.profession)
+                                                : nullptr;
         const u32 sword = FindAny(client, kKatana, 2);
-        if (!AxeInHand(client) && sword) {
+        if ((!desiredSchool || desiredSchool->skill == rules::kSwordsmanship) &&
+            !AxeInHand(client) && sword) {
             if (client.ActionBusy()) return false;
             LogLine("arming: no axe carried, equipping the sword instead");
             client.ActionEquip(sword, kLayerServerChooses);
@@ -3947,9 +4059,7 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs) {
         // FindAny just below is one more (harmless, redundant) look for a
         // swordsman, and the Buy path below it is the part that was missing
         // for every school, swordsman included.
-        if (const SchoolWeapon* school =
-                needCfg_.profession ? SchoolWeaponFor(*needCfg_.profession)
-                                    : nullptr) {
+        if (const SchoolWeapon* school = desiredSchool) {
             const u32 have = FindAny(client, school->graphics, 2);
             if (have) {
                 if (client.ActionBusy()) return false;
@@ -4062,7 +4172,10 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs) {
     // which is the truth: it is not short of something it does not carry.
     const bool wantsBandages = life::WantsConsumable(needCfg_, "bandage");
     life::AcquirePlan bandagePlan;   // default Done -- vacuously satisfied
-    if (wantsBandages) {
+    // `low` triggers a restock attempt; it is not a requirement that one NPC
+    // must fill the pack all the way to `restockTo`. Once a partial purchase
+    // crosses the safety floor, move on to the other missing kit.
+    if (wantsBandages && obs.bandages < needCfg_.bandageLow) {
         life::AcquireRequest bandageReq;
         bandageReq.graphic = kBandage;
         bandageReq.item = "bandages";
@@ -4134,19 +4247,21 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs) {
         // of the constant: one table, one truth.
         potionGfx = potions->graphics.front();
         const i32 held = static_cast<i32>(client.BackpackItemCount(potionGfx));
-        life::AcquireRequest req;
-        req.graphic = potionGfx;
-        req.item = "heal potion";
-        req.desiredTotal = potions->restockTo;
-        req.mustWear = false;
-        req.wearable = true;
-        // Unlike bandages this is not the last-coin emergency: a character
-        // that spends its final gold on potions cannot buy the ore that
-        // earns the next lot.
-        req.minimumGoldReserve = 50;
-        req.Sell("healer", wm::Service::Healer);
-        req.Sell("alchemist", wm::Service::Alchemist);
-        potionPlan = life::DecideAcquire(req, held, 0);
+        if (held < potions->low) {
+            life::AcquireRequest req;
+            req.graphic = potionGfx;
+            req.item = "heal potion";
+            req.desiredTotal = potions->restockTo;
+            req.mustWear = false;
+            req.wearable = true;
+            // Unlike bandages this is not the last-coin emergency: a character
+            // that spends its final gold on potions cannot buy the ore that
+            // earns the next lot.
+            req.minimumGoldReserve = 50;
+            req.Sell("healer", wm::Service::Healer);
+            req.Sell("alchemist", wm::Service::Alchemist);
+            potionPlan = life::DecideAcquire(req, held, 0);
+        }
     }
     if (potionPlan.step != lastPotionAcquirePlan_) {
         LogPlan(life::AcquireStepName(potionPlan.step), potionPlan.reason);
@@ -4291,8 +4406,19 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs) {
                        "no bandages bought", obs.nowMs);
     }
 
+    // A hunter's first trip must be for survival gear, not a civilian
+    // wardrobe.  Hector had no legal armour, yet the generic equipment goal
+    // chose missing trousers and sent him from Minoc to Vesper's tailor before
+    // he could safely start the graveyard loop.  Free clothing in the pack is
+    // still worn above; defer only a PURCHASE until the fighter has at least
+    // one legal armour piece.
+    const bool hunterNeedsArmor =
+        needCfg_.profession && WantsToHunt(*needCfg_.profession) &&
+        !HasBasicArmor(client, obs);
+
     // Buy: the missing garment.
-    if (garment && (garmentPlan.step == life::AcquireStep::Buy ||
+    if (!hunterNeedsArmor && garment &&
+        (garmentPlan.step == life::AcquireStep::Buy ||
                     clothingBuy_.Running())) {
         if (client.TravelBusy()) return false;
         if (!clothingBuy_.Running()) {
@@ -5438,13 +5564,48 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
     // ChoosePrey and 54 unit tests) was called by nothing at all.
     if (obs.attackersOnMe > 0) return DoSurvive(client, obs);
 
-    if (obs.hostilesNear > 0 && !client.ActionBusy()) {
+    // Do not open a fight while an earlier errand is still walking us toward
+    // its destination.  The food run proved why: the planner selected combat
+    // during the provisioner's final approach, attacked a town animal, then
+    // the still-live travel action pulled the character back toward the
+    // counter.  Finish the movement before making a combat decision.
+    if (client.TravelBusy()) return false;
+
+    // Preparation comes before selecting a new target.  A character may defend
+    // itself above, but it must not initiate a town fight or graveyard trip
+    // until it has a weapon and basic armour.
+    if (!obs.weaponEquipped) {
+        return HandOff(GoalKind::TrainCombat, GoalKind::ReplaceEquipment,
+                       kGearCooldownMs, "no gear yet -- shopping before the "
+                       "graveyard", obs.nowMs);
+    }
+    if (!HasBasicArmor(client, obs)) {
+        return HandOff(GoalKind::TrainCombat, GoalKind::UpgradeGear,
+                       kGearCooldownMs, "no gear yet -- shopping before the "
+                       "graveyard", obs.nowMs);
+    }
+
+    const wm::Region* combatRegion = client.CurrentRegion();
+    const bool inGuardedRegion = combatRegion && combatRegion->flags.guarded;
+
+    // Notoriety alone is not a reason to begin training inside town.  Gray
+    // wildlife and other lawful mobiles can appear there, but a normal new
+    // warrior goes to an unguarded hunting ground for deliberate fights.
+    // Self-defence remains handled above regardless of region.
+    if (obs.hostilesNear > 0 && !inGuardedRegion && !client.ActionBusy()) {
         std::vector<Client::HostileHit> seen;
         client.ScanHostiles(12, seen);
         if (!seen.empty()) {
+            // Seeing several creatures is normal at a graveyard.  ChoosePrey
+            // scores the weakest and least-grouped one; "one at a time" means
+            // issuing one opening attack and never selecting another while an
+            // attacker exists, not waiting for the whole screen to contain
+            // exactly one mobile (which left Hector standing until a pack
+            // attacked him first).
             std::vector<combat::Candidate> cands;
             cands.reserve(seen.size());
             for (const Client::HostileHit& h : seen) {
+                if (IsUnreachable(h.serial, obs.nowMs)) continue;
                 combat::Candidate c;
                 c.serial = h.serial;
                 c.name   = h.name;
@@ -5459,14 +5620,18 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
                 c.warMode = h.warMode;
                 cands.push_back(std::move(c));
             }
+            if (cands.empty()) {
+                LogLine("hunt: every visible hostile is on the recent retreat "
+                        "list -- not re-engaging");
+                client.EnsurePeaceMode();
+                nextActionMs_ = obs.nowMs + 4000;
+                return false;
+            }
             combat::Stance me;
             // REGION_FLAG_GUARDED, straight from the atlas -- there is no
             // Observation field for it and inventing one would just cache a
             // fact the world model already answers.
-            {
-                const wm::Region* here = client.CurrentRegion();
-                me.inGuardedRegion = here && here->flags.guarded;
-            }
+            me.inGuardedRegion = false;
             me.attackersOnMe   = obs.attackersOnMe;
 
             // What this life has LEARNED about these creatures, so a lich it
@@ -5502,6 +5667,19 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
                 client.ActionAttack(c.serial);
                 currentFoe_ = c.serial;
                 currentFoeName_ = c.name;
+                // TRAIN_COMBAT opens the fight, but SURVIVE owns it as soon
+                // as the target retaliates.  Initialise the shared fight
+                // window here; waiting for DoSurvive to see a *different*
+                // serial left fightStartedMs_ at zero and made the very first
+                // assessment look millions of seconds old.
+                fightStartedMs_ = obs.nowMs;
+                chaseBestDist_ = c.dist;
+                chaseProgressMs_ = obs.nowMs;
+                foeHpAtStart_ = c.hpCur >= 0 && c.hpMax > 0
+                                    ? static_cast<double>(c.hpCur) / c.hpMax
+                                    : -1.0;
+                foeHpAskedMs_ = obs.nowMs;
+                client.RequestMobileStatus(c.serial);
                 planner_.NoteProgress();
                 nextActionMs_ = obs.nowMs + 2500;
                 return false;
@@ -5511,7 +5689,18 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
         }
         return DoSurvive(client, obs);
     }
-    if (obs.hostilesNear > 0) return DoSurvive(client, obs);
+    if (obs.hostilesNear > 0 && !inGuardedRegion) {
+        // DoSurvive may report that there is presently nothing to defend
+        // against.  That is not successful combat training and must not mark
+        // TRAIN_COMBAT complete merely because an opened target has not yet
+        // retaliated or has briefly left the mobile cache.
+        DoSurvive(client, obs);
+        return false;
+    }
+    if (obs.hostilesNear > 0 && inGuardedRegion) {
+        LogLine("hunt: ignoring %d lawful hostile(s) in guarded town; heading "
+                "to a hunting ground", obs.hostilesNear);
+    }
 
     // NOTHING HERE. Until now that was the end of it -- "return true" -- and
     // it is why M6 has never once been exercised live: the layer that decides
@@ -5522,23 +5711,6 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
     // GEAR UP BEFORE THE FIRST HUNT. "hunting ground can be graveyards for
     // early hunting, brit sewers maybe, but they need gear too" (project
     // owner, 2026-08-31). Affordability is not the issue -- a fresh fighter
-    // starts with 10,000 gold -- ORDERING is: a fighter that walks to the
-    // graveyard bare-handed and unarmoured because nothing ever checked is
-    // the mistake, not the shopping trip itself. Checked the same way
-    // DoReplaceEquipment/DoUpgradeGear already check (obs.weaponEquipped,
-    // MayWear/HasBasicArmor), and handed off rather than acquired here --
-    // this goal fights, it does not shop.
-    if (!obs.weaponEquipped) {
-        return HandOff(GoalKind::TrainCombat, GoalKind::ReplaceEquipment,
-                       kGearCooldownMs, "no gear yet -- shopping before the "
-                       "graveyard", obs.nowMs);
-    }
-    if (!HasBasicArmor(client, obs)) {
-        return HandOff(GoalKind::TrainCombat, GoalKind::UpgradeGear,
-                       kGearCooldownMs, "no gear yet -- shopping before the "
-                       "graveyard", obs.nowMs);
-    }
-
     // Not while hurt, and not while loaded: the goal scorer already docks
     // both, but arriving at a graveyard at half health is a death rather than
     // a lesson, and that is a decision this goal should make for itself.
@@ -6686,8 +6858,22 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
         trainAskedMs_ = client.JournalNowMs();
         trainAskedTickMs_ = obs.nowMs;
         trainAsked_ = true;
-        LogLine("training: asking the trainer about %s", rules::SkillName(skillId));
-        client.ActionNpcTrain(trainer, SkillKey(skillId));
+        const char* const skillKey = SkillKey(skillId);
+        if (!skillKey[0]) {
+            // Never send the generic "train" command. It makes a trainer
+            // list appear and looks like a real conversation in the log, but
+            // it cannot quote a fee or teach a selected skill.
+            LogLine("goal_failed=TRAIN_AT_NPC reason=\"no Sphere training key for %s\"",
+                    rules::SkillName(skillId));
+            planner_.Cooldown(GoalKind::TrainAtNpc,
+                              obs.nowMs + kNoTrainerCooldownMs);
+            planner_.Finish(false, "missing Sphere training key", obs.nowMs);
+            trainAsked_ = false;
+            return false;
+        }
+        LogLine("training: asking the trainer about %s (key %s, total gold %d, purse %d)",
+                rules::SkillName(skillId), skillKey, obs.gold, obs.goldOnHand);
+        client.ActionNpcTrain(trainer, skillKey);
         nextActionMs_ = obs.nowMs + 2500;
         return false;
     }
@@ -6854,8 +7040,8 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
         nextActionMs_ = obs.nowMs + 2000;
         return false;
     }
-    LogLine("training: paying the quoted %d gold for %s (purse %d)",
-            quoted, rules::SkillName(skillId), obs.gold);
+    LogLine("training: paying the quoted %d gold for %s (total gold %d, purse %d)",
+            quoted, rules::SkillName(skillId), obs.gold, obs.goldOnHand);
     trainSkillBefore_ = have;
     // WHAT THE PURSE HELD BEFORE THE LESSON, so "the fee was taken and
     // nothing was taught" can be told apart from "the trainer refused and
@@ -10078,7 +10264,9 @@ bool Runner::DoGetFood(Client& client, const Observation& obs) {
     // window; picking the row stays here, where the eating rules live.
     if (!foodErrand_.Running()) {
         life::VendorErrandSpec spec;
-        spec.Sell("baker", wm::Service::Baker);
+        // Revolution provisioners sell ordinary food.  Bakers are deliberately
+        // not part of autonomous routing: normal lives use provisioners,
+        // fishers, farms, or mage-created food, never a cross-city bakery trip.
         spec.Sell("provisioner", wm::Service::Provisioner);
         spec.graphic = 0;
         spec.what = "something to eat";
@@ -10203,6 +10391,21 @@ bool Runner::BuyScrollFrom(Client& client, const Observation& obs,
                            GoalKind owner) {
     if (client.TravelBusy()) return false;
 
+    // TravelToService reaches a shop tile, not a named mobile.  This helper
+    // used to arrive and immediately select the next atlas shop because its
+    // title cache was still empty; a blacksmith could therefore be walked past
+    // without ever being asked to open a trade window.  Finish the arrival
+    // handshake once: scan paperdolls, let the normal cache update, then make
+    // the seller decision on the next tick.
+    if (travelInFlight_) {
+        travelInFlight_ = false;
+        LogLine("%s: arrived at a %s shop -- scanning nearby sellers",
+                GoalKindName(owner), trade);
+        client.ActionScanMobiles();
+        nextActionMs_ = obs.nowMs + 2000;
+        return false;
+    }
+
     // THE TRIP COUNTER BELONGS TO THE ERRAND, not to this helper. Three goals
     // share it, and without this a gear trip spent the spellbook's allowance
     // and vice versa -- the fencer's 1,932 identical "buying armour" lines
@@ -10212,7 +10415,17 @@ bool Runner::BuyScrollFrom(Client& client, const Observation& obs,
         spellbookTrips_ = 0;
         spellbookSkipPlaces_.clear();
     }
-    const u32 keeper = client.NearestShopkeeperWithTrade(trade, svc);
+    // Armourers and blacksmiths share the atlas service but use different
+    // paperdoll titles.  A newly arrived character may be standing in a
+    // blacksmith shop before it has ever seen an "armorer", so use the smith
+    // as an equivalent seller only for this armour errand.  The actual offer
+    // is still checked against the requested graphic before any gold moves.
+    const char* sellerTrade = trade;
+    u32 keeper = client.NearestShopkeeperWithTrade(sellerTrade, svc);
+    if (!keeper && std::strcmp(trade, "armorer") == 0) {
+        sellerTrade = "blacksmith";
+        keeper = client.NearestShopkeeperWithTrade(sellerTrade, svc);
+    }
     if (!keeper) {
         if (++spellbookTrips_ > kMaxSpellbookTrips) {
             spellbookTrips_ = 0;
@@ -10257,14 +10470,14 @@ bool Runner::BuyScrollFrom(Client& client, const Observation& obs,
     const i32 d = TileDist(obs.x, obs.y, vx, vy);
     if (d > kVendorReach) {
         LogLine("%s: the %s is %d tiles away -- walking up",
-                GoalKindName(owner), trade, d);
+                GoalKindName(owner), sellerTrade, d);
         travelInFlight_ = client.TravelToEntity(keeper, 1);
         nextActionMs_ = obs.nowMs + 2000;
         return false;
     }
 
     if (!OfferBelongsTo(client, keeper)) {
-        LogLine("%s: asking the %s to show %s", GoalKindName(owner), trade, what);
+        LogLine("%s: asking the %s to show %s", GoalKindName(owner), sellerTrade, what);
         client.ActionVendorOpen(keeper);
         nextActionMs_ = obs.nowMs + 9000;
         return false;
@@ -10309,7 +10522,7 @@ bool Runner::BuyScrollFrom(Client& client, const Observation& obs,
         return false;
     }
     LogLine("goal_failed=%s reason=\"this '%s' does not stock %s "
-            "(%d already known)\"", GoalKindName(owner), trade, what, skipped);
+            "(%d already known)\"", GoalKindName(owner), sellerTrade, what, skipped);
     planner_.Cooldown(owner, obs.nowMs + kNoSpellbookCooldownMs);
     planner_.Finish(false, "seller has none", obs.nowMs);
     return false;
@@ -10421,21 +10634,32 @@ const ArmorPiece* ArmorFor(u16 graphic) {
 
 // IS ANYTHING FROM kArmorPieces ON THE BODY RIGHT NOW.
 //
-// Not "is every slot full" -- one real piece (a leather tunic, a chainmail
-// coif) is enough to say this life is not walking into a graveyard in
-// ordinary clothes. Ordinary clothing has no entry in kArmorPieces at all,
-// so a shirt and trousers do not count. Read the same way DoUpgradeGear's
-// wear pass reads the paperdoll (line ~9985): per candidate piece, ask the
-// tiledata layer, then ask what is actually worn there.
+// A helmet alone is not "geared for a graveyard".  Require three distinct
+// protected layers and make one of them a core torso/leg layer.  This still
+// lets a 50-STR newcomer use leather/ringmail rather than waiting for plate,
+// while ordinary clothing has no entry in kArmorPieces and never counts.
 bool Runner::HasBasicArmor(Client& client, const Observation& obs) const {
+    bool layers[32] = {};
+    int protectedLayers = 0;
+    bool hasCore = false;
     for (const ArmorPiece& a : kArmorPieces) {
         if (!MayWear(a, obs)) continue;
         const u8 layer = client.ItemEquipLayer(a.graphic);
         if (!layer) continue;
         const u16 wornGfx = client.EquippedGraphicAt(layer);
-        if (wornGfx && ArmorFor(wornGfx)) return true;
+        if (!wornGfx || !ArmorFor(wornGfx)) continue;
+        if (layer < 32 && !layers[layer]) {
+            layers[layer] = true;
+            ++protectedLayers;
+        }
+        // Inner/middle/outer torso and inner/outer legs in the classic UO
+        // equipment-layer protocol.
+        if (layer == 13 || layer == 17 || layer == 22 ||
+            layer == 23 || layer == 24) {
+            hasCore = true;
+        }
     }
-    return false;
+    return hasCore && protectedLayers >= 3;
 }
 
 bool Runner::MayWear(const ArmorPiece& a, const Observation& obs) const {
@@ -10662,9 +10886,12 @@ bool Runner::DoUpgradeGear(Client& client, const Observation& obs) {
         return true;
     }
 
-    // The armorer's own list is leather (VENDOR_S_ARMORER_LEATHER) and the
-    // tailor carries some too, which is the fallback for a town without one.
-    const bool haveArmorer = client.NearestShopkeeperWithTrade("armorer") != 0;
+    // Never infer that a town has no armourer from the current screen.  At
+    // startup a fighter normally sees a healer or provisioner, not the smithy;
+    // using that short-range cache sent Hector on a long tailor tour before
+    // looking for the armour this goal was created to buy.  The atlas routes
+    // the armorer service across town (and across gates) and the errand itself
+    // can report a genuine stock failure if the shop does not carry the piece.
     const u8 wantLayer = client.ItemEquipLayer(want->graphic);
     const u16 currentGfx = wantLayer ? client.EquippedGraphicAt(wantLayer) : 0;
     const ArmorPiece* current = currentGfx ? ArmorFor(currentGfx) : nullptr;
@@ -10672,16 +10899,10 @@ bool Runner::DoUpgradeGear(Client& client, const Observation& obs) {
             "0x%04X (armor %d); buying from a %s",
             want->graphic, want->armor, want->reqStr,
             currentGfx, current ? current->armor : 0,
-            haveArmorer ? "armorer" : "tailor");
-    if (haveArmorer) {
-        BuyScrollFrom(client, obs, "armorer", wm::Service::Blacksmith,
-                      want->graphic, false, 1, "a piece of armour",
-                      GoalKind::UpgradeGear);
-    } else {
-        BuyScrollFrom(client, obs, "tailor", wm::Service::Tailor,
-                      want->graphic, false, 1, "a piece of armour",
-                      GoalKind::UpgradeGear);
-    }
+            "armorer");
+    BuyScrollFrom(client, obs, "armorer", wm::Service::Blacksmith,
+                  want->graphic, false, 1, "a piece of armour",
+                  GoalKind::UpgradeGear);
     return false;
 }
 

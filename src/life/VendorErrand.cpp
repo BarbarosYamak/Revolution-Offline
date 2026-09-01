@@ -14,7 +14,9 @@ namespace {
 // the PURCHASE needs touch. Conflating the two is what produced "You can't
 // reach the Vendor" on every buy while the window sat open
 // (run_m7/z_Corwyn.console.txt:1356 onward).
-constexpr i32 kReach = 3;
+// Live Source-X rejects the actual purchase at three tiles even though the
+// spoken "buy" command opens the list. Stand adjacent before committing gold.
+constexpr i32 kReach = 1;
 // A shopkeeper may stand on a different floor of its own shop.
 constexpr i32 kReachZ = 3;
 

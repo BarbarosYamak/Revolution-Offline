@@ -35,6 +35,31 @@ bool World::IsStaticBlocker(u16 itemId) const {
     return (s.flags & blockMask) != 0;
 }
 
+bool World::StaticBlocksSightAt(i32 x, i32 y, i8 eyeZ) const {
+    if (x < 0 || y < 0) return true;
+    const CachedBlock* blk = CachedBlockAt(static_cast<u32>(x) / 8,
+                                           static_cast<u32>(y) / 8);
+    if (!blk) return true;
+    const u8 cx = static_cast<u8>(x % 8);
+    const u8 cy = static_cast<u8>(y % 8);
+    for (const auto& s : blk->statics) {
+        if (s.cellX != cx || s.cellY != cy) continue;
+        const auto& tile = td_.Static(s.itemId);
+        // Roofs and ordinary floor decoration are not walls.  Windows retain
+        // their normal transparent sight line; the server's default speech
+        // LOS likewise does not treat a window as a solid wall.
+        if ((tile.flags & (td::kFlagWall | td::kFlagWhole |
+                           td::kFlagImpassable)) == 0 ||
+            (tile.flags & (td::kFlagWindow | td::kFlagTransparent)) != 0)
+            continue;
+        const i32 lo = static_cast<i32>(s.z);
+        const i32 hi = lo + (tile.height ? tile.height : 1);
+        if (static_cast<i32>(eyeZ) >= lo && static_cast<i32>(eyeZ) < hi)
+            return true;
+    }
+    return false;
+}
+
 bool World::HasDoorAt(u32 x, u32 y, i8 fromZ, i8 standZ,
                       u8 charHeight) const {
     const u32 bx = x / 8;

@@ -234,7 +234,7 @@ const std::vector<Profession>& All() {
             p.startSkillB = rules::kSwordsmanship;
             // DEX-weighted: six characters died on a STR-heavy split and one
             // survived on a DEX-heavy one (M4 plan). Same lesson, 50 points.
-            p.startStr = 40; p.startDex = 32; p.startInt = 8;
+            p.startStr = 50; p.startDex = 25; p.startInt = 5;
             p.targets = {
                 {rules::kLumberjacking, 1000, 5, false, SkillRole::Primary},
                 {rules::kSwordsmanship, 1000, 4, false, SkillRole::Secondary},
@@ -323,7 +323,7 @@ const std::vector<Profession>& All() {
             p.label = "Miner / Blacksmith";
             p.startSkillA = rules::kMining;
             p.startSkillB = rules::kBlacksmithing;
-            p.startStr = 56; p.startDex = 16; p.startInt = 8;
+            p.startStr = 50; p.startDex = 20; p.startInt = 10;
             p.targets = {
                 // Secondary by ROLE -- a build may declare exactly one
                 // Primary and Mining is it -- but ahead of everything else by
@@ -402,7 +402,10 @@ const std::vector<Profession>& All() {
             // HIGH INT, and enough STR/DEX not to be useless. A pure mage
             // lives on its mana pool; STR is what stops it dying to one hit
             // and carrying nothing, DEX is what lets it walk away.
-            p.startStr = 20; p.startDex = 12; p.startInt = 48;
+            // Every new life starts at the practical 50 STR baseline.  STR is
+            // slow to earn and gates carrying, armour and basic survival;
+            // this mage spends the remaining creation points on Intelligence.
+            p.startStr = 50; p.startDex = 5; p.startInt = 25;
             p.targets = {
                 // THREE SKILLS. No melee plan, no crafting plan, no hybrid
                 // thinking (owner's pure-mage spec, 2026-08-29). Inscription
@@ -491,7 +494,7 @@ const std::vector<Profession>& All() {
             p.label = "Alchemist";
             p.startSkillA = rules::kAlchemy;
             p.startSkillB = rules::kMagery;
-            p.startStr = 32; p.startDex = 16; p.startInt = 32;
+            p.startStr = 50; p.startDex = 20; p.startInt = 10;
             p.targets = {
                 {rules::kAlchemy,     1000, 5, false, SkillRole::Primary},
                 {rules::kMagery,       500, 3, false, SkillRole::Utility},
@@ -602,7 +605,7 @@ const std::vector<Profession>& All() {
             p.startSkillB = rules::kCooking;
             // Fishing pulls against STR for the catch and the carry; cooking
             // needs nothing. A fisher is not a fighter and does not pretend.
-            p.startStr = 40; p.startDex = 24; p.startInt = 16;
+            p.startStr = 50; p.startDex = 20; p.startInt = 10;
             p.targets = {
                 {rules::kFishing,   1000, 5, true,  SkillRole::Primary},
                 {rules::kCooking,    500, 3, true,  SkillRole::Utility},
@@ -668,7 +671,7 @@ const std::vector<Profession>& All() {
             p.label = "Animal Tamer";
             p.startSkillA = rules::kTaming;
             p.startSkillB = rules::kAnimalLore;
-            p.startStr = 32; p.startDex = 16; p.startInt = 32;
+            p.startStr = 50; p.startDex = 20; p.startInt = 10;
             p.targets = {
                 {rules::kTaming,     1000, 5, false, SkillRole::Primary},
                 {rules::kAnimalLore, 1000, 4, false, SkillRole::Secondary},
@@ -695,9 +698,9 @@ const std::vector<Profession>& All() {
         // section) with Swordsmanship and Archery swapped for Fencing, and
         // 100.0 left deliberately open rather than invented.
         //
-        // [NEWBIE FENCING] hands over i_kryss; [NEWBIE TACTICS] hands over
-        // i_katana (sp_tm_newbie.scp) -- an odd pairing on paper, a spare
-        // blade to sell or dual-carry in practice.
+        // [NEWBIE FENCING] hands over i_kryss.  Tactics deliberately has no
+        // newbie weapon: a character's combat school, not its supporting
+        // skill, decides the weapon it begins with.
         {
             Profession p;
             p.id = "fencer";
@@ -709,14 +712,19 @@ const std::vector<Profession>& All() {
             p.label = "Fencer";
             p.startSkillA = kFencing;
             p.startSkillB = rules::kTactics;
-            p.startStr = 32; p.startDex = 40; p.startInt = 8;
+            // A fencer is a warrior first.  The old 32/40/8 dexxer split
+            // could not wear the ordinary early warrior kit, forcing the
+            // life to postpone armour until stat gains arrived.  Spend the
+            // same legal 80 creation points as 50/25/5: enough STR for the
+            // starter weapon and real armour, with practical DEX remaining.
+            p.startStr = 50; p.startDex = 25; p.startInt = 5;
             p.targets = {
                 {kFencing,             1000, 6, false, SkillRole::Primary},
-                {rules::kTactics,      1000, 5, true,  SkillRole::Secondary},
-                {rules::kAnatomy,      1000, 4, true,  SkillRole::Secondary},
-                {rules::kHealing,      1000, 3, true,  SkillRole::Secondary},
+                {rules::kTactics,      1000, 5, false, SkillRole::Secondary},
+                {rules::kAnatomy,      1000, 4, false, SkillRole::Secondary},
+                {rules::kHealing,      1000, 3, false, SkillRole::Secondary},
                 {rules::kPoisoning,    1000, 2, false, SkillRole::Secondary},
-                {kParrying,            1000, 1, true,  SkillRole::Secondary},
+                {kParrying,            1000, 1, false, SkillRole::Secondary},
             };
             p.unresolvedTenths = 1000;   // the PW family's open seventh slot
             p.targetStr = 100; p.targetDex = 100; p.targetInt = 25;
@@ -762,13 +770,13 @@ const std::vector<Profession>& All() {
             p.label = "Macer";
             p.startSkillA = kMaceFighting;
             p.startSkillB = rules::kAnatomy;
-            p.startStr = 48; p.startDex = 24; p.startInt = 8;
+            p.startStr = 50; p.startDex = 25; p.startInt = 5;
             p.targets = {
                 {kMaceFighting,        1000, 6, false, SkillRole::Primary},
-                {rules::kTactics,      1000, 5, true,  SkillRole::Secondary},
-                {rules::kAnatomy,      1000, 4, true,  SkillRole::Secondary},
-                {rules::kHealing,      1000, 3, true,  SkillRole::Secondary},
-                {kParrying,            1000, 2, true,  SkillRole::Secondary},
+                {rules::kTactics,      1000, 5, false, SkillRole::Secondary},
+                {rules::kAnatomy,      1000, 4, false, SkillRole::Secondary},
+                {rules::kHealing,      1000, 3, false, SkillRole::Secondary},
+                {kParrying,            1000, 2, false, SkillRole::Secondary},
                 {rules::kPoisoning,     500, 1, false, SkillRole::Utility},
             };
             p.unresolvedTenths = 1500;
@@ -814,13 +822,13 @@ const std::vector<Profession>& All() {
             p.label = "Archer";
             p.startSkillA = kArchery;
             p.startSkillB = rules::kBowcraft;
-            p.startStr = 24; p.startDex = 48; p.startInt = 8;
+            p.startStr = 50; p.startDex = 25; p.startInt = 5;
             p.targets = {
                 {kArchery,             1000, 5, false, SkillRole::Primary},
                 {rules::kBowcraft,     1000, 4, false, SkillRole::Secondary},
-                {rules::kTactics,      1000, 3, true,  SkillRole::Secondary},
-                {rules::kAnatomy,       500, 2, true,  SkillRole::Utility},
-                {rules::kHealing,       500, 1, true,  SkillRole::Utility},
+                {rules::kTactics,      1000, 3, false, SkillRole::Secondary},
+                {rules::kAnatomy,       500, 2, false, SkillRole::Utility},
+                {rules::kHealing,       500, 1, false, SkillRole::Utility},
             };
             p.unresolvedTenths = 3000;
             p.targetStr = 70; p.targetDex = 100; p.targetInt = 55;
@@ -880,15 +888,17 @@ const std::vector<Profession>& All() {
             p.label = "Warlock";
             p.startSkillA = rules::kMagery;
             p.startSkillB = rules::kSwordsmanship;
-            p.startStr = 32; p.startDex = 24; p.startInt = 24;
+            // The hybrid still needs a real body on day one; its remaining
+            // points preserve a useful mana pool rather than weak STR.
+            p.startStr = 50; p.startDex = 10; p.startInt = 20;
             p.targets = {
                 {rules::kMagery,          1000, 8, false, SkillRole::Primary},
                 {rules::kSwordsmanship,   1000, 7, false, SkillRole::Secondary},
-                {rules::kTactics,         1000, 6, true,  SkillRole::Secondary},
+                {rules::kTactics,         1000, 6, false, SkillRole::Secondary},
                 {rules::kEvaluatingIntel,  800, 5, true,  SkillRole::Secondary},
                 {rules::kPoisoning,        800, 4, false, SkillRole::Secondary},
-                {rules::kHealing,          800, 3, true,  SkillRole::Secondary},
-                {rules::kAnatomy,          800, 2, true,  SkillRole::Secondary},
+                {rules::kHealing,          800, 3, false, SkillRole::Secondary},
+                {rules::kAnatomy,          800, 2, false, SkillRole::Secondary},
                 {rules::kMeditation,       800, 1, true,  SkillRole::Secondary},
             };
             p.unresolvedTenths = 0;      // WL-01 spends the entire 700, forum-exact
@@ -934,12 +944,14 @@ const std::vector<Profession>& All() {
             p.label = "Player Killer";
             p.startSkillA = rules::kSwordsmanship;
             p.startSkillB = rules::kPoisoning;
-            p.startStr = 32; p.startDex = 40; p.startInt = 8;
+            // Same melee-warrior baseline as a fencer.  A PK who cannot wear
+            // its early armour is not ready to leave town.
+            p.startStr = 50; p.startDex = 25; p.startInt = 5;
             p.targets = {
                 {rules::kSwordsmanship, 1000, 5, false, SkillRole::Primary},
-                {rules::kTactics,       1000, 4, true,  SkillRole::Secondary},
+                {rules::kTactics,       1000, 4, false, SkillRole::Secondary},
                 {rules::kPoisoning,     1000, 3, false, SkillRole::Secondary},
-                {rules::kHealing,        700, 2, true,  SkillRole::Secondary},
+                {rules::kHealing,        700, 2, false, SkillRole::Secondary},
                 {kWrestling,             300, 1, false, SkillRole::Utility},
             };
             p.unresolvedTenths = 3000;
@@ -995,7 +1007,7 @@ const std::vector<Profession>& All() {
             p.label = "Treasure Hunter";
             p.startSkillA = rules::kLockpicking;
             p.startSkillB = rules::kCartography;
-            p.startStr = 24; p.startDex = 32; p.startInt = 24;
+            p.startStr = 50; p.startDex = 20; p.startInt = 10;
             p.targets = {
                 {rules::kLockpicking,     1000, 8, false, SkillRole::Primary},
                 {rules::kCartography,     1000, 7, true,  SkillRole::Secondary},
@@ -1053,7 +1065,7 @@ const std::vector<Profession>& All() {
             p.label = "Mage Blacksmith";
             p.startSkillA = rules::kBlacksmithing;
             p.startSkillB = rules::kMagery;
-            p.startStr = 48; p.startDex = 16; p.startInt = 16;
+            p.startStr = 50; p.startDex = 20; p.startInt = 10;
             p.targets = {
                 {rules::kBlacksmithing, 1000, 3, false, SkillRole::Primary},
                 {rules::kMining,         500, 2, false, SkillRole::Utility},
@@ -1276,7 +1288,7 @@ const std::vector<Profession>& All() {
             p.label = "Tailor";
             p.startSkillA = rules::kTailoring;
             p.startSkillB = rules::kArmsLore;
-            p.startStr = 24; p.startDex = 24; p.startInt = 32;
+            p.startStr = 50; p.startDex = 20; p.startInt = 10;
             p.targets = {
                 {rules::kTailoring, 1000, 4, false, SkillRole::Primary},
                 {rules::kArmsLore,   500, 3, false, SkillRole::Utility},
@@ -1350,7 +1362,7 @@ const std::vector<Profession>& All() {
             // 48 was two points short of the pickaxe it declares as a
             // WIELDED tool (ReqStr=50). Mining is its second creation
             // skill, so it too was born unable to do it.
-            p.startStr = 50; p.startDex = 16; p.startInt = 14;
+            p.startStr = 50; p.startDex = 20; p.startInt = 10;
             p.targets = {
                 {rules::kTinkering, 1000, 2, false, SkillRole::Primary},
                 // Held exactly at the 50.0 creation grants: this life buys
@@ -1432,7 +1444,7 @@ const std::vector<Profession>& All() {
             p.label = "Scribe";
             p.startSkillA = rules::kInscription;
             p.startSkillB = rules::kMagery;
-            p.startStr = 16; p.startDex = 16; p.startInt = 48;
+            p.startStr = 50; p.startDex = 20; p.startInt = 10;
             p.targets = {
                 {rules::kInscription, 1000, 3, false, SkillRole::Primary},
                 // Pushed to 100.0, not capped like the mage's own Magery

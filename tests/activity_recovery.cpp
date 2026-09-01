@@ -80,6 +80,7 @@ void TestDangerousPlacesAreAbandoned() {
     std::printf("[recovery: a place that keeps killing you is not worth it]\n");
     RecoverySight lethal = Fallen();
     lethal.dangerHeatAtCorpse = 0.95;
+    lethal.attemptsSoFar = 1;  // one prepared recovery was already tried
     ExpectStep(DecideRecovery(lethal, Default()), RecoveryStep::Abandon,
                "died there again and again");
 
@@ -94,10 +95,17 @@ void TestDangerousPlacesAreAbandoned() {
     timid.riskTolerance = 0.0;
     RecoverySight mild = Fallen();
     mild.dangerHeatAtCorpse = 0.40;
+    mild.attemptsSoFar = 1;
     ExpectStep(DecideRecovery(mild, timid), RecoveryStep::Abandon,
                "mildly dangerous is enough for a cautious life");
     ExpectStep(DecideRecovery(mild, Default()), RecoveryStep::TravelToCorpse,
                "and not enough for an ordinary one");
+
+    RecoverySight firstTry = Fallen();
+    firstTry.dangerHeatAtCorpse = 1.0;
+    firstTry.attemptsSoFar = 0;
+    ExpectStep(DecideRecovery(firstTry, timid), RecoveryStep::TravelToCorpse,
+               "even a cautious life makes one prepared full-loot recovery attempt");
 }
 
 // A corpse decays; an errand that cannot count does not.

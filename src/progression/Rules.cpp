@@ -202,6 +202,7 @@ const char* SkillName(int skillId) {
         case kMeditation:       return "Meditation";
         case kMining:           return "Mining";
         case kPoisoning:        return "Poisoning";
+        case kParrying:         return "Parrying";
         case kProvocation:      return "Provocation";
         case kRemoveTrap:       return "Remove Trap";
         case kSpiritSpeak:      return "Spirit Speak";
@@ -212,6 +213,10 @@ const char* SkillName(int skillId) {
         case kTasteId:          return "Taste Identification";
         case kTinkering:        return "Tinkering";
         case kVeterinary:       return "Veterinary";
+        case kArchery:          return "Archery";
+        case kMaceFighting:     return "Mace Fighting";
+        case kFencing:          return "Fencing";
+        case kWrestling:        return "Wrestling";
         default:                break;
     }
     // Deliberately not a name we made up: an id we have no evidence for prints

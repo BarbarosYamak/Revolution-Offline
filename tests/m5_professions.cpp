@@ -99,6 +99,39 @@ void TestCreationFitsTheServer() {
               p.startInt <= prof::kServerCreateStatEachMax,
               "no starting stat exceeds the server's per-stat creation cap");
     }
+
+    const prof::Profession* fencer = prof::Find("fencer");
+    const prof::Profession* pk = prof::Find("pk");
+    Check(fencer && fencer->startStr >= 50,
+          "a new fencer starts strong enough for an actual warrior kit");
+    Check(pk && pk->startStr >= 50,
+          "a new PK starts strong enough for an actual warrior kit");
+
+    for (const prof::Profession& p : prof::All()) {
+        Check(p.startStr == 50,
+              "every new life starts at the normal 50 Strength baseline");
+        if (p.id == "mage" || p.id == "warlock") continue;
+        Check(p.startInt <= 10,
+              "only mage and warlock use an Intelligence-weighted remainder");
+    }
+
+    // A hunter's support skills come from its actual life: fighting raises
+    // Tactics/Anatomy/Parrying and bandaging raises Healing.  Sending a new
+    // warrior around town to buy all four postpones its first safe hunt.
+    for (const char* id : {"fencer", "macer", "archer", "warlock", "pk"}) {
+        const prof::Profession* hunter = prof::Find(id);
+        Check(hunter != nullptr, "combat profession is present");
+        if (!hunter) continue;
+        for (const prof::SkillTargetSpec& t : hunter->targets) {
+            const bool combatSupport =
+                t.skillId == rules::kTactics || t.skillId == rules::kAnatomy ||
+                t.skillId == rules::kHealing || t.skillId == rules::kParrying;
+            if (combatSupport) {
+                Check(!t.viaTrainer,
+                      "combat support skills are practised in the field, not bought");
+            }
+        }
+    }
 }
 
 // --------------------------------------------------------------------------

@@ -238,6 +238,11 @@ public:
     // scenario cannot assume a fixed tile for a vendor or a banker.
     bool ActionGotoMobile(u32 serial, int stopWithin = 1);
     bool MobilePosition(u32 serial, i32* x, i32* y, i8* z = nullptr) const;
+    // A nearby mobile is not necessarily visible: update packets cross rooms,
+    // whereas vendors and trainers require normal Sphere line of sight.  The
+    // banking errand's explicit at-known-bank speech fallback is the only
+    // intended exception to this rule.
+    bool MobileInLineOfSight(u32 serial) const;
     bool GotoBusy();                     // planning or walking a route
     bool GotoSucceeded() const { return gotoArrived_; }
 
@@ -1844,6 +1849,10 @@ private:
     i32   travelPlannedTiles_ = 0;    // last route plan's estimatedTiles
     u32   travelEntitySerial_ = 0;    // non-zero while chasing a mobile
     i32   travelEntityWithin_ = 2;
+    // Next walkable interaction tile to try for each mobile. A walkable tile
+    // can still be isolated behind a counter; rotating avoids retrying that
+    // same sealed customer approach forever.
+    std::unordered_map<u32, u32> travelEntityApproachChoice_;
     i64   travelLastSampleMs_ = 0;
     i32   travelLegTargetX_ = 0;      // what we asked ActionGoto for
     i32   travelLegTargetY_ = 0;

@@ -81,7 +81,12 @@ RecoveryPlan DecideRecovery(const RecoverySight& see,
     // by a test rather than by a session, which is the argument for the
     // tests.
     const double tolerated = 0.35 + 0.70 * tune.riskTolerance;
-    if (see.dangerHeatAtCorpse > tolerated) {
+    // Always make one prepared recovery attempt.  Heat commonly contains the
+    // death that created this corpse, so applying it before attempt zero made
+    // the nominal three-trip budget unreachable and wrote off every valuable
+    // full-loot corpse immediately.  After one failed approach, learned danger
+    // may legitimately veto further trips.
+    if (see.attemptsSoFar > 0 && see.dangerHeatAtCorpse > tolerated) {
         out.step = RecoveryStep::Abandon;
         out.reason = "that place has killed this character too often to be "
                      "worth the gear";

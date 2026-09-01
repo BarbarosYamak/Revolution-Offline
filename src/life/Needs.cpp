@@ -244,6 +244,21 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         return needs;   // a ghost has no other needs it can act on
     }
 
+    // Resurrection is only the first half of a full-loot death.  Keep the
+    // corpse need alive after the ghost becomes corporeal so RecoverCorpse
+    // can heal to its safety threshold, return to the recorded tile, loot,
+    // and re-equip.  Previously this need existed only inside the `obs.dead`
+    // branch above and vanished on the exact tick it became actionable.
+    if (obs.corpseKnown) {
+        const bool exhausted = obs.corpseRecoveryAttempts >= 3;
+        add(NeedKind::RecoverCorpse, exhausted ? 0.2 : 0.75, "own corpse",
+            exhausted ? "corpse recovery attempts exhausted"
+                      : "resurrected; gear and carried resources remain on the corpse",
+            Fmt("corpse=%d,%d attempts=%d", obs.corpseX, obs.corpseY,
+                obs.corpseRecoveryAttempts),
+            exhausted);
+    }
+
     const double hpFrac = obs.HpFraction();
 
     // --- survival ----------------------------------------------------------

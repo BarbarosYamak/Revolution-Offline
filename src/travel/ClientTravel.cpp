@@ -598,6 +598,12 @@ bool Client::TravelToServiceSkipping(wm::Service s, const char* regionHint,
             // single NPC for the whole session.
             goto try_atlas;
         }
+        // If the NPC is still in view, select a real stand tile around it.
+        // Aiming the route at the occupied NPC tile makes A* report no path
+        // for vendors behind counters even when the customer side is open.
+        i32 liveX = 0, liveY = 0;
+        if (MobilePosition(seen->serial, &liveX, &liveY))
+            return TravelToEntity(seen->serial, 2);
         travelEntitySerial_ = seen->serial;
         travelEntityWithin_ = 2;
         char label[96];
@@ -808,15 +814,52 @@ bool Client::TravelToResource(wm::ResourceKind r) {
 
 bool Client::TravelToEntity(u32 serial, i32 within) {
     i32 mx = 0, my = 0;
-    if (!MobilePosition(serial, &mx, &my)) {
+    i8 mz = 0;
+    if (!MobilePosition(serial, &mx, &my, &mz)) {
         travelFailure_ = "that mobile is not in view";
         return false;
     }
-    travelEntitySerial_ = serial;
-    travelEntityWithin_ = within > 0 ? within : 1;
+    const i32 reach = within > 0 ? within : 1;
+
+    // Route to a tile the character can occupy, not to the mobile's occupied
+    // tile. Prefer the candidate closest to us so counters and shop walls do
+    // not pull the path toward the sealed side of an otherwise usable NPC.
+    struct StandCandidate { i32 x, y, cost; };
+    std::vector<StandCandidate> candidates;
+    for (i32 dy = -reach; dy <= reach; ++dy) {
+        for (i32 dx = -reach; dx <= reach; ++dx) {
+            if (dx == 0 && dy == 0) continue;
+            if (std::max(std::abs(dx), std::abs(dy)) > reach) continue;
+            const i32 sx = mx + dx, sy = my + dy;
+            if (!TileIsWalkable(sx, sy, mz)) continue;
+            candidates.push_back({sx, sy,
+                                  Chebyshev(playerX_, playerY_, sx, sy)});
+        }
+    }
+    if (candidates.empty()) {
+        travelFailure_ = "no walkable interaction tile around that mobile";
+        return false;
+    }
+    std::sort(candidates.begin(), candidates.end(),
+              [](const StandCandidate& a, const StandCandidate& b) {
+                  if (a.cost != b.cost) return a.cost < b.cost;
+                  if (a.y != b.y) return a.y < b.y;
+                  return a.x < b.x;
+              });
+    u32& nextChoice = travelEntityApproachChoice_[serial];
+    const StandCandidate& stand = candidates[nextChoice % candidates.size()];
+    ++nextChoice;
+
+    // This journey targets the chosen stand tile. Callers re-evaluate the
+    // mobile after arrival, so a wandering NPC naturally causes a fresh trip
+    // rather than retargeting this journey back onto the occupied tile.
+    travelEntitySerial_ = 0;
+    travelEntityWithin_ = reach;
     char label[64];
     std::snprintf(label, sizeof(label), "mobile 0x%08X", serial);
-    return TravelBegin(label, mx, my, travelEntityWithin_);
+    LogInfo("[travel] entity stand candidate %u/%zu at (%d,%d)\n",
+            nextChoice, candidates.size(), stand.x, stand.y);
+    return TravelBegin(label, stand.x, stand.y, 0, /*hasZ=*/true, mz);
 }
 
 bool Client::TravelToLastCorpse() {

@@ -352,6 +352,11 @@ private:
     // foe's health bar.
     static constexpr i64 kFightAssessMs = 20000;
     i64  fightStartedMs_ = 0;
+    // Selecting an opponent starts Sphere's normal attack timer. Re-sending
+    // the same target every life tick restarts that timer, producing a
+    // perfectly acknowledged but completely harmless "fight".
+    i64  lastAttackOrderMs_ = 0;
+    u32  lastAttackOrderTarget_ = 0;
     // When the foe was last asked for its health (0x34).
     i64  foeHpAskedMs_ = 0;
     double foeHpAtStart_ = -1.0;

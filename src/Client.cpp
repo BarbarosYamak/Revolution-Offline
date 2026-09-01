@@ -2585,6 +2585,29 @@ bool Client::MobilePosition(u32 serial, i32* x, i32* y, i8* z) const {
     return false;
 }
 
+bool Client::MobileInLineOfSight(u32 serial) const {
+    i32 tx = 0, ty = 0; i8 tz = 0;
+    if (!MobilePosition(serial, &tx, &ty, &tz) || !world_) return false;
+
+    // Sphere traces a character's LOS at body/eye height.  The sampled line
+    // below intentionally checks only the cells BETWEEN the two mobiles: a
+    // merchant may stand beside a counter or other decoration on its own
+    // tile, but a wall between rooms must make the merchant unavailable.
+    const i32 dx = tx - playerX_;
+    const i32 dy = ty - playerY_;
+    const i32 steps = std::max(std::abs(dx), std::abs(dy));
+    if (steps <= 1) return true;
+    const i32 fromEye = static_cast<i32>(playerZ_) + 15;
+    const i32 toEye = static_cast<i32>(tz) + 15;
+    for (i32 i = 1; i < steps; ++i) {
+        const i32 x = playerX_ + (dx * i) / steps;
+        const i32 y = playerY_ + (dy * i) / steps;
+        const i8 eye = static_cast<i8>(fromEye + ((toEye - fromEye) * i) / steps);
+        if (world_->StaticBlocksSightAt(x, y, eye)) return false;
+    }
+    return true;
+}
+
 bool Client::ActionGotoMobile(u32 serial, int stopWithin) {
     i32 mx = 0, my = 0;
     if (!MobilePosition(serial, &mx, &my)) {
@@ -2790,6 +2813,7 @@ u32 Client::NearestGuildmasterForTrade(const char* trade,
     int bestD = 0;
     for (const MobileObj& m : mobileCache_) {
         if (m.serial == playerSerial_) continue;
+        if (!MobileInLineOfSight(m.serial)) continue;
         bool skipped = false;
         for (u32 sk : skip) { if (sk == m.serial) { skipped = true; break; } }
         if (skipped) continue;
@@ -2829,6 +2853,7 @@ u32 Client::NearestShopkeeperWithTrade(const char* trade,
     int bestD = 0;
     for (const MobileObj& m : mobileCache_) {
         if (m.serial == playerSerial_) continue;
+        if (!MobileInLineOfSight(m.serial)) continue;
         const char* title = PaperdollTitle(m.serial);
         if (!title || !*title) continue;
         const std::string t = lower(title);
@@ -2877,6 +2902,7 @@ u32 Client::NearestMobileWithTrade(const char* trade,
     int bestD = 0;
     for (const MobileObj& m : mobileCache_) {
         if (m.serial == playerSerial_) continue;
+        if (!MobileInLineOfSight(m.serial)) continue;
         bool skipped = false;
         for (u32 sk : skip) { if (sk == m.serial) { skipped = true; break; } }
         if (skipped) continue;
