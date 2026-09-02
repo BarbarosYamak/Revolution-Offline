@@ -9,4 +9,5 @@
 - [Tailor cloth source](tailor-cloth-source.md) — player-first WTB (forum: bolts 17gp bulk), self shear→spin→weave fallback, never NPC; thread-vs-yarn UNKNOWN
 - [Era content prune](era-content-prune.md) — SE/ninja clothing in Scripts-X must go from craft menus, vendor stock, loot, bot recipes (open)
 - [Interim NPC sales](interim-npc-sales.md) — owner 2026-09-02: materials may go to NPCs until bots need each other; player-first, VendorPolicy switch, re-tighten later
+- [Wool: fighters kill+carve, sell cloth](wool-lamb-carve.md) — owner rule; tailors shear only; corpse loot needs open-after-carve, dead-mobile sweep, carve msg confirm
 - [Wave runs need full duration](wave-runs-need-full-duration.md) — killed wave grades as fake regressions; fix checks = 5-min smoke on affected chars, 30-min only for verdicts
