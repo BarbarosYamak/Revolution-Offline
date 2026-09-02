@@ -2,6 +2,9 @@
 
 #include "uo/types.h"
 
+#include <cctype>
+#include <cstring>
+
 // ---------------------------------------------------------------------------
 // M2 action layer — result model and the pure state machines behind the
 // player action primitives.
@@ -141,6 +144,22 @@ struct Action {
     }
 };
 
+// EQUIPPING WHAT IS ALREADY WORN TAKES IT OFF.
+//
+// Source-X answers a 0x13 wear for an item that is already on the character by
+// bouncing it: the lift succeeds, the wear finds the layer occupied by that
+// very item and the server drops it into the pack -- "You put the fishing pole
+// in your pack." Wave 2026-09-02 shows the whole shape (run_gates/
+// g_Ithion.console.txt:521-533): equip -> pole in pack -> drag_cancel -> the
+// runner sees an empty hand and equips again, 643 times in thirty minutes.
+//
+// `wornLayer` is the layer the serial is CURRENTLY on, or -1 when it is not
+// worn at all. Layer 0 means "server chooses", so any layer satisfies it.
+inline bool EquipWouldBeNoOp(int wornLayer, u8 requestedLayer) {
+    if (wornLayer < 0) return false;
+    return requestedLayer == 0 || static_cast<u8>(wornLayer) == requestedLayer;
+}
+
 // --- target cursor ---------------------------------------------------------
 // Per-session cursor state with a generation counter. The generation is what
 // makes a stale reply impossible: an action records the generation of the
@@ -251,5 +270,139 @@ inline LifeState LifeStateFromBody(u16 body) {
 // Vendor rows are Client::VendorItem (serial, graphic, amount, price, layer,
 // name) -- the client already assembles them from the 0x3C + 0x74 pair, so
 // there is deliberately no second vendor type here.
+
+// --- system-message classification ------------------------------------------
+// Pulled out of Client::ActionOnSysMessage as pure text matching so the
+// classification itself can be unit tested without a live Client/socket.
+// Sphere's own wording (core/messages.scp) is quoted in each caller.
+inline bool ContainsCI(const char* text, const char* needle) {
+    if (!text || !needle || !*needle) return false;
+    const usize n = std::strlen(needle);
+    for (const char* p = text; *p; ++p) {
+        usize i = 0;
+        while (i < n && p[i] &&
+               std::tolower(static_cast<unsigned char>(p[i])) ==
+               std::tolower(static_cast<unsigned char>(needle[i]))) ++i;
+        if (i == n) return true;
+    }
+    return false;
+}
+
+// "You lack sufficient mana for this spell" (spell_try_nomana) and
+// "You lack %s for this spell" (spell_try_noregs, %s = the reagent name) are
+// Sphere's own refusal text for an unaffordable cast. Neither the literal
+// reagent name nor "sufficient mana" is known in advance, so this matches on
+// "you lack" rather than a fixed reagent list -- a cast refused this way
+// otherwise never recognises its own refusal and sits pending until the cast
+// deadline (wave2 2026-09-01: Illyria cast_spell x26, Selene x6, Leander/Lyra
+// x2 each; run_gates/g_Illyria.console.txt:86, g_Selene.console.txt:91).
+inline bool IsSpellCastRefusal(const char* text) {
+    return ContainsCI(text, "more reagents") || ContainsCI(text, "not enough mana") ||
+           ContainsCI(text, "lack the mana") || ContainsCI(text, "you lack") ||
+           ContainsCI(text, "fizzle");
+}
+
+// "You are selling too fast." / "You are buying too fast."
+// (npc_vendor_sellfast/buyfast) is Sphere's vendor-trade rate limit, sent
+// instantly and otherwise unrecognised -- the action then sat pending for
+// the full vendor deadline every time the rate limit was hit (wave2
+// 2026-09-01: Dorvar vendor_sell x5; run_gates/g_Dorvar.console.txt:455).
+inline bool IsVendorRateLimited(const char* text) {
+    return ContainsCI(text, "selling too fast") || ContainsCI(text, "buying too fast");
+}
+
+// --- eating -----------------------------------------------------------------
+// A double-click on food is answered by TEXT AND NOTHING ELSE. CChar::Use_Eat
+// (Source-X src/game/chars/CCharUse.cpp:929-993) either refuses with one of
+// four messages or eats and then sends exactly one of six food_full_N lines;
+// no gump, no cursor, and -- for a stack that merely shrinks by one -- no
+// 0x1D delete either. None of that was recognised, so every single eat sat
+// pending for the whole use_object deadline and the goal re-issued it forever
+// (2026-09-02 wave: run_gates/g_Halain.console.txt:139-150 -- "You eat the
+// food, and begin to feel more satiated." at 09:09:25.563, use_object timeout
+// at 09:09:29.571, and 351 `food: eating` lines in one session).
+enum class EatOutcome : u8 {
+    None = 0,     // not an eat message at all
+    Ate,          // food_full_1..6: the food was consumed
+    AlreadyFull,  // food_canteatf: the stomach is full, nothing was eaten
+    CannotEat,    // food_cantmove / food_canteat / food_rcanteat
+};
+
+inline EatOutcome ClassifyEatMessage(const char* text) {
+    if (!text || !*text) return EatOutcome::None;
+    // The six food_full_N lines, in Sphere's own wording (defmessages, quoted
+    // in runtime/scripts/core/messages.scp:169-175).
+    if (ContainsCI(text, "still extremely hungry") ||     // food_full_1
+        ContainsCI(text, "much less hungry") ||           // food_full_2
+        ContainsCI(text, "more satiated") ||              // food_full_3
+        ContainsCI(text, "nearly stuffed") ||             // food_full_4
+        ContainsCI(text, "quite full") ||                 // food_full_5
+        ContainsCI(text, "you are stuffed"))              // food_full_6
+        return EatOutcome::Ate;
+    if (ContainsCI(text, "too full to eat"))              // food_canteatf
+        return EatOutcome::AlreadyFull;
+    if (ContainsCI(text, "not capable of eating") ||      // food_canteat
+        ContainsCI(text, "can't really eat this") ||      // food_rcanteat
+        ContainsCI(text, "cannot really eat this"))
+        return EatOutcome::CannotEat;
+    return EatOutcome::None;
+}
+
+// --- hunger, as the server states it ----------------------------------------
+// Sphere states a character's hunger in two places and BOTH are statements of
+// the same underlying STAT_FOOD:
+//
+//   * the status line, "You are <level>" (msg_food_lvl_self), whose level is
+//     sm_szFoodLevel[food * 8 / foodMax] -- eight bands, 0 starving .. 7
+//     stuffed (CCharStatus.cpp:837,870-885);
+//   * the eat outcome, food_full_N, chosen by food * 5 / foodMax -- six bands
+//     (CCharUse.cpp:967-991).
+//
+// `level` below is the eight-band status index, so both vocabularies can be
+// compared on one scale. The eat lines cover a range of status bands, so each
+// is mapped to the HUNGRIEST band it can mean, which never claims a character
+// is fuller than it is:
+//
+//   food_full_1  [0,20%)   -> very hungry (1)     food_full_4  [60,80%)  -> 4
+//   food_full_2  [20,40%)  -> hungry (2)          food_full_5  [80,100%) -> 6
+//   food_full_3  [40,60%)  -> fairly content (3)  food_full_6  100%      -> 7
+//
+// This table exists because hunger is a state that CHANGES, and the only
+// honest reading is the NEWEST statement -- which the caller can only pick by
+// looking each phrase up by time. Most specific phrase first: "you are very
+// hungry" must win over "you are hungry" on the same line.
+struct HungerStatement {
+    const char* text;
+    u8          level;   // 0 starving .. 7 stuffed
+};
+
+inline const HungerStatement* HungerStatements(usize* count) {
+    static const HungerStatement kRows[] = {
+        // status line (msg_food_lvl_1..8, messages.scp:470-477)
+        {"you are starving",        0},
+        {"you are very hungry",     1},
+        {"you are hungry",          2},
+        {"you are fairly content",  3},
+        {"you are content",         4},
+        {"you are well fed",        6},
+        {"you are fed",             5},
+        {"you are stuffed",         7},
+        // eat outcome (food_full_1..6, messages.scp:169-175)
+        {"still extremely hungry",  1},
+        {"much less hungry",        2},
+        {"more satiated",           3},
+        {"nearly stuffed",          4},
+        {"quite full",              6},
+        // refusal: full is full
+        {"too full to eat",         7},
+    };
+    if (count) *count = sizeof(kRows) / sizeof(kRows[0]);
+    return kRows;
+}
+
+// The status bands the shard itself calls hungry: 0 starving, 1 very hungry,
+// 2 hungry. 3 is "fairly content" and above it nothing is hungry.
+constexpr u8 kHungerLevelHungry   = 2;
+constexpr u8 kHungerLevelStarving = 0;
 
 }  // namespace uo::act

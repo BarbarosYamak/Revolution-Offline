@@ -116,6 +116,30 @@ void Client::OnSecureTrade(const u8* data, usize size) {
             char name[31];
             std::memset(name, 0, sizeof(name));
             if (size >= 47) std::memcpy(name, data + 17, 30);
+            // ONE WINDOW AT A TIME.
+            //
+            // Two sellers answering the same want both dropped goods on the
+            // buyer (2026-09-02 09:11:48 Kharain, 09:11:50 Elvar -> Odessa).
+            // The second OPEN overwrote myContainer_/theirContainer_, so the
+            // gold already in the first window and the accept tick that
+            // followed addressed containers this state no longer named: both
+            // deals timed out at 25s having moved nothing. A player refuses a
+            // second window by closing it, and so do we -- on the wire, not by
+            // ignoring the packet, which would leave the partner's window
+            // hanging open until its own timeout.
+            if (trade_.Active() && a != trade_.PartnerSerial()) {
+                LogWarn("[trade] declining a second window from '%s' (0x%08X); "
+                        "already trading with 0x%08X\n", name, a,
+                        trade_.PartnerSerial());
+                SendTradeAction(/*SECURE_TRADE_CLOSE=*/1, b, 0);
+                declinedTradePartner_ = a;
+                declinedTradeName_ = name;
+                char dev[96];
+                std::snprintf(dev, sizeof(dev), "partner=0x%08X name='%s'", a,
+                              name);
+                LogEvent("trade_declined", dev);
+                break;
+            }
             trade_.OnOpened(a, name, b, c, NowMs());
             LogInfo("[trade] window open with '%s' (0x%08X); mine=0x%08X "
                     "theirs=0x%08X\n", name, a, b, c);

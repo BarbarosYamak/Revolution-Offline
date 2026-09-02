@@ -354,10 +354,47 @@ void TestCharacterSelection() {
     Check(sphere::SelectCharacterSlot(nullptr, 0, "x", 0) == -1, "empty list");
 }
 
+// CChar::CanTouch, mirrored. The server refuses on `iDist > 2`
+// (Source-X src/game/chars/CCharStatus.cpp:1423) and the vendor buy packet
+// checks it first of all (src/network/receive.cpp:752-756, "You can't reach
+// the Vendor"). The client used to allow itself 3, which is precisely the
+// distance at which the answer is always no: Aurelius opened a shop from
+// (1591,1657) with the shopkeeper at (1588,1655) -- Chebyshev 3 -- and both
+// his purchases were refused in 1ms (run_gates/g_Aurelius.console.txt:411,
+// 468-470,482).
+void TestTouchReach() {
+    std::printf("[reach: CanTouch is two tiles, Chebyshev]\n");
+    Check(sphere::kTouchDist == 2, "arm's length is two tiles, not three");
+    Check(sphere::CanTouchAtDist(0), "same tile is reachable");
+    Check(sphere::CanTouchAtDist(2), "two tiles is reachable");
+    Check(!sphere::CanTouchAtDist(3),
+          "THREE IS NOT -- this is the Aurelius case");
+    Check(!sphere::CanTouchAtDist(4), "and nor is anything beyond it");
+
+    // The metric matters as much as the number. Aurelius was dx=3, dy=2:
+    // Chebyshev 3 (refused), Manhattan 5, Euclidean ~3.6. A client measuring
+    // in anything but the server's metric would disagree about the boundary.
+    auto chebyshev = [](i32 ax, i32 ay, i32 bx, i32 by) {
+        const i32 dx = ax > bx ? ax - bx : bx - ax;
+        const i32 dy = ay > by ? ay - by : by - ay;
+        return dx > dy ? dx : dy;
+    };
+    Check(chebyshev(1591, 1657, 1588, 1655) == 3,
+          "Aurelius stood three tiles from Kenton by the server's metric");
+    Check(!sphere::CanTouchAtDist(chebyshev(1591, 1657, 1588, 1655)),
+          "so the client must predict the refusal it actually got");
+    // A pure diagonal at two tiles is REACHABLE under Chebyshev even though
+    // its Manhattan sum is four -- the case a Manhattan client gets wrong in
+    // the other direction, refusing to buy from a vendor it could reach.
+    Check(sphere::CanTouchAtDist(chebyshev(100, 100, 102, 102)),
+          "a diagonal neighbour two tiles out is reachable");
+}
+
 }  // namespace
 
 int main() {
     std::printf("sphere regression tests\n\n");
+    TestTouchReach();
     TestRelayDecision();
     TestPingPolicy();
     TestFraming();

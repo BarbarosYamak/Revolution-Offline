@@ -192,6 +192,153 @@ void TestLifeState() {
     Check(s == act::LifeState::Alive, "dead -> alive");
 }
 
+// ---------------------------------------------------------------------------
+// System-message classification: wave2 2026-09-01 root cause. cast_spell and
+// vendor_sell sat pending for their full deadline because Sphere's own
+// refusal text ("You lack ... for this spell", "You are selling too fast.")
+// was not recognised, so a real refusal read back as a timeout instead of a
+// ServerFailure. Pulled into act:: (uo/actions.h) so it is testable here
+// without a live Client/socket.
+// ---------------------------------------------------------------------------
+void TestSysMessageClassification() {
+    Section("system-message classification");
+
+    // core/messages.scp:891 spell_try_noregs, verbatim (run_gates/
+    // g_Illyria.console.txt:86, g_Selene.console.txt:91).
+    Check(act::IsSpellCastRefusal("You lack Sulfurous Ash for this spell"),
+          "reagent refusal recognised");
+    Check(act::IsSpellCastRefusal("You lack Mandrake Root for this spell"),
+          "a different reagent name still matches");
+    // core/messages.scp:889 spell_try_nomana, verbatim.
+    Check(act::IsSpellCastRefusal("You lack sufficient mana for this spell"),
+          "mana refusal recognised");
+    Check(act::IsSpellCastRefusal("More reagents are needed for this spell"),
+          "the older 'more reagents' phrasing still matches");
+    Check(act::IsSpellCastRefusal("The spell fizzles."),
+          "fizzle still matches");
+    Check(!act::IsSpellCastRefusal("You cast the spell."),
+          "an unrelated line is not a refusal");
+    Check(!act::IsSpellCastRefusal(nullptr), "null text is not a refusal");
+
+    // core/messages.scp:759-760 npc_vendor_buyfast/sellfast, verbatim
+    // (run_gates/g_Dorvar.console.txt:455).
+    Check(act::IsVendorRateLimited("You are selling too fast."),
+          "sell rate limit recognised");
+    Check(act::IsVendorRateLimited("You are buying too fast."),
+          "buy rate limit recognised");
+    Check(!act::IsVendorRateLimited("You are selling that too cheap."),
+          "an unrelated vendor line is not a rate limit");
+
+    // Case-insensitive, matching Client::ActionOnSysMessage's own `contains`
+    // (both are ASCII system text from the same source).
+    Check(act::IsSpellCastRefusal("YOU LACK SULFUROUS ASH FOR THIS SPELL"),
+          "classification is case-insensitive");
+}
+
+// ---------------------------------------------------------------------------
+// Eating: 2026-09-02 root cause. A double-click on food is answered by text
+// alone, and none of that text was recognised, so every eat timed out and the
+// hunger flag -- read as "was it EVER said" -- never moved. Both halves are
+// pure text classification, so both are checked here.
+// ---------------------------------------------------------------------------
+void TestEatClassification() {
+    Section("eat outcome and hunger statements");
+
+    // Verbatim from run_gates/g_Halain.console.txt:144,150 (food_full_3 and
+    // food_full_4, messages.scp:171-172).
+    Check(act::ClassifyEatMessage(
+              "You eat the food, and begin to feel more satiated.") ==
+              act::EatOutcome::Ate,
+          "food_full_3 is a confirmed meal");
+    Check(act::ClassifyEatMessage(
+              "You are nearly stuffed, but manage to eat the food.") ==
+              act::EatOutcome::Ate,
+          "food_full_4 is a confirmed meal");
+    Check(act::ClassifyEatMessage(
+              "You eat the food, but are still extremely hungry.") ==
+              act::EatOutcome::Ate,
+          "food_full_1 is still a meal, hungry or not");
+    Check(act::ClassifyEatMessage("You are stuffed!") == act::EatOutcome::Ate,
+          "food_full_6 is a confirmed meal");
+    // messages.scp:167 food_canteatf -- nothing was eaten, and that is not a
+    // failure the caller should retry.
+    Check(act::ClassifyEatMessage("You are simply too full to eat any more!") ==
+              act::EatOutcome::AlreadyFull,
+          "a full stomach is its own outcome");
+    Check(act::ClassifyEatMessage("You can't really eat this.") ==
+              act::EatOutcome::CannotEat,
+          "inedible is a server refusal");
+    Check(act::ClassifyEatMessage("You put the logs in your pack.") ==
+              act::EatOutcome::None,
+          "an unrelated line is not an eat outcome");
+    Check(act::ClassifyEatMessage(nullptr) == act::EatOutcome::None,
+          "null text is not an eat outcome");
+
+    // The hunger table: every statement resolves, on the shared eight-band
+    // status scale, to the right side of "hungry".
+    struct Row { const char* line; bool hungry; bool starving; };
+    static const Row kRows[] = {
+        {"You are starving",                                   true,  true},
+        {"You are very hungry",                                true,  false},
+        {"You are hungry",                                     true,  false},
+        {"You are fairly content",                             false, false},
+        {"You are stuffed",                                    false, false},
+        {"You eat the food, but are still extremely hungry.",  true,  false},
+        {"After eating the food, you feel much less hungry.",  true,  false},
+        {"You eat the food, and begin to feel more satiated.", false, false},
+        {"You are nearly stuffed, but manage to eat the food.",false, false},
+        {"You feel quite full after consuming the food.",      false, false},
+        {"You are simply too full to eat any more!",           false, false},
+    };
+    usize rows = 0;
+    const act::HungerStatement* table = act::HungerStatements(&rows);
+    for (const Row& r : kRows) {
+        int level = -1;
+        // Most-specific-first, exactly as Runner::Observe reads it.
+        for (usize i = 0; i < rows; ++i) {
+            if (act::ContainsCI(r.line, table[i].text)) { level = table[i].level; break; }
+        }
+        Check(level >= 0, r.line);
+        const bool hungry   = (level >= 0 && level <= act::kHungerLevelHungry);
+        const bool starving = (level >= 0 && level <= act::kHungerLevelStarving);
+        Check(hungry == r.hungry && starving == r.starving, r.line);
+    }
+
+    // The regression itself: the login line says hungry, the meal answers
+    // later, and the LATER statement is the one that counts.
+    int loginLevel = -1, mealLevel = -1;
+    for (usize i = 0; i < rows; ++i) {
+        if (loginLevel < 0 && act::ContainsCI("You are hungry", table[i].text))
+            loginLevel = table[i].level;
+        if (mealLevel < 0 &&
+            act::ContainsCI("You are nearly stuffed, but manage to eat the food.",
+                            table[i].text))
+            mealLevel = table[i].level;
+    }
+    Check(loginLevel <= act::kHungerLevelHungry &&
+              mealLevel > act::kHungerLevelHungry,
+          "eating moves the character out of the hungry bands");
+}
+
+// ---------------------------------------------------------------------------
+// Equipping something already worn is not an equip: the server strips it into
+// the pack, which reads back as "the hand is empty" and starts the loop again.
+// ---------------------------------------------------------------------------
+void TestEquipNoOp() {
+    Section("equip no-op");
+
+    Check(!act::EquipWouldBeNoOp(-1, 0), "not worn: layer 0 must really equip");
+    Check(!act::EquipWouldBeNoOp(-1, 1), "not worn: hand1 must really equip");
+    Check(act::EquipWouldBeNoOp(1, 0),
+          "worn in hand1, asked for 'server chooses' -> no-op");
+    Check(act::EquipWouldBeNoOp(2, 2), "worn on the very layer asked for -> no-op");
+    Check(act::EquipWouldBeNoOp(1, 1), "the fishing-pole case: hand1 -> hand1");
+    Check(!act::EquipWouldBeNoOp(1, 2),
+          "worn in hand1 but asked for hand2 is a real move");
+    Check(!act::EquipWouldBeNoOp(0x15, 1),
+          "the backpack layer is not the hand that was asked for");
+}
+
 }  // namespace
 
 int main() {
@@ -200,6 +347,9 @@ int main() {
     TestAction();
     TestDragState();
     TestLifeState();
+    TestSysMessageClassification();
+    TestEatClassification();
+    TestEquipNoOp();
 
     std::printf("\n%d checks, %d failure(s)\n", g_checks, g_failures);
     if (g_failures == 0) std::printf("OK\n");

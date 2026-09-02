@@ -82,6 +82,12 @@ struct BotState {
     // with mobiles among the walls. Cleared by any plan that produces a path,
     // so a genuinely unreachable goal still fails in finite time.
     bool softMobileRetry = false;
+    // A literal goal tile is frequently a resource's own tile (a tree, open
+    // water, a rock) rather than somewhere a character can stand. One snap to
+    // the nearest walkable tile near that goal is tried before giving up; this
+    // flag bounds it to once per trip so a genuinely unreachable area still
+    // fails instead of snapping forever.
+    bool goalSnapTried = false;
     i64 resumeAtMs = 0;
     u32 stuckWaits = 0;         // consecutive wait-retries at the current bump cell
     bot::Blacklist blacklist;

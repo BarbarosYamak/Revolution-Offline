@@ -346,9 +346,124 @@ const SchoolWeapon* SchoolWeaponFor(const prof::Profession& p) {
     return nullptr;
 }
 
+// How to reach one output through the shard's legacy craft menus. Two levels
+// at most, and both strings are matched as case-insensitive substrings.
+//
+// Inscription is nested -- the blank scroll opens "Spell Circles" and the
+// spell lives one level down (sm_legacy_inscription.scp:12-31, 93-118).
+// Bowcraft is flat, its options named "<name> (<resmake>)"
+// (sm_legacy_bowcraft.scp:13-33). Nothing here is inferred from generic UO.
+// CraftMenuPath is declared in uo/life.h so a test can assert a route without
+// a server; the table itself stays here, next to the goal that walks it.
+const CraftMenuPath kCraftMenus[] = {
+    {"i_scroll_poison",      "Spell Circle 3", "poison",  nullptr},
+    {"i_scroll_recall",      "Spell Circle 4", "recall",  nullptr},
+    {"i_bow",                "bow",            nullptr,   nullptr},
+    {"i_crossbow",           "crossbow",       nullptr,   nullptr},
+    {"i_arrow_shaft",        "arrow_shaft",    nullptr,   nullptr},
+    // BLACKSMITHING. Corwyn reached 58 ingots and then stopped dead on
+    // "no menu path known for i_dagger" -- the table had no smith entry at
+    // all, so the whole mine -> smelt -> smith -> sell chain ended one step
+    // from the end.
+    //
+    // Three levels, from sm_legacy_blacksmithing.scp:
+    //   ON=i_sword_viking Weapons          -> ON=i_sword_viking Swords & Blades
+    //   -> ON=i_dagger <name> (<resmake>)
+    // where <name> is the itemdef's NAME. If this shard serves the newer
+    // def_blacksmithing gump instead, its categories are clilocs ("Bladed",
+    // 1011081) -- the failure branch below prints what the menu ACTUALLY
+    // offered, which is how to settle it without guessing twice.
+    {"i_dagger",             "Weapons",        "Swords & Blades", "dagger"},
+    // ALCHEMY IS A FLAT MENU -- sm_legacy_alchemy.scp has no categories, just
+    // "ON=i_potion_Poison <name> (<resmake>)" straight off the mortar. But the
+    // names are suffixes of one another and the menu lists them in this order:
+    //     Lesser Poison / Poison / Greater Poison / Deadly Poison
+    // so a plain substring search for "poison" finds LESSER poison first and
+    // quietly brews the wrong thing. A leading '^' means match the START of
+    // the option instead, which only the plain "Poison" satisfies.
+    {"i_potion_poisonless",  "^Lesser Poison", nullptr,   nullptr},
+    {"i_potion_poison",      "^Poison",        nullptr,   nullptr},
+    {"i_potion_poisongreat", "^Greater Poison",nullptr,   nullptr},
+    {"i_potion_poisondeadly","^Deadly Poison", nullptr,   nullptr},
+    {"i_spear_short",        "Weapons",        "Spears and Forks", "short spear"},
+    // COOKING. Two levels, from sm_legacy_cooking.scp (this shard runs the
+    // legacy menu: crafting_settings.scp has scp.NewCrafting_Cooking=0):
+    //   ON=i_ribs_cooked Barbecue -> ON=i_fish_cut_cooked <name> (<resmake>)
+    // where <name> resolves off tiledata for 0x097B, "fish steak" -- the
+    // itemdef carries no NAME= of its own. Matching is case-insensitive
+    // substring, and no other Barbecue entry contains it.
+    {"i_fish_cut_cooked",    "Barbecue",       "fish steak",      nullptr},
+    // CARPENTRY. The board is the ONE entry that sits on the top level of
+    // sm_carpentry -- every other option there opens a submenu:
+    //   sm_legacy_carpentry.scp:15  ON=i_board boards
+    //   sm_legacy_carpentry.scp:16  MAKEITEM=i_board
+    // so the path is flat and the option text is literally "boards". No other
+    // top-level option contains that substring ("bulletin board" is singular
+    // and lives one level down, in sm_wood_misc). Without this row Cyras,
+    // Halain and Vorar spent the whole 2026-09-02 wave on "no menu path known
+    // for i_board" -- 45 refusals, no boards, and the carpenter's entire
+    // log -> board -> furniture chain stopped at its first step.
+    {"i_board",              "boards",         nullptr,   nullptr},
+    // TINKERING. Two levels, from sm_legacy_tinkering.scp:
+    //   :18  ON=i_clock_parts Parts   -> SKILLMENU=sm_parts
+    //   :201 ON=i_gears <name> (<resmake>)  (inside sm_parts)
+    // i_gears carries no NAME= of its own (i_profession.scp:1055-1064), so
+    // <name> resolves off tiledata for 0x1053 -- "gears" -- the same way the
+    // fish steak above does. "gears" appears on no other sm_parts option, and
+    // "Parts" on no other top-level one. Serena: 30 refusals, no gears.
+    {"i_gears",              "Parts",          "gears",   nullptr},
+};
+
+const CraftMenuPath* CraftMenuFor(const std::string& item) {
+    for (const CraftMenuPath& m : kCraftMenus) {
+        if (item == m.item) return &m;
+    }
+    return nullptr;
+}
+
+void CraftFocus::NoteMade(const char* item, i64 nowMs) {
+    if (!item || !*item) return;
+    if (last_ == item) {
+        ++run_;
+    } else {
+        // Something else came off the bench, so the streak is over -- the same
+        // rule Planner::NoteRan uses one level up.
+        last_ = item;
+        run_ = 1;
+    }
+    lastMs_ = nowMs;
+}
+
+bool CraftFocus::Satiated(const char* item, i64 nowMs) const {
+    if (!item || !*item || last_.empty()) return false;
+    if (last_ != item) return false;
+    if (run_ < kFocusRun) return false;
+    if (lastMs_ <= 0) return false;
+    return nowMs - lastMs_ < kFocusFadeMs;
+}
+
+void CraftFocus::NoteNoRoute(const char* item) {
+    if (!item || !*item) return;
+    for (std::pair<std::string, i32>& e : noRoute_) {
+        if (e.first == item) { ++e.second; return; }
+    }
+    noRoute_.emplace_back(item, 1);
+}
+
+bool CraftFocus::Unreachable(const char* item) const {
+    if (!item || !*item) return false;
+    for (const std::pair<std::string, i32>& e : noRoute_) {
+        if (e.first == item) return e.second >= kNoRouteStrikes;
+    }
+    return false;
+}
+
 CraftIntent ChooseCraft(const prof::Profession& p, const Observation& obs,
-                        i32 batch) {
+                        i32 batch, const CraftFocus* focus) {
     CraftIntent out;
+    // A fully-stocked recipe this life has just spent a sitting on. Kept, not
+    // discarded: it is the answer if nothing else can be made.
+    CraftIntent satiated;
     // The best candidate seen so far whose inputs are NOT all present, kept so
     // a fully-stocked recipe later in the list can win instead.
     CraftIntent firstWorkable;
@@ -358,16 +473,51 @@ CraftIntent ChooseCraft(const prof::Profession& p, const Observation& obs,
     if (batch < 1) batch = 1;
 
     for (const std::string& made : p.produces) {
-        // ONLY WHAT MAY BE SOLD. The registry is the authority on which of
-        // this shard's goods a bot may take to an NPC at all, and a good with
-        // no legitimate destination is not a reason to spend gold on
-        // reagents. (A player-market good will belong here too once the
-        // player market can actually complete a sale; it cannot yet, so
-        // making for it would be manufacturing into a void.)
-        if (!faucet::AllowedForItem(made.c_str())) continue;
-
+        // ONLY WHAT MAY BE SOLD -- TO ANYONE.
+        //
+        // This asked faucet::AllowedForItem, which answers "will an NPC pay
+        // for this", and used the answer for "is this worth making". The
+        // parenthesis that used to stand here said a player-market good would
+        // belong once the player market could complete a sale, and "it cannot
+        // yet". IT CAN: Tarath sold 48 logs to Durnholde for 40gp on
+        // 2026-08-30, and wave 2 logged goal_completed=TRADE_WITH_PLAYER for
+        // Elvar and Odessa on 2026-09-01.
+        //
+        // The stale premise cost three lives their entire trade. A tailor, a
+        // merchant/tinker and a lumberjack/carpenter make NOTHING an NPC may
+        // buy -- that is the deliberate shape of Revolution's economy, not a
+        // gap -- so every entry of their `produces` was skipped here and the
+        // need model reported "this life makes nothing sellable" all session
+        // (Aelia x44, Odessa x8, wave 2 triage clusters 7).
+        //
+        // The right question is "would ANYONE buy it": an NPC route or a
+        // player-market one. This opens no NPC counter -- selling still asks
+        // AllowedForItem/MaySellToNpc, unchanged.
+        //
+        // The recipe is looked up FIRST now, because the class rule below
+        // leans on it: an item nothing in the registry names is accepted only
+        // when it is genuinely this trade's own work, and having a recipe on
+        // this life's own `produces` list is what establishes that.
         const prod::Recipe* r = prod::FindRecipe(made.c_str());
         if (!r) continue;
+
+        // A ROUTE THAT HAS ALREADY REFUSED IS NOT A CANDIDATE.
+        //
+        // The recipe graph says i_board is made of one log; it does not know
+        // whether CRAFT can reach the carpentry menu entry that makes it. When
+        // the goal has come back three times saying it cannot, offering the
+        // same output again is how 45 refusals and no boards happen (wave
+        // 2026-09-02). Skip it and let the next entry of `produces` have the
+        // sitting. See CraftFocus::NoteNoRoute.
+        if (focus && focus->Unreachable(made.c_str())) continue;
+
+        const faucet::SaleRoute route = faucet::RouteForItem(made.c_str());
+        const bool sellable =
+            route == faucet::SaleRoute::Npc ||
+            route == faucet::SaleRoute::PlayerMarket ||
+            (route == faucet::SaleRoute::Unrecorded &&
+             faucet::OutputClassIsPlayerMarket(p.id.c_str()));
+        if (!sellable) continue;
         // Gathered things are not crafted things. A fisher's "produces" holds
         // fish, and fish come out of the sea.
         if (!r->inputs[0].item) continue;
@@ -423,6 +573,17 @@ CraftIntent ChooseCraft(const prof::Profession& p, const Observation& obs,
         }
         if (here.missing.empty()) {
             here.why = "every input is in the pack";
+            // ROTATE THE FOCUS. Everything else about this loop is unchanged;
+            // this is the one place a WORKABLE candidate is now allowed to
+            // step aside for the next workable one.
+            if (focus && focus->Satiated(here.item, obs.nowMs)) {
+                if (!satiated.item) {
+                    satiated = here;
+                    satiated.why = "every input is in the pack, but this life "
+                                   "has just spent a sitting on it";
+                }
+                continue;
+            }
             return here;
         }
         here.why = "inputs are short";
@@ -453,6 +614,10 @@ CraftIntent ChooseCraft(const prof::Profession& p, const Observation& obs,
             firstWorkable = here;
         }
     }
+    // NOTHING ELSE IS WORKABLE, so the sitting continues. Repeating oneself
+    // beats standing idle, and this is what keeps the rotation a preference
+    // rather than a ban.
+    if (satiated.item) return satiated;
     if (firstBuyable.item) return firstBuyable;
     if (firstWorkable.item) return firstWorkable;
     if (!out.why || !*out.why) out.why = "this life makes nothing sellable";

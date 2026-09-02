@@ -1,5 +1,7 @@
 #include "uo/faucets.h"
 
+#include "uo/vendor_policy.h"
+
 #include <cstring>
 
 namespace uo::faucet {
@@ -64,6 +66,7 @@ const char* RefusalName(Refusal r) {
         case Refusal::None:                          return "NONE";
         case Refusal::NotSellable:                   return "REFUSE_NOT_SELLABLE";
         case Refusal::NoKnownBuyer:                  return "REFUSE_NO_KNOWN_BUYER";
+        case Refusal::NoKnownSupplier:               return "REFUSE_NO_KNOWN_SUPPLIER";
         case Refusal::UnknownPrice:                  return "REFUSE_UNKNOWN_PRICE";
         case Refusal::RevolutionAuthenticityUnknown: return "REFUSE_REVOLUTION_AUTHENTICITY_UNKNOWN";
         case Refusal::PlayerMarketGood:              return "REFUSE_PLAYER_MARKET_GOOD";
@@ -263,7 +266,11 @@ const GoldFaucet kFaucets[] = {
  "player-market context on Revolution. Generic tailor buyback is an economic "
  "shortcut around that market"},
 
-{"tinker_output_to_vendor", SourceType::VendorSale, "tinker",
+// `profession` is the CATALOGUE id (prof::Profession::id), which is
+// "merchant_tinker" -- the tinker life's entry in Professions.cpp. It read
+// "tinker" and so matched no life at all, which is invisible to
+// AllowedForItem but not to OutputClassIsPlayerMarket/ForProfession.
+{"tinker_output_to_vendor", SourceType::VendorSale, "merchant_tinker",
  "i_gears", "tinker",
  HistoryEvidence::Unknown, RuntimeEvidence::ScriptSupported,
  Policy::RefusePlayerMarket,
@@ -388,6 +395,50 @@ const GoldFaucet* AllowedForItem(const char* item) {
         if (Allowed(f->policy)) return f;
     }
     return nullptr;
+}
+
+bool NpcFloorOpenFor(const char* item, bool playersDeclined) {
+    // An item that already has an unconditional route does not need a floor,
+    // and saying otherwise would let the floor's reason text overwrite a
+    // documented one in the logs.
+    if (AllowedForItem(item)) return false;
+    return uo::econ::MaterialFloorOpen(item, playersDeclined);
+}
+
+namespace {
+// The two verdicts that REFUSE THE NPC and keep the player market open. See
+// each row's own reason text: "Player-market usage stays valid",
+// "a smith without an NPC faucet has to reach players", "these are player
+// goods". Unknown and BlockedRuntime are not on this list on purpose.
+bool PlayerMarketOpen(Policy p) {
+    return p == Policy::RefusePlayerMarket || p == Policy::RefuseAuthenticity;
+}
+}  // namespace
+
+SaleRoute RouteForItem(const char* item) {
+    if (!item) return SaleRoute::None;
+    // An NPC will pay for it. Nothing further to establish.
+    if (AllowedForItem(item)) return SaleRoute::Npc;
+    // The registry names THIS ITEM. A row that refuses it for any reason
+    // OTHER than the player market (Unknown, BlockedRuntime) is a considered
+    // no, and nothing below may overturn it.
+    bool named = false;
+    for (const GoldFaucet* f : ForItem(item)) {
+        named = true;
+        if (PlayerMarketOpen(f->policy)) return SaleRoute::PlayerMarket;
+    }
+    return named ? SaleRoute::None : SaleRoute::Unrecorded;
+}
+
+bool OutputClassIsPlayerMarket(const char* professionId) {
+    if (!professionId || !*professionId) return false;
+    for (const GoldFaucet& f : All()) {
+        if (f.sourceType != SourceType::VendorSale) continue;
+        if (!f.profession || std::strcmp(f.profession, professionId) != 0)
+            continue;
+        if (PlayerMarketOpen(f.policy)) return true;
+    }
+    return false;
 }
 
 std::vector<const GoldFaucet*> ForProfession(const char* professionId) {

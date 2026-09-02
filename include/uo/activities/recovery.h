@@ -49,6 +49,14 @@ struct RecoverySight {
     bool   corpseEmpty = false;
     // Gear recovered but not yet worn.
     bool   gearInPack = false;
+    // Has a live world-item serial for the corpse actually been bound? A
+    // death record outlives the corpse: sphere.ini CorpsePlayerDecay=7 (min),
+    // and the record survives a logout, so a character raised long after the
+    // fact walks back to a tile with nothing on it.
+    bool   corpseVisible = false;
+    // Consecutive decisions taken while STANDING AT the death site with no
+    // corpse bound. Without this the loot step opens container 0 forever.
+    i32    probesAtSite = 0;
 };
 
 struct RecoveryTuning {
@@ -60,6 +68,10 @@ struct RecoveryTuning {
     // Give up after this many trips. A corpse decays; an infinite errand
     // does not.
     i32    maxAttempts = 3;
+    // How many decisions to spend standing on the death tile waiting for the
+    // corpse to appear in the world-item stream before calling it gone. The
+    // stream needs a moment after arrival, so this is not 1.
+    i32    maxProbesAtSite = 5;
 };
 
 enum class RecoveryStep : u8 {
@@ -69,6 +81,7 @@ enum class RecoveryStep : u8 {
     Loot,
     ReEquip,               // gear in the pack that belongs on the paperdoll
     Abandon,               // too dangerous, too far gone, or too often tried
+    CorpseGone,            // stood on the spot; the corpse is not there
     Done,
 };
 

@@ -130,6 +130,58 @@ std::vector<const GoldFaucet*> ForItem(const char* item);
 // should use to decide whether a sale may proceed.
 const GoldFaucet* AllowedForItem(const char* item);
 
+// THE NPC PRICE FLOOR (owner ruling, 2026-09-02), asked of the registry.
+//
+// AllowedForItem above stays STRICT and unchanged: it answers "is there an
+// unconditional, evidence-backed NPC faucet for this". The floor is the second,
+// CONDITIONAL question, and it is deliberately a different function so that no
+// existing caller silently changes meaning.
+//
+// True means: the switch is on, the player-first window has closed for this
+// item (a complete WTS cycle nobody answered), and the item is a material.
+// It does NOT mean a buyer exists -- market::NpcBuyersFor still has to find a
+// live BUY row, and where none exists the item banks. The policy itself lives
+// in econ::MaterialFloorOpen (progression/VendorPolicy.cpp); this is the
+// registry's acknowledgement of it, so a reader looking for "may this sale
+// proceed" finds both answers in one place.
+bool NpcFloorOpenFor(const char* item, bool playersDeclined);
+
+// WHO WOULD BUY THIS AT ALL? A DIFFERENT QUESTION FROM "MAY AN NPC PAY".
+//
+// AllowedForItem answers the second one, and using it as the first is what
+// left three whole lives unable to work: a tailor, a merchant/tinker and a
+// lumberjack/carpenter make NOTHING an NPC may buy, by design, so ChooseCraft
+// skipped every entry of their `produces` lists and reported "this life makes
+// nothing sellable" for an entire session (Aelia x44, Odessa x8, wave 2
+// 2026-09-01).
+//
+// RefusePlayerMarket does not mean unsellable -- it means "this belongs to
+// the player economy", which is a DESTINATION, not a refusal to produce.
+// RefuseAuthenticity carries the same note in its own reasons ("Player-market
+// usage stays valid", "a smith without an NPC faucet has to reach players").
+// Both are therefore PlayerMarket here and nullptr from AllowedForItem, which
+// is the whole point of keeping the two questions apart.
+enum class SaleRoute : u8 {
+    None = 0,       // a row names it and refuses it (Unknown, BlockedRuntime)
+    Npc,            // an allowed NPC faucet exists
+    PlayerMarket,   // refused at the counter, valid between players
+    Unrecorded,     // no row names it at all -- evidence absent, not negative
+};
+SaleRoute RouteForItem(const char* item);
+
+// Is this LIFE's whole output class a player-market good? Several rows are
+// deliberately written as a class -- "tailor_output_to_vendor" is keyed on
+// i_robe but its reason speaks for cloth, bolts and robes together -- so an
+// Unrecorded item that is genuinely this trade's own work rides with the row.
+//
+// Deliberately NOT folded into RouteForItem: on its own this would say yes to
+// anything at all (a tailor and a lump of gold), so the caller must ALSO have
+// established that the item is this trade's product -- in practice, that it is
+// a recipe on the profession's `produces` list. See life::ChooseCraft.
+//
+// `professionId` is the catalogue id (prof::Profession::id).
+bool OutputClassIsPlayerMarket(const char* professionId);
+
 // Every faucet this profession may legitimately use.
 std::vector<const GoldFaucet*> ForProfession(const char* professionId);
 
@@ -145,6 +197,16 @@ enum class Refusal : u8 {
     None = 0,
     NotSellable,
     NoKnownBuyer,
+    // NOT the same thing as NoKnownBuyer, and conflating them cost a whole
+    // wave. NoKnownBuyer is the SELL side: this character holds a thing and
+    // no NPC trade will take it. NoKnownSupplier is the BUY side: this
+    // character is short of an input and no NPC trade sells it -- which for a
+    // material is the CORRECT answer under the never-sell-materials-to-NPCs
+    // rule, not an error. The buy path used to log the seller's word for it,
+    // so "REFUSE_NO_KNOWN_BUYER item=i_ingot_iron" read as a broken lookup
+    // when it was a smith who should have gone mining
+    // (run_gates/g_Zarthal.console.txt:488, g_Dorvar:740, g_Titus:636).
+    NoKnownSupplier,
     UnknownPrice,
     RevolutionAuthenticityUnknown,
     PlayerMarketGood,

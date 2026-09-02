@@ -41,3 +41,12 @@ build-*/
 build_out*.log
 cfg*.log
 ctest*.log
+
+# Gate run output (rev.py gates). Launchers are not here; nothing to keep.
+run_gates/*.console.txt
+run_gates/*.err.txt
+run_gates/*.log
+run_r4/*.console.txt
+run_r4/*.err.txt
+run_gates/
+run_r4/

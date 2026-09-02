@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <cstdarg>
 #include <cstdio>
+#include <cstring>
 
 namespace uo::life {
 
@@ -33,9 +34,22 @@ const char* NeedKindName(NeedKind k) {
         case NeedKind::NeedPet:       return "NeedPet";
         case NeedKind::NeedSmelt:     return "NeedSmelt";
         case NeedKind::NeedCraft:     return "NeedCraft";
+        case NeedKind::NeedCloth:     return "NeedCloth";
         case NeedKind::Count:         break;
     }
     return "?";
+}
+
+// See the declaration in life.h for why i_thread is not on this list.
+bool IsWoolChainMaterial(const char* item) {
+    if (item == nullptr) return false;
+    static const char* const kChain[] = {
+        "i_wool", "i_yarn_ball", "i_cloth_bolt", "i_cloth",
+    };
+    for (const char* c : kChain) {
+        if (std::strcmp(item, c) == 0) return true;
+    }
+    return false;
 }
 
 namespace {
@@ -114,6 +128,20 @@ i32 QtyIn(const std::vector<market::Stock>& pack, const char* item) {
         if (s.item == item) return s.qty;
     }
     return 0;
+}
+
+// Every stock whose name starts with `prefix`, summed. Ore is one graphic
+// for sixteen metals and the pack has been hue-resolved since S1, so a
+// coloured vein sits in obs.pack as i_ore_rusty / i_ore_bronze / ... --
+// not under "i_ore_iron". Anything that means "ore, whatever metal" has to
+// ask by prefix or it only sees the iron.
+i32 QtyInByPrefix(const std::vector<market::Stock>& pack, const char* prefix) {
+    const usize n = std::strlen(prefix);
+    i32 total = 0;
+    for (const market::Stock& s : pack) {
+        if (s.item.compare(0, n, prefix) == 0) total += s.qty;
+    }
+    return total;
 }
 
 bool GathersLogs(const NeedConfig& cfg) {
@@ -526,11 +554,25 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         // stock does that first and only banks what the market ignored. And
         // below the weight clauses: a full pack is a more urgent reason to
         // visit a box than a tidy one.
-        add(NeedKind::NeedBank, 0.40, "put unsold stock away",
-            "carrying output no NPC buys and no player is known to want -- it "
-            "waits in the box until there is an order for it",
-            Fmt("%d x %s spare with no buyer", unsoldStock,
-                unsoldName.c_str()));
+        //
+        // BUT A LOAD IS A LOAD. Elvar (2026-09-02) mined and smelted for a
+        // whole session with 27 ingots and 5 ore riding in his pack: EARN_GOLD
+        // and TRADE_WITH_PLAYER were both blocked (no buyer known, then on
+        // cooldown), so 0.40 lost to the ore need (0.59) every cycle and the
+        // surplus was never deposited -- on a full-loot shard, that is the
+        // whole session's output walking around waiting to be taken. Once the
+        // spare stock reaches surplusWorthTrip -- the same "this is a load
+        // now" judgement the selling side uses -- the trip wins over gathering
+        // more, exactly as the weight clause above does.
+        const bool loadNow = unsoldStock >= cfg.surplusWorthTrip;
+        add(NeedKind::NeedBank, loadNow ? 0.60 : 0.40, "put unsold stock away",
+            loadNow
+                ? "carrying a full load of output nobody is known to want -- "
+                  "secure it before gathering more"
+                : "carrying output no NPC buys and no player is known to want "
+                  "-- it waits in the box until there is an order for it",
+            Fmt("%d x %s spare with no buyer (trip at %d)", unsoldStock,
+                unsoldName.c_str(), cfg.surplusWorthTrip));
     }
 
     // A BANK TRIP IS ALSO FOR TAKING MONEY OUT. Depositing was implemented
@@ -749,6 +791,36 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         }
     }
 
+    // --- reagents a mage needs to practise at all --------------------------
+    //
+    // BEFORE the craft-supplies clause below, because FindNeed (Goals.cpp)
+    // returns the FIRST NeedSupplies row and this one is the more urgent kind
+    // of empty: a mage out of reagents has no trade at all, where a crafter
+    // short of an input still has a pack to sell.
+    //
+    // Written by the runner from what PRACTICE_SKILL found missing, never
+    // guessed here -- which spell a character practises with depends on what
+    // its spellbook holds, and the need model does not read spellbooks.
+    // Wave 2026-09-02: four mages cast at an empty pouch for a whole session
+    // because nothing in the needs list ever said "go and buy reagents".
+    if (!obs.practiceReagentsShort.empty()) {
+        // Same working-capital rule the craft clause states below: BUY_SUPPLIES
+        // spends only what is above its hard floor of 100, so under that there
+        // is nothing to spend and selling is the way out, not shopping.
+        const bool noCapital = (obs.gold - 100) <= 0;
+        std::string list;
+        for (const std::string& r : obs.practiceReagentsShort)
+            list += (list.empty() ? "" : ",") + r;
+        add(NeedKind::NeedSupplies, noCapital ? 0.0 : 0.46,
+            "buy spell reagents",
+            noCapital ? "out of reagents AND of the gold to buy them -- "
+                        "something has to be sold first"
+                      : "out of the reagents its practice spell consumes, and "
+                        "a mage shop sells every one of them",
+            Fmt("%d x each of %s", obs.practiceReagentQty, list.c_str()),
+            noCapital);
+    }
+
     // --- making things -----------------------------------------------------
     //
     // A crafter's day is two errands, not one: fetch what it cannot make, then
@@ -767,16 +839,35 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         // buying never reduced the shortfall of the NEXT batch, she bought
         // until the purse fell from 781 gold to 92 without inscribing a
         // single scroll. Working stock is for working with.
-        const CraftIntent now = ChooseCraft(*cfg.profession, obs, 1);
+        const CraftIntent now = ChooseCraft(*cfg.profession, obs, 1,
+                                            cfg.craftFocus);
         const CraftIntent craft =
             now.item && now.missing.empty()
                 ? now
-                : ChooseCraft(*cfg.profession, obs, cfg.craftBatch);
+                : ChooseCraft(*cfg.profession, obs, cfg.craftBatch,
+                              cfg.craftFocus);
+        // WHAT THE BATCH IS SHORT OF THAT ONLY A LOOM CAN MAKE.
+        //
+        // Read off the chosen recipe's own missing list rather than from a
+        // profession flag: "is this life a tailor" is the wrong question --
+        // the right one is "does the thing it is trying to make need cloth
+        // and is there none". A full_crafter sewing a shirt gets the same
+        // answer as a tailor, which is correct, and a smith never sees this
+        // need at all because no recipe it chose asks for cloth.
+        std::string clothShort;
+        i32 clothShortQty = 0;
+        for (const prod::Ingredient& ing : craft.missing) {
+            if (!IsWoolChainMaterial(ing.item)) continue;
+            clothShort = ing.item;
+            clothShortQty = ing.qty;
+            break;
+        }
+
         if (craft.item && craft.skillsMet) {
             if (craft.missing.empty()) {
                 add(NeedKind::NeedCraft, 0.50, "make goods to sell",
                     "holds every input for something this life can legitimately "
-                    "sell to an NPC",
+                    "sell -- to an NPC or, for a player-market good, to a player",
                     Fmt("%s: %s", craft.item, craft.why));
             } else {
                 // Can the shortfall actually be bought? A missing input with
@@ -819,6 +910,45 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
             // Nothing sellable this life can make. Legible, and not a loop.
             add(NeedKind::NeedCraft, 0.0, "make goods to sell", craft.why,
                 "nothing to make", true);
+        }
+
+        // --- CLOTH THIS LIFE HAS TO MAKE ITSELF ----------------------------
+        //
+        // Owner ruling, 2026-09-02: buy cloth from PLAYERS first; otherwise
+        // gather it -- sheep, shears, wheel, loom, scissors -- and never buy
+        // cloth, thread or yarn from an NPC. The vendor policy already
+        // encodes the second half (data/revolution_vendor_policy.tsv:50,
+        // i_cloth WORLD_PROCESSED, buy=0), which is exactly why a tailor
+        // short of cloth used to score NeedSupplies at urgency 0.0 -- BLOCKED
+        // with "short of an input no NPC may legitimately sell it" -- and
+        // then had nothing at all left to do. This is the errand that was
+        // missing from the other end of that refusal.
+        //
+        // THE GATE IS THE MARKET, NOT THE SHORTFALL. Walking to Yew is a
+        // long trip and another character may be standing at the bank with a
+        // bale to sell; the WTB window is cheaper and it is the behaviour the
+        // owner asked for. So while `noSellerFor` does not carry cloth this
+        // need is present but at zero and BLOCKED -- visible in telemetry,
+        // never selected -- and TRADE_WITH_PLAYER's own NeedTrade row is what
+        // wins. `no_player_seller` is written by DoTradeWithPlayer when its
+        // listen period expires unanswered, so the first sheep is only ever
+        // walked to after a real, failed attempt to buy.
+        if (!clothShort.empty()) {
+            const bool declined = obs.NoSellerFor(clothShort);
+            // Same shape as the other work needs so no weight needs
+            // re-tuning: a life a full batch short scores 0.55.
+            const double frac =
+                std::min(1.0, static_cast<double>(clothShortQty) /
+                                  std::max(1, cfg.craftBatch * 4));
+            add(NeedKind::NeedCloth, declined ? 0.15 + 0.40 * frac : 0.0,
+                "cloth",
+                declined
+                    ? "short of cloth, no NPC may sell it, and the player "
+                      "market was asked and nobody answered -- so shear it"
+                    : "short of cloth, but the player market has not been "
+                      "asked for it yet",
+                Fmt("%d x %s short", clothShortQty, clothShort.c_str()),
+                !declined);
         }
     }
 
@@ -933,7 +1063,15 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         //
         // Smelting is cheap to want and cheap to abandon -- the forge is in
         // the same city as the bank and the smithy this life already visits.
-        const int ore = QtyIn(obs.pack, "i_ore_iron");
+        // EVERY METAL, not just iron. A quarter of an ordinary rock is
+        // rusty / copper / bronze (r_default_rock weights, see Runner.cpp
+        // "AND EVERY METAL THE PACK ACTUALLY HOLDS"), and DoSmelt already
+        // melts a coloured vein into its own ingot -- but this need used to
+        // count "i_ore_iron" alone, so a pack holding only coloured ore never
+        // raised NeedSmelt and the miner walked past the forge with it.
+        // Owner saw exactly that on 2026-09-01: "miner not smelting ores
+        // beside iron".
+        const int ore = QtyInByPrefix(obs.pack, "i_ore_");
         if (ore > 0) {
             const double ready =
                 ore >= kEnoughToSmith

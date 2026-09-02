@@ -270,6 +270,31 @@ std::vector<Want> PlayerMarketWants(const prof::Profession& p,
     return out;
 }
 
+const char* SupplyRouteName(SupplyRoute r) {
+    switch (r) {
+        case SupplyRoute::NpcVendor:     return "NPC_VENDOR";
+        case SupplyRoute::SelfProduce:   return "SELF_PRODUCE";
+        case SupplyRoute::PlayerMarket:  return "PLAYER_MARKET";
+        case SupplyRoute::NoKnownSource: return "NO_KNOWN_SOURCE";
+    }
+    return "?";
+}
+
+SupplyRoute RouteForInput(const prof::Profession& me, const char* item,
+                          bool npcTradeKnown) {
+    // THE VENDOR TABLE KEEPS PRECEDENCE. A scribe's blank scrolls and a
+    // mage's reagents are bought, and they are bought even by the lumberjack
+    // line that can technically make parchment -- changing that here would
+    // rewrite a working errand to fix a broken one.
+    if (npcTradeKnown) return SupplyRoute::NpcVendor;
+    if (!item || !*item) return SupplyRoute::NoKnownSource;
+    for (const std::string& made : me.produces) {
+        if (made == item) return SupplyRoute::SelfProduce;
+    }
+    if (!WhoProduces(item).empty()) return SupplyRoute::PlayerMarket;
+    return SupplyRoute::NoKnownSource;
+}
+
 std::vector<const prof::Profession*> WhoProduces(const char* item) {
     std::vector<const prof::Profession*> out;
     if (!item) return out;
@@ -279,6 +304,150 @@ std::vector<const prof::Profession*> WhoProduces(const char* item) {
         }
     }
     return out;
+}
+
+std::vector<const prof::Profession*> WhoConsumes(const char* item) {
+    std::vector<const prof::Profession*> out;
+    if (!item) return out;
+    for (const prof::Profession& p : prof::All()) {
+        for (const std::string& eaten : p.consumes) {
+            if (eaten == item) { out.push_back(&p); break; }
+        }
+    }
+    return out;
+}
+
+// ---------------------------------------------------------------------------
+// The material surplus cap. See the block comment on MaterialSurplusCap in
+// include/uo/market.h for the formula and the evidence behind each term.
+// ---------------------------------------------------------------------------
+namespace {
+
+// The owner's 500-600 ingots, expressed as what it actually is: a rate. A full
+// 0->100.0 Blacksmithing climb is 100 skill POINTS and costs ~550 units of
+// metal, so 5.5 units per point. Scaling by the REMAINING climb is what makes
+// the number differ between two smiths, which is the whole point of the rule --
+// a flat 550 would be exactly the global constant the ruling forbids.
+constexpr double kUnitsPerSkillPoint = 5.5;
+
+// The largest quantity of `item` any ONE recipe this profession makes consumes,
+// and the skill that recipe is gated on. Zero/-1 when its bench never eats it.
+void OwnRecipeDemand(const prof::Profession& p, const std::string& item,
+                     i32* perCraftOut, int* skillOut) {
+    i32 per = 0;
+    int skill = -1;
+    for (const std::string& made : p.produces) {
+        if (made == item) continue;   // making it is not eating it
+        const uo::prod::Recipe* r = uo::prod::FindRecipe(made.c_str());
+        if (!r) continue;
+        for (const uo::prod::Ingredient& in : r->inputs) {
+            if (!in.item || item != in.item) continue;
+            if (in.qty > per) { per = in.qty; skill = r->skillId; }
+        }
+    }
+    if (perCraftOut) *perCraftOut = per;
+    if (skillOut) *skillOut = skill;
+}
+
+}  // namespace
+
+MaterialCap MaterialSurplusCap(const prof::Profession& p, const char* item,
+                               i32 craftBatch, i32 gold,
+                               const std::vector<SkillGap>& gaps,
+                               const TradePolicy& policy) {
+    MaterialCap out;
+    if (!item || !*item) return out;
+    out.isMaterial = uo::econ::IsFloorMaterial(item);
+    if (!out.isMaterial) return out;
+
+    const std::string name = item;
+
+    // --- what the next sitting at the bench eats ---------------------------
+    i32 perCraft = 0;
+    int craftSkill = -1;
+    OwnRecipeDemand(p, name, &perCraft, &craftSkill);
+    out.ownPlan = perCraft * std::max(1, craftBatch);
+
+    // --- what the build plan still has to climb on that bench --------------
+    //
+    // Only for a skill this character's OWN recipes for this material are gated
+    // on: a lumberjack's Swordsmanship climb is no reason to hoard logs.
+    if (craftSkill >= 0) {
+        for (const SkillGap& g : gaps) {
+            if (g.skillId != craftSkill || g.tenthsRemaining <= 0) continue;
+            out.training = static_cast<i32>(
+                (g.tenthsRemaining / 10.0) * kUnitsPerSkillPoint + 0.5);
+            break;
+        }
+    }
+
+    // --- what the player market will come asking for -----------------------
+    const i32 consumers = static_cast<i32>(WhoConsumes(name.c_str()).size());
+    out.market = consumers * std::max(0, policy.restockConsumablesTo);
+    // The purse bends the market reserve, and only the market reserve: holding
+    // stock for a buyer who has not turned up yet is the first thing a broke
+    // character gives up, while its own plan and its own training are the last.
+    if (gold < p.goldReserve) out.market /= 2;
+
+    out.units = out.ownPlan + out.training + out.market;
+    return out;
+}
+
+MaterialSaleGate MaterialNpcSaleGate(const prof::Profession& p, const char* item,
+                                     i32 heldPackAndBank, bool playersDeclined,
+                                     i32 craftBatch, i32 gold,
+                                     const std::vector<SkillGap>& gaps,
+                                     const TradePolicy& policy) {
+    MaterialSaleGate g;
+    g.held = heldPackAndBank;
+    g.detail = MaterialSurplusCap(p, item, craftBatch, gold, gaps, policy);
+    g.cap = g.detail.units;
+
+    // Not a material at all. The ruling is about logs, ore, ingots, cloth and
+    // hides; a finished good is what a crafter is SUPPOSED to take to a
+    // counter, and this gate has nothing to say about it.
+    if (!g.detail.isMaterial) {
+        g.allowed = true;
+        g.reason = "not a material -- the surplus cap does not apply";
+        return g;
+    }
+    // A DOCUMENTED FAUCET IS NOT THE FLOOR, and this distinction is the whole
+    // reason the gate consults the registry rather than the item class alone.
+    //
+    // FISH is graded WorldGathered (VendorPolicy.cpp:122-134) and is therefore
+    // a "material" by class -- and it is also one of the three taps Revolution's
+    // own players describe: "caught fish cook fish then sell". Capping it would
+    // have taken away a fisher's entire income to enforce a ruling that was
+    // never about fish; the owner's list is "logs, boards, ingots, ore, cloth,
+    // hides, yarn". The registry already draws exactly that line, so ask it
+    // instead of maintaining a second list that can drift from it.
+    //
+    // MaySellToNpc reaches the same routes; this repeats the question because
+    // the two functions are asked independently and a gate that silently
+    // assumed its caller had already checked would be a trap.
+    for (const faucet::GoldFaucet* f : faucet::ForItem(item)) {
+        if (!faucet::Allowed(f->policy)) continue;
+        g.allowed = true;
+        g.reason = "a documented gold faucet, not the material price floor";
+        return g;
+    }
+    // Half one of the ruling: player-first. Unchanged, and asked first because
+    // it is the half that is about other people rather than about this
+    // character's own cupboard.
+    if (!playersDeclined) {
+        g.reason = "the player-first window is still open for this material";
+        return g;
+    }
+    // Half two: is there genuinely more of it than this life's own plan wants?
+    if (heldPackAndBank <= g.cap) {
+        g.reason = "held stock is at or under this character's own plan cap -- "
+                   "it banks and waits for a crafter";
+        return g;
+    }
+    g.allowed = true;
+    g.reason = "held stock exceeds this character's own plan cap and no player "
+               "answered";
+    return g;
 }
 
 bool CanSupply(const prof::Profession& producer,
@@ -294,7 +463,7 @@ bool CanSupply(const prof::Profession& producer,
 }
 
 SellRuling MaySellToNpc(const prof::Profession& p, const char* item,
-                        const Ledger& ledger) {
+                        const Ledger& ledger, bool playersDeclined) {
     SellRuling out;
     if (!item) {
         out.refusal = faucet::Refusal::NotSellable;
@@ -322,7 +491,17 @@ SellRuling MaySellToNpc(const prof::Profession& p, const char* item,
     for (const faucet::GoldFaucet* f : routes) {
         if (faucet::Allowed(f->policy)) { allowedRoute = f; break; }
     }
-    if (!allowedRoute) {
+    // THE NPC PRICE FLOOR, before the refusal is written (owner ruling,
+    // 2026-09-02). A material whose player-first window has closed may take
+    // the counter -- but only if a live BUY row exists for it, because the
+    // alternative is a walk across town to be refused and a goal that spins.
+    // The arbitrage test below still applies: the floor changes WHO may buy,
+    // never whether a vendor->craft->vendor loop is allowed to print gold.
+    const bool viaFloor =
+        !allowedRoute && faucet::NpcFloorOpenFor(item, playersDeclined) &&
+        HasNpcBuyer(item, /*playersDeclined=*/true);
+
+    if (!allowedRoute && !viaFloor) {
         if (routes.empty()) {
             out.refusal = faucet::Refusal::NoKnownBuyer;
             out.reason = "no faucet in the registry pays for this";
@@ -422,7 +601,11 @@ SellRuling MaySellToNpc(const prof::Profession& p, const char* item,
     }
 
     out.allowed = true;
-    out.reason = "own output, from inputs the world provided";
+    out.reason = viaFloor
+                     ? "no player answered the offer, so the NPC price floor "
+                       "applies to this material (owner ruling, 2026-09-02) -- "
+                       "a fallback, not the market"
+                     : "own output, from inputs the world provided";
     return out;
 }
 
@@ -581,29 +764,146 @@ const NpcBuyer kNpcBuyers[] = {
     {"i_crossbow",           "bowyer"},        // tm_vend.scp:1444 BOWYER
     {"i_bow",                "bowyer"},
 
-    // --- refused by policy, kept for the record -----------------------------
-    // The rows below describe what the STOCK SCRIPTS allow. NpcBuyersFor
-    // filters them out, because on Revolution both are player-market goods.
-    // They stay so the table shows what was considered and rejected rather
-    // than looking like an oversight.
-    // i_log -- :167 CARPENTER, :964 TINKER, :1273 PROVISIONER, :1451 BOWYER,
-    //          :1685 WEAPONS_BLADED, :1722 WEAPONS_BLUNT, :1935 BLACKSMITH
-    {"i_log",        "carpenter"},
-    {"i_log",        "provisioner"},
-    {"i_log",        "tinker"},
-    {"i_log",        "bowyer"},
-    {"i_log",        "blacksmith"},
-    // i_ingot_iron -- :1936 BLACKSMITH pays 44-88, much the best of them;
-    //                 :963 TINKER, :1256 PROVISIONER, :1341 JEWELER
-    {"i_ingot_iron", "blacksmith"},
-    {"i_ingot_iron", "tinker"},
-    {"i_ingot_iron", "provisioner"},
-    {"i_ingot_iron", "jeweler"},
+    // --- MATERIALS: the NPC price floor (owner ruling, 2026-09-02) ----------
+    //
+    // Reachable only once econ::MaterialFloorOpen says so -- switch on AND the
+    // player-first WTS window closed for this item. See NpcBuyersFor below.
+    //
+    // EVERY ROW HERE WAS RE-DERIVED FROM THE INSTALLED RUNTIME.
+    //
+    // HISTORY, so the same wrong turn is not taken a third time. An earlier
+    // pass read the 23 material BUY rows in the runtime's tm_vend.scp as
+    // commented out and concluded this shard buys no logs, boards, ingots or
+    // hides at all. That commenting was a TNS donor artefact, already REJECTED
+    // in docs/TNS_WORLD_ECONOMY_DONOR_AUDIT.md section 3.5; the shard owner
+    // restored the rows on 2026-09-02 and they are now byte-identical to
+    // server/Scripts-X/templates/tm_vend.scp. Reading a disabled donor row as
+    // shard truth cost this table nine correct entries.
+    //
+    // Line numbers are runtime/scripts/templates/tm_vend.scp, verified
+    // 2026-09-02 and LIVE (no leading //). Payout is the ITEMDEF's VALUE
+    // reduced by VENDORMARKUP, which is a PERCENTAGE, not a flat subtraction
+    // (Source-X chars/CCharNPCStatus.cpp:332-345 -- "+100% = double price").
+    // `{a b}` is the restock quantity, never a price.
+    //
+    // Each trade below was resolved template -> chardef -> world save:
+    //   template            chardefs (c_vendor_human.scp)     spawned
+    //   VENDOR_B_BLACKSMITH   c_blacksmith :1250 / _f :1350     18 + 5
+    //   VENDOR_B_PROVISIONER  c_provis     :4287 / _f :4360     10 + 10
+    //   VENDOR_B_CARPENTER    c_carpenter  :1798 / _f :1867      3 + 6
+    //   VENDOR_B_BOWYER       c_bowyer     :1499 / _f :1572      1 + 6
+    //   VENDOR_B_TINKER       c_tinker     :5466 / _f :5536      1 + 6
+    //   VENDOR_B_JEWELER      c_jeweler    :3471 / _f :3545      1 + 7
+    //   VENDOR_B_COBBLER      c_cobbler    :2054 / _f :2128     12 + 6
+    //   VENDOR_B_TANNER       c_tanner     :5170 / _f :5244      6 + 3
+    //   VENDOR_B_FURTRADER    c_furtrader  :2636 / _f :2710      6 + 2
+    // (counts: tools/world_query.py --count, runtime/save, 2026-09-02.)
+    // The elf and gargoyle chardefs use the same templates and spawn ZERO, so
+    // they are not routes.
+    //
+    // NOT LISTED, deliberately: VENDOR_B_WEAPONS_BLADED (:1858/:1859) and
+    // VENDOR_B_WEAPONS_BLUNT (:1894/:1895) carry live i_log and i_ingot_iron
+    // rows too, but ServiceForTrade maps both "weaponsmith" and "blacksmith"
+    // to wm::Service::Blacksmith, so a weaponsmith row would be the same
+    // errand twice. Likewise "furtrader" and "tanner" both resolve to
+    // wm::Service::Tanner (ClientTravel.cpp:1565/1566), so only "tanner" is
+    // listed for hides.
+    //
+    // Order within an item is most-spawned-first: the shortest errand.
+    {"i_feather",       "bowyer"},       // :1630 VENDOR_B_BOWYER, VALUE=2 -> 1
+    // The provisioner takes BUY=VENDOR_B_BOWYER wholesale (:1465), so it buys
+    // feathers too. Second because a bowyer is the shorter errand for a
+    // fletcher and there are ten times as many provisioners as bowyers.
+    {"i_feather",       "provisioner"},
+    {"i_cotton",        "weaver"},       // :896  VENDOR_B_WEAVER, VALUE=3 -> 2
+    {"i_cotton",        "tailor"},       // :1004 VENDOR_B_TAILOR
+    {"i_thread",        "tailor"},       // :1006 VALUE=2 -> 1
+    {"i_flax_bundle",   "tailor"},       // :1005 VALUE=2 -> 1
+    // THE THREE METALS THAT KEPT THEIR OWN ITEMDEF. Copper, gold and silver
+    // ingots are separate ITEMDEFs (01be3/01be9/01bf5) with their own BUY
+    // rows; the other thirteen metals are ID=i_ingot_iron + COLOR and share
+    // iron's commented-out row, so they have no buyer.
+    //
+    // PAYOUT IS UNVERIFIED HERE and must be read off the 0x9E window rather
+    // than predicted: none of the three ITEMDEFs carries a VALUE= line, so
+    // Sphere COMPUTES one from RESOURCES plus SKILLMAKE
+    // (server/Source-X/src/game/items/CItemBase.cpp:1026 GetMakeValue ->
+    // CalculateMakeValue). That is a nonzero number, not zero, but it is not
+    // one this project may state until a purse has moved for it.
+    {"i_ingot_copper",  "jeweler"},      // :1507
+    {"i_ingot_gold",    "provisioner"},  // :1422
+    {"i_ingot_gold",    "jeweler"},      // :1508
+    {"i_ingot_silver",  "provisioner"},  // :1423
+    {"i_ingot_silver",  "jeweler"},      // :1509
+
+    // THE RESTORED ROWS (owner restore, 2026-09-02). These are the three
+    // families bots actually stockpile, and until the restore this table
+    // claimed nobody bought them.
+    //
+    // IRON INGOTS -- ID-only, no hue. VALUE is not on the ITEMDEF
+    // (items/i_provisions_ore.scp:220 [ITEMDEF 01bef] has RESOURCES and
+    // SKILLMAKE but no VALUE=), so Sphere computes the payout; read it off the
+    // 0x9E window, never predict it.
+    {"i_ingot_iron",    "blacksmith"},   // :2115 {44 88}
+    {"i_ingot_iron",    "provisioner"},  // :1421 {5 38}
+    {"i_ingot_iron",    "jeweler"},      // :1506 {3 13}
+    {"i_ingot_iron",    "tinker"},       // :1084 {4 34}
+    //
+    // COLOURED INGOTS ARE **NOT** COVERED BY THE ROW ABOVE. Settled from
+    // Source-X source, not assumed:
+    //   CChar::NPC_FindVendableItem (CCharNPCStatus.cpp:611) looks the player's
+    //   item up with ContentFind(CResourceID(RES_ITEMDEF, pVendItem->GetID())).
+    //   CItem::IsResourceMatch (items/CItem.cpp:6041) compares that rid against
+    //   the buy-container item's OWN GetResourceID(); the RES_ITEMDEF fallback
+    //   below it (:6046-6071) special-cases only log<-board and hide<-leather.
+    //   CItemBase::GetID (items/CItemBase.h:309) returns the itemdef's resource
+    //   index, while a script `ID=` line sets only m_dwDispIndex
+    //   (CItemBase.cpp:1659-1694, IBC_ID -> CopyBasic + m_dwDispIndex).
+    // So [ITEMDEF i_ingot_shadow] ID=i_ingot_iron (i_provisions_ore.scp:356)
+    // is a DISTINCT resource that merely borrows iron's artwork, and a
+    // BUY=i_ingot_iron row will not match it. Hue is never consulted either
+    // way. The thirteen coloured hues therefore still bank.
+    //
+    // LOGS AND BOARDS. Note i_log is t_log and i_board t_board
+    // (i_provisions_logs.scp:62, :27) and NPC_FindVendableItem rejects a type
+    // mismatch (CCharNPCStatus.cpp:618), so the log<-board leniency in
+    // IsResourceMatch never fires here -- each needs its own row, and each has
+    // one.
+    {"i_log",           "blacksmith"},   // :2114 {4 18}
+    {"i_log",           "provisioner"},  // :1438 {5 38}
+    // WATCH THE LOG PAYOUT. i_log is VALUE=1 (i_provisions_logs.scp:63) and
+    // i_board VALUE=2 (:28), so after markup a log may round to ZERO gold.
+    // That would make a 200-log errand worth nothing while still consuming the
+    // stock. UNKNOWN until a purse has moved; measure it before any life is
+    // allowed to plan around log income.
+    {"i_log",           "carpenter"},    // :293  {5 15}
+    {"i_log",           "bowyer"},       // :1632 {24 72}
+    {"i_log",           "tinker"},       // :1085 {4 34}
+    {"i_board",         "provisioner"},  // :1439 {5 38}
+    {"i_board",         "carpenter"},    // :294  {5 15}
+    {"i_board",         "tinker"},       // :1086 {4 34}
+    //
+    // HIDES AND CUT LEATHER. i_hide is t_hide, i_hides_cut t_leather
+    // (i_profession_tailor_tanner.scp:350, :298), both VALUE=5.
+    //
+    // NO i_hides_cut_2 ROW, though tm_vend.scp:343 and :481 carry one. That
+    // ITEMDEF is DUPEITEM=01067 (i_profession_tailor_tanner.scp:398-399), and
+    // CItemBase::FindItemBase resolves a dupe id straight to its master
+    // (Source-X items/CItemBase.cpp:2254-2256, CItemBaseDupe::GetItemDef), so
+    // such an item's GetID() is 01067 -- i_hides_cut -- and the two rows below
+    // already cover it. The script rows are belt-and-braces; a bot-side row
+    // would be dead, since the graphic table (VendorPolicy.cpp:332) only ever
+    // names 0x1067.
+    {"i_hide",          "cobbler"},      // :344  {2 6}
+    {"i_hide",          "tanner"},       // :482  {5 55}; furtrader :406 same svc
+    {"i_hides_cut",     "cobbler"},      // :342  {2 6}
+    {"i_hides_cut",     "tanner"},       // :480  {5 55}
 };
 
 }  // namespace
 
-std::vector<const NpcBuyer*> NpcBuyersFor(const char* item) {
+std::vector<const NpcBuyer*> NpcBuyersFor(const char* item,
+                                          bool playersDeclined) {
     std::vector<const NpcBuyer*> out;
     if (!item) return out;
     // Only buyers we may LEGITIMATELY use. The table below records what the
@@ -612,14 +912,24 @@ std::vector<const NpcBuyer*> NpcBuyersFor(const char* item) {
     // refuse on arrival is a 224-tile walk to say no.
     // Only routes the REGISTRY allows. Returning a buyer the character would
     // then refuse on arrival is a walk across town to say no.
-    if (!faucet::AllowedForItem(item)) return out;
+    //
+    // ...OR the NPC price floor is open for it: a MATERIAL, the switch on, and
+    // the player-first window already closed. The floor never invents a buyer
+    // -- the loop below still has to find a row backed by a live BUY line --
+    // so an item with no row banks exactly as the ruling says it should.
+    if (!faucet::AllowedForItem(item) &&
+        !faucet::NpcFloorOpenFor(item, playersDeclined)) {
+        return out;
+    }
     for (const NpcBuyer& b : kNpcBuyers) {
         if (std::strcmp(b.item, item) == 0) out.push_back(&b);
     }
     return out;
 }
 
-bool HasNpcBuyer(const char* item) { return !NpcBuyersFor(item).empty(); }
+bool HasNpcBuyer(const char* item, bool playersDeclined) {
+    return !NpcBuyersFor(item, playersDeclined).empty();
+}
 
 const char* NpcSellClassName(NpcSellClass c) {
     switch (c) {
@@ -925,8 +1235,46 @@ std::string FormatSellOffer(const TradeIntent& t) {
            std::to_string(t.pricePerUnit) + "gp";
 }
 
-std::string FormatBuyReply(const std::string& item) {
-    return "WTB " + item;
+std::string FormatBuyReply(const std::string& item, const std::string& toWhom) {
+    if (toWhom.empty()) return "WTB " + item;
+    return toWhom + ", WTB " + item;
+}
+
+std::string SpeechAddressee(const std::string& said) {
+    const usize comma = said.find(',');
+    if (comma == std::string::npos || comma == 0) return std::string();
+    std::string who = said.substr(0, comma);
+    // A NAME, not a clause. UO characters are one word here, and treating
+    // "well, WTB i_log" as an address to a player called "well" would silence
+    // every seller in the room.
+    for (char c : who) {
+        if (c == ' ' || c == '\t') return std::string();
+    }
+    return who;
+}
+
+bool AddressedTo(const std::string& said, const std::string& me) {
+    const std::string who = SpeechAddressee(said);
+    if (who.empty()) return true;          // said to the room
+    return Lower(who) == Lower(me);
+}
+
+std::string FormatDecline(const std::string& toWhom) {
+    if (toWhom.empty()) return "sorry -- sorted";
+    return toWhom + ", sorry -- sorted";
+}
+
+bool ParseDecline(const std::string& said, std::string* whoOut) {
+    const std::string low = Lower(said);
+    if (low.find("sorry") == std::string::npos) return false;
+    if (low.find("sorted") == std::string::npos) return false;
+    if (whoOut) *whoOut = SpeechAddressee(said);
+    return true;
+}
+
+std::string FormatBuyWant(const TradeIntent& t) {
+    return "WTB " + std::to_string(t.qty) + " " + t.item + " " +
+           std::to_string(t.pricePerUnit) + "gp";
 }
 
 bool ParseSellOffer(const std::string& said, TradeIntent* out) {
@@ -950,16 +1298,88 @@ bool ParseSellOffer(const std::string& said, TradeIntent* out) {
     return out->Valid();
 }
 
-bool ParseBuyReply(const std::string& said, std::string* itemOut) {
-    if (!itemOut) return false;
+bool ParseBuyWant(const std::string& said, TradeIntent* out) {
+    if (!out) return false;
     const std::string low = Lower(said);
     const usize at = low.find("wtb ");
     if (at == std::string::npos) return false;
+
     usize i = at + 4;
+    // THE QUANTITY IS OPTIONAL, and that is the whole compatibility story: the
+    // reply form ("WTB i_log") has never carried one and must keep parsing.
+    // ReadInt leaves `i` where it found nothing, so a non-numeric first word is
+    // simply read as the item below.
+    i32 qty = ReadInt(low, i);
     const std::string item = ReadWord(low, i);
+    // "WTB 20" with no item is not addressed to anybody: a quantity alone names
+    // nothing this fleet can hand over.
     if (item.empty()) return false;
-    *itemOut = item;
+    if (qty < 0) qty = 0;   // the bare reply form carried no quantity
+
+    SkipSpace(low, i);
+    const i32 price = ReadInt(low, i);
+
+    out->item = item;
+    out->qty = qty;
+    out->pricePerUnit = price > 0 ? price : 0;
     return true;
+}
+
+bool ParseBuyReply(const std::string& said, std::string* itemOut) {
+    if (!itemOut) return false;
+    // ONE PARSER, not two that can drift. A buyer that learned to say
+    // "WTB 20 i_log 4gp" would otherwise stop being recognised as answering a
+    // seller's offer, because this used to read "20" as the item name.
+    TradeIntent t;
+    if (!ParseBuyWant(said, &t)) return false;
+    if (t.item.empty()) return false;
+    *itemOut = t.item;
+    return true;
+}
+
+BuyLineKind ClassifyBuyLine(const std::string& said, TradeIntent* out) {
+    TradeIntent t;
+    if (!ParseBuyWant(said, &t)) return BuyLineKind::NotABuyLine;
+    if (out) *out = t;
+    // Addressed to one player by name: only the REPLY form is ever addressed
+    // (FormatBuyReply), and a line naming somebody is that somebody's business
+    // whatever else it carries.
+    if (!SpeechAddressee(said).empty()) return BuyLineKind::Reply;
+    // Said to the room WITH a quantity and a price: that is demand announcing
+    // itself, not an answer to anybody's standing offer.
+    return (t.qty > 0 && t.pricePerUnit > 0) ? BuyLineKind::Announce
+                                             : BuyLineKind::Reply;
+}
+
+FundingDecision FundOpenWindow(const TradeIntent& planned, i32 goldOnHand,
+                               i32 goldReserve) {
+    FundingDecision d;
+    if (planned.item.empty() || planned.qty <= 0) {
+        d.reason = "no want was announced, so there is nothing to fund";
+        return d;
+    }
+    // A ceiling of zero is the bare reply form -- "some, at whatever you ask".
+    // That is a fine thing to SAY and an impossible thing to fund: there is no
+    // number to multiply. Refusing here is what lets the window's own give-up
+    // timer end the deal instead of this side paying an amount it never named.
+    if (planned.pricePerUnit <= 0) {
+        d.reason = "no price was named for it";
+        return d;
+    }
+    const i32 spendable = goldOnHand - goldReserve;
+    if (spendable < planned.pricePerUnit) {
+        d.reason = "the purse cannot cover one unit at the announced price";
+        return d;
+    }
+    // PAY FOR WHAT THE PURSE COVERS, not for what was asked for. The
+    // announcement was already bounded by the purse when it was made, but the
+    // purse can have shrunk since (a vendor errand, a death) and a window
+    // funded past it is a promise the drag refuses.
+    d.qty = std::min(planned.qty, spendable / planned.pricePerUnit);
+    d.gold = d.qty * planned.pricePerUnit;
+    d.accept = true;
+    d.reason = "funding it from the want this life announced out loud";
+    return d;
 }
 
 bool ChooseSellOffer(const prof::Profession& p,
@@ -985,6 +1405,85 @@ bool ChooseSellOffer(const prof::Profession& p,
         return out->Valid();
     }
     return false;
+}
+
+// The most this life will pay per unit for `item`, sight unseen. EXACTLY the
+// ceiling ConsiderOffer applies, factored out so the two can never drift: a
+// shouted ceiling the buyer then refuses at the window is worse than silence.
+static i32 CeilingPerUnit(const TradePolicy& policy, const char* item) {
+    const i32 seed = ForumSeedSalePrice(item);
+    return seed >= 0 ? seed + seed / 2 : policy.blindPriceCeiling;
+}
+
+bool ChooseBuyWant(const prof::Profession& p,
+                   const std::vector<Stock>& holdings,
+                   const PriceBook& book,
+                   const TradePolicy& policy,
+                   i32 gold,
+                   TradeIntent* out) {
+    if (!out) return false;
+    // The same list the buy errand is scored from: wants a PLAYER could supply,
+    // already filtered for `rawResource` and for affordability.
+    const std::vector<Want> wants =
+        PlayerMarketWants(p, holdings, gold, policy, nullptr);
+    for (const Want& w : wants) {
+        i32 ask = CeilingPerUnit(policy, w.item.c_str());
+        // A KNOWN PRICE BEATS A CEILING. Announcing the ceiling when this life
+        // has actually watched the thing trade at 2gp invites every seller in
+        // earshot to charge the ceiling, and the fleet's price discovery goes
+        // backwards. Half again over the observed number is the same tolerance
+        // ConsiderOffer allows against a forum seed.
+        const i32 believed = book.BelievedSalePrice(w.item.c_str());
+        if (believed >= 0) ask = std::min(ask, believed + believed / 2);
+        if (ask <= 0) continue;
+
+        // WHAT THE PURSE CAN ACTUALLY HONOUR, at that ceiling, without eating
+        // the reserve this life keeps for tools. Announcing 20 when it can pay
+        // for 3 is a promise the trade window cancels.
+        const i32 spendable = gold - p.goldReserve;
+        if (spendable < ask) continue;
+        const i32 affordable = spendable / ask;
+        const i32 qty = std::min(w.qty, affordable);
+        if (qty <= 0) continue;
+
+        out->item = w.item;
+        out->qty = qty;
+        out->pricePerUnit = ask;
+        return out->Valid();
+    }
+    return false;
+}
+
+bool AnswerBuyWant(const prof::Profession& p,
+                   const std::vector<Stock>& pack,
+                   const PriceBook& book,
+                   const TradePolicy& policy,
+                   const TradeIntent& want,
+                   TradeIntent* out) {
+    if (!out || want.item.empty()) return false;
+
+    // A DIRECT REQUEST OUTRANKS THE TRIP THRESHOLD -- but not the rule that a
+    // life only ever hands over what its own profession makes. Surplus() owns
+    // both, so ask it with the threshold relaxed rather than re-deriving it.
+    TradePolicy asked = policy;
+    asked.minimumSurplusToOffer = 1;
+    i32 spare = 0;
+    for (const Offer& o : Surplus(p, pack, asked)) {
+        if (o.item == want.item) { spare = o.qty; break; }
+    }
+    if (spare <= 0) return false;
+
+    const i32 believed = book.BelievedSalePrice(want.item.c_str());
+    const i32 ask = (believed >= 0) ? believed : policy.openingAsk;
+    // The buyer named a ceiling. Undercutting an observed price to meet it
+    // teaches the fleet a number this life does not believe, so decline
+    // instead -- the goods keep, and the buyer may come back higher.
+    if (want.pricePerUnit > 0 && ask > want.pricePerUnit) return false;
+
+    out->item = want.item;
+    out->qty = (want.qty > 0) ? std::min(spare, want.qty) : spare;
+    out->pricePerUnit = ask;
+    return out->Valid();
 }
 
 // ---------------------------------------------------------------------------

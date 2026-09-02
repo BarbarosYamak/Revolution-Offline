@@ -17,9 +17,12 @@
 
 #include "uo/json.h"
 #include "uo/life.h"
+#include "uo/production.h"
 #include "uo/professions.h"
 #include "uo/rules.h"
+#include "uo/spellcast.h"
 
+#include <cmath>
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
@@ -1956,6 +1959,132 @@ void TestAMageWantsItsBookFilled() {
     }
 }
 
+// A MAGE MUST NOT SPEND ITS WHOLE DAY ASKING AN EMPTY STREET FOR SCROLLS.
+//
+// Aurelius's five-minute gate (run_gates/g_Aurelius.console.txt, 2026-09-02)
+// went entirely on FILL_SPELLBOOK: 16 mentions, three shop trips, four minutes
+// of walking, not one cast and not one scroll. The errand was never wrong -- a
+// mage does want a fuller book -- but "this shelf is empty" was answered by
+// walking to the next shelf, forever, because the only stand-downs were a
+// three-trip budget (which four minutes of travel never exhausts inside a
+// session) and a four-minute rest (short enough to re-arm inside the same one).
+//
+// The rule this test pins: an empty scroll errand rests for a LONG time, and
+// each further empty one rests longer, so practice, earning and training get
+// the turn. The want itself is untouched -- NeedSpells still fires.
+void TestScrollShoppingStandsDownWhenNobodySells() {
+    Section("planner: an empty scroll errand yields the rest of the session");
+
+    // --- the rest itself, as arithmetic ----------------------------------
+    const i64 first  = life::ScrollShoppingRestMs(1);
+    const i64 second = life::ScrollShoppingRestMs(2);
+    const i64 third  = life::ScrollShoppingRestMs(3);
+    Check(first >= 15 * 60 * 1000,
+          "the FIRST empty scroll errand rests at least fifteen minutes -- far "
+          "longer than BUY_SUPPLIES's 119 s, because a reagent shelf restocks "
+          "and a spell-scroll seller may simply not exist");
+    Check(first > 4 * 60 * 1000,
+          "and longer than the old four-minute spellbook rest, which re-armed "
+          "inside the same session that had just proved the street empty");
+    Check(second > first && third > second,
+          "REPEATED 'nobody is selling' DOES NOT RE-ARM AT THE SAME RATE: each "
+          "empty errand backs off further");
+    Check(life::ScrollShoppingRestMs(20) == life::ScrollShoppingRestMs(30) &&
+          life::ScrollShoppingRestMs(20) <= 60 * 60 * 1000,
+          "the back-off is capped, so the errand is deferred, never disabled");
+    Check(life::ScrollShoppingRestMs(0) == first,
+          "a nonsense count is treated as the first stand-down, not as zero rest");
+
+    // --- and what it does to the day -------------------------------------
+    const prof::Profession* mage = prof::Find("mage");
+    if (!mage) { Check(false, "no mage profession"); return; }
+
+    life::NeedConfig cfg;
+    cfg.profession = mage;
+    life::BuildPlan plan = life::PlanFromProfession(*mage);
+    life::Memory mem;
+
+    life::Observation obs;
+    obs.inWorld = true;
+    obs.hp = obs.hpMax = 20;
+    obs.mana = 30;                       // enough to cast, so practice is live
+    obs.gold = mage->goldReserve + 1000; // and rich enough to want scrolls
+    obs.weight = 10; obs.maxWeight = 200;
+    obs.nowMs = 1000;
+    obs.spellbookSerial = 0x4001;
+    obs.spellsKnown = 12;
+    obs.skills.push_back({rules::kMagery, 500});
+    for (const prof::ToolNeed& t : mage->tools) obs.toolsHeld.push_back(t.name);
+
+    const std::vector<life::Need> needs = life::AssessNeeds(plan, mem, obs, cfg);
+
+    auto find = [](const std::vector<life::ScoredGoal>& gs, life::GoalKind k)
+        -> const life::ScoredGoal* {
+        for (const life::ScoredGoal& g : gs) if (g.kind == k) return &g;
+        return nullptr;
+    };
+
+    life::Planner planner;
+    const std::vector<life::ScoredGoal> before = planner.Score(needs, obs, mem);
+    const life::ScoredGoal* fillBefore = find(before, life::GoalKind::FillSpellbook);
+    const life::ScoredGoal* practBefore = find(before, life::GoalKind::PracticeSkill);
+    Check(fillBefore && fillBefore->feasible,
+          "a mage with a short book and spare gold wants to go scroll shopping");
+    Check(practBefore && practBefore->feasible,
+          "and it also has Magery to practise -- both are on the table");
+    const double fillScoreBefore = fillBefore ? fillBefore->score : 0.0;
+
+    // The errand went out and came back empty: nobody within reach stocks a
+    // spell this book lacks. Runner::StandDownFromScrollShopping does exactly
+    // this pair of calls.
+    planner.Cooldown(life::GoalKind::FillSpellbook,
+                     obs.nowMs + life::ScrollShoppingRestMs(1));
+    planner.Finish(false, "nobody selling scrolls", obs.nowMs);
+
+    obs.nowMs += 60;                     // the interval the churn ran at
+    const std::vector<life::ScoredGoal> after = planner.Score(needs, obs, mem);
+    const life::ScoredGoal* fillAfter = find(after, life::GoalKind::FillSpellbook);
+    const life::ScoredGoal* practAfter = find(after, life::GoalKind::PracticeSkill);
+    Check(fillAfter != nullptr,
+          "FILL_SPELLBOOK is still REPORTED -- the want did not go away, so the "
+          "telemetry must still show it");
+    if (fillAfter) {
+        Check(!fillAfter->feasible && fillAfter->score < fillScoreBefore,
+              "but it scores below what it scored a moment ago and is not "
+              "pickable, which is what lets the rest of the life run");
+        Check(fillAfter->blockedWhy.find("cooldown") != std::string::npos,
+              "and it says it is on cooldown rather than looking unwanted");
+    }
+    Check(practAfter && practAfter->feasible,
+          "PRACTISING MAGERY IS STILL ON, which is the point: the mage stops "
+          "shopping and starts casting");
+
+    // The need is untouched -- this is a rest, not a demotion.
+    const std::vector<life::Need> stillNeeds =
+        life::AssessNeeds(plan, mem, obs, cfg);
+    bool wantsSpells = false;
+    for (const life::Need& n : stillNeeds)
+        if (n.kind == life::NeedKind::NeedSpells) wantsSpells = true;
+    Check(wantsSpells,
+          "the mage STILL WANTS the scrolls -- nothing global was turned down, "
+          "it just stopped asking a street that already answered");
+
+    std::string why;
+    planner.Select(needs, obs, mem, obs.nowMs, &why);
+    Check(planner.Current().kind != life::GoalKind::FillSpellbook,
+          "so the very next decision is something other than scroll shopping");
+
+    // It does not come back four minutes later, which is what the old rest did.
+    obs.nowMs += 4 * 60 * 1000;
+    Check(planner.Cooling(life::GoalKind::FillSpellbook, obs.nowMs),
+          "four minutes on it is still resting -- the old kNoSpellbookCooldown "
+          "would have re-armed here and eaten the rest of the session");
+    obs.nowMs += 12 * 60 * 1000;
+    Check(!planner.Cooling(life::GoalKind::FillSpellbook, obs.nowMs),
+          "and sixteen minutes on it is willing to try again: deferred, not "
+          "disabled");
+}
+
 // THE BACKSTOP FOR A BUG THIS PROJECT KEEPS REDISCOVERING.
 //
 // Three separate goals have each burned an entire session by completing with
@@ -2500,6 +2629,469 @@ void TestACooledExploreYieldsToIdleBriefly() {
           "and with EXPLORE cooling, that something is IDLE_BRIEFLY");
 }
 
+// --------------------------------------------------------------------------
+// A coloured vein is still ore. Since the pack has been hue-resolved, rusty /
+// copper / bronze ore sit in obs.pack under their own names, and NeedSmelt
+// used to count "i_ore_iron" alone -- so a miner whose pack held only
+// coloured ore never wanted the forge. Owner saw it live, 2026-09-01.
+void TestColouredOreStillWantsTheForge() {
+    Section("needs: coloured ore raises NeedSmelt like iron does");
+
+    const prof::Profession* ms = prof::Find("miner_smith");
+    Check(ms != nullptr, "the miner/smith exists");
+    if (!ms) return;
+
+    life::Memory mem;
+    auto smeltFor = [&](const char* item, i32 qty) -> const life::Need* {
+        life::NeedConfig cfg;
+        cfg.profession = ms;
+        static std::vector<life::Need> needs;   // keep the pointer alive
+        const life::BuildPlan plan = life::PlanFromProfession(*ms);
+        life::Observation obs;
+        obs.inWorld = true;
+        obs.hp = obs.hpMax = 40;
+        obs.gold = 1000;
+        obs.weight = 50; obs.maxWeight = 400;
+        obs.pack.push_back({item, qty});
+        needs = life::AssessNeeds(plan, mem, obs, cfg);
+        return Find(needs, life::NeedKind::NeedSmelt);
+    };
+
+    const life::Need* iron = smeltFor("i_ore_iron", 12);
+    Check(iron != nullptr, "twelve iron ore: the forge is wanted");
+
+    const life::Need* rusty = smeltFor("i_ore_rusty", 12);
+    Check(rusty != nullptr,
+          "twelve RUSTY ore: the forge is wanted just the same -- before this "
+          "fix the need counted i_ore_iron only and a coloured-only pack never "
+          "smelted");
+    if (iron && rusty) {
+        Check(std::fabs(iron->urgency - rusty->urgency) < 1e-9,
+              "and it is weighed like iron: ore is ore until the forge says "
+              "which ingot it becomes");
+    }
+
+    Check(smeltFor("i_ingot_iron", 12) == nullptr,
+          "ingots are not ore: nothing to melt, no NeedSmelt");
+}
+
+// --------------------------------------------------------------------------
+// THE TAILOR'S CLOTH: PLAYERS FIRST, THEN THE SHEEP.
+//
+// Owner ruling, 2026-09-02. The whole point of NeedCloth is that it is the
+// SECOND half of a two-step policy, so the thing worth asserting is not that
+// it fires -- it is that it stays silent until the player market has actually
+// been asked and come back empty. A tailor that walks to Yew while a
+// lumberjack stands at the bank with a bale to sell is the failure this test
+// exists to catch.
+void TestClothIsBoughtFromPlayersBeforeItIsSheared() {
+    Section("needs: NeedCloth waits for the player market to decline");
+
+    const prof::Profession* t = prof::Find("tailor");
+    Check(t != nullptr, "the tailor exists");
+    if (!t) return;
+
+    life::Memory mem;
+    const life::BuildPlan plan = life::PlanFromProfession(*t);
+
+    auto clothNeed = [&](bool declined, const char* item,
+                         std::vector<life::Need>& out) -> const life::Need* {
+        life::NeedConfig cfg;
+        cfg.profession = t;
+        life::Observation obs;
+        obs.inWorld = true;
+        obs.hp = obs.hpMax = 40;
+        obs.gold = obs.goldOnHand = 1000;
+        obs.weight = 50; obs.maxWeight = 400;
+        obs.nowMs = 60000;
+        if (declined) obs.noSellerFor.push_back(item);
+        out = life::AssessNeeds(plan, mem, obs, cfg);
+        return Find(out, life::NeedKind::NeedCloth);
+    };
+
+    // WHICH material the tailor is actually short of comes from its own
+    // recipe list, not from this test's opinion: `produces` leads with
+    // i_cloth_bolt, whose input is yarn.
+    std::vector<life::Need> quiet;
+    const life::Need* silent = clothNeed(false, "i_yarn_ball", quiet);
+    Check(silent != nullptr,
+          "an empty-handed tailor raises NeedCloth at all -- the errand is "
+          "visible in telemetry even when it may not run");
+    if (silent) {
+        Check(silent->blocked,
+              "but BLOCKED while the player market has not been asked");
+        Check(silent->urgency == 0.0,
+              "and at zero urgency, so TRADE_WITH_PLAYER's own NeedTrade wins "
+              "the trip to the bank");
+    }
+
+    std::vector<life::Need> asked;
+    const life::Need* fires = clothNeed(true, "i_yarn_ball", asked);
+    Check(fires != nullptr && !fires->blocked,
+          "once a WTB window has expired unanswered -- the no_player_seller "
+          "Observe copies into noSellerFor -- the sheep are fair game");
+    if (fires) {
+        Check(fires->urgency > 0.0, "and it now carries real urgency");
+        Check(fires->evidence.find("i_yarn_ball") != std::string::npos,
+              "and it names the material it is short of");
+    }
+
+    // A DECLINE ABOUT SOMETHING ELSE IS NOT A DECLINE ABOUT THIS.
+    // marketQuiet alone would have said yes here, which is exactly why the
+    // gate is per-item.
+    std::vector<life::Need> other;
+    const life::Need* unrelated = clothNeed(true, "i_log", other);
+    Check(unrelated != nullptr && unrelated->blocked,
+          "a failed attempt to buy LOGS teaches a tailor nothing about cloth");
+
+    // AND A LIFE WITH NO CLOTH IN ITS RECIPES NEVER SEES THIS NEED.
+    const prof::Profession* ms = prof::Find("miner_smith");
+    if (ms) {
+        life::NeedConfig cfg;
+        cfg.profession = ms;
+        life::Observation obs;
+        obs.inWorld = true;
+        obs.hp = obs.hpMax = 40;
+        obs.gold = obs.goldOnHand = 1000;
+        obs.weight = 50; obs.maxWeight = 400;
+        obs.noSellerFor.push_back("i_cloth");
+        const std::vector<life::Need> needs =
+            life::AssessNeeds(life::PlanFromProfession(*ms), mem, obs, cfg);
+        Check(Find(needs, life::NeedKind::NeedCloth) == nullptr,
+              "a smith is never sent to shear a sheep, however quiet the "
+              "cloth market is");
+    }
+}
+
+// --------------------------------------------------------------------------
+// THE CHAIN'S OWN ARITHMETIC, checked against the engine numbers rather than
+// against the bot's hopes. Every figure here is cited in Production.cpp from
+// Source-X, and the test exists because the loop's stopping condition depends
+// on them: 4 yarn is ONE loom gesture, not four, and one bolt is 50 cloth, so
+// a tailor that needs 16 cloth for a robe needs exactly one bolt and not four.
+void TestTheWoolChainBookkeeping() {
+    Section("cloth: wool -> yarn -> bolt -> cloth, as the engine counts it");
+
+    const prod::Recipe* yarn = prod::FindRecipe("i_yarn_ball");
+    Check(yarn != nullptr, "the wheel's recipe is declared");
+    if (yarn) {
+        Check(yarn->outputQty == 3, "one wool spins to THREE yarn");
+        Check(yarn->inputs[0].item != nullptr &&
+                  std::string(yarn->inputs[0].item) == "i_wool" &&
+                  yarn->inputs[0].qty == 1 && yarn->inputs[1].item == nullptr,
+              "from exactly one wool");
+        Check(yarn->station == prod::Station::SpinningWheel,
+              "at a spinning wheel, which is a dynamic item and must be "
+              "targeted by serial");
+    }
+
+    const prod::Recipe* bolt = prod::FindRecipe("i_cloth_bolt");
+    Check(bolt != nullptr, "the loom's recipe is declared");
+    if (bolt) {
+        Check(bolt->outputQty == 1, "the loom yields one bolt");
+        Check(bolt->inputs[0].item != nullptr &&
+                  std::string(bolt->inputs[0].item) == "i_yarn_ball" &&
+                  bolt->inputs[0].qty == 4 && bolt->inputs[1].item == nullptr,
+              "from FOUR yarn -- the loom's message table is five entries and "
+              "it emits at ARRAY_COUNT-1");
+        Check(bolt->station == prod::Station::Loom, "at a loom");
+    }
+
+    const prod::Recipe* cloth = prod::FindRecipe("i_cloth");
+    Check(cloth != nullptr, "cutting the bolt is declared");
+    if (cloth) {
+        Check(cloth->outputQty == 50, "one bolt cuts to FIFTY cloth");
+        Check(cloth->tool == prod::Tool::Scissors,
+              "with scissors -- the one step of the chain scissors DO perform");
+        Check(cloth->station == prod::Station::None,
+              "and nowhere in particular, so it needs no second trip");
+    }
+
+    // ONE SHEEP IS ONE WOOL, AND A LOOM-LOAD IS FOUR YARN, SO A BOLT COSTS
+    // TWO SHEEP. 2 wool -> 6 yarn -> 1 bolt (with 2 yarn left over) -> 50
+    // cloth. Written out because it is the number that decides whether the
+    // errand is worth the walk, and getting it wrong by 3x is how a bot
+    // shears all day for a sash.
+    Check(3 * 2 >= 4, "two sheep make enough yarn for one bolt");
+
+    // WHAT THE CHAIN CAN AND CANNOT SUPPLY. Thread is the blocker: it comes
+    // from cotton, and every stock Tailoring recipe wants one.
+    Check(life::IsWoolChainMaterial("i_wool"), "wool is on the chain");
+    Check(life::IsWoolChainMaterial("i_yarn_ball"), "yarn is on the chain");
+    Check(life::IsWoolChainMaterial("i_cloth_bolt"), "the bolt is on the chain");
+    Check(life::IsWoolChainMaterial("i_cloth"), "cloth is on the chain");
+    Check(!life::IsWoolChainMaterial("i_thread"),
+          "THREAD IS NOT: it is spun from cotton, six per pile, and no amount "
+          "of wool makes any -- so sewing stays blocked and MAKE_CLOTH must "
+          "not pretend otherwise");
+    const prod::Recipe* thread = prod::FindRecipe("i_thread");
+    Check(thread != nullptr && thread->inputs[0].item != nullptr &&
+              std::string(thread->inputs[0].item) == "i_cotton",
+          "and the recipe table agrees about where thread comes from");
+    Check(!life::IsWoolChainMaterial("i_log"), "a log is not textile");
+    Check(!life::IsWoolChainMaterial(nullptr), "and nothing is not textile");
+}
+
+// --------------------------------------------------------------------------
+// A GESTURE THAT MOVES NOTHING THREE TIMES IS THE WRONG GESTURE.
+//
+// The escalate-after-three rule, applied to MAKE_CLOTH. There is no craft menu
+// behind the wheel or the loom -- they answer with a SysMessage and nothing
+// else -- so the only honest confirmation is an inventory delta, and the only
+// honest response to three empty gestures is to stand down. This asserts the
+// planner machinery MAKE_CLOTH leans on, which is the half reachable without a
+// live server.
+void TestThreeEmptyClothStepsStandTheGoalDown() {
+    Section("cloth: three gestures that move nothing cool the goal");
+
+    life::Planner p;
+    life::Observation obs;
+    obs.inWorld = true;
+    obs.nowMs = 1000;
+    life::Memory mem;
+
+    std::vector<life::Need> needs;
+    needs.push_back({life::NeedKind::NeedCloth, 0.55, "cloth",
+                     "nobody was selling it", "20 x i_cloth short", false});
+
+    std::string why;
+    Check(p.Select(needs, obs, mem, obs.nowMs, &why),
+          "with the market declined, MAKE_CLOTH is selectable");
+    Check(p.Current().kind == life::GoalKind::MakeCloth,
+          "and it is what a blocked tailor picks -- 135 beats CRAFT's 130 "
+          "because the making cannot start without it");
+
+    // The stand-down DoMakeCloth performs on its third empty gesture.
+    p.Cooldown(life::GoalKind::MakeCloth, obs.nowMs + 300000);
+    p.Finish(false, "the chain moved nothing", obs.nowMs);
+
+    obs.nowMs += 5000;
+    const std::vector<life::ScoredGoal> scored = p.Score(needs, obs, mem);
+    const life::ScoredGoal* mc = nullptr;
+    for (const life::ScoredGoal& g : scored)
+        if (g.kind == life::GoalKind::MakeCloth) mc = &g;
+    Check(mc != nullptr, "the cooled goal is still REPORTED, not hidden");
+    if (mc) {
+        Check(!mc->feasible,
+              "but it is not feasible, so the planner must find other work -- "
+              "Finish(false) alone would have handed it straight back");
+        Check(!mc->blockedWhy.empty(), "and the log says for how much longer");
+    }
+
+    // ...and it comes back. A cooldown is a rest, not a write-off: wool
+    // regrows in thirty minutes and the five-minute rest is well inside that.
+    obs.nowMs += 300000;
+    const std::vector<life::ScoredGoal> later = p.Score(needs, obs, mem);
+    bool backOnTheTable = false;
+    for (const life::ScoredGoal& g : later)
+        if (g.kind == life::GoalKind::MakeCloth && g.feasible)
+            backOnTheTable = true;
+    Check(backOnTheTable, "after the rest the sheep are worth another try");
+}
+
+// --- practice casting pays for itself ---------------------------------------
+//
+// Wave 2026-09-02: four mages cast a self-safe spell every six seconds for a
+// whole session and were refused every time -- "You lack Sulfurous Ash for this
+// spell" x156/x298/x322/x310 -- because the practice goal never asked what the
+// spell CONSUMED. This is that question, and the shopping list that follows it.
+void TestPracticeChecksTheReagentPouch() {
+    Section("practice: a spell is chosen by what the pack can pay for");
+
+    // A FAKE TABLE, in the shape tools/spellgen.py writes out of
+    // runtime/scripts/spells/spells_magery.scp. Small on purpose: the point is
+    // the RULES, not the shard's 64 rows. Circles sit 10.0 skill apart here as
+    // they do there, so the gain window is measured from the data.
+    const std::string tsv =
+        "spell\tdefname\tname\tcircle\tminskill\tmana\tflags\treagents\n"
+        // circle 1: two beneficial, one harmful, one unreadable
+        "4\ts_heal\tHeal\t1\t100\t4\tspellflag_targ_char|spellflag_good\t"
+        "i_reag_garlic,i_reag_ginseng,i_reag_spider_silk\n"
+        "6\ts_night_sight\tNight Sight\t1\t100\t4\t"
+        "spellflag_targ_char|spellflag_good|spellflag_playeronly\t"
+        "i_reag_spider_silk,i_reag_sulfur_ash\n"
+        "5\ts_magic_arrow\tMagic Arrow\t1\t100\t4\t"
+        "spellflag_targ_char|spellflag_harm|spellflag_damage\ti_reag_sulfur_ash\n"
+        "8\ts_weaken\tWeaken\t1\t100\t4\tspellflag_good|spellflag_wat\t"
+        "i_reag_garlic\n"
+        // circle 2: two beneficial, and one that needs a ground target
+        "9\ts_agility\tAgility\t2\t200\t6\t"
+        "spellflag_targ_char|spellflag_good\ti_reag_blood_moss,i_reag_mandrake_root\n"
+        "16\ts_strength\tStrength\t2\t200\t6\t"
+        "spellflag_targ_char|spellflag_good\ti_reag_mandrake_root,i_reag_nightshade\n"
+        "13\ts_wall\tWall of Stone\t2\t200\t6\t"
+        "spellflag_targ_xyz|spellflag_field\ti_reag_blood_moss,i_reag_garlic\n"
+        // circle 4: expensive in mana, and the hardest thing in this book
+        "29\ts_greater_heal\tGreater Heal\t4\t400\t11\t"
+        "spellflag_targ_char|spellflag_good|spellflag_heal\t"
+        "i_reag_garlic,i_reag_ginseng,i_reag_mandrake_root,i_reag_spider_silk\n";
+    Check(spell::LoadSpellTableFromText(tsv) == 8,
+          "the spell table is loaded from data, not compiled in");
+    Check(spell::CircleSpacingTenths() == 100,
+          "the gain window's width is measured off the circle ladder");
+
+    // The starter book of this shard ([NEWBIE MAGERY] MORE1=0382a8c38) holds
+    // Night Sight (6), Heal (4) and Strength (16) among others.
+    spell::PracticeSight see;
+    see.inBook = {6, 4, 16, 9, 5, 8, 13, 29};
+    see.magery = 200;              // circle 2 reached, circle 4 not
+    see.mana = 40;
+
+    // Empty pouch: nothing may be cast, and the choice says what to buy rather
+    // than sending a doomed cast at the server.
+    spell::PracticeChoice none = spell::ChoosePracticeSpell(see);
+    Check(none.spell < 0, "an empty pouch casts nothing");
+    Check(!none.missing.empty(), "and it names what is missing instead");
+    Check(std::strcmp(none.reason, "out of reagents") == 0,
+          "the reason is the pouch, not the book");
+    // THE GAIN WINDOW picks the shopping list too: at Magery 20.0 the spells
+    // this character would practise with are the circle-2 pair, so the list is
+    // THEIR reagents (three names), not circle 1's.
+    Check(none.circle == 2, "the list is for the circle it would practise at");
+    Check(none.missing.size() == 3,
+          "and covers every reagent those spells consume");
+    bool wantsNightshade = false;
+    for (const std::string& r : none.missing)
+        if (r == "i_reag_nightshade") wantsNightshade = true;
+    Check(wantsNightshade, "including the one only Strength uses");
+
+    // Half a Strength is not a Strength -- both reagents are consumed -- and
+    // the pack cannot pay for Agility either.
+    see.pack.push_back({"i_reag_mandrake_root", 40});
+    spell::PracticeChoice half = spell::ChoosePracticeSpell(see);
+    Check(half.spell < 0, "half a spell is still not castable");
+    Check(half.missing.size() == 2, "and only what is short is on the list");
+
+    // Stocked for circle 2: the HIGHEST circle in the window wins over the
+    // circle-1 spells, even though those were reachable first.
+    see.pack.push_back({"i_reag_nightshade", 40});
+    see.pack.push_back({"i_reag_spider_silk", 40});
+    see.pack.push_back({"i_reag_sulfur_ash", 40});
+    spell::PracticeChoice go = spell::ChoosePracticeSpell(see);
+    Check(go.spell == 16 && go.circle == 2,
+          "the hardest spell the pack can pay for is cast, not the easiest");
+
+    // ROTATION: having cast Strength, the next pick is the other spell of that
+    // circle rather than Strength again.
+    see.pack.push_back({"i_reag_blood_moss", 40});
+    see.casts.push_back({16, 1});
+    spell::PracticeChoice rot = spell::ChoosePracticeSpell(see);
+    Check(rot.spell == 9, "a second cast rotates to the other spell of the ring");
+    see.casts.push_back({9, 3});
+    Check(spell::ChoosePracticeSpell(see).spell == 16,
+          "and back again once that one is the busier of the two");
+
+    // "You lack X" is a hard signal: the refused spell is struck off, and with
+    // the whole ring refused the choice drops a circle rather than stopping.
+    see.uncastable = {16, 9};
+    spell::PracticeChoice next = spell::ChoosePracticeSpell(see);
+    Check(next.spell == 6 || next.spell == 4,
+          "refused spells are skipped and an easier circle takes over");
+
+    // SKILL is a hard gate: Greater Heal is in the book but 40.0 Magery away.
+    Check(next.spell != 29, "a spell above this character's skill is not cast");
+    see.uncastable.clear();
+    see.magery = 400;
+    see.pack.push_back({"i_reag_garlic", 40});
+    see.pack.push_back({"i_reag_ginseng", 40});
+    Check(spell::ChoosePracticeSpell(see).spell == 29,
+          "and at 40.0 Magery it becomes the thing to practise with");
+    // MANA is the other hard gate, and it does not strike the spell off -- it
+    // just takes this cast.
+    see.mana = 8;
+    Check(spell::ChoosePracticeSpell(see).spell != 29,
+          "with 8 mana an 11-mana spell is not attempted");
+
+    // A book with nothing safe in it is a DIFFERENT problem -- that one
+    // belongs to FILL_SPELLBOOK -- and must not be reported as a shopping list.
+    // Magic Arrow is harmful; Wall of Stone needs a ground target; Weaken here
+    // carries a flag this client cannot read, and an unreadable flag is not
+    // assumed harmless.
+    spell::PracticeSight bare;
+    bare.inBook = {5, 13, 8};
+    bare.magery = 400;
+    bare.mana = 40;
+    spell::PracticeChoice empty = spell::ChoosePracticeSpell(bare);
+    Check(empty.spell < 0 && empty.missing.empty(),
+          "an unusable book asks for no reagents");
+
+    // The real export must exist and agree with the shard's own ladder.
+    Check(spell::LoadSpellTableFromText(tsv) == 8, "table reload is clean");
+
+    // --- how many to buy: a rate, never a constant -------------------------
+    //
+    // "keep/bank/surplus counts derive from plans, wealth and prices per
+    // character, not global constants" (project owner). One reagent per cast,
+    // so the target is the casts still expected this session.
+    const i32 prior = spell::ExpectedPracticeCasts(0, 0, 30 * 60000, 6000);
+    const i32 shortSession = spell::ExpectedPracticeCasts(0, 0, 5 * 60000, 6000);
+    Check(prior > shortSession,
+          "a long session plans for more casts than a short one");
+    // Observed beats prior: a life that has actually cast 60 times in ten
+    // minutes is a six-a-minute life, whatever the prior assumed.
+    const i32 observed =
+        spell::ExpectedPracticeCasts(60, 10 * 60000, 10 * 60000, 6000);
+    Check(observed > spell::ExpectedPracticeCasts(2, 10 * 60000, 10 * 60000, 6000),
+          "the busier practiser buys more");
+
+    // The purse is the other half. At 3 gold each (the mage Alenne's own price,
+    // observed live 2026-09-02) two kinds cost 6 a cast.
+    spell::ReagentPlan rich = spell::PlanReagentBuy(0, 100, 3, 5000, 2);
+    Check(rich.buy == 100, "with money the plan buys the whole session's worth");
+    spell::ReagentPlan poor = spell::PlanReagentBuy(0, 100, 3, 120, 2);
+    Check(poor.buy == 20, "with 120 gold it buys 20 of each and no more");
+    spell::ReagentPlan stocked = spell::PlanReagentBuy(100, 100, 3, 5000, 2);
+    Check(stocked.buy == 0, "and a full pouch buys nothing at all");
+}
+
+// The need model must SAY the mage is out of reagents, or BUY_SUPPLIES never
+// gets a turn -- which is exactly what happened live: Aurelius stood at a mage
+// stocking Sulfurous Ash x250 and asked her only for scrolls.
+void TestAnEmptyPouchIsAShoppingErrand() {
+    Section("needs: an empty reagent pouch is a trip to the mage shop");
+
+    const prof::Profession* mage = prof::Find("mage");
+    if (!mage) { Check(false, "no mage profession"); return; }
+
+    life::NeedConfig cfg;
+    cfg.profession = mage;
+    life::BuildPlan plan = life::PlanFromProfession(*mage);
+    life::Memory mem;
+
+    life::Observation obs;
+    obs.inWorld = true;
+    obs.hp = obs.hpMax = 20;
+    obs.mana = 40;
+    obs.gold = 500;
+    obs.weight = 10; obs.maxWeight = 200;
+    obs.skills.push_back({rules::kMagery, 500});
+    obs.practiceReagentsShort = {"i_reag_sulfur_ash", "i_reag_spider_silk"};
+    obs.practiceReagentQty = 45;
+
+    const std::vector<life::Need> ns = life::AssessNeeds(plan, mem, obs, cfg);
+    const life::Need* sup = nullptr;
+    for (const life::Need& n : ns)
+        if (n.kind == life::NeedKind::NeedSupplies) { sup = &n; break; }
+    Check(sup != nullptr, "the mage asks to go shopping");
+    if (sup) {
+        Check(!sup->blocked, "with 500 gold the errand is actionable");
+        Check(sup->what == "buy spell reagents",
+              "and it says what it is shopping for");
+        Check(sup->evidence.find("i_reag_sulfur_ash") != std::string::npos,
+              "the evidence names the reagent");
+    }
+
+    // Broke: still reported, but blocked -- selling is the way out, not a walk
+    // to a shop that will refuse the sale. Same rule the craft clause states.
+    obs.gold = 40;
+    const std::vector<life::Need> broke = life::AssessNeeds(plan, mem, obs, cfg);
+    const life::Need* poor = nullptr;
+    for (const life::Need& n : broke)
+        if (n.kind == life::NeedKind::NeedSupplies) { poor = &n; break; }
+    Check(poor != nullptr && poor->blocked,
+          "with no working capital the trip is blocked, not hidden");
+}
+
 }  // namespace
 
 
@@ -2527,6 +3119,7 @@ int main(int argc, char** argv) {
     TestNerveIsPerProfession();
     TestNoSkillGainRegionBlocksPractice();
     TestAMageWantsItsBookFilled();
+    TestScrollShoppingStandsDownWhenNobodySells();
     TestACorneredFighterMayHunt();
     TestAPoorFighterMakesItsOwnBandages();
     TestExploringBeatsStandingStill();
@@ -2538,6 +3131,12 @@ int main(int argc, char** argv) {
     TestGoalCooldownStopsChurn();
     TestGoalHistogramArithmetic();
     TestACooledExploreYieldsToIdleBriefly();
+    TestColouredOreStillWantsTheForge();
+    TestClothIsBoughtFromPlayersBeforeItIsSheared();
+    TestTheWoolChainBookkeeping();
+    TestThreeEmptyClothStepsStandTheGoalDown();
+    TestPracticeChecksTheReagentPouch();
+    TestAnEmptyPouchIsAShoppingErrand();
 
     std::printf("%d checks, %d failures\n", g_checks, g_failures);
     return g_failures == 0 ? 0 : 1;

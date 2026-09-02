@@ -10,7 +10,9 @@
 //     total skill      runtime 1000.0   Revolution 700.0
 //     Resisting Spells runtime enabled  Revolution officially inactive
 //     active skills    runtime 58       Revolution 38
-//     reagents         runtime not required (ReagentsRequired=0)
+//     reagents         runtime REQUIRED (sphere.ini ReagentsRequired=1 since
+//                      M3; an empty pouch is answered "You lack X for this
+//                      spell" -- the old "=0" note here misled 2026-09-02)
 //
 // So a build the server accepts is NOT therefore a Revolution build, and
 // authenticity cannot be delegated to Source-X. It has to be enforced where

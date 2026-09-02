@@ -11,6 +11,7 @@
 #include "uo/market.h"
 #include "uo/vendor_policy.h"
 #include "uo/professions.h"
+#include "uo/rules.h"
 
 #include <cstdio>
 #include <set>
@@ -513,12 +514,26 @@ void TestNpcsMayNotBuyPlayerMarketGoods() {
               econ::VendorClass::PlayerMarketGood,
           "and an iron ingot PlayerMarketGood");
 
+    // WHAT THESE FOUR NOW MEAN, since the 2026-09-02 restore. The runtime's
+    // tm_vend.scp DOES carry live BUY=i_log (:293/:1085/:1438/:1632/:2114) and
+    // BUY=i_ingot_iron (:1084/:1421/:1506/:2115) rows, and kNpcBuyers now
+    // records them. These calls take the DEFAULT playersDeclined=false, i.e.
+    // the player-first WTS window is still open -- and while it is open the
+    // policy answers "no NPC", exactly as the owner ruled. The refusal is the
+    // sale policy, no longer an empty vendor table. See
+    // TestNpcPriceFloorBuyerResolution for the window-closed half.
     Check(NpcBuyersFor("i_log").empty(),
-          "so NO npc buyer is offered for logs, whatever the scripts allow");
+          "no npc buyer for logs while the player-first window is open");
     Check(NpcBuyersFor("i_ingot_iron").empty(),
           "nor for ingots");
     Check(!HasNpcBuyer("i_log"), "HasNpcBuyer agrees");
     Check(NpcBuyersFor(nullptr).empty(), "a null query is not a crash");
+    // ...and the counters are demonstrably THERE, which is the half that was
+    // wrong before. Both flip once nobody answered the offer.
+    Check(HasNpcBuyer("i_log", /*playersDeclined=*/true),
+          "logs DO have a live NPC counter once the window closes");
+    Check(HasNpcBuyer("i_ingot_iron", /*playersDeclined=*/true),
+          "and so do iron ingots");
 
     const prof::Profession* lj = prof::Find("lumberjack_swordsman");
     const prof::Profession* ms = prof::Find("miner_smith");
@@ -1013,6 +1028,644 @@ void TestTheDisposalOrder() {
     }
 }
 
+// --------------------------------------------------------------------------
+// WHERE A MISSING INPUT COMES FROM, when no NPC shopkeeper sells it.
+//
+// The 2026-09-01 30-bot wave failed BUY_SUPPLIES with REFUSE_NO_KNOWN_BUYER on
+// three characters that were each holding the wrong end of their own supply
+// chain (run_gates/g_Dorvar.console.txt:740, g_Zarthal:488, g_Titus:636).
+// Refusing the NPC was correct -- materials never come from shopkeepers -- but
+// "no vendor" is not "no source", and the route each of them actually needed
+// is decidable from the catalogue alone.
+void TestSupplyRouteForAMissingInput() {
+    Section("supply route: no NPC sells it is not the same as no source");
+
+    const prof::Profession* fisher = prof::Find("fisher");
+    const prof::Profession* smith  = prof::Find("miner_smith");
+    const prof::Profession* archer = prof::Find("archer");
+    const prof::Profession* scribe = prof::Find("scribe");
+    Check(fisher && smith && archer && scribe,
+          "the four professions from the wave are in the catalogue");
+    if (!fisher || !smith || !archer || !scribe) return;
+
+    // Dorvar: a FISHER short of fish. Nobody sells him fish; he catches them.
+    Check(RouteForInput(*fisher, "i_fish_big_1", false) ==
+              SupplyRoute::SelfProduce,
+          "a fisher short of fish goes fishing, it does not go shopping");
+
+    // Zarthal: a MINER_SMITH short of iron ingots. He smelts his own.
+    Check(RouteForInput(*smith, "i_ingot_iron", false) ==
+              SupplyRoute::SelfProduce,
+          "a smith short of ingots makes them, it does not buy them");
+
+    // Titus: an ARCHER short of logs. He does not make logs -- a lumberjack
+    // does -- so this is a player rendezvous, which is exactly the one live
+    // producer/consumer edge the catalogue has.
+    Check(RouteForInput(*archer, "i_log", false) == SupplyRoute::PlayerMarket,
+          "an archer short of logs buys them from a player, not an NPC");
+    Check(!WhoProduces("i_log").empty(),
+          "and the catalogue really does name a log producer");
+
+    // The vendor table keeps precedence where it has an answer: a scribe's
+    // blank scrolls are a mage-shop purchase and must stay one, even though
+    // the lumberjack line can technically make parchment.
+    Check(RouteForInput(*scribe, "i_scroll_blank", true) ==
+              SupplyRoute::NpcVendor,
+          "a known shopkeeper trade still wins -- this fix adds routes, it "
+          "does not reroute working ones");
+
+    // And the genuinely unknown case is still refused rather than invented.
+    Check(RouteForInput(*smith, "i_not_a_real_defname", false) ==
+              SupplyRoute::NoKnownSource,
+          "an item nobody makes and nobody sells has no route at all");
+    Check(RouteForInput(*smith, "", false) == SupplyRoute::NoKnownSource,
+          "and neither does an empty defname");
+
+    for (SupplyRoute r : {SupplyRoute::NpcVendor, SupplyRoute::SelfProduce,
+                          SupplyRoute::PlayerMarket,
+                          SupplyRoute::NoKnownSource}) {
+        const char* n = SupplyRouteName(r);
+        Check(n && *n && n[0] != '?', "every route prints a name");
+    }
+
+    // THE RULE THIS MUST NOT WEAKEN: routing a material to SelfProduce or
+    // PlayerMarket must never make it NPC-sellable *while players are still
+    // being offered it*. Ask the vendor policy directly for the two materials
+    // above, at the default playersDeclined=false.
+    Check(!HasNpcBuyer("i_ingot_iron"),
+          "ingots go to players first, whatever the supply route says");
+    Check(!HasNpcBuyer("i_log"), "and so do logs");
+    // The restored NPC counters (tm_vend.scp, 2026-09-02) are a FLOOR under
+    // that market, reachable only after the offer went unanswered -- so this
+    // test's rule and the floor do not contradict each other.
+    Check(HasNpcBuyer("i_ingot_iron", /*playersDeclined=*/true),
+          "and the floor is underneath, not instead");
+}
+
+// The refusal the buy path now uses must be its own reason, distinct from the
+// sell-side one it was borrowing. Conflating them is what made a smith who
+// should have gone mining read as a broken buyer lookup.
+void TestBuySideRefusalIsItsOwnReason() {
+    Section("refusal: the buy side has its own word for 'no source'");
+    Check(faucet::Refusal::NoKnownSupplier != faucet::Refusal::NoKnownBuyer,
+          "supplier and buyer are different refusals");
+    const char* supplier = faucet::RefusalName(faucet::Refusal::NoKnownSupplier);
+    const char* buyer = faucet::RefusalName(faucet::Refusal::NoKnownBuyer);
+    Check(supplier && std::string(supplier) == "REFUSE_NO_KNOWN_SUPPLIER",
+          "and they print differently");
+    Check(buyer && std::string(buyer) == "REFUSE_NO_KNOWN_BUYER",
+          "the sell-side name is unchanged");
+}
+
+// ---------------------------------------------------------------------------
+// THE NPC PRICE FLOOR: buyer resolution (owner ruling, 2026-09-02).
+//
+// The ruling permits an NPC sale of materials once the player-first window has
+// closed. It does NOT create a buyer, and on this shard that distinction is
+// almost the whole story: the runtime's own tm_vend.scp has the log, board,
+// ore, iron-ingot and hide BUY rows COMMENTED OUT (:293, :294, :1084, :1421,
+// :1506, :2114-5, :342/:344/:406/:480/:482), and the live rows that survive
+// for i_log and i_ingot_iron are in sphere_template_vend_gargish.scp, used
+// only by c_*_gargoyle chardefs that the world save never spawns.
+//
+// So this suite asserts BOTH halves: what the floor opens, and -- far more of
+// it -- what still banks because nobody buys it.
+void TestNpcPriceFloorBuyerResolution() {
+    Section("npc floor: a real BUY row, or the goods bank");
+
+    // --- the player-first window is the gate ------------------------------
+    Check(NpcBuyersFor("i_feather").empty(),
+          "no buyer while the WTS window is still open, even for a material");
+    Check(!HasNpcBuyer("i_feather"), "HasNpcBuyer agrees, and defaults strict");
+    Check(!NpcBuyersFor("i_feather", /*playersDeclined=*/true).empty(),
+          "and a buyer appears once nobody answered the offer");
+
+    // --- WHAT THE SHARD ACTUALLY BUYS -------------------------------------
+    // Each of these was re-derived on 2026-09-02 by resolving every
+    // VENDOR_B_* template (transitively -- VENDOR_B_PROVISIONER takes
+    // BUY=VENDOR_B_BOWYER wholesale at tm_vend.scp:1465) back to the chardefs
+    // that use it. The trade string is the paperdoll-title substring.
+    struct Row { const char* item; const char* trade; };
+    const Row kBuys[] = {
+        {"i_feather",      "bowyer"},        // tm_vend.scp:1630
+        {"i_feather",      "provisioner"},   // via :1465
+        {"i_cotton",       "weaver"},        // :896
+        {"i_cotton",       "tailor"},        // :1004
+        {"i_thread",       "tailor"},        // :1006
+        {"i_flax_bundle",  "tailor"},        // :1005
+        {"i_ingot_copper", "jeweler"},       // :1507
+        {"i_ingot_gold",   "jeweler"},       // :1508
+        {"i_ingot_gold",   "provisioner"},   // :1422
+        {"i_ingot_silver", "jeweler"},       // :1509
+        {"i_ingot_silver", "provisioner"},   // :1423
+        // THE RESTORED ROWS. These five items previously appeared in the
+        // kNoBuyer list below, on the strength of `//BUY=` lines in
+        // runtime/scripts/templates/tm_vend.scp. That commenting was a TNS
+        // donor artefact -- rejected in
+        // docs/TNS_WORLD_ECONOMY_DONOR_AUDIT.md section 3.5 -- and the shard
+        // owner restored all 23 rows on 2026-09-02, byte-identical to
+        // server/Scripts-X/templates/tm_vend.scp. Asserting their absence was
+        // asserting the defect.
+        {"i_ingot_iron",   "blacksmith"},    // :2115 VENDOR_B_BLACKSMITH
+        {"i_ingot_iron",   "provisioner"},   // :1421 VENDOR_B_PROVISIONER
+        {"i_ingot_iron",   "jeweler"},       // :1506 VENDOR_B_JEWELER
+        {"i_ingot_iron",   "tinker"},        // :1084 VENDOR_B_TINKER
+        {"i_log",          "blacksmith"},    // :2114
+        {"i_log",          "provisioner"},   // :1438
+        {"i_log",          "carpenter"},     // :293  VENDOR_B_CARPENTER
+        {"i_log",          "bowyer"},        // :1632 VENDOR_B_BOWYER
+        {"i_log",          "tinker"},        // :1085
+        {"i_board",        "provisioner"},   // :1439
+        {"i_board",        "carpenter"},     // :294
+        {"i_board",        "tinker"},        // :1086
+        {"i_hide",         "cobbler"},       // :344  VENDOR_B_COBBLER
+        {"i_hide",         "tanner"},        // :482  VENDOR_B_TANNER
+        {"i_hides_cut",    "cobbler"},       // :342
+        {"i_hides_cut",    "tanner"},        // :480
+        // i_hides_cut_2 is deliberately absent even though :343 and :481 buy
+        // it: it is DUPEITEM=01067, and Sphere resolves a dupe id to its master
+        // before the vendor ever sees it (CItemBase.cpp:2254-2256), so
+        // i_hides_cut IS the row. Asserted below in kNoBuyer.
+    };
+    for (const Row& r : kBuys) {
+        bool found = false;
+        for (const NpcBuyer* b : NpcBuyersFor(r.item, true)) {
+            if (std::string(b->trade) == r.trade) { found = true; break; }
+        }
+        Check(found, r.item);
+    }
+
+    // --- AND WHAT IT DOES NOT. These bank; the ruling says so outright. ----
+    const char* kNoBuyer[] = {
+        "i_ore_iron",       // no BUY row anywhere in the runtime, live or not
+        // COLOURED INGOTS. [ITEMDEF i_ingot_valorite] carries ID=i_ingot_iron
+        // (i_provisions_ore.scp), but a script `ID=` line sets only the DISPLAY
+        // index (CItemBase.cpp:1659-1694 IBC_ID -> m_dwDispIndex), while
+        // CItemBase::GetID (CItemBase.h:309) still returns the itemdef's own
+        // resource index. NPC_FindVendableItem looks the item up by that
+        // resource id (CCharNPCStatus.cpp:611) and IsResourceMatch compares
+        // resource ids, with no hue term and a fallback that special-cases only
+        // log<-board and hide<-leather (CItem.cpp:6041-6071). So a live
+        // BUY=i_ingot_iron row does NOT buy valorite. Source-verified, not
+        // runtime-verified.
+        "i_ingot_valorite",
+        // The DUPEITEM. tm_vend.scp:343/:481 name it, but Sphere folds the id
+        // into its master 01067 before the buy lookup, so i_hides_cut carries
+        // the trade and this defname is never the one to ask about.
+        "i_hides_cut_2",
+        "i_cloth",
+        "i_cloth_bolt",
+        "i_wool",
+        "i_yarn_ball",
+    };
+    for (const char* item : kNoBuyer) {
+        Check(NpcBuyersFor(item, /*playersDeclined=*/true).empty(), item);
+    }
+    // The one that matters most: an open floor plus no buyer must NOT produce
+    // a walk across town to be refused. That is the shape the whole table's
+    // header warns about, and it is how a sell goal spins. Iron ore is the
+    // honest case now that logs and ingots have their counters back: it is a
+    // material the policy will pass, and no template in the tree buys one.
+    Check(econ::MaterialFloorOpen("i_ore_iron", true),
+          "the POLICY permits iron ore at the counter...");
+    Check(!HasNpcBuyer("i_ore_iron", true),
+          "...and there is still no counter that takes it, so it banks");
+
+    // --- MaySellToNpc: the restored counters really do open ---------------
+    const prof::Profession* lj = prof::Find("lumberjack_swordsman");
+    const prof::Profession* ms = prof::Find("miner_smith");
+    Check(lj && ms, "the two gathering lives exist");
+    if (!lj || !ms) return;
+    Ledger clean;
+    Check(MaySellToNpc(*lj, "i_log", clean, /*playersDeclined=*/true).allowed,
+          "a lumberjack may sell logs once nobody answered the WTS");
+    Check(MaySellToNpc(*ms, "i_ingot_iron", clean, true).allowed,
+          "and a smith iron ingots, for the same reason");
+    // ...but ONLY once the window has closed. Player-first is untouched by the
+    // restore: the vendor table gained rows, the sale policy did not.
+    Check(!MaySellToNpc(*lj, "i_log", clean, /*playersDeclined=*/false).allowed,
+          "logs still refused while the player-first window is open");
+    Check(!MaySellToNpc(*ms, "i_ingot_iron", clean, false).allowed,
+          "and ingots likewise");
+
+    // ...and WITH a buyer, the floor really does open. THREAD is the honest
+    // case to test it on: the tailor already produces i_cloth_bolt off the
+    // same spinning wheel, i_thread has a live BUY row (tm_vend.scp:1006), and
+    // the production graph knows it is spun from cotton
+    // (Production.cpp:62, ENGINE CClientTarg.cpp:2075) -- so the arbitrage
+    // guard below has a real input to reason about. The `produces` line is the
+    // one thing constructed here; the policy, the recipe and the vendor table
+    // are all the real ones.
+    const prof::Profession* tl = prof::Find("tailor");
+    Check(tl != nullptr, "the tailor life exists");
+    if (!tl) return;
+    prof::Profession spinner = *tl;
+    spinner.produces.push_back("i_thread");
+    const SellRuling shut = MaySellToNpc(spinner, "i_thread", clean,
+                                         /*playersDeclined=*/false);
+    Check(!shut.allowed, "thread refused while the WTS window is open");
+    const SellRuling open = MaySellToNpc(spinner, "i_thread", clean,
+                                         /*playersDeclined=*/true);
+    Check(open.allowed, "and allowed once nobody answered -- the NPC floor");
+    Check(open.reason && std::string(open.reason).find("floor") !=
+                             std::string::npos,
+          "and the reason says so, so a log line can be read back");
+
+    // THE ARBITRAGE GUARD IS NOT WEAKENED BY THE FLOOR. A floor route carries
+    // no HistoryEvidence -- it has no registry row at all -- so the
+    // closed-vendor-loop test still applies to it in full.
+    Ledger bought;
+    bought.Note(GoldFlow::DestroyedVendorPurchase, 40, "i_cotton", 1000);
+    Check(!MaySellToNpc(spinner, "i_thread", bought, true).allowed,
+          "cotton bought from an NPC still blocks selling the thread back");
+
+    // --- THE SWITCH OFF: the strict behaviour, byte for byte --------------
+    econ::SalePolicy strict;
+    strict.allowMaterialsToNpc = false;
+    econ::SetSalePolicy(strict);
+    Check(NpcBuyersFor("i_feather", true).empty(),
+          "switch OFF: no NPC buyer for a material, window closed or not");
+    Check(NpcBuyersFor("i_ingot_gold", true).empty(), "switch OFF: nor ingots");
+    Check(!MaySellToNpc(spinner, "i_thread", clean, true).allowed,
+          "switch OFF: MaySellToNpc refuses again");
+    // ...while everything the REGISTRY allows unconditionally is untouched:
+    // the switch governs the floor, not the documented taps.
+    Check(!NpcBuyersFor("i_fish_big_1").empty(),
+          "switch OFF: a fisher still sells fish -- that is a faucet, not a floor");
+    econ::SetSalePolicy(econ::SalePolicy{});
+    Check(!NpcBuyersFor("i_feather", true).empty(), "switch back ON");
+}
+
+// --------------------------------------------------------------------------
+// THE MATERIAL SURPLUS CAP (owner ruling, 2026-09-02).
+//
+//   "materials exist to be CRAFTED, not sold. NPC sale of materials ONLY when
+//    bank+pack exceeds a plan-derived surplus cap, dynamic per character."
+//
+// The point of the test is the word DYNAMIC: two characters must get two
+// different numbers, and the difference must be traceable to their plans rather
+// than to a constant somebody tuned.
+void TestMaterialSurplusCapIsPerCharacter() {
+    Section("floor: the NPC sale of a material needs a surplus above the "
+            "character's own plan cap");
+
+    const prof::Profession* lj = prof::Find("lumberjack_swordsman");
+    const prof::Profession* ms = prof::Find("miner_smith");
+    Check(lj && ms, "the lumberjack and the smith exist");
+    if (!lj || !ms) return;
+
+    TradePolicy pol;
+    const i32 batch = 5;
+
+    // CHARACTER ONE: a lumberjack whose Carpentry is finished. Its bench still
+    // eats a log per board, but it is not stocking for a skill climb any more.
+    const std::vector<SkillGap> done = {{rules::kCarpentry, 0}};
+    const MaterialCap capDone =
+        MaterialSurplusCap(*lj, "i_log", batch, /*gold=*/50000, done, pol);
+    // CHARACTER TWO: a green smith with the whole Blacksmithing climb ahead of
+    // it -- the case the owner's "stock 500-600 then start training" rule is
+    // about.
+    const std::vector<SkillGap> green = {{rules::kBlacksmithing, 1000}};
+    const MaterialCap capGreen =
+        MaterialSurplusCap(*ms, "i_ingot_iron", batch, /*gold=*/50000, green, pol);
+
+    std::printf("  lumberjack/i_log cap=%d (plan %d + training %d + market %d)\n",
+                capDone.units, capDone.ownPlan, capDone.training, capDone.market);
+    std::printf("  miner_smith/i_ingot_iron cap=%d (plan %d + training %d + market %d)\n",
+                capGreen.units, capGreen.ownPlan, capGreen.training,
+                capGreen.market);
+
+    Check(capDone.isMaterial && capGreen.isMaterial,
+          "a log and an iron ingot are both materials the ruling covers");
+    Check(capDone.units != capGreen.units,
+          "two characters, two different caps -- the number is derived, not "
+          "global");
+    Check(capGreen.units > capDone.units,
+          "and the one with a skill still to climb keeps far more back");
+
+    // Every term is traceable.
+    //   i_board <- {i_log 1} (Production.cpp:146), so one sitting of five eats
+    //   five logs.
+    Check(capDone.ownPlan == batch,
+          "own plan = craft batch x the largest per-craft demand (1 log a board)");
+    //   i_cutlass <- {i_ingot_iron 8} (Production.cpp:136) is the smith's
+    //   hungriest recipe.
+    Check(capGreen.ownPlan == batch * 8,
+          "the smith's cap counts its hungriest recipe, 8 ingots a cutlass");
+    //   The owner's 500-600 for a full climb, as a rate: 5.5 units a point.
+    Check(capGreen.training >= 500 && capGreen.training <= 600,
+          "a full 0->100.0 Blacksmithing climb banks the owner's 500-600");
+    Check(capDone.training == 0,
+          "a finished skill banks nothing for training");
+    // Half the climb, half the stock. This is what stops the rule being 550
+    // with extra steps.
+    const std::vector<SkillGap> half = {{rules::kBlacksmithing, 500}};
+    const MaterialCap capHalf =
+        MaterialSurplusCap(*ms, "i_ingot_iron", batch, 50000, half, pol);
+    Check(capHalf.training * 2 == capGreen.training ||
+              capHalf.training * 2 == capGreen.training + 1,
+          "and a smith halfway up banks half of it");
+
+    //   The market reserve is one restock lot per profession that must BUY it.
+    Check(capDone.market ==
+              static_cast<i32>(WhoConsumes("i_log").size()) *
+                  pol.restockConsumablesTo,
+          "market reserve = a restock lot for each catalogue consumer");
+    Check(capDone.market > 0,
+          "a pure gatherer still holds stock back for the crafters who need it");
+
+    // A BROKE CHARACTER RELEASES ITS MARKET STOCK SOONER -- and only that.
+    const MaterialCap poor =
+        MaterialSurplusCap(*lj, "i_log", batch, /*gold=*/0, done, pol);
+    Check(poor.market < capDone.market, "an empty purse halves the market reserve");
+    Check(poor.ownPlan == capDone.ownPlan,
+          "but never the stock its own bench needs");
+
+    // --- the gate itself ---------------------------------------------------
+    const i32 cap = capDone.units;
+    // BELOW the cap: no NPC trip, whatever the player market did.
+    const MaterialSaleGate under = MaterialNpcSaleGate(
+        *lj, "i_log", cap, /*playersDeclined=*/true, batch, 50000, done, pol);
+    Check(!under.allowed, "at the cap exactly, the stock stays banked");
+    Check(under.reason != nullptr && under.cap == cap && under.held == cap,
+          "and the refusal reports the numbers it was decided on");
+    // ABOVE it, with the player window closed: this is the last resort opening.
+    const MaterialSaleGate over = MaterialNpcSaleGate(
+        *lj, "i_log", cap + 1, true, batch, 50000, done, pol);
+    Check(over.allowed, "one above the cap, with nobody buying, the floor opens");
+    // ABOVE it, with the player window still OPEN: player-first is untouched.
+    const MaterialSaleGate early = MaterialNpcSaleGate(
+        *lj, "i_log", cap * 10, /*playersDeclined=*/false, batch, 50000, done, pol);
+    Check(!early.allowed,
+          "a mountain of stock is still not a reason to skip the player market");
+
+    // A FINISHED GOOD IS NOT WHAT THIS RULE IS ABOUT. A smith's daggers are
+    // exactly what it is supposed to take to a counter.
+    const MaterialSaleGate made = MaterialNpcSaleGate(
+        *ms, "i_dagger", 1, /*playersDeclined=*/false, batch, 50000, green, pol);
+    Check(made.allowed && !made.detail.isMaterial,
+          "the cap does not apply to a crafted good");
+
+    // NOR TO A DOCUMENTED FAUCET. Fish is graded WorldGathered, so it is a
+    // "material" by class -- and it is also the tap a fisher lives on ("caught
+    // fish cook fish then sell"). Capping it would have deleted a whole
+    // profession's income to enforce a ruling that was never about fish.
+    const prof::Profession* fi = prof::Find("fisher");
+    if (fi) {
+        const MaterialSaleGate caught = MaterialNpcSaleGate(
+            *fi, "i_fish_big_1", 1, /*playersDeclined=*/false, batch, 0, {},
+            pol);
+        Check(caught.detail.isMaterial,
+              "fish is a material by class -- that is the trap");
+        Check(caught.allowed,
+              "and a fisher sells it anyway: it is a documented faucet, not "
+              "the floor");
+    }
+}
+
+// --------------------------------------------------------------------------
+// DEMAND HAS A VOICE. Before this a crafter short of materials walked to the
+// market and stood there silently: a trade could only start if a gatherer
+// happened to announce the exact thing somebody happened to need.
+void TestDemandSideWtb() {
+    Section("trade: a short crafter shouts WTB, and a gatherer holding it "
+            "answers");
+
+    const prof::Profession* ms = prof::Find("miner_smith");
+    const prof::Profession* lj = prof::Find("lumberjack_swordsman");
+    Check(ms && lj, "the smith and the lumberjack exist");
+    if (!ms || !lj) return;
+
+    // --- the wire form, both directions ------------------------------------
+    TradeIntent want;
+    want.item = "i_log"; want.qty = 20; want.pricePerUnit = 4;
+    const std::string said = FormatBuyWant(want);
+    Check(said == "WTB 20 i_log 4gp", "the WTB line reads like a player's");
+
+    TradeIntent back;
+    Check(ParseBuyWant(said, &back), "and parses back");
+    Check(back.item == "i_log" && back.qty == 20 && back.pricePerUnit == 4,
+          "with the item, the quantity and the ceiling intact");
+
+    // THE OLD REPLY FORM STILL WORKS, and -- the part that would otherwise
+    // break silently -- the full form is still recognised as a reply. A seller
+    // that stopped recognising answers to its own offer the moment buyers
+    // learned to speak first would have lost every trade it used to make.
+    std::string item;
+    Check(ParseBuyReply("WTB i_log", &item) && item == "i_log",
+          "the bare reply form is unchanged");
+    Check(ParseBuyReply(said, &item) && item == "i_log",
+          "and a full WTB is read as a reply for the same item");
+    TradeIntent bare;
+    Check(ParseBuyWant("WTB i_log", &bare) && bare.qty == 0 &&
+              bare.pricePerUnit == 0,
+          "a bare WTB means 'some, at whatever you ask'");
+    Check(!ParseBuyWant("hello there", &bare), "and ordinary speech is not a WTB");
+    Check(!ParseBuyWant("WTB 20", &bare), "nor is a quantity naming nothing");
+
+    // --- TWO REPLIES, ONE ACCEPTED, ONE DECLINED ---------------------------
+    //
+    // The 2026-09-02 wave: Odessa shouted for ingots, Kharain and Elvar both
+    // held some, and the bare "WTB i_ingot_iron" was an answer to BOTH of
+    // them. They both opened a trade window on a buyer who could pay one, both
+    // handshakes timed out at 25s, and both sellers then stood at the bank.
+    // An addressed reply is what makes the choice exclusive.
+    const std::string toKharain = FormatBuyReply("i_ingot_iron", "Kharain");
+    Check(toKharain == "Kharain, WTB i_ingot_iron",
+          "an accepted reply names the seller it accepts");
+    std::string got;
+    Check(ParseBuyReply(toKharain, &got) && got == "i_ingot_iron",
+          "and still parses as a reply for that item");
+    Check(AddressedTo(toKharain, "Kharain"),
+          "the named seller may answer it");
+    Check(!AddressedTo(toKharain, "Elvar"),
+          "the OTHER seller holding the same goods must not");
+    Check(AddressedTo("WTB i_ingot_iron", "Elvar"),
+          "an unaddressed want is still open to the room");
+    // THE LIMIT, stated rather than papered over: an address is the single
+    // token before the first comma, so a MULTI-word clause is correctly not
+    // one, but a single incidental word would be read as a name. Nothing this
+    // fleet says begins that way (FormatBuyReply and FormatDecline are the
+    // only comma-bearing lines), and the failure direction is the safe one --
+    // a line addressed to a name nobody has is simply answered by nobody.
+    Check(AddressedTo("i think, WTB i_log", "Elvar"),
+          "a multi-word clause before a comma is not an address");
+
+    const std::string sorry = FormatDecline("Elvar");
+    std::string declined;
+    Check(ParseDecline(sorry, &declined) && declined == "Elvar",
+          "the losing seller is told so by name");
+    Check(AddressedTo(sorry, "Elvar") && !AddressedTo(sorry, "Kharain"),
+          "and only that seller stands down on it");
+    Check(!ParseDecline(toKharain, &declined),
+          "an ordinary reply is not a decline");
+
+    // --- the buyer chooses what to shout -----------------------------------
+    PriceBook blind;
+    TradePolicy pol;
+    TradeIntent shout;
+    // A smith with an empty pack is short of logs (i_spear_short eats one) and
+    // has money over its reserve.
+    Check(ChooseBuyWant(*ms, {}, blind, pol, ms->goldReserve + 5000, &shout),
+          "a smith with no logs and money to spend has something to shout");
+    Check(shout.item == "i_log", "and it is the input a player could supply");
+    Check(shout.qty > 0 && shout.pricePerUnit > 0,
+          "with a quantity and a ceiling");
+    // THE CEILING IS ONE IT WILL HONOUR. A bot that advertises a number and
+    // then refuses it at the window is a bot no gatherer can plan around.
+    TradeIntent atCeiling = shout;
+    atCeiling.qty = shout.qty;
+    Check(ConsiderOffer(*ms, {}, ms->goldReserve + 5000, pol, atCeiling).accept,
+          "and an offer at exactly that ceiling is one it accepts");
+
+    // NO SHOUT WITHOUT THE MONEY. This is the "no spin" half: a life that
+    // cannot pay says nothing rather than announcing forever.
+    TradeIntent none;
+    Check(!ChooseBuyWant(*ms, {}, blind, pol, ms->goldReserve, &none),
+          "a purse down to the tool reserve announces nothing");
+    // Nor when it is not short of anything.
+    std::vector<Stock> stocked;
+    for (const std::string& c : ms->consumes) stocked.push_back({c, 500});
+    Check(!ChooseBuyWant(*ms, stocked, blind, pol, 100000, &none),
+          "nor does a life with a full stock");
+
+    // --- the gatherer answers ----------------------------------------------
+    const std::vector<Stock> woodpile = {{"i_log", 200}};
+    TradeIntent fill;
+    Check(AnswerBuyWant(*lj, woodpile, blind, pol, shout, &fill),
+          "a lumberjack carrying logs answers a WTB for logs");
+    Check(fill.item == "i_log" && fill.qty > 0 && fill.qty <= shout.qty,
+          "for no more than was asked for");
+    Check(fill.pricePerUnit <= shout.pricePerUnit,
+          "at or under the buyer's ceiling -- otherwise there is no deal");
+    // AND THE ANSWER CLOSES THE LOOP: the buyer must accept the WTS it gets
+    // back, or the two halves are talking past each other.
+    Check(ConsiderOffer(*ms, {}, ms->goldReserve + 5000, pol, fill).accept,
+          "and the buyer accepts the answer it provoked");
+
+    // A DIRECT REQUEST OUTRANKS THE TRIP THRESHOLD. minimumSurplusToOffer (5)
+    // exists so nobody treks across town with two of something; the buyer is
+    // already standing here. The WORKING RESERVE is a different rule and is NOT
+    // relaxed -- a log feeds this life's own boards, so keepOfOwnOutput (20)
+    // still comes off the top and 22 logs is a spare of two.
+    TradeIntent small;
+    Check(AnswerBuyWant(*lj, {{"i_log", 22}}, blind, pol, shout, &small),
+          "two spare logs are worth handing to somebody who asked for them");
+    Check(small.qty == 2, "the two above the working reserve, and no more");
+    TradeIntent reserved;
+    Check(!AnswerBuyWant(*lj, {{"i_log", 20}}, blind, pol, shout, &reserved),
+          "and a life down to its working reserve answers nothing");
+
+    // NOBODY ANSWERS WHAT THEY DO NOT HAVE, and nobody becomes a fence.
+    TradeIntent nope;
+    Check(!AnswerBuyWant(*lj, {}, blind, pol, shout, &nope),
+          "an empty pack answers nothing");
+    Check(!AnswerBuyWant(*ms, woodpile, blind, pol, shout, &nope),
+          "and a smith holding logs does not resell them -- it is not a fence");
+
+    // A CEILING BELOW WHAT THE SELLER BELIEVES IS A DECLINE, NOT AN UNDERCUT.
+    PriceBook seen;
+    PriceObservation po;
+    po.item = "i_log"; po.pricePerUnit = 40;
+    po.source = PriceSource::PlayerTraded; po.who = "somebody";
+    seen.Note(po);
+    TradeIntent lowball = shout;
+    lowball.pricePerUnit = 3;
+    TradeIntent unused;
+    Check(!AnswerBuyWant(*lj, woodpile, seen, pol, lowball, &unused),
+          "a seller that has watched logs trade at 40 does not sell at 3");
+}
+
+// --------------------------------------------------------------------------
+// The buyer-initiated deal: the buyer shouts, the SELLER opens the window, and
+// the buyer has to fund a window it did not itself commit to.
+//
+// Runtime defect this is written against (2026-09-02 wave, 12:50-13:20):
+// Odessa broadcast "WTB 8 i_ingot_iron 52gp" nineteen times; Elvar read it as a
+// reply to its own standing WTS (g_Elvar.console.txt:340 `trade:  wants our
+// i_ingot_iron`), said nothing back, and opened a trade window
+// (g_Odessa.console.txt:257). Odessa had no price and no quantity of its own,
+// offered nothing, and the deal died at 25s (:280). Zero player trades
+// completed in the whole run.
+void TestBuyerFundsTheWindowItAskedFor() {
+    Section("trade: a WTB broadcast is demand, and the buyer funds the window "
+            "the seller opens for it");
+
+    // --- half one: the two "WTB" lines are different lines ------------------
+    TradeIntent parsed;
+    Check(ClassifyBuyLine("WTB 8 i_ingot_iron 52gp", &parsed) ==
+              BuyLineKind::Announce,
+          "a quantity + a price + no addressee is demand announcing itself");
+    Check(parsed.item == "i_ingot_iron" && parsed.qty == 8 &&
+              parsed.pricePerUnit == 52,
+          "and the announcement's terms come back intact");
+    Check(ClassifyBuyLine("WTB i_ingot_iron", &parsed) == BuyLineKind::Reply,
+          "the bare form is a reply to somebody's standing offer");
+    Check(ClassifyBuyLine("Kharain, WTB i_ingot_iron") == BuyLineKind::Reply,
+          "and so is an addressed one");
+    // A buyer that learns to accept in the full form is still accepting, so
+    // long as it names the seller. This is the tolerance ParseBuyReply was
+    // given, kept honest here rather than lost to the new classifier.
+    Check(ClassifyBuyLine("Kharain, WTB 8 i_ingot_iron 52gp") ==
+              BuyLineKind::Reply,
+          "an ADDRESSED full form is a reply, not a broadcast");
+    Check(ClassifyBuyLine("WTS 8 i_ingot_iron 4gp") == BuyLineKind::NotABuyLine,
+          "a seller's line is not a WTB at all");
+    Check(ClassifyBuyLine("hello there") == BuyLineKind::NotABuyLine,
+          "nor is ordinary speech");
+
+    // --- half two: how much coin goes in the window ------------------------
+    TradeIntent planned;
+    planned.item = "i_ingot_iron"; planned.qty = 8; planned.pricePerUnit = 52;
+
+    // Rich enough for the lot: pay for exactly what was asked for.
+    FundingDecision d = FundOpenWindow(planned, /*goldOnHand=*/1000,
+                                       /*goldReserve=*/100);
+    Check(d.accept && d.qty == 8 && d.gold == 8 * 52,
+          "a purse that covers the announcement funds all of it");
+    Check(d.reason != nullptr, "and says why");
+
+    // The purse shrank since the shout. Pay for what it now covers rather than
+    // promising a number the drag would refuse.
+    d = FundOpenWindow(planned, /*goldOnHand=*/300, /*goldReserve=*/100);
+    Check(d.accept && d.qty == 3 && d.gold == 3 * 52,
+          "a purse that covers three units funds three, not eight");
+    Check(d.gold <= 300 - 100, "and never dips into the reserve");
+
+    // Cannot cover one unit: a refusal, not a zero-coin window.
+    d = FundOpenWindow(planned, /*goldOnHand=*/120, /*goldReserve=*/100);
+    Check(!d.accept && d.gold == 0,
+          "a purse that cannot cover one unit funds nothing");
+
+    // NO PLAN, NO FUNDING. This is the rule the defect broke in the other
+    // direction: the buyer put nothing in because it had nothing written down.
+    // The answer is not "pay something anyway" -- it is to refuse explicitly so
+    // the window's own give-up clock ends the deal.
+    d = FundOpenWindow(TradeIntent{}, 1000, 0);
+    Check(!d.accept && d.reason != nullptr,
+          "a window nobody planned for is refused, with a reason");
+    TradeIntent priceless;
+    priceless.item = "i_log"; priceless.qty = 20;   // pricePerUnit stays 0
+    d = FundOpenWindow(priceless, 1000, 0);
+    Check(!d.accept, "and so is a want with no price to multiply");
+
+    // THE SELLER'S SIDE OF THE SAME DEAL, so the pair actually closes: a
+    // gatherer holding the goods must have something to say back to the
+    // announcement. Without this the buyer's plan is funded against silence.
+    const prof::Profession* lj = prof::Find("lumberjack_swordsman");
+    Check(lj != nullptr, "the lumberjack exists");
+    if (!lj) return;
+    const std::vector<Stock> woodpile = {{"i_log", 200}};
+    TradePolicy pol;
+    PriceBook blind;
+    TradeIntent shout;
+    shout.item = "i_log"; shout.qty = 20; shout.pricePerUnit = 40;
+    TradeIntent answer;
+    Check(AnswerBuyWant(*lj, woodpile, blind, pol, shout, &answer) &&
+              answer.item == "i_log" && answer.qty == 20,
+          "a holder answers the announcement with a WTS the buyer can hear");
+}
+
 int main() {
     std::printf("m7_market\n");
     TestInterdependence();
@@ -1034,6 +1687,12 @@ int main() {
     TestForumPriceSeedsGroundFirstOffers();
     TestTheChainCanActuallyClose();
     TestTheDisposalOrder();
+    TestSupplyRouteForAMissingInput();
+    TestBuySideRefusalIsItsOwnReason();
+    TestNpcPriceFloorBuyerResolution();
+    TestMaterialSurplusCapIsPerCharacter();
+    TestDemandSideWtb();
+    TestBuyerFundsTheWindowItAskedFor();
     std::printf("%d checks, %d failures\n", g_checks, g_failures);
     return g_failures == 0 ? 0 : 1;
 }

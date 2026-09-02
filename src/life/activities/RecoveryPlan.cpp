@@ -13,6 +13,7 @@ const char* RecoveryStepName(RecoveryStep s) {
         case RecoveryStep::Loot:             return "loot";
         case RecoveryStep::ReEquip:          return "re-equip";
         case RecoveryStep::Abandon:          return "abandon";
+        case RecoveryStep::CorpseGone:       return "the corpse is gone";
         case RecoveryStep::Done:             return "done";
     }
     return "?";
@@ -46,6 +47,22 @@ RecoveryPlan DecideRecovery(const RecoverySight& see,
     if (see.corpseEmpty) {
         out.step = RecoveryStep::Done;
         out.reason = "the corpse has nothing left in it";
+        return out;
+    }
+
+    // THE CORPSE IS NOT THERE. Standing on the death tile with nothing to
+    // open is the end of the errand, not the start of a retry: a player
+    // corpse decays after 7 minutes (runtime/sphere.ini CorpsePlayerDecay=7)
+    // while the death record survives a logout, so a character raised late
+    // arrives at bare ground. Revolution death is full loot -- the gear IS
+    // gone, and the only correct move is to say so and go re-equip.
+    // Without this rule the loot step opened container 0 every 1.5s, 200+
+    // times (run_gates/g_Hector.console.txt:3227-3400, 2026-09-02).
+    if (see.corpseDistance <= 2 && !see.corpseVisible &&
+        see.probesAtSite >= tune.maxProbesAtSite) {
+        out.step = RecoveryStep::CorpseGone;
+        out.reason = "stood on the death tile and there is no corpse there -- "
+                     "decayed or already looted";
         return out;
     }
 

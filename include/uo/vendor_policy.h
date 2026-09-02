@@ -152,6 +152,49 @@ VendorRuling CanUseNPCVendorFor(const char* item);
 // for logging/research but do not veto a real offer.
 VendorRuling CanBuyFromNPC(const char* item);
 
+// ---------------------------------------------------------------------------
+// THE NPC PRICE FLOOR (owner ruling, 2026-09-02)
+//
+//   "until bots genuinely need each other's goods, bots MAY sell materials
+//    (ingots, logs, fish, ore, cloth, hides, feathers...) to NPC vendors.
+//    Player-first stays: shout WTS on schedule, sell to a responding player if
+//    one answers. NPC sale is the legitimate fallback, NOT a refusal. If no NPC
+//    class buys the item, bank it and cool the goal down."
+//
+// This is a FLOOR, not the answer. The long-term goal is bot demand outbidding
+// it, so the floor is deliberately conditional on two things at once:
+//
+//   1. the switch below, and
+//   2. `playersDeclined` -- the player-first window having actually CLOSED for
+//      this item, which on this fleet means a complete WTS announce cycle that
+//      nobody answered (life::Runner records `no_player_buyer`).
+//
+// It does NOT make the material sellable in the abstract: market::NpcBuyersFor
+// still has to find a real BUY row on a real vendor template, and if none
+// exists the item banks. See docs/artifacts/npc_floor_2026-09-02.md.
+// ---------------------------------------------------------------------------
+struct SalePolicy {
+    // ON by the ruling. OFF restores the strict M3.7 behaviour exactly: no
+    // material ever reaches an NPC counter, whatever the player market did.
+    bool allowMaterialsToNpc = true;
+};
+
+const SalePolicy& CurrentSalePolicy();
+void SetSalePolicy(const SalePolicy& p);
+
+// Is `item` a raw or processed MATERIAL -- the class the ruling covers?
+//
+// Read off the audit matrix (WorldGathered / WorldProcessed) rather than a
+// second hand-written list, PLUS the two hue families. Ore and the thirteen
+// coloured ingots share one ITEMDEF each (i_ore_iron / i_ingot_iron + COLOR),
+// so their sixteen defnames can never all appear in the matrix and the prefix
+// is the honest test rather than a guess.
+bool IsFloorMaterial(const char* item);
+
+// May the floor be used for `item` right now? Needs BOTH the switch and a
+// closed player-first window. Never true for anything that is not a material.
+bool MaterialFloorOpen(const char* item, bool playersDeclined);
+
 // Every item the audit graded, for tests and for reporting.
 const std::vector<std::pair<const char*, VendorClass>>& VendorMatrix();
 

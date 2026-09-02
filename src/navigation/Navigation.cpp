@@ -4,6 +4,7 @@
 #include "uo/builders.h"
 #include "uo/endian.h"
 #include "uo/map.h"
+#include "uo/nav_rules.h"
 #include "uo/tiledata.h"
 #include "uo/sphere_rules.h"
 #include "uo/world.h"
@@ -42,6 +43,12 @@ constexpr i64 kAbandonedAckWindowMs = 30000;
 // Per-trip A* replan budget -- bounds obstacle-avoidance loops on an
 // unreachable goal.
 constexpr u32 kMaxReplans = 128;
+// How far from a goal that turned out to be unwalkable (a tree, water, a
+// rock) BotFindWalkableNearGoal will search for a standable substitute.
+// Matches the common arrival radius callers already use for point/entity
+// travel (2-6 tiles); wide enough to salvage a real resource tile, narrow
+// enough that a genuinely enclosed goal still fails quickly.
+constexpr i32 kGoalSnapMaxRadius = 6;
 // Extra A* cost for stepping onto open grass (vs the 10/14 straight/diag
 // base) -- biases travel toward roads/dirt where mobs are sparser.
 constexpr u32 kGrassPenalty = 14;
@@ -596,6 +603,30 @@ void Client::BotRememberDoorRetry(i32 fromX, i32 fromY, i8 fromZ,
 }
 
 
+// A literal goal is often a resource's own tile: a tree trunk, an open-water
+// cast target, a rock face -- all Impassable or otherwise unwalkable by
+// design. Rather than have every caller separately vet its target (some do:
+// TravelToEntity's stand-candidate search, MiningInteriorTarget), Navigation
+// itself looks for the nearest standable tile near a goal it was asked to
+// reach. Nearest ring first, same shape as NearestMiningSpot/NearestTree's
+// stand search, so the snap lands beside the goal rather than drifting toward
+// whichever direction the ring happened to scan first.
+bool Client::BotFindWalkableNearGoal(i32 goalX, i32 goalY, i8 nearZ,
+                                     i32 maxRadius, i32* outX, i32* outY,
+                                     i8* outZ) const {
+    if (!world_) return false;
+    return nav::FindWalkableNearGoal(
+        goalX, goalY, nearZ, maxRadius,
+        [this](i32 x, i32 y, i8 fromZ, i8* standZ) {
+            const world::WalkQuery q = MakeWalkQuery(x, y, fromZ);
+            const world::WalkResult wr = world_->QueryCell(q);
+            if (wr.walkable && standZ) *standZ = wr.standZ;
+            return wr.walkable;
+        },
+        outX, outY, outZ);
+}
+
+
 bool Client::BotRuntimeBlockedForPath(i32 x, i32 y, i8 z, void* user) {
     const auto* c = static_cast<const Client*>(user);
     return c && (c->BotIsMobileBlocking(x, y, z) ||
@@ -795,6 +826,32 @@ void Client::BotPollPathPlanner() {
     }
 
     if (!result.goalWalkable) {
+        // The literal goal is very often a resource's own tile (tree, water,
+        // rock) that a caller asked to reach "close enough" -- but ActionGoto
+        // never carries an arrival radius down to A*, so without this the
+        // very same unwalkable literal target gets re-issued by the caller
+        // every retry, each one failing instantly (wave 2, 2026-09-01:
+        // Dorvar x60, Halain x34, Titus x12 against one dead coordinate).
+        // Try once to salvage it by pathing to the nearest standable tile
+        // next to the goal instead.
+        i32 snapX = 0, snapY = 0;
+        i8 snapZ = 0;
+        if (!nav_.bot.goalSnapTried &&
+            BotFindWalkableNearGoal(result.goalX, result.goalY, playerZ_,
+                                    kGoalSnapMaxRadius, &snapX, &snapY,
+                                    &snapZ)) {
+            nav_.bot.goalSnapTried = true;
+            LogWarn("[bot] goal (%d,%d) is not walkable; snapping to nearest "
+                    "standable tile (%d,%d,%d) instead\n",
+                    result.goalX, result.goalY, snapX, snapY,
+                    static_cast<int>(snapZ));
+            nav_.bot.goalX = snapX;
+            nav_.bot.goalY = snapY;
+            nav_.bot.goalZ = snapZ;
+            nav_.bot.hasGoalZ = true;
+            BotReplanToGoal();
+            return;
+        }
         LogWarn("[bot] goal (%d,%d) is not walkable; skipping A* and stopping\n",
                     result.goalX, result.goalY);
         BotAbortPath("goal not walkable");
@@ -1058,6 +1115,7 @@ void Client::BotFollowTick() {
     nav_.bot.planning = false;
     nav_.bot.replanCount = 0;
     nav_.bot.lookaheadPatches = 0;
+    nav_.bot.goalSnapTried = false;
     nav_.follow.lastReplanMs = now;
     BotReplanToGoal();
     BotPumpMoves();
@@ -1084,6 +1142,7 @@ void Client::BotStartGoto(i32 tx, i32 ty, bool hasZ, i32 tz, bool terrainBias) {
     nav_.bot.planning = false;
     nav_.bot.replanCount = 0;
     nav_.bot.lookaheadPatches = 0;
+    nav_.bot.goalSnapTried = false;
     nav_.bot.resumeAtMs = 0;
     nav_.bot.stuckWaits = 0;
     nav_.bot.blacklist.ClearTransient();
@@ -1166,6 +1225,16 @@ void Client::BotPumpMoves() {
             SubmitStep(dir, BotStepGait(lastStep, doorStep, shoveStep), "astar");
         if (res == StepSubmit::Sent) {
             nav_.bot.path.pop_front();
+            // A step actually went out: this trip is making real progress, so
+            // the local-repair counter should only ever describe a run of
+            // repairs with NO movement between them (a genuine trap), not the
+            // cumulative repair count over an entire long, crowded route. A
+            // Britain-area trip through other bots easily racks up a dozen
+            // lookahead patches while still walking fine (wave 2, 2026-09-01:
+            // Vorar, Falen both kept advancing between patches yet hit the old
+            // per-trip counter's threshold and self-aborted with distance
+            // still left to cover).
+            nav_.bot.lookaheadPatches = 0;
         } else if (res == StepSubmit::Turned) {
             lastStepMs_ = 0;     // same direction is offered again as a step
         } else if (res == StepSubmit::Failed) {

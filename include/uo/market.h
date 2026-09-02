@@ -166,11 +166,56 @@ std::vector<Want> PlayerMarketWants(const prof::Profession& p,
                                     const TradePolicy& policy,
                                     const char** whyNotOut = nullptr);
 
+// WHERE A MISSING CRAFT INPUT SHOULD ACTUALLY COME FROM.
+//
+// The buy errand used to know exactly one answer -- an NPC shopkeeper -- and
+// treated "no trade sells this" as the end of the road. In the 2026-09-01
+// 30-bot wave that verdict fired on three characters holding the wrong end of
+// their own production chain: a FISHER short of fish (g_Dorvar:740), a
+// MINER_SMITH short of iron ingots (g_Zarthal:488) and an ARCHER short of logs
+// (g_Titus:636). Fish and ingots are things those two lives MAKE; a log is
+// something lumberjack_swordsman makes and an archer buys from a player. None
+// of the three was a lookup that lost a buyer, and none of them should have
+// been an NPC errand at all -- materials never go to or come from NPCs, so
+// refusing the vendor was right and stopping there was wrong.
+//
+// This is catalogue reasoning only -- "a smith is the sort of person who makes
+// ingots" -- exactly like WhoProduces below. It says nothing about who is
+// online or where they are.
+enum class SupplyRoute : u8 {
+    // A shopkeeper trade is known to sell it. Unchanged from before: the
+    // vendor matrix still gets the final say afterwards.
+    NpcVendor,
+    // This life's own profession produces or gathers it. Go and make it.
+    SelfProduce,
+    // Another profession in the catalogue produces it. A player supplies it.
+    PlayerMarket,
+    // Nobody in the catalogue makes it and no NPC trade sells it.
+    NoKnownSource,
+};
+
+const char* SupplyRouteName(SupplyRoute r);
+
+// `npcTradeKnown` is the caller's own vendor-table lookup (Runner's
+// SupplierTradeFor). It is passed in rather than repeated here so the vendor
+// table stays in one place.
+SupplyRoute RouteForInput(const prof::Profession& me, const char* item,
+                          bool npcTradeKnown);
+
 // Which professions in the catalogue produce `item`. This is CATALOGUE
 // knowledge -- "a smith is the sort of person who makes ingots" -- which a
 // player plainly has. It says nothing about who is online, where they are, or
 // what they charge, and it must never be used as if it did.
 std::vector<const prof::Profession*> WhoProduces(const char* item);
+
+// The mirror: which professions must OBTAIN `item` from somebody else. Read off
+// `consumes`, which means exactly that (a smith's own ingots are correctly
+// absent from its own list even though every weapon it makes eats six).
+//
+// Catalogue knowledge, the same kind WhoProduces is: "a carpenter is the sort
+// of person who buys logs". It says nothing about who is online or what they
+// hold, and it must never be used as if it did.
+std::vector<const prof::Profession*> WhoConsumes(const char* item);
 
 // True when the two lives can trade in one direction: a produces something b
 // consumes. The M7 interdependence test.
@@ -273,8 +318,104 @@ NpcSellClass ClassifyForNpcSale(const char* item);
 //
 // So the ledger is the evidence: if this character bought a raw input of
 // `item` from an NPC, selling the result back to one is refused.
+//
+// `playersDeclined` opens the NPC PRICE FLOOR for MATERIALS (owner ruling,
+// 2026-09-02; see econ::MaterialFloorOpen). It defaults to false so every
+// existing caller keeps the strict answer: the floor is a fallback for after
+// the WTS window has closed unanswered, never a first choice. Even with it
+// true the floor only opens where a live BUY row exists -- otherwise the item
+// banks -- and the anti-arbitrage ledger test below still applies unchanged.
 SellRuling MaySellToNpc(const prof::Profession& p, const char* item,
-                        const Ledger& ledger);
+                        const Ledger& ledger, bool playersDeclined = false);
+
+// ---------------------------------------------------------------------------
+// THE MATERIAL SURPLUS CAP (owner ruling, 2026-09-02)
+//
+//   "materials exist to be CRAFTED, not sold. NPC sale of materials ONLY when
+//    bank+pack exceeds a plan-derived surplus cap, dynamic per character. Last
+//    resort, never default."
+//
+// MaySellToNpc answers "is this class of good sellable at all". It is a fact
+// about the item and the shard. This answers a different question -- "does THIS
+// character, with THIS build plan and THIS purse, actually have more of the
+// stuff than its own future needs" -- and the two are ANDed on the sell side.
+//
+// NO GLOBAL CONSTANT. "keep/bank/surplus counts derive from plans, wealth and
+// prices per character, not global constants" (project owner). Every term below
+// is read off something that differs between two characters:
+//
+//   cap = ownPlanNeed + trainingStock + marketReserve
+//
+//   ownPlanNeed   = craftBatch x (the largest quantity of `item` any ONE of
+//                   this profession's own recipes eats). What the next sitting
+//                   at the bench consumes. Zero when its recipes never eat it,
+//                   which is the ordinary gatherer case.
+//
+//   trainingStock = the owner's stocking rule, scaled to what is LEFT to climb:
+//                   "you cant train with only 15-20 iron first you need to
+//                   stock some maybe 500-600 then you start train blacksmith"
+//                   (2026-08-30). 550 units for a full 0->100.0 climb is
+//                   kUnitsPerSkillPoint = 5.5 units per skill POINT, so a smith
+//                   at 70.0 aiming for 100.0 banks 165, not 550. Applied only
+//                   to a skill the build plan still has to raise AND whose
+//                   recipes actually eat this material.
+//
+//   marketReserve = restockConsumablesTo x (how many professions in the
+//                   catalogue must buy `item` from somebody). This is the term
+//                   that keeps a pure gatherer from dumping: a lumberjack whose
+//                   own bench needs nothing still holds one restock lot per
+//                   consumer profession, so there is something in the pack when
+//                   a carpenter finally shouts WTB. Halved when the purse is
+//                   below this life's own goldReserve -- a broke character
+//                   releases its market stock sooner, which is the same "the
+//                   threshold bends when the purse is empty" rule PolicyForPurse
+//                   already applies.
+//
+// The `gaps` argument is the ONLY thing this function cannot derive itself: how
+// far each planned skill still has to climb is life-layer state (the build plan
+// against the observed skill sheet). The caller supplies it rather than this
+// file reaching into the life layer.
+// ---------------------------------------------------------------------------
+struct SkillGap {
+    int skillId = -1;
+    i32 tenthsRemaining = 0;   // 0 when the skill is at or past its target
+};
+
+struct MaterialCap {
+    // False for anything that is not a raw or processed material: finished
+    // goods are not what the ruling covers and pass the gate untouched.
+    bool isMaterial = false;
+    i32  units    = 0;   // the sum below
+    i32  ownPlan  = 0;
+    i32  training = 0;
+    i32  market   = 0;
+};
+
+MaterialCap MaterialSurplusCap(const prof::Profession& p, const char* item,
+                               i32 craftBatch, i32 gold,
+                               const std::vector<SkillGap>& gaps,
+                               const TradePolicy& policy);
+
+// The sell-side gate itself: BOTH halves of the ruling in one answer.
+//
+//   1. the player-first window has closed for this item (`playersDeclined`), and
+//   2. what the character holds -- PACK PLUS BANK, because banked stock is
+//      still its stock -- exceeds the cap above.
+//
+// A refusal is not a failure; it is "bank it and get on with something else".
+struct MaterialSaleGate {
+    bool        allowed = false;
+    const char* reason  = nullptr;   // always populated
+    i32         held    = 0;
+    i32         cap     = 0;
+    MaterialCap detail;
+};
+
+MaterialSaleGate MaterialNpcSaleGate(const prof::Profession& p, const char* item,
+                                     i32 heldPackAndBank, bool playersDeclined,
+                                     i32 craftBatch, i32 gold,
+                                     const std::vector<SkillGap>& gaps,
+                                     const TradePolicy& policy);
 
 
 // --- M7: the disposal order for what a life will NOT wear --------------------
@@ -347,10 +488,15 @@ struct NpcBuyer {
 // Every trade that buys `item`, best price first. Empty is a real answer: it
 // means no NPC on this shard takes it, and the character should bank the goods
 // rather than walk the world looking for a buyer that does not exist.
-std::vector<const NpcBuyer*> NpcBuyersFor(const char* item);
+//
+// `playersDeclined` opens the NPC price floor for materials -- see
+// MaySellToNpc above. It defaults to false, so the strict answer is what a
+// caller that has not asked the player market first still gets.
+std::vector<const NpcBuyer*> NpcBuyersFor(const char* item,
+                                          bool playersDeclined = false);
 
 // Cheap form of the same question, for the need layer.
-bool HasNpcBuyer(const char* item);
+bool HasNpcBuyer(const char* item, bool playersDeclined = false);
 
 // ---------------------------------------------------------------------------
 // Prices. Observed only.
@@ -437,12 +583,78 @@ struct TradeIntent {
 //   "WTS 20 i_board 4gp"      <- a seller announcing
 //   "WTB i_board"             <- a buyer answering
 std::string FormatSellOffer(const TradeIntent& t);
-std::string FormatBuyReply(const std::string& item);
+// `toWhom` NAMES THE SELLER, and that is not decoration.
+//
+// A bare "WTB i_ingot_iron" is addressed to nobody, so every seller holding
+// that item read it as the answer to its OWN standing WTS. On 2026-09-02 two
+// of them (Kharain, Elvar) both walked to Odessa and both opened a trade
+// window inside two seconds; Odessa could pay one, both handshakes timed out
+// at 25s and both sellers then stood at the bank. Naming the one seller being
+// answered is how a player does it and is what makes the reply exclusive.
+std::string FormatBuyReply(const std::string& item,
+                           const std::string& toWhom = std::string());
+
+// The leading "Name, ..." of a spoken line, or empty when it was said to the
+// room. One token only -- a sentence that happens to contain a comma is not an
+// address.
+std::string SpeechAddressee(const std::string& said);
+// True when `me` may act on `said`: either it named nobody, or it named us.
+bool AddressedTo(const std::string& said, const std::string& me);
+
+// "Name, sorry -- sorted": the buyer telling a seller it did not choose to
+// stand down, so the loser ends its errand instead of waiting out a timeout.
+std::string FormatDecline(const std::string& toWhom);
+bool ParseDecline(const std::string& said, std::string* whoOut);
+
+// A DEMAND-SIDE ANNOUNCEMENT, not a reply.
+//
+//   "WTB 20 i_log 4gp"
+//
+// The buyer half had no voice at all: a crafter short of materials walked to
+// the market and stood there SILENTLY for the whole listening window, so the
+// only way a trade could ever start was a gatherer happening to announce the
+// exact thing somebody happened to need. Supply could call; demand could not.
+//
+// The price is the MOST this life will pay per unit, out of its own purse and
+// its own observed prices (ChooseBuyWant below). It is not a market rate and
+// this fleet has no such thing.
+std::string FormatBuyWant(const TradeIntent& t);
 
 // Parse a heard line. Returns false when it is not an offer at all, which is
 // the common case: most of what a character hears is not addressed to it.
 bool ParseSellOffer(const std::string& said, TradeIntent* out);
+// The bare reply form, "WTB i_log". TOLERANT OF THE FULL FORM: a WTB that
+// carries a quantity ("WTB 20 i_log 4gp") names the same item and must resolve
+// to the same answer, or a seller would stop recognising answers to its own
+// offer the moment the buyer learned to speak first.
 bool ParseBuyReply(const std::string& said, std::string* itemOut);
+// The full form, with quantity and ceiling. A bare "WTB i_log" parses here too
+// and comes back with qty 0 and pricePerUnit 0 -- "some, at whatever you ask"
+// -- which is exactly what the reply form means.
+bool ParseBuyWant(const std::string& said, TradeIntent* out);
+
+// WHICH KIND OF "WTB" IS THIS? Two lines share the prefix and mean opposite
+// things:
+//
+//   "Elvar, WTB i_ingot_iron"   a REPLY    -- "yes, I will take YOUR offer"
+//   "WTB 8 i_ingot_iron 52gp"   an ANNOUNCE -- "will somebody sell me these"
+//
+// A seller holding a live WTS read the second as the first. Evidence:
+// run_gates/g_Elvar.console.txt:338-340, 2026-09-02 12:53:57 -- Odessa
+// broadcasts "WTB 8 i_ingot_iron 52gp", Elvar logs `trade:  wants our
+// i_ingot_iron` (the answer-to-our-offer branch), says NOTHING back, and
+// opens a trade window 5.7s later. The buyer never heard a WTS, so it had no
+// price, no quantity and no partner of its own; it put nothing in the window
+// and both sides timed out at 25s (g_Odessa.console.txt:257-284). Every trade
+// that started from the demand side died exactly this way.
+//
+// The difference is structural, so the test is too: an ANNOUNCE names a
+// quantity AND a price and is said to the room. Anything else -- the bare
+// form, or any WTB addressed to one player by name -- is a reply.
+// ParseBuyReply stays deliberately tolerant of both forms (see above); this
+// classifier is what a listen loop uses to pick a branch.
+enum class BuyLineKind : u8 { NotABuyLine = 0, Reply, Announce };
+BuyLineKind ClassifyBuyLine(const std::string& said, TradeIntent* out = nullptr);
 
 // What this life should announce, or nothing. Reads the same Surplus() the NPC
 // path reads, then keeps only what NO NPC will buy -- because if an NPC takes
@@ -456,6 +668,71 @@ bool ChooseSellOffer(const prof::Profession& p,
                      const PriceBook& book,
                      const TradePolicy& policy,
                      TradeIntent* out);
+
+// WHAT THIS LIFE SHOULD SHOUT THAT IT WANTS. The mirror of ChooseSellOffer.
+//
+// Reads the same PlayerMarketWants the buy errand is already scored from, and
+// prices it at the MOST ConsiderOffer would actually accept -- so the number
+// said out loud and the number the buyer will honour at the window are the same
+// number. A bot that advertises a ceiling it then refuses is a bot no gatherer
+// can plan around.
+//
+// `gold` is PACK COIN. DriveOpenTrade only ever offers coin found in the
+// backpack, so a want priced against the bank balance is a promise the window
+// cannot keep.
+bool ChooseBuyWant(const prof::Profession& p,
+                   const std::vector<Stock>& holdings,
+                   const PriceBook& book,
+                   const TradePolicy& policy,
+                   i32 gold,
+                   TradeIntent* out);
+
+// SHOULD THIS LIFE ANSWER A WTB IT JUST HEARD? The mirror of ConsiderOffer.
+//
+// Only from the PACK: an offer is a promise, and a promise has to be honourable
+// without a second errand (the same rule the announce path follows -- see
+// "ANNOUNCE ONLY WHAT IS IN THE HAND" in Runner::DoTradeWithPlayer).
+//
+// A DIRECT REQUEST OUTRANKS `minimumSurplusToOffer`. That threshold exists so a
+// character does not trek across town to sell two of something; somebody
+// standing here asking out loud has already paid that cost.
+//
+// Refuses when the buyer's ceiling is below what this life believes the goods
+// are worth -- a seller that undercuts its own observed price teaches the fleet
+// a wrong number.
+bool AnswerBuyWant(const prof::Profession& p,
+                   const std::vector<Stock>& pack,
+                   const PriceBook& book,
+                   const TradePolicy& policy,
+                   const TradeIntent& want,
+                   TradeIntent* out);
+
+// --- FUNDING A WINDOW THE BUYER DID NOT OPEN --------------------------------
+//
+// A seller answers a WTB by walking over and opening a trade window. The buyer
+// is then looking at a window it did not itself commit to: the "heard a WTS"
+// branch that normally records how many and at what price never ran for this
+// deal, so the coin it owes computes as zero and it stands there offering
+// nothing.
+//
+// What it DOES have is the want it said out loud a few seconds earlier -- item,
+// quantity and the most it will pay, all three already bounded by its own purse
+// (ChooseBuyWant). That announcement IS the plan, and this is the decision to
+// honour it. Deliberately a separate, pure function rather than arithmetic
+// inline in the goal handler: it is the one place that says how much of
+// somebody else's window this life is willing to pay for.
+//
+// `goldOnHand` is PACK COIN, for the same reason ChooseBuyWant takes pack coin:
+// only backpack gold can be dropped into a trade window.
+struct FundingDecision {
+    bool        accept = false;
+    i32         qty = 0;           // units the coin actually covers
+    i32         gold = 0;          // coin to put in the window
+    const char* reason = nullptr;  // always populated
+};
+
+FundingDecision FundOpenWindow(const TradeIntent& planned, i32 goldOnHand,
+                               i32 goldReserve);
 
 // Should this life answer an offer it just heard?
 struct BuyDecision {

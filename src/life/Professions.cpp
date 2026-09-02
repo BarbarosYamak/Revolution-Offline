@@ -684,6 +684,12 @@ const std::vector<Profession>& All() {
             p.riskTolerance = 0.40;
             p.goldReserve = 400;
                         // Skara Brae is the ranger town, if a tamer ever becomes playable.
+            // OPEN (2026-09-02): every pasture in data/revolution_pastures.tsv
+            // is Yew farmland (572,1096 / 677,1177), 714 tiles from Britain;
+            // Rhea walked it and died on the road. Yew as a home is ruled out
+            // above ("we dont use yew as starting or hometown"), so the answer
+            // is travel (Yew moongate is ~350 tiles from the flocks), not a
+            // home change. Owner decision pending.
             p.homeCities = {"Britain", "Skara Brae"};
             v.push_back(std::move(p));
         }

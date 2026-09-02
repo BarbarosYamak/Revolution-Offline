@@ -157,6 +157,36 @@ void TestStandingOverItLoots() {
                "standing over it");
 }
 
+void TestADecayedCorpseIsGivenUpOn() {
+    std::printf("[recovery: bare ground is the end of the errand]\n");
+    // A player corpse decays after 7 minutes (runtime/sphere.ini
+    // CorpsePlayerDecay=7) but the death record survives a logout, so a
+    // character raised late walks back to nothing. Hector opened container 0
+    // 200+ times over this (run_gates/g_Hector.console.txt:3227-3400).
+    RecoverySight here = Fallen();
+    here.corpseDistance = 1;
+    here.corpseVisible = false;
+
+    // THE STREAM NEEDS A MOMENT. The first arrivals must still try to loot,
+    // or a corpse that is really there is written off before it is drawn.
+    here.probesAtSite = 1;
+    ExpectStep(DecideRecovery(here, Default()), RecoveryStep::Loot,
+               "one quiet tick on arrival is not proof of an empty tile");
+
+    here.probesAtSite = Default().maxProbesAtSite;
+    const RecoveryPlan gone = DecideRecovery(here, Default());
+    ExpectStep(gone, RecoveryStep::CorpseGone,
+               "no corpse after the probe budget: the loot is gone");
+    Expect(gone.reason && gone.reason[0],
+           "giving up on the corpse states a reason");
+
+    // A BOUND SERIAL STILL LOOTS however long the wait took: the give-up is
+    // about the corpse being absent, not about patience running out.
+    here.corpseVisible = true;
+    ExpectStep(DecideRecovery(here, Default()), RecoveryStep::Loot,
+               "the corpse turned up late, so loot it");
+}
+
 void TestEveryPlanSaysWhy() {
     std::printf("[recovery: no silent decisions]\n");
     const RecoveryPlan cases[] = {
@@ -181,6 +211,7 @@ int main() {
     TestGearGoesBackOn();
     TestNothingToRecover();
     TestStandingOverItLoots();
+    TestADecayedCorpseIsGivenUpOn();
     TestEveryPlanSaysWhy();
     std::printf("%d checks, %d failures\n", g_checks, g_failures);
     return g_failures == 0 ? 0 : 1;

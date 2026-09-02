@@ -787,6 +787,54 @@ VendorRuling CanBuyFromNPC(const char* item) {
     return out;
 }
 
+// ---------------------------------------------------------------------------
+// THE NPC PRICE FLOOR. See the block comment in vendor_policy.h.
+// ---------------------------------------------------------------------------
+namespace {
+SalePolicy g_salePolicy;   // default-constructed: allowMaterialsToNpc = true
+}  // namespace
+
+const SalePolicy& CurrentSalePolicy() { return g_salePolicy; }
+void SetSalePolicy(const SalePolicy& p) { g_salePolicy = p; }
+
+bool IsFloorMaterial(const char* item) {
+    if (!item || !*item) return false;
+
+    // The two hue families first. i_ore_valorite and i_ingot_shadow are
+    // `ID=i_ore_iron` / `ID=i_ingot_iron` plus a COLOR line, so kMatrix names
+    // only the base of each and a lookup for the other fifteen returns
+    // Unknown -- which would refuse the rarest thing a miner owns for a
+    // reason that is an artefact of the script format, not a judgement.
+    if (std::strncmp(item, "i_ore_", 6) == 0) return true;
+    if (std::strncmp(item, "i_ingot_", 8) == 0) return true;
+
+    switch (ClassifyForVendor(item)) {
+        case VendorClass::WorldGathered:   // logs, ore, hides, wool, fish...
+        case VendorClass::WorldProcessed:  // cloth, thread, yarn, cut hides...
+            return true;
+        default:
+            break;
+    }
+
+    // Two the matrix grades otherwise but which are materials by the ruling's
+    // own words. A bolt is cloth in a larger unit, and a board is "a material,
+    // like the log it came from" (economy/Faucets.cpp, board_to_vendor).
+    static const char* kAlsoMaterial[] = {"i_cloth_bolt", "i_board"};
+    for (const char* m : kAlsoMaterial) {
+        if (Same(m, item)) return true;
+    }
+    return false;
+}
+
+bool MaterialFloorOpen(const char* item, bool playersDeclined) {
+    if (!g_salePolicy.allowMaterialsToNpc) return false;
+    // PLAYER-FIRST IS NOT A PREFERENCE HERE, IT IS THE GATE. The floor exists
+    // to stop a shortage becoming a deadlock, not to save the character a
+    // shout, so it opens only once the announce cycle has finished unanswered.
+    if (!playersDeclined) return false;
+    return IsFloorMaterial(item);
+}
+
 const char* AcquisitionName(Acquisition a) {
     switch (a) {
         case Acquisition::None:           return "none";

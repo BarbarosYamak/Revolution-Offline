@@ -1,0 +1,665 @@
+//****************************************************************************
+// WHAT SURVIVES DEATH, added 2026-08-29 at the shard owner's instruction:
+// "some starter items stay on you even when you are dead".
+//
+// ITEMNEWBIE sets ATTR_NEWBIE (Source-X CChar.cpp:1206), and the death
+// handler explicitly keeps those items -- CContainer.cpp:529, "keep newbie
+// stuff". The mechanism was always there; this file simply never used it.
+// Before today it held 262 ITEM= lines and NOT ONE ITEMNEWBIE=, so a new
+// character lost absolutely everything on its first death.
+//
+// That is not a theoretical concern. Kaelen, this project's first warrior,
+// died in the Britain graveyard and woke with no weapon, no food and no
+// gold -- and could not recover, because buying food needs money and
+// earning money needs a weapon. He then spent an entire 25-minute session
+// failing the same errand (run_m5/r2b: goals=0/5, gold=0->0).
+//
+// THE LINE DRAWN, deliberately: clothing, the starting weapon or tool, and
+// spellbooks survive -- losing those makes a character UNRECOVERABLE rather
+// than merely poorer. GOLD, BANDAGES AND OTHER CONSUMABLES STILL DROP,
+// because death has to cost something, and gold that survives death is a
+// faucet by another name.
+//
+// STARTING GOLD IS 10,000, raised from 1,000 on 2026-08-29 at the owner's
+// correction. Measured, not assumed: every character created before this
+// reconciled as "gold persisted=0 server=1000". It stays droppable on
+// death -- a bigger purse makes dying cost MORE, which is the point.
+//****************************************************************************
+//****************************************************************************
+// SphereServer by: SphereServer development team and Menasoft.
+// www.sphereserver.net
+//****************************************************************************
+VERSION=X1
+
+[COMMENT sphere_newb]
+Newbie templates are item templates used to create all the
+starting stuff on the account based on which profession/skills
+the player choose on character creation menu.
+
+Default MALE_DEFAULT / FEMALE_DEFAULT templates are always used
+no matter what the player choose. Useful to set default starting
+items common to all templates.
+
+Each profession/skill template can have optional
+variants to human, elf and gargoyle races. Example:
+  [NEWBIE Alchemy]
+  [NEWBIE Alchemy Elf]
+  [NEWBIE Alchemy Garg]
+
+If the player choose an race which has no template set, the
+default human template will be used by default.
+
+
+///////////////////////
+// Generic templates //
+///////////////////////
+
+[NEWBIE MALE_DEFAULT]
+ITEM=i_gold,10000
+ITEM=i_book_sm
+ITEM=i_candle
+ITEMNEWBIE=i_dagger
+ITEMNEWBIE=i_scissors
+// A civilian wardrobe, not armour. The pools include the full era-supported
+// range (bandanas, hats, shirts, trousers and boots), using only the curated
+// 113-hue wardrobe palette rather than the unrestricted colors_all range.
+ITEMNEWBIE=random_shirts_human
+COLOR=colors_newbie_clothing
+ITEMNEWBIE=random_pants_human
+COLOR=colors_newbie_clothing
+ITEMNEWBIE=random_footwear_human
+COLOR=colors_newbie_clothing
+ITEMNEWBIE=random_hats
+COLOR=colors_newbie_clothing
+ITEMNEWBIE=random_tunics_manly
+COLOR=colors_newbie_clothing
+
+[NEWBIE MALE_DEFAULT ELF]
+ITEM=i_gold,10000
+ITEM=i_book_sm
+ITEM=i_candle
+ITEMNEWBIE=i_dagger
+ITEMNEWBIE=i_scissors
+ITEMNEWBIE=i_shirt_plain
+ITEMNEWBIE=i_pants_short
+ITEMNEWBIE=i_shoes_plain
+
+[NEWBIE MALE_DEFAULT GARG]
+ITEM=i_gold,10000
+ITEM=i_book_sm
+ITEM=i_candle
+ITEMNEWBIE=i_gargish_dagger
+ITEMNEWBIE=i_scissors
+ITEMNEWBIE=i_gargish_robe
+
+[NEWBIE FEMALE_DEFAULT]
+ITEM=i_gold,10000
+ITEM=i_book_sm
+ITEM=i_candle
+ITEMNEWBIE=i_dagger
+ITEMNEWBIE=i_scissors
+// Keep the same civilian breadth as the male default while rolling a skirt
+// layer and a dress instead of assigning every woman the same long skirt.
+ITEMNEWBIE=random_shirts_human
+COLOR=colors_newbie_clothing
+ITEMNEWBIE=random_skirts_human
+COLOR=colors_newbie_clothing
+ITEMNEWBIE=random_footwear_human
+COLOR=colors_newbie_clothing
+ITEMNEWBIE=random_hats
+COLOR=colors_newbie_clothing
+ITEMNEWBIE=random_dresses
+COLOR=colors_newbie_clothing
+
+[NEWBIE FEMALE_DEFAULT ELF]
+ITEM=i_gold,10000
+ITEM=i_book_sm
+ITEM=i_candle
+ITEMNEWBIE=i_dagger
+ITEMNEWBIE=i_scissors
+ITEMNEWBIE=i_shirt_plain
+ITEMNEWBIE=i_skirt_long
+ITEMNEWBIE=i_shoes_plain
+
+[NEWBIE FEMALE_DEFAULT GARG]
+ITEM=i_gold,10000
+ITEM=i_book_sm
+ITEM=i_candle
+ITEMNEWBIE=i_gargish_dagger
+ITEMNEWBIE=i_scissors
+ITEMNEWBIE=i_gargish_robe
+
+//////////////////////////
+// Profession templates //
+//////////////////////////
+
+[NEWBIE PROFESSION_WARRIOR]
+ITEM=i_leather_tunic
+
+[NEWBIE PROFESSION_WARRIOR ELF]
+ITEM=i_leaf_chest
+
+[NEWBIE PROFESSION_WARRIOR GARG]
+ITEM=i_gargish_leather_chest
+
+[NEWBIE PROFESSION_NECROMANCER]
+ITEMNEWBIE=i_spellbook_necromancy
+MORE1=08981
+ITEM=i_bone_helmet
+ITEM=i_bone_harvester
+ITEM=i_leather_tunic
+COLOR=02c3
+ITEM=i_leather_sleeves
+COLOR=02c3
+ITEM=i_leather_gloves
+COLOR=02c3
+ITEM=i_leather_gorget
+COLOR=02c3
+ITEM=i_leather_leggings
+COLOR=02c3
+ITEMNEWBIE=i_skirt_long
+COLOR=02c3
+ITEM=i_sandals
+COLOR=08fd
+
+[NEWBIE PROFESSION_NECROMANCER ELF]
+ITEMNEWBIE=i_spellbook_necromancy
+MORE1=08981
+ITEM=i_bone_helmet
+ITEM=i_elven_machete
+ITEM=i_leaf_chest
+COLOR=02c3
+ITEM=i_leaf_arms
+COLOR=02c3
+ITEM=i_leaf_gloves
+COLOR=02c3
+ITEM=i_leaf_gorget
+COLOR=02c3
+ITEM=i_leaf_leggings
+COLOR=02c3
+ITEM=i_elven_pants
+COLOR=02c3
+ITEM=i_elven_boots
+
+[NEWBIE PROFESSION_NECROMANCER GARG]
+ITEMNEWBIE=i_spellbook_necromancy
+MORE1=08981
+ITEMNEWBIE=i_sword_glass
+ITEM=i_gargish_leather_chest
+COLOR=02c3
+ITEM=i_gargish_leather_arms
+COLOR=02c3
+ITEM=i_gargish_leather_leggings
+COLOR=02c3
+ITEM=i_gargish_leather_kilt
+COLOR=02c3
+
+[NEWBIE PROFESSION_PALADIN]
+ITEMNEWBIE=i_spellbook_chivalry
+MORE1=03ff
+ITEMNEWBIE=i_sword_broad
+ITEM=i_helm_open
+ITEM=i_platemail_gorget
+ITEM=i_ringmail_sleeves
+ITEM=i_ringmail_tunic
+ITEM=i_ringmail_leggings
+ITEM=i_boots_thigh
+COLOR=0748
+ITEMNEWBIE=i_cape
+COLOR=0cf
+ITEM=i_sash
+COLOR=0cf
+
+[NEWBIE PROFESSION_PALADIN ELF]
+ITEMNEWBIE=i_spellbook_chivalry
+MORE1=03ff
+ITEM=i_elven_machete
+ITEM=i_helm_winged_2
+ITEM=i_leaf_gorget
+ITEM=i_leaf_arms
+ITEM=i_leaf_chest
+ITEM=i_leaf_leggings
+ITEM=i_elven_boots
+
+[NEWBIE PROFESSION_PALADIN GARG]
+ITEMNEWBIE=i_spellbook_chivalry
+MORE1=03ff
+ITEMNEWBIE=i_sword_dread
+ITEM=i_gargish_plate_chest
+ITEM=i_gargish_plate_arms
+ITEM=i_gargish_plate_leggings
+ITEM=i_gargish_plate_kilt
+
+[NEWBIE PROFESSION_SAMURAI]
+ITEMNEWBIE=i_spellbook_bushido
+ITEMNEWBIE=i_scissors
+ITEM=i_bandage,50
+ITEMNEWBIE=i_hakama_shita
+COLOR=02c3
+ITEMNEWBIE=i_hakama
+COLOR=02c3
+ITEM=i_shoes_tabi
+COLOR=02c3
+ITEMNEWBIE=i_hakama_tattsuke
+COLOR=022d
+ITEM=i_bokuto
+ITEM=i_leather_jingasa
+
+[NEWBIE PROFESSION_SAMURAI ELF]
+ITEMNEWBIE=i_spellbook_bushido
+ITEMNEWBIE=i_scissors
+ITEM=i_bandage,50
+ITEMNEWBIE=i_hakama_shita
+COLOR=02c3
+ITEMNEWBIE=i_hakama
+COLOR=02c3
+ITEM=i_shoes_tabi
+COLOR=02c3
+ITEMNEWBIE=i_hakama_tattsuke
+COLOR=022d
+ITEM=i_bokuto
+ITEM=i_helm_raven
+
+[NEWBIE PROFESSION_SAMURAI GARG]
+ITEMNEWBIE=i_spellbook_bushido
+ITEMNEWBIE=i_scissors
+ITEM=i_bandage,50
+ITEMNEWBIE=i_sword_glass
+ITEM=i_gargish_plate_chest
+ITEM=i_gargish_plate_arms
+ITEM=i_gargish_plate_leggings
+ITEM=i_gargish_plate_kilt
+
+[NEWBIE PROFESSION_NINJA]
+ITEMNEWBIE=i_spellbook_ninjitsu
+ITEMNEWBIE=i_hat_kasa
+ITEMNEWBIE=i_hakama_tattsuke
+COLOR={089 1 090 1 099 1 0b5 1 0ec 1 01a8 1 0336 1}
+ITEMNEWBIE=i_hakama_shita
+COLOR=02c3
+ITEM=i_boots_tabi
+COLOR=02c3
+ITEM=i_bomb_smoke
+ITEM=i_tekagi
+
+[NEWBIE PROFESSION_NINJA ELF]
+ITEMNEWBIE=i_spellbook_ninjitsu
+ITEMNEWBIE=i_hat_kasa
+ITEMNEWBIE=i_hakama_tattsuke
+COLOR={089 1 090 1 099 1 0b5 1 0ec 1 01a8 1 0336 1}
+ITEMNEWBIE=i_hakama_shita
+COLOR=02c3
+ITEM=i_boots_tabi
+COLOR=02c3
+ITEM=i_bomb_smoke
+ITEMNEWBIE=i_sword_assassin_spike
+[NEWBIE PROFESSION_NINJA GARG]
+ITEMNEWBIE=i_spellbook_ninjitsu
+ITEM=i_bomb_smoke
+ITEMNEWBIE=i_gargish_dagger
+//TO-DO: The following items must have the same rand color instead use a new rand for each one
+ITEM=i_gargish_cloth_chest
+COLOR={089 1 090 1 099 1 0b5 1 0ec 1 01a8 1 0336 1}
+ITEM=i_gargish_cloth_arms
+COLOR={089 1 090 1 099 1 0b5 1 0ec 1 01a8 1 0336 1}
+ITEM=i_gargish_cloth_leggings
+COLOR={089 1 090 1 099 1 0b5 1 0ec 1 01a8 1 0336 1}
+ITEM=i_gargish_cloth_kilt
+COLOR={089 1 090 1 099 1 0b5 1 0ec 1 01a8 1 0336 1}
+
+/////////////////////
+// Skill templates //
+/////////////////////
+
+// NOTE: Skill templates are not used if the player select Necromancer,
+//       Paladin, Samurai and Ninja profession on character creation
+
+[NEWBIE ALCHEMY]
+ITEM=i_bottle_empty,4
+ITEMNEWBIE=i_mortar_pestle
+ITEMNEWBIE=i_robe
+COLOR=colors_pink
+
+[NEWBIE ALCHEMY ELF]
+ITEM=i_bottle_empty,4
+ITEMNEWBIE=i_mortar_pestle
+ITEM={i_elven_male_robe1 1 i_elven_male_robe2 1}
+COLOR=colors_pink
+
+[NEWBIE ANATOMY]
+ITEM=i_bandage,3
+ITEMNEWBIE=i_robe
+COLOR=colors_yellow
+
+[NEWBIE ANATOMY ELF]
+ITEM=i_bandage,3
+ITEM={i_elven_male_robe1 1 i_elven_male_robe2 1}
+COLOR=colors_yellow
+
+[NEWBIE ANIMALLORE]
+ITEM=i_shepherds_crook
+ITEMNEWBIE=i_robe
+COLOR=colors_blue
+
+[NEWBIE ANIMALLORE ELF]
+ITEM=i_shepherds_crook
+ITEM={i_elven_male_robe1 1 i_elven_male_robe2 1}
+COLOR=colors_blue
+
+[NEWBIE ARCHERY]
+ITEM=i_arrow,25
+ITEMNEWBIE=i_bow
+
+[NEWBIE ARCHERY ELF]
+ITEM=i_arrow,25
+ITEMNEWBIE=i_elven_composite_longbow
+[NEWBIE ARMSLORE]
+ITEM={i_kryss 1 i_katana 1 i_club 1}
+
+[NEWBIE ARMSLORE ELF]
+ITEM={i_sword_leafblade 1 i_rune_blade 1 i_mace_diamond 1}
+
+[NEWBIE ARMSLORE GARG]
+ITEM={i_bloodblade 1 i_sword_glass 1 i_mace_disc 1}
+
+[NEWBIE BEGGING]
+ITEMNEWBIE=i_staff_gnarled
+[NEWBIE BEGGING ELF]
+ITEMNEWBIE=i_staff_wild
+
+[NEWBIE BEGGING GARG]
+ITEMNEWBIE=i_staff_serpentstone
+[NEWBIE BLACKSMITHING]
+// ITEMNEWBIE=i_hammer_smith added 2026-08-30 per docs/REVOLUTION_STARTER_KIT.md
+// kit audit: i_tongs (013e3... actually 0fbb/0fbc) carries TYPE=t_weapon_mace_smith
+// but has no DAM/SKILL, so Source-X CanEquipStr/wield logic refuses to put it in
+// LAYER_HAND1 -- "The blacksmith menu opens from LAYER_HAND1 and i_tongs is not
+// a weapon" (bot/uo-client/src/life/Professions.cpp kSmithHammer comment,
+// citing the owner: "you need smith hammer for blacksmith"). i_hammer_smith
+// (items/weapons/i_weapons.scp:826-844, DEFNAME confirmed) is the same TYPE and
+// IS wieldable (DAM=13,15, SKILL=Macefighting) -- it is the skill's own basic
+// tool/weapon, not an extra. Tongs kept alongside it (era item, still useful).
+ITEMNEWBIE=i_tongs
+ITEMNEWBIE=i_hammer_smith
+ITEMNEWBIE=i_pickaxe
+ITEM=i_ingot_iron,50
+ITEM=i_apron_half
+COLOR=colors_yellow
+
+[NEWBIE BUSHIDO]
+ITEMNEWBIE=i_spellbook_bushido
+ITEMNEWBIE=i_hakama
+ITEMNEWBIE=i_hat_kasa
+
+[NEWBIE BOWCRAFT]
+ITEM=i_board,14
+ITEM=i_feather,5
+ITEM=i_arrow_shaft,5
+
+[NEWBIE CAMPING]
+ITEM=i_bedroll
+ITEM=i_kindling,5
+
+[NEWBIE CARPENTRY]
+ITEM=i_board,10
+ITEMNEWBIE=i_saw
+ITEM=i_apron_half
+COLOR=colors_yellow
+
+[NEWBIE CARTOGRAPHY]
+// ITEMNEWBIE=i_shovel added 2026-08-30 per docs/REVOLUTION_STARTER_KIT.md kit
+// audit: the treasure_hunter profession (bot/uo-client/src/life/Professions.cpp,
+// p.tools) declares a shovel as a required tool ("wield requirement UNKNOWN")
+// for digging treasure chests, and neither [NEWBIE LOCKPICKING] nor
+// [NEWBIE CARTOGRAPHY] -- this build's two creation-skill templates -- granted
+// one. i_shovel (items/i_profession.scp:440-454, DEFNAME confirmed,
+// TYPE=t_weapon_mace_pick, not wieldable -- no DAM/SKILL, same shape as
+// i_tongs) is the item this shard already sells for digging (VENDOR_S_TINKER
+// / VENDOR_S_MINER, tm_vend.scp SELL=i_shovel).
+ITEMNEWBIE=i_map_blank
+ITEMNEWBIE=i_map_blank
+ITEMNEWBIE=i_map_blank
+ITEMNEWBIE=i_map_blank
+ITEM=i_sextant
+ITEMNEWBIE=i_shovel
+
+[NEWBIE COOKING]
+// ITEMNEWBIE=i_rolling_pin added 2026-08-30 per docs/REVOLUTION_STARTER_KIT.md
+// kit audit: i_fish_cut_cooked (and every other cooked recipe) is
+// SKILLMAKE=Cooking 0.0,t_cooking -- without a t_cooking-typed item in the
+// pack Cooking is mechanically impossible from minute one (Professions.cpp
+// kCookingTool comment; docs/SHARD_MECHANICS_LEARNED.md:430-432, "no NPC
+// anywhere sold any t_cooking item ... mechanically impossible for anyone who
+// was not already a tinker"). i_rolling_pin (items/i_profession_cook_barkeep_
+// baker.scp:1336, DEFNAME confirmed) is one of the three t_cooking graphics
+// and the one this shard's baker NPC restocks, so it leads the list the same
+// way the buyable half of the smith kit does.
+ITEM=i_kindling,2
+ITEMNEWBIE=i_rolling_pin
+ITEM=i_lamb_leg_raw
+ITEM=i_chicken_leg_raw
+ITEM=i_fish_cut_raw
+ITEM=i_flour_sack
+ITEM=i_pitcher_water
+
+[NEWBIE CHIVALRY]
+ITEMNEWBIE=i_spellbook_chivalry
+
+[NEWBIE DETECTINGHIDDEN]
+ITEMNEWBIE=i_cape
+COLOR=0455
+
+[NEWBIE ENTICEMENT]
+ITEMNEWBIE=random_instrument_human
+
+[NEWBIE EVALUATINGINTEL]
+//empty
+
+[NEWBIE FENCING]
+ITEMNEWBIE=i_kryss
+
+[NEWBIE FENCING ELF]
+ITEMNEWBIE=i_sword_leafblade
+[NEWBIE FENCING GARG]
+ITEM=i_bloodblade
+
+[NEWBIE FISHING]
+ITEMNEWBIE=i_fishing_pole
+//COLOR=colors_yellow
+ITEM=i_hat_floppy
+COLOR=colors_yellow
+
+[NEWBIE FISHING ELF]
+ITEMNEWBIE=i_fishing_pole
+//COLOR=colors_yellow
+ITEM=i_helm_circlet1
+COLOR=colors_yellow
+
+[NEWBIE FORENSICS]
+//empty
+
+[NEWBIE HEALING]
+ITEM=i_bandage,50
+ITEMNEWBIE=i_scissors
+
+[NEWBIE HERDING]
+ITEM=i_shepherds_crook
+
+[NEWBIE HERDING ELF]
+ITEMNEWBIE=i_staff_wild
+
+[NEWBIE HIDING]
+ITEMNEWBIE=i_cape
+COLOR=0455
+
+[NEWBIE INSCRIPTION]
+ITEM=i_scroll_blank,2
+ITEM=i_book_lg
+
+[NEWBIE ITEMID]
+ITEMNEWBIE=i_staff_gnarled
+[NEWBIE ITEMID ELF]
+ITEMNEWBIE=i_staff_wild
+
+[NEWBIE ITEMID GARG]
+ITEMNEWBIE=i_staff_serpentstone
+[NEWBIE LOCKPICKING]
+ITEM=i_lockpick,20
+
+[NEWBIE LUMBERJACKING]
+ITEMNEWBIE=i_hatchet
+
+[NEWBIE LUMBERJACKING ELF]
+ITEMNEWBIE=i_hatchet
+
+[NEWBIE LUMBERJACKING GARG]
+ITEMNEWBIE=i_dual_shortaxes
+
+[NEWBIE MACEFIGHTING]
+ITEMNEWBIE=i_club
+
+[NEWBIE MACEFIGHTING ELF]
+ITEMNEWBIE=i_mace_diamond
+[NEWBIE MACEFIGHTING GARG]
+ITEMNEWBIE=i_mace_disc
+[NEWBIE MAGERY]
+ITEMNEWBIE=i_spellbook
+MORE1=0382a8c38		//3 spells on circle 1-4 (to enable full spellbook just set MORE1=0ffffffff and MORE2=0ffffffff)
+ITEM=random_first_circle
+ITEM=random_second_circle
+ITEM=random_third_circle
+ITEM=i_hat_wizards
+ITEMNEWBIE=i_robe
+COLOR=colors_blue
+
+[NEWBIE MAGERY ELF]
+ITEMNEWBIE=i_spellbook
+MORE1=0382a8c38		//3 spells on circle 1-4 (to enable full spellbook just set MORE1=0ffffffff and MORE2=0ffffffff)
+ITEM=random_first_circle
+ITEM=random_second_circle
+ITEM=random_third_circle
+ITEM=i_helm_circlet1
+ITEM={i_elven_male_robe1 1 i_elven_male_robe2 1}
+COLOR=colors_blue
+
+[NEWBIE MAGICRESISTANCE]
+//empty
+
+[NEWBIE MINING]
+ITEMNEWBIE=i_pickaxe
+
+[NEWBIE MUSICIANSHIP]
+ITEMNEWBIE=random_instrument_human
+
+[NEWBIE NECROMANCY]
+//empty
+
+[NEWBIE NINJITSU]
+ITEMNEWBIE=i_spellbook_ninjitsu
+ITEMNEWBIE=i_hakama
+COLOR=02c3
+ITEMNEWBIE=i_hat_kasa
+
+[NEWBIE PARRYING]
+ITEM=i_shield_wood
+
+[NEWBIE PARRYING ELF]
+ITEM=i_shield_wood
+
+[NEWBIE PARRYING GARG]
+ITEM=i_shield_gargish_wooden
+
+[NEWBIE PEACEMAKING]
+ITEMNEWBIE=random_instrument_human
+
+[NEWBIE POISONING]
+ITEM=i_potion_poisonless,2
+
+[NEWBIE PROVOCATION]
+ITEMNEWBIE=random_instrument_human
+
+[NEWBIE SNOOPING]
+ITEM=i_lockpick,20
+
+[NEWBIE SPIRITSPEAK]
+ITEMNEWBIE=i_cape
+COLOR=0455
+
+[NEWBIE STEALING]
+ITEM=i_lockpick,20
+
+[NEWBIE SWORDSMANSHIP]
+ITEMNEWBIE=i_katana
+
+[NEWBIE SWORDSMANSHIP ELF]
+ITEM=i_rune_blade
+
+[NEWBIE SWORDSMANSHIP GARG]
+ITEMNEWBIE=i_sword_glass
+
+[NEWBIE TACTICS]
+// Tactics is a support skill, not a weapon school.  Giving a katana here
+// overwrote/misled Fencing, Macefighting and Archery starters whenever they
+// selected Tactics as their second 50.0 skill.  The primary weapon skill's
+// [NEWBIE ...] section is the sole source of the equipped starter weapon.
+
+[NEWBIE TACTICS ELF]
+// See [NEWBIE TACTICS]: no generic sword for a support skill.
+
+[NEWBIE TACTICS GARG]
+// See [NEWBIE TACTICS]: no generic sword for a support skill.
+
+[NEWBIE TAILORING]
+ITEM=i_cloth_bolt
+ITEMNEWBIE=i_sewing_kit
+
+[NEWBIE TAMING]
+//empty
+
+[NEWBIE TASTEID]
+//empty
+
+[NEWBIE TINKERING]
+// WAS //empty, 2026-08-29. Every other craft kit hands over its tool --
+// BLACKSMITHING gives tongs and a pickaxe, CARPENTRY a saw, TAILORING a
+// sewing kit -- and a tinker got nothing at all, so a character whose trade
+// is tinkering could not practise it for want of an item its own kit was
+// supposed to provide. ITEMNEWBIE, like the others, so it survives death.
+ITEMNEWBIE=i_tinker_tools
+
+[NEWBIE TRACKING]
+ITEM=i_knife_skinning
+ITEM=i_boots_calf
+COLOR=colors_yellow
+
+[NEWBIE TRACKING ELF]
+ITEM=i_knife_skinning
+ITEM=i_elven_boots
+COLOR=colors_yellow
+
+[NEWBIE TRACKING GARG]
+ITEM=i_knife_skinning
+
+[NEWBIE VETERINARY]
+ITEM=i_bandage,5
+ITEMNEWBIE=i_scissors
+
+[NEWBIE WRESTLING]
+ITEM=i_leather_gloves
+
+[NEWBIE WRESTLING ELF]
+ITEM=i_leaf_gloves
+
+[NEWBIE WRESTLING GARG]
+ITEM=i_gargish_leather_arms
+
+[NEWBIE THROWING]
+ITEMNEWBIE=i_spellbook_mystic
+MORE1=0ab
+
+[NEWBIE THROWING GARG]
+ITEMNEWBIE=i_spellbook_mystic
+MORE1=0ab
+ITEM=i_boomerang
+
+[EOF]

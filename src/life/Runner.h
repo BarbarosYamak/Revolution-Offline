@@ -26,6 +26,7 @@
 #include "uo/activities/recovery.h"
 #include "uo/activities/train.h"
 #include "uo/interaction/bank_errand.h"
+#include "uo/spellcast.h"
 #include "uo/vendor_errand.h"
 #include "uo/types.h"
 
@@ -232,9 +233,19 @@ private:
     ItemRole RoleOfGraphic(u16 gfx) const;
     bool DoGetFood(Client& client, const Observation& obs);
     bool DoPracticeSkill(Client& client, const Observation& obs);
-    int  PickPracticeSpell(Client& client, const Observation& obs) const;
+    // What to cast for practice, or what the pack is short of. Reads the book
+    // and the pack and defers the actual choice to uo::spell (unit-tested in
+    // tests/m4_life.cpp); this wrapper only gathers the observation.
+    spell::PracticeChoice PickPracticeSpell(Client& client,
+                                            const Observation& obs) const;
     bool DoFillSpellbook(Client& client, const Observation& obs);
     bool DoMakeBandages(Client& client, const Observation& obs);
+    // Sheep -> wool -> yarn -> bolt -> cloth, for a life whose CRAFT is
+    // blocked on cloth and whose WTB window found no seller. Walks the same
+    // five gestures DoMakeBandages does and stops at cloth instead of going
+    // on to bandages. See the definition for why every step is measured by an
+    // inventory delta rather than by having issued the click.
+    bool DoMakeCloth(Client& client, const Observation& obs);
     // DecideRest (include/uo/activities/rest.h), shared by DoExplore and
     // DoIdle -- both are now two-line forwarders into this. `owner` is
     // whichever of the two the planner actually picked, purely for the
@@ -264,6 +275,10 @@ private:
     bool BuyScrollFrom(Client& client, const Observation& obs, const char* trade,
                        wm::Service svc, u16 graphic, bool skipKnown, u16 qty,
                        const char* what, GoalKind owner);
+    // The scroll errand giving up: bumps the consecutive count, cools
+    // FILL_SPELLBOOK for the escalating rest and clears the shopping clock.
+    // Returns the rest in ms so the caller can say so in its log line.
+    i64  StandDownFromScrollShopping(const Observation& obs, const char* why);
     bool DoIdle(Client& client, const Observation& obs);
 
     RunnerConfig    cfg_;
@@ -271,6 +286,11 @@ private:
     PersistentState state_;
     Planner         planner_;
     NeedConfig      needCfg_;
+    // Which product this life has been sitting on, so a full_crafter's day is
+    // several crafts and not one repeated. Session-scoped on purpose: the
+    // owner's rule is about the shape of a DAY, and a preference that survived
+    // a logout would decide tomorrow's first sitting from yesterday's mood.
+    CraftFocus      craftFocus_;
 
     Phase phase_ = Phase::AwaitWorld;
     bool  finished_ = false;
@@ -391,13 +411,76 @@ private:
     // errand.  A scroll buyer is allowed to travel between cities; retrying
     // the same empty local shop three times is not exploration.
     std::vector<std::string> spellbookSkipPlaces_;
+    // Shopkeepers already found to stock nothing this errand lacks. A mage
+    // shop's scroll shelf is FOUR RANDOM SCROLLS, not a fixed list -- the
+    // template sells random_first_circle .. random_fourth_circle, {4 24}
+    // (templates/tm_vend.scp:721-724), which is why Aurelius's window showed
+    // exactly Feeblemind/Strength/Telekinisis/Fire Field
+    // (run_gates/g_Aurelius.console.txt:430-433). So "this mage has none the
+    // book lacks" is a fact about ONE shopkeeper's current roll, not about
+    // mages; Thalia failed FILL_SPELLBOOK outright on it with "4 already
+    // known" (g_Thalia.console.txt:523). Remembering the exhausted one lets
+    // travel pick a different shop instead of walking back to it.
+    std::vector<u32> spellbookSkipSellers_;
     // Set when the scribe -- the only seller that lets a spell be CHOSEN --
     // turns out to be unreachable or to stock nothing this book lacks. After
     // that the mage shop's random scroll is better than no scroll.
     bool scribeExhausted_ = false;
+    // HOW MANY TIMES THIS LIFE HAS GONE SHOPPING FOR A SCROLL AND COME BACK
+    // WITH NOTHING. Consecutive: any scroll that actually enters the book
+    // clears it. Drives life::ScrollShoppingRestMs, so the second empty errand
+    // rests twice as long as the first -- a mage still WANTS scrolls, it just
+    // stops asking a street that has already answered.
+    i32  scrollStandDowns_ = 0;
+    // When the current scroll-shopping stretch began, and when it last ran.
+    // The errand is bounded in TIME, not only in trips, because the cost that
+    // ate Aurelius's session was travel: three trips is under the trip budget
+    // and still four minutes of walking. 0 means "not shopping".
+    i64  scrollShopSinceMs_ = 0;
+    i64  scrollShopTickMs_  = 0;
+    // A stretch is only a stretch while the goal keeps getting the turn. The
+    // planner may hand FILL_SPELLBOOK back twenty minutes later; comparing
+    // against a mark that old would blow the budget on the first tick, the
+    // same staleness trap clothMarkMs_ exists for.
+    static constexpr i64 kScrollShopGapStaleMs = 60000;
+    // Ninety seconds is more than one shop visit and less than a session. The
+    // measured cost of one shop trip on this shard is ~60 s of travel.
+    static constexpr i64 kScrollShopBudgetMs = 90000;
     i32  tradeTrips_ = 0;
     i32  vendorChases_ = 0;
     i32  bandageTrips_ = 0;
+
+    // --- MAKE_CLOTH -------------------------------------------------------
+    // Trips to a pasture that found no sheep, and steps that moved nothing.
+    // Both are bounded by the escalate-after-three rule: a gesture that
+    // yields nothing three times running is not a slow gesture, it is the
+    // wrong one, and the goal stands down with a cooldown so the planner can
+    // look at the rest of the life.
+    i32  clothTrips_ = 0;
+    i32  clothEmptySteps_ = 0;
+    // The four counts the chain moves, as they were BEFORE the last gesture.
+    // Progress is claimed on the next tick and only if one of them changed --
+    // issuing a click is not the same as the server honouring it, and every
+    // spinning goal this project has had claimed progress for the click.
+    // -1 means "nothing pending".
+    // When the mark below was taken. A mark from a previous visit to this goal
+    // -- the planner may have taken the turn away and given it back minutes
+    // later -- would compare the pack against ancient numbers and read an
+    // unrelated purchase as this chain making progress. Marks go stale.
+    i64  clothMarkMs_ = 0;
+    static constexpr i64 kClothMarkStaleMs = 30000;
+    i32  clothWoolBefore_  = -1;
+    i32  clothYarnBefore_  = -1;
+    i32  clothBoltBefore_  = -1;
+    i32  clothClothBefore_ = -1;
+    // Sheep that answered the shears with "wait for the wool to grow back".
+    // Sphere flips a sheared sheep to CREID_SHEEP_SHORN (body 0x00DF) so the
+    // body filter usually drops it on its own; this is the belt for that
+    // brace, because a client whose 0x77 has not arrived yet would otherwise
+    // walk back to the same animal.
+    std::vector<u32> clothShornSheep_;
+    // Which pasture the last trip aimed at, so the next one tries another.
+    i32  clothPastureIdx_ = 0;
     // How many times the bandage errand has asked who is standing in the
     // healer's shop. Reset on success; three unanswered scans stand the
     // goal down instead of re-walking to the same tile.
@@ -535,6 +618,25 @@ private:
     i32  mineConsecRefusals_ = 0;
     i32  mineAdvances_ = 0;
     i32  tameTrips_ = 0;
+    // Taming: the name scan is a STEP, not a free read. tameScanMs_ is when
+    // ActionScanMobiles was issued for the spot the character is standing on
+    // (0 = not asked yet, so no emptiness verdict is allowed); tameAskedMs_ is
+    // the journal mark for the last taming attempt, read back for the shard's
+    // own answer. See include/uo/activities/tame.h.
+    i64  tameScanMs_ = 0;
+    i64  tameAskedMs_ = 0;
+    i32  tameAttempts_ = 0;
+    u32  tameTarget_ = 0;
+    std::string tameTargetName_;
+    // The animal's own TAMING requirement, kept so the success line can say
+    // what was actually beaten, and the herds already walked to this session
+    // so the three-trip budget is spent on three DIFFERENT places.
+    double tameTargetReq_ = -1.0;
+    std::vector<std::pair<i32, i32>> tameVisited_;
+    // Animals this goal has been refused by -- somebody's pet, an already
+    // tame sheep, a creature the shard says cannot be tamed at all. Skipped
+    // when choosing the next target, so one dead end does not eat the goal.
+    std::vector<u32> tameRefused_;
     i32  mineTrips_ = 0;
     std::string exploreTarget_;
     // --- rest and roam (S2.2) -----------------------------------------------
@@ -573,6 +675,27 @@ private:
     std::vector<u16> scrollBookRefused_;
     i64  scrollBuyMark_ = 0;
     i64  createFoodMark_ = 0;
+    // --- practice casting (reagent defect, wave 2026-09-02) ----------------
+    // Journal mark taken the instant a practice cast is sent, so the reply --
+    // "You lack Sulfurous Ash for this spell" -- can be read back and believed.
+    // Deliberately NOT createFoodMark_: the food goal casts too, and one mark
+    // shared between two goals attributes one goal's refusal to the other.
+    i64  practiceCastMark_ = 0;
+    int  practiceCastSpell_ = -1;
+    // Spells the SERVER refused this session, and how many casts were actually
+    // sent. The refusal list is session-scoped on purpose: reagents bought
+    // later make the same spell castable again, and a new session re-learns.
+    std::vector<int> practiceRefusedSpells_;
+    i32  practiceCasts_ = 0;
+    // How often each spell has been practised this session, so the chooser can
+    // ROTATE within a circle instead of spamming one word (owner ruling
+    // 2026-09-02: practice reads the whole Magery table, not a fixed list).
+    std::vector<std::pair<int, i32>> practiceCastCounts_;
+    // The reagent shopping list PRACTICE_SKILL handed to BUY_SUPPLIES, front
+    // first, with the per-reagent quantity derived in DoPracticeSkill from the
+    // observed cast rate (uo::spell::PlanReagentBuy).
+    std::vector<std::string> reagentWants_;
+    i32  reagentWantQty_ = 0;
     static constexpr i32 kMaxFoodTrips = 3;
     // GET_TOOL is in the Emergency family and therefore exempt from
     // satiation, so a cooldown is its only brake. It had none.
@@ -749,6 +872,11 @@ private:
     static constexpr i64 kWindDownGraceMs  = 5 * 60 * 1000;
     // No step in this long means stuck, not slow.
     static constexpr i64 kWindDownStalledMs = 12 * 1000;
+    // How long past the session deadline a corpse run (or a ghost) may hold
+    // the session open before the clock wins outright. A deferral with no
+    // bound is not a deadline -- that is how a stuck RECOVER_CORPSE kept
+    // Hector connected 5 minutes past his 30-minute window.
+    static constexpr i64 kSessionOverrunGraceMs = 60 * 1000;
     i32 windDownLastX_ = -1;
     i32 windDownLastY_ = -1;
     i64 windDownMovedMs_ = 0;
@@ -774,6 +902,35 @@ private:
     // How long EARN_GOLD stands down once every buyer trade has failed.
     // The vendors need a restock cycle; nothing changes in three seconds.
     static constexpr i64 kNoBuyerCooldownMs = 3 * 60 * 1000;
+    // HAS THE PLAYER-FIRST WINDOW CLOSED FOR THIS ITEM?
+    //
+    // The gate on the NPC price floor (owner ruling, 2026-09-02): a material
+    // may take the counter only after a complete WTS announce cycle nobody
+    // answered. DoTradeWithPlayer already writes exactly that fact -- a
+    // `no_player_buyer` memory event keyed on the item -- and until now
+    // nothing read it back. This is that reader.
+    //
+    // Bounded by kPlayerWindowMemoryMs so the answer is "nobody wanted it
+    // RECENTLY", not "nobody wanted it once, weeks ago": a permanent verdict
+    // would quietly convert the floor into the market.
+    static constexpr i64 kPlayerWindowMemoryMs = 60 * 60 * 1000;   // one hour
+    bool PlayersDeclined(const std::string& item, i64 nowMs) const;
+    // THE BUY SIDE OF THE SAME READER. `no_player_seller` is written by
+    // DoTradeWithPlayer when a WTB window expires with nobody answering, and
+    // it is what licenses a life to go and make the thing itself rather than
+    // wait (owner ruling, tailor cloth, 2026-09-02). Same one-hour bound and
+    // for the same reason.
+    bool SellersDeclined(const std::string& item, i64 nowMs) const;
+    // THE OTHER HALF OF THE SAME RULING (2026-09-02): a material reaches an NPC
+    // counter only when the player-first window has closed AND what this
+    // character holds -- pack plus bank -- is genuinely above its own
+    // plan-derived cap. Below the cap it banks and waits for a crafter.
+    //
+    // The cap formula and its evidence live in market::MaterialSurplusCap. All
+    // this does is supply the two things that function cannot see for itself:
+    // what the build plan still has to climb, and what the boxes hold.
+    market::MaterialSaleGate MaterialSaleGateFor(const std::string& item,
+                                                 const Observation& obs) const;
     i32   sellGoldBefore_ = -1;        // purse before the sale, to verify it
     // ...and what the pack held, so a sale is confirmed by goods LEAVING as
     // well as gold arriving. See DoEarnGold.
@@ -792,6 +949,13 @@ private:
     // A partner that opens a window and puts nothing in is either stuck or
     // gone; either way this side must not wait on it forever.
     static constexpr i64 kTradeGiveUpMs = 25000;
+    // How long a life rests after a handshake that failed rather than one that
+    // found no audience at all. DERIVED FROM THE HANDSHAKE'S OWN TURN TIMES:
+    // one full give-up window plus the two announce turns it takes the room to
+    // say anything new. A flat kMarketQuietMs here would punish the seller that
+    // did everything right and merely lost the race to another seller.
+    static constexpr i64 kTradeRetryRestMs =
+        kTradeGiveUpMs + 2 * kAnnounceIntervalMs;   // 41s
     market::TradePolicy tradePolicy_;
     market::TradeIntent tradeOffer_;      // what we are announcing
     u32         tradePartner_ = 0;
@@ -800,6 +964,14 @@ private:
     i32  tradeSellingQty_ = 0;   // >0 = we are the SELLER
     i32  tradeWantQty_ = 0;      // buyer: how many we want
     i32  tradeOfferPrice_ = 0;   // buyer: the price the seller named
+    // WHAT THIS BUYER SHOUTED IT WANTED, and when. A seller answers a WTB by
+    // opening a trade window; from that moment DoTradeWithPlayer short-circuits
+    // into DriveOpenTrade and the listen loop -- the only place that ever set
+    // the two fields above -- never runs again. So the announcement has to be
+    // written down when it is made, or the buyer meets the window with nothing
+    // to fund it from. See market::FundOpenWindow.
+    market::TradeIntent tradeWant_;
+    i64  tradeWantAskedMs_ = 0;
     bool tradeOffered_ = false;
     i32  tradePackBefore_ = 0;   // the PACK is the proof, not the packet
     i32  tradeGoldBefore_ = 0;
@@ -807,6 +979,9 @@ private:
     i64  tradeAnnouncedMs_ = 0;
     i64  tradeOpenedMs_ = 0;
     i32  tradeAnnounceCount_ = 0;
+    // Sellers we have already told "sorted", so the decline is said once each
+    // rather than every tick they keep offering.
+    std::vector<u32> tradeDeclined_;
     // Until when the player market counts as tried-and-empty.
     i64  marketQuietUntilMs_ = 0;
     static constexpr i64 kMarketQuietMs = 10 * 60 * 1000;   // ten minutes
@@ -890,6 +1065,10 @@ private:
     i32 fishX_ = 0, fishY_ = 0;
     i32 fishSeen_ = 0;
     i32 fishTrips_ = 0;
+    // Consecutive attempts to get the pole into a hand that did not stick. A
+    // refused equip puts the item back in the pack, which is indistinguishable
+    // from never having tried, so the retry needs its own counter and backoff.
+    i32 fishArmTries_ = 0;
     bool fishCursorPending_ = false;
     // The water tile this character has COMMITTED to walking to. Re-picking
     // the nearest tile every tick makes the target move as the character
@@ -909,6 +1088,9 @@ private:
     // plan change (S2_WIRING_PLAN.md S2.3) instead of once per tick. The
     // out-of-range sentinel guarantees the first real step always logs.
     RecoveryStep lastRecoveryPlan_ = static_cast<RecoveryStep>(0xFF);
+    // Decisions taken while standing on the death tile with no corpse serial
+    // bound. A corpse decays in 7 minutes; the death record does not.
+    i32 corpseProbesAtSite_ = 0;
     // Foes we proved we could not reach, so a mob behind a wall does not
     // restart the approach every tick (audit section 3.7).
     std::vector<std::pair<u32, i64>> unreachable_;

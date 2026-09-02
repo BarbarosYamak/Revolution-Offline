@@ -1,0 +1,2 @@
+- [vcvars and path_probe](vcvars_and_pathprobe.md) — correct vcvars64 path for building diagnostic tools; build_pathprobe.bat's hardcoded path is stale
+- [Resources'-own-tile bug class](resources-own-tile-bug-class.md) — NoteResource/proven-location writes must store the actor's stand tile, not the interacted-with object's tile

@@ -31,6 +31,7 @@
 #include "uo/types.h"
 
 #include <string>
+#include <utility>
 #include <vector>
 
 namespace uo::life {
@@ -559,6 +560,19 @@ struct Observation {
     // work and tries again later. Without this the trade errand outranked
     // everything a solo character could actually finish and starved it.
     bool marketQuiet = false;
+    // Items whose PLAYER market was tried and came back empty, recently.
+    //
+    // `marketQuiet` is the same fact with the item thrown away, which is
+    // enough to damp the trade goal but not enough to decide anything about a
+    // particular material: a tailor that failed to buy logs has learnt
+    // nothing about cloth. Filled in Observe from the `no_player_seller`
+    // events DoTradeWithPlayer already writes, inside the same memory window
+    // PlayersDeclined uses for the sell side.
+    std::vector<std::string> noSellerFor;
+    bool NoSellerFor(const std::string& item) const {
+        for (const std::string& s : noSellerFor) { if (s == item) return true; }
+        return false;
+    }
     i32  hostilesNear = 0;
     i32  attackersOnMe = 0;
     bool underAttack = false;
@@ -630,6 +644,19 @@ struct Observation {
     int wantTrainSkill = -1;
     // Which skill this life should PRACTISE next, and how. -1 = none.
     int wantPracticeSkill = -1;
+    // REAGENTS THE PRACTICE SPELL EATS AND THE PACK HAS NOT GOT.
+    //
+    // Written by the runner when PRACTICE_SKILL looks in the pack and finds it
+    // cannot pay for anything its spellbook holds (uo::spell::
+    // ChoosePracticeSpell); read by AssessNeeds so BUY_SUPPLIES gets a turn.
+    // It is a shopping list rather than a flag because a single spell costs up
+    // to four different reagents and one trip should fetch them all.
+    //
+    // The quantity is per reagent and is DERIVED, not constant: it is the
+    // number of casts this character still expects to make this session at its
+    // own observed rate (uo::spell::PlanReagentBuy).
+    std::vector<std::string> practiceReagentsShort;
+    i32 practiceReagentQty = 0;
     // Does this character already have a tamed animal following it? A tamer
     // that keeps taming while it owns one is hoarding, not working.
     bool hasPet = false;
@@ -667,8 +694,108 @@ struct CraftIntent {
     std::vector<prod::Ingredient> missing;
     const char* why = "";            // printable, always set
 };
+// WHAT WAS MADE LAST, SO A CRAFTER'S DAY IS NOT ONE PRODUCT REPEATED.
+//
+// "full crafters should not only do 1 craft always through the day; maybe
+// different craft focuses" (project owner, 2026-09-01).
+//
+// The planner already refuses to let one GOAL or one FAMILY own a session
+// (Planner::Satiation / Planner::FamilySatiation). CRAFT is a single
+// GoalKind, so none of that damping can see the choice made INSIDE it:
+// ChooseCraft takes the first workable entry of `produces`, in list order, so
+// a full_crafter with eight recipes made the same one every time it sat down
+// and the goal histogram could not tell the difference.
+//
+// Same shape, one level down, and deliberately the SMALLEST thing that fits
+// it: a run of kFocusRun of the same output is a sitting at the bench. After
+// that the output is satiated and the next workable recipe wins -- until a
+// different one is made (the streak breaks, exactly as Planner::NoteRan
+// breaks a goal's streak) or the streak simply goes stale.
+//
+// BOUNDED, like every other satiation here: if nothing else is workable the
+// satiated recipe is still chosen. A crafter that would rather make nothing
+// than repeat itself has stopped being a crafter.
+class CraftFocus {
+ public:
+    // One completed piece (or batch) of `item`.
+    void NoteMade(const char* item, i64 nowMs);
+    // Has this life just spent a sitting on `item`?
+    bool Satiated(const char* item, i64 nowMs) const;
+    const std::string& Last() const { return last_; }
+    i32 Run() const { return run_; }
+
+    // A PRODUCT THIS SESSION CANNOT REACH.
+    //
+    // CRAFT reaches an output by walking the shard's legacy skill menu, and
+    // the route is a static table (Runner.cpp kCraftMenus). When an output has
+    // no entry, or the menu that opened offers nothing on its path, the goal
+    // refuses with REFUSE_MISSING_RECIPE -- and ChooseCraft, which knows only
+    // about the recipe graph, hands back the SAME output on the very next
+    // tick. Wave 2026-09-02: i_board 45 refusals (Cyras/Halain/Vorar),
+    // i_gears 30 (Serena), i_ingot_iron 10 (Draver), 17 goal_spinning=CRAFT
+    // flags between them and zero craft output fleet-wide.
+    //
+    // So the refusal is remembered. Three strikes, not one, because the
+    // menu-content branch can fire on a half-read dialog whereas the
+    // table-miss branch is deterministic; three costs a deterministic miss
+    // nothing and protects a transient one. Session-scoped on purpose -- it is
+    // a fact about this build of the route table, not about the character.
+    void NoteNoRoute(const char* item);
+    bool Unreachable(const char* item) const;
+    static constexpr i32 kNoRouteStrikes = 3;
+
+    // Four in a row is a sitting: long enough to be worth setting up for and
+    // to make a sale batch, short enough that a session shows more than one
+    // product. Not evidence-derived -- there is no Revolution statement about
+    // how long a crafter stays on one item -- so it is named here rather than
+    // buried, and it is the number to change if live runs look wrong.
+    static constexpr i32 kFocusRun = 4;
+    // Fades on the same three minutes the goal/family measures use, for the
+    // same reason: a preference, not a punishment.
+    static constexpr i64 kFocusFadeMs = 3 * 60 * 1000;
+
+ private:
+    std::string last_;
+    i32 run_ = 0;
+    i64 lastMs_ = 0;
+    std::vector<std::pair<std::string, i32>> noRoute_;
+};
+
+// HOW CRAFT REACHES ONE OUTPUT THROUGH THE SHARD'S LEGACY SKILL MENUS.
+//
+// At most three levels, each matched as a case-insensitive substring of an
+// option's text; a leading '^' anchors the match at the start of the option
+// instead. The table lives in Runner.cpp beside the goal that walks it -- only
+// the lookup is public, so a test can assert that a route exists without a
+// server, a session or a craft menu. An output with no row here cannot be
+// crafted and the goal refuses it as REFUSE_MISSING_RECIPE.
+struct CraftMenuPath {
+    const char* item;
+    const char* step1;
+    const char* step2;   // nullptr for a flat menu
+    const char* step3;   // blacksmithing nests one level deeper than the rest
+};
+const CraftMenuPath* CraftMenuFor(const std::string& item);
+
+// `focus` is optional. When given, a fully-stocked recipe this life has just
+// spent a sitting on yields to another fully-stocked one; when omitted (or
+// when it is the only thing workable) the answer is unchanged.
 CraftIntent ChooseCraft(const prof::Profession& p, const Observation& obs,
-                        i32 batch);
+                        i32 batch, const CraftFocus* focus = nullptr);
+
+// IS THIS SOMETHING THE SHEEP-TO-CLOTH CHAIN PRODUCES?
+//
+// Named once because two systems ask it and they must not disagree: the need
+// model (may I raise NeedCloth for this shortfall?) and MAKE_CLOTH itself (am
+// I done?). The four are wool, yarn, the bolt and cut cloth -- every stage the
+// wheel, the loom and the scissors make between them.
+//
+// i_thread is deliberately NOT here. Thread is spun from COTTON, six per pile
+// (Source-X CClientTarg.cpp:2078), and no amount of wool produces any; a loop
+// that claimed otherwise would spin forever. Every stock Tailoring recipe on
+// this runtime wants `<n> i_cloth,1 i_thread`, so sewing stays blocked on a
+// cotton source that has not been proven -- recorded, not worked around.
+bool IsWoolChainMaterial(const char* item);
 
 // Does this life go looking for fights, or only finish the ones that find it?
 // Read off the build -- a profession that wants MORE than the 50.0 creation
@@ -768,6 +895,18 @@ enum class NeedKind : u8 {
     // just accumulated, because nothing in the life could turn it into metal.
     // "it didnt smelt iron ore" (project owner, 2026-08-29).
     NeedSmelt,
+    // CLOTH THIS LIFE MUST MAKE RATHER THAN BUY.
+    //
+    // Owner ruling 2026-09-02: a tailor buys cloth from PLAYERS first; when
+    // nobody is selling it GATHERS it -- sheep, shears, wheel, loom, scissors
+    // -- and it never buys cloth, thread or yarn from an NPC. So this is the
+    // second half of a two-step policy and it must not fire until the first
+    // half has actually been tried: the gate is Observation::NoSellerFor,
+    // which reads the `no_player_seller` the WTB window writes when its
+    // listen period expires unanswered. Firing it without that gate would be
+    // a tailor walking to Yew while a lumberjack stood at the bank with a
+    // bale for sale.
+    NeedCloth,
     Count,
 };
 
@@ -820,6 +959,12 @@ struct NeedConfig {
     // nullptr means "the M4 lumberjack rules", which is what a life saved
     // before the catalogue existed still expects.
     const prof::Profession* profession = nullptr;
+
+    // WHAT THIS LIFE HAS JUST BEEN MAKING. Optional; nullptr is the
+    // pre-rotation answer. Held here so the NEED model asks exactly the
+    // rotation question the CRAFT goal answers -- a need that names one item
+    // while the errand makes another is a telemetry lie.
+    const CraftFocus* craftFocus = nullptr;
 };
 
 std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
@@ -918,6 +1063,16 @@ enum class GoalKind : u8 {
     // @dclick), which is why walking the crafting menu could never have done
     // it and why mine -> smelt -> smith stopped dead at the first arrow.
     Smelt,
+    // Sheep -> wool -> yarn -> bolt -> cloth. The tailor's gather chain, and
+    // the only route to cloth this shard's economy allows a bot to take when
+    // no player is selling: cloth, thread and yarn are all WorldProcessed and
+    // the vendor policy refuses them.
+    //
+    // Distinct from MakeBandages, which walks the same five gestures for a
+    // different reason and stops the moment it has enough bandages. This one
+    // stops when the craft batch has enough CLOTH, and it is Work rather than
+    // Upkeep because for a tailor it IS the work.
+    MakeCloth,
     IdleBriefly,
     Count,
 };
@@ -926,6 +1081,22 @@ enum class GoalKind : u8 {
 GoalFamily FamilyOf(GoalKind k);
 
 const char* GoalKindName(GoalKind g);
+
+// HOW LONG A MAGE LEAVES SCROLL-SHOPPING ALONE AFTER NOBODY WOULD SELL ONE.
+//
+// Spell scrolls are not a shop staple on this shard: the NPC mage sells four
+// RANDOM circle 1-4 scrolls (templates/tm_vend.scp:721-724) and blank scrolls,
+// the scribe sells named ones it may or may not have, and circles 7-8 are loot
+// only. So "nobody within reach stocks a spell this book lacks" is a fact about
+// the WORLD, not about this minute -- unlike BUY_SUPPLIES's "nobody was
+// selling", which rests 119 s because a reagent shelf restocks. The first rest
+// is therefore long, and each further empty errand doubles it, so a mage that
+// keeps finding an empty street spends less and less of its day on the errand
+// and more on practising, earning and training.
+//
+// `standDowns` is 1 for the first stand-down. Pure so it can be reasoned about
+// and tested without a Client.
+i64 ScrollShoppingRestMs(int standDowns);
 
 struct ScoredGoal {
     GoalKind kind = GoalKind::IdleBriefly;
@@ -1018,6 +1189,19 @@ public:
     // answerable.
     void Cooldown(GoalKind kind, i64 untilMs);
     bool Cooling(GoalKind kind, i64 nowMs) const;
+    // THE REST IS OVER WHEN THE REASON FOR IT IS.
+    //
+    // A cooldown means "nothing about this will be different in a moment", and
+    // Cooldown() deliberately refuses to SHORTEN one so two callers cannot
+    // undercut each other. But when the very thing the goal was waiting for
+    // arrives, the wait is finished and holding it is just idleness: Aurelius
+    // stood down PRACTICE_SKILL for four minutes for want of reagents, bought
+    // both of them twenty seconds later, and then went EXPLORING with a full
+    // pouch (run_gates/g_Aurelius.console.txt:626,635,717,729).
+    //
+    // Only for the goal that OWNS the fix, and only on evidence that it landed
+    // -- never as a general "try again now".
+    void ClearCooldown(GoalKind kind);
     // Which goal the anti-spin backstop just cooled off, or GoalKind::Count.
     // Reading it clears it, so the Runner logs the event exactly once.
     GoalKind TakeSpinDetected();

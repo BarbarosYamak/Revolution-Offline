@@ -563,10 +563,22 @@ void Client::Dispatch(const u8* data, usize size) {
         case 0x9E: OnVendorSellList(data, size); break;
 
         // Common in-world packets we just log + ignore for M1.
+        //
+        // These MUST NOT fall through into 0xB0. They did until 2026-09-02,
+        // and it is what stranded Xerxes and Vorar at the Magincia gate: the
+        // gate's own sound (0x54) / effect (0x70) arrives right behind its
+        // destination gump, ran OnGenericGump, whose first statement clears
+        // gump_, and returned early on the size check -- silently discarding a
+        // gump that was never answered. Sphere will not open a second dialog
+        // for an unanswered one, so every later double-click was met with
+        // silence (g_Xerxes.console.txt:119 gump open, :171 "gump active=0",
+        // then 158 identical retries).
         case 0x23: case 0x53:
         case 0x54: case 0x5B: case 0x65: case 0x6D:
         case 0x70:
         case 0x8B: case 0x97:
+            break;
+
         case 0xB0: OnGenericGump(data, size); break;
         case 0x6F: OnSecureTrade(data, size); break;
 
@@ -2089,7 +2101,31 @@ void Client::OnOpenDialog(const u8* data, usize size) {
     for (usize i = 0; i < activeDialog_.options.size(); ++i)
         LogInfo("        %zu) %s\n", i + 1, activeDialog_.options[i].text.c_str());
     LogEvent("dialog", activeDialog_.question.c_str());
+    // A double-click that opens a CRAFT MENU rather than a container is still
+    // the server accepting the use -- exactly the same fact a 0x24 container
+    // or a 0x6C target cursor already confirms for UseObject (see the header
+    // comment on ActionUseObject). Without this, an in-flight use_object never
+    // saw ANY of its own recognised confirmations while the menu was open, and
+    // sat pending for the full 4s use_object deadline every single craft
+    // step -- the runner's own ActionBusy() gate then could not read the menu
+    // (CraftMenuOpen()) until the timeout freed it, so a scroll that finished
+    // crafting in under 2ms was reported as "use_object timeout (no server
+    // confirmation)" first (wave2 Thalia use_object x15, Elara x6;
+    // run_gates/g_Thalia.console.txt:598-606, dialog at .826, action timeout
+    // logged at .859, answered at .923 once the timeout freed the runner).
+    ActionOnMenuOpened();
     uo::js::EmitDialogEvent();          // -> Player/World 'dialog' (built from activeDialog_)
+}
+
+// A 0x7C menu is the server accepting a double-click that opens a CHOICE
+// rather than a container -- a craft gump, a spell-circle submenu. Same
+// confirmation shape as ActionOnContainerOpened; UseObject does not know in
+// advance which one it will get.
+void Client::ActionOnMenuOpened() {
+    if (!action_.Active()) return;
+    if (action_.kind == act::Kind::UseObject) {
+        FinishAction(act::Result::Success, "server opened a menu dialog");
+    }
 }
 
 // 0x7D answer to the 0x7C menu. index is 1-based (0 = cancel); model/hue echo
@@ -2840,8 +2876,27 @@ u32 Client::NearestGuildmasterForTrade(const char* trade,
 // lookup below, with the guild title refused: a guildmaster teaches, and a
 // character that asks one to open a shop window waits out the timeout and
 // learns nothing.
+// SIGHT IS A REACH TEST, NOT AN IDENTITY TEST -- and using it as both cost
+// Elara her whole alchemy errand. She had known "Bret, the alchemist"
+// (0x27D1) since 18:08:57 and stood 3 tiles from him at (605,2181) with Bret
+// at (606,2184); the two tiles between them are the shop's own counter, so
+// MobileInLineOfSight said no, this lookup returned 0, and BUY_SUPPLIES
+// logged "no 'alchemist' found after 4 trips" without ever asking him for a
+// bottle (run_gates/g_Elara.console.txt:105,547,584,604,639). Worse, travel
+// was targeting that exact mobile at the same moment, so the character walked
+// to a vendor its own shop lookup refused to admit existed.
+//
+// A player in that spot does not conclude there is no alchemist. It walks
+// round the counter. So: prefer a shopkeeper in line of sight -- an open
+// approach is genuinely better -- but if none is visible, still return the
+// nearest one whose trade we KNOW, and let the caller's approach step close
+// the distance. Every caller already walks up before it speaks, and Sphere
+// still enforces the real reach rule on the buy itself
+// (CChar::CanTouch, CCharStatus.cpp:1414-1430), so nothing here can buy
+// through a wall.
 u32 Client::NearestShopkeeperWithTrade(const char* trade,
-                                       wm::Service svc) const {
+                                       wm::Service svc,
+                                       const std::vector<u32>* skip) const {
     if (!trade || !trade[0]) return 0;
     auto lower = [](std::string s) {
         for (char& c : s)
@@ -2851,9 +2906,18 @@ u32 Client::NearestShopkeeperWithTrade(const char* trade,
     const std::string want = lower(trade);
     u32 best = 0;
     int bestD = 0;
+    // Second-choice: title matches, sight-line does not. Kept separate so a
+    // visible shopkeeper always wins over an occluded one at any distance.
+    u32 blind = 0;
+    int blindD = 0;
     for (const MobileObj& m : mobileCache_) {
         if (m.serial == playerSerial_) continue;
-        if (!MobileInLineOfSight(m.serial)) continue;
+        if (skip) {
+            bool skipped = false;
+            for (u32 sk : *skip) { if (sk == m.serial) { skipped = true; break; } }
+            if (skipped) continue;
+        }
+        const bool visible = MobileInLineOfSight(m.serial);
         const char* title = PaperdollTitle(m.serial);
         if (!title || !*title) continue;
         const std::string t = lower(title);
@@ -2878,9 +2942,14 @@ u32 Client::NearestShopkeeperWithTrade(const char* trade,
         }
         const int dx = m.x - playerX_, dy = m.y - playerY_;
         const int d = (dx < 0 ? -dx : dx) + (dy < 0 ? -dy : dy);
-        if (!best || d < bestD) { best = m.serial; bestD = d; }
+        if (visible) {
+            if (!best || d < bestD) { best = m.serial; bestD = d; }
+        } else if (!blind || d < blindD) {
+            blind = m.serial;
+            blindD = d;
+        }
     }
-    return best;
+    return best ? best : blind;
 }
 
 u32 Client::NearestMobileWithTrade(const char* trade,
@@ -3043,8 +3112,9 @@ u32 Client::BackpackItemCount(u16 graphic) const {
 // --- object use ------------------------------------------------------------
 // 0x06 double-click. What counts as confirmation depends on what was clicked,
 // so any of these ends the action: a container opening (0x24), a target cursor
-// (0x6C, e.g. a tool or bandage), a system message (0x1C), or the item
-// changing/vanishing. That is exactly what a player sees happen.
+// (0x6C, e.g. a tool or bandage), a menu dialog (0x7C, e.g. a craft gump), a
+// system message (0x1C), or the item changing/vanishing. That is exactly what
+// a player sees happen.
 void Client::ActionUseObject(u32 serial) {
     if (!serial) { BeginAction(act::Kind::UseObject, kUseTimeoutMs);
                    FinishAction(act::Result::InvalidState, "null serial"); return; }
@@ -3185,6 +3255,18 @@ void Client::ActionEquip(u32 serial, u8 layer) {
     action_.layer = layer;
     if (!serial || !playerSerial_) {
         FinishAction(act::Result::InvalidState, "null serial");
+        return;
+    }
+    // Already on the layer is already done -- and asking again UNDRESSES the
+    // character (see act::EquipWouldBeNoOp). The equipment list the server
+    // itself sent (0x1A/0x2E) is the authority on what is in hand; a caller's
+    // flag is not.
+    const int wornLayer = PlayerEquipLayerOf(serial);
+    if (act::EquipWouldBeNoOp(wornLayer, layer)) {
+        char why[64];
+        std::snprintf(why, sizeof(why), "already worn on layer %d", wornLayer);
+        LogInfo("[ACTION] equip serial=0x%08X: %s\n", serial, why);
+        FinishAction(act::Result::Success, why);
         return;
     }
     LogInfo("[ACTION] equip serial=0x%08X layer=%u\n", serial, layer);
@@ -3999,10 +4081,40 @@ void Client::ActionOnSysMessage(const char* text, u32 sourceSerial, u8 type) {
         FinishAction(act::Result::Rejected, text);
         return;
     }
-    if (contains("more reagents") || contains("not enough mana") ||
-        contains("lack the mana") || contains("fizzle")) {
+    // See act::IsSpellCastRefusal / act::IsVendorRateLimited (uo/actions.h)
+    // for the exact Sphere wording and the wave2 2026-09-01 evidence -- kept
+    // there, not here, so the classification is unit-testable without a live
+    // Client (tests/m2_actions.cpp).
+    if (act::IsSpellCastRefusal(text)) {
         FinishAction(act::Result::ServerFailure, text);
         return;
+    }
+    if (act::IsVendorRateLimited(text)) {
+        FinishAction(act::Result::ServerFailure, text);
+        return;
+    }
+    // EATING IS ANSWERED IN WORDS. A double-click on food produces no gump, no
+    // cursor and -- when the stack merely shrinks -- no 0x1D either, so this
+    // line is the entire confirmation. See act::ClassifyEatMessage for the
+    // Source-X wording and the 2026-09-02 evidence.
+    if (action_.kind == act::Kind::UseObject ||
+        action_.kind == act::Kind::UseItemOn) {
+        switch (act::ClassifyEatMessage(text)) {
+            case act::EatOutcome::Ate:
+                FinishAction(act::Result::Success, text);
+                return;
+            case act::EatOutcome::AlreadyFull:
+                // Not an error and not a success: the food is untouched and
+                // the character does not need it. InvalidState is exactly
+                // "you asked for something this state does not allow".
+                FinishAction(act::Result::InvalidState, text);
+                return;
+            case act::EatOutcome::CannotEat:
+                FinishAction(act::Result::ServerFailure, text);
+                return;
+            case act::EatOutcome::None:
+                break;
+        }
     }
     // Sphere's refusal when the spell is not castable at all -- no spellbook
     // holding it, or not enough skill (CChar::Spell_CanCast,
@@ -4121,10 +4233,47 @@ void Client::ActionOnSysMessage(const char* text, u32 sourceSerial, u8 type) {
 // (src/game/chars/CCharSpell.cpp:3054 -> Spell_CanCast with fTest=false).
 // The server deletes a scroll when its spell is cast (Spell_CastDone consumes
 // the charge), so a 0x1D for the scroll we used confirms the cast completed.
+//
+// A MoveItem onto a SPELLBOOK is the same "the item is gone, and that is the
+// success" shape: learning a spell from a scroll consumes it (the book gains
+// a spell flag, not a stored item), so the drop never produces the ordinary
+// "item is in the destination container" 0x25 that ActionOnItemInContainer
+// waits for -- that confirmation simply never arrives, and the move sat
+// pending for the full move_item deadline every time (wave2 Thalia
+// move_item x4, Elara x3). Reopening the book right after each timeout
+// showed the spell count had already gone up by exactly one
+// (run_gates/g_Elara.console.txt:329-339: drop at 18:09:49.658, timeout at
+// 18:09:53.670, reopen at 18:09:53.685 shows 19 items, up from 18 before the
+// drop -- and the same +1-after-timeout shape repeats at line 429/443 and in
+// g_Thalia.console.txt:252-262), so the server was doing the move correctly
+// the whole time; only the client's own confirmation was missing.
 void Client::ActionOnObjectDeleted(u32 serial) {
-    if (!action_.Active() || action_.kind != act::Kind::CastSpell) return;
-    if (serial != action_.subject) return;
-    FinishAction(act::Result::Success, "scroll consumed by the cast");
+    if (!action_.Active()) return;
+    if (action_.kind == act::Kind::CastSpell) {
+        if (serial != action_.subject) return;
+        FinishAction(act::Result::Success, "scroll consumed by the cast");
+        return;
+    }
+    if (action_.kind == act::Kind::MoveItem || action_.kind == act::Kind::UseItemOn) {
+        if (serial != action_.subject) return;
+        // A TOOL THAT HAS NOT BEEN GIVEN ITS CURSOR YET WAS NOT CONSUMED.
+        //
+        // Double-clicking a weapon that is in the pack makes Source-X WIELD it
+        // first, and an item leaving the pack for a layer arrives here as a
+        // plain 0x1D delete. Treating that as "consumed by the destination"
+        // finished the action one millisecond after it started -- so when the
+        // carve cursor arrived the next line, OnTargetArmedForAction found no
+        // active action and never answered it. Wave 2026-09-02: Ithion cut the
+        // same whole fish 322 times without ever cutting it, leaving a live
+        // cursor that then cancelled the next equip's drag
+        // (run_gates/g_Ithion.console.txt:515-533).
+        if (action_.kind == act::Kind::UseItemOn && action_.awaitingTarget) {
+            LogInfo("[ACTION] use_item_on item=0x%08X left the pack before its "
+                    "cursor -- wielded, not consumed; still waiting\n", serial);
+            return;
+        }
+        FinishAction(act::Result::Success, "item consumed by the destination");
+    }
 }
 
 // A completed sale shows up as gold arriving. Source-X only credits it after
@@ -4379,6 +4528,14 @@ u32 Client::PlayerEquipSerialAt(u8 layer) const {
     for (const auto& e : playerEquip_)
         if (e.layer == layer) return e.serial;
     return 0;
+}
+
+// Which layer a serial of OURS is worn on, or -1 when it is not worn.
+int Client::PlayerEquipLayerOf(u32 serial) const {
+    if (!serial) return -1;
+    for (const auto& e : playerEquip_)
+        if (e.serial == serial) return static_cast<int>(e.layer);
+    return -1;
 }
 
 u16 Client::EquippedGraphicAt(u8 layer) const {

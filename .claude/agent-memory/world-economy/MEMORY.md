@@ -1,0 +1,4 @@
+- [Material BUY rows are commented out](material-buy-rows-commented.md) — logs/ore/iron ingots/hides have NO live NPC buyer; gargish rows exist but no gargoyle vendor spawns
+- [NPC price floor design](npc-price-floor-design.md) — owner ruling 2026-09-02: material→NPC sale is a switch AND a closed WTS window, never one alone
+- [Vendor payout rules](vendor-payout-rules.md) — VALUE less 15%; `{a b}` is restock; a missing VALUE line means COMPUTED, not zero
+- [Sell goals spin on `return true`](sell-goal-spins-on-return-true.md) — a no-sale path must Cooldown + Finish(false), not report success

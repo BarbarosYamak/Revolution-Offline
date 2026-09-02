@@ -32,6 +32,7 @@ const char* GoalKindName(GoalKind g) {
         case GoalKind::Smelt:                return "SMELT";
         case GoalKind::TameAnimal:           return "TAME_ANIMAL";
         case GoalKind::UpgradeGear:          return "UPGRADE_GEAR";
+        case GoalKind::MakeCloth:            return "MAKE_CLOTH";
         case GoalKind::IdleBriefly:           return "IDLE_BRIEFLY";
         case GoalKind::Count:                 break;
     }
@@ -79,6 +80,10 @@ GoalFamily FamilyOf(GoalKind k) {
         case GoalKind::Craft:
         case GoalKind::BuySupplies:
         case GoalKind::EarnGold:
+        // Shearing, spinning and weaving are gathering and processing, the
+        // same shape as Mine -> Smelt. For a tailor this is the work itself,
+        // not upkeep -- which is where it differs from MakeBandages.
+        case GoalKind::MakeCloth:
             return GoalFamily::Work;
         case GoalKind::TrainCombat:
         case GoalKind::TrainAtNpc:
@@ -94,6 +99,30 @@ GoalFamily FamilyOf(GoalKind k) {
             break;
     }
     return GoalFamily::Wander;
+}
+
+// SUPPLY THAT IS STRUCTURALLY ABSENT DESERVES A LONG REST, NOT A RETRY.
+//
+// Aurelius spent 13:23:42-13:29 of a five-minute gate walking scribe shop to
+// mage shop to mage shop for a scroll and cast nothing at all
+// (run_gates/g_Aurelius.console.txt:136-847); FILL_SPELLBOOK held every one of
+// his 16 goal mentions. The errand was not wrong, its retry rate was: a shelf
+// that had nothing was answered by walking to the next shelf, and a trip costs
+// about a minute, so the whole session went on the errand and PRACTICE_SKILL,
+// EARN_GOLD and TRAIN_AT_NPC never got a turn.
+//
+// Base fifteen minutes -- longer than BUY_SUPPLIES's 119 s deliberately, since
+// a reagent shelf restocks and a spell scroll seller may simply not exist --
+// doubling per consecutive empty errand up to an hour, which on this shard's
+// session lengths means "not again today". Any scroll actually going into the
+// book resets the count, so a mage that finds a stocked scribe is never damped.
+i64 ScrollShoppingRestMs(int standDowns) {
+    constexpr i64 kBaseMs = 15 * 60 * 1000;
+    constexpr i64 kCapMs  = 60 * 60 * 1000;
+    if (standDowns < 1) standDowns = 1;
+    i64 rest = kBaseMs;
+    for (int i = 1; i < standDowns && rest < kCapMs; ++i) rest *= 2;
+    return rest > kCapMs ? kCapMs : rest;
 }
 
 // THE ARITHMETIC BEHIND session_goals, pulled out of Runner::Tick's WindDown
@@ -238,6 +267,13 @@ const GoalSpec kGoals[] = {
     // Below bandages and food: armour is what you want once you are fed and
     // able to heal, not instead of them.
     {GoalKind::UpgradeGear,           NeedKind::NeedGear,          100.0},
+    // BETWEEN Craft (130) and BuySupplies (140), and for the same stated
+    // reason BuySupplies sits above Craft: a crafter that cannot start is
+    // worth the trip that lets it start. This is that trip for the one input
+    // no shop will sell -- so it must outrank the making it is blocked on,
+    // and must not outrank the shopping errand that can fetch the OTHER
+    // inputs of the same recipe in one walk.
+    {GoalKind::MakeCloth,             NeedKind::NeedCloth,         135.0},
 };
 
 }  // namespace
@@ -812,6 +848,12 @@ void Planner::Cooldown(GoalKind kind, i64 untilMs) {
     // Never shorten one that is already running: two callers cooling the same
     // goal should give the longer rest, not the last one written.
     if (untilMs > cooldownUntilMs_[i]) cooldownUntilMs_[i] = untilMs;
+}
+
+void Planner::ClearCooldown(GoalKind kind) {
+    const int i = static_cast<int>(kind);
+    if (i < 0 || i >= static_cast<int>(GoalKind::Count)) return;
+    cooldownUntilMs_[i] = 0;
 }
 
 bool Planner::Cooling(GoalKind kind, i64 nowMs) const {

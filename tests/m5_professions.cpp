@@ -13,6 +13,7 @@
 #include "uo/professions.h"
 #include "uo/rules.h"
 #include "uo/production.h"
+#include "uo/faucets.h"
 
 #include <cstdio>
 #include <set>
@@ -659,6 +660,321 @@ void TestEveryRecipeInputIsDeclared() {
     }
 }
 
+// --------------------------------------------------------------------------
+// EVERY WORKING LIFE HAS SOMETHING IT CAN MAKE AND SELL.
+//
+// Wave 2 (2026-09-01) found three lives that could never work: a tailor, a
+// merchant/tinker and a lumberjack/carpenter reported
+//   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+// for an entire session (Aelia x44, Odessa x8). None of them makes anything an
+// NPC may buy -- which is the deliberate shape of Revolution's economy, not a
+// gap -- and ChooseCraft was gating on the NPC question alone.
+//
+// This is the regression test for the DATA half: if a life declares products,
+// at least one of them must have SOME legitimate destination.
+void TestEveryProducingLifeHasSomewhereToSell() {
+    Section("catalogue: a life that makes things has somewhere to take them");
+    for (const prof::Profession& p : prof::All()) {
+        if (p.produces.empty()) continue;
+        bool anySellable = false;
+        bool anyCraftable = false;
+        const bool classIsPlayerMarket =
+            faucet::OutputClassIsPlayerMarket(p.id.c_str());
+        for (const std::string& made : p.produces) {
+            const faucet::SaleRoute route = faucet::RouteForItem(made.c_str());
+            const prod::Recipe* r = prod::FindRecipe(made.c_str());
+            const bool sellable =
+                route == faucet::SaleRoute::Npc ||
+                route == faucet::SaleRoute::PlayerMarket ||
+                (route == faucet::SaleRoute::Unrecorded && r &&
+                 classIsPlayerMarket);
+            if (!sellable) continue;
+            anySellable = true;
+            // inputs[0] empty == gathered, not crafted (a fisher's fish).
+            if (r && r->inputs[0].item) anyCraftable = true;
+        }
+        if (!anySellable) {
+            std::printf("  FAIL: %s declares %d product(s) and not one of them "
+                        "may be sold to anybody -- this life can never work\n",
+                        p.id.c_str(), static_cast<int>(p.produces.size()));
+            ++g_failures;
+        }
+        ++g_checks;
+        // A life whose income is Craft must additionally have a RECIPE, not
+        // just a sellable gathered good: crafting is how it earns.
+        bool craftsForALiving = false;
+        for (const prof::Income i : p.income)
+            if (i == prof::Income::Craft) craftsForALiving = true;
+        if (craftsForALiving && !anyCraftable) {
+            std::printf("  FAIL: %s earns by Craft but has no sellable RECIPE "
+                        "-- only gathered goods\n", p.id.c_str());
+            ++g_failures;
+        }
+        ++g_checks;
+    }
+}
+
+// The three named lives, by name, and the reason each one used to fail.
+void TestThePlayerMarketIsADestination() {
+    Section("faucets: a player-market good is a destination, not a refusal");
+
+    // The distinction the whole fix rests on: RefusePlayerMarket refuses the
+    // NPC and NOT the trade.
+    using faucet::SaleRoute;
+    Check(faucet::AllowedForItem("i_robe") == nullptr,
+          "no NPC may buy a robe -- the tailor row is unchanged");
+    Check(faucet::RouteForItem("i_robe") == SaleRoute::PlayerMarket,
+          "but a robe has a player-market route, so it may be made");
+    Check(faucet::AllowedForItem("i_gears") == nullptr,
+          "no NPC may buy tinker gears either");
+    Check(faucet::RouteForItem("i_gears") == SaleRoute::PlayerMarket,
+          "and gears are the tinker's player-market good");
+    Check(faucet::AllowedForItem("i_board") == nullptr,
+          "boards are a material, refused at the NPC counter");
+    Check(faucet::RouteForItem("i_board") == SaleRoute::PlayerMarket,
+          "and are exactly what a carpenter sells to a player");
+
+    // The class rule: a tailor's registry row is keyed on i_robe and speaks
+    // for the cloth it is cut from, so the rest of the trade's output rides
+    // with it -- but only for THAT trade, and only for something that IS its
+    // work. On its own the class rule is not a licence.
+    Check(faucet::RouteForItem("i_sash") == SaleRoute::Unrecorded,
+          "the registry does not name a sash at all");
+    Check(faucet::OutputClassIsPlayerMarket("tailor"),
+          "but a tailor's whole output class is a player-market good");
+    Check(faucet::OutputClassIsPlayerMarket("merchant_tinker"),
+          "and so is the tinker's -- its row carries the catalogue id now");
+    Check(!faucet::OutputClassIsPlayerMarket("fisher"),
+          "a fisher sells to NPCs; nothing about its class says otherwise");
+    Check(!faucet::OutputClassIsPlayerMarket(nullptr),
+          "and with no life named there is no class to speak for");
+
+    // ABSENCE IS STILL NOT EVIDENCE, and no NPC route was opened anywhere.
+    Check(faucet::RouteForItem("i_fish_big_1") == SaleRoute::Npc,
+          "the fish tap is untouched");
+    Check(faucet::AllowedForItem("i_ingot_iron") == nullptr,
+          "and selling ingots to an NPC is refused exactly as before");
+    Check(faucet::RouteForItem(nullptr) == SaleRoute::None,
+          "a null item has no route");
+}
+
+// The BEHAVIOUR half: given a stocked pack and the skill, does the life
+// actually choose something to make?
+void TestTheThreeStuckLivesCanNowWork() {
+    Section("craft: the three lives that made nothing now choose something");
+
+    struct Case { const char* id; int skill; i32 tenths; const char* input;
+                  i32 qty; };
+    const Case kCases[] = {
+        // Tailoring 4.5 -> i_sash from cloth (Production.cpp sm_cloth_misc).
+        {"tailor",              rules::kTailoring,  600, "i_cloth",       50},
+        // Tinkering 14.7 -> i_gears from an ingot (sm_tinker).
+        {"merchant_tinker",     rules::kTinkering,  600, "i_ingot_iron",  20},
+        // Carpentry 0.0 -> i_board from a log (sm_carpentry).
+        {"lumberjack_swordsman", rules::kCarpentry, 600, "i_log",         20},
+    };
+    for (const Case& c : kCases) {
+        const prof::Profession* p = prof::Find(c.id);
+        if (!p) { std::printf("  FAIL: no catalogue entry %s\n", c.id);
+                  ++g_failures; ++g_checks; continue; }
+        life::Observation obs;
+        obs.nowMs = 1000;
+        obs.skills.push_back({c.skill, c.tenths});
+        obs.pack.push_back({c.input, c.qty});
+        const life::CraftIntent intent = life::ChooseCraft(*p, obs, 1);
+        if (!intent.item) {
+            std::printf("  FAIL: %s still makes nothing (%s)\n", c.id,
+                        intent.why);
+            ++g_failures;
+        } else {
+            // Printed, not asserted: WHICH product a life reaches for depends
+            // on what is stocked, and freezing that here would be a test of
+            // the pack rather than of the fix.
+            std::printf("  %-20s -> %-16s (%s)%s\n", c.id, intent.item,
+                        intent.why,
+                        intent.missing.empty()
+                            ? ""
+                            : " [short of an input]");
+        }
+        ++g_checks;
+    }
+}
+
+// --------------------------------------------------------------------------
+// A CRAFTER'S DAY IS SEVERAL CRAFTS, NOT ONE REPEATED.
+//
+// "full crafters should not only do 1 craft always through the day; maybe
+// different craft focuses" (project owner, 2026-09-01).
+void TestCraftFocusRotates() {
+    Section("craft: a sitting satiates its product, and the bench moves on");
+
+    life::CraftFocus f;
+    const i64 t0 = 1000;
+    Check(!f.Satiated("i_board", t0), "nothing has been made yet");
+    for (i32 i = 0; i < life::CraftFocus::kFocusRun - 1; ++i)
+        f.NoteMade("i_board", t0);
+    Check(!f.Satiated("i_board", t0),
+          "a short run is not a monopoly -- the sitting has to finish first");
+    f.NoteMade("i_board", t0);
+    Check(f.Satiated("i_board", t0),
+          "a full run of sittings on one product satiates it");
+    Check(!f.Satiated("i_club", t0),
+          "and satiates only THAT product, not the whole trade");
+
+    // A different product breaks the streak, exactly as Planner::NoteRan does
+    // one level up.
+    f.NoteMade("i_club", t0);
+    Check(!f.Satiated("i_board", t0),
+          "one turn at something else and the board is welcome again");
+
+    // And it fades rather than standing as a permanent ban.
+    life::CraftFocus g;
+    for (i32 i = 0; i < life::CraftFocus::kFocusRun; ++i)
+        g.NoteMade("i_board", t0);
+    Check(!g.Satiated("i_board", t0 + life::CraftFocus::kFocusFadeMs),
+          "a product worked hard a while ago is not still being avoided");
+
+    // THE CHOICE ITSELF. A lumberjack holding logs AND boards can make either
+    // a board or a club; after a run of boards the club must win.
+    const prof::Profession* lj = prof::Find("lumberjack_swordsman");
+    if (!lj) { std::printf("  FAIL: no lumberjack_swordsman\n"); ++g_failures;
+               ++g_checks; return; }
+    life::Observation obs;
+    obs.nowMs = t0;
+    obs.skills.push_back({rules::kCarpentry, 600});
+    obs.pack.push_back({"i_log", 40});
+    const life::CraftIntent first = life::ChooseCraft(*lj, obs, 1);
+    Check(first.item != nullptr, "with logs in the pack there is work to do");
+
+    life::CraftFocus busy;
+    for (i32 i = 0; i < life::CraftFocus::kFocusRun; ++i)
+        busy.NoteMade(first.item, t0);
+    const life::CraftIntent next = life::ChooseCraft(*lj, obs, 1, &busy);
+    Check(next.item != nullptr, "and there is still work to do afterwards");
+    if (first.item && next.item) {
+        Check(std::string(next.item) != first.item,
+              "but it is a DIFFERENT product -- the focus rotated");
+    }
+
+    // BOUNDED. A profession with only one thing it can make repeats it rather
+    // than standing idle: rotation is a preference, never a ban.
+    const prof::Profession* alch = prof::Find("alchemist");
+    if (alch) {
+        life::Observation one;
+        one.nowMs = t0;
+        // No inputs at all, so nothing is fully stocked -- the satiation
+        // branch is never reached and the old answer must survive.
+        const life::CraftIntent a = life::ChooseCraft(*alch, one, 1);
+        life::CraftFocus fa;
+        if (a.item)
+            for (i32 i = 0; i < life::CraftFocus::kFocusRun; ++i)
+                fa.NoteMade(a.item, t0);
+        const life::CraftIntent b = life::ChooseCraft(*alch, one, 1, &fa);
+        Check((a.item == nullptr) == (b.item == nullptr),
+              "a life with nothing stocked answers the same either way");
+    }
+}
+
+// THE THREE OUTPUTS THAT REFUSED THEMSELVES ALL WAVE (2026-09-02).
+//
+// i_board x45 (Cyras, Halain, Vorar), i_gears x30 (Serena) and i_ingot_iron
+// x10 (Draver) each logged goal_failed=CRAFT reason="REFUSE_MISSING_RECIPE"
+// no menu path known -- 17 goal_spinning=CRAFT flags and no craft output
+// anywhere in the fleet. Two were missing rows in the route table; the third
+// is not a menu craft at all and belongs to SMELT.
+//
+// Sources for the two new rows, both read from this runtime's own scripts:
+//   sm_legacy_carpentry.scp:15-16   ON=i_board boards / MAKEITEM=i_board
+//   sm_legacy_tinkering.scp:18      ON=i_clock_parts Parts -> sm_parts
+//   sm_legacy_tinkering.scp:201-202 ON=i_gears <name> (<resmake>)
+// and crafting_settings.scp:26-33 (every NewCrafting_* is 0), which is what
+// makes the LEGACY menus the ones a bot will actually be shown.
+void TestTheThreeRefusedCraftsHaveARoute() {
+    Section("craft: the three outputs that spun on REFUSE_MISSING_RECIPE");
+
+    const life::CraftMenuPath* board = life::CraftMenuFor("i_board");
+    Check(board != nullptr, "i_board has a craft-menu route at all");
+    if (board) {
+        Check(std::string(board->step1) == "boards",
+              "and it is the flat top-level 'boards' entry of sm_carpentry");
+        Check(board->step2 == nullptr,
+              "carpentry's board entry opens no submenu");
+    }
+
+    const life::CraftMenuPath* gears = life::CraftMenuFor("i_gears");
+    Check(gears != nullptr, "i_gears has a craft-menu route at all");
+    if (gears) {
+        Check(std::string(gears->step1) == "Parts",
+              "tinkering reaches gears through the 'Parts' submenu");
+        Check(gears->step2 != nullptr && std::string(gears->step2) == "gears",
+              "and the leaf option is the itemdef's own name");
+    }
+
+    // The third is a different failure with the same symptom. Ore is smelted
+    // by double-clicking it beside a forge -- Provenance::WorldProcessed, "a
+    // station transforms it; no craft menu" -- so the fix is a hand-off to
+    // SMELT, not a table row. Assert the two facts the hand-off branch in
+    // Runner::DoCraft reads: no menu route, and a world-processed recipe.
+    Check(life::CraftMenuFor("i_ingot_iron") == nullptr,
+          "i_ingot_iron deliberately has NO menu route -- it is smelted");
+    const prod::Recipe* ingot = prod::FindRecipe("i_ingot_iron");
+    Check(ingot != nullptr, "i_ingot_iron is still in the recipe graph");
+    if (ingot) {
+        Check(ingot->provenance == prod::Provenance::WorldProcessed,
+              "and it is world-processed, which is what routes it to SMELT");
+    }
+
+    // Both new rows must still be things their trade can actually make, or a
+    // route that resolves would just fail one step later.
+    for (const char* item : {"i_board", "i_gears"}) {
+        const prod::Recipe* r = prod::FindRecipe(item);
+        Check(r != nullptr && r->inputs[0].item != nullptr,
+              "a routed output has a recipe with an input to open the menu");
+    }
+}
+
+// A REFUSAL THAT IS NOT REMEMBERED IS A REFUSAL THAT REPEATS.
+//
+// ChooseCraft knows the recipe graph, not the route table, so before this it
+// handed CRAFT the same unreachable output on the very next tick -- forever.
+// Three strikes and the output steps aside for the next thing this life can
+// make. Session-scoped, and only ever a skip: it must not empty a trade.
+void TestAnUnreachableCraftStandsAside() {
+    Section("craft: three refusals and the bench moves to something reachable");
+
+    life::CraftFocus f;
+    Check(!f.Unreachable("i_board"),
+          "an output nobody has refused yet is fair game");
+    for (i32 i = 0; i < life::CraftFocus::kNoRouteStrikes - 1; ++i)
+        f.NoteNoRoute("i_board");
+    Check(!f.Unreachable("i_board"),
+          "one or two refusals could be a half-read menu -- keep trying");
+    f.NoteNoRoute("i_board");
+    Check(f.Unreachable("i_board"), "three is the route table, not the menu");
+    Check(!f.Unreachable("i_club"),
+          "and it stands aside for THAT output only, not the whole trade");
+
+    // The choice itself: a lumberjack/carpenter holding logs picks something,
+    // and once that something has refused three times it picks something else.
+    const prof::Profession* lj = prof::Find("lumberjack_swordsman");
+    if (!lj) { std::printf("  FAIL: no lumberjack_swordsman\n"); ++g_failures;
+               ++g_checks; return; }
+    life::Observation obs;
+    obs.nowMs = 1000;
+    obs.skills.push_back({rules::kCarpentry, 600});
+    obs.pack.push_back({"i_log", 40});
+    const life::CraftIntent first = life::ChooseCraft(*lj, obs, 1);
+    Check(first.item != nullptr, "with logs in the pack there is work to do");
+    if (first.item) {
+        life::CraftFocus blocked;
+        for (i32 i = 0; i < life::CraftFocus::kNoRouteStrikes; ++i)
+            blocked.NoteNoRoute(first.item);
+        const life::CraftIntent next = life::ChooseCraft(*lj, obs, 1, &blocked);
+        Check(next.item == nullptr || std::string(next.item) != first.item,
+              "the refused output is not offered a fourth time");
+    }
+}
+
 // M5 -- WHAT EACH LIFE WEARS.
 //
 // "mage wears only mage equipment, sell the rest" (project owner). The
@@ -764,6 +1080,12 @@ int main() {
     TestSkillRoles();
     TestTierIsObservedNotAssigned();
     TestEveryRecipeInputIsDeclared();
+    TestEveryProducingLifeHasSomewhereToSell();
+    TestThePlayerMarketIsADestination();
+    TestTheThreeStuckLivesCanNowWork();
+    TestCraftFocusRotates();
+    TestTheThreeRefusedCraftsHaveARoute();
+    TestAnUnreachableCraftStandsAside();
     TestWhatEachLifeWears();
     TestCombatStrategyAgreesWithTheBuild();
     std::printf("%d checks, %d failures\n", g_checks, g_failures);

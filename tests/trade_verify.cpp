@@ -495,6 +495,107 @@ void TestUnicodeSpeechUnknownSerialStaysRaw() {
 
 }  // namespace
 
+// ---------------------------------------------------------------------------
+// 3. A SHOPKEEPER BEHIND A COUNTER IS STILL A SHOPKEEPER.
+//
+// Elara knew "Bret, the alchemist" (0x27D1) from 18:08:57 and spent the rest
+// of her buy errand standing three tiles from him. The lookup that finds a
+// shop used the sight-line as an identity test, so the two counter tiles
+// between them erased Bret entirely: BUY_SUPPLIES logged
+// goal_failed "no 'alchemist' found after 4 trips" while travel was steering
+// toward that same mobile (run_gates/g_Elara.console.txt:105,547,584,604,639).
+//
+// This test reproduces exactly that geometry. The harness Client has no world
+// data loaded, so MobileInLineOfSight can only answer true for a mobile within
+// one tile -- which is precisely the "occluded" case, and makes the old
+// behaviour (return 0) and the new one (return the known shopkeeper)
+// distinguishable without needing MULs.
+// ---------------------------------------------------------------------------
+
+// 0x78 MOBILE_INCOMING (Client.cpp OnMobileIncoming, >=19 bytes):
+// cmd(1) len(2) serial(4)@3 body(2)@7 x(2)@9 y(2)@11 z(1)@13 dir(1)@14
+// hue(2)@15 flags(1)@17 noto(1)@18, then a zero serial to end the equip list.
+std::vector<u8> MakeMobileIncoming(u32 serial, u16 x, u16 y) {
+    std::vector<u8> p(23, 0);
+    p[0] = 0x78;
+    StoreBE16(&p[1], 23);
+    StoreBE32(&p[3], serial);
+    StoreBE16(&p[7], 0x0190);          // human male -- the body a shop wears
+    StoreBE16(&p[9], x);
+    StoreBE16(&p[11], y);
+    p[13] = 0;                          // z
+    p[14] = 0;                          // dir
+    StoreBE16(&p[15], 0);               // hue
+    p[17] = 0;                          // flags
+    p[18] = 1;                          // notoriety
+    StoreBE32(&p[19], 0);               // equip list terminator
+    return p;
+}
+
+// 0x88 OPEN_PAPERDOLL (Client.cpp OnOpenPaperdoll, 66 bytes):
+// cmd(1) serial(4)@1 title[60]@5 flags(1)@65.
+std::vector<u8> MakePaperdoll(u32 serial, const char* title) {
+    std::vector<u8> p(66, 0);
+    p[0] = 0x88;
+    StoreBE32(&p[1], serial);
+    const usize n = std::strlen(title);
+    std::memcpy(&p[5], title, n < 60 ? n : 60);
+    return p;
+}
+
+void TestOccludedShopkeeperIsStillFound() {
+    Section("shop lookup: a known shopkeeper behind a counter is not erased");
+
+    auto c = MakeConnectedClient();
+    // Elara's own coordinates and Bret's, from the run. Chebyshev 3 apart.
+    const u32 kPlayer = 0x00001111;
+    const u32 kBret   = 0x000027D1;
+    const std::vector<u8> login = MakeLoginConfirm(kPlayer, 605, 2181);
+    c->DispatchPacketForTest(login.data(), login.size());
+    const std::vector<u8> bret = MakeMobileIncoming(kBret, 606, 2184);
+    c->DispatchPacketForTest(bret.data(), bret.size());
+    const std::vector<u8> doll = MakePaperdoll(kBret, "Bret, the alchemist");
+    c->DispatchPacketForTest(doll.data(), doll.size());
+
+    Check(!c->MobileInLineOfSight(kBret),
+          "and with no world data he is treated as out of sight -- the "
+          "occluded case this regression is about");
+
+    const u32 found = c->NearestShopkeeperWithTrade("alchemist");
+    Check(found == kBret,
+          "the errand finds the alchemist it already knows about, instead of "
+          "reporting none and burning a trip");
+
+    // The wrong trade must still find nobody. The fallback widens WHERE a
+    // shopkeeper may stand, never WHO counts as one.
+    Check(c->NearestShopkeeperWithTrade("blacksmith") == 0,
+          "an alchemist is not offered up as a blacksmith");
+
+    // With two candidates the nearer one is chosen. NOTE THE LIMIT OF THIS
+    // HARNESS: MobileInLineOfSight bails out early when no world data is
+    // loaded, so BOTH of these are "occluded" here and this proves the
+    // distance ordering within the fallback, not the preference for a
+    // visible shopkeeper over an occluded one. That preference is in the
+    // code (a visible match always overwrites the blind one) but it needs
+    // MULs to exercise, so it is not claimed as proven here.
+    const u32 kKelvin = 0x00004944;
+    // NOT named `near`: <windows.h> defines that as a macro.
+    const std::vector<u8> adjacent = MakeMobileIncoming(kKelvin, 605, 2182);
+    c->DispatchPacketForTest(adjacent.data(), adjacent.size());
+    const std::vector<u8> doll2 = MakePaperdoll(kKelvin, "Kelvin, the alchemist");
+    c->DispatchPacketForTest(doll2.data(), doll2.size());
+    Check(c->NearestShopkeeperWithTrade("alchemist") == kKelvin,
+          "the nearer of two known alchemists is the one chosen");
+
+    // An exhausted seller is skipped, which is what lets a spellbook errand
+    // move on to a different shelf rather than re-reading the same four
+    // random scrolls.
+    const std::vector<u32> skip{kKelvin};
+    Check(c->NearestShopkeeperWithTrade("alchemist", wm::Service::None, &skip)
+              == kBret,
+          "skipping the tried seller falls through to the next one");
+}
+
 int main() {
     net::Socket::WSAStart();
     std::printf("trade verification + speech resolution tests\n\n");
@@ -507,6 +608,7 @@ int main() {
     TestWithdrawalStuckInTheBoxIsAFailure();
     TestUnicodeSpeechResolvesKnownSerial();
     TestUnicodeSpeechUnknownSerialStaysRaw();
+    TestOccludedShopkeeperIsStillFound();
 
     std::printf("\n%d checks, %d failure(s)\n", g_checks, g_failures);
     if (g_failures == 0) std::printf("OK\n");

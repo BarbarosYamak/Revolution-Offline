@@ -21,6 +21,7 @@
 
 #include "uo/endian.h"
 
+#include <cctype>
 #include <cstdio>
 #include <cstring>
 
@@ -62,6 +63,12 @@ constexpr i32 kSameFloorZ = 12;
 // enough to try the doorway, the next room and the street; more than that and
 // the honest answer is that this character cannot get out on its own.
 constexpr int kMaxTravelEscapes = 3;
+
+// Attempts to make one moongate produce its destination dialog. The dialog is
+// opened by the gate's @step trigger and Sphere holds exactly one open at a
+// time, so a gate that has not answered twice is not going to answer a third
+// time either: cancel, give up, and let the route replan on foot.
+constexpr int kMaxGateTries = 3;
 
 } // namespace
 
@@ -176,6 +183,8 @@ bool Client::TravelBegin(const char* label, i32 x, i32 y, i32 arriveRadius,
     // select Magincia at the Minoc gate.
     travelGateSerial_ = 0;
     travelGateDestination_.clear();
+    travelGateTrySerial_ = 0;
+    travelGateTries_ = 0;
     travelStartedDead_ = IsDead();
     // The destination's own floor, where the world data knows one. Britannia's
     // shops are two and three storeys and the shard's spawner rows carry the z
@@ -716,7 +725,8 @@ try_atlas:
 }
 
 bool Client::TravelToUnexploredPlace(const std::vector<std::string>& seen,
-                                     std::string* chosenId) {
+                                     std::string* chosenId,
+                                     const char* regionHint) {
     if (!EnsureWorldKnowledge()) {
         travelFailure_ = WorldKnowledgeError();
         return false;
@@ -724,6 +734,25 @@ bool Client::TravelToUnexploredPlace(const std::vector<std::string>& seen,
     // Nearest place not already known. Nearest rather than random so a
     // character explores outward from where it is instead of criss-crossing
     // the map, and so the walk stays short enough to finish inside a goal.
+    //
+    // AND ONLY AROUND HOME. "Nearest from where I stand" with no fence is a
+    // random walk across the map: once Britain's shops were all known, Odessa
+    // was sent to Cove (1,360 tiles), and from Cove the nearest unknown was
+    // Minoc -- "Odessa always going somewhere" (project owner, 2026-09-02).
+    // A player learns their own town; when the home region holds nothing new
+    // this fails and the caller stands down, which is the right answer.
+    const wm::Region* home =
+        regionHint && *regionHint ? world_knowledge_->atlas.FindRegion(regionHint)
+                                  : nullptr;
+    auto sameRegionId = [](const std::string& a, const std::string& b) {
+        if (a.size() != b.size()) return false;
+        for (size_t i = 0; i < a.size(); ++i) {
+            if (std::tolower(static_cast<unsigned char>(a[i])) !=
+                std::tolower(static_cast<unsigned char>(b[i])))
+                return false;
+        }
+        return true;
+    };
     const wm::Place* best = nullptr;
     i64 bestD = 0;
     for (const wm::Place& p : world_knowledge_->atlas.Places()) {
@@ -735,13 +764,17 @@ bool Client::TravelToUnexploredPlace(const std::vector<std::string>& seen,
         // Somewhere worth knowing: a shop, a bank, a healer, an inn. Wilderness
         // and dungeon mouths are not what a character is short of.
         if (p.services.empty()) continue;
+        if (home && !sameRegionId(p.regionId, home->id) &&
+            !home->Contains(p.position.x, p.position.y))
+            continue;
         const i64 dx = p.position.x - playerX_;
         const i64 dy = p.position.y - playerY_;
         const i64 d = dx * dx + dy * dy;
         if (!best || d < bestD) { best = &p; bestD = d; }
     }
     if (!best) {
-        travelFailure_ = "every place with a service is already known";
+        travelFailure_ = home ? "every place with a service around home is already known"
+                              : "every place with a service is already known";
         return false;
     }
     if (chosenId) *chosenId = best->id;
@@ -1157,6 +1190,7 @@ void Client::TravelDriveLeg() {
     i32 tx = 0, ty = 0;
     i8 tz = 0;
     journey_.CommandTarget(&tx, &ty, &tz);
+    const route::RouteLeg* cur = journey_.CurrentLeg();
 
     if (GotoBusy()) return;   // a previous trip is still settling
 
@@ -1215,6 +1249,20 @@ void Client::TravelDriveLeg() {
         ActionGoto(tx, ty, /*hasZ=*/true, travelGoalZ_);
         return;
     }
+    // A transit leg's own target carries a real z from the atlas (the pad or
+    // gate's actual elevation, RoutePlanner.cpp:427) -- unlike an ordinary
+    // walk waypoint, whose z is a coarse navgrid-anchor value or (for the
+    // very last hop, RoutePlanner.cpp:458) an unconditional 0 that must NOT
+    // be trusted as a hard goal. Passing it through here fixes an approach
+    // A* could otherwise starve on (wave 2, 2026-09-01: Ithion "no path" to
+    // the New Magincia gate 10x -- the pad sits 12 z above the surrounding
+    // shore, and a z-blind goto let A* burn its whole node budget probing
+    // the wrong floor before ever finding the ramp).
+    if (cur && (cur->kind == route::LegKind::Moongate ||
+                cur->kind == route::LegKind::Teleporter)) {
+        ActionGoto(tx, ty, /*hasZ=*/true, tz);
+        return;
+    }
     ActionGoto(tx, ty);
 }
 
@@ -1254,9 +1302,15 @@ void Client::TravelUseTransit() {
     journey_.NoteCommandIssued(travel::Command::UseTransit, NowMs());
     travelGateSerial_ = gateSerial;
     travelGateDestination_ = leg->label;
+    if (gateSerial != travelGateTrySerial_) {
+        travelGateTrySerial_ = gateSerial;
+        travelGateTries_ = 0;
+    }
+    ++travelGateTries_;
     LogInfo("[travel] using moongate 0x%08X for '%s' (gump active=%d "
-            "serial=0x%08X)\n", gateSerial, travelGateDestination_.c_str(),
-            gump_.active ? 1 : 0, gump_.serial);
+            "serial=0x%08X, try %d/%d)\n", gateSerial,
+            travelGateDestination_.c_str(), gump_.active ? 1 : 0, gump_.serial,
+            travelGateTries_, kMaxGateTries);
 
     // The gate's own @step trigger opens the destination gump as soon as we
     // walk onto it, and Sphere will not open a second one for the same context
@@ -1266,6 +1320,56 @@ void Client::TravelUseTransit() {
         LogInfo("[travel] the gate's gump is already open; answering it\n");
         AnswerGateGump();
         return;
+    }
+
+    // No dialog in hand. Either the gate never opened one, or one was opened
+    // and lost -- and while the server still holds an unanswered dialog for us
+    // no amount of clicking will produce another. Cancel the last one we were
+    // sent for this gate (button 0, Sphere's "no match" convention) so the
+    // server's pending state is cleared before the next attempt.
+    if (lastGumpSerial_ == gateSerial && lastGumpContext_) {
+        LogWarn("[travel] moongate 0x%08X sent no dialog; cancelling the stale "
+                "one (context=0x%08X) before retrying\n", gateSerial,
+                lastGumpContext_);
+        SendGumpResponse(lastGumpSerial_, lastGumpContext_, 0, nullptr, 0);
+        lastGumpSerial_  = 0;
+        lastGumpContext_ = 0;
+        if (gump_.active && gump_.serial == gateSerial) gump_ = ActiveGump{};
+    }
+
+    if (travelGateTries_ >= kMaxGateTries) {
+        // Three silent attempts is not a gate that is about to answer. Say so
+        // once and hand the leg back so the route replans -- on foot if that is
+        // what is left -- rather than repeating this every ten seconds forever
+        // (158 times for Xerxes on 2026-09-02).
+        LogWarn("[travel] moongate 0x%08X for '%s' giving up after %d tries: "
+                "no destination dialog arrived\n", gateSerial,
+                travelGateDestination_.c_str(), travelGateTries_);
+        char ev[160];
+        std::snprintf(ev, sizeof(ev), "gate=0x%08X destination='%s' tries=%d",
+                      gateSerial, travelGateDestination_.c_str(),
+                      travelGateTries_);
+        LogEvent("moongate_giving_up", ev);
+        travelGateSerial_ = 0;
+        travelGateDestination_.clear();
+        journey_.OnLegFailed("gate never offered its destination dialog",
+                             NowMs());
+        return;
+    }
+
+    // Step off the gate tile and back on: @step is what opens the dialog, and
+    // standing still on the tile will never fire it again.
+    if (travelGateTries_ > 1) {
+        i32 ox = playerX_, oy = playerY_;
+        for (const auto& kv : items_) {
+            if (kv.first != gateSerial) continue;
+            ox = kv.second.x + 2;
+            oy = kv.second.y;
+            break;
+        }
+        LogInfo("[travel] stepping off moongate 0x%08X to (%d,%d) to re-trigger "
+                "its @step\n", gateSerial, ox, oy);
+        ActionGoto(ox, oy);
     }
     SendDoubleClick(gateSerial);
 }
@@ -1752,7 +1856,10 @@ void Client::WarModeTick() {
 // indirection is why a label has to be resolved rather than read inline, and
 // it is what lets us match a radio button to the destination name beside it.
 void Client::OnGenericGump(const u8* data, usize size) {
-    gump_ = ActiveGump{};
+    // A malformed or short packet must leave any OPEN gump alone. Clearing
+    // gump_ up front (the shape before 2026-09-02) meant anything that reached
+    // this function and failed a bounds check silently threw away a dialog the
+    // server still considers open -- and Sphere will not resend one.
     if (size < 23) return;
 
     const u32 serial  = LoadBE32(data + 3);
@@ -1760,6 +1867,7 @@ void Client::OnGenericGump(const u8* data, usize size) {
     const u16 ctrlLen = LoadBE16(data + 19);
     const usize ctrlStart = 21;
     if (ctrlStart + ctrlLen > size) return;
+    gump_ = ActiveGump{};
 
     // Text table follows the controls.
     std::vector<std::string> texts;
@@ -1843,6 +1951,8 @@ void Client::OnGenericGump(const u8* data, usize size) {
     gump_.active = true;
     gump_.serial = serial;
     gump_.context = context;
+    lastGumpSerial_  = serial;
+    lastGumpContext_ = context;
     gump_.options = std::move(options);
     gump_.texts = texts;
 
@@ -2100,7 +2210,7 @@ bool Client::AnswerGump(u32 button, u32 optionId) {
     const u32 checks[1] = { optionId };
     SendGumpResponse(gump_.serial, gump_.context, button,
                      optionId ? checks : nullptr, optionId ? 1u : 0u);
-    gump_ = ActiveGump{};
+    ForgetAnsweredGump();
     return true;
 }
 
@@ -2108,8 +2218,21 @@ bool Client::CloseGump() {
     if (!gump_.active) return false;
     // Button 0 is "cancel" by Sphere convention (`onbutton=0` / no match).
     SendGumpResponse(gump_.serial, gump_.context, 0, nullptr, 0);
-    gump_ = ActiveGump{};
+    ForgetAnsweredGump();
     return true;
+}
+
+// A dialog we have replied to is no longer pending on the server, so it must
+// not look "stale" to the moongate retry path. Without this, a gate whose gump
+// was answered during the approach was cancelled again by the transit leg a
+// moment later (g_Vorar.err.txt 12:31:57.916, gate 0x400028A0) -- harmless
+// there, but a cancel aimed at a dialog somebody else may since have opened.
+void Client::ForgetAnsweredGump() {
+    if (lastGumpSerial_ == gump_.serial && lastGumpContext_ == gump_.context) {
+        lastGumpSerial_  = 0;
+        lastGumpContext_ = 0;
+    }
+    gump_ = ActiveGump{};
 }
 
 // ---------------------------------------------------------------------------
@@ -2295,6 +2418,23 @@ bool Client::JournalSaidSince(const char* needle, i64 sinceMs) const {
         if (hay.find(want) != std::string::npos) return true;
     }
     return false;
+}
+
+i64 Client::JournalLastSaidMs(const char* needle, i64 sinceMs) const {
+    if (!needle || !needle[0]) return -1;
+    std::string want(needle);
+    for (char& c : want) {
+        if (c >= 'A' && c <= 'Z') c = static_cast<char>(c - 'A' + 'a');
+    }
+    for (auto it = journal_.rbegin(); it != journal_.rend(); ++it) {
+        if (it->timeMs < sinceMs) break;   // journal is in time order
+        std::string hay = it->text;
+        for (char& c : hay) {
+            if (c >= 'A' && c <= 'Z') c = static_cast<char>(c - 'A' + 'a');
+        }
+        if (hay.find(want) != std::string::npos) return it->timeMs;
+    }
+    return -1;
 }
 
 i32 Client::JournalNumberSince(const char* needle, i64 sinceMs) const {

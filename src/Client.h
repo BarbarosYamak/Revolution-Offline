@@ -395,8 +395,13 @@ public:
     // answers nothing -- "Caedmen guildmaster, why try to buy from him?
     // guildmaster ONLY for training" (project owner, 2026-08-29). This one
     // skips them, and is what the purchase goals ask.
+    // `skip`, when given, holds shopkeepers this errand has already tried and
+    // found useless -- a mage whose four random scrolls are all in the book
+    // already, say. Skipping them lets the next candidate be considered
+    // instead of the errand walking back to the same shelf.
     u32  NearestShopkeeperWithTrade(const char* trade,
-                                    wm::Service svc = wm::Service::None) const;
+                                    wm::Service svc = wm::Service::None,
+                                    const std::vector<u32>* skip = nullptr) const;
     void ServiceSightingTail(u32 serial, const char* title, wm::Service svc);
     // Same scan, skipping mobiles already tried and found useless. Sphere
     // gives no way to ask "will you teach me" except to ask, and some NPCs of
@@ -580,6 +585,22 @@ public:
     bool ActionTradeAccept(bool accept);
     bool ActionTradeCancel();
     const trade::TradeState& Trade() const { return trade_; }
+    // Drop a FINISHED window's state. TradeState latches Completed/Cancelled
+    // until something clears it, and a goal handler that only reset its own
+    // bookkeeping saw the same closed phase again on every tick -- 200 identical
+    // "trade: cancelled" lines in two minutes. Acknowledging the close here is
+    // what makes that branch idempotent. Refuses to touch a LIVE window.
+    void TradeForget() { if (!trade_.Active()) trade_.Reset(); }
+    // A second trade window arrived while one was open and was closed on the
+    // wire. Handed to the caller ONCE so it can tell that player out loud.
+    bool TakeDeclinedTrade(u32* serial, std::string* name) {
+        if (!declinedTradePartner_) return false;
+        if (serial) *serial = declinedTradePartner_;
+        if (name) *name = declinedTradeName_;
+        declinedTradePartner_ = 0;
+        declinedTradeName_.clear();
+        return true;
+    }
 
     // -----------------------------------------------------------------
     // M2.5 semantic travel.
@@ -618,8 +639,12 @@ public:
     // `chosenId` receives the place id actually picked, so the caller can
     // record it as seen. Without that the same nearest unvisited shop is
     // chosen again on the next tick, forever.
+    // `regionHint` (a city name/id) fences exploring to that region; when it
+    // holds nothing new the call fails and the caller stands down rather than
+    // wandering across the map.
     bool TravelToUnexploredPlace(const std::vector<std::string>& seen,
-                                 std::string* chosenId);
+                                 std::string* chosenId,
+                                 const char* regionHint = nullptr);
     bool TravelToRegion(const char* nameOrId);
     // `regionHint` narrows the search to one region ("the bank in Yew");
     // nullptr means the nearest one anywhere.
@@ -920,6 +945,14 @@ public:
     // taming: a sheep is innocent, and innocent is exactly what a tamer wants.
     int ScanMobiles(int maxDist, std::vector<HostileHit>& out) const;
 
+    // ARE THE NAMES STILL IN THE POST? ActionScanMobiles asks the shard for
+    // every nearby mobile's name (0x98 AllNames) and the replies arrive
+    // asynchronously, so a HostileHit read in the same tick still has
+    // name == "". A caller that filters on the name -- DoTameAnimal does,
+    // because the creature table is keyed by it -- must wait for this to go
+    // false before believing an empty result.
+    bool MobileNamesPending() const { return mobilesListPending_; }
+
     // HOW MANY PLAYERS (or other bots) are close enough to hear a spoken
     // offer. A player-market announcement only works if somebody is there.
     //
@@ -967,6 +1000,13 @@ public:
     // chop", or "You decide not to chop wood for now" -- four outcomes a timer
     // cannot tell apart. Reading them is exactly what a player does.
     bool JournalSaidSince(const char* needle, i64 sinceMs) const;
+    // WHEN it was last said, or -1 if it was not. Needed wherever two server
+    // statements contradict each other and only the later one is still true:
+    // hunger is such a state -- "You are hungry" is said once at login and
+    // "You eat the food, and begin to feel more satiated" much later, and a
+    // plain "did it ever say hungry" read keeps a well-fed character eating
+    // (see Runner::Observe).
+    i64  JournalLastSaidMs(const char* needle, i64 sinceMs) const;
     // Pull the FIRST integer out of the newest journal line containing
     // `needle`, or -1. The NPC trainer quote is
     // "For %d gold I will train you in all I know of %s"
@@ -1017,6 +1057,10 @@ public:
     u32  GumpContext() const { return gump_.context; }
     bool AnswerGump(u32 button, u32 optionId);
     bool CloseGump();
+    // Drop the open dialog AND our memory of it as something still pending on
+    // the server, so the moongate retry path cannot cancel a reply we already
+    // sent.
+    void ForgetAnsweredGump();
     // Answer a 0x7C MENU by 1-based option index (0 cancels). Sphere's craft
     // menus are menus, not gumps -- the Carpentry menu arrives as
     // `[0x7C] menu=690 "Carpentry"` and is answered with 0x7D -- so AnswerGump
@@ -1282,6 +1326,7 @@ private:
     // Confirmation hooks, called from the packet handlers.
     void ActionOnContainerOpened(u32 serial, u16 gumpId);
     void ActionOnContainerContents(u32 container, u16 count);
+    void ActionOnMenuOpened();         // a 0x7C arrived while an action waits
     void ActionOnItemInContainer(u32 item, u32 container);
     void ActionOnItemEquipped(u32 mobile, u32 item, u8 layer);
     void ActionOnItemWorld(u32 item, i32 x, i32 y, i8 z);
@@ -1374,6 +1419,12 @@ private:
     u32  BotMoveGapMs() const;
     bool BotReplanToGoal();   // queue a full A* replan from current pose
     bool BotLookaheadPatchPath(); // short local reroute around visible blockers
+    // The goal handed to A* is frequently a resource's own tile (tree, water,
+    // rock) rather than somewhere standable. Finds the nearest walkable tile
+    // within a small radius of (goalX,goalY) so one such goal can be salvaged
+    // instead of aborting on "goal not walkable" -- see BotPollPathPlanner.
+    bool BotFindWalkableNearGoal(i32 goalX, i32 goalY, i8 nearZ, i32 maxRadius,
+                                 i32* outX, i32* outY, i8* outZ) const;
     bool BotIsRuntimeBlocked(i32 x, i32 y, i8 z) const;
     bool BotIsMobileBlocking(i32 x, i32 y, i8 z) const;
     bool BotIsDynamicItemBlocking(i32 x, i32 y, i8 z) const;
@@ -1697,6 +1748,9 @@ private:
                              u16 graphic, u16 hue);
     // Serial of our worn item at a layer (0 if nothing equipped there).
     u32 PlayerEquipSerialAt(u8 layer) const;
+    // Layer a serial of ours is worn on, or -1. Equipping something already
+    // worn makes the server strip it into the pack, so ActionEquip asks first.
+    int PlayerEquipLayerOf(u32 serial) const;
     // Lowercased tiledata static name for an item graphic ("" if no tiledata).
     std::string ItemNameLower(u16 graphic) const;
     // Equip layer for an item graphic, read from tiledata (StaticTile.quality,
@@ -1879,6 +1933,16 @@ private:
     bool  travelUseMoongates_ = false;
     u32   travelGateSerial_ = 0;       // gate we double-clicked, awaiting its gump
     std::string travelGateDestination_;// what to pick when that gump arrives
+    // Bounded retry on one gate. Sphere opens the destination dialog from the
+    // gate's @step and will not open a second one while the first is
+    // unanswered, so a silent gate is never fixed by clicking harder: cancel
+    // the stale dialog, then give up and let travel replan on foot.
+    u32   travelGateTrySerial_ = 0;    // gate the try counter belongs to
+    int   travelGateTries_ = 0;
+    // Last generic gump the server sent, kept AFTER it is answered or closed so
+    // an orphaned dialog can still be cancelled by (serial, context).
+    u32   lastGumpSerial_ = 0;
+    u32   lastGumpContext_ = 0;
 
     // Generic gump (0xB0) currently open. The public moongate's destination
     // list arrives this way, and answering it is how a player uses the gate.
@@ -1939,6 +2003,8 @@ private:
     void TradeNoteItemAdded(u32 container, u32 item);
     void TradeNoteItemRemoved(u32 item);
     trade::TradeState trade_;      // session-owned; never shared
+    u32         declinedTradePartner_ = 0;   // second window we closed on them
+    std::string declinedTradeName_;
     void AnswerGateGump();   // pick the route's destination out of an open gump
     void SendGumpResponse(u32 serial, u32 context, u32 button,
                           const u32* checks, usize checkCount);   // 0xB1

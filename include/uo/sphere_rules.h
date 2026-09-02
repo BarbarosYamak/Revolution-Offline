@@ -239,6 +239,28 @@ inline constexpr bool IsHumanBody(u16 body) {
            body == 0x029A || body == 0x029B;
 }
 
+// --- reach: how close the server needs you to be ---------------------------
+//
+// ARM'S LENGTH IS TWO TILES, NOT THREE. Every "use", "grab" and vendor
+// purchase goes through CChar::CanTouch, and CanTouch refuses on
+//
+//     if (( iDist > 2 ) && fCanTouch) { fCanTouch = false; ... }
+//
+// (Source-X src/game/chars/CCharStatus.cpp:1423). `iDist` there is
+// CPointMap::GetDist -- the Chebyshev/chessboard metric, max(|dx|,|dy|) -- so
+// a diagonal neighbour two tiles out is reachable and anything at three is
+// not, whatever the Manhattan sum says. The vendor buy packet checks exactly
+// this before doing anything else: `if (buyer->CanTouch(vendor) == false)` ->
+// "You can't reach the Vendor" (src/network/receive.cpp:752-756).
+//
+// A client that guessed 3 here was guaranteed to be refused at exactly the
+// distance it thought was fine. Aurelius did, twice, from three tiles away
+// (run_gates/g_Aurelius.console.txt:411,468-470).
+constexpr i32 kTouchDist = 2;
+
+// `dist` must be the Chebyshev distance, the same metric the server uses.
+inline constexpr bool CanTouchAtDist(i32 dist) { return dist <= kTouchDist; }
+
 inline u8 MoveDirectionByte(u8 dir, bool run) {
     return static_cast<u8>((dir & 0x07) | (run ? kDirMaskRunning : u8(0)));
 }

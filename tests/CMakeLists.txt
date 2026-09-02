@@ -179,6 +179,16 @@ target_include_directories(trip_budget PRIVATE
 
 add_test(NAME trip_budget COMMAND trip_budget)
 
+# wave 2, 2026-09-01, cluster 2: the ring search that salvages an unwalkable
+# literal goal (uo::nav::FindWalkableNearGoal, include/uo/nav_rules.h).
+# Pure -- header-only template, no Client, no server, no world data.
+add_executable(goal_snap goal_snap.cpp)
+target_include_directories(goal_snap PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+
+add_test(NAME goal_snap COMMAND goal_snap)
+
 # --- M5.1: the profession catalogue ----------------------------------------
 # Checks every entry against BOTH rulesets -- Revolution's creation rule
 # (two skills at 50.0, 50 stat points) and the finished-build caps (700/225).
@@ -405,6 +415,14 @@ target_include_directories(activity_gather PRIVATE
     ${CMAKE_SOURCE_DIR}/src)
 
 add_test(NAME activity_gather COMMAND activity_gather)
+
+# --- Taming: names before judgement, pastures from the world save ----------
+add_executable(activity_tame activity_tame.cpp)
+target_include_directories(activity_tame PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+
+add_test(NAME activity_tame COMMAND activity_tame)
 
 # --- Strategies: combat -----------------------------------------------------
 #
@@ -671,3 +689,28 @@ target_include_directories(move_ack PRIVATE
     ${CMAKE_SOURCE_DIR}/src)
 
 add_test(NAME move_ack COMMAND move_ack)
+
+# --- Moongate dialog retention (0xB0 vs. the packets behind it) -------------
+# Regression cover for wave 2026-09-02: Xerxes and Vorar stuck at the Magincia
+# gate. The "log + ignore" packet cases in Client.cpp's dispatch had no break
+# and fell through into `case 0xB0: OnGenericGump(...)`, whose first statement
+# cleared the held gump -- so the gate's own sound/effect destroyed the
+# destination dialog it arrives behind, and Sphere never sent another. Like
+# trade_verify, this needs the real Client (its packet handlers are not seamed
+# out from sockets), so it links the whole client minus main.cpp and opens a
+# loopback listener purely so Client::Send() has somewhere to write.
+set(MOONGATE_GUMP_SOURCES ${UO_CLIENT_SOURCES})
+list(REMOVE_ITEM MOONGATE_GUMP_SOURCES src/main.cpp)
+list(TRANSFORM MOONGATE_GUMP_SOURCES PREPEND ${CMAKE_SOURCE_DIR}/)
+
+add_executable(moongate_gump moongate_gump.cpp ${MOONGATE_GUMP_SOURCES})
+target_include_directories(moongate_gump PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src
+    ${quickjs_SOURCE_DIR})
+target_link_libraries(moongate_gump PRIVATE uo_mul uo_world qjs)
+if(WIN32)
+    target_link_libraries(moongate_gump PRIVATE ws2_32 user32 gdi32)
+endif()
+
+add_test(NAME moongate_gump COMMAND moongate_gump)

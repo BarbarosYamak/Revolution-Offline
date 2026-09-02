@@ -681,6 +681,88 @@ void TestHybridReasoning() {
           "hybrid: capability follows skills, not a class");
 }
 
+// ---------------------------------------------------------------------------
+// THE NPC PRICE FLOOR (owner ruling, 2026-09-02).
+//
+// Two switch settings, and the DEFAULT is on. What is under test here is only
+// the POLICY predicate -- whether the floor may open at all. Whether an NPC
+// then exists to buy the thing is market::NpcBuyersFor's question and is
+// tested in m7_market.
+//
+// The two questions genuinely diverge for the hue families below. The floor
+// calls i_ingot_valorite a material and opens for it, but no vendor buys one:
+// a script `ID=i_ingot_iron` line sets only the DISPLAY index
+// (Source-X CItemBase.cpp:1659-1694), while the itemdef keeps its own resource
+// id (CItemBase.h:309), and Sphere matches a BUY row on that resource id with
+// no hue term (CCharNPCStatus.cpp:611, CItem.cpp:6041-6071). Permission
+// without a buyer; the goods bank. m7_market asserts the buyer half.
+void TestNpcPriceFloor() {
+    Section("npc floor: the switch, the material class, and the player window");
+
+    // The default. A ruling that has to be switched on by every caller is not
+    // a default, and the owner's wording is that NPC sale is the fallback
+    // rather than a refusal.
+    Check(econ::CurrentSalePolicy().allowMaterialsToNpc,
+          "the floor is ON by default");
+
+    // WHAT COUNTS AS A MATERIAL. Read off the audit matrix rather than a
+    // second hand-written list.
+    Check(econ::IsFloorMaterial("i_log"), "a log is a material (WorldGathered)");
+    Check(econ::IsFloorMaterial("i_cloth"),
+          "so is cloth (WorldProcessed)");
+    Check(econ::IsFloorMaterial("i_hide"), "so is a hide");
+    Check(econ::IsFloorMaterial("i_feather"), "so is a feather");
+    Check(econ::IsFloorMaterial("i_fish_big_1"), "so is a fish");
+    // The two hue families. i_ingot_valorite and i_ore_shadow are
+    // `ID=i_ingot_iron` / `ID=i_ore_iron` plus a COLOR line, so they are NOT
+    // in the matrix at all and a matrix-only test would refuse the rarest
+    // thing a miner owns for a reason that is an artefact of the file format.
+    Check(econ::ClassifyForVendor("i_ingot_valorite") ==
+              econ::VendorClass::Unknown,
+          "the matrix cannot name a coloured ingot -- one ITEMDEF, sixteen hues");
+    Check(econ::IsFloorMaterial("i_ingot_valorite"),
+          "but the floor still recognises it as a material");
+    Check(econ::IsFloorMaterial("i_ore_shadow"), "and shadow ore likewise");
+    Check(econ::IsFloorMaterial("i_cloth_bolt"),
+          "a bolt is cloth in a larger unit");
+    Check(econ::IsFloorMaterial("i_board"),
+          "a board is a material, like the log it came from");
+
+    // NOT materials. The floor must not become a general permission to dump
+    // finished goods, which is the exact route the faucet registry refuses.
+    Check(!econ::IsFloorMaterial("i_dagger"), "a dagger is not a material");
+    Check(!econ::IsFloorMaterial("i_robe"), "nor a robe");
+    Check(!econ::IsFloorMaterial("i_shield_heater"), "nor a shield");
+    Check(!econ::IsFloorMaterial("i_reag_batwing"),
+          "nor an era-conflicted reagent");
+    Check(!econ::IsFloorMaterial(nullptr), "a null query is not a crash");
+    Check(!econ::IsFloorMaterial(""), "nor is an empty one");
+
+    // PLAYER-FIRST IS THE GATE, not a preference. Until the WTS window has
+    // closed the floor stays shut however material the item is.
+    Check(!econ::MaterialFloorOpen("i_log", /*playersDeclined=*/false),
+          "the floor is SHUT while the player-first window is still open");
+    Check(econ::MaterialFloorOpen("i_log", /*playersDeclined=*/true),
+          "and opens once nobody answered the offer");
+    Check(!econ::MaterialFloorOpen("i_dagger", true),
+          "a closed window does not open the floor for a finished good");
+
+    // THE SWITCH OFF: the strict M3.7 behaviour, unchanged.
+    econ::SalePolicy strict;
+    strict.allowMaterialsToNpc = false;
+    econ::SetSalePolicy(strict);
+    Check(!econ::MaterialFloorOpen("i_log", true),
+          "switch OFF: no material reaches an NPC, whatever the players did");
+    Check(!econ::MaterialFloorOpen("i_ingot_valorite", true),
+          "switch OFF: and that includes the coloured metals");
+    Check(econ::IsFloorMaterial("i_log"),
+          "the switch changes the PERMISSION, not what a material is");
+
+    // Restore, so the default is what the rest of the process sees.
+    econ::SetSalePolicy(econ::SalePolicy{});
+    Check(econ::MaterialFloorOpen("i_log", true), "switch back ON");
+}
+
 } // namespace
 
 int main() {
@@ -693,6 +775,7 @@ int main() {
     TestMissingInputs();
     TestRunebookProvenance();
     TestVendorPolicy();
+    TestNpcPriceFloor();
     TestAcquisition();
     TestNeedsAndOffers();
     TestGraphQueries();
