@@ -166,6 +166,21 @@ std::vector<Want> PlayerMarketWants(const prof::Profession& p,
                                     const TradePolicy& policy,
                                     const char** whyNotOut = nullptr);
 
+// CAN THIS LIFE AFFORD TO ASK AT ALL? The capital gate PlayerMarketWants
+// applies before it will name a single want: one unit at the blind ceiling
+// without eating the reserve the profession keeps for tools.
+//
+// Exposed because "the market said no" and "this life cannot afford to walk
+// to the market" are different facts, and a need that gates on the first was
+// waiting forever for the second. A tailor with gold=0 returns an EMPTY want
+// list here -- not because nobody sells yarn, but because it could never buy
+// any -- so nothing ever announced a WTB and nothing ever wrote
+// `no_player_seller` (run_gates/g_Aelia.console.txt:83-710, MAKE_CLOTH
+// BLOCKED on "the player market has not been asked for it yet", 20x in a
+// 5-minute gate with gold=0 throughout).
+bool CanAffordToShop(const prof::Profession& p, i32 gold,
+                     const TradePolicy& policy);
+
 // WHERE A MISSING CRAFT INPUT SHOULD ACTUALLY COME FROM.
 //
 // The buy errand used to know exactly one answer -- an NPC shopkeeper -- and

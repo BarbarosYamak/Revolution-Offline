@@ -2744,6 +2744,69 @@ void TestClothIsBoughtFromPlayersBeforeItIsSheared() {
     Check(unrelated != nullptr && unrelated->blocked,
           "a failed attempt to buy LOGS teaches a tailor nothing about cloth");
 
+    // --- "CANNOT BUY NOW" COUNTS AS A DECLINE ------------------------------
+    //
+    // Owner ruling via lead, 2026-09-02: WTB-first stays while it is
+    // affordable and reachable; below the reserve, or with no session left for
+    // the trip, the market has effectively said no and the self chain
+    // proceeds. Both refusals happen BEFORE any WTB is announced, so neither
+    // ever produces the no_player_seller the case above waits on -- Aelia ran
+    // a whole gate at gold=0 and never left "the player market has not been
+    // asked for it yet" (run_gates/g_Aelia.console.txt:83-710).
+    auto clothNeedWith = [&](i32 goldOnHand, bool tripFits,
+                             std::vector<life::Need>& out) -> const life::Need* {
+        life::NeedConfig cfg;
+        cfg.profession = t;
+        life::Observation obs;
+        obs.inWorld = true;
+        obs.hp = obs.hpMax = 40;
+        obs.gold = obs.goldOnHand = goldOnHand;
+        obs.weight = 50; obs.maxWeight = 400;
+        obs.nowMs = 60000;
+        obs.marketTripFitsSession = tripFits;
+        out = life::AssessNeeds(plan, mem, obs, cfg);
+        return Find(out, life::NeedKind::NeedCloth);
+    };
+
+    std::vector<life::Need> broke;
+    const life::Need* pennilessN = clothNeedWith(0, true, broke);
+    Check(pennilessN != nullptr && !pennilessN->blocked,
+          "a tailor with 0 gold shears without waiting for a market answer -- "
+          "it could never have bought the yarn it is waiting to be offered");
+    if (pennilessN) {
+        Check(pennilessN->urgency > 0.0,
+              "and the need carries real urgency, so MAKE_CLOTH can be picked");
+        Check(pennilessN->evidence.find("0 gold on hand") != std::string::npos,
+              "and the telemetry says WHY it stopped asking: the purse");
+    }
+
+    std::vector<life::Need> late;
+    const life::Need* noTimeN = clothNeedWith(1000, false, late);
+    Check(noTimeN != nullptr && !noTimeN->blocked,
+          "so does a funded tailor with no session left for the market trip -- "
+          "the same refusal DoTradeWithPlayer makes on entry");
+
+    // AND THE RULE IS NOT REPEALED. A tailor that CAN afford the trip and has
+    // the session for it still asks the players first.
+    std::vector<life::Need> funded;
+    const life::Need* stillAsks = clothNeedWith(1000, true, funded);
+    Check(stillAsks != nullptr && stillAsks->blocked &&
+              stillAsks->urgency == 0.0,
+          "but a funded tailor with time to spare still WTBs before it shears");
+
+    // PER-NEED, NOT GLOBAL: an empty purse is not a general licence to skip
+    // the player market. Every OTHER need a broke tailor raises that depends
+    // on buying must still be BLOCKED -- only cloth has a self chain to fall
+    // back on, and only cloth is allowed to take it.
+    for (const life::Need& n : broke) {
+        if (n.kind == life::NeedKind::NeedSupplies ||
+            n.kind == life::NeedKind::NeedTrade) {
+            Check(n.blocked || n.urgency == 0.0,
+                  "a penniless tailor's shopping needs stay blocked -- the "
+                  "decline is recorded on NeedCloth alone");
+        }
+    }
+
     // AND A LIFE WITH NO CLOTH IN ITS RECIPES NEVER SEES THIS NEED.
     const prof::Profession* ms = prof::Find("miner_smith");
     if (ms) {
@@ -2761,6 +2824,208 @@ void TestClothIsBoughtFromPlayersBeforeItIsSheared() {
               "a smith is never sent to shear a sheep, however quiet the "
               "cloth market is");
     }
+
+    // --- THE TRADE ERRAND'S OWN STAND-DOWN IS ALSO AN ANSWER ---------------
+    //
+    // Amara: NeedCloth BLOCKED at 0.00 on "the player market has not been
+    // asked for it yet" for fourteen consecutive assessments while
+    // TRADE_WITH_PLAYER was cooling for another 599s after achieving nothing.
+    // Nothing else scored, so EXPLORE won and took 50% of the session's picks
+    // (run_gates/g_Amara.console.txt:148,200,204,1151).
+    {
+        life::NeedConfig cfg;
+        cfg.profession = t;
+        life::Observation obs;
+        obs.inWorld = true;
+        obs.hp = obs.hpMax = 40;
+        obs.gold = obs.goldOnHand = 9700;   // funded, so `broke` is false
+        obs.weight = 50; obs.maxWeight = 400;
+        obs.nowMs = 60000;
+        obs.marketTripFitsSession = true;   // and there IS time, so `noTime` too
+        obs.marketAskOnCooldown = true;
+        const std::vector<life::Need> needs =
+            life::AssessNeeds(plan, mem, obs, cfg);
+        const life::Need* cloth = Find(needs, life::NeedKind::NeedCloth);
+        Check(cloth != nullptr && !cloth->blocked && cloth->urgency > 0.0,
+              "a funded tailor whose TRADE_WITH_PLAYER is on cooldown shears "
+              "instead of waiting on an answer nobody can be asked for");
+    }
+}
+
+// --------------------------------------------------------------------------
+// A BOLT IS CUT, NOT BANKED.
+//
+// Owner, 2026-09-02, watching Aelia live: she wove her first bolt at the
+// Britain loom (1473,1685) and forty milliseconds later BANK superseded
+// MAKE_CLOTH -- "BANK 142.3 superseded MAKE_CLOTH 68.8" -- walked 47 tiles and
+// deposited it, with scissors in her pack the whole time
+// (run_gates/g_Aelia.console.txt:442,460,519).
+//
+// TWO INDEPENDENT ROUTES PUT IT IN THE BOX, so both are asserted here:
+//   * the bolt is the FIRST entry of the tailor's `produces`, so
+//     market::Surplus called one bolt spare stock;
+//   * a bolt weighs 50 stones (i_profession_tailor_tanner.scp:74-80), enough
+//     on its own to cross bankWeightFrac and raise "deposit carried load".
+void TestABoltIsCutNotBanked() {
+    Section("needs: half-made cloth is finished, not stored");
+
+    const prof::Profession* t = prof::Find("tailor");
+    Check(t != nullptr, "the tailor exists");
+    if (!t) return;
+
+    life::NeedConfig cfg;
+    cfg.profession = t;
+
+    // THE PREDICATE ITSELF, since two subsystems read it.
+    std::vector<market::Stock> justABolt;
+    justABolt.push_back({"i_cloth_bolt", 1});
+    Check(life::WoolChainWorkInProgress(*t, justABolt, cfg.craftBatch,
+                                        "i_cloth_bolt"),
+          "one bolt and no cloth: the bolt is work in progress");
+    Check(life::WoolChainWorkInProgress(*t, justABolt, cfg.craftBatch, "i_wool"),
+          "so are wool and yarn -- every step the scissors have not reached");
+    Check(!life::WoolChainWorkInProgress(*t, justABolt, cfg.craftBatch,
+                                         "i_cloth"),
+          "but cut cloth is the finished material, never 'in progress'");
+
+    std::vector<market::Stock> stocked;
+    stocked.push_back({"i_cloth_bolt", 3});
+    stocked.push_back({"i_cloth", 500});
+    Check(!life::WoolChainWorkInProgress(*t, stocked, cfg.craftBatch,
+                                         "i_cloth_bolt"),
+          "and a tailor already holding a sitting's cloth may bank or sell "
+          "spare bolts -- this is not a ban on ever storing one");
+
+    const prof::Profession* ms = prof::Find("miner_smith");
+    if (ms) {
+        Check(!life::WoolChainWorkInProgress(*ms, justABolt, cfg.craftBatch,
+                                             "i_cloth_bolt"),
+              "a life whose recipes never eat cloth holds a bolt as plain "
+              "goods -- the gate is the recipe graph, not the job title");
+    }
+
+    // THE LIVE SHAPE: Aelia's numbers at the loom, 120 of 124 stones with the
+    // bolt in the pack.
+    life::Observation obs;
+    obs.inWorld = true;
+    obs.hp = obs.hpMax = 40;
+    obs.gold = obs.goldOnHand = 0;
+    obs.weight = 120; obs.maxWeight = 124;
+    obs.nowMs = 60000;
+    obs.pack.push_back({"i_cloth_bolt", 1});
+
+    life::Memory mem;
+    const std::vector<life::Need> needs =
+        life::AssessNeeds(life::PlanFromProfession(*t), mem, obs, cfg);
+
+    for (const life::Need& n : needs) {
+        if (n.kind != life::NeedKind::NeedBank) continue;
+        Check(n.blocked || n.urgency == 0.0,
+              "with nothing in the pack but a bolt it means to cut, no bank "
+              "errand is live -- the weight IS the work");
+    }
+    for (const life::Need& n : needs) {
+        Check(n.evidence.find("x i_cloth_bolt spare") == std::string::npos,
+              "and no need calls that bolt spare stock");
+    }
+
+    const life::Need* cloth = Find(needs, life::NeedKind::NeedCloth);
+    Check(cloth != nullptr && !cloth->blocked && cloth->urgency > 0.0,
+          "MAKE_CLOTH is the live errand instead: penniless counts as a market "
+          "decline, so the scissors step may run");
+    const life::Need* bank = Find(needs, life::NeedKind::NeedBank);
+    if (cloth && bank) {
+        Check(cloth->urgency > bank->urgency,
+              "and cutting outranks banking, which is the order the owner "
+              "asked for: bolt -> scissors -> cloth");
+    }
+}
+
+// --------------------------------------------------------------------------
+// "I HAVE THE YARN, I NEED TO WEAVE IT."
+//
+// The shortfall that is not a shortfall of INPUTS. A tailor's `produces` opens
+// with i_cloth_bolt, whose only input is four yarn, so the moment four yarn are
+// carried the recipe's missing list is EMPTY -- and NeedCloth, which was built
+// from that list alone, never fired. Aelia held 6 yarn and 0 bolts for a whole
+// session: CRAFT chose the bolt, found every input present, handed off to
+// MAKE_CLOTH because a bolt is loom work, and MAKE_CLOTH was not in the
+// planner's list at all -- not even as a BLOCKED_NEED. The session drifted
+// CRAFT -> PRACTICE_SKILL -> EARN_GOLD with the loom fifty tiles away
+// (artifacts/cloth_walkup_bolt_route_capacity_2026-09-02.md section 4).
+void TestYarnInThePackIsWorkNotStock() {
+    Section("cloth: yarn in the pack is unfinished work, not a full larder");
+
+    const prof::Profession* t = prof::Find("tailor");
+    Check(t != nullptr, "the tailor exists");
+    if (!t) return;
+
+    life::Memory mem;
+    const life::BuildPlan plan = life::PlanFromProfession(*t);
+
+    // Aelia's live state, not an invented one (tools/world_query.py --char
+    // Aelia, 2026-09-02): tooled, unhurt, and penniless. Gold 0 is what makes
+    // the market count as declined here -- market::CanAffordToShop refuses to
+    // name a want at all below the reserve, so no WTB is ever announced and no
+    // no_player_seller is ever written. That is rule B's capital gate, the same
+    // one the case below this section already covers for a missing INPUT.
+    auto tailorHolding = [&](i32 yarnQty, i32 boltQty,
+                             std::vector<life::Need>& out) -> const life::Need* {
+        life::NeedConfig cfg;
+        cfg.profession = t;
+        life::Observation obs;
+        obs.inWorld = true;
+        obs.hp = obs.hpMax = 40;
+        obs.gold = obs.goldOnHand = 0;
+        obs.weight = 50; obs.maxWeight = 400;
+        obs.nowMs = 60000;
+        obs.marketTripFitsSession = true;
+        obs.toolsHeld = {"sewing kit", "scissors"};
+        obs.healPotions = 4;   // a crafter's self-heal, already bought
+        if (yarnQty > 0) obs.pack.push_back({"i_yarn_ball", yarnQty});
+        if (boltQty > 0) obs.pack.push_back({"i_cloth_bolt", boltQty});
+        out = life::AssessNeeds(plan, mem, obs, cfg);
+        return Find(out, life::NeedKind::NeedCloth);
+    };
+
+    // Aelia's actual pack at the start of the gate: 6 yarn, no bolts.
+    std::vector<life::Need> weaving;
+    const life::Need* weave = tailorHolding(6, 0, weaving);
+    Check(weave != nullptr,
+          "six yarn and no bolt is a NeedCloth -- the yarn is half-finished "
+          "work, not a reason to call the errand done");
+    if (weave) {
+        Check(!weave->blocked && weave->urgency > 0.0,
+              "and it carries real urgency, so MAKE_CLOTH can be picked at all");
+        Check(weave->evidence.find("i_cloth_bolt") != std::string::npos,
+              "and the telemetry names the bolt, not a phantom missing input");
+    }
+
+    // The whole point: the planner must actually land on it. NeedCraft also
+    // fires here (every input for a bolt IS in the pack), and it used to be the
+    // only one -- CRAFT won, discovered the bolt was loom work, handed off, and
+    // handed the turn to a goal nothing had scored.
+    {
+        life::Planner p;
+        life::Observation sel;
+        sel.inWorld = true;
+        sel.hp = sel.hpMax = 40;
+        sel.nowMs = 60000;
+        std::string why;
+        Check(p.Select(weaving, sel, mem, sel.nowMs, &why),
+              "a need list this full always selects something");
+        Check(p.Current().kind == life::GoalKind::MakeCloth,
+              "and what it selects is MAKE_CLOTH -- the loom, not the bench");
+    }
+
+    // AND IT SWITCHES OFF. A sitting's worth of bolts already made is not a
+    // reason to walk to a loom, or this becomes the goal that never ends.
+    std::vector<life::Need> stocked;
+    life::NeedConfig batchCfg;
+    const life::Need* done =
+        tailorHolding(6, batchCfg.craftBatch, stocked);
+    Check(done == nullptr,
+          "with the batch's bolts already made there is no cloth need at all");
 }
 
 // --------------------------------------------------------------------------
@@ -3133,6 +3398,8 @@ int main(int argc, char** argv) {
     TestACooledExploreYieldsToIdleBriefly();
     TestColouredOreStillWantsTheForge();
     TestClothIsBoughtFromPlayersBeforeItIsSheared();
+    TestABoltIsCutNotBanked();
+    TestYarnInThePackIsWorkNotStock();
     TestTheWoolChainBookkeeping();
     TestThreeEmptyClothStepsStandTheGoalDown();
     TestPracticeChecksTheReagentPouch();

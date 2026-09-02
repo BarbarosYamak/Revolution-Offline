@@ -412,6 +412,24 @@ const CraftMenuPath kCraftMenus[] = {
     // fish steak above does. "gears" appears on no other sm_parts option, and
     // "Parts" on no other top-level one. Serena: 30 refusals, no gears.
     {"i_gears",              "Parts",          "gears",   nullptr},
+    // TAILORING. Legacy menu (crafting_settings.scp:32
+    // NewCrafting_Tailoring=0). The ROOT is not chosen by name: the sewing
+    // kit arms a target cursor (CClientUse.cpp:551) and the targeted item's
+    // TYPE picks sm_tailor_cloth (IT_CLOTH) or sm_tailor_leather
+    // (IT_LEATHER/IT_HIDE) (CClientTarg.cpp:2383-2399) -- DoCraft gives the
+    // cursor the recipe's first input, so cloth recipes land in the cloth
+    // root and leather recipes in the leather root. From
+    // sm_legacy_tailoring.scp:
+    //   sm_tailor_cloth   -> Shirts        -> sm_cloth_shirts   -> robe
+    //   sm_tailor_cloth   -> Misc.         -> sm_cloth_misc     -> sash
+    //   sm_tailor_leather -> Leather Armour-> sm_leather_armor  -> leather tunic
+    // Leaf text resolves off tiledata (no NAME= on these itemdefs), same as
+    // i_dagger. No sibling option in those submenus contains the leaf
+    // substring (sphere-expert check, 2026-09-02). Aelia and Amara had no
+    // tailoring row at all -- three strikes and "cannot be made".
+    {"i_sash",               "Misc.",          "sash",           nullptr},
+    {"i_robe",               "Shirts",         "robe",           nullptr},
+    {"i_leather_tunic",      "Leather Armour", "leather tunic",  nullptr},
 };
 
 const CraftMenuPath* CraftMenuFor(const std::string& item) {
@@ -521,6 +539,18 @@ CraftIntent ChooseCraft(const prof::Profession& p, const Observation& obs,
         // Gathered things are not crafted things. A fisher's "produces" holds
         // fish, and fish come out of the sea.
         if (!r->inputs[0].item) continue;
+        // A FIGHTER'S CLOTH IS NOT A CRAFT SITTING. The melee schools list
+        // i_cloth in `produces` so they can SELL it (owner ruling 2026-09-02:
+        // warriors shear, kill, carve, spin, weave and cut; tailors buy the
+        // cloth). Chosen here it would raise NeedCloth's player-first WTB for
+        // a bolt and a Craft sitting with no menu -- HARVEST_WOOL owns the
+        // whole chain for them, from the sheep.
+        // (Same four names as IsWoolChainMaterial; spelled out because some
+        // test binaries link Identity.cpp without Needs.cpp.)
+        if (WantsToHunt(p) &&
+            (made == "i_wool" || made == "i_yarn_ball" ||
+             made == "i_cloth_bolt" || made == "i_cloth"))
+            continue;
 
         // The recipe's own skill requirements, against what the SERVER last
         // reported. Never against the build plan: a plan is an intention.

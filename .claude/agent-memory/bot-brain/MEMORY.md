@@ -8,7 +8,7 @@
 - [A material by class is not a material by rule](a-material-by-class-is-not-a-material-by-rule.md) — fish is WorldGathered; ask the faucet registry before restricting "materials" or you delete a fisher's income
 - [Thresholds are rates, not numbers](thresholds-are-rates-not-numbers.md) — "500-600 ingots" is 5.5 units per skill point; two characters must get two caps
 - [Demand needs a voice](demand-needs-a-voice.md) — the buyer stood silent at the market for 3 minutes; WTB shout + one shared WTB parser
-- [Gather only when the market declines](gather-when-the-market-declines.md) — players first, per-ITEM `no_player_seller` gate; the need stays visible at urgency 0 until then
+- [Gather only when the market declines](gather-when-the-market-declines.md) — players first, per-ITEM `no_player_seller` gate; "cannot buy now" (broke / no session left) also counts as declined
 - [Wool makes cloth, not thread](wool-makes-cloth-not-thread.md) — the chain's real numbers, and why a bot tailor can weave but cannot sew
 - [A citation can point at the wrong case](a-citation-can-point-at-the-wrong-case.md) — right file:line, wrong switch branch; scissors never sheared a sheep
 - [Names arrive after a scan](names-arrive-after-a-scan.md) — an empty name-filtered scan means "not asked yet"; three pastures of sheep read as deserted 60 ms after arrival

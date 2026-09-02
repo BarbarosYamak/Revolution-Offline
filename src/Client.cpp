@@ -476,6 +476,24 @@ void Client::Tick(int waitMs) {
             if (lifeRunner_ && !lifeRunner_->Finished()) lifeRunner_->Tick(*this, NowMs());
             // Travel drives the tile A* through ActionGoto, so it has to run
             // before BotTick pumps the steps it queued.
+            // Dead mobiles linger only until their death animation ends:
+            // 0xAF / 0x1D stamp deadRemoveMs, and this sweep is the only
+            // thing that honours it. Without it a killed mobile stays
+            // "alive" in the cache forever and MobilePosition() keeps
+            // answering for a corpse.
+            {
+                const i64 nowDead = static_cast<i64>(NowMs());
+                for (auto it = mobileCache_.begin(); it != mobileCache_.end();) {
+                    if (it->deadRemoveMs != 0 && nowDead >= it->deadRemoveMs) {
+                        const u32 s = it->serial;
+                        mobileNames_.erase(s);
+                        it = mobileCache_.erase(it);
+                        uo::js::EmitMobileLeave(s);
+                    } else {
+                        ++it;
+                    }
+                }
+            }
             TravelTick();
             WarModeTick();
             SurvivalTick();
@@ -2795,11 +2813,20 @@ u32 Client::NearestMobile(int maxDist) const {
 }
 
 u32 Client::NearestMobileWithBody(u16 body, int maxDist) const {
+    static const std::vector<u32> kNone;
+    return NearestMobileWithBody(body, maxDist, kNone);
+}
+
+u32 Client::NearestMobileWithBody(u16 body, int maxDist,
+                                  const std::vector<u32>& exclude) const {
     u32 best = 0;
     int bestD = 0;
     for (const MobileObj& m : mobileCache_) {
         if (m.serial == playerSerial_) continue;
         if (m.body != body) continue;
+        bool skip = false;
+        for (u32 s : exclude) { if (s == m.serial) { skip = true; break; } }
+        if (skip) continue;
         const int dx = m.x - playerX_, dy = m.y - playerY_;
         const int d = (dx < 0 ? -dx : dx) + (dy < 0 ? -dy : dy);
         if (maxDist > 0 && d > maxDist) continue;
@@ -3096,6 +3123,41 @@ u32 Client::FindWorldItemByGraphic(u16 graphic, i32 maxDist) const {
         if (d < bestD) { bestD = d; best = kv.first; }
     }
     return best;
+}
+
+u32 Client::CorpseOfMobile(u32 mobile) const {
+    if (!mobile) return 0;
+    for (const auto& kv : corpses_) {
+        if (kv.second.deadMobile != mobile) continue;
+        if (items_.find(kv.first) == items_.end()) continue;  // decayed
+        return kv.first;
+    }
+    return 0;
+}
+
+u32 Client::FindWorldItemByGraphic(u16 graphic, i32 maxDist,
+                                   const std::vector<u32>& skip) const {
+    u32 best = 0;
+    i32 bestD = maxDist + 1;
+    for (const auto& kv : items_) {
+        if (kv.second.itemId != graphic) continue;
+        if (std::find(skip.begin(), skip.end(), kv.first) != skip.end())
+            continue;
+        const i32 dx = kv.second.x - playerX_;
+        const i32 dy = kv.second.y - playerY_;
+        const i32 d = (dx < 0 ? -dx : dx) + (dy < 0 ? -dy : dy);
+        if (d < bestD) { bestD = d; best = kv.first; }
+    }
+    return best;
+}
+
+bool Client::WorldItemPosition(u32 serial, i32* x, i32* y, i8* z) const {
+    const auto it = items_.find(serial);
+    if (it == items_.end()) return false;
+    if (x) *x = it->second.x;
+    if (y) *y = it->second.y;
+    if (z) *z = it->second.z;
+    return true;
 }
 
 u32 Client::BackpackItemCount(u16 graphic) const {
@@ -4113,6 +4175,21 @@ void Client::ActionOnSysMessage(const char* text, u32 sourceSerial, u8 type) {
                 FinishAction(act::Result::ServerFailure, text);
                 return;
             case act::EatOutcome::None:
+                break;
+        }
+    }
+    // CARVING IS ANSWERED IN WORDS TOO: the parts go into the corpse, which
+    // the client only hears about once it opens it. The first part line is
+    // the confirmation; "nothing useful" is the corpse refusing.
+    if (action_.kind == act::Kind::UseItemOn) {
+        switch (act::ClassifyCarveMessage(text)) {
+            case act::CarveOutcome::Carved:
+                FinishAction(act::Result::Success, text);
+                return;
+            case act::CarveOutcome::Nothing:
+                FinishAction(act::Result::ServerFailure, text);
+                return;
+            case act::CarveOutcome::None:
                 break;
         }
     }

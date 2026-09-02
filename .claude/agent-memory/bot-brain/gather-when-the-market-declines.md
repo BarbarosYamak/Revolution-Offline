@@ -23,5 +23,17 @@ as `Observation::noSellerFor`. Raise the gather need at urgency 0.0 and
 `blocked=true` until the item appears there: the errand stays visible in
 telemetry and cannot be selected, so the trade goal gets the trip first.
 
+**"Cannot buy now" counts as declined** (lead ruling, 2026-09-02, owner
+delegated). WTB-first only holds while the ask is *possible*. Three refusals
+happen before any WTB is announced and none of them writes the decline event:
+gold below `goldReserve + blindPriceCeiling` (the capital gate inside
+`PlayerMarketWants`), not enough session left for the market trip, and the WTB
+that did go out unanswered. The first two silently dead-ended two tailors for
+whole gates. Every waiting gate needs an "and if I can never ask" branch —
+compute the refusal in the need itself, keep it inside that one need's clause
+so no other profession's player-first rule is loosened, and do not fake the
+decline event in memory (a memory that says "we asked" when nobody asked is a
+lie the next reader inherits).
+
 Related: [[demand-needs-a-voice]], [[two-sale-questions]],
 [[goals-addressed-to-nobody]].

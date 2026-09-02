@@ -423,6 +423,13 @@ public:
     // scenario can name exactly which creature it means instead of taking
     // whatever happens to be closest.
     u32  NearestMobileWithBody(u16 body, int maxDist) const;
+    // Same lookup, skipping serials the caller is already done with. A shearer
+    // needs "the nearest sheep I have NOT already sheared": the single-nearest
+    // form parks the bot on one animal it can no longer use until the server's
+    // body update arrives, and the caller's only other option was to give up on
+    // the whole flock.
+    u32  NearestMobileWithBody(u16 body, int maxDist,
+                               const std::vector<u32>& exclude) const;
     u32  FindBackpackItemByGraphic(u16 graphic) const;
 
     // The same lookup for ANY open container, which is what looting a corpse
@@ -459,6 +466,22 @@ public:
     // ground beside a spinning wheel answers "You can't think of a way to use
     // that item."
     u32  FindWorldItemByGraphic(u16 graphic, i32 maxDist = 8) const;
+    // The same search, ignoring stations this caller has already struck off --
+    // a loom behind a counter with no walkable tile beside it is not a loom
+    // this character can use, and the next-nearest one is the answer.
+    u32  FindWorldItemByGraphic(u16 graphic, i32 maxDist,
+                                const std::vector<u32>& skip) const;
+    // The corpse (item serial) the 0xAF death packet tied to a mobile this
+    // client watched die, or 0 if none is known. A sheared sheep's corpse is
+    // where its second helping of wool is (Use_CarveCorpse adds the carve
+    // output to the corpse, CCharUse.cpp:187), so the carver has to know
+    // WHICH corpse in a pasture full of them is the one it just made.
+    u32  CorpseOfMobile(u32 mobile) const;
+    // Where a world item is standing. A station has to be WALKED UP TO before
+    // it is clicked: Sphere answers a use-target with CChar::CanTouch, which
+    // refuses past a Chebyshev distance of 2 (CCharStatus.cpp:1423), and an
+    // out-of-reach use gets no reply at all.
+    bool WorldItemPosition(u32 serial, i32* x, i32* y, i8* z = nullptr) const;
     // The same search across worn gear as well. A newbie kit hands out tools
     // the shard then EQUIPS -- a fishing pole is a weapon as far as Sphere is
     // concerned (i_fishing_pole has SKILL=Fencing) -- so "the pole in my pack"

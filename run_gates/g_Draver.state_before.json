@@ -1,9 +1,14 @@
 {
-  "bank": [],
-  "bank_seen_ms": 1632554215,
+  "bank": [
+    {
+      "item": "i_ingot_iron",
+      "qty": 100
+    }
+  ],
+  "bank_seen_ms": 1840241339,
   "build_plan": {
-    "create_dex": 16,
-    "create_int": 8,
+    "create_dex": 20,
+    "create_int": 10,
     "create_skills": [
       {
         "skill": 45,
@@ -14,7 +19,7 @@
         "tenths": 500
       }
     ],
-    "create_str": 56,
+    "create_str": 50,
     "family": "miner_smith",
     "skills": [
       {
@@ -39,15 +44,15 @@
     "target_str": 100,
     "unresolved_tenths": 4000
   },
-  "checkpoint_ms": 1632554277,
+  "checkpoint_ms": 1840241644,
   "death_count": 0,
   "goal": {
     "active": true,
     "attempts": 0,
     "failure_reason": "",
-    "kind": "IDLE_BRIEFLY",
-    "progress": 0,
-    "started_at_ms": 1632551139
+    "kind": "MINE",
+    "progress": 6,
+    "started_at_ms": 1840056012
   },
   "home_city": "Minoc",
   "identity": {
@@ -56,15 +61,15 @@
     "created_at_ms": 0,
     "first_seen_at_ms": 1629988688,
     "identity_id": "revgen3_01.draver",
-    "last_seen_at_ms": 1630756780,
-    "sessions": 2,
-    "total_play_time_ms": 1982499
+    "last_seen_at_ms": 1838143880,
+    "sessions": 21,
+    "total_play_time_ms": 9792887
   },
   "last_death_ms": 0,
   "last_server_report": {
     "dead": false,
     "dex": 16,
-    "gold": 9874,
+    "gold": 8737,
     "int": 8,
     "skills": [
       {
@@ -73,7 +78,7 @@
       },
       {
         "skill": 45,
-        "tenths": 500
+        "tenths": 516
       },
       {
         "skill": 37,
@@ -84,9 +89,9 @@
         "tenths": 0
       }
     ],
-    "str": 56,
-    "x": 1400,
-    "y": 3784
+    "str": 57,
+    "x": 2568,
+    "y": 484
   },
   "ledger": [
     {
@@ -94,10 +99,29 @@
       "detail": "i_dagger",
       "flow": 0,
       "when_ms": 1632226152
+    },
+    {
+      "amount": 28,
+      "detail": "pickaxe",
+      "flow": 6,
+      "when_ms": 1780684617
+    },
+    {
+      "amount": 28,
+      "detail": "pickaxe",
+      "flow": 6,
+      "when_ms": 1839082933
     }
   ],
   "memory": {
-    "creatures": [],
+    "creatures": [
+      {
+        "at_ms": 1674707245,
+        "fights": 1,
+        "heat": 1,
+        "name": "Subterranean Mongbat"
+      }
+    ],
     "danger": [],
     "events": [
       {
@@ -171,6 +195,86 @@
         "place": "blacksmith",
         "x": 1320,
         "y": 3736
+      },
+      {
+        "at_ms": 1672620090,
+        "detail": "Minoc",
+        "kind": "newbie_knowledge_seeded",
+        "place": "",
+        "x": 1400,
+        "y": 3784
+      },
+      {
+        "at_ms": 1672964678,
+        "detail": "i_log",
+        "kind": "no_player_seller",
+        "place": "",
+        "x": 1425,
+        "y": 1690
+      },
+      {
+        "at_ms": 1673806672,
+        "detail": "i_log",
+        "kind": "no_player_seller",
+        "place": "",
+        "x": 1425,
+        "y": 1690
+      },
+      {
+        "at_ms": 1674707245,
+        "detail": "Subterranean Mongbat",
+        "kind": "first_near_death",
+        "place": "",
+        "x": 1806,
+        "y": 1275
+      },
+      {
+        "at_ms": 1693189043,
+        "detail": "i_ingot_iron",
+        "kind": "first_smelt",
+        "place": "",
+        "x": 2571,
+        "y": 484
+      },
+      {
+        "at_ms": 1780684617,
+        "detail": "pickaxe",
+        "kind": "supplier_learned",
+        "place": "",
+        "x": 2464,
+        "y": 456
+      },
+      {
+        "at_ms": 1835012810,
+        "detail": "i_ingot_iron",
+        "kind": "no_player_buyer",
+        "place": "",
+        "x": 1429,
+        "y": 1688
+      },
+      {
+        "at_ms": 1835015875,
+        "detail": "logs",
+        "kind": "first_bank_deposit",
+        "place": "bank",
+        "x": 1429,
+        "y": 1688
+      },
+      {
+        "at_ms": 1838543923,
+        "detail": "i_ingot_iron",
+        "kind": "no_player_buyer",
+        "place": "",
+        "x": 1429,
+        "y": 1688
+      },
+      {
+        "at_ms": 1839565417,
+        "detail": "i_ingot_iron",
+        "kind": "no_player_buyer",
+        "place": "",
+        "x": 1425,
+        "y": 1690
       }
     ],
     "places": [
@@ -196,10 +300,10 @@
       },
       {
         "kind": "healer",
-        "last_verified_ms": 1632554215,
+        "last_verified_ms": 1674417563,
         "learned_ms": 1631819816,
-        "name": "Natasha, the healer guildmistress",
-        "visits": 14121,
+        "name": "Dale, the healer",
+        "visits": 40416,
         "x": 1468,
         "y": 1611,
         "z": 20
@@ -233,6 +337,336 @@
         "x": 1474,
         "y": 3868,
         "z": 0
+      },
+      {
+        "kind": "common_knowledge_bank",
+        "last_verified_ms": 1672620090,
+        "learned_ms": 1672620090,
+        "name": "Minoc banker",
+        "visits": 1,
+        "x": 2503,
+        "y": 552,
+        "z": 0
+      },
+      {
+        "kind": "common_knowledge_healer",
+        "last_verified_ms": 1672620090,
+        "learned_ms": 1672620090,
+        "name": "Minoc healer",
+        "visits": 1,
+        "x": 2577,
+        "y": 599,
+        "z": 0
+      },
+      {
+        "kind": "common_knowledge_provisioner",
+        "last_verified_ms": 1672620090,
+        "learned_ms": 1672620090,
+        "name": "Minoc provisioner",
+        "visits": 1,
+        "x": 2526,
+        "y": 546,
+        "z": 0
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 1672627064,
+        "learned_ms": 1672627064,
+        "name": "jhelom_healer",
+        "visits": 1,
+        "x": 1411,
+        "y": 3784,
+        "z": 0
+      },
+      {
+        "kind": "healer",
+        "last_verified_ms": 1673057791,
+        "learned_ms": 1672627080,
+        "name": "Marvin, the healer",
+        "visits": 8096,
+        "x": 1416,
+        "y": 3782,
+        "z": 0
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 1673030919,
+        "learned_ms": 1673030919,
+        "name": "britain_carpenter",
+        "visits": 1,
+        "x": 1423,
+        "y": 1599,
+        "z": 20
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 1673042678,
+        "learned_ms": 1673042678,
+        "name": "britain_tanner",
+        "visits": 1,
+        "x": 1436,
+        "y": 1612,
+        "z": 20
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 1673057791,
+        "learned_ms": 1673057791,
+        "name": "britain_baker",
+        "visits": 1,
+        "x": 1454,
+        "y": 1614,
+        "z": 20
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 1673064630,
+        "learned_ms": 1673064630,
+        "name": "britain_healer",
+        "visits": 1,
+        "x": 1466,
+        "y": 1606,
+        "z": 20
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 1673078725,
+        "learned_ms": 1673078725,
+        "name": "britain_armorer",
+        "visits": 1,
+        "x": 1485,
+        "y": 1587,
+        "z": 20
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 1673118402,
+        "learned_ms": 1673090761,
+        "name": "britain_mage",
+        "visits": 2,
+        "x": 1473,
+        "y": 1574,
+        "z": 30
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 1673137771,
+        "learned_ms": 1673137771,
+        "name": "britain_inn_2",
+        "visits": 1,
+        "x": 1488,
+        "y": 1616,
+        "z": 20
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 1673175265,
+        "learned_ms": 1673175265,
+        "name": "lord_british_s_castle_scribe",
+        "visits": 1,
+        "x": 1414,
+        "y": 1594,
+        "z": 30
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 1673208776,
+        "learned_ms": 1673208776,
+        "name": "lord_british_s_castle_tailor",
+        "visits": 1,
+        "x": 1388,
+        "y": 1588,
+        "z": 30
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 1673235227,
+        "learned_ms": 1673235227,
+        "name": "lord_british_s_castle_armorer",
+        "visits": 1,
+        "x": 1363,
+        "y": 1575,
+        "z": 30
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 1673357921,
+        "learned_ms": 1673357921,
+        "name": "britain_blacksmith",
+        "visits": 1,
+        "x": 1417,
+        "y": 1552,
+        "z": 30
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 1673387260,
+        "learned_ms": 1673387260,
+        "name": "britain_inn_7",
+        "visits": 1,
+        "x": 1461,
+        "y": 1524,
+        "z": 20
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 1673407693,
+        "learned_ms": 1673407693,
+        "name": "britain_stable",
+        "visits": 1,
+        "x": 1505,
+        "y": 1542,
+        "z": 29
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 1673440014,
+        "learned_ms": 1673440014,
+        "name": "britain_start",
+        "visits": 1,
+        "x": 1493,
+        "y": 1626,
+        "z": 10
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 1673460501,
+        "learned_ms": 1673460501,
+        "name": "britain_herbalist",
+        "visits": 1,
+        "x": 1502,
+        "y": 1658,
+        "z": 27
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 1673474094,
+        "learned_ms": 1673474094,
+        "name": "britain_inn_5",
+        "visits": 1,
+        "x": 1502,
+        "y": 1686,
+        "z": 20
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 1673544365,
+        "learned_ms": 1673544365,
+        "name": "britain_armorer_3",
+        "visits": 1,
+        "x": 1426,
+        "y": 1581,
+        "z": 30
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 1673935858,
+        "learned_ms": 1673935858,
+        "name": "britain_tinkerguildmaster",
+        "visits": 1,
+        "x": 1422,
+        "y": 1655,
+        "z": 10
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 1673977409,
+        "learned_ms": 1673977409,
+        "name": "lord_british_s_castle_stable",
+        "visits": 1,
+        "x": 1388,
+        "y": 1651,
+        "z": 30
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 1674147053,
+        "learned_ms": 1674147053,
+        "name": "britain_provisioner_2",
+        "visits": 1,
+        "x": 1473,
+        "y": 1673,
+        "z": 0
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 1674159941,
+        "learned_ms": 1674159941,
+        "name": "britain_tailor_2",
+        "visits": 1,
+        "x": 1472,
+        "y": 1690,
+        "z": 0
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 1674174618,
+        "learned_ms": 1674174618,
+        "name": "britain_jeweler",
+        "visits": 1,
+        "x": 1456,
+        "y": 1681,
+        "z": 0
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 1674196273,
+        "learned_ms": 1674196273,
+        "name": "britain_bank_2",
+        "visits": 1,
+        "x": 1428,
+        "y": 1691,
+        "z": 0
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 1674211608,
+        "learned_ms": 1674211608,
+        "name": "britain_inn_6",
+        "visits": 1,
+        "x": 1422,
+        "y": 1711,
+        "z": 20
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 1674224728,
+        "learned_ms": 1674224728,
+        "name": "britain_butcher",
+        "visits": 1,
+        "x": 1445,
+        "y": 1718,
+        "z": 0
+      },
+      {
+        "kind": "healer",
+        "last_verified_ms": 1690726740,
+        "learned_ms": 1689955233,
+        "name": "Barnaby, the healer",
+        "visits": 10887,
+        "x": 2916,
+        "y": 857,
+        "z": 0
+      },
+      {
+        "kind": "safe",
+        "last_verified_ms": 1840241583,
+        "learned_ms": 1836392998,
+        "name": "logout point",
+        "visits": 2,
+        "x": 2565,
+        "y": 490,
+        "z": 0
+      },
+      {
+        "kind": "safe",
+        "last_verified_ms": 1838078717,
+        "learned_ms": 1838078717,
+        "name": "logout point",
+        "visits": 1,
+        "x": 2572,
+        "y": 482,
+        "z": 0
       }
     ],
     "resources": [
@@ -264,12 +698,36 @@
         "failures": 0,
         "hinted": true,
         "label": "Minoc Mine 1",
-        "last_seen_ms": 1629988688,
-        "last_success_ms": 0,
+        "last_seen_ms": 1691114794,
+        "last_success_ms": 1691114794,
         "resource": "ore",
-        "successes": 0,
+        "successes": 17,
         "x": 2558,
         "y": 499,
+        "z": 0
+      },
+      {
+        "failures": 0,
+        "hinted": false,
+        "label": "",
+        "last_seen_ms": 1839871515,
+        "last_success_ms": 1839871515,
+        "resource": "ore",
+        "successes": 58,
+        "x": 2566,
+        "y": 484,
+        "z": 0
+      },
+      {
+        "failures": 0,
+        "hinted": false,
+        "label": "",
+        "last_seen_ms": 1840153326,
+        "last_success_ms": 1840153326,
+        "resource": "ore",
+        "successes": 44,
+        "x": 2573,
+        "y": 482,
         "z": 0
       }
     ],
@@ -299,6 +757,19 @@
         "x": 1320,
         "y": 3736,
         "z": 0
+      },
+      {
+        "last_verified_ms": 1839082933,
+        "name": "pickaxe",
+        "need": "pickaxe",
+        "observed_price": 28,
+        "observed_quantity": 11,
+        "policy_allows": true,
+        "serial": 37014,
+        "source_type": "npc_vendor",
+        "x": 2455,
+        "y": 454,
+        "z": 15
       }
     ],
     "trainers": [
@@ -323,6 +794,15 @@
       "who": "blacksmith",
       "x": 1320,
       "y": 3736
+    },
+    {
+      "item": "pickaxe",
+      "price": 28,
+      "source": 0,
+      "when_ms": 1839082933,
+      "who": "pickaxe",
+      "x": 2455,
+      "y": 454
     }
   ],
   "recent_deaths": 0,
@@ -361,6 +841,91 @@
       "skill_tenths_start": 1000,
       "started_ms": 1630756780,
       "suppliers_learned": 2
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 1674417625,
+      "goals_attempted": 69,
+      "goals_completed": 35,
+      "goals_failed": 0,
+      "gold_end": 9874,
+      "gold_start": 9874,
+      "logs_gathered": 0,
+      "places_learned": 36,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1208,
+      "skill_tenths_start": 1208,
+      "started_ms": 1672620090,
+      "suppliers_learned": 2
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 1772741792,
+      "goals_attempted": 8,
+      "goals_completed": 0,
+      "goals_failed": 0,
+      "gold_end": 8737,
+      "gold_start": 8737,
+      "logs_gathered": 0,
+      "places_learned": 37,
+      "self_supersessions": 4,
+      "skill_tenths_end": 1215,
+      "skill_tenths_start": 1215,
+      "started_ms": 1770944267,
+      "suppliers_learned": 2
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 1836393060,
+      "goals_attempted": 25,
+      "goals_completed": 2,
+      "goals_failed": 0,
+      "gold_end": 8693,
+      "gold_start": 8709,
+      "logs_gathered": 0,
+      "places_learned": 38,
+      "self_supersessions": 4,
+      "skill_tenths_end": 1216,
+      "skill_tenths_start": 1216,
+      "started_ms": 1834585958,
+      "suppliers_learned": 3
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 1838078777,
+      "goals_attempted": 3,
+      "goals_completed": 0,
+      "goals_failed": 0,
+      "gold_end": 8693,
+      "gold_start": 8693,
+      "logs_gathered": 0,
+      "places_learned": 39,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1223,
+      "skill_tenths_start": 1223,
+      "started_ms": 1837781238,
+      "suppliers_learned": 3
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 1840241644,
+      "goals_attempted": 37,
+      "goals_completed": 6,
+      "goals_failed": 0,
+      "gold_end": 8737,
+      "gold_start": 8693,
+      "logs_gathered": 0,
+      "places_learned": 39,
+      "self_supersessions": 1,
+      "skill_tenths_end": 1224,
+      "skill_tenths_start": 1224,
+      "started_ms": 1838143880,
+      "suppliers_learned": 3
     }
   ]
 }

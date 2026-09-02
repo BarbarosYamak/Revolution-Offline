@@ -348,6 +348,33 @@ inline EatOutcome ClassifyEatMessage(const char* text) {
     return EatOutcome::None;
 }
 
+// --- carving a corpse -------------------------------------------------------
+// CChar::Use_CarveCorpse (Source-X src/game/chars/CCharUse.cpp:49-170) puts the
+// output INTO the corpse and confirms in words only (carve_corpse_* in
+// runtime/scripts/core/messages.scp). A carved corpse sends one line per part
+// (a sheep: wool, then meat); an already-carved or empty one sends
+// carve_corpse_nothing. Nothing else arrives unless the corpse is open, so
+// use_item_on with a blade on a corpse otherwise sat pending for its whole
+// deadline (2026-09-03 smoke: Halain, "the corpse gave up no wool in 15s" x4
+// while the server had said "the wool is now on the corpse").
+enum class CarveOutcome : u8 {
+    None = 0,   // not a carve message
+    Carved,     // one of the parts landed on the corpse
+    Nothing,    // carve_corpse_nothing: already carved / no parts
+};
+
+inline CarveOutcome ClassifyCarveMessage(const char* text) {
+    if (!text || !*text) return CarveOutcome::None;
+    if (ContainsCI(text, "wool is now on the corpse") ||       // carve_corpse_wool
+        ContainsCI(text, "remains on the corpse") ||           // carve_corpse_meat
+        ContainsCI(text, "hides are now in the corpse") ||     // carve_corpse_hides
+        ContainsCI(text, "feathers are now on the corpse"))    // carve_corpse_feathers
+        return CarveOutcome::Carved;
+    if (ContainsCI(text, "nothing useful to carve"))           // carve_corpse_nothing
+        return CarveOutcome::Nothing;
+    return CarveOutcome::None;
+}
+
 // --- hunger, as the server states it ----------------------------------------
 // Sphere states a character's hunger in two places and BOTH are statements of
 // the same underlying STAT_FOOD:

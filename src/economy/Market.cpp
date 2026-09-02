@@ -175,6 +175,44 @@ std::vector<Offer> Surplus(const prof::Profession& p,
     return out;
 }
 
+namespace {
+
+// SAME FOUR NAMES AS `life::IsWoolChainMaterial` (life.h/Needs.cpp),
+// duplicated rather than shared: `market` sits below `life` in the include
+// graph (life.h includes market.h, not the reverse) and this list is small
+// and stable -- the shard's own script data names exactly these four wool
+// products (CClientTarg.cpp:2053-2235, i_provisions_clothing.scp).
+//
+// WHY THIS EXISTS: `WhoProduces()` only ever finds a `produces` catalogue
+// entry, and no profession lists "i_yarn_ball" or "i_wool" as something it
+// makes to sell -- they are steps on the way to i_cloth_bolt, not a finished
+// good. So every want for them was permanently `rawResource = true`,
+// PlayerMarketWants dropped them (Market.cpp: "if (w.rawResource) continue"),
+// no WTB was ever announced, `no_player_seller` was never written, and
+// NeedCloth's "ask the market first" gate could never receive an answer --
+// BLOCKED_NEED MAKE_CLOTH sat on "the player market has not been asked for
+// it yet" for a whole 5-minute gate, 85x/75x
+// (run_gates/g_Aelia.console.txt, g_Amara.console.txt, 2026-09-02).
+//
+// These four ARE plausibly another character's surplus -- a tailor bags wool
+// shearing sheep, a spinner may hold spare yarn, and i_cloth_bolt is this
+// runtime's own audited PlayerMarketGood (VendorPolicy.cpp:43, forum topic
+// 94084, "Kumaş Satılır (rulo halinde)"). Excluding them from rawResource
+// lets the WTB actually fire and time out -- exactly the event NeedCloth was
+// written to wait for -- rather than promising to shear a sheep after asking
+// and never asking.
+bool IsWoolChainWant(const std::string& item) {
+    static const char* const kChain[] = {
+        "i_wool", "i_yarn_ball", "i_cloth_bolt", "i_cloth",
+    };
+    for (const char* c : kChain) {
+        if (item == c) return true;
+    }
+    return false;
+}
+
+}  // namespace
+
 std::vector<Want> Shortfall(const prof::Profession& p,
                             const std::vector<Stock>& pack,
                             const TradePolicy& policy) {
@@ -215,7 +253,7 @@ std::vector<Want> Shortfall(const prof::Profession& p,
         Want w;
         w.item = item;
         w.qty = policy.restockConsumablesTo - have;
-        w.rawResource = WhoProduces(item.c_str()).empty();
+        w.rawResource = !IsWoolChainWant(item) && WhoProduces(item.c_str()).empty();
         w.reason = w.rawResource
             ? "an input no profession makes -- the world does, so this is a "
               "vendor or a gathering trip, not a player supplier"
@@ -237,6 +275,11 @@ std::vector<Want> Shortfall(const prof::Profession& p,
     return out;
 }
 
+bool CanAffordToShop(const prof::Profession& p, i32 gold,
+                     const TradePolicy& policy) {
+    return gold - policy.blindPriceCeiling >= p.goldReserve;
+}
+
 std::vector<Want> PlayerMarketWants(const prof::Profession& p,
                                     const std::vector<Stock>& holdings,
                                     i32 gold,
@@ -249,7 +292,7 @@ std::vector<Want> PlayerMarketWants(const prof::Profession& p,
     // ConsiderOffer -- `gold - cost < p.goldReserve` -- and one unit at the
     // blind ceiling is the worst single purchase this life would ever agree
     // to. Below that the trip is wasted before it starts.
-    if (gold - policy.blindPriceCeiling < p.goldReserve) {
+    if (!CanAffordToShop(p, gold, policy)) {
         if (whyNotOut)
             *whyNotOut = "would eat into the reserve this life keeps for tools";
         return out;

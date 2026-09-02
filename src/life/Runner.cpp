@@ -477,6 +477,23 @@ constexpr i64 kNoClothCooldownMs = 300000;
 // Four yarn make one bolt: the loom's own message table is five entries and it
 // yields at ARRAY_COUNT-1 (CClientTarg.cpp:2230-2245).
 constexpr i32 kYarnPerBolt = 4;
+// One wool spins to three yarn (CClientTarg.cpp:2053, case IT_WOOL) and one
+// bolt cuts to fifty cloth (CClientTarg.cpp:2147, ConvertBolttoCloth). These
+// are the numbers that turn "20 yarn short" into "shear seven sheep".
+constexpr i32 kYarnPerWool  = 3;
+constexpr i32 kClothPerBolt = 50;
+// HOW LONG TO STAND IN A SHORN-OUT FLOCK BEFORE LEAVING WITH WHAT IS CARRIED.
+//
+// A sheared sheep regrows its wool on g_Cfg.m_iWoolGrowthTime
+// (CClientTarg.cpp:1890; CServerConfig.cpp:1372 reads it in MINUTES), and this
+// shard sets `WoolGrowthTime=30` (runtime/sphere.ini:399). Thirty minutes is
+// longer than a whole bot session, so waiting for the REGROW is never the
+// plan. What this budget buys is the other thing that puts an unshorn sheep in
+// range: the flock roams -- the sheep spawners carry MAXDIST=50
+// (runtime/save/sphereworld.scp, i_worldgem_bit with SPAWNID=c_sheep_woolly)
+// -- so a minute of standing still is often another animal. A deferral needs a
+// bound; after this one the character leaves with the wool it has.
+constexpr i64 kShornFlockWaitMs = 60000;
 // THE SHARD'S TAILOR WORKSHOP, by the atlas's own PLACE id
 // (data/revolution_atlas.txt:2116, britain_tailor_2 at 1467,1686). The wheels
 // and looms placed by the M3.7 decorator stand here; TravelToService(Tailor)
@@ -864,9 +881,99 @@ constexpr u16 kYarnGraphic      = 0x0E1D;
 constexpr u16 kThreadGraphic    = 0x0FA0;
 constexpr u16 kClothBoltGraphic = 0x0F95;
 constexpr u16 kClothGraphic     = 0x175D;
-constexpr u16 kSpinWheelGraphic = 0x1015;
-constexpr u16 kLoomGraphic      = 0x105F;
 constexpr u16 kSheepBody        = 0x00CF;
+
+// EVERY FACING OF A SPINNING WHEEL AND OF A LOOM.
+//
+// Sphere keeps ONE itemdef per station and lists its other facings in a
+// DUPELIST: i_spinning_wheel is 0x1015 with
+// `DUPELIST=01016,01017,01019,0101a,0101b,0101c,0101d,0101e,010a4,010a5,010a6`
+// and i_loom_upright is 0x105F with `DUPELIST=01060..01066`
+// (runtime/scripts/items/i_profession_tailor_tanner.scp:199, :267). The DISPID
+// that reaches the client is the DUPE the decorator placed, never the base id.
+//
+// Measured, not assumed: Britain's tailor shop holds its wheels at 0x101C
+// (1473,1689 and 1475,1689) and its looms at 0x1061/0x1062 (1473,1685 and
+// 1474,1685) -- runtime/save/spherestatics.scp. Searching for the base 0x1015
+// alone, Aelia stood at 1471,1690, THREE TILES from a spinning wheel, and
+// logged "no spinning wheel in sight" for an entire session
+// (run_gates/g_Aelia.console.txt, 22:03:30 -> 22:07:40).
+constexpr u16 kSpinWheelGraphics[] = {
+    0x1015, 0x1016, 0x1017, 0x1019, 0x101A, 0x101B,
+    0x101C, 0x101D, 0x101E, 0x10A4, 0x10A5, 0x10A6,
+};
+constexpr u16 kLoomGraphics[] = {
+    0x105F, 0x1060, 0x1061, 0x1062, 0x1063, 0x1064, 0x1065, 0x1066,
+};
+
+u32 FindStation(const Client& client, const u16* graphics, usize n,
+                i32 maxDist, const std::vector<u32>& skip) {
+    // NEAREST PIECE ACROSS ALL FACINGS, NOT THE FIRST FACING THAT HAS ONE.
+    //
+    // A loom is two pieces with two graphics. Standing at (1472,1685) with
+    // the W piece 0x1061 at 1473 and the E piece 0x1062 at 1474, the old
+    // loop took the first graphic in the table that matched anything and
+    // handed back the FAR piece; the near piece then sat between Aelia and
+    // her target, the server's CanTouch/LOS refused in silence, and three
+    // `use_item_on timeout`s stood the goal down (g_Aelia.console.txt
+    // 22:58:20-22:59:05, 2026-09-02). Owner: "you double click thread then
+    // click loom, then it gives cloth" -- the gesture was right, the piece
+    // was wrong.
+    u32 best = 0;
+    i32 bestD = maxDist + 1;
+    for (usize i = 0; i < n; ++i) {
+        const u32 found =
+            client.FindWorldItemByGraphic(graphics[i], maxDist, skip);
+        if (!found) continue;
+        i32 x = 0, y = 0; i8 z = 0;
+        if (!client.WorldItemPosition(found, &x, &y, &z)) continue;
+        const i32 dx = x - client.PlayerX();
+        const i32 dy = y - client.PlayerY();
+        const i32 d = (dx < 0 ? -dx : dx) + (dy < 0 ? -dy : dy);
+        if (d < bestD) { bestD = d; best = found; }
+    }
+    return best;
+}
+// HOW CLOSE A STATION HAS TO BE BEFORE THE CLICK IS WORTH SENDING.
+//
+// Two, the server's own number: a use-target is answered through
+// CChar::CanTouch, which refuses on `iDist > 2` (Source-X CCharStatus.cpp:1423,
+// Chebyshev). Aelia proved the other side of it on the wire -- standing at
+// (1471,1691) she targeted the Britain loom at (1473,1685), Chebyshev 6, and
+// got NO REPLY AT ALL, three times, each ending in `use_item_on timeout`
+// (artifacts/domakecloth_shear_to_target_2026-09-02.md, defect 1).
+constexpr i32 kStationReach = 2;
+
+// HOW FAR A STATION IS LOOKED FOR. The place record for a shop is its door
+// or sign, not its bench: "Britain tailor" (1467,1686) r=5 put Aelia at
+// (1462,1681) with the looms at (1473,1685) -- Chebyshev 11 -- and a
+// 10-tile search said "no loom in sight" for 100 s while standing in the
+// shop (artifacts/needcloth_weaves_yarn_2026-09-02.md, defect a). Anything
+// the client has been told about is fair to look for; ReachStation walks
+// the rest. 18 is the client's update range, the furthest an item can be
+// known at all.
+constexpr i32 kStationSight = 18;
+
+// HOW FULL IS "WORKED TILL CARRY CAPACITY".
+//
+// The gatherers' own long-standing bar, not a new number: DoGatherLogs passes
+// it as GatherRequest::packFullFraction, and DoMine and DoFish test the same
+// figure inline. Shearing joins them -- "they should work till carry capacity"
+// (project owner, 2026-09-02) -- so all four stop at the same point and the
+// bar can only be moved in one place.
+constexpr double kGathererPackFullFrac = 0.95;
+
+const std::vector<u32> kNoStationsStruckOff;
+u32 FindSpinWheel(const Client& client, i32 maxDist,
+                  const std::vector<u32>& skip = kNoStationsStruckOff) {
+    return FindStation(client, kSpinWheelGraphics,
+                       sizeof(kSpinWheelGraphics) / sizeof(u16), maxDist, skip);
+}
+u32 FindLoom(const Client& client, i32 maxDist,
+             const std::vector<u32>& skip = kNoStationsStruckOff) {
+    return FindStation(client, kLoomGraphics,
+                       sizeof(kLoomGraphics) / sizeof(u16), maxDist, skip);
+}
 
 // CLOTHING A FIGHTER CAN CUT UP FOR BANDAGES.
 //
@@ -1619,6 +1726,18 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
 
     std::vector<Client::HostileHit> hostiles;
     client.ScanHostiles(12, hostiles);
+    // THE SHEEP THIS LIFE IS PUTTING DOWN IS NOT A THREAT. Halain's first
+    // wool trip (2026-09-03): the shorn sheep hit back, the scan counted it
+    // and the cow beside it as "2 attackers", SURVIVE fled at 100% HP thirty
+    // tiles toward the bank, and the sheep was out of range by the time
+    // HARVEST_WOOL got the turn back. Nobody runs from a sheep.
+    if (clothKillSheep_) {
+        hostiles.erase(std::remove_if(hostiles.begin(), hostiles.end(),
+                                      [&](const Client::HostileHit& h) {
+                                          return h.serial == clothKillSheep_;
+                                      }),
+                       hostiles.end());
+    }
     obs.marketQuiet = obs.nowMs < marketQuietUntilMs_;
     // WHICH items the player market came back empty on, not merely THAT it
     // did. marketQuietUntilMs_ above is a ten-minute damper on the trade goal
@@ -1632,6 +1751,17 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
         if (obs.nowMs - e.atMs > kPlayerWindowMemoryMs) continue;
         if (!obs.NoSellerFor(e.detail)) obs.noSellerFor.push_back(e.detail);
     }
+    // The market TRIP's own budget, exposed to the need model. Same numbers
+    // DoTradeWithPlayer refuses on; see Observation::marketTripFitsSession.
+    obs.marketTripFitsSession =
+        cfg_.sessionLimitMs <= 0 ||
+        (cfg_.sessionLimitMs - (obs.nowMs - sessionStartMs_)) >=
+            kMarketTripBudgetMs;
+    // ...and the goal's own stand-down, for the same reason: a need that waits
+    // on a market answer must be able to tell "nobody answered" from "the
+    // errand that does the asking is not available to be picked".
+    obs.marketAskOnCooldown =
+        planner_.Cooling(GoalKind::TradeWithPlayer, obs.nowMs);
     obs.hostilesNear = static_cast<i32>(hostiles.size());
     const u32 warTarget = client.WarWatchdog().TargetSerial();
     i32 adjacent = 0;
@@ -1643,7 +1773,7 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
     // then spent twenty seconds failing to dent it. The war watchdog's target
     // is the client's own record that a fight is actually happening, so that
     // is the gate; adjacent hostiles only scale the pressure once it is.
-    obs.underAttack = warTarget != 0;
+    obs.underAttack = warTarget != 0 && warTarget != clothKillSheep_;
     obs.attackersOnMe = obs.underAttack ? std::max(1, adjacent) : 0;
 
     const travel::DeathRecord& death = client.Knowledge().LastDeath();
@@ -2998,6 +3128,8 @@ void Runner::RunGoal(Client& client, const Observation& obs) {
         case GoalKind::FillSpellbook:         done = DoFillSpellbook(client, obs); break;
         case GoalKind::MakeBandages:         done = DoMakeBandages(client, obs); break;
         case GoalKind::MakeCloth:            done = DoMakeCloth(client, obs); break;
+        case GoalKind::HarvestWool:          done = DoMakeCloth(client, obs); break;
+        case GoalKind::BuyMount:             done = DoBuyMount(client, obs); break;
         case GoalKind::Explore:              done = DoExplore(client, obs); break;
         case GoalKind::Mine:                 done = DoMine(client, obs); break;
         case GoalKind::Smelt:                done = DoSmelt(client, obs); break;
@@ -4248,6 +4380,192 @@ bool Runner::DoGetTool(Client& client, const Observation& obs) {
     return false;
 }
 
+// A HORSE FIRST. "create a new tailor, make it buy a horse first, mount, then
+// do the rest" (project owner, 2026-09-02).
+//
+// Shop shape copied from DoGetTool, trimmed: the trade is the animal trainer
+// (paperdoll title "animal trainer", atlas Service::Stablemaster; Britain's
+// stands at 1391,1655 and stocks VENDOR_S_TRAINER -- tm_vend.scp:1638-1641,
+// four riding horses at VALUE={450 500}). Sphere hands an NPC-bought figurine
+// straight to Use_Figurine (CClientEvent.cpp:1309), so the horse appears at
+// the buyer's feet inside the purchase and never enters the pack. Mounting is
+// a double-click on the animal (M3.7.1, CClient::Event_DoubleClick ->
+// Horse_Mount); the paperdoll answers with obs.mounted, and that -- not the
+// click -- is the progress.
+bool Runner::DoBuyMount(Client& client, const Observation& obs) {
+    // Riding-horse figurines the trainer sells: i_pet_horse_tan 0x259E,
+    // i_pet_horse_gray 0x2599, i_pet_horse_brown_lt 0x2120,
+    // i_pet_horse_brown_dk 0x2121 (i_char_icons.scp). Pack animals excluded.
+    static const u16 kHorseFigurines[] = {0x259E, 0x2599, 0x2120, 0x2121, 0x211F};
+    // c_horse_tan 0xC8, c_horse_brown_dk 0xCC, c_horse_gray 0xE2,
+    // c_horse_brown_lt 0xE4 (c_monster_classic.scp).
+    static const u16 kHorseBodies[] = {0x00C8, 0x00CC, 0x00E2, 0x00E4};
+    constexpr i32 kMaxMountTrips  = 2;   // owner rule: unreachable = 1 try, max 2
+    constexpr i32 kMaxMountClicks = 3;
+    constexpr i64 kMountCooldownMs = 10 * 60 * 1000;
+
+    if (obs.dead) return false;
+    if (obs.mounted) {
+        if (mountBoughtMs_) {
+            LogLine("mount: in the saddle -- paperdoll shows mounted");
+            state_.memory.NoteEvent("mounted", "riding horse", "", obs.x, obs.y,
+                                    obs.nowMs);
+        }
+        mountBoughtMs_ = 0; mountClicks_ = 0; mountTrips_ = 0;
+        planner_.NoteProgress();
+        return true;
+    }
+    if (client.ActionBusy()) return false;
+
+    // BOUGHT, STANDING BESIDE IT: climb on. Bounded, because a refused
+    // double-click (Sphere says "you dont own that" for someone else's
+    // horse) reports nothing this client can read.
+    if (mountBoughtMs_) {
+        const u32 horse = [&]() -> u32 {
+            for (u16 b : kHorseBodies) {
+                const u32 h = client.NearestMobileWithBody(b, 3);
+                if (h) return h;
+            }
+            return 0u;
+        }();
+        if (!horse) {
+            if (obs.nowMs - mountBoughtMs_ < 4000) {
+                nextActionMs_ = obs.nowMs + 1000;   // let the pet packet land
+                return false;
+            }
+            LogLine("goal_failed=BUY_MOUNT reason=\"paid for a horse and none "
+                    "appeared within 3 tiles in 4s\"");
+            mountBoughtMs_ = 0; mountClicks_ = 0;
+            planner_.Cooldown(GoalKind::BuyMount, obs.nowMs + kMountCooldownMs);
+            planner_.Finish(false, "no horse appeared after the purchase", obs.nowMs);
+            return false;
+        }
+        if (mountClicks_ >= kMaxMountClicks) {
+            LogLine("goal_failed=BUY_MOUNT reason=\"%d double-clicks on the "
+                    "horse and the paperdoll still shows on foot\"", mountClicks_);
+            mountBoughtMs_ = 0; mountClicks_ = 0;
+            planner_.Cooldown(GoalKind::BuyMount, obs.nowMs + kMountCooldownMs);
+            planner_.Finish(false, "the shard would not seat us", obs.nowMs);
+            return false;
+        }
+        ++mountClicks_;
+        LogLine("mount: double-clicking the horse 0x%08X to mount (attempt %d of %d)",
+                horse, mountClicks_, kMaxMountClicks);
+        client.ActionUseObject(horse);
+        planner_.NoteAttempt(obs.nowMs);
+        nextActionMs_ = obs.nowMs + 2000;
+        return false;
+    }
+
+    if (client.TravelBusy()) {
+        VetoTripOverSessionBudget(client, obs, GoalKind::BuyMount, "BUY_MOUNT",
+                                  kMountCooldownMs);
+        return false;
+    }
+
+    const u32 vendor = client.VendorOfferFrom();
+    if (vendor == 0) {
+        if (!travelInFlight_) {
+            mountTitlesAskedMs_ = 0;
+            LogLine("mount: looking for an animal trainer to sell a horse");
+            travelInFlight_ = client.TravelToService(wm::Service::Stablemaster,
+                                                     HomeOrNearest(state_.homeCity));
+            if (!travelInFlight_) {
+                LogLine("goal_blocked=BUY_MOUNT reason=\"%s\" (%s)",
+                        faucet::RefusalName(faucet::Refusal::VendorUnreachable),
+                        client.TravelFailureText());
+                planner_.Cooldown(GoalKind::BuyMount, obs.nowMs + kMountCooldownMs);
+                planner_.Finish(false, "no way to an animal trainer", obs.nowMs);
+            }
+            return false;
+        }
+        // Titles first, then judge who is here (DoGetTool's lesson).
+        if (!mountTitlesAskedMs_ || obs.nowMs - mountTitlesAskedMs_ > 20000) {
+            client.ActionScanMobiles();
+            mountTitlesAskedMs_ = obs.nowMs;
+            nextActionMs_ = obs.nowMs + 2500;
+            return false;
+        }
+        travelInFlight_ = false;
+        const u32 keeper =
+            client.NearestShopkeeperWithTrade("animal", wm::Service::Stablemaster);
+        if (!keeper) {
+            if (++mountTrips_ >= kMaxMountTrips) {
+                LogLine("goal_failed=BUY_MOUNT reason=\"%d arrivals and no animal "
+                        "trainer was there\"", mountTrips_);
+                mountTrips_ = 0;
+                planner_.Cooldown(GoalKind::BuyMount, obs.nowMs + kMountCooldownMs);
+                planner_.Finish(false, "no animal trainer at the stable", obs.nowMs);
+                return false;
+            }
+            LogLine("mount: arrived but no animal trainer is here (trip %d of %d)",
+                    mountTrips_, kMaxMountTrips);
+            planner_.NoteAttempt(obs.nowMs);
+            nextActionMs_ = obs.nowMs + 5000;
+            return false;
+        }
+        mountTrips_ = 0;
+        i32 vx = 0, vy = 0; i8 vz = 0;
+        if (client.MobilePosition(keeper, &vx, &vy, &vz)) {
+            const i32 d = TileDist(obs.x, obs.y, vx, vy);
+            const i32 dz = (obs.z > vz) ? (obs.z - vz) : (vz - obs.z);
+            if (d > 1 || dz > 3) {
+                travelInFlight_ = client.TravelToEntity(keeper, 1);
+                nextActionMs_ = obs.nowMs + 2000;
+                return false;
+            }
+        }
+        client.ActionVendorOpen(keeper);
+        nextActionMs_ = obs.nowMs + 2500;
+        return false;
+    }
+
+    // The window is open: a horse is for sale only if the offer shows one.
+    for (const Client::VendorItem& v : client.VendorOffer()) {
+        bool match = false;
+        for (u16 g : kHorseFigurines) { if (v.graphic == g) { match = true; break; } }
+        if (!match || v.amount == 0) continue;
+
+        market::PriceObservation po;
+        po.item = "riding horse";
+        po.pricePerUnit = static_cast<i32>(v.price);
+        po.source = market::PriceSource::NpcVendorSells;
+        po.who = v.name;
+        po.x = obs.x; po.y = obs.y; po.whenMs = obs.nowMs;
+        state_.prices.Note(po);
+        LogLine("memory_learned=SUPPLIER need=riding_horse name=\"%s\" price=%u qty=%u",
+                v.name.c_str(), v.price, v.amount);
+
+        const i32 reserve = needCfg_.profession ? needCfg_.profession->goldReserve : 0;
+        if (obs.gold < static_cast<i32>(v.price) + reserve) {
+            LogLine("goal_blocked=BUY_MOUNT reason=\"%s\" horse costs %u, reserve %d, "
+                    "holding %d",
+                    faucet::RefusalName(faucet::Refusal::EconomicRouteBlocked),
+                    v.price, reserve, obs.gold);
+            planner_.Cooldown(GoalKind::BuyMount, obs.nowMs + kMountCooldownMs);
+            planner_.Finish(false, "cannot afford the horse", obs.nowMs);
+            return false;
+        }
+        LogLine("mount: buying a %s for %u gold", v.name.c_str(), v.price);
+        client.ActionVendorBuy(vendor, v.serial, 1);
+        state_.ledger.Note(market::GoldFlow::DestroyedVendorPurchase,
+                           static_cast<i32>(v.price), "riding horse", obs.nowMs);
+        mountBoughtMs_ = obs.nowMs;
+        mountClicks_ = 0;
+        planner_.NoteAttempt(obs.nowMs);
+        nextActionMs_ = obs.nowMs + 2500;
+        return false;
+    }
+
+    LogLine("goal_failed=BUY_MOUNT reason=\"%s\" this %zu-item list has no riding "
+            "horse in stock",
+            faucet::RefusalName(faucet::Refusal::VendorNotObserved),
+            client.VendorOffer().size());
+    planner_.Cooldown(GoalKind::BuyMount, obs.nowMs + kMountCooldownMs);
+    planner_.Finish(false, "the trainer has no horse today", obs.nowMs);
+    return false;
+}
+
 // SIXTEEN FREE BANDAGES, OFF YOUR OWN BACK.
 //
 // "unequip the resurrection robe and cut into bandages with scissors" and
@@ -5156,6 +5474,18 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
                 const u32 serial =
                     FindBackpackItemByName(client, made.c_str(), &amount);
                 if (!serial || amount <= 0) continue;
+                // HALF-MADE WORK IS NOT A DEPOSIT. The tailor's `produces`
+                // opens with i_cloth_bolt, so this branch banked the very bolt
+                // MAKE_CLOTH was about to cut. See WoolChainWorkInProgress.
+                if (life::WoolChainWorkInProgress(*needCfg_.profession,
+                                                  obs.pack,
+                                                  needCfg_.craftBatch,
+                                                  made.c_str())) {
+                    LogLine("bank: keeping %d %s -- it is half-made work, not "
+                            "stock; it gets finished, not stored", amount,
+                            made.c_str());
+                    continue;
+                }
                 // A DEPOSIT THAT NEVER LANDS MUST NOT BE RETRIED FOREVER.
                 //
                 // The bank serial outlives the visit: Bryn stood on the
@@ -5270,6 +5600,14 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
                 const u32 serial =
                     FindBackpackItemByName(client, input.c_str(), &amount);
                 if (!serial || amount <= keep) continue;
+                // Wool and yarn reach this loop as declared inputs. Same
+                // ruling as the produces branch: a step on the way to cloth is
+                // finished, not stored.
+                if (life::WoolChainWorkInProgress(*needCfg_.profession,
+                                                  obs.pack,
+                                                  needCfg_.craftBatch,
+                                                  input.c_str()))
+                    continue;
                 const i32 put = amount - keep;
                 LogLine("banking %d spare %s (keeping %d to work with)", put,
                         input.c_str(), keep);
@@ -5594,7 +5932,7 @@ bool Runner::DoGatherLogs(Client& client, const Observation& obs) {
         life::GatherRequest req;
         req.resource = "logs";
         req.loadWorthTaking = needCfg_.logsWorthBanking;
-        req.packFullFraction = 0.95;   // this goal's own long-standing bar
+        req.packFullFraction = kGathererPackFullFrac;  // the shared bar
         req.toolMustBeWielded = true;  // skill44_lumberjacking reads SRC.WEAPON
 
         life::GatherSight sight;
@@ -8822,6 +9160,16 @@ GoalKind ProducingGoalFor(const std::string& item) {
     if (item.rfind("i_ingot_", 0) == 0) return GoalKind::Smelt;
     if (item.rfind("i_fish", 0) == 0)   return GoalKind::Fish;
     if (item == "i_log" || item == "i_board") return GoalKind::GatherLogs;
+    // THE TEXTILE CHAIN IS A STATION CHAIN, NOT A MENU CRAFT. A ball of yarn
+    // comes off a spinning wheel, a bolt off a loom, and cloth off a pair of
+    // scissors -- all three are Provenance::WorldProcessed in Production.cpp
+    // (:56, :67, :71) with no skill and no craft gump anywhere. Left routed to
+    // Craft, DoCraft could only answer REFUSE_MISSING_RECIPE: Aelia did it
+    // three times in 130 ms for i_cloth_bolt while MAKE_CLOTH, the goal that
+    // owns the loom, sat unpicked (artifacts/domakecloth_shear_to_target_
+    // 2026-09-02.md, defect 2). Exactly Draver's i_ingot_iron/SMELT case.
+    if (item == "i_yarn_ball" || item == "i_cloth_bolt" || item == "i_cloth")
+        return GoalKind::MakeCloth;
     return GoalKind::Craft;
 }
 
@@ -10263,7 +10611,15 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
     //
     // Inscription and bowcraft are genuinely one action (use the material),
     // so the middle step is asked for only where the tool opens a target.
-    if (r->tool == prod::Tool::SmithHammer) {
+    //
+    // THE SEWING KIT IS THE SAME SHAPE. Its double-click arms a cursor
+    // (CClientUse.cpp:551) and the TYPE of what the cursor is given picks
+    // the root menu -- cloth opens sm_tailor_cloth, leather sm_tailor_leather
+    // (CClientTarg.cpp:2383-2399). Aelia and Amara used the kit and waited
+    // for a menu that only comes after the cloth is targeted.
+    const bool toolArmsCursor = r->tool == prod::Tool::SmithHammer ||
+                                r->tool == prod::Tool::SewingKit;
+    if (toolArmsCursor) {
         if (craftCursorPending_) {
             if (client.TargetActive()) {
                 const std::vector<u16> matGfx =
@@ -10274,17 +10630,17 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
                     if (mat) break;
                 }
                 if (!mat) {
-                    LogLine("goal_blocked=CRAFT reason=\"%s\" the smith cursor "
+                    LogLine("goal_blocked=CRAFT reason=\"%s\" the %s cursor "
                             "is up but there is no %s to give it",
                             faucet::RefusalName(
                                 faucet::Refusal::RequiredForProduction),
-                            r->inputs[0].item);
+                            prod::ToolName(r->tool), r->inputs[0].item);
                     craftCursorPending_ = false;
-                    planner_.Finish(false, "no ingots to target", obs.nowMs);
+                    planner_.Finish(false, "no material to target", obs.nowMs);
                     return false;
                 }
-                LogLine("craft: giving the smith cursor an %s to open the menu",
-                        r->inputs[0].item);
+                LogLine("craft: giving the %s cursor %s to open the menu",
+                        prod::ToolName(r->tool), r->inputs[0].item);
                 client.ActionTargetObject(mat);
                 craftCursorPending_ = false;
                 nextActionMs_ = obs.nowMs + 2500;
@@ -10293,8 +10649,8 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
             if (obs.nowMs - craftClickedMs_ > 6000) craftCursorPending_ = false;
             return false;
         }
-        LogLine("craft: making %s -- double-clicking the smith hammer",
-                craftItem_.c_str());
+        LogLine("craft: making %s -- double-clicking the %s",
+                craftItem_.c_str(), prod::ToolName(r->tool));
         client.ActionUseObject(opener);
         craftCursorPending_ = true;
         craftClickedMs_ = obs.nowMs;
@@ -10371,7 +10727,7 @@ bool Runner::DoFish(Client& client, const Observation& obs) {
         }
     }
 
-    if (obs.WeightFraction() >= 0.95) {
+    if (obs.WeightFraction() >= kGathererPackFullFrac) {
         LogLine("fish: pack full at %.0f%%", obs.WeightFraction() * 100.0);
         return true;
     }
@@ -11944,7 +12300,7 @@ bool Runner::DoUpgradeGear(Client& client, const Observation& obs) {
 bool Runner::DoMine(Client& client, const Observation& obs) {
     if (client.ActionBusy()) return false;
 
-    if (obs.WeightFraction() >= 0.95) {
+    if (obs.WeightFraction() >= kGathererPackFullFrac) {
         LogLine("mine: pack full at %.0f%%", obs.WeightFraction() * 100.0);
         planner_.Finish(true, nullptr, obs.nowMs);
         return true;
@@ -12939,7 +13295,7 @@ bool Runner::DoMakeBandages(Client& client, const Observation& obs) {
     u32 spun = client.FindBackpackItemByGraphic(kYarnGraphic);
     if (!spun) spun = client.FindBackpackItemByGraphic(kThreadGraphic);
     if (spun) {
-        const u32 loom = client.FindWorldItemByGraphic(kLoomGraphic, 10);
+        const u32 loom = FindLoom(client, kStationSight);
         if (!loom) {
             LogLine("bandages: carrying yarn but no loom in sight -- going to "
                     "a tailor, where the looms are");
@@ -12958,7 +13314,7 @@ bool Runner::DoMakeBandages(Client& client, const Observation& obs) {
 
     // 4. WOOL -> SPINNING WHEEL -> YARN.
     if (const u32 wool = client.FindBackpackItemByGraphic(kWoolGraphic)) {
-        const u32 wheel = client.FindWorldItemByGraphic(kSpinWheelGraphic, 10);
+        const u32 wheel = FindSpinWheel(client, kStationSight);
         if (!wheel) {
             LogLine("bandages: carrying wool but no spinning wheel in sight -- "
                     "going to a tailor");
@@ -13041,6 +13397,36 @@ bool Runner::DoMakeBandages(Client& client, const Observation& obs) {
     return false;
 }
 
+namespace {
+// WHAT A WOOL-CHAIN SHORTFALL COSTS IN SHEEP.
+//
+// The need names one link of the chain -- "20 x i_yarn_ball short" -- and the
+// only thing a pasture can supply is wool. Converting one into the other at the
+// shard's own rates is what lets the character know when it is done shearing:
+// without it the goal left the flock after a single sheep and walked ~880 tiles
+// to a spinning wheel carrying 1 wool, which is 3 of the 20 yarn it came for
+// (artifacts/tailor_cannot_buy_now_2026-09-02.md, downstream defect 1).
+//
+// Rates are the server's, not ours: wool -> 3 yarn (CClientTarg.cpp:2053),
+// 4 yarn -> 1 bolt (:2230-2245), 1 bolt -> 50 cloth (:2147). Rounding is
+// always UP, because half a bolt weaves nothing.
+i32 WoolForShortfall(const char* item, i32 qty) {
+    if (!item || qty <= 0) return 0;
+    if (std::strcmp(item, "i_wool") == 0) return qty;
+    i32 yarn = 0;
+    if (std::strcmp(item, "i_yarn_ball") == 0) {
+        yarn = qty;
+    } else if (std::strcmp(item, "i_cloth_bolt") == 0) {
+        yarn = qty * kYarnPerBolt;
+    } else if (std::strcmp(item, "i_cloth") == 0) {
+        yarn = ((qty + kClothPerBolt - 1) / kClothPerBolt) * kYarnPerBolt;
+    } else {
+        return 0;                       // not a link this pasture can supply
+    }
+    return (yarn + kYarnPerWool - 1) / kYarnPerWool;
+}
+}  // namespace
+
 // ---------------------------------------------------------------------------
 // MAKING CLOTH.
 //
@@ -13084,6 +13470,75 @@ bool Runner::DoMakeBandages(Client& client, const Observation& obs) {
 // claiming progress for the gesture is precisely how four goals in this project
 // ended up spinning (goals-that-spin). Three gestures in a row that move
 // nothing stand the goal down.
+// WALK UP TO THE STATION. The same shape as the forge approach in DoSmelt --
+// route to a walkable tile BESIDE the station rather than onto its own solid
+// tile, and count approaches so a wheel behind a counter costs two walks and
+// not a session ("if it is unreachable then it should be 1 try max 2", project
+// owner, 2026-09-02). Returns true only when the click is worth sending.
+bool Runner::ReachStation(Client& client, const Observation& obs, u32 station,
+                          const char* what) {
+    i32 stx = 0, sty = 0;
+    i8  stz = 0;
+    if (!client.WorldItemPosition(station, &stx, &sty, &stz)) {
+        // It was found by graphic a moment ago, so this is a cache race, not a
+        // reason to refuse. Let the click go and let the server judge it.
+        return true;
+    }
+    const i32 d = TileDist(obs.x, obs.y, stx, sty);
+    if (d <= kStationReach) {
+        if (station == clothStationSerial_) clothStationApproaches_ = 0;
+        return true;
+    }
+    if (client.TravelBusy()) return false;
+
+    if (station == clothStationSerial_) {
+        if (++clothStationApproaches_ >= 2) {
+            LogLine("cloth: cannot get within %d tiles of the %s at %d,%d after "
+                    "%d tries -- striking it off", kStationReach, what, stx, sty,
+                    clothStationApproaches_);
+            clothDeadStations_.push_back(station);
+            if (clothDeadStations_.size() > 8)
+                clothDeadStations_.erase(clothDeadStations_.begin());
+            clothStationSerial_ = 0;
+            clothStationApproaches_ = 0;
+            travelInFlight_ = false;
+            nextActionMs_ = obs.nowMs + 500;
+            return false;
+        }
+    } else {
+        clothStationSerial_ = station;
+        clothStationApproaches_ = 1;
+    }
+
+    i32 standX = 0, standY = 0;
+    bool haveStand = false;
+    static const int kdx[] = {-1, 0, 1, -1, 1, -1, 0, 1};
+    static const int kdy[] = {-1, -1, -1, 0, 0, 1, 1, 1};
+    for (int i = 0; i < 8 && !haveStand; ++i) {
+        const i32 tx = stx + kdx[i], ty = sty + kdy[i];
+        if (!client.TileIsWalkable(tx, ty, stz)) continue;
+        standX = tx; standY = ty; haveStand = true;
+    }
+    if (!haveStand) {
+        LogLine("cloth: no walkable tile beside the %s at %d,%d -- striking it "
+                "off", what, stx, sty);
+        clothDeadStations_.push_back(station);
+        if (clothDeadStations_.size() > 8)
+            clothDeadStations_.erase(clothDeadStations_.begin());
+        clothStationSerial_ = 0;
+        clothStationApproaches_ = 0;
+        travelInFlight_ = false;
+        nextActionMs_ = obs.nowMs + 500;
+        return false;
+    }
+
+    LogLine("cloth: the %s at %d,%d is %d tiles off -- standing at %d,%d",
+            what, stx, sty, d, standX, standY);
+    travelInFlight_ = client.TravelToPoint(standX, standY, 0, what);
+    nextActionMs_ = obs.nowMs + 2000;
+    return false;
+}
+
 bool Runner::DoMakeCloth(Client& client, const Observation& obs) {
     if (client.ActionBusy()) return false;
     LoadPastures(client.DataDir());
@@ -13092,6 +13547,22 @@ bool Runner::DoMakeCloth(Client& client, const Observation& obs) {
     const i32 yarn  = static_cast<i32>(client.BackpackItemCount(kYarnGraphic));
     const i32 bolts = static_cast<i32>(client.BackpackItemCount(kClothBoltGraphic));
     const i32 cloth = static_cast<i32>(client.BackpackItemCount(kClothGraphic));
+
+    // TWO LIVES RUN THIS CHAIN. A tailor (MAKE_CLOTH) shears for her own
+    // batch and stops when the batch has its cloth. A fighter (HARVEST_WOOL)
+    // runs it for INCOME -- owner ruling 2026-09-02: "add this part only to
+    // warrior so they can sell cloth ... tailor doesn't have attack skill ...
+    // not wool, cloth itself" -- so it also kills and carves each sheared
+    // sheep (step 4a), and it is done when the whole load is cloth: no wool,
+    // yarn or bolt left and some cloth in the pack. The cloth is then
+    // Surplus() (i_cloth is in the fighter's `produces`) and sells to a
+    // tailor's WTB through the ordinary player-first market.
+    const GoalKind self = planner_.Current().kind;
+    const bool fighter = self == GoalKind::HarvestWool;
+
+    // NO WOOL MEANS THE LOAD IS SPUN AND THIS TRIP IS OVER. The next visit to
+    // a flock starts a fresh one, free to shear to capacity again.
+    if (wool == 0) clothHeadingToWheel_ = false;
 
     // DID THE LAST GESTURE ACTUALLY DO ANYTHING?
     if (clothWoolBefore_ >= 0 &&
@@ -13110,12 +13581,12 @@ bool Runner::DoMakeCloth(Client& client, const Observation& obs) {
             planner_.NoteProgress();
             clothEmptySteps_ = 0;
         } else if (++clothEmptySteps_ >= kMaxEmptyClothSteps) {
-            LogLine("goal_failed=MAKE_CLOTH reason=\"%d gestures in a row moved "
-                    "nothing (wool %d yarn %d bolts %d cloth %d)\"",
+            LogLine("goal_failed=%s reason=\"%d gestures in a row moved "
+                    "nothing (wool %d yarn %d bolts %d cloth %d)\"", GoalKindName(self),
                     clothEmptySteps_, wool, yarn, bolts, cloth);
             clothEmptySteps_ = 0;
             clothWoolBefore_ = -1;
-            planner_.Cooldown(GoalKind::MakeCloth, obs.nowMs + kNoClothCooldownMs);
+            planner_.Cooldown(self, obs.nowMs + kNoClothCooldownMs);
             planner_.Finish(false, "the chain moved nothing", obs.nowMs);
             return false;
         }
@@ -13126,19 +13597,78 @@ bool Runner::DoMakeCloth(Client& client, const Observation& obs) {
     // life wants to make still short of cloth? Not a cloth count of our own
     // invention -- the recipe decides how much is enough, and it differs by
     // garment (a bandana takes 2, a cape 14).
+    //
+    // The same answer also says the LEAST wool worth coming home with: the
+    // shortfall converted into sheep, floor one -- a life with no recipe in
+    // view still profits from a pile of wool. It is NOT a ceiling any more;
+    // shearing runs to carry capacity (step 3) or to a bare flock (step 4b),
+    // whichever comes first, because the walk back to a wheel costs the same
+    // whatever is in the pack.
+    i32 woolTarget = 1;
     const prof::Profession* me = needCfg_.profession;
     if (me) {
         const CraftIntent intent =
             ChooseCraft(*me, obs, needCfg_.craftBatch, &craftFocus_);
         bool stillShort = false;
         for (const prod::Ingredient& ing : intent.missing) {
-            if (IsWoolChainMaterial(ing.item)) { stillShort = true; break; }
+            if (!IsWoolChainMaterial(ing.item)) continue;
+            stillShort = true;
+            woolTarget = std::max<i32>(1, WoolForShortfall(ing.item, ing.qty));
+            break;
+        }
+        // ...OR THE THING BEING MADE *IS* THE CLOTH, and the yarn for it is
+        // already carried. Same empty-missing-list blind spot the NeedCloth
+        // clause in Needs.cpp closes: when the chosen output is itself a
+        // wool-chain item, four yarn in the pack make the recipe's missing list
+        // empty, which reads here as "enough for the batch" -- so the goal
+        // would Finish(true) with the yarn unwoven, before it ever reached the
+        // loom (artifacts/cloth_walkup_bolt_route_capacity_2026-09-02.md
+        // section 4, consequence 2). Weaving is the work; unwoven yarn is the
+        // proof it is not done. Nothing to shear in this state, so the wool
+        // minimum drops to one and step 2 takes the turn.
+        if (!stillShort && intent.item && IsWoolChainMaterial(intent.item) &&
+            yarn >= kYarnPerBolt) {
+            i32 held = wool;
+            if (std::strcmp(intent.item, "i_cloth_bolt") == 0)      held = bolts;
+            else if (std::strcmp(intent.item, "i_cloth") == 0)      held = cloth;
+            else if (std::strcmp(intent.item, "i_yarn_ball") == 0)  held = yarn;
+            const i32 want = std::max<i32>(1, needCfg_.craftBatch);
+            if (held < want) {
+                stillShort = true;
+                woolTarget = 1;
+                // Own errand tag: the "cloth" sentinel is held by the two
+                // walk-to-the-tailor lines below, and two reasons alternating
+                // under one tag defeat the repeat throttle.
+                LogErrandReason("weaving",
+                                Fmt2("%d yarn carried and %d of %d %s made -- "
+                                     "the loom before anything else", yarn, held,
+                                     want, intent.item).c_str(),
+                                obs.nowMs);
+            }
+        }
+        if (fighter) {
+            // The load is the target, not a batch: the trip is short until
+            // the pack has been to the flock and everything it brought back
+            // is cloth. woolTarget only labels the log lines here.
+            stillShort = cloth == 0 || wool > 0 || yarn > 0 || bolts > 0;
+            woolTarget = std::max<i32>(woolTarget, 20);
         }
         if (!stillShort) {
-            LogLine("cloth: %d cloth and %d bolts is enough for the batch",
-                    cloth, bolts);
+            if (fighter)
+                LogLine("wool_income: %d cloth cut and nothing left on the "
+                        "chain -- the load is ready to sell (%d sheep carved "
+                        "this trip)", cloth, clothKillsThisTrip_);
+            else
+                LogLine("cloth: %d cloth and %d bolts is enough for the batch",
+                        cloth, bolts);
             clothTrips_ = 0;
             clothShornSheep_.clear();
+            clothFlockBareMs_ = 0;
+            clothKillSheep_ = 0; clothCarveCorpse_ = 0; clothCarved_ = false;
+            clothKillsThisTrip_ = 0;
+            clothHeadingToWheel_ = false;
+            clothStationSerial_ = 0;
+            clothStationApproaches_ = 0;
             planner_.Finish(true, nullptr, obs.nowMs);
             return true;
         }
@@ -13164,12 +13694,12 @@ bool Runner::DoMakeCloth(Client& client, const Observation& obs) {
         if (obs.gold >= kScissorsMoney) {
             BuyScrollFrom(client, obs, "tailor", wm::Service::Tailor,
                           kScissorsGraphic, false, 1, "a pair of scissors",
-                          GoalKind::MakeCloth);
+                          self);
             return false;
         }
-        LogLine("goal_failed=MAKE_CLOTH reason=\"%d bolts and no scissors, and "
-                "only %d gold to buy a pair with\"", bolts, obs.gold);
-        return HandOff(GoalKind::MakeCloth, GoalKind::EarnGold,
+        LogLine("goal_failed=%s reason=\"%d bolts and no scissors, and "
+                "only %d gold to buy a pair with\"", GoalKindName(self), bolts, obs.gold);
+        return HandOff(self, GoalKind::EarnGold,
                        kNoClothCooldownMs, "no scissors and no money",
                        obs.nowMs);
     }
@@ -13179,10 +13709,15 @@ bool Runner::DoMakeCloth(Client& client, const Observation& obs) {
     //    four is not worth walking to a loom for -- it would consume the yarn
     //    into the loom's own store and hand back nothing.
     if (yarn >= kYarnPerBolt) {
-        const u32 loom = client.FindWorldItemByGraphic(kLoomGraphic, 10);
+        const u32 loom = FindLoom(client, kStationSight, clothDeadStations_);
         if (!loom) {
-            LogLine("cloth: %d yarn and no loom in sight -- going to the "
-                    "tailor, where the looms are", yarn);
+            // Throttled: the walk is minutes long and this branch is re-entered
+            // every tick of it. Saying the same sentence 110 times is not
+            // evidence, it is noise that buries the lines that are.
+            LogErrandReason("cloth",
+                            Fmt2("%d yarn and no loom in sight -- going to the "
+                                 "tailor, where the looms are", yarn).c_str(),
+                            obs.nowMs);
             if (!travelInFlight_)
                 travelInFlight_ = client.TravelToPlace(kTailorWorkshopPlace);
             if (!travelInFlight_)
@@ -13191,6 +13726,7 @@ bool Runner::DoMakeCloth(Client& client, const Observation& obs) {
             nextActionMs_ = obs.nowMs + 2500;
             return false;
         }
+        if (!ReachStation(client, obs, loom, "loom")) return false;
         const u32 spun = client.FindBackpackItemByGraphic(kYarnGraphic);
         LogLine("cloth: weaving %d yarn at the loom", yarn);
         client.ActionUseItemOn(spun, loom);
@@ -13201,13 +13737,41 @@ bool Runner::DoMakeCloth(Client& client, const Observation& obs) {
         return false;
     }
 
-    // 3. WOOL -> WHEEL -> YARN. Three yarn per wool, so this runs until the
-    //    wool is gone rather than until some yarn target is hit.
+    // 3. WOOL -> WHEEL -> YARN. Three yarn per wool, so once a wheel is at hand
+    //    this runs until the wool is gone rather than until some yarn target is
+    //    hit.
+    //
+    //    LEAVING THE FLOCK IS THE EXPENSIVE PART. The wheels are in a town and
+    //    the sheep are not: Aelia's walk from the Yew flock back to the Britain
+    //    tailor was 22 legs, ~880 tiles, the whole of a five-minute session
+    //    (artifacts/tailor_cannot_buy_now_2026-09-02.md). Doing that carrying
+    //    one wool buys three yarn of the twenty the batch wants.
+    //
+    //    SO THE TRIP IS MADE WHEN THE PACK IS AS FULL AS ANY OTHER GATHERER
+    //    CARRIES, or when the flock has nothing left to give (step 4b) --
+    //    "they should work till carry capacity" (project owner, 2026-09-02).
+    //    The batch's wool target is the MINIMUM worth having, not the ceiling:
+    //    a character that stopped at seven wool walked the same 880 tiles for
+    //    a fifth of the load it could have carried.
     if (wool > 0) {
-        const u32 wheel = client.FindWorldItemByGraphic(kSpinWheelGraphic, 10);
-        if (!wheel) {
-            LogLine("cloth: %d wool and no spinning wheel in sight -- going to "
-                    "the tailor", wool);
+        const u32 wheel = FindSpinWheel(client, kStationSight, clothDeadStations_);
+        if (!clothHeadingToWheel_ &&
+            obs.WeightFraction() >= kGathererPackFullFrac) {
+            clothHeadingToWheel_ = true;
+            LogLine("cloth: the pack is %.0f%% full with %d wool (the batch "
+                    "wanted %d) -- that is a load, taking it to the wheel",
+                    obs.WeightFraction() * 100.0, wool, woolTarget);
+        }
+        if (!wheel && !clothHeadingToWheel_) {
+            // Room left in the pack and no wheel here: keep shearing. The
+            // exits from the flock are a full pack (above) and a bare one
+            // (step 4b), never a batch-sized wool count. Fall through.
+        } else if (!wheel) {
+            LogErrandReason("cloth",
+                            Fmt2("%d wool (batch wanted %d) and no spinning "
+                                 "wheel in sight -- going to the tailor", wool,
+                                 woolTarget).c_str(),
+                            obs.nowMs);
             if (!travelInFlight_)
                 travelInFlight_ = client.TravelToPlace(kTailorWorkshopPlace);
             if (!travelInFlight_)
@@ -13215,7 +13779,8 @@ bool Runner::DoMakeCloth(Client& client, const Observation& obs) {
                     wm::Service::Tailor, HomeOrNearest(state_.homeCity));
             nextActionMs_ = obs.nowMs + 2500;
             return false;
-        }
+        } else {
+        if (!ReachStation(client, obs, wheel, "spinning wheel")) return false;
         const u32 raw = client.FindBackpackItemByGraphic(kWoolGraphic);
         LogLine("cloth: spinning wool into yarn (%d wool, %d yarn)", wool, yarn);
         client.ActionUseItemOn(raw, wheel);
@@ -13224,6 +13789,7 @@ bool Runner::DoMakeCloth(Client& client, const Observation& obs) {
         clothMarkMs_ = obs.nowMs;
         nextActionMs_ = obs.nowMs + 3000;
         return false;
+        }
     }
 
     // 4. A SHEEP -> WOOL. Free, and the start of everything.
@@ -13231,49 +13797,224 @@ bool Runner::DoMakeCloth(Client& client, const Observation& obs) {
     if (!blade) {
         // Not a failure of the chain -- a missing tool, which is somebody
         // else's errand. Say which, so the log names the fix.
-        LogLine("goal_failed=MAKE_CLOTH reason=\"nothing bladed is carried; a "
+        LogLine("goal_failed=%s reason=\"nothing bladed is carried; a "
                 "sheep is sheared with a weapon or a knife, never with "
-                "scissors\"");
-        planner_.Cooldown(GoalKind::MakeCloth, obs.nowMs + kNoClothCooldownMs);
+                "scissors\"", GoalKindName(self));
+        planner_.Cooldown(self, obs.nowMs + kNoClothCooldownMs);
         planner_.Finish(false, "no blade to shear with", obs.nowMs);
         return false;
     }
 
-    const u32 sheep = client.NearestMobileWithBody(kSheepBody, 12);
-    if (sheep) {
-        // A SHEEP THIS CHARACTER HAS ALREADY SHEARED IS NOT A SHEEP.
-        //
-        // Sphere flips it to CREID_SHEEP_SHORN (0x00DF) and starts a 30-minute
-        // regrow timer (CClientTarg.cpp:1886, WoolGrowthTime), and answers a
-        // second attempt with "wait for the wool to grow back" (:1895). The
-        // body change normally drops it out of NearestMobileWithBody on its
-        // own; this list covers the tick before the update lands. Refusal
-        // means MOVE TO THE NEXT SHEEP, not fail.
-        bool shorn = false;
-        for (u32 s : clothShornSheep_) { if (s == sheep) { shorn = true; break; } }
-        if (shorn) {
-            LogLine("cloth: the nearest sheep is one I already sheared -- "
-                    "trying another pasture");
-            clothShornSheep_.clear();
-        } else {
-            i32 sx = 0, sy = 0; i8 sz = 0;
-            if (client.MobilePosition(sheep, &sx, &sy, &sz)) {
-                const i32 d = TileDist(obs.x, obs.y, sx, sy);
-                if (d > 1) {
-                    LogLine("cloth: a sheep %d tiles away -- walking up to it", d);
-                    travelInFlight_ = client.TravelToEntity(sheep, 1);
-                    nextActionMs_ = obs.nowMs + 2000;
+    // 4a. A SHORN SHEEP IS THREE MORE WOOL -- FOR A FIGHTER.
+    //
+    // Owner ruling 2026-09-02, verified live by the owner: "killed a sheep
+    // after shearing, carved it, gave 3 wool". The shears take one wool
+    // (hard-coded, CClientTarg.cpp:1883); the corpse carves as the body the
+    // animal HAD before the shear (CItemCorpse.cpp:191 `_iPrev_id`), i.e.
+    // c_sheep_woolly's 3 wool + 3 lamb legs. The carve output is added to the
+    // CORPSE, not the pack (CCharUse.cpp:187), so: attack, wait for it to
+    // die, carve its corpse with the blade, open it, take the wool. Four wool
+    // per animal instead of one -- the flock is consumed, which is the real
+    // supply pressure (spawner regrows one sheep per 5-10 min).
+    //
+    // A tailor never enters here: clothKillSheep_ is only set by a fighter's
+    // shear (step 4). Every phase is bounded. A sheep that will not die in a
+    // minute (it fled, the swings all missed) is written off and the next one
+    // taken; a corpse that never shows or never opens likewise.
+    if (clothKillSheep_) {
+        constexpr i64 kKillTimeoutMs    = 60000;
+        constexpr i64 kCarveTimeoutMs   = 15000;
+        constexpr i64 kAttackReassertMs = 6000;
+        i32 sx = 0, sy = 0; i8 sz = 0;
+        const bool alive = client.MobilePosition(clothKillSheep_, &sx, &sy, &sz);
+        if (!clothCarveCorpse_ && alive) {
+            if (obs.nowMs - clothKillStartMs_ > kKillTimeoutMs) {
+                LogLine("wool_income: the shorn sheep would not die in %ds -- "
+                        "leaving it, next sheep",
+                        static_cast<int>(kKillTimeoutMs / 1000));
+                clothKillSheep_ = 0;
+                client.ExitWarMode();
+                return false;
+            }
+            if (!client.WarModeOn()) client.EnterWarMode();
+            if (lastAttackOrderTarget_ != clothKillSheep_ ||
+                obs.nowMs - lastAttackOrderMs_ >= kAttackReassertMs) {
+                if (lastAttackOrderTarget_ != clothKillSheep_)
+                    LogLine("wool_income: attacking the shorn sheep for its "
+                            "carve wool");
+                client.ActionAttack(clothKillSheep_);
+                lastAttackOrderTarget_ = clothKillSheep_;
+                lastAttackOrderMs_ = obs.nowMs;
+            }
+            const i32 d = TileDist(obs.x, obs.y, sx, sy);
+            if (d > 1 && !client.GotoBusy())
+                client.ActionGotoMobile(clothKillSheep_, 1);
+            nextActionMs_ = obs.nowMs + 1200;
+            return false;
+        }
+        if (!clothCarveCorpse_) {
+            // Dead. Its corpse: by the 0xAF link first, by proximity second
+            // (it died within a tile of us; the pasture may hold older
+            // corpses further off).
+            u32 corpse = client.CorpseOfMobile(clothKillSheep_);
+            if (!corpse) corpse = client.FindWorldItemByGraphic(0x2006, 2);
+            if (!corpse) {
+                if (obs.nowMs - clothKillStartMs_ >
+                    kKillTimeoutMs + kCarveTimeoutMs) {
+                    LogLine("wool_income: the sheep died but no corpse showed "
+                            "-- next sheep");
+                    clothKillSheep_ = 0;
+                    client.ExitWarMode();
                     return false;
                 }
+                nextActionMs_ = obs.nowMs + 1000;
+                return false;
             }
-            LogLine("cloth: shearing a sheep (%d wool carried)", wool);
-            clothTrips_ = 0;
-            client.ActionUseItemOn(blade, sheep);
-            clothShornSheep_.push_back(sheep);
+            client.ExitWarMode();
+            if (!ReachStation(client, obs, corpse, "sheep corpse")) return false;
+            clothCarveCorpse_ = corpse;
+            clothCarved_ = false;
+            clothCorpseOpened_ = false;
+            clothCarveMs_ = obs.nowMs;
+            LogLine("wool_income: the sheep is down (corpse 0x%08X) -- carving "
+                    "it", corpse);
+            client.ActionUseItemOn(blade, corpse);
+            nextActionMs_ = obs.nowMs + 1500;
+            return false;
+        }
+        // Carved (or the carve was sent). Open the corpse and take the wool.
+        if (obs.nowMs - clothCarveMs_ > kCarveTimeoutMs) {
+            LogLine("wool_income: the corpse gave up no wool in %ds -- next "
+                    "sheep", static_cast<int>(kCarveTimeoutMs / 1000));
+            clothKillSheep_ = 0; clothCarveCorpse_ = 0;
+            return false;
+        }
+        // Sphere only tells a client about a container's new contents while
+        // that client has it open (the carve's 0x25 never came, 2026-09-03
+        // smoke), so the corpse is opened once after the carve regardless of
+        // whether an earlier 0x3C already listed it.
+        if (!clothCorpseOpened_ || !client.ContainerKnown(clothCarveCorpse_)) {
+            clothCorpseOpened_ = true;
+            client.ActionOpenContainer(clothCarveCorpse_);
+            nextActionMs_ = obs.nowMs + 1200;
+            return false;
+        }
+        const u16 woolGfx[] = {kWoolGraphic};
+        const u32 pile =
+            client.FindContainerItemByGraphic(clothCarveCorpse_, woolGfx, 1);
+        if (pile) {
+            u16 amount = 0;
+            const usize n = client.ContainerItemCount(clothCarveCorpse_);
+            for (usize i = 0; i < n; ++i) {
+                u32 sr = 0; u16 g = 0, a = 0;
+                if (client.ContainerItemAt(clothCarveCorpse_, i, &sr, &g, &a) &&
+                    sr == pile) {
+                    amount = a;
+                    break;
+                }
+            }
+            LogLine("wool_income: taking %d wool from the carved sheep (%d "
+                    "carried)", amount ? amount : 1, wool);
+            client.TakeFromContainer(pile, amount ? amount : 1);
+            ++clothKillsThisTrip_;
+            planner_.NoteProgress();
             clothWoolBefore_ = wool; clothYarnBefore_ = yarn;
             clothBoltBefore_ = bolts; clothClothBefore_ = cloth;
             clothMarkMs_ = obs.nowMs;
-            nextActionMs_ = obs.nowMs + 3000;
+            clothKillSheep_ = 0; clothCarveCorpse_ = 0;
+            nextActionMs_ = obs.nowMs + 1200;
+            return false;
+        }
+        // Opened but no wool yet: the carve may still be resolving, or was
+        // never sent to a corpse in reach. One re-send, then the timeout.
+        if (!clothCarved_) {
+            clothCarved_ = true;
+            clothCorpseOpened_ = false;
+            client.ActionUseItemOn(blade, clothCarveCorpse_);
+        }
+        nextActionMs_ = obs.nowMs + 1500;
+        return false;
+    }
+
+    // A SHEEP THIS CHARACTER HAS ALREADY SHEARED IS NOT A SHEEP.
+    //
+    // Sphere flips it to CREID_SHEEP_SHORN (0x00DF) and starts the wool regrow
+    // timer (CClientTarg.cpp:1886-1890, g_Cfg.m_iWoolGrowthTime), and answers a
+    // second attempt with "wait for the wool to grow back" (:1895). The body
+    // change normally drops it out of the body filter on its own; the exclude
+    // list covers the tick before the update lands. Refusal means TAKE THE NEXT
+    // SHEEP -- the old code cleared the list and walked to another pasture,
+    // which is why a flock of fifteen yielded one wool.
+    const u32 sheep =
+        client.NearestMobileWithBody(kSheepBody, 12, clothShornSheep_);
+    if (sheep) {
+        clothFlockBareMs_ = 0;
+        i32 sx = 0, sy = 0; i8 sz = 0;
+        if (client.MobilePosition(sheep, &sx, &sy, &sz)) {
+            const i32 d = TileDist(obs.x, obs.y, sx, sy);
+            if (d > 1) {
+                LogLine("cloth: a sheep %d tiles away -- walking up to it", d);
+                travelInFlight_ = client.TravelToEntity(sheep, 1);
+                nextActionMs_ = obs.nowMs + 2000;
+                return false;
+            }
+        }
+        LogLine("cloth: shearing a sheep (%d wool carried, want %d)", wool,
+                woolTarget);
+        clothTrips_ = 0;
+        client.ActionUseItemOn(blade, sheep);
+        clothShornSheep_.push_back(sheep);
+        if (fighter) {
+            // The shear lands first (3 s below), then step 4a puts the
+            // animal down for the other three wool.
+            clothKillSheep_ = sheep;
+            clothKillStartMs_ = obs.nowMs + 3000;
+            clothCarveCorpse_ = 0;
+            clothCarved_ = false;
+        }
+        clothWoolBefore_ = wool; clothYarnBefore_ = yarn;
+        clothBoltBefore_ = bolts; clothClothBefore_ = cloth;
+        clothMarkMs_ = obs.nowMs;
+        nextActionMs_ = obs.nowMs + 3000;
+        return false;
+    }
+
+    // 4b. THE FLOCK THIS CHARACTER IS STANDING IN HAS NOTHING LEFT.
+    //
+    // Only reachable after at least one shear here, which is what distinguishes
+    // "worked this flock out" from "have not arrived yet". Waiting for the
+    // REGROW is not an option -- it is thirty minutes (runtime/sphere.ini:399
+    // WoolGrowthTime=30), longer than the session -- but the flock roams, so a
+    // bounded minute of standing still often produces another animal. When the
+    // bound is spent the character leaves with what it has rather than starting
+    // a second cross-map trip for the balance.
+    if (!clothShornSheep_.empty() && !client.TravelBusy()) {
+        if (clothFlockBareMs_ == 0) {
+            clothFlockBareMs_ = obs.nowMs;
+            LogLine("cloth: every sheep in reach is shorn (%d wool of %d) -- "
+                    "wool regrows in 30 min, so waiting %ds for one to wander "
+                    "over, not for the regrow", wool, woolTarget,
+                    static_cast<int>(kShornFlockWaitMs / 1000));
+        }
+        if (obs.nowMs - clothFlockBareMs_ < kShornFlockWaitMs) {
+            nextActionMs_ = obs.nowMs + 2500;
+            return false;
+        }
+        clothFlockBareMs_ = 0;
+        clothShornSheep_.clear();
+        if (wool > 0) {
+            LogLine("cloth: the flock is shorn out -- taking %d wool (batch "
+                    "wanted %d) to the wheel", wool, woolTarget);
+            // The pack is not full and never will be here: latch the trip so
+            // arriving in town with the wheel still out of item range does not
+            // read as "room left, keep shearing" and send us back.
+            clothHeadingToWheel_ = true;
+            if (!travelInFlight_)
+                travelInFlight_ = client.TravelToPlace(kTailorWorkshopPlace);
+            if (!travelInFlight_)
+                travelInFlight_ = client.TravelToService(
+                    wm::Service::Tailor, HomeOrNearest(state_.homeCity));
+            nextActionMs_ = obs.nowMs + 2500;
             return false;
         }
     }
@@ -13282,25 +14023,62 @@ bool Runner::DoMakeCloth(Client& client, const Observation& obs) {
     if (client.TravelBusy()) return false;
     const std::vector<Pasture>& pastures = Pastures();
     if (pastures.empty()) {
-        LogLine("goal_failed=MAKE_CLOTH reason=\"no pasture table -- run "
-                "tools/pasturegen.py against the world save\"");
-        planner_.Cooldown(GoalKind::MakeCloth, obs.nowMs + kNoClothCooldownMs);
+        LogLine("goal_failed=%s reason=\"no pasture table -- run "
+                "tools/pasturegen.py against the world save\"", GoalKindName(self));
+        planner_.Cooldown(self, obs.nowMs + kNoClothCooldownMs);
         planner_.Finish(false, "no pasture data", obs.nowMs);
         return false;
     }
     if (++clothTrips_ > kMaxClothTrips) {
-        LogLine("goal_failed=MAKE_CLOTH reason=\"no sheep found after %d trips "
-                "to the pastures\"", clothTrips_ - 1);
+        LogLine("goal_failed=%s reason=\"no sheep found after %d trips "
+                "to the pastures\"", GoalKindName(self), clothTrips_ - 1);
         clothTrips_ = 0;
-        planner_.Cooldown(GoalKind::MakeCloth, obs.nowMs + kNoClothCooldownMs);
+        planner_.Cooldown(self, obs.nowMs + kNoClothCooldownMs);
         planner_.Finish(false, "no sheep reachable", obs.nowMs);
         return false;
     }
+    // NEAREST FLOCK TO HOME FIRST, NOT BIGGEST AND NOT NEAREST TO HERE.
+    //
+    // pasturegen.py:108 sorts its rows by count, and this used to walk them in
+    // file order, so every character in the world set off for the same 15-sheep
+    // flock at 572,1096 regardless of where it stood. That is a 25-leg, ~1048
+    // tile journey from Britain and it ate a whole five-minute session
+    // (artifacts/tailor_cannot_buy_now_2026-09-02.md).
+    //
+    // Ranking by distance from where the character HAPPENS TO STAND then
+    // produced the opposite failure: Amara, a Britain tailor left stranded up
+    // at Yew by a failed errand, measured from Yew, chose the Yew farmland
+    // flock and died on the way to it. "Yew is never a home; tailors gather
+    // near Britain" (project owner, 2026-09-02). A player who lives in Britain
+    // shears the Britain sheep whatever corner of the map today's mishap left
+    // them in -- the walk home is the same walk either way, and it ends
+    // somewhere they know.
+    //
+    // The anchor is this life's own seeded home bank (SeedNewbieKnowledge is
+    // anchored on state_.homeCity), so nothing here names a city. With no home
+    // knowledge yet, fall back to standing position -- the old behaviour.
+    // stable_sort keeps the count order as the tie-break, so two equidistant
+    // flocks are still taken biggest first.
+    i32 anchorX = obs.x, anchorY = obs.y;
+    const char* anchorWhat = "here";
+    if (const KnownPlace* homeBank =
+            state_.memory.BestPlace("common_knowledge_bank")) {
+        anchorX = homeBank->x;
+        anchorY = homeBank->y;
+        anchorWhat = "home";
+    }
+    std::vector<usize> order(pastures.size());
+    for (usize i = 0; i < order.size(); ++i) order[i] = i;
+    std::stable_sort(order.begin(), order.end(), [&](usize a, usize b) {
+        return TileDist(anchorX, anchorY, pastures[a].x, pastures[a].y) <
+               TileDist(anchorX, anchorY, pastures[b].x, pastures[b].y);
+    });
     const Pasture& p =
-        pastures[static_cast<usize>(clothPastureIdx_) % pastures.size()];
+        pastures[order[static_cast<usize>(clothPastureIdx_) % order.size()]];
     ++clothPastureIdx_;
-    LogLine("cloth: no sheep in sight -- walking to the flock of %d at %d,%d "
-            "(trip %d)", p.count, p.x, p.y, clothTrips_);
+    LogLine("cloth: no sheep in sight -- walking to the flock of %d at %d,%d, "
+            "%d tiles off, nearest to %s (trip %d)", p.count, p.x, p.y,
+            TileDist(obs.x, obs.y, p.x, p.y), anchorWhat, clothTrips_);
     travelInFlight_ = client.TravelToPoint(p.x, p.y, std::max(4, p.radius / 2),
                                            "pasture");
     nextActionMs_ = obs.nowMs + 2500;

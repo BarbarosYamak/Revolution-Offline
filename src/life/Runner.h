@@ -246,6 +246,20 @@ private:
     // on to bandages. See the definition for why every step is measured by an
     // inventory delta rather than by having issued the click.
     bool DoMakeCloth(Client& client, const Observation& obs);
+    // BUY A RIDING HORSE FROM AN ANIMAL TRAINER AND MOUNT IT. Same shop
+    // shape as DoGetTool (travel to the trade, scan titles, walk up, open,
+    // read the offer, buy). The purchase releases the animal at our feet;
+    // the last step double-clicks it and the paperdoll (obs.mounted) is
+    // the proof.
+    bool DoBuyMount(Client& client, const Observation& obs);
+    // WALK UP TO A SPINNING WHEEL OR A LOOM BEFORE CLICKING IT. True only when
+    // the station is within reach NOW; otherwise the walk (or the strike-off)
+    // has already been started and the caller should return false. Same shape
+    // as the forge approach in DoSmelt -- TravelToPoint to a walkable tile
+    // BESIDE the station, and two approaches, never four (owner rule,
+    // 2026-09-02).
+    bool ReachStation(Client& client, const Observation& obs, u32 station,
+                      const char* what);
     // DecideRest (include/uo/activities/rest.h), shared by DoExplore and
     // DoIdle -- both are now two-line forwarders into this. `owner` is
     // whichever of the two the planner actually picked, purely for the
@@ -479,8 +493,42 @@ private:
     // brace, because a client whose 0x77 has not arrived yet would otherwise
     // walk back to the same animal.
     std::vector<u32> clothShornSheep_;
+    // A SHORN SHEEP IS THREE MORE WOOL. Owner ruling 2026-09-02 (verified
+    // live): kill the sheep after shearing and carve the corpse -- Sphere
+    // carves it as the woolly body (CItemCorpse.cpp:191 `_iPrev_id`), and the
+    // carve output lands IN the corpse (CCharUse.cpp:187), so it has to be
+    // opened and emptied. clothKillSheep_ is the animal being put down (0 =
+    // none), clothCarveCorpse_ its corpse once found, and the timestamps bound
+    // each phase so a sheep that will not die or a corpse that will not open
+    // costs one bounded try, not the session.
+    u32  clothKillSheep_    = 0;
+    i64  clothKillStartMs_  = 0;
+    u32  clothCarveCorpse_  = 0;
+    i64  clothCarveMs_      = 0;
+    bool clothCarved_       = false;
+    bool clothCorpseOpened_ = false;  // the carve output only shows once the corpse is opened
+    i32  clothKillsThisTrip_ = 0;
+    // When the flock this character is standing in first read as shorn out, so
+    // the wait for a fresh animal to wander over has a bound. 0 = not waiting.
+    // The regrow itself is 30 minutes (runtime/sphere.ini WoolGrowthTime) and
+    // is never waited on; see DoMakeCloth step 4b.
+    i64  clothFlockBareMs_ = 0;
     // Which pasture the last trip aimed at, so the next one tries another.
+    // Indexes the DISTANCE-ordered view of the table, not the file order.
     i32  clothPastureIdx_ = 0;
+    // The station (wheel or loom) currently being walked up to, and how many
+    // times this character has set off for THAT one. A station it cannot get
+    // beside is struck off after the second try and the next-nearest is used
+    // instead -- Britain's tailor holds two of each.
+    u32  clothStationSerial_ = 0;
+    i32  clothStationApproaches_ = 0;
+    std::vector<u32> clothDeadStations_;
+    // Set once this trip's shearing is over -- the pack is as full as the
+    // gatherers carry, or the flock is bare. Without it, a character that
+    // left a bare flock with half a load and arrived at a tailor whose wheel
+    // is not yet in item range would read "not full, keep shearing" and walk
+    // straight back to the pasture. Cleared when the wool is all spun.
+    bool clothHeadingToWheel_ = false;
     // How many times the bandage errand has asked who is standing in the
     // healer's shop. Reset on success; three unanswered scans stand the
     // goal down instead of re-walking to the same tile.
@@ -566,6 +614,10 @@ private:
     std::string smeltIngotName_;
     i32  smeltTrips_ = 0;
     i64  toolTitlesAskedMs_ = 0;
+    i64  mountTitlesAskedMs_ = 0;
+    i32  mountTrips_ = 0;
+    i32  mountClicks_ = 0;        // double-clicks sent to the horse this goal
+    i64  mountBoughtMs_ = 0;      // when the purchase packet went out
     i32  coinLiftFails_ = 0;
     // Who was standing there when an offer went unanswered, so the same room
     // is not shouted at twice.

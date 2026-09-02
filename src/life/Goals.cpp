@@ -33,6 +33,8 @@ const char* GoalKindName(GoalKind g) {
         case GoalKind::TameAnimal:           return "TAME_ANIMAL";
         case GoalKind::UpgradeGear:          return "UPGRADE_GEAR";
         case GoalKind::MakeCloth:            return "MAKE_CLOTH";
+        case GoalKind::BuyMount:             return "BUY_MOUNT";
+        case GoalKind::HarvestWool:          return "HARVEST_WOOL";
         case GoalKind::IdleBriefly:           return "IDLE_BRIEFLY";
         case GoalKind::Count:                 break;
     }
@@ -71,6 +73,7 @@ GoalFamily FamilyOf(GoalKind k) {
         case GoalKind::FillSpellbook:
         case GoalKind::MakeBandages:
         case GoalKind::UpgradeGear:
+        case GoalKind::BuyMount:
             return GoalFamily::Upkeep;
         case GoalKind::GatherLogs:
         case GoalKind::Mine:
@@ -84,6 +87,7 @@ GoalFamily FamilyOf(GoalKind k) {
         // same shape as Mine -> Smelt. For a tailor this is the work itself,
         // not upkeep -- which is where it differs from MakeBandages.
         case GoalKind::MakeCloth:
+        case GoalKind::HarvestWool:
             return GoalFamily::Work;
         case GoalKind::TrainCombat:
         case GoalKind::TrainAtNpc:
@@ -274,6 +278,14 @@ const GoalSpec kGoals[] = {
     // and must not outrank the shopping errand that can fetch the OTHER
     // inputs of the same recipe in one walk.
     {GoalKind::MakeCloth,             NeedKind::NeedCloth,         135.0},
+    // Above every kind of work and above the bank run: a horse is the first
+    // thing a Revolution player bought, and everything after it -- the wool
+    // trip, the shop errand, the hunt -- is faster mounted. Below GetTool
+    // and ReplaceEquipment, which are the profession itself.
+    {GoalKind::BuyMount,              NeedKind::NeedMount,         255.0},
+    // Income work, on the same shelf as EARN_GOLD (150) and below the
+    // craft/gather work that feeds a build.
+    {GoalKind::HarvestWool,           NeedKind::NeedWoolIncome,    140.0},
 };
 
 }  // namespace

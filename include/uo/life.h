@@ -573,6 +573,29 @@ struct Observation {
         for (const std::string& s : noSellerFor) { if (s == item) return true; }
         return false;
     }
+    // IS THERE STILL SESSION ENOUGH TO GO AND ASK? The same test
+    // DoTradeWithPlayer makes on entry (Runner.cpp: `leftMs <
+    // kMarketTripBudgetMs` -> goal_blocked "not enough session left for the
+    // trip"), computed once in Observe so the pure need model can see it too.
+    //
+    // A need that waits on a market answer has to be able to tell "nobody
+    // answered" from "this life will never get there to ask this session";
+    // Amara sat BLOCKED on the first while the runner was refusing on the
+    // second, and the two never met. Defaults TRUE: no session clock, no veto.
+    bool marketTripFitsSession = true;
+    // THE THIRD WAY THE MARKET CANNOT BE ASKED RIGHT NOW: the trade goal has
+    // stood ITSELF down. `noSellerFor` says "asked and nobody answered" and
+    // `marketTripFitsSession` says "no session left to go and ask"; neither is
+    // true while TRADE_WITH_PLAYER is merely on cooldown after achieving
+    // nothing, and a need that waits on an answer then waits forever. Amara
+    // sat with NeedCloth BLOCKED at 0.00 -- "the player market has not been
+    // asked for it yet" -- for fourteen consecutive assessments while
+    // TRADE_WITH_PLAYER was cooling for another 599s, so the only goal left
+    // scoring was EXPLORE at 15.0 and she wandered
+    // (run_gates/g_Amara.console.txt:148,200,204; wander was 50% of that
+    // session's picks). Filled in Observe from Planner::Cooling; defaults
+    // FALSE so the pure need model is unchanged without it.
+    bool marketAskOnCooldown = false;
     i32  hostilesNear = 0;
     i32  attackersOnMe = 0;
     bool underAttack = false;
@@ -797,6 +820,33 @@ CraftIntent ChooseCraft(const prof::Profession& p, const Observation& obs,
 // cotton source that has not been proven -- recorded, not worked around.
 bool IsWoolChainMaterial(const char* item);
 
+// IS THIS ITEM WORK IN PROGRESS, RATHER THAN STOCK?
+//
+// Wool, yarn and the bolt are STEPS on the way to cloth: the wheel, the loom
+// and the scissors each eat the previous one, and the only thing the sewing
+// recipes actually take is CUT cloth. A bolt is therefore never a thing to put
+// in a box or offer to a buyer while the life still owes itself cloth --
+// "bolt should be cut not banked" (project owner, 2026-09-02).
+//
+// WHAT WENT WRONG WITHOUT IT: `produces` opens with i_cloth_bolt
+// (Professions.cpp), so market::Surplus called Aelia's first bolt spare stock,
+// and a bolt weighs 50 stones (runtime/scripts/items/
+// i_profession_tailor_tanner.scp:74-80, WEIGHT=50.0 RESOURCES=50 i_cloth) --
+// enough on its own to take her from 70/124 to 120/124 and raise NeedBank
+// "deposit carried load" at 0.72 against NeedCloth's 0.51. Forty milliseconds
+// after the loom answered, BANK superseded MAKE_CLOTH and she walked 47 tiles
+// to deposit it, with the scissors in her pack the whole time
+// (run_gates/g_Aelia.console.txt:442,460,519).
+//
+// THE GATE IS THE CLOTH, NOT THE PROFESSION. An intermediate is only in
+// progress for a life whose OWN recipes eat cloth, and only while it holds
+// less cloth than a sitting of those recipes wants -- a tailor with a chest of
+// cloth and three spare bolts is holding goods, and goods may be banked or
+// sold. i_cloth itself is never "in progress": it is the finished material.
+bool WoolChainWorkInProgress(const prof::Profession& p,
+                             const std::vector<market::Stock>& holdings,
+                             i32 craftBatch, const char* item);
+
 // Does this life go looking for fights, or only finish the ones that find it?
 // Read off the build -- a profession that wants MORE than the 50.0 creation
 // grant in a weapon school intends to use it. Shared because two systems ask:
@@ -907,6 +957,18 @@ enum class NeedKind : u8 {
     // a tailor walking to Yew while a lumberjack stood at the bank with a
     // bale for sale.
     NeedCloth,
+    // A riding horse. Every Revolution player bought one first -- a
+    // dated forum price (800 gp, 24.03.2011) and the owner's own rule
+    // ("buy a horse first, mount, then do the rest", 2026-09-02). Raised
+    // only while unmounted, no horse of ours stands beside us, and the
+    // purse clears the reserve plus the trainer's price.
+    NeedMount,
+    // Wool as a FIGHTER'S income. Owner ruling 2026-09-02: a tailor has no
+    // attack skill, so the shear -> kill -> carve loop (4 wool a sheep) is
+    // the warriors' -- "an additional income source" -- and they sell the
+    // wool to tailors. Raised only for a life that hunts and lists i_wool
+    // in `produces`; carrying a load already, or no blade, mutes it.
+    NeedWoolIncome,
     Count,
 };
 
@@ -1073,6 +1135,16 @@ enum class GoalKind : u8 {
     // stops when the craft batch has enough CLOTH, and it is Work rather than
     // Upkeep because for a tailor it IS the work.
     MakeCloth,
+    // Walk to an animal trainer, buy a riding horse, mount it. Sphere
+    // releases an NPC-bought figurine at the buyer's feet in the same
+    // packet (CClientEvent.cpp:1309 -> Use_Figurine), so the only step
+    // after the purchase is a double-click on the animal.
+    BuyMount,
+    // A fighter's wool trip: pasture, shear a sheep (1 wool), kill it, carve
+    // the corpse with the blade (3 wool, CItemCorpse.cpp:191 _iPrev_id),
+    // take the wool, next sheep; home when the pack is a load or the flock
+    // is gone. Owner ruling 2026-09-02: warriors, never the tailor.
+    HarvestWool,
     IdleBriefly,
     Count,
 };

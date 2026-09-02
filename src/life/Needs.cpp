@@ -35,6 +35,8 @@ const char* NeedKindName(NeedKind k) {
         case NeedKind::NeedSmelt:     return "NeedSmelt";
         case NeedKind::NeedCraft:     return "NeedCraft";
         case NeedKind::NeedCloth:     return "NeedCloth";
+        case NeedKind::NeedMount:     return "NeedMount";
+        case NeedKind::NeedWoolIncome: return "NeedWoolIncome";
         case NeedKind::Count:         break;
     }
     return "?";
@@ -50,6 +52,47 @@ bool IsWoolChainMaterial(const char* item) {
         if (std::strcmp(item, c) == 0) return true;
     }
     return false;
+}
+
+// See the declaration in life.h for the live failure this exists to stop.
+bool WoolChainWorkInProgress(const prof::Profession& p,
+                             const std::vector<market::Stock>& holdings,
+                             i32 craftBatch, const char* item) {
+    if (item == nullptr || !IsWoolChainMaterial(item)) return false;
+    // Cut cloth is the finished material of the chain, not a step in it.
+    if (std::strcmp(item, "i_cloth") == 0) return false;
+
+    // A LIFE THAT SELLS CLOTH IS MID-CHAIN UNTIL IT IS CLOTH. The fighters
+    // list i_cloth in `produces` (owner ruling 2026-09-02: they shear, kill,
+    // carve, spin, weave and cut, and sell the cloth to tailors) and the
+    // intermediates alongside it so the pack can count them; wool, yarn and
+    // a bolt in their pack are a load half-processed, never surplus and never
+    // a bank deposit.
+    for (const std::string& made : p.produces)
+        if (made == "i_cloth") return true;
+
+    // HOW MUCH CLOTH A SITTING OF THIS LIFE'S OWN RECIPES WOULD EAT, read off
+    // the recipe graph rather than from a profession flag -- a full_crafter
+    // sewing a shirt gets the same answer as a tailor, and a smith gets zero
+    // because nothing it makes asks for cloth. Zero means this life does not
+    // sew at all, so a bolt in its pack really is just goods.
+    i32 perSitting = 0;
+    for (const std::string& made : p.produces) {
+        const prod::Recipe* r = prod::FindRecipe(made.c_str());
+        if (r == nullptr) continue;
+        for (const prod::Ingredient& in : r->inputs) {
+            if (in.item && std::strcmp(in.item, "i_cloth") == 0)
+                perSitting = std::max(perSitting, in.qty);
+        }
+    }
+    if (perSitting <= 0) return false;
+    perSitting *= std::max(1, craftBatch);
+
+    i32 cloth = 0;
+    for (const market::Stock& s : holdings) {
+        if (s.item == "i_cloth") { cloth = s.qty; break; }
+    }
+    return cloth < perSitting;
 }
 
 namespace {
@@ -497,6 +540,12 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
             market::Surplus(*cfg.profession, obs.pack,
                             market::PolicyForPurse(obs.goldOnHand));
         for (const market::Offer& o : onHand) {
+            // A BOLT ON THE WAY TO CLOTH IS NOT STOCK. See
+            // WoolChainWorkInProgress in life.h -- without this the tailor's
+            // first bolt counted as output nobody wanted and went in the box.
+            if (WoolChainWorkInProgress(*cfg.profession, obs.pack,
+                                        cfg.craftBatch, o.item.c_str()))
+                continue;
             if (market::HasNpcBuyer(o.item.c_str()) ||
                 mem.BestSupplier((std::string("buyer:") + o.item).c_str())) {
                 loadIsSellable = true;
@@ -509,6 +558,29 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         }
     }
 
+    // IS THE LOAD THE WORK ITSELF? A bolt of cloth weighs 50 stones, which is
+    // most of a crafter's carry limit on its own, so weaving one is enough to
+    // raise "deposit carried load" over every other need -- and the answer to
+    // "I am carrying a heavy bolt" is the pair of scissors already in the
+    // pack, not a walk to the bank. Same shape as `loadIsSellable` above: the
+    // weight clause stands down only while there is a nearer thing to do with
+    // the load. Overload is exempt (items are hitting the floor), and the
+    // moment the bolt becomes cloth this is false again, so the trip that
+    // secures the finished material still happens.
+    bool loadIsWorkInProgress = false;
+    std::string wipName;
+    if (cfg.profession) {
+        for (const market::Stock& s : obs.pack) {
+            if (s.qty <= 0) continue;
+            if (!WoolChainWorkInProgress(*cfg.profession, obs.pack,
+                                         cfg.craftBatch, s.item.c_str()))
+                continue;
+            loadIsWorkInProgress = true;
+            wipName = s.item;
+            break;
+        }
+    }
+
     if (obs.overloaded) {
         // Already spilling onto the ground. Nothing else matters about the
         // pack: every further log is dropped where anyone can take it.
@@ -517,11 +589,19 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
             Fmt("server said 'it is too heavy'; weight=%d/%d logs=%d",
                 obs.weight, obs.maxWeight, obs.logs));
     } else if (weightFrac >= cfg.bankWeightFrac && !loadIsSellable) {
-        add(NeedKind::NeedBank, 0.6 + (weightFrac - cfg.bankWeightFrac),
+        add(NeedKind::NeedBank,
+            loadIsWorkInProgress ? 0.0
+                                 : 0.6 + (weightFrac - cfg.bankWeightFrac),
             "deposit carried load",
-            "close to the carry limit; further gathering is wasted",
-            Fmt("weight=%d/%d (%.0f%%) logs=%d", obs.weight, obs.maxWeight,
-                weightFrac * 100.0, obs.logs));
+            loadIsWorkInProgress
+                ? "close to the carry limit, but the weight IS the unfinished "
+                  "work -- it gets worked, not stored"
+                : "close to the carry limit; further gathering is wasted",
+            Fmt("weight=%d/%d (%.0f%%) logs=%d%s%s", obs.weight, obs.maxWeight,
+                weightFrac * 100.0, obs.logs,
+                loadIsWorkInProgress ? " work_in_progress=" : "",
+                loadIsWorkInProgress ? wipName.c_str() : ""),
+            loadIsWorkInProgress);
     } else if (obs.logs >= cfg.logsWorthBanking && !SellableInstead(cfg)) {
         add(NeedKind::NeedBank, 0.35, "deposit logs",
             "enough logs carried to be worth securing",
@@ -650,9 +730,19 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
             }
             if (!merged) holdings.push_back(b);
         }
-        const std::vector<market::Offer> spare =
+        std::vector<market::Offer> spare =
             market::Surplus(*cfg.profession, holdings,
                             market::PolicyForPurse(obs.goldOnHand));
+        // NOT THE HALF-MADE CLOTH. Same ruling as the bank side above: while
+        // this life still owes itself cloth, the bolt it just wove is the next
+        // gesture's input, not a thing to carry to a buyer.
+        spare.erase(std::remove_if(spare.begin(), spare.end(),
+                                   [&](const market::Offer& o) {
+                                       return WoolChainWorkInProgress(
+                                           *cfg.profession, holdings,
+                                           cfg.craftBatch, o.item.c_str());
+                                   }),
+                    spare.end());
         if (!spare.empty()) {
             // Urgency GROWS with the load, because "worth walking to town for"
             // is a question about quantity. Flat, it lost to gathering forever:
@@ -856,11 +946,48 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         // need at all because no recipe it chose asks for cloth.
         std::string clothShort;
         i32 clothShortQty = 0;
+        // The full quantity a sitting wants of `clothShort`, so the urgency
+        // fraction below means the same thing whichever of the two shapes
+        // filled the shortfall in.
+        i32 clothWantQty = 0;
         for (const prod::Ingredient& ing : craft.missing) {
             if (!IsWoolChainMaterial(ing.item)) continue;
             clothShort = ing.item;
             clothShortQty = ing.qty;
+            // Four yarn per bolt; the batch's worth of that is the denominator
+            // the "a full batch short scores 0.55" note below is written for.
+            clothWantQty = std::max(1, cfg.craftBatch * 4);
             break;
+        }
+        // ...OR THE THING BEING MADE *IS* THE CLOTH. "I have yarn, I need to
+        // weave it."
+        //
+        // The loop above reads the recipe's MISSING list, which is the right
+        // question only while the wool chain is an INPUT to what is being made.
+        // When the chosen output is itself a wool-chain item -- the tailor's
+        // `produces` opens with i_cloth_bolt (Professions.cpp) -- four yarn in
+        // the pack make the missing list EMPTY, and an empty missing list said
+        // "nothing to do about cloth". Aelia sat on 6 yarn and 0 bolts for a
+        // whole session: CRAFT chose i_cloth_bolt, found every input present,
+        // handed off to MAKE_CLOTH because a bolt is loom work, and MAKE_CLOTH
+        // was never in the planner's list at all -- not even as a BLOCKED_NEED
+        // (artifacts/cloth_walkup_bolt_route_capacity_2026-09-02.md section 4).
+        // The session drifted CRAFT -> PRACTICE_SKILL -> EARN_GOLD.
+        //
+        // Deliberately narrow, and NOT a profession flag: the gate is that the
+        // OUTPUT is on the wool chain, which in the whole catalogue only the
+        // tailor's produces list is (every other trade names wool, yarn, cloth
+        // and thread under `consumes`, never `produces`). So no other life's
+        // player-first rule is touched, and nothing here buys cloth from an NPC.
+        if (clothShort.empty() && craft.item && craft.skillsMet &&
+            IsWoolChainMaterial(craft.item)) {
+            const i32 want = std::max(1, cfg.craftBatch);
+            const i32 have = QtyIn(obs.pack, craft.item);
+            if (have < want) {
+                clothShort = craft.item;
+                clothShortQty = want - have;
+                clothWantQty = want;
+            }
         }
 
         if (craft.item && craft.skillsMet) {
@@ -933,21 +1060,68 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         // wins. `no_player_seller` is written by DoTradeWithPlayer when its
         // listen period expires unanswered, so the first sheep is only ever
         // walked to after a real, failed attempt to buy.
+        //
+        // "CANNOT BUY NOW" IS ALSO AN ANSWER (owner ruling via lead,
+        // 2026-09-02). Waiting for the WTB window to time out only works if
+        // the window can ever open. Two live refusals happen BEFORE anything
+        // is announced, and neither one writes a `no_player_seller`:
+        //
+        //   * the capital gate -- market::CanAffordToShop, the same
+        //     `gold - blindPriceCeiling < goldReserve` PlayerMarketWants
+        //     applies before it will name a single want. Aelia ran a whole
+        //     5-minute gate at gold=0, so `buyable` was empty, NeedTrade never
+        //     scored, TRADE_WITH_PLAYER never ran, and MAKE_CLOTH printed
+        //     "the player market has not been asked for it yet" twenty times
+        //     (run_gates/g_Aelia.console.txt:83-710).
+        //   * the trip-time gate -- obs.marketTripFitsSession, the same test
+        //     DoTradeWithPlayer makes on entry. Amara's need was 800 s and
+        //     the market trip did not fit what was left of the session.
+        //
+        // Any of them means the player market cannot be asked for THIS
+        // material on THIS tick, which under the ruling counts as declined:
+        // the tailor goes and shears. Kept deliberately narrow -- it is
+        // computed inside the cloth clause and read by nothing else, so no
+        // other profession's player-first rule is touched, and it still never
+        // buys wool, yarn or cloth from an NPC.
         if (!clothShort.empty()) {
-            const bool declined = obs.NoSellerFor(clothShort);
+            const bool asked = obs.NoSellerFor(clothShort);
+            const market::TradePolicy buyPolicy =
+                market::PolicyForPurse(obs.goldOnHand);
+            const bool broke = !market::CanAffordToShop(
+                *cfg.profession, obs.goldOnHand, buyPolicy);
+            const bool noTime = !obs.marketTripFitsSession;
+            //   * the goal's own stand-down -- TRADE_WITH_PLAYER cooling after
+            //     it achieved nothing. Nobody can be asked while the goal that
+            //     does the asking is out of the running, and waiting on an
+            //     answer that cannot be sought is how EXPLORE ended up with
+            //     half of Amara's session (see Observation::marketAskOnCooldown
+            //     for the log lines).
+            const bool cooling = obs.marketAskOnCooldown;
+            const bool declined = asked || broke || noTime || cooling;
             // Same shape as the other work needs so no weight needs
             // re-tuning: a life a full batch short scores 0.55.
             const double frac =
                 std::min(1.0, static_cast<double>(clothShortQty) /
-                                  std::max(1, cfg.craftBatch * 4));
+                                  std::max(1, clothWantQty));
             add(NeedKind::NeedCloth, declined ? 0.15 + 0.40 * frac : 0.0,
                 "cloth",
-                declined
-                    ? "short of cloth, no NPC may sell it, and the player "
-                      "market was asked and nobody answered -- so shear it"
-                    : "short of cloth, but the player market has not been "
-                      "asked for it yet",
-                Fmt("%d x %s short", clothShortQty, clothShort.c_str()),
+                asked ? "short of cloth, no NPC may sell it, and the player "
+                        "market was asked and nobody answered -- so shear it"
+                : broke ? "short of cloth, and too poor to buy any from a "
+                          "player at all -- the wheel and the loom are free"
+                : noTime ? "short of cloth, and there is not enough session "
+                           "left to walk to the market and ask -- shear it "
+                           "instead"
+                : cooling ? "short of cloth, and the trade errand has stood "
+                            "itself down -- nobody can be asked right now, so "
+                            "shear it"
+                          : "short of cloth, but the player market has not "
+                            "been asked for it yet",
+                broke ? Fmt("%d x %s short, %d gold on hand, reserve %d",
+                            clothShortQty, clothShort.c_str(), obs.goldOnHand,
+                            cfg.profession->goldReserve)
+                      : Fmt("%d x %s short", clothShortQty,
+                            clothShort.c_str()),
                 !declined);
         }
     }
@@ -1275,6 +1449,74 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
             Fmt("str %d gold %d reserve %d", obs.str, obs.gold,
                 cfg.profession->goldReserve),
             false);
+    }
+
+    // --- a horse, before anything else that costs a walk --------------------
+    //
+    // "create a new tailor, make it buy a horse first, mount, then do the
+    // rest" (project owner, 2026-09-02). Every profession, not tailors only:
+    // Revolution players bought a horse the day they could afford one
+    // (forum, 24.03.2011: NPC horse 800 gp). The runtime animal trainer
+    // asks 450-500 (i_char_icons.scp VALUE={450 500}); the gate below is the
+    // price plus this life's reserve, so a broke character earns first and
+    // the errand never spends the coin the work needs.
+    //
+    // NOT raised while mounted (the horse is under her) and not while dead.
+    // A horse bought and left standing is DoBuyMount's business, not this
+    // need's: Sphere releases the pet at the buyer's feet in the purchase
+    // packet, and the goal mounts it on its next tick.
+    {
+        constexpr i32 kHorsePriceCeiling = 500;
+        const i32 reserve = cfg.profession ? cfg.profession->goldReserve : 0;
+        const bool canAfford = obs.gold >= reserve + kHorsePriceCeiling;
+        if (!obs.mounted && !obs.dead) {
+            add(NeedKind::NeedMount, canAfford ? 0.8 : 0.05, "riding horse",
+                canAfford ? "on foot with the price of a horse in hand"
+                          : "on foot, but the purse does not clear the price "
+                            "plus this life's reserve",
+                Fmt("gold %d reserve %d price<=%d", obs.gold, reserve,
+                    kHorsePriceCeiling),
+                !canAfford);
+        }
+    }
+
+    // --- wool as a fighter's income ----------------------------------------
+    //
+    // Owner ruling 2026-09-02: "add this part only to warrior so they can
+    // sell cloth -- because tailor doesn't have attack skill -- and it will
+    // provide them additional income source". So the shear-kill-carve loop
+    // is a WantsToHunt life's chore, gated on i_wool being in its own
+    // `produces` (the melee schools list it; the archer has no blade).
+    //
+    // 0.50 while the purse is under this life's reserve -- income is the
+    // point -- and 0.30 otherwise, a chore that fills a quiet hour; either
+    // way below a fighter standing at a graveyard (0.65) and a hunt it could
+    // go on (0.45) when poor is not the case. Muted while carrying a load
+    // (the trip is over; NeedGold sells it), while hurt, or while dead.
+    if (cfg.profession && !obs.dead && WantsToHunt(*cfg.profession)) {
+        bool sellsWool = false;
+        for (const std::string& it : cfg.profession->produces)
+            sellsWool = sellsWool || it == "i_wool";
+        const i32 woolCarried = market::QtyOf(obs.pack, "i_wool");
+        // Unsold cloth in the pack is a load already: no new production until
+        // it is sold or banked (thresholds are the stock, not a constant).
+        const bool loaded = obs.WeightFraction() >= 0.7 ||
+                            market::QtyOf(obs.pack, "i_cloth") > 0;
+        const bool hurt = obs.hp * 100 < obs.hpMax * 80;
+        if (sellsWool) {
+            const bool poor = obs.gold < cfg.profession->goldReserve;
+            const bool blocked = loaded || hurt;
+            add(NeedKind::NeedWoolIncome, blocked ? 0.0 : (poor ? 0.50 : 0.30),
+                "wool",
+                loaded ? "already carrying a load -- sell it first"
+                : hurt ? "too hurt to be putting sheep down"
+                : poor ? "purse under the reserve; sheep are the nearest coin"
+                       : "wool sells to tailors and the flock is free",
+                Fmt("wool=%d gold=%d reserve=%d weight=%.0f%%", woolCarried,
+                    obs.gold, cfg.profession->goldReserve,
+                    obs.WeightFraction() * 100.0),
+                blocked);
+        }
     }
 
     // --- a spellbook worth FILLING -----------------------------------------

@@ -33,6 +33,16 @@ const Row kMatrix[] = {
     // NPC stock lists were curated and narrow.
     {"i_pet_horse_pack",  VendorClass::RevolutionNpcVerified},
     {"i_pet_llama_pack",  VendorClass::RevolutionNpcVerified},
+    // RIDING HORSES. Forum, 24.03.2011: an NPC-sold horse cost 800 gp
+    // (docs/REVOLUTION_ECONOMY_FORUM_EVIDENCE.md:113). The runtime animal
+    // trainer stocks these four at VALUE={450 500} (tm_vend.scp
+    // VENDOR_S_TRAINER, i_char_icons.scp) -- cheaper than the era, a
+    // recorded gap, not a refusal. Owner rule 2026-09-02: a character buys a
+    // horse first and does the rest mounted.
+    {"i_pet_horse_tan",      VendorClass::RevolutionNpcVerified},
+    {"i_pet_horse_gray",     VendorClass::RevolutionNpcVerified},
+    {"i_pet_horse_brown_lt", VendorClass::RevolutionNpcVerified},
+    {"i_pet_horse_brown_dk", VendorClass::RevolutionNpcVerified},
 
     // --- named cooperative categories (08.11.2008, 19.12.2008) --------------
     // These are PLAYER goods by Revolution's own word. Ammunition is the
@@ -295,6 +305,11 @@ const GraphicRow kGraphics[] = {
     {0x0F95, "i_cloth_bolt"},    {0x0F96, "i_cloth_bolt"}, {0x0F97, "i_cloth_bolt"},
     {0x0DF9, "i_cotton"},        {0x0DEF, "i_cotton"},
     {0x1A9C, "i_flax_bundle"},   {0x1A9D, "i_flax_bundle"},
+    // Riding-horse figurines (i_char_icons.scp). 0x211F is i_pet_horse_gray_2,
+    // the same animal under a second icon.
+    {0x259E, "i_pet_horse_tan"},      {0x2599, "i_pet_horse_gray"},
+    {0x211F, "i_pet_horse_gray"},     {0x2120, "i_pet_horse_brown_lt"},
+    {0x2121, "i_pet_horse_brown_dk"},
     // ORE IS ONE GRAPHIC FOR EVERY METAL. i_ore_copper, i_ore_gold,
     // i_ore_silver, i_ore_shadow, i_ore_agapite, i_ore_verite, i_ore_valorite
     // and the rest are all `ID=i_ore_iron` in items/i_provisions_ore.scp and

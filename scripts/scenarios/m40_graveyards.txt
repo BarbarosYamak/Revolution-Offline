@@ -1,0 +1,48 @@
+# Rebuild the seven Felucca graveyards on the LIVE world.
+#
+# RUN ONLY AS THE ADMIN ACCOUNT (character "Observer") via run_admin.ps1:
+#   .\run_admin.ps1 -Scenario m40_graveyards -Tag gy_tns1 -TimeoutSec 420
+#
+# WHY
+#
+# functions/worldgen/spawns/felucca/Graveyards_spawns_felucca.scp is a worldgen
+# script -- it runs once on an empty world and its i_worldgem_bit spawner gems
+# then live in the save.  Rewriting it does NOT retro-fix an already generated
+# world, so the new table has to be executed once here.  The identical argument
+# vectors live in revolution/f_m40_graveyards.scp.
+#
+# .serv.load is required first.  spheretables.scp scans scripts/revolution/ at
+# STARTUP only, and .serv.resync reloads files it already knows about -- it does
+# NOT pick up a file that appeared since boot (proved 2026-09-02: resync said
+# "complete", then .f_m40_graveyards returned "Undefined keyword").
+# SERV.LOAD -> CServerConfig::LoadResourcesAdd (Source-X CServer.cpp:2092) adds
+# one resource file at runtime.  The path is relative to ScpFiles= in
+# sphere.ini, which is "scripts/".
+#
+# RE-RUN SAFE.  f_m40_graveyards calls f_m40_gy_clear first, which deletes
+# every t_spawn_char worldgem inside the twelve graveyard AREADEF rects on
+# map 0 -- both the eighteen legacy M3.9 gems and any set this scenario placed
+# on an earlier run.  Running it twice therefore leaves one set, not two.
+# Removing the gem also removes the creatures it spawned
+# (CCSpawn::Delete -> KillChildren, Source-X CCSpawn.cpp:283).
+
+wait_world
+sleep 3000
+
+say .serv.resync
+sleep 30000
+
+# One call places all 58 spawners across Britain, Vesper, Cove, Moonglow,
+# Nujel'm, Jhelom and Yew.  Give it room: it removes 18 gems (and their
+# children) before creating anything.
+say .f_m40_graveyards
+sleep 25000
+
+# The gems are ATTR=080, i.e. not attr_static, so a plain .save writes them to
+# sphereworld.scp.
+say .save
+sleep 30000
+
+say m40 graveyards rebuilt
+sleep 1500
+logout

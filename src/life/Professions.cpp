@@ -268,7 +268,8 @@ const std::vector<Profession>& All() {
             // deliberately self-sufficient lumberjack look dependent on
             // somebody else, which it is not.
             p.produces = {"i_log", "i_board", "i_parchment", "i_scroll_blank",
-                          "i_club"};
+                          "i_club",
+                          "i_cloth", "i_wool", "i_yarn_ball", "i_cloth_bolt"};
             p.tools = {{"hatchet", V(kHatchet, 2), true}};
             p.consumables = {Bandages(), HealPotions(), Food()};
             p.riskTolerance = 0.55;
@@ -741,6 +742,16 @@ const std::vector<Profession>& All() {
             // Bought, not made: deadly poison is the alchemist's product
             // (Production.cpp i_potion_poisondeadly, ALCHEMY 90.1), exactly
             // what this build's Poisoning 100.0 needs applied to a weapon.
+            // CLOTH IS A FIGHTER'S TRADE GOOD. Owner ruling 2026-09-02: a
+            // tailor has no attack skill, so the shear-kill-carve loop (1
+            // wool from the shears, 3 more from carving the corpse,
+            // CItemCorpse.cpp:191 _iPrev_id) belongs to the warriors, who
+            // spin, weave and cut it ("not wool, cloth itself") and sell the
+            // cloth to tailors -- "an additional income source". The wheel,
+            // loom and scissors take no skill (CClientTarg.cpp:2066-2235).
+            // Listed in `produces` so Surplus() offers it and WhoProduces()
+            // points a tailor's cloth WTB at them.
+            p.produces = {"i_cloth", "i_wool", "i_yarn_ball", "i_cloth_bolt"};
             p.consumes = {"i_potion_poisondeadly"};
             p.consumables = {Bandages(), HealPotions(), Food()};
             p.riskTolerance = 0.75;      // duelist; picks the fight
@@ -791,6 +802,16 @@ const std::vector<Profession>& All() {
             // Armor/stamina pressure is a slow fight, and a slow fight is
             // won on Cure potions, not poison -- the alchemist's product
             // again, a different one than the Fencer buys.
+            // CLOTH IS A FIGHTER'S TRADE GOOD. Owner ruling 2026-09-02: a
+            // tailor has no attack skill, so the shear-kill-carve loop (1
+            // wool from the shears, 3 more from carving the corpse,
+            // CItemCorpse.cpp:191 _iPrev_id) belongs to the warriors, who
+            // spin, weave and cut it ("not wool, cloth itself") and sell the
+            // cloth to tailors -- "an additional income source". The wheel,
+            // loom and scissors take no skill (CClientTarg.cpp:2066-2235).
+            // Listed in `produces` so Surplus() offers it and WhoProduces()
+            // points a tailor's cloth WTB at them.
+            p.produces = {"i_cloth", "i_wool", "i_yarn_ball", "i_cloth_bolt"};
             p.consumes = {"i_potion_cure"};
             p.consumables = {Bandages(), HealPotions(), Food()};
             p.riskTolerance = 0.70;
@@ -966,6 +987,16 @@ const std::vector<Profession>& All() {
             // Recall is the escape valve after a kill; deadly poison is the
             // finisher. Both are bought, never made -- this build has no
             // Magery or Alchemy of its own.
+            // CLOTH IS A FIGHTER'S TRADE GOOD. Owner ruling 2026-09-02: a
+            // tailor has no attack skill, so the shear-kill-carve loop (1
+            // wool from the shears, 3 more from carving the corpse,
+            // CItemCorpse.cpp:191 _iPrev_id) belongs to the warriors, who
+            // spin, weave and cut it ("not wool, cloth itself") and sell the
+            // cloth to tailors -- "an additional income source". The wheel,
+            // loom and scissors take no skill (CClientTarg.cpp:2066-2235).
+            // Listed in `produces` so Surplus() offers it and WhoProduces()
+            // points a tailor's cloth WTB at them.
+            p.produces = {"i_cloth", "i_wool", "i_yarn_ball", "i_cloth_bolt"};
             p.consumes = {"i_scroll_recall", "i_potion_poisondeadly"};
             p.consumables = {Bandages(), HealPotions(), Food()};
             p.riskTolerance = 0.85;      // the highest in the catalogue

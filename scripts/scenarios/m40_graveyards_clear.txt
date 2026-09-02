@@ -1,0 +1,27 @@
+# Clear-only half of the graveyard rebuild -- removes every t_spawn_char
+# worldgem inside the twelve Felucca graveyard AREADEF rects on map 0.
+#
+# RUN AS ADMIN via run_admin.ps1.  Idempotent: a second run removes 0.
+#
+# Kept as a separate scenario because f_m40_gy_clear is the risky half (a bad
+# rect test silently removes nothing, or the wrong thing), and it is worth
+# proving on its own before f_m40_graveyards places 52 new spawners on top.
+#
+# Removing the gem also removes the creatures it spawned
+# (CCSpawn::Delete -> KillChildren, Source-X CCSpawn.cpp:283).
+
+wait_world
+sleep 3000
+
+say .serv.resync
+sleep 30000
+
+say .f_m40_gy_clear
+sleep 15000
+
+say .save
+sleep 30000
+
+say m40 graveyard clear done
+sleep 1500
+logout

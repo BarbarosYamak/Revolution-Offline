@@ -1,0 +1,93 @@
+# Fill the two new sheep flocks to their AMOUNT without changing any rule.
+#
+# RUN ONLY AS THE ADMIN ACCOUNT (character "Observer") via run_admin.ps1.
+# Run m40_sheep_flocks.txt FIRST -- this file only ticks spawners that exist.
+#
+# WHY
+#
+# CCSpawn::OnTickComponent (server/Source-X/src/game/components/CCSpawn.cpp:672)
+# spawns exactly ONE creature per tick and then re-arms for
+# g_Rand.GetVal2(TIMELO,TIMEHI) MINUTES. A fresh AMOUNT=15 flock therefore takes
+# ~1.5-2.5 h of uptime to fill; the Yew flocks are only full because they have
+# been up for a long time.
+#
+# ISPV_START (CCSpawn.cpp:1255) is `pItem->SetTimeout(0)` -- it just brings the
+# spawner's OWN next tick forward. Every sheep is still created by the engine's
+# GenerateChar on the engine's own path, with the spawner's own MAXDIST=15
+# placement. Nothing about the flock's rules is altered, only its schedule.
+#
+# IDEMPOTENT: OnTickComponent returns early once GetCurrentSpawned() >= AMOUNT
+# (CCSpawn.cpp:692), so extra STARTs are no-ops. Safe to re-run.
+#
+# Serials (from runtime/save/sphereworld.scp after m40_sheep_flocks):
+#   040018000  Britain North Pasture  1323,1351
+#   040017fb2  Jhelom farm pasture    1183,3607
+
+wait_world
+sleep 3000
+say .show p
+sleep 2500
+
+say .serv.uid.040018000.start
+sleep 1200
+say .serv.uid.040017fb2.start
+sleep 1200
+say .serv.uid.040018000.start
+sleep 1200
+say .serv.uid.040017fb2.start
+sleep 1200
+say .serv.uid.040018000.start
+sleep 1200
+say .serv.uid.040017fb2.start
+sleep 1200
+say .serv.uid.040018000.start
+sleep 1200
+say .serv.uid.040017fb2.start
+sleep 1200
+say .serv.uid.040018000.start
+sleep 1200
+say .serv.uid.040017fb2.start
+sleep 1200
+say .serv.uid.040018000.start
+sleep 1200
+say .serv.uid.040017fb2.start
+sleep 1200
+say .serv.uid.040018000.start
+sleep 1200
+say .serv.uid.040017fb2.start
+sleep 1200
+say .serv.uid.040018000.start
+sleep 1200
+say .serv.uid.040017fb2.start
+sleep 1200
+say .serv.uid.040018000.start
+sleep 1200
+say .serv.uid.040017fb2.start
+sleep 1200
+say .serv.uid.040018000.start
+sleep 1200
+say .serv.uid.040017fb2.start
+sleep 1200
+say .serv.uid.040018000.start
+sleep 1200
+say .serv.uid.040017fb2.start
+sleep 1200
+say .serv.uid.040018000.start
+sleep 1200
+say .serv.uid.040017fb2.start
+sleep 1200
+say .serv.uid.040018000.start
+sleep 1200
+say .serv.uid.040017fb2.start
+sleep 1200
+say .serv.uid.040018000.start
+sleep 1200
+say .serv.uid.040017fb2.start
+sleep 1200
+say .serv.uid.040018000.start
+sleep 1200
+say .serv.uid.040017fb2.start
+sleep 1200
+
+say .save
+sleep 20000

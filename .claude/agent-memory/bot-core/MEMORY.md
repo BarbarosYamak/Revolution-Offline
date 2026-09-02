@@ -12,3 +12,6 @@
 - [Using a tool wields it](using-a-tool-wields-it.md) — double-click in the pack = wield; the 0x1D is a move not a consumption, it displaces the hands, and re-equipping what is worn strips it
 - [A craft route is not a recipe](craft-route-is-not-the-recipe.md) — CRAFT needs a menu route as well as a recipe; WorldProcessed outputs have no menu at all and belong to another goal
 - [Verdict attribution can be wrong](verdict-attribution-can-be-wrong.md) — a wave verdict named a character/item pair that is not in the console at all; re-derive from g_*.console.txt first
+- [Identity.cpp in progress 2026-09-02](identity-cpp-in-progress-2026-09-02.md) — another agent is adding kCraftMenus tailoring rows; wool cloth chain verified against Source-X, DoMakeCloth already matches it
+- [rawResource blocks a WTB forever](rawresource-blocks-wtb-forever.md) — Shortfall's WhoProduces-empty test made yarn/wool/cloth permanently unaskable; fixed in Market.cpp, not Needs.cpp
+- [A station is a DUPELIST, not one graphic](a-station-is-a-dupelist-not-one-graphic.md) — wheels/looms are placed as dupe DISPIDs, live in spherestatics.scp, and found-within-10 is not reach-within-2

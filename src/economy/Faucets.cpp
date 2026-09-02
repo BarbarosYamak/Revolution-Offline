@@ -266,6 +266,21 @@ const GoldFaucet kFaucets[] = {
  "player-market context on Revolution. Generic tailor buyback is an economic "
  "shortcut around that market"},
 
+// Cloth by name, for whoever holds it. The tailor row above names i_robe;
+// the FIGHTERS now make cut cloth too (owner ruling 2026-09-02: "add this
+// part only to warrior so they can sell cloth ... not wool, cloth itself"
+// -- shear, kill, carve, spin, weave, cut; tailors buy it), and their id is
+// not "tailor", so without a row of its own i_cloth read as Unrecorded and
+// their only product as unsellable. Profession-less: the good is the same
+// whoever cut it.
+{"cloth_to_vendor", SourceType::VendorSale, nullptr,
+ "i_cloth", "tailor",
+ HistoryEvidence::Unknown, RuntimeEvidence::ScriptSupported,
+ Policy::RefusePlayerMarket,
+ "cloth is the tailor's input and a player-market good on Revolution (see "
+ "tailor_output_to_vendor); an NPC price would floor the trade the fighters' "
+ "wool loop exists to feed"},
+
 // `profession` is the CATALOGUE id (prof::Profession::id), which is
 // "merchant_tinker" -- the tinker life's entry in Professions.cpp. It read
 // "tinker" and so matched no life at all, which is invisible to
