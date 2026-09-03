@@ -1,0 +1,11 @@
+# Admin-only: write spherestatics.scp (attr_static items) on demand.
+# A plain .save writes the world only; static items (e.g. the Jhelom
+# teleporter, 040005cdc) land in the statics file (CWorld::SaveStatics).
+# Run: run_admin.ps1 -Scenario save_statics -TimeoutSec 60
+wait_world
+sleep 2000
+say .serv.savestatics
+sleep 10000
+say .save
+sleep 10000
+logout

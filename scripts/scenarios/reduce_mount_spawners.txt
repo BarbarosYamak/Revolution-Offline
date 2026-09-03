@@ -1,0 +1,68 @@
+# Owner-approved mount thinning on the LIVE world, 2026-09-03.
+#
+# RUN ONLY AS THE ADMIN ACCOUNT (character "Observer") via run_admin.ps1:
+#   .\run_admin.ps1 -Scenario reduce_mount_spawners -Tag mountthin1 -TimeoutSec 420
+#
+# WRITTEN, NOT RUN. Nothing below has been executed against the shard.
+#
+# WHY
+#
+# functions/worldgen/spawns/felucca/*.scp are worldgen scripts -- they run once
+# on an empty world and their i_worldgem_bit spawner gems then live in the save.
+# Those files ARE edited in the same change so a future regeneration matches,
+# but rewriting them does not retro-fix the world we already have. The live
+# edits live in revolution/f_revo_mount_thin.scp, which explains every number.
+#
+# MEASURED BEFORE (runtime/save/sphereworld.scp, 2026-09-03 11:14):
+#   horse 252, llama 94, forest ostard 51, desert ostard 14,
+#   frenzied ostard 8, nightmare 10, unicorn 0, kirin 0.
+# TARGET: 60 / 24 / 16 / 8 / 6 / 2 / 2 / 2.
+# c_horse_sea (115) is a sea creature and is not touched.
+#
+# .serv.resync first: it reloads files it already knows, which is what picks up
+# the edited worldgen tables and the new c_m_unicorn CHARDEF in
+# revolution/revolution_wild_mounts.scp.
+# .serv.load second: spheretables.scp scans scripts/revolution/ at STARTUP only,
+# so a file created since boot needs SERV.LOAD (CServerConfig::LoadResourcesAdd,
+# Source-X CServer.cpp:2092; path is relative to ScpFiles= = "scripts/").
+#
+# RE-RUN SAFE. f_revo_mount_thin sets VAR.revo_mount_thin_v1 and refuses to run
+# a second time, so the every-Nth-gem culling cannot be applied twice.
+# f_revo_mount_cull is idempotent by nature: after the first pass there is
+# nothing unowned left to remove, and what respawns is the new capacity.
+#
+# WHAT IT DOES NOT TOUCH: c_animaltrainer figurine stock, tamed pets (anything
+# carrying memory_ipet is skipped), sea horses, and every non-mount species on
+# the shared wildlife gems (their AMOUNT drops 7 -> 6 as the horse leaves the
+# list, so boar/cougar/goat/panther/pig/sheep keep their old density).
+
+wait_world
+sleep 3000
+
+say .serv.resync
+sleep 30000
+
+say .serv.load revolution/f_revo_mount_thin.scp
+sleep 5000
+
+# Pass 1: capacity. Walks all 5028 worldgem bits once, strips the horse from
+# 134 of 178 wildlife lists, removes the surplus single-species gems (removing
+# a gem takes its own children with it -- CCSpawn::KillChildren, CCSpawn.cpp:283)
+# and places the two new unicorn/kirin spawners.
+say .f_revo_mount_thin
+sleep 25000
+
+# Pass 2: population. Lowering AMOUNT deletes nothing, and 171 of the 431 live
+# mounts are orphans no gem tracks any more, so the surplus has to be cleared
+# by hand. Tamed/owned mounts are skipped. The reduced spawners refill within
+# each gem's TIMELO..TIMEHI, 2-15 minutes.
+say .f_revo_mount_cull
+sleep 20000
+
+# The gems are ATTR=080, not attr_static, so a plain .save writes them out.
+say .save
+sleep 30000
+
+say mount spawners thinned
+sleep 1500
+logout
