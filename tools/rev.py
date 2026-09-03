@@ -178,6 +178,7 @@ def launch_gate(name, account, family, minutes, password):
         "--user", account, "--pass", password,
         "--char-name", name,
         "--profession", family,
+        "--create-char",       # no-op when the account already has the character
         "--autonomous",
         "--bot-data", str(BOT_DATA),
         "--life-minutes", str(minutes),

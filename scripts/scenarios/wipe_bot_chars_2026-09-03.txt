@@ -1,0 +1,312 @@
+# Owner-ordered 2026-09-03: wipe every bot character so the fleet is recreated
+# under current creation rules (2x50, rest 0; correct STR/DEX/INT; earned gear).
+# Keeps Admin (063c) and Observer (01300). 150 chars; banks go with them.
+# Backup: runtime/save_backup_20260903_prewipe/
+wait_world
+sleep 3000
+say .uid.014ddf.remove 1
+sleep 250
+say .uid.016948.remove 1
+sleep 250
+say .uid.014501.remove 1
+sleep 250
+say .uid.016ae8.remove 1
+sleep 250
+say .uid.016dbb.remove 1
+sleep 250
+say .uid.0da29.remove 1
+sleep 250
+say .uid.01478e.remove 1
+sleep 250
+say .uid.014d61.remove 1
+sleep 250
+say .uid.013979.remove 1
+sleep 250
+say .uid.017b73.remove 1
+sleep 250
+say .uid.017b43.remove 1
+sleep 250
+say .uid.017ab5.remove 1
+sleep 250
+say .uid.017a79.remove 1
+sleep 250
+say .uid.017ea4.remove 1
+sleep 250
+say .uid.0e0e9.remove 1
+sleep 250
+say .uid.01395d.remove 1
+sleep 250
+say .uid.013946.remove 1
+sleep 250
+say .uid.013a1a.remove 1
+sleep 250
+say .uid.0eb13.remove 1
+sleep 250
+say .uid.0138e3.remove 1
+sleep 250
+say .uid.017dd9.remove 1
+sleep 250
+say .uid.012bf3.remove 1
+sleep 250
+say .uid.018ed3.remove 1
+sleep 250
+say .uid.018195.remove 1
+sleep 250
+say .uid.0177e4.remove 1
+sleep 250
+say .uid.014135.remove 1
+sleep 250
+say .uid.0ee6f.remove 1
+sleep 250
+say .uid.0eaf8.remove 1
+sleep 250
+say .uid.0e912.remove 1
+sleep 250
+say .uid.0e57c.remove 1
+sleep 250
+say .uid.014f94.remove 1
+sleep 250
+say .uid.017e0b.remove 1
+sleep 250
+say .uid.017d07.remove 1
+sleep 250
+say .uid.017ed8.remove 1
+sleep 250
+say .uid.0e06a.remove 1
+sleep 250
+say .uid.014153.remove 1
+sleep 250
+say .uid.013411.remove 1
+sleep 250
+say .uid.0135b9.remove 1
+sleep 250
+say .uid.0cc33.remove 1
+sleep 250
+say .uid.0143d5.remove 1
+sleep 250
+say .uid.012ada.remove 1
+sleep 250
+say .uid.012af1.remove 1
+sleep 250
+say .uid.013ef7.remove 1
+sleep 250
+say .uid.0132e5.remove 1
+sleep 250
+say .uid.013a62.remove 1
+sleep 250
+say .uid.013b43.remove 1
+sleep 250
+say .uid.0194de.remove 1
+sleep 250
+say .uid.019751.remove 1
+sleep 250
+say .uid.013d50.remove 1
+sleep 250
+say .uid.01976d.remove 1
+sleep 250
+say .uid.01616f.remove 1
+sleep 250
+say .uid.017912.remove 1
+sleep 250
+say .uid.017772.remove 1
+sleep 250
+say .uid.013d61.remove 1
+sleep 250
+say .uid.0df68.remove 1
+sleep 250
+say .uid.013905.remove 1
+sleep 250
+say .uid.013c94.remove 1
+sleep 250
+say .uid.014094.remove 1
+sleep 250
+say .uid.0c990.remove 1
+sleep 250
+say .uid.0d785.remove 1
+sleep 250
+say .uid.0e4c7.remove 1
+sleep 250
+say .uid.01916b.remove 1
+sleep 250
+say .uid.0193f7.remove 1
+sleep 250
+say .uid.012b12.remove 1
+sleep 250
+say .uid.01921f.remove 1
+sleep 250
+say .uid.010bc9.remove 1
+sleep 250
+say .uid.01345e.remove 1
+sleep 250
+say .uid.013df0.remove 1
+sleep 250
+say .uid.01a560.remove 1
+sleep 250
+say .uid.01a7b5.remove 1
+sleep 250
+say .uid.019ef1.remove 1
+sleep 250
+say .uid.01a59d.remove 1
+sleep 250
+say .uid.019f16.remove 1
+sleep 250
+say .uid.01adb6.remove 1
+sleep 250
+say .uid.01000.remove 1
+sleep 250
+say .uid.012b2f.remove 1
+sleep 250
+say .uid.019720.remove 1
+sleep 250
+say .uid.018c58.remove 1
+sleep 250
+say .uid.014261.remove 1
+sleep 250
+say .uid.0132a0.remove 1
+sleep 250
+say .uid.015df9.remove 1
+sleep 250
+say .uid.01928c.remove 1
+sleep 250
+say .uid.0cc2a.remove 1
+sleep 250
+say .uid.01961f.remove 1
+sleep 250
+say .uid.011804.remove 1
+sleep 250
+say .uid.013a77.remove 1
+sleep 250
+say .uid.0163a2.remove 1
+sleep 250
+say .uid.015a59.remove 1
+sleep 250
+say .uid.01569c.remove 1
+sleep 250
+say .uid.015725.remove 1
+sleep 250
+say .uid.016305.remove 1
+sleep 250
+say .uid.0181f7.remove 1
+sleep 250
+say .uid.01785f.remove 1
+sleep 250
+say .uid.017820.remove 1
+sleep 250
+say .uid.0e023.remove 1
+sleep 250
+say .uid.0c45c.remove 1
+sleep 250
+say .uid.01a7d6.remove 1
+sleep 250
+say .uid.01a589.remove 1
+sleep 250
+say .uid.01a38f.remove 1
+sleep 250
+say .uid.01ad8b.remove 1
+sleep 250
+say .uid.01aa9a.remove 1
+sleep 250
+say .uid.01ad57.remove 1
+sleep 250
+say .uid.01a364.remove 1
+sleep 250
+say .uid.0e54d.remove 1
+sleep 250
+say .uid.012e10.remove 1
+sleep 250
+say .uid.013739.remove 1
+sleep 250
+say .uid.01ac5c.remove 1
+sleep 250
+say .uid.01a4aa.remove 1
+sleep 250
+say .uid.0135a.remove 1
+sleep 250
+say .uid.01ad6b.remove 1
+sleep 250
+say .uid.0b16.remove 1
+sleep 250
+say .uid.013a31.remove 1
+sleep 250
+say .uid.01a431.remove 1
+sleep 250
+say .uid.013da6.remove 1
+sleep 250
+say .uid.0712.remove 1
+sleep 250
+say .uid.01a37a.remove 1
+sleep 250
+say .uid.01a494.remove 1
+sleep 250
+say .uid.01a914.remove 1
+sleep 250
+say .uid.017678.remove 1
+sleep 250
+say .uid.0175f0.remove 1
+sleep 250
+say .uid.01761a.remove 1
+sleep 250
+say .uid.01d63.remove 1
+sleep 250
+say .uid.0f67.remove 1
+sleep 250
+say .uid.01a691.remove 1
+sleep 250
+say .uid.01a78b.remove 1
+sleep 250
+say .uid.01a72d.remove 1
+sleep 250
+say .uid.01a9aa.remove 1
+sleep 250
+say .uid.01a574.remove 1
+sleep 250
+say .uid.01a47c.remove 1
+sleep 250
+say .uid.0e164.remove 1
+sleep 250
+say .uid.01a66b.remove 1
+sleep 250
+say .uid.01446.remove 1
+sleep 250
+say .uid.013d0a.remove 1
+sleep 250
+say .uid.017b74.remove 1
+sleep 250
+say .uid.019d4b.remove 1
+sleep 250
+say .uid.017c2b.remove 1
+sleep 250
+say .uid.019837.remove 1
+sleep 250
+say .uid.019331.remove 1
+sleep 250
+say .uid.0197e4.remove 1
+sleep 250
+say .uid.0d89b.remove 1
+sleep 250
+say .uid.0135d8.remove 1
+sleep 250
+say .uid.014401.remove 1
+sleep 250
+say .uid.0182d0.remove 1
+sleep 250
+say .uid.018452.remove 1
+sleep 250
+say .uid.012e70.remove 1
+sleep 250
+say .uid.01330a.remove 1
+sleep 250
+say .uid.01616d.remove 1
+sleep 250
+say .uid.0180d0.remove 1
+sleep 250
+say .uid.02c0c.remove 1
+sleep 250
+say .uid.011030.remove 1
+sleep 250
+sleep 3000
+say .save
+sleep 20000
+say wiped 150 bot characters
+sleep 1000
+logout
