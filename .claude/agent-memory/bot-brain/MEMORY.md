@@ -14,4 +14,6 @@
 - [Names arrive after a scan](names-arrive-after-a-scan.md) — an empty name-filtered scan means "not asked yet"; three pastures of sheep read as deserted 60 ms after arrival
 - [A spell's cost is not the profession's consumes list](a-spells-cost-is-not-the-professions-consumes-list.md) — obs.pack could not see sulfurous ash at all; QtyOf==0 means "not counted" as often as "not held"
 - [A trip budget cannot see travel time](a-trip-budget-cannot-see-travel-time.md) — 3 trips is a whole session at ~60s of walking each; clock the shopping half, escalate the rest
+- [A winning goal can hand itself away](a-winning-goal-can-hand-itself-away.md) — TRAIN_COMBAT won 84.5 and got 0 kills; a handoff is advice, the receiver must also out-score the field
+- [ms stand-downs die with the process](ms-stand-downs-die-with-the-process.md) — atMs is per-process steady_clock; count sessions via NeedConfig::sessionIndex for durable rests
 - [A book row's graphic is not a scroll's](a-book-row-graphic-is-not-a-scroll-graphic.md) — BookHasGraphic said "lacks it" about a spell the book refused; 84 gold on one Cunning Scroll, four times

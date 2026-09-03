@@ -1,0 +1,35 @@
+# Operator fix, 2026-09-03 -- the Jhelom island teleporter sends players
+# into a sealed void.
+#
+# RUN ONLY AS THE ADMIN ACCOUNT (character "Observer") via
+# local/dev/run_admin.ps1. Touches no character's skills, stats, gold or
+# inventory; it repairs one world item and moves three stranded characters
+# to the tile the teleporter was always meant to deliver them to.
+#
+# WHAT WAS WRONG
+#
+#   city_jhelom_deco_felucca.scp:6464 placed the t_telepad at 1409,3824,5 with
+#   new.morep=1124,362,5 -- a lost digit. map0_teleports.scp:298 gives the
+#   real pair: 1409,3824,5 -> 1124,3623,5. Live item i_teleporter uid
+#   040005cdc carried the bad MOREP; Castor, Hector and Amara all stepped on
+#   it and were left standing at 1124,362 ("sealed in; recovery exhausted"
+#   on every travel plan). The deco scripts (felucca + trammel, runtime and
+#   Scripts-X) are corrected in the same commit; this scenario repairs the
+#   already-decorated world.
+wait_world
+sleep 3000
+say .uid.040005cdc.morep 1124,3623,5
+sleep 1500
+say .uid.0182d0.go 1124,3623,5
+sleep 1500
+say .uid.018452.go 1124,3623,5
+sleep 1500
+say .uid.012e70.go 1124,3623,5
+sleep 1500
+say .uid.011d52.go 1124,3623,5
+sleep 1500
+say .save
+sleep 10000
+say jhelom teleporter repaired
+sleep 1000
+logout

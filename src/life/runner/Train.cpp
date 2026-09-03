@@ -35,10 +35,41 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
                        kGearCooldownMs, "no gear yet -- shopping before the "
                        "graveyard", obs.nowMs);
     }
+    // ARMOUR IS A PREFERENCE THE SHOP CAN REFUSE. THE HUNT IS NOT OPTIONAL.
+    //
+    // This handoff was unconditional, and it is the measured reason four
+    // fighters fought nothing in two waves on 2026-09-03: TRAIN_COMBAT was
+    // selected, handed itself straight to the gear errand, and cooled for four
+    // minutes -- every single time it won the scoring.
+    //   run_gates/g_Titus.console.txt:673,684 -- "TRAIN_COMBAT 84.5 superseded
+    //   UPGRADE_GEAR 22.0" then, 1.9 s later, "goal=UPGRADE_GEAR reason=
+    //   previous goal abandoned: no gear yet -- shopping before the graveyard".
+    //   Same pair in g_Hector.console.txt:156,164 and g_Castor.console.txt:767.
+    // The gear errand then failed on its own terms ("no 'armorer' reachable
+    // after 3 trips", "every slot this class may fill is filled"), so the loop
+    // had no exit and session_summary read kills=0 for all four.
+    //
+    // The owner's rule stands -- "they need gear too" (2026-08-31) -- so the
+    // shop is still tried FIRST. What changes is that a shop which has already
+    // stood its own errand down (UPGRADE_GEAR sets its own cooldown on every
+    // failure path, Gear.cpp:1895,1961 and the vendor-unreachable path) no
+    // longer gets asked again by proxy. A fighter with a weapon, bandages and
+    // no armour available to buy goes hunting in what it is wearing, which is
+    // what a player with 8k gold and an empty armoury does.
     if (!HasBasicArmor(client, obs)) {
-        return HandOff(GoalKind::TrainCombat, GoalKind::UpgradeGear,
-                       kGearCooldownMs, "no gear yet -- shopping before the "
-                       "graveyard", obs.nowMs);
+        if (!planner_.Cooling(GoalKind::UpgradeGear, obs.nowMs)) {
+            // kShortRestMs, NOT kGearCooldownMs. The handoff cools the goal it
+            // leaves, and four minutes is an entire session on this shard's
+            // gates: a fighter that stepped aside to buy a breastplate could
+            // not come back to the hunt afterwards even when the shopping
+            // finished in thirty seconds. The rest only has to be long enough
+            // for the gear errand to be picked instead.
+            return HandOff(GoalKind::TrainCombat, GoalKind::UpgradeGear,
+                           kShortRestMs, "no gear yet -- shopping before the "
+                           "graveyard", obs.nowMs);
+        }
+        LogLine("hunt: no basic armour, and the armour errand has already stood "
+                "itself down -- going as I am rather than standing here");
     }
 
     const wm::Region* combatRegion = client.CurrentRegion();
@@ -971,10 +1002,23 @@ bool Runner::BuyScrollFrom(Client& client, const Observation& obs,
     // blacksmith shop before it has ever seen an "armorer", so use the smith
     // as an equivalent seller only for this armour errand.  The actual offer
     // is still checked against the requested graphic before any gold moves.
+    //
+    // EXCEPT FOR LEATHER. A blacksmith's shelf is ringmail through platemail
+    // (VENDOR_S_ARMORER_RING/CHAIN/PLATE); only c_armorer carries
+    // VENDOR_S_ARMORER_LEATHER. Castor (STR 32, legal for leather only) was
+    // sent to blacksmith Guy, whose 65 rows held no leather, and burned the
+    // whole session on "this 'armorer' has nothing the book lacks"
+    // (run_gates/g_Castor.console.txt:614, 2026-09-03).
+    const ArmorPiece* wantPiece = graphic ? ArmorFor(graphic) : nullptr;
+    const bool wantLeather = wantPiece && wantPiece->cls == ArmorClass::Leather;
+    // Service::None here means "the title must say armorer": the service
+    // fallback inside NearestShopkeeperWithTrade otherwise accepts any
+    // blacksmith (Curtis, 0x10CE8, c_blacksmith) as the armorer we asked for.
     const char* sellerTrade = trade;
-    u32 keeper = client.NearestShopkeeperWithTrade(sellerTrade, svc,
-                                                   &spellbookSkipSellers_);
-    if (!keeper && std::strcmp(trade, "armorer") == 0) {
+    u32 keeper = client.NearestShopkeeperWithTrade(
+        sellerTrade, wantLeather ? wm::Service::None : svc,
+        &spellbookSkipSellers_);
+    if (!keeper && !wantLeather && std::strcmp(trade, "armorer") == 0) {
         sellerTrade = "blacksmith";
         keeper = client.NearestShopkeeperWithTrade(sellerTrade, svc,
                                                    &spellbookSkipSellers_);
@@ -1014,7 +1058,7 @@ bool Runner::BuyScrollFrom(Client& client, const Observation& obs,
         // returning to the same seller that was just unreachable or empty.
         travelInFlight_ = client.TravelToServiceSkipping(
             svc, HomeOrNearest(state_.homeCity), spellbookSkipSellers_,
-            &spellbookSkipPlaces_, true);
+            &spellbookSkipPlaces_, true, wantLeather);
         nextActionMs_ = obs.nowMs + 2000;
         return false;
     }
@@ -1089,6 +1133,39 @@ bool Runner::BuyScrollFrom(Client& client, const Observation& obs,
         return false;
     }
 
+    // THE SHELF IN FRONT OF US BEATS THE PIECE WE PLANNED. An armour errand
+    // asks for one exact graphic, but any legal piece that protects a slot
+    // better than what is worn is the same errand done. Walking to another
+    // shop for the planned piece while this one sells a wearable upgrade is
+    // the trip Castor could not afford (see above).
+    if (owner == GoalKind::UpgradeGear && wantPiece) {
+        const Client::VendorItem* alt = nullptr;
+        const ArmorPiece* altPiece = nullptr;
+        for (const Client::VendorItem& v : client.VendorOffer()) {
+            const ArmorPiece* a = ArmorFor(v.graphic);
+            if (!a || !MayWear(*a, obs)) continue;
+            if (static_cast<i32>(v.price) > obs.gold) continue;
+            if (client.FindBackpackItemByGraphic(a->graphic)) continue;
+            const u8 layer = client.ItemEquipLayer(a->graphic);
+            if (!layer) continue;
+            const u16 wornGfx = client.EquippedGraphicAt(layer);
+            const ArmorPiece* worn = wornGfx ? ArmorFor(wornGfx) : nullptr;
+            if ((worn ? worn->armor : 0) >= a->armor) continue;
+            if (!altPiece || a->armor > altPiece->armor) { alt = &v; altPiece = a; }
+        }
+        if (alt) {
+            LogLine("%s: this %s has no 0x%04X but sells %s (0x%04X, armor %d) "
+                    "this character may wear -- buying that at %d gold",
+                    GoalKindName(owner), sellerTrade, graphic,
+                    alt->name.c_str(), alt->graphic, altPiece->armor,
+                    static_cast<i32>(alt->price));
+            client.ActionVendorBuy(keeper, alt->serial, 1);
+            planner_.NoteAttempt(obs.nowMs);
+            nextActionMs_ = obs.nowMs + 9000;
+            return false;
+        }
+    }
+
     if (!scribeExhausted_ && std::strcmp(trade, "scribe") == 0) {
         LogLine("spellbook: this scribe has nothing the book lacks (%d of its "
                 "scrolls are already known) -- trying a mage shop", skipped);
@@ -1116,7 +1193,7 @@ bool Runner::BuyScrollFrom(Client& client, const Observation& obs,
                 GoalKindName(owner), sellerTrade, skipped, spellbookTrips_);
         travelInFlight_ = client.TravelToServiceSkipping(
             svc, HomeOrNearest(state_.homeCity), spellbookSkipSellers_,
-            &spellbookSkipPlaces_, true);
+            &spellbookSkipPlaces_, true, wantLeather);
         planner_.NoteAttempt(obs.nowMs);
         nextActionMs_ = obs.nowMs + 2000;
         return false;

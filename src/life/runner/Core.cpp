@@ -353,6 +353,9 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
     // errand that does the asking is not available to be picked".
     obs.marketAskOnCooldown =
         planner_.Cooling(GoalKind::TradeWithPlayer, obs.nowMs);
+    // ...and the same for the horse, for the same reason (NeedMount fired at
+    // 0.80 all session while BUY_MOUNT was cooling after failing).
+    obs.mountAskOnCooldown = planner_.Cooling(GoalKind::BuyMount, obs.nowMs);
     obs.hostilesNear = static_cast<i32>(hostiles.size());
     const u32 warTarget = client.WarWatchdog().TargetSerial();
     i32 adjacent = 0;
@@ -422,6 +425,12 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
     // know a market trip has been PAID FOR before it lets an ordinary errand
     // walk the character away again. See Observation::atMarket.
     obs.atMarket = AtMarketBank(client);
+    // IS THIS CHARACTER DRESSED FOR A GRAVEYARD? The same question
+    // DoTrainCombat gates its handoff on (Runner::HasBasicArmor), exposed to
+    // the need model so the two agree: a fighter with NO armour at all is
+    // shopping for a starter set, which is a different errand from the
+    // standing "is anything looted better than what I am wearing" browse.
+    obs.hasBasicArmor = HasBasicArmor(client, obs);
 
     // READ THE BOX while it is open, and KEEP what it said.
     //
@@ -1050,6 +1059,7 @@ void Runner::Tick(Client& client, i64 nowMs) {
             chopCursorPending_ = false;
             travelInFlight_ = false;
 
+            mountStandDownNoted_ = false;
             session_ = SessionSummary{};
             session_.startedMs = nowMs;
             session_.goldStart = obs.gold;
@@ -1061,6 +1071,10 @@ void Runner::Tick(Client& client, i64 nowMs) {
             lastHistogramMs_ = nowMs;
 
             state_.identity.sessions++;
+            // The one durable clock the need model can read; see
+            // NeedConfig::sessionIndex. Stamped here, after the increment, so
+            // "this session" means the one now starting.
+            needCfg_.sessionIndex = state_.identity.sessions;
 
             // Survival on, and left on. M3.9.1 proved this path live: a
             // character disengaged at ~32%, bandaged, and survived.
@@ -1083,6 +1097,26 @@ void Runner::Tick(Client& client, i64 nowMs) {
             // that might be anyone's.
             if (wasDead_ && !obs.dead) resurrectedAtMs_ = nowMs;
             wasDead_ = obs.dead;
+
+            // A HORSE THIS LIFE COULD NOT BUY TODAY IS NOT A HORSE IT CAN BUY
+            // TOMORROW EITHER, usually. DoBuyMount's own brake is
+            // kMountCooldownMs, which dies with the process: Hector spent the
+            // opening minutes of two consecutive sessions on the same errand
+            // and failed it the same way both times ("not enough session left
+            // for the trip tiles=1196"). Written ONCE per session, read by
+            // AssessNeeds against NeedConfig::sessionIndex, and persisted with
+            // the rest of the memory -- so the stand-down is measured in
+            // sessions played, the only durable clock a need has.
+            if (obs.mountAskOnCooldown && !mountStandDownNoted_) {
+                mountStandDownNoted_ = true;
+                state_.memory.NoteEvent(
+                    "mount_unavailable",
+                    Fmt2("session=%d", state_.identity.sessions).c_str(),
+                    "", obs.x, obs.y, nowMs);
+                LogLine("mount: the horse errand stood itself down -- noting it "
+                        "for the next few sessions rather than starting over at "
+                        "the next login");
+            }
 
             LearnFromObservation(client, obs);
             MaintainBuildLocks(client, obs);

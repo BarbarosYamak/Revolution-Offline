@@ -585,7 +585,7 @@ bool Client::WithinMiningRegion(i32 nearX, i32 nearY, i32 x, i32 y) const {
 bool Client::TravelToServiceSkipping(wm::Service s, const char* regionHint,
                                      const std::vector<u32>& skipSerials,
                                      std::vector<std::string>* skipPlaceIds,
-                                     bool farOk) {
+                                     bool farOk, bool armouryOnly) {
     if (!EnsureWorldKnowledge()) {
         travelFailure_ = WorldKnowledgeError();
         return false;
@@ -594,7 +594,11 @@ bool Client::TravelToServiceSkipping(wm::Service s, const char* regionHint,
     // Live state beats stored state: if this character has actually seen a
     // provider of this service recently, go to where it saw one rather than to
     // where the shard's spawner table says the shop is.
-    if (const travel::ServiceSighting* seen =
+    //
+    // Not for an armoury errand: a sighting is filed by service, and the
+    // service is "blacksmith", so the remembered NPC is usually the smith who
+    // sells no leather (the very shop the errand is trying to get away from).
+    if (const travel::ServiceSighting* seen = armouryOnly ? nullptr :
             knowledge_.RecentService(s, NowMs(), kServiceSightingMaxAgeMs)) {
         bool skipped = false;
         for (u32 sk : skipSerials) {
@@ -636,7 +640,7 @@ try_atlas:
         // not exempt from that rule either. Fall through to the ranked
         // search rather than settle for it.
         if (p && s == wm::Service::Blacksmith &&
-            p->id.find("armorer") != std::string::npos) {
+            (p->id.find("armorer") != std::string::npos) != armouryOnly) {
             p = nullptr;
         }
     }
@@ -650,7 +654,17 @@ try_atlas:
     // every city, not just the one that was noticed -- and only when a real
     // smithy exists somewhere; an armoury is still better than nothing.
     std::vector<std::string> effectiveSkip = skipPlaces;
-    if (s == wm::Service::Blacksmith) {
+    if (armouryOnly) {
+        // THE MIRROR CASE. Leather armour is stocked only by c_armorer
+        // (VENDOR_S_ARMORER_LEATHER); a smithy carries ring/chain/plate. The
+        // rule below would steer a leather errand to every smithy in turn and
+        // never to an armoury, which is how Castor toured three blacksmiths
+        // for a 0x13C5 none of them sold (2026-09-03).
+        for (const wm::Place& pl : world_knowledge_->atlas.Places()) {
+            if (pl.Offers(s) && pl.id.find("armorer") == std::string::npos)
+                effectiveSkip.push_back(pl.id);
+        }
+    } else if (s == wm::Service::Blacksmith) {
         bool anyNonArmoury = false;
         for (const wm::Place& pl : world_knowledge_->atlas.Places()) {
             if (!pl.Offers(s)) continue;

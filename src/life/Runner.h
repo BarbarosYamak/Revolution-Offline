@@ -618,6 +618,9 @@ private:
     i32  mountTrips_ = 0;
     i32  mountClicks_ = 0;        // double-clicks sent to the horse this goal
     i64  mountBoughtMs_ = 0;      // when the purchase packet went out
+    // Has this session already written the durable "the horse errand stood
+    // itself down" record? One per session; see NeedConfig::sessionIndex.
+    bool mountStandDownNoted_ = false;
     i32  coinLiftFails_ = 0;
     // Who was standing there when an offer went unanswered, so the same room
     // is not shouted at twice.

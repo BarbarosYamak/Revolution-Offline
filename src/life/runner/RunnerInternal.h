@@ -1318,4 +1318,7 @@ inline i32 TileDist(i32 ax, i32 ay, i32 bx, i32 by) {
 
 
 }  // namespace runner_detail
+
+// Defined in Gear.cpp; shared with the armour-buying path in Train.cpp.
+const ArmorPiece* ArmorFor(u16 graphic);
 }  // namespace uo::life

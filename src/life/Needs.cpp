@@ -484,8 +484,32 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         const econ::VendorRuling ruling = econ::CanBuyFromNPC("i_bandage");
         const bool noRoute = supplier == nullptr &&
                              (!ruling.allowed || obs.gold < 50);
-        add(NeedKind::NeedEquipment, 0.5, "bandages",
-            "below the bandage floor; a fight without them is a death",
+        // A WOUND MAKES THIS URGENT, AND NOTHING SAID SO.
+        //
+        // Faustus logged in dead, was resurrected at 6/48, and carried no
+        // bandages and 8,460 gold. HEAL is BLOCKED by construction with an
+        // empty pack ("wounded with no bandages carried", ten assessments in
+        // g_Faustus.console.txt:154-947), so the ONLY door out of a 12%-health
+        // life is this errand -- and at a flat 0.50 it scored 130, below
+        // BUY_MOUNT's 204, and he ping-ponged between RECOVER_CORPSE and HEAL
+        // for the rest of the session without ever buying a bandage.
+        //
+        // Scaled by the wound, so a full-health character short of its floor
+        // feels exactly what it felt before (0.50) and a bleeding one feels
+        // 0.95 -- REPLACE_EQUIPMENT 247, above the horse, the food run and the
+        // armour browse, and below the emergencies. Derived from health, not a
+        // per-character number.
+        double bandageUrgency = 0.5;
+        if (hpFrac < cfg.healHpFraction && obs.healPotions <= 0) {
+            const double wound = (cfg.healHpFraction - hpFrac) /
+                                 (cfg.healHpFraction > 0 ? cfg.healHpFraction : 1.0);
+            bandageUrgency = 0.5 + 0.45 * (wound < 1.0 ? wound : 1.0);
+        }
+        add(NeedKind::NeedEquipment, bandageUrgency, "bandages",
+            (hpFrac < cfg.healHpFraction)
+                ? "wounded with nothing to heal with -- bandages before "
+                  "anything else money can buy"
+                : "below the bandage floor; a fight without them is a death",
             supplier != nullptr
                 ? Fmt("bandages=%d low=%d, supplier '%s'", obs.bandages,
                       cfg.bandageLow, supplier->name.c_str())
@@ -1443,11 +1467,30 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
     // A need whose goal cannot act on it is not a need. Same test the bandage
     // need above uses, for the same reason.
     if (cfg.profession && WantsToHunt(*cfg.profession)) {
-        add(NeedKind::NeedGear, 0.22, "gear",
-            "loot and shops both hold better armour than this character is "
-            "wearing, and nothing checks unless this asks",
-            Fmt("str %d gold %d reserve %d", obs.str, obs.gold,
-                cfg.profession->goldReserve),
+        // A STARTER SET IS NOT A BROWSE.
+        //
+        // DoTrainCombat will not walk to a graveyard without three protected
+        // layers, and hands the turn to UPGRADE_GEAR when it has none. At a
+        // flat 0.22 that advice was unfollowable: UPGRADE_GEAR scored 22 and
+        // lost to the wool chore (42) and the equipment run (72.8) every time,
+        // so the fighter cooled its hunt for four minutes in favour of a goal
+        // that was never picked -- g_Faustus.console.txt:391,398 and
+        // g_Castor.console.txt:685,694 (2026-09-03, both waves).
+        //
+        // 0.75 x 100 = 75 puts the starter set above the wool chore (0.50 x
+        // 140 = 70) and the armour advice therefore gets a turn, while
+        // staying under a hunt this character could actually go on (0.65 x
+        // 130 = 84.5) so an ARMOURED fighter is never sent shopping instead of
+        // fighting. The browse keeps its old 0.22.
+        const bool starterSet = !obs.hasBasicArmor;
+        add(NeedKind::NeedGear, starterSet ? 0.75 : 0.22, "gear",
+            starterSet
+                ? "no armour worth the name, and a hunting ground is not a "
+                  "place to arrive in a shirt"
+                : "loot and shops both hold better armour than this character "
+                  "is wearing, and nothing checks unless this asks",
+            Fmt("str %d gold %d reserve %d basic_armour=%d", obs.str, obs.gold,
+                cfg.profession->goldReserve, obs.hasBasicArmor ? 1 : 0),
             false);
     }
 
@@ -1469,14 +1512,60 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         constexpr i32 kHorsePriceCeiling = 500;
         const i32 reserve = cfg.profession ? cfg.profession->goldReserve : 0;
         const bool canAfford = obs.gold >= reserve + kHorsePriceCeiling;
+        // A STAND-DOWN THAT OUTLIVES THE PROCESS. The errand's own cooldown is
+        // 600 s, which is a whole session on this shard's gates -- so a
+        // character that failed to find a trainer failed again at the next
+        // login, and again at the one after. Counted in SESSIONS PLAYED, the
+        // only durable clock a need has (NeedConfig::sessionIndex); the record
+        // is written once per session by the runner when BUY_MOUNT cools.
+        constexpr i32 kMountRestSessions = 4;
+        i32 restedSince = -1;
+        for (const LifeEvent& e : mem.Events()) {
+            if (e.kind != "mount_unavailable") continue;
+            i32 s = 0;
+            if (std::sscanf(e.detail.c_str(), "session=%d", &s) != 1) continue;
+            if (s > restedSince) restedSince = s;
+        }
+        const bool restingFromPastSession =
+            restedSince >= 0 && cfg.sessionIndex > 0 &&
+            (cfg.sessionIndex - restedSince) < kMountRestSessions;
+        const bool stoodDown = obs.mountAskOnCooldown || restingFromPastSession;
         if (!obs.mounted && !obs.dead) {
-            add(NeedKind::NeedMount, canAfford ? 0.8 : 0.05, "riding horse",
-                canAfford ? "on foot with the price of a horse in hand"
-                          : "on foot, but the purse does not clear the price "
-                            "plus this life's reserve",
-                Fmt("gold %d reserve %d price<=%d", obs.gold, reserve,
-                    kHorsePriceCeiling),
-                !canAfford);
+            // A HORSE IS A CONVENIENCE. THE GRAVEYARD IS THE JOB.
+            //
+            // 0.80 x 255 = 204 put BUY_MOUNT above everything a fighter does
+            // for a living -- above a hunt it was standing next to (0.65 x 130
+            // = 84.5) -- and it won the opening pick of every fighter session
+            // on 2026-09-03 (g_Hector.console.txt:147, g_Faustus:162,365,
+            // g_Titus:63). Each pick then failed on the trip and cooled, and
+            // four fighters ended their sessions with kills=0.
+            //
+            // The owner's intent is kept for the lives it was written for --
+            // "create a new tailor, make it buy a horse first" (2026-09-02) --
+            // and for a fighter it becomes what it actually is: an errand for
+            // a quiet hour. 0.30 x 255 = 76.5 sits UNDER a hunt this character
+            // could go on (84.5) and OVER the wool chore (42) and the armour
+            // browse (22), so the horse still gets bought on a day when the
+            // fighting is blocked, cooled or unreachable.
+            const bool fighter = cfg.profession && WantsToHunt(*cfg.profession);
+            double urgency = canAfford ? 0.8 : 0.05;
+            if (fighter && canAfford) urgency = 0.30;
+            add(NeedKind::NeedMount, stoodDown ? 0.0 : urgency, "riding horse",
+                stoodDown
+                    ? (obs.mountAskOnCooldown
+                           ? "the horse errand has stood itself down after "
+                             "failing -- not asking again this session"
+                           : "no trainer could be reached in a recent session; "
+                             "resting the errand for a few sessions")
+                : !canAfford ? "on foot, but the purse does not clear the price "
+                               "plus this life's reserve"
+                : fighter    ? "on foot with the price of a horse in hand, but "
+                               "the hunt comes first for a life that fights"
+                             : "on foot with the price of a horse in hand",
+                Fmt("gold %d reserve %d price<=%d stood_down=%d last_fail_session=%d "
+                    "session=%d", obs.gold, reserve, kHorsePriceCeiling,
+                    stoodDown ? 1 : 0, restedSince, cfg.sessionIndex),
+                stoodDown || !canAfford);
         }
     }
 

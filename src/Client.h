@@ -686,7 +686,8 @@ public:
     bool TravelToServiceSkipping(wm::Service s, const char* regionHint,
                                  const std::vector<u32>& skipSerials,
                                  std::vector<std::string>* skipPlaceIds,
-                                 bool farOk = false);
+                                 bool farOk = false,
+                                 bool armouryOnly = false);
     bool TravelToResource(wm::ResourceKind r);
     // How far the nearest place yielding this resource is, or -1 if none is
     // known. The life layer needs the DISTANCE, not just the ability to walk

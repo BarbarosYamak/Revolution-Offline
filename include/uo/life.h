@@ -553,6 +553,11 @@ struct Observation {
     bool axeInPack = false;
     bool axeEquipped = false;
     bool weaponEquipped = false;
+    // Three protected layers with a core torso/leg piece among them -- the
+    // gate DoTrainCombat refuses to leave for a hunting ground without
+    // (Runner::HasBasicArmor). Defaults TRUE so a pure need model with no
+    // client behind it does not invent a starter-armour errand.
+    bool hasBasicArmor = true;
 
     // What is happening around us, as the client can see it.
     // Has the market just been tried and found empty? A character that has
@@ -596,6 +601,14 @@ struct Observation {
     // session's picks). Filled in Observe from Planner::Cooling; defaults
     // FALSE so the pure need model is unchanged without it.
     bool marketAskOnCooldown = false;
+    // THE MOUNT ERRAND HAS STOOD ITSELF DOWN. Same shape and the same reason as
+    // marketAskOnCooldown: NeedMount fired at 0.80 (BUY_MOUNT 204, above every
+    // working goal a fighter has) on every assessment of every session, while
+    // DoBuyMount was refusing on its own cooldown -- "no way to an animal
+    // trainer", "65-item list has no riding horse in stock", "not enough
+    // session left for the trip tiles=1196". A need that cannot see its own
+    // errand's stand-down asks for the same impossible thing all day.
+    bool mountAskOnCooldown = false;
     i32  hostilesNear = 0;
     i32  attackersOnMe = 0;
     bool underAttack = false;
@@ -1027,6 +1040,16 @@ struct NeedConfig {
     // rotation question the CRAFT goal answers -- a need that names one item
     // while the errand makes another is a telemetry lie.
     const CraftFocus* craftFocus = nullptr;
+
+    // WHICH SESSION THIS IS, counted by Identity::sessions.
+    //
+    // The only durable clock a need can read. LifeEvent::atMs is a steady_clock
+    // reading taken inside one process (Memory.cpp NoteEvent), so it is not
+    // comparable across logins -- a "rest for two hours" written in ms is a
+    // rest that expires the moment the next process starts, which is exactly
+    // the 600 s BUY_MOUNT cooldown that re-fired every session. Counting
+    // SESSIONS is the honest unit for "not again today".
+    i32 sessionIndex = 0;
 };
 
 std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
