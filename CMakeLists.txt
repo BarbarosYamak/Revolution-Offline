@@ -98,7 +98,23 @@ set(UO_CLIENT_SOURCES
     src/life/Goals.cpp
     src/life/State.cpp
     src/life/Professions.cpp
-    src/life/Runner.cpp
+    # The goal loop, one translation unit per goal family (split from the old
+    # 14.5k-line src/life/Runner.cpp by tools/split_runner.py -- pure text
+    # move, no logic change). RunnerInternal.h holds the shared tables and
+    # helpers; RunnerShared.cpp holds the four seeded-table accessors, whose
+    # function-local statics MUST have exactly one definition across the whole
+    # program or Configure() fills a table the goal handlers never read.
+    src/life/runner/RunnerShared.cpp
+    src/life/runner/Core.cpp
+    src/life/runner/Survive.cpp
+    src/life/runner/Gear.cpp
+    src/life/runner/Bank.cpp
+    src/life/runner/Economy.cpp
+    src/life/runner/Gather.cpp
+    src/life/runner/Cloth.cpp
+    src/life/runner/Craft.cpp
+    src/life/runner/Train.cpp
+    src/life/runner/Tame.cpp
     # M13/R1 -- the interaction layer. UNLIKE the files above this one
     # talks to Client, so it is NOT in the protocol-free set the ctest
     # targets link; see include/uo/vendor_errand.h for what it owns and
