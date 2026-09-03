@@ -996,6 +996,25 @@ void Runner::Tick(Client& client, i64 nowMs) {
                     if (it->kind == "corpse_recovered" || it->kind == "corpse_abandoned")
                         break;
                     if (it->kind == "corpse_pending") {
+                        // A corpse decays in 7 minutes (runtime/sphere.ini
+                        // CorpsePlayerDecay=7); the event does not. Restoring
+                        // a death older than that sent Rhea 1080 tiles across
+                        // two five-minute sessions, and Hector 232, to stand on
+                        // an empty tile (2026-09-03). A negative age is a
+                        // steady_clock reset (reboot) -- older still.
+                        constexpr i64 kCorpseDecayMs = 7 * 60 * 1000;
+                        const i64 age = nowMs - it->atMs;
+                        if (age < 0 || age > kCorpseDecayMs + 60000) {
+                            LogLine("corpse run: pending death at %d,%d is %s -- "
+                                    "the corpse has decayed, not going back",
+                                    it->x, it->y,
+                                    age < 0 ? "from before this boot"
+                                            : Fmt2("%lld min old", (long long)(age / 60000)).c_str());
+                            state_.memory.NoteEvent("corpse_abandoned",
+                                                    "decayed before this session", "",
+                                                    it->x, it->y, nowMs);
+                            break;
+                        }
                         client.Knowledge().NoteDeath(it->x, it->y, 0, "", nowMs);
                         obs = Observe(client, nowMs);
                         LogLine("corpse run: restored pending death at %d,%d", it->x, it->y);

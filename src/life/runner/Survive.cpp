@@ -201,15 +201,32 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
         }
     }
 
+    // Same nerve-adjusted threshold Needs.cpp uses for the StayAlive need, so
+    // the need model and the flee interrupt agree on when a fight is lost.
+    // Before this they disagreed: Needs read riskTolerance, this block read
+    // the raw 0.32 -- so a fencer's nerve counted for the planner and not for
+    // the retreat.
     double bailAt = needCfg_.fleeHpFraction;
+    double nerve = 0.5;
+    if (needCfg_.profession) {
+        nerve = needCfg_.profession->riskTolerance;
+        bailAt = std::min(0.75, std::max(0.20,
+                    needCfg_.fleeHpFraction + (0.5 - nerve) * 0.4));
+    }
     const i32 extra = obs.attackersOnMe - 1;
     if (extra > 0) bailAt = std::min(0.90, bailAt + 0.08 * std::min(3, extra));
 
-    // A fresh warrior pulls ONE opponent.  Two actual attackers is not a
-    // tougher version of the same lesson: it is the boundary where the bot
-    // breaks contact immediately, even while healthy, so it can heal and
-    // choose a quieter part of the hunting ground.
-    if (avoidCombatDisengage || obs.attackersOnMe >= 2 ||
+    // How many adjacent attackers this life will stand in before it breaks
+    // contact regardless of health. The old rule was a flat two, and a
+    // graveyard hands a warrior three at once: Faustus (macer, 2026-09-03)
+    // landed one accepted attack on a skeleton and fled at 98% HP with
+    // "3 attacker(s)", every session, zero kills. Nerve decides the crowd a
+    // character tolerates -- a fencer at 0.75 stands in four, a smith at
+    // 0.35 in two, a fisher at 0.20 in one -- and the HP bail above, which
+    // already rises per extra attacker, is what actually protects the life.
+    const i32 crowdTolerated = 1 + static_cast<i32>(nerve * 4.0);
+
+    if (avoidCombatDisengage || obs.attackersOnMe > crowdTolerated ||
         obs.HpFraction() < bailAt) {
         LogLine("interrupt=FLEE reason=\"HP %.0f%%; %d attacker(s); bail at %.0f%%\"",
                 obs.HpFraction() * 100.0, obs.attackersOnMe, bailAt * 100.0);

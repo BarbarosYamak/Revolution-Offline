@@ -104,7 +104,14 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
                     return seeded >= 0.0 ? seeded : 0.0;
                 };
 
-            const combat::EngagePolicy policy;
+            // The profession's nerve is the tolerance the legality layer
+            // gates on. Left at the struct default (0.50) every fencer and
+            // macer refused a skeleton that had turned to face it: warMode
+            // + adjacent + full bar = 0.60, over 0.50, "none worth starting
+            // on" -- while Professions.cpp said 0.70-0.75 all along.
+            combat::EngagePolicy policy;
+            if (needCfg_.profession)
+                policy.riskTolerance = needCfg_.profession->riskTolerance;
             const int prey = combat::ChoosePrey(cands, me, combat::RevolutionCrimeRules(),
                                                 policy, obs.HpFraction(), danger);
             if (prey >= 0) {
@@ -142,6 +149,20 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
             }
             LogLine("hunt: %zu hostile(s) in sight and none worth starting on",
                     seen.size());
+            // Say WHY for the nearest one, or the refusal is unverifiable.
+            {
+                usize closest = 0;
+                for (usize i = 1; i < cands.size(); ++i)
+                    if (cands[i].dist < cands[closest].dist) closest = i;
+                const combat::Classification v =
+                    combat::Classify(cands[closest], me, combat::RevolutionCrimeRules(),
+                                     policy, obs.HpFraction());
+                LogLine("hunt:   nearest '%s' at %d tiles -- verdict=%s threat=%.2f "
+                        "tolerance=%.2f (%s)",
+                        cands[closest].name.c_str(), cands[closest].dist,
+                        combat::LegalityName(v.legality), v.threat,
+                        policy.riskTolerance, v.reason.c_str());
+            }
         }
         return DoSurvive(client, obs);
     }

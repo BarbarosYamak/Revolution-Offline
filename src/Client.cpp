@@ -4032,6 +4032,27 @@ void Client::ActionOnDragCancel(u8 reason) {
     char ev[96];
     std::snprintf(ev, sizeof(ev), "reason=%u %s", reason, why);
     LogEvent("drag_cancel", ev);
+    // "Cannot lift" on something the cache says is in OUR OWN PACK means the
+    // cache is wrong, not the server: the item is on a corpse (Castor,
+    // 2026-09-03 -- died, resurrected, bought a kryss, then tried to arm the
+    // OLD kryss serial 214 times because the pack list never learned it had
+    // left). Drop the serial so the next lookup finds what is really there;
+    // if it really is there, the next container refresh puts it back.
+    if (reason == 0 && drag_.InFlight()) {
+        const u32 dead = drag_.Serial();
+        const u32 pack = PlayerEquipSerialAt(kLayerBackpack);
+        auto it = pack ? containerItems_.find(pack) : containerItems_.end();
+        if (it != containerItems_.end()) {
+            auto& list = it->second;
+            const usize before = list.size();
+            list.erase(std::remove_if(list.begin(), list.end(),
+                           [&](const ContainerItem& e) { return e.serial == dead; }),
+                       list.end());
+            if (list.size() != before)
+                LogWarn("[ITEM] 0x%08X refused a lift from our own pack -- "
+                        "dropping it from the pack cache (stale)\n", dead);
+        }
+    }
     drag_.Reset();
     if (!action_.Active()) return;
     if (action_.kind == act::Kind::MoveItem ||
