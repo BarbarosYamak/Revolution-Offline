@@ -85,8 +85,8 @@ const std::vector<Recipe>& Table() {
     {"i_hides_cut", 1, Provenance::WorldProcessed, Station::None, Tool::Scissors,
      kNoSkill, 0, kNoSkill, 0, {{"i_hide", 1}}, "ENGINE CClientTarg.cpp:2159 (IT_HIDE -> TDATA1)"},
     {"i_leather_tunic", 1, Provenance::PlayerCrafted, Station::None, Tool::SewingKit,
-     kTailoring, 705, kArmsLore, 100, {{"i_hides_cut", 12}},
-     "SCRIPT sm_leather_armor; SKILLMAKE=Tailoring 70.5,Armslore 10.0"},
+     kTailoring, 705, kNoSkill, 0, {{"i_hides_cut", 12}},
+     "SCRIPT sm_leather_armor; SKILLMAKE=Tailoring 70.5 (Armslore removed 2026-09-03, owner ruling)"},
 
     // --- mining and smithing ------------------------------------------------
     // Iron is 50.0 of ~99.9 in r_default_rock; a swing yields 1-3 and the tile

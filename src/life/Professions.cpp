@@ -333,9 +333,11 @@ const std::vector<Profession>& All() {
                 {rules::kBlacksmithing, 1000, 5, false, SkillRole::Secondary},
                 {rules::kMining,        1000, 4, false, SkillRole::Primary  },
                 {rules::kTinkering,      500, 2, true,  SkillRole::Utility},
-                {rules::kArmsLore,       500, 1, true,  SkillRole::Utility},
+                // Armslore dropped 2026-09-03: "I dont remember armslore being
+                // a skill we used in revolution uo" (owner); SKILLMAKE no
+                // longer asks for it anywhere.
             };
-            p.unresolvedTenths = 4000;
+            p.unresolvedTenths = 4500;
             p.targetStr = 100; p.targetDex = 45; p.targetInt = 80;
             p.income = {Income::Craft, Income::Process, Income::Gather};
             p.gathers = "ore";
@@ -1324,19 +1326,22 @@ const std::vector<Profession>& All() {
             p.startZeroSkill = rules::kTinkering;
             p.label = "Tailor";
             p.startSkillA = rules::kTailoring;
-            p.startSkillB = rules::kArmsLore;
+            // Armslore dropped 2026-09-03 (owner: not a Revolution skill;
+            // leather armour SKILLMAKE is Tailoring only now). Magery is the
+            // second creation pick so the kit-bearing slot is not wasted.
+            p.startSkillB = rules::kMagery;
             p.startStr = 50; p.startDex = 20; p.startInt = 10;
             p.targets = {
                 {rules::kTailoring, 1000, 4, false, SkillRole::Primary},
-                {rules::kArmsLore,   500, 3, false, SkillRole::Utility},
                 // Tinkering is capped Utility because Production.cpp's own
                 // comment names it as what "makes the tailor's kit" -- just
                 // enough to eventually replace a broken sewing kit, not a
                 // second trade.
                 {rules::kTinkering,  500, 2, true,  SkillRole::Utility},
-                {rules::kMagery,     250, 1, false, SkillRole::Utility},
+                // 50.0: it is a creation pick now, and creation grants 50.0.
+                {rules::kMagery,     500, 1, false, SkillRole::Utility},
             };
-            p.unresolvedTenths = 4750;
+            p.unresolvedTenths = 5000;
             p.targetStr = 40; p.targetDex = 60; p.targetInt = 100;
             // Faucets.cpp refuses generic tailor buyback outright
             // (tailor_output_to_vendor, Policy::RefusePlayerMarket): cloth
