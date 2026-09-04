@@ -343,6 +343,11 @@ const GraphicRow kGraphics[] = {
     {0x1BF9, "i_ingot_silver"},  {0x1BFA, "i_ingot_silver"},
     {0x1BDD, "i_log"},
     {0x1BD7, "i_board"},
+    // The carpenter's club: [ITEMDEF 013b3] DEFNAME=i_club, DUPELIST=013b4
+    // (runtime/scripts/items/weapons/i_weapons.scp:713). Without a row the
+    // pack could never count one, so a club sitting could never confirm
+    // itself (ChooseCraft now skips uncountable outputs, 2026-09-04).
+    {0x13B3, "i_club"}, {0x13B4, "i_club"},
     {0x1078, "i_hide"},
     {0x1067, "i_hides_cut"},
     {0x0E34, "i_scroll_blank"},

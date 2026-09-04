@@ -1,587 +1,460 @@
-[14:52:14.320] INFO  session 0: 127.0.0.1:2593 user='RevGen3_05' char=Vorar tag='g_Vorar'
-[14:52:14.321] LOG   [g_Vorar] event session_start: text log opened
-[14:52:14.321] LOG   [g_Vorar] event net_connect_begin: connect 127.0.0.1:2593
-[14:52:14.321] INFO  [g_Vorar] [net] connecting to 127.0.0.1:2593 ...
-[14:52:14.322] LOG   [g_Vorar] event net_connected: connect 127.0.0.1:2593
-[14:52:14.322] INFO  [g_Vorar] [net] connected.
-[14:52:14.322] INFO  [g_Vorar] [seed] sent 0x7F000001 (plaintext)
-[14:52:14.322] LOG   [g_Vorar] event seed_out: 0x7F000001 hex=7f000001
-[14:52:14.323] INFO  [life] loaded persistent state for Vorar (18 places, 1 suppliers, 16 events, 6 prior sessions)
-[14:52:14.323] INFO  [life] needs: reading 'lumberjack_swordsman' from the profession catalogue
-[14:52:14.323] INFO  [life] build plan 'lumberjack_swordsman': 600.0 resolved + 100.0 unresolved = 700.0/700.0, stats 100/100/25 = 225
-[14:52:14.323] INFO  [g_Vorar] [life] autonomous player active for 'Vorar' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 5 min)
-[14:52:14.352] INFO  [g_Vorar] [0xA8] 1 server(s):
-[14:52:14.352] INFO  [g_Vorar]   [0] MyShard                   1.0.0.127  full=0%  tz=0
-[14:52:14.366] INFO  [g_Vorar] [0x8C] game server = 127.0.0.1:2593  seed=0x6D45B66B
-[14:52:14.367] LOG   [g_Vorar] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x6D45B66B
-[14:52:14.367] INFO  [g_Vorar] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
-[14:52:14.367] LOG   [g_Vorar] event relay_same_socket: no seed re-sent; 0x91 follows
-[14:52:14.367] INFO  [g_Vorar] [0xB9] server features = 0x0005
-[14:52:14.367] INFO  [g_Vorar] [0xA9] 5 slot(s) (populated 1):
-[14:52:14.367] INFO  [g_Vorar]   [0] Vorar
-[14:52:14.367] INFO  [g_Vorar]   [1] <empty>
-[14:52:14.367] INFO  [g_Vorar]   [2] <empty>
-[14:52:14.367] INFO  [g_Vorar]   [3] <empty>
-[14:52:14.367] INFO  [g_Vorar]   [4] <empty>
-[14:52:14.367] INFO  [g_Vorar] [ui] playing slot 0 ('Vorar')
-[14:52:14.382] INFO  [g_Vorar] [0x1B] serial=0x00016305 body=0x0191 pos=(3649,2169,33)
-[14:52:14.382] LOG   [g_Vorar] event login_confirm: serial=0x00016305 body=0x0191 pos=(3649,2169,33)
-[14:52:14.382] INFO  [g_Vorar] [0x20] player @(3649,2169,33) facing=2
-[14:52:14.382] INFO  [g_Vorar] [0x55] login complete — entering world
-[14:52:14.382] LOG   [g_Vorar] event in_world: 0x55 received
-[14:52:14.383] INFO  [g_Vorar] [backpack] opening 0x400162FA
-[14:52:14.383] INFO  [g_Vorar] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
-[14:52:14.383] INFO  [g_Vorar] [chat ascii] System: There is 1 other player here.
-[14:52:14.383] INFO  [g_Vorar] [chat ascii] System: Last logged: 2026/09/02 12:25:18
-[14:52:14.386] INFO  [g_Vorar] [action] requesting the skill list
-[14:52:14.387] INFO  [life] in world; asked the server for the skill list
-[14:52:14.387] INFO  [g_Vorar] [0x24] open container 0x400162FA gump=60
-[14:52:14.387] INFO  [g_Vorar] [0x3C] container contents: 11 item(s)
-[14:52:14.387] LOG   [g_Vorar] event backpack_contents: serial=0x400162FA items=11
-[14:52:16.954] INFO  [g_Vorar] [bot] world data loaded (0 blacklisted spot(s)).
-[14:52:16.955] INFO  [life] reconciliation: resuming a life, 1 field(s) differed
-[14:52:16.955] INFO  [life]   gold         persisted=9608       server=9608       -> server value accepted
-[14:52:16.955] INFO  [life]   str          persisted=40         server=40         -> server value accepted
-[14:52:16.955] INFO  [life]   dex          persisted=32         server=32         -> server value accepted
-[14:52:16.955] INFO  [life]   int          persisted=8          server=8          -> server value accepted
-[14:52:16.955] INFO  [life]   skill_44     persisted=51.5       server=51.8       -> server value accepted
-[14:52:16.955] INFO  [life]   skill_40     persisted=50.0       server=50.0       -> server value accepted
-[14:52:16.955] INFO  [life]   skill_27     persisted=0.6        server=0.6        -> server value accepted
-[14:52:16.955] INFO  [life]   skill_1      persisted=0.0        server=0.0        -> server value accepted
-[14:52:16.955] INFO  [life]   skill_17     persisted=0.0        server=0.0        -> server value accepted
-[14:52:16.955] INFO  [life]   skill_11     persisted=19.4       server=19.4       -> server value accepted
-[14:52:16.955] INFO  [life]   position     persisted=3649,2169  server=3649,2169  -> server value accepted
-[14:52:16.955] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
-[14:52:16.955] INFO  [life]   restored objective KEPT: GATHER_LOGS (progress 0)
-[14:52:16.955] INFO  [g_Vorar] [survival] on
-[14:52:16.955] LOG   [g_Vorar] event survival_mode: on
-[14:52:16.957] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_05.vorar/state.json
-[14:52:16.957] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:52:17.009] INFO  [g_Vorar] [action] goto (3647,2167) from (3649,2169,33)
-[14:52:17.009] LOG   [g_Vorar] event goto_start: target=(3647,2167) from=(3649,2169)
-[14:52:17.009] INFO  [g_Vorar] [bot] running from (3649,2169,33) to (3647,2167)
-[14:52:17.009] INFO  [g_Vorar] [bot] planning path to (3647,2167) in background
-[14:52:17.069] INFO  [g_Vorar] [bot] replan to (3647,2167): 2 steps in 53.4us
-[14:52:17.390] INFO  [g_Vorar] [chat ascii] System: Serena has arrived in Skara Brae.
-[14:52:17.759] INFO  [g_Vorar] [bot] arrived at (3647,2167,36)
-[14:52:18.249] INFO  [g_Vorar] [ACTION] use_object start
-[14:52:18.249] INFO  [g_Vorar] [ACTION] use_object serial=0x400161A2
-[14:52:18.249] INFO  [g_Vorar] [chat ascii] System: What do you want to use this on?
-[14:52:18.249] INFO  [g_Vorar] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=1
-[14:52:18.249] LOG   [g_Vorar] event target_requested: id=0x000002CE type=0 subtype=1 gen=1
-[14:52:18.249] INFO  [g_Vorar] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
-[14:52:18.249] LOG   [g_Vorar] event action_result: use_object success took=0ms server armed a target cursor
-[14:52:19.102] INFO  [g_Vorar] [TARGET] reply static=(3646,2167,39) gfx=0x0D41 gen=1
-[14:52:19.103] INFO  [g_Vorar] [target] static 0x0D41 (3646,2167,39)
-[14:52:19.103] INFO  [g_Vorar] [0x20] player @(3647,2167,35) facing=6
-[14:52:19.103] INFO  [g_Vorar] [chat ascii] System: There is nothing here to chop.
-[14:52:19.531] INFO  [g_Vorar] [ACTION] use_object start
-[14:52:19.531] INFO  [g_Vorar] [ACTION] use_object serial=0x400161A2
-[14:52:19.546] INFO  [g_Vorar] [chat ascii] System: What do you want to use this on?
-[14:52:19.546] INFO  [g_Vorar] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=2
-[14:52:19.546] LOG   [g_Vorar] event target_requested: id=0x000002CE type=0 subtype=1 gen=2
-[14:52:19.546] INFO  [g_Vorar] [ACTION_RESULT] use_object success (14ms) server armed a target cursor
-[14:52:19.546] LOG   [g_Vorar] event action_result: use_object success took=14ms server armed a target cursor
-[14:52:20.382] INFO  [g_Vorar] [TARGET] reply static=(3646,2167,39) gfx=0x0D41 gen=2
-[14:52:20.382] INFO  [g_Vorar] [target] static 0x0D41 (3646,2167,39)
-[14:52:20.397] INFO  [g_Vorar] [chat ascii] System: There is nothing here to chop.
-[14:52:20.412] INFO  [g_Vorar] [chat ascii] System: Draver has arrived in Minoc Mine 1.
-[14:52:20.796] INFO  [life] tree at 3646,2167 holds no wood -> next tree (1 tried this stand)
-[14:52:20.858] INFO  [g_Vorar] [ACTION] use_object start
-[14:52:20.858] INFO  [g_Vorar] [ACTION] use_object serial=0x400161A2
-[14:52:20.858] INFO  [g_Vorar] [chat ascii] System: What do you want to use this on?
-[14:52:20.858] INFO  [g_Vorar] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=3
-[14:52:20.858] LOG   [g_Vorar] event target_requested: id=0x000002CE type=0 subtype=1 gen=3
-[14:52:20.858] INFO  [g_Vorar] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
-[14:52:20.858] LOG   [g_Vorar] event action_result: use_object success took=0ms server armed a target cursor
-[14:52:21.699] INFO  [g_Vorar] [TARGET] reply static=(3647,2166,39) gfx=0x0D42 gen=3
-[14:52:21.699] INFO  [g_Vorar] [target] static 0x0D42 (3647,2166,39)
-[14:52:21.699] INFO  [g_Vorar] [0x20] player @(3647,2167,35) facing=0
-[14:52:22.009] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:52:27.069] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:52:29.800] INFO  [g_Vorar] [chat ascii] System: You hack at the tree for a while, but fail to produce any useable wood.
-[14:52:29.862] INFO  [g_Vorar] [ACTION] use_object start
-[14:52:29.862] INFO  [g_Vorar] [ACTION] use_object serial=0x400161A2
-[14:52:29.876] INFO  [g_Vorar] [chat ascii] System: What do you want to use this on?
-[14:52:29.876] INFO  [g_Vorar] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=4
-[14:52:29.876] LOG   [g_Vorar] event target_requested: id=0x000002CE type=0 subtype=1 gen=4
-[14:52:29.876] INFO  [g_Vorar] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
-[14:52:29.876] LOG   [g_Vorar] event action_result: use_object success took=15ms server armed a target cursor
-[14:52:30.674] INFO  [g_Vorar] [TARGET] reply static=(3647,2166,39) gfx=0x0D42 gen=4
-[14:52:30.674] INFO  [g_Vorar] [target] static 0x0D42 (3647,2166,39)
-[14:52:32.116] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:52:36.984] INFO  [life] goal_changed=TRAIN_COMBAT from=GATHER_LOGS reason="TRAIN_COMBAT 84.5 superseded GATHER_LOGS 52.0"
-[14:52:36.984] INFO  [life] needs considered: NeedTraining(Swordsmanship 0.65) NeedTraining(Tactics 0.65) NeedTraining(Anatomy 0.65) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedCraft(make goods to sell 0.50) NeedSkillTraining(Carpentry 0.45) NeedLogs(logs 0.40) NeedGear(gear 0.22)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
-[14:52:36.984] INFO  [life]   score=84.5
-[14:52:36.984] INFO  [life]   reason: NeedTraining urgency 0.65 x 130 = 84.5
-[14:52:36.984] INFO  [life]   reason: Swordsmanship 50.0 -> 100.0
-[14:52:36.984] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (85 x i_log spare, and no buyer known -- on this shard it is a player-market good)
-[14:52:37.107] INFO  [life] handoff=TRAIN_COMBAT->UPGRADE_GEAR reason="no gear yet -- shopping before the graveyard"
-[14:52:37.168] INFO  [life] goal=TRADE_WITH_PLAYER reason="previous goal abandoned: no gear yet -- shopping before the graveyard"
-[14:52:37.168] INFO  [life] needs considered: NeedTraining(Swordsmanship 0.65) NeedTraining(Tactics 0.65) NeedTraining(Anatomy 0.65) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedCraft(make goods to sell 0.50) NeedSkillTraining(Carpentry 0.45) NeedLogs(logs 0.40) NeedGear(gear 0.22)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
-[14:52:37.168] INFO  [life]   score=79.8
-[14:52:37.168] INFO  [life]   reason: NeedTrade urgency 0.55 x 145 = 79.8
-[14:52:37.168] INFO  [life]   reason: 85 x i_log spare
-[14:52:37.168] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (85 x i_log spare, and no buyer known -- on this shard it is a player-market good)
-[14:52:37.168] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: on cooldown for another 239s after achieving nothing
-[14:52:37.168] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:52:37.213] INFO  [g_Vorar] [chat ascii] System: You put the logs in your pack.
-[14:52:39.161] INFO  [life] market: the market is britain_bank_2 (Britain banker) at 1425,1690, radius 5, guarded
-[14:52:39.161] INFO  [life] goal_blocked=TRADE_WITH_PLAYER reason="not enough session left for the trip" left=275s need=800s
-[14:52:39.222] INFO  [life] goal=CRAFT reason="previous goal abandoned: not enough session left for the trip"
-[14:52:39.222] INFO  [life] needs considered: NeedTraining(Swordsmanship 0.65) NeedTraining(Tactics 0.65) NeedTraining(Anatomy 0.65) NeedGold(sell surplus BLOCKED 0.55) NeedCraft(make goods to sell 0.50) NeedSkillTraining(Carpentry 0.45) NeedLogs(logs 0.40) NeedGear(gear 0.22) NeedTrade(sell to a player BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
-[14:52:39.222] INFO  [life]   score=65.0
-[14:52:39.222] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
-[14:52:39.222] INFO  [life]   reason: i_board: every input is in the pack
-[14:52:39.222] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (87 x i_log spare, and no buyer known -- on this shard it is a player-market good)
-[14:52:39.222] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: on cooldown for another 237s after achieving nothing
-[14:52:39.222] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 599s after achieving nothing
-[14:52:39.222] INFO  [life] goal_blocked=CRAFT reason="REFUSE_MISSING_TOOL" nothing carried or worn to open the i_board menu with (i_log)
-[14:52:39.222] INFO  [life] handoff=CRAFT->BUY_SUPPLIES reason="no material to start from"
-[14:52:39.284] INFO  [life] goal=GATHER_LOGS reason="previous goal abandoned: no material to start from"
-[14:52:39.284] INFO  [life] needs considered: NeedTraining(Swordsmanship 0.65) NeedTraining(Tactics 0.65) NeedTraining(Anatomy 0.65) NeedGold(sell surplus BLOCKED 0.55) NeedCraft(make goods to sell 0.50) NeedSkillTraining(Carpentry 0.45) NeedLogs(logs 0.40) NeedGear(gear 0.22) NeedTrade(sell to a player BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
-[14:52:39.284] INFO  [life]   score=52.0
-[14:52:39.284] INFO  [life]   reason: NeedLogs urgency 0.40 x 130 = 52.0
-[14:52:39.284] INFO  [life]   reason: proven stand at 3653,2171 (20 successes, 16 failures)
-[14:52:39.284] INFO  [life]   reason: 87 logs spare (held 107 - keep 20) is 4x keep -- dropping the stand/axe bonuses, TRADE should carry this pile instead
-[14:52:39.284] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (87 x i_log spare, and no buyer known -- on this shard it is a player-market good)
-[14:52:39.284] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: on cooldown for another 237s after achieving nothing
-[14:52:39.284] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 599s after achieving nothing
-[14:52:39.284] INFO  [life]   BLOCKED_NEED CRAFT: on cooldown for another 119s after achieving nothing
-[14:52:41.241] INFO  [g_Vorar] [ACTION] use_object start
-[14:52:41.241] INFO  [g_Vorar] [ACTION] use_object serial=0x400161A2
-[14:52:41.241] INFO  [g_Vorar] [chat ascii] System: What do you want to use this on?
-[14:52:41.241] INFO  [g_Vorar] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=5
-[14:52:41.241] LOG   [g_Vorar] event target_requested: id=0x000002CE type=0 subtype=1 gen=5
-[14:52:41.241] INFO  [g_Vorar] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
-[14:52:41.241] LOG   [g_Vorar] event action_result: use_object success took=0ms server armed a target cursor
-[14:52:42.096] INFO  [g_Vorar] [TARGET] reply static=(3647,2166,39) gfx=0x0D42 gen=5
-[14:52:42.096] INFO  [g_Vorar] [target] static 0x0D42 (3647,2166,39)
-[14:52:42.174] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:52:47.030] INFO  [g_Vorar] [chat ascii] System: You put the logs in your pack.
-[14:52:47.228] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:52:47.289] INFO  [g_Vorar] [ACTION] use_object start
-[14:52:47.289] INFO  [g_Vorar] [ACTION] use_object serial=0x400161A2
-[14:52:47.289] INFO  [g_Vorar] [chat ascii] System: What do you want to use this on?
-[14:52:47.289] INFO  [g_Vorar] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=6
-[14:52:47.289] LOG   [g_Vorar] event target_requested: id=0x000002CE type=0 subtype=1 gen=6
-[14:52:47.289] INFO  [g_Vorar] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
-[14:52:47.289] LOG   [g_Vorar] event action_result: use_object success took=1ms server armed a target cursor
-[14:52:48.130] INFO  [g_Vorar] [TARGET] reply static=(3647,2166,39) gfx=0x0D42 gen=6
-[14:52:48.130] INFO  [g_Vorar] [target] static 0x0D42 (3647,2166,39)
-[14:52:52.249] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:52:53.748] INFO  [g_Vorar] [chat ascii] System: World save in 10 seconds
-[14:52:57.306] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:52:57.814] INFO  [g_Vorar] [chat ascii] System: You put the logs in your pack.
-[14:52:58.058] INFO  [g_Vorar] [ACTION] use_object start
-[14:52:58.058] INFO  [g_Vorar] [ACTION] use_object serial=0x400161A2
-[14:52:58.058] INFO  [g_Vorar] [chat ascii] System: What do you want to use this on?
-[14:52:58.058] INFO  [g_Vorar] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=7
-[14:52:58.058] LOG   [g_Vorar] event target_requested: id=0x000002CE type=0 subtype=1 gen=7
-[14:52:58.058] INFO  [g_Vorar] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
-[14:52:58.058] LOG   [g_Vorar] event action_result: use_object success took=1ms server armed a target cursor
-[14:52:58.910] INFO  [g_Vorar] [TARGET] reply static=(3647,2166,39) gfx=0x0D42 gen=7
-[14:52:58.910] INFO  [g_Vorar] [target] static 0x0D42 (3647,2166,39)
-[14:53:02.330] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:53:03.807] INFO  [g_Vorar] [chat ascii] System: World save has been initiated.
-[14:53:05.726] INFO  [g_Vorar] [chat ascii] System: You put the logs in your pack.
-[14:53:05.788] INFO  [g_Vorar] [ACTION] use_object start
-[14:53:05.788] INFO  [g_Vorar] [ACTION] use_object serial=0x400161A2
-[14:53:05.801] INFO  [g_Vorar] [chat ascii] System: What do you want to use this on?
-[14:53:05.801] INFO  [g_Vorar] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=8
-[14:53:05.801] LOG   [g_Vorar] event target_requested: id=0x000002CE type=0 subtype=1 gen=8
-[14:53:05.801] INFO  [g_Vorar] [ACTION_RESULT] use_object success (14ms) server armed a target cursor
-[14:53:05.801] LOG   [g_Vorar] event action_result: use_object success took=14ms server armed a target cursor
-[14:53:06.615] INFO  [g_Vorar] [TARGET] reply static=(3647,2166,39) gfx=0x0D42 gen=8
-[14:53:06.615] INFO  [g_Vorar] [target] static 0x0D42 (3647,2166,39)
-[14:53:07.352] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:53:12.396] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:53:14.776] INFO  [g_Vorar] [chat ascii] System: You hack at the tree for a while, but fail to produce any useable wood.
-[14:53:14.777] INFO  [g_Vorar] [ACTION] use_object start
-[14:53:14.777] INFO  [g_Vorar] [ACTION] use_object serial=0x400161A2
-[14:53:14.777] INFO  [g_Vorar] [chat ascii] System: What do you want to use this on?
-[14:53:14.777] INFO  [g_Vorar] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=9
-[14:53:14.777] LOG   [g_Vorar] event target_requested: id=0x000002CE type=0 subtype=1 gen=9
-[14:53:14.777] INFO  [g_Vorar] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
-[14:53:14.777] LOG   [g_Vorar] event action_result: use_object success took=1ms server armed a target cursor
-[14:53:15.634] INFO  [g_Vorar] [TARGET] reply static=(3647,2166,39) gfx=0x0D42 gen=9
-[14:53:15.634] INFO  [g_Vorar] [target] static 0x0D42 (3647,2166,39)
-[14:53:16.994] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_05.vorar/state.json
-[14:53:17.449] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:53:18.909] INFO  [g_Vorar] [chat ascii] System: You hack at the tree for a while, but fail to produce any useable wood.
-[14:53:19.092] INFO  [life] tree at 3647,2166 holds no wood -> next tree (2 tried this stand)
-[14:53:19.153] INFO  [g_Vorar] [ACTION] use_object start
-[14:53:19.153] INFO  [g_Vorar] [ACTION] use_object serial=0x400161A2
-[14:53:19.153] INFO  [g_Vorar] [chat ascii] System: What do you want to use this on?
-[14:53:19.153] INFO  [g_Vorar] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=10
-[14:53:19.153] LOG   [g_Vorar] event target_requested: id=0x000002CE type=0 subtype=1 gen=10
-[14:53:19.153] INFO  [g_Vorar] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
-[14:53:19.153] LOG   [g_Vorar] event action_result: use_object success took=0ms server armed a target cursor
-[14:53:19.990] INFO  [g_Vorar] [TARGET] reply static=(3648,2165,39) gfx=0x0D43 gen=10
-[14:53:19.990] INFO  [g_Vorar] [target] static 0x0D43 (3648,2165,39)
-[14:53:20.005] INFO  [g_Vorar] [0x20] player @(3647,2167,35) facing=1
-[14:53:20.005] INFO  [g_Vorar] [chat ascii] System: There is nothing here to chop.
-[14:53:20.433] INFO  [g_Vorar] [ACTION] use_object start
-[14:53:20.433] INFO  [g_Vorar] [ACTION] use_object serial=0x400161A2
-[14:53:20.433] INFO  [g_Vorar] [chat ascii] System: What do you want to use this on?
-[14:53:20.433] INFO  [g_Vorar] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=11
-[14:53:20.433] LOG   [g_Vorar] event target_requested: id=0x000002CE type=0 subtype=1 gen=11
-[14:53:20.433] INFO  [g_Vorar] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
-[14:53:20.433] LOG   [g_Vorar] event action_result: use_object success took=0ms server armed a target cursor
-[14:53:21.288] INFO  [g_Vorar] [TARGET] reply static=(3648,2165,39) gfx=0x0D43 gen=11
-[14:53:21.288] INFO  [g_Vorar] [target] static 0x0D43 (3648,2165,39)
-[14:53:21.302] INFO  [g_Vorar] [chat ascii] System: There is nothing here to chop.
-[14:53:21.728] INFO  [life] tree at 3648,2165 holds no wood -> next tree (3 tried this stand)
-[14:53:21.791] INFO  [g_Vorar] [action] goto finished at (3647,2167,35); target (3647,2167); ARRIVED (off by 0 tile(s))
-[14:53:21.791] LOG   [g_Vorar] event goto_done: at=(3647,2167) target=(3647,2167) arrived=1 off=0
-[14:53:21.791] INFO  [g_Vorar] [action] goto (3649,2165) from (3647,2167,35)
-[14:53:21.791] LOG   [g_Vorar] event goto_start: target=(3649,2165) from=(3647,2167)
-[14:53:21.791] INFO  [g_Vorar] [bot] running from (3647,2167,35) to (3649,2165)
-[14:53:21.791] INFO  [g_Vorar] [bot] planning path to (3649,2165) in background
-[14:53:21.852] INFO  [g_Vorar] [bot] replan to (3649,2165): 4 steps in 28.1us
-[14:53:22.482] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:53:23.015] INFO  [g_Vorar] [ACTION] use_object start
-[14:53:23.015] INFO  [g_Vorar] [ACTION] use_object serial=0x400161A2
-[14:53:23.015] INFO  [g_Vorar] [chat ascii] System: What do you want to use this on?
-[14:53:23.016] INFO  [g_Vorar] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=12
-[14:53:23.016] LOG   [g_Vorar] event target_requested: id=0x000002CE type=0 subtype=1 gen=12
-[14:53:23.016] INFO  [g_Vorar] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
-[14:53:23.016] LOG   [g_Vorar] event action_result: use_object success took=0ms server armed a target cursor
-[14:53:23.637] INFO  [g_Vorar] [bot] arrived at (3649,2165,40)
-[14:53:23.822] INFO  [g_Vorar] [TARGET] reply static=(3649,2164,39) gfx=0x0D44 gen=12
-[14:53:23.822] INFO  [g_Vorar] [target] static 0x0D44 (3649,2164,39)
-[14:53:23.822] INFO  [g_Vorar] [0x20] player @(3649,2165,39) facing=0
-[14:53:27.508] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:53:32.533] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:53:33.511] INFO  [g_Vorar] [chat ascii] System: You put the logs in your pack.
-[14:53:33.788] INFO  [g_Vorar] [ACTION] use_object start
-[14:53:33.789] INFO  [g_Vorar] [ACTION] use_object serial=0x400161A2
-[14:53:33.789] INFO  [g_Vorar] [chat ascii] System: What do you want to use this on?
-[14:53:33.789] INFO  [g_Vorar] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=13
-[14:53:33.789] LOG   [g_Vorar] event target_requested: id=0x000002CE type=0 subtype=1 gen=13
-[14:53:33.789] INFO  [g_Vorar] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
-[14:53:33.789] LOG   [g_Vorar] event action_result: use_object success took=0ms server armed a target cursor
-[14:53:34.643] INFO  [g_Vorar] [TARGET] reply static=(3649,2164,39) gfx=0x0D44 gen=13
-[14:53:34.643] INFO  [g_Vorar] [target] static 0x0D44 (3649,2164,39)
-[14:53:37.546] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:53:42.589] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:53:42.755] INFO  [g_Vorar] [chat ascii] System: You put the logs in your pack.
-[14:53:42.818] INFO  [g_Vorar] [ACTION] use_object start
-[14:53:42.818] INFO  [g_Vorar] [ACTION] use_object serial=0x400161A2
-[14:53:42.832] INFO  [g_Vorar] [chat ascii] System: What do you want to use this on?
-[14:53:42.832] INFO  [g_Vorar] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=14
-[14:53:42.832] LOG   [g_Vorar] event target_requested: id=0x000002CE type=0 subtype=1 gen=14
-[14:53:42.832] INFO  [g_Vorar] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
-[14:53:42.832] LOG   [g_Vorar] event action_result: use_object success took=15ms server armed a target cursor
-[14:53:43.626] INFO  [g_Vorar] [TARGET] reply static=(3649,2164,39) gfx=0x0D44 gen=14
-[14:53:43.626] INFO  [g_Vorar] [target] static 0x0D44 (3649,2164,39)
-[14:53:47.650] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:53:51.690] INFO  [g_Vorar] [chat ascii] System: You put the logs in your pack.
-[14:53:51.781] INFO  [g_Vorar] [ACTION] use_object start
-[14:53:51.781] INFO  [g_Vorar] [ACTION] use_object serial=0x400161A2
-[14:53:51.797] INFO  [g_Vorar] [chat ascii] System: What do you want to use this on?
-[14:53:51.797] INFO  [g_Vorar] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=15
-[14:53:51.797] LOG   [g_Vorar] event target_requested: id=0x000002CE type=0 subtype=1 gen=15
-[14:53:51.797] INFO  [g_Vorar] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
-[14:53:51.797] LOG   [g_Vorar] event action_result: use_object success took=15ms server armed a target cursor
-[14:53:52.600] INFO  [g_Vorar] [TARGET] reply static=(3649,2164,39) gfx=0x0D44 gen=15
-[14:53:52.600] INFO  [g_Vorar] [target] static 0x0D44 (3649,2164,39)
-[14:53:52.677] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:53:57.496] INFO  [g_Vorar] [chat ascii] System: You put the logs in your pack.
-[14:53:57.725] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:53:57.786] INFO  [g_Vorar] [ACTION] use_object start
-[14:53:57.786] INFO  [g_Vorar] [ACTION] use_object serial=0x400161A2
-[14:53:57.801] INFO  [g_Vorar] [chat ascii] System: What do you want to use this on?
-[14:53:57.801] INFO  [g_Vorar] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=16
-[14:53:57.801] LOG   [g_Vorar] event target_requested: id=0x000002CE type=0 subtype=1 gen=16
-[14:53:57.801] INFO  [g_Vorar] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
-[14:53:57.801] LOG   [g_Vorar] event action_result: use_object success took=15ms server armed a target cursor
-[14:53:58.598] INFO  [g_Vorar] [TARGET] reply static=(3649,2164,39) gfx=0x0D44 gen=16
-[14:53:58.598] INFO  [g_Vorar] [target] static 0x0D44 (3649,2164,39)
-[14:54:02.733] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:54:03.498] INFO  [g_Vorar] [chat ascii] System: You hack at the tree for a while, but fail to produce any useable wood.
-[14:54:03.807] INFO  [g_Vorar] [ACTION] use_object start
-[14:54:03.807] INFO  [g_Vorar] [ACTION] use_object serial=0x400161A2
-[14:54:03.823] INFO  [g_Vorar] [chat ascii] System: What do you want to use this on?
-[14:54:03.823] INFO  [g_Vorar] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=17
-[14:54:03.823] LOG   [g_Vorar] event target_requested: id=0x000002CE type=0 subtype=1 gen=17
-[14:54:03.823] INFO  [g_Vorar] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
-[14:54:03.823] LOG   [g_Vorar] event action_result: use_object success took=15ms server armed a target cursor
-[14:54:04.621] INFO  [g_Vorar] [TARGET] reply static=(3649,2164,39) gfx=0x0D44 gen=17
-[14:54:04.621] INFO  [g_Vorar] [target] static 0x0D44 (3649,2164,39)
-[14:54:07.788] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:54:12.815] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:54:14.363] INFO  [g_Vorar] [chat ascii] System: You put the logs in your pack.
-[14:54:14.364] INFO  [life] goal_changed=BANK from=GATHER_LOGS reason="BANK 66.0 superseded GATHER_LOGS 52.0"
-[14:54:14.364] INFO  [life] needs considered: NeedGold(sell surplus BLOCKED 0.55) NeedCraft(make goods to sell 0.50) NeedTraining(Swordsmanship 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedSkillTraining(Carpentry 0.45) NeedBank(put unsold stock away 0.40) NeedLogs(logs 0.40) NeedGear(gear 0.22) NeedTrade(sell to a player BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
-[14:54:14.364] INFO  [life]   score=66.0
-[14:54:14.364] INFO  [life]   reason: NeedBank urgency 0.40 x 240 = 96.0
-[14:54:14.364] INFO  [life]   reason: 6 x i_log spare with no buyer (trip at 20)
-[14:54:14.364] INFO  [life]   reason: no bank learned yet -30
-[14:54:14.364] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (101 x i_log spare, and no buyer known -- on this shard it is a player-market good)
-[14:54:14.364] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: on cooldown for another 142s after achieving nothing
-[14:54:14.364] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 504s after achieving nothing
-[14:54:14.364] INFO  [life]   BLOCKED_NEED CRAFT: on cooldown for another 24s after achieving nothing
-[14:54:14.516] INFO  [life] bank: nothing proven yet -- trying what common knowledge says is nearest, Britain banker at 1425,1690 (2224 tiles)
-[14:54:14.516] INFO  [g_Vorar] [travel] seeded_bank -> (1425,1690) r=5 from (3649,2165)
-[14:54:14.516] LOG   [g_Vorar] event travel_start: label='seeded_bank' target=(1425,1690) radius=5 from=(3649,2165)
-[14:54:14.516] INFO  [g_Vorar] [travel] mode moongate         usable   <- chosen
-[14:54:14.516] INFO  [g_Vorar] [travel] mode walk             usable
-[14:54:14.516] INFO  [g_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
-[14:54:14.516] INFO  [g_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
-[14:54:14.516] LOG   [g_Vorar] event travel_mode: moongate
-[14:54:14.518] INFO  [g_Vorar] [travel] plan seeded_bank: ok legs=15 ~584 tiles transit=1 nodes=5457
-[14:54:14.519] INFO  [g_Vorar] [action] goto finished at (3649,2165,39); target (3649,2165); ARRIVED (off by 0 tile(s))
-[14:54:14.519] LOG   [g_Vorar] event goto_done: at=(3649,2165) target=(3649,2165) arrived=1 off=0
-[14:54:14.519] INFO  [g_Vorar] [action] goto (3624,2168) from (3649,2165,39)
-[14:54:14.519] LOG   [g_Vorar] event goto_start: target=(3624,2168) from=(3649,2165)
-[14:54:14.519] INFO  [g_Vorar] [bot] running from (3649,2165,39) to (3624,2168)
-[14:54:14.519] INFO  [g_Vorar] [bot] planning path to (3624,2168) in background
-[14:54:14.576] INFO  [g_Vorar] [bot] replan to (3624,2168): 26 steps in 314.4us
-[14:54:17.019] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_05.vorar/state.json
-[14:54:17.842] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:54:22.850] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:54:23.676] INFO  [g_Vorar] [bot] arrived at (3624,2168,45)
-[14:54:23.677] INFO  [g_Vorar] [action] goto finished at (3624,2168,45); target (3624,2168); ARRIVED (off by 0 tile(s))
-[14:54:23.677] LOG   [g_Vorar] event goto_done: at=(3624,2168) target=(3624,2168) arrived=1 off=0
-[14:54:23.677] INFO  [g_Vorar] [action] goto (3592,2168) from (3624,2168,45)
-[14:54:23.677] LOG   [g_Vorar] event goto_start: target=(3592,2168) from=(3624,2168)
-[14:54:23.677] INFO  [g_Vorar] [bot] running from (3624,2168,45) to (3592,2168)
-[14:54:23.677] INFO  [g_Vorar] [bot] planning path to (3592,2168) in background
-[14:54:23.738] INFO  [g_Vorar] [bot] replan to (3592,2168): 33 steps in 2210.8us
-[14:54:27.885] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:54:31.869] INFO  [g_Vorar] [bot] step (3599,2169,34)->(3598,2170,34) rejected; OpenDoor + retry
-[14:54:32.572] INFO  [g_Vorar] [bot] lookahead patched around block at step 1: anchor=5 new segment=5 path=8 in 20.9us
-[14:54:32.940] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:54:36.080] INFO  [g_Vorar] [bot] arrived at (3592,2168,24)
-[14:54:36.081] INFO  [g_Vorar] [action] goto finished at (3592,2168,24); target (3592,2168); ARRIVED (off by 0 tile(s))
-[14:54:36.081] LOG   [g_Vorar] event goto_done: at=(3592,2168) target=(3592,2168) arrived=1 off=0
-[14:54:36.081] INFO  [g_Vorar] [action] goto (3560,2136) from (3592,2168,24)
-[14:54:36.081] LOG   [g_Vorar] event goto_start: target=(3560,2136) from=(3592,2168)
-[14:54:36.081] INFO  [g_Vorar] [bot] running from (3592,2168,24) to (3560,2136)
-[14:54:36.081] INFO  [g_Vorar] [bot] planning path to (3560,2136) in background
-[14:54:36.140] INFO  [g_Vorar] [bot] replan to (3560,2136): 41 steps in 2634.6us
-[14:54:37.969] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:54:39.025] INFO  [g_Vorar] [bot] step (3593,2161,48)->(3592,2160,51) rejected; OpenDoor + retry
-[14:54:39.773] INFO  [g_Vorar] [bot] step (3593,2161,48)->(3592,2160,51) rejected; avoiding edge + rerouting
-[14:54:39.773] INFO  [g_Vorar] [bot] planning path to (3560,2136) in background
-[14:54:39.834] INFO  [g_Vorar] [bot] replan to (3560,2136): 36 steps in 1004.1us
-[14:54:40.442] INFO  [g_Vorar] [bot] step (3593,2161,48)->(3593,2160,52) rejected; OpenDoor + retry
-[14:54:41.174] INFO  [g_Vorar] [bot] step (3593,2161,48)->(3593,2160,52) rejected; avoiding edge + rerouting
-[14:54:41.174] INFO  [g_Vorar] [bot] planning path to (3560,2136) in background
-[14:54:41.234] INFO  [g_Vorar] [bot] replan to (3560,2136): 36 steps in 1193.1us
-[14:54:43.019] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:54:48.053] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:54:52.277] INFO  [g_Vorar] [gump] 0x4000289E context=0x80A0041C: 13 option(s), 15 text(s)
-[14:54:52.277] INFO  [g_Vorar] [gump]   button 1000 = 'OKAY'
-[14:54:52.277] INFO  [g_Vorar] [gump]   button 0 = 'CANCEL'
-[14:54:52.277] INFO  [g_Vorar] [gump]   button 1 = 'Felucca'
-[14:54:52.277] INFO  [g_Vorar] [gump]   choice 1 = 'Moonglow'
-[14:54:52.277] INFO  [g_Vorar] [gump]   choice 2 = 'Britain'
-[14:54:52.277] INFO  [g_Vorar] [gump]   choice 3 = 'Jhelom'
-[14:54:52.277] INFO  [g_Vorar] [gump]   choice 4 = 'Yew'
-[14:54:52.277] INFO  [g_Vorar] [gump]   choice 5 = 'New Magincia'
-[14:54:52.277] INFO  [g_Vorar] [gump]   choice 6 = 'Minoc'
-[14:54:52.277] INFO  [g_Vorar] [gump]   choice 7 = 'Trinsic'
-[14:54:52.277] INFO  [g_Vorar] [gump]   choice 8 = 'Skara Brae'
-[14:54:52.277] INFO  [g_Vorar] [gump]   choice 9 = 'Buccaneer's Den'
-[14:54:52.277] INFO  [g_Vorar] [gump]   choice 10 = 'Ocllo (Newplayers)'
-[14:54:52.277] INFO  [g_Vorar] [gump]   text 0 = 'Pick your destination:'
-[14:54:52.277] INFO  [g_Vorar] [gump]   text 1 = 'OKAY'
-[14:54:52.277] INFO  [g_Vorar] [gump]   text 2 = 'CANCEL'
-[14:54:52.277] INFO  [g_Vorar] [gump]   text 3 = 'Felucca'
-[14:54:52.277] INFO  [g_Vorar] [gump]   text 4 = 'Felucca'
-[14:54:52.277] INFO  [g_Vorar] [gump]   text 5 = 'Moonglow'
-[14:54:52.277] INFO  [g_Vorar] [gump]   text 6 = 'Britain'
-[14:54:52.277] INFO  [g_Vorar] [gump]   text 7 = 'Jhelom'
-[14:54:52.277] INFO  [g_Vorar] [gump]   text 8 = 'Yew'
-[14:54:52.277] INFO  [g_Vorar] [gump]   text 9 = 'New Magincia'
-[14:54:52.277] INFO  [g_Vorar] [gump]   text 10 = 'Minoc'
-[14:54:52.277] INFO  [g_Vorar] [gump]   text 11 = 'Trinsic'
-[14:54:52.277] INFO  [g_Vorar] [gump]   text 12 = 'Skara Brae'
-[14:54:52.277] INFO  [g_Vorar] [gump]   text 13 = 'Buccaneer's Den'
-[14:54:52.277] INFO  [g_Vorar] [gump]   text 14 = 'Ocllo (Newplayers)'
-[14:54:52.277] LOG   [g_Vorar] event gump_open: serial=0x4000289E context=0x80A0041C options=13
-[14:54:53.073] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:54:53.457] INFO  [g_Vorar] [bot] arrived at (3560,2136,22)
-[14:54:53.458] INFO  [g_Vorar] [action] goto finished at (3560,2136,22); target (3560,2136); ARRIVED (off by 0 tile(s))
-[14:54:53.458] LOG   [g_Vorar] event goto_done: at=(3560,2136) target=(3560,2136) arrived=1 off=0
-[14:54:53.458] INFO  [g_Vorar] [travel] pre-armed moongate destination 'Britain' while approaching
-[14:54:53.458] INFO  [g_Vorar] [action] goto (3564,2140) from (3560,2136,22)
-[14:54:53.458] LOG   [g_Vorar] event goto_start: target=(3564,2140) from=(3560,2136)
-[14:54:53.458] INFO  [g_Vorar] [bot] running from (3560,2136,22) to (3564,2140)
-[14:54:53.458] INFO  [g_Vorar] [bot] planning path to (3564,2140) in background
-[14:54:53.518] INFO  [g_Vorar] [bot] replan to (3564,2140): 4 steps in 80.9us
-[14:54:54.875] INFO  [g_Vorar] [bot] arrived at (3564,2140,34)
-[14:54:54.876] INFO  [g_Vorar] [action] goto finished at (3564,2140,34); target (3564,2140); ARRIVED (off by 0 tile(s))
-[14:54:54.876] LOG   [g_Vorar] event goto_done: at=(3564,2140) target=(3564,2140) arrived=1 off=0
-[14:54:54.876] INFO  [g_Vorar] [travel] using moongate 0x4000289E for 'Britain' (gump active=1 serial=0x4000289E, try 1/3)
-[14:54:54.876] INFO  [g_Vorar] [travel] the gate's gump is already open; answering it
-[14:54:54.876] INFO  [g_Vorar] [travel] gate gump: choosing 'Britain' (choice 2, button 1000)
-[14:54:54.876] LOG   [g_Vorar] event moongate_use: destination='Britain' choice=2 button=1000
-[14:54:54.877] INFO  [g_Vorar] [0x20] player @(1336,1997,5) facing=3
-[14:54:54.877] INFO  [g_Vorar] [0x20] player @(1336,1997,5) facing=3
-[14:54:55.427] INFO  [g_Vorar] [action] goto (1336,1960) from (1336,1997,5)
-[14:54:55.427] LOG   [g_Vorar] event goto_start: target=(1336,1960) from=(1336,1997)
-[14:54:55.427] INFO  [g_Vorar] [bot] running from (1336,1997,5) to (1336,1960)
-[14:54:55.427] INFO  [g_Vorar] [bot] planning path to (1336,1960) in background
-[14:54:55.488] INFO  [g_Vorar] [bot] replan to (1336,1960): 37 steps in 11984.1us
-[14:54:55.703] INFO  [g_Vorar] [chat ascii] System: You have been revealed
-[14:54:58.114] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:55:03.162] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:55:08.008] INFO  [g_Vorar] [bot] arrived at (1336,1960,0)
-[14:55:08.009] INFO  [g_Vorar] [action] goto finished at (1336,1960,0); target (1336,1960); ARRIVED (off by 0 tile(s))
-[14:55:08.009] LOG   [g_Vorar] event goto_done: at=(1336,1960) target=(1336,1960) arrived=1 off=0
-[14:55:08.009] INFO  [g_Vorar] [action] goto (1336,1928) from (1336,1960,0)
-[14:55:08.009] LOG   [g_Vorar] event goto_start: target=(1336,1928) from=(1336,1960)
-[14:55:08.009] INFO  [g_Vorar] [bot] running from (1336,1960,0) to (1336,1928)
-[14:55:08.009] INFO  [g_Vorar] [bot] planning path to (1336,1928) in background
-[14:55:08.070] INFO  [g_Vorar] [bot] replan to (1336,1928): 33 steps in 5193.8us
-[14:55:08.194] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:55:13.227] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:55:17.070] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_05.vorar/state.json
-[14:55:18.245] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:55:18.917] INFO  [g_Vorar] [bot] arrived at (1336,1928,0)
-[14:55:18.917] INFO  [g_Vorar] [action] goto finished at (1336,1928,0); target (1336,1928); ARRIVED (off by 0 tile(s))
-[14:55:18.917] LOG   [g_Vorar] event goto_done: at=(1336,1928) target=(1336,1928) arrived=1 off=0
-[14:55:18.917] INFO  [g_Vorar] [action] goto (1336,1896) from (1336,1928,0)
-[14:55:18.917] LOG   [g_Vorar] event goto_start: target=(1336,1896) from=(1336,1928)
-[14:55:18.917] INFO  [g_Vorar] [bot] running from (1336,1928,0) to (1336,1896)
-[14:55:18.917] INFO  [g_Vorar] [bot] planning path to (1336,1896) in background
-[14:55:18.978] INFO  [g_Vorar] [bot] replan to (1336,1896): 32 steps in 7500.5us
-[14:55:23.288] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:55:27.112] INFO  [g_Vorar] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=11 in 33.9us
-[14:55:28.157] INFO  [g_Vorar] [bot] lookahead patched around block at step 3: anchor=5 new segment=4 path=7 in 8.1us
-[14:55:28.340] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:55:30.944] INFO  [g_Vorar] [bot] arrived at (1336,1896,0)
-[14:55:30.945] INFO  [g_Vorar] [action] goto finished at (1336,1896,0); target (1336,1896); ARRIVED (off by 0 tile(s))
-[14:55:30.945] LOG   [g_Vorar] event goto_done: at=(1336,1896) target=(1336,1896) arrived=1 off=0
-[14:55:30.945] INFO  [g_Vorar] [action] goto (1336,1864) from (1336,1896,0)
-[14:55:30.945] LOG   [g_Vorar] event goto_start: target=(1336,1864) from=(1336,1896)
-[14:55:30.945] INFO  [g_Vorar] [bot] running from (1336,1896,0) to (1336,1864)
-[14:55:30.945] INFO  [g_Vorar] [bot] planning path to (1336,1864) in background
-[14:55:31.005] INFO  [g_Vorar] [bot] replan to (1336,1864): 37 steps in 5020.8us
-[14:55:33.385] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:55:38.434] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:55:43.443] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:55:45.028] INFO  [g_Vorar] [bot] arrived at (1336,1864,0)
-[14:55:45.029] INFO  [g_Vorar] [action] goto finished at (1336,1864,0); target (1336,1864); ARRIVED (off by 0 tile(s))
-[14:55:45.029] LOG   [g_Vorar] event goto_done: at=(1336,1864) target=(1336,1864) arrived=1 off=0
-[14:55:45.029] INFO  [g_Vorar] [action] goto (1336,1832) from (1336,1864,0)
-[14:55:45.029] LOG   [g_Vorar] event goto_start: target=(1336,1832) from=(1336,1864)
-[14:55:45.029] INFO  [g_Vorar] [bot] running from (1336,1864,0) to (1336,1832)
-[14:55:45.029] INFO  [g_Vorar] [bot] planning path to (1336,1832) in background
-[14:55:45.089] INFO  [g_Vorar] [bot] replan to (1336,1832): 33 steps in 6305.2us
-[14:55:48.486] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:55:53.500] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:55:57.571] INFO  [g_Vorar] [bot] arrived at (1336,1832,0)
-[14:55:57.571] INFO  [g_Vorar] [action] goto finished at (1336,1832,0); target (1336,1832); ARRIVED (off by 0 tile(s))
-[14:55:57.571] LOG   [g_Vorar] event goto_done: at=(1336,1832) target=(1336,1832) arrived=1 off=0
-[14:55:57.571] INFO  [g_Vorar] [action] goto (1336,1800) from (1336,1832,0)
-[14:55:57.571] LOG   [g_Vorar] event goto_start: target=(1336,1800) from=(1336,1832)
-[14:55:57.571] INFO  [g_Vorar] [bot] running from (1336,1832,0) to (1336,1800)
-[14:55:57.571] INFO  [g_Vorar] [bot] planning path to (1336,1800) in background
-[14:55:57.631] INFO  [g_Vorar] [bot] replan to (1336,1800): 32 steps in 4861.5us
-[14:55:58.523] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:56:03.559] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:56:07.280] INFO  [g_Vorar] [bot] arrived at (1336,1800,0)
-[14:56:07.281] INFO  [g_Vorar] [action] goto finished at (1336,1800,0); target (1336,1800); ARRIVED (off by 0 tile(s))
-[14:56:07.281] LOG   [g_Vorar] event goto_done: at=(1336,1800) target=(1336,1800) arrived=1 off=0
-[14:56:07.281] INFO  [g_Vorar] [action] goto (1352,1766) from (1336,1800,0)
-[14:56:07.281] LOG   [g_Vorar] event goto_start: target=(1352,1766) from=(1336,1800)
-[14:56:07.281] INFO  [g_Vorar] [bot] running from (1336,1800,0) to (1352,1766)
-[14:56:07.281] INFO  [g_Vorar] [bot] planning path to (1352,1766) in background
-[14:56:07.342] INFO  [g_Vorar] [bot] replan to (1352,1766): 49 steps in 12744.5us
-[14:56:08.578] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:56:13.621] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:56:17.073] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_05.vorar/state.json
-[14:56:18.648] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:56:22.154] INFO  [g_Vorar] [bot] arrived at (1352,1766,15)
-[14:56:22.155] INFO  [g_Vorar] [action] goto finished at (1352,1766,15); target (1352,1766); ARRIVED (off by 0 tile(s))
-[14:56:22.155] LOG   [g_Vorar] event goto_done: at=(1352,1766) target=(1352,1766) arrived=1 off=0
-[14:56:22.155] INFO  [g_Vorar] [action] goto (1386,1728) from (1352,1766,15)
-[14:56:22.155] LOG   [g_Vorar] event goto_start: target=(1386,1728) from=(1352,1766)
-[14:56:22.155] INFO  [g_Vorar] [bot] running from (1352,1766,15) to (1386,1728)
-[14:56:22.155] INFO  [g_Vorar] [bot] planning path to (1386,1728) in background
-[14:56:22.216] INFO  [g_Vorar] [bot] replan to (1386,1728): 64 steps in 29425.6us
-[14:56:23.706] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:56:28.751] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:56:33.567] INFO  [g_Vorar] [chat ascii] System: You are now under the protection of the city guards
-[14:56:33.753] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:56:35.237] INFO  [g_Vorar] [bot] lookahead patched around block at step 5: anchor=9 new segment=13 path=22 in 499.1us
-[14:56:38.810] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:56:40.969] INFO  [life] goal_changed=TRAIN_COMBAT from=BANK reason="TRAIN_COMBAT 84.5 superseded BANK 66.0"
-[14:56:40.969] INFO  [life] needs considered: NeedTraining(Swordsmanship 0.65) NeedTraining(Tactics 0.65) NeedTraining(Anatomy 0.65) NeedGold(sell surplus BLOCKED 0.55) NeedCraft(make goods to sell 0.50) NeedSkillTraining(Carpentry 0.45) NeedBank(put unsold stock away 0.40) NeedLogs(logs 0.40) NeedGear(gear 0.22) NeedTrade(sell to a player BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
-[14:56:40.969] INFO  [life]   score=84.5
-[14:56:40.969] INFO  [life]   reason: NeedTraining urgency 0.65 x 130 = 84.5
-[14:56:40.969] INFO  [life]   reason: Swordsmanship 50.0 -> 100.0
-[14:56:40.969] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (101 x i_log spare, and no buyer known -- on this shard it is a player-market good)
-[14:56:40.969] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 358s after achieving nothing
-[14:56:41.213] INFO  [g_Vorar] [chat ascii] System: You have left the protection of the city guards
-[14:56:41.645] INFO  [g_Vorar] [bot] arrived at (1386,1728,0)
-[14:56:41.645] INFO  [g_Vorar] [action] goto finished at (1386,1728,0); target (1386,1728); ARRIVED (off by 0 tile(s))
-[14:56:41.645] LOG   [g_Vorar] event goto_done: at=(1386,1728) target=(1386,1728) arrived=1 off=0
-[14:56:41.645] INFO  [g_Vorar] [action] goto (1416,1704) from (1386,1728,0)
-[14:56:41.645] LOG   [g_Vorar] event goto_start: target=(1416,1704) from=(1386,1728)
-[14:56:41.645] INFO  [g_Vorar] [bot] running from (1386,1728,0) to (1416,1704)
-[14:56:41.645] INFO  [g_Vorar] [bot] planning path to (1416,1704) in background
-[14:56:41.705] INFO  [g_Vorar] [bot] replan to (1416,1704): 36 steps in 4057.4us
-[14:56:41.734] INFO  [g_Vorar] [chat ascii] System: Serena has departed from Britain.
-[14:56:42.591] INFO  [g_Vorar] [chat ascii] System: You are now under the protection of the city guards
-[14:56:43.818] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:56:44.062] INFO  [g_Vorar] [bot] step (1391,1728,2)->(1392,1727,5) rejected; OpenDoor + retry
-[14:56:44.792] INFO  [g_Vorar] [bot] step (1391,1728,2)->(1392,1727,5) rejected; avoiding edge + rerouting
-[14:56:44.792] INFO  [g_Vorar] [bot] planning path to (1416,1704) in background
-[14:56:44.852] INFO  [g_Vorar] [bot] replan to (1416,1704): 33 steps in 2769.1us
-[14:56:48.835] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:56:53.836] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:56:56.275] INFO  [g_Vorar] [bot] arrived at (1416,1704,8)
-[14:56:56.276] INFO  [g_Vorar] [action] goto finished at (1416,1704,8); target (1416,1704); ARRIVED (off by 0 tile(s))
-[14:56:56.276] LOG   [g_Vorar] event goto_done: at=(1416,1704) target=(1416,1704) arrived=1 off=0
-[14:56:56.276] INFO  [g_Vorar] [action] goto (1425,1690) from (1416,1704,8)
-[14:56:56.276] LOG   [g_Vorar] event goto_start: target=(1425,1690) from=(1416,1704)
-[14:56:56.276] INFO  [g_Vorar] [bot] running from (1416,1704,8) to (1425,1690)
-[14:56:56.276] INFO  [g_Vorar] [bot] planning path to (1425,1690) in background
-[14:56:56.337] INFO  [g_Vorar] [bot] replan to (1425,1690): 37 steps in 6093.8us
-[14:56:58.850] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:57:03.166] INFO  [g_Vorar] [bot] door ahead at (1438,1692,z0); OpenDoor before step
-[14:57:03.167] INFO  [g_Vorar] [chat ascii] System: Opening door...
-[14:57:03.906] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:57:06.506] INFO  [g_Vorar] [travel] seeded_bank ARRIVED at (1430,1691,0)
-[14:57:06.506] LOG   [g_Vorar] event travel_done: label='seeded_bank' ok=1 at=(1430,1691) legs=15 plans=1 why=''
-[14:57:06.568] INFO  [life] handoff=TRAIN_COMBAT->UPGRADE_GEAR reason="no gear yet -- shopping before the graveyard"
-[14:57:06.629] INFO  [life] goal=BANK reason="previous goal abandoned: no gear yet -- shopping before the graveyard"
-[14:57:06.629] INFO  [life] needs considered: NeedGold(sell surplus BLOCKED 0.55) NeedCraft(make goods to sell 0.50) NeedTraining(Swordsmanship 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedSkillTraining(Carpentry 0.45) NeedBank(put unsold stock away 0.40) NeedLogs(logs 0.40) NeedGear(gear 0.22) NeedTrade(sell to a player BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
-[14:57:06.629] INFO  [life]   score=66.0
-[14:57:06.629] INFO  [life]   reason: NeedBank urgency 0.40 x 240 = 96.0
-[14:57:06.629] INFO  [life]   reason: 6 x i_log spare with no buyer (trip at 20)
-[14:57:06.629] INFO  [life]   reason: no bank learned yet -30
-[14:57:06.629] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (101 x i_log spare, and no buyer known -- on this shard it is a player-market good)
-[14:57:06.629] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: on cooldown for another 239s after achieving nothing
-[14:57:06.629] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 332s after achieving nothing
-[14:57:08.583] INFO  [g_Vorar] [ACTION] open_bank start
-[14:57:08.583] INFO  [g_Vorar] [ACTION] open_bank banker=0x00000000 say='bank'
-[14:57:08.584] INFO  [life] bank: at the known bank -- saying 'bank' aloud (1 of 3)
-[14:57:08.599] INFO  [g_Vorar] [chat uni  ] Vorar: bank
-[14:57:08.599] INFO  [g_Vorar] [chat ascii] Lyndon: Yes?
-[14:57:08.599] INFO  [g_Vorar] [chat ascii] Lyndon: Never lost a coin from robberies.
-[14:57:08.599] INFO  [g_Vorar] [chat ascii] System: You have 190 stones in your Bank Box
-[14:57:08.599] INFO  [g_Vorar] [0x24] open container 0x400162FD gump=74
-[14:57:08.599] INFO  [g_Vorar] [STATE] bank container=0x400162FD gump=0x004A opened at (1430,1691)
-[14:57:08.599] LOG   [g_Vorar] event bank_opened: container recognised
-[14:57:08.599] INFO  [g_Vorar] [ACTION_RESULT] open_bank success (16ms) bank container opened
-[14:57:08.599] LOG   [g_Vorar] event action_result: open_bank success took=16ms bank container opened
-[14:57:08.599] INFO  [g_Vorar] [0x3C] container contents: 2 item(s)
-[14:57:08.965] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:57:14.016] INFO  [g_Vorar] [survival] hp 40/40 (100%) -> fight
-[14:57:14.443] INFO  [life] session_end_requested reason="session time limit reached"
-[14:57:14.504] INFO  [life] session_summary duration=300s goals=0/7 gold=9608->9608 skills=121.8->121.8 logs=+16 kills=0 deaths=0 places=18 suppliers=1
-[14:57:14.504] INFO  [life] session_goals families=4 picks=7 top=29% varied=1 self_superseded=0 | upkeep=2(29%) work=2(29%) training=2(29%) social=1(14%) | BANK=2(29%) GATHER_LOGS=1(14%) TRAIN_COMBAT=2(29%) TRADE_WITH_PLAYER=1(14%) CRAFT=1(14%)
-[14:57:14.507] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_05.vorar/state.json
-[14:57:14.507] INFO  [life] logging out
-[14:57:14.507] INFO  [g_Vorar] [action] logout requested
-[14:57:14.507] LOG   [g_Vorar] event logout_requested: 0xD1 sent; awaiting ack, then closing
-[14:57:14.507] INFO  [g_Vorar] [0xD1] logout acknowledged (accepted=1)
-[14:57:14.507] LOG   [g_Vorar] event logout_ack: accepted
-[14:57:14.507] INFO  [g_Vorar] [net] closing connection (logout acknowledged)
-[14:57:14.507] LOG   [g_Vorar] event logout_complete: acked
+[15:12:58.453] INFO  session 0: 127.0.0.1:2593 user='RevGen3_05' char=Vorar tag='g_Vorar'
+[15:12:58.455] LOG   [g_Vorar] event session_start: text log opened
+[15:12:58.455] LOG   [g_Vorar] event net_connect_begin: connect 127.0.0.1:2593
+[15:12:58.455] INFO  [g_Vorar] [net] connecting to 127.0.0.1:2593 ...
+[15:12:58.456] LOG   [g_Vorar] event net_connected: connect 127.0.0.1:2593
+[15:12:58.456] INFO  [g_Vorar] [net] connected.
+[15:12:58.456] INFO  [g_Vorar] [seed] sent 0x7F000001 (plaintext)
+[15:12:58.456] LOG   [g_Vorar] event seed_out: 0x7F000001 hex=7f000001
+[15:12:58.456] INFO  [life] no prior state for revgen3_05.vorar: a new Lumberjack / Carpenter
+[15:12:58.456] INFO  [life] creation request: Lumberjacking 50.0 + Swordsmanship 50.0, stats 50/25/5 = 80
+[15:12:58.456] INFO  [life] needs: reading 'lumberjack_swordsman' from the profession catalogue
+[15:12:58.456] INFO  [life] home: Vorar lives in Britain
+[15:12:58.456] INFO  [life] build plan 'lumberjack_swordsman': 600.0 resolved + 100.0 unresolved = 700.0/700.0, stats 100/100/25 = 225
+[15:12:58.456] INFO  [g_Vorar] [life] autonomous player active for 'Vorar' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 2 min)
+[15:12:58.463] INFO  [g_Vorar] [0xA8] 1 server(s):
+[15:12:58.463] INFO  [g_Vorar]   [0] MyShard                   1.0.0.127  full=1%  tz=0
+[15:12:58.478] INFO  [g_Vorar] [0x8C] game server = 127.0.0.1:2593  seed=0x6D45B66B
+[15:12:58.478] LOG   [g_Vorar] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x6D45B66B
+[15:12:58.478] INFO  [g_Vorar] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[15:12:58.478] LOG   [g_Vorar] event relay_same_socket: no seed re-sent; 0x91 follows
+[15:12:58.478] INFO  [g_Vorar] [0xB9] server features = 0x0005
+[15:12:58.478] INFO  [g_Vorar] [0xA9] 5 slot(s) (populated 0):
+[15:12:58.478] INFO  [g_Vorar]   [0] <empty>
+[15:12:58.478] INFO  [g_Vorar]   [1] <empty>
+[15:12:58.478] INFO  [g_Vorar]   [2] <empty>
+[15:12:58.478] INFO  [g_Vorar]   [3] <empty>
+[15:12:58.478] INFO  [g_Vorar]   [4] <empty>
+[15:12:58.478] INFO  [g_Vorar] create: appearance sex=F skin=0x0421 hair=0x2049/0x045D shirt=0x010C pants=0x011D
+[15:12:58.478] INFO  [g_Vorar] [0x00] starting city index 2
+[15:12:58.478] INFO  [g_Vorar] [0x00] requested skills 44:50 40:50 48:0
+[15:12:58.478] INFO  [g_Vorar] [0x00] requested stats STR 50 DEX 25 INT 5
+[15:12:58.478] INFO  [g_Vorar] [0x00] creating character 'Vorar' in slot 0
+[15:12:58.478] LOG   [g_Vorar] event char_create_sent: Vorar
+[15:12:58.498] INFO  [g_Vorar] [0x1B] serial=0x00010407 body=0x0191 pos=(1496,1628,10)
+[15:12:58.498] LOG   [g_Vorar] event login_confirm: serial=0x00010407 body=0x0191 pos=(1496,1628,10)
+[15:12:58.498] INFO  [g_Vorar] [0x20] player @(1496,1628,10) facing=3
+[15:12:58.498] INFO  [g_Vorar] [0x55] login complete — entering world
+[15:12:58.498] LOG   [g_Vorar] event in_world: 0x55 received
+[15:12:58.498] INFO  [g_Vorar] [backpack] opening 0x400103FA
+[15:12:58.498] INFO  [g_Vorar] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[15:12:58.498] INFO  [g_Vorar] [chat ascii] System: There are 4 other players here.
+[15:12:58.498] INFO  [g_Vorar] [chat ascii] System: You are under the protection of the city guards
+[15:12:58.502] INFO  [g_Vorar] [action] requesting the skill list
+[15:12:58.502] INFO  [life] in world; asked the server for the skill list
+[15:12:58.508] INFO  [g_Vorar] [0x24] open container 0x400103FA gump=60
+[15:12:58.508] INFO  [g_Vorar] [0x3C] container contents: 6 item(s)
+[15:12:58.508] LOG   [g_Vorar] event backpack_contents: serial=0x400103FA items=6
+[15:13:01.121] INFO  [g_Vorar] [bot] world data loaded (0 blacklisted spot(s)).
+[15:13:01.122] INFO  [life] newbie knowledge: 3 place(s) and 0 resource hint(s) seeded near home (Britain) -- everything else is earned
+[15:13:01.122] INFO  [life] reconciliation: first ever login, 7 field(s) differed
+[15:13:01.122] INFO  [life]   gold         persisted=0          server=10000      -> server value accepted
+[15:13:01.122] INFO  [life]   str          persisted=0          server=50         -> server value accepted
+[15:13:01.122] INFO  [life]   dex          persisted=0          server=25         -> server value accepted
+[15:13:01.122] INFO  [life]   int          persisted=0          server=5          -> server value accepted
+[15:13:01.122] INFO  [life]   skill_44     persisted=0.0        server=50.0       -> server value accepted
+[15:13:01.122] INFO  [life]   skill_40     persisted=0.0        server=50.0       -> server value accepted
+[15:13:01.122] INFO  [life]   skill_27     persisted=0.0        server=0.0        -> server value accepted
+[15:13:01.122] INFO  [life]   skill_1      persisted=0.0        server=0.0        -> server value accepted
+[15:13:01.122] INFO  [life]   skill_17     persisted=0.0        server=0.0        -> server value accepted
+[15:13:01.122] INFO  [life]   skill_11     persisted=0.0        server=0.0        -> server value accepted
+[15:13:01.122] INFO  [life]   position     persisted=0,0        server=1496,1628  -> server value accepted
+[15:13:01.122] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[15:13:01.122] INFO  [g_Vorar] [survival] on
+[15:13:01.122] LOG   [g_Vorar] event survival_mode: on
+[15:13:01.123] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_05.vorar/state.json
+[15:13:01.123] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[15:13:01.176] INFO  [life] goal=BANK reason="no goal was running"
+[15:13:01.176] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedGear(gear 0.75) NeedMakeBandages(bandages BLOCKED 0.70) NeedSkillTraining(Carpentry 0.55) NeedEquipment(heal potions 0.50) NeedEquipment(bandages 0.50) NeedTraining(Swordsmanship 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedSupplies(buy craft inputs 0.44) NeedLogs(logs 0.40) NeedWoolIncome(wool 0.30) NeedFood(food 0.25) NeedMount(riding horse BLOCKED 0.05)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[15:13:01.176] INFO  [life]   score=150.0
+[15:13:01.176] INFO  [life]   reason: NeedBank urgency 0.75 x 240 = 180.0
+[15:13:01.176] INFO  [life]   reason: on_hand=10000 (total 10000) reserve=10000 carry=1300 spare=8700 risk=1.00
+[15:13:01.176] INFO  [life]   reason: no bank learned yet -30
+[15:13:01.176] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 10000 (buyable at 200))
+[15:13:01.176] INFO  [life]   BLOCKED_NEED BUY_MOUNT: on foot, but the purse does not clear the price plus this life's reserve (gold 10000 reserve 10000 price<=500 stood_down=0 last_fail_session=-1 session=1)
+[15:13:01.177] INFO  [life] bank: nothing proven yet -- trying what common knowledge says is nearest, Britain banker at 1425,1690 (71 tiles)
+[15:13:01.177] INFO  [g_Vorar] [travel] seeded_bank -> (1425,1690) r=5 from (1496,1628)
+[15:13:01.177] LOG   [g_Vorar] event travel_start: label='seeded_bank' target=(1425,1690) radius=5 from=(1496,1628)
+[15:13:01.177] INFO  [g_Vorar] [travel] mode moongate         usable   <- chosen
+[15:13:01.177] INFO  [g_Vorar] [travel] mode walk             usable
+[15:13:01.177] INFO  [g_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:13:01.177] INFO  [g_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:13:01.177] LOG   [g_Vorar] event travel_mode: moongate
+[15:13:01.177] INFO  [g_Vorar] [travel] plan seeded_bank: ok legs=2 ~96 tiles transit=0 nodes=86
+[15:13:01.238] INFO  [g_Vorar] [travel] avoiding 2 teleporter pad(s) on this leg
+[15:13:01.238] INFO  [g_Vorar] [action] goto (1464,1656) from (1496,1628,10)
+[15:13:01.238] LOG   [g_Vorar] event goto_start: target=(1464,1656) from=(1496,1628)
+[15:13:01.238] INFO  [g_Vorar] [bot] running from (1496,1628,10) to (1464,1656)
+[15:13:01.238] INFO  [g_Vorar] [bot] planning path to (1464,1656) in background
+[15:13:01.298] INFO  [g_Vorar] [bot] replan to (1464,1656): 36 steps in 2595.7us
+[15:13:01.515] INFO  [g_Vorar] [chat ascii] System: Halain has arrived in Britain.
+[15:13:04.525] INFO  [g_Vorar] [chat ascii] System: Delras has arrived in Britain.
+[15:13:06.147] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[15:13:07.554] INFO  [g_Vorar] [chat ascii] System: Cyras has arrived in Britain.
+[15:13:10.588] INFO  [g_Vorar] [chat ascii] System: Rhaler has arrived in Minoc.
+[15:13:11.156] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[15:13:13.237] INFO  [g_Vorar] [bot] arrived at (1464,1656,10)
+[15:13:13.238] INFO  [g_Vorar] [action] goto finished at (1464,1656,10); target (1464,1656); ARRIVED (off by 0 tile(s))
+[15:13:13.238] LOG   [g_Vorar] event goto_done: at=(1464,1656) target=(1464,1656) arrived=1 off=0
+[15:13:13.238] INFO  [g_Vorar] [travel] avoiding 2 teleporter pad(s) on this leg
+[15:13:13.238] INFO  [g_Vorar] [action] goto (1425,1690) from (1464,1656,10)
+[15:13:13.238] LOG   [g_Vorar] event goto_start: target=(1425,1690) from=(1464,1656)
+[15:13:13.238] INFO  [g_Vorar] [bot] running from (1464,1656,10) to (1425,1690)
+[15:13:13.238] INFO  [g_Vorar] [bot] planning path to (1425,1690) in background
+[15:13:13.298] INFO  [g_Vorar] [bot] replan to (1425,1690): 60 steps in 10048.1us
+[15:13:13.590] INFO  [g_Vorar] [chat ascii] System: Ghalor has arrived in Minoc.
+[15:13:16.202] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[15:13:16.634] INFO  [g_Vorar] [chat ascii] System: Falen has arrived in Minoc.
+[15:13:19.620] INFO  [g_Vorar] [chat ascii] System: Aelia has arrived in Britain.
+[15:13:21.252] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[15:13:22.651] INFO  [g_Vorar] [chat ascii] System: Amara has arrived in Britain.
+[15:13:23.167] INFO  [g_Vorar] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=24 in 152.9us
+[15:13:25.866] INFO  [g_Vorar] [chat ascii] System: Elara has arrived in Magincia.
+[15:13:26.172] INFO  [g_Vorar] [bot] door ahead at (1438,1692,z0); OpenDoor before step
+[15:13:26.173] INFO  [g_Vorar] [chat ascii] System: Opening door...
+[15:13:26.296] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[15:13:28.877] INFO  [g_Vorar] [chat ascii] System: Selene has arrived in Magincia.
+[15:13:29.535] INFO  [g_Vorar] [travel] seeded_bank ARRIVED at (1430,1691,0)
+[15:13:29.535] LOG   [g_Vorar] event travel_done: label='seeded_bank' ok=1 at=(1430,1691) legs=2 plans=1 why=''
+[15:13:29.595] INFO  [g_Vorar] [ACTION] open_bank start
+[15:13:29.595] INFO  [g_Vorar] [ACTION] open_bank banker=0x00000000 say='bank'
+[15:13:29.595] INFO  [life] bank: at the known bank -- saying 'bank' aloud (1 of 3)
+[15:13:29.611] INFO  [g_Vorar] [chat uni  ] : bank
+[15:13:29.611] INFO  [g_Vorar] [chat ascii] Lyndon: Hello!
+[15:13:29.611] INFO  [g_Vorar] [chat ascii] Lyndon: Yes, banking is my unfortunate lot in life.
+[15:13:29.611] INFO  [g_Vorar] [chat ascii] System: You have 0 stones in your Bank Box
+[15:13:29.611] INFO  [g_Vorar] [0x24] open container 0x40010406 gump=74
+[15:13:29.611] INFO  [g_Vorar] [STATE] bank container=0x40010406 gump=0x004A opened at (1430,1691)
+[15:13:29.611] LOG   [g_Vorar] event bank_opened: container recognised
+[15:13:29.611] INFO  [g_Vorar] [ACTION_RESULT] open_bank success (17ms) bank container opened
+[15:13:29.611] LOG   [g_Vorar] event action_result: open_bank success took=17ms bank container opened
+[15:13:29.611] INFO  [g_Vorar] [0x3C] container contents: 0 item(s)
+[15:13:31.328] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[15:13:31.916] INFO  [g_Vorar] [chat ascii] System: Lyra has arrived in Moonglow.
+[15:13:34.931] INFO  [g_Vorar] [chat ascii] System: Thalia has arrived in Moonglow.
+[15:13:35.588] INFO  [g_Vorar] [chat uni  ] : bank
+[15:13:35.588] INFO  [g_Vorar] [chat ascii] Lyndon: Excuse me Vorar, but Halain wants to speak to me
+[15:13:35.588] INFO  [g_Vorar] [chat ascii] Lyndon: Yes?
+[15:13:35.588] INFO  [g_Vorar] [chat ascii] Lyndon: Keeping the money of others is my job.
+[15:13:36.370] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[15:13:37.031] INFO  [g_Vorar] [chat uni  ] : bank
+[15:13:37.031] INFO  [g_Vorar] [chat ascii] Lyndon: Excuse me Halain, but Delras wants to speak to me
+[15:13:37.031] INFO  [g_Vorar] [chat ascii] Lyndon: Greetings. What can I help thee with?
+[15:13:37.031] INFO  [g_Vorar] [chat ascii] Lyndon: Yes, banking is my unfortunate lot in life.
+[15:13:37.922] INFO  [g_Vorar] [chat ascii] System: Dorvar has arrived in Skara Brae.
+[15:13:38.642] INFO  [life] bank: depositing 8700 gold, keeping 1300 for this life's own errands
+[15:13:38.642] INFO  [g_Vorar] [ACTION] move_item start
+[15:13:38.642] INFO  [g_Vorar] [ACTION] move_item serial=0x400103E8 amount=8700 dest=0x40010406
+[15:13:38.642] INFO  [g_Vorar] [ITEM] drag serial=0x400103E8 amount=8700
+[15:13:38.642] INFO  [g_Vorar] [ITEM] drop container=0x40010406
+[15:13:38.643] INFO  [g_Vorar] [ITEM] 0x400103E8 split off 8700 of 10000 in 0x400103FA; still waiting for it to land in 0x40010406
+[15:13:38.643] INFO  [g_Vorar] [ACTION_RESULT] move_item success (1ms) item consumed by the destination
+[15:13:38.643] LOG   [g_Vorar] event action_result: move_item success took=1ms item consumed by the destination
+[15:13:38.644] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=BANK reason="REPLACE_EQUIPMENT 130.0 superseded BANK 0.0"
+[15:13:38.644] INFO  [life] needs considered: NeedGear(gear 0.75) NeedMakeBandages(bandages BLOCKED 0.70) NeedSkillTraining(Carpentry 0.55) NeedEquipment(heal potions 0.50) NeedEquipment(bandages 0.50) NeedTraining(Swordsmanship 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedSupplies(buy craft inputs 0.44) NeedLogs(logs 0.40) NeedWoolIncome(wool 0.30) NeedFood(food 0.25) NeedMount(riding horse BLOCKED 0.05)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[15:13:38.644] INFO  [life]   score=130.0
+[15:13:38.644] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[15:13:38.644] INFO  [life]   reason: potions=0 low=2 gold=10000
+[15:13:38.644] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 10000 (buyable at 200))
+[15:13:38.644] INFO  [life]   BLOCKED_NEED BUY_MOUNT: on foot, but the purse does not clear the price plus this life's reserve (gold 10000 reserve 10000 price<=500 stood_down=0 last_fail_session=-1 session=1)
+[15:13:38.657] INFO  [life] memory_learned=PLACE kind=bank at 1430,1691
+[15:13:40.172] INFO  [life] plan=buy reason="none held, and it may be bought"
+[15:13:40.172] INFO  [life] plan=buy reason="none held, and it may be bought"
+[15:13:40.210] INFO  [g_Vorar] [travel] place: skipping Cove healer -- 1248 tiles and 1 gate for a service Britain healer offers
+[15:13:40.210] INFO  [g_Vorar] [travel] place: skipping Delucia healer -- 1860 tiles and 4 gates for a service Britain healer offers
+[15:13:40.210] INFO  [g_Vorar] [travel] Britain healer -> (1471,1611) r=5 from (1430,1691)
+[15:13:40.210] LOG   [g_Vorar] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1430,1691)
+[15:13:40.211] INFO  [life] bandages: walking to a 'healer' (trip 1)
+[15:13:40.211] INFO  [g_Vorar] [travel] mode moongate         usable   <- chosen
+[15:13:40.211] INFO  [g_Vorar] [travel] mode walk             usable
+[15:13:40.211] INFO  [g_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:13:40.211] INFO  [g_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:13:40.211] LOG   [g_Vorar] event travel_mode: moongate
+[15:13:40.211] INFO  [g_Vorar] [travel] plan Britain healer: ok legs=3 ~96 tiles transit=0 nodes=74
+[15:13:40.211] INFO  [g_Vorar] [action] goto finished at (1430,1691,0); target (1425,1690); stopped short (off by 6 tile(s))
+[15:13:40.211] LOG   [g_Vorar] event goto_done: at=(1430,1691) target=(1425,1690) arrived=0 off=6
+[15:13:40.211] INFO  [g_Vorar] [travel] avoiding 2 teleporter pad(s) on this leg
+[15:13:40.211] INFO  [g_Vorar] [action] goto (1448,1656) from (1430,1691,0)
+[15:13:40.211] LOG   [g_Vorar] event goto_start: target=(1448,1656) from=(1430,1691)
+[15:13:40.211] INFO  [g_Vorar] [bot] running from (1430,1691,0) to (1448,1656)
+[15:13:40.211] INFO  [g_Vorar] [bot] planning path to (1448,1656) in background
+[15:13:40.278] INFO  [g_Vorar] [bot] replan to (1448,1656): 59 steps in 8289.6us
+[15:13:40.951] INFO  [g_Vorar] [chat ascii] System: Ithion has arrived in Skara Brae.
+[15:13:41.380] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[15:13:41.903] INFO  [g_Vorar] [chat uni  ] : bank
+[15:13:41.904] INFO  [g_Vorar] [chat ascii] Lyndon: Excuse me Delras, but Cyras wants to speak to me
+[15:13:41.904] INFO  [g_Vorar] [chat ascii] Lyndon: Greetings. What can I do for thee?
+[15:13:41.904] INFO  [g_Vorar] [chat ascii] Lyndon: Never lost a coin from robberies.
+[15:13:43.523] INFO  [g_Vorar] [bot] step (1439,1693,0)->(1440,1694,0) rejected; OpenDoor + retry
+[15:13:43.525] INFO  [g_Vorar] [chat ascii] System: Opening door...
+[15:13:43.525] INFO  [g_Vorar] [0x20] player @(1439,1693,0) facing=2
+[15:13:43.525] INFO  [g_Vorar] [action] goto finished at (1439,1693,0); target (1448,1656); stopped short (off by 46 tile(s))
+[15:13:43.525] LOG   [g_Vorar] event goto_done: at=(1439,1693) target=(1448,1656) arrived=0 off=46
+[15:13:43.988] INFO  [g_Vorar] [chat ascii] System: Odessa has arrived in Britain.
+[15:13:44.734] INFO  [g_Vorar] [travel] avoiding 2 teleporter pad(s) on this leg
+[15:13:44.734] INFO  [g_Vorar] [action] goto (1448,1656) from (1439,1693,0)
+[15:13:44.734] LOG   [g_Vorar] event goto_start: target=(1448,1656) from=(1439,1693)
+[15:13:44.734] INFO  [g_Vorar] [bot] running from (1439,1693,0) to (1448,1656)
+[15:13:44.734] INFO  [g_Vorar] [bot] planning path to (1448,1656) in background
+[15:13:44.796] INFO  [g_Vorar] [bot] replan to (1448,1656): 49 steps in 8688.5us
+[15:13:45.011] INFO  [g_Vorar] [bot] lookahead patched around block at step 3: anchor=5 new segment=6 path=49 in 90.3us
+[15:13:45.269] INFO  [g_Vorar] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=50 in 106.3us
+[15:13:46.385] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[15:13:47.011] INFO  [g_Vorar] [chat ascii] System: Serena has arrived in Britain.
+[15:13:50.023] INFO  [g_Vorar] [chat ascii] System: Aurelius has arrived in Moonglow.
+[15:13:51.401] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[15:13:53.047] INFO  [g_Vorar] [chat ascii] System: Leander has arrived in Moonglow.
+[15:13:56.038] INFO  [g_Vorar] [chat ascii] System: Illyria has arrived in Britain.
+[15:13:56.430] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[15:13:59.054] INFO  [g_Vorar] [chat ascii] System: Hector has arrived in Trinsic.
+[15:13:59.204] INFO  [g_Vorar] [bot] arrived at (1448,1656,10)
+[15:13:59.206] INFO  [g_Vorar] [action] goto finished at (1448,1656,10); target (1448,1656); ARRIVED (off by 0 tile(s))
+[15:13:59.206] LOG   [g_Vorar] event goto_done: at=(1448,1656) target=(1448,1656) arrived=1 off=0
+[15:13:59.206] INFO  [g_Vorar] [travel] avoiding 2 teleporter pad(s) on this leg
+[15:13:59.206] INFO  [g_Vorar] [action] goto (1464,1624) from (1448,1656,10)
+[15:13:59.206] LOG   [g_Vorar] event goto_start: target=(1464,1624) from=(1448,1656)
+[15:13:59.206] INFO  [g_Vorar] [bot] running from (1448,1656,10) to (1464,1624)
+[15:13:59.206] INFO  [g_Vorar] [bot] planning path to (1464,1624) in background
+[15:13:59.265] INFO  [g_Vorar] [bot] replan to (1464,1624): 43 steps in 4055.1us
+[15:14:01.141] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_05.vorar/state.json
+[15:14:01.490] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[15:14:02.058] INFO  [g_Vorar] [chat ascii] System: Castor has arrived in Trinsic.
+[15:14:05.097] INFO  [g_Vorar] [chat ascii] System: Faustus has arrived in Britain.
+[15:14:06.539] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[15:14:08.138] INFO  [g_Vorar] [chat ascii] System: Titus has arrived in Skara Brae.
+[15:14:11.120] INFO  [g_Vorar] [chat ascii] System: Rhea has arrived in Britain.
+[15:14:11.546] INFO  [g_Vorar] [chat ascii] System: Draver has departed from Minoc.
+[15:14:11.547] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[15:14:11.561] INFO  [g_Vorar] [bot] arrived at (1464,1624,20)
+[15:14:11.562] INFO  [g_Vorar] [action] goto finished at (1464,1624,20); target (1464,1624); ARRIVED (off by 0 tile(s))
+[15:14:11.562] LOG   [g_Vorar] event goto_done: at=(1464,1624) target=(1464,1624) arrived=1 off=0
+[15:14:11.562] INFO  [g_Vorar] [travel] avoiding 2 teleporter pad(s) on this leg
+[15:14:11.562] INFO  [g_Vorar] [action] goto (1471,1611) from (1464,1624,20)
+[15:14:11.562] LOG   [g_Vorar] event goto_start: target=(1471,1611) from=(1464,1624)
+[15:14:11.562] INFO  [g_Vorar] [bot] running from (1464,1624,20) to (1471,1611,z20)
+[15:14:11.562] INFO  [g_Vorar] [bot] planning path to (1471,1611) in background
+[15:14:11.624] INFO  [g_Vorar] [bot] replan to (1471,1611): 31 steps in 6296.6us
+[15:14:14.148] INFO  [g_Vorar] [chat ascii] System: Xerxes has arrived in Vesper.
+[15:14:16.563] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[15:14:17.195] INFO  [g_Vorar] [chat ascii] System: Wren has arrived in Britain.
+[15:14:18.329] INFO  [g_Vorar] [bot] door ahead at (1479,1612,z20); OpenDoor before step
+[15:14:18.331] INFO  [g_Vorar] [chat ascii] System: Opening door...
+[15:14:19.776] INFO  [g_Vorar] [travel] Britain healer ARRIVED at (1476,1612,20)
+[15:14:19.777] LOG   [g_Vorar] event travel_done: label='Britain healer' ok=1 at=(1476,1612) legs=3 plans=1 why=''
+[15:14:19.837] INFO  [g_Vorar] [action] scanning nearby mobiles for names
+[15:14:19.838] INFO  [g_Vorar] [action] requested 5 paperdoll(s) for trade titles
+[15:14:19.838] INFO  [life] bandages: at the shop, asking who is here (scan 1 of 3)
+[15:14:19.851] INFO  [g_Vorar] [mobiles] nearby (5):
+[15:14:19.851] INFO  [g_Vorar]   Dale 0x000010C1
+[15:14:19.851] INFO  [g_Vorar]   Natasha 0x00001194
+[15:14:19.851] INFO  [g_Vorar]   Halain 0x0001037B
+[15:14:19.851] INFO  [g_Vorar]   Delras 0x0001034B
+[15:14:19.852] INFO  [g_Vorar]   Caimile 0x00001239
+[15:14:19.852] INFO  [g_Vorar] [0x88] paperdoll 0x000010C1: "Dale, the healer"
+[15:14:19.852] INFO  [g_Vorar] [world] Dale, the healer is a healer at (1471,1614)
+[15:14:19.852] INFO  [g_Vorar] [0x88] paperdoll 0x00001194: "Natasha, the healer guildmistress"
+[15:14:19.852] INFO  [g_Vorar] [world] Natasha, the healer guildmistress is a healer at (1471,1610)
+[15:14:19.852] INFO  [g_Vorar] [0x20] player @(1476,1612,20) facing=4
+[15:14:19.852] INFO  [g_Vorar] [0x88] paperdoll 0x0001037B: "Halain, Apprentice Lumberjack"
+[15:14:19.852] INFO  [g_Vorar] [0x20] player @(1476,1612,20) facing=0
+[15:14:19.852] INFO  [g_Vorar] [0x88] paperdoll 0x00001239: "Caimile, the merchant guildmistress"
+[15:14:19.852] INFO  [g_Vorar] [0x20] player @(1476,1612,20) facing=5
+[15:14:19.852] INFO  [g_Vorar] [0x88] paperdoll 0x0001034B: "Delras, Apprentice Lumberjack"
+[15:14:21.589] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[15:14:22.896] INFO  [life] bandages: found a 'healer'
+[15:14:22.958] INFO  [g_Vorar] [travel] entity stand candidate 1/5 at (1472,1613)
+[15:14:22.958] INFO  [g_Vorar] [travel] mobile 0x000010C1 -> (1472,1613) r=0 from (1476,1612)
+[15:14:22.958] LOG   [g_Vorar] event travel_start: label='mobile 0x000010C1' target=(1472,1613) radius=0 from=(1476,1612)
+[15:14:22.958] INFO  [life] bandages: the 'healer' is 5 tiles off (dz 0) -- walking into reach (chase 1 of 3)
+[15:14:22.958] INFO  [g_Vorar] [travel] mode walk             usable   <- chosen
+[15:14:22.958] INFO  [g_Vorar] [travel] mode moongate         usable
+[15:14:22.958] INFO  [g_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:14:22.958] INFO  [g_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:14:22.958] LOG   [g_Vorar] event travel_mode: walk
+[15:14:22.958] INFO  [g_Vorar] [travel] plan mobile 0x000010C1: ok legs=1 ~4 tiles transit=0 nodes=0
+[15:14:23.019] INFO  [g_Vorar] [action] goto finished at (1476,1612,20); target (1471,1611); stopped short (off by 6 tile(s))
+[15:14:23.019] LOG   [g_Vorar] event goto_done: at=(1476,1612) target=(1471,1611) arrived=0 off=6
+[15:14:23.019] INFO  [g_Vorar] [travel] avoiding 1 teleporter pad(s) on this leg
+[15:14:23.019] INFO  [g_Vorar] [action] goto (1472,1613) from (1476,1612,20)
+[15:14:23.019] LOG   [g_Vorar] event goto_start: target=(1472,1613) from=(1476,1612)
+[15:14:23.019] INFO  [g_Vorar] [bot] running from (1476,1612,20) to (1472,1613,z20)
+[15:14:23.019] INFO  [g_Vorar] [bot] planning path to (1472,1613) in background
+[15:14:23.081] INFO  [g_Vorar] [bot] replan to (1472,1613): 5 steps in 239.6us
+[15:14:24.030] INFO  [g_Vorar] [travel] mobile 0x000010C1 ARRIVED at (1472,1612,20)
+[15:14:24.030] LOG   [g_Vorar] event travel_done: label='mobile 0x000010C1' ok=1 at=(1472,1612) legs=1 plans=1 why=''
+[15:14:24.032] INFO  [g_Vorar] [travel] entity stand candidate 2/5 at (1472,1613)
+[15:14:24.032] INFO  [g_Vorar] [travel] mobile 0x000010C1 -> (1472,1613) r=0 from (1472,1612)
+[15:14:24.032] LOG   [g_Vorar] event travel_start: label='mobile 0x000010C1' target=(1472,1613) radius=0 from=(1472,1612)
+[15:14:24.032] INFO  [life] bandages: the 'healer' is 2 tiles off (dz 0) -- walking into reach (chase 2 of 3)
+[15:14:24.032] INFO  [g_Vorar] [travel] mobile 0x000010C1 ARRIVED at (1472,1612,20)
+[15:14:24.032] LOG   [g_Vorar] event travel_done: label='mobile 0x000010C1' ok=1 at=(1472,1612) legs=0 plans=0 why=''
+[15:14:24.046] INFO  [g_Vorar] [travel] entity stand candidate 3/5 at (1470,1613)
+[15:14:24.046] INFO  [g_Vorar] [travel] mobile 0x000010C1 -> (1470,1613) r=0 from (1472,1612)
+[15:14:24.046] LOG   [g_Vorar] event travel_start: label='mobile 0x000010C1' target=(1470,1613) radius=0 from=(1472,1612)
+[15:14:24.046] INFO  [life] bandages: the 'healer' is 2 tiles off (dz 0) -- walking into reach (chase 3 of 3)
+[15:14:24.046] INFO  [g_Vorar] [travel] mode walk             usable   <- chosen
+[15:14:24.046] INFO  [g_Vorar] [travel] mode moongate         usable
+[15:14:24.046] INFO  [g_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:14:24.047] INFO  [g_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:14:24.047] LOG   [g_Vorar] event travel_mode: walk
+[15:14:24.047] INFO  [g_Vorar] [travel] plan mobile 0x000010C1: ok legs=1 ~2 tiles transit=0 nodes=0
+[15:14:24.107] INFO  [g_Vorar] [action] goto finished at (1472,1612,20); target (1472,1613); stopped short (off by 1 tile(s))
+[15:14:24.107] LOG   [g_Vorar] event goto_done: at=(1472,1612) target=(1472,1613) arrived=0 off=1
+[15:14:24.107] INFO  [g_Vorar] [action] goto (1470,1613) from (1472,1612,20)
+[15:14:24.107] LOG   [g_Vorar] event goto_start: target=(1470,1613) from=(1472,1612)
+[15:14:24.107] INFO  [g_Vorar] [bot] running from (1472,1612,20) to (1470,1613,z20)
+[15:14:24.107] INFO  [g_Vorar] [bot] planning path to (1470,1613) in background
+[15:14:24.168] INFO  [g_Vorar] [bot] replan to (1470,1613): 2 steps in 57.3us
+[15:14:24.553] INFO  [g_Vorar] [travel] mobile 0x000010C1 ARRIVED at (1471,1613,20)
+[15:14:24.553] LOG   [g_Vorar] event travel_done: label='mobile 0x000010C1' ok=1 at=(1471,1613) legs=1 plans=1 why=''
+[15:14:24.554] INFO  [life] bandages: within reach
+[15:14:24.584] INFO  [g_Vorar] [ACTION] vendor_buy start
+[15:14:24.584] INFO  [g_Vorar] [VENDOR] open vendor=0x000010C1 say='Dale buy'
+[15:14:24.584] INFO  [life] bandages: asking the 'healer' to show clean bandages (attempt 1)
+[15:14:24.598] INFO  [g_Vorar] [chat uni  ] : Dale buy
+[15:14:24.598] INFO  [g_Vorar] [chat ascii] Dale: Yes?
+[15:14:24.598] INFO  [g_Vorar] [chat ascii] Dale: I got lots to sell!
+[15:14:24.598] INFO  [g_Vorar] [0x3C] container contents: 5 item(s)
+[15:14:24.598] INFO  [g_Vorar] [0x74] pairing: straight (straight 5, mirrored 1 of 5 rows)
+[15:14:24.598] INFO  [g_Vorar] [0x74] vendor shop data: cont=0x400010BB 5 item(s), layer=0x1A
+[15:14:24.598] INFO  [g_Vorar] [0x74]   clean bandages               gfx=0x0E21 qty=6    price=1
+[15:14:24.598] INFO  [g_Vorar] [0x74]   Heal                         gfx=0x0F0C qty=11   price=30
+[15:14:24.598] INFO  [g_Vorar] [0x74]   Ginseng                      gfx=0x0F85 qty=31   price=3
+[15:14:24.598] INFO  [g_Vorar] [0x74]   Garlic                       gfx=0x0F84 qty=23   price=3
+[15:14:24.598] INFO  [g_Vorar] [0x74]   Refresh                      gfx=0x0F0B qty=23   price=16
+[15:14:24.598] INFO  [g_Vorar] [0x3C] container contents: 0 item(s)
+[15:14:24.598] INFO  [g_Vorar] [0x74] vendor shop data: cont=0x40000EF5 0 item(s), layer=0x1B
+[15:14:24.598] INFO  [g_Vorar] [VENDOR] offer from 0x000010C1: 5 item(s)
+[15:14:24.598] INFO  [g_Vorar] [VENDOR]   0x40014850 clean bandages         x6   1 gp
+[15:14:24.598] INFO  [g_Vorar] [VENDOR]   0x4001484F Heal                   x11  30 gp
+[15:14:24.598] INFO  [g_Vorar] [VENDOR]   0x4001484E Ginseng                x31  3 gp
+[15:14:24.598] INFO  [g_Vorar] [VENDOR]   0x4001484D Garlic                 x23  3 gp
+[15:14:24.598] INFO  [g_Vorar] [VENDOR]   0x4001484C Refresh                x23  16 gp
+[15:14:24.598] LOG   [g_Vorar] event vendor_offer: vendor=0x000010C1 items=5
+[15:14:24.598] INFO  [g_Vorar] [ACTION_RESULT] vendor_buy success (14ms) vendor offer received
+[15:14:24.598] LOG   [g_Vorar] event action_result: vendor_buy success took=14ms vendor offer received
+[15:14:24.598] INFO  [g_Vorar] [0x24] vendor buy gump for 0x000010C1
+[15:14:24.599] INFO  [life] bandages: the shop is open
+[15:14:24.660] INFO  [g_Vorar] [ACTION] vendor_buy start
+[15:14:24.660] INFO  [g_Vorar] [policy] allowed NPC purchase of i_bandage (0x0E21): NPC purchase is allowed when the item is actually offered; NPC selling remains separately restricted [BASIC_HEALING]
+[15:14:24.660] INFO  [g_Vorar] [VENDOR] buy item=0x40014850 qty=6 from vendor=0x000010C1 gold=10000
+[15:14:24.660] INFO  [life] bandages: buying 6 clean bandages at 1 each from the 'healer' (shelf holds 6) -- waiting for the pack
+[15:14:24.675] INFO  [g_Vorar] [ACTION_RESULT] vendor_buy success (14ms) purchased item delivered
+[15:14:24.675] LOG   [g_Vorar] event action_result: vendor_buy success took=14ms purchased item delivered
+[15:14:24.675] INFO  [g_Vorar] [chat ascii] Dale: Here you are, Vorar That will be 6 gold coins.  I thank thee for thy business.
+[15:14:24.675] INFO  [g_Vorar] [0x3B] vendor transaction closed: vendor=0x000010C1 flag=0
+[15:14:24.676] INFO  [life] bandages: 6 clean bandages in the pack, 0 gold gone -- the goods arrived; the purse did not move -- bank paid
+[15:14:24.737] INFO  [life] bandages: found a 'healer'
+[15:14:24.754] INFO  [life] bandages: within reach
+[15:14:24.784] INFO  [g_Vorar] [ACTION] vendor_buy start
+[15:14:24.784] INFO  [g_Vorar] [VENDOR] open vendor=0x000010C1 say='Dale buy'
+[15:14:24.785] INFO  [life] bandages: asking the 'healer' to show clean bandages (attempt 1)
+[15:14:24.800] INFO  [g_Vorar] [chat uni  ] : Dale buy
+[15:14:24.800] INFO  [g_Vorar] [chat ascii] Dale: Thou surely wants all the things that I can sell thee.
+[15:14:24.800] INFO  [g_Vorar] [0x3C] container contents: 4 item(s)
+[15:14:24.800] INFO  [g_Vorar] [0x74] pairing: straight (straight 4, mirrored 0 of 4 rows)
+[15:14:24.800] INFO  [g_Vorar] [0x74] vendor shop data: cont=0x400010BB 4 item(s), layer=0x1A
+[15:14:24.800] INFO  [g_Vorar] [0x74]   Heal                         gfx=0x0F0C qty=11   price=30
+[15:14:24.800] INFO  [g_Vorar] [0x74]   Ginseng                      gfx=0x0F85 qty=31   price=3
+[15:14:24.800] INFO  [g_Vorar] [0x74]   Garlic                       gfx=0x0F84 qty=23   price=3
+[15:14:24.800] INFO  [g_Vorar] [0x74]   Refresh                      gfx=0x0F0B qty=23   price=16
+[15:14:24.800] INFO  [g_Vorar] [0x3C] container contents: 0 item(s)
+[15:14:24.800] INFO  [g_Vorar] [0x74] vendor shop data: cont=0x40000EF5 0 item(s), layer=0x1B
+[15:14:24.800] INFO  [g_Vorar] [VENDOR] offer from 0x000010C1: 4 item(s)
+[15:14:24.800] INFO  [g_Vorar] [VENDOR]   0x4001484F Heal                   x11  30 gp
+[15:14:24.800] INFO  [g_Vorar] [VENDOR]   0x4001484E Ginseng                x31  3 gp
+[15:14:24.800] INFO  [g_Vorar] [VENDOR]   0x4001484D Garlic                 x23  3 gp
+[15:14:24.800] INFO  [g_Vorar] [VENDOR]   0x4001484C Refresh                x23  16 gp
+[15:14:24.800] LOG   [g_Vorar] event vendor_offer: vendor=0x000010C1 items=4
+[15:14:24.800] INFO  [g_Vorar] [ACTION_RESULT] vendor_buy success (16ms) vendor offer received
+[15:14:24.800] LOG   [g_Vorar] event action_result: vendor_buy success took=16ms vendor offer received
+[15:14:24.800] INFO  [g_Vorar] [0x24] vendor buy gump for 0x000010C1
+[15:14:24.802] INFO  [life] bandages: the shop is open
+[15:14:24.861] INFO  [life] bandages: this 'healer' does not stock clean bandages
+[15:14:24.861] INFO  [life] goal_failed=REPLACE_EQUIPMENT status=failed reason="this 'healer' does not stock clean bandages"
+[15:14:24.861] INFO  [life] handoff=REPLACE_EQUIPMENT->MAKE_BANDAGES reason="no bandages bought"
+[15:14:24.922] INFO  [life] goal=UPGRADE_GEAR reason="previous goal abandoned: no bandages bought"
+[15:14:24.922] INFO  [life] needs considered: NeedGear(gear 0.75) NeedSkillTraining(Carpentry 0.55) NeedEquipment(heal potions 0.50) NeedEquipment(bandages 0.50) NeedWoolIncome(wool 0.50) NeedTraining(Swordsmanship 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedSupplies(buy craft inputs 0.44) NeedLogs(logs 0.40) NeedMakeBandages(bandages BLOCKED 0.36) NeedFood(food 0.25) NeedMount(riding horse BLOCKED 0.05)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[15:14:24.922] INFO  [life]   score=75.0
+[15:14:24.922] INFO  [life]   reason: NeedGear urgency 0.75 x 100 = 75.0
+[15:14:24.922] INFO  [life]   reason: str 50 gold 9994 reserve 10000 basic_armour=0
+[15:14:24.922] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 239s after achieving nothing
+[15:14:24.922] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 6/8 gold 9994 (buyable at 200))
+[15:14:24.922] INFO  [life]   BLOCKED_NEED BUY_MOUNT: on foot, but the purse does not clear the price plus this life's reserve (gold 9994 reserve 10000 price<=500 stood_down=0 last_fail_session=-1 session=1)
+[15:14:26.612] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[15:14:26.872] INFO  [life] gear: armorer upgrade 0x140A (armor 30, needs str 45) replaces 0x1715 (armor 0); buying from a armorer
+[15:14:26.872] INFO  [life] UPGRADE_GEAR: looking for a 'armorer' to sell a piece of armour (trip 1)
+[15:14:29.536] INFO  [g_Vorar] [travel] Britain blacksmith -> (1418,1547) r=5 from (1471,1613)
+[15:14:29.536] LOG   [g_Vorar] event travel_start: label='Britain blacksmith' target=(1418,1547) radius=5 from=(1471,1613)
+[15:14:29.536] INFO  [g_Vorar] [travel] mode moongate         usable   <- chosen
+[15:14:29.536] INFO  [g_Vorar] [travel] mode walk             usable
+[15:14:29.536] INFO  [g_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:14:29.536] INFO  [g_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:14:29.536] LOG   [g_Vorar] event travel_mode: moongate
+[15:14:29.536] INFO  [g_Vorar] [travel] plan Britain blacksmith: ok legs=2 ~88 tiles transit=0 nodes=58
+[15:14:29.537] INFO  [g_Vorar] [action] goto finished at (1471,1613,20); target (1470,1613); stopped short (off by 1 tile(s))
+[15:14:29.537] LOG   [g_Vorar] event goto_done: at=(1471,1613) target=(1470,1613) arrived=0 off=1
+[15:14:29.537] INFO  [g_Vorar] [travel] avoiding 2 teleporter pad(s) on this leg
+[15:14:29.537] INFO  [g_Vorar] [action] goto (1432,1576) from (1471,1613,20)
+[15:14:29.537] LOG   [g_Vorar] event goto_start: target=(1432,1576) from=(1471,1613)
+[15:14:29.537] INFO  [g_Vorar] [bot] running from (1471,1613,20) to (1432,1576)
+[15:14:29.537] INFO  [g_Vorar] [bot] planning path to (1432,1576) in background
+[15:14:29.594] INFO  [g_Vorar] [bot] replan to (1432,1576): 73 steps in 13721.5us
+[15:14:30.158] INFO  [g_Vorar] [chat ascii] System: World save in 10 seconds
+[15:14:31.000] INFO  [g_Vorar] [chat uni  ] Halain: Dale buy
+[15:14:31.000] INFO  [g_Vorar] [chat ascii] Dale: Excuse me Vorar, but Halain wants to speak to me
+[15:14:31.000] INFO  [g_Vorar] [chat ascii] Dale: Good morrow!  How can I help thee?
+[15:14:31.000] INFO  [g_Vorar] [chat ascii] Dale: Thou surely wants all the things that I can sell thee.
+[15:14:31.648] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[15:14:32.768] INFO  [g_Vorar] [bot] step (1478,1612,20)->(1479,1611,20) rejected; OpenDoor + retry
+[15:14:32.769] INFO  [g_Vorar] [chat ascii] System: Opening door...
+[15:14:32.769] INFO  [g_Vorar] [0x20] player @(1478,1612,20) facing=2
+[15:14:32.770] INFO  [g_Vorar] [action] goto finished at (1478,1612,20); target (1432,1576); stopped short (off by 82 tile(s))
+[15:14:32.770] LOG   [g_Vorar] event goto_done: at=(1478,1612) target=(1432,1576) arrived=0 off=82
+[15:14:33.979] INFO  [g_Vorar] [travel] avoiding 2 teleporter pad(s) on this leg
+[15:14:33.979] INFO  [g_Vorar] [action] goto (1432,1576) from (1478,1612,20)
+[15:14:33.979] LOG   [g_Vorar] event goto_start: target=(1432,1576) from=(1478,1612)
+[15:14:33.979] INFO  [g_Vorar] [bot] running from (1478,1612,20) to (1432,1576)
+[15:14:33.979] INFO  [g_Vorar] [bot] planning path to (1432,1576) in background
+[15:14:33.996] INFO  [g_Vorar] [bot] replan to (1432,1576): 65 steps in 9673.1us
+[15:14:34.685] INFO  [g_Vorar] [bot] door ahead at (1480,1610,z20); OpenDoor before step
+[15:14:34.686] INFO  [g_Vorar] [chat ascii] System: Opening door...
+[15:14:36.676] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[15:14:40.202] INFO  [g_Vorar] [chat ascii] System: World save has been initiated.
+[15:14:40.491] INFO  [g_Vorar] [chat uni  ] : Dale buy
+[15:14:40.491] INFO  [g_Vorar] [chat ascii] Dale: What's thou need?
+[15:14:40.491] INFO  [g_Vorar] [chat ascii] Dale: I'm here to sell thee supplies.
+[15:14:41.716] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[15:14:46.718] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[15:14:48.985] INFO  [g_Vorar] [bot] step (1441,1591,20)->(1440,1590,20) rejected; OpenDoor + retry
+[15:14:49.706] INFO  [g_Vorar] [bot] step (1441,1591,20)->(1440,1590,20) rejected; avoiding edge + rerouting
+[15:14:49.706] INFO  [g_Vorar] [bot] planning path to (1432,1576) in background
+[15:14:49.708] INFO  [g_Vorar] [bot] replan to (1432,1576): 15 steps in 797.6us
+[15:14:51.725] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[15:14:55.006] INFO  [g_Vorar] [bot] arrived at (1432,1576,30)
+[15:14:55.007] INFO  [g_Vorar] [action] goto finished at (1432,1576,30); target (1432,1576); ARRIVED (off by 0 tile(s))
+[15:14:55.007] LOG   [g_Vorar] event goto_done: at=(1432,1576) target=(1432,1576) arrived=1 off=0
+[15:14:55.007] INFO  [g_Vorar] [action] goto (1418,1547) from (1432,1576,30)
+[15:14:55.007] LOG   [g_Vorar] event goto_start: target=(1418,1547) from=(1432,1576)
+[15:14:55.007] INFO  [g_Vorar] [bot] running from (1432,1576,30) to (1418,1547,z30)
+[15:14:55.007] INFO  [g_Vorar] [bot] planning path to (1418,1547) in background
+[15:14:55.067] INFO  [g_Vorar] [bot] replan to (1418,1547): 31 steps in 5981.0us
+[15:14:56.736] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[15:14:58.534] INFO  [life] session_end_requested reason="session time limit reached"
+[15:14:59.270] INFO  [g_Vorar] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=16 in 260.4us
+[15:15:01.530] INFO  [g_Vorar] [bot] door ahead at (1421,1555,z30); OpenDoor before step
+[15:15:01.530] INFO  [g_Vorar] [chat ascii] System: Opening door...
+[15:15:01.775] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[15:15:03.939] INFO  [g_Vorar] [travel] Britain blacksmith ARRIVED at (1417,1552,30)
+[15:15:03.939] LOG   [g_Vorar] event travel_done: label='Britain blacksmith' ok=1 at=(1417,1552) legs=2 plans=1 why=''
+[15:15:04.001] INFO  [life] wind-down: arrived somewhere safe at 1417,1552
+[15:15:04.063] INFO  [life] session_summary duration=125s goals=0/3 gold=10000->9994 skills=100.0->100.0 logs=+0 kills=0 deaths=0 places=5 suppliers=0
+[15:15:04.063] INFO  [life] session_goals families=1 picks=3 top=100% varied=0 self_superseded=0 | upkeep=3(100%) | REPLACE_EQUIPMENT=1(33%) BANK=1(33%) UPGRADE_GEAR=1(33%)
+[15:15:04.065] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_05.vorar/state.json
+[15:15:04.065] INFO  [life] logging out
+[15:15:04.065] INFO  [g_Vorar] [action] logout requested
+[15:15:04.065] LOG   [g_Vorar] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[15:15:04.079] INFO  [g_Vorar] [0xD1] logout acknowledged (accepted=1)
+[15:15:04.079] LOG   [g_Vorar] event logout_ack: accepted
+[15:15:04.079] INFO  [g_Vorar] [net] closing connection (logout acknowledged)
+[15:15:04.079] LOG   [g_Vorar] event logout_complete: acked

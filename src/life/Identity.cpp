@@ -539,6 +539,15 @@ CraftIntent ChooseCraft(const prof::Profession& p, const Observation& obs,
         // Gathered things are not crafted things. A fisher's "produces" holds
         // fish, and fish come out of the sea.
         if (!r->inputs[0].item) continue;
+        // A THING THE PACK CANNOT COUNT CANNOT BE CONFIRMED MADE. obs.pack is
+        // keyed by graphic+hue (Market.cpp Shortfall has the full note); a
+        // recipe whose output has no graphic row -- i_potion_poisonless,
+        // sharing i_bottle_green with the other three poison tiers -- reads
+        // as 0 forever, so the craft handshake never sees the pack rise and
+        // burns three swings' reagents for "no_progress" (g_Elara 01:46:09-
+        // 01:46:40, 2026-09-04, rotated onto Lesser Poison after a Poison
+        // sitting). Skip it here, where the choice is made.
+        if (uo::econ::GraphicsForItem(made.c_str()).empty()) continue;
         // A FIGHTER'S CLOTH IS NOT A CRAFT SITTING. The melee schools list
         // i_cloth in `produces` so they can SELL it (owner ruling 2026-09-02:
         // warriors shear, kill, carve, spin, weave and cut; tailors buy the
@@ -652,6 +661,27 @@ CraftIntent ChooseCraft(const prof::Profession& p, const Observation& obs,
     if (firstWorkable.item) return firstWorkable;
     if (!out.why || !*out.why) out.why = "this life makes nothing sellable";
     return out;
+}
+
+// See the declaration in life.h for the live run this exists to fix.
+i32 CraftBatchFromStock(const prof::Profession& p, const Observation& obs,
+                        i32 floorBatch, const CraftFocus* focus) {
+    if (floorBatch < 1) floorBatch = 1;
+    const CraftIntent base = ChooseCraft(p, obs, floorBatch, focus);
+    if (!base.item || !base.skillsMet) return floorBatch;
+    const prod::Recipe* r = prod::FindRecipe(base.item);
+    if (!r) return floorBatch;
+
+    // The BEST-stocked input, not the worst: the question is "how big a sitting
+    // has already been paid for", and the answer is set by whatever was bought
+    // in bulk. Taking the minimum instead would just restate the shortfall.
+    i32 funded = 0;
+    for (const prod::Ingredient& in : r->inputs) {
+        if (!in.item || in.qty <= 0) continue;
+        const i32 canMake = market::QtyOf(obs.pack, in.item) / in.qty;
+        if (canMake > funded) funded = canMake;
+    }
+    return funded > floorBatch ? funded : floorBatch;
 }
 
 }  // namespace uo::life

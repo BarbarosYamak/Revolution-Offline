@@ -1,23 +1,5 @@
 start: Dorvar is a fisher and lives in Skara Brae -> starting city index 7
 map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
-[11:47:22.236] WARN  [g_Dorvar] [action] use_item_on superseded by equip
-[11:47:22.236] WARN  [g_Dorvar] [ACTION_RESULT] use_item_on invalid_state (2006ms) superseded
 map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
-[11:47:23.888] WARN  [g_Dorvar] [bot] goal (3662,2302) is not walkable; snapping to nearest standable tile (3666,2298,-2) instead
-[11:48:11.272] WARN  [g_Dorvar] [action] use_item_on superseded by vendor_sell
-[11:48:11.272] WARN  [g_Dorvar] [ACTION_RESULT] use_item_on invalid_state (7711ms) superseded
-[11:48:23.714] WARN  [g_Dorvar] [bot] goal (3672,2264) is not walkable; snapping to nearest standable tile (3670,2270,0) instead
-[11:48:24.265] WARN  [g_Dorvar] [bot] no path to (3670,2270) avoiding 0 block(s); stopping (search 521595.8us)
-[11:48:24.265] WARN  [g_Dorvar] [bot] start (3670,2289,-2) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1 item(s), 1 mobile(s))
-[11:48:25.612] WARN  [g_Dorvar] [bot] goal (3672,2264) is not walkable; snapping to nearest standable tile (3670,2270,0) instead
-[11:48:26.163] WARN  [g_Dorvar] [bot] no path to (3670,2270) avoiding 0 block(s); stopping (search 516673.7us)
-[11:48:26.163] WARN  [g_Dorvar] [bot] start (3670,2289,-2) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1 item(s), 1 mobile(s))
-[11:48:27.509] WARN  [g_Dorvar] [bot] goal (3672,2264) is not walkable; snapping to nearest standable tile (3670,2270,0) instead
-[11:48:28.064] WARN  [g_Dorvar] [bot] no path to (3670,2270) avoiding 0 block(s); stopping (search 520323.4us)
-[11:48:28.064] WARN  [g_Dorvar] [bot] start (3670,2289,-2) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1 item(s), 1 mobile(s))
-[11:49:33.474] WARN  [g_Dorvar] [0x21] move REJECTED seq=46; server says (3593,2161,48) facing=7
-[11:49:34.226] WARN  [g_Dorvar] [0x21] move REJECTED seq=0; server says (3593,2161,48) facing=7
-[11:49:34.748] WARN  [g_Dorvar] [0x21] move REJECTED seq=1; server says (3593,2161,48) facing=0
-[11:49:35.484] WARN  [g_Dorvar] [0x21] move REJECTED seq=0; server says (3593,2161,48) facing=0
-[11:51:22.478] WARN  [g_Dorvar] [travel] route exhausted at (3564,2140,34); trying to reach (3576,2136,41) to get somewhere routable (escape 1/3)
-[11:53:35.371] WARN  [g_Dorvar] [travel] route exhausted at (3564,2140,34); trying to reach (3560,2152,27) to get somewhere routable (escape 2/3)
+[15:14:38.328] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; snapping to nearest standable tile (619,2217,0) instead
+[15:15:06.401] WARN  [g_Dorvar] [ACTION_RESULT] use_object timeout (no server confirmation)

@@ -362,6 +362,12 @@ public:
     i32  PlayerHp() const;
     i32  PlayerHpMax() const;
     u32  VendorOfferFrom() const { return vendorOfferVendor_; }
+    // Sphere never closes a shop window on its own when the buyer walks away;
+    // the list outlives a trip to the bank and back and then answers every
+    // purchase with "You can't reach the Vendor" (Elara 2026-09-04, 72
+    // bottles refused 20 times from another street). The goal that notices
+    // the shopkeeper is out of sight forgets the window itself.
+    void ForgetVendorOffer() { vendorOfferVendor_ = 0; vendorOffer_.clear(); }
     // The vendor whose SELL list (0x9E) is in VendorSellOffer(). Distinct from
     // VendorOfferFrom(), which is the BUY list -- selling to the vendor whose
     // buy list happened to arrive last would address the wrong NPC.

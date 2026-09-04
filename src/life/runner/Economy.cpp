@@ -138,6 +138,7 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
             planner_.NoteProgress();
             sellSent_ = false;
             sellAsked_ = false;
+        sellReachChecked_ = false;
             sellTrips_ = 0;
             sellLotCap_ = 0;   // this buyer could pay; stop rationing
             sellSweepGold_ += paid;
@@ -176,6 +177,7 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
                                     sellTrade_.c_str(), obs.x, obs.y, obs.nowMs);
             sellSent_ = false;
             sellAsked_ = false;
+        sellReachChecked_ = false;
             // A VENDOR'S PURSE IS FINITE. OFFER FEWER BEFORE GIVING UP.
             //
             // Alenne bought 5 poison scrolls for 125 gold and then refused 11
@@ -502,6 +504,7 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
         sellTrade_ = buyer->trade;
         sellService_ = ServiceForTrade(buyer->trade);
         sellAsked_ = false;
+        sellReachChecked_ = false;
     }
 
     if (client.TravelBusy()) return false;
@@ -641,12 +644,38 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
             ++sellBuyerIndex_;
             sellTrade_.clear();
             sellAsked_ = false;
+        sellReachChecked_ = false;
             sellVendorSerial_ = 0;
             sellApproached_ = false;
         }
         nextActionMs_ = obs.nowMs + 1500;
         return false;
     }
+
+    // --- close in before handing anything over -------------------------------
+    //
+    // The buy list arrives at speech range; the sale itself is CanTouch
+    // (Chebyshev <= kVendorReach). A vendor that wandered a step while the
+    // list was read, or an approach that stopped short, answers every lot
+    // with "You can't reach the Vendor" -- Elara offered 16, 8 and 4 poison
+    // potions to Corbey from three tiles and was refused all three times
+    // (g_Elara 01:47:09-01:47:41, 2026-09-04). One more step in, once per
+    // list, before the first lot goes out.
+    if (!sellSent_ && !sellReachChecked_) {
+        i32 vx = 0, vy = 0; i8 vz = 0;
+        if (client.MobilePosition(vendor, &vx, &vy, &vz) &&
+            TileDist(obs.x, obs.y, vx, vy) > kVendorReach && !client.TravelBusy()) {
+            LogLine("earn_gold: the '%s' is %d tiles off -- stepping in "
+                    "before the sale", sellTrade_.c_str(),
+                    TileDist(obs.x, obs.y, vx, vy));
+            travelInFlight_ = client.TravelToEntity(vendor, 1);
+            sellReachChecked_ = true;
+            nextActionMs_ = obs.nowMs + 1500;
+            return false;
+        }
+        sellReachChecked_ = true;
+    }
+    if (client.TravelBusy()) return false;
 
     // --- sell, matching by NAME -------------------------------------------
     //
@@ -821,6 +850,7 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
     ++sellBuyerIndex_;
     sellTrade_.clear();
     sellAsked_ = false;
+    sellReachChecked_ = false;
     return false;
 }
 
@@ -2007,6 +2037,63 @@ const char* SupplierTradeFor(const std::string& item) {
     return nullptr;
 }
 
+// HOW MANY OF ONE INPUT A STOCKING TRIP BUYS.
+//
+// Not `craftBatch`, and not a constant. "buying should be bulk as well not one
+// buy one" (project owner, 2026-08-30) and, for a crafter, "the brew batch is
+// both the training and the stock to sell" (2026-09-04) -- a sitting's
+// shortfall of five is neither a training batch nor a market stall.
+//
+// Every term is something the character can actually see at the counter:
+//
+//   budget  = the purse ABOVE this life's own reserve (Profession::goldReserve)
+//   share   = budget split evenly across the recipe inputs it still has to buy,
+//             so the second half of the recipe is still affordable after the
+//             first -- two nightshade are worthless without the bottle
+//   ratio   = how many of THIS input one output eats (2 : 1 for poison), which
+//             is what turns a gold budget into a number of potions
+//   quote   = the price the vendor has this moment named, so the exposure is
+//             known rather than guessed
+//   room    = what is left of the carry limit, at a deliberately pessimistic
+//             one stone per unit. Reagents weigh a tenth of that; bottles do
+//             not. An order that cannot be carried home is not a bulk buy, it
+//             is an overloaded character standing in a shop.
+//
+// Never returns less than `atLeast`, the next sitting's own shortfall: this
+// can only ever ENLARGE an order. The caller still clamps to the shelf and to
+// spendable gold afterwards, and both of those are the harder limits in
+// practice (VENDOR_S_ALCHEMIST stocks 250).
+static i32 BulkSupplyQty(const char* output, const std::string& input,
+                         i32 unitPrice, i32 gold, i32 reserve, i32 weight,
+                         i32 maxWeight, i32 atLeast) {
+    if (!output || unitPrice <= 0) return atLeast;   // no quote, no bulk
+    const prod::Recipe* r = prod::FindRecipe(output);
+    if (!r) return atLeast;
+
+    i32 perOutput = 0;
+    i32 buyableInputs = 0;
+    for (const prod::Ingredient& in : r->inputs) {
+        if (!in.item || in.qty <= 0) continue;
+        if (!econ::CanBuyFromNPC(in.item).allowed) continue;
+        ++buyableInputs;
+        if (input == in.item) perOutput = in.qty;
+    }
+    if (perOutput <= 0 || buyableInputs <= 0) return atLeast;
+
+    const i32 budget = gold - reserve;
+    if (budget <= 0) return atLeast;   // the reserve is kept, by the brief
+    const i32 share = budget / buyableInputs;
+    const i32 outputs = share / (perOutput * unitPrice);
+    i32 bulk = outputs * perOutput;
+
+    // A fifth of the carry limit left free for what comes OUT of the mortar.
+    if (maxWeight > 0) {
+        const i32 room = static_cast<i32>(maxWeight * 0.8) - weight;
+        if (bulk > room) bulk = room;
+    }
+    return bulk > atLeast ? bulk : atLeast;
+}
+
 // The craft-menu route table (kCraftMenus) and CraftMenuFor now live in
 // Identity.cpp, next to ChooseCraft, so a no-server test can assert a route
 // without linking the whole runner. Declaration: uo/life.h.
@@ -2028,9 +2115,35 @@ bool Runner::DoBuySupplies(Client& client, const Observation& obs) {
                     spent, pendingBuyItem_.c_str(), pendingBuyGoldBefore_,
                     obs.gold);
             planner_.NoteProgress();   // THIS is progress: goods changed hands
+            supplyReachFails_ = 0;
         } else {
             LogLine("supplies: asked to buy %s and the purse did not move -- "
                     "nothing was bought", pendingBuyItem_.c_str());
+            // A REFUSED REACH IS ANSWERED BY WALKING, NOT BY ASKING AGAIN.
+            // Owner rule: unreachable = 1 try, max 2. The window is stale
+            // (the shopkeeper is where he was; the buyer is not), so drop it
+            // and let the approach below walk to him afresh; after the second
+            // refusal the goal stands down instead of asking a third time.
+            if (client.ActionResult() == act::Result::Rejected) {
+                ++supplyReachFails_;
+                client.ForgetVendorOffer();
+                if (supplyReachFails_ >= kMaxSupplyReachFails) {
+                    LogLine("goal_failed=BUY_SUPPLIES reason=\"%s\" the '%s' "
+                            "refused reach twice for %s",
+                            faucet::RefusalName(faucet::Refusal::VendorUnreachable),
+                            supplyTrade_.c_str(), pendingBuyItem_.c_str());
+                    pendingBuyItem_.clear();
+                    pendingBuyGoldBefore_ = 0;
+                    supplyReachFails_ = 0;
+                    planner_.Cooldown(GoalKind::BuySupplies,
+                                      obs.nowMs + kCraftStuckCooldownMs);
+                    planner_.Finish(false, "vendor out of reach twice", obs.nowMs);
+                    return false;
+                }
+                LogLine("supplies: the '%s' is out of reach -- forgetting the "
+                        "stale window and walking to him (reach %d of 2)",
+                        supplyTrade_.c_str(), supplyReachFails_);
+            }
         }
         pendingBuyItem_.clear();
         pendingBuyGoldBefore_ = 0;
@@ -2067,19 +2180,31 @@ bool Runner::DoBuySupplies(Client& client, const Observation& obs) {
     // prod::Ingredient::item is a const char*, so the string it points at has
     // to outlive the rest of this function -- hence the local copy.
     std::string reagentPick;
+    // WHAT THE INPUT IS FOR, so the quantity can be sized off the recipe's own
+    // ratio at the counter (BulkSupplyQty). Empty for the spell-reagent path
+    // above, whose quantity PRACTICE_SKILL already decided.
+    std::string craftOutput;
     if (!reagentWants_.empty()) {
         reagentPick = reagentWants_.front();
         want.item = reagentPick.c_str();
         want.qty = reagentWantQty_ > 0 ? reagentWantQty_ : 1;
     } else {
-        const CraftIntent intent = ChooseCraft(*me, obs, needCfg_.craftBatch,
-                                               &craftFocus_);
+        // THE SAME SITTING THE NEED MODEL COSTED. Asking at needCfg_.craftBatch
+        // here while AssessNeeds asked at the stocked size makes the goal
+        // report "nothing short after all" for the very shortfall that
+        // selected it. See CraftBatchFromStock (uo/life.h).
+        const CraftIntent intent =
+            ChooseCraft(*me, obs,
+                        CraftBatchFromStock(*me, obs, needCfg_.craftBatch,
+                                            &craftFocus_),
+                        &craftFocus_);
         if (!intent.item || intent.missing.empty()) {
             LogLine("supplies: nothing short after all");
             supplyItem_.clear();
             return true;
         }
         want = intent.missing.front();
+        craftOutput = intent.item;
     }
     if (supplyItem_ != want.item) {
         supplyItem_ = want.item;
@@ -2230,7 +2355,20 @@ bool Runner::DoBuySupplies(Client& client, const Observation& obs) {
     // back if the shop has moved.
     {
         i32 vx = 0, vy = 0; i8 vz = 0;
-        if (client.MobilePosition(vendor, &vx, &vy, &vz)) {
+        if (!client.MobilePosition(vendor, &vx, &vy, &vz)) {
+            // The window is open but the shopkeeper is not even on screen:
+            // the buyer went to the bank and came back to another street
+            // (Elara 01:08 -> 01:09, 2026-09-04). Nothing to measure against,
+            // so the window is stale by definition. Forget it; the block
+            // above walks to a shopkeeper it can see.
+            LogLine("supplies: the shop window is open but no '%s' is in "
+                    "sight -- forgetting it and walking back to the shop",
+                    supplyTrade_.c_str());
+            client.ForgetVendorOffer();
+            nextActionMs_ = obs.nowMs + 500;
+            return false;
+        }
+        {
             const i32 d = TileDist(obs.x, obs.y, vx, vy);
             const i32 dz = (obs.z > vz) ? (obs.z - vz) : (vz - obs.z);
             if ((d > kVendorReach || dz > 3) &&
@@ -2281,7 +2419,15 @@ bool Runner::DoBuySupplies(Client& client, const Observation& obs) {
         if (!match) continue;
 
         const i32 unit = static_cast<i32>(v.price);
-        i32 take = want.qty;
+        // A STOCKING TRIP, NOT A SITTING'S SHORTFALL. want.qty is what the
+        // next batch at the bench is short of; this is what a crafter who
+        // makes her living from the bench actually walks out of the shop with.
+        // Sized here rather than at the door because the quote is only known
+        // once the window is open. See BulkSupplyQty above for every term.
+        i32 take = BulkSupplyQty(craftOutput.empty() ? nullptr
+                                                     : craftOutput.c_str(),
+                                 supplyItem_, unit, obs.gold, me->goldReserve,
+                                 obs.weight, obs.maxWeight, want.qty);
         // AND NEVER MORE THAN THE SHELF HOLDS. Sphere refuses the WHOLE order
         // when the quantity exceeds stock, so one over-ask buys nothing at
         // all rather than buying what is there -- the defect that stalled the
@@ -2368,7 +2514,17 @@ bool Runner::DoBuySupplies(Client& client, const Observation& obs) {
         // Ysolde repeated that 42 times in one run holding 409 gold, all of it
         // banked. GET_TOOL and the trainer fee already fetch their coin first;
         // this path was simply never wired to do the same.
-        if (FetchCoinForPurchase(client, obs, take * unit)) return false;
+        // ...AND THEN IT WAS WIRED, AND IT WAS WRONG FOR THIS SHARD. sphere.ini
+        // PayFromPackOnly=0: a vendor purchase draws on the bank box itself.
+        // Proven live 2026-09-04 01:25:59 -- Elara carried 200 gold, banked
+        // 9006, and Hyman took 864 for 72 bottles without a word. The fetch
+        // then sent her 389 tiles to Magincia for 4 gold she did not need and
+        // she spent the rest of the session at that bank. Trainer fees and
+        // tools keep their fetch (Train.cpp, Gear.cpp): a fee is gold dropped
+        // on the NPC, which really does need the coin in the pack.
+        // Ysolde's "canst not afford" above was a purse AND bank short of the
+        // sum, which the poverty check in BulkSupplyQty already answers.
+        (void)take;
 
         market::PriceObservation po;
         po.item = supplyItem_;

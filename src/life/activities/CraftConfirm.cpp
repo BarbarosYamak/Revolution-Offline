@@ -40,6 +40,22 @@ static const CraftFailure kCraftFailures[] = {
      "runtime/scripts/core/messages.scp:268 (itemuse_cantthink) and :351 "
      "(itemuse_unable); heard 9x live"},
 
+    // ALCHEMY'S OWN TWO. The skill script speaks plain sysmessages, not the
+    // crafting gump's notices panel, so these DO reach the journal. @Fail
+    // consumed the reagents; @Abort is the stroke being cut short (another
+    // skill started on top of it -- what the bot did to its own .makelast
+    // on 2026-09-04, 40 times in 30 s) and consumed nothing. Both are a
+    // swing that ended, never a reason to stop.
+    {"You toss the failed mixture from the mortar",
+     "the alchemy roll failed and the reagents were lost (skill0_alchemy @Fail)",
+     /*blocking=*/false,
+     "runtime/scripts/skills/skill0_alchemy.scp:24 ON=@Fail"},
+    {"You fail to complete the potion.",
+     "the alchemy stroke was cut short (skill0_alchemy @Abort)",
+     /*blocking=*/false,
+     "runtime/scripts/skills/skill0_alchemy.scp:27 ON=@Abort; heard 40x live "
+     "2026-09-04 while the bot re-opened the mortar over its own .makelast"},
+
     // S6: 0xC1 (cliloc message) used to be discarded at src/Client.cpp:569 --
     // see docs/S3_CHARACTERIZATION.md's "shard messages" section, which is
     // where these three rows come from. crafting/crafting_messages.scp is

@@ -6,6 +6,26 @@ namespace uo::life {
 // to what the old anonymous namespace gave them.
 using namespace runner_detail;
 
+namespace {
+// ONE STROKE TAKES AS LONG AS THE SHARD SAYS. Sphere's per-skill DELAY
+// (runtime/scripts/skills/skill<N>_*.scp, line "DELAY=") is the time between
+// the menu answer and the item landing; the bot must not start the next
+// stroke inside it, and a human takes a breath besides. Values in ms,
+// read 2026-09-04: alchemy 2.5, blacksmithing 1.7, everything else 1.2.
+i64 CraftStrokeMs(const std::string& item) {
+    const prod::Recipe* r = prod::FindRecipe(item.c_str());
+    i64 delay = 1200;
+    if (r) {
+        switch (r->skillId) {
+            case rules::kAlchemy:       delay = 2500; break;
+            case rules::kBlacksmithing: delay = 1700; break;
+            default:                    delay = 1200; break;
+        }
+    }
+    return delay + 1200;   // the human pause between strokes
+}
+}  // namespace
+
 
 bool Runner::DoCraft(Client& client, const Observation& obs) {
     const prof::Profession* me = needCfg_.profession;
@@ -212,6 +232,7 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
 
     if (craftItem_ != intent.item) {
         makeLastIssued_ = false;   // a different item needs its own first make
+        makeLastRemaining_ = 0;
         craftItem_ = intent.item;
         craftWait_.Configure(life::RetryPolicy{kMaxCraftAttempts,
                                                kCraftResolveMs, 1000});
@@ -275,6 +296,14 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
         planner_.NoteProgress();
         LogLine("craft: made %s pack %d->%d (%d this sitting)",
                 craftItem_.c_str(), now - conf.made, now, craftMade_);
+        if (makeLastRemaining_ > 0) {
+            // One of the shard's repeats landed: count it off and give the
+            // rest their time again.
+            makeLastRemaining_ -= conf.made;
+            if (makeLastRemaining_ < 0) makeLastRemaining_ = 0;
+            makeLastDeadlineMs_ =
+                obs.nowMs + CraftStrokeMs(craftItem_) * (makeLastRemaining_ + 1);
+        }
         if (!state_.memory.HasEvent("first_craft")) {
             state_.memory.NoteEvent("first_craft", craftItem_.c_str(), "",
                                     obs.x, obs.y, obs.nowMs);
@@ -317,7 +346,14 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
         // regardless of which Made event this is. Re-buying/re-making what
         // is already held is the exact bug craft.h:45-47 and the
         // craftHadBefore_ tracking above both warn about.
-        req.desiredTotal = craftMade_ + needCfg_.craftBatch;
+        //
+        // `now` includes the pre-sitting stock, so the target must be built
+        // on `now` too: (now - craftMade_) is exactly the pre-sitting stock
+        // whichever Made event this is. The previous `craftMade_ + batch`
+        // forgot the stock and ended every sitting after ONE potion once
+        // Elara held more than the batch (g_Elara 01:43:11 "1 made -- as
+        // many are held as this batch wanted", pack 9->10, 2026-09-04).
+        req.desiredTotal = (now - craftMade_) + needCfg_.craftBatch;
         // UNKNOWN: no profession field carries a working reserve
         // (S2_WIRING_PLAN.md S2.5). 0 for gathered inputs is the honest
         // default -- "craft till you are out of iron on your bag" is a
@@ -400,11 +436,39 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
                     static_cast<int>(plan.remaining), cmd);
             client.ActionSay(cmd);
             makeLastIssued_ = true;
+            makeLastRemaining_ = static_cast<i32>(plan.remaining);
+            makeLastDeadlineMs_ =
+                obs.nowMs + CraftStrokeMs(craftItem_) * (makeLastRemaining_ + 1);
+            craftJournalMs_ = client.JournalNowMs();
             nextActionMs_ = obs.nowMs + 3000;
             return false;
         }
         LogLine("craft: %d %s made and the material is not finished -- "
                 "carrying on", craftMade_, craftItem_.c_str());
+        // A BREATH BETWEEN STROKES, even when the menu is walked by hand.
+        nextActionMs_ = obs.nowMs + CraftStrokeMs(craftItem_);
+        return false;
+    }
+
+    // THE SHARD IS STILL REPEATING -- do not touch the menu (Runner.h,
+    // makeLastRemaining_). It says "Make Last complete." / "Make Last
+    // stopped" when it is done; the pack count says it per item; the
+    // deadline is the floor under a repeat that died silently.
+    if (makeLastRemaining_ > 0) {
+        if (client.JournalSaidSince("Make Last complete", craftJournalMs_) ||
+            client.JournalSaidSince("Make Last stopped", craftJournalMs_)) {
+            LogLine("craft: the shard finished repeating %s (%d this sitting)",
+                    craftItem_.c_str(), craftMade_);
+            makeLastRemaining_ = 0;
+        } else if (obs.nowMs >= makeLastDeadlineMs_) {
+            LogLine("craft: the repeat of %s went quiet with %d still owed -- "
+                    "walking the menu myself", craftItem_.c_str(),
+                    makeLastRemaining_);
+            makeLastRemaining_ = 0;
+        } else {
+            nextActionMs_ = obs.nowMs + 1000;
+            return false;
+        }
     }
 
     const CraftMenuPath* path = CraftMenuFor(craftItem_);

@@ -418,8 +418,14 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
         obs.inNoGainRegion = here && here->flags.safe;
     }
     obs.treeAdjacent = client.TreeCount(obs.x, obs.y, 2) > 0;
+    // A box opened in Magincia is not a box we are standing at in Ocllo:
+    // the serial outlives the walk away (Client::BankOpenTileHeld is the
+    // same check the lift path uses), and without it Elara scored "already
+    // standing at the bank +60" from an alchemist's shop 389 tiles away and
+    // walked back to deposit four potions (g_Elara 01:44:00, 2026-09-04).
     obs.atBank = client.BankContainer() != 0 &&
-                 client.ContainerKnown(client.BankContainer());
+                 client.ContainerKnown(client.BankContainer()) &&
+                 client.BankOpenTileHeld();
     // AND WHETHER THIS IS THE MARKET. Geometry only -- the same test the trade
     // handler uses to decide it has arrived -- because the planner needs to
     // know a market trip has been PAID FOR before it lets an ordinary errand

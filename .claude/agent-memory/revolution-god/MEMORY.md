@@ -3,7 +3,9 @@
 - [Agent stop rule](feedback-agent-stop-rule.md) — ~25 calls no root cause / 2 failed smokes / out of brief → BLOCKED, no third try
 - [Observe via agent](feedback-observe-via-agent.md) — wave watching/log slicing goes to one sonnet qa agent; main thread reads only its report
 - [Agent spend rules](feedback-agent-spend.md) — sonnet triage / opus fixes / Fable main only; serial not parallel; no pre-fix triage pass; qa only for live verdicts
+- [Alchemist loop](alchemist-loop.md) — owner 2026-09-04: bulk nightshade+bottles, brew poison = train+sell same batch; never open by buying NPC potions
 
+- [Open items 2026-09-04](project_open_items_2026-09-04.md) — Faustus mace, Aurelius vendor_buy, Rhea taming, chest ResourceType; bow↔log, meditation %, weapon-merge era
 - [Owner rulings on truth pack](owner-rulings-2026-09-03-truthpack.md) — taming 53.1/55.1+pack, meditation+creation historical, TNS trapped pouch, fewer mounts, no headhunters, guildmasters teach to 30.0, sinks later
 - [Truth pack](truth-pack-reference.md) — REVOLUTION_UO_HISTORICAL_TRUTH_PACK_FOR_FABLE.md at repo root is THE mechanics evidence source (2009-10 era); check before deciding any mechanic
 - [Tailoring cloth-only](tailoring-cloth-only.md) — owner: no thread/Armslore in tailor recipes, studded keeps iron; mage robe = Hardening Crystal + cloth (pack §9), not i_robe

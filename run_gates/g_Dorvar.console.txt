@@ -1,614 +1,479 @@
-[11:47:17.534] INFO  session 0: 127.0.0.1:2593 user='RevGen3_18' char=Dorvar tag='g_Dorvar'
-[11:47:17.535] LOG   [g_Dorvar] event session_start: text log opened
-[11:47:17.535] LOG   [g_Dorvar] event net_connect_begin: connect 127.0.0.1:2593
-[11:47:17.535] INFO  [g_Dorvar] [net] connecting to 127.0.0.1:2593 ...
-[11:47:17.536] LOG   [g_Dorvar] event net_connected: connect 127.0.0.1:2593
-[11:47:17.536] INFO  [g_Dorvar] [net] connected.
-[11:47:17.536] INFO  [g_Dorvar] [seed] sent 0x7F000001 (plaintext)
-[11:47:17.536] LOG   [g_Dorvar] event seed_out: 0x7F000001 hex=7f000001
-[11:47:17.537] INFO  [life] loaded persistent state for Dorvar (8 places, 1 suppliers, 58 events, 7 prior sessions)
-[11:47:17.537] INFO  [life] needs: reading 'fisher' from the profession catalogue
-[11:47:17.537] INFO  [life] build plan 'fisher': 150.0 resolved + 550.0 unresolved = 700.0/700.0, stats 80/50/45 = 175
-[11:47:17.537] INFO  [g_Dorvar] [life] autonomous player active for 'Dorvar' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 5 min)
-[11:47:17.544] INFO  [g_Dorvar] [0xA8] 1 server(s):
-[11:47:17.544] INFO  [g_Dorvar]   [0] MyShard                   1.0.0.127  full=0%  tz=0
-[11:47:17.560] INFO  [g_Dorvar] [0x8C] game server = 127.0.0.1:2593  seed=0x0AEFFB97
-[11:47:17.561] LOG   [g_Dorvar] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x0AEFFB97
-[11:47:17.561] INFO  [g_Dorvar] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
-[11:47:17.561] LOG   [g_Dorvar] event relay_same_socket: no seed re-sent; 0x91 follows
-[11:47:17.561] INFO  [g_Dorvar] [0xB9] server features = 0x0005
-[11:47:17.561] INFO  [g_Dorvar] [0xA9] 5 slot(s) (populated 1):
-[11:47:17.561] INFO  [g_Dorvar]   [0] Dorvar
-[11:47:17.561] INFO  [g_Dorvar]   [1] <empty>
-[11:47:17.561] INFO  [g_Dorvar]   [2] <empty>
-[11:47:17.561] INFO  [g_Dorvar]   [3] <empty>
-[11:47:17.561] INFO  [g_Dorvar]   [4] <empty>
-[11:47:17.561] INFO  [g_Dorvar] [ui] playing slot 0 ('Dorvar')
-[11:47:17.575] INFO  [g_Dorvar] [0x1B] serial=0x00019D4B body=0x0190 pos=(3672,2287,-2)
-[11:47:17.575] LOG   [g_Dorvar] event login_confirm: serial=0x00019D4B body=0x0190 pos=(3672,2287,-2)
-[11:47:17.575] INFO  [g_Dorvar] [0x20] player @(3672,2287,-2) facing=1
-[11:47:17.575] INFO  [g_Dorvar] [0x55] login complete — entering world
-[11:47:17.575] LOG   [g_Dorvar] event in_world: 0x55 received
-[11:47:17.575] INFO  [g_Dorvar] [backpack] opening 0x40019D35
-[11:47:17.575] INFO  [g_Dorvar] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
-[11:47:17.575] INFO  [g_Dorvar] [chat ascii] System: There is 1 other player here.
-[11:47:17.575] INFO  [g_Dorvar] [chat ascii] System: Last logged: 2026/09/02 10:45:15
-[11:47:17.575] INFO  [g_Dorvar] [chat ascii] System: You are under the protection of the town guards
-[11:47:17.579] INFO  [g_Dorvar] [action] requesting the skill list
-[11:47:17.579] INFO  [life] in world; asked the server for the skill list
-[11:47:17.579] INFO  [g_Dorvar] [0x24] open container 0x40019D35 gump=60
-[11:47:17.579] INFO  [g_Dorvar] [0x3C] container contents: 15 item(s)
-[11:47:17.579] LOG   [g_Dorvar] event backpack_contents: serial=0x40019D35 items=15
-[11:47:17.591] INFO  [g_Dorvar] [chat ascii] System: You are very hungry
-[11:47:17.591] INFO  [g_Dorvar] [chat ascii] Dorvar: *You looks very hungry*
-[11:47:20.176] INFO  [g_Dorvar] [bot] world data loaded (0 blacklisted spot(s)).
-[11:47:20.177] INFO  [life] reconciliation: resuming a life, 0 field(s) differed
-[11:47:20.177] INFO  [life]   gold         persisted=10816      server=10816      -> server value accepted
-[11:47:20.177] INFO  [life]   str          persisted=40         server=40         -> server value accepted
-[11:47:20.177] INFO  [life]   dex          persisted=25         server=25         -> server value accepted
-[11:47:20.177] INFO  [life]   int          persisted=16         server=16         -> server value accepted
-[11:47:20.177] INFO  [life]   skill_18     persisted=53.5       server=53.5       -> server value accepted
-[11:47:20.177] INFO  [life]   skill_13     persisted=50.1       server=50.1       -> server value accepted
-[11:47:20.177] INFO  [life]   position     persisted=3672,2287  server=3672,2287  -> server value accepted
-[11:47:20.177] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
-[11:47:20.177] INFO  [life]   restored objective KEPT: FISH (progress 1)
-[11:47:20.177] INFO  [g_Dorvar] [survival] on
-[11:47:20.177] LOG   [g_Dorvar] event survival_mode: on
-[11:47:20.179] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_18.dorvar/state.json
-[11:47:20.179] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:47:20.230] INFO  [life] fish: cutting a whole fish (0x09CC) into steaks -- four each, and lighter (2 whole left, blade in hand)
-[11:47:20.230] INFO  [g_Dorvar] [ACTION] use_item_on start
-[11:47:20.230] INFO  [g_Dorvar] [ACTION] use_item_on item=0x40019D20 target=0x4000075D
-[11:47:20.246] INFO  [g_Dorvar] [chat ascii] System: What do you want to use this on?
-[11:47:20.246] INFO  [g_Dorvar] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=1
-[11:47:20.246] LOG   [g_Dorvar] event target_requested: id=0x000002CE type=0 subtype=1 gen=1
-[11:47:20.246] INFO  [g_Dorvar] [TARGET] auto-reply for use_item_on -> 0x4000075D
-[11:47:20.246] INFO  [g_Dorvar] [TARGET] reply serial=0x4000075D gen=1
-[11:47:20.246] INFO  [g_Dorvar] [target] object 0x4000075D (0,0,0) model 0x0000
-[11:47:20.614] INFO  [g_Dorvar] [chat ascii] System: Ithion has arrived in Magincia.
-[11:47:22.236] INFO  [life] fish: arming the pole (try 1)
-[11:47:22.236] LOG   [g_Dorvar] event action_result: use_item_on invalid_state took=2006ms superseded
-[11:47:22.236] INFO  [g_Dorvar] [ACTION] equip start
-[11:47:22.236] INFO  [g_Dorvar] [ACTION] equip serial=0x40019D1A layer=0
-[11:47:22.236] INFO  [g_Dorvar] [ITEM] drag serial=0x40019D1A amount=1
-[11:47:22.237] INFO  [g_Dorvar] [chat ascii] System: You put the dagger in your pack.
-[11:47:22.237] INFO  [g_Dorvar] [ACTION_RESULT] equip success (1ms) worn on the requested layer
-[11:47:22.237] LOG   [g_Dorvar] event action_result: equip success took=1ms worn on the requested layer
-[11:47:23.765] INFO  [life] fish: back to a shore that has paid out at 3662,2302
-[11:47:23.765] INFO  [g_Dorvar] [travel] fishing spot -> (3662,2302) r=4 from (3672,2287)
-[11:47:23.765] LOG   [g_Dorvar] event travel_start: label='fishing spot' target=(3662,2302) radius=4 from=(3672,2287)
-[11:47:23.765] INFO  [g_Dorvar] [travel] mode walk             usable   <- chosen
-[11:47:23.765] INFO  [g_Dorvar] [travel] mode moongate         usable
-[11:47:23.765] INFO  [g_Dorvar] [travel] mode loose_rune_recall no: no rune marked at that destination
-[11:47:23.765] INFO  [g_Dorvar] [travel] mode runebook_recall  no: no runebook page for that destination
-[11:47:23.765] LOG   [g_Dorvar] event travel_mode: walk
-[11:47:23.765] INFO  [g_Dorvar] [travel] plan fishing spot: ok legs=1 ~15 tiles transit=0 nodes=0
-[11:47:23.827] INFO  [g_Dorvar] [action] goto (3662,2302) from (3672,2287,-2)
-[11:47:23.827] LOG   [g_Dorvar] event goto_start: target=(3662,2302) from=(3672,2287)
-[11:47:23.827] INFO  [g_Dorvar] [bot] running from (3672,2287,-2) to (3662,2302)
-[11:47:23.827] INFO  [g_Dorvar] [bot] planning path to (3662,2302) in background
-[11:47:23.888] INFO  [g_Dorvar] [bot] planning path to (3666,2298) in background
-[11:47:23.950] INFO  [g_Dorvar] [bot] replan to (3666,2298): 11 steps in 191.9us
-[11:47:25.226] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:47:27.615] INFO  [g_Dorvar] [bot] arrived at (3666,2298,-2)
-[11:47:27.615] INFO  [g_Dorvar] [action] goto finished at (3666,2298,-2); target (3662,2302); stopped short (off by 8 tile(s))
-[11:47:27.615] LOG   [g_Dorvar] event goto_done: at=(3666,2298) target=(3662,2302) arrived=0 off=8
-[11:47:27.917] INFO  [g_Dorvar] [travel] fishing spot ARRIVED at (3666,2298,-2)
-[11:47:27.917] LOG   [g_Dorvar] event travel_done: label='fishing spot' ok=1 at=(3666,2298) legs=1 plans=1 why=''
-[11:47:27.979] INFO  [life] fish: at the water's edge (3666,2298), shore 3666,2298
-[11:47:28.041] INFO  [g_Dorvar] [ACTION] use_object start
-[11:47:28.041] INFO  [g_Dorvar] [ACTION] use_object serial=0x40019D1A
-[11:47:28.041] INFO  [g_Dorvar] [chat ascii] System: Where would you like to fish?
-[11:47:28.041] INFO  [g_Dorvar] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=2
-[11:47:28.041] LOG   [g_Dorvar] event target_requested: id=0x000002CE type=1 subtype=0 gen=2
-[11:47:28.041] INFO  [g_Dorvar] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
-[11:47:28.041] LOG   [g_Dorvar] event action_result: use_object success took=0ms server armed a target cursor
-[11:47:28.854] INFO  [g_Dorvar] [TARGET] reply ground=(3662,2302,-5) gen=2
-[11:47:28.854] INFO  [g_Dorvar] [target] ground (3662,2302,-5)
-[11:47:30.248] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:47:35.301] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:47:36.865] INFO  [g_Dorvar] [chat ascii] System: You pull out a fish!
-[11:47:37.051] INFO  [life] fish: caught one at 3662,2302 (journal)
-[11:47:37.051] INFO  [g_Dorvar] [ACTION] use_object start
-[11:47:37.051] INFO  [g_Dorvar] [ACTION] use_object serial=0x40019D1A
-[11:47:37.051] INFO  [g_Dorvar] [chat ascii] System: Where would you like to fish?
-[11:47:37.051] INFO  [g_Dorvar] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=3
-[11:47:37.051] LOG   [g_Dorvar] event target_requested: id=0x000002CE type=1 subtype=0 gen=3
-[11:47:37.051] INFO  [g_Dorvar] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
-[11:47:37.051] LOG   [g_Dorvar] event action_result: use_object success took=1ms server armed a target cursor
-[11:47:37.857] INFO  [g_Dorvar] [TARGET] reply ground=(3662,2302,-5) gen=3
-[11:47:37.857] INFO  [g_Dorvar] [target] ground (3662,2302,-5)
-[11:47:40.187] INFO  [life] goal_changed=GET_FOOD from=FISH reason="GET_FOOD 112.5 superseded FISH 58.5"
-[11:47:40.187] INFO  [life] needs considered: NeedFood(food 0.45) NeedCatch(fish 0.45) NeedSupplies(buy craft inputs 0.44) NeedBank(deposit surplus gold 0.36) NeedGold(sell surplus 0.31)  | tools defined=2 held=[fishing pole,rolling pin,] want_train=nothing (target 0.0)
-[11:47:40.187] INFO  [life]   score=112.5
-[11:47:40.187] INFO  [life]   reason: NeedFood urgency 0.45 x 250 = 112.5
-[11:47:40.187] INFO  [life]   reason: food=0 hungry=1
-[11:47:40.278] INFO  [g_Dorvar] [chat ascii] System: World save in 10 seconds
-[11:47:40.340] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:47:40.508] INFO  [life] food: carrying the catch -- cutting and cooking it rather than buying bread
-[11:47:40.570] INFO  [life] goal=BUY_SUPPLIES reason="previous goal abandoned: will cook the catch instead"
-[11:47:40.570] INFO  [life] needs considered: NeedFood(food 0.45) NeedCatch(fish 0.45) NeedSupplies(buy craft inputs 0.44) NeedBank(deposit surplus gold 0.36) NeedGold(sell surplus 0.31)  | tools defined=2 held=[fishing pole,rolling pin,] want_train=nothing (target 0.0)
-[11:47:40.570] INFO  [life]   score=61.6
-[11:47:40.570] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
-[11:47:40.570] INFO  [life]   reason: i_fish_cut_raw needs 5 x i_fish_big_1
-[11:47:40.570] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 179s after achieving nothing
-[11:47:40.570] INFO  [life] supplies: no NPC sells i_fish_big_1 and this life makes it -- handing the errand to FISH instead of shopping for it
-[11:47:40.570] INFO  [life] handoff=BUY_SUPPLIES->FISH reason="this life produces its own input"
-[11:47:40.633] INFO  [life] goal=FISH reason="previous goal abandoned: this life produces its own input"
-[11:47:40.633] INFO  [life] needs considered: NeedFood(food 0.45) NeedCatch(fish 0.45) NeedSupplies(buy craft inputs 0.44) NeedBank(deposit surplus gold 0.36) NeedGold(sell surplus 0.31)  | tools defined=2 held=[fishing pole,rolling pin,] want_train=nothing (target 0.0)
-[11:47:40.633] INFO  [life]   score=58.5
-[11:47:40.633] INFO  [life]   reason: NeedCatch urgency 0.45 x 130 = 58.5
-[11:47:40.633] INFO  [life]   reason: carrying 0
-[11:47:40.633] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 179s after achieving nothing
-[11:47:40.633] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 119s after achieving nothing
-[11:47:45.362] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:47:45.902] INFO  [g_Dorvar] [chat ascii] System: You fish a while, but fail to catch anything.
-[11:47:46.025] INFO  [g_Dorvar] [ACTION] use_object start
-[11:47:46.025] INFO  [g_Dorvar] [ACTION] use_object serial=0x40019D1A
-[11:47:46.025] INFO  [g_Dorvar] [chat ascii] System: Where would you like to fish?
-[11:47:46.025] INFO  [g_Dorvar] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=4
-[11:47:46.025] LOG   [g_Dorvar] event target_requested: id=0x000002CE type=1 subtype=0 gen=4
-[11:47:46.025] INFO  [g_Dorvar] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
-[11:47:46.025] LOG   [g_Dorvar] event action_result: use_object success took=1ms server armed a target cursor
-[11:47:46.878] INFO  [g_Dorvar] [TARGET] reply ground=(3662,2302,-5) gen=4
-[11:47:46.878] INFO  [g_Dorvar] [target] ground (3662,2302,-5)
-[11:47:50.322] INFO  [g_Dorvar] [chat ascii] System: World save has been initiated.
-[11:47:50.378] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:47:55.410] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:48:00.446] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:48:03.272] INFO  [g_Dorvar] [chat ascii] System: You pull out a fish!
-[11:48:03.561] INFO  [life] fish: cutting a whole fish (0x09CE) into steaks -- four each, and lighter (4 whole left, blade in pack)
-[11:48:03.561] INFO  [g_Dorvar] [ACTION] use_item_on start
-[11:48:03.561] INFO  [g_Dorvar] [ACTION] use_item_on item=0x40019D20 target=0x40018EA7
-[11:48:03.577] INFO  [g_Dorvar] [chat ascii] System: You put the fishing pole in your pack.
-[11:48:03.577] INFO  [g_Dorvar] [ACTION] use_item_on item=0x40019D20 left the pack before its cursor -- wielded, not consumed; still waiting
-[11:48:03.577] INFO  [g_Dorvar] [chat ascii] System: What do you want to use this on?
-[11:48:03.577] INFO  [g_Dorvar] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=5
-[11:48:03.577] LOG   [g_Dorvar] event target_requested: id=0x000002CE type=0 subtype=1 gen=5
-[11:48:03.577] INFO  [g_Dorvar] [TARGET] auto-reply for use_item_on -> 0x40018EA7
-[11:48:03.577] INFO  [g_Dorvar] [TARGET] reply serial=0x40018EA7 gen=5
-[11:48:03.577] INFO  [g_Dorvar] [target] object 0x40018EA7 (0,0,0) model 0x0000
-[11:48:03.578] INFO  [life] goal_changed=EARN_GOLD from=FISH reason="EARN_GOLD 82.5 superseded FISH 58.5"
-[11:48:03.578] INFO  [life] needs considered: NeedGold(sell surplus 0.55) NeedFood(food 0.45) NeedCatch(fish 0.45) NeedSupplies(buy craft inputs 0.44) NeedBank(deposit surplus gold 0.36)  | tools defined=2 held=[fishing pole,rolling pin,] want_train=nothing (target 0.0)
-[11:48:03.578] INFO  [life]   score=82.5
-[11:48:03.578] INFO  [life]   reason: NeedGold urgency 0.55 x 150 = 82.5
-[11:48:03.578] INFO  [life]   reason: 24 x i_fish_cut_raw spare, a load is 20, buyer: an NPC
-[11:48:03.578] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 156s after achieving nothing
-[11:48:03.578] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 96s after achieving nothing
-[11:48:05.462] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:48:05.587] INFO  [life] earn_gold: back to a buyer we have used before, 'fisher' at 3672,2287 (11 tiles)
-[11:48:05.587] INFO  [g_Dorvar] [travel] buyer -> (3672,2287) r=2 from (3666,2298)
-[11:48:05.587] LOG   [g_Dorvar] event travel_start: label='buyer' target=(3672,2287) radius=2 from=(3666,2298)
-[11:48:05.587] INFO  [g_Dorvar] [travel] mode walk             usable   <- chosen
-[11:48:05.587] INFO  [g_Dorvar] [travel] mode moongate         usable
-[11:48:05.587] INFO  [g_Dorvar] [travel] mode loose_rune_recall no: no rune marked at that destination
-[11:48:05.587] INFO  [g_Dorvar] [travel] mode runebook_recall  no: no runebook page for that destination
-[11:48:05.587] LOG   [g_Dorvar] event travel_mode: walk
-[11:48:05.587] INFO  [g_Dorvar] [travel] plan buyer: ok legs=1 ~11 tiles transit=0 nodes=0
-[11:48:05.647] INFO  [g_Dorvar] [action] goto (3672,2287) from (3666,2298,-2)
-[11:48:05.647] LOG   [g_Dorvar] event goto_start: target=(3672,2287) from=(3666,2298)
-[11:48:05.647] INFO  [g_Dorvar] [bot] running from (3666,2298,-2) to (3672,2287)
-[11:48:05.647] INFO  [g_Dorvar] [bot] planning path to (3672,2287) in background
-[11:48:05.707] INFO  [g_Dorvar] [bot] replan to (3672,2287): 11 steps in 121.9us
-[11:48:08.672] INFO  [g_Dorvar] [travel] buyer ARRIVED at (3670,2289,-2)
-[11:48:08.672] LOG   [g_Dorvar] event travel_done: label='buyer' ok=1 at=(3670,2289) legs=1 plans=1 why=''
-[11:48:08.732] INFO  [life] earn_gold: arrived at 3670,2289 -- asking who is here
-[11:48:08.732] INFO  [g_Dorvar] [action] scanning nearby mobiles for names
-[11:48:08.733] INFO  [g_Dorvar] [action] requested 1 paperdoll(s) for trade titles
-[11:48:08.733] INFO  [g_Dorvar] [mobiles] nearby (2):
-[11:48:08.733] INFO  [g_Dorvar]   Paulette 0x000046FD
-[11:48:08.733] INFO  [g_Dorvar]   Terese 0x0000C49A
-[11:48:08.733] INFO  [g_Dorvar] [0x20] player @(3670,2289,-2) facing=3
-[11:48:08.733] INFO  [g_Dorvar] [0x88] paperdoll 0x000046FD: "Paulette, the fisherwoman"
-[11:48:08.733] INFO  [g_Dorvar] [world] Paulette, the fisherwoman is a fisherman at (3672,2291)
-[11:48:10.522] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:48:11.272] INFO  [life] earn_gold: asking the 'fisher' what it buys
-[11:48:11.272] LOG   [g_Dorvar] event action_result: use_item_on invalid_state took=7711ms superseded
-[11:48:11.272] INFO  [g_Dorvar] [ACTION] vendor_sell start
-[11:48:11.272] INFO  [g_Dorvar] [VENDOR] open sell vendor=0x000046FD say='Paulette sell'
-[11:48:11.273] INFO  [g_Dorvar] [chat uni  ] Dorvar: Paulette sell
-[11:48:11.273] INFO  [g_Dorvar] [chat ascii] Paulette: Hello!
-[11:48:11.273] INFO  [g_Dorvar] [chat ascii] Paulette: I could take some supplies off thy hands. Give 'em to me for a once-over. And look around abit. Just say thou wants to buy somethin' and I'll see if I got it.
-[11:48:11.273] INFO  [g_Dorvar] [VENDOR] sell list from 0x000046FD: 5 item(s)
-[11:48:11.273] INFO  [g_Dorvar] [VENDOR]   0x4000DB92 raw fish steaks        x4   2 gp
-[11:48:11.273] INFO  [g_Dorvar] [VENDOR]   0x4000D975 raw fish steaks        x8   2 gp
-[11:48:11.273] INFO  [g_Dorvar] [VENDOR]   0x4000D641 raw fish steaks        x8   2 gp
-[11:48:11.273] INFO  [g_Dorvar] [VENDOR]   0x4000075D raw fish steaks        x8   2 gp
-[11:48:11.273] INFO  [g_Dorvar] [VENDOR]   0x40018EA7 raw fish steaks        x16  2 gp
-[11:48:11.273] LOG   [g_Dorvar] event vendor_sell_list: vendor=0x000046FD items=5
-[11:48:11.273] INFO  [g_Dorvar] [ACTION_RESULT] vendor_sell success (1ms) vendor sell list received
-[11:48:11.273] LOG   [g_Dorvar] event action_result: vendor_sell success took=1ms vendor sell list received
-[11:48:13.782] INFO  [life] earn_gold: 'fisher' offers 2 gold each for i_fish_cut_raw; selling 24 in 4 lot(s)
-[11:48:13.782] INFO  [g_Dorvar] [ACTION] vendor_sell start
-[11:48:13.782] INFO  [g_Dorvar] [VENDOR] sell 4 item(s) totalling 24 to vendor=0x000046FD gold=10816
-[11:48:13.782] INFO  [g_Dorvar] [chat ascii] Paulette: Here you are, 48 gold coins. I thank thee for thy business.
-[11:48:13.783] INFO  [g_Dorvar] [0x3B] vendor transaction closed: vendor=0x000046FD flag=0
-[11:48:13.905] INFO  [g_Dorvar] [ACTION_RESULT] vendor_sell success (122ms) gold 10816 -> 10864
-[11:48:13.905] LOG   [g_Dorvar] event action_result: vendor_sell success took=122ms gold 10816 -> 10864
-[11:48:15.558] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:48:16.785] INFO  [life] earn_gold: sold 24 i_fish_cut_raw for 48 gold (2 each) to a 'fisher'
-[11:48:16.788] INFO  [life] checkpoint (sold to a vendor) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_18.dorvar/state.json
-[11:48:16.788] INFO  [life] earn_gold: 48 gold so far at this counter -- asking the 'fisher' what else it will take before leaving
-[11:48:18.012] INFO  [life] earn_gold: asking the 'fisher' what it buys
-[11:48:18.012] INFO  [g_Dorvar] [ACTION] vendor_sell start
-[11:48:18.012] INFO  [g_Dorvar] [VENDOR] open sell vendor=0x000046FD say='Paulette sell'
-[11:48:18.026] INFO  [g_Dorvar] [chat uni  ] Dorvar: Paulette sell
-[11:48:18.026] INFO  [g_Dorvar] [chat ascii] Paulette: I could purchase those things that I supply.
-[11:48:18.026] INFO  [g_Dorvar] [VENDOR] sell list from 0x000046FD: 2 item(s)
-[11:48:18.026] INFO  [g_Dorvar] [VENDOR]   0x4000075D raw fish steaks        x4   2 gp
-[11:48:18.026] INFO  [g_Dorvar] [VENDOR]   0x40018EA7 raw fish steaks        x16  2 gp
-[11:48:18.026] LOG   [g_Dorvar] event vendor_sell_list: vendor=0x000046FD items=2
-[11:48:18.026] INFO  [g_Dorvar] [ACTION_RESULT] vendor_sell success (15ms) vendor sell list received
-[11:48:18.027] LOG   [g_Dorvar] event action_result: vendor_sell success took=15ms vendor sell list received
-[11:48:20.541] INFO  [life] earn_gold: 'fisher' offers 2 gold each for i_fish_cut_raw; selling 20 in 2 lot(s)
-[11:48:20.541] INFO  [g_Dorvar] [ACTION] vendor_sell start
-[11:48:20.541] INFO  [g_Dorvar] [VENDOR] sell 2 item(s) totalling 20 to vendor=0x000046FD gold=10864
-[11:48:20.541] INFO  [g_Dorvar] [chat ascii] Paulette: Here you are, 40 gold coins. I thank thee for thy business.
-[11:48:20.541] INFO  [g_Dorvar] [0x3B] vendor transaction closed: vendor=0x000046FD flag=0
-[11:48:20.587] INFO  [g_Dorvar] [ACTION_RESULT] vendor_sell success (46ms) gold 10864 -> 10904
-[11:48:20.587] LOG   [g_Dorvar] event action_result: vendor_sell success took=46ms gold 10864 -> 10904
-[11:48:20.587] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:48:23.591] INFO  [life] goal_changed=BANK from=EARN_GOLD reason="BANK 60.3 superseded EARN_GOLD 0.0"
-[11:48:23.591] INFO  [life] needs considered: NeedFood(food 0.45) NeedCatch(fish 0.45) NeedSupplies(buy craft inputs 0.44) NeedBank(deposit surplus gold 0.38) NeedTravel(a place where work is possible 0.20)  | tools defined=2 held=[fishing pole,rolling pin,] want_train=nothing (target 0.0)
-[11:48:23.591] INFO  [life]   score=60.3
-[11:48:23.591] INFO  [life]   reason: NeedBank urgency 0.38 x 240 = 90.3
-[11:48:23.591] INFO  [life]   reason: on_hand=1090 (total 10904) reserve=150 carry=650 spare=440 risk=0.17
-[11:48:23.591] INFO  [life]   reason: no bank learned yet -30
-[11:48:23.591] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 136s after achieving nothing
-[11:48:23.591] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 76s after achieving nothing
-[11:48:23.591] INFO  [life] bank: nothing proven yet -- trying what common knowledge says is nearest, Skara Brae banker at 587,2146 (3083 tiles)
-[11:48:23.591] INFO  [g_Dorvar] [travel] seeded_bank -> (587,2146) r=5 from (3670,2289)
-[11:48:23.591] LOG   [g_Dorvar] event travel_start: label='seeded_bank' target=(587,2146) radius=5 from=(3670,2289)
-[11:48:23.591] INFO  [g_Dorvar] [travel] mode moongate         usable   <- chosen
-[11:48:23.591] INFO  [g_Dorvar] [travel] mode walk             usable
-[11:48:23.591] INFO  [g_Dorvar] [travel] mode loose_rune_recall no: no rune marked at that destination
-[11:48:23.591] INFO  [g_Dorvar] [travel] mode runebook_recall  no: no runebook page for that destination
-[11:48:23.591] LOG   [g_Dorvar] event travel_mode: moongate
-[11:48:23.592] INFO  [g_Dorvar] [travel] plan seeded_bank: ok legs=10 ~448 tiles transit=1 nodes=1073
-[11:48:23.652] INFO  [g_Dorvar] [action] goto finished at (3670,2289,-2); target (3672,2287); stopped short (off by 4 tile(s))
-[11:48:23.652] LOG   [g_Dorvar] event goto_done: at=(3670,2289) target=(3672,2287) arrived=0 off=4
-[11:48:23.652] INFO  [g_Dorvar] [action] goto (3672,2264) from (3670,2289,-2)
-[11:48:23.652] LOG   [g_Dorvar] event goto_start: target=(3672,2264) from=(3670,2289)
-[11:48:23.652] INFO  [g_Dorvar] [bot] running from (3670,2289,-2) to (3672,2264)
-[11:48:23.652] INFO  [g_Dorvar] [bot] planning path to (3672,2264) in background
-[11:48:23.714] INFO  [g_Dorvar] [bot] planning path to (3670,2270) in background
-[11:48:24.327] INFO  [g_Dorvar] [action] goto finished at (3670,2289,-2); target (3672,2264); stopped short (off by 27 tile(s))
-[11:48:24.327] LOG   [g_Dorvar] event goto_done: at=(3670,2289) target=(3672,2264) arrived=0 off=27
-[11:48:25.552] INFO  [g_Dorvar] [action] goto (3672,2264) from (3670,2289,-2)
-[11:48:25.552] LOG   [g_Dorvar] event goto_start: target=(3672,2264) from=(3670,2289)
-[11:48:25.552] INFO  [g_Dorvar] [bot] running from (3670,2289,-2) to (3672,2264)
-[11:48:25.552] INFO  [g_Dorvar] [bot] planning path to (3672,2264) in background
-[11:48:25.612] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:48:25.612] INFO  [g_Dorvar] [bot] planning path to (3670,2270) in background
-[11:48:26.223] INFO  [g_Dorvar] [action] goto finished at (3670,2289,-2); target (3672,2264); stopped short (off by 27 tile(s))
-[11:48:26.223] LOG   [g_Dorvar] event goto_done: at=(3670,2289) target=(3672,2264) arrived=0 off=27
-[11:48:27.449] INFO  [g_Dorvar] [action] goto (3672,2264) from (3670,2289,-2)
-[11:48:27.449] LOG   [g_Dorvar] event goto_start: target=(3672,2264) from=(3670,2289)
-[11:48:27.449] INFO  [g_Dorvar] [bot] running from (3670,2289,-2) to (3672,2264)
-[11:48:27.449] INFO  [g_Dorvar] [bot] planning path to (3672,2264) in background
-[11:48:27.509] INFO  [g_Dorvar] [bot] planning path to (3670,2270) in background
-[11:48:28.124] INFO  [g_Dorvar] [action] goto finished at (3670,2289,-2); target (3672,2264); stopped short (off by 27 tile(s))
-[11:48:28.124] LOG   [g_Dorvar] event goto_done: at=(3670,2289) target=(3672,2264) arrived=0 off=27
-[11:48:29.355] INFO  [g_Dorvar] [travel] mode moongate         usable   <- chosen
-[11:48:29.355] INFO  [g_Dorvar] [travel] mode walk             usable
-[11:48:29.355] INFO  [g_Dorvar] [travel] mode loose_rune_recall no: no rune marked at that destination
-[11:48:29.355] INFO  [g_Dorvar] [travel] mode runebook_recall  no: no runebook page for that destination
-[11:48:29.355] LOG   [g_Dorvar] event travel_mode: moongate
-[11:48:29.355] INFO  [g_Dorvar] [travel] plan seeded_bank: ok legs=10 ~448 tiles transit=1 nodes=1082
-[11:48:30.644] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:48:30.890] INFO  [g_Dorvar] [action] goto (3658,2256) from (3670,2289,-2)
-[11:48:30.890] LOG   [g_Dorvar] event goto_start: target=(3658,2256) from=(3670,2289)
-[11:48:30.890] INFO  [g_Dorvar] [bot] running from (3670,2289,-2) to (3658,2256)
-[11:48:30.890] INFO  [g_Dorvar] [bot] planning path to (3658,2256) in background
-[11:48:30.951] INFO  [g_Dorvar] [bot] replan to (3658,2256): 63 steps in 13324.6us
-[11:48:35.687] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:48:37.099] INFO  [g_Dorvar] [bot] lookahead patched around block at step 4: anchor=5 new segment=7 path=45 in 167.9us
-[11:48:37.343] INFO  [g_Dorvar] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=44 in 240.7us
-[11:48:40.693] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:48:40.909] INFO  [g_Dorvar] [chat ascii] Jun: Aye?
-[11:48:42.568] INFO  [g_Dorvar] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=27 in 94.7us
-[11:48:45.697] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:48:50.603] INFO  [g_Dorvar] [bot] arrived at (3658,2256,20)
-[11:48:50.603] INFO  [g_Dorvar] [action] goto finished at (3658,2256,20); target (3658,2256); ARRIVED (off by 0 tile(s))
-[11:48:50.603] LOG   [g_Dorvar] event goto_done: at=(3658,2256) target=(3658,2256) arrived=1 off=0
-[11:48:50.603] INFO  [g_Dorvar] [action] goto (3640,2216) from (3658,2256,20)
-[11:48:50.603] LOG   [g_Dorvar] event goto_start: target=(3640,2216) from=(3658,2256)
-[11:48:50.603] INFO  [g_Dorvar] [bot] running from (3658,2256,20) to (3640,2216)
-[11:48:50.603] INFO  [g_Dorvar] [bot] planning path to (3640,2216) in background
-[11:48:50.665] INFO  [g_Dorvar] [bot] replan to (3640,2216): 45 steps in 2277.4us
-[11:48:50.727] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:48:55.771] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:49:00.815] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:49:01.199] INFO  [g_Dorvar] [chat ascii] System: You have left the protection of the town guards
-[11:49:05.867] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:49:06.069] INFO  [g_Dorvar] [bot] arrived at (3640,2216,20)
-[11:49:06.069] INFO  [g_Dorvar] [action] goto finished at (3640,2216,20); target (3640,2216); ARRIVED (off by 0 tile(s))
-[11:49:06.069] LOG   [g_Dorvar] event goto_done: at=(3640,2216) target=(3640,2216) arrived=1 off=0
-[11:49:06.069] INFO  [g_Dorvar] [action] goto (3610,2180) from (3640,2216,20)
-[11:49:06.069] LOG   [g_Dorvar] event goto_start: target=(3610,2180) from=(3640,2216)
-[11:49:06.069] INFO  [g_Dorvar] [bot] running from (3640,2216,20) to (3610,2180)
-[11:49:06.069] INFO  [g_Dorvar] [bot] planning path to (3610,2180) in background
-[11:49:06.130] INFO  [g_Dorvar] [bot] replan to (3610,2180): 46 steps in 10697.0us
-[11:49:10.916] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:49:15.932] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:49:16.810] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_18.dorvar/state.json
-[11:49:20.940] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:49:22.488] INFO  [g_Dorvar] [bot] arrived at (3610,2180,25)
-[11:49:22.488] INFO  [g_Dorvar] [action] goto finished at (3610,2180,25); target (3610,2180); ARRIVED (off by 0 tile(s))
-[11:49:22.488] LOG   [g_Dorvar] event goto_done: at=(3610,2180) target=(3610,2180) arrived=1 off=0
-[11:49:22.488] INFO  [g_Dorvar] [action] goto (3576,2152) from (3610,2180,25)
-[11:49:22.488] LOG   [g_Dorvar] event goto_start: target=(3576,2152) from=(3610,2180)
-[11:49:22.488] INFO  [g_Dorvar] [bot] running from (3610,2180,25) to (3576,2152)
-[11:49:22.488] INFO  [g_Dorvar] [bot] planning path to (3576,2152) in background
-[11:49:22.548] INFO  [g_Dorvar] [bot] replan to (3576,2152): 45 steps in 6356.3us
-[11:49:25.967] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:49:30.978] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:49:33.474] INFO  [g_Dorvar] [bot] step (3593,2161,48)->(3592,2160,51) rejected; OpenDoor + retry
-[11:49:34.227] INFO  [g_Dorvar] [bot] step (3593,2161,48)->(3592,2160,51) rejected; avoiding edge + rerouting
-[11:49:34.227] INFO  [g_Dorvar] [bot] planning path to (3576,2152) in background
-[11:49:34.288] INFO  [g_Dorvar] [bot] replan to (3576,2152): 19 steps in 578.2us
-[11:49:34.748] INFO  [g_Dorvar] [bot] step (3593,2161,48)->(3593,2160,52) rejected; OpenDoor + retry
-[11:49:35.484] INFO  [g_Dorvar] [bot] step (3593,2161,48)->(3593,2160,52) rejected; avoiding edge + rerouting
-[11:49:35.484] INFO  [g_Dorvar] [bot] planning path to (3576,2152) in background
-[11:49:35.545] INFO  [g_Dorvar] [bot] replan to (3576,2152): 19 steps in 1135.1us
-[11:49:35.993] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:49:40.995] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:49:42.111] INFO  [g_Dorvar] [bot] arrived at (3576,2152,46)
-[11:49:42.111] INFO  [g_Dorvar] [action] goto finished at (3576,2152,46); target (3576,2152); ARRIVED (off by 0 tile(s))
-[11:49:42.111] LOG   [g_Dorvar] event goto_done: at=(3576,2152) target=(3576,2152) arrived=1 off=0
-[11:49:42.111] INFO  [g_Dorvar] [action] goto (3560,2136) from (3576,2152,46)
-[11:49:42.111] LOG   [g_Dorvar] event goto_start: target=(3560,2136) from=(3576,2152)
-[11:49:42.111] INFO  [g_Dorvar] [bot] running from (3576,2152,46) to (3560,2136)
-[11:49:42.111] INFO  [g_Dorvar] [bot] planning path to (3560,2136) in background
-[11:49:42.173] INFO  [g_Dorvar] [bot] replan to (3560,2136): 19 steps in 356.7us
-[11:49:46.016] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:49:47.796] INFO  [g_Dorvar] [gump] 0x4000289E context=0x80A0041C: 13 option(s), 15 text(s)
-[11:49:47.796] INFO  [g_Dorvar] [gump]   button 1000 = 'OKAY'
-[11:49:47.796] INFO  [g_Dorvar] [gump]   button 0 = 'CANCEL'
-[11:49:47.796] INFO  [g_Dorvar] [gump]   button 1 = 'Felucca'
-[11:49:47.796] INFO  [g_Dorvar] [gump]   choice 1 = 'Moonglow'
-[11:49:47.796] INFO  [g_Dorvar] [gump]   choice 2 = 'Britain'
-[11:49:47.796] INFO  [g_Dorvar] [gump]   choice 3 = 'Jhelom'
-[11:49:47.796] INFO  [g_Dorvar] [gump]   choice 4 = 'Yew'
-[11:49:47.796] INFO  [g_Dorvar] [gump]   choice 5 = 'New Magincia'
-[11:49:47.796] INFO  [g_Dorvar] [gump]   choice 6 = 'Minoc'
-[11:49:47.796] INFO  [g_Dorvar] [gump]   choice 7 = 'Trinsic'
-[11:49:47.796] INFO  [g_Dorvar] [gump]   choice 8 = 'Skara Brae'
-[11:49:47.796] INFO  [g_Dorvar] [gump]   choice 9 = 'Buccaneer's Den'
-[11:49:47.796] INFO  [g_Dorvar] [gump]   choice 10 = 'Ocllo (Newplayers)'
-[11:49:47.797] INFO  [g_Dorvar] [gump]   text 0 = 'Pick your destination:'
-[11:49:47.797] INFO  [g_Dorvar] [gump]   text 1 = 'OKAY'
-[11:49:47.797] INFO  [g_Dorvar] [gump]   text 2 = 'CANCEL'
-[11:49:47.797] INFO  [g_Dorvar] [gump]   text 3 = 'Felucca'
-[11:49:47.797] INFO  [g_Dorvar] [gump]   text 4 = 'Felucca'
-[11:49:47.797] INFO  [g_Dorvar] [gump]   text 5 = 'Moonglow'
-[11:49:47.797] INFO  [g_Dorvar] [gump]   text 6 = 'Britain'
-[11:49:47.797] INFO  [g_Dorvar] [gump]   text 7 = 'Jhelom'
-[11:49:47.797] INFO  [g_Dorvar] [gump]   text 8 = 'Yew'
-[11:49:47.797] INFO  [g_Dorvar] [gump]   text 9 = 'New Magincia'
-[11:49:47.797] INFO  [g_Dorvar] [gump]   text 10 = 'Minoc'
-[11:49:47.797] INFO  [g_Dorvar] [gump]   text 11 = 'Trinsic'
-[11:49:47.797] INFO  [g_Dorvar] [gump]   text 12 = 'Skara Brae'
-[11:49:47.797] INFO  [g_Dorvar] [gump]   text 13 = 'Buccaneer's Den'
-[11:49:47.797] INFO  [g_Dorvar] [gump]   text 14 = 'Ocllo (Newplayers)'
-[11:49:47.797] LOG   [g_Dorvar] event gump_open: serial=0x4000289E context=0x80A0041C options=13
-[11:49:48.996] INFO  [g_Dorvar] [bot] arrived at (3560,2136,22)
-[11:49:48.997] INFO  [g_Dorvar] [action] goto finished at (3560,2136,22); target (3560,2136); ARRIVED (off by 0 tile(s))
-[11:49:48.997] LOG   [g_Dorvar] event goto_done: at=(3560,2136) target=(3560,2136) arrived=1 off=0
-[11:49:48.997] INFO  [g_Dorvar] [travel] pre-armed moongate destination 'Skara Brae' while approaching
-[11:49:48.997] INFO  [g_Dorvar] [action] goto (3564,2140) from (3560,2136,22)
-[11:49:48.997] LOG   [g_Dorvar] event goto_start: target=(3564,2140) from=(3560,2136)
-[11:49:48.997] INFO  [g_Dorvar] [bot] running from (3560,2136,22) to (3564,2140)
-[11:49:48.997] INFO  [g_Dorvar] [bot] planning path to (3564,2140) in background
-[11:49:49.057] INFO  [g_Dorvar] [bot] replan to (3564,2140): 4 steps in 81.5us
-[11:49:50.376] INFO  [g_Dorvar] [bot] arrived at (3564,2140,34)
-[11:49:50.377] INFO  [g_Dorvar] [action] goto finished at (3564,2140,34); target (3564,2140); ARRIVED (off by 0 tile(s))
-[11:49:50.377] LOG   [g_Dorvar] event goto_done: at=(3564,2140) target=(3564,2140) arrived=1 off=0
-[11:49:50.377] INFO  [g_Dorvar] [travel] using moongate 0x4000289E for 'Skara Brae' (gump active=0 serial=0x00000000)
-[11:49:51.050] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:49:56.062] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:49:59.925] INFO  [g_Dorvar] [travel] using moongate 0x4000289E for 'Skara Brae' (gump active=0 serial=0x00000000)
-[11:50:01.118] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:50:06.143] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:50:09.447] INFO  [g_Dorvar] [travel] using moongate 0x4000289E for 'Skara Brae' (gump active=0 serial=0x00000000)
-[11:50:11.184] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:50:16.190] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:50:16.811] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_18.dorvar/state.json
-[11:50:19.056] INFO  [g_Dorvar] [travel] mode moongate         usable   <- chosen
-[11:50:19.056] INFO  [g_Dorvar] [travel] mode walk             usable
-[11:50:19.056] INFO  [g_Dorvar] [travel] mode loose_rune_recall no: no rune marked at that destination
-[11:50:19.056] INFO  [g_Dorvar] [travel] mode runebook_recall  no: no runebook page for that destination
-[11:50:19.056] LOG   [g_Dorvar] event travel_mode: moongate
-[11:50:19.056] INFO  [g_Dorvar] [travel] plan seeded_bank: ok legs=4 ~232 tiles transit=1 nodes=1078
-[11:50:21.204] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:50:22.107] INFO  [g_Dorvar] [travel] using moongate 0x4000289E for 'Skara Brae' (gump active=0 serial=0x00000000)
-[11:50:26.249] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:50:31.259] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:50:31.444] INFO  [g_Dorvar] [travel] using moongate 0x4000289E for 'Skara Brae' (gump active=0 serial=0x00000000)
-[11:50:36.294] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:50:40.535] INFO  [life] goal_changed=GET_FOOD from=BANK reason="GET_FOOD 112.5 superseded BANK 60.3"
-[11:50:40.535] INFO  [life] needs considered: NeedFood(food 0.45) NeedCatch(fish 0.45) NeedSupplies(buy craft inputs 0.44) NeedBank(deposit surplus gold 0.38) NeedTravel(a place where work is possible 0.20)  | tools defined=2 held=[fishing pole,rolling pin,] want_train=nothing (target 0.0)
-[11:50:40.535] INFO  [life]   score=112.5
-[11:50:40.535] INFO  [life]   reason: NeedFood urgency 0.45 x 250 = 112.5
-[11:50:40.535] INFO  [life]   reason: food=0 hungry=1
-[11:50:41.024] INFO  [g_Dorvar] [travel] using moongate 0x4000289E for 'Skara Brae' (gump active=0 serial=0x00000000)
-[11:50:41.318] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:50:46.347] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:50:50.503] INFO  [g_Dorvar] [travel] mode moongate         usable   <- chosen
-[11:50:50.503] INFO  [g_Dorvar] [travel] mode walk             usable
-[11:50:50.503] INFO  [g_Dorvar] [travel] mode loose_rune_recall no: no rune marked at that destination
-[11:50:50.503] INFO  [g_Dorvar] [travel] mode runebook_recall  no: no runebook page for that destination
-[11:50:50.503] LOG   [g_Dorvar] event travel_mode: moongate
-[11:50:50.503] INFO  [g_Dorvar] [travel] plan seeded_bank: ok legs=4 ~232 tiles transit=1 nodes=1078
-[11:50:51.396] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:50:55.042] INFO  [g_Dorvar] [travel] using moongate 0x4000289E for 'Skara Brae' (gump active=0 serial=0x00000000)
-[11:50:56.418] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:51:01.439] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:51:04.332] INFO  [g_Dorvar] [travel] using moongate 0x4000289E for 'Skara Brae' (gump active=0 serial=0x00000000)
-[11:51:06.483] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:51:11.500] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:51:13.958] INFO  [g_Dorvar] [travel] using moongate 0x4000289E for 'Skara Brae' (gump active=0 serial=0x00000000)
-[11:51:16.561] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:51:16.811] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_18.dorvar/state.json
-[11:51:21.619] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:51:22.478] LOG   [g_Dorvar] event travel_escape: from=(3564,2140,34) to=(3576,2136) attempt=1
-[11:51:22.478] INFO  [g_Dorvar] [action] goto (3576,2136) from (3564,2140,34)
-[11:51:22.478] LOG   [g_Dorvar] event goto_start: target=(3576,2136) from=(3564,2140)
-[11:51:22.478] INFO  [g_Dorvar] [bot] running from (3564,2140,34) to (3576,2136,z41)
-[11:51:22.478] INFO  [g_Dorvar] [bot] planning path to (3576,2136) in background
-[11:51:22.539] INFO  [g_Dorvar] [bot] replan to (3576,2136): 12 steps in 232.7us
-[11:51:26.653] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:51:26.728] INFO  [g_Dorvar] [bot] arrived at (3576,2136,41)
-[11:51:26.729] INFO  [g_Dorvar] [action] goto finished at (3576,2136,41); target (3576,2136); ARRIVED (off by 0 tile(s))
-[11:51:26.729] LOG   [g_Dorvar] event goto_done: at=(3576,2136) target=(3576,2136) arrived=1 off=0
-[11:51:26.729] INFO  [g_Dorvar] [travel] recovery walk reached its anchor at (3576,2136,41) (off 0); attempt 1/3
-[11:51:26.729] LOG   [g_Dorvar] event travel_recovery_done: reached=1 at=(3576,2136,41) off=0 attempt=1
-[11:51:26.789] INFO  [g_Dorvar] [travel] mode moongate         usable   <- chosen
-[11:51:26.789] INFO  [g_Dorvar] [travel] mode walk             usable
-[11:51:26.789] INFO  [g_Dorvar] [travel] mode loose_rune_recall no: no rune marked at that destination
-[11:51:26.789] INFO  [g_Dorvar] [travel] mode runebook_recall  no: no runebook page for that destination
-[11:51:26.789] LOG   [g_Dorvar] event travel_mode: moongate
-[11:51:26.789] INFO  [g_Dorvar] [travel] plan seeded_bank: ok legs=6 ~248 tiles transit=1 nodes=1131
-[11:51:26.850] INFO  [g_Dorvar] [action] goto (3560,2136) from (3576,2136,41)
-[11:51:26.850] LOG   [g_Dorvar] event goto_start: target=(3560,2136) from=(3576,2136)
-[11:51:26.850] INFO  [g_Dorvar] [bot] running from (3576,2136,41) to (3560,2136)
-[11:51:26.850] INFO  [g_Dorvar] [bot] planning path to (3560,2136) in background
-[11:51:26.911] INFO  [g_Dorvar] [bot] replan to (3560,2136): 16 steps in 152.5us
-[11:51:31.709] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:51:31.907] INFO  [g_Dorvar] [bot] arrived at (3560,2136,22)
-[11:51:31.907] INFO  [g_Dorvar] [action] goto finished at (3560,2136,22); target (3560,2136); ARRIVED (off by 0 tile(s))
-[11:51:31.907] LOG   [g_Dorvar] event goto_done: at=(3560,2136) target=(3560,2136) arrived=1 off=0
-[11:51:31.907] INFO  [g_Dorvar] [travel] pre-armed moongate destination 'Skara Brae' while approaching
-[11:51:31.907] INFO  [g_Dorvar] [action] goto (3564,2140) from (3560,2136,22)
-[11:51:31.907] LOG   [g_Dorvar] event goto_start: target=(3564,2140) from=(3560,2136)
-[11:51:31.907] INFO  [g_Dorvar] [bot] running from (3560,2136,22) to (3564,2140)
-[11:51:31.907] INFO  [g_Dorvar] [bot] planning path to (3564,2140) in background
-[11:51:31.967] INFO  [g_Dorvar] [bot] replan to (3564,2140): 4 steps in 92.0us
-[11:51:33.322] INFO  [g_Dorvar] [bot] arrived at (3564,2140,34)
-[11:51:33.323] INFO  [g_Dorvar] [action] goto finished at (3564,2140,34); target (3564,2140); ARRIVED (off by 0 tile(s))
-[11:51:33.323] LOG   [g_Dorvar] event goto_done: at=(3564,2140) target=(3564,2140) arrived=1 off=0
-[11:51:33.323] INFO  [g_Dorvar] [travel] using moongate 0x4000289E for 'Skara Brae' (gump active=0 serial=0x00000000)
-[11:51:36.757] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:51:41.794] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:51:42.654] INFO  [g_Dorvar] [travel] using moongate 0x4000289E for 'Skara Brae' (gump active=0 serial=0x00000000)
-[11:51:46.807] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:51:51.819] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:51:52.063] INFO  [g_Dorvar] [travel] using moongate 0x4000289E for 'Skara Brae' (gump active=0 serial=0x00000000)
-[11:51:56.871] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:52:01.847] INFO  [g_Dorvar] [travel] mode moongate         usable   <- chosen
-[11:52:01.847] INFO  [g_Dorvar] [travel] mode walk             usable
-[11:52:01.847] INFO  [g_Dorvar] [travel] mode loose_rune_recall no: no rune marked at that destination
-[11:52:01.847] INFO  [g_Dorvar] [travel] mode runebook_recall  no: no runebook page for that destination
-[11:52:01.847] LOG   [g_Dorvar] event travel_mode: moongate
-[11:52:01.847] INFO  [g_Dorvar] [travel] plan seeded_bank: ok legs=4 ~232 tiles transit=1 nodes=1078
-[11:52:01.909] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:52:03.380] INFO  [g_Dorvar] [travel] using moongate 0x4000289E for 'Skara Brae' (gump active=0 serial=0x00000000)
-[11:52:06.960] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:52:11.985] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:52:12.718] INFO  [g_Dorvar] [travel] using moongate 0x4000289E for 'Skara Brae' (gump active=0 serial=0x00000000)
-[11:52:16.815] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_18.dorvar/state.json
-[11:52:16.998] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:52:17.609] INFO  [life] session_end_requested reason="session time limit reached"
-[11:52:21.929] INFO  [g_Dorvar] [travel] using moongate 0x4000289E for 'Skara Brae' (gump active=0 serial=0x00000000)
-[11:52:22.006] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:52:27.046] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:52:31.189] INFO  [g_Dorvar] [travel] mode moongate         usable   <- chosen
-[11:52:31.189] INFO  [g_Dorvar] [travel] mode walk             usable
-[11:52:31.190] INFO  [g_Dorvar] [travel] mode loose_rune_recall no: no rune marked at that destination
-[11:52:31.190] INFO  [g_Dorvar] [travel] mode runebook_recall  no: no runebook page for that destination
-[11:52:31.190] LOG   [g_Dorvar] event travel_mode: moongate
-[11:52:31.190] INFO  [g_Dorvar] [travel] plan seeded_bank: ok legs=4 ~232 tiles transit=1 nodes=1078
-[11:52:32.055] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:52:32.825] INFO  [g_Dorvar] [chat ascii] System: Ithion has departed from Skara Brae.
-[11:52:34.248] INFO  [g_Dorvar] [travel] using moongate 0x4000289E for 'Skara Brae' (gump active=0 serial=0x00000000)
-[11:52:37.069] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:52:40.647] INFO  [g_Dorvar] [chat ascii] System: World save in 10 seconds
-[11:52:42.120] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:52:43.668] INFO  [g_Dorvar] [travel] using moongate 0x4000289E for 'Skara Brae' (gump active=0 serial=0x00000000)
-[11:52:47.134] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:52:50.668] INFO  [g_Dorvar] [chat ascii] System: World save has been initiated.
-[11:52:52.141] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:52:53.419] INFO  [g_Dorvar] [travel] using moongate 0x4000289E for 'Skara Brae' (gump active=0 serial=0x00000000)
-[11:52:57.152] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:53:02.167] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:53:03.131] INFO  [g_Dorvar] [travel] mode moongate         usable   <- chosen
-[11:53:03.131] INFO  [g_Dorvar] [travel] mode walk             usable
-[11:53:03.131] INFO  [g_Dorvar] [travel] mode loose_rune_recall no: no rune marked at that destination
-[11:53:03.131] INFO  [g_Dorvar] [travel] mode runebook_recall  no: no runebook page for that destination
-[11:53:03.131] LOG   [g_Dorvar] event travel_mode: moongate
-[11:53:03.132] INFO  [g_Dorvar] [travel] plan seeded_bank: ok legs=4 ~232 tiles transit=1 nodes=1078
-[11:53:07.228] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:53:07.661] INFO  [g_Dorvar] [travel] using moongate 0x4000289E for 'Skara Brae' (gump active=0 serial=0x00000000)
-[11:53:12.286] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:53:17.254] INFO  [g_Dorvar] [travel] using moongate 0x4000289E for 'Skara Brae' (gump active=0 serial=0x00000000)
-[11:53:17.315] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:53:22.339] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:53:26.910] INFO  [g_Dorvar] [travel] using moongate 0x4000289E for 'Skara Brae' (gump active=0 serial=0x00000000)
-[11:53:27.399] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:53:32.436] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:53:35.371] LOG   [g_Dorvar] event travel_escape: from=(3564,2140,34) to=(3560,2152) attempt=2
-[11:53:35.371] INFO  [g_Dorvar] [action] goto (3560,2152) from (3564,2140,34)
-[11:53:35.371] LOG   [g_Dorvar] event goto_start: target=(3560,2152) from=(3564,2140)
-[11:53:35.371] INFO  [g_Dorvar] [bot] running from (3564,2140,34) to (3560,2152,z27)
-[11:53:35.371] INFO  [g_Dorvar] [bot] planning path to (3560,2152) in background
-[11:53:35.433] INFO  [g_Dorvar] [bot] replan to (3560,2152): 12 steps in 304.5us
-[11:53:37.477] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:53:39.873] INFO  [g_Dorvar] [bot] arrived at (3560,2152,27)
-[11:53:39.873] INFO  [g_Dorvar] [action] goto finished at (3560,2152,27); target (3560,2152); ARRIVED (off by 0 tile(s))
-[11:53:39.873] LOG   [g_Dorvar] event goto_done: at=(3560,2152) target=(3560,2152) arrived=1 off=0
-[11:53:39.873] INFO  [g_Dorvar] [travel] recovery walk reached its anchor at (3560,2152,27) (off 0); attempt 2/3
-[11:53:39.874] LOG   [g_Dorvar] event travel_recovery_done: reached=1 at=(3560,2152,27) off=0 attempt=2
-[11:53:39.935] INFO  [g_Dorvar] [travel] mode moongate         usable   <- chosen
-[11:53:39.935] INFO  [g_Dorvar] [travel] mode walk             usable
-[11:53:39.935] INFO  [g_Dorvar] [travel] mode loose_rune_recall no: no rune marked at that destination
-[11:53:39.935] INFO  [g_Dorvar] [travel] mode runebook_recall  no: no runebook page for that destination
-[11:53:39.935] LOG   [g_Dorvar] event travel_mode: moongate
-[11:53:39.935] INFO  [g_Dorvar] [travel] plan seeded_bank: ok legs=6 ~248 tiles transit=1 nodes=1023
-[11:53:39.996] INFO  [g_Dorvar] [action] goto (3560,2136) from (3560,2152,27)
-[11:53:39.996] LOG   [g_Dorvar] event goto_start: target=(3560,2136) from=(3560,2152)
-[11:53:39.996] INFO  [g_Dorvar] [bot] running from (3560,2152,27) to (3560,2136)
-[11:53:39.996] INFO  [g_Dorvar] [bot] planning path to (3560,2136) in background
-[11:53:40.057] INFO  [g_Dorvar] [bot] replan to (3560,2136): 16 steps in 259.2us
-[11:53:42.534] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:53:45.491] INFO  [g_Dorvar] [bot] arrived at (3560,2136,22)
-[11:53:45.491] INFO  [g_Dorvar] [action] goto finished at (3560,2136,22); target (3560,2136); ARRIVED (off by 0 tile(s))
-[11:53:45.491] LOG   [g_Dorvar] event goto_done: at=(3560,2136) target=(3560,2136) arrived=1 off=0
-[11:53:45.491] INFO  [g_Dorvar] [travel] pre-armed moongate destination 'Skara Brae' while approaching
-[11:53:45.491] INFO  [g_Dorvar] [action] goto (3564,2140) from (3560,2136,22)
-[11:53:45.491] LOG   [g_Dorvar] event goto_start: target=(3564,2140) from=(3560,2136)
-[11:53:45.491] INFO  [g_Dorvar] [bot] running from (3560,2136,22) to (3564,2140)
-[11:53:45.491] INFO  [g_Dorvar] [bot] planning path to (3564,2140) in background
-[11:53:45.552] INFO  [g_Dorvar] [bot] replan to (3564,2140): 4 steps in 126.1us
-[11:53:46.839] INFO  [g_Dorvar] [bot] arrived at (3564,2140,34)
-[11:53:46.839] INFO  [g_Dorvar] [action] goto finished at (3564,2140,34); target (3564,2140); ARRIVED (off by 0 tile(s))
-[11:53:46.839] LOG   [g_Dorvar] event goto_done: at=(3564,2140) target=(3564,2140) arrived=1 off=0
-[11:53:46.839] INFO  [g_Dorvar] [travel] using moongate 0x4000289E for 'Skara Brae' (gump active=0 serial=0x00000000)
-[11:53:47.570] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:53:52.614] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:53:56.256] INFO  [g_Dorvar] [travel] using moongate 0x4000289E for 'Skara Brae' (gump active=0 serial=0x00000000)
-[11:53:57.675] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:54:02.721] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:54:05.535] INFO  [g_Dorvar] [travel] using moongate 0x4000289E for 'Skara Brae' (gump active=0 serial=0x00000000)
-[11:54:07.734] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:54:12.793] INFO  [g_Dorvar] [survival] hp 40/40 (100%) -> fight
-[11:54:15.190] INFO  [g_Dorvar] [travel] mode moongate         usable   <- chosen
-[11:54:15.190] INFO  [g_Dorvar] [travel] mode walk             usable
-[11:54:15.190] INFO  [g_Dorvar] [travel] mode loose_rune_recall no: no rune marked at that destination
-[11:54:15.190] INFO  [g_Dorvar] [travel] mode runebook_recall  no: no runebook page for that destination
-[11:54:15.190] LOG   [g_Dorvar] event travel_mode: moongate
-[11:54:15.190] INFO  [g_Dorvar] [travel] plan seeded_bank: ok legs=4 ~232 tiles transit=1 nodes=1078
-[11:54:16.738] INFO  [g_Dorvar] [travel] using moongate 0x4000289E for 'Skara Brae' (gump active=0 serial=0x00000000)
-[11:54:17.612] INFO  [life] wind-down: the trip has run past its deadline (120s, not moving); abandoning it and logging out where I stand
-[11:54:17.612] INFO  [g_Dorvar] [travel] seeded_bank FAILED at (3564,2140,34) -- wind-down deadline
-[11:54:17.612] LOG   [g_Dorvar] event travel_failed: label='seeded_bank' ok=0 at=(3564,2140) legs=4 plans=2 why='wind-down deadline'
-[11:54:17.673] INFO  [life] wind-down: giving up on reaching a safe spot after 0 attempt(s); logging out at 3564,2140 and recording it
-[11:54:17.673] INFO  [life] session_summary duration=420s goals=0/6 gold=10816->10904 skills=103.6->103.6 logs=+0 kills=0 deaths=0 places=8 suppliers=1
-[11:54:17.673] INFO  [life] session_goals families=2 picks=6 top=50% varied=0 self_superseded=0 | upkeep=3(50%) work=3(50%) | BANK=1(17%) EARN_GOLD=1(17%) FISH=1(17%) BUY_SUPPLIES=1(17%) GET_FOOD=2(33%)
-[11:54:17.675] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_18.dorvar/state.json
-[11:54:17.675] INFO  [life] logging out
-[11:54:17.675] INFO  [g_Dorvar] [action] logout requested
-[11:54:17.675] LOG   [g_Dorvar] event logout_requested: 0xD1 sent; awaiting ack, then closing
-[11:54:17.676] INFO  [g_Dorvar] [0xD1] logout acknowledged (accepted=1)
-[11:54:17.676] LOG   [g_Dorvar] event logout_ack: accepted
-[11:54:17.676] INFO  [g_Dorvar] [net] closing connection (logout acknowledged)
-[11:54:17.676] LOG   [g_Dorvar] event logout_complete: acked
+[15:13:37.884] INFO  session 0: 127.0.0.1:2593 user='RevGen3_18' char=Dorvar tag='g_Dorvar'
+[15:13:37.885] LOG   [g_Dorvar] event session_start: text log opened
+[15:13:37.885] LOG   [g_Dorvar] event net_connect_begin: connect 127.0.0.1:2593
+[15:13:37.885] INFO  [g_Dorvar] [net] connecting to 127.0.0.1:2593 ...
+[15:13:37.886] LOG   [g_Dorvar] event net_connected: connect 127.0.0.1:2593
+[15:13:37.886] INFO  [g_Dorvar] [net] connected.
+[15:13:37.886] INFO  [g_Dorvar] [seed] sent 0x7F000001 (plaintext)
+[15:13:37.886] LOG   [g_Dorvar] event seed_out: 0x7F000001 hex=7f000001
+[15:13:37.886] INFO  [life] no prior state for revgen3_18.dorvar: a new Fisher
+[15:13:37.886] INFO  [life] creation request: Fishing 50.0 + Cooking 50.0, stats 50/20/10 = 80
+[15:13:37.886] INFO  [life] needs: reading 'fisher' from the profession catalogue
+[15:13:37.886] INFO  [life] home: Dorvar lives in Skara Brae
+[15:13:37.886] INFO  [life] build plan 'fisher': 150.0 resolved + 550.0 unresolved = 700.0/700.0, stats 80/50/45 = 175
+[15:13:37.886] INFO  [g_Dorvar] [life] autonomous player active for 'Dorvar' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 2 min)
+[15:13:37.888] INFO  [g_Dorvar] [0xA8] 1 server(s):
+[15:13:37.888] INFO  [g_Dorvar]   [0] MyShard                   1.0.0.127  full=7%  tz=0
+[15:13:37.903] INFO  [g_Dorvar] [0x8C] game server = 127.0.0.1:2593  seed=0x0AEFFB97
+[15:13:37.903] LOG   [g_Dorvar] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x0AEFFB97
+[15:13:37.903] INFO  [g_Dorvar] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[15:13:37.903] LOG   [g_Dorvar] event relay_same_socket: no seed re-sent; 0x91 follows
+[15:13:37.903] INFO  [g_Dorvar] [0xB9] server features = 0x0005
+[15:13:37.903] INFO  [g_Dorvar] [0xA9] 5 slot(s) (populated 0):
+[15:13:37.903] INFO  [g_Dorvar]   [0] <empty>
+[15:13:37.903] INFO  [g_Dorvar]   [1] <empty>
+[15:13:37.903] INFO  [g_Dorvar]   [2] <empty>
+[15:13:37.903] INFO  [g_Dorvar]   [3] <empty>
+[15:13:37.903] INFO  [g_Dorvar]   [4] <empty>
+[15:13:37.903] INFO  [g_Dorvar] create: appearance sex=M skin=0x0408 hair=0x2045/0x047C shirt=0x00FB pants=0x0339
+[15:13:37.903] INFO  [g_Dorvar] [0x00] starting city index 7
+[15:13:37.903] INFO  [g_Dorvar] [0x00] requested skills 18:50 13:50 48:0
+[15:13:37.903] INFO  [g_Dorvar] [0x00] requested stats STR 50 DEX 20 INT 10
+[15:13:37.903] INFO  [g_Dorvar] [0x00] creating character 'Dorvar' in slot 0
+[15:13:37.903] LOG   [g_Dorvar] event char_create_sent: Dorvar
+[15:13:37.923] INFO  [g_Dorvar] [0x1B] serial=0x0000EF46 body=0x0190 pos=(618,2234,0)
+[15:13:37.923] LOG   [g_Dorvar] event login_confirm: serial=0x0000EF46 body=0x0190 pos=(618,2234,0)
+[15:13:37.923] INFO  [g_Dorvar] [0x20] player @(618,2234,0) facing=3
+[15:13:37.923] INFO  [g_Dorvar] [0x55] login complete — entering world
+[15:13:37.923] LOG   [g_Dorvar] event in_world: 0x55 received
+[15:13:37.923] INFO  [g_Dorvar] [backpack] opening 0x4000EF44
+[15:13:37.923] INFO  [g_Dorvar] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[15:13:37.923] INFO  [g_Dorvar] [chat ascii] System: There are 17 other players here.
+[15:13:37.923] INFO  [g_Dorvar] [chat ascii] System: You are under the protection of the town guards
+[15:13:37.927] INFO  [g_Dorvar] [action] requesting the skill list
+[15:13:37.927] INFO  [life] in world; asked the server for the skill list
+[15:13:37.935] INFO  [g_Dorvar] [0x24] open container 0x4000EF44 gump=60
+[15:13:37.935] INFO  [g_Dorvar] [0x3C] container contents: 13 item(s)
+[15:13:37.935] LOG   [g_Dorvar] event backpack_contents: serial=0x4000EF44 items=13
+[15:13:40.496] INFO  [g_Dorvar] [bot] world data loaded (0 blacklisted spot(s)).
+[15:13:40.497] INFO  [life] newbie knowledge: 3 place(s) and 3 resource hint(s) seeded near home (Skara Brae) -- everything else is earned
+[15:13:40.497] INFO  [life] reconciliation: first ever login, 7 field(s) differed
+[15:13:40.497] INFO  [life]   gold         persisted=0          server=10000      -> server value accepted
+[15:13:40.497] INFO  [life]   str          persisted=0          server=50         -> server value accepted
+[15:13:40.497] INFO  [life]   dex          persisted=0          server=20         -> server value accepted
+[15:13:40.497] INFO  [life]   int          persisted=0          server=10         -> server value accepted
+[15:13:40.497] INFO  [life]   skill_18     persisted=0.0        server=50.0       -> server value accepted
+[15:13:40.497] INFO  [life]   skill_13     persisted=0.0        server=50.0       -> server value accepted
+[15:13:40.497] INFO  [life]   position     persisted=0,0        server=618,2234   -> server value accepted
+[15:13:40.497] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[15:13:40.497] INFO  [g_Dorvar] [survival] on
+[15:13:40.497] LOG   [g_Dorvar] event survival_mode: on
+[15:13:40.500] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_18.dorvar/state.json
+[15:13:40.500] INFO  [g_Dorvar] [survival] hp 50/50 (100%) -> fight
+[15:13:40.551] INFO  [life] goal=BUY_MOUNT reason="no goal was running"
+[15:13:40.551] INFO  [life] needs considered: NeedMount(riding horse 0.80) NeedBank(deposit surplus gold 0.75) NeedEquipment(heal potions 0.50) NeedCraft(make goods to sell 0.50) NeedCatch(fish 0.45) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20)  | tools defined=2 held=[fishing pole,rolling pin,] want_train=nothing (target 0.0)
+[15:13:40.551] INFO  [life]   score=204.0
+[15:13:40.551] INFO  [life]   reason: NeedMount urgency 0.80 x 255 = 204.0
+[15:13:40.551] INFO  [life]   reason: gold 10000 reserve 150 price<=500 stood_down=0 last_fail_session=-1 session=1
+[15:13:40.551] INFO  [life] mount: looking for an animal trainer to sell a horse
+[15:13:40.571] INFO  [g_Dorvar] [travel] place: skipping Delucia animaltrainer -- 1740 tiles and 4 gates for a service Skara Brae animaltrainer offers
+[15:13:40.571] INFO  [g_Dorvar] [travel] Skara Brae animaltrainer -> (570,2121) r=5 from (618,2234)
+[15:13:40.571] LOG   [g_Dorvar] event travel_start: label='Skara Brae animaltrainer' target=(570,2121) radius=5 from=(618,2234)
+[15:13:40.571] INFO  [g_Dorvar] [travel] mode moongate         usable   <- chosen
+[15:13:40.571] INFO  [g_Dorvar] [travel] mode walk             usable
+[15:13:40.571] INFO  [g_Dorvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:13:40.571] INFO  [g_Dorvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:13:40.571] LOG   [g_Dorvar] event travel_mode: moongate
+[15:13:40.571] INFO  [g_Dorvar] [travel] plan Skara Brae animaltrainer: ok legs=4 ~152 tiles transit=0 nodes=87
+[15:13:40.628] INFO  [life] goal_blocked=BUY_MOUNT reason="not enough session left for the trip" tiles=152 left=117s need=165s
+[15:13:40.628] INFO  [g_Dorvar] [travel] Skara Brae animaltrainer FAILED at (618,2234,0) -- not enough session left for the trip
+[15:13:40.628] LOG   [g_Dorvar] event travel_failed: label='Skara Brae animaltrainer' ok=0 at=(618,2234) legs=4 plans=1 why='not enough session left for the trip'
+[15:13:40.689] INFO  [life] mount: the horse errand stood itself down -- noting it for the next few sessions rather than starting over at the next login
+[15:13:40.689] INFO  [life] goal=BANK reason="previous goal abandoned: not enough session left for the trip"
+[15:13:40.689] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedEquipment(heal potions 0.50) NeedCraft(make goods to sell 0.50) NeedCatch(fish 0.45) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20) NeedMount(riding horse BLOCKED 0.00)  | tools defined=2 held=[fishing pole,rolling pin,] want_train=nothing (target 0.0)
+[15:13:40.690] INFO  [life]   score=150.0
+[15:13:40.690] INFO  [life]   reason: NeedBank urgency 0.75 x 240 = 180.0
+[15:13:40.690] INFO  [life]   reason: on_hand=10000 (total 10000) reserve=150 carry=650 spare=9350 risk=1.00
+[15:13:40.690] INFO  [life]   reason: no bank learned yet -30
+[15:13:40.690] INFO  [life]   BLOCKED_NEED BUY_MOUNT: on cooldown for another 599s after achieving nothing
+[15:13:40.690] INFO  [life] bank: nothing proven yet -- trying what common knowledge says is nearest, Skara Brae banker at 587,2146 (88 tiles)
+[15:13:40.690] INFO  [g_Dorvar] [travel] seeded_bank -> (587,2146) r=5 from (618,2234)
+[15:13:40.690] LOG   [g_Dorvar] event travel_start: label='seeded_bank' target=(587,2146) radius=5 from=(618,2234)
+[15:13:40.690] INFO  [g_Dorvar] [travel] mode moongate         usable   <- chosen
+[15:13:40.690] INFO  [g_Dorvar] [travel] mode walk             usable
+[15:13:40.690] INFO  [g_Dorvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:13:40.690] INFO  [g_Dorvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:13:40.690] LOG   [g_Dorvar] event travel_mode: moongate
+[15:13:40.690] INFO  [g_Dorvar] [travel] plan seeded_bank: ok legs=3 ~112 tiles transit=0 nodes=66
+[15:13:40.750] INFO  [g_Dorvar] [action] goto (632,2200) from (618,2234,0)
+[15:13:40.750] LOG   [g_Dorvar] event goto_start: target=(632,2200) from=(618,2234)
+[15:13:40.750] INFO  [g_Dorvar] [bot] running from (618,2234,0) to (632,2200)
+[15:13:40.750] INFO  [g_Dorvar] [bot] planning path to (632,2200) in background
+[15:13:40.811] INFO  [g_Dorvar] [bot] replan to (632,2200): 41 steps in 2908.3us
+[15:13:40.952] INFO  [g_Dorvar] [chat ascii] System: Ithion has arrived in Skara Brae.
+[15:13:43.988] INFO  [g_Dorvar] [chat ascii] System: Odessa has arrived in Britain.
+[15:13:45.527] INFO  [g_Dorvar] [survival] hp 50/50 (100%) -> fight
+[15:13:47.012] INFO  [g_Dorvar] [chat ascii] System: Serena has arrived in Britain.
+[15:13:50.023] INFO  [g_Dorvar] [chat ascii] System: Aurelius has arrived in Moonglow.
+[15:13:50.529] INFO  [g_Dorvar] [survival] hp 50/50 (100%) -> fight
+[15:13:51.631] INFO  [g_Dorvar] [bot] arrived at (632,2200,0)
+[15:13:51.631] INFO  [g_Dorvar] [action] goto finished at (632,2200,0); target (632,2200); ARRIVED (off by 0 tile(s))
+[15:13:51.631] LOG   [g_Dorvar] event goto_done: at=(632,2200) target=(632,2200) arrived=1 off=0
+[15:13:51.631] INFO  [g_Dorvar] [action] goto (600,2168) from (632,2200,0)
+[15:13:51.631] LOG   [g_Dorvar] event goto_start: target=(600,2168) from=(632,2200)
+[15:13:51.631] INFO  [g_Dorvar] [bot] running from (632,2200,0) to (600,2168)
+[15:13:51.631] INFO  [g_Dorvar] [bot] planning path to (600,2168) in background
+[15:13:51.692] INFO  [g_Dorvar] [bot] replan to (600,2168): 58 steps in 7302.6us
+[15:13:53.047] INFO  [g_Dorvar] [chat ascii] System: Leander has arrived in Moonglow.
+[15:13:54.365] INFO  [g_Dorvar] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=48 in 153.9us
+[15:13:55.545] INFO  [g_Dorvar] [survival] hp 50/50 (100%) -> fight
+[15:13:56.038] INFO  [g_Dorvar] [chat ascii] System: Illyria has arrived in Britain.
+[15:13:59.055] INFO  [g_Dorvar] [chat ascii] System: Hector has arrived in Trinsic.
+[15:14:00.584] INFO  [g_Dorvar] [survival] hp 50/50 (100%) -> fight
+[15:14:02.059] INFO  [g_Dorvar] [chat ascii] System: Castor has arrived in Trinsic.
+[15:14:05.098] INFO  [g_Dorvar] [chat ascii] System: Faustus has arrived in Britain.
+[15:14:05.614] INFO  [g_Dorvar] [survival] hp 50/50 (100%) -> fight
+[15:14:06.832] INFO  [g_Dorvar] [bot] arrived at (600,2168,0)
+[15:14:06.833] INFO  [g_Dorvar] [action] goto finished at (600,2168,0); target (600,2168); ARRIVED (off by 0 tile(s))
+[15:14:06.833] LOG   [g_Dorvar] event goto_done: at=(600,2168) target=(600,2168) arrived=1 off=0
+[15:14:06.833] INFO  [g_Dorvar] [action] goto (587,2146) from (600,2168,0)
+[15:14:06.833] LOG   [g_Dorvar] event goto_start: target=(587,2146) from=(600,2168)
+[15:14:06.833] INFO  [g_Dorvar] [bot] running from (600,2168,0) to (587,2146)
+[15:14:06.833] INFO  [g_Dorvar] [bot] planning path to (587,2146) in background
+[15:14:06.893] INFO  [g_Dorvar] [bot] replan to (587,2146): 31 steps in 2116.3us
+[15:14:08.138] INFO  [g_Dorvar] [chat ascii] System: Titus has arrived in Skara Brae.
+[15:14:10.645] INFO  [g_Dorvar] [survival] hp 50/50 (100%) -> fight
+[15:14:11.121] INFO  [g_Dorvar] [chat ascii] System: Rhea has arrived in Britain.
+[15:14:11.546] INFO  [g_Dorvar] [chat ascii] System: Draver has departed from Minoc.
+[15:14:12.023] INFO  [g_Dorvar] [bot] door ahead at (597,2151,z0); OpenDoor before step
+[15:14:12.037] INFO  [g_Dorvar] [chat ascii] System: Opening door...
+[15:14:14.148] INFO  [g_Dorvar] [chat ascii] System: Xerxes has arrived in Vesper.
+[15:14:14.465] INFO  [g_Dorvar] [travel] seeded_bank ARRIVED at (592,2150,0)
+[15:14:14.465] LOG   [g_Dorvar] event travel_done: label='seeded_bank' ok=1 at=(592,2150) legs=3 plans=1 why=''
+[15:14:14.524] INFO  [g_Dorvar] [ACTION] open_bank start
+[15:14:14.524] INFO  [g_Dorvar] [ACTION] open_bank banker=0x00000000 say='bank'
+[15:14:14.524] INFO  [life] bank: at the known bank -- saying 'bank' aloud (1 of 3)
+[15:14:14.525] INFO  [g_Dorvar] [chat uni  ] : bank
+[15:14:14.525] INFO  [g_Dorvar] [chat ascii] Nita: Greetings. What can I help thee with?
+[15:14:14.525] INFO  [g_Dorvar] [chat ascii] Nita: Yes, banking is my unfortunate lot in life.
+[15:14:14.525] INFO  [g_Dorvar] [chat ascii] System: You have 0 stones in your Bank Box
+[15:14:14.525] INFO  [g_Dorvar] [0x24] open container 0x4000EF45 gump=74
+[15:14:14.525] INFO  [g_Dorvar] [STATE] bank container=0x4000EF45 gump=0x004A opened at (592,2150)
+[15:14:14.525] LOG   [g_Dorvar] event bank_opened: container recognised
+[15:14:14.525] INFO  [g_Dorvar] [ACTION_RESULT] open_bank success (1ms) bank container opened
+[15:14:14.525] LOG   [g_Dorvar] event action_result: open_bank success took=1ms bank container opened
+[15:14:14.525] INFO  [g_Dorvar] [0x3C] container contents: 0 item(s)
+[15:14:15.678] INFO  [g_Dorvar] [survival] hp 50/50 (100%) -> fight
+[15:14:17.195] INFO  [g_Dorvar] [chat ascii] System: Wren has arrived in Britain.
+[15:14:19.498] INFO  [g_Dorvar] [chat uni  ] : bank
+[15:14:19.498] INFO  [g_Dorvar] [chat ascii] Nita: Excuse me Dorvar, but Ithion wants to speak to me
+[15:14:19.498] INFO  [g_Dorvar] [chat ascii] Nita: Good morrow!  How can I help thee?
+[15:14:19.498] INFO  [g_Dorvar] [chat ascii] Nita: Never lost a coin from robberies.
+[15:14:20.709] INFO  [g_Dorvar] [survival] hp 50/50 (100%) -> fight
+[15:14:23.538] INFO  [life] bank: depositing 9350 gold, keeping 650 for this life's own errands
+[15:14:23.538] INFO  [g_Dorvar] [ACTION] move_item start
+[15:14:23.538] INFO  [g_Dorvar] [ACTION] move_item serial=0x4000EF40 amount=9350 dest=0x4000EF45
+[15:14:23.538] INFO  [g_Dorvar] [ITEM] drag serial=0x4000EF40 amount=9350
+[15:14:23.538] INFO  [g_Dorvar] [ITEM] drop container=0x4000EF45
+[15:14:23.539] INFO  [g_Dorvar] [ITEM] 0x4000EF40 split off 9350 of 10000 in 0x4000EF44; still waiting for it to land in 0x4000EF45
+[15:14:23.539] INFO  [g_Dorvar] [ACTION_RESULT] move_item success (0ms) item consumed by the destination
+[15:14:23.539] LOG   [g_Dorvar] event action_result: move_item success took=0ms item consumed by the destination
+[15:14:23.539] INFO  [life] memory_learned=PLACE kind=bank at 592,2150
+[15:14:23.539] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=BANK reason="REPLACE_EQUIPMENT 130.0 superseded BANK 0.0"
+[15:14:23.539] INFO  [life] needs considered: NeedEquipment(heal potions 0.50) NeedCraft(make goods to sell 0.50) NeedCatch(fish 0.45) NeedFood(food 0.25) NeedMount(riding horse BLOCKED 0.00)  | tools defined=2 held=[fishing pole,rolling pin,] want_train=nothing (target 0.0)
+[15:14:23.539] INFO  [life]   score=130.0
+[15:14:23.539] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[15:14:23.539] INFO  [life]   reason: potions=0 low=2 gold=10000
+[15:14:23.539] INFO  [life]   BLOCKED_NEED BUY_MOUNT: on cooldown for another 557s after achieving nothing
+[15:14:25.074] INFO  [life] plan=buy reason="none held, and it may be bought"
+[15:14:25.074] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[15:14:25.106] INFO  [g_Dorvar] [travel] place: skipping Delucia healer -- 1612 tiles and 4 gates for a service Skara Brae healer offers
+[15:14:25.106] INFO  [g_Dorvar] [travel] place: skipping Wind healer -- 1556 tiles and 2 gates for a service Skara Brae healer offers
+[15:14:25.106] INFO  [g_Dorvar] [travel] Skara Brae healer -> (620,2218) r=5 from (592,2150)
+[15:14:25.106] LOG   [g_Dorvar] event travel_start: label='Skara Brae healer' target=(620,2218) radius=5 from=(592,2150)
+[15:14:25.106] INFO  [life] potions: walking to a 'healer' (trip 1)
+[15:14:25.106] INFO  [g_Dorvar] [travel] mode moongate         usable   <- chosen
+[15:14:25.106] INFO  [g_Dorvar] [travel] mode walk             usable
+[15:14:25.106] INFO  [g_Dorvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:14:25.106] INFO  [g_Dorvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:14:25.106] LOG   [g_Dorvar] event travel_mode: moongate
+[15:14:25.106] INFO  [g_Dorvar] [travel] plan Skara Brae healer: ok legs=2 ~96 tiles transit=0 nodes=86
+[15:14:25.166] INFO  [g_Dorvar] [action] goto finished at (592,2150,0); target (587,2146); stopped short (off by 9 tile(s))
+[15:14:25.166] LOG   [g_Dorvar] event goto_done: at=(592,2150) target=(587,2146) arrived=0 off=9
+[15:14:25.166] INFO  [g_Dorvar] [action] goto (616,2184) from (592,2150,0)
+[15:14:25.166] LOG   [g_Dorvar] event goto_start: target=(616,2184) from=(592,2150)
+[15:14:25.166] INFO  [g_Dorvar] [bot] running from (592,2150,0) to (616,2184)
+[15:14:25.166] INFO  [g_Dorvar] [bot] planning path to (616,2184) in background
+[15:14:25.229] INFO  [g_Dorvar] [bot] replan to (616,2184): 44 steps in 2542.2us
+[15:14:25.719] INFO  [g_Dorvar] [survival] hp 50/50 (100%) -> fight
+[15:14:30.159] INFO  [g_Dorvar] [chat ascii] System: World save in 10 seconds
+[15:14:30.739] INFO  [g_Dorvar] [survival] hp 50/50 (100%) -> fight
+[15:14:35.755] INFO  [g_Dorvar] [survival] hp 50/50 (100%) -> fight
+[15:14:38.267] INFO  [g_Dorvar] [bot] arrived at (616,2184,0)
+[15:14:38.268] INFO  [g_Dorvar] [action] goto finished at (616,2184,0); target (616,2184); ARRIVED (off by 0 tile(s))
+[15:14:38.268] LOG   [g_Dorvar] event goto_done: at=(616,2184) target=(616,2184) arrived=1 off=0
+[15:14:38.268] INFO  [g_Dorvar] [action] goto (620,2218) from (616,2184,0)
+[15:14:38.268] LOG   [g_Dorvar] event goto_start: target=(620,2218) from=(616,2184)
+[15:14:38.268] INFO  [g_Dorvar] [bot] running from (616,2184,0) to (620,2218,z0)
+[15:14:38.268] INFO  [g_Dorvar] [bot] planning path to (620,2218) in background
+[15:14:38.328] INFO  [g_Dorvar] [bot] planning path to (619,2217) in background
+[15:14:38.404] INFO  [g_Dorvar] [bot] replan to (619,2217): 66 steps in 51308.6us
+[15:14:40.202] INFO  [g_Dorvar] [chat ascii] System: World save has been initiated.
+[15:14:40.539] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_18.dorvar/state.json
+[15:14:40.796] INFO  [g_Dorvar] [survival] hp 50/50 (100%) -> fight
+[15:14:45.836] INFO  [g_Dorvar] [survival] hp 50/50 (100%) -> fight
+[15:14:50.878] INFO  [g_Dorvar] [survival] hp 50/50 (100%) -> fight
+[15:14:53.305] INFO  [g_Dorvar] [bot] door ahead at (623,2223,z0); OpenDoor before step
+[15:14:53.306] INFO  [g_Dorvar] [chat ascii] System: Opening door...
+[15:14:54.499] INFO  [g_Dorvar] [travel] Skara Brae healer ARRIVED at (623,2222,0)
+[15:14:54.499] LOG   [g_Dorvar] event travel_done: label='Skara Brae healer' ok=1 at=(623,2222) legs=2 plans=1 why=''
+[15:14:54.560] INFO  [g_Dorvar] [action] scanning nearby mobiles for names
+[15:14:54.561] INFO  [g_Dorvar] [action] requested 2 paperdoll(s) for trade titles
+[15:14:54.561] INFO  [life] potions: at the shop, asking who is here (scan 1 of 3)
+[15:14:54.576] INFO  [g_Dorvar] [mobiles] nearby (6):
+[15:14:54.576] INFO  [g_Dorvar]   Aiken 0x000027DC
+[15:14:54.576] INFO  [g_Dorvar]   Iolana 0x000027ED
+[15:14:54.576] INFO  [g_Dorvar]   Rat 0x0000D6E7
+[15:14:54.576] INFO  [g_Dorvar]   Dog 0x0000EDEE
+[15:14:54.576] INFO  [g_Dorvar]   Ithion 0x0000EED5
+[15:14:54.576] INFO  [g_Dorvar]   Dog 0x0000D580
+[15:14:54.576] INFO  [g_Dorvar] [0x20] player @(623,2222,0) facing=7
+[15:14:54.576] INFO  [g_Dorvar] [0x88] paperdoll 0x000027ED: "Iolana, the healer"
+[15:14:54.576] INFO  [g_Dorvar] [world] Iolana, the healer is a healer at (619,2216)
+[15:14:54.576] INFO  [g_Dorvar] [0x20] player @(623,2222,0) facing=0
+[15:14:54.576] INFO  [g_Dorvar] [0x88] paperdoll 0x000027DC: "Aiken, the healer guildmaster"
+[15:14:54.576] INFO  [g_Dorvar] [world] Aiken, the healer guildmaster is a healer at (621,2217)
+[15:14:55.897] INFO  [g_Dorvar] [survival] hp 50/50 (100%) -> fight
+[15:14:57.613] INFO  [life] potions: found a 'healer'
+[15:14:57.674] INFO  [g_Dorvar] [travel] entity stand candidate 1/5 at (618,2217)
+[15:14:57.674] INFO  [g_Dorvar] [travel] mobile 0x000027ED -> (618,2217) r=0 from (623,2222)
+[15:14:57.674] LOG   [g_Dorvar] event travel_start: label='mobile 0x000027ED' target=(618,2217) radius=0 from=(623,2222)
+[15:14:57.674] INFO  [life] potions: the 'healer' is 6 tiles off (dz 0) -- walking into reach (chase 1 of 3)
+[15:14:57.674] INFO  [g_Dorvar] [travel] mode walk             usable   <- chosen
+[15:14:57.674] INFO  [g_Dorvar] [travel] mode moongate         usable
+[15:14:57.674] INFO  [g_Dorvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:14:57.674] INFO  [g_Dorvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:14:57.674] LOG   [g_Dorvar] event travel_mode: walk
+[15:14:57.674] INFO  [g_Dorvar] [travel] plan mobile 0x000027ED: ok legs=1 ~5 tiles transit=0 nodes=0
+[15:14:57.705] INFO  [g_Dorvar] [action] goto finished at (623,2222,0); target (620,2218); stopped short (off by 7 tile(s))
+[15:14:57.705] LOG   [g_Dorvar] event goto_done: at=(623,2222) target=(620,2218) arrived=0 off=7
+[15:14:57.705] INFO  [g_Dorvar] [action] goto (618,2217) from (623,2222,0)
+[15:14:57.705] LOG   [g_Dorvar] event goto_start: target=(618,2217) from=(623,2222)
+[15:14:57.705] INFO  [g_Dorvar] [bot] running from (623,2222,0) to (618,2217,z0)
+[15:14:57.705] INFO  [g_Dorvar] [bot] planning path to (618,2217) in background
+[15:14:57.765] INFO  [g_Dorvar] [bot] replan to (618,2217): 7 steps in 215.9us
+[15:15:00.207] INFO  [g_Dorvar] [bot] arrived at (618,2217,0)
+[15:15:00.208] INFO  [g_Dorvar] [action] goto finished at (618,2217,0); target (618,2217); ARRIVED (off by 0 tile(s))
+[15:15:00.208] LOG   [g_Dorvar] event goto_done: at=(618,2217) target=(618,2217) arrived=1 off=0
+[15:15:00.208] INFO  [g_Dorvar] [travel] mobile 0x000027ED ARRIVED at (618,2217,0)
+[15:15:00.208] LOG   [g_Dorvar] event travel_done: label='mobile 0x000027ED' ok=1 at=(618,2217) legs=1 plans=1 why=''
+[15:15:00.268] INFO  [life] potions: within reach
+[15:15:00.330] INFO  [g_Dorvar] [ACTION] vendor_buy start
+[15:15:00.330] INFO  [g_Dorvar] [VENDOR] open vendor=0x000027ED say='Iolana buy'
+[15:15:00.330] INFO  [life] potions: asking the 'healer' to show heal potion (attempt 1)
+[15:15:00.331] INFO  [g_Dorvar] [chat uni  ] : Iolana buy
+[15:15:00.331] INFO  [g_Dorvar] [chat ascii] Iolana: Yes?
+[15:15:00.331] INFO  [g_Dorvar] [chat ascii] Iolana: I got lots to sell!
+[15:15:00.331] INFO  [g_Dorvar] [0x3C] container contents: 5 item(s)
+[15:15:00.331] INFO  [g_Dorvar] [0x74] pairing: straight (straight 5, mirrored 1 of 5 rows)
+[15:15:00.331] INFO  [g_Dorvar] [0x74] vendor shop data: cont=0x400027E7 5 item(s), layer=0x1A
+[15:15:00.331] INFO  [g_Dorvar] [0x74]   clean bandages               gfx=0x0E21 qty=11   price=1
+[15:15:00.331] INFO  [g_Dorvar] [0x74]   Heal                         gfx=0x0F0C qty=11   price=30
+[15:15:00.331] INFO  [g_Dorvar] [0x74]   Ginseng                      gfx=0x0F85 qty=24   price=3
+[15:15:00.331] INFO  [g_Dorvar] [0x74]   Garlic                       gfx=0x0F84 qty=19   price=3
+[15:15:00.331] INFO  [g_Dorvar] [0x74]   Refresh                      gfx=0x0F0B qty=8    price=16
+[15:15:00.331] INFO  [g_Dorvar] [0x3C] container contents: 0 item(s)
+[15:15:00.331] INFO  [g_Dorvar] [0x74] vendor shop data: cont=0x40012259 0 item(s), layer=0x1B
+[15:15:00.332] INFO  [g_Dorvar] [VENDOR] offer from 0x000027ED: 5 item(s)
+[15:15:00.332] INFO  [g_Dorvar] [VENDOR]   0x4001A304 clean bandages         x11  1 gp
+[15:15:00.332] INFO  [g_Dorvar] [VENDOR]   0x4001A303 Heal                   x11  30 gp
+[15:15:00.332] INFO  [g_Dorvar] [VENDOR]   0x4001A302 Ginseng                x24  3 gp
+[15:15:00.332] INFO  [g_Dorvar] [VENDOR]   0x4001A301 Garlic                 x19  3 gp
+[15:15:00.332] INFO  [g_Dorvar] [VENDOR]   0x4001A300 Refresh                x8   16 gp
+[15:15:00.332] LOG   [g_Dorvar] event vendor_offer: vendor=0x000027ED items=5
+[15:15:00.332] INFO  [g_Dorvar] [ACTION_RESULT] vendor_buy success (1ms) vendor offer received
+[15:15:00.332] LOG   [g_Dorvar] event action_result: vendor_buy success took=1ms vendor offer received
+[15:15:00.332] INFO  [g_Dorvar] [0x24] vendor buy gump for 0x000027ED
+[15:15:00.332] INFO  [life] potions: the shop is open
+[15:15:00.332] INFO  [g_Dorvar] [ACTION] vendor_buy start
+[15:15:00.332] INFO  [g_Dorvar] [policy] allowed NPC purchase of i_potion_heal (0x0F0C): NPC purchase is allowed when the item is actually offered; NPC selling remains separately restricted [BASIC_HEALING]
+[15:15:00.332] INFO  [g_Dorvar] [VENDOR] buy item=0x4001A303 qty=4 from vendor=0x000027ED gold=10000
+[15:15:00.332] INFO  [life] potions: buying 4 heal potion at 30 each from the 'healer' (shelf holds 11) -- waiting for the pack
+[15:15:00.346] INFO  [g_Dorvar] [ACTION_RESULT] vendor_buy success (14ms) purchased item delivered
+[15:15:00.346] LOG   [g_Dorvar] event action_result: vendor_buy success took=14ms purchased item delivered
+[15:15:00.346] INFO  [g_Dorvar] [chat ascii] Iolana: Here you are, Dorvar That will be 120 gold coins.  I thank thee for thy business.
+[15:15:00.346] INFO  [g_Dorvar] [0x3B] vendor transaction closed: vendor=0x000027ED flag=0
+[15:15:00.346] INFO  [life] goal_changed=CRAFT from=REPLACE_EQUIPMENT reason="CRAFT 65.0 superseded REPLACE_EQUIPMENT 0.0"
+[15:15:00.346] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedCatch(fish 0.45) NeedFood(food 0.25) NeedMount(riding horse BLOCKED 0.00)  | tools defined=2 held=[fishing pole,rolling pin,] want_train=nothing (target 0.0)
+[15:15:00.346] INFO  [life]   score=65.0
+[15:15:00.346] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
+[15:15:00.346] INFO  [life]   reason: i_fish_cut_cooked: every input is in the pack
+[15:15:00.346] INFO  [life]   BLOCKED_NEED BUY_MOUNT: on cooldown for another 520s after achieving nothing
+[15:15:00.347] INFO  [life] craft: putting one kindling on the ground -- Use_Kindling refuses it inside a container
+[15:15:00.347] INFO  [g_Dorvar] [ACTION] drop_ground start
+[15:15:00.347] INFO  [g_Dorvar] [ACTION] drop_ground serial=0x4000EF31 at (618,2217,0)
+[15:15:00.347] INFO  [g_Dorvar] [ITEM] drag serial=0x4000EF31 amount=1
+[15:15:00.347] INFO  [g_Dorvar] [ITEM] drop ground=(618,2217,0)
+[15:15:00.361] INFO  [g_Dorvar] [ACTION_RESULT] drop_ground success (15ms) item is on the ground at the target
+[15:15:00.361] LOG   [g_Dorvar] event action_result: drop_ground success took=15ms item is on the ground at the target
+[15:15:00.900] INFO  [g_Dorvar] [survival] hp 50/50 (100%) -> fight
+[15:15:02.362] INFO  [life] craft: lighting the kindling on the ground for a campfire to cook i_fish_cut_cooked on
+[15:15:02.362] INFO  [g_Dorvar] [ACTION] use_object start
+[15:15:02.362] INFO  [g_Dorvar] [ACTION] use_object serial=0x4000EF31
+[15:15:04.110] INFO  [g_Dorvar] [chat ascii] System: Vorar has departed from Britain.
+[15:15:05.906] INFO  [g_Dorvar] [survival] hp 50/50 (100%) -> fight
+[15:15:06.401] LOG   [g_Dorvar] event action_result: use_object timeout
+[15:15:06.462] INFO  [life] craft: making i_fish_cut_cooked -- using a cooking tool to open the menu
+[15:15:06.462] INFO  [g_Dorvar] [ACTION] use_object start
+[15:15:06.462] INFO  [g_Dorvar] [ACTION] use_object serial=0x4000EF30
+[15:15:06.478] INFO  [g_Dorvar] [0x7C] dialog id=0x0000EF46 menu=690: "Cooking" (2 options)
+[15:15:06.478] INFO  [g_Dorvar]         1) Ingredients
+[15:15:06.478] INFO  [g_Dorvar]         2) Barbecue
+[15:15:06.478] LOG   [g_Dorvar] event dialog: Cooking
+[15:15:06.478] INFO  [g_Dorvar] [ACTION_RESULT] use_object success (16ms) server opened a menu dialog
+[15:15:06.478] LOG   [g_Dorvar] event action_result: use_object success took=16ms server opened a menu dialog
+[15:15:08.483] INFO  [g_Dorvar] [0x7D] answering dialog id=0x0000EF46 menu=690 index=2
+[15:15:08.483] INFO  [life] craft: chose 'Barbecue'
+[15:15:08.483] INFO  [g_Dorvar] [0x7C] dialog id=0x0000EF46 menu=690: "Barbecue" (3 options)
+[15:15:08.483] INFO  [g_Dorvar]         1) chicken leg (1 raw chicken leg)
+[15:15:08.483] INFO  [g_Dorvar]         2) fish steak (1 raw fish steak)
+[15:15:08.483] INFO  [g_Dorvar]         3) leg of lamb (1 raw leg of lamb)
+[15:15:08.483] LOG   [g_Dorvar] event dialog: Barbecue
+[15:15:10.956] INFO  [g_Dorvar] [survival] hp 50/50 (100%) -> fight
+[15:15:13.558] INFO  [g_Dorvar] [chat ascii] System: Halain has departed from Britain.
+[15:15:14.387] INFO  [g_Dorvar] [chat ascii] System: Ghalor has departed from Minoc.
+[15:15:16.016] INFO  [g_Dorvar] [survival] hp 50/50 (100%) -> fight
+[15:15:16.769] INFO  [life] craft: no result from the last i_fish_cut_cooked in 8s (attempt 1 of 3)
+[15:15:16.769] INFO  [g_Dorvar] [0x7D] answering dialog id=0x0000EF46 menu=690 index=2
+[15:15:16.769] INFO  [life] craft: chose 'fish steak'
+[15:15:17.895] INFO  [g_Dorvar] [chat ascii] System: Falen has departed from Minoc.
+[15:15:18.017] INFO  [g_Dorvar] [chat ascii] System: You put the fish steak in your pack.
+[15:15:18.519] INFO  [life] goal_blocked=CRAFT reason="REFUSE_REQUIRED_FOR_PRODUCTION" i_fish_cut_raw short of 1 x i_fish_big_1
+[15:15:18.520] INFO  [life] handoff=CRAFT->BUY_SUPPLIES reason="inputs are short"
+[15:15:18.581] INFO  [life] goal=BUY_SUPPLIES reason="previous goal abandoned: inputs are short"
+[15:15:18.581] INFO  [life] needs considered: NeedCatch(fish 0.45) NeedSupplies(buy craft inputs 0.44) NeedMount(riding horse BLOCKED 0.00)  | tools defined=2 held=[fishing pole,rolling pin,] want_train=nothing (target 0.0)
+[15:15:18.581] INFO  [life]   score=61.6
+[15:15:18.581] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[15:15:18.581] INFO  [life]   reason: i_fish_cut_raw needs 5 x i_fish_big_1
+[15:15:18.581] INFO  [life]   BLOCKED_NEED BUY_MOUNT: on cooldown for another 502s after achieving nothing
+[15:15:19.640] INFO  [g_Dorvar] [chat ascii] System: Cyras has departed from Britain.
+[15:15:20.527] INFO  [life] supplies: no NPC sells i_fish_big_1 and this life makes it -- handing the errand to FISH instead of shopping for it
+[15:15:20.527] INFO  [life] handoff=BUY_SUPPLIES->FISH reason="this life produces its own input"
+[15:15:20.589] INFO  [life] goal=FISH reason="previous goal abandoned: this life produces its own input"
+[15:15:20.589] INFO  [life] needs considered: NeedCatch(fish 0.45) NeedSupplies(buy craft inputs 0.44) NeedMount(riding horse BLOCKED 0.00)  | tools defined=2 held=[fishing pole,rolling pin,] want_train=nothing (target 0.0)
+[15:15:20.589] INFO  [life]   score=58.5
+[15:15:20.589] INFO  [life]   reason: NeedCatch urgency 0.45 x 130 = 58.5
+[15:15:20.589] INFO  [life]   reason: carrying 0
+[15:15:20.589] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 119s after achieving nothing
+[15:15:20.589] INFO  [life]   BLOCKED_NEED BUY_MOUNT: on cooldown for another 500s after achieving nothing
+[15:15:21.034] INFO  [g_Dorvar] [survival] hp 50/50 (100%) -> fight
+[15:15:21.726] INFO  [g_Dorvar] [chat uni  ] Ithion: Iolana buy
+[15:15:21.726] INFO  [g_Dorvar] [chat ascii] Iolana: Excuse me Dorvar, but Ithion wants to speak to me
+[15:15:21.726] INFO  [g_Dorvar] [chat ascii] Iolana: Hello! ?
+[15:15:21.726] INFO  [g_Dorvar] [chat ascii] Iolana: Thou surely wants all the things that I can sell thee.
+[15:15:21.787] INFO  [g_Dorvar] [chat ascii] Iolana: Here you are, Ithion That will be 120 gold coins.  I thank thee for thy business.
+[15:15:22.553] INFO  [life] fish: going to a dock (trip 1)
+[15:15:22.553] INFO  [g_Dorvar] [travel] Skara Brae Docks E -> (638,2227) r=12 from (618,2217)
+[15:15:22.553] LOG   [g_Dorvar] event travel_start: label='Skara Brae Docks E' target=(638,2227) radius=12 from=(618,2217)
+[15:15:22.553] INFO  [g_Dorvar] [travel] mode walk             usable   <- chosen
+[15:15:22.553] INFO  [g_Dorvar] [travel] mode moongate         usable
+[15:15:22.553] INFO  [g_Dorvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:15:22.553] INFO  [g_Dorvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:15:22.553] LOG   [g_Dorvar] event travel_mode: walk
+[15:15:22.553] INFO  [g_Dorvar] [travel] plan Skara Brae Docks E: ok legs=1 ~20 tiles transit=0 nodes=0
+[15:15:22.613] INFO  [g_Dorvar] [action] goto (638,2227) from (618,2217,0)
+[15:15:22.613] LOG   [g_Dorvar] event goto_start: target=(638,2227) from=(618,2217)
+[15:15:22.613] INFO  [g_Dorvar] [bot] running from (618,2217,0) to (638,2227)
+[15:15:22.613] INFO  [g_Dorvar] [bot] planning path to (638,2227) in background
+[15:15:22.674] INFO  [g_Dorvar] [bot] replan to (638,2227): 24 steps in 1533.6us
+[15:15:26.057] INFO  [g_Dorvar] [survival] hp 50/50 (100%) -> fight
+[15:15:26.398] INFO  [g_Dorvar] [bot] door ahead at (625,2224,z0); OpenDoor before step
+[15:15:26.398] INFO  [g_Dorvar] [chat ascii] System: Opening door...
+[15:15:27.723] INFO  [g_Dorvar] [travel] Skara Brae Docks E ARRIVED at (626,2225,0)
+[15:15:27.723] LOG   [g_Dorvar] event travel_done: label='Skara Brae Docks E' ok=1 at=(626,2225) legs=1 plans=1 why=''
+[15:15:27.838] INFO  [life] fish: at the water's edge (626,2225), shore 636,2226
+[15:15:27.892] INFO  [g_Dorvar] [action] goto finished at (626,2225,0); target (638,2227); stopped short (off by 14 tile(s))
+[15:15:27.892] LOG   [g_Dorvar] event goto_done: at=(626,2225) target=(638,2227) arrived=0 off=14
+[15:15:27.949] INFO  [life] fish: shore hop 626,2225 -> 636,2226 (water 640,2230)
+[15:15:27.949] INFO  [g_Dorvar] [action] goto (636,2226) from (626,2225,0)
+[15:15:27.949] LOG   [g_Dorvar] event goto_start: target=(636,2226) from=(626,2225)
+[15:15:27.949] INFO  [g_Dorvar] [bot] running from (626,2225,0) to (636,2226)
+[15:15:27.949] INFO  [g_Dorvar] [bot] planning path to (636,2226) in background
+[15:15:28.000] INFO  [g_Dorvar] [bot] replan to (636,2226): 10 steps in 146.7us
+[15:15:29.013] INFO  [g_Dorvar] [chat ascii] System: Selene has departed from Magincia.
+[15:15:30.949] INFO  [g_Dorvar] [bot] arrived at (636,2226,0)
+[15:15:30.950] INFO  [g_Dorvar] [action] goto finished at (636,2226,0); target (636,2226); ARRIVED (off by 0 tile(s))
+[15:15:30.950] LOG   [g_Dorvar] event goto_done: at=(636,2226) target=(636,2226) arrived=1 off=0
+[15:15:30.950] INFO  [life] fish: shore hop done at 636,2226 (wanted 636,2226)
+[15:15:31.071] INFO  [g_Dorvar] [survival] hp 50/50 (100%) -> fight
+[15:15:31.255] INFO  [g_Dorvar] [ACTION] use_object start
+[15:15:31.255] INFO  [g_Dorvar] [ACTION] use_object serial=0x4000EF34
+[15:15:31.271] INFO  [g_Dorvar] [chat ascii] System: Where would you like to fish?
+[15:15:31.271] INFO  [g_Dorvar] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=1
+[15:15:31.271] LOG   [g_Dorvar] event target_requested: id=0x000002CE type=1 subtype=0 gen=1
+[15:15:31.271] INFO  [g_Dorvar] [ACTION_RESULT] use_object success (16ms) server armed a target cursor
+[15:15:31.271] LOG   [g_Dorvar] event action_result: use_object success took=16ms server armed a target cursor
+[15:15:32.073] INFO  [g_Dorvar] [TARGET] reply static=(640,2230,-5) gfx=0x17AF gen=1
+[15:15:32.073] INFO  [g_Dorvar] [target] static 0x17AF (640,2230,-5)
+[15:15:32.073] INFO  [g_Dorvar] [chat ascii] System: Lyra has departed from Moonglow Healer.
+[15:15:32.074] INFO  [g_Dorvar] [chat ascii] System: Try fishing elsewhere
+[15:15:32.504] INFO  [life] fish: refused at 640,2230 ("try fishing elsewhere") -- marking it dead
+[15:15:32.504] INFO  [life] fish: shore hop 636,2226 -> 637,2225 (water 641,2228)
+[15:15:32.504] INFO  [g_Dorvar] [action] goto (637,2225) from (636,2226,0)
+[15:15:32.504] LOG   [g_Dorvar] event goto_start: target=(637,2225) from=(636,2226)
+[15:15:32.504] INFO  [g_Dorvar] [bot] running from (636,2226,0) to (637,2225)
+[15:15:32.504] INFO  [g_Dorvar] [bot] planning path to (637,2225) in background
+[15:15:32.565] INFO  [g_Dorvar] [bot] replan to (637,2225): 1 steps in 18.5us
+[15:15:33.026] INFO  [g_Dorvar] [bot] arrived at (637,2225,0)
+[15:15:33.026] INFO  [g_Dorvar] [action] goto finished at (637,2225,0); target (637,2225); ARRIVED (off by 0 tile(s))
+[15:15:33.026] LOG   [g_Dorvar] event goto_done: at=(637,2225) target=(637,2225) arrived=1 off=0
+[15:15:33.026] INFO  [life] fish: shore hop done at 637,2225 (wanted 637,2225)
+[15:15:33.224] INFO  [g_Dorvar] [chat ascii] System: Kharain has departed from Minoc.
+[15:15:33.350] INFO  [g_Dorvar] [ACTION] use_object start
+[15:15:33.350] INFO  [g_Dorvar] [ACTION] use_object serial=0x4000EF34
+[15:15:33.365] INFO  [g_Dorvar] [chat ascii] System: Where would you like to fish?
+[15:15:33.365] INFO  [g_Dorvar] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=2
+[15:15:33.365] LOG   [g_Dorvar] event target_requested: id=0x000002CE type=1 subtype=0 gen=2
+[15:15:33.365] INFO  [g_Dorvar] [ACTION_RESULT] use_object success (14ms) server armed a target cursor
+[15:15:33.365] LOG   [g_Dorvar] event action_result: use_object success took=14ms server armed a target cursor
+[15:15:34.179] INFO  [g_Dorvar] [TARGET] reply static=(641,2228,-5) gfx=0x17A6 gen=2
+[15:15:34.179] INFO  [g_Dorvar] [target] static 0x17A6 (641,2228,-5)
+[15:15:34.179] INFO  [g_Dorvar] [0x20] player @(637,2225,-1) facing=3
+[15:15:34.179] INFO  [g_Dorvar] [chat ascii] System: Try fishing elsewhere
+[15:15:34.595] INFO  [life] fish: refused at 641,2228 ("try fishing elsewhere") -- marking it dead
+[15:15:34.595] INFO  [g_Dorvar] [ACTION] use_object start
+[15:15:34.595] INFO  [g_Dorvar] [ACTION] use_object serial=0x4000EF34
+[15:15:34.610] INFO  [g_Dorvar] [chat ascii] System: Where would you like to fish?
+[15:15:34.610] INFO  [g_Dorvar] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=3
+[15:15:34.610] LOG   [g_Dorvar] event target_requested: id=0x000002CE type=1 subtype=0 gen=3
+[15:15:34.610] INFO  [g_Dorvar] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
+[15:15:34.610] LOG   [g_Dorvar] event action_result: use_object success took=15ms server armed a target cursor
+[15:15:35.412] INFO  [g_Dorvar] [chat ascii] System: Delras has departed from Britain.
+[15:15:35.412] INFO  [g_Dorvar] [TARGET] reply static=(641,2229,-5) gfx=0x17A4 gen=3
+[15:15:35.413] INFO  [g_Dorvar] [target] static 0x17A4 (641,2229,-5)
+[15:15:35.427] INFO  [g_Dorvar] [chat ascii] System: Try fishing elsewhere
+[15:15:35.856] INFO  [life] fish: refused at 641,2229 ("try fishing elsewhere") -- marking it dead
+[15:15:35.856] INFO  [life] fish: shore hop 637,2225 -> 638,2224 (water 642,2226)
+[15:15:35.856] INFO  [g_Dorvar] [action] goto (638,2224) from (637,2225,-1)
+[15:15:35.856] LOG   [g_Dorvar] event goto_start: target=(638,2224) from=(637,2225)
+[15:15:35.856] INFO  [g_Dorvar] [bot] running from (637,2225,-1) to (638,2224)
+[15:15:35.856] INFO  [g_Dorvar] [bot] planning path to (638,2224) in background
+[15:15:35.857] INFO  [g_Dorvar] [bot] replan to (638,2224): 1 steps in 14.0us
+[15:15:36.101] INFO  [g_Dorvar] [survival] hp 50/50 (100%) -> fight
+[15:15:36.301] INFO  [g_Dorvar] [bot] arrived at (638,2224,-2)
+[15:15:36.361] INFO  [g_Dorvar] [action] goto finished at (638,2224,-2); target (638,2224); ARRIVED (off by 0 tile(s))
+[15:15:36.361] LOG   [g_Dorvar] event goto_done: at=(638,2224) target=(638,2224) arrived=1 off=0
+[15:15:36.361] INFO  [life] fish: shore hop done at 638,2224 (wanted 638,2224)
+[15:15:36.698] INFO  [g_Dorvar] [ACTION] use_object start
+[15:15:36.698] INFO  [g_Dorvar] [ACTION] use_object serial=0x4000EF34
+[15:15:36.713] INFO  [g_Dorvar] [chat ascii] System: Where would you like to fish?
+[15:15:36.713] INFO  [g_Dorvar] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=4
+[15:15:36.713] LOG   [g_Dorvar] event target_requested: id=0x000002CE type=1 subtype=0 gen=4
+[15:15:36.713] INFO  [g_Dorvar] [ACTION_RESULT] use_object success (16ms) server armed a target cursor
+[15:15:36.713] LOG   [g_Dorvar] event action_result: use_object success took=16ms server armed a target cursor
+[15:15:37.528] INFO  [g_Dorvar] [TARGET] reply static=(642,2226,-5) gfx=0x17AF gen=4
+[15:15:37.528] INFO  [g_Dorvar] [target] static 0x17AF (642,2226,-5)
+[15:15:37.543] INFO  [g_Dorvar] [0x20] player @(638,2224,-3) facing=3
+[15:15:37.543] INFO  [g_Dorvar] [chat ascii] System: Try fishing elsewhere
+[15:15:37.590] INFO  [g_Dorvar] [chat ascii] System: Elvar has departed from Minoc.
+[15:15:37.973] INFO  [life] session_end_requested reason="session time limit reached"
+[15:15:38.035] INFO  [life] session_summary duration=120s goals=0/6 gold=10000->9880 skills=100.0->100.0 logs=+0 kills=0 deaths=0 places=4 suppliers=0
+[15:15:38.035] INFO  [life] session_goals families=2 picks=6 top=50% varied=0 self_superseded=0 | upkeep=3(50%) work=3(50%) | REPLACE_EQUIPMENT=1(17%) BANK=1(17%) FISH=1(17%) BUY_SUPPLIES=1(17%) CRAFT=1(17%) BUY_MOUNT=1(17%)
+[15:15:38.036] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_18.dorvar/state.json
+[15:15:38.036] INFO  [life] logging out
+[15:15:38.036] INFO  [g_Dorvar] [action] logout requested
+[15:15:38.036] LOG   [g_Dorvar] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[15:15:38.037] INFO  [g_Dorvar] [0xD1] logout acknowledged (accepted=1)
+[15:15:38.037] LOG   [g_Dorvar] event logout_ack: accepted
+[15:15:38.037] INFO  [g_Dorvar] [net] closing connection (logout acknowledged)
+[15:15:38.037] LOG   [g_Dorvar] event logout_complete: acked

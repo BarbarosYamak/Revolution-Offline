@@ -462,6 +462,11 @@ private:
     static constexpr i64 kScrollShopBudgetMs = 90000;
     i32  tradeTrips_ = 0;
     i32  vendorChases_ = 0;
+    // "You can't reach the Vendor" answers to a supply buy. Owner rule:
+    // unreachable = 1 try, max 2 -- Elara asked a shopkeeper she had walked
+    // away from twenty times in three minutes (2026-09-04 01:09-01:11).
+    i32  supplyReachFails_ = 0;
+    static constexpr i32 kMaxSupplyReachFails = 2;
     i32  bandageTrips_ = 0;
 
     // --- MAKE_CLOTH -------------------------------------------------------
@@ -641,6 +646,16 @@ private:
     // up instead of repeating for a whole session.
     life::Handshake craftWait_;
     bool makeLastIssued_ = false;
+    // THE SHARD IS STILL REPEATING. revolution_makelast.scp re-fires
+    // MAKEITEM one second after every make, fail OR abort until
+    // TAG.revo.makelast.remaining hits 0. Opening the menu while that runs
+    // aborts the shard's swing, the shard retries a second later, aborting
+    // ours -- Elara 2026-09-04 00:55: "You fail to complete the potion" 40
+    // times in 30 s and CRAFT abandoned. So while the count is above zero
+    // and the deadline has not passed, the bot does nothing but watch the
+    // pack.
+    i32  makeLastRemaining_ = 0;
+    i64  makeLastDeadlineMs_ = 0;
     bool craftCursorPending_ = false;
     i64  craftClickedMs_ = 0;
     // Forges that refused from every tile that could be reached, so the next
@@ -995,6 +1010,7 @@ private:
     bool  sellSent_ = false;           // ActionVendorSell issued
     u32   sellVendorSerial_ = 0;       // the vendor we mean to deal with
     bool  sellApproached_ = false;     // walked to them before speaking
+    bool  sellReachChecked_ = false;   // stepped into touch range once per list
 
     // --- TRADE_WITH_PLAYER ------------------------------------------------
     // How often to repeat an offer. Every tick would be spam a human watching

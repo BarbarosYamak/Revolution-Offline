@@ -1307,6 +1307,13 @@ void Client::OnObjectInfo(const u8* data, usize size) {
 void Client::OnDeleteObject(const u8* data, usize size) {
     if (size < 5) return;
     const u32 serial = LoadBE32(data + 1) & 0x7FFFFFFFu;
+    // The dragged item ceasing to exist ends the drag as surely as it landing
+    // somewhere does. A scroll dropped on a spellbook is consumed (0x1D, no
+    // 0x25 ever follows), and without this the drag stayed "in flight" for
+    // the rest of the session: every later lift -- the next scroll, the bank
+    // coin -- was "lift refused locally" (run_gates/g_Elara.console.txt
+    // 01:24:51 first scroll ok, 01:24:56 onward 42 refused lifts).
+    if (drag_.InFlight() && drag_.Serial() == serial) drag_.Reset();
     ActionOnObjectDeleted(serial);
     // An item leaving the world is an item leaving a trade window, if that is
     // where it was.

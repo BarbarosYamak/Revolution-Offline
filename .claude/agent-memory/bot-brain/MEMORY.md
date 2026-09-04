@@ -17,3 +17,5 @@
 - [A winning goal can hand itself away](a-winning-goal-can-hand-itself-away.md) — TRAIN_COMBAT won 84.5 and got 0 kills; a handoff is advice, the receiver must also out-score the field
 - [ms stand-downs die with the process](ms-stand-downs-die-with-the-process.md) — atMs is per-process steady_clock; count sessions via NeedConfig::sessionIndex for durable rests
 - [A book row's graphic is not a scroll's](a-book-row-graphic-is-not-a-scroll-graphic.md) — BookHasGraphic said "lacks it" about a spell the book refused; 84 gold on one Cunning Scroll, four times
+- [A supplier is not a customer](a-supplier-is-not-a-customer.md) — a crafter must not open by buying what she makes; damp the comfort needs, don't pin the goal order
+- [A bulk buy sets the batch size](a-bulk-buy-sets-the-batch-size.md) — 84 nightshade + 4 bottles read as "stocked"; size the sitting off the best-stocked input, via CraftBatchFromStock

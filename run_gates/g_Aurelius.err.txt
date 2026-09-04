@@ -1,14 +1,9 @@
 start: Aurelius is a mage and lives in Moonglow -> starting city index 3
 map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
 map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
-[14:36:44.745] WARN  [g_Aurelius] [0x21] move REJECTED seq=16; server says (1400,3772,0) facing=3
-[14:36:44.745] WARN  [g_Aurelius] [bot] 0x20 resync; aborting path
-[14:38:11.310] WARN  [g_Aurelius] [0x21] move REJECTED seq=51; server says (4432,1168,0) facing=0
-[14:38:43.392] WARN  [g_Aurelius] [0x21] move REJECTED seq=91; server says (4414,1208,0) facing=5
-[14:38:44.138] WARN  [g_Aurelius] [0x21] move REJECTED seq=0; server says (4414,1208,0) facing=5
-[14:38:45.490] WARN  [g_Aurelius] [bot] no path to (4408,1208) avoiding 1 block(s); stopping (search 1347404.3us)
-[14:38:45.490] WARN  [g_Aurelius] [bot] start (4414,1208,0) exits: open=2 terrain=4 mobile=0 dynamic=1 door=0 blacklist=1 (overlay saw 673 item(s), 2 mobile(s))
-[14:38:48.148] WARN  [g_Aurelius] [bot] no path to (4408,1208) avoiding 0 block(s); stopping (search 1338313.9us)
-[14:38:48.148] WARN  [g_Aurelius] [bot] start (4414,1208,0) exits: open=3 terrain=4 mobile=0 dynamic=1 door=0 blacklist=0 (overlay saw 673 item(s), 2 mobile(s))
-[14:38:52.065] WARN  [g_Aurelius] [0x21] move REJECTED seq=4; server says (4416,1208,0) facing=3
-[14:38:52.066] WARN  [g_Aurelius] [bot] 0x20 resync; aborting path
+[15:15:36.331] WARN  [g_Aurelius] [ITEM] a drag of 0x4000EDD4 is already in flight
+[15:15:36.331] WARN  [g_Aurelius] [ACTION_RESULT] move_item invalid_state (0ms) lift refused locally
+[15:15:41.386] WARN  [g_Aurelius] [ITEM] a drag of 0x4000EDD4 is already in flight
+[15:15:41.386] WARN  [g_Aurelius] [ACTION_RESULT] move_item invalid_state (0ms) lift refused locally
+[15:17:40.272] WARN  [g_Aurelius] [0x21] move REJECTED seq=13; server says (3621,2481,0) facing=7
+[15:17:40.272] WARN  [g_Aurelius] [bot] 0x20 resync; aborting path

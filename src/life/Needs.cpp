@@ -277,6 +277,27 @@ bool WantsConsumable(const NeedConfig& cfg, const char* name) {
     return false;
 }
 
+// CAN THIS LIFE BREW ITS OWN HEAL POTION RIGHT NOW, SKILL-WISE?
+//
+// Owner ruling 2026-09-04: an alchemist "must NOT open by buying NPC heal
+// potions". Asked as a question about the production graph rather than about a
+// job title, so it answers itself for every profession: does this life's own
+// `produces` name a heal potion, and does the skill it carries reach that
+// recipe's gate (i_potion_heal is ALCHEMY 15.1, Production.cpp). Inputs are
+// deliberately NOT part of the question -- an empty pack is BUY_SUPPLIES's
+// errand, not a reason to go and buy the finished article.
+static bool BrewsOwnHealPotion(const prof::Profession& p,
+                               const Observation& obs) {
+    for (const std::string& made : p.produces) {
+        if (made != "i_potion_heal" && made != "i_potion_healgreat") continue;
+        const prod::Recipe* r = prod::FindRecipe(made.c_str());
+        if (!r) continue;
+        if (r->skillId < 0) return true;
+        if (obs.SkillTenths(r->skillId) >= r->skillTenths) return true;
+    }
+    return false;
+}
+
 std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
                               const Observation& obs, const NeedConfig& cfg) {
     std::vector<Need> needs;
@@ -313,6 +334,42 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
                 exhausted);
         }
         return needs;   // a ghost has no other needs it can act on
+    }
+
+    // --- IS THE SHOP OPEN YET? ---------------------------------------------
+    //
+    // Owner ruling, 2026-09-04: an alchemist opens her life by buying a LOT of
+    // nightshade and empty bottles from the NPC alchemist and brewing poison --
+    // the brew batch is BOTH the training and the stock to sell -- and "she
+    // must NOT open by buying NPC heal potions".
+    //
+    // Written as a rule the whole catalogue can carry rather than as a goal
+    // order. A life whose FIRST income is Craft, that cannot make a single one
+    // of its own goods right now, and whose shortfall is something a shopkeeper
+    // may legitimately sell it, is a shop with empty shelves: no stock to sell,
+    // no bench work to gain a skill on, and nothing to spend the horse money on
+    // afterwards. Everything else on its list -- the horse, a scroll for the
+    // book, a potion off a healer's shelf -- is the upkeep of a WORKING life,
+    // and this one has not started working. So it is not that BUY_SUPPLIES is
+    // pinned to the front of the day; it is that the comforts stop outbidding
+    // the trade until the trade exists.
+    //
+    // THE GATE IS THE SHORTFALL, NOT THE JOB TITLE. A lumberjack's missing
+    // input is logs and a tailor's is cloth, and the vendor policy refuses both
+    // (data/revolution_vendor_policy.tsv) -- so those lives never see this and
+    // their gathering errands are untouched. Capital is required for the same
+    // reason BUY_SUPPLIES asks for it below: with nothing to spend, shopping is
+    // not the way out, selling is.
+    bool unstockedCrafter = false;
+    if (cfg.profession && !cfg.profession->income.empty() &&
+        cfg.profession->income.front() == prof::Income::Craft &&
+        (obs.gold - 100) > 0) {
+        // Batch of ONE: the question is "can I make anything at all", which is
+        // the difference between an empty shop and a low shelf.
+        const CraftIntent one =
+            ChooseCraft(*cfg.profession, obs, 1, cfg.craftFocus);
+        unstockedCrafter = one.item && one.skillsMet && !one.missing.empty() &&
+                           econ::CanBuyFromNPC(one.missing.front().item).allowed;
     }
 
     // Resurrection is only the first half of a full-loot death.  Keep the
@@ -462,11 +519,30 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         for (const prof::ConsumableNeed& c : cfg.profession->consumables)
             if (c.name == "heal potion") { low = c.low; break; }
         if (obs.healPotions < low) {
-            add(NeedKind::NeedEquipment, 0.5, "heal potions",
-                "no Healing skill to make a bandage work -- a potion is the "
-                "only self-heal this life has",
-                Fmt("potions=%d low=%d gold=%d", obs.healPotions, low,
-                    obs.gold));
+            // A BREWER DOES NOT OPEN HER LIFE AT SOMEONE ELSE'S COUNTER.
+            //
+            // Owner ruling 2026-09-04. Elara's first three goals on
+            // 2026-09-03 were BUY_MOUNT, BANK, then REPLACE_EQUIPMENT buying
+            // four NPC heal potions (progress=0) -- while carrying a mortar,
+            // Alchemy 50.0 and i_potion_heal in her own `produces` at a gate
+            // of 15.1. 0.5 x 260 = 130 was beating the shopping trip that
+            // would have started her trade.
+            //
+            // 0.20 x 260 = 52 keeps the need VISIBLE and buyable on a quiet
+            // day, under BUY_SUPPLIES (133 while unstocked) and under CRAFT
+            // (65) -- so the answer becomes "brew some", which is what she is
+            // for. Only ever damped for a life that can actually brew: every
+            // fighter, gatherer and below-the-gate crafter keeps the old 0.5
+            // exactly, which is the non-crafter upkeep path the brief protects.
+            const bool brews = BrewsOwnHealPotion(*cfg.profession, obs);
+            add(NeedKind::NeedEquipment, brews ? 0.20 : 0.5, "heal potions",
+                brews ? "no Healing skill -- but this life BREWS heal potions "
+                        "and carries the skill for it, so buying them off a "
+                        "shelf is the wrong errand"
+                      : "no Healing skill to make a bandage work -- a potion is "
+                        "the only self-heal this life has",
+                Fmt("potions=%d low=%d gold=%d brews_own=%d", obs.healPotions,
+                    low, obs.gold, brews ? 1 : 0));
         }
     }
 
@@ -960,6 +1036,26 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
                 ? now
                 : ChooseCraft(*cfg.profession, obs, cfg.craftBatch,
                               cfg.craftFocus);
+        // ...AND A THIRD, WHICH IS THE SHOPPING QUESTION ON ITS OWN.
+        //
+        //   "is the pack BALANCED for the sitting it has already paid for?"
+        //
+        // The two questions above both size the sitting at a fixed number, and
+        // that made bulk buying pointless: Elara came back from the alchemist
+        // with 84 nightshade and kept the four bottles her newbie kit gave her,
+        // because five potions want five bottles and she had four -- close
+        // enough that "can I make one right now?" said yes and the errand
+        // vanished. She brewed twice and stopped with 82 leaves in the pack.
+        // CraftBatchFromStock reads the size off the best-stocked input, so the
+        // shortfall it names is the OTHER half of a recipe already half paid
+        // for -- never more of the thing just bought.
+        const i32 stockBatch = CraftBatchFromStock(*cfg.profession, obs,
+                                                   cfg.craftBatch,
+                                                   cfg.craftFocus);
+        const CraftIntent stocked =
+            stockBatch > cfg.craftBatch
+                ? ChooseCraft(*cfg.profession, obs, stockBatch, cfg.craftFocus)
+                : craft;
         // WHAT THE BATCH IS SHORT OF THAT ONLY A LOOM CAN MAKE.
         //
         // Read off the chosen recipe's own missing list rather than from a
@@ -1020,12 +1116,24 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
                     "holds every input for something this life can legitimately "
                     "sell -- to an NPC or, for a player-market good, to a player",
                     Fmt("%s: %s", craft.item, craft.why));
-            } else {
+            }
+            // THE SHOPPING ROW ANSWERS THE `stocked` QUESTION, not `craft`'s.
+            //
+            // When the bench can start, `craft` has nothing missing and there
+            // used to be no supplies row at all -- which is precisely how 84
+            // nightshade and 4 bottles counted as "stocked". `stocked` is the
+            // same recipe sized to what the pack has already paid for, so this
+            // row appears for the half of the recipe that is genuinely short
+            // and stays silent when the pack is balanced. NeedCraft above is
+            // untouched and still outranks it (65 against 61.6): a crafter that
+            // can work, works, and shops afterwards.
+            const CraftIntent& shop = craft.missing.empty() ? stocked : craft;
+            if (shop.item && shop.skillsMet && !shop.missing.empty()) {
                 // Can the shortfall actually be bought? A missing input with
                 // no seller is a blocked state, not an errand -- and saying
                 // otherwise is how a goal wins the scoring and then discovers
                 // on entry that there was never anywhere to go.
-                const prod::Ingredient& first = craft.missing.front();
+                const prod::Ingredient& first = shop.missing.front();
                 const econ::VendorRuling ruling =
                     econ::CanBuyFromNPC(first.item);
                 // BELOW NeedCraft (0.50) and below selling. Shopping is what
@@ -1041,16 +1149,65 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
                 // over -- outranking the sale that was the only way out of
                 // it. Selling is what pays for the next batch.
                 const bool noCapital = (obs.gold - 100) <= 0;
+                // EMPTY SHELVES ARE NOT A LOW SHELF -- AND IT IS A RATE, NOT
+                // A SECOND CONSTANT.
+                //
+                // How much of the sitting the pack has already paid for can
+                // actually be made? That is the worst-stocked input, against
+                // the batch the best-stocked one funds. One poison out of
+                // thirty-eight is a shop with the shelves bare; thirty-five out
+                // of thirty-eight is a shop that should be open. So the urgency
+                // slides between them instead of switching:
+                //
+                //   frac 0.00 -> 0.95 x 140 = 133  over the heal-potion browse
+                //                                  (130) and the spellbook (77)
+                //   frac 1.00 -> 0.44 x 140 =  62  under CRAFT (65): working
+                //                                  stock is for working with
+                //
+                // The floor of 0.44 is the number the scribe incident recorded
+                // above was tuned to and is deliberately unmoved. Nothing here
+                // outranks the bank run, food, healing or the emergencies. The
+                // horse is handled at its own need -- no weight under the
+                // emergency band beats BUY_MOUNT's 255.
+                i32 madeable = -1;
+                if (const prod::Recipe* rec = prod::FindRecipe(shop.item)) {
+                    for (const prod::Ingredient& in : rec->inputs) {
+                        if (!in.item || in.qty <= 0) continue;
+                        const i32 can = QtyIn(obs.pack, in.item) / in.qty;
+                        if (madeable < 0 || can < madeable) madeable = can;
+                    }
+                }
+                if (madeable < 0) madeable = 0;
+                // AGAINST A SITTING, NOT AGAINST THE BEST-STOCKED SHELF.
+                // Measured against stockBatch alone, 72 bottles bought made
+                // 66 nightshade look half-empty (33 of 67) and this need
+                // pulled Elara off the mortar after five potions to go
+                // shopping for reagents she would not touch for half an hour
+                // (2026-09-04 01:26:48). A pack that holds a full sitting's
+                // inputs is stocked; the shelf that runs low first is a
+                // reason to shop after the sitting, not during it.
+                const i32 sitting =
+                    std::max(1, std::min(stockBatch, cfg.craftBatch));
+                const double funded =
+                    std::min(1.0, static_cast<double>(madeable) /
+                                      static_cast<double>(sitting));
+                const double supplyUrgency = std::max(0.44, 0.95 - 0.51 * funded);
                 add(NeedKind::NeedSupplies,
-                    (ruling.allowed && !noCapital) ? 0.44 : 0.0,
+                    (ruling.allowed && !noCapital) ? supplyUrgency : 0.0,
                     "buy craft inputs",
                     !ruling.allowed
                         ? "short of an input no NPC may legitimately sell it"
                         : (noCapital
                                ? "short of inputs AND of the gold to buy them "
                                  "-- what it has made has to be sold first"
-                               : "short of what it needs to make its own goods"),
-                    Fmt("%s needs %d x %s%s", craft.item, first.qty, first.item,
+                               : (unstockedCrafter
+                                      ? "cannot make a single one of its own "
+                                        "goods -- this is the trade itself, "
+                                        "not a restock"
+                                      : "short of what it needs to make its "
+                                        "own goods")),
+                    Fmt("%s x%d needs %d x %s (can make %d of %d)%s", shop.item,
+                        stockBatch, first.qty, first.item, madeable, stockBatch,
                         !ruling.allowed ? " -- and the vendor policy refuses "
                                           "that purchase"
                                         : (noCapital ? " -- and the purse is empty"
@@ -1550,6 +1707,17 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
             const bool fighter = cfg.profession && WantsToHunt(*cfg.profession);
             double urgency = canAfford ? 0.8 : 0.05;
             if (fighter && canAfford) urgency = 0.30;
+            // THE SAME RULE, FOR A CRAFTER WITH NOTHING ON THE SHELVES.
+            //
+            // The fighter clause above says a horse must not outbid the work
+            // that pays for it; `unstockedCrafter` is that argument for a life
+            // whose work is a bench. Elara opened her first session with 10000
+            // gold, BUY_MOUNT at 0.80 x 255 = 204, and not one leaf of
+            // nightshade (run_gates/g_Elara.console.txt, 2026-09-03 15:13).
+            // 0.25 x 255 = 63.75 sits under the stocking trip (133) and over
+            // idling, so the horse is still bought -- on the way back from the
+            // alchemist, with the mortar working.
+            if (unstockedCrafter && canAfford) urgency = 0.25;
             add(NeedKind::NeedMount, stoodDown ? 0.0 : urgency, "riding horse",
                 stoodDown
                     ? (obs.mountAskOnCooldown
@@ -1559,6 +1727,10 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
                              "resting the errand for a few sessions")
                 : !canAfford ? "on foot, but the purse does not clear the price "
                                "plus this life's reserve"
+                : unstockedCrafter
+                             ? "on foot with the price of a horse in hand, but "
+                               "the shelves are empty and stock comes first for "
+                               "a life that sells what it makes"
                 : fighter    ? "on foot with the price of a horse in hand, but "
                                "the hunt comes first for a life that fights"
                              : "on foot with the price of a horse in hand",

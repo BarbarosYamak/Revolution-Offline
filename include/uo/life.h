@@ -819,6 +819,26 @@ const CraftMenuPath* CraftMenuFor(const std::string& item);
 CraftIntent ChooseCraft(const prof::Profession& p, const Observation& obs,
                         i32 batch, const CraftFocus* focus = nullptr);
 
+// HOW BIG A SITTING THE PACK IS ALREADY PAYING FOR.
+//
+// A bulk purchase decides the size of the batch, not the other way round.
+// Elara walked out of the Britain alchemist with 84 nightshade -- 42 poisons'
+// worth -- and four empty bottles from her newbie kit, and then stopped
+// shopping: `craftBatch` is 5, five potions want five bottles, she had four,
+// and one bottle short is a shortfall so small that the two-question rule
+// ("can I make one right now?") answered yes and no errand was raised at all
+// (run_gates/g_Elara.console.txt, 2026-09-04 00:53). She brewed twice and ran
+// dry with 82 leaves of nightshade in the pack.
+//
+// So: take the recipe this life would work on, ask how many outputs its
+// BEST-STOCKED input could fund, and use that as the batch when it is larger
+// than the floor. The best-stocked input is by definition not short at that
+// size, so this can never invent a shortfall of the thing just bought -- it
+// only ever asks for the OTHER half of a recipe already half paid for. Returns
+// `floorBatch` when nothing can be worked on.
+i32 CraftBatchFromStock(const prof::Profession& p, const Observation& obs,
+                        i32 floorBatch, const CraftFocus* focus = nullptr);
+
 // IS THIS SOMETHING THE SHEEP-TO-CLOTH CHAIN PRODUCES?
 //
 // Named once because two systems ask it and they must not disagree: the need

@@ -519,9 +519,19 @@ const std::vector<Profession>& All() {
             // scripts an NPC buyback instead (VENDOR_B_ALCHEMIST); that is
             // TNS's model, not this one -- see the faucet registry row.
             p.income = {Income::Craft};
-            // Bottles are NOT bought: i_bottle_empty is Alchemy 25.0 with a
-            // glassblowing tool (Production.cpp:178), so an alchemist makes
-            // its own. It buys reagents and nothing else.
+            // BOTTLES ARE BOUGHT. This said they never were -- "i_bottle_empty
+            // is Alchemy 25.0 with a glassblowing tool, so an alchemist makes
+            // its own" -- and that was wrong twice over: the recipe needs a
+            // t_glassblowing_tool no shop in this world was ever proven to
+            // sell, and the shard's own alchemist stocks the bottle outright
+            // (SELL=i_BOTTLE_EMPTY,250, templates/tm_vend.scp VENDOR_S_ALCHEMIST;
+            // the provisioner carries {5 38} as well). The vendor policy has
+            // graded it REVOLUTION_NPC_VERIFIED buy=1 since M3.7
+            // (data/revolution_vendor_policy.tsv:106) and it is on `consumes`
+            // below, so BUY_SUPPLIES already shops for it -- only this comment
+            // was stale. Owner ruling 2026-09-04: an alchemist opens her life
+            // by buying a LOT of nightshade AND empty bottles and brewing
+            // poison; the batch is the training and the stock at once.
             // HEAL AND GREATER HEAL, which are what a fighting life actually
             // buys. Both recipes already existed in the production graph and
             // the alchemist simply never claimed them:
