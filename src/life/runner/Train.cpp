@@ -296,6 +296,312 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
 
 
 // ---------------------------------------------------------------------------
+// STAT_FARM -- the Wrestling detour, which is how a caster's STR moves at all.
+//
+// Owner order, 2026-09-04: "STR needed -> temporarily train Wrestling -> spar
+// bare-handed (NPC/player/dummy) -> when the STR target is reached, set the
+// Wrestling lock DOWN and let the real mage skills fill its points."
+//
+// The four shard facts it rests on are cited on AssessStatFarm in life.h. The
+// two that shape THIS function:
+//
+//   * a training dummy refuses a rider, refuses a ranged weapon skill, and
+//     refuses Wrestling above SkillPracticeMax=300 -- but below that every
+//     double-click is a Skill_Experience roll, and every roll is a stat roll
+//     (Source-X CCharUse.cpp:349-405, CCharSkill.cpp:3508);
+//   * hitting an NPC is a crime, and a speaking witness in a guarded region
+//     calls guards with GuardsInstantKill=1 (CCharFight.cpp:24-99,:1474). So
+//     this errand NEVER swings at an NPC and never opens a fight inside a
+//     guarded region. What it may punch is a hostile the ordinary targeting
+//     layer has already judged legal.
+//
+// TARGET ORDER, exactly as briefed:
+//   (a) a training dummy, while Wrestling is under 30.0;
+//   (b) a low-danger hostile already in view, outside a guarded region;
+//   (c) a consenting bot partner -- NOT IMPLEMENTED. There is no party or
+//       consent mechanism in this client today (no ActionPartyInvite, no
+//       spar handshake), and inventing one here would be a second market
+//       protocol hidden inside a training errand. Design note:
+//       .claude/agent-memory/revolution-god/sparring-parties.md.
+//
+// KNOWN LIMIT, stated rather than papered over: (a) only finds a dummy the
+// server has already sent us, i.e. one within view. There are 55 in the world
+// save (tools/world_query.py --count i_training_dummy) but no route to one --
+// the nearest to the Britain bank is 81 tiles away and on an upper floor.
+// Until dummies are a routable place, a character in the middle of a town
+// will report "nothing here to spar with" and stand the errand down.
+// ---------------------------------------------------------------------------
+
+namespace {
+// i_training_dummy and its DUPELIST (runtime/scripts/items/i_profession.scp:
+// 1168-1200): 01070 plus 01071..01077, which are the facing and animation
+// frames. The id on the wire is usually not the base one.
+constexpr u16 kTrainingDummy[] = {0x1070, 0x1071, 0x1072, 0x1073,
+                                  0x1074, 0x1075, 0x1076, 0x1077};
+}  // namespace
+
+bool Runner::BeginStatFarm(Client& client, const Observation& obs) {
+    if (!statFarmLocksSent_) {
+        statFarmLocksSent_ = true;
+        statFarmActive_ = true;
+        // NOT the "do not lock early" build policy (MaintainBuildLocks) --
+        // that rule is about freezing a PLANNED skill before the cap binds.
+        // This is an explicit, temporary farming configuration, and it is
+        // logged as one so the two are never confused in a run log.
+        //
+        // DEX LOCKED is the point of the whole arrangement: Wrestling pulls
+        // DEX toward 75 (skill43_wrestling.scp STAT_DEX=75) and a caster
+        // wants nothing of the sort. Source-X skips any stat whose lock is
+        // not UP (CCharSkill.cpp Skill_Experience), so the lock is a real
+        // brake and not a preference.
+        client.ActionSetSkillLock(static_cast<u16>(rules::kWrestling),
+                                  kStatFarmLocks.wrestling);
+        client.ActionSetStatLock(0, kStatFarmLocks.str);
+        client.ActionSetStatLock(1, kStatFarmLocks.dex);
+        client.ActionSetStatLock(2, kStatFarmLocks.intel);
+        statLockSent_[0] = static_cast<u8>(kStatFarmLocks.str + 1);
+        statLockSent_[1] = static_cast<u8>(kStatFarmLocks.dex + 1);
+        statLockSent_[2] = static_cast<u8>(kStatFarmLocks.intel + 1);
+        LogLine("stat_farm: locks STR=UP DEX=LOCK INT=UP wrestling=UP "
+                "(farming step, not a build lock)");
+        // Durable, because the EXIT is not run by this goal: once STR is
+        // reached the need falls silent, so the Wrestling-DOWN is done by the
+        // lock keeper, which needs to know a farm ever happened.
+        if (!state_.memory.HasEvent("stat_farm_started")) {
+            state_.memory.NoteEvent("stat_farm_started",
+                                    "began farming STR by wrestling", "",
+                                    obs.x, obs.y, obs.nowMs);
+        }
+        nextActionMs_ = obs.nowMs + 800;
+        return true;
+    }
+
+    // FISTS. Fight_GetWeaponSkill returns Wrestling only with both hands
+    // empty, and the dummy refuses a ranged skill outright -- so a fisher's
+    // pole or a warlock's katana has to go in the pack first. The serial is
+    // remembered so the errand can hand it back.
+    if (client.ActionBusy()) return true;
+    for (u8 layer : {kLayerHand1, kLayerHand2}) {
+        const u32 worn = client.EquippedAtLayer(layer);
+        if (!worn) continue;
+        if (!statFarmStowedWeapon_) statFarmStowedWeapon_ = worn;
+        LogLine("stat_farm: putting 0x%04X away -- wrestling is bare-handed",
+                client.EquippedGraphicAt(layer));
+        client.ActionUnequip(worn);
+        nextActionMs_ = obs.nowMs + 1400;
+        return true;
+    }
+    return false;
+}
+
+void Runner::EndStatFarm(Client& client, const Observation& obs) {
+    if (!statFarmActive_) return;
+    statFarmActive_ = false;
+    statFarmLocksSent_ = false;
+    statFarmSwings_ = 0;
+    statFarmWrestlingAtSwing_ = -1;
+    statFarmStrAtSwing_ = -1;
+
+    // DEX back to what the BUILD wants. The lock was a brake on the sparring,
+    // never a decision about the character.
+    const u8 dex = StatFarmDexLockOnExit(state_.plan, obs);
+    client.ActionSetStatLock(1, dex);
+    statLockSent_[1] = static_cast<u8>(dex + 1);
+    LogLine("stat_farm: standing down -- DEX lock back to %s",
+            dex == build::kLockLocked ? "LOCK" : "UP");
+
+    if (statFarmStowedWeapon_) {
+        LogLine("stat_farm: taking the weapon back up");
+        client.ActionEquip(statFarmStowedWeapon_, kLayerServerChooses);
+        statFarmStowedWeapon_ = 0;
+    }
+}
+
+bool Runner::DoStatFarm(Client& client, const Observation& obs) {
+    const StatFarmPlan sf = AssessStatFarm(state_.plan, obs);
+
+    // Nothing to farm any more -- STR reached, or the plan's own skills can
+    // still carry it. Either way this errand is over; the Wrestling-DOWN is
+    // the lock keeper's job (MaintainBuildLocks), not this goal's, because by
+    // then the need has already fallen silent and the goal is never picked.
+    if (!sf.wanted) {
+        LogLine("stat_farm: nothing to farm -- %s (str %d/%d ceiling %d)",
+                sf.why, sf.have, sf.target, sf.ceiling);
+        EndStatFarm(client, obs);
+        planner_.Cooldown(GoalKind::StatFarm, obs.nowMs + kStatFarmStandDownMs);
+        planner_.Finish(false, "no STR left to farm", obs.nowMs);
+        nextActionMs_ = obs.nowMs + 5000;
+        return false;
+    }
+
+    // HP FLOOR. Half health and the sparring stops: a caster with 0.0
+    // Wrestling and no armour dies to the thing it started on. Heal owns the
+    // recovery -- bandages, potion or spell, whichever this life actually has.
+    if (obs.hp * 100 < obs.hpMax * 50) {
+        LogLine("stat_farm: %d/%d health -- breaking off", obs.hp, obs.hpMax);
+        client.EnsurePeaceMode();
+        EndStatFarm(client, obs);
+        return HandOff(GoalKind::StatFarm, GoalKind::Heal, kShortRestMs,
+                       "under half health while sparring", obs.nowMs);
+    }
+    // Something is already swinging at us: that is defence, and DoSurvive
+    // owns it. The stat rolls happen either way.
+    if (obs.attackersOnMe > 0) return DoSurvive(client, obs);
+    if (client.TravelBusy()) return false;
+
+    if (BeginStatFarm(client, obs)) return false;
+
+    // Did the last swing actually move anything the server reports? Progress
+    // is a skill or stat that CHANGED, never "we swung again".
+    if (statFarmWrestlingAtSwing_ >= 0) {
+        const bool moved = sf.wrestlingTenths > statFarmWrestlingAtSwing_ ||
+                           obs.str > statFarmStrAtSwing_;
+        if (moved) {
+            LogLine("stat_farm: str=%d/%d wrestling=%.1f (was %.1f) after %d "
+                    "swing(s)", obs.str, sf.target, sf.wrestlingTenths / 10.0,
+                    statFarmWrestlingAtSwing_ / 10.0, statFarmSwings_);
+            planner_.NoteProgress();
+        }
+    }
+
+    const wm::Region* region = client.CurrentRegion();
+    const bool guarded = region && region->flags.guarded;
+
+    // --- (a) a training dummy ---------------------------------------------
+    //
+    // Legal anywhere -- a dummy is furniture, not a mobile, so no crime is
+    // seen and no guard is called. Only while Wrestling is under
+    // SkillPracticeMax, because above it the dummy refuses and the swing is
+    // simply a wasted double-click.
+    if (sf.useDummy && !obs.mounted) {
+        u32 dummy = 0;
+        for (u16 g : kTrainingDummy) {
+            dummy = client.FindWorldItemByGraphic(g, 16);
+            if (dummy) break;
+        }
+        if (dummy) {
+            i32 dx = 0, dy = 0;
+            client.WorldItemPosition(dummy, &dx, &dy);
+            if (TileDist(dx, dy, obs.x, obs.y) > 1) {
+                if (!travelInFlight_) {
+                    LogLine("stat_farm: target=dummy at %d,%d -- stepping up to "
+                            "it (str=%d/%d wrestling=%.1f)", dx, dy, obs.str,
+                            sf.target, sf.wrestlingTenths / 10.0);
+                    travelInFlight_ = client.TravelToEntity(dummy, 1);
+                    if (!travelInFlight_) {
+                        LogLine("stat_farm: cannot reach the dummy -- \"%s\"",
+                                client.TravelFailureText());
+                        planner_.NoteAttempt(obs.nowMs);
+                    }
+                }
+                nextActionMs_ = obs.nowMs + 2000;
+                return false;
+            }
+            travelInFlight_ = false;
+            if (client.ActionBusy()) return false;
+            LogLine("stat_farm: target=dummy str=%d/%d wrestling=%.1f",
+                    obs.str, sf.target, sf.wrestlingTenths / 10.0);
+            LogLine("stat_farm: swing");
+            statFarmWrestlingAtSwing_ = sf.wrestlingTenths;
+            statFarmStrAtSwing_ = obs.str;
+            ++statFarmSwings_;
+            client.ActionUseObject(dummy);
+            planner_.NoteAttempt(obs.nowMs);
+            // Source-X animates the dummy for 3 s and refuses an early
+            // re-click, so anything shorter is a wasted packet.
+            nextActionMs_ = obs.nowMs + 3200;
+            return false;
+        }
+    } else if (sf.useDummy && obs.mounted) {
+        LogLine("stat_farm: mounted -- a dummy refuses a rider "
+                "(CCharUse.cpp:361), looking for something else");
+    }
+
+    // --- (b) a low-danger hostile already in view --------------------------
+    //
+    // Never inside a guarded region and never an NPC: both are crimes with a
+    // witness, and this shard kills criminals on sight. What is left is what
+    // ChoosePrey already judges legal -- the same targeting layer TRAIN_COMBAT
+    // uses, with this life's own risk tolerance.
+    if (!guarded && obs.hostilesNear > 0 && !client.ActionBusy()) {
+        std::vector<Client::HostileHit> seen;
+        client.ScanHostiles(10, seen);
+        std::vector<combat::Candidate> cands;
+        cands.reserve(seen.size());
+        for (const Client::HostileHit& h : seen) {
+            if (IsUnreachable(h.serial, obs.nowMs)) continue;
+            combat::Candidate c;
+            c.serial = h.serial;
+            c.name   = h.name;
+            c.noto   = static_cast<combat::Noto>(h.noto);
+            c.dist   = TileDist(h.x, h.y, obs.x, obs.y);
+            c.hpCur  = h.hpCur;
+            c.hpMax  = h.hpMax;
+            c.warMode = h.warMode;
+            cands.push_back(std::move(c));
+        }
+        if (!cands.empty()) {
+            combat::Stance me;
+            me.inGuardedRegion = false;
+            me.attackersOnMe   = obs.attackersOnMe;
+            const Memory& mem = state_.memory;
+            const i64 now = obs.nowMs;
+            LoadSeededCreatureDanger(client.DataDir());
+            const combat::CreatureDangerLookup danger =
+                [&mem, now](const std::string& n) {
+                    const double learned = mem.CreatureDanger(n.c_str(), now);
+                    if (learned > 0.0) return learned;
+                    const double seeded = SeededDangerFor(n);
+                    return seeded >= 0.0 ? seeded : 0.0;
+                };
+            combat::EngagePolicy policy;
+            if (needCfg_.profession)
+                policy.riskTolerance = needCfg_.profession->riskTolerance;
+            // HALVED on purpose. Bare-handed at Wrestling 0.0 is not the same
+            // character that picked this fight with a sword, and the errand is
+            // worth exactly nothing if it gets the caster killed.
+            policy.riskTolerance *= 0.5;
+            const int prey = combat::ChoosePrey(cands, me,
+                                                combat::RevolutionCrimeRules(),
+                                                policy, obs.HpFraction(), danger);
+            if (prey >= 0) {
+                const combat::Candidate& c = cands[static_cast<usize>(prey)];
+                LogLine("stat_farm: target=%s str=%d/%d wrestling=%.1f",
+                        c.name.c_str(), obs.str, sf.target,
+                        sf.wrestlingTenths / 10.0);
+                LogLine("stat_farm: swing");
+                statFarmWrestlingAtSwing_ = sf.wrestlingTenths;
+                statFarmStrAtSwing_ = obs.str;
+                ++statFarmSwings_;
+                client.ActionAttack(c.serial);
+                currentFoe_ = c.serial;
+                currentFoeName_ = c.name;
+                fightStartedMs_ = obs.nowMs;
+                chaseBestDist_ = c.dist;
+                chaseProgressMs_ = obs.nowMs;
+                planner_.NoteAttempt(obs.nowMs);
+                nextActionMs_ = obs.nowMs + 2500;
+                return false;
+            }
+        }
+    }
+
+    // --- (c) a consenting partner -- see the header note. Not implemented.
+
+    // NOTHING TO PUNCH. A goal that did nothing stands down; it does not
+    // report success (goal-that-did-nothing-must-stand-down).
+    LogLine("goal_blocked=STAT_FARM reason=\"nothing here to spar with\" "
+            "guarded=%d hostiles=%d dummy_ok=%d", guarded ? 1 : 0,
+            obs.hostilesNear, sf.useDummy ? 1 : 0);
+    EndStatFarm(client, obs);
+    planner_.Cooldown(GoalKind::StatFarm, obs.nowMs + kStatFarmStandDownMs);
+    planner_.Finish(false, "nothing here to spar with", obs.nowMs);
+    nextActionMs_ = obs.nowMs + 5000;
+    return false;
+}
+
+
+// ---------------------------------------------------------------------------
 // TRAIN_AT_NPC -- buy a skill the way a player does.
 //
 //   travel to a trade NPC -> ask who is here -> say "train <skill>"

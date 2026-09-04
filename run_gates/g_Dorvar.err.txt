@@ -1,5 +1,67 @@
 start: Dorvar is a fisher and lives in Skara Brae -> starting city index 7
 map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
 map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
-[15:14:38.328] WARN  [g_Dorvar] [bot] goal (620,2218) is not walkable; snapping to nearest standable tile (619,2217,0) instead
-[15:15:06.401] WARN  [g_Dorvar] [ACTION_RESULT] use_object timeout (no server confirmation)
+[15:26:09.050] WARN  [g_Dorvar] [action] use_item_on superseded by equip
+[15:26:09.051] WARN  [g_Dorvar] [ACTION_RESULT] use_item_on invalid_state (2009ms) superseded
+[15:26:58.896] WARN  [g_Dorvar] [action] use_item_on superseded by vendor_sell
+[15:26:58.896] WARN  [g_Dorvar] [ACTION_RESULT] use_item_on invalid_state (14030ms) superseded
+[15:28:46.859] WARN  [g_Dorvar] [action] use_item_on superseded by vendor_sell
+[15:28:46.859] WARN  [g_Dorvar] [ACTION_RESULT] use_item_on invalid_state (2002ms) superseded
+[15:29:18.863] WARN  [g_Dorvar] [bot] goal (578,2227) is not walkable; snapping to nearest standable tile (579,2226,0) instead
+[15:30:38.448] WARN  [g_Dorvar] [bot] no path to (644,2218) avoiding 0 block(s); stopping (search 610366.5us)
+[15:30:38.448] WARN  [g_Dorvar] [bot] start (643,2218,0) exits: open=6 terrain=1 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 440 item(s), 3 mobile(s))
+[15:31:21.131] WARN  [g_Dorvar] [action] use_item_on superseded by use_item_on
+[15:31:21.131] WARN  [g_Dorvar] [ACTION_RESULT] use_item_on invalid_state (2020ms) superseded
+[15:31:23.151] WARN  [g_Dorvar] [action] use_item_on superseded by equip
+[15:31:23.151] WARN  [g_Dorvar] [ACTION_RESULT] use_item_on invalid_state (2019ms) superseded
+[15:31:52.677] WARN  [g_Dorvar] [action] use_item_on superseded by equip
+[15:31:52.677] WARN  [g_Dorvar] [ACTION_RESULT] use_item_on invalid_state (2050ms) superseded
+[15:33:45.066] WARN  [g_Dorvar] [ACTION_RESULT] use_item_on timeout (no server confirmation)
+[15:34:52.613] WARN  [g_Dorvar] [0x21] move REJECTED seq=8; server says (2688,2235,2) facing=1
+[15:34:52.614] WARN  [g_Dorvar] [bot] 0x20 resync; aborting path
+[15:36:56.885] WARN  [g_Dorvar] [ACTION_RESULT] use_item_on timeout (no server confirmation)
+[15:37:31.858] WARN  [g_Dorvar] [action] use_item_on superseded by equip
+[15:37:31.858] WARN  [g_Dorvar] [ACTION_RESULT] use_item_on invalid_state (2009ms) superseded
+[15:38:55.105] WARN  [g_Dorvar] [action] use_item_on superseded by use_item_on
+[15:38:55.105] WARN  [g_Dorvar] [ACTION_RESULT] use_item_on invalid_state (4020ms) superseded
+[15:38:57.149] WARN  [g_Dorvar] [action] use_item_on superseded by equip
+[15:38:57.149] WARN  [g_Dorvar] [ACTION_RESULT] use_item_on invalid_state (2044ms) superseded
+[15:39:52.255] WARN  [g_Dorvar] [action] use_item_on superseded by equip
+[15:39:52.255] WARN  [g_Dorvar] [ACTION_RESULT] use_item_on invalid_state (2057ms) superseded
+[15:40:35.657] WARN  [g_Dorvar] [bot] no path to (641,2220) avoiding 0 block(s); stopping (search 475896.7us)
+[15:40:35.657] WARN  [g_Dorvar] [bot] start (642,2221,0) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 632 item(s), 6 mobile(s))
+[15:40:51.460] WARN  [g_Dorvar] [bot] no path to (645,2217) avoiding 0 block(s); stopping (search 480027.0us)
+[15:40:51.460] WARN  [g_Dorvar] [bot] start (645,2218,0) exits: open=6 terrain=1 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 632 item(s), 4 mobile(s))
+[15:41:59.169] WARN  [g_Dorvar] [action] use_item_on superseded by use_item_on
+[15:41:59.169] WARN  [g_Dorvar] [ACTION_RESULT] use_item_on invalid_state (2041ms) superseded
+[15:42:08.124] WARN  [g_Dorvar] [action] use_item_on superseded by vendor_sell
+[15:42:08.124] WARN  [g_Dorvar] [ACTION_RESULT] use_item_on invalid_state (8955ms) superseded
+[15:42:21.699] WARN  [g_Dorvar] [action] vendor_sell superseded by equip
+[15:42:21.699] WARN  [g_Dorvar] [ACTION_RESULT] vendor_sell invalid_state (2524ms) superseded
+[15:48:46.075] WARN  [g_Dorvar] [action] use_item_on superseded by equip
+[15:48:46.075] WARN  [g_Dorvar] [ACTION_RESULT] use_item_on invalid_state (2042ms) superseded
+[15:49:54.564] WARN  [g_Dorvar] [ACTION_RESULT] use_item_on timeout (no server confirmation)
+[15:55:54.152] WARN  [g_Dorvar] [bot] no path to (2678,2234) avoiding 0 block(s); stopping (search 2568934.7us)
+[15:55:54.153] WARN  [g_Dorvar] [bot] start (2684,2237,2) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 659 item(s), 14 mobile(s))
+[15:56:06.847] WARN  [g_Dorvar] [0x21] move REJECTED seq=14; server says (2688,2235,2) facing=1
+[15:56:06.848] WARN  [g_Dorvar] [bot] 0x20 resync; aborting path
+[15:58:36.816] WARN  [g_Dorvar] [bot] no path to (645,2211) avoiding 0 block(s); stopping (search 672424.0us)
+[15:58:36.816] WARN  [g_Dorvar] [bot] start (644,2212,0) exits: open=6 terrain=1 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 667 item(s), 6 mobile(s))
+[15:59:10.982] WARN  [g_Dorvar] [action] use_item_on superseded by use_item_on
+[15:59:10.982] WARN  [g_Dorvar] [ACTION_RESULT] use_item_on invalid_state (2017ms) superseded
+[15:59:25.982] WARN  [g_Dorvar] [ACTION_RESULT] use_item_on timeout (no server confirmation)
+[16:00:21.033] WARN  [g_Dorvar] [0x21] move REJECTED seq=6; server says (2688,2235,2) facing=1
+[16:00:21.035] WARN  [g_Dorvar] [bot] 0x20 resync; aborting path
+[16:08:53.100] WARN  [g_Dorvar] [bot] no path to (616,2184) avoiding 0 block(s); stopping (search 1118.7us)
+[16:08:53.100] WARN  [g_Dorvar] [bot] start (592,2150,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 682 item(s), 5 mobile(s))
+[16:11:38.659] WARN  [g_Dorvar] [bot] no path to (646,2205) avoiding 0 block(s); stopping (search 682599.8us)
+[16:11:38.659] WARN  [g_Dorvar] [bot] start (647,2206,0) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 682 item(s), 4 mobile(s))
+[16:12:21.254] WARN  [g_Dorvar] [action] use_item_on superseded by vendor_sell
+[16:12:21.254] WARN  [g_Dorvar] [ACTION_RESULT] use_item_on invalid_state (14722ms) superseded
+[16:15:11.344] WARN  [g_Dorvar] [ACTION_RESULT] use_item_on timeout (no server confirmation)
+[16:17:11.033] WARN  [g_Dorvar] [action] use_item_on superseded by use_item_on
+[16:17:11.033] WARN  [g_Dorvar] [ACTION_RESULT] use_item_on invalid_state (2045ms) superseded
+[16:17:13.064] WARN  [g_Dorvar] [action] use_item_on superseded by equip
+[16:17:13.064] WARN  [g_Dorvar] [ACTION_RESULT] use_item_on invalid_state (2031ms) superseded
+[16:22:27.877] WARN  [g_Dorvar] [action] use_item_on superseded by vendor_sell
+[16:22:27.877] WARN  [g_Dorvar] [ACTION_RESULT] use_item_on invalid_state (13644ms) superseded

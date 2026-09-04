@@ -1,1 +1,235 @@
-{"bank":[]}
+{
+  "bank": [],
+  "bank_seen_ms": 1943008067,
+  "build_plan": {
+    "create_dex": 5,
+    "create_int": 25,
+    "create_skills": [
+      {
+        "skill": 25,
+        "tenths": 500
+      },
+      {
+        "skill": 46,
+        "tenths": 500
+      }
+    ],
+    "create_str": 50,
+    "family": "mage",
+    "skills": [
+      {
+        "skill": 25,
+        "tenths": 1000
+      },
+      {
+        "skill": 46,
+        "tenths": 1000
+      },
+      {
+        "skill": 16,
+        "tenths": 1000
+      }
+    ],
+    "target_dex": 35,
+    "target_int": 90,
+    "target_str": 100,
+    "unresolved_tenths": 4000
+  },
+  "checkpoint_ms": 2029856564,
+  "death_count": 0,
+  "goal": {
+    "active": true,
+    "attempts": 0,
+    "failure_reason": "",
+    "kind": "EXPLORE",
+    "progress": 0,
+    "started_at_ms": 2029848582
+  },
+  "home_city": "Moonglow",
+  "identity": {
+    "account_name": "RevGen3_22",
+    "character_name": "Aurelius",
+    "created_at_ms": 0,
+    "first_seen_at_ms": 1942890640,
+    "identity_id": "revgen3_22.aurelius",
+    "last_seen_at_ms": 2029559082,
+    "sessions": 2,
+    "total_play_time_ms": 537612
+  },
+  "known_spells": [
+    1,
+    4,
+    5,
+    6,
+    7,
+    8,
+    11,
+    12,
+    16,
+    18,
+    20,
+    22,
+    23,
+    28,
+    29,
+    30
+  ],
+  "known_spells_seen_ms": 2029821947,
+  "last_death_ms": 0,
+  "last_server_report": {
+    "dead": false,
+    "dex": 5,
+    "gold": 9581,
+    "int": 25,
+    "skills": [
+      {
+        "skill": 25,
+        "tenths": 500
+      },
+      {
+        "skill": 46,
+        "tenths": 500
+      },
+      {
+        "skill": 16,
+        "tenths": 300
+      }
+    ],
+    "str": 50,
+    "x": 3630,
+    "y": 2543
+  },
+  "ledger": [],
+  "memory": {
+    "creatures": [],
+    "danger": [],
+    "events": [
+      {
+        "at_ms": 1942890640,
+        "detail": "Moonglow",
+        "kind": "newbie_knowledge_seeded",
+        "place": "",
+        "x": 4408,
+        "y": 1168
+      },
+      {
+        "at_ms": 1942890839,
+        "detail": "session=1",
+        "kind": "mount_unavailable",
+        "place": "",
+        "x": 4408,
+        "y": 1168
+      },
+      {
+        "at_ms": 1942927052,
+        "detail": "opened a bank box",
+        "kind": "bank_learned",
+        "place": "bank",
+        "x": 4467,
+        "y": 1160
+      },
+      {
+        "at_ms": 2029821120,
+        "detail": "began farming STR by wrestling",
+        "kind": "stat_farm_started",
+        "place": "",
+        "x": 3630,
+        "y": 2543
+      }
+    ],
+    "places": [
+      {
+        "kind": "common_knowledge_bank",
+        "last_verified_ms": 1942890640,
+        "learned_ms": 1942890640,
+        "name": "Moonglow Bank banker",
+        "visits": 1,
+        "x": 4471,
+        "y": 1156,
+        "z": 0
+      },
+      {
+        "kind": "common_knowledge_healer",
+        "last_verified_ms": 1942890640,
+        "learned_ms": 1942890640,
+        "name": "Moonglow Healer healer",
+        "visits": 1,
+        "x": 4394,
+        "y": 1083,
+        "z": 0
+      },
+      {
+        "kind": "common_knowledge_provisioner",
+        "last_verified_ms": 1942890640,
+        "learned_ms": 1942890640,
+        "name": "The Scholar's Goods provisioner",
+        "visits": 1,
+        "x": 4417,
+        "y": 1064,
+        "z": 0
+      },
+      {
+        "kind": "healer",
+        "last_verified_ms": 1943008067,
+        "learned_ms": 1942978143,
+        "name": "Xanthe, the healer guildmistress",
+        "visits": 602,
+        "x": 4391,
+        "y": 1080,
+        "z": 0
+      },
+      {
+        "kind": "safe",
+        "last_verified_ms": 1943125506,
+        "learned_ms": 1943125506,
+        "name": "logout point",
+        "visits": 1,
+        "x": 3610,
+        "y": 2470,
+        "z": 0
+      }
+    ],
+    "resources": [],
+    "suppliers": [],
+    "trainers": []
+  },
+  "prices": [],
+  "recent_deaths": 0,
+  "schema_version": 2,
+  "sessions": [
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 1943125568,
+      "goals_attempted": 5,
+      "goals_completed": 0,
+      "goals_failed": 0,
+      "gold_end": 9940,
+      "gold_start": 10000,
+      "logs_gathered": 0,
+      "places_learned": 5,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1000,
+      "skill_tenths_start": 1000,
+      "started_ms": 1942890640,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2029856564,
+      "goals_attempted": 9,
+      "goals_completed": 2,
+      "goals_failed": 0,
+      "gold_end": 9581,
+      "gold_start": 9940,
+      "logs_gathered": 0,
+      "places_learned": 5,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1300,
+      "skill_tenths_start": 1000,
+      "started_ms": 2029559082,
+      "suppliers_learned": 0
+    }
+  ]
+}

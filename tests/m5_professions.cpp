@@ -112,9 +112,11 @@ void TestCreationFitsTheServer() {
     for (const prof::Profession& p : prof::All()) {
         Check(p.startStr == 50,
               "every new life starts at the normal 50 Strength baseline");
-        if (p.id == "mage" || p.id == "warlock") continue;
+        // Owner ruling 2026-09-04: the scribe is created 50/5/25 like the
+        // mage (INT 25 covers circle 4 at the bench), so it joins the list.
+        if (p.id == "mage" || p.id == "warlock" || p.id == "scribe") continue;
         Check(p.startInt <= 10,
-              "only mage and warlock use an Intelligence-weighted remainder");
+              "only mage, warlock and scribe use an Intelligence-weighted remainder");
     }
 
     // A hunter's support skills come from its actual life: fighting raises

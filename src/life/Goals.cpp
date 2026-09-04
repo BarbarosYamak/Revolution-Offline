@@ -35,6 +35,7 @@ const char* GoalKindName(GoalKind g) {
         case GoalKind::MakeCloth:            return "MAKE_CLOTH";
         case GoalKind::BuyMount:             return "BUY_MOUNT";
         case GoalKind::HarvestWool:          return "HARVEST_WOOL";
+        case GoalKind::StatFarm:             return "STAT_FARM";
         case GoalKind::IdleBriefly:           return "IDLE_BRIEFLY";
         case GoalKind::Count:                 break;
     }
@@ -92,6 +93,10 @@ GoalFamily FamilyOf(GoalKind k) {
         case GoalKind::TrainCombat:
         case GoalKind::TrainAtNpc:
         case GoalKind::PracticeSkill:
+        // Sparring for STR is training, even though the thing being raised is
+        // a stat: the character is putting hours in rather than earning or
+        // shopping, and the day's balance should count it that way.
+        case GoalKind::StatFarm:
             return GoalFamily::Training;
         case GoalKind::TradeWithPlayer:
             return GoalFamily::Social;
@@ -286,6 +291,13 @@ const GoalSpec kGoals[] = {
     // Income work, on the same shelf as EARN_GOLD (150) and below the
     // craft/gather work that feeds a build.
     {GoalKind::HarvestWool,           NeedKind::NeedWoolIncome,    140.0},
+    // A DETOUR, WEIGHTED AS ONE. Just under PracticeSkill (120), because for
+    // the lives that raise it -- casters and gatherers whose own plan tops out
+    // below their STR target -- sparring is what you do when the real work is
+    // blocked, not instead of it. 0.50 x 118 = 59 loses to a stocked craft
+    // bench (130) and to a fighter with a graveyard in reach (84.5), and beats
+    // exploring and idling.
+    {GoalKind::StatFarm,              NeedKind::NeedStrength,      118.0},
 };
 
 }  // namespace

@@ -226,4 +226,47 @@ const char* SkillName(int skillId) {
     return buf;
 }
 
+int SkillStatStr(int skillId) {
+    // Index == skill id, exactly as the runtime names its files
+    // (skill<N>_<name>.scp). Transcribed 2026-09-04 from
+    // runtime/scripts/skills/, one grep of STAT_STR= per file; nothing here is
+    // inferred. The two that matter most to the stat-farm errand:
+    // Magery 20 and Meditation 10 (a caster's ceiling), Wrestling 100
+    // (skill43_wrestling.scp:12, with BONUS_STR=50 BONUS_STATS=10).
+    static const int kStatStr[] = {
+        /*  0 alchemy        */   5, /*  1 anatomy         */  15,
+        /*  2 animal lore    */   0, /*  3 appraise        */   0,
+        /*  4 arms lore      */  10, /*  5 parrying        */  75,
+        /*  6 begging        */   5, /*  7 blacksmithing   */  95,
+        /*  8 bowcraft       */  40, /*  9 peacemaking     */   0,
+        /* 10 camping        */  30, /* 11 carpentry       */  60,
+        /* 12 cartography    */  15, /* 13 cooking         */  25,
+        /* 14 detect hidden  */  15, /* 15 enticement      */  15,
+        /* 16 eval intel     */   5, /* 17 healing         */  10,
+        /* 18 fishing        */  40, /* 19 forensics       */  10,
+        /* 20 herding        */  50, /* 21 hiding          */  20,
+        /* 22 provocation    */  20, /* 23 inscription     */  15,
+        /* 24 lockpicking    */  20, /* 25 magery          */  20,
+        /* 26 magic resist   */  40, /* 27 tactics         */  60,
+        /* 28 snooping       */  30, /* 29 musicianship    */  20,
+        /* 30 poisoning      */  15, /* 31 archery         */  40,
+        /* 32 spirit speak   */  20, /* 33 stealing        */  40,
+        /* 34 tailoring      */  30, /* 35 taming          */  30,
+        /* 36 taste id       */  25, /* 37 tinkering       */  30,
+        /* 38 tracking       */  25, /* 39 veterinary      */  30,
+        /* 40 swordsmanship  */  75, /* 41 mace fighting   */ 100,
+        /* 42 fencing        */  55, /* 43 wrestling       */ 100,
+        /* 44 lumberjacking  */  85, /* 45 mining          */  85,
+        /* 46 meditation     */  10, /* 47 stealth         */  20,
+        /* 48 remove trap    */  20, /* 49 necromancy      */  20,
+        /* 50 focus          */  10, /* 51 chivalry        */ 100,
+        /* 52 bushido        */  55, /* 53 ninjitsu        */  55,
+        /* 54 spellweaving   */  20, /* 55 mysticism       */  20,
+        /* 56 imbuing        */  15, /* 57 throwing        */  40,
+    };
+    constexpr int kN = static_cast<int>(sizeof(kStatStr) / sizeof(kStatStr[0]));
+    if (skillId < 0 || skillId >= kN) return -1;
+    return kStatStr[skillId];
+}
+
 } // namespace uo::rules

@@ -3,10 +3,16 @@
 - [Agent stop rule](feedback-agent-stop-rule.md) — ~25 calls no root cause / 2 failed smokes / out of brief → BLOCKED, no third try
 - [Observe via agent](feedback-observe-via-agent.md) — wave watching/log slicing goes to one sonnet qa agent; main thread reads only its report
 - [Agent spend rules](feedback-agent-spend.md) — sonnet triage / opus fixes / Fable main only; serial not parallel; no pre-fix triage pass; qa only for live verdicts
+- [No fixed disengage](feedback-no-fixed-disengage.md) — owner 2026-09-04: no "flee at 40%" constant; survival = target choice + context, else PvP never happens
+- [NPC-only consumables, bank outside](npc-only-consumables-and-bank-outside.md) — owner 2026-09-04: blank scroll/bottle never player-traded; bank = in, act, out; idle outside
+- [Stat targets and variants](stat-targets-and-variants.md) — owner table 2026-09-04 applied; variant rolls per family + "final stats ≠ training strategy" pending
+- [Living world chains](living-world-chains.md) — owner 2026-09-04: activities must spawn each other; 15-activity catalogue + 9 hubs in docs/LIVING_WORLD_ACTIVITIES.md
 - [Alchemist loop](alchemist-loop.md) — owner 2026-09-04: bulk nightshade+bottles, brew poison = train+sell same batch; never open by buying NPC potions
 - [Crafters stock then sit](crafters-stock-then-sit.md) — owner rule: bulk materials, one pack-sized sitting for every crafter; shard DELAY table per craft skill
 - [Mage/scribe start 50/25/5](start-stats-mage-50-25-5.md) — owner: STR 50 INT 25 DEX 5 is normal creation for casters; scribe fixed from 50/20/10
 - [Sparring parties](sparring-parties.md) — owner memory: 2-3 bots party, iron set + weak weapon, hit each other; others bandage for Healing; M13 social loop, unimplemented
+- [Caster STR via Wrestling](caster-str-via-wrestling.md) — owner 2026-09-04: temp Wrestling spar → STR target → Wrestling DOWN; Magery STAT_STR=20 so it's the only route
+- [Feathers are carved](feathers-are-carved.md) — owner 2026-09-04: bird/chicken 25, eagle 36, harpy 50; bowyer NPC only buys; archer = kill+carve chain
 - [Spellbook is a side goal](spellbook-is-a-side-goal.md) — owner: casters fill the book (buy circles 1-4, hunt drops for 5-8); scribe can only make spells already in the book
 
 - [Open items 2026-09-04](project_open_items_2026-09-04.md) — Faustus mace, Aurelius vendor_buy, Rhea taming, chest ResourceType; bow↔log, meditation %, weapon-merge era

@@ -1,5 +1,6 @@
 #include "uo/life.h"
 
+#include "uo/builders.h"
 #include "uo/spellcast.h"
 #include "uo/vendor_policy.h"
 
@@ -38,9 +39,88 @@ const char* NeedKindName(NeedKind k) {
         case NeedKind::NeedCloth:     return "NeedCloth";
         case NeedKind::NeedMount:     return "NeedMount";
         case NeedKind::NeedWoolIncome: return "NeedWoolIncome";
+        case NeedKind::NeedStrength:  return "NeedStrength";
         case NeedKind::Count:         break;
     }
     return "?";
+}
+
+// ---------------------------------------------------------------------------
+// STAT FARMING. See the block comment on AssessStatFarm's declaration in
+// life.h for the four shard facts this arithmetic rests on.
+// ---------------------------------------------------------------------------
+
+// life.h spells the lock states as plain numbers so it stays free of the
+// packet layer. This is the seam where the two are held together.
+static_assert(kStatLockUp     == build::kLockUp,     "lock state drift");
+static_assert(kStatLockDown   == build::kLockDown,   "lock state drift");
+static_assert(kStatLockLocked == build::kLockLocked, "lock state drift");
+
+u8 StatFarmDexLockOnExit(const BuildPlan& plan, const Observation& obs) {
+    return obs.dex >= plan.targetDex ? kStatLockLocked : kStatLockUp;
+}
+
+i32 PlanStrCeiling(const BuildPlan& plan) {
+    i32 best = 0;
+    for (const SkillTarget& t : plan.skills) {
+        const int s = rules::SkillStatStr(t.skillId);
+        if (s > best) best = static_cast<i32>(s);
+    }
+    return best;
+}
+
+StatFarmPlan AssessStatFarm(const BuildPlan& plan, const Observation& obs) {
+    StatFarmPlan p;
+    p.have   = obs.str;
+    p.target = plan.targetStr;
+    p.wrestlingTenths = obs.SkillTenths(rules::kWrestling);
+    p.useDummy = p.wrestlingTenths < kDummyPracticeMaxTenths;
+
+    // A plan with no named skills is an M4-era plan or a blank; it says
+    // nothing about a ceiling, and inventing one from silence would send a
+    // character punching things for a target nobody set.
+    if (plan.skills.empty()) {
+        p.why = "this plan names no skills, so it says nothing about a ceiling";
+        return p;
+    }
+    if (plan.targetStr <= 0) {
+        p.why = "no STR target in this plan";
+        return p;
+    }
+    p.ceiling = PlanStrCeiling(plan);
+    if (obs.str >= plan.targetStr) {
+        p.why = "STR is already at the build's target";
+        return p;
+    }
+
+    // THE ORDER OF THESE TWO TESTS IS THE WHOLE DESIGN.
+    //
+    // Wanting STR is not a reason to stop working. A lumberjack's own axe
+    // carries him to STR 85 (Lumberjacking STAT_STR=85) and a smith's hammer
+    // to 95, so while his own work still moves the number, chopping IS the
+    // stat training and a Wrestling detour would be a swordsman dropping his
+    // sword to punch a rabbit. Only once the character has run out the
+    // ceiling its own plan offers is the detour the only road left.
+    if (obs.str < p.ceiling) {
+        p.why = "this life's own skills still raise STR";
+        return p;
+    }
+
+    p.wanted = true;
+    // 0.20 .. 0.50. A detour, not the work: at the top end it sits beside
+    // practising a skill (NeedPractice caps at 0.45) rather than beside a
+    // fighter at a graveyard (0.65), so a life that has something productive
+    // to do does it, and a life that is blocked goes and gets stronger.
+    const double span = static_cast<double>(plan.targetStr - p.ceiling);
+    const double shortfall = static_cast<double>(plan.targetStr - obs.str);
+    const double frac = span > 0.0 ? (shortfall / span) : 1.0;
+    p.urgency = 0.20 + 0.30 * (frac < 0.0 ? 0.0 : (frac > 1.0 ? 1.0 : frac));
+    p.why = p.useDummy
+                ? "own skills are spent at their STR ceiling; a dummy will "
+                  "still take Wrestling swings"
+                : "own skills are spent at their STR ceiling; Wrestling is "
+                  "past the dummy's limit, so it takes a live opponent";
+    return p;
 }
 
 // See the declaration in life.h for why i_thread is not on this list.
@@ -2041,6 +2121,35 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
                     "roughly %d)", SkillName(obs.wantTrainSkill), have / 10.0,
                     obs.wantTrainTarget / 10.0, obs.gold, cfg.trainerFeeGuess),
                 !canAfford);
+        }
+    }
+
+    // --- STR this life's own work can never reach --------------------------
+    //
+    // Owner order 2026-09-04: "STR needed -> temporarily train Wrestling ->
+    // spar bare-handed -> when the STR target is reached, set Wrestling DOWN
+    // and let the real skills take its points back."
+    //
+    // Read from the PLAN rather than from the profession id, because the
+    // question is arithmetic and not identity: a build whose best STAT_STR is
+    // 20 cannot reach STR 85 whatever it is called. See AssessStatFarm.
+    if (!obs.dead) {
+        const StatFarmPlan sf = AssessStatFarm(plan, obs);
+        if (sf.wanted) {
+            // Same two brakes every fighting errand carries: a character does
+            // not go looking for something to punch while hurt or while
+            // carrying a load it is about to lose.
+            const bool hurt   = obs.hp * 100 < obs.hpMax * 80;
+            const bool loaded = obs.WeightFraction() >= 0.7;
+            const bool blocked = hurt || loaded;
+            add(NeedKind::NeedStrength, blocked ? 0.0 : sf.urgency, "Strength",
+                hurt   ? "too hurt to be sparring for stats"
+                : loaded ? "carrying too much to spar"
+                         : sf.why,
+                Fmt("str %d/%d ceiling %d wrestling %.1f dummy_ok=%d",
+                    sf.have, sf.target, sf.ceiling, sf.wrestlingTenths / 10.0,
+                    sf.useDummy ? 1 : 0),
+                blocked);
         }
     }
 

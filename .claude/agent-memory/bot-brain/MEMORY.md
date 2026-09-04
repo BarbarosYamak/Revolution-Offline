@@ -24,3 +24,5 @@
 - [A menu title is not a menu option](a-menu-title-is-not-a-menu-option.md) — kCraftMenus held "Spell Circle 3" (submenu header) not "third circle" (the itemdef NAME); every scribe sitting failed
 - [CANCAST gates the craft menu](cancast-gates-the-craft-menu.md) — TESTIF=<cancast> hides a whole circle for MANA as often as for a missing spell; a scroll in the book is not enough
 - [An unopened container is not empty](an-unopened-container-is-not-empty.md) — the book read 0 rows at login, FILL_SPELLBOOK won 77.0 every session and did nothing; the score was right, the input was wrong
+- [A stat ceiling is a skill property](a-stat-ceiling-is-a-skill-property.md) — reachable STR is max STAT_STR over the PLANNED skills; gate the Wrestling detour on the ceiling or a lumberjack drops his axe to punch rabbits
+- [An errand's exit cannot live in the errand](an-errands-exit-cannot-live-in-the-errand.md) — success silences the need, so the goal is never picked again; move the closing lock/flag to a per-tick keeper with a durable marker

@@ -35,7 +35,7 @@
     "target_str": 30,
     "unresolved_tenths": 4600
   },
-  "checkpoint_ms": 2024057367,
+  "checkpoint_ms": 2024799185,
   "death_count": 0,
   "goal": {
     "active": true,
@@ -43,7 +43,7 @@
     "failure_reason": "",
     "kind": "BANK",
     "progress": 0,
-    "started_at_ms": 2023601481
+    "started_at_ms": 2024365365
   },
   "home_city": "Moonglow",
   "identity": {
@@ -52,9 +52,9 @@
     "created_at_ms": 0,
     "first_seen_at_ms": 1942872509,
     "identity_id": "revgen3_16.lyra",
-    "last_seen_at_ms": 2023601481,
-    "sessions": 7,
-    "total_play_time_ms": 2268291
+    "last_seen_at_ms": 2024365365,
+    "sessions": 8,
+    "total_play_time_ms": 2704725
   },
   "known_spells": [],
   "known_spells_seen_ms": 0,
@@ -441,6 +441,23 @@
       "skill_tenths_end": 1217,
       "skill_tenths_start": 1217,
       "started_ms": 2023601481,
+      "suppliers_learned": 1
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2024799185,
+      "goals_attempted": 0,
+      "goals_completed": 0,
+      "goals_failed": 0,
+      "gold_end": 10407,
+      "gold_start": 10407,
+      "logs_gathered": 0,
+      "places_learned": 5,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1217,
+      "skill_tenths_start": 1217,
+      "started_ms": 2024365365,
       "suppliers_learned": 1
     }
   ]

@@ -338,7 +338,7 @@ const std::vector<Profession>& All() {
                 // longer asks for it anywhere.
             };
             p.unresolvedTenths = 4500;
-            p.targetStr = 100; p.targetDex = 45; p.targetInt = 80;
+            p.targetStr = 100; p.targetDex = 100; p.targetInt = 25;   // owner stat table 2026-09-04
             p.income = {Income::Craft, Income::Process, Income::Gather};
             p.gathers = "ore";
             // "go mine then forge then make dagger and sell them" (owner,
@@ -425,7 +425,7 @@ const std::vector<Profession>& All() {
             // there is evidence about what Revolution mages actually took
             // with it. Unresolved is a first-class value in this project.
             p.unresolvedTenths = 4000;
-            p.targetStr = 25; p.targetDex = 25; p.targetInt = 100;
+            p.targetStr = 100; p.targetDex = 35; p.targetInt = 90;   // owner stat table 2026-09-04
             // LOOT, not crafting. The day-one economy is starting reagents
             // -> graveyard kills -> loot -> sell -> gold -> more reagents,
             // and never gold -> reagents first, because a new mage has
@@ -504,7 +504,7 @@ const std::vector<Profession>& All() {
                 {rules::kMeditation,   500, 2, true,  SkillRole::Utility},
             };
             p.unresolvedTenths = 4500;
-            p.targetStr = 50; p.targetDex = 25; p.targetInt = 100;
+            p.targetStr = 90; p.targetDex = 35; p.targetInt = 100;   // owner stat table 2026-09-04
             // THE TRAINING IS THE PRODUCTION. An alchemist does not grind
             // Alchemy and then separately make stock to sell -- every practice
             // batch comes out of the mortar as real potions. So the loop is:
@@ -624,7 +624,7 @@ const std::vector<Profession>& All() {
                 {rules::kCooking,    500, 3, true,  SkillRole::Utility},
             };
             p.unresolvedTenths = 5500;
-            p.targetStr = 80; p.targetDex = 50; p.targetInt = 45;
+            p.targetStr = 100; p.targetDex = 75; p.targetInt = 50;   // owner stat table 2026-09-04
             p.income = {Income::Gather, Income::Craft};
             p.gathers = "fish";
             // Cooked fish is worth about 1gp more than raw, so the cooking
@@ -691,7 +691,7 @@ const std::vector<Profession>& All() {
                 {rules::kVeterinary, 1000, 3, true,  SkillRole::Secondary},
             };
             p.unresolvedTenths = 4000;
-            p.targetStr = 80; p.targetDex = 45; p.targetInt = 100;
+            p.targetStr = 90; p.targetDex = 35; p.targetInt = 100;   // owner stat table 2026-09-04
             p.income = {Income::Hunt};
             p.consumables = {Bandages(), HealPotions(), Food()};
             p.riskTolerance = 0.40;
@@ -809,7 +809,7 @@ const std::vector<Profession>& All() {
                 {rules::kPoisoning,     500, 1, false, SkillRole::Utility},
             };
             p.unresolvedTenths = 1500;
-            p.targetStr = 100; p.targetDex = 75; p.targetInt = 50;
+            p.targetStr = 100; p.targetDex = 100; p.targetInt = 25;   // owner stat table 2026-09-04
             p.income = {Income::Hunt};
             // Armor/stamina pressure is a slow fight, and a slow fight is
             // won on Cure potions, not poison -- the alchemist's product
@@ -870,7 +870,7 @@ const std::vector<Profession>& All() {
                 {rules::kHealing,       500, 1, false, SkillRole::Utility},
             };
             p.unresolvedTenths = 3000;
-            p.targetStr = 70; p.targetDex = 100; p.targetInt = 55;
+            p.targetStr = 100; p.targetDex = 100; p.targetInt = 25;   // owner stat table 2026-09-04
             // Craft leads: the bow/crossbow sale is a real NPC faucet,
             // unlike almost everything else this catalogue can make.
             p.income = {Income::Craft, Income::Hunt};
@@ -994,7 +994,7 @@ const std::vector<Profession>& All() {
                 {kWrestling,             300, 1, false, SkillRole::Utility},
             };
             p.unresolvedTenths = 3000;
-            p.targetStr = 60; p.targetDex = 100; p.targetInt = 65;
+            p.targetStr = 100; p.targetDex = 100; p.targetInt = 25;   // owner stat table 2026-09-04
             p.income = {Income::Hunt};
             // Recall is the escape valve after a kill; deadly poison is the
             // finisher. Both are bought, never made -- this build has no
@@ -1068,7 +1068,7 @@ const std::vector<Profession>& All() {
                 {rules::kAnatomy,          600, 1, true,  SkillRole::Secondary},
             };
             p.unresolvedTenths = 0;      // TH-01 spends the entire 700, forum-exact
-            p.targetStr = 85; p.targetDex = 100; p.targetInt = 40;
+            p.targetStr = 90; p.targetDex = 35; p.targetInt = 100;   // owner stat table 2026-09-04
             // Faucets.cpp's own treasure_gold row is Confirmed history but
             // Policy::BlockedRuntime -- nothing here has opened a chest on
             // this runtime yet. Guardian loot is what actually pays today.
@@ -1121,7 +1121,7 @@ const std::vector<Profession>& All() {
                 {rules::kMagery,         500, 1, false, SkillRole::Utility},
             };
             p.unresolvedTenths = 5000;
-            p.targetStr = 100; p.targetDex = 50; p.targetInt = 60;
+            p.targetStr = 100; p.targetDex = 50; p.targetInt = 75;   // owner stat table 2026-09-04
             // Same faucet gap as miner_smith: Faucets.cpp's
             // smith_output_to_vendor is RefuseAuthenticity, so smithed goods
             // go to the player market only.
@@ -1241,7 +1241,7 @@ const std::vector<Profession>& All() {
             // NOT written down as fact: the canonical Revolution 7x build
             // needs old build evidence, so the remainder stays unresolved.
             p.unresolvedTenths = 1500;
-            p.targetStr = 100; p.targetDex = 60; p.targetInt = 65;
+            p.targetStr = 100; p.targetDex = 50; p.targetInt = 75;   // owner stat table 2026-09-04
             // Every one of these trades is refused as an NPC faucet
             // (Faucets.cpp: carpentry_output_to_vendor, smith_output_to_vendor,
             // alchemy_output_to_vendor are all Refuse*) -- the starkest
@@ -1352,7 +1352,7 @@ const std::vector<Profession>& All() {
                 {rules::kMagery,     500, 1, false, SkillRole::Utility},
             };
             p.unresolvedTenths = 5000;
-            p.targetStr = 40; p.targetDex = 60; p.targetInt = 100;
+            p.targetStr = 100; p.targetDex = 75; p.targetInt = 50;   // owner stat table 2026-09-04
             // Faucets.cpp refuses generic tailor buyback outright
             // (tailor_output_to_vendor, Policy::RefusePlayerMarket): cloth
             // and robes are player-market goods on Revolution, full stop.
@@ -1423,7 +1423,7 @@ const std::vector<Profession>& All() {
                 {rules::kMining,     500, 1, false, SkillRole::Utility},
             };
             p.unresolvedTenths = 5500;
-            p.targetStr = 100; p.targetDex = 50; p.targetInt = 75;
+            p.targetStr = 100; p.targetDex = 75; p.targetInt = 50;   // owner stat table 2026-09-04
             // Faucets.cpp refuses NPC buyback for tinker output outright
             // (tinker_output_to_vendor, Policy::RefusePlayerMarket) -- the
             // most player-market-dependent income in the whole catalogue.
@@ -1510,7 +1510,7 @@ const std::vector<Profession>& All() {
                 {rules::kMeditation,   400, 1, true,  SkillRole::Utility},
             };
             p.unresolvedTenths = 4600;
-            p.targetStr = 30; p.targetDex = 20; p.targetInt = 100;
+            p.targetStr = 90; p.targetDex = 35; p.targetInt = 100;   // owner stat table 2026-09-04
             // scroll_to_mage_shop / scroll_recall_to_mage_shop are the only
             // two rows Faucets.cpp allows (LIVE PROVEN for the first). Gate
             // Travel and Resurrection scrolls are not in the registry at

@@ -1051,6 +1051,18 @@ enum class NeedKind : u8 {
     // wool to tailors. Raised only for a life that hunts and lists i_wool
     // in `produces`; carrying a load already, or no blade, mutes it.
     NeedWoolIncome,
+    // STRENGTH THIS LIFE'S OWN WORK CAN NEVER GIVE IT.
+    //
+    // Source-X only ever rolls a stat toward the STAT_x of the skill being
+    // used, and never past it (CCharSkill.cpp Skill_Experience ~:459). A pure
+    // caster's whole plan tops out at Magery's STAT_STR=20 and Meditation's
+    // 10, so no amount of casting moves STR at all -- the character simply
+    // stops, wherever creation left it. The authentic answer, and the one
+    // Revolution players used, is a Wrestling detour: STAT_STR=100, trained
+    // bare-handed against a dummy or something small, then locked DOWN so the
+    // real skills take the points back. See NeedTraining, which is the
+    // opposite case -- a skill below target that this life CAN train.
+    NeedStrength,
     Count,
 };
 
@@ -1136,6 +1148,72 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
 // use, and the heal-potion branch sitting behind it never ran.
 bool WantsTool(const NeedConfig& cfg, const char* name);
 bool WantsConsumable(const NeedConfig& cfg, const char* name);
+
+// ===========================================================================
+// STAT FARMING -- the STR a build's own skills can never give it
+// ===========================================================================
+//
+// PURE, and deliberately so: the need model, the goal that carries it out and
+// the lock keeper all have to agree about the same three numbers, and the only
+// way to prove they do is to test the arithmetic without a Client.
+//
+// The shard facts behind it, each verified 2026-09-04:
+//   * every skill use -- including a FAILED one -- rolls a stat gain toward
+//     that skill's STAT_x, and stops dead at it
+//     (Source-X src/game/chars/CCharSkill.cpp, Skill_Experience ~:459,
+//     `if (uiStatVal >= bStatTarg) continue;`);
+//   * only a stat whose lock is UP is rolled at all (`if (Stat_GetLock(...)
+//     != SKILLLOCK_UP) continue;`, same loop) -- which is what makes DEX
+//     LOCK a working brake while Wrestling pulls toward DEX 75;
+//   * Wrestling is STAT_STR=100 (runtime/scripts/skills/skill43_wrestling.scp)
+//     and it is the only skill a caster may take purely as a tool;
+//   * a training dummy refuses above SkillPracticeMax=300, i.e. Wrestling
+//     30.0 (runtime/sphere.ini:653, Source-X CChar::Use_Train_Dummy,
+//     CCharUse.cpp:349-395), but every use below that still rolls the stat.
+
+// SkillPracticeMax, in the tenths this codebase counts skills in.
+constexpr i32 kDummyPracticeMaxTenths = 300;
+
+// The highest STAT_STR any skill this build PLANS to take can offer. This is
+// the STR the character can reach by doing its own work, and no more.
+i32 PlanStrCeiling(const BuildPlan& plan);
+
+struct StatFarmPlan {
+    bool   wanted = false;    // a Wrestling detour is the only way to the target
+    bool   useDummy = false;  // Wrestling is still under the dummy's ceiling
+    i32    ceiling = 0;       // best STAT_STR in the plan
+    i32    have = 0;          // obs.str
+    i32    target = 0;        // plan.targetStr
+    i32    wrestlingTenths = 0;
+    double urgency = 0.0;     // 0 when !wanted
+    const char* why = "";     // always set, always printable
+};
+
+StatFarmPlan AssessStatFarm(const BuildPlan& plan, const Observation& obs);
+
+// THE LOCK ARRANGEMENT A STAT FARM RUNS UNDER.
+//
+// Spelled as plain numbers because this header deliberately knows nothing
+// about packets (see the file header) -- they are build::kLockUp / kLockDown /
+// kLockLocked from uo/builders.h, and Needs.cpp static_asserts that they still
+// agree, so the two cannot drift apart unnoticed.
+constexpr u8 kStatLockUp     = 0;
+constexpr u8 kStatLockDown   = 1;
+constexpr u8 kStatLockLocked = 2;
+
+struct StatFarmLocks {
+    u8 str       = kStatLockUp;      // the point of the exercise
+    // Wrestling pulls DEX toward 75 (skill43_wrestling.scp STAT_DEX=75) and
+    // Source-X only rolls a stat whose lock is UP, so this is a real brake.
+    u8 dex       = kStatLockLocked;
+    u8 intel     = kStatLockUp;
+    u8 wrestling = kStatLockUp;      // while farming; DOWN once STR is reached
+};
+constexpr StatFarmLocks kStatFarmLocks{};
+
+// What the DEX lock goes back to when the farm ends: the ordinary build
+// policy -- LOCKED at or past target, UP below it.
+u8 StatFarmDexLockOnExit(const BuildPlan& plan, const Observation& obs);
 
 // ===========================================================================
 // Goals -- utility selection, with commitment
@@ -1237,6 +1315,11 @@ enum class GoalKind : u8 {
     // take the wool, next sheep; home when the pack is a load or the flock
     // is gone. Owner ruling 2026-09-02: warriors, never the tailor.
     HarvestWool,
+    // Put the weapon away, set STR up and DEX locked, and swing bare fists at
+    // a training dummy or something small until STR reaches the build's
+    // target -- then lock Wrestling DOWN so the real skills reclaim its
+    // points. The one goal whose PURPOSE is a stat rather than a skill.
+    StatFarm,
     IdleBriefly,
     Count,
 };

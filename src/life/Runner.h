@@ -193,6 +193,15 @@ private:
     bool SettleBankItemMove(Client& client, const Observation& obs);
     bool DoGatherLogs(Client& client, const Observation& obs);
     bool DoTrainCombat(Client& client, const Observation& obs);
+    // STAT_FARM: the Wrestling detour that is the only way a caster's STR
+    // ever moves. Train.cpp, beside the other training errands.
+    bool DoStatFarm(Client& client, const Observation& obs);
+    // Put the locks in the farming configuration and empty both hands.
+    // Returns true while it is still arranging (the caller waits).
+    bool BeginStatFarm(Client& client, const Observation& obs);
+    // Undo it: DEX lock back to what the build wants, weapon back in hand.
+    // Safe to call when no farm is running.
+    void EndStatFarm(Client& client, const Observation& obs);
     bool DoEarnGold(Client& client, const Observation& obs);
     bool DoTravel(Client& client, const Observation& obs);
     bool DoTrainAtNpc(Client& client, const Observation& obs);
@@ -877,6 +886,24 @@ private:
     // Trips taken looking for a hunting ground this goal.
     int huntTrips_ = 0;
     static constexpr int kMaxHuntTrips = 3;
+    // --- stat farming (STAT_FARM) ------------------------------------------
+    // The locks are in the farming configuration right now: STR UP, DEX
+    // LOCKED, INT UP. MaintainBuildLocks must not fight this -- it is an
+    // explicit, logged farming step, not the end-of-build lock policy.
+    bool statFarmActive_ = false;
+    // Sent this process. Stat locks are never echoed by the server, so this
+    // is a "have I asked" flag rather than a cache of server truth.
+    bool statFarmLocksSent_ = false;
+    // What came out of the hands to make fists, so it can go back afterwards.
+    u32  statFarmStowedWeapon_ = 0;
+    // The skill/stat readings the last swing was measured against, so
+    // NoteProgress is only called when the server actually moved something.
+    i32  statFarmWrestlingAtSwing_ = -1;
+    i32  statFarmStrAtSwing_ = -1;
+    i32  statFarmSwings_ = 0;
+    // Nothing here to punch: a long rest rather than a retry, because
+    // "no dummy and no wildlife in view" is a fact about this PLACE.
+    static constexpr i64 kStatFarmStandDownMs = 10 * 60 * 1000;
     // --- crafting ----------------------------------------------------------
     std::string supplyItem_;      // the input currently being shopped for
     std::string supplyTrade_;     // the trade that sells it

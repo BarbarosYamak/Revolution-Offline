@@ -5,7 +5,7 @@
       "qty": 30
     }
   ],
-  "bank_seen_ms": 1942863645,
+  "bank_seen_ms": 2022443035,
   "build_plan": {
     "create_dex": 20,
     "create_int": 10,
@@ -40,7 +40,7 @@
     "target_str": 100,
     "unresolved_tenths": 4500
   },
-  "checkpoint_ms": 1942909482,
+  "checkpoint_ms": 2022455772,
   "death_count": 0,
   "goal": {
     "active": true,
@@ -48,7 +48,7 @@
     "failure_reason": "",
     "kind": "CRAFT",
     "progress": 0,
-    "started_at_ms": 1942846866
+    "started_at_ms": 2022440711
   },
   "home_city": "Minoc",
   "identity": {
@@ -57,9 +57,9 @@
     "created_at_ms": 0,
     "first_seen_at_ms": 1942746205,
     "identity_id": "revgen3_01.draver",
-    "last_seen_at_ms": 1942746205,
-    "sessions": 1,
-    "total_play_time_ms": 165889
+    "last_seen_at_ms": 2022143983,
+    "sessions": 2,
+    "total_play_time_ms": 480271
   },
   "last_death_ms": 0,
   "last_server_report": {
@@ -82,7 +82,7 @@
       }
     ],
     "str": 50,
-    "x": 2475,
+    "x": 2476,
     "y": 569
   },
   "ledger": [],
@@ -158,10 +158,10 @@
       },
       {
         "kind": "safe",
-        "last_verified_ms": 1942909421,
+        "last_verified_ms": 2022455712,
         "learned_ms": 1942909421,
         "name": "logout point",
-        "visits": 1,
+        "visits": 2,
         "x": 2475,
         "y": 569,
         "z": 5
@@ -227,6 +227,23 @@
       "skill_tenths_end": 1000,
       "skill_tenths_start": 1000,
       "started_ms": 1942746205,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2022455772,
+      "goals_attempted": 10,
+      "goals_completed": 0,
+      "goals_failed": 0,
+      "gold_end": 9880,
+      "gold_start": 9880,
+      "logs_gathered": 0,
+      "places_learned": 5,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1000,
+      "skill_tenths_start": 1000,
+      "started_ms": 2022143983,
       "suppliers_learned": 0
     }
   ]

@@ -1,1 +1,215 @@
-{"bank":[]}
+{
+  "bank": [],
+  "bank_seen_ms": 1943017082,
+  "build_plan": {
+    "create_dex": 25,
+    "create_int": 5,
+    "create_skills": [
+      {
+        "skill": 42,
+        "tenths": 500
+      },
+      {
+        "skill": 27,
+        "tenths": 500
+      }
+    ],
+    "create_str": 50,
+    "family": "fencer",
+    "skills": [
+      {
+        "skill": 42,
+        "tenths": 1000
+      },
+      {
+        "skill": 27,
+        "tenths": 1000
+      },
+      {
+        "skill": 1,
+        "tenths": 1000
+      },
+      {
+        "skill": 17,
+        "tenths": 1000
+      },
+      {
+        "skill": 30,
+        "tenths": 1000
+      },
+      {
+        "skill": 5,
+        "tenths": 1000
+      }
+    ],
+    "target_dex": 100,
+    "target_int": 25,
+    "target_str": 100,
+    "unresolved_tenths": 1000
+  },
+  "checkpoint_ms": 1943176759,
+  "death_count": 0,
+  "goal": {
+    "active": true,
+    "attempts": 0,
+    "failure_reason": "",
+    "kind": "UPGRADE_GEAR",
+    "progress": 0,
+    "started_at_ms": 1942981974
+  },
+  "home_city": "Trinsic",
+  "identity": {
+    "account_name": "RevGen3_25",
+    "character_name": "Hector",
+    "created_at_ms": 0,
+    "first_seen_at_ms": 1942899654,
+    "identity_id": "revgen3_25.hector",
+    "last_seen_at_ms": 1942899654,
+    "sessions": 1,
+    "total_play_time_ms": 279703
+  },
+  "last_death_ms": 0,
+  "last_server_report": {
+    "dead": false,
+    "dex": 25,
+    "gold": 9993,
+    "int": 5,
+    "skills": [
+      {
+        "skill": 42,
+        "tenths": 500
+      },
+      {
+        "skill": 27,
+        "tenths": 500
+      },
+      {
+        "skill": 1,
+        "tenths": 0
+      },
+      {
+        "skill": 17,
+        "tenths": 0
+      },
+      {
+        "skill": 30,
+        "tenths": 0
+      },
+      {
+        "skill": 5,
+        "tenths": 0
+      }
+    ],
+    "str": 50,
+    "x": 1391,
+    "y": 3705
+  },
+  "ledger": [],
+  "memory": {
+    "creatures": [],
+    "danger": [],
+    "events": [
+      {
+        "at_ms": 1942899654,
+        "detail": "Trinsic",
+        "kind": "newbie_knowledge_seeded",
+        "place": "",
+        "x": 1845,
+        "y": 2745
+      },
+      {
+        "at_ms": 1942941272,
+        "detail": "opened a bank box",
+        "kind": "bank_learned",
+        "place": "bank",
+        "x": 1818,
+        "y": 2822
+      },
+      {
+        "at_ms": 1942981974,
+        "detail": "session=1",
+        "kind": "mount_unavailable",
+        "place": "",
+        "x": 1913,
+        "y": 2807
+      }
+    ],
+    "places": [
+      {
+        "kind": "common_knowledge_bank",
+        "last_verified_ms": 1942899654,
+        "learned_ms": 1942899654,
+        "name": "Bank of Britannia - Trinsic Branch banker",
+        "visits": 1,
+        "x": 1813,
+        "y": 2825,
+        "z": 0
+      },
+      {
+        "kind": "common_knowledge_healer",
+        "last_verified_ms": 1942899654,
+        "learned_ms": 1942899654,
+        "name": "Trinsic Healer healer",
+        "visits": 1,
+        "x": 1911,
+        "y": 2805,
+        "z": 0
+      },
+      {
+        "kind": "common_knowledge_provisioner",
+        "last_verified_ms": 1942899654,
+        "learned_ms": 1942899654,
+        "name": "Britannia Provisions provisioner",
+        "visits": 1,
+        "x": 1850,
+        "y": 2796,
+        "z": -8
+      },
+      {
+        "kind": "healer",
+        "last_verified_ms": 1943017082,
+        "learned_ms": 1942975259,
+        "name": "Devin, the healer",
+        "visits": 867,
+        "x": 1913,
+        "y": 2805,
+        "z": 0
+      },
+      {
+        "kind": "safe",
+        "last_verified_ms": 1943176697,
+        "learned_ms": 1943176697,
+        "name": "logout point",
+        "visits": 1,
+        "x": 1391,
+        "y": 3705,
+        "z": 0
+      }
+    ],
+    "resources": [],
+    "suppliers": [],
+    "trainers": []
+  },
+  "prices": [],
+  "recent_deaths": 0,
+  "schema_version": 2,
+  "sessions": [
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 1943176759,
+      "goals_attempted": 4,
+      "goals_completed": 0,
+      "goals_failed": 0,
+      "gold_end": 9993,
+      "gold_start": 10000,
+      "logs_gathered": 0,
+      "places_learned": 5,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1000,
+      "skill_tenths_start": 1000,
+      "started_ms": 1942899654,
+      "suppliers_learned": 0
+    }
+  ]
+}

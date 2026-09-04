@@ -1,1 +1,207 @@
-{"bank":[]}
+{
+  "bank": [],
+  "bank_seen_ms": 1942956530,
+  "build_plan": {
+    "create_dex": 25,
+    "create_int": 5,
+    "create_skills": [
+      {
+        "skill": 44,
+        "tenths": 500
+      },
+      {
+        "skill": 40,
+        "tenths": 500
+      }
+    ],
+    "create_str": 50,
+    "family": "lumberjack_swordsman",
+    "skills": [
+      {
+        "skill": 44,
+        "tenths": 1000
+      },
+      {
+        "skill": 40,
+        "tenths": 1000
+      },
+      {
+        "skill": 27,
+        "tenths": 1000
+      },
+      {
+        "skill": 1,
+        "tenths": 1000
+      },
+      {
+        "skill": 17,
+        "tenths": 1000
+      },
+      {
+        "skill": 11,
+        "tenths": 1000
+      }
+    ],
+    "target_dex": 100,
+    "target_int": 25,
+    "target_str": 100,
+    "unresolved_tenths": 1000
+  },
+  "checkpoint_ms": 1942962060,
+  "death_count": 0,
+  "goal": {
+    "active": true,
+    "attempts": 0,
+    "failure_reason": "",
+    "kind": "UPGRADE_GEAR",
+    "progress": 0,
+    "started_at_ms": 1942922917
+  },
+  "home_city": "Britain",
+  "identity": {
+    "account_name": "RevGen3_05",
+    "character_name": "Vorar",
+    "created_at_ms": 0,
+    "first_seen_at_ms": 1942839111,
+    "identity_id": "revgen3_05.vorar",
+    "last_seen_at_ms": 1942839111,
+    "sessions": 1,
+    "total_play_time_ms": 125561
+  },
+  "last_death_ms": 0,
+  "last_server_report": {
+    "dead": false,
+    "dex": 25,
+    "gold": 9994,
+    "int": 5,
+    "skills": [
+      {
+        "skill": 44,
+        "tenths": 500
+      },
+      {
+        "skill": 40,
+        "tenths": 500
+      },
+      {
+        "skill": 27,
+        "tenths": 0
+      },
+      {
+        "skill": 1,
+        "tenths": 0
+      },
+      {
+        "skill": 17,
+        "tenths": 0
+      },
+      {
+        "skill": 11,
+        "tenths": 0
+      }
+    ],
+    "str": 50,
+    "x": 1417,
+    "y": 1552
+  },
+  "ledger": [],
+  "memory": {
+    "creatures": [],
+    "danger": [],
+    "events": [
+      {
+        "at_ms": 1942839111,
+        "detail": "Britain",
+        "kind": "newbie_knowledge_seeded",
+        "place": "",
+        "x": 1496,
+        "y": 1628
+      },
+      {
+        "at_ms": 1942876653,
+        "detail": "opened a bank box",
+        "kind": "bank_learned",
+        "place": "bank",
+        "x": 1430,
+        "y": 1691
+      }
+    ],
+    "places": [
+      {
+        "kind": "common_knowledge_bank",
+        "last_verified_ms": 1942839111,
+        "learned_ms": 1942839111,
+        "name": "Britain banker",
+        "visits": 1,
+        "x": 1425,
+        "y": 1690,
+        "z": 0
+      },
+      {
+        "kind": "common_knowledge_healer",
+        "last_verified_ms": 1942839111,
+        "learned_ms": 1942839111,
+        "name": "Britain healer",
+        "visits": 1,
+        "x": 1471,
+        "y": 1611,
+        "z": 20
+      },
+      {
+        "kind": "common_knowledge_provisioner",
+        "last_verified_ms": 1942839111,
+        "learned_ms": 1942839111,
+        "name": "Britain provisioner",
+        "visits": 1,
+        "x": 1469,
+        "y": 1668,
+        "z": 0
+      },
+      {
+        "kind": "healer",
+        "last_verified_ms": 1942956530,
+        "learned_ms": 1942917848,
+        "name": "Dale, the healer",
+        "visits": 863,
+        "x": 1471,
+        "y": 1614,
+        "z": 20
+      },
+      {
+        "kind": "safe",
+        "last_verified_ms": 1942961998,
+        "learned_ms": 1942961998,
+        "name": "logout point",
+        "visits": 1,
+        "x": 1417,
+        "y": 1552,
+        "z": 30
+      }
+    ],
+    "resources": [],
+    "suppliers": [],
+    "trainers": []
+  },
+  "prices": [],
+  "recent_deaths": 0,
+  "schema_version": 2,
+  "sessions": [
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 1942962060,
+      "goals_attempted": 3,
+      "goals_completed": 0,
+      "goals_failed": 0,
+      "gold_end": 9994,
+      "gold_start": 10000,
+      "logs_gathered": 0,
+      "places_learned": 5,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1000,
+      "skill_tenths_start": 1000,
+      "started_ms": 1942839111,
+      "suppliers_learned": 0
+    }
+  ]
+}

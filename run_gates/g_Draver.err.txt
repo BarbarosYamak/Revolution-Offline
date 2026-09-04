@@ -1,29 +1,156 @@
 start: Draver is a miner_smith and lives in Minoc -> starting city index 1
 map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
 map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
-[13:16:00.122] WARN  [g_Draver] [0x21] move REJECTED seq=53; server says (2555,501,1) facing=0
-[13:16:00.858] WARN  [g_Draver] [0x21] move REJECTED seq=0; server says (2555,501,1) facing=0
-[13:16:01.915] WARN  [g_Draver] [0x21] move REJECTED seq=3; server says (2556,501,0) facing=0
-[13:16:02.664] WARN  [g_Draver] [0x21] move REJECTED seq=0; server says (2556,501,0) facing=0
-[13:16:11.224] WARN  [g_Draver] [0x21] move REJECTED seq=11; server says (2556,499,0) facing=5
-[13:16:11.956] WARN  [g_Draver] [0x21] move REJECTED seq=0; server says (2556,499,0) facing=5
-[13:16:12.506] WARN  [g_Draver] [0x21] move REJECTED seq=1; server says (2556,499,0) facing=4
-[13:16:13.244] WARN  [g_Draver] [0x21] move REJECTED seq=0; server says (2556,499,0) facing=4
-[13:17:23.707] WARN  [g_Draver] [0x21] move REJECTED seq=52; server says (2555,501,1) facing=0
-[13:17:24.443] WARN  [g_Draver] [0x21] move REJECTED seq=0; server says (2555,501,1) facing=0
-[13:17:25.457] WARN  [g_Draver] [0x21] move REJECTED seq=3; server says (2556,501,0) facing=0
-[13:17:26.208] WARN  [g_Draver] [0x21] move REJECTED seq=0; server says (2556,501,0) facing=0
-[13:17:34.222] WARN  [g_Draver] [0x21] move REJECTED seq=10; server says (2556,499,0) facing=5
-[13:17:34.959] WARN  [g_Draver] [0x21] move REJECTED seq=0; server says (2556,499,0) facing=5
-[13:17:35.527] WARN  [g_Draver] [0x21] move REJECTED seq=1; server says (2556,499,0) facing=4
-[13:17:36.272] WARN  [g_Draver] [0x21] move REJECTED seq=0; server says (2556,499,0) facing=4
-[13:18:46.326] WARN  [g_Draver] [0x21] move REJECTED seq=52; server says (2555,501,1) facing=0
-[13:18:47.075] WARN  [g_Draver] [0x21] move REJECTED seq=0; server says (2555,501,1) facing=0
-[13:18:48.213] WARN  [g_Draver] [0x21] move REJECTED seq=3; server says (2556,501,0) facing=0
-[13:18:48.969] WARN  [g_Draver] [0x21] move REJECTED seq=0; server says (2556,501,0) facing=0
-[13:18:57.570] WARN  [g_Draver] [0x21] move REJECTED seq=12; server says (2556,499,0) facing=5
-[13:18:58.307] WARN  [g_Draver] [0x21] move REJECTED seq=0; server says (2556,499,0) facing=5
-[13:18:58.877] WARN  [g_Draver] [0x21] move REJECTED seq=1; server says (2556,499,0) facing=4
-[13:18:59.635] WARN  [g_Draver] [0x21] move REJECTED seq=0; server says (2556,499,0) facing=4
-[13:19:44.072] WARN  [g_Draver] [0x21] move REJECTED seq=6; server says (2503,560,0) facing=5
-[13:19:44.072] WARN  [g_Draver] [bot] 0x20 resync; aborting path
+[15:26:16.066] WARN  [g_Draver] [0x21] move REJECTED seq=12; server says (1336,1921,0) facing=7
+[15:26:16.805] WARN  [g_Draver] [0x21] move REJECTED seq=0; server says (1336,1921,0) facing=7
+[15:27:48.749] WARN  [g_Draver] [bot] no path to (1425,1690) avoiding 0 block(s); stopping (search 2216295.7us)
+[15:27:48.749] WARN  [g_Draver] [bot] start (1416,1704,8) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 453 item(s), 14 mobile(s))
+[15:27:52.148] WARN  [g_Draver] [bot] no path to (1425,1690) avoiding 0 block(s); stopping (search 2050410.4us)
+[15:27:52.148] WARN  [g_Draver] [bot] start (1416,1704,8) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 453 item(s), 14 mobile(s))
+[15:27:57.219] WARN  [g_Draver] [bot] no path to (1425,1690) avoiding 0 block(s); stopping (search 2212805.8us)
+[15:27:57.219] WARN  [g_Draver] [bot] start (1416,1704,8) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 453 item(s), 14 mobile(s))
+[15:28:00.473] WARN  [g_Draver] [bot] no path to (1425,1690) avoiding 0 block(s); stopping (search 1942222.6us)
+[15:28:00.473] WARN  [g_Draver] [bot] start (1416,1704,8) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 453 item(s), 14 mobile(s))
+[15:28:07.053] WARN  [g_Draver] [bot] no path to (1425,1690) avoiding 0 block(s); stopping (search 2263163.6us)
+[15:28:07.053] WARN  [g_Draver] [bot] start (1416,1704,8) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 453 item(s), 15 mobile(s))
+[15:28:10.312] WARN  [g_Draver] [bot] no path to (1425,1690) avoiding 0 block(s); stopping (search 1996445.4us)
+[15:28:10.312] WARN  [g_Draver] [bot] start (1416,1704,8) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 453 item(s), 15 mobile(s))
+[15:28:18.303] WARN  [g_Draver] [bot] no path to (1425,1690) avoiding 0 block(s); stopping (search 2195755.0us)
+[15:28:18.303] WARN  [g_Draver] [bot] start (1416,1704,8) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 453 item(s), 15 mobile(s))
+[15:28:21.277] WARN  [g_Draver] [bot] no path to (1425,1690) avoiding 0 block(s); stopping (search 1632956.5us)
+[15:28:21.277] WARN  [g_Draver] [bot] start (1416,1704,8) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 453 item(s), 15 mobile(s))
+[15:28:21.339] WARN  [g_Draver] [travel] route exhausted at (1416,1704,8); trying to reach (1402,1706,20) to get somewhere routable (escape 1/3)
+[15:30:26.358] WARN  [g_Draver] [0x21] move REJECTED seq=7; server says (1376,1744,0) facing=1
+[15:30:27.113] WARN  [g_Draver] [0x21] move REJECTED seq=0; server says (1376,1744,0) facing=1
+[15:32:07.438] WARN  [g_Draver] [0x21] move REJECTED seq=32; server says (1423,1599,20) facing=7
+[15:32:08.173] WARN  [g_Draver] [0x21] move REJECTED seq=0; server says (1423,1599,20) facing=7
+[15:32:10.240] WARN  [g_Draver] [bot] no path to (1416,1592) avoiding 1 block(s); stopping (search 2057820.7us)
+[15:32:10.240] WARN  [g_Draver] [bot] start (1423,1599,20) exits: open=6 terrain=0 mobile=0 dynamic=1 door=0 blacklist=1 (overlay saw 765 item(s), 6 mobile(s))
+[15:32:13.350] WARN  [g_Draver] [bot] no path to (1416,1592) avoiding 0 block(s); stopping (search 1758279.2us)
+[15:32:13.350] WARN  [g_Draver] [bot] start (1423,1599,20) exits: open=7 terrain=0 mobile=0 dynamic=1 door=0 blacklist=0 (overlay saw 765 item(s), 6 mobile(s))
+[15:32:35.682] WARN  [g_Draver] [bot] no path to (1416,1592) avoiding 0 block(s); stopping (search 1946560.4us)
+[15:32:35.682] WARN  [g_Draver] [bot] start (1417,1552,30) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 919 item(s), 2 mobile(s))
+[15:32:38.815] WARN  [g_Draver] [bot] no path to (1416,1592) avoiding 0 block(s); stopping (search 1803768.8us)
+[15:32:38.816] WARN  [g_Draver] [bot] start (1417,1552,30) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 919 item(s), 2 mobile(s))
+[15:32:41.862] WARN  [g_Draver] [bot] no path to (1416,1592) avoiding 0 block(s); stopping (search 1712728.0us)
+[15:32:41.862] WARN  [g_Draver] [bot] start (1417,1552,30) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 919 item(s), 2 mobile(s))
+[15:37:06.919] WARN  [g_Draver] [0x21] move REJECTED seq=52; server says (2555,501,1) facing=0
+[15:37:07.673] WARN  [g_Draver] [0x21] move REJECTED seq=0; server says (2555,501,1) facing=0
+[15:37:08.672] WARN  [g_Draver] [0x21] move REJECTED seq=3; server says (2556,501,0) facing=0
+[15:37:09.405] WARN  [g_Draver] [0x21] move REJECTED seq=0; server says (2556,501,0) facing=0
+[15:46:04.009] WARN  [g_Draver] [0x21] move REJECTED seq=23; server says (1437,1694,0) facing=1
+[15:46:04.025] WARN  [g_Draver] [bot] 0x20 resync; aborting path
+[15:47:01.388] WARN  [g_Draver] [0x21] move REJECTED seq=14; server says (1438,1693,0) facing=5
+[15:47:01.403] WARN  [g_Draver] [bot] 0x20 resync; aborting path
+[15:50:14.933] WARN  [g_Draver] [0x21] move REJECTED seq=51; server says (1440,1694,0) facing=7
+[15:50:14.947] WARN  [g_Draver] [bot] 0x20 resync; aborting path
+[15:50:16.772] WARN  [g_Draver] [0x21] move REJECTED seq=2; server says (1439,1693,0) facing=7
+[15:50:16.773] WARN  [g_Draver] [bot] 0x20 resync; aborting path
+[15:50:23.808] WARN  [g_Draver] [0x21] move REJECTED seq=12; server says (1438,1693,0) facing=5
+[15:50:23.809] WARN  [g_Draver] [bot] 0x20 resync; aborting path
+[15:57:15.449] WARN  [g_Draver] [0x21] move REJECTED seq=53; server says (2555,501,1) facing=0
+[15:57:16.201] WARN  [g_Draver] [0x21] move REJECTED seq=0; server says (2555,501,1) facing=0
+[15:57:17.239] WARN  [g_Draver] [0x21] move REJECTED seq=3; server says (2556,501,0) facing=0
+[15:57:17.989] WARN  [g_Draver] [0x21] move REJECTED seq=0; server says (2556,501,0) facing=0
+[15:57:24.744] WARN  [g_Draver] [0x21] move REJECTED seq=10; server says (2556,499,0) facing=5
+[15:57:25.501] WARN  [g_Draver] [0x21] move REJECTED seq=0; server says (2556,499,0) facing=5
+[15:57:26.025] WARN  [g_Draver] [0x21] move REJECTED seq=1; server says (2556,499,0) facing=4
+[15:57:26.778] WARN  [g_Draver] [0x21] move REJECTED seq=0; server says (2556,499,0) facing=4
+[16:01:25.471] WARN  [g_Draver] [0x21] move REJECTED seq=18; server says (1438,1693,0) facing=5
+[16:01:25.473] WARN  [g_Draver] [bot] 0x20 resync; aborting path
+[16:03:20.795] WARN  [g_Draver] [0x21] move REJECTED seq=8; server says (1360,1778,15) facing=3
+[16:03:20.795] WARN  [g_Draver] [bot] 0x20 resync; aborting path
+[16:04:52.754] WARN  [g_Draver] [0x21] move REJECTED seq=47; server says (2670,687,0) facing=7
+[16:04:53.457] WARN  [g_Draver] [0x21] move REJECTED seq=0; server says (2670,687,0) facing=7
+[16:06:21.569] WARN  [g_Draver] [0x21] move REJECTED seq=52; server says (2555,501,1) facing=0
+[16:06:22.339] WARN  [g_Draver] [0x21] move REJECTED seq=0; server says (2555,501,1) facing=0
+[16:06:23.376] WARN  [g_Draver] [0x21] move REJECTED seq=3; server says (2556,501,0) facing=0
+[16:06:24.094] WARN  [g_Draver] [0x21] move REJECTED seq=0; server says (2556,501,0) facing=0
+[16:06:55.882] WARN  [g_Draver] [bot] goal (2556,474) is not walkable; snapping to nearest standable tile (2552,471,-3) instead
+[16:06:58.752] WARN  [g_Draver] [bot] no path to (2552,471) avoiding 0 block(s); stopping (search 2807899.7us)
+[16:06:58.752] WARN  [g_Draver] [bot] start (2572,483,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1812 item(s), 1 mobile(s))
+[16:07:00.118] WARN  [g_Draver] [bot] goal (2556,474) is not walkable; snapping to nearest standable tile (2552,471,-3) instead
+[16:07:02.191] WARN  [g_Draver] [bot] no path to (2552,471) avoiding 0 block(s); stopping (search 2041925.9us)
+[16:07:02.191] WARN  [g_Draver] [bot] start (2572,483,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1812 item(s), 1 mobile(s))
+[16:07:05.027] WARN  [g_Draver] [bot] goal (2556,474) is not walkable; snapping to nearest standable tile (2552,471,-3) instead
+[16:07:07.775] WARN  [g_Draver] [bot] no path to (2552,471) avoiding 0 block(s); stopping (search 2718841.9us)
+[16:07:07.775] WARN  [g_Draver] [bot] start (2572,483,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1812 item(s), 1 mobile(s))
+[16:07:09.114] WARN  [g_Draver] [bot] goal (2556,474) is not walkable; snapping to nearest standable tile (2552,471,-3) instead
+[16:07:11.042] WARN  [g_Draver] [bot] no path to (2552,471) avoiding 0 block(s); stopping (search 1871902.4us)
+[16:07:11.042] WARN  [g_Draver] [bot] start (2572,483,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1812 item(s), 1 mobile(s))
+[16:07:15.370] WARN  [g_Draver] [bot] goal (2556,474) is not walkable; snapping to nearest standable tile (2552,471,-3) instead
+[16:07:17.773] WARN  [g_Draver] [bot] no path to (2552,471) avoiding 0 block(s); stopping (search 2344321.7us)
+[16:07:17.773] WARN  [g_Draver] [bot] start (2572,483,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1812 item(s), 1 mobile(s))
+[16:07:19.079] WARN  [g_Draver] [bot] goal (2556,474) is not walkable; snapping to nearest standable tile (2552,471,-3) instead
+[16:07:21.309] WARN  [g_Draver] [bot] no path to (2552,471) avoiding 0 block(s); stopping (search 2218506.2us)
+[16:07:21.309] WARN  [g_Draver] [bot] start (2572,483,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1812 item(s), 1 mobile(s))
+[16:07:27.207] WARN  [g_Draver] [bot] goal (2556,474) is not walkable; snapping to nearest standable tile (2552,471,-3) instead
+[16:07:29.547] WARN  [g_Draver] [bot] no path to (2552,471) avoiding 0 block(s); stopping (search 2333387.3us)
+[16:07:29.547] WARN  [g_Draver] [bot] start (2572,483,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1812 item(s), 1 mobile(s))
+[16:07:30.870] WARN  [g_Draver] [bot] goal (2556,474) is not walkable; snapping to nearest standable tile (2552,471,-3) instead
+[16:07:33.204] WARN  [g_Draver] [bot] no path to (2552,471) avoiding 0 block(s); stopping (search 2313315.8us)
+[16:07:33.205] WARN  [g_Draver] [bot] start (2572,483,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1812 item(s), 1 mobile(s))
+[16:07:33.266] WARN  [g_Draver] [travel] route exhausted at (2572,483,0); trying to reach (2566,474,40) to get somewhere routable (escape 1/3)
+[16:07:35.017] WARN  [g_Draver] [bot] no path to (2566,474) avoiding 0 block(s); stopping (search 1736839.9us)
+[16:07:35.017] WARN  [g_Draver] [bot] start (2572,483,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1812 item(s), 1 mobile(s))
+[16:07:35.078] WARN  [g_Draver] [travel] route exhausted at (2572,483,0); trying to reach (2578,472,60) to get somewhere routable (escape 2/3)
+[16:07:36.818] WARN  [g_Draver] [bot] no path to (2578,472) avoiding 0 block(s); stopping (search 1728105.6us)
+[16:07:36.818] WARN  [g_Draver] [bot] start (2572,483,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1812 item(s), 1 mobile(s))
+[16:07:36.819] WARN  [g_Draver] [travel] route exhausted at (2572,483,0); trying to reach (2584,486,60) to get somewhere routable (escape 3/3)
+[16:07:39.160] WARN  [g_Draver] [bot] no path to (2584,486) avoiding 0 block(s); stopping (search 2279135.0us)
+[16:07:39.160] WARN  [g_Draver] [bot] start (2572,483,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1812 item(s), 1 mobile(s))
+[16:13:21.438] WARN  [g_Draver] [bot] no path to (2576,485) avoiding 0 block(s); stopping (search 2195694.4us)
+[16:13:21.438] WARN  [g_Draver] [bot] start (2570,487,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1812 item(s), 4 mobile(s))
+[16:13:34.513] WARN  [g_Draver] [bot] no path to (2576,485) avoiding 0 block(s); stopping (search 2614530.0us)
+[16:13:34.513] WARN  [g_Draver] [bot] start (2571,487,0) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1812 item(s), 4 mobile(s))
+[16:13:36.163] WARN  [g_Draver] [0x21] move REJECTED seq=6; server says (2575,485,0) facing=2
+[16:13:38.125] WARN  [g_Draver] [bot] no path to (2576,485) avoiding 0 block(s); stopping (search 1953377.1us)
+[16:13:38.125] WARN  [g_Draver] [bot] start (2575,485,0) exits: open=6 terrain=1 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1812 item(s), 4 mobile(s))
+[16:13:47.657] WARN  [g_Draver] [bot] no path to (2576,485) avoiding 0 block(s); stopping (search 1820500.4us)
+[16:13:47.657] WARN  [g_Draver] [bot] start (2570,486,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1812 item(s), 4 mobile(s))
+[16:14:17.582] WARN  [g_Draver] [0x21] move REJECTED seq=5; server says (2574,485,0) facing=2
+[16:14:19.786] WARN  [g_Draver] [bot] no path to (2576,485) avoiding 0 block(s); stopping (search 2187697.6us)
+[16:14:19.786] WARN  [g_Draver] [bot] start (2574,485,0) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1812 item(s), 4 mobile(s))
+[16:14:31.983] WARN  [g_Draver] [bot] no path to (2576,485) avoiding 0 block(s); stopping (search 2052004.6us)
+[16:14:31.983] WARN  [g_Draver] [bot] start (2571,487,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1812 item(s), 4 mobile(s))
+[16:14:34.417] WARN  [g_Draver] [0x21] move REJECTED seq=7; server says (2575,486,0) facing=1
+[16:14:36.045] WARN  [g_Draver] [bot] no path to (2576,485) avoiding 0 block(s); stopping (search 1628557.0us)
+[16:14:36.046] WARN  [g_Draver] [bot] start (2575,486,0) exits: open=4 terrain=3 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1812 item(s), 4 mobile(s))
+[16:14:52.192] WARN  [g_Draver] [0x21] move REJECTED seq=13; server says (2576,486,0) facing=0
+[16:14:54.269] WARN  [g_Draver] [bot] no path to (2576,485) avoiding 0 block(s); stopping (search 2071373.5us)
+[16:14:54.269] WARN  [g_Draver] [bot] start (2576,486,0) exits: open=4 terrain=3 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1812 item(s), 4 mobile(s))
+[16:14:59.052] WARN  [g_Draver] [0x21] move REJECTED seq=8; server says (2575,486,0) facing=1
+[16:15:00.928] WARN  [g_Draver] [bot] no path to (2576,485) avoiding 0 block(s); stopping (search 1866717.2us)
+[16:15:00.928] WARN  [g_Draver] [bot] start (2575,486,0) exits: open=4 terrain=3 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1812 item(s), 4 mobile(s))
+[16:15:10.649] WARN  [g_Draver] [0x21] move REJECTED seq=7; server says (2576,486,0) facing=0
+[16:15:12.605] WARN  [g_Draver] [bot] no path to (2576,485) avoiding 0 block(s); stopping (search 1920792.0us)
+[16:15:12.605] WARN  [g_Draver] [bot] start (2576,486,0) exits: open=4 terrain=3 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1812 item(s), 4 mobile(s))
+[16:15:17.886] WARN  [g_Draver] [bot] no path to (2576,485) avoiding 0 block(s); stopping (search 2678912.4us)
+[16:15:17.886] WARN  [g_Draver] [bot] start (2571,488,0) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1812 item(s), 4 mobile(s))
+[16:15:29.361] WARN  [g_Draver] [0x21] move REJECTED seq=12; server says (2575,485,0) facing=2
+[16:15:32.515] WARN  [g_Draver] [bot] no path to (2576,485) avoiding 0 block(s); stopping (search 3138920.4us)
+[16:15:32.515] WARN  [g_Draver] [bot] start (2575,485,0) exits: open=6 terrain=1 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1812 item(s), 3 mobile(s))
+[16:15:42.953] WARN  [g_Draver] [0x21] move REJECTED seq=10; server says (2575,485,0) facing=2
+[16:15:45.835] WARN  [g_Draver] [bot] no path to (2576,485) avoiding 0 block(s); stopping (search 2881007.9us)
+[16:15:45.835] WARN  [g_Draver] [bot] start (2575,485,0) exits: open=6 terrain=1 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1812 item(s), 3 mobile(s))
+[16:16:15.248] WARN  [g_Draver] [0x21] move REJECTED seq=16; server says (2577,485,0) facing=5
+[16:16:17.233] WARN  [g_Draver] [bot] no path to (2576,485) avoiding 0 block(s); stopping (search 1968848.0us)
+[16:16:17.233] WARN  [g_Draver] [bot] start (2577,485,0) exits: open=4 terrain=2 mobile=2 dynamic=0 door=0 blacklist=0 (overlay saw 1812 item(s), 3 mobile(s))
+[16:16:22.903] WARN  [g_Draver] [bot] no path to (2576,485) avoiding 0 block(s); stopping (search 3030389.6us)
+[16:16:22.903] WARN  [g_Draver] [bot] start (2571,486,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1812 item(s), 3 mobile(s))
+[16:16:25.860] WARN  [g_Draver] [bot] no path to (2576,485) avoiding 0 block(s); stopping (search 2867182.9us)
+[16:16:25.860] WARN  [g_Draver] [bot] start (2571,486,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1812 item(s), 3 mobile(s))
+[16:16:33.441] WARN  [g_Draver] [0x21] move REJECTED seq=9; server says (2576,486,0) facing=0
+[16:16:36.708] WARN  [g_Draver] [bot] no path to (2576,485) avoiding 0 block(s); stopping (search 3232403.6us)
+[16:16:36.708] WARN  [g_Draver] [bot] start (2576,486,0) exits: open=4 terrain=3 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1812 item(s), 3 mobile(s))
+[16:17:23.069] WARN  [g_Draver] [0x21] move REJECTED seq=8; server says (2575,486,0) facing=1
+[16:17:25.314] WARN  [g_Draver] [bot] no path to (2576,485) avoiding 0 block(s); stopping (search 2225502.8us)
+[16:17:25.314] WARN  [g_Draver] [bot] start (2575,486,0) exits: open=4 terrain=3 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1812 item(s), 3 mobile(s))
+[16:18:20.961] WARN  [g_Draver] [bot] no path to (2576,485) avoiding 0 block(s); stopping (search 1769355.4us)
+[16:18:20.961] WARN  [g_Draver] [bot] start (2569,487,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1812 item(s), 3 mobile(s))
+[16:18:23.569] WARN  [g_Draver] [bot] no path to (2576,485) avoiding 0 block(s); stopping (search 1791662.7us)
+[16:18:23.570] WARN  [g_Draver] [bot] start (2569,487,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1812 item(s), 3 mobile(s))
+[16:18:27.101] WARN  [g_Draver] [0x21] move REJECTED seq=10; server says (2575,486,0) facing=1
+[16:18:28.914] WARN  [g_Draver] [bot] no path to (2576,485) avoiding 0 block(s); stopping (search 1811788.3us)
+[16:18:28.914] WARN  [g_Draver] [bot] start (2575,486,0) exits: open=4 terrain=3 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1812 item(s), 3 mobile(s))
+[16:19:47.838] WARN  [g_Draver] [0x21] move REJECTED seq=8; server says (2568,482,0) facing=5

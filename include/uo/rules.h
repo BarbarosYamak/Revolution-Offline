@@ -99,6 +99,20 @@ enum SkillId : int {
 // about a mage read "skill 50.0 + skill 50.0". One table, everywhere.
 const char* SkillName(int skillId);
 
+// THE STRENGTH A SKILL CAN EVER GIVE ITS USER.
+//
+// Source-X CCharSkill.cpp Skill_Experience (~:459) rolls a stat gain on EVERY
+// use of a skill, success or failure -- but only toward that skill's own
+// STAT_x, and `if (uiStatVal >= bStatTarg) continue;` means a stat never grows
+// one point past it. So this table is the answer to "can this build's own work
+// ever reach its STR target", and it is why a pure caster (Magery STAT_STR=20,
+// Meditation 10) is stuck at whatever STR it was created with.
+//
+// Values are read off the shard's own skill files, runtime/scripts/skills/
+// skill<N>_<name>.scp, STAT_STR= line. -1 for an id we have no file for, so a
+// caller can tell "not in the table" from "this skill is worth no STR".
+int SkillStatStr(int skillId);
+
 struct Profile {
     std::string name = "revolution_2009_2010";
 

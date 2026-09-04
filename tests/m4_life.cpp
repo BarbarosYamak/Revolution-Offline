@@ -3360,6 +3360,161 @@ void TestAnEmptyPouchIsAShoppingErrand() {
 }  // namespace
 
 
+// --------------------------------------------------------------------------
+// STAT FARMING -- the Wrestling detour (owner order, 2026-09-04).
+//
+// Source-X rolls a stat gain on every skill use, toward that skill's STAT_x
+// and never past it (CCharSkill.cpp Skill_Experience ~:459). So the question
+// "must this character wrestle to reach its STR target" is arithmetic over the
+// build plan, and these checks are that arithmetic.
+// --------------------------------------------------------------------------
+void TestStrengthAWizardCannotEarnByCasting() {
+    Section("stat farm: STR a build's own skills can never reach");
+
+    // The table itself, against the shard's own skill files.
+    Check(rules::SkillStatStr(rules::kMagery) == 20,
+          "skill25_magery.scp STAT_STR=20");
+    Check(rules::SkillStatStr(rules::kMeditation) == 10,
+          "skill46_meditation.scp STAT_STR=10");
+    Check(rules::SkillStatStr(rules::kWrestling) == 100,
+          "skill43_wrestling.scp STAT_STR=100 -- the reason it is the detour");
+    Check(rules::SkillStatStr(rules::kBlacksmithing) == 95,
+          "skill7_blacksmithing.scp STAT_STR=95");
+    Check(rules::SkillStatStr(999) == -1,
+          "an id we have no file for reads as unknown, not as zero STR");
+
+    // A caster's plan: three INT skills and a STR target none of them reach.
+    life::BuildPlan mage;
+    mage.family = "mage";
+    mage.skills = {{rules::kMagery, 1000},
+                   {rules::kMeditation, 1000},
+                   {rules::kEvaluatingIntel, 1000}};
+    mage.targetStr = 80;
+    mage.targetDex = 35;
+    mage.targetInt = 100;
+    Check(life::PlanStrCeiling(mage) == 20,
+          "the whole plan tops out at Magery's 20");
+
+    life::Observation obs;
+    obs.inWorld = true;
+    obs.hp = 100; obs.hpMax = 100;
+    obs.str = 50; obs.dex = 25; obs.intel = 90;
+    obs.weight = 10; obs.maxWeight = 500;
+
+    const life::StatFarmPlan sf = life::AssessStatFarm(mage, obs);
+    Check(sf.wanted, "a caster at STR 50 with a target of 80 must go wrestling");
+    Check(sf.ceiling == 20 && sf.have == 50 && sf.target == 80,
+          "the plan reports the three numbers it decided on");
+    Check(sf.useDummy, "Wrestling 0.0 is under SkillPracticeMax, so a dummy "
+                       "will still take the swings");
+    Check(sf.urgency > 0.2 && sf.urgency <= 0.5,
+          "a detour is weighted as a detour, not as the work");
+
+    // A smith is the control case: his own hammer carries him to 95, so the
+    // detour is exactly the wrong answer while he is at 50.
+    const prof::Profession* smith = prof::Find("miner_smith");
+    Check(smith != nullptr, "the miner/smith exists in the catalogue");
+    if (smith) {
+        const life::BuildPlan sp = life::PlanFromProfession(*smith);
+        Check(life::PlanStrCeiling(sp) >= 85,
+              "Blacksmithing 95 / Mining 85 are a smith's own STR ladder");
+        life::Observation so = obs;
+        so.str = 50;
+        const life::StatFarmPlan ssf = life::AssessStatFarm(sp, so);
+        Check(!ssf.wanted,
+              "a smith at STR 50 keeps swinging his hammer -- his own work "
+              "still raises STR, so no Wrestling detour");
+        // ...and once his own ladder is run out, the same rule sends him too.
+        so.str = 96;
+        Check(so.str < sp.targetStr, "the smith's plan really does want 100");
+        Check(life::AssessStatFarm(sp, so).wanted,
+              "at 96 of a target of 100 even a smith has to wrestle for it");
+    }
+
+    // The exit condition.
+    life::Observation done = obs;
+    done.str = 80;
+    Check(!life::AssessStatFarm(mage, done).wanted,
+          "at the target the need falls silent");
+
+    // The dummy ceiling is the shard's, not ours (sphere.ini:653).
+    Check(life::kDummyPracticeMaxTenths == 300, "SkillPracticeMax=300");
+    life::Observation skilled = obs;
+    skilled.skills = {{rules::kWrestling, 300}};
+    Check(!life::AssessStatFarm(mage, skilled).useDummy,
+          "at exactly 30.0 the dummy refuses, so the errand must find a "
+          "live opponent");
+
+    // --- the locks -------------------------------------------------------
+    Check(life::kStatFarmLocks.str == life::kStatLockUp &&
+          life::kStatFarmLocks.intel == life::kStatLockUp,
+          "STR and INT are UP during the farm -- only an UP stat is rolled");
+    Check(life::kStatFarmLocks.dex == life::kStatLockLocked,
+          "DEX is LOCKED during the farm: Wrestling pulls it to 75 and a "
+          "caster wants 35");
+    Check(life::kStatFarmLocks.wrestling == life::kStatLockUp,
+          "Wrestling itself trains up while the farm runs");
+    // And the lock the exit restores, which is the ordinary build policy.
+    life::Observation lowDex = obs;
+    lowDex.dex = 25;
+    Check(life::StatFarmDexLockOnExit(mage, lowDex) == life::kStatLockUp,
+          "below the build's DEX target the lock goes back to UP");
+    life::Observation highDex = obs;
+    highDex.dex = 40;
+    Check(life::StatFarmDexLockOnExit(mage, highDex) == life::kStatLockLocked,
+          "at or past it the ordinary end-of-build LOCK applies");
+
+    // --- the need, and the goal it feeds ----------------------------------
+    life::Memory mem;
+    life::NeedConfig cfg;
+    const prof::Profession* mageProf = prof::Find("mage");
+    cfg.profession = mageProf;
+    const std::vector<life::Need> needs = life::AssessNeeds(mage, mem, obs, cfg);
+    const life::Need* strength = nullptr;
+    for (const life::Need& n : needs)
+        if (n.kind == life::NeedKind::NeedStrength) strength = &n;
+    Check(strength != nullptr && !strength->blocked,
+          "NeedStrength is raised for the caster plan");
+    Check(strength && strength->urgency > 0.0,
+          "and it is raised with an urgency, not as a blocked stub");
+
+    if (smith) {
+        const life::BuildPlan sp = life::PlanFromProfession(*smith);
+        life::NeedConfig scfg;
+        scfg.profession = smith;
+        life::Observation so = obs;
+        so.str = 50;
+        bool raised = false;
+        for (const life::Need& n : life::AssessNeeds(sp, mem, so, scfg))
+            raised = raised || n.kind == life::NeedKind::NeedStrength;
+        Check(!raised, "and NOT for a miner/smith whose own work still pays "
+                       "STR");
+    }
+
+    // Hurt and loaded are the same two brakes every fighting errand carries.
+    life::Observation hurt = obs;
+    hurt.hp = 40;
+    for (const life::Need& n : life::AssessNeeds(mage, mem, hurt, cfg)) {
+        if (n.kind != life::NeedKind::NeedStrength) continue;
+        Check(n.blocked, "too hurt to spar blocks the need rather than "
+                         "raising it");
+    }
+
+    // The goal exists, is fed by this need, and is Training.
+    Check(std::strcmp(life::GoalKindName(life::GoalKind::StatFarm),
+                      "STAT_FARM") == 0,
+          "the log line reads STAT_FARM");
+    Check(life::FamilyOf(life::GoalKind::StatFarm) == life::GoalFamily::Training,
+          "sparring for a stat counts as training in the day's balance");
+    life::Planner planner;
+    const std::vector<life::ScoredGoal> scored = planner.Score(needs, obs, mem);
+    const life::ScoredGoal* farm = nullptr;
+    for (const life::ScoredGoal& g : scored)
+        if (g.kind == life::GoalKind::StatFarm) farm = &g;
+    Check(farm != nullptr && farm->feasible && farm->score > 0.0,
+          "STAT_FARM is scored and feasible for the caster");
+}
+
 int main(int argc, char** argv) {
     std::printf("m4_life\n");
     const std::string tmpDir = (argc > 1) ? argv[1] : ".";
@@ -3404,6 +3559,7 @@ int main(int argc, char** argv) {
     TestThreeEmptyClothStepsStandTheGoalDown();
     TestPracticeChecksTheReagentPouch();
     TestAnEmptyPouchIsAShoppingErrand();
+    TestStrengthAWizardCannotEarnByCasting();
 
     std::printf("%d checks, %d failures\n", g_checks, g_failures);
     return g_failures == 0 ? 0 : 1;

@@ -1,1 +1,364 @@
-{"bank":[]}
+{
+  "bank": [],
+  "bank_seen_ms": 1942995970,
+  "build_plan": {
+    "create_dex": 20,
+    "create_int": 10,
+    "create_skills": [
+      {
+        "skill": 18,
+        "tenths": 500
+      },
+      {
+        "skill": 13,
+        "tenths": 500
+      }
+    ],
+    "create_str": 50,
+    "family": "fisher",
+    "skills": [
+      {
+        "skill": 18,
+        "tenths": 1000
+      },
+      {
+        "skill": 13,
+        "tenths": 500
+      }
+    ],
+    "target_dex": 50,
+    "target_int": 45,
+    "target_str": 80,
+    "unresolved_tenths": 5500
+  },
+  "checkpoint_ms": 2029116231,
+  "death_count": 0,
+  "goal": {
+    "active": true,
+    "attempts": 0,
+    "failure_reason": "",
+    "kind": "FISH",
+    "progress": 2,
+    "started_at_ms": 2029048651
+  },
+  "home_city": "Skara Brae",
+  "identity": {
+    "account_name": "RevGen3_18",
+    "character_name": "Dorvar",
+    "created_at_ms": 0,
+    "first_seen_at_ms": 1942878486,
+    "identity_id": "revgen3_18.dorvar",
+    "last_seen_at_ms": 2028782913,
+    "sessions": 2,
+    "total_play_time_ms": 456025
+  },
+  "known_spells": [],
+  "known_spells_seen_ms": 0,
+  "last_death_ms": 0,
+  "last_server_report": {
+    "dead": false,
+    "dex": 20,
+    "gold": 9984,
+    "int": 10,
+    "skills": [
+      {
+        "skill": 18,
+        "tenths": 500
+      },
+      {
+        "skill": 13,
+        "tenths": 500
+      }
+    ],
+    "str": 50,
+    "x": 591,
+    "y": 2149
+  },
+  "ledger": [
+    {
+      "amount": 32,
+      "detail": "i_fish_cut_raw",
+      "flow": 0,
+      "when_ms": 2028959583
+    },
+    {
+      "amount": 32,
+      "detail": "i_fish_cut_raw",
+      "flow": 0,
+      "when_ms": 2029013488
+    },
+    {
+      "amount": 32,
+      "detail": "i_fish_cut_raw",
+      "flow": 0,
+      "when_ms": 2029020264
+    },
+    {
+      "amount": 8,
+      "detail": "i_fish_cut_raw",
+      "flow": 0,
+      "when_ms": 2029027031
+    }
+  ],
+  "memory": {
+    "creatures": [],
+    "danger": [],
+    "events": [
+      {
+        "at_ms": 1942878486,
+        "detail": "Skara Brae",
+        "kind": "newbie_knowledge_seeded",
+        "place": "",
+        "x": 618,
+        "y": 2234
+      },
+      {
+        "at_ms": 1942878686,
+        "detail": "session=1",
+        "kind": "mount_unavailable",
+        "place": "",
+        "x": 618,
+        "y": 2234
+      },
+      {
+        "at_ms": 1942921536,
+        "detail": "opened a bank box",
+        "kind": "bank_learned",
+        "place": "bank",
+        "x": 592,
+        "y": 2150
+      },
+      {
+        "at_ms": 2028832342,
+        "detail": "first fish caught",
+        "kind": "first_fish",
+        "place": "water",
+        "x": 643,
+        "y": 2218
+      },
+      {
+        "at_ms": 2028959583,
+        "detail": "i_fish_cut_raw",
+        "kind": "sold_to_vendor",
+        "place": "fisher",
+        "x": 651,
+        "y": 2233
+      },
+      {
+        "at_ms": 2029013488,
+        "detail": "i_fish_cut_raw",
+        "kind": "sold_to_vendor",
+        "place": "fisher",
+        "x": 651,
+        "y": 2233
+      },
+      {
+        "at_ms": 2029020264,
+        "detail": "i_fish_cut_raw",
+        "kind": "sold_to_vendor",
+        "place": "fisher",
+        "x": 651,
+        "y": 2233
+      },
+      {
+        "at_ms": 2029027031,
+        "detail": "i_fish_cut_raw",
+        "kind": "sold_to_vendor",
+        "place": "fisher",
+        "x": 651,
+        "y": 2233
+      }
+    ],
+    "places": [
+      {
+        "kind": "common_knowledge_bank",
+        "last_verified_ms": 1942878486,
+        "learned_ms": 1942878486,
+        "name": "Skara Brae banker",
+        "visits": 1,
+        "x": 587,
+        "y": 2146,
+        "z": 0
+      },
+      {
+        "kind": "common_knowledge_healer",
+        "last_verified_ms": 1942878486,
+        "learned_ms": 1942878486,
+        "name": "Skara Brae healer",
+        "visits": 1,
+        "x": 620,
+        "y": 2218,
+        "z": 0
+      },
+      {
+        "kind": "common_knowledge_provisioner",
+        "last_verified_ms": 1942878486,
+        "learned_ms": 1942878486,
+        "name": "Skara Brae provisioner",
+        "visits": 1,
+        "x": 578,
+        "y": 2227,
+        "z": 0
+      },
+      {
+        "kind": "healer",
+        "last_verified_ms": 1942995970,
+        "learned_ms": 1942952573,
+        "name": "Iolana, the healer",
+        "visits": 831,
+        "x": 619,
+        "y": 2216,
+        "z": 0
+      },
+      {
+        "kind": "safe",
+        "last_verified_ms": 2029116169,
+        "learned_ms": 2029116169,
+        "name": "logout point",
+        "visits": 1,
+        "x": 591,
+        "y": 2149,
+        "z": 0
+      }
+    ],
+    "resources": [
+      {
+        "failures": 0,
+        "hinted": true,
+        "label": "Skara Brae Docks E",
+        "last_seen_ms": 1942878486,
+        "last_success_ms": 0,
+        "resource": "fish",
+        "successes": 0,
+        "x": 638,
+        "y": 2227,
+        "z": -3
+      },
+      {
+        "failures": 0,
+        "hinted": true,
+        "label": "Skara Brae Docks S",
+        "last_seen_ms": 1942878486,
+        "last_success_ms": 0,
+        "resource": "fish",
+        "successes": 0,
+        "x": 617,
+        "y": 2276,
+        "z": -3
+      },
+      {
+        "failures": 0,
+        "hinted": true,
+        "label": "Skara Brae Ferry Dock",
+        "last_seen_ms": 1942878486,
+        "last_success_ms": 0,
+        "resource": "fish",
+        "successes": 0,
+        "x": 726,
+        "y": 2236,
+        "z": -3
+      },
+      {
+        "failures": 0,
+        "hinted": false,
+        "label": "",
+        "last_seen_ms": 2028785622,
+        "last_success_ms": 2028785622,
+        "resource": "fish",
+        "successes": 2,
+        "x": 626,
+        "y": 2225,
+        "z": 0
+      },
+      {
+        "failures": 0,
+        "hinted": false,
+        "label": "",
+        "last_seen_ms": 2028905824,
+        "last_success_ms": 2028905824,
+        "resource": "fish",
+        "successes": 4,
+        "x": 643,
+        "y": 2218,
+        "z": 0
+      },
+      {
+        "failures": 0,
+        "hinted": false,
+        "label": "",
+        "last_seen_ms": 2029059739,
+        "last_success_ms": 2029059739,
+        "resource": "fish",
+        "successes": 2,
+        "x": 651,
+        "y": 2233,
+        "z": -3
+      }
+    ],
+    "suppliers": [
+      {
+        "last_verified_ms": 2029027031,
+        "name": "fisher",
+        "need": "buyer:i_fish_cut_raw",
+        "observed_price": 2,
+        "observed_quantity": 0,
+        "policy_allows": true,
+        "serial": 0,
+        "source_type": "npc_vendor",
+        "x": 651,
+        "y": 2233,
+        "z": -3
+      }
+    ],
+    "trainers": []
+  },
+  "prices": [
+    {
+      "item": "i_fish_cut_raw",
+      "price": 2,
+      "source": 1,
+      "when_ms": 2029027031,
+      "who": "fisher",
+      "x": 651,
+      "y": 2233
+    }
+  ],
+  "recent_deaths": 0,
+  "schema_version": 2,
+  "sessions": [
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 1942996031,
+      "goals_attempted": 6,
+      "goals_completed": 0,
+      "goals_failed": 0,
+      "gold_end": 9880,
+      "gold_start": 10000,
+      "logs_gathered": 0,
+      "places_learned": 4,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1000,
+      "skill_tenths_start": 1000,
+      "started_ms": 1942878486,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2029116231,
+      "goals_attempted": 12,
+      "goals_completed": 1,
+      "goals_failed": 0,
+      "gold_end": 9984,
+      "gold_start": 9880,
+      "logs_gathered": 0,
+      "places_learned": 5,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1000,
+      "skill_tenths_start": 1000,
+      "started_ms": 2028782913,
+      "suppliers_learned": 1
+    }
+  ]
+}

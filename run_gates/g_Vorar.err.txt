@@ -1,9 +1,114 @@
 start: Vorar is a lumberjack_swordsman and lives in Britain -> starting city index 2
 map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
 map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
-[15:13:43.523] WARN  [g_Vorar] [0x21] move REJECTED seq=14; server says (1439,1693,0) facing=3
-[15:13:43.525] WARN  [g_Vorar] [bot] 0x20 resync; aborting path
-[15:14:32.768] WARN  [g_Vorar] [0x21] move REJECTED seq=14; server says (1478,1612,20) facing=1
-[15:14:32.769] WARN  [g_Vorar] [bot] 0x20 resync; aborting path
-[15:14:48.985] WARN  [g_Vorar] [0x21] move REJECTED seq=65; server says (1441,1591,20) facing=7
-[15:14:49.706] WARN  [g_Vorar] [0x21] move REJECTED seq=0; server says (1441,1591,20) facing=7
+[15:25:28.265] WARN  [g_Vorar] [bot] no path to (1420,1550) avoiding 0 block(s); stopping (search 1560213.5us)
+[15:25:28.265] WARN  [g_Vorar] [bot] start (1429,1568,30) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 366 item(s), 3 mobile(s))
+[15:25:31.590] WARN  [g_Vorar] [bot] no path to (1420,1550) avoiding 0 block(s); stopping (search 2025524.9us)
+[15:25:31.590] WARN  [g_Vorar] [bot] start (1429,1568,30) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 366 item(s), 4 mobile(s))
+[15:25:35.929] WARN  [g_Vorar] [bot] no path to (1420,1550) avoiding 0 block(s); stopping (search 1477268.8us)
+[15:25:35.929] WARN  [g_Vorar] [bot] start (1429,1568,30) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 366 item(s), 5 mobile(s))
+[15:25:38.766] WARN  [g_Vorar] [bot] no path to (1420,1550) avoiding 0 block(s); stopping (search 1504426.0us)
+[15:25:38.766] WARN  [g_Vorar] [bot] start (1429,1568,30) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 366 item(s), 4 mobile(s))
+[15:25:42.025] WARN  [g_Vorar] [bot] no path to (1420,1550) avoiding 0 block(s); stopping (search 1986527.1us)
+[15:25:42.025] WARN  [g_Vorar] [bot] start (1429,1568,30) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 366 item(s), 4 mobile(s))
+[15:25:51.330] WARN  [g_Vorar] [bot] no path to (1419,1547) avoiding 0 block(s); stopping (search 2048420.0us)
+[15:25:51.330] WARN  [g_Vorar] [bot] start (1426,1564,30) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 366 item(s), 6 mobile(s))
+[15:27:30.681] WARN  [g_Vorar] [0x21] move REJECTED seq=63; server says (1417,1607,30) facing=5
+[15:29:14.525] WARN  [g_Vorar] [0x21] move REJECTED seq=44; server says (1312,1804,0) facing=3
+[15:29:14.541] WARN  [g_Vorar] [bot] 0x20 resync; aborting path
+[15:29:23.938] WARN  [g_Vorar] [0x21] move REJECTED seq=20; server says (1312,1805,0) facing=0
+[15:29:24.001] WARN  [g_Vorar] [bot] no path to (1304,1784) avoiding 0 block(s); stopping (search 5211.5us)
+[15:29:24.001] WARN  [g_Vorar] [bot] start (1312,1805,0) exits: open=4 terrain=2 mobile=1 dynamic=0 door=1 blacklist=0 (overlay saw 837 item(s), 23 mobile(s))
+[15:31:59.835] WARN  [g_Vorar] [ACTION_RESULT] use_object timeout (no server confirmation)
+[15:32:13.196] WARN  [g_Vorar] [action] use_object superseded by attack
+[15:32:13.196] WARN  [g_Vorar] [ACTION_RESULT] use_object invalid_state (262ms) superseded
+[15:32:23.776] WARN  [g_Vorar] [action] use_object superseded by use_object
+[15:32:23.776] WARN  [g_Vorar] [ACTION_RESULT] use_object invalid_state (2005ms) superseded
+[15:32:25.785] WARN  [g_Vorar] [action] use_object superseded by use_object
+[15:32:25.785] WARN  [g_Vorar] [ACTION_RESULT] use_object invalid_state (2009ms) superseded
+[15:32:27.821] WARN  [g_Vorar] [action] use_object superseded by use_object
+[15:32:27.821] WARN  [g_Vorar] [ACTION_RESULT] use_object invalid_state (2035ms) superseded
+[15:32:29.839] WARN  [g_Vorar] [action] use_object superseded by use_object
+[15:32:29.839] WARN  [g_Vorar] [ACTION_RESULT] use_object invalid_state (2019ms) superseded
+[15:32:33.899] WARN  [g_Vorar] [ACTION_RESULT] use_object timeout (no server confirmation)
+[15:32:43.186] WARN  [g_Vorar] [action] use_object superseded by use_object
+[15:32:43.186] WARN  [g_Vorar] [ACTION_RESULT] use_object invalid_state (2013ms) superseded
+[15:32:45.238] WARN  [g_Vorar] [action] use_object superseded by use_object
+[15:32:45.238] WARN  [g_Vorar] [ACTION_RESULT] use_object invalid_state (2051ms) superseded
+[15:32:48.497] WARN  [g_Vorar] [action] use_object superseded by attack
+[15:32:48.497] WARN  [g_Vorar] [ACTION_RESULT] use_object invalid_state (3260ms) superseded
+[15:33:04.862] WARN  [g_Vorar] [ACTION_RESULT] attack timeout (no server confirmation)
+[15:33:35.763] WARN  [g_Vorar] [bot] no path to (1416,1592) avoiding 0 block(s); stopping (search 2793075.7us)
+[15:33:35.763] WARN  [g_Vorar] [bot] start (1432,1560,30) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1093 item(s), 3 mobile(s))
+[15:33:39.772] WARN  [g_Vorar] [bot] no path to (1416,1592) avoiding 0 block(s); stopping (search 2642392.5us)
+[15:33:39.772] WARN  [g_Vorar] [bot] start (1432,1560,30) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1093 item(s), 3 mobile(s))
+[15:33:52.169] WARN  [g_Vorar] [0x21] move REJECTED seq=39; server says (1443,1584,20) facing=1
+[15:33:52.182] WARN  [g_Vorar] [bot] 0x20 resync; aborting path
+[15:39:02.141] WARN  [g_Vorar] [0x21] move REJECTED seq=38; server says (716,1172,0) facing=5
+[15:39:02.875] WARN  [g_Vorar] [0x21] move REJECTED seq=0; server says (716,1172,0) facing=5
+[15:40:53.616] WARN  [g_Vorar] [0x21] move REJECTED seq=72; server says (665,953,0) facing=7
+[15:40:53.630] WARN  [g_Vorar] [bot] 0x20 resync; aborting path
+[15:42:11.365] WARN  [g_Vorar] [bot] 0x20 resync; aborting path
+[15:42:32.768] WARN  [g_Vorar] [action] use_object superseded by attack
+[15:42:32.768] WARN  [g_Vorar] [ACTION_RESULT] use_object invalid_state (2792ms) superseded
+[15:42:56.240] WARN  [g_Vorar] [action] use_object superseded by attack
+[15:42:56.240] WARN  [g_Vorar] [ACTION_RESULT] use_object invalid_state (1775ms) superseded
+[15:43:23.260] WARN  [g_Vorar] [ACTION_RESULT] use_object timeout (no server confirmation)
+[15:45:05.992] WARN  [g_Vorar] [ACTION_RESULT] use_item_on timeout (no server confirmation)
+[15:45:07.729] WARN  [g_Vorar] [bot] no path to (563,1106) avoiding 0 block(s); stopping (search 1662621.4us)
+[15:45:07.729] WARN  [g_Vorar] [bot] start (563,1109,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1465 item(s), 12 mobile(s))
+[15:45:10.226] WARN  [g_Vorar] [bot] no path to (563,1106) avoiding 0 block(s); stopping (search 1714363.7us)
+[15:45:10.226] WARN  [g_Vorar] [bot] start (563,1109,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1465 item(s), 11 mobile(s))
+[15:45:12.717] WARN  [g_Vorar] [bot] no path to (563,1106) avoiding 0 block(s); stopping (search 1745933.4us)
+[15:45:12.717] WARN  [g_Vorar] [bot] start (563,1109,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1465 item(s), 11 mobile(s))
+[15:45:28.492] WARN  [g_Vorar] [ACTION_RESULT] attack timeout (no server confirmation)
+[15:45:49.531] WARN  [g_Vorar] [ACTION_RESULT] use_item_on timeout (no server confirmation)
+[15:46:31.502] WARN  [g_Vorar] [ACTION_RESULT] use_item_on timeout (no server confirmation)
+[15:48:21.646] WARN  [g_Vorar] [ACTION_RESULT] use_object timeout (no server confirmation)
+[15:51:13.762] WARN  [g_Vorar] [0x21] move REJECTED seq=1; server says (696,919,0) facing=1
+[15:51:14.508] WARN  [g_Vorar] [0x21] move REJECTED seq=0; server says (696,919,0) facing=1
+[15:51:26.667] WARN  [g_Vorar] [bot] no path to (696,888) avoiding 0 block(s); stopping (search 0.1us)
+[15:51:26.667] WARN  [g_Vorar] [bot] start (696,888,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1506 item(s), 1 mobile(s))
+[15:52:13.690] WARN  [g_Vorar] [bot] no path to (776,760) avoiding 0 block(s); stopping (search 0.2us)
+[15:52:13.690] WARN  [g_Vorar] [bot] start (776,760,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1507 item(s), 1 mobile(s))
+[15:52:39.709] WARN  [g_Vorar] [bot] no path to (1336,1928) avoiding 0 block(s); stopping (search 0.1us)
+[15:52:39.709] WARN  [g_Vorar] [bot] start (1336,1928,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1507 item(s), 5 mobile(s))
+[15:54:18.572] WARN  [g_Vorar] [bot] no path to (1448,1702) avoiding 0 block(s); stopping (search 0.1us)
+[15:54:18.572] WARN  [g_Vorar] [bot] start (1448,1702,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1588 item(s), 7 mobile(s))
+[15:54:26.292] WARN  [g_Vorar] [bot] 0x20 resync; aborting path
+[15:54:41.335] WARN  [g_Vorar] [ACTION_RESULT] use_item_on timeout (no server confirmation)
+[15:54:56.423] WARN  [g_Vorar] [ACTION_RESULT] use_item_on timeout (no server confirmation)
+[15:54:58.501] WARN  [g_Vorar] [bot] 0x20 resync; aborting path
+[15:55:04.321] WARN  [g_Vorar] [bot] no path to (1469,1668) avoiding 0 block(s); stopping (search 2610185.4us)
+[15:55:04.321] WARN  [g_Vorar] [bot] start (1472,1685,0) exits: open=6 terrain=0 mobile=0 dynamic=2 door=0 blacklist=0 (overlay saw 1671 item(s), 6 mobile(s))
+[15:56:07.726] WARN  [g_Vorar] [bot] goal (1430,1597) is not walkable; snapping to nearest standable tile (1429,1596,20) instead
+[15:56:10.673] WARN  [g_Vorar] [bot] no path to (1429,1596) avoiding 0 block(s); stopping (search 2886789.3us)
+[15:56:10.673] WARN  [g_Vorar] [bot] start (1432,1606,20) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1771 item(s), 5 mobile(s))
+[15:56:11.995] WARN  [g_Vorar] [bot] goal (1430,1597) is not walkable; snapping to nearest standable tile (1429,1596,20) instead
+[15:56:14.438] WARN  [g_Vorar] [bot] no path to (1429,1596) avoiding 0 block(s); stopping (search 2388198.5us)
+[15:56:14.438] WARN  [g_Vorar] [bot] start (1432,1606,20) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1771 item(s), 5 mobile(s))
+[15:56:17.305] WARN  [g_Vorar] [bot] goal (1430,1597) is not walkable; snapping to nearest standable tile (1429,1596,20) instead
+[15:56:19.772] WARN  [g_Vorar] [bot] no path to (1429,1596) avoiding 0 block(s); stopping (search 2431877.8us)
+[15:56:19.772] WARN  [g_Vorar] [bot] start (1432,1606,20) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1771 item(s), 5 mobile(s))
+[15:56:21.120] WARN  [g_Vorar] [bot] goal (1430,1597) is not walkable; snapping to nearest standable tile (1429,1596,20) instead
+[15:56:23.766] WARN  [g_Vorar] [bot] no path to (1429,1596) avoiding 0 block(s); stopping (search 2645617.4us)
+[15:56:23.767] WARN  [g_Vorar] [bot] start (1432,1606,20) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1771 item(s), 5 mobile(s))
+[15:56:28.183] WARN  [g_Vorar] [bot] goal (1430,1597) is not walkable; snapping to nearest standable tile (1429,1596,20) instead
+[15:56:30.852] WARN  [g_Vorar] [bot] no path to (1429,1596) avoiding 0 block(s); stopping (search 2624500.7us)
+[15:56:30.852] WARN  [g_Vorar] [bot] start (1432,1606,20) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1771 item(s), 5 mobile(s))
+[15:56:32.174] WARN  [g_Vorar] [bot] goal (1430,1597) is not walkable; snapping to nearest standable tile (1429,1596,20) instead
+[15:56:34.350] WARN  [g_Vorar] [bot] no path to (1429,1596) avoiding 0 block(s); stopping (search 2138287.5us)
+[15:56:34.350] WARN  [g_Vorar] [bot] start (1432,1606,20) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1771 item(s), 5 mobile(s))
+[15:56:40.225] WARN  [g_Vorar] [bot] goal (1430,1597) is not walkable; snapping to nearest standable tile (1429,1596,20) instead
+[15:58:58.939] WARN  [g_Vorar] [bot] THREAT (HP 50 -> 48): halting travel (TODO engage/flee/recall)
+[15:59:02.061] WARN  [g_Vorar] [bot] THREAT (HP 48 -> 46): halting travel (TODO engage/flee/recall)
+[15:59:04.945] WARN  [g_Vorar] [bot] THREAT (HP 43 -> 40): halting travel (TODO engage/flee/recall)
+[15:59:18.488] WARN  [g_Vorar] [bot] goal (1435,3820) is not walkable; snapping to nearest standable tile (1434,3819,0) instead
+[16:05:44.089] WARN  [g_Vorar] [bot] no path to (1416,1754) avoiding 0 block(s); stopping (search 2114184.3us)
+[16:05:44.089] WARN  [g_Vorar] [bot] start (1402,1760,0) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 2178 item(s), 2 mobile(s))
+[16:09:01.011] WARN  [g_Vorar] [0x21] move REJECTED seq=38; server says (2643,2156,21) facing=3
+[16:17:42.270] WARN  [g_Vorar] [bot] 0x20 resync; aborting path
+[16:19:59.774] WARN  [g_Vorar] [bot] no path to (1464,1704) avoiding 0 block(s); stopping (search 3940186.0us)
+[16:19:59.774] WARN  [g_Vorar] [bot] start (1496,1688,20) exits: open=4 terrain=3 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 3578 item(s), 7 mobile(s))
+[16:20:05.122] WARN  [g_Vorar] [bot] no path to (1464,1704) avoiding 0 block(s); stopping (search 4008569.9us)
+[16:20:05.122] WARN  [g_Vorar] [bot] start (1496,1688,20) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 3578 item(s), 7 mobile(s))

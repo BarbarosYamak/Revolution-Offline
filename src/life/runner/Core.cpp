@@ -748,6 +748,36 @@ void Runner::MaintainBuildLocks(Client& client, const Observation& obs) {
 
     const rules::Profile& p = rules::Revolution();
 
+    // --- THE STAT-FARM EXIT, AND IT LIVES HERE ON PURPOSE. -----------------
+    //
+    // "when the STR target is reached -> set the Wrestling lock DOWN -> the
+    // real mage skills fill its points" (owner, 2026-09-04). It cannot be done
+    // by STAT_FARM itself: the moment STR reaches the target NeedStrength
+    // falls silent, the goal is never picked again, and the exit would never
+    // run. So the lock keeper does it, which is what a lock keeper is for.
+    //
+    // DOWN, not LOCK. Source-X caps a DOWN-locked skill at its current value
+    // and, once the 700.0 cap binds, takes new gains out of it
+    // (CCharSkill.cpp:266,:333) -- which is exactly "let the real skills have
+    // the points back". Setting it early is harmless.
+    //
+    // ONCE PER LIFE, and remembered in the character's own memory rather than
+    // in a member: a bool on the Runner dies with the process, and this
+    // errand spans sessions. Gated on stat_farm_started so a character that
+    // never farmed is not quietly given a lock it did not earn.
+    if (state_.memory.HasEvent("stat_farm_started") &&
+        !state_.memory.HasEvent("wrestling_locked_down") &&
+        state_.plan.targetStr > 0 && obs.str >= state_.plan.targetStr) {
+        EndStatFarm(client, obs);
+        client.ActionSetSkillLock(static_cast<u16>(rules::kWrestling),
+                                  build::kLockDown);
+        state_.memory.NoteEvent("wrestling_locked_down",
+                                "STR target reached; Wrestling set DOWN", "",
+                                obs.x, obs.y, obs.nowMs);
+        LogLine("stat_farm: STR reached %d/%d -- Wrestling set DOWN",
+                obs.str, state_.plan.targetStr);
+    }
+
     // --- DO NOT LOCK EARLY. -----------------------------------------------
     //
     // A lock is an END-OF-BUILD instrument. Its only job is to stop a finished
@@ -786,6 +816,31 @@ void Runner::MaintainBuildLocks(Client& client, const Observation& obs) {
                     want == build::kLockLocked ? "LOCK" : "train up");
             client.ActionSetSkillLock(static_cast<u16>(t.skillId), want);
         }
+
+        // WRESTLING THIS BUILD NEVER PLANNED. The "leave unplanned skills
+        // alone" rule above exists so the 200-odd unresolved points are not
+        // quietly spent -- but Wrestling on a caster is not an unresolved
+        // choice, it is a TOOL that was picked up to move STR and has no
+        // place in the finished build. Near the cap it is the first thing
+        // that should give its points back, so it goes DOWN rather than being
+        // left to compete with Magery.
+        bool wrestlingPlanned = false;
+        for (const SkillTarget& t : state_.plan.skills)
+            wrestlingPlanned = wrestlingPlanned || t.skillId == rules::kWrestling;
+        if (!wrestlingPlanned) {
+            const i32 have = client.PlayerSkillBase(
+                static_cast<u16>(rules::kWrestling));
+            const i32 lock = client.PlayerSkillLock(
+                static_cast<u16>(rules::kWrestling));
+            if (have > 0 && lock >= 0 &&
+                lock != static_cast<i32>(build::kLockDown)) {
+                LogLine("build: Wrestling at %.1f is not in this build -- "
+                        "DOWN, so the planned skills take its points",
+                        have / 10.0);
+                client.ActionSetSkillLock(static_cast<u16>(rules::kWrestling),
+                                          build::kLockDown);
+            }
+        }
     }
 
     if (statsNearCap) {
@@ -797,6 +852,12 @@ void Runner::MaintainBuildLocks(Client& client, const Observation& obs) {
             {2, obs.intel, state_.plan.targetInt, "INT"},
         };
         for (const auto& s : kStats) {
+            // A STAT FARM IN PROGRESS OWNS THE LOCKS IT SET. STR UP / DEX
+            // LOCK / INT UP is a deliberate, logged arrangement (see
+            // Runner::BeginStatFarm) and the end-of-build policy must not
+            // quietly undo it -- DEX especially, which is locked precisely
+            // because Wrestling pulls it toward 75.
+            if (statFarmActive_) continue;
             const u8 want = (s.have >= s.target) ? build::kLockLocked : build::kLockUp;
             if (statLockSent_[s.code] == want + 1) continue;
             statLockSent_[s.code] = static_cast<u8>(want + 1);
@@ -1815,6 +1876,7 @@ void Runner::RunGoal(Client& client, const Observation& obs) {
         case GoalKind::Smelt:                done = DoSmelt(client, obs); break;
         case GoalKind::TameAnimal:           done = DoTameAnimal(client, obs); break;
         case GoalKind::UpgradeGear:          done = DoUpgradeGear(client, obs); break;
+        case GoalKind::StatFarm:             done = DoStatFarm(client, obs); break;
         case GoalKind::IdleBriefly:           done = DoIdle(client, obs); break;
         case GoalKind::Count:                 break;
     }
