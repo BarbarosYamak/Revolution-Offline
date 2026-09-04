@@ -4,6 +4,10 @@
 - [Observe via agent](feedback-observe-via-agent.md) — wave watching/log slicing goes to one sonnet qa agent; main thread reads only its report
 - [Agent spend rules](feedback-agent-spend.md) — sonnet triage / opus fixes / Fable main only; serial not parallel; no pre-fix triage pass; qa only for live verdicts
 - [Alchemist loop](alchemist-loop.md) — owner 2026-09-04: bulk nightshade+bottles, brew poison = train+sell same batch; never open by buying NPC potions
+- [Crafters stock then sit](crafters-stock-then-sit.md) — owner rule: bulk materials, one pack-sized sitting for every crafter; shard DELAY table per craft skill
+- [Mage/scribe start 50/25/5](start-stats-mage-50-25-5.md) — owner: STR 50 INT 25 DEX 5 is normal creation for casters; scribe fixed from 50/20/10
+- [Sparring parties](sparring-parties.md) — owner memory: 2-3 bots party, iron set + weak weapon, hit each other; others bandage for Healing; M13 social loop, unimplemented
+- [Spellbook is a side goal](spellbook-is-a-side-goal.md) — owner: casters fill the book (buy circles 1-4, hunt drops for 5-8); scribe can only make spells already in the book
 
 - [Open items 2026-09-04](project_open_items_2026-09-04.md) — Faustus mace, Aurelius vendor_buy, Rhea taming, chest ResourceType; bow↔log, meditation %, weapon-merge era
 - [Owner rulings on truth pack](owner-rulings-2026-09-03-truthpack.md) — taming 53.1/55.1+pack, meditation+creation historical, TNS trapped pouch, fewer mounts, no headhunters, guildmasters teach to 30.0, sinks later

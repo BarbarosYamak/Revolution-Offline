@@ -638,10 +638,39 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
             }
         }
     }
-    obs.spellsKnown =
-        obs.spellbookSerial
-            ? static_cast<int>(client.ContainerItemCount(obs.spellbookSerial))
-            : 0;
+    // WHICH SPELLS, AND A BOOK THAT HAS NOT BEEN OPENED IS NOT AN EMPTY ONE.
+    //
+    // A spellbook row's GRAPHIC is the constant 0x1F2E for every entry; the
+    // SPELL NUMBER is in the amount field (Runner::BookHasSpell has the packet
+    // and the evidence). So the rows are read here into obs.knownSpells and
+    // the count follows from them rather than the other way round.
+    //
+    // Contents only arrive after the book is opened, so at login the live row
+    // count is 0 for a book that may well be full. Reading that as an empty
+    // book put NeedSpells at 0.70 and FILL_SPELLBOOK at 77.0 as the FIRST goal
+    // of every session; the errand then opened the book, discovered the 23
+    // spells that were already there, fell to 0.46/50.6 and lost the turn
+    // seventeen seconds later, having done nothing
+    // (run_gates/g_Lyra.console.txt:79-117, 2026-09-04). What a character
+    // remembers about its own book is the honest answer until it looks again,
+    // so the last reading stands in until this session's own read replaces it.
+    obs.knownSpells.clear();
+    if (obs.spellbookSerial) {
+        const usize rows = client.ContainerItemCount(obs.spellbookSerial);
+        for (usize i = 0; i < rows; ++i) {
+            u32 serial = 0; u16 gfx = 0, amount = 0;
+            if (!client.ContainerItemAt(obs.spellbookSerial, i, &serial, &gfx,
+                                        &amount))
+                continue;
+            const int spell = static_cast<int>(amount);
+            if (spell > 0 && spell <= 64) obs.knownSpells.push_back(spell);
+        }
+        // Observe() is const by design, so the REMEMBERING of a fresh reading
+        // happens in LearnFromObservation; here the remembered book only
+        // stands in while this session has not opened it yet.
+        if (obs.knownSpells.empty()) obs.knownSpells = state_.knownSpells;
+    }
+    obs.spellsKnown = static_cast<int>(obs.knownSpells.size());
 
     obs.wantTrainSkill = NextSkillToBuy(state_.plan, obs, 300);
     if (obs.wantTrainSkill >= 0) {
@@ -845,6 +874,18 @@ void Runner::LearnFromObservation(Client& client, const Observation& obs) {
     if (obs.bankOpen) {
         state_.bank = obs.bank;
         state_.bankSeenMs = obs.nowMs;
+    }
+    // THE BOOK, ONCE IT HAS BEEN OPENED. Same rule as the bank box: a reading
+    // that came off the wire is kept, so the next login knows what this
+    // character can already cast without spending its first goal finding out.
+    // Only a NON-EMPTY reading is written -- an unopened book sends no rows,
+    // and overwriting the memory with that would forget the book every logout,
+    // which is the defect this exists to fix.
+    if (obs.spellbookSerial &&
+        client.ContainerItemCount(obs.spellbookSerial) > 0 &&
+        !obs.knownSpells.empty()) {
+        state_.knownSpells = obs.knownSpells;
+        state_.knownSpellsSeenMs = obs.nowMs;
     }
     // NOTHING is written here. Standing where trees are visible is not
     // knowledge worth keeping: doing so gave the character 64 imaginary

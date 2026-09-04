@@ -701,7 +701,26 @@ struct Observation {
     // empty one, and the goal treats it as such.
     u32 spellbookSerial = 0;
     int spellsKnown = 0;
+    // WHICH spells, not just how many -- by spell number (1..64), read from the
+    // book's own rows (the amount field carries the spell; see
+    // Runner::BookHasSpell). Carried on the Observation so the pure decision
+    // code can ask "can this character scribe a Recall scroll" without a
+    // Client.
+    //
+    // EMPTY MEANS NOT KNOWN, NOT EMPTY. The server only sends a container's
+    // contents once it has been opened, so a book that has not been looked in
+    // this session reads as 0 rows. Every caller must fail OPEN on an empty
+    // list -- refusing a rung because an unread book "lacks" the spell would
+    // be a claim about hidden state.
+    std::vector<int> knownSpells;
     i32 wantTrainTarget = 0;
+
+    bool KnowsSpell(int spell) const {
+        for (int s : knownSpells) if (s == spell) return true;
+        return false;
+    }
+    // Has the book actually been read (this session, or in a remembered one)?
+    bool SpellbookRead() const { return !knownSpells.empty(); }
 
     i32 SkillTenths(int skillId) const;
     i32 SkillSumTenths() const;
@@ -729,6 +748,24 @@ struct CraftIntent {
     // Inputs the pack is short of, in the quantities still needed.
     std::vector<prod::Ingredient> missing;
     const char* why = "";            // printable, always set
+    // A RUNG THIS LIFE COULD REACH IF THE BOOK HELD ONE MORE SPELL.
+    //
+    // Scribing a scroll requires the spell to be IN the spellbook: the
+    // inscription menu offers only known spells (verified live 2026-09-04,
+    // run_gates/g_Lyra.console.txt ~13:04 and g_Thalia ~13:03 --
+    // `goal_failed=CRAFT reason="REFUSE_MISSING_RECIPE" this menu offers none
+    // of 'Spell Circle 4' / 'recall'`, both scribes holding Poison but not
+    // Recall). ChooseCraft therefore SKIPS such a rung rather than choosing it
+    // and failing at the menu, and reports it here so the spellbook errand
+    // knows which scroll to go and buy. 0 means nothing was skipped for this
+    // reason.
+    int wantSpell = 0;               // spell number 1..64
+    const char* wantSpellItem = nullptr;   // the rung that wanted it
+    // ...AND A RUNG SKIPPED BECAUSE THE CAST IS UNAFFORDABLE, which no
+    // purchase can fix. Kept apart from wantSpell precisely so the spellbook
+    // errand does NOT go shopping for it: the answer is INT, not gold.
+    int lowManaSpell = 0;            // spell number 1..64
+    i32 lowManaCost = 0;             // what the cast needs, in mana
 };
 // WHAT WAS MADE LAST, SO A CRAFTER'S DAY IS NOT ONE PRODUCT REPEATED.
 //
@@ -812,6 +849,18 @@ struct CraftMenuPath {
     const char* step3;   // blacksmithing nests one level deeper than the rest
 };
 const CraftMenuPath* CraftMenuFor(const std::string& item);
+
+// WHICH SPELL DOES SCRIBING THIS ITEM REQUIRE? 0 when the item is not a spell
+// scroll, or when the spell table has not been loaded (data/
+// revolution_spells.tsv, uo::spell::LoadSpellTable) -- both answers mean
+// "unknown", and every caller must fail OPEN on 0 rather than refuse the rung.
+//
+// The shard's inscription menu offers only spells the scribe's own book holds,
+// so a scroll rung whose spell is missing is not a craft that can be attempted:
+// it is one that ends at `REFUSE_MISSING_RECIPE ... this menu offers none of
+// 'Spell Circle 4' / 'recall'` (verified live 2026-09-04, Lyra and Thalia).
+// Named by defname, not by graphic: i_scroll_recall -> s_recall.
+int SpellTaughtByScroll(const std::string& item);
 
 // `focus` is optional. When given, a fully-stocked recipe this life has just
 // spent a sitting on yields to another fully-stocked one; when omitted (or
@@ -1521,6 +1570,22 @@ struct PersistentState {
     // which is the most ordinary thing a player does.
     std::vector<market::Stock> bank;
     i64 bankSeenMs = 0;
+
+    // WHAT IS IN THE SPELLBOOK, remembered the same way and for the same
+    // reason. A container's contents only arrive after it is opened, so at
+    // login a carried book reads as zero rows -- and NeedSpells read that as
+    // "an empty book", scoring 0.70 (FILL_SPELLBOOK 77.0) at every single
+    // login. Lyra won the first goal of the session with it, walked to the
+    // scribe shop, opened the book, found the TWENTY-THREE spells that were
+    // already in it, dropped to 0.46 (50.6) and lost the turn seventeen
+    // seconds later -- every session, no progress
+    // (run_gates/g_Lyra.console.txt:79-117, 2026-09-04).
+    //
+    // A player knows what is in their own spellbook without opening it. This
+    // is that, and nothing more: it is only ever written from a book this
+    // character has actually opened and read.
+    std::vector<int> knownSpells;
+    i64 knownSpellsSeenMs = 0;
 
     // WHERE THIS CHARACTER LIVES. Chosen once from the profession's own list
     // and then never re-rolled: a bot that picks a new home every login is a

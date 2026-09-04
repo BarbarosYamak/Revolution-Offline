@@ -1,6 +1,7 @@
 #include "uo/life.h"
 #include "uo/professions.h"
 #include "uo/faucets.h"
+#include "uo/spellcast.h"
 #include "uo/vendor_policy.h"
 
 #include <algorithm>
@@ -356,8 +357,31 @@ const SchoolWeapon* SchoolWeaponFor(const prof::Profession& p) {
 // CraftMenuPath is declared in uo/life.h so a test can assert a route without
 // a server; the table itself stays here, next to the goal that walks it.
 const CraftMenuPath kCraftMenus[] = {
-    {"i_scroll_poison",      "Spell Circle 3", "poison",  nullptr},
-    {"i_scroll_recall",      "Spell Circle 4", "recall",  nullptr},
+    // INSCRIPTION. The top level is NOT named after the submenu it opens.
+    //
+    // "Spell Circle 3" is the submenu's own TITLE (sm_legacy_inscription.scp
+    // :31 for sm_inscrip_1, and the matching line of each sm_inscrip_N). What
+    // the TOP menu offers is one option per `ON=i_spell_circle_N`
+    // (sm_legacy_inscription.scp:12-30), and a skillmenu option is displayed as
+    // the itemdef's NAME -- which for these is the ORDINAL word:
+    //   items/i_magic_magery.scp:1893-1899  i_spell_circle_3  NAME=third circle
+    //   items/i_magic_magery.scp:1901-1907  i_spell_circle_4  NAME=fourth circle
+    // so nothing ever matched "Spell Circle 3" and every scribe sitting ended
+    // at REFUSE_MISSING_RECIPE. The live dialog dump settles it:
+    //   [0x7C] dialog id=0x0000F87C menu=690: "Spell Circles" (3 options)
+    //           1) first circle  2) second circle  3) third circle
+    // (run_gates/g_Thalia.console.txt:788-791, 2026-09-04) -- the TITLE is
+    // "Spell Circles" and the OPTIONS are the ordinals.
+    //
+    // The leaf strings were always right: i_rune_poison NAME=poison and
+    // i_rune_recall NAME=recall (i_magic_magery.scp:1563-1564, 1647-1648).
+    // "poison" is unique inside sm_inscrip_3 -- "poison field" lives in
+    // sm_inscrip_5 -- and "recall" is unique inside sm_inscrip_4.
+    //
+    // Anchored with '^' because "first circle" .. "eighth circle" all end in
+    // the same word and only the ordinal distinguishes them.
+    {"i_scroll_poison",      "^third circle",  "poison",  nullptr},
+    {"i_scroll_recall",      "^fourth circle", "recall",  nullptr},
     {"i_bow",                "bow",            nullptr,   nullptr},
     {"i_crossbow",           "crossbow",       nullptr,   nullptr},
     {"i_arrow_shaft",        "arrow_shaft",    nullptr,   nullptr},
@@ -439,6 +463,28 @@ const CraftMenuPath* CraftMenuFor(const std::string& item) {
     return nullptr;
 }
 
+// A SCROLL NAMES ITS OWN SPELL. i_scroll_recall is written with s_recall, and
+// the shard's two tables agree on the stem: items/i_magic_magery.scp calls the
+// item i_scroll_<x> and spells/spells_magery.scp calls the spell s_<x> (the
+// same pairing SpellForScrollGraphic walks through the art range). Going
+// through the DEFNAME rather than the graphic keeps this usable where there is
+// no Client and no vendor row -- which is where the craft choice is made.
+//
+// Returns 0 for anything that is not a spell scroll (i_scroll_blank has no
+// s_blank) and for every item when the table is not loaded, so a test binary
+// or a session that never read data/revolution_spells.tsv simply keeps the old
+// behaviour instead of refusing every scroll.
+int SpellTaughtByScroll(const std::string& item) {
+    static const char kPrefix[] = "i_scroll_";
+    const usize n = sizeof(kPrefix) - 1;
+    if (item.size() <= n || item.compare(0, n, kPrefix) != 0) return 0;
+    const std::string defname = "s_" + item.substr(n);
+    for (const spell::SpellDef& d : spell::SpellTable()) {
+        if (d.defname && defname == d.defname) return d.spell;
+    }
+    return 0;
+}
+
 void CraftFocus::NoteMade(const char* item, i64 nowMs) {
     if (!item || !*item) return;
     if (last_ == item) {
@@ -488,6 +534,27 @@ CraftIntent ChooseCraft(const prof::Profession& p, const Observation& obs,
     // ...and the best whose shortfall is at least PURCHASABLE, which beats one
     // that is short of something no vendor may sell.
     CraftIntent firstBuyable;
+    // Has any skill-met, sellable entry been passed yet? False means the
+    // candidate in hand is the top rung of this life's ladder.
+    bool rungSeen = false;
+    // A rung skipped because the BOOK lacks its spell, hardest first. Reported
+    // on whatever intent is finally returned so the spellbook errand knows
+    // which scroll to go and buy, and so the need model can tell "this life is
+    // making its lower rung by choice" from "its ladder is stuck on one
+    // missing spell".
+    int wantSpell = 0;
+    const char* wantSpellItem = nullptr;
+    // ...and one skipped because the mana pool cannot pay for the cast, which
+    // is a stat wall rather than a shopping list.
+    int lowManaSpell = 0;
+    i32 lowManaCost = 0;
+    auto stamp = [&](CraftIntent i) {
+        i.wantSpell = wantSpell;
+        i.wantSpellItem = wantSpellItem;
+        i.lowManaSpell = lowManaSpell;
+        i.lowManaCost = lowManaCost;
+        return i;
+    };
     if (batch < 1) batch = 1;
 
     for (const std::string& made : p.produces) {
@@ -574,6 +641,66 @@ CraftIntent ChooseCraft(const prof::Profession& p, const Observation& obs,
             continue;
         }
 
+        // A SCROLL YOU DO NOT KNOW CANNOT BE WRITTEN.
+        //
+        // Shard fact, verified live 2026-09-04: the inscription menu offers
+        // only the spells the scribe's OWN BOOK holds. Lyra and Thalia both
+        // carry Poison but not Recall, both reach Inscription 40 / Magery 30,
+        // and both spent their craft goal on
+        //   goal_failed=CRAFT reason="REFUSE_MISSING_RECIPE" this menu offers
+        //   none of 'Spell Circle 4' / 'recall'
+        // (run_gates/g_Lyra.console.txt ~13:04, g_Thalia ~13:03). The skill
+        // check above passes -- this is not a skill wall, it is a KNOWLEDGE
+        // wall, and it belongs here where the choice is made rather than at
+        // the menu where the sitting is already lost.
+        //
+        // Three deliberate limits:
+        //  - 0 from SpellTaughtByScroll means UNKNOWN (not a scroll, or the
+        //    spell table is not loaded) and never skips anything;
+        //  - an unread book (obs.knownSpells empty) never skips anything --
+        //    refusing a rung because a book we have not opened "lacks" a spell
+        //    would be a claim about state this character has not observed;
+        //  - the skip happens BEFORE `rungSeen`, so a rung nobody can write is
+        //    not the top rung, and the buyable-shortfall rule below still
+        //    treats the next writable scroll as the top of this life's ladder.
+        const int teaches = SpellTaughtByScroll(made);
+        if (teaches > 0 && obs.SpellbookRead() && !obs.KnowsSpell(teaches)) {
+            if (!wantSpell) { wantSpell = teaches; wantSpellItem = r->output; }
+            continue;
+        }
+        // ...AND A CAST THIS CHARACTER CANNOT PAY FOR IS THE SAME WALL, one
+        // step further on. `TESTIF=<cancast s_recall 00>` is the whole gate on
+        // every inscription leaf, and CANCAST answers for MANA as well as for
+        // the book. Sphere hides a submenu whose every entry fails its TESTIF,
+        // which is why the live menu offered "first / second / third circle"
+        // and nothing else:
+        //   circles 1-3 cost 4, 6 and 9 mana; circle 4 costs 11
+        //   (data/revolution_spells.tsv, MANAUSE from spells_magery.scp)
+        //   Thalia's INT is 10, so her mana pool is 10
+        //   (run_gates/g_Thalia.console.txt:47, 2026-09-04)
+        // She therefore spent three CRAFT goals a session opening the menu to
+        // be told 'fourth circle' was not there, with a Recall scroll already
+        // in her book. Buying another scroll cannot fix that -- only INT can --
+        // so this is recorded separately from wantSpell and never sends the
+        // spellbook errand shopping.
+        //
+        // Measured against the LARGEST mana this character has been seen to
+        // hold rather than against INT alone: obs.intel is the Sphere default
+        // for the pool, but if this shard ever gives more, the observed value
+        // is the honest witness and taking the max cannot wrongly refuse a
+        // rung.
+        if (teaches > 0) {
+            const spell::SpellDef* sd = spell::DefForSpell(teaches);
+            const i32 pool = std::max(obs.intel, obs.mana);
+            if (sd && sd->mana > 0 && pool > 0 && sd->mana > pool) {
+                if (!lowManaSpell) {
+                    lowManaSpell = teaches;
+                    lowManaCost = sd->mana;
+                }
+                continue;
+            }
+        }
+
         // WHAT CAN ACTUALLY BE MADE BEATS WHAT COMES FIRST IN THE LIST.
         //
         // This used to return on the first recipe with inputs, whatever the
@@ -610,6 +737,10 @@ CraftIntent ChooseCraft(const prof::Profession& p, const Observation& obs,
                 here.missing.push_back(shortfall);
             }
         }
+        // A stocked rung counts as seen too, whether it returns or steps
+        // aside as satiated -- the rung below it is never "the top".
+        const bool topRung = !rungSeen;
+        rungSeen = true;
         if (here.missing.empty()) {
             here.why = "every input is in the pack";
             // ROTATE THE FOCUS. Everything else about this loop is unchanged;
@@ -623,7 +754,7 @@ CraftIntent ChooseCraft(const prof::Profession& p, const Observation& obs,
                 }
                 continue;
             }
-            return here;
+            return stamp(here);
         }
         here.why = "inputs are short";
 
@@ -647,6 +778,19 @@ CraftIntent ChooseCraft(const prof::Profession& p, const Observation& obs,
         const bool buyable =
             !here.missing.empty() &&
             econ::CanBuyFromNPC(here.missing.front().item).allowed;
+        // THE TOP RUNG WINS WHEN ITS SHORTFALL IS ON A SHELF. `produces` is
+        // ordered hardest-first for the bought-input trades (alchemist,
+        // scribe), and the skill filter above has just passed this entry, so
+        // it is the hardest thing this life can make today. If what it lacks
+        // is a shop errand, take it now -- do not let a fully-stocked lower
+        // rung further down the list win the sitting. Otherwise the leftover
+        // stock of the easy recipe decides the trade forever: Lyra scribed
+        // 55 poison scrolls (gate 30.0) at Inscription ~70 for 0.0 gain
+        // while recall scrolls (40.0) wanted three reagents the mage sells
+        // (2026-09-04). A top rung short of something NO shop sells (a
+        // fisher's whole fish, a smith's ingots) falls through exactly as
+        // before, so the gathering trades are untouched.
+        if (buyable && topRung) return stamp(here);
         if (buyable) {
             if (!firstBuyable.item) firstBuyable = here;
         } else if (!firstWorkable.item) {
@@ -656,11 +800,20 @@ CraftIntent ChooseCraft(const prof::Profession& p, const Observation& obs,
     // NOTHING ELSE IS WORKABLE, so the sitting continues. Repeating oneself
     // beats standing idle, and this is what keeps the rotation a preference
     // rather than a ban.
-    if (satiated.item) return satiated;
-    if (firstBuyable.item) return firstBuyable;
-    if (firstWorkable.item) return firstWorkable;
-    if (!out.why || !*out.why) out.why = "this life makes nothing sellable";
-    return out;
+    if (satiated.item) return stamp(satiated);
+    if (firstBuyable.item) return stamp(firstBuyable);
+    if (firstWorkable.item) return stamp(firstWorkable);
+    if (!out.why || !*out.why) {
+        // SAY WHICH WALL IT IS. "Makes nothing sellable" is the skill answer;
+        // a scribe with the skills and without the spell is a different state
+        // and must not be reported as the same one.
+        out.why = wantSpell ? "every rung this life could write needs a spell "
+                              "the book does not hold"
+                : lowManaSpell ? "every rung this life could write needs more "
+                                 "mana than this character can hold"
+                               : "this life makes nothing sellable";
+    }
+    return stamp(out);
 }
 
 // See the declaration in life.h for the live run this exists to fix.

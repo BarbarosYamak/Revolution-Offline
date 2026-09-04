@@ -14,6 +14,7 @@
 #include "uo/rules.h"
 #include "uo/production.h"
 #include "uo/faucets.h"
+#include "uo/spellcast.h"
 
 #include <cstdio>
 #include <set>
@@ -1064,6 +1065,106 @@ void TestCombatStrategyAgreesWithTheBuild() {
     }
 }
 
+// A SCROLL RUNG WHOSE SPELL THE BOOK LACKS IS NOT A CANDIDATE (2026-09-04).
+//
+// Shard fact, verified live: the inscription menu offers only the spells the
+// scribe's own book already holds. Lyra and Thalia both reach Inscription 40 /
+// Magery 30 -- enough for a Recall scroll -- and both carry Poison but not
+// Recall, so the top rung of the scribe's ladder ended every craft goal at
+//   goal_failed=CRAFT reason="REFUSE_MISSING_RECIPE" this menu offers none of
+//   'Spell Circle 4' / 'recall'
+// (run_gates/g_Lyra.console.txt ~13:04, g_Thalia ~13:03). A rung nobody can
+// write must be skipped where the CHOICE is made, and it must not count as the
+// top rung -- otherwise the buyable-shortfall rule keeps handing the sitting to
+// a recipe the menu will refuse.
+void TestAScrollRungNeedsItsSpellInTheBook() {
+    Section("craft: a scribe cannot write a scroll whose spell it lacks");
+
+    // Two real rows of data/revolution_spells.tsv (tools/spellgen.py's export
+    // of the shard's own spells/spells_magery.scp), copied verbatim.
+    const std::string tsv =
+        "spell\tdefname\tname\tcircle\tminskill\tmana\tflags\treagents\n"
+        "20\ts_poison\tPoison\t3\t300\t9\tspellflag_harm\ti_reag_nightshade\n"
+        "32\ts_recall\tRecall\t4\t400\t11\tspellflag_playeronly\t"
+        "i_reag_black_pearl,i_reag_blood_moss,i_reag_mandrake_root\n";
+    Check(spell::LoadSpellTableFromText(tsv) == 2, "the two spell rows load");
+
+    Check(life::SpellTaughtByScroll("i_scroll_recall") == 32,
+          "a Recall scroll is written with s_recall (spell 32)");
+    Check(life::SpellTaughtByScroll("i_scroll_blank") == 0,
+          "a blank scroll teaches nothing -- there is no s_blank");
+    Check(life::SpellTaughtByScroll("i_log") == 0,
+          "and a log is not a scroll at all");
+
+    const prof::Profession* scribe = prof::Find("scribe");
+    if (!scribe) { std::printf("  FAIL: no scribe\n"); ++g_failures; ++g_checks;
+                   return; }
+
+    // Lyra's live numbers: Inscription 70.0, Magery 50.0, and a pack holding
+    // every input BOTH writable rungs ask for, so nothing here is decided by a
+    // shortfall.
+    life::Observation obs;
+    obs.nowMs = 1;
+    obs.skills.push_back({rules::kInscription, 700});
+    obs.skills.push_back({rules::kMagery, 500});
+    obs.pack.push_back({"i_scroll_blank", 50});
+    obs.pack.push_back({"i_reag_nightshade", 50});
+    obs.pack.push_back({"i_reag_black_pearl", 50});
+    obs.pack.push_back({"i_reag_blood_moss", 50});
+    obs.pack.push_back({"i_reag_mandrake_root", 50});
+
+    // AN UNREAD BOOK REFUSES NOTHING. knownSpells empty means "not looked in",
+    // never "empty", so the answer must be exactly what it was before.
+    const life::CraftIntent unread = life::ChooseCraft(*scribe, obs, 1);
+    Check(unread.item && std::string(unread.item) == "i_scroll_recall",
+          "with no reading of the book the top rung still wins");
+    Check(unread.wantSpell == 0,
+          "and nothing is claimed about a spell we have not looked for");
+
+    // THE BOOK AS LYRA ACTUALLY CARRIES IT: Poison, no Recall.
+    obs.knownSpells = {20};
+    const life::CraftIntent read = life::ChooseCraft(*scribe, obs, 1);
+    Check(read.item && std::string(read.item) == "i_scroll_poison",
+          "a book without Recall drops to the rung this scribe CAN write");
+    Check(read.wantSpell == 32,
+          "and names Recall as the spell that would unblock the ladder");
+    Check(read.wantSpellItem &&
+              std::string(read.wantSpellItem) == "i_scroll_recall",
+          "together with the rung that wanted it");
+
+    // ONCE THE SCROLL IS IN THE BOOK the ladder climbs again by itself --
+    // provided the cast can be paid for. INT 0 here means "not observed", so
+    // the mana rule below stays out of the way.
+    obs.knownSpells = {20, 32};
+    const life::CraftIntent both = life::ChooseCraft(*scribe, obs, 1);
+    Check(both.item && std::string(both.item) == "i_scroll_recall",
+          "with Recall known the top rung is chosen again");
+    Check(both.wantSpell == 0, "and nothing is reported as blocked");
+
+    // THE SECOND WALL: MANA. Every inscription leaf is
+    // `TESTIF=<cancast s_x 00>` and CANCAST answers for mana too, so Sphere
+    // hides a whole circle whose spells the character cannot afford to cast.
+    // Circles 1-3 cost 4, 6 and 9 mana; circle 4 costs 11. Thalia's INT is 10
+    // (run_gates/g_Thalia.console.txt:47) and the live menu offered exactly
+    // "first circle / second circle / third circle" -- with Recall already in
+    // her book. No purchase can fix that, so it must not become a shopping
+    // errand.
+    obs.intel = 10;
+    const life::CraftIntent poor = life::ChooseCraft(*scribe, obs, 1);
+    Check(poor.item && std::string(poor.item) == "i_scroll_poison",
+          "10 mana cannot pay for an 11-mana Recall, so the writable rung wins");
+    Check(poor.lowManaSpell == 32 && poor.lowManaCost == 11,
+          "and the mana wall is named -- spell 32 at 11 mana");
+    Check(poor.wantSpell == 0,
+          "but NOT as a spell to buy: the scroll is already in the book");
+
+    obs.intel = 11;
+    const life::CraftIntent rich = life::ChooseCraft(*scribe, obs, 1);
+    Check(rich.item && std::string(rich.item) == "i_scroll_recall",
+          "one more point of INT and the top rung is reachable again");
+    Check(rich.lowManaSpell == 0, "with no wall left to report");
+}
+
 int main() {
     std::printf("m5_professions\n");
     TestEveryEntryIsLegal();
@@ -1088,6 +1189,7 @@ int main() {
     TestAnUnreachableCraftStandsAside();
     TestWhatEachLifeWears();
     TestCombatStrategyAgreesWithTheBuild();
+    TestAScrollRungNeedsItsSpellInTheBook();
     std::printf("%d checks, %d failures\n", g_checks, g_failures);
     return g_failures == 0 ? 0 : 1;
 }

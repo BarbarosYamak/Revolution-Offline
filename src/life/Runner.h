@@ -286,9 +286,14 @@ private:
     // The same question in the book's own currency -- see the note on
     // BookHasSpell for why a spellbook row's GRAPHIC answers nothing.
     bool BookHasSpell(Client& client, u32 book, int spell) const;
+    // `prefer` is a PREFERENCE, not a filter (`graphic` is the filter): when
+    // the shelf has that exact graphic it is bought first, and when it does not
+    // the errand falls through to its ordinary choice instead of walking away.
+    // It exists so a scribe whose craft ladder is stuck on one missing spell
+    // asks the shop for THAT scroll rather than a random one.
     bool BuyScrollFrom(Client& client, const Observation& obs, const char* trade,
                        wm::Service svc, u16 graphic, bool skipKnown, u16 qty,
-                       const char* what, GoalKind owner);
+                       const char* what, GoalKind owner, u16 prefer = 0);
     // The scroll errand giving up: bumps the consecutive count, cools
     // FILL_SPELLBOOK for the escalating rest and clears the shopping clock.
     // Returns the rest in ms so the caller can say so in its log line.
@@ -740,6 +745,12 @@ private:
     // it, so the next tick can tell a real add from a refusal.
     u16  scrollOfferedGraphic_ = 0;
     i32  spellsBeforeOffer_ = 0;
+    // The scroll the craft ladder is waiting on, as last SAID. DoFillSpellbook
+    // runs every tick, so announcing the wanted spell unconditionally printed
+    // the same line sixteen times a second -- 600 identical lines in one
+    // errand (run_gates/g_Thalia.console.txt:63-138, 2026-09-04). Say it when
+    // it changes, not when it is true.
+    u16  scrollPreferSaid_ = 0;
     // Graphics this book refused -- spells it already knows. Never offered
     // again, which is what stops the drop/refuse/retry loop.
     std::vector<u16> scrollBookRefused_;
@@ -900,6 +911,13 @@ private:
     // window expire in 2.5 seconds in the trainer path.
     i64         craftJournalMs_ = 0;
     int         craftMade_ = 0;
+    // HOW BIG THIS SITTING IS. Read once, from the pack, on the first plan
+    // of a sitting: the material bought or gathered in bulk sets the run,
+    // craftBatch is only the floor. 0 = not yet measured. Owner rule
+    // 2026-09-04 (crafters-stock-then-sit): Elara bought 73 nightshade and
+    // brewed them in ten separate 5-piece sittings because the bench never
+    // read the stock the supply errand had sized itself on.
+    i32         craftSittingTarget_ = 0;
     // --- crafting (S2.5) ------------------------------------------------
     // The last CraftStep logged, so LogPlan fires on transition only -- not
     // once per tick. Sentinel rather than CraftStep::Done: Done is a real,

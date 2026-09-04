@@ -19,3 +19,8 @@
 - [A book row's graphic is not a scroll's](a-book-row-graphic-is-not-a-scroll-graphic.md) — BookHasGraphic said "lacks it" about a spell the book refused; 84 gold on one Cunning Scroll, four times
 - [A supplier is not a customer](a-supplier-is-not-a-customer.md) — a crafter must not open by buying what she makes; damp the comfort needs, don't pin the goal order
 - [A bulk buy sets the batch size](a-bulk-buy-sets-the-batch-size.md) — 84 nightshade + 4 bottles read as "stocked"; size the sitting off the best-stocked input, via CraftBatchFromStock
+- [A sitting size is not the stock size](a-sitting-size-is-not-the-stock-size.md) — CraftBatchFromStock sizes the shopping trip, never the bench; 73 nightshade became ten sittings of five
+- [The supplier table disagrees with the policy](the-supplier-table-disagrees-with-the-policy.md) — a route word is not permission; a missing row reroutes to the player market, a wrong row hard-fails the goal
+- [A menu title is not a menu option](a-menu-title-is-not-a-menu-option.md) — kCraftMenus held "Spell Circle 3" (submenu header) not "third circle" (the itemdef NAME); every scribe sitting failed
+- [CANCAST gates the craft menu](cancast-gates-the-craft-menu.md) — TESTIF=<cancast> hides a whole circle for MANA as often as for a missing spell; a scroll in the book is not enough
+- [An unopened container is not empty](an-unopened-container-is-not-empty.md) — the book read 0 rows at login, FILL_SPELLBOOK won 77.0 every session and did nothing; the score was right, the input was wrong

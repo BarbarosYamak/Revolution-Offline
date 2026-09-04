@@ -969,7 +969,7 @@ i64 Runner::StandDownFromScrollShopping(const Observation& obs,
 bool Runner::BuyScrollFrom(Client& client, const Observation& obs,
                            const char* trade, wm::Service svc, u16 graphic,
                            bool skipKnown, u16 qty, const char* what,
-                           GoalKind owner) {
+                           GoalKind owner, u16 prefer) {
     if (client.TravelBusy()) return false;
 
     // TravelToService reaches a shop tile, not a named mobile.  This helper
@@ -1087,11 +1087,22 @@ bool Runner::BuyScrollFrom(Client& client, const Observation& obs,
     }
 
     int skipped = 0;
+    // TWO PASSES, SO A PREFERENCE COSTS NOTHING WHEN IT CANNOT BE MET.
+    //
+    // Pass 0 looks only for `prefer` -- the scroll the craft ladder is stuck
+    // on. Pass 1 is the original behaviour, unchanged, and runs whenever pass 0
+    // bought nothing. Making `prefer` a filter instead would have sent a scribe
+    // who could not find a Recall scroll straight to the "nothing this book
+    // lacks" branch and on to a random mage shop, throwing away every other
+    // named scroll on the shelf in front of her.
+    const int firstPass = (prefer && !graphic) ? 0 : 1;
+    for (int pass = firstPass; pass < 2; ++pass) {
     for (const Client::VendorItem& v : client.VendorOffer()) {
         const bool match =
-            graphic ? (v.graphic == graphic)
-                    : (v.graphic >= kFirstScrollGraphic &&
-                       v.graphic <= kLastScrollGraphic);
+            pass == 0 ? (v.graphic == prefer)
+            : graphic ? (v.graphic == graphic)
+                      : (v.graphic >= kFirstScrollGraphic &&
+                         v.graphic <= kLastScrollGraphic);
         if (!match) continue;
         // DO NOT BUY A SPELL THIS CHARACTER ALREADY HAS. Gold spent on a
         // duplicate buys nothing at all -- the book refuses it and the scroll
@@ -1118,10 +1129,11 @@ bool Runner::BuyScrollFrom(Client& client, const Observation& obs,
         }
         if (static_cast<i32>(v.price) > obs.gold) continue;
         LogLine("spellbook: buying %s ('%s', 0x%04X, spell %d) at %d gold "
-                "-- %d of this shop's scrolls were already in the book",
+                "-- %d of this shop's scrolls were already in the book%s",
                 what, v.name.c_str(), v.graphic,
                 SpellForScrollGraphic(v.graphic),
-                static_cast<i32>(v.price), skipped);
+                static_cast<i32>(v.price), skipped,
+                pass == 0 ? " (this is the scroll the craft ladder wants)" : "");
         client.ActionVendorBuy(keeper, v.serial, qty);
         // An ask, not progress -- same reason as BUY_SUPPLIES: counting a
         // purchase before the server takes the gold clears the failure ladder
@@ -1131,6 +1143,11 @@ bool Runner::BuyScrollFrom(Client& client, const Observation& obs,
         spellbookOpened_ = false;
         nextActionMs_ = obs.nowMs + 9000;
         return false;
+    }
+    // Pass 0 finding nothing is SILENT on purpose: this loop runs on every tick
+    // while a vendor window is open, so a "not on this shelf" line here would
+    // be printed hundreds of times. The successful buy above says when the
+    // preference was met; the once-per-shop lines below cover the rest.
     }
 
     // THE SHELF IN FRONT OF US BEATS THE PIECE WE PLANNED. An armour errand
@@ -1478,12 +1495,43 @@ bool Runner::DoFillSpellbook(Client& client, const Observation& obs) {
     //
     // The mage shop stays as the fallback for a town with no scribe: a random
     // scroll is worth more than no scroll.
+    // ASK FOR THE SPELL THE TRADE IS WAITING ON, FIRST.
+    //
+    // Owner ruling 2026-09-04: the side goal should prioritise the spell of the
+    // next craft rung this life's skills already allow. ChooseCraft is the only
+    // thing that knows which rung that is -- it is the code that had to SKIP it
+    // -- so ask it, and turn its answer into the scroll's art id. A preference,
+    // never a filter: if the shelf has not got it, the errand takes whatever
+    // else the book lacks (see BuyScrollFrom's two passes).
+    u16 prefer = 0;
+    if (needCfg_.profession) {
+        const CraftIntent rung =
+            ChooseCraft(*needCfg_.profession, obs, 1, &craftFocus_);
+        if (rung.wantSpell) {
+            prefer = ScrollGraphicForSpell(rung.wantSpell);
+            // ONCE PER WANTED SCROLL, not once per tick -- see
+            // scrollPreferSaid_ for the 600 identical lines that bought.
+            if (prefer != scrollPreferSaid_) {
+                scrollPreferSaid_ = prefer;
+                LogLine("spellbook: %s cannot be written until '%s' (spell %d) "
+                        "is in the book -- asking for scroll 0x%04X by name",
+                        rung.wantSpellItem ? rung.wantSpellItem : "the next rung",
+                        spell::DefForSpell(rung.wantSpell)
+                            ? spell::DefForSpell(rung.wantSpell)->name
+                            : "?",
+                        rung.wantSpell, prefer);
+            }
+        } else {
+            scrollPreferSaid_ = 0;
+        }
+    }
     if (scribeExhausted_) {
         BuyScrollFrom(client, obs, "mage", wm::Service::Mage, 0, true, 1,
-                      "a scroll", GoalKind::FillSpellbook);
+                      "a scroll", GoalKind::FillSpellbook, prefer);
     } else {
         BuyScrollFrom(client, obs, "scribe", wm::Service::Scribe, 0, true, 1,
-                      "a spell this book lacks", GoalKind::FillSpellbook);
+                      "a spell this book lacks", GoalKind::FillSpellbook,
+                      prefer);
     }
     return false;
 }

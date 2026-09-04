@@ -1,5 +1,7 @@
 #include "RunnerInternal.h"
 
+#include <algorithm>
+
 namespace uo::life {
 // The families were one translation unit until the split; the
 // using-directive keeps unqualified lookup in these bodies identical
@@ -11,14 +13,26 @@ namespace {
 // (runtime/scripts/skills/skill<N>_*.scp, line "DELAY=") is the time between
 // the menu answer and the item landing; the bot must not start the next
 // stroke inside it, and a human takes a breath besides. Values in ms,
-// read 2026-09-04: alchemy 2.5, blacksmithing 1.7, everything else 1.2.
+// Owner ruling 2026-09-04 ("we don't want very quick craft in the game",
+// PLAYER_MEMORY; the TNS import had cut most to 1.2): inscription 4.0,
+// cartography 4.0, alchemy 4.0, blacksmithing 5.0, carpentry 5.0, tailoring
+// 4.0, tinkering 4.0, bowcraft 3.0, cooking 2.0; mining/lumberjacking 3.0
+// are gather swings and live in their own paths. .makelast adds a 1s
+// repeat timer on top (revolution_makelast.scp).
 i64 CraftStrokeMs(const std::string& item) {
     const prod::Recipe* r = prod::FindRecipe(item.c_str());
     i64 delay = 1200;
     if (r) {
         switch (r->skillId) {
-            case rules::kAlchemy:       delay = 2500; break;
-            case rules::kBlacksmithing: delay = 1700; break;
+            case rules::kAlchemy:       delay = 4000; break;
+            case rules::kBlacksmithing: delay = 5000; break;
+            case rules::kCarpentry:     delay = 5000; break;
+            case rules::kInscription:   delay = 4000; break;
+            case rules::kCartography:   delay = 4000; break;
+            case rules::kTailoring:     delay = 4000; break;
+            case rules::kTinkering:     delay = 4000; break;
+            case rules::kBowcraft:      delay = 3000; break;
+            case rules::kCooking:       delay = 2000; break;
             default:                    delay = 1200; break;
         }
     }
@@ -240,6 +254,7 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
         craftHadBefore_ = market::QtyOf(obs.pack, craftItem_);
         craftJournalMs_ = client.JournalNowMs();
         craftMade_ = 0;
+        craftSittingTarget_ = 0;   // measured from the pack on the first plan
     }
 
     // DID THE LAST SWING LAND? Section 18's craft rule and both of its halves
@@ -353,7 +368,27 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
         // forgot the stock and ended every sitting after ONE potion once
         // Elara held more than the batch (g_Elara 01:43:11 "1 made -- as
         // many are held as this batch wanted", pack 9->10, 2026-09-04).
-        req.desiredTotal = (now - craftMade_) + needCfg_.craftBatch;
+        //
+        // THE STOCK SETS THE SITTING, craftBatch is only the floor. The
+        // supply errand sized itself on the best-stocked input
+        // (CraftBatchFromStock) and bought in bulk; a bench that then stops
+        // every craftBatch pieces turns 73 nightshade into ten separate
+        // sittings (g_Elara 2026-09-04 lines 361..1872). Measured ONCE, on
+        // the first plan of the sitting, while the pack still holds the
+        // whole batch -- re-reading it after each Made would shrink the
+        // target with the material and end the run early. `inputsAvailable`
+        // is what the pack can fund right now, capped at 500 like the
+        // shard's own .makelast (revolution_makelast.scp:59). Owner rule
+        // 2026-09-04: every crafter stocks in bulk, then sits a long time.
+        if (craftSittingTarget_ <= 0) {
+            craftSittingTarget_ = std::max(needCfg_.craftBatch, inputsAvailable);
+            if (craftSittingTarget_ > needCfg_.craftBatch) {
+                LogLine("craft: the pack funds %d %s -- one sitting of %d, "
+                        "not %d", inputsAvailable, craftItem_.c_str(),
+                        craftSittingTarget_, needCfg_.craftBatch);
+            }
+        }
+        req.desiredTotal = (now - craftMade_) + craftSittingTarget_;
         // UNKNOWN: no profession field carries a working reserve
         // (S2_WIRING_PLAN.md S2.5). 0 for gathered inputs is the honest
         // default -- "craft till you are out of iron on your bag" is a

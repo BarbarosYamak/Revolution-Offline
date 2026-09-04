@@ -943,6 +943,19 @@ inline int SpellForScrollGraphic(u16 graphic) {
     if (idx <= 6) return idx;    // Clumsy .. Night Sight
     return idx + 1;              // Weaken (8) onward
 }
+// ...and back the other way: which SCROLL teaches this spell? 0 when the spell
+// number is out of range. The exact inverse of SpellForScrollGraphic, kept
+// beside it so the two cannot drift: the art runs Reactive Armor (7) first,
+// then Clumsy (1) .. Night Sight (6), then Weaken (8) onward contiguously.
+inline u16 ScrollGraphicForSpell(int spell) {
+    if (spell <= 0 || spell > 64) return 0;
+    int idx;
+    if (spell == 7)      idx = 0;
+    else if (spell <= 6) idx = spell;
+    else                 idx = spell - 1;
+    return static_cast<u16>(kFirstScrollGraphic + idx);
+}
+
 // [SPELL 2] s_create_food -- targetless, 4 mana, MAGERY 10.0 to try.
 // The practice spell: nothing to target wrongly, nobody to anger.
 constexpr int kSpellCreateFood = 2;

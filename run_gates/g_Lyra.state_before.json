@@ -1,1 +1,447 @@
-{"bank":[]}
+{
+  "bank": [],
+  "bank_seen_ms": 2021526306,
+  "build_plan": {
+    "create_dex": 20,
+    "create_int": 10,
+    "create_skills": [
+      {
+        "skill": 23,
+        "tenths": 500
+      },
+      {
+        "skill": 25,
+        "tenths": 500
+      }
+    ],
+    "create_str": 50,
+    "family": "scribe",
+    "skills": [
+      {
+        "skill": 23,
+        "tenths": 1000
+      },
+      {
+        "skill": 25,
+        "tenths": 1000
+      },
+      {
+        "skill": 46,
+        "tenths": 400
+      }
+    ],
+    "target_dex": 20,
+    "target_int": 100,
+    "target_str": 30,
+    "unresolved_tenths": 4600
+  },
+  "checkpoint_ms": 2024057367,
+  "death_count": 0,
+  "goal": {
+    "active": true,
+    "attempts": 2,
+    "failure_reason": "",
+    "kind": "BANK",
+    "progress": 0,
+    "started_at_ms": 2023601481
+  },
+  "home_city": "Moonglow",
+  "identity": {
+    "account_name": "RevGen3_16",
+    "character_name": "Lyra",
+    "created_at_ms": 0,
+    "first_seen_at_ms": 1942872509,
+    "identity_id": "revgen3_16.lyra",
+    "last_seen_at_ms": 2023601481,
+    "sessions": 7,
+    "total_play_time_ms": 2268291
+  },
+  "known_spells": [],
+  "known_spells_seen_ms": 0,
+  "last_death_ms": 0,
+  "last_server_report": {
+    "dead": false,
+    "dex": 20,
+    "gold": 10407,
+    "int": 10,
+    "skills": [
+      {
+        "skill": 23,
+        "tenths": 509
+      },
+      {
+        "skill": 25,
+        "tenths": 500
+      },
+      {
+        "skill": 46,
+        "tenths": 208
+      }
+    ],
+    "str": 50,
+    "x": 4456,
+    "y": 1160
+  },
+  "ledger": [
+    {
+      "amount": 534,
+      "detail": "i_scroll_blank",
+      "flow": 6,
+      "when_ms": 2020092532
+    },
+    {
+      "amount": 492,
+      "detail": "i_scroll_blank",
+      "flow": 6,
+      "when_ms": 2020924749
+    },
+    {
+      "amount": 2975,
+      "detail": "i_scroll_poison",
+      "flow": 0,
+      "when_ms": 2021319089
+    },
+    {
+      "amount": 534,
+      "detail": "i_scroll_blank",
+      "flow": 6,
+      "when_ms": 2021334482
+    },
+    {
+      "amount": 273,
+      "detail": "i_reag_black_pearl",
+      "flow": 6,
+      "when_ms": 2021346024
+    },
+    {
+      "amount": 273,
+      "detail": "i_reag_blood_moss",
+      "flow": 6,
+      "when_ms": 2021357552
+    },
+    {
+      "amount": 273,
+      "detail": "i_reag_mandrake_root",
+      "flow": 6,
+      "when_ms": 2021526013
+    }
+  ],
+  "memory": {
+    "creatures": [],
+    "danger": [],
+    "events": [
+      {
+        "at_ms": 1942872509,
+        "detail": "Moonglow",
+        "kind": "newbie_knowledge_seeded",
+        "place": "",
+        "x": 4408,
+        "y": 1168
+      },
+      {
+        "at_ms": 1942872661,
+        "detail": "session=1",
+        "kind": "mount_unavailable",
+        "place": "",
+        "x": 4408,
+        "y": 1168
+      },
+      {
+        "at_ms": 1942907918,
+        "detail": "opened a bank box",
+        "kind": "bank_learned",
+        "place": "bank",
+        "x": 4467,
+        "y": 1161
+      },
+      {
+        "at_ms": 2020107865,
+        "detail": "i_scroll_poison",
+        "kind": "first_craft",
+        "place": "",
+        "x": 4452,
+        "y": 1091
+      },
+      {
+        "at_ms": 2021094239,
+        "detail": "i_scroll_poison",
+        "kind": "sale_refused",
+        "place": "mage",
+        "x": 3629,
+        "y": 2541
+      },
+      {
+        "at_ms": 2021110449,
+        "detail": "i_scroll_poison",
+        "kind": "sale_refused",
+        "place": "mage",
+        "x": 3629,
+        "y": 2541
+      },
+      {
+        "at_ms": 2021319089,
+        "detail": "i_scroll_poison",
+        "kind": "sold_to_vendor",
+        "place": "mage",
+        "x": 3629,
+        "y": 2538
+      },
+      {
+        "at_ms": 2021383563,
+        "detail": "session=5",
+        "kind": "mount_unavailable",
+        "place": "",
+        "x": 3672,
+        "y": 2544
+      }
+    ],
+    "places": [
+      {
+        "kind": "common_knowledge_bank",
+        "last_verified_ms": 1942872509,
+        "learned_ms": 1942872509,
+        "name": "Moonglow Bank banker",
+        "visits": 1,
+        "x": 4471,
+        "y": 1156,
+        "z": 0
+      },
+      {
+        "kind": "common_knowledge_healer",
+        "last_verified_ms": 1942872509,
+        "learned_ms": 1942872509,
+        "name": "Moonglow Healer healer",
+        "visits": 1,
+        "x": 4394,
+        "y": 1083,
+        "z": 0
+      },
+      {
+        "kind": "common_knowledge_provisioner",
+        "last_verified_ms": 1942872509,
+        "learned_ms": 1942872509,
+        "name": "The Scholar's Goods provisioner",
+        "visits": 1,
+        "x": 4417,
+        "y": 1064,
+        "z": 0
+      },
+      {
+        "kind": "healer",
+        "last_verified_ms": 1942989946,
+        "learned_ms": 1942959543,
+        "name": "Ayuna, the healer",
+        "visits": 633,
+        "x": 4391,
+        "y": 1081,
+        "z": 0
+      },
+      {
+        "kind": "safe",
+        "last_verified_ms": 2021117512,
+        "learned_ms": 2021117512,
+        "name": "logout point",
+        "visits": 1,
+        "x": 3629,
+        "y": 2541,
+        "z": 0
+      }
+    ],
+    "resources": [],
+    "suppliers": [
+      {
+        "last_verified_ms": 2021319089,
+        "name": "mage",
+        "need": "buyer:i_scroll_poison",
+        "observed_price": 25,
+        "observed_quantity": 0,
+        "policy_allows": true,
+        "serial": 0,
+        "source_type": "npc_vendor",
+        "x": 3629,
+        "y": 2538,
+        "z": 0
+      }
+    ],
+    "trainers": []
+  },
+  "prices": [
+    {
+      "item": "i_scroll_blank",
+      "price": 6,
+      "source": 0,
+      "when_ms": 2021325429,
+      "who": "blank scrolls",
+      "x": 3629,
+      "y": 2538
+    },
+    {
+      "item": "i_reag_nightshade",
+      "price": 3,
+      "source": 0,
+      "when_ms": 2020927266,
+      "who": "Nightshade",
+      "x": 3629,
+      "y": 2539
+    },
+    {
+      "item": "i_scroll_poison",
+      "price": 25,
+      "source": 1,
+      "when_ms": 2021319089,
+      "who": "mage",
+      "x": 3629,
+      "y": 2538
+    },
+    {
+      "item": "i_reag_black_pearl",
+      "price": 3,
+      "source": 0,
+      "when_ms": 2021337008,
+      "who": "Black Pearls",
+      "x": 3629,
+      "y": 2538
+    },
+    {
+      "item": "i_reag_blood_moss",
+      "price": 3,
+      "source": 0,
+      "when_ms": 2021348536,
+      "who": "Blood Moss",
+      "x": 3629,
+      "y": 2538
+    },
+    {
+      "item": "i_reag_mandrake_root",
+      "price": 3,
+      "source": 0,
+      "when_ms": 2021360094,
+      "who": "Mandrake Roots",
+      "x": 3629,
+      "y": 2538
+    }
+  ],
+  "recent_deaths": 0,
+  "schema_version": 2,
+  "sessions": [
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 1942990008,
+      "goals_attempted": 4,
+      "goals_completed": 0,
+      "goals_failed": 0,
+      "gold_end": 9880,
+      "gold_start": 10000,
+      "logs_gathered": 0,
+      "places_learned": 4,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1000,
+      "skill_tenths_start": 1000,
+      "started_ms": 1942872509,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2020221679,
+      "goals_attempted": 8,
+      "goals_completed": 2,
+      "goals_failed": 0,
+      "gold_end": 8742,
+      "gold_start": 9880,
+      "logs_gathered": 0,
+      "places_learned": 4,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1208,
+      "skill_tenths_start": 1000,
+      "started_ms": 2019924218,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2020678682,
+      "goals_attempted": 5,
+      "goals_completed": 0,
+      "goals_failed": 0,
+      "gold_end": 8673,
+      "gold_start": 8742,
+      "logs_gathered": 0,
+      "places_learned": 4,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1209,
+      "skill_tenths_start": 1209,
+      "started_ms": 2020381173,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2021117574,
+      "goals_attempted": 3,
+      "goals_completed": 0,
+      "goals_failed": 0,
+      "gold_end": 8785,
+      "gold_start": 8673,
+      "logs_gathered": 0,
+      "places_learned": 5,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1214,
+      "skill_tenths_start": 1214,
+      "started_ms": 2020819990,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2021700704,
+      "goals_attempted": 9,
+      "goals_completed": 1,
+      "goals_failed": 0,
+      "gold_end": 10407,
+      "gold_start": 8785,
+      "logs_gathered": 0,
+      "places_learned": 5,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1217,
+      "skill_tenths_start": 1217,
+      "started_ms": 2021306839,
+      "suppliers_learned": 1
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2022531328,
+      "goals_attempted": 2,
+      "goals_completed": 0,
+      "goals_failed": 0,
+      "gold_end": 10407,
+      "gold_start": 10407,
+      "logs_gathered": 0,
+      "places_learned": 5,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1217,
+      "skill_tenths_start": 1217,
+      "started_ms": 2022140956,
+      "suppliers_learned": 1
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2024057367,
+      "goals_attempted": 0,
+      "goals_completed": 0,
+      "goals_failed": 0,
+      "gold_end": 10407,
+      "gold_start": 10407,
+      "logs_gathered": 0,
+      "places_learned": 5,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1217,
+      "skill_tenths_start": 1217,
+      "started_ms": 2023601481,
+      "suppliers_learned": 1
+    }
+  ]
+}

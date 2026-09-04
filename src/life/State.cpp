@@ -219,6 +219,11 @@ json::Value ToJson(const PersistentState& st) {
         root.Set("bank", std::move(bank));
         root.Set("bank_seen_ms", st.bankSeenMs);
 
+        json::Value spells = json::Value::MakeArray();
+        for (int s : st.knownSpells) spells.Push(json::Value(static_cast<i64>(s)));
+        root.Set("known_spells", std::move(spells));
+        root.Set("known_spells_seen_ms", st.knownSpellsSeenMs);
+
         root.Set("home_city", st.homeCity);
 
         root.Set("memory", std::move(m));
@@ -401,6 +406,18 @@ bool FromJson(const json::Value& v, PersistentState* out, std::string* err) {
             if (!k.item.empty() && k.qty > 0) st.bank.push_back(std::move(k));
         }
         st.bankSeenMs = v["bank_seen_ms"].AsInt(0);
+    }
+    {
+        // What the spellbook held the last time it was OPENED. Never inferred:
+        // an absent or empty array means "this character has not looked in its
+        // own book yet", which is a different state from an empty book and is
+        // treated as such everywhere (Observation::SpellbookRead).
+        const json::Value& a = v["known_spells"];
+        for (usize i = 0; i < a.Size(); ++i) {
+            const int s = static_cast<int>(a.At(i).AsInt(0));
+            if (s > 0 && s <= 64) st.knownSpells.push_back(s);
+        }
+        st.knownSpellsSeenMs = v["known_spells_seen_ms"].AsInt(0);
     }
 
     st.homeCity = v["home_city"].AsString();

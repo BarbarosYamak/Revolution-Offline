@@ -1496,7 +1496,10 @@ const std::vector<Profession>& All() {
             p.label = "Scribe";
             p.startSkillA = rules::kInscription;
             p.startSkillB = rules::kMagery;
-            p.startStr = 50; p.startDex = 20; p.startInt = 10;
+            // Owner 2026-09-04: a mage/scribe starts 50 STR / 5 DEX / 25 INT
+            // (same as the pure mage).  INT 25 = 25 mana, enough for circle 4
+            // (11) so the Recall rung is scribable from day one.
+            p.startStr = 50; p.startDex = 5; p.startInt = 25;
             p.targets = {
                 {rules::kInscription, 1000, 3, false, SkillRole::Primary},
                 // Pushed to 100.0, not capped like the mage's own Magery
@@ -1515,8 +1518,16 @@ const std::vector<Profession>& All() {
             // `produces` as player-market only until audited.
             p.income = {Income::Craft};
             p.gathers = "";
-            p.produces = {"i_scroll_poison", "i_scroll_recall",
-                          "i_scroll_gate_travel", "i_scroll_resurrection"};
+            // ORDER IS THE LADDER, top rung first (same shape as the
+            // alchemist's list). ChooseCraft filters by the server's skill
+            // report, so the first entry that survives is the hardest scroll
+            // this life can make -- and the training IS the production.
+            // Ascending, the poison scroll stayed fully stocked and won every
+            // sitting: Lyra and Thalia scribed 55 and 66 poison scrolls at
+            // Inscription ~70-80 for a gain of 0.0 (g_Lyra/g_Thalia 12:52-
+            // 12:57, 2026-09-04).
+            p.produces = {"i_scroll_resurrection", "i_scroll_gate_travel",
+                          "i_scroll_recall", "i_scroll_poison"};
             p.consumes = {"i_scroll_blank", "i_reag_nightshade",
                           "i_reag_black_pearl", "i_reag_blood_moss",
                           "i_reag_mandrake_root", "i_reag_garlic",

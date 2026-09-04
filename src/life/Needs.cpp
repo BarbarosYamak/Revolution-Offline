@@ -1,5 +1,6 @@
 #include "uo/life.h"
 
+#include "uo/spellcast.h"
 #include "uo/vendor_policy.h"
 
 #include <algorithm>
@@ -286,6 +287,27 @@ bool WantsConsumable(const NeedConfig& cfg, const char* name) {
 // recipe's gate (i_potion_heal is ALCHEMY 15.1, Production.cpp). Inputs are
 // deliberately NOT part of the question -- an empty pack is BUY_SUPPLIES's
 // errand, not a reason to go and buy the finished article.
+// HOW MANY MORE OF `item` THE PACK STILL FUNDS. The bench's own count
+// (Craft.cpp inputsAvailable): the WORST-stocked input bounds the run. Used
+// to size "a load" for the sell errand -- the load is the whole sitting's
+// output, held plus still-makeable -- so a sale trip does not interrupt a
+// bench with material left on it. 0 when the item has no recipe or nothing
+// funds it. Owner rule 2026-09-04 (crafters-stock-then-sit): Lyra bought 89
+// blank scrolls, sat down for 77, and EARN_GOLD 76.5 took her off the bench
+// at 18 because "a load is 20" (g_Lyra 12:46:00).
+static i32 StillMakeable(const char* item, const std::vector<market::Stock>& pack) {
+    const prod::Recipe* r = prod::FindRecipe(item);
+    if (!r) return 0;
+    i32 fits = 500;   // the shard's own .makelast cap (revolution_makelast.scp:59)
+    bool anyInput = false;
+    for (const prod::Ingredient& in : r->inputs) {
+        if (!in.item || in.qty <= 0) continue;
+        anyInput = true;
+        fits = std::min(fits, market::QtyOf(pack, in.item) / in.qty);
+    }
+    return anyInput ? std::max(0, fits) : 0;
+}
+
 static bool BrewsOwnHealPotion(const prof::Profession& p,
                                const Observation& obs) {
     for (const std::string& made : p.produces) {
@@ -854,10 +876,32 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
             // a full load, which crosses NeedLogs at roughly the point a
             // player would stop and head for town.
             i32 biggest = 0;
-            for (const market::Offer& o : spare) biggest = std::max(biggest, o.qty);
-            const i32 trip = std::max(1, cfg.surplusWorthTrip);
+            const market::Offer* lead = nullptr;
+            for (const market::Offer& o : spare) {
+                if (o.qty > biggest) { biggest = o.qty; lead = &o; }
+            }
+            // A LOAD IS THE WHOLE SITTING, not a fixed count. While the pack
+            // still funds more of the lead item, the material on the bench
+            // is part of the load: held + still-makeable. The urgency then
+            // reaches its full-load value only when the material is spent,
+            // which is when a player stands up and walks to town. Below
+            // that, the fixed surplusWorthTrip stays the floor so a life
+            // that gathers rather than crafts is unchanged.
+            const i32 stillFunds =
+                lead ? StillMakeable(lead->item.c_str(), obs.pack) : 0;
+            const i32 trip = std::max(std::max(1, cfg.surplusWorthTrip),
+                                      biggest + stillFunds);
             const double frac = std::min(1.0, static_cast<double>(biggest) / trip);
-            const double urgency = 0.15 + 0.40 * frac;
+            double urgency = 0.15 + 0.40 * frac;
+            // THE BENCH FINISHES FIRST. While the pack still funds more of
+            // the lead item, the sale waits behind the sitting: NeedCraft is
+            // 0.50 x 130 = 65 (Goals.cpp), so the sale must stay under
+            // 65/150 ≈ 0.43 until the material is spent. Without this cap
+            // the ramp crossed 65 at ~87% of the load and took Lyra off a
+            // sitting of 157 with 20 still to make (g_Lyra 12:56:55,
+            // 2026-09-04). A gatherer's surplus has no recipe, stillFunds is
+            // 0, and its ramp is untouched.
+            if (stillFunds > 0) urgency = std::min(urgency, 0.40);
             // IS THERE ANYWHERE TO TAKE IT? A surplus with no buyer is not a
             // reason to go anywhere, and saying it is produces exactly the
             // churn the exhausted-area fix cured: the goal wins the scoring,
@@ -896,8 +940,9 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
                     ? Fmt("%d x %s spare, and no buyer known -- on this shard "
                           "it is a player-market good", biggest,
                           spare.front().item.c_str())
-                    : Fmt("%d x %s spare, a load is %d, buyer: %s", biggest,
-                          spare.front().item.c_str(), trip, route.c_str()),
+                    : Fmt("%d x %s spare, a load is %d (bench still funds %d), "
+                          "buyer: %s", biggest, spare.front().item.c_str(),
+                          trip, stillFunds, route.c_str()),
                 route.empty());
         }
 
@@ -1800,10 +1845,82 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         // The first circle is eight spells, and a caster with none of them is
         // in a different situation from one with a working core.
         const int target = kSpellbookComfortable;
-        if (obs.spellsKnown < target) {
+
+        // IS THE TRADE'S OWN LADDER STUCK ON A SPELL?
+        //
+        // Owner ruling 2026-09-04: completing the spellbook is a STANDING SIDE
+        // GOAL for every book carrier, and a side goal "must not outbid the
+        // trade while the trade is workable". So the weight below is decided
+        // by one question the craft chooser can already answer: did it have to
+        // SKIP a rung because the book lacks that scroll's spell
+        // (CraftIntent::wantSpell -- see ChooseCraft)? If it did, the book is
+        // no longer a comfort purchase, it is the thing standing between this
+        // scribe and the next step of its trade.
+        const CraftIntent rung =
+            ChooseCraft(*cfg.profession, obs, 1, cfg.craftFocus);
+        const spell::SpellDef* wantDef =
+            rung.wantSpell ? spell::DefForSpell(rung.wantSpell) : nullptr;
+        // WHAT A SHOP WILL ACTUALLY SELL. Circles 1-4 are mage-shop stock;
+        // above that "there is NO purchasable source" (Production.cpp, the
+        // i_scroll_gate_travel note) and the only honest route is monster loot
+        // or a dungeon chest.
+        const bool wantOnAShelf = wantDef && wantDef->circle <= 4;
+        // Can the bench work at all right now on some other rung? A scribe
+        // with nightshade and blanks can still write poison scrolls while it
+        // waits for a Recall scroll, and that trade must keep its turn.
+        const bool benchWorkable =
+            rung.item && rung.skillsMet && rung.missing.empty();
+
+        // The `spellsKnown >= target` guard on both blocked branches matters:
+        // a book that is still SHORT has ordinary shopping to do, and saying
+        // "blocked" would take that errand away from a low-INT mage with an
+        // empty book. Blocked is only the whole truth once there is nothing
+        // left to buy.
+        if (rung.lowManaSpell && !rung.wantSpell &&
+            obs.spellsKnown >= target) {
+            // A STAT WALL, NOT A SHOPPING ERRAND. The scroll is already in the
+            // book and the shard still hides the circle, because every leaf of
+            // that submenu is `TESTIF=<cancast ... >` and the cast costs more
+            // mana than this character can hold. Said as a blocked need so it
+            // scores 0 and cannot spin, and named precisely so nobody sends
+            // the purse after it: the answer is INT.
+            const spell::SpellDef* lm = spell::DefForSpell(rung.lowManaSpell);
+            add(NeedKind::NeedSpells, 0.0, "spells",
+                Fmt("'%s' costs %d mana and this character can hold %d -- the "
+                    "craft menu hides that circle until INT rises, and no "
+                    "scroll purchase can change it",
+                    lm ? lm->name : "the next rung", rung.lowManaCost,
+                    std::max(obs.intel, obs.mana)),
+                Fmt("spells %d/%d mana_wall_spell=%d cost=%d int=%d mana=%d",
+                    obs.spellsKnown, target, rung.lowManaSpell,
+                    rung.lowManaCost, obs.intel, obs.mana),
+                true);
+        } else if (rung.wantSpell && !wantOnAShelf &&
+                   obs.spellsKnown >= target) {
+            // NOWHERE TO BUY IT AND NOTHING TO SHOP FOR. Say so once per tick,
+            // as a blocked need (score 0, so it cannot spin), and name the
+            // route that would actually work. There is no hunt goal that can
+            // carry a "loot scrolls" intent yet, so this is a BLOCKED_NEED and
+            // deliberately not a goal.
+            add(NeedKind::NeedSpells, 0.0, "spells",
+                Fmt("%s needs '%s' (circle %d) and no shop sells above circle "
+                    "4 -- that scroll only drops from monsters and dungeon "
+                    "chests, and no hunt goal can ask for one yet",
+                    rung.wantSpellItem ? rung.wantSpellItem : "the next rung",
+                    wantDef->name, wantDef->circle),
+                Fmt("spells %d/%d blocked_rung=%s spell=%d circle=%d",
+                    obs.spellsKnown, target,
+                    rung.wantSpellItem ? rung.wantSpellItem : "?",
+                    rung.wantSpell, wantDef->circle),
+                true);
+        } else if (obs.spellsKnown < target ||
+                   (rung.wantSpell && wantOnAShelf)) {
+            // The second clause is the stuck-ladder case: a book can be past
+            // the comfortable target and still be missing the ONE spell this
+            // trade's next rung is written with, and that errand must exist.
             const double shortfall =
-                static_cast<double>(target - obs.spellsKnown) /
-                static_cast<double>(target);
+                std::max(0.0, static_cast<double>(target - obs.spellsKnown) /
+                                  static_cast<double>(target));
             const bool noBook = (obs.spellbookSerial == 0);
 
             // A FULL PURSE IS A REASON TO GO SHOPPING FOR SPELLS.
@@ -1826,21 +1943,58 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
                 spare <= 0 ? 0.0
                            : std::min(1.0, static_cast<double>(spare) /
                                                static_cast<double>(kSpellShoppingSpare));
-            const double urgency = 0.10 + 0.25 * shortfall + 0.35 * wealth;
+            double urgency = 0.10 + 0.25 * shortfall + 0.35 * wealth;
+
+            // WHERE THE SIDE GOAL SITS RELATIVE TO THE TRADE.
+            //
+            // These two numbers are expressed against the SCORES, not against
+            // each other's urgencies, because the goal weights differ:
+            // FILL_SPELLBOOK is 110 and CRAFT is 130 (Goals.cpp), so
+            // NeedCraft's standing 0.50 is a score of 65 and the same urgency
+            // on this need would be 55. The rule the owner set is about the
+            // scores, so convert once and keep the arithmetic visible.
+            constexpr double kFillSpellbookWeight = 110.0;
+            constexpr double kCraftScore          = 0.50 * 130.0;   // 65.0
+            // Below the bench, by a whole point of score, while the bench has
+            // material. Without this the wealth term alone (0.35) put a
+            // comfortable book-shopping trip at 77.0 and it beat a scribe who
+            // was standing next to everything she needed to write.
+            const double sideCap = (kCraftScore - 1.0) / kFillSpellbookWeight;
+            // Above it when the ladder is stuck: not shopping for comfort but
+            // for the one thing that unblocks the next rung. Kept just clear
+            // of the bench rather than at the top of the list -- emergencies,
+            // healing and food all still outrank it.
+            const double stuckFloor = (kCraftScore + 15.0) / kFillSpellbookWeight;
+
+            const bool stuck = rung.wantSpell && wantOnAShelf;
+            if (stuck) {
+                urgency = std::max(urgency, stuckFloor);
+            } else if (benchWorkable) {
+                urgency = std::min(urgency, sideCap);
+            }
 
             add(NeedKind::NeedSpells, urgency, "spells",
                 noBook ? "no spellbook at all -- a mage that cannot cast "
                          "anything needs one before it needs anything else"
-                       : (wealth > 0.5
-                              ? "the purse is well clear of the reserve, and "
-                                "spells are what spare gold buys first"
-                              : "the book is short of the spells this life "
-                                "will cast"),
+                : stuck ? "the next thing this trade can make needs a spell "
+                          "the book does not hold, and a shop sells it"
+                : benchWorkable
+                    ? "the book could be fuller, but the bench has material "
+                      "and the trade comes first"
+                : (wealth > 0.5
+                       ? "the purse is well clear of the reserve, and "
+                         "spells are what spare gold buys first"
+                       : "the book is short of the spells this life "
+                         "will cast"),
                 Fmt("spells %d/%d book=%s magery %.1f gold %d reserve %d "
-                    "spare %d wealth %.2f",
+                    "spare %d wealth %.2f%s",
                     obs.spellsKnown, target, noBook ? "none" : "carried",
                     obs.SkillTenths(rules::kMagery) / 10.0, obs.gold, reserve,
-                    spare, wealth),
+                    spare, wealth,
+                    stuck ? Fmt(" stuck_rung=%s spell=%s circle=%d",
+                                rung.wantSpellItem ? rung.wantSpellItem : "?",
+                                wantDef->name, wantDef->circle).c_str()
+                          : (benchWorkable ? " capped below the bench" : "")),
                 false);
         }
     }

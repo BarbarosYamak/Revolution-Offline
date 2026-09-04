@@ -1,446 +1,1284 @@
-[15:13:31.849] INFO  session 0: 127.0.0.1:2593 user='RevGen3_16' char=Lyra tag='g_Lyra'
-[15:13:31.851] LOG   [g_Lyra] event session_start: text log opened
-[15:13:31.851] LOG   [g_Lyra] event net_connect_begin: connect 127.0.0.1:2593
-[15:13:31.851] INFO  [g_Lyra] [net] connecting to 127.0.0.1:2593 ...
-[15:13:31.852] LOG   [g_Lyra] event net_connected: connect 127.0.0.1:2593
-[15:13:31.852] INFO  [g_Lyra] [net] connected.
-[15:13:31.852] INFO  [g_Lyra] [seed] sent 0x7F000001 (plaintext)
-[15:13:31.852] LOG   [g_Lyra] event seed_out: 0x7F000001 hex=7f000001
-[15:13:31.852] INFO  [life] no prior state for revgen3_16.lyra: a new Scribe
-[15:13:31.852] INFO  [life] creation request: Inscription 50.0 + Magery 50.0, stats 50/20/10 = 80
-[15:13:31.852] INFO  [life] needs: reading 'scribe' from the profession catalogue
-[15:13:31.852] INFO  [life] home: Lyra lives in Moonglow
-[15:13:31.852] INFO  [life] build plan 'scribe': 240.0 resolved + 460.0 unresolved = 700.0/700.0, stats 30/20/100 = 150
-[15:13:31.852] INFO  [g_Lyra] [life] autonomous player active for 'Lyra' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 2 min)
-[15:13:31.879] INFO  [g_Lyra] [0xA8] 1 server(s):
-[15:13:31.879] INFO  [g_Lyra]   [0] MyShard                   1.0.0.127  full=6%  tz=0
-[15:13:31.895] INFO  [g_Lyra] [0x8C] game server = 127.0.0.1:2593  seed=0xED57D690
-[15:13:31.895] LOG   [g_Lyra] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xED57D690
-[15:13:31.895] INFO  [g_Lyra] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
-[15:13:31.895] LOG   [g_Lyra] event relay_same_socket: no seed re-sent; 0x91 follows
-[15:13:31.910] INFO  [g_Lyra] [0xB9] server features = 0x0005
-[15:13:31.910] INFO  [g_Lyra] [0xA9] 5 slot(s) (populated 0):
-[15:13:31.910] INFO  [g_Lyra]   [0] <empty>
-[15:13:31.910] INFO  [g_Lyra]   [1] <empty>
-[15:13:31.910] INFO  [g_Lyra]   [2] <empty>
-[15:13:31.910] INFO  [g_Lyra]   [3] <empty>
-[15:13:31.910] INFO  [g_Lyra]   [4] <empty>
-[15:13:31.910] INFO  [g_Lyra] create: appearance sex=F skin=0x03EF hair=0x2046/0x0468 shirt=0x0349 pants=0x0345
-[15:13:31.910] INFO  [g_Lyra] [0x00] starting city index 3
-[15:13:31.910] INFO  [g_Lyra] [0x00] requested skills 23:50 25:50 46:0
-[15:13:31.910] INFO  [g_Lyra] [0x00] requested stats STR 50 DEX 20 INT 10
-[15:13:31.910] INFO  [g_Lyra] [0x00] creating character 'Lyra' in slot 0
-[15:13:31.911] LOG   [g_Lyra] event char_create_sent: Lyra
-[15:13:31.916] INFO  [g_Lyra] [0x1B] serial=0x0000F8EC body=0x0191 pos=(4408,1168,0)
-[15:13:31.916] LOG   [g_Lyra] event login_confirm: serial=0x0000F8EC body=0x0191 pos=(4408,1168,0)
-[15:13:31.916] INFO  [g_Lyra] [0x20] player @(4408,1168,0) facing=3
-[15:13:31.916] INFO  [g_Lyra] [0x55] login complete — entering world
-[15:13:31.916] LOG   [g_Lyra] event in_world: 0x55 received
-[15:13:31.916] INFO  [g_Lyra] [backpack] opening 0x4000F8E7
-[15:13:31.916] INFO  [g_Lyra] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
-[15:13:31.916] INFO  [g_Lyra] [chat ascii] System: There are 15 other players here.
-[15:13:31.917] INFO  [g_Lyra] [chat ascii] System: You are under the protection of the town guards
-[15:13:31.920] INFO  [g_Lyra] [action] requesting the skill list
-[15:13:31.920] INFO  [life] in world; asked the server for the skill list
-[15:13:31.926] INFO  [g_Lyra] [0x24] open container 0x4000F8E7 gump=60
-[15:13:31.926] INFO  [g_Lyra] [0x3C] container contents: 12 item(s)
-[15:13:31.926] LOG   [g_Lyra] event backpack_contents: serial=0x4000F8E7 items=12
-[15:13:34.519] INFO  [g_Lyra] [bot] world data loaded (0 blacklisted spot(s)).
-[15:13:34.519] INFO  [life] newbie knowledge: 3 place(s) and 0 resource hint(s) seeded near home (Moonglow) -- everything else is earned
-[15:13:34.519] INFO  [life] reconciliation: first ever login, 7 field(s) differed
-[15:13:34.519] INFO  [life]   gold         persisted=0          server=10000      -> server value accepted
-[15:13:34.519] INFO  [life]   str          persisted=0          server=50         -> server value accepted
-[15:13:34.519] INFO  [life]   dex          persisted=0          server=20         -> server value accepted
-[15:13:34.519] INFO  [life]   int          persisted=0          server=10         -> server value accepted
-[15:13:34.519] INFO  [life]   skill_23     persisted=0.0        server=50.0       -> server value accepted
-[15:13:34.519] INFO  [life]   skill_25     persisted=0.0        server=50.0       -> server value accepted
-[15:13:34.519] INFO  [life]   skill_46     persisted=0.0        server=0.0        -> server value accepted
-[15:13:34.519] INFO  [life]   position     persisted=0,0        server=4408,1168  -> server value accepted
-[15:13:34.519] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
-[15:13:34.519] INFO  [g_Lyra] [survival] on
-[15:13:34.519] LOG   [g_Lyra] event survival_mode: on
-[15:13:34.521] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_16.lyra/state.json
-[15:13:34.521] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
-[15:13:34.558] INFO  [life] goal=BUY_MOUNT reason="no goal was running"
-[15:13:34.559] INFO  [life] needs considered: NeedMount(riding horse 0.80) NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedSkillTraining(Meditation 0.55) NeedTrade(buy from a player 0.51) NeedEquipment(heal potions 0.50) NeedPractice(Meditation 0.45) NeedSupplies(buy craft inputs 0.44) NeedPractice(Magery 0.33) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
-[15:13:34.559] INFO  [life]   score=204.0
-[15:13:34.559] INFO  [life]   reason: NeedMount urgency 0.80 x 255 = 204.0
-[15:13:34.559] INFO  [life]   reason: gold 10000 reserve 5000 price<=500 stood_down=0 last_fail_session=-1 session=1
-[15:13:34.559] INFO  [life] mount: looking for an animal trainer to sell a horse
-[15:13:34.579] INFO  [g_Lyra] [travel] place: skipping Delucia animaltrainer -- 1392 tiles and 2 gates for a service Skara Brae animaltrainer offers
-[15:13:34.579] INFO  [g_Lyra] [travel] Skara Brae animaltrainer -> (570,2121) r=5 from (4408,1168)
-[15:13:34.579] LOG   [g_Lyra] event travel_start: label='Skara Brae animaltrainer' target=(570,2121) radius=5 from=(4408,1168)
-[15:13:34.579] INFO  [g_Lyra] [travel] mode moongate         usable   <- chosen
-[15:13:34.579] INFO  [g_Lyra] [travel] mode walk             usable
-[15:13:34.579] INFO  [g_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
-[15:13:34.579] INFO  [g_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
-[15:13:34.579] LOG   [g_Lyra] event travel_mode: moongate
-[15:13:34.580] INFO  [g_Lyra] [travel] plan Skara Brae animaltrainer: ok legs=9 ~368 tiles transit=1 nodes=1733
-[15:13:34.604] INFO  [life] goal_blocked=BUY_MOUNT reason="not enough session left for the trip" tiles=368 left=117s need=230s
-[15:13:34.604] INFO  [g_Lyra] [travel] Skara Brae animaltrainer FAILED at (4408,1168,0) -- not enough session left for the trip
-[15:13:34.604] LOG   [g_Lyra] event travel_failed: label='Skara Brae animaltrainer' ok=0 at=(4408,1168) legs=9 plans=1 why='not enough session left for the trip'
-[15:13:34.664] INFO  [life] mount: the horse errand stood itself down -- noting it for the next few sessions rather than starting over at the next login
-[15:13:34.665] INFO  [life] goal=BANK reason="previous goal abandoned: not enough session left for the trip"
-[15:13:34.665] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedSkillTraining(Meditation 0.55) NeedTrade(buy from a player 0.51) NeedEquipment(heal potions 0.50) NeedPractice(Meditation 0.45) NeedSupplies(buy craft inputs 0.44) NeedPractice(Magery 0.33) NeedFood(food 0.25) NeedMount(riding horse BLOCKED 0.00)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
-[15:13:34.665] INFO  [life]   score=150.0
-[15:13:34.665] INFO  [life]   reason: NeedBank urgency 0.75 x 240 = 180.0
-[15:13:34.665] INFO  [life]   reason: on_hand=10000 (total 10000) reserve=5000 carry=1300 spare=8700 risk=1.00
-[15:13:34.665] INFO  [life]   reason: no bank learned yet -30
-[15:13:34.665] INFO  [life]   BLOCKED_NEED BUY_MOUNT: on cooldown for another 599s after achieving nothing
-[15:13:34.665] INFO  [life] bank: nothing proven yet -- trying what common knowledge says is nearest, Moonglow Bank banker at 4471,1156 (63 tiles)
-[15:13:34.665] INFO  [g_Lyra] [travel] seeded_bank -> (4471,1156) r=5 from (4408,1168)
-[15:13:34.665] LOG   [g_Lyra] event travel_start: label='seeded_bank' target=(4471,1156) radius=5 from=(4408,1168)
-[15:13:34.665] INFO  [g_Lyra] [travel] mode moongate         usable   <- chosen
-[15:13:34.665] INFO  [g_Lyra] [travel] mode walk             usable
-[15:13:34.665] INFO  [g_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
-[15:13:34.665] INFO  [g_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
-[15:13:34.665] LOG   [g_Lyra] event travel_mode: moongate
-[15:13:34.665] INFO  [g_Lyra] [travel] plan seeded_bank: ok legs=2 ~80 tiles transit=0 nodes=44
-[15:13:34.726] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
-[15:13:34.726] INFO  [g_Lyra] [action] goto (4440,1176) from (4408,1168,0)
-[15:13:34.726] LOG   [g_Lyra] event goto_start: target=(4440,1176) from=(4408,1168)
-[15:13:34.726] INFO  [g_Lyra] [bot] running from (4408,1168,0) to (4440,1176)
-[15:13:34.726] INFO  [g_Lyra] [bot] planning path to (4440,1176) in background
-[15:13:34.787] INFO  [g_Lyra] [bot] replan to (4440,1176): 37 steps in 1291.1us
-[15:13:34.931] INFO  [g_Lyra] [chat ascii] System: Thalia has arrived in Moonglow.
-[15:13:37.923] INFO  [g_Lyra] [chat ascii] System: Dorvar has arrived in Skara Brae.
-[15:13:39.574] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
-[15:13:40.952] INFO  [g_Lyra] [chat ascii] System: Ithion has arrived in Skara Brae.
-[15:13:43.988] INFO  [g_Lyra] [chat ascii] System: Odessa has arrived in Britain.
-[15:13:44.580] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
-[15:13:44.965] INFO  [g_Lyra] [chat ascii] System: You have left the protection of the town guards
-[15:13:45.804] INFO  [g_Lyra] [bot] arrived at (4440,1176,0)
-[15:13:45.805] INFO  [g_Lyra] [action] goto finished at (4440,1176,0); target (4440,1176); ARRIVED (off by 0 tile(s))
-[15:13:45.805] LOG   [g_Lyra] event goto_done: at=(4440,1176) target=(4440,1176) arrived=1 off=0
-[15:13:45.805] INFO  [g_Lyra] [travel] avoiding 2 teleporter pad(s) on this leg
-[15:13:45.805] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1176,0)
-[15:13:45.805] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1176)
-[15:13:45.805] INFO  [g_Lyra] [bot] running from (4440,1176,0) to (4471,1156)
-[15:13:45.805] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
-[15:13:45.866] INFO  [g_Lyra] [bot] replan to (4471,1156): 54 steps in 12789.2us
-[15:13:46.734] INFO  [g_Lyra] [chat ascii] System: You are now under the protection of the town guards
-[15:13:47.011] INFO  [g_Lyra] [chat ascii] System: Serena has arrived in Britain.
-[15:13:49.589] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
-[15:13:50.023] INFO  [g_Lyra] [chat ascii] System: Aurelius has arrived in Moonglow.
-[15:13:52.890] INFO  [g_Lyra] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=31 in 395.9us
-[15:13:53.047] INFO  [g_Lyra] [chat ascii] System: Leander has arrived in Moonglow.
-[15:13:54.625] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
-[15:13:56.038] INFO  [g_Lyra] [chat ascii] System: Illyria has arrived in Britain.
-[15:13:59.054] INFO  [g_Lyra] [chat ascii] System: Hector has arrived in Trinsic.
-[15:13:59.649] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
-[15:14:00.754] INFO  [g_Lyra] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=7 in 86.6us
-[15:14:00.876] INFO  [g_Lyra] [travel] seeded_bank ARRIVED at (4467,1161,0)
-[15:14:00.876] LOG   [g_Lyra] event travel_done: label='seeded_bank' ok=1 at=(4467,1161) legs=2 plans=1 why=''
-[15:14:00.876] INFO  [g_Lyra] [ACTION] open_bank start
-[15:14:00.876] INFO  [g_Lyra] [ACTION] open_bank banker=0x00000000 say='bank'
-[15:14:00.876] INFO  [life] bank: at the known bank -- saying 'bank' aloud (1 of 3)
-[15:14:00.891] INFO  [g_Lyra] [chat uni  ] : bank
-[15:14:00.891] INFO  [g_Lyra] [chat ascii] Charity: Hello!
-[15:14:00.891] INFO  [g_Lyra] [chat ascii] Charity: Never lost a coin from robberies.
-[15:14:00.891] INFO  [g_Lyra] [chat ascii] System: You have 0 stones in your Bank Box
-[15:14:00.891] INFO  [g_Lyra] [0x24] open container 0x4000F8EB gump=74
-[15:14:00.891] INFO  [g_Lyra] [STATE] bank container=0x4000F8EB gump=0x004A opened at (4467,1161)
-[15:14:00.891] LOG   [g_Lyra] event bank_opened: container recognised
-[15:14:00.891] INFO  [g_Lyra] [ACTION_RESULT] open_bank success (15ms) bank container opened
-[15:14:00.891] LOG   [g_Lyra] event action_result: open_bank success took=15ms bank container opened
-[15:14:00.892] INFO  [g_Lyra] [0x3C] container contents: 0 item(s)
-[15:14:02.059] INFO  [g_Lyra] [chat ascii] System: Castor has arrived in Trinsic.
-[15:14:04.695] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
-[15:14:05.098] INFO  [g_Lyra] [chat ascii] System: Faustus has arrived in Britain.
-[15:14:05.417] INFO  [g_Lyra] [chat uni  ] : bank
-[15:14:05.417] INFO  [g_Lyra] [chat ascii] Charity: Excuse me Lyra, but Thalia wants to speak to me
-[15:14:05.417] INFO  [g_Lyra] [chat ascii] Charity: Hello! ?
-[15:14:05.417] INFO  [g_Lyra] [chat ascii] Charity: Never lost a coin from robberies.
-[15:14:08.138] INFO  [g_Lyra] [chat ascii] System: Titus has arrived in Skara Brae.
-[15:14:09.736] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
-[15:14:09.921] INFO  [life] bank: depositing 8700 gold, keeping 1300 for this life's own errands
-[15:14:09.921] INFO  [g_Lyra] [ACTION] move_item start
-[15:14:09.921] INFO  [g_Lyra] [ACTION] move_item serial=0x4000F8E4 amount=8700 dest=0x4000F8EB
-[15:14:09.921] INFO  [g_Lyra] [ITEM] drag serial=0x4000F8E4 amount=8700
-[15:14:09.921] INFO  [g_Lyra] [ITEM] drop container=0x4000F8EB
-[15:14:09.921] INFO  [g_Lyra] [ITEM] 0x4000F8E4 split off 8700 of 10000 in 0x4000F8E7; still waiting for it to land in 0x4000F8EB
-[15:14:09.921] INFO  [g_Lyra] [ACTION_RESULT] move_item success (0ms) item consumed by the destination
-[15:14:09.921] LOG   [g_Lyra] event action_result: move_item success took=0ms item consumed by the destination
-[15:14:09.921] INFO  [life] memory_learned=PLACE kind=bank at 4467,1161
-[15:14:09.922] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=BANK reason="REPLACE_EQUIPMENT 130.0 superseded BANK 0.0"
-[15:14:09.922] INFO  [life] needs considered: NeedSpells(spells 0.70) NeedSkillTraining(Meditation 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Meditation 0.45) NeedSupplies(buy craft inputs 0.44) NeedPractice(Magery 0.33) NeedFood(food 0.25) NeedMount(riding horse BLOCKED 0.00)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
-[15:14:09.922] INFO  [life]   score=130.0
-[15:14:09.922] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
-[15:14:09.922] INFO  [life]   reason: potions=0 low=2 gold=10000
-[15:14:09.922] INFO  [life]   BLOCKED_NEED BUY_MOUNT: on cooldown for another 564s after achieving nothing
-[15:14:11.121] INFO  [g_Lyra] [chat ascii] System: Rhea has arrived in Britain.
-[15:14:11.455] INFO  [life] plan=buy reason="none held, and it may be bought"
-[15:14:11.455] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
-[15:14:11.493] INFO  [g_Lyra] [travel] place: skipping Wind healer -- 1604 tiles and 2 gates for a service Moonglow Healer healer offers
-[15:14:11.493] INFO  [g_Lyra] [travel] place: skipping Delucia healer -- 1392 tiles and 2 gates for a service Moonglow Healer healer offers
-[15:14:11.493] INFO  [g_Lyra] [travel] Moonglow Healer healer -> (4394,1083) r=5 from (4467,1161)
-[15:14:11.493] LOG   [g_Lyra] event travel_start: label='Moonglow Healer healer' target=(4394,1083) radius=5 from=(4467,1161)
-[15:14:11.493] INFO  [life] potions: walking to a 'healer' (trip 1)
-[15:14:11.493] INFO  [g_Lyra] [travel] mode moongate         usable   <- chosen
-[15:14:11.493] INFO  [g_Lyra] [travel] mode walk             usable
-[15:14:11.493] INFO  [g_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
-[15:14:11.493] INFO  [g_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
-[15:14:11.493] LOG   [g_Lyra] event travel_mode: moongate
-[15:14:11.493] INFO  [g_Lyra] [travel] plan Moonglow Healer healer: ok legs=3 ~152 tiles transit=0 nodes=299
-[15:14:11.546] INFO  [g_Lyra] [action] goto finished at (4467,1161,0); target (4471,1156); stopped short (off by 9 tile(s))
-[15:14:11.546] LOG   [g_Lyra] event goto_done: at=(4467,1161) target=(4471,1156) arrived=0 off=9
-[15:14:11.546] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
-[15:14:11.546] INFO  [g_Lyra] [action] goto (4440,1144) from (4467,1161,0)
-[15:14:11.546] LOG   [g_Lyra] event goto_start: target=(4440,1144) from=(4467,1161)
-[15:14:11.546] INFO  [g_Lyra] [bot] running from (4467,1161,0) to (4440,1144)
-[15:14:11.546] INFO  [g_Lyra] [bot] planning path to (4440,1144) in background
-[15:14:11.546] INFO  [g_Lyra] [chat ascii] System: Draver has departed from Minoc.
-[15:14:11.607] INFO  [g_Lyra] [bot] replan to (4440,1144): 65 steps in 6344.7us
-[15:14:14.148] INFO  [g_Lyra] [chat ascii] System: Xerxes has arrived in Vesper.
-[15:14:14.585] INFO  [g_Lyra] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=55 in 210.9us
-[15:14:14.585] INFO  [g_Lyra] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=56 in 83.0us
-[15:14:14.768] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
-[15:14:16.185] INFO  [g_Lyra] [bot] lookahead patched around block at step 4: anchor=5 new segment=8 path=53 in 183.9us
-[15:14:17.195] INFO  [g_Lyra] [chat ascii] System: Wren has arrived in Britain.
-[15:14:19.790] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
-[15:14:20.022] INFO  [g_Lyra] [chat uni  ] : bank
-[15:14:20.022] INFO  [g_Lyra] [chat ascii] Charity: Greetings. What can I help thee with?
-[15:14:20.022] INFO  [g_Lyra] [chat ascii] Charity: Keeping the money of others is my job.
-[15:14:22.973] INFO  [g_Lyra] [bot] lookahead patched around block at step 2: anchor=5 new segment=7 path=35 in 162.7us
-[15:14:24.829] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
-[15:14:25.719] INFO  [g_Lyra] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=29 in 228.5us
-[15:14:29.853] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
-[15:14:30.159] INFO  [g_Lyra] [chat ascii] System: World save in 10 seconds
-[15:14:32.691] INFO  [g_Lyra] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=7 in 92.2us
-[15:14:34.534] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_16.lyra/state.json
-[15:14:34.914] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
-[15:14:35.496] INFO  [g_Lyra] [bot] arrived at (4440,1144,0)
-[15:14:35.496] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4440,1144); ARRIVED (off by 0 tile(s))
-[15:14:35.496] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4440,1144) arrived=1 off=0
-[15:14:35.496] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
-[15:14:35.496] INFO  [g_Lyra] [action] goto (4424,1112) from (4440,1144,0)
-[15:14:35.496] LOG   [g_Lyra] event goto_start: target=(4424,1112) from=(4440,1144)
-[15:14:35.496] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4424,1112)
-[15:14:35.496] INFO  [g_Lyra] [bot] planning path to (4424,1112) in background
-[15:14:35.557] INFO  [g_Lyra] [bot] replan to (4424,1112): 43 steps in 2463.9us
-[15:14:39.931] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
-[15:14:40.202] INFO  [g_Lyra] [chat ascii] System: World save has been initiated.
-[15:14:44.978] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
-[15:14:48.276] INFO  [g_Lyra] [bot] arrived at (4424,1112,0)
-[15:14:48.276] INFO  [g_Lyra] [action] goto finished at (4424,1112,0); target (4424,1112); ARRIVED (off by 0 tile(s))
-[15:14:48.276] LOG   [g_Lyra] event goto_done: at=(4424,1112) target=(4424,1112) arrived=1 off=0
-[15:14:48.276] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
-[15:14:48.276] INFO  [g_Lyra] [action] goto (4394,1083) from (4424,1112,0)
-[15:14:48.276] LOG   [g_Lyra] event goto_start: target=(4394,1083) from=(4424,1112)
-[15:14:48.277] INFO  [g_Lyra] [bot] running from (4424,1112,0) to (4394,1083,z0)
-[15:14:48.277] INFO  [g_Lyra] [bot] planning path to (4394,1083) in background
-[15:14:48.336] INFO  [g_Lyra] [bot] replan to (4394,1083): 50 steps in 9446.6us
-[15:14:50.001] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
-[15:14:55.036] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
-[15:15:00.069] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
-[15:15:01.484] INFO  [g_Lyra] [travel] Moonglow Healer healer ARRIVED at (4397,1088,0)
-[15:15:01.484] LOG   [g_Lyra] event travel_done: label='Moonglow Healer healer' ok=1 at=(4397,1088) legs=3 plans=1 why=''
-[15:15:01.545] INFO  [g_Lyra] [action] scanning nearby mobiles for names
-[15:15:01.546] INFO  [g_Lyra] [action] requested 2 paperdoll(s) for trade titles
-[15:15:01.546] INFO  [life] potions: at the shop, asking who is here (scan 1 of 3)
-[15:15:01.546] INFO  [g_Lyra] [mobiles] nearby (7):
-[15:15:01.546] INFO  [g_Lyra]   Dog 0x000127BA
-[15:15:01.546] INFO  [g_Lyra]   Skylark 0x00016A68
-[15:15:01.546] INFO  [g_Lyra]   Ayuna 0x00009833
-[15:15:01.546] INFO  [g_Lyra]   Xanthe 0x000095BA
-[15:15:01.546] INFO  [g_Lyra]   Thalia 0x0000F87C
-[15:15:01.546] INFO  [g_Lyra]   Anke 0x0000952D
-[15:15:01.546] INFO  [g_Lyra]   Eric 0x00009A2B
-[15:15:01.546] INFO  [g_Lyra] [0x20] player @(4397,1088,0) facing=7
-[15:15:01.546] INFO  [g_Lyra] [0x88] paperdoll 0x00009833: "Ayuna, the healer"
-[15:15:01.546] INFO  [g_Lyra] [world] Ayuna, the healer is a healer at (4391,1081)
-[15:15:01.546] INFO  [g_Lyra] [0x88] paperdoll 0x000095BA: "Xanthe, the healer guildmistress"
-[15:15:01.546] INFO  [g_Lyra] [world] Xanthe, the healer guildmistress is a healer at (4391,1080)
-[15:15:04.110] INFO  [g_Lyra] [chat ascii] System: Vorar has departed from Britain.
-[15:15:04.569] INFO  [life] potions: found a 'healer'
-[15:15:04.631] INFO  [g_Lyra] [travel] entity stand candidate 1/5 at (4391,1082)
-[15:15:04.631] INFO  [g_Lyra] [travel] mobile 0x00009833 -> (4391,1082) r=0 from (4397,1088)
-[15:15:04.631] LOG   [g_Lyra] event travel_start: label='mobile 0x00009833' target=(4391,1082) radius=0 from=(4397,1088)
-[15:15:04.631] INFO  [life] potions: the 'healer' is 7 tiles off (dz 0) -- walking into reach (chase 1 of 3)
-[15:15:04.631] INFO  [g_Lyra] [travel] mode walk             usable   <- chosen
-[15:15:04.631] INFO  [g_Lyra] [travel] mode moongate         usable
-[15:15:04.631] INFO  [g_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
-[15:15:04.631] INFO  [g_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
-[15:15:04.631] LOG   [g_Lyra] event travel_mode: walk
-[15:15:04.631] INFO  [g_Lyra] [travel] plan mobile 0x00009833: ok legs=1 ~6 tiles transit=0 nodes=0
-[15:15:04.631] INFO  [g_Lyra] [action] goto finished at (4397,1088,0); target (4394,1083); stopped short (off by 8 tile(s))
-[15:15:04.631] LOG   [g_Lyra] event goto_done: at=(4397,1088) target=(4394,1083) arrived=0 off=8
-[15:15:04.631] INFO  [g_Lyra] [action] goto (4391,1082) from (4397,1088,0)
-[15:15:04.631] LOG   [g_Lyra] event goto_start: target=(4391,1082) from=(4397,1088)
-[15:15:04.631] INFO  [g_Lyra] [bot] running from (4397,1088,0) to (4391,1082,z0)
-[15:15:04.631] INFO  [g_Lyra] [bot] planning path to (4391,1082) in background
-[15:15:04.694] INFO  [g_Lyra] [bot] replan to (4391,1082): 11 steps in 536.6us
-[15:15:05.096] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
-[15:15:08.315] INFO  [g_Lyra] [travel] mobile 0x00009833 ARRIVED at (4391,1083,0)
-[15:15:08.315] LOG   [g_Lyra] event travel_done: label='mobile 0x00009833' ok=1 at=(4391,1083) legs=1 plans=1 why=''
-[15:15:08.377] INFO  [g_Lyra] [travel] entity stand candidate 2/5 at (4390,1081)
-[15:15:08.377] INFO  [g_Lyra] [travel] mobile 0x00009833 -> (4390,1081) r=0 from (4391,1083)
-[15:15:08.377] LOG   [g_Lyra] event travel_start: label='mobile 0x00009833' target=(4390,1081) radius=0 from=(4391,1083)
-[15:15:08.377] INFO  [life] potions: the 'healer' is 3 tiles off (dz 0) -- walking into reach (chase 2 of 3)
-[15:15:08.377] INFO  [g_Lyra] [travel] mode walk             usable   <- chosen
-[15:15:08.377] INFO  [g_Lyra] [travel] mode moongate         usable
-[15:15:08.377] INFO  [g_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
-[15:15:08.377] INFO  [g_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
-[15:15:08.377] LOG   [g_Lyra] event travel_mode: walk
-[15:15:08.377] INFO  [g_Lyra] [travel] plan mobile 0x00009833: ok legs=1 ~2 tiles transit=0 nodes=0
-[15:15:08.438] INFO  [g_Lyra] [action] goto finished at (4391,1083,0); target (4391,1082); stopped short (off by 1 tile(s))
-[15:15:08.438] LOG   [g_Lyra] event goto_done: at=(4391,1083) target=(4391,1082) arrived=0 off=1
-[15:15:08.438] INFO  [g_Lyra] [action] goto (4390,1081) from (4391,1083,0)
-[15:15:08.438] LOG   [g_Lyra] event goto_start: target=(4390,1081) from=(4391,1083)
-[15:15:08.438] INFO  [g_Lyra] [bot] running from (4391,1083,0) to (4390,1081,z0)
-[15:15:08.438] INFO  [g_Lyra] [bot] planning path to (4390,1081) in background
-[15:15:08.468] INFO  [g_Lyra] [bot] replan to (4390,1081): 2 steps in 52.2us
-[15:15:08.883] INFO  [g_Lyra] [travel] mobile 0x00009833 ARRIVED at (4391,1082,0)
-[15:15:08.883] LOG   [g_Lyra] event travel_done: label='mobile 0x00009833' ok=1 at=(4391,1082) legs=1 plans=1 why=''
-[15:15:08.944] INFO  [g_Lyra] [travel] entity stand candidate 3/5 at (4389,1080)
-[15:15:08.944] INFO  [g_Lyra] [travel] mobile 0x00009833 -> (4389,1080) r=0 from (4391,1082)
-[15:15:08.944] LOG   [g_Lyra] event travel_start: label='mobile 0x00009833' target=(4389,1080) radius=0 from=(4391,1082)
-[15:15:08.944] INFO  [life] potions: the 'healer' is 2 tiles off (dz 0) -- walking into reach (chase 3 of 3)
-[15:15:08.944] INFO  [g_Lyra] [travel] mode walk             usable   <- chosen
-[15:15:08.944] INFO  [g_Lyra] [travel] mode moongate         usable
-[15:15:08.944] INFO  [g_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
-[15:15:08.944] INFO  [g_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
-[15:15:08.944] LOG   [g_Lyra] event travel_mode: walk
-[15:15:08.944] INFO  [g_Lyra] [travel] plan mobile 0x00009833: ok legs=1 ~2 tiles transit=0 nodes=0
-[15:15:09.004] INFO  [g_Lyra] [action] goto finished at (4391,1082,0); target (4390,1081); stopped short (off by 2 tile(s))
-[15:15:09.004] LOG   [g_Lyra] event goto_done: at=(4391,1082) target=(4390,1081) arrived=0 off=2
-[15:15:09.004] INFO  [g_Lyra] [action] goto (4389,1080) from (4391,1082,0)
-[15:15:09.004] LOG   [g_Lyra] event goto_start: target=(4389,1080) from=(4391,1082)
-[15:15:09.005] INFO  [g_Lyra] [bot] running from (4391,1082,0) to (4389,1080,z0)
-[15:15:09.005] INFO  [g_Lyra] [bot] planning path to (4389,1080) in background
-[15:15:09.127] INFO  [g_Lyra] [action] goto finished at (4391,1082,0); target (4389,1080); stopped short (off by 4 tile(s))
-[15:15:09.128] LOG   [g_Lyra] event goto_done: at=(4391,1082) target=(4389,1080) arrived=0 off=4
-[15:15:10.141] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
-[15:15:10.386] INFO  [g_Lyra] [travel] mode walk             usable   <- chosen
-[15:15:10.386] INFO  [g_Lyra] [travel] mode moongate         usable
-[15:15:10.386] INFO  [g_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
-[15:15:10.386] INFO  [g_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
-[15:15:10.386] LOG   [g_Lyra] event travel_mode: walk
-[15:15:10.386] INFO  [g_Lyra] [travel] plan mobile 0x00009833: ok legs=1 ~2 tiles transit=0 nodes=0
-[15:15:11.920] INFO  [g_Lyra] [action] goto (4389,1080) from (4391,1082,0)
-[15:15:11.920] LOG   [g_Lyra] event goto_start: target=(4389,1080) from=(4391,1082)
-[15:15:11.920] INFO  [g_Lyra] [bot] running from (4391,1082,0) to (4389,1080,z0)
-[15:15:11.920] INFO  [g_Lyra] [bot] planning path to (4389,1080) in background
-[15:15:11.998] INFO  [g_Lyra] [action] goto finished at (4391,1082,0); target (4389,1080); stopped short (off by 4 tile(s))
-[15:15:11.998] LOG   [g_Lyra] event goto_done: at=(4391,1082) target=(4389,1080) arrived=0 off=4
-[15:15:13.250] INFO  [g_Lyra] [travel] mode walk             usable   <- chosen
-[15:15:13.250] INFO  [g_Lyra] [travel] mode moongate         usable
-[15:15:13.250] INFO  [g_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
-[15:15:13.250] INFO  [g_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
-[15:15:13.250] LOG   [g_Lyra] event travel_mode: walk
-[15:15:13.250] INFO  [g_Lyra] [travel] plan mobile 0x00009833: ok legs=1 ~2 tiles transit=0 nodes=0
-[15:15:13.557] INFO  [g_Lyra] [chat ascii] System: Halain has departed from Britain.
-[15:15:14.387] INFO  [g_Lyra] [chat ascii] System: Ghalor has departed from Minoc.
-[15:15:15.153] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
-[15:15:15.542] INFO  [g_Lyra] [chat uni  ] Thalia: Ayuna buy
-[15:15:15.542] INFO  [g_Lyra] [chat ascii] Ayuna: Yes?
-[15:15:15.542] INFO  [g_Lyra] [chat ascii] Ayuna: I'm here to sell thee supplies.
-[15:15:15.618] INFO  [g_Lyra] [chat ascii] Ayuna: Here you are, Thalia That will be 120 gold coins.  I thank thee for thy business.
-[15:15:16.295] INFO  [g_Lyra] [action] goto (4389,1080) from (4391,1082,0)
-[15:15:16.295] LOG   [g_Lyra] event goto_start: target=(4389,1080) from=(4391,1082)
-[15:15:16.295] INFO  [g_Lyra] [bot] running from (4391,1082,0) to (4389,1080,z0)
-[15:15:16.295] INFO  [g_Lyra] [bot] planning path to (4389,1080) in background
-[15:15:17.895] INFO  [g_Lyra] [chat ascii] System: Falen has departed from Minoc.
-[15:15:18.155] INFO  [g_Lyra] [action] goto finished at (4391,1082,0); target (4389,1080); stopped short (off by 4 tile(s))
-[15:15:18.155] LOG   [g_Lyra] event goto_done: at=(4391,1082) target=(4389,1080) arrived=0 off=4
-[15:15:19.395] INFO  [g_Lyra] [travel] mode walk             usable   <- chosen
-[15:15:19.395] INFO  [g_Lyra] [travel] mode moongate         usable
-[15:15:19.395] INFO  [g_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
-[15:15:19.395] INFO  [g_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
-[15:15:19.395] LOG   [g_Lyra] event travel_mode: walk
-[15:15:19.395] INFO  [g_Lyra] [travel] plan mobile 0x00009833: ok legs=1 ~2 tiles transit=0 nodes=0
-[15:15:19.639] INFO  [g_Lyra] [chat ascii] System: Cyras has departed from Britain.
-[15:15:20.207] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
-[15:15:23.932] INFO  [g_Lyra] [action] goto (4389,1080) from (4391,1082,0)
-[15:15:23.932] LOG   [g_Lyra] event goto_start: target=(4389,1080) from=(4391,1082)
-[15:15:23.932] INFO  [g_Lyra] [bot] running from (4391,1082,0) to (4389,1080,z0)
-[15:15:23.932] INFO  [g_Lyra] [bot] planning path to (4389,1080) in background
-[15:15:24.055] INFO  [g_Lyra] [action] goto finished at (4391,1082,0); target (4389,1080); stopped short (off by 4 tile(s))
-[15:15:24.055] LOG   [g_Lyra] event goto_done: at=(4391,1082) target=(4389,1080) arrived=0 off=4
-[15:15:24.055] INFO  [g_Lyra] [travel] mobile 0x00009833 ARRIVED at (4391,1082,0) -- arrived nearby; the destination tile was not free
-[15:15:24.055] LOG   [g_Lyra] event travel_done: label='mobile 0x00009833' ok=1 at=(4391,1082) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
-[15:15:24.055] INFO  [life] potions: the 'healer' keeps moving (2 tiles after 3 chases) -- asking from here
-[15:15:24.117] INFO  [g_Lyra] [ACTION] vendor_buy start
-[15:15:24.117] INFO  [g_Lyra] [VENDOR] open vendor=0x00009833 say='Ayuna buy'
-[15:15:24.117] INFO  [life] potions: asking the 'healer' to show heal potion (attempt 1)
-[15:15:24.119] INFO  [g_Lyra] [chat uni  ] : Ayuna buy
-[15:15:24.119] INFO  [g_Lyra] [chat ascii] Ayuna: Excuse me Thalia, but Lyra wants to speak to me
-[15:15:24.119] INFO  [g_Lyra] [chat ascii] Ayuna: Greetings. What can I help thee with?
-[15:15:24.119] INFO  [g_Lyra] [chat ascii] Ayuna: Thou surely wants all the things that I can sell thee.
-[15:15:24.119] INFO  [g_Lyra] [0x3C] container contents: 5 item(s)
-[15:15:24.119] INFO  [g_Lyra] [0x74] pairing: straight (straight 5, mirrored 1 of 5 rows)
-[15:15:24.119] INFO  [g_Lyra] [0x74] vendor shop data: cont=0x400095EC 5 item(s), layer=0x1A
-[15:15:24.119] INFO  [g_Lyra] [0x74]   clean bandages               gfx=0x0E21 qty=17   price=1
-[15:15:24.119] INFO  [g_Lyra] [0x74]   Heal                         gfx=0x0F0C qty=6    price=30
-[15:15:24.119] INFO  [g_Lyra] [0x74]   Ginseng                      gfx=0x0F85 qty=22   price=3
-[15:15:24.119] INFO  [g_Lyra] [0x74]   Garlic                       gfx=0x0F84 qty=8    price=3
-[15:15:24.119] INFO  [g_Lyra] [0x74]   Refresh                      gfx=0x0F0B qty=14   price=16
-[15:15:24.119] INFO  [g_Lyra] [0x3C] container contents: 0 item(s)
-[15:15:24.119] INFO  [g_Lyra] [0x74] vendor shop data: cont=0x4001006D 0 item(s), layer=0x1B
-[15:15:24.119] INFO  [g_Lyra] [VENDOR] offer from 0x00009833: 5 item(s)
-[15:15:24.119] INFO  [g_Lyra] [VENDOR]   0x4000C208 clean bandages         x17  1 gp
-[15:15:24.119] INFO  [g_Lyra] [VENDOR]   0x4000C207 Heal                   x6   30 gp
-[15:15:24.119] INFO  [g_Lyra] [VENDOR]   0x4000C206 Ginseng                x22  3 gp
-[15:15:24.119] INFO  [g_Lyra] [VENDOR]   0x4000C202 Garlic                 x8   3 gp
-[15:15:24.119] INFO  [g_Lyra] [VENDOR]   0x4000C200 Refresh                x14  16 gp
-[15:15:24.119] LOG   [g_Lyra] event vendor_offer: vendor=0x00009833 items=5
-[15:15:24.119] INFO  [g_Lyra] [ACTION_RESULT] vendor_buy success (2ms) vendor offer received
-[15:15:24.119] LOG   [g_Lyra] event action_result: vendor_buy success took=2ms vendor offer received
-[15:15:24.119] INFO  [g_Lyra] [0x24] vendor buy gump for 0x00009833
-[15:15:24.119] INFO  [life] potions: the shop is open
-[15:15:24.177] INFO  [g_Lyra] [ACTION] vendor_buy start
-[15:15:24.178] INFO  [g_Lyra] [policy] allowed NPC purchase of i_potion_heal (0x0F0C): NPC purchase is allowed when the item is actually offered; NPC selling remains separately restricted [BASIC_HEALING]
-[15:15:24.178] INFO  [g_Lyra] [VENDOR] buy item=0x4000C207 qty=4 from vendor=0x00009833 gold=10000
-[15:15:24.178] INFO  [life] potions: buying 4 heal potion at 30 each from the 'healer' (shelf holds 6) -- waiting for the pack
-[15:15:24.193] INFO  [g_Lyra] [ACTION_RESULT] vendor_buy success (15ms) purchased item delivered
-[15:15:24.193] LOG   [g_Lyra] event action_result: vendor_buy success took=15ms purchased item delivered
-[15:15:24.193] INFO  [g_Lyra] [chat ascii] Ayuna: Here you are, Lyra That will be 120 gold coins.  I thank thee for thy business.
-[15:15:24.193] INFO  [g_Lyra] [0x3B] vendor transaction closed: vendor=0x00009833 flag=0
-[15:15:24.193] INFO  [life] goal_changed=FILL_SPELLBOOK from=REPLACE_EQUIPMENT reason="FILL_SPELLBOOK 77.0 superseded REPLACE_EQUIPMENT 0.0"
-[15:15:24.193] INFO  [life] needs considered: NeedSpells(spells 0.70) NeedSkillTraining(Meditation 0.55) NeedPractice(Meditation 0.45) NeedSupplies(buy craft inputs 0.44) NeedPractice(Magery 0.33) NeedFood(food 0.25) NeedMount(riding horse BLOCKED 0.00)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
-[15:15:24.193] INFO  [life]   score=77.0
-[15:15:24.193] INFO  [life]   reason: NeedSpells urgency 0.70 x 110 = 77.0
-[15:15:24.193] INFO  [life]   reason: spells 0/24 book=carried magery 50.0 gold 10000 reserve 5000 spare 5000 wealth 1.00
-[15:15:24.193] INFO  [life]   BLOCKED_NEED BUY_MOUNT: on cooldown for another 490s after achieving nothing
-[15:15:24.193] INFO  [life] spellbook: opening the book to see what is already in it
-[15:15:24.193] INFO  [g_Lyra] [ACTION] use_object start
-[15:15:24.193] INFO  [g_Lyra] [ACTION] use_object serial=0x4000F898
-[15:15:24.193] INFO  [g_Lyra] [0x3C] container contents: 12 item(s)
-[15:15:24.193] INFO  [g_Lyra] [ACTION_RESULT] use_object success (0ms) contents received
-[15:15:24.193] LOG   [g_Lyra] event action_result: use_object success took=0ms contents received
-[15:15:25.213] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
-[15:15:26.703] INFO  [life] spellbook: adding scroll 0x1F2E to the book (12 spells so far)
-[15:15:26.703] INFO  [g_Lyra] [ACTION] move_item start
-[15:15:26.703] INFO  [g_Lyra] [ACTION] move_item serial=0x4000F897 amount=1 dest=0x4000F898
-[15:15:26.703] INFO  [g_Lyra] [ITEM] drag serial=0x4000F897 amount=1
-[15:15:26.703] INFO  [g_Lyra] [ITEM] drop container=0x4000F898
-[15:15:26.703] INFO  [g_Lyra] [ACTION_RESULT] move_item success (0ms) item consumed by the destination
-[15:15:26.703] LOG   [g_Lyra] event action_result: move_item success took=0ms item consumed by the destination
-[15:15:28.586] INFO  [g_Lyra] [chat uni  ] : Ayuna buy
-[15:15:28.586] INFO  [g_Lyra] [chat ascii] Ayuna: Excuse me Lyra, but Aurelius wants to speak to me
-[15:15:28.586] INFO  [g_Lyra] [chat ascii] Ayuna: Greetings. What can I help thee with?
-[15:15:28.586] INFO  [g_Lyra] [chat ascii] Ayuna: I'm here to sell thee supplies.
-[15:15:28.661] INFO  [g_Lyra] [chat ascii] Ayuna: Here you are, Aurelius That will be 60 gold coins.  I thank thee for thy business.
-[15:15:29.012] INFO  [g_Lyra] [chat ascii] System: Selene has departed from Magincia.
-[15:15:29.212] INFO  [life] spellbook: opening the book to see what is already in it
-[15:15:29.212] INFO  [g_Lyra] [ACTION] use_object start
-[15:15:29.212] INFO  [g_Lyra] [ACTION] use_object serial=0x4000F898
-[15:15:29.213] INFO  [g_Lyra] [0x3C] container contents: 13 item(s)
-[15:15:29.213] INFO  [g_Lyra] [ACTION_RESULT] use_object success (1ms) contents received
-[15:15:29.213] LOG   [g_Lyra] event action_result: use_object success took=1ms contents received
-[15:15:30.242] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
-[15:15:31.764] INFO  [life] spellbook: adding scroll 0x1F36 to the book (13 spells so far)
-[15:15:31.764] INFO  [g_Lyra] [ACTION] move_item start
-[15:15:31.764] INFO  [g_Lyra] [ACTION] move_item serial=0x4000F896 amount=1 dest=0x4000F898
-[15:15:31.764] LOG   [g_Lyra] event action_result: move_item invalid_state took=0ms lift refused locally
-[15:15:31.950] INFO  [life] session_end_requested reason="session time limit reached"
-[15:15:32.012] INFO  [life] session_summary duration=120s goals=0/4 gold=10000->9880 skills=100.0->100.0 logs=+0 kills=0 deaths=0 places=4 suppliers=0
-[15:15:32.012] INFO  [life] session_goals families=1 picks=4 top=100% varied=0 self_superseded=0 | upkeep=4(100%) | REPLACE_EQUIPMENT=1(25%) BANK=1(25%) FILL_SPELLBOOK=1(25%) BUY_MOUNT=1(25%)
-[15:15:32.014] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_16.lyra/state.json
-[15:15:32.014] INFO  [life] logging out
-[15:15:32.014] INFO  [g_Lyra] [action] logout requested
-[15:15:32.014] LOG   [g_Lyra] event logout_requested: 0xD1 sent; awaiting ack, then closing
-[15:15:32.014] INFO  [g_Lyra] [0xD1] logout acknowledged (accepted=1)
-[15:15:32.014] LOG   [g_Lyra] event logout_ack: accepted
-[15:15:32.014] INFO  [g_Lyra] [net] closing connection (logout acknowledged)
-[15:15:32.014] LOG   [g_Lyra] event logout_complete: acked
+[13:51:42.205] INFO  session 0: 127.0.0.1:2593 user='RevGen3_16' char=Lyra tag='g_Lyra'
+[13:51:42.206] LOG   [g_Lyra] event session_start: text log opened
+[13:51:42.206] LOG   [g_Lyra] event net_connect_begin: connect 127.0.0.1:2593
+[13:51:42.206] INFO  [g_Lyra] [net] connecting to 127.0.0.1:2593 ...
+[13:51:42.207] LOG   [g_Lyra] event net_connected: connect 127.0.0.1:2593
+[13:51:42.207] INFO  [g_Lyra] [net] connected.
+[13:51:42.207] INFO  [g_Lyra] [seed] sent 0x7F000001 (plaintext)
+[13:51:42.207] LOG   [g_Lyra] event seed_out: 0x7F000001 hex=7f000001
+[13:51:42.208] INFO  [life] loaded persistent state for Lyra (5 places, 1 suppliers, 8 events, 7 prior sessions)
+[13:51:42.208] INFO  [life] needs: reading 'scribe' from the profession catalogue
+[13:51:42.208] INFO  [life] build plan 'scribe': 240.0 resolved + 460.0 unresolved = 700.0/700.0, stats 30/20/100 = 150
+[13:51:42.208] INFO  [g_Lyra] [life] autonomous player active for 'Lyra' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 5 min)
+[13:51:42.236] INFO  [g_Lyra] [0xA8] 1 server(s):
+[13:51:42.236] INFO  [g_Lyra]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[13:51:42.252] INFO  [g_Lyra] [0x8C] game server = 127.0.0.1:2593  seed=0xED57D690
+[13:51:42.252] LOG   [g_Lyra] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xED57D690
+[13:51:42.252] INFO  [g_Lyra] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[13:51:42.252] LOG   [g_Lyra] event relay_same_socket: no seed re-sent; 0x91 follows
+[13:51:42.252] INFO  [g_Lyra] [0xB9] server features = 0x0005
+[13:51:42.252] INFO  [g_Lyra] [0xA9] 5 slot(s) (populated 1):
+[13:51:42.252] INFO  [g_Lyra]   [0] Lyra
+[13:51:42.252] INFO  [g_Lyra]   [1] <empty>
+[13:51:42.252] INFO  [g_Lyra]   [2] <empty>
+[13:51:42.252] INFO  [g_Lyra]   [3] <empty>
+[13:51:42.252] INFO  [g_Lyra]   [4] <empty>
+[13:51:42.252] INFO  [g_Lyra] [ui] playing slot 0 ('Lyra')
+[13:51:42.268] INFO  [g_Lyra] [0x1B] serial=0x0000F8EC body=0x0191 pos=(4456,1160,0)
+[13:51:42.268] LOG   [g_Lyra] event login_confirm: serial=0x0000F8EC body=0x0191 pos=(4456,1160,0)
+[13:51:42.268] INFO  [g_Lyra] [0x20] player @(4456,1160,0) facing=4
+[13:51:42.268] INFO  [g_Lyra] [0x55] login complete — entering world
+[13:51:42.268] LOG   [g_Lyra] event in_world: 0x55 received
+[13:51:42.268] INFO  [g_Lyra] [backpack] opening 0x4000F8E7
+[13:51:42.268] INFO  [g_Lyra] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[13:51:42.268] INFO  [g_Lyra] [chat ascii] System: There is 1 other player here.
+[13:51:42.268] INFO  [g_Lyra] [chat ascii] System: Last logged: 2026/09/04 13:38:58
+[13:51:42.268] INFO  [g_Lyra] [chat ascii] System: You are under the protection of the town guards
+[13:51:42.272] INFO  [g_Lyra] [action] requesting the skill list
+[13:51:42.272] INFO  [life] in world; asked the server for the skill list
+[13:51:42.272] INFO  [g_Lyra] [0x24] open container 0x4000F8E7 gump=60
+[13:51:42.272] INFO  [g_Lyra] [0x3C] container contents: 15 item(s)
+[13:51:42.272] LOG   [g_Lyra] event backpack_contents: serial=0x4000F8E7 items=15
+[13:51:44.893] INFO  [g_Lyra] [bot] world data loaded (0 blacklisted spot(s)).
+[13:51:44.893] INFO  [life] reconciliation: resuming a life, 0 field(s) differed
+[13:51:44.893] INFO  [life]   gold         persisted=10407      server=10407      -> server value accepted
+[13:51:44.893] INFO  [life]   str          persisted=50         server=50         -> server value accepted
+[13:51:44.893] INFO  [life]   dex          persisted=20         server=20         -> server value accepted
+[13:51:44.893] INFO  [life]   int          persisted=10         server=10         -> server value accepted
+[13:51:44.893] INFO  [life]   skill_23     persisted=50.9       server=50.9       -> server value accepted
+[13:51:44.893] INFO  [life]   skill_25     persisted=50.0       server=50.0       -> server value accepted
+[13:51:44.893] INFO  [life]   skill_46     persisted=20.8       server=20.8       -> server value accepted
+[13:51:44.893] INFO  [life]   position     persisted=4456,1160  server=4456,1160  -> server value accepted
+[13:51:44.893] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[13:51:44.893] INFO  [life]   restored objective KEPT: BANK (progress 0)
+[13:51:44.893] INFO  [g_Lyra] [survival] on
+[13:51:44.893] LOG   [g_Lyra] event survival_mode: on
+[13:51:44.895] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_16.lyra/state.json
+[13:51:44.895] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:51:44.947] INFO  [life] bank: nothing proven yet -- trying what common knowledge says is nearest, Moonglow Bank banker at 4471,1156 (15 tiles)
+[13:51:44.947] INFO  [g_Lyra] [travel] seeded_bank -> (4471,1156) r=5 from (4456,1160)
+[13:51:44.947] LOG   [g_Lyra] event travel_start: label='seeded_bank' target=(4471,1156) radius=5 from=(4456,1160)
+[13:51:44.947] INFO  [g_Lyra] [travel] mode walk             usable   <- chosen
+[13:51:44.947] INFO  [g_Lyra] [travel] mode moongate         usable
+[13:51:44.947] INFO  [g_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:51:44.947] INFO  [g_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:51:44.947] LOG   [g_Lyra] event travel_mode: walk
+[13:51:44.947] INFO  [g_Lyra] [travel] plan seeded_bank: ok legs=1 ~15 tiles transit=0 nodes=0
+[13:51:45.009] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:51:45.009] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:51:45.009] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:51:45.009] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[13:51:45.009] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:51:45.286] INFO  [g_Lyra] [chat ascii] System: Thalia has arrived in Moonglow.
+[13:51:46.027] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:51:46.027] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:51:47.280] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:51:47.280] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:51:47.280] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:51:47.280] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[13:51:47.280] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:51:48.390] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:51:48.390] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:51:49.616] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:51:49.616] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:51:49.616] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:51:49.616] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[13:51:49.616] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:51:49.926] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:51:50.787] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:51:50.787] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:51:52.001] INFO  [g_Lyra] [travel] mode walk             usable   <- chosen
+[13:51:52.001] INFO  [g_Lyra] [travel] mode moongate         usable
+[13:51:52.001] INFO  [g_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:51:52.001] INFO  [g_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:51:52.001] LOG   [g_Lyra] event travel_mode: walk
+[13:51:52.001] INFO  [g_Lyra] [travel] plan seeded_bank: ok legs=1 ~15 tiles transit=0 nodes=0
+[13:51:53.556] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:51:53.556] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:51:53.556] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:51:53.556] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[13:51:53.556] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:51:54.680] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:51:54.680] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:51:54.984] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:51:55.897] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:51:55.898] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:51:55.898] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:51:55.898] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[13:51:55.898] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:51:57.003] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:51:57.003] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:51:58.245] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:51:58.245] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:51:58.245] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:51:58.245] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[13:51:58.245] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:51:59.355] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:51:59.355] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:52:00.002] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:52:00.610] INFO  [g_Lyra] [travel] mode walk             usable   <- chosen
+[13:52:00.610] INFO  [g_Lyra] [travel] mode moongate         usable
+[13:52:00.610] INFO  [g_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:52:00.610] INFO  [g_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:52:00.610] LOG   [g_Lyra] event travel_mode: walk
+[13:52:00.610] INFO  [g_Lyra] [travel] plan seeded_bank: ok legs=1 ~15 tiles transit=0 nodes=0
+[13:52:03.634] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:52:03.634] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:52:03.634] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:52:03.634] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[13:52:03.634] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:52:04.651] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:52:04.651] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:52:05.049] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:52:05.888] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:52:05.888] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:52:05.888] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:52:05.888] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[13:52:05.888] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:52:06.979] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:52:06.979] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:52:08.209] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:52:08.209] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:52:08.209] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:52:08.209] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[13:52:08.210] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:52:09.365] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:52:09.365] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:52:10.073] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:52:10.626] INFO  [g_Lyra] [travel] mode walk             usable   <- chosen
+[13:52:10.626] INFO  [g_Lyra] [travel] mode moongate         usable
+[13:52:10.626] INFO  [g_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:52:10.626] INFO  [g_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:52:10.626] LOG   [g_Lyra] event travel_mode: walk
+[13:52:10.626] INFO  [g_Lyra] [travel] plan seeded_bank: ok legs=1 ~15 tiles transit=0 nodes=0
+[13:52:15.126] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:52:15.126] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:52:15.126] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:52:15.126] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[13:52:15.126] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:52:15.126] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:52:16.140] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:52:16.140] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:52:17.342] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:52:17.342] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:52:17.342] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:52:17.342] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[13:52:17.342] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:52:18.327] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:52:18.327] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:52:19.529] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:52:19.529] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:52:19.529] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:52:19.529] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[13:52:19.529] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:52:20.129] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:52:20.500] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:52:20.500] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:52:20.500] LOG   [g_Lyra] event travel_escape: from=(4456,1160,0) to=(4440,1144) attempt=1
+[13:52:20.500] INFO  [g_Lyra] [action] goto (4440,1144) from (4456,1160,0)
+[13:52:20.500] LOG   [g_Lyra] event goto_start: target=(4440,1144) from=(4456,1160)
+[13:52:20.500] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4440,1144,z0)
+[13:52:20.500] INFO  [g_Lyra] [bot] planning path to (4440,1144) in background
+[13:52:20.561] INFO  [g_Lyra] [bot] replan to (4440,1144): 28 steps in 1190.0us
+[13:52:25.187] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:52:28.679] INFO  [g_Lyra] [bot] arrived at (4440,1144,0)
+[13:52:28.680] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4440,1144); ARRIVED (off by 0 tile(s))
+[13:52:28.680] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4440,1144) arrived=1 off=0
+[13:52:28.680] INFO  [g_Lyra] [travel] recovery walk reached its anchor at (4440,1144,0) (off 0); attempt 1/3
+[13:52:28.680] LOG   [g_Lyra] event travel_recovery_done: reached=1 at=(4440,1144,0) off=0 attempt=1
+[13:52:28.741] INFO  [g_Lyra] [travel] mode walk             usable   <- chosen
+[13:52:28.741] INFO  [g_Lyra] [travel] mode moongate         usable
+[13:52:28.741] INFO  [g_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:52:28.741] INFO  [g_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:52:28.741] LOG   [g_Lyra] event travel_mode: walk
+[13:52:28.741] INFO  [g_Lyra] [travel] plan seeded_bank: ok legs=1 ~31 tiles transit=0 nodes=0
+[13:52:28.741] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:52:28.741] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:52:28.741] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:52:28.741] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[13:52:28.741] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:52:29.725] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:52:29.725] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:52:30.232] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:52:30.959] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:52:30.959] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:52:30.959] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:52:30.959] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[13:52:30.959] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:52:32.008] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:52:32.008] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:52:33.224] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:52:33.224] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:52:33.224] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:52:33.224] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[13:52:33.224] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:52:34.305] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:52:34.305] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:52:35.287] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:52:35.530] INFO  [g_Lyra] [travel] mode walk             usable   <- chosen
+[13:52:35.530] INFO  [g_Lyra] [travel] mode moongate         usable
+[13:52:35.530] INFO  [g_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:52:35.530] INFO  [g_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:52:35.530] LOG   [g_Lyra] event travel_mode: walk
+[13:52:35.530] INFO  [g_Lyra] [travel] plan seeded_bank: ok legs=1 ~31 tiles transit=0 nodes=0
+[13:52:37.041] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:52:37.041] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:52:37.041] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:52:37.041] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[13:52:37.041] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:52:38.041] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:52:38.041] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:52:39.253] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:52:39.253] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:52:39.253] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:52:39.253] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[13:52:39.253] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:52:40.298] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:52:40.298] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:52:40.298] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:52:41.545] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:52:41.545] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:52:41.545] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:52:41.545] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[13:52:41.545] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:52:42.590] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:52:42.591] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:52:43.825] INFO  [g_Lyra] [travel] mode walk             usable   <- chosen
+[13:52:43.825] INFO  [g_Lyra] [travel] mode moongate         usable
+[13:52:43.825] INFO  [g_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:52:43.825] INFO  [g_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:52:43.825] LOG   [g_Lyra] event travel_mode: walk
+[13:52:43.825] INFO  [g_Lyra] [travel] plan seeded_bank: ok legs=1 ~31 tiles transit=0 nodes=0
+[13:52:44.936] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_16.lyra/state.json
+[13:52:45.304] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:52:46.827] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:52:46.827] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:52:46.827] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:52:46.827] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[13:52:46.827] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:52:47.828] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:52:47.828] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:52:49.070] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:52:49.070] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:52:49.070] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:52:49.070] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[13:52:49.070] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:52:50.146] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:52:50.146] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:52:50.333] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:52:51.379] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:52:51.379] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:52:51.379] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:52:51.379] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[13:52:51.379] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:52:52.454] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:52:52.454] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:52:53.681] INFO  [g_Lyra] [travel] mode walk             usable   <- chosen
+[13:52:53.681] INFO  [g_Lyra] [travel] mode moongate         usable
+[13:52:53.681] INFO  [g_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:52:53.681] INFO  [g_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:52:53.681] LOG   [g_Lyra] event travel_mode: walk
+[13:52:53.681] INFO  [g_Lyra] [travel] plan seeded_bank: ok legs=1 ~31 tiles transit=0 nodes=0
+[13:52:55.370] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:52:58.232] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:52:58.232] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:52:58.232] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:52:58.232] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[13:52:58.232] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:52:59.248] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:52:59.248] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:53:00.426] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:53:00.488] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:53:00.488] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:53:00.488] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:53:00.488] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[13:53:00.488] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:53:01.550] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:53:01.550] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:53:02.782] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:53:02.782] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:53:02.782] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:53:02.782] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[13:53:02.782] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:53:03.811] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:53:03.811] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:53:03.811] LOG   [g_Lyra] event travel_escape: from=(4440,1144,0) to=(4424,1128) attempt=2
+[13:53:03.811] INFO  [g_Lyra] [action] goto (4424,1128) from (4440,1144,0)
+[13:53:03.811] LOG   [g_Lyra] event goto_start: target=(4424,1128) from=(4440,1144)
+[13:53:03.811] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4424,1128,z0)
+[13:53:03.811] INFO  [g_Lyra] [bot] planning path to (4424,1128) in background
+[13:53:03.873] INFO  [g_Lyra] [bot] replan to (4424,1128): 26 steps in 458.4us
+[13:53:05.439] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:53:10.482] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:53:12.494] INFO  [g_Lyra] [bot] arrived at (4424,1128,0)
+[13:53:12.494] INFO  [g_Lyra] [action] goto finished at (4424,1128,0); target (4424,1128); ARRIVED (off by 0 tile(s))
+[13:53:12.494] LOG   [g_Lyra] event goto_done: at=(4424,1128) target=(4424,1128) arrived=1 off=0
+[13:53:12.494] INFO  [g_Lyra] [travel] recovery walk reached its anchor at (4424,1128,0) (off 0); attempt 2/3
+[13:53:12.494] LOG   [g_Lyra] event travel_recovery_done: reached=1 at=(4424,1128,0) off=0 attempt=2
+[13:53:12.554] INFO  [g_Lyra] [travel] mode walk             usable   <- chosen
+[13:53:12.554] INFO  [g_Lyra] [travel] mode moongate         usable
+[13:53:12.555] INFO  [g_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:53:12.555] INFO  [g_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:53:12.555] LOG   [g_Lyra] event travel_mode: walk
+[13:53:12.563] INFO  [g_Lyra] [travel] plan seeded_bank: no world route to the destination legs=0 ~0 tiles transit=0 nodes=23752
+[13:53:12.563] LOG   [g_Lyra] event travel_escape: from=(4424,1128,0) to=(4408,1112) attempt=3
+[13:53:12.563] INFO  [g_Lyra] [action] goto (4408,1112) from (4424,1128,0)
+[13:53:12.563] LOG   [g_Lyra] event goto_start: target=(4408,1112) from=(4424,1128)
+[13:53:12.563] INFO  [g_Lyra] [bot] running from (4424,1128,0) to (4408,1112,z0)
+[13:53:12.564] INFO  [g_Lyra] [bot] planning path to (4408,1112) in background
+[13:53:13.567] INFO  [g_Lyra] [action] goto finished at (4424,1128,0); target (4408,1112); stopped short (off by 32 tile(s))
+[13:53:13.567] LOG   [g_Lyra] event goto_done: at=(4424,1128) target=(4408,1112) arrived=0 off=32
+[13:53:13.567] INFO  [g_Lyra] [travel] recovery walk fell short at (4424,1128,0) (off 16); attempt 3/3
+[13:53:13.567] LOG   [g_Lyra] event travel_recovery_done: reached=0 at=(4424,1128,0) off=16 attempt=3
+[13:53:13.568] INFO  [life] bank: trip reported failure but no bank is within reach of 4424,1128
+[13:53:15.533] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:53:16.579] INFO  [life] bank: nothing proven yet -- trying what common knowledge says is nearest, Moonglow Bank banker at 4471,1156 (47 tiles)
+[13:53:16.579] INFO  [g_Lyra] [travel] seeded_bank -> (4471,1156) r=5 from (4424,1128)
+[13:53:16.579] LOG   [g_Lyra] event travel_start: label='seeded_bank' target=(4471,1156) radius=5 from=(4424,1128)
+[13:53:16.579] INFO  [g_Lyra] [travel] mode walk             usable   <- chosen
+[13:53:16.579] INFO  [g_Lyra] [travel] mode moongate         usable
+[13:53:16.579] INFO  [g_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:53:16.579] INFO  [g_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:53:16.579] LOG   [g_Lyra] event travel_mode: walk
+[13:53:16.579] INFO  [g_Lyra] [travel] plan seeded_bank: ok legs=2 ~88 tiles transit=0 nodes=106
+[13:53:16.640] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:53:16.640] INFO  [g_Lyra] [action] goto (4456,1160) from (4424,1128,0)
+[13:53:16.640] LOG   [g_Lyra] event goto_start: target=(4456,1160) from=(4424,1128)
+[13:53:16.640] INFO  [g_Lyra] [bot] running from (4424,1128,0) to (4456,1160)
+[13:53:16.640] INFO  [g_Lyra] [bot] planning path to (4456,1160) in background
+[13:53:16.700] INFO  [g_Lyra] [bot] replan to (4456,1160): 54 steps in 3251.4us
+[13:53:20.540] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:53:25.586] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:53:30.616] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:53:32.091] INFO  [g_Lyra] [bot] arrived at (4456,1160,0)
+[13:53:32.091] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4456,1160); ARRIVED (off by 0 tile(s))
+[13:53:32.091] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4456,1160) arrived=1 off=0
+[13:53:32.091] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:53:32.091] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:53:32.091] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:53:32.091] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[13:53:32.091] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:53:33.144] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:53:33.144] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:53:34.359] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:53:34.359] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:53:34.359] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:53:34.359] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[13:53:34.359] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:53:35.356] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:53:35.356] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:53:35.663] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:53:36.593] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:53:36.594] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:53:36.594] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:53:36.594] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[13:53:36.594] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:53:37.579] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:53:37.579] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:53:38.812] INFO  [g_Lyra] [travel] mode walk             usable   <- chosen
+[13:53:38.812] INFO  [g_Lyra] [travel] mode moongate         usable
+[13:53:38.812] INFO  [g_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:53:38.812] INFO  [g_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:53:38.812] LOG   [g_Lyra] event travel_mode: walk
+[13:53:38.812] INFO  [g_Lyra] [travel] plan seeded_bank: ok legs=1 ~15 tiles transit=0 nodes=0
+[13:53:40.343] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:53:40.343] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:53:40.343] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:53:40.343] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[13:53:40.343] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:53:40.715] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:53:41.284] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:53:41.284] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:53:42.542] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:53:42.542] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:53:42.542] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:53:42.543] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[13:53:42.543] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:53:43.525] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:53:43.525] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:53:44.755] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:53:44.756] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:53:44.756] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:53:44.756] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[13:53:44.756] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:53:44.941] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_16.lyra/state.json
+[13:53:45.738] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:53:45.738] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:53:45.738] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:53:46.960] INFO  [g_Lyra] [travel] mode walk             usable   <- chosen
+[13:53:46.960] INFO  [g_Lyra] [travel] mode moongate         usable
+[13:53:46.960] INFO  [g_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:53:46.960] INFO  [g_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:53:46.960] LOG   [g_Lyra] event travel_mode: walk
+[13:53:46.960] INFO  [g_Lyra] [travel] plan seeded_bank: ok legs=1 ~15 tiles transit=0 nodes=0
+[13:53:50.002] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:53:50.002] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:53:50.002] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:53:50.002] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[13:53:50.002] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:53:50.742] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:53:51.051] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:53:51.051] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:53:52.251] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:53:52.251] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:53:52.251] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:53:52.251] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[13:53:52.251] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:53:53.231] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:53:53.231] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:53:54.461] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:53:54.461] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:53:54.461] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:53:54.461] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[13:53:54.461] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:53:55.514] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:53:55.514] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:53:55.758] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:53:56.753] INFO  [g_Lyra] [travel] mode walk             usable   <- chosen
+[13:53:56.753] INFO  [g_Lyra] [travel] mode moongate         usable
+[13:53:56.754] INFO  [g_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:53:56.754] INFO  [g_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:53:56.754] LOG   [g_Lyra] event travel_mode: walk
+[13:53:56.754] INFO  [g_Lyra] [travel] plan seeded_bank: ok legs=1 ~15 tiles transit=0 nodes=0
+[13:54:00.787] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:54:01.276] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:54:01.276] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:54:01.276] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:54:01.276] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[13:54:01.276] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:54:02.259] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:54:02.259] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:54:03.470] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:54:03.470] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:54:03.471] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:54:03.471] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[13:54:03.471] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:54:04.446] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:54:04.446] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:54:05.657] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:54:05.657] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:54:05.657] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:54:05.657] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[13:54:05.657] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:54:05.842] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:54:06.647] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:54:06.647] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:54:06.647] LOG   [g_Lyra] event travel_escape: from=(4456,1160,0) to=(4440,1144) attempt=1
+[13:54:06.647] INFO  [g_Lyra] [action] goto (4440,1144) from (4456,1160,0)
+[13:54:06.647] LOG   [g_Lyra] event goto_start: target=(4440,1144) from=(4456,1160)
+[13:54:06.647] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4440,1144,z0)
+[13:54:06.647] INFO  [g_Lyra] [bot] planning path to (4440,1144) in background
+[13:54:06.707] INFO  [g_Lyra] [bot] replan to (4440,1144): 28 steps in 1064.0us
+[13:54:10.854] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:54:14.798] INFO  [g_Lyra] [bot] arrived at (4440,1144,0)
+[13:54:14.798] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4440,1144); ARRIVED (off by 0 tile(s))
+[13:54:14.798] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4440,1144) arrived=1 off=0
+[13:54:14.798] INFO  [g_Lyra] [travel] recovery walk reached its anchor at (4440,1144,0) (off 0); attempt 1/3
+[13:54:14.798] LOG   [g_Lyra] event travel_recovery_done: reached=1 at=(4440,1144,0) off=0 attempt=1
+[13:54:14.859] INFO  [g_Lyra] [travel] mode walk             usable   <- chosen
+[13:54:14.859] INFO  [g_Lyra] [travel] mode moongate         usable
+[13:54:14.859] INFO  [g_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:54:14.859] INFO  [g_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:54:14.859] LOG   [g_Lyra] event travel_mode: walk
+[13:54:14.859] INFO  [g_Lyra] [travel] plan seeded_bank: ok legs=1 ~31 tiles transit=0 nodes=0
+[13:54:14.920] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:54:14.920] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:54:14.920] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:54:14.920] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[13:54:14.920] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:54:15.904] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:54:16.027] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:54:16.027] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:54:17.282] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:54:17.282] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:54:17.282] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:54:17.282] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[13:54:17.282] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:54:18.309] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:54:18.309] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:54:19.556] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:54:19.556] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:54:19.556] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:54:19.556] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[13:54:19.556] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:54:20.604] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:54:20.604] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:54:20.929] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:54:21.850] INFO  [g_Lyra] [travel] mode walk             usable   <- chosen
+[13:54:21.850] INFO  [g_Lyra] [travel] mode moongate         usable
+[13:54:21.850] INFO  [g_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:54:21.850] INFO  [g_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:54:21.850] LOG   [g_Lyra] event travel_mode: walk
+[13:54:21.850] INFO  [g_Lyra] [travel] plan seeded_bank: ok legs=1 ~31 tiles transit=0 nodes=0
+[13:54:23.386] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:54:23.386] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:54:23.386] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:54:23.386] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[13:54:23.386] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:54:24.406] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:54:24.406] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:54:25.626] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:54:25.626] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:54:25.626] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:54:25.626] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[13:54:25.626] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:54:25.935] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:54:26.675] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:54:26.675] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:54:27.914] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:54:27.914] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:54:27.914] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:54:27.914] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[13:54:27.914] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:54:28.932] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:54:28.932] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:54:30.139] INFO  [g_Lyra] [travel] mode walk             usable   <- chosen
+[13:54:30.139] INFO  [g_Lyra] [travel] mode moongate         usable
+[13:54:30.139] INFO  [g_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:54:30.139] INFO  [g_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:54:30.139] LOG   [g_Lyra] event travel_mode: walk
+[13:54:30.139] INFO  [g_Lyra] [travel] plan seeded_bank: ok legs=1 ~31 tiles transit=0 nodes=0
+[13:54:30.949] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:54:33.190] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:54:33.190] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:54:33.190] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:54:33.190] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[13:54:33.190] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:54:33.715] INFO  [g_Lyra] [chat ascii] System: World save in 10 seconds
+[13:54:34.242] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:54:34.243] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:54:35.446] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:54:35.446] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:54:35.446] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:54:35.446] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[13:54:35.447] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:54:36.000] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:54:36.524] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:54:36.524] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:54:37.770] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:54:37.770] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:54:37.770] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:54:37.770] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[13:54:37.770] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:54:38.803] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:54:38.803] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:54:40.034] INFO  [g_Lyra] [travel] mode walk             usable   <- chosen
+[13:54:40.034] INFO  [g_Lyra] [travel] mode moongate         usable
+[13:54:40.034] INFO  [g_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:54:40.034] INFO  [g_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:54:40.034] LOG   [g_Lyra] event travel_mode: walk
+[13:54:40.034] INFO  [g_Lyra] [travel] plan seeded_bank: ok legs=1 ~31 tiles transit=0 nodes=0
+[13:54:41.047] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:54:43.719] INFO  [g_Lyra] [chat ascii] System: World save has been initiated.
+[13:54:44.553] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:54:44.553] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:54:44.553] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:54:44.553] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[13:54:44.553] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:54:44.987] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_16.lyra/state.json
+[13:54:45.597] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:54:45.597] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:54:46.085] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:54:46.822] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:54:46.822] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:54:46.822] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:54:46.822] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[13:54:46.822] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:54:47.867] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:54:47.868] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:54:49.112] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:54:49.112] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:54:49.112] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:54:49.112] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[13:54:49.112] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:54:50.176] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:54:50.176] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:54:50.176] LOG   [g_Lyra] event travel_escape: from=(4440,1144,0) to=(4424,1128) attempt=2
+[13:54:50.176] INFO  [g_Lyra] [action] goto (4424,1128) from (4440,1144,0)
+[13:54:50.176] LOG   [g_Lyra] event goto_start: target=(4424,1128) from=(4440,1144)
+[13:54:50.176] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4424,1128,z0)
+[13:54:50.176] INFO  [g_Lyra] [bot] planning path to (4424,1128) in background
+[13:54:50.237] INFO  [g_Lyra] [bot] replan to (4424,1128): 26 steps in 428.6us
+[13:54:51.128] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:54:54.442] INFO  [g_Lyra] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=12 in 53.0us
+[13:54:56.135] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:54:58.252] INFO  [g_Lyra] [bot] arrived at (4424,1128,0)
+[13:54:58.252] INFO  [g_Lyra] [action] goto finished at (4424,1128,0); target (4424,1128); ARRIVED (off by 0 tile(s))
+[13:54:58.252] LOG   [g_Lyra] event goto_done: at=(4424,1128) target=(4424,1128) arrived=1 off=0
+[13:54:58.252] INFO  [g_Lyra] [travel] recovery walk reached its anchor at (4424,1128,0) (off 0); attempt 2/3
+[13:54:58.252] LOG   [g_Lyra] event travel_recovery_done: reached=1 at=(4424,1128,0) off=0 attempt=2
+[13:54:58.298] INFO  [g_Lyra] [travel] mode walk             usable   <- chosen
+[13:54:58.298] INFO  [g_Lyra] [travel] mode moongate         usable
+[13:54:58.298] INFO  [g_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:54:58.298] INFO  [g_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:54:58.298] LOG   [g_Lyra] event travel_mode: walk
+[13:54:58.305] INFO  [g_Lyra] [travel] plan seeded_bank: no world route to the destination legs=0 ~0 tiles transit=0 nodes=23752
+[13:54:58.305] LOG   [g_Lyra] event travel_escape: from=(4424,1128,0) to=(4408,1112) attempt=3
+[13:54:58.305] INFO  [g_Lyra] [action] goto (4408,1112) from (4424,1128,0)
+[13:54:58.305] LOG   [g_Lyra] event goto_start: target=(4408,1112) from=(4424,1128)
+[13:54:58.305] INFO  [g_Lyra] [bot] running from (4424,1128,0) to (4408,1112,z0)
+[13:54:58.305] INFO  [g_Lyra] [bot] planning path to (4408,1112) in background
+[13:54:59.302] INFO  [g_Lyra] [action] goto finished at (4424,1128,0); target (4408,1112); stopped short (off by 32 tile(s))
+[13:54:59.302] LOG   [g_Lyra] event goto_done: at=(4424,1128) target=(4408,1112) arrived=0 off=32
+[13:54:59.302] INFO  [g_Lyra] [travel] recovery walk fell short at (4424,1128,0) (off 16); attempt 3/3
+[13:54:59.302] LOG   [g_Lyra] event travel_recovery_done: reached=0 at=(4424,1128,0) off=16 attempt=3
+[13:54:59.318] INFO  [life] bank: trip reported failure but no bank is within reach of 4424,1128
+[13:55:01.138] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:55:02.349] INFO  [life] bank: nothing proven yet -- trying what common knowledge says is nearest, Moonglow Bank banker at 4471,1156 (47 tiles)
+[13:55:02.349] INFO  [g_Lyra] [travel] seeded_bank -> (4471,1156) r=5 from (4424,1128)
+[13:55:02.349] LOG   [g_Lyra] event travel_start: label='seeded_bank' target=(4471,1156) radius=5 from=(4424,1128)
+[13:55:02.349] INFO  [g_Lyra] [travel] mode walk             usable   <- chosen
+[13:55:02.349] INFO  [g_Lyra] [travel] mode moongate         usable
+[13:55:02.349] INFO  [g_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:55:02.349] INFO  [g_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:55:02.349] LOG   [g_Lyra] event travel_mode: walk
+[13:55:02.349] INFO  [g_Lyra] [travel] plan seeded_bank: ok legs=2 ~88 tiles transit=0 nodes=106
+[13:55:02.396] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:55:02.396] INFO  [g_Lyra] [action] goto (4456,1160) from (4424,1128,0)
+[13:55:02.396] LOG   [g_Lyra] event goto_start: target=(4456,1160) from=(4424,1128)
+[13:55:02.396] INFO  [g_Lyra] [bot] running from (4424,1128,0) to (4456,1160)
+[13:55:02.396] INFO  [g_Lyra] [bot] planning path to (4456,1160) in background
+[13:55:02.442] INFO  [g_Lyra] [bot] replan to (4456,1160): 54 steps in 3060.1us
+[13:55:06.185] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:55:11.199] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:55:16.212] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:55:17.273] INFO  [g_Lyra] [bot] arrived at (4456,1160,0)
+[13:55:17.273] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4456,1160); ARRIVED (off by 0 tile(s))
+[13:55:17.273] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4456,1160) arrived=1 off=0
+[13:55:17.273] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:55:17.273] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:55:17.273] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:55:17.273] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[13:55:17.273] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:55:18.320] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:55:18.320] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:55:19.565] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:55:19.565] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:55:19.565] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:55:19.565] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[13:55:19.565] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:55:20.548] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:55:20.548] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:55:21.254] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:55:21.805] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:55:21.805] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:55:21.805] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:55:21.805] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[13:55:21.805] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:55:22.803] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:55:22.803] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:55:24.010] INFO  [g_Lyra] [travel] mode walk             usable   <- chosen
+[13:55:24.010] INFO  [g_Lyra] [travel] mode moongate         usable
+[13:55:24.010] INFO  [g_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:55:24.010] INFO  [g_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:55:24.010] LOG   [g_Lyra] event travel_mode: walk
+[13:55:24.010] INFO  [g_Lyra] [travel] plan seeded_bank: ok legs=1 ~15 tiles transit=0 nodes=0
+[13:55:25.519] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:55:25.520] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:55:25.520] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:55:25.520] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[13:55:25.520] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:55:26.255] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:55:26.501] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:55:26.501] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:55:27.711] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:55:27.711] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:55:27.711] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:55:27.711] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[13:55:27.711] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:55:28.745] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:55:28.745] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:55:29.980] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:55:29.980] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:55:29.980] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:55:29.980] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[13:55:29.980] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:55:30.962] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:55:30.963] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:55:31.267] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:55:32.206] INFO  [g_Lyra] [travel] mode walk             usable   <- chosen
+[13:55:32.206] INFO  [g_Lyra] [travel] mode moongate         usable
+[13:55:32.206] INFO  [g_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:55:32.206] INFO  [g_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:55:32.206] LOG   [g_Lyra] event travel_mode: walk
+[13:55:32.206] INFO  [g_Lyra] [travel] plan seeded_bank: ok legs=1 ~15 tiles transit=0 nodes=0
+[13:55:35.231] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:55:35.231] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:55:35.231] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:55:35.231] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[13:55:35.231] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:55:36.219] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:55:36.219] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:55:36.281] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:55:37.441] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:55:37.441] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:55:37.441] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:55:37.441] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[13:55:37.441] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:55:38.474] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:55:38.474] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:55:39.700] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:55:39.700] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:55:39.700] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:55:39.700] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[13:55:39.700] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:55:40.732] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:55:40.732] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:55:41.298] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:55:41.942] INFO  [g_Lyra] [travel] mode walk             usable   <- chosen
+[13:55:41.942] INFO  [g_Lyra] [travel] mode moongate         usable
+[13:55:41.942] INFO  [g_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:55:41.942] INFO  [g_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:55:41.942] LOG   [g_Lyra] event travel_mode: walk
+[13:55:41.942] INFO  [g_Lyra] [travel] plan seeded_bank: ok legs=1 ~15 tiles transit=0 nodes=0
+[13:55:44.987] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_16.lyra/state.json
+[13:55:46.337] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:55:46.491] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:55:46.492] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:55:46.492] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:55:46.492] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[13:55:46.492] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:55:47.476] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:55:47.476] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:55:48.688] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:55:48.688] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:55:48.688] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:55:48.688] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[13:55:48.688] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:55:49.646] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:55:49.646] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:55:50.863] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:55:50.863] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:55:50.863] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:55:50.863] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[13:55:50.863] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:55:51.351] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:55:51.874] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:55:51.874] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:55:51.874] LOG   [g_Lyra] event travel_escape: from=(4456,1160,0) to=(4440,1144) attempt=1
+[13:55:51.874] INFO  [g_Lyra] [action] goto (4440,1144) from (4456,1160,0)
+[13:55:51.874] LOG   [g_Lyra] event goto_start: target=(4440,1144) from=(4456,1160)
+[13:55:51.874] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4440,1144,z0)
+[13:55:51.874] INFO  [g_Lyra] [bot] planning path to (4440,1144) in background
+[13:55:51.936] INFO  [g_Lyra] [bot] replan to (4440,1144): 28 steps in 1109.7us
+[13:55:56.396] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:55:59.968] INFO  [g_Lyra] [bot] arrived at (4440,1144,0)
+[13:55:59.968] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4440,1144); ARRIVED (off by 0 tile(s))
+[13:55:59.968] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4440,1144) arrived=1 off=0
+[13:55:59.968] INFO  [g_Lyra] [travel] recovery walk reached its anchor at (4440,1144,0) (off 0); attempt 1/3
+[13:55:59.968] LOG   [g_Lyra] event travel_recovery_done: reached=1 at=(4440,1144,0) off=0 attempt=1
+[13:56:00.030] INFO  [g_Lyra] [travel] mode walk             usable   <- chosen
+[13:56:00.030] INFO  [g_Lyra] [travel] mode moongate         usable
+[13:56:00.030] INFO  [g_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:56:00.030] INFO  [g_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:56:00.030] LOG   [g_Lyra] event travel_mode: walk
+[13:56:00.030] INFO  [g_Lyra] [travel] plan seeded_bank: ok legs=1 ~31 tiles transit=0 nodes=0
+[13:56:00.091] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:56:00.091] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:56:00.091] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:56:00.091] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[13:56:00.091] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:56:01.157] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:56:01.158] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:56:01.404] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:56:02.362] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:56:02.362] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:56:02.362] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:56:02.362] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[13:56:02.362] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:56:03.425] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:56:03.425] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:56:04.664] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:56:04.664] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:56:04.664] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:56:04.664] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[13:56:04.664] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:56:05.744] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:56:05.744] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:56:06.421] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:56:06.976] INFO  [g_Lyra] [travel] mode walk             usable   <- chosen
+[13:56:06.976] INFO  [g_Lyra] [travel] mode moongate         usable
+[13:56:06.976] INFO  [g_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:56:06.976] INFO  [g_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:56:06.976] LOG   [g_Lyra] event travel_mode: walk
+[13:56:06.976] INFO  [g_Lyra] [travel] plan seeded_bank: ok legs=1 ~31 tiles transit=0 nodes=0
+[13:56:08.509] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:56:08.509] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:56:08.509] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:56:08.509] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[13:56:08.509] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:56:09.537] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:56:09.537] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:56:10.796] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:56:10.796] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:56:10.796] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:56:10.796] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[13:56:10.796] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:56:11.476] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:56:11.845] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:56:11.845] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:56:13.107] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:56:13.107] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:56:13.107] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:56:13.107] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[13:56:13.107] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:56:14.136] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:56:14.136] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:56:15.336] INFO  [g_Lyra] [travel] mode walk             usable   <- chosen
+[13:56:15.336] INFO  [g_Lyra] [travel] mode moongate         usable
+[13:56:15.336] INFO  [g_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:56:15.336] INFO  [g_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:56:15.336] LOG   [g_Lyra] event travel_mode: walk
+[13:56:15.336] INFO  [g_Lyra] [travel] plan seeded_bank: ok legs=1 ~31 tiles transit=0 nodes=0
+[13:56:16.502] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:56:18.357] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:56:18.357] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:56:18.357] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:56:18.357] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[13:56:18.357] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:56:19.401] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:56:19.401] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:56:20.602] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:56:20.602] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:56:20.602] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:56:20.602] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[13:56:20.602] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:56:21.542] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:56:21.663] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:56:21.663] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:56:22.919] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:56:22.920] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:56:22.920] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:56:22.920] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[13:56:22.920] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:56:23.963] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:56:23.963] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:56:25.216] INFO  [g_Lyra] [travel] mode walk             usable   <- chosen
+[13:56:25.216] INFO  [g_Lyra] [travel] mode moongate         usable
+[13:56:25.216] INFO  [g_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:56:25.216] INFO  [g_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:56:25.216] LOG   [g_Lyra] event travel_mode: walk
+[13:56:25.216] INFO  [g_Lyra] [travel] plan seeded_bank: ok legs=1 ~31 tiles transit=0 nodes=0
+[13:56:26.583] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:56:29.772] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:56:29.772] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:56:29.772] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:56:29.772] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[13:56:29.772] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:56:30.815] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:56:30.815] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:56:31.596] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:56:32.028] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:56:32.028] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:56:32.028] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:56:32.028] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[13:56:32.028] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:56:33.057] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:56:33.057] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:56:34.271] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:56:34.271] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:56:34.271] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:56:34.271] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[13:56:34.271] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:56:35.291] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:56:35.291] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:56:35.291] LOG   [g_Lyra] event travel_escape: from=(4440,1144,0) to=(4424,1128) attempt=2
+[13:56:35.291] INFO  [g_Lyra] [action] goto (4424,1128) from (4440,1144,0)
+[13:56:35.291] LOG   [g_Lyra] event goto_start: target=(4424,1128) from=(4440,1144)
+[13:56:35.291] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4424,1128,z0)
+[13:56:35.291] INFO  [g_Lyra] [bot] planning path to (4424,1128) in background
+[13:56:35.353] INFO  [g_Lyra] [bot] replan to (4424,1128): 26 steps in 374.4us
+[13:56:36.622] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:56:41.678] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:56:42.312] INFO  [life] session_end_requested reason="session time limit reached"
+[13:56:43.477] INFO  [g_Lyra] [bot] arrived at (4424,1128,0)
+[13:56:43.477] INFO  [g_Lyra] [action] goto finished at (4424,1128,0); target (4424,1128); ARRIVED (off by 0 tile(s))
+[13:56:43.477] LOG   [g_Lyra] event goto_done: at=(4424,1128) target=(4424,1128) arrived=1 off=0
+[13:56:43.477] INFO  [g_Lyra] [travel] recovery walk reached its anchor at (4424,1128,0) (off 0); attempt 2/3
+[13:56:43.477] LOG   [g_Lyra] event travel_recovery_done: reached=1 at=(4424,1128,0) off=0 attempt=2
+[13:56:43.537] INFO  [g_Lyra] [travel] mode walk             usable   <- chosen
+[13:56:43.537] INFO  [g_Lyra] [travel] mode moongate         usable
+[13:56:43.537] INFO  [g_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:56:43.537] INFO  [g_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:56:43.537] LOG   [g_Lyra] event travel_mode: walk
+[13:56:43.545] INFO  [g_Lyra] [travel] plan seeded_bank: no world route to the destination legs=0 ~0 tiles transit=0 nodes=23752
+[13:56:43.545] LOG   [g_Lyra] event travel_escape: from=(4424,1128,0) to=(4408,1112) attempt=3
+[13:56:43.545] INFO  [g_Lyra] [action] goto (4408,1112) from (4424,1128,0)
+[13:56:43.545] LOG   [g_Lyra] event goto_start: target=(4408,1112) from=(4424,1128)
+[13:56:43.545] INFO  [g_Lyra] [bot] running from (4424,1128,0) to (4408,1112,z0)
+[13:56:43.545] INFO  [g_Lyra] [bot] planning path to (4408,1112) in background
+[13:56:44.519] INFO  [g_Lyra] [action] goto finished at (4424,1128,0); target (4408,1112); stopped short (off by 32 tile(s))
+[13:56:44.520] LOG   [g_Lyra] event goto_done: at=(4424,1128) target=(4408,1112) arrived=0 off=32
+[13:56:44.520] INFO  [g_Lyra] [travel] recovery walk fell short at (4424,1128,0) (off 16); attempt 3/3
+[13:56:44.520] LOG   [g_Lyra] event travel_recovery_done: reached=0 at=(4424,1128,0) off=16 attempt=3
+[13:56:44.579] INFO  [life] wind-down: the trip did not arrive ()
+[13:56:44.640] INFO  [life] wind-down: no bank learned yet; asking the world for one (attempt 1)
+[13:56:46.134] INFO  [g_Lyra] [travel] place: skipping Wind banker -- 1756 tiles and 2 gates for a service Moonglow Bank banker offers
+[13:56:46.134] INFO  [g_Lyra] [travel] place: skipping Delucia banker -- 1352 tiles and 2 gates for a service Moonglow Bank banker offers
+[13:56:46.134] INFO  [g_Lyra] [travel] Moonglow Bank banker -> (4471,1156) r=5 from (4424,1128)
+[13:56:46.134] LOG   [g_Lyra] event travel_start: label='Moonglow Bank banker' target=(4471,1156) radius=5 from=(4424,1128)
+[13:56:46.134] INFO  [g_Lyra] [travel] mode walk             usable   <- chosen
+[13:56:46.134] INFO  [g_Lyra] [travel] mode moongate         usable
+[13:56:46.134] INFO  [g_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:56:46.134] INFO  [g_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:56:46.134] LOG   [g_Lyra] event travel_mode: walk
+[13:56:46.134] INFO  [g_Lyra] [travel] plan Moonglow Bank banker: ok legs=2 ~88 tiles transit=0 nodes=106
+[13:56:46.134] INFO  [g_Lyra] [chat ascii] System: Thalia has departed from Moonglow.
+[13:56:46.134] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:56:46.134] INFO  [g_Lyra] [action] goto (4456,1160) from (4424,1128,0)
+[13:56:46.134] LOG   [g_Lyra] event goto_start: target=(4456,1160) from=(4424,1128)
+[13:56:46.134] INFO  [g_Lyra] [bot] running from (4424,1128,0) to (4456,1160)
+[13:56:46.134] INFO  [g_Lyra] [bot] planning path to (4456,1160) in background
+[13:56:46.193] INFO  [g_Lyra] [bot] replan to (4456,1160): 54 steps in 3273.6us
+[13:56:46.697] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:56:51.725] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:56:56.727] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:57:01.652] INFO  [g_Lyra] [bot] arrived at (4456,1160,0)
+[13:57:01.652] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4456,1160); ARRIVED (off by 0 tile(s))
+[13:57:01.652] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4456,1160) arrived=1 off=0
+[13:57:01.652] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:57:01.652] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:57:01.652] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:57:01.652] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156,z0)
+[13:57:01.652] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:57:01.777] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:57:02.682] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:57:02.682] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:57:03.927] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:57:03.927] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:57:03.927] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:57:03.928] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156,z0)
+[13:57:03.928] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:57:04.910] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:57:04.910] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:57:06.111] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:57:06.111] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:57:06.111] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:57:06.111] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156,z0)
+[13:57:06.111] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:57:06.788] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:57:07.095] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:57:07.095] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:57:08.323] INFO  [g_Lyra] [travel] mode walk             usable   <- chosen
+[13:57:08.323] INFO  [g_Lyra] [travel] mode moongate         usable
+[13:57:08.323] INFO  [g_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:57:08.323] INFO  [g_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:57:08.323] LOG   [g_Lyra] event travel_mode: walk
+[13:57:08.323] INFO  [g_Lyra] [travel] plan Moonglow Bank banker: ok legs=1 ~15 tiles transit=0 nodes=0
+[13:57:09.855] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:57:09.855] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:57:09.856] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:57:09.856] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156,z0)
+[13:57:09.856] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:57:10.853] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:57:10.854] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:57:11.804] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:57:12.093] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:57:12.093] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:57:12.093] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:57:12.093] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156,z0)
+[13:57:12.094] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:57:13.122] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:57:13.122] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:57:14.356] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:57:14.356] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:57:14.356] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:57:14.356] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156,z0)
+[13:57:14.356] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:57:15.356] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:57:15.356] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:57:16.582] INFO  [g_Lyra] [travel] mode walk             usable   <- chosen
+[13:57:16.582] INFO  [g_Lyra] [travel] mode moongate         usable
+[13:57:16.582] INFO  [g_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:57:16.582] INFO  [g_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:57:16.582] LOG   [g_Lyra] event travel_mode: walk
+[13:57:16.582] INFO  [g_Lyra] [travel] plan Moonglow Bank banker: ok legs=1 ~15 tiles transit=0 nodes=0
+[13:57:16.828] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:57:19.605] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:57:19.605] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:57:19.605] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:57:19.605] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156,z0)
+[13:57:19.605] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:57:20.576] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:57:20.576] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:57:21.834] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:57:21.834] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:57:21.834] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:57:21.834] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156,z0)
+[13:57:21.834] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:57:21.834] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:57:22.847] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:57:22.847] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:57:24.066] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:57:24.066] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:57:24.066] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:57:24.066] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156,z0)
+[13:57:24.066] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:57:25.094] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:57:25.095] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:57:26.316] INFO  [g_Lyra] [travel] mode walk             usable   <- chosen
+[13:57:26.316] INFO  [g_Lyra] [travel] mode moongate         usable
+[13:57:26.316] INFO  [g_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:57:26.316] INFO  [g_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:57:26.316] LOG   [g_Lyra] event travel_mode: walk
+[13:57:26.316] INFO  [g_Lyra] [travel] plan Moonglow Bank banker: ok legs=1 ~15 tiles transit=0 nodes=0
+[13:57:26.836] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:57:30.851] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:57:30.852] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:57:30.852] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:57:30.852] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156,z0)
+[13:57:30.852] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:57:31.847] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:57:31.847] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:57:31.847] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:57:33.090] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:57:33.090] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:57:33.090] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:57:33.090] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156,z0)
+[13:57:33.090] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:57:34.047] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:57:34.047] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:57:35.274] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:57:35.275] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:57:35.275] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:57:35.275] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156,z0)
+[13:57:35.275] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:57:36.256] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:57:36.256] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:57:36.256] LOG   [g_Lyra] event travel_escape: from=(4456,1160,0) to=(4440,1144) attempt=1
+[13:57:36.256] INFO  [g_Lyra] [action] goto (4440,1144) from (4456,1160,0)
+[13:57:36.256] LOG   [g_Lyra] event goto_start: target=(4440,1144) from=(4456,1160)
+[13:57:36.256] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4440,1144,z0)
+[13:57:36.256] INFO  [g_Lyra] [bot] planning path to (4440,1144) in background
+[13:57:36.286] INFO  [g_Lyra] [bot] replan to (4440,1144): 28 steps in 1276.1us
+[13:57:36.871] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:57:41.893] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:57:44.052] INFO  [g_Lyra] [bot] arrived at (4440,1144,0)
+[13:57:44.052] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4440,1144); ARRIVED (off by 0 tile(s))
+[13:57:44.052] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4440,1144) arrived=1 off=0
+[13:57:44.052] INFO  [g_Lyra] [travel] recovery walk reached its anchor at (4440,1144,0) (off 0); attempt 1/3
+[13:57:44.052] LOG   [g_Lyra] event travel_recovery_done: reached=1 at=(4440,1144,0) off=0 attempt=1
+[13:57:44.114] INFO  [g_Lyra] [travel] mode walk             usable   <- chosen
+[13:57:44.114] INFO  [g_Lyra] [travel] mode moongate         usable
+[13:57:44.114] INFO  [g_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:57:44.114] INFO  [g_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:57:44.114] LOG   [g_Lyra] event travel_mode: walk
+[13:57:44.114] INFO  [g_Lyra] [travel] plan Moonglow Bank banker: ok legs=1 ~31 tiles transit=0 nodes=0
+[13:57:44.175] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:57:44.175] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:57:44.175] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:57:44.175] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156,z0)
+[13:57:44.175] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:57:45.284] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:57:45.284] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:57:46.514] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:57:46.514] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:57:46.514] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:57:46.514] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156,z0)
+[13:57:46.514] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:57:46.944] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:57:47.528] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:57:47.528] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:57:48.754] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:57:48.754] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:57:48.754] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:57:48.754] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156,z0)
+[13:57:48.754] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:57:49.797] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:57:49.797] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:57:51.027] INFO  [g_Lyra] [travel] mode walk             usable   <- chosen
+[13:57:51.027] INFO  [g_Lyra] [travel] mode moongate         usable
+[13:57:51.027] INFO  [g_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:57:51.027] INFO  [g_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:57:51.027] LOG   [g_Lyra] event travel_mode: walk
+[13:57:51.027] INFO  [g_Lyra] [travel] plan Moonglow Bank banker: ok legs=1 ~31 tiles transit=0 nodes=0
+[13:57:51.951] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:57:52.567] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:57:52.567] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:57:52.567] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:57:52.567] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156,z0)
+[13:57:52.567] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:57:53.615] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:57:53.615] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:57:54.847] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:57:54.847] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:57:54.847] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:57:54.847] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156,z0)
+[13:57:54.847] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:57:55.907] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:57:55.907] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:57:57.013] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:57:57.136] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:57:57.136] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:57:57.136] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:57:57.136] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156,z0)
+[13:57:57.136] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:57:58.185] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:57:58.185] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:57:59.414] INFO  [g_Lyra] [travel] mode walk             usable   <- chosen
+[13:57:59.414] INFO  [g_Lyra] [travel] mode moongate         usable
+[13:57:59.414] INFO  [g_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:57:59.414] INFO  [g_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:57:59.414] LOG   [g_Lyra] event travel_mode: walk
+[13:57:59.414] INFO  [g_Lyra] [travel] plan Moonglow Bank banker: ok legs=1 ~31 tiles transit=0 nodes=0
+[13:58:02.054] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:58:02.425] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:58:02.425] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:58:02.425] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:58:02.425] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156,z0)
+[13:58:02.425] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:58:03.468] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:58:03.468] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:58:04.696] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:58:04.696] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:58:04.696] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:58:04.696] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156,z0)
+[13:58:04.696] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:58:05.804] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:58:05.805] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:58:07.035] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:58:07.035] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:58:07.035] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:58:07.036] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156,z0)
+[13:58:07.036] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:58:07.097] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:58:08.077] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:58:08.077] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:58:09.305] INFO  [g_Lyra] [travel] mode walk             usable   <- chosen
+[13:58:09.305] INFO  [g_Lyra] [travel] mode moongate         usable
+[13:58:09.305] INFO  [g_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:58:09.305] INFO  [g_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:58:09.305] LOG   [g_Lyra] event travel_mode: walk
+[13:58:09.305] INFO  [g_Lyra] [travel] plan Moonglow Bank banker: ok legs=1 ~31 tiles transit=0 nodes=0
+[13:58:12.124] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:58:13.836] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:58:13.836] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:58:13.836] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:58:13.836] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156,z0)
+[13:58:13.836] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:58:14.880] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:58:14.880] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:58:16.104] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:58:16.104] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:58:16.104] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:58:16.104] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156,z0)
+[13:58:16.104] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:58:17.149] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:58:17.149] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:58:17.149] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:58:18.364] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:58:18.364] INFO  [g_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[13:58:18.364] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[13:58:18.364] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4471,1156,z0)
+[13:58:18.364] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:58:19.398] INFO  [g_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[13:58:19.398] LOG   [g_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[13:58:19.398] LOG   [g_Lyra] event travel_escape: from=(4440,1144,0) to=(4424,1128) attempt=2
+[13:58:19.398] INFO  [g_Lyra] [action] goto (4424,1128) from (4440,1144,0)
+[13:58:19.398] LOG   [g_Lyra] event goto_start: target=(4424,1128) from=(4440,1144)
+[13:58:19.398] INFO  [g_Lyra] [bot] running from (4440,1144,0) to (4424,1128,z0)
+[13:58:19.398] INFO  [g_Lyra] [bot] planning path to (4424,1128) in background
+[13:58:19.460] INFO  [g_Lyra] [bot] replan to (4424,1128): 26 steps in 518.2us
+[13:58:22.161] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:58:27.189] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:58:28.216] INFO  [g_Lyra] [bot] arrived at (4424,1128,0)
+[13:58:28.216] INFO  [g_Lyra] [action] goto finished at (4424,1128,0); target (4424,1128); ARRIVED (off by 0 tile(s))
+[13:58:28.216] LOG   [g_Lyra] event goto_done: at=(4424,1128) target=(4424,1128) arrived=1 off=0
+[13:58:28.216] INFO  [g_Lyra] [travel] recovery walk reached its anchor at (4424,1128,0) (off 0); attempt 2/3
+[13:58:28.216] LOG   [g_Lyra] event travel_recovery_done: reached=1 at=(4424,1128,0) off=0 attempt=2
+[13:58:28.277] INFO  [g_Lyra] [travel] mode walk             usable   <- chosen
+[13:58:28.277] INFO  [g_Lyra] [travel] mode moongate         usable
+[13:58:28.277] INFO  [g_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:58:28.277] INFO  [g_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:58:28.277] LOG   [g_Lyra] event travel_mode: walk
+[13:58:28.285] INFO  [g_Lyra] [travel] plan Moonglow Bank banker: no world route to the destination legs=0 ~0 tiles transit=0 nodes=23752
+[13:58:28.285] LOG   [g_Lyra] event travel_escape: from=(4424,1128,0) to=(4408,1112) attempt=3
+[13:58:28.285] INFO  [g_Lyra] [action] goto (4408,1112) from (4424,1128,0)
+[13:58:28.285] LOG   [g_Lyra] event goto_start: target=(4408,1112) from=(4424,1128)
+[13:58:28.285] INFO  [g_Lyra] [bot] running from (4424,1128,0) to (4408,1112,z0)
+[13:58:28.285] INFO  [g_Lyra] [bot] planning path to (4408,1112) in background
+[13:58:29.324] INFO  [g_Lyra] [action] goto finished at (4424,1128,0); target (4408,1112); stopped short (off by 32 tile(s))
+[13:58:29.324] LOG   [g_Lyra] event goto_done: at=(4424,1128) target=(4408,1112) arrived=0 off=32
+[13:58:29.324] INFO  [g_Lyra] [travel] recovery walk fell short at (4424,1128,0) (off 16); attempt 3/3
+[13:58:29.324] LOG   [g_Lyra] event travel_recovery_done: reached=0 at=(4424,1128,0) off=16 attempt=3
+[13:58:29.386] INFO  [life] wind-down: the trip did not arrive ()
+[13:58:29.447] INFO  [life] wind-down: no bank learned yet; asking the world for one (attempt 2)
+[13:58:30.850] INFO  [g_Lyra] [travel] place: skipping Wind banker -- 1756 tiles and 2 gates for a service Moonglow Bank banker offers
+[13:58:30.851] INFO  [g_Lyra] [travel] place: skipping Delucia banker -- 1352 tiles and 2 gates for a service Moonglow Bank banker offers
+[13:58:30.851] INFO  [g_Lyra] [travel] Moonglow Bank banker -> (4471,1156) r=5 from (4424,1128)
+[13:58:30.851] LOG   [g_Lyra] event travel_start: label='Moonglow Bank banker' target=(4471,1156) radius=5 from=(4424,1128)
+[13:58:30.851] INFO  [g_Lyra] [travel] mode walk             usable   <- chosen
+[13:58:30.851] INFO  [g_Lyra] [travel] mode moongate         usable
+[13:58:30.851] INFO  [g_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:58:30.851] INFO  [g_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:58:30.851] LOG   [g_Lyra] event travel_mode: walk
+[13:58:30.851] INFO  [g_Lyra] [travel] plan Moonglow Bank banker: ok legs=2 ~88 tiles transit=0 nodes=106
+[13:58:30.851] INFO  [g_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[13:58:30.851] INFO  [g_Lyra] [action] goto (4456,1160) from (4424,1128,0)
+[13:58:30.851] LOG   [g_Lyra] event goto_start: target=(4456,1160) from=(4424,1128)
+[13:58:30.851] INFO  [g_Lyra] [bot] running from (4424,1128,0) to (4456,1160)
+[13:58:30.851] INFO  [g_Lyra] [bot] planning path to (4456,1160) in background
+[13:58:30.913] INFO  [g_Lyra] [bot] replan to (4456,1160): 54 steps in 3209.9us
+[13:58:32.201] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:58:37.257] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:58:42.294] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:58:46.651] INFO  [g_Lyra] [bot] arrived at (4456,1160,0)
+[13:58:46.651] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4456,1160); ARRIVED (off by 0 tile(s))
+[13:58:46.651] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4456,1160) arrived=1 off=0
+[13:58:46.651] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:58:46.651] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:58:46.651] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:58:46.651] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156,z0)
+[13:58:46.651] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:58:47.342] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:58:47.665] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:58:47.665] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:58:48.908] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:58:48.908] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:58:48.908] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:58:48.908] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156,z0)
+[13:58:48.908] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:58:49.927] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:58:49.927] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:58:51.142] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:58:51.142] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:58:51.142] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:58:51.142] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156,z0)
+[13:58:51.142] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:58:52.122] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:58:52.122] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:58:52.364] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:58:53.348] INFO  [g_Lyra] [travel] mode walk             usable   <- chosen
+[13:58:53.348] INFO  [g_Lyra] [travel] mode moongate         usable
+[13:58:53.348] INFO  [g_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:58:53.348] INFO  [g_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:58:53.348] LOG   [g_Lyra] event travel_mode: walk
+[13:58:53.348] INFO  [g_Lyra] [travel] plan Moonglow Bank banker: ok legs=1 ~15 tiles transit=0 nodes=0
+[13:58:54.883] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:58:54.883] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:58:54.883] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:58:54.883] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156,z0)
+[13:58:54.883] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:58:55.899] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:58:55.899] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:58:57.108] INFO  [g_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:58:57.108] INFO  [g_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[13:58:57.108] LOG   [g_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[13:58:57.108] INFO  [g_Lyra] [bot] running from (4456,1160,0) to (4471,1156,z0)
+[13:58:57.108] INFO  [g_Lyra] [bot] planning path to (4471,1156) in background
+[13:58:57.416] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[13:58:58.091] INFO  [g_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[13:58:58.091] LOG   [g_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[13:58:58.659] INFO  [life] wind-down: the trip has run past its deadline (136s, not moving); abandoning it and logging out where I stand
+[13:58:58.659] INFO  [g_Lyra] [travel] Moonglow Bank banker FAILED at (4456,1160,0) -- wind-down deadline
+[13:58:58.659] LOG   [g_Lyra] event travel_failed: label='Moonglow Bank banker' ok=0 at=(4456,1160) legs=1 plans=2 why='wind-down deadline'
+[13:58:58.705] INFO  [life] session_summary duration=436s goals=0/0 gold=10407->10407 skills=121.7->121.7 logs=+0 kills=0 deaths=0 places=5 suppliers=1
+[13:58:58.705] INFO  [life] session_goals families=0 picks=0 top=100% varied=0 self_superseded=0 |  |
+[13:58:58.707] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_16.lyra/state.json
+[13:58:58.707] INFO  [life] logging out
+[13:58:58.707] INFO  [g_Lyra] [action] logout requested
+[13:58:58.707] LOG   [g_Lyra] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[13:58:58.708] INFO  [g_Lyra] [0xD1] logout acknowledged (accepted=1)
+[13:58:58.708] LOG   [g_Lyra] event logout_ack: accepted
+[13:58:58.708] INFO  [g_Lyra] [net] closing connection (logout acknowledged)
+[13:58:58.708] LOG   [g_Lyra] event logout_complete: acked

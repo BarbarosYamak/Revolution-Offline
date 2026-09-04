@@ -1,1 +1,233 @@
-{"bank":[]}
+{
+  "bank": [
+    {
+      "item": "i_ingot_iron",
+      "qty": 30
+    }
+  ],
+  "bank_seen_ms": 1942863645,
+  "build_plan": {
+    "create_dex": 20,
+    "create_int": 10,
+    "create_skills": [
+      {
+        "skill": 45,
+        "tenths": 500
+      },
+      {
+        "skill": 7,
+        "tenths": 500
+      }
+    ],
+    "create_str": 50,
+    "family": "miner_smith",
+    "skills": [
+      {
+        "skill": 7,
+        "tenths": 1000
+      },
+      {
+        "skill": 45,
+        "tenths": 1000
+      },
+      {
+        "skill": 37,
+        "tenths": 500
+      }
+    ],
+    "target_dex": 45,
+    "target_int": 80,
+    "target_str": 100,
+    "unresolved_tenths": 4500
+  },
+  "checkpoint_ms": 1942909482,
+  "death_count": 0,
+  "goal": {
+    "active": true,
+    "attempts": 0,
+    "failure_reason": "",
+    "kind": "CRAFT",
+    "progress": 0,
+    "started_at_ms": 1942846866
+  },
+  "home_city": "Minoc",
+  "identity": {
+    "account_name": "RevGen3_01",
+    "character_name": "Draver",
+    "created_at_ms": 0,
+    "first_seen_at_ms": 1942746205,
+    "identity_id": "revgen3_01.draver",
+    "last_seen_at_ms": 1942746205,
+    "sessions": 1,
+    "total_play_time_ms": 165889
+  },
+  "last_death_ms": 0,
+  "last_server_report": {
+    "dead": false,
+    "dex": 20,
+    "gold": 9880,
+    "int": 10,
+    "skills": [
+      {
+        "skill": 7,
+        "tenths": 500
+      },
+      {
+        "skill": 45,
+        "tenths": 500
+      },
+      {
+        "skill": 37,
+        "tenths": 0
+      }
+    ],
+    "str": 50,
+    "x": 2475,
+    "y": 569
+  },
+  "ledger": [],
+  "memory": {
+    "creatures": [],
+    "danger": [],
+    "events": [
+      {
+        "at_ms": 1942746205,
+        "detail": "Minoc",
+        "kind": "newbie_knowledge_seeded",
+        "place": "",
+        "x": 2476,
+        "y": 413
+      },
+      {
+        "at_ms": 1942746389,
+        "detail": "session=1",
+        "kind": "mount_unavailable",
+        "place": "",
+        "x": 2476,
+        "y": 413
+      },
+      {
+        "at_ms": 1942807208,
+        "detail": "opened a bank box",
+        "kind": "bank_learned",
+        "place": "bank",
+        "x": 2504,
+        "y": 557
+      }
+    ],
+    "places": [
+      {
+        "kind": "common_knowledge_bank",
+        "last_verified_ms": 1942746205,
+        "learned_ms": 1942746205,
+        "name": "Minoc banker",
+        "visits": 1,
+        "x": 2503,
+        "y": 552,
+        "z": 0
+      },
+      {
+        "kind": "common_knowledge_healer",
+        "last_verified_ms": 1942746205,
+        "learned_ms": 1942746205,
+        "name": "Minoc healer",
+        "visits": 1,
+        "x": 2577,
+        "y": 599,
+        "z": 0
+      },
+      {
+        "kind": "common_knowledge_provisioner",
+        "last_verified_ms": 1942746205,
+        "learned_ms": 1942746205,
+        "name": "Minoc provisioner",
+        "visits": 1,
+        "x": 2526,
+        "y": 546,
+        "z": 0
+      },
+      {
+        "kind": "healer",
+        "last_verified_ms": 1942863645,
+        "learned_ms": 1942843653,
+        "name": "Riley, the healer guildmaster",
+        "visits": 365,
+        "x": 2575,
+        "y": 597,
+        "z": 0
+      },
+      {
+        "kind": "safe",
+        "last_verified_ms": 1942909421,
+        "learned_ms": 1942909421,
+        "name": "logout point",
+        "visits": 1,
+        "x": 2475,
+        "y": 569,
+        "z": 5
+      }
+    ],
+    "resources": [
+      {
+        "failures": 0,
+        "hinted": true,
+        "label": "Minoc Miner's Guild",
+        "last_seen_ms": 1942746205,
+        "last_success_ms": 0,
+        "resource": "ore",
+        "successes": 0,
+        "x": 2456,
+        "y": 493,
+        "z": 15
+      },
+      {
+        "failures": 0,
+        "hinted": true,
+        "label": "Minoc Mine 1",
+        "last_seen_ms": 1942746205,
+        "last_success_ms": 0,
+        "resource": "ore",
+        "successes": 0,
+        "x": 2558,
+        "y": 499,
+        "z": 0
+      },
+      {
+        "failures": 0,
+        "hinted": true,
+        "label": "The Old Miner's Supplies",
+        "last_seen_ms": 1942746205,
+        "last_success_ms": 0,
+        "resource": "ore",
+        "successes": 0,
+        "x": 2460,
+        "y": 429,
+        "z": 15
+      }
+    ],
+    "suppliers": [],
+    "trainers": []
+  },
+  "prices": [],
+  "recent_deaths": 0,
+  "schema_version": 2,
+  "sessions": [
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 1942909482,
+      "goals_attempted": 5,
+      "goals_completed": 0,
+      "goals_failed": 0,
+      "gold_end": 9880,
+      "gold_start": 10000,
+      "logs_gathered": 0,
+      "places_learned": 5,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1000,
+      "skill_tenths_start": 1000,
+      "started_ms": 1942746205,
+      "suppliers_learned": 0
+    }
+  ]
+}
