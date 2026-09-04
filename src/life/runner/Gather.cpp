@@ -7,6 +7,110 @@ namespace uo::life {
 using namespace runner_detail;
 
 
+// --- working on foot --------------------------------------------------------
+//
+// "bots dismount before a mining or lumberjacking sitting and remount when the
+// sitting ends" (project owner, 2026-09-04). Fishing is deliberately left
+// alone.
+//
+// The mechanics are the ones M3.7.1 already proved and Gear.cpp's DoBuyMount
+// uses: a dismount is a double-click on YOURSELF (Client::ActionDismount ->
+// Horse_UnMount) and a mount is a double-click on the ANIMAL, which is a real
+// world mobile again the moment it is dismounted (a ridden horse is an item on
+// layer 25, not a mobile -- see include/uo/pet.h
+// IsUnobservableBecauseMounted). Neither gesture has a reply of its own, so
+// the only honest verdict either way is obs.mounted, and both budgets below
+// are small on purpose: an unanswered click is a fact to log, not a loop.
+namespace {
+// The riding horses this shard's animal trainers sell, by BODY -- the same
+// four DoBuyMount buys (Gear.cpp kHorseBodies, from c_monster_classic.scp).
+// A dismounted mount is one of these standing next to us.
+const u16 kRideableBodies[] = {0x00C8, 0x00CC, 0x00E2, 0x00E4};
+// Sphere puts the animal down beside its rider, and a pet that has wandered
+// further than this is not worth chasing on the way to the bank.
+constexpr int kRemountRadius = 3;
+constexpr i32 kMaxDismountClicks = 3;
+constexpr i32 kMaxRemountClicks  = 3;
+// How long the animal is given to appear as a mobile after the dismount before
+// we accept that it is not coming back to us.
+constexpr i64 kMountAppearMs = 4000;
+}  // namespace
+
+bool Runner::DismountToWork(Client& client, const Observation& obs) {
+    if (!obs.mounted) return false;
+    if (client.ActionBusy()) return true;   // a click is already in flight
+    if (gatherDismountClicks_ >= kMaxDismountClicks) {
+        // Said once, then we stop asking. War mode refuses this gesture
+        // (COMBAT_DCLICKSELF_UNMOUNTS unset, Client.cpp ActionDismount), and
+        // the server's refusal is silent -- so the swing below will be
+        // refused by @PreStart and THAT is the failure the log will carry.
+        if (gatherDismountClicks_ == kMaxDismountClicks) {
+            ++gatherDismountClicks_;
+            LogLine("gather: %d double-clicks on myself and the paperdoll still "
+                    "shows mounted -- working from the saddle and letting the "
+                    "server judge it", kMaxDismountClicks);
+        }
+        return false;
+    }
+    ++gatherDismountClicks_;
+    LogLine("gather: getting off the horse to work (attempt %d of %d)",
+            gatherDismountClicks_, kMaxDismountClicks);
+    client.ActionDismount();
+    gatherOnFoot_ = true;
+    gatherRemountClicks_ = 0;
+    gatherMountLostMs_ = 0;
+    nextActionMs_ = obs.nowMs + 1500;
+    return true;
+}
+
+bool Runner::RemountAfterWork(Client& client, const Observation& obs) {
+    if (!gatherOnFoot_) return false;
+    if (obs.mounted) {           // back up: the sitting is properly closed
+        LogLine("gather: back in the saddle");
+        gatherOnFoot_ = false;
+        gatherRemountClicks_ = 0;
+        gatherDismountClicks_ = 0;
+        gatherMountLostMs_ = 0;
+        return false;
+    }
+    // A ghost cannot ride, and a corpse run is not the moment to try.
+    if (obs.dead) { gatherOnFoot_ = false; return false; }
+    if (client.ActionBusy()) return true;
+
+    u32 horse = 0;
+    for (u16 body : kRideableBodies) {
+        horse = client.NearestMobileWithBody(body, kRemountRadius);
+        if (horse) break;
+    }
+    if (!horse) {
+        if (!gatherMountLostMs_) gatherMountLostMs_ = obs.nowMs;
+        if (obs.nowMs - gatherMountLostMs_ < kMountAppearMs) {
+            nextActionMs_ = obs.nowMs + 1000;   // let the pet packet land
+            return true;
+        }
+        LogLine("gather: the horse is not within %d tiles any more -- "
+                "continuing on foot", kRemountRadius);
+        gatherOnFoot_ = false;
+        gatherMountLostMs_ = 0;
+        return false;
+    }
+    if (gatherRemountClicks_ >= kMaxRemountClicks) {
+        LogLine("gather: %d double-clicks on the horse 0x%08X and the paperdoll "
+                "still shows on foot -- continuing on foot",
+                gatherRemountClicks_, horse);
+        gatherOnFoot_ = false;
+        gatherRemountClicks_ = 0;
+        return false;
+    }
+    ++gatherRemountClicks_;
+    LogLine("gather: work done -- climbing back on the horse 0x%08X "
+            "(attempt %d of %d)", horse, gatherRemountClicks_,
+            kMaxRemountClicks);
+    client.ActionUseObject(horse);
+    nextActionMs_ = obs.nowMs + 2000;
+    return true;
+}
+
 // --- the work --------------------------------------------------------------
 
 bool Runner::DoGatherLogs(Client& client, const Observation& obs) {
@@ -72,6 +176,10 @@ bool Runner::DoGatherLogs(Client& client, const Observation& obs) {
     if (!obs.atWorkSite || areaExhausted_) {
         if (client.TravelBusy()) return false;
         if (!travelInFlight_) {
+            // THIS STAND IS FINISHED, SO THE NEXT LEG IS RIDDEN. Getting back
+            // on before the journey is the whole point of dismounting only at
+            // the work site (owner rule, 2026-09-04).
+            if (RemountAfterWork(client, obs)) return false;
             // Earned knowledge first, then common knowledge, then go looking.
             // The order matters: preferring a merely-remembered spot over a
             // named forest is what kept this character in the scrub.
@@ -372,6 +480,10 @@ bool Runner::DoGatherLogs(Client& client, const Observation& obs) {
         return false;
     }
 
+    // ON FOOT TO SWING. The tree is chosen and in reach, so this is the moment
+    // the owner's rule names -- not the journey, not the arming.
+    if (DismountToWork(client, obs)) return false;
+
     const u32 axe = AxeSerialInHand(client);
     if (!axe) {
         planner_.NoteAttempt(obs.nowMs);
@@ -418,6 +530,56 @@ static i32 FishInPack(const std::vector<market::Stock>& pack) {
     i32 n = 0;
     for (const char* k : kKinds) n += market::QtyOf(pack, k);
     return n;
+}
+
+// WHERE TO STAND TO USE A FORGE: ORTHOGONAL FIRST, AND NEVER THE SAME TILE
+// TWICE.
+//
+// Sphere measures reach to the object's own FOOTPRINT, and a forge is a
+// multi-tile static, so the diagonal neighbour of the tile the map names is not
+// reliably in reach even at Chebyshev 1. Draver proved both halves of that on
+// 2026-09-04: from (2560,500) -- the NW diagonal of the mine forge i_forge
+// 0x40007506 at (2561,501) -- every double-click came back "You can't reach
+// that" in 15 ms (run_gates/g_Draver.console.txt:370-382), while the project
+// owner used that SAME forge from (2561,502), directly south, on the live
+// client the same day. One diagonal refusal is not proof the forge is unusable.
+//
+// So the ordering below is ABSOLUTE, not a tiebreak: any walkable orthogonal
+// neighbour beats every diagonal one, and only within a class is the nearest
+// preferred. `tried` holds the tiles this forge has already refused from, so a
+// refusal moves the character to a DIFFERENT tile rather than re-clicking from
+// the one the server already answered.
+static bool PickForgeStandTile(Client& client, i32 forgeX, i32 forgeY,
+                               i8 forgeZ, i32 fromX, i32 fromY,
+                               const std::vector<std::pair<i32, i32>>& tried,
+                               i32* outX, i32* outY, bool* outOrthogonal) {
+    // S, N, E, W -- then the four diagonals, only if no orthogonal one is free.
+    static const int kdx[] = {0, 0, 1, -1, -1, 1, -1, 1};
+    static const int kdy[] = {1, -1, 0, 0, -1, -1, 1, 1};
+    bool have = false;
+    bool haveOrtho = false;
+    i32 bestD = 0;
+    for (int i = 0; i < 8; ++i) {
+        const bool ortho = (i < 4);
+        // An orthogonal tile wins outright; do not even look at the diagonals.
+        if (!ortho && haveOrtho) break;
+        const i32 tx = forgeX + kdx[i], ty = forgeY + kdy[i];
+        if (!client.TileIsWalkable(tx, ty, forgeZ)) continue;
+        bool alreadyTried = false;
+        for (const auto& t : tried) {
+            if (t.first == tx && t.second == ty) { alreadyTried = true; break; }
+        }
+        if (alreadyTried) continue;
+        const i32 d = TileDist(fromX, fromY, tx, ty);
+        if (have && d >= bestD) continue;
+        *outX = tx;
+        *outY = ty;
+        if (outOrthogonal) *outOrthogonal = ortho;
+        bestD = d;
+        have = true;
+        haveOrtho = ortho;
+    }
+    return have;
 }
 
 bool Runner::DoSmelt(Client& client, const Observation& obs) {
@@ -522,6 +684,71 @@ bool Runner::DoSmelt(Client& client, const Observation& obs) {
     if (sawForge && forgeDist > kForgeReach) {
         if (client.TravelBusy()) return false;
 
+        // WALK TO A TILE BESIDE THE FORGE, NEVER TO THE FORGE ITSELF. A forge
+        // is solid: asking the planner for its own tile made it search for the
+        // best part of a second and then give up --
+        //   "no path to (2468,557) avoiding 0 block(s) (search 976432.8us)"
+        //   "start (2472,550,5) exits: open=8" -- not enclosed; unreachable.
+        // Naming a real standing tile turns that into an ordinary short walk.
+        // ORTHOGONAL NEIGHBOUR FIRST, then the nearest of those -- see
+        // PickForgeStandTile. The old rule here was "nearest walkable
+        // neighbour" with the diagonals first in scan order, which is how
+        // Draver came at the mine forge from (2560,500) and was refused from a
+        // tile the owner can smelt at one step away (2561,502).
+        i32 standX = 0, standY = 0;
+        bool standOrtho = false;
+        bool haveStand =
+            PickForgeStandTile(client, forgeTile.x, forgeTile.y, forgeTile.z,
+                               obs.x, obs.y, smeltTriedStands_, &standX,
+                               &standY, &standOrtho);
+        if (!haveStand) {
+            // Nothing to stand on next to it -- that is the whole story for
+            // the lone forge beside the Minoc armorer. No point approaching
+            // four times to learn it. Says how many tiles were tried, because
+            // "no tile is walkable" and "every walkable tile refused" are
+            // different findings and the log used to blur them.
+            LogLine("smelt: no walkable tile beside the forge at %d,%d left to "
+                    "try (%d already tried) -- striking it off", forgeTile.x,
+                    forgeTile.y, static_cast<int>(smeltTriedStands_.size()));
+            deadForges_.emplace_back(forgeTile.x, forgeTile.y);
+            if (deadForges_.size() > 16) deadForges_.erase(deadForges_.begin());
+            smeltApproaches_ = 0;
+            smeltFinalHop_ = false;
+            travelInFlight_ = false;
+            nextActionMs_ = obs.nowMs + 500;
+            return false;
+        }
+
+        // ARRIVED IS NOT ADJACENT. TravelToPoint's leg-arrival test is
+        // `GotoSucceeded() || off <= kLegArriveSlack` with kLegArriveSlack = 3
+        // (ClientTravel.cpp:1488,1525), and it ignores the arriveRadius the
+        // caller asked for -- so a radius-0 trip to a stand tile beside a forge
+        // reports ok=1 up to three tiles away. Draver 2026-09-04 15:40:41:
+        //   travel forge -> (2560,500) r=0 ... forge ARRIVED at (2560,499,0)
+        // one tile short of the stand tile and Chebyshev 2 from the forge at
+        // (2561,501), i.e. outside kForgeReach; six seconds later he struck the
+        // mine's own forge off the list and walked ~90 tiles to the Minoc
+        // blacksmith (run_gates/g_Draver.console.txt:1891-1912).
+        // kForgeReach stays 1 -- the shard refused a smelt at Chebyshev 2
+        // (RunnerInternal.h:690-694) -- so close the last tile with an exact
+        // ActionGoto, which has no arrival slack, and do not spend an approach
+        // on it. Once per forge, so a stand tile the walker cannot actually
+        // stand on still retires the forge under the two-approach rule.
+        if (!smeltFinalHop_ && !client.GotoBusy() &&
+            (obs.x != standX || obs.y != standY) &&
+            TileDist(obs.x, obs.y, standX, standY) <= kLegArriveSlack) {
+            LogLine("smelt: travel stopped %d tile(s) short of the stand tile "
+                    "beside the forge at %d,%d -- stepping onto %d,%d",
+                    TileDist(obs.x, obs.y, standX, standY), forgeTile.x,
+                    forgeTile.y, standX, standY);
+            smeltFinalHop_ = true;
+            travelInFlight_ = false;
+            client.ActionGoto(standX, standY);
+            smeltGotoMs_ = obs.nowMs;
+            nextActionMs_ = obs.nowMs + 1500;
+            return false;
+        }
+
         // A FORGE YOU CANNOT GET NEXT TO IS NOT A FORGE YOU CAN USE. Many
         // stand against a wall or behind a counter with no walkable tile
         // adjacent -- the lone one beside the Minoc armorer is exactly that.
@@ -542,6 +769,7 @@ bool Runner::DoSmelt(Client& client, const Observation& obs) {
                 if (deadForges_.size() > 16)
                     deadForges_.erase(deadForges_.begin());
                 smeltApproaches_ = 0;
+                smeltFinalHop_ = false;
                 travelInFlight_ = false;
                 // The trip counter is what decides to walk somewhere new, and
                 // the skip list above is what makes "somewhere new" mean a
@@ -554,43 +782,20 @@ bool Runner::DoSmelt(Client& client, const Observation& obs) {
             smeltForgeX_ = forgeTile.x;
             smeltForgeY_ = forgeTile.y;
             smeltApproaches_ = 1;
+            smeltFinalHop_ = false;
+            // A different forge has its own refused-from tiles.
+            smeltTriedStands_.clear();
         }
 
-        // WALK TO A TILE BESIDE THE FORGE, NEVER TO THE FORGE ITSELF. A forge
-        // is solid: asking the planner for its own tile made it search for the
-        // best part of a second and then give up --
-        //   "no path to (2468,557) avoiding 0 block(s) (search 976432.8us)"
-        //   "start (2472,550,5) exits: open=8" -- not enclosed; unreachable.
-        // Naming a real standing tile turns that into an ordinary short walk.
-        i32 standX = 0, standY = 0;
-        bool haveStand = false;
-        static const int kdx[] = {-1, 0, 1, -1, 1, -1, 0, 1};
-        static const int kdy[] = {-1, -1, -1, 0, 0, 1, 1, 1};
-        for (int i = 0; i < 8 && !haveStand; ++i) {
-            const i32 tx = forgeTile.x + kdx[i], ty = forgeTile.y + kdy[i];
-            if (!client.TileIsWalkable(tx, ty, forgeTile.z)) continue;
-            standX = tx; standY = ty; haveStand = true;
-        }
-        if (!haveStand) {
-            // Nothing to stand on next to it -- that is the whole story for
-            // the lone forge beside the Minoc armorer. No point approaching
-            // four times to learn it.
-            LogLine("smelt: no walkable tile beside the forge at %d,%d -- "
-                    "striking it off", forgeTile.x, forgeTile.y);
-            deadForges_.emplace_back(forgeTile.x, forgeTile.y);
-            if (deadForges_.size() > 16) deadForges_.erase(deadForges_.begin());
-            smeltApproaches_ = 0;
-            travelInFlight_ = false;
-            nextActionMs_ = obs.nowMs + 500;
-            return false;
-        }
-
-        LogLine("smelt: forge at %d,%d is %d tiles off -- standing at %d,%d",
-                forgeTile.x, forgeTile.y, forgeDist, standX, standY);
+        LogLine("smelt: forge at %d,%d is %d tiles off -- standing at %d,%d "
+                "(%s side)", forgeTile.x, forgeTile.y, forgeDist, standX,
+                standY, standOrtho ? "orthogonal" : "diagonal");
         travelInFlight_ = client.TravelToPoint(standX, standY, 0, "forge");
         nextActionMs_ = obs.nowMs + 2000;
         return false;
     }
+    // In reach: the next trip to this same forge gets its own final hop.
+    if (sawForge) smeltFinalHop_ = false;
 
     // DO NOT SWING WHILE STILL WALKING. The first version issued the
     // double-click in the same tick it started the last step, so the click
@@ -654,9 +859,23 @@ bool Runner::DoSmelt(Client& client, const Observation& obs) {
     smeltTrips_ = 0;
     smeltSkipPlaces_.clear();
     travelInFlight_ = false;
+    // A different forge from the one the refusal list was built for starts
+    // clean. Only on CHANGE -- this line runs every tick, and clearing it
+    // unconditionally would forget the tile the server just refused.
+    if (forgeTile.x != smeltForgeX_ || forgeTile.y != smeltForgeY_)
+        smeltTriedStands_.clear();
     smeltForgeX_ = forgeTile.x;
     smeltForgeY_ = forgeTile.y;
     smeltApproaches_ = 0;
+
+    // NOR CLICK WHILE STEPPING BETWEEN STAND TILES. ActionGoto is not part of
+    // the journey, so the TravelBusy check above does not cover it -- and the
+    // refusal recovery below moves with ActionGoto. Without this the step to
+    // the next tile and the next double-click go out in the same second, from
+    // the tile that was already refused. Bounded on purpose: a goto that never
+    // lands must not stall the errand for ever.
+    if (client.GotoBusy() && obs.nowMs - smeltGotoMs_ < kSmeltStandGotoMs)
+        return false;
 
     // CLICK THE FORGE, THEN THE ORE -- not the ore on its own.
     //
@@ -690,6 +909,7 @@ bool Runner::DoSmelt(Client& client, const Observation& obs) {
             client.ActionTargetObject(ore);
             smeltCursorPending_ = false;
             smeltReachFails_ = 0;   // the forge answered; the spot is good
+            smeltTriedStands_.clear();  // and so this tile is not "tried"
             smeltStartedMs_ = obs.nowMs;
             planner_.NoteAttempt(obs.nowMs);
             nextActionMs_ = obs.nowMs + 2500;
@@ -712,14 +932,59 @@ bool Runner::DoSmelt(Client& client, const Observation& obs) {
     //
     // A diagonal is not always reachable on this shard: a forge is a multi-
     // tile static and the tile the atlas names is not necessarily the one that
-    // can be touched. So a refusal means MOVE, not repeat -- walk onto the
-    // forge's own entity and try from there. After a few of those the forge
-    // itself is the problem, not the standing spot, and the errand stands
-    // down so a different forge (or a different goal) gets the turn.
+    // can be touched. So a refusal means MOVE, not repeat.
+    //
+    // MOVE TO A DIFFERENT TILE, though -- that is the part this got wrong. The
+    // recovery used to be TravelToEntity(forge), which from an already-adjacent
+    // tile is a no-op: Draver logged the identical
+    //   smelt: "you can't reach that" from 2560,500 -- walking onto the forge
+    // three times two seconds apart WITHOUT MOVING, then wrote the mine forge
+    // off and walked to the Minoc town blacksmith
+    // (run_gates/g_Draver.console.txt:377-383). The forge was fine: the owner
+    // smelted at it from (2561,502) the same day. One refused tile is evidence
+    // about that TILE, not about the forge. So each refusal retires the tile
+    // and steps to the next candidate -- orthogonal first -- and only when the
+    // adjacent ring is exhausted (or kMaxSmeltReachFails distinct tiles have
+    // answered no) is the forge itself struck off.
     if (client.ActionKind() == act::Kind::UseObject &&
         client.ActionResult() == act::Result::Rejected &&
         client.CurrentAction().subject == client.LastForgeSerial()) {
-        if (++smeltReachFails_ > kMaxSmeltReachFails) {
+        // THE TILE THAT WAS REFUSED, remembered so it is not offered again.
+        bool known = false;
+        for (const auto& t : smeltTriedStands_)
+            if (t.first == obs.x && t.second == obs.y) { known = true; break; }
+        if (!known) smeltTriedStands_.emplace_back(obs.x, obs.y);
+
+        i32 nextX = 0, nextY = 0;
+        bool nextOrtho = false;
+        const bool haveNext = PickForgeStandTile(
+            client, forgeTile.x, forgeTile.y, forgeTile.z, obs.x, obs.y,
+            smeltTriedStands_, &nextX, &nextY, &nextOrtho);
+
+        // AT LEAST TWO DISTINCT TILES BEFORE ANY VERDICT. Under the owner rule
+        // a forge gets at most two approaches -- but two approaches to the SAME
+        // tile prove nothing, and that is what happened here.
+        if (haveNext &&
+            static_cast<i32>(smeltTriedStands_.size()) < kMaxSmeltReachFails) {
+            LogLine("smelt: \"you can't reach that\" from %d,%d -- trying the "
+                    "%s tile %d,%d instead (%d of the %d tiles beside the forge "
+                    "at %d,%d tried)", obs.x, obs.y,
+                    nextOrtho ? "orthogonal" : "diagonal", nextX, nextY,
+                    static_cast<int>(smeltTriedStands_.size()),
+                    kMaxSmeltReachFails, forgeTile.x, forgeTile.y);
+            smeltReachFails_ = static_cast<i32>(smeltTriedStands_.size());
+            smeltFinalHop_ = false;
+            travelInFlight_ = false;
+            client.ActionGoto(nextX, nextY);
+            smeltGotoMs_ = obs.nowMs;
+            nextActionMs_ = obs.nowMs + 2000;
+            return false;
+        }
+
+        smeltReachFails_ = static_cast<i32>(smeltTriedStands_.size());
+        {
+            // EVERY TILE BESIDE IT HAS ANSWERED. Now -- and only now -- the
+            // forge is the problem rather than the standing spot.
             // RETIRE IT IN THE LIST THE FORGE FINDER ACTUALLY READS.
             //
             // This wrote to deadTargets_ -- the MINING dead list -- while
@@ -735,12 +1000,14 @@ bool Runner::DoSmelt(Client& client, const Observation& obs) {
             // 1, so the forge a miner naturally walks to is the one he cannot
             // stand beside; there are others in Minoc, and now he can reach
             // for them.
-            LogLine("smelt: the forge at %d,%d refused every approach after "
-                    "%d tries -- writing it off and looking for another",
-                    forgeTile.x, forgeTile.y, smeltReachFails_ - 1);
+            LogLine("smelt: the forge at %d,%d refused from %d distinct tile(s) "
+                    "beside it (%s) -- writing it off and looking for another",
+                    forgeTile.x, forgeTile.y, smeltReachFails_,
+                    haveNext ? "cap reached" : "no tile left to try");
             deadForges_.emplace_back(forgeTile.x, forgeTile.y);
             if (deadForges_.size() > 16) deadForges_.erase(deadForges_.begin());
             smeltReachFails_ = 0;
+            smeltTriedStands_.clear();
             smeltForgeX_ = smeltForgeY_ = 0;
             // NOT a goal failure: the errand still has ore to melt and another
             // forge to melt it at. Failing here cooled SMELT down for minutes
@@ -748,12 +1015,6 @@ bool Runner::DoSmelt(Client& client, const Observation& obs) {
             nextActionMs_ = obs.nowMs + 1000;
             return false;
         }
-        LogLine("smelt: \"you can't reach that\" from %d,%d -- walking onto "
-                "the forge itself (try %d of %d)", obs.x, obs.y,
-                smeltReachFails_, kMaxSmeltReachFails);
-        travelInFlight_ = client.TravelToEntity(client.LastForgeSerial(), 0);
-        nextActionMs_ = obs.nowMs + 2000;
-        return false;
     }
 
     LogLine("smelt: opening the forge at %d,%d", forgeTile.x, forgeTile.y);
@@ -1282,6 +1543,8 @@ bool Runner::DoMine(Client& client, const Observation& obs) {
     if (client.ActionBusy()) return false;
 
     if (obs.WeightFraction() >= kGathererPackFullFrac) {
+        // The load goes to a forge or a bank next, so climb back on first.
+        if (RemountAfterWork(client, obs)) return false;
         LogLine("mine: pack full at %.0f%%", obs.WeightFraction() * 100.0);
         planner_.Finish(true, nullptr, obs.nowMs);
         return true;
@@ -1483,8 +1746,22 @@ bool Runner::DoMine(Client& client, const Observation& obs) {
                  client.WithinMiningRegion(homeMine->x, homeMine->y, hereX,
                                            hereY));
         }
-        if (homeMine &&
+        // ALREADY INSIDE THE CAVE IS ALREADY ARRIVED. atHomeMineInterior above
+        // is the correct "am I there" test (centroid distance OR inside the
+        // mine's own RECTs); this travel gate used only the raw centroid
+        // distance, so a miner who walked to a real rock near the RECT edge --
+        // still inside Minoc Mine 1, but 7-9 tiles from the interior anchor --
+        // was sent straight back to the anchor on the very next tick, then
+        // walked back out to the rock, forever. Draver 2026-09-04: 175 "going
+        // directly to the interior" against 187 "the rock is at ... standing
+        // at" and only 18 strikes in 60 minutes; Kharain 209/253/14
+        // (run_gates/g_Draver.console.txt, g_Kharain.console.txt). The 2026-09-02
+        // fix added WithinMiningRegion to atHomeMineInterior but left this gate
+        // reading the centroid alone, so the ping-pong it describes survived.
+        if (homeMine && !atHomeMineInterior &&
             TileDist(homeMineX, homeMineY, hereX, hereY) > kMineReach) {
+            // A journey, not a sitting: ride it if we got off for one here.
+            if (RemountAfterWork(client, obs)) return false;
             if (++mineTrips_ > kMaxMineTrips) {
                 LogLine("goal_failed=MINE reason=\"could not reach home mine "
                         "in %d trips\"", kMaxMineTrips);
@@ -1513,6 +1790,7 @@ bool Runner::DoMine(Client& client, const Observation& obs) {
         }
         const i32 d = client.DistanceToResource(wm::ResourceKind::Mining);
         if (d > kMineReach) {
+            if (RemountAfterWork(client, obs)) return false;
             if (++mineTrips_ > kMaxMineTrips) {
                 LogLine("goal_failed=MINE reason=\"could not reach a mining "
                         "area in %d trips\"", kMaxMineTrips);
@@ -1702,6 +1980,11 @@ bool Runner::DoMine(Client& client, const Observation& obs) {
         nextActionMs_ = obs.nowMs + 2500;
         return false;
     }
+
+    // ON FOOT TO SWING -- and here it is not only manners. skill45_mining.scp
+    // @PreStart refuses outright while FINDLAYER.layer_horse, so a mounted
+    // strike is not a slower swing, it is no swing at all.
+    if (DismountToWork(client, obs)) return false;
 
     mineX_ = spot.rockX;
     mineY_ = spot.rockY;

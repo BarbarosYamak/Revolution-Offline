@@ -1812,7 +1812,12 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
             restedSince >= 0 && cfg.sessionIndex > 0 &&
             (cfg.sessionIndex - restedSince) < kMountRestSessions;
         const bool stoodDown = obs.mountAskOnCooldown || restingFromPastSession;
-        if (!obs.mounted && !obs.dead) {
+        // `dismountedForWork` is a precondition, not a preference: a miner
+        // standing beside his own horse with a pickaxe in his hands is not a
+        // character who needs to buy one, and treating him as one made
+        // BUY_MOUNT supersede MINE every few seconds (see Observation::
+        // dismountedForWork).
+        if (!obs.mounted && !obs.dead && !obs.dismountedForWork) {
             // A HORSE IS A CONVENIENCE. THE GRAVEYARD IS THE JOB.
             //
             // 0.80 x 255 = 204 put BUY_MOUNT above everything a fighter does

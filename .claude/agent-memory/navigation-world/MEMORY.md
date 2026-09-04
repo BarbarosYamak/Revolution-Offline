@@ -1,2 +1,5 @@
 - [vcvars and path_probe](vcvars_and_pathprobe.md) — correct vcvars64 path for building diagnostic tools; build_pathprobe.bat's hardcoded path is stale
 - [Resources'-own-tile bug class](resources-own-tile-bug-class.md) — NoteResource/proven-location writes must store the actor's stand tile, not the interacted-with object's tile
+- [Travel ARRIVED is not arrived](travel-arrived-is-not-arrived.md) — TravelToPoint ignores arriveRadius and lies by up to 3 tiles; exact-tile callers must close the gap with ActionGoto
+- [Two arrival tests must agree](two-arrival-tests-must-agree.md) — ping-pong bug class: the trip gate must consume the "am I there" predicate, not re-derive a looser one
+- [--dedup templates numbers](dedup-templates-numbers.md) — a TEMPLATE xN count is per line-shape, not per coordinate; re-grep the literal before calling it a loop

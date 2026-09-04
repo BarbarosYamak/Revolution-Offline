@@ -475,6 +475,7 @@ bool Runner::DoMakeCloth(Client& client, const Observation& obs) {
                 LogLine("cloth: %d cloth and %d bolts is enough for the batch",
                         cloth, bolts);
             clothTrips_ = 0;
+            clothPastureIdx_ = 0;
             clothShornSheep_.clear();
             clothFlockBareMs_ = 0;
             clothKillSheep_ = 0; clothCarveCorpse_ = 0; clothCarved_ = false;
@@ -775,6 +776,7 @@ bool Runner::DoMakeCloth(Client& client, const Observation& obs) {
         LogLine("cloth: shearing a sheep (%d wool carried, want %d)", wool,
                 woolTarget);
         clothTrips_ = 0;
+        clothPastureIdx_ = 0;
         client.ActionUseItemOn(blade, sheep);
         clothShornSheep_.push_back(sheep);
         if (fighter) {
@@ -846,6 +848,7 @@ bool Runner::DoMakeCloth(Client& client, const Observation& obs) {
         LogLine("goal_failed=%s reason=\"no sheep found after %d trips "
                 "to the pastures\"", GoalKindName(self), clothTrips_ - 1);
         clothTrips_ = 0;
+        clothPastureIdx_ = 0;
         planner_.Cooldown(self, obs.nowMs + kNoClothCooldownMs);
         planner_.Finish(false, "no sheep reachable", obs.nowMs);
         return false;
@@ -880,8 +883,31 @@ bool Runner::DoMakeCloth(Client& client, const Observation& obs) {
         anchorY = homeBank->y;
         anchorWhat = "home";
     }
-    std::vector<usize> order(pastures.size());
-    for (usize i = 0; i < order.size(); ++i) order[i] = i;
+    //
+    // ONLY FLOCKS NEAR HOME. Wave 2026-09-04: clothPastureIdx_ was never reset
+    // between goals, so Aelia and Wren (Britain tailors) walked the whole
+    // table in order -- Britain, Yew x3, Jhelom, then the Delucia flock in the
+    // Lost Lands -- and the Delucia route runs through Trinsic Passage
+    // (a_trinsic_passage_level_2_1): seven deaths each, no wool. A tailor
+    // shears the farmland next to their home city and nowhere else; when that
+    // flock is bare the answer is the WTB fallback, not a cross-map hike.
+    // The index now also resets whenever clothTrips_ does.
+    std::vector<usize> order;
+    for (usize i = 0; i < pastures.size(); ++i)
+        if (TileDist(anchorX, anchorY, pastures[i].x, pastures[i].y) <=
+            kMaxPastureTilesFromHome)
+            order.push_back(i);
+    if (order.empty()) {
+        LogLine("goal_failed=%s reason=\"no pasture within %d tiles of %s "
+                "(%d,%d) -- not walking across the map for wool\"",
+                GoalKindName(self), kMaxPastureTilesFromHome, anchorWhat,
+                anchorX, anchorY);
+        clothTrips_ = 0;
+        clothPastureIdx_ = 0;
+        planner_.Cooldown(self, obs.nowMs + kNoClothCooldownMs);
+        planner_.Finish(false, "no pasture near home", obs.nowMs);
+        return false;
+    }
     std::stable_sort(order.begin(), order.end(), [&](usize a, usize b) {
         return TileDist(anchorX, anchorY, pastures[a].x, pastures[a].y) <
                TileDist(anchorX, anchorY, pastures[b].x, pastures[b].y);

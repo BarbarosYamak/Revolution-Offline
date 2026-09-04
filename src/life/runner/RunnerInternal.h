@@ -376,6 +376,13 @@ constexpr u16 kBladedGraphics[] = {
 constexpr i32 kMaxEmptyClothSteps = 3;
 constexpr i32 kMaxClothTrips = 4;
 constexpr i64 kNoClothCooldownMs = 300000;
+// Farthest a flock may be from the home bank before it is not "our" pasture.
+// Britain bank -> Britain farmland flock (1318,1811) is ~130 tiles; the next
+// nearest rows are the Yew flocks at ~750 and Jhelom at ~1900, both a
+// different city's pasture. 400 keeps a tailor on home ground and never
+// routes through a dungeon passage for wool (owner, 2026-09-04: "closest
+// Britain").
+constexpr i32 kMaxPastureTilesFromHome = 400;
 // Four yarn make one bolt: the loom's own message table is five entries and it
 // yields at ARRAY_COUNT-1 (CClientTarg.cpp:2230-2245).
 constexpr i32 kYarnPerBolt = 4;
@@ -426,7 +433,16 @@ constexpr i64 kNoHuntingGroundCooldownMs = 180000;
 // concluding the forge itself is the problem. Three, matching the
 // vendor chase: enough to get round a wall, not enough to spend a
 // session on one anvil.
+// How many DISTINCT tiles beside one forge may answer "you can't reach that"
+// before the forge itself is written off. Distinct is the whole point: the old
+// counter counted repeats from the SAME tile, so Draver condemned the Minoc
+// mine forge after three refusals from (2560,500) -- a diagonal -- while the
+// owner smelted at it from (2561,502) the same day.
 constexpr i32 kMaxSmeltReachFails = 3;
+// How long a step between forge stand tiles is given to land before the goal
+// stops waiting on it. ActionGoto is outside the journey, so TravelBusy does
+// not cover it and the click would otherwise go out mid-step.
+constexpr i64 kSmeltStandGotoMs = 6000;
 // A goal that used its whole time limit and finished nothing rests for two
 // minutes. Long enough that something else certainly gets a turn, short enough
 // that a genuinely long errand -- a walk across the map to a trainer -- can be
@@ -686,6 +702,11 @@ constexpr u16 kIronOre[] = {0x19B7, 0x19B8, 0x19B9, 0x19BA};
 // swing. Sphere measures that distance to the object's own footprint, so the
 // only reliable rule is to stand ADJACENT and then click.
 constexpr i32 kForgeReach = 1;
+// Mirrors kLegArriveSlack in ClientTravel.cpp: how far a travel leg may finish
+// from the tile it was aimed at and still be reported ARRIVED. A forge stand
+// tile has to be exact, so DoSmelt closes a gap up to this size with a plain
+// ActionGoto rather than treating the false arrival as a failed approach.
+constexpr i32 kLegArriveSlack = 3;
 // i_fish_cut_raw 0x097A -- four to a whole fish, and food once cooked.
 constexpr u16 kFishRawSteak = 0x097A;
 // Mirrors kGoldWorthCarrying in Needs.cpp: the need and the goal must agree on

@@ -1,0 +1,82 @@
+# QA loot/appearance verification, 2026-09-04, run by the verification agent.
+# Run ONLY as Observer (Admin) via run_admin.ps1. World-mutating: spawns and
+# kills test creatures via .newnpc / .act.kill, leaving corpses for a
+# post-run world_query.py read. Backup taken to save_backup_2026-09-04_qa_loot/
+# before this run. Command idiom follows verify_truthpack_2026-09-03.txt:
+# a player-typed "." command does not expand <...>, only SHOW does, so this
+# reads .act.show <prop> after each .newnpc, exactly as that file did after
+# .newitem.
+wait_world
+sleep 3000
+say .show p
+sleep 1500
+
+# ---- Claim 1: savage body/color (c_savage_warrior_male, c_savage_rider, c_savage_shaman)
+say .newnpc c_savage_warrior_male
+sleep 1500
+say savage_warrior_male:
+say .act.show dispid
+sleep 800
+say .act.show color
+sleep 800
+say .act.remove
+sleep 1000
+
+say .newnpc c_savage_rider
+sleep 1500
+say savage_rider:
+say .act.show dispid
+sleep 800
+say .act.show color
+sleep 800
+say .act.remove
+sleep 1000
+
+say .newnpc c_savage_shaman
+sleep 1500
+say savage_shaman:
+say .act.show dispid
+sleep 800
+say .act.show color
+sleep 800
+say .act.remove
+sleep 1000
+
+# ---- Claim 2: brigand equipment -- kill once, corpse read via world_query.py
+say .newnpc c_brigand
+sleep 1500
+say brigand spawned, killing for corpse contents
+say .act.kill
+sleep 2500
+
+# ---- Claim 3a: dragon loot across 8 kills
+loop 8
+  say .newnpc c_dragon
+  sleep 1800
+  say .act.kill
+  sleep 2500
+endloop
+
+# ---- Claim 3b: lich loot across 6 kills
+loop 6
+  say .newnpc c_lich
+  sleep 1500
+  say .act.kill
+  sleep 2200
+endloop
+
+# ---- Claim 3c: orc loot across 6 kills
+loop 6
+  say .newnpc c_orc
+  sleep 1200
+  say .act.kill
+  sleep 1800
+endloop
+
+say all test spawns and kills complete
+sleep 1500
+say .save
+sleep 15000
+say saved
+sleep 1500
+logout

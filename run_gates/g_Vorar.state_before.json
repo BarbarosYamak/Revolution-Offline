@@ -47,15 +47,15 @@
     "target_str": 100,
     "unresolved_tenths": 1000
   },
-  "checkpoint_ms": 1942962060,
+  "checkpoint_ms": 2042739488,
   "death_count": 0,
   "goal": {
     "active": true,
     "attempts": 0,
     "failure_reason": "",
-    "kind": "UPGRADE_GEAR",
+    "kind": "EXPLORE",
     "progress": 0,
-    "started_at_ms": 1942922917
+    "started_at_ms": 2042413020
   },
   "home_city": "Britain",
   "identity": {
@@ -64,15 +64,17 @@
     "created_at_ms": 0,
     "first_seen_at_ms": 1942839111,
     "identity_id": "revgen3_05.vorar",
-    "last_seen_at_ms": 1942839111,
-    "sessions": 1,
-    "total_play_time_ms": 125561
+    "last_seen_at_ms": 2042390225,
+    "sessions": 3,
+    "total_play_time_ms": 4110524
   },
+  "known_spells": [],
+  "known_spells_seen_ms": 0,
   "last_death_ms": 0,
   "last_server_report": {
     "dead": false,
     "dex": 25,
-    "gold": 9994,
+    "gold": 9036,
     "int": 5,
     "skills": [
       {
@@ -81,11 +83,11 @@
       },
       {
         "skill": 40,
-        "tenths": 500
+        "tenths": 501
       },
       {
         "skill": 27,
-        "tenths": 0
+        "tenths": 23
       },
       {
         "skill": 1,
@@ -97,17 +99,34 @@
       },
       {
         "skill": 11,
-        "tenths": 0
+        "tenths": 200
       }
     ],
     "str": 50,
-    "x": 1417,
-    "y": 1552
+    "x": 1655,
+    "y": 1611
   },
   "ledger": [],
   "memory": {
     "creatures": [],
-    "danger": [],
+    "danger": [
+      {
+        "at_ms": 2030428975,
+        "heat": 1.982096051,
+        "radius": 16,
+        "threat": "Skeleton",
+        "x": 1383,
+        "y": 1499
+      },
+      {
+        "at_ms": 2031315276,
+        "heat": 2.352445439,
+        "radius": 16,
+        "threat": "Skeleton",
+        "x": 731,
+        "y": 1138
+      }
+    ],
     "events": [
       {
         "at_ms": 1942839111,
@@ -124,6 +143,38 @@
         "place": "bank",
         "x": 1430,
         "y": 1691
+      },
+      {
+        "at_ms": 2030446882,
+        "detail": "went hunting",
+        "kind": "first_hunt",
+        "place": "graveyard",
+        "x": 1381,
+        "y": 1497
+      },
+      {
+        "at_ms": 2032109159,
+        "detail": "carpenter",
+        "kind": "trainer_unreachable",
+        "place": "",
+        "x": 631,
+        "y": 2166
+      },
+      {
+        "at_ms": 2032895368,
+        "detail": "carpenter",
+        "kind": "trainer_unreachable",
+        "place": "",
+        "x": 2518,
+        "y": 482
+      },
+      {
+        "at_ms": 2042408857,
+        "detail": "Carpentry",
+        "kind": "skill_trained",
+        "place": "carpenter",
+        "x": 2514,
+        "y": 479
       }
     ],
     "places": [
@@ -159,10 +210,10 @@
       },
       {
         "kind": "healer",
-        "last_verified_ms": 1942956530,
+        "last_verified_ms": 2031396508,
         "learned_ms": 1942917848,
-        "name": "Dale, the healer",
-        "visits": 863,
+        "name": "Natasha, the healer guildmistress",
+        "visits": 30329,
         "x": 1471,
         "y": 1614,
         "z": 20
@@ -176,11 +227,56 @@
         "x": 1417,
         "y": 1552,
         "z": 30
+      },
+      {
+        "kind": "healer",
+        "last_verified_ms": 2033491506,
+        "learned_ms": 2031396523,
+        "name": "Dunstan, the healer",
+        "visits": 42768,
+        "x": 646,
+        "y": 1085,
+        "z": 0
+      },
+      {
+        "kind": "safe",
+        "last_verified_ms": 2042739427,
+        "learned_ms": 2042739427,
+        "name": "logout point",
+        "visits": 1,
+        "x": 1655,
+        "y": 1611,
+        "z": 20
       }
     ],
     "resources": [],
-    "suppliers": [],
-    "trainers": []
+    "suppliers": [
+      {
+        "last_verified_ms": 2042408857,
+        "name": "carpenter",
+        "need": "trainer:carpenter",
+        "observed_price": 200,
+        "observed_quantity": 0,
+        "policy_allows": true,
+        "serial": 0,
+        "source_type": "npc_trainer",
+        "x": 2514,
+        "y": 479,
+        "z": 15
+      }
+    ],
+    "trainers": [
+      {
+        "at_tenths": 200,
+        "npc": 37001,
+        "quoted": 200,
+        "skill": 11,
+        "taught": true,
+        "trade": "carpenter",
+        "when_ms": 2042408857,
+        "why": "taught"
+      }
+    ]
   },
   "prices": [],
   "recent_deaths": 0,
@@ -202,6 +298,40 @@
       "skill_tenths_start": 1000,
       "started_ms": 1942839111,
       "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2033524565,
+      "goals_attempted": 115,
+      "goals_completed": 3,
+      "goals_failed": 0,
+      "gold_end": 9236,
+      "gold_start": 9994,
+      "logs_gathered": 0,
+      "places_learned": 6,
+      "self_supersessions": 1,
+      "skill_tenths_end": 1000,
+      "skill_tenths_start": 1000,
+      "started_ms": 2029894069,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2042739488,
+      "goals_attempted": 4,
+      "goals_completed": 1,
+      "goals_failed": 0,
+      "gold_end": 9036,
+      "gold_start": 9236,
+      "logs_gathered": 0,
+      "places_learned": 7,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1224,
+      "skill_tenths_start": 1024,
+      "started_ms": 2042390225,
+      "suppliers_learned": 1
     }
   ]
 }

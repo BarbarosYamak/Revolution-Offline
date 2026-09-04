@@ -47,15 +47,15 @@
     "target_str": 100,
     "unresolved_tenths": 1000
   },
-  "checkpoint_ms": 1943176759,
+  "checkpoint_ms": 2044519488,
   "death_count": 0,
   "goal": {
     "active": true,
     "attempts": 0,
     "failure_reason": "",
-    "kind": "UPGRADE_GEAR",
+    "kind": "REPLACE_EQUIPMENT",
     "progress": 0,
-    "started_at_ms": 1942981974
+    "started_at_ms": 2044179255
   },
   "home_city": "Trinsic",
   "identity": {
@@ -64,15 +64,17 @@
     "created_at_ms": 0,
     "first_seen_at_ms": 1942899654,
     "identity_id": "revgen3_25.hector",
-    "last_seen_at_ms": 1942899654,
-    "sessions": 1,
-    "total_play_time_ms": 279703
+    "last_seen_at_ms": 2043921938,
+    "sessions": 3,
+    "total_play_time_ms": 4715410
   },
+  "known_spells": [],
+  "known_spells_seen_ms": 0,
   "last_death_ms": 0,
   "last_server_report": {
     "dead": false,
     "dex": 25,
-    "gold": 9993,
+    "gold": 8702,
     "int": 5,
     "skills": [
       {
@@ -89,7 +91,7 @@
       },
       {
         "skill": 17,
-        "tenths": 0
+        "tenths": 1
       },
       {
         "skill": 30,
@@ -100,14 +102,38 @@
         "tenths": 0
       }
     ],
-    "str": 50,
-    "x": 1391,
-    "y": 3705
+    "str": 51,
+    "x": 2523,
+    "y": 284
   },
   "ledger": [],
   "memory": {
-    "creatures": [],
-    "danger": [],
+    "creatures": [
+      {
+        "at_ms": 2030284295,
+        "fights": 1,
+        "heat": 2,
+        "name": "Lich"
+      }
+    ],
+    "danger": [
+      {
+        "at_ms": 2043921999,
+        "heat": 2,
+        "radius": 20,
+        "threat": "death",
+        "x": 5735,
+        "y": 3193
+      },
+      {
+        "at_ms": 2043937120,
+        "heat": 0.5,
+        "radius": 14,
+        "threat": "",
+        "x": 5740,
+        "y": 3217
+      }
+    ],
     "events": [
       {
         "at_ms": 1942899654,
@@ -132,6 +158,46 @@
         "place": "",
         "x": 1913,
         "y": 2807
+      },
+      {
+        "at_ms": 2030284295,
+        "detail": "recover after resurrection",
+        "kind": "corpse_pending",
+        "place": "",
+        "x": 1290,
+        "y": 3728
+      },
+      {
+        "at_ms": 2030391380,
+        "detail": "i_scissors",
+        "kind": "no_scissors_for_robe",
+        "place": "",
+        "x": 1412,
+        "y": 3784
+      },
+      {
+        "at_ms": 2043921999,
+        "detail": "recover after resurrection",
+        "kind": "corpse_pending",
+        "place": "",
+        "x": 5735,
+        "y": 3193
+      },
+      {
+        "at_ms": 2043937120,
+        "detail": "",
+        "kind": "first_near_death",
+        "place": "",
+        "x": 5740,
+        "y": 3217
+      },
+      {
+        "at_ms": 2044519488,
+        "detail": "could not reach a known-safe spot",
+        "kind": "logout_unsafe",
+        "place": "",
+        "x": 2523,
+        "y": 284
       }
     ],
     "places": [
@@ -184,6 +250,16 @@
         "x": 1391,
         "y": 3705,
         "z": 0
+      },
+      {
+        "kind": "healer",
+        "last_verified_ms": 2033611685,
+        "learned_ms": 2030013178,
+        "name": "Damen, the healer guildmaster",
+        "visits": 69892,
+        "x": 1416,
+        "y": 3782,
+        "z": 0
       }
     ],
     "resources": [],
@@ -209,6 +285,40 @@
       "skill_tenths_end": 1000,
       "skill_tenths_start": 1000,
       "started_ms": 1942899654,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2033787271,
+      "goals_attempted": 126,
+      "goals_completed": 27,
+      "goals_failed": 0,
+      "gold_end": 8702,
+      "gold_start": 9993,
+      "logs_gathered": 0,
+      "places_learned": 6,
+      "self_supersessions": 7,
+      "skill_tenths_end": 1000,
+      "skill_tenths_start": 1000,
+      "started_ms": 2029954261,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2044519488,
+      "goals_attempted": 11,
+      "goals_completed": 1,
+      "goals_failed": 0,
+      "gold_end": 8702,
+      "gold_start": 8702,
+      "logs_gathered": 0,
+      "places_learned": 6,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1001,
+      "skill_tenths_start": 1001,
+      "started_ms": 2043921938,
       "suppliers_learned": 0
     }
   ]

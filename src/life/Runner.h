@@ -277,6 +277,18 @@ private:
     // one asked. See S2_WIRING_PLAN.md S2.2.
     bool RestTick(Client& client, const Observation& obs, GoalKind owner);
     bool DoExplore(Client& client, const Observation& obs);
+    // GET OFF THE HORSE TO WORK, GET BACK ON TO LEAVE (project owner,
+    // 2026-09-04). Mining and lumberjacking only: fishing is untouched.
+    // Mining is not merely unseemly from the saddle, it is refused --
+    // skill45_mining.scp @PreStart returns 1 on FINDLAYER.layer_horse.
+    //
+    // Both return TRUE when they have taken over the tick (a click is in
+    // flight and the caller must return without acting), FALSE when there is
+    // nothing left to do -- already on foot, already back in the saddle, or
+    // the horse is gone and we have decided to walk. Neither ever loops: the
+    // click budgets below are the whole retry policy.
+    bool DismountToWork(Client& client, const Observation& obs);
+    bool RemountAfterWork(Client& client, const Observation& obs);
     bool DoMine(Client& client, const Observation& obs);
     bool DoSmelt(Client& client, const Observation& obs);
     // Put enough coin in the pack for a purchase, drawing on the bank. True
@@ -552,8 +564,9 @@ private:
     // healer's shop. Reset on success; three unanswered scans stand the
     // goal down instead of re-walking to the same tile.
     i32  healerScans_ = 0;
-    // Consecutive "you can't reach that" refusals from the forge. A
-    // refusal means walk, not click again; see DoSmelt.
+    // How many DISTINCT tiles beside the current forge have answered "you
+    // can't reach that". A refusal means move to another tile, not click
+    // again from the same one; see DoSmelt.
     i32  smeltReachFails_ = 0;
     // The bandage purchase, as a shared errand rather than inline steps.
     // One per buying goal, deliberately: the trip and chase counters used to
@@ -599,6 +612,12 @@ private:
     // identifiable in the minutes right after coming back. See
     // CutResurrectionRobe.
     bool wasDead_ = false;
+    // Has this session ever seen the character ALIVE? A bot that logs in as a
+    // leftover ghost reads as a fresh alive->dead edge on its first Live tick,
+    // and marking the tile it happens to be standing on as lethal would be a
+    // claim about a death nobody observed. (g_Hector.console.txt 19:17:41,
+    // 2026-09-04: "died here" logged at 5735,3193, a ghost's login position.)
+    bool sawAliveOnce_ = false;
     i64  resurrectedAtMs_ = 0;
     // Atlas ids already walked to this session. A place record cannot hold
     // this: NotePlace collapses two places that share a tile into one, and
@@ -640,6 +659,15 @@ private:
     // Has this session already written the durable "the horse errand stood
     // itself down" record? One per session; see NeedConfig::sessionIndex.
     bool mountStandDownNoted_ = false;
+    // The gathering dismount (DismountToWork/RemountAfterWork). `gatherOnFoot_`
+    // means WE put this character on the ground for a mining or chopping
+    // sitting, so somebody owes it a remount before it travels again; the two
+    // click counters are the retry budgets, and `gatherMountLostMs_` is when we
+    // first looked for the horse and did not find it.
+    bool gatherOnFoot_ = false;
+    i32  gatherDismountClicks_ = 0;
+    i32  gatherRemountClicks_ = 0;
+    i64  gatherMountLostMs_ = 0;
     i32  coinLiftFails_ = 0;
     // Who was standing there when an offer went unanswered, so the same room
     // is not shouted at twice.
@@ -678,6 +706,21 @@ private:
     i32  smeltForgeX_ = 0, smeltForgeY_ = 0;
     i32  smeltRefusals_ = 0;
     i32  smeltApproaches_ = 0;
+    // One exact final hop per forge: TravelToPoint's leg-arrival slack
+    // (kLegArriveSlack=3, ClientTravel.cpp) lets a radius-0 trip report ARRIVED
+    // up to three tiles off the stand tile it was given, which is outside
+    // kForgeReach.  See the comment at the use site in Gather.cpp DoSmelt.
+    bool smeltFinalHop_ = false;
+    // Tiles beside smeltForgeX_/Y_ the shard has already refused a smelt from.
+    // A forge is a multi-tile static and its diagonals are not reliably in
+    // reach, so a refusal retires the TILE; only when the ring is exhausted is
+    // the forge itself written off. Cleared when the forge changes or a click
+    // is answered. In memory only, never persisted: a tile that refused today
+    // because of a dynamic blocker must not be condemned for ever.
+    std::vector<std::pair<i32, i32>> smeltTriedStands_;
+    // When the last step between forge stand tiles was issued, so the click
+    // waits for it to land without waiting for ever.
+    i64  smeltGotoMs_ = 0;
     bool smeltCursorPending_ = false;
     i64  smeltClickedMs_ = 0;
     // Smithies already walked to and found wanting, so the next trip goes to a

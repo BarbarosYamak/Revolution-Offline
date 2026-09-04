@@ -513,6 +513,16 @@ struct Observation {
     bool inWorld = false;
     bool dead = false;
     bool mounted = false;
+    // ON FOOT ON PURPOSE, WITH THE HORSE STANDING RIGHT HERE. Mining and
+    // lumberjacking are done off the saddle (owner rule, 2026-09-04;
+    // skill45_mining.scp @PreStart refuses a mounted miner outright), and the
+    // runner remounts when the sitting ends. Anything that reads `!mounted` as
+    // "this character has no horse" must read this too: without it Kharain's
+    // first dismount at the Minoc face re-scored NeedMount at 204 against
+    // MINE's 78.8, the backstop put him straight back on the horse, and the
+    // pair repeated six times in five minutes
+    // (run_gates/g_Kharain.console.txt 18:55:02-18:55:10, 2026-09-04).
+    bool dismountedForWork = false;
     bool warMode = false;
 
     i32 x = 0, y = 0;

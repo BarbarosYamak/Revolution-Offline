@@ -224,12 +224,37 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
     // character tolerates -- a fencer at 0.75 stands in four, a smith at
     // 0.35 in two, a fisher at 0.20 in one -- and the HP bail above, which
     // already rises per extra attacker, is what actually protects the life.
-    const i32 crowdTolerated = 1 + static_cast<i32>(nerve * 4.0);
+    //
+    // NERVE STILL SETS THE FLOOR, BUT NOT THE CEILING (owner rule,
+    // 2026-09-04): "one target at a time; don't fight where 3+ hostiles are
+    // within reach." A fencer at 0.75 nerve tolerated four attackers, which is
+    // how Hector met a lich, a skeletal knight, a zombie and a skeleton in the
+    // same eighteen seconds and died (run_gates/g_Hector.console.txt:977-1017).
+    // A timid character still breaks contact sooner; a bold one no longer
+    // stands in a pack.
+    const i32 crowdTolerated =
+        std::min(2, 1 + static_cast<i32>(nerve * 4.0));
+
+    // ATTACKERS ARE NOT THE WHOLE BOARD. Three things that can reach us are
+    // three things that are about to be attackers, and the moment to leave is
+    // before the second one swings, not after the third.
+    i32 inReach = 0;
+    for (const Client::HostileHit& h : hostiles)
+        if (TileDist(h.x, h.y, obs.x, obs.y) <= combat::kCrowdRadius) ++inReach;
 
     if (avoidCombatDisengage || obs.attackersOnMe > crowdTolerated ||
-        obs.HpFraction() < bailAt) {
+        inReach >= 3 || obs.HpFraction() < bailAt) {
         LogLine("interrupt=FLEE reason=\"HP %.0f%%; %d attacker(s); bail at %.0f%%\"",
                 obs.HpFraction() * 100.0, obs.attackersOnMe, bailAt * 100.0);
+        LogLine("disengage=yes attackers=%d in_reach=%d tolerate=%d hp=%.0f%% "
+                "bandages=%d reason=\"%s\"",
+                obs.attackersOnMe, inReach, crowdTolerated,
+                obs.HpFraction() * 100.0, obs.bandages,
+                avoidCombatDisengage      ? "this life avoids combat"
+                : inReach >= 3            ? "3+ hostiles within reach"
+                : obs.attackersOnMe > crowdTolerated ? "more attackers than "
+                                                       "this nerve stands in"
+                                          : "health below the bail line");
         client.EnsurePeaceMode();
         // Once per fight, not once per tick -- same guard as the note
         // above (S2_WIRING_PLAN.md review finding 4). This is now also

@@ -226,6 +226,10 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
     obs.gold      = client.PlayerGold();
     obs.goldOnHand = static_cast<i32>(client.BackpackItemCount(kGoldCoin));
     obs.coinWanted = coinWanted_;
+    // We are the reason this character is on the ground (DismountToWork), so
+    // say so: nothing downstream should mistake a working miner for a
+    // horseless one.
+    obs.dismountedForWork = gatherOnFoot_;
     obs.weight    = client.PlayerWeight();
     obs.maxWeight = client.PlayerMaxWeight();
     if (obs.maxWeight <= 0) {
@@ -1204,6 +1208,20 @@ void Runner::Tick(Client& client, i64 nowMs) {
             // noticed as it happens rather than inferred later from a robe
             // that might be anyone's.
             if (wasDead_ && !obs.dead) resurrectedAtMs_ = nowMs;
+            // A DEATH IS THE STRONGEST THING A PLACE CAN TEACH. Fleeing at low
+            // health writes heat 1.5 (Survive.cpp), so dying writes more --
+            // and it is written HERE, on the alive->dead edge, because that is
+            // the one tick at which the tile under the corpse is still the
+            // tile that killed us. Two effects, both owner rules of
+            // 2026-09-04: DecideRecovery abandons a corpse whose place has
+            // proven lethal (RecoveryPlan.cpp:106), and DoTrainCombat's
+            // novice ground picker refuses a yard over kHuntGroundHeatLimit.
+            if (!obs.dead) sawAliveOnce_ = true;
+            if (sawAliveOnce_ && !wasDead_ && obs.dead) {
+                state_.memory.NoteDanger(obs.x, obs.y, 20, "death", 2.0, nowMs);
+                LogLine("disengage=died at=%d,%d reason=\"died here -- this "
+                        "ground is now remembered as lethal\"", obs.x, obs.y);
+            }
             wasDead_ = obs.dead;
 
             // A HORSE THIS LIFE COULD NOT BUY TODAY IS NOT A HORSE IT CAN BUY
@@ -1846,6 +1864,19 @@ void Runner::RunGoal(Client& client, const Observation& obs) {
         planner_.Cooldown(spent, obs.nowMs + kExhaustedCooldownMs);
         return;
     }
+
+    // THE SITTING IS OVER THE MOMENT THE ERRAND IS. DoMine and DoGatherLogs
+    // put the character on the ground to work (owner rule, 2026-09-04) and get
+    // it back on the horse before they walk to the next stand -- but they only
+    // see the ends they choose. Pack full, a flee, a death, or the planner
+    // simply preferring another errand all end a sitting from OUTSIDE the
+    // handler, and this is the one place that sees every one of them: whatever
+    // runs next, it rides. RemountAfterWork is a no-op unless we are the reason
+    // this character is on foot, and it gives up on its own budget.
+    const GoalKind activeKind = planner_.Current().kind;
+    if (activeKind != GoalKind::Mine && activeKind != GoalKind::GatherLogs &&
+        RemountAfterWork(client, obs))
+        return;
 
     bool done = false;
     switch (planner_.Current().kind) {

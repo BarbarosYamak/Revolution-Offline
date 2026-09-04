@@ -1,0 +1,20 @@
+# Check skeletal knight display body on a fresh spawn (Observer/Admin only).
+wait_world
+sleep 3000
+say .newnpc c_skeleton_knight
+sleep 1500
+say knight:
+say .act.show dispid
+sleep 800
+say .act.show id
+sleep 800
+say .act.remove
+sleep 1000
+say .newnpc c_bone_knight
+sleep 1500
+say boneknight:
+say .act.show dispid
+sleep 800
+say .act.remove
+sleep 1000
+logout

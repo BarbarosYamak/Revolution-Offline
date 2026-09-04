@@ -6,7 +6,57 @@ namespace uo::life {
 // to what the old anonymous namespace gave them.
 using namespace runner_detail;
 
+namespace {
 
+// WHICH HUNTING GROUND, BY TIER (project owner, 2026-09-04).
+//
+// "New fighters (weapon skill <~50) go to Britain graveyard / Brit sewers,
+// NOT Jhelom, dungeons, or Trinsic-side dungeon terrain."
+//
+// The measured reason this rule exists: Client::TravelToHuntingGround resolves
+// the NEAREST place of category graveyard (Atlas.cpp:458), and Hector/Castor
+// were standing on Jhelom island, so "nearest" was a_jhelom_cemetary_1. A lich,
+// a skeletal knight, a zombie and a skeleton opened on a fencer inside eighteen
+// seconds (run_gates/g_Hector.console.txt:984-1017, death at :1017), and the
+// corpse run walked straight back into the same yard.
+//
+// The novice ground is addressed BY ATLAS ID so the lookup cannot drift onto
+// some other cemetery through FindPlace's substring fallback.
+constexpr const char* kNoviceHuntGroundId = "britain_graveyard_graveyard";
+// Tenths. "<~50" in the owner's rule; the highest weapon skill the character
+// actually has, not the one its build plans to have.
+//
+// SIXTY, NOT FIFTY, and the shard is the reason: sphere.ini MaxBaseSkill=0
+// means a new character is created with exactly 50.0 in two skills and 0.0 in
+// everything else, so a fresh fencer reads 50.0 on the day it is rolled. At a
+// 500 boundary every brand-new fighter classified as SEASONED and was sent to
+// the nearest graveyard -- measured, g_Castor.console.txt:936 on 2026-09-04,
+// "hunt_ground=Vesper Cemetary tier=seasoned weapon=50.0". The boundary has to
+// sit above the creation value or the rule cannot see a beginner at all.
+constexpr i32 kSeasonedWeaponTenths = 600;
+// How much of this character's OWN remembered danger a hunting ground may
+// carry before it stops being a place to go and train. Sized against the two
+// notes that actually reach it: a death writes 2.0 (Core.cpp, alive->dead
+// edge) and a low-health retreat writes 1.5 (Survive.cpp), both decaying on a
+// 45-minute half-life (life.h:334). So one death is a lesson and a second
+// death inside the hour is a verdict -- "don't return to a spot that killed
+// the bot twice", the owner's rule of 2026-09-04, expressed in the memory the
+// character already keeps rather than in a counter invented for it.
+constexpr double kHuntGroundHeatLimit = 3.0;
+
+// The best weapon skill this character actually holds. Wrestling counts --
+// it is a weapon skill on this shard and a bare-handed character fights with
+// it -- but a plan to train Fencing later is not skill today.
+i32 BestWeaponSkillTenths(const Observation& obs) {
+    const int ids[] = {rules::kSwordsmanship, rules::kFencing,
+                       rules::kMaceFighting,  rules::kArchery,
+                       rules::kWrestling};
+    i32 best = 0;
+    for (int id : ids) best = std::max(best, obs.SkillTenths(id));
+    return best;
+}
+
+}  // namespace
 
 bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
     // Something is already here: finish that fight. This is how every
@@ -114,6 +164,38 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
                 nextActionMs_ = obs.nowMs + 4000;
                 return false;
             }
+            // ONE AT A TIME, AND NOT IN A CROWD (owner rule, 2026-09-04):
+            // "don't fight where 3+ hostiles are within reach". This is a
+            // decision about the BOARD, taken before any target is scored --
+            // ChoosePrey only penalises a candidate that has company, so it
+            // will still hand back the least-bad skeleton in a yard holding
+            // four things that can reach us. A player looks at that yard and
+            // leaves. Counted at kCrowdRadius (combat.h:194), the same radius
+            // the scorer calls company.
+            {
+                int inReach = 0;
+                for (const combat::Candidate& c : cands)
+                    if (c.dist <= combat::kCrowdRadius) ++inReach;
+                if (inReach >= 3) {
+                    LogLine("engage=no in_reach=%d hp=%.0f%% reason=\"%d hostiles "
+                            "within %d tiles -- cannot take them one at a time\"",
+                            inReach, obs.HpFraction() * 100.0, inReach,
+                            combat::kCrowdRadius);
+                    // Remember the spot, so the ground picker above and the
+                    // corpse run both learn this yard is busier than this
+                    // character can handle.
+                    state_.memory.NoteDanger(obs.x, obs.y, 12,
+                                             cands.front().name.c_str(), 0.5,
+                                             obs.nowMs);
+                    client.EnsurePeaceMode();
+                    planner_.Cooldown(GoalKind::TrainCombat,
+                                      obs.nowMs + kHuntStandDownMs);
+                    planner_.Finish(false, "too crowded to open a fight",
+                                    obs.nowMs);
+                    nextActionMs_ = obs.nowMs + 4000;
+                    return false;
+                }
+            }
             combat::Stance me;
             // REGION_FLAG_GUARDED, straight from the atlas -- there is no
             // Observation field for it and inventing one would just cache a
@@ -158,6 +240,10 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
                         c.name.c_str(), c.dist, combat::LegalityName(v.legality),
                         v.threat, mem.CreatureDanger(c.name.c_str(), obs.nowMs),
                         v.reason.c_str());
+                LogLine("engage=yes target='%s' dist=%d hp=%.0f%% bandages=%d "
+                        "reason=\"one target, board is not crowded\"",
+                        c.name.c_str(), c.dist, obs.HpFraction() * 100.0,
+                        obs.bandages);
                 client.ActionAttack(c.serial);
                 currentFoe_ = c.serial;
                 currentFoeName_ = c.name;
@@ -261,12 +347,52 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
             nextActionMs_ = obs.nowMs + 60000;
             return false;
         }
-        // TravelToHuntingGround resolves the nearest graveyard-category place
-        // from world_atlas::Atlas::NearestHuntingGround -- the early-tier
-        // hunting ground the owner named -- and logs where it is actually
-        // going, not just "the nearest graveyard".
+        // WHICH GROUND, AND WHY. Nearest is not the same question as
+        // survivable: see kNoviceHuntGroundId above for the Jhelom evidence.
+        const i32 weaponTenths = BestWeaponSkillTenths(obs);
+        const bool novice = weaponTenths < kSeasonedWeaponTenths;
         std::string huntPlace;
-        travelInFlight_ = client.TravelToHuntingGround(&huntPlace);
+        if (novice) {
+            const wm::Place* early = client.KnownPlace(kNoviceHuntGroundId);
+            const double heat =
+                early ? state_.memory.DangerHeatAt(early->position.x,
+                                                   early->position.y, obs.nowMs)
+                      : 0.0;
+            if (early && heat <= kHuntGroundHeatLimit) {
+                LogLine("hunt_ground=%s tier=novice weapon=%.1f heat=%.2f "
+                        "reason=\"best weapon skill under %.0f -- the early "
+                        "ground, not the nearest one\"",
+                        early->name.c_str(), weaponTenths / 10.0, heat,
+                        kSeasonedWeaponTenths / 10.0);
+                travelInFlight_ = client.TravelToPlace(kNoviceHuntGroundId);
+                if (travelInFlight_) huntPlace = early->name;
+            } else {
+                // NOT a failure of the atlas and not something a retry fixes:
+                // this character has no ground it is ready for today.
+                LogLine("hunt_ground=none tier=novice weapon=%.1f heat=%.2f "
+                        "reason=\"%s\"", weaponTenths / 10.0, heat,
+                        early ? "the early ground has killed this character "
+                                "often enough to stay away from today"
+                              : "no early hunting ground in the atlas");
+                planner_.Cooldown(GoalKind::TrainCombat,
+                                  obs.nowMs + kNoHuntingGroundCooldownMs);
+                planner_.Finish(false, "no hunting ground this tier is ready for",
+                                obs.nowMs);
+                huntTrips_ = 0;
+                nextActionMs_ = obs.nowMs + 30000;
+                return false;
+            }
+        } else {
+            // TravelToHuntingGround resolves the nearest graveyard-category
+            // place from world_atlas::Atlas::NearestHuntingGround, and logs
+            // where it is actually going, not just "the nearest graveyard".
+            travelInFlight_ = client.TravelToHuntingGround(&huntPlace);
+            if (travelInFlight_) {
+                LogLine("hunt_ground=%s tier=seasoned weapon=%.1f "
+                        "reason=\"nearest graveyard, and skilled enough for it\"",
+                        huntPlace.c_str(), weaponTenths / 10.0);
+            }
+        }
         if (travelInFlight_) {
             LogLine("hunt: heading to %s to train (trip %d)",
                     huntPlace.c_str(), huntTrips_);

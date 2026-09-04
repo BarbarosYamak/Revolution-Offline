@@ -2,10 +2,10 @@
   "bank": [
     {
       "item": "i_ingot_iron",
-      "qty": 30
+      "qty": 20
     }
   ],
-  "bank_seen_ms": 2022443035,
+  "bank_seen_ms": 2032141913,
   "build_plan": {
     "create_dex": 20,
     "create_int": 10,
@@ -35,20 +35,20 @@
         "tenths": 500
       }
     ],
-    "target_dex": 45,
-    "target_int": 80,
+    "target_dex": 100,
+    "target_int": 25,
     "target_str": 100,
     "unresolved_tenths": 4500
   },
-  "checkpoint_ms": 2022455772,
+  "checkpoint_ms": 2039785774,
   "death_count": 0,
   "goal": {
     "active": true,
     "attempts": 0,
     "failure_reason": "",
-    "kind": "CRAFT",
+    "kind": "SMELT",
     "progress": 0,
-    "started_at_ms": 2022440711
+    "started_at_ms": 2039736884
   },
   "home_city": "Minoc",
   "identity": {
@@ -57,35 +57,44 @@
     "created_at_ms": 0,
     "first_seen_at_ms": 1942746205,
     "identity_id": "revgen3_01.draver",
-    "last_seen_at_ms": 2022143983,
-    "sessions": 2,
-    "total_play_time_ms": 480271
+    "last_seen_at_ms": 2039473961,
+    "sessions": 4,
+    "total_play_time_ms": 4394798
   },
+  "known_spells": [],
+  "known_spells_seen_ms": 0,
   "last_death_ms": 0,
   "last_server_report": {
     "dead": false,
     "dex": 20,
-    "gold": 9880,
+    "gold": 9938,
     "int": 10,
     "skills": [
       {
         "skill": 7,
-        "tenths": 500
+        "tenths": 504
       },
       {
         "skill": 45,
-        "tenths": 500
+        "tenths": 502
       },
       {
         "skill": 37,
-        "tenths": 0
+        "tenths": 206
       }
     ],
     "str": 50,
     "x": 2476,
     "y": 569
   },
-  "ledger": [],
+  "ledger": [
+    {
+      "amount": 280,
+      "detail": "i_ingot_iron",
+      "flow": 9,
+      "when_ms": 2030350361
+    }
+  ],
   "memory": {
     "creatures": [],
     "danger": [],
@@ -113,6 +122,46 @@
         "place": "bank",
         "x": 2504,
         "y": 557
+      },
+      {
+        "at_ms": 2030226203,
+        "detail": "i_ingot_iron",
+        "kind": "trade_timeout",
+        "place": "Serena",
+        "x": 1430,
+        "y": 1690
+      },
+      {
+        "at_ms": 2030230765,
+        "detail": "logs",
+        "kind": "first_bank_deposit",
+        "place": "bank",
+        "x": 1430,
+        "y": 1690
+      },
+      {
+        "at_ms": 2030350361,
+        "detail": "i_ingot_iron",
+        "kind": "traded_with_player",
+        "place": "Serena",
+        "x": 1429,
+        "y": 1690
+      },
+      {
+        "at_ms": 2031261585,
+        "detail": "i_ingot_iron",
+        "kind": "no_player_buyer",
+        "place": "",
+        "x": 1430,
+        "y": 1688
+      },
+      {
+        "at_ms": 2031733588,
+        "detail": "i_dagger",
+        "kind": "first_craft",
+        "place": "",
+        "x": 1420,
+        "y": 3859
       }
     ],
     "places": [
@@ -165,6 +214,16 @@
         "x": 2475,
         "y": 569,
         "z": 5
+      },
+      {
+        "kind": "safe",
+        "last_verified_ms": 2033479496,
+        "learned_ms": 2033479496,
+        "name": "logout point",
+        "visits": 1,
+        "x": 2569,
+        "y": 479,
+        "z": 0
       }
     ],
     "resources": [
@@ -203,12 +262,34 @@
         "x": 2460,
         "y": 429,
         "z": 15
+      },
+      {
+        "failures": 0,
+        "hinted": false,
+        "label": "",
+        "last_seen_ms": 2039666228,
+        "last_success_ms": 2039666228,
+        "resource": "ore",
+        "successes": 19,
+        "x": 2572,
+        "y": 481,
+        "z": 0
       }
     ],
     "suppliers": [],
     "trainers": []
   },
-  "prices": [],
+  "prices": [
+    {
+      "item": "i_ingot_iron",
+      "price": 31,
+      "source": 3,
+      "when_ms": 2030350361,
+      "who": "Serena",
+      "x": 1429,
+      "y": 1690
+    }
+  ],
   "recent_deaths": 0,
   "schema_version": 2,
   "sessions": [
@@ -244,6 +325,40 @@
       "skill_tenths_end": 1000,
       "skill_tenths_start": 1000,
       "started_ms": 2022143983,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2033479557,
+      "goals_attempted": 57,
+      "goals_completed": 6,
+      "goals_failed": 0,
+      "gold_end": 9938,
+      "gold_start": 9880,
+      "logs_gathered": 0,
+      "places_learned": 6,
+      "self_supersessions": 2,
+      "skill_tenths_end": 1208,
+      "skill_tenths_start": 1000,
+      "started_ms": 2029882001,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2039785774,
+      "goals_attempted": 7,
+      "goals_completed": 0,
+      "goals_failed": 0,
+      "gold_end": 9938,
+      "gold_start": 9938,
+      "logs_gathered": 0,
+      "places_learned": 6,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1212,
+      "skill_tenths_start": 1212,
+      "started_ms": 2039473961,
       "suppliers_learned": 0
     }
   ]

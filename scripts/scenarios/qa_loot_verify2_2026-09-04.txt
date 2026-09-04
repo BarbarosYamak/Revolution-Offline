@@ -1,0 +1,55 @@
+# QA loot verification, take 2. Run 1 (qaloot1) proved savage body/color
+# live but produced ZERO corpses for brigand/dragon/lich/orc: world_query.py
+# found only 2 PRE-EXISTING unrelated corpses (Lava Serpent, hellcat) after
+# 21 .newnpc+.act.kill pairs. Root cause hypothesis: .newnpc leaves the new
+# char unplaced (invalid point) until P= is set, and CChar::MakeCorpse likely
+# skips corpse creation for an unplaced/invalid point. This run sets .act.p
+# to Observer's own known position (2558,488,0 -- read live in qaloot1) right
+# after every spawn, before killing, to keep it in a valid sector.
+wait_world
+sleep 3000
+say .show p
+sleep 1500
+
+say .newnpc c_brigand
+sleep 1200
+say .act.p=2558,488,0
+sleep 1000
+say brigand spawned and placed, killing
+say .act.kill
+sleep 2500
+
+loop 8
+  say .newnpc c_dragon
+  sleep 1200
+  say .act.p=2558,488,0
+  sleep 1000
+  say .act.kill
+  sleep 2500
+endloop
+
+loop 6
+  say .newnpc c_lich
+  sleep 1200
+  say .act.p=2558,488,0
+  sleep 1000
+  say .act.kill
+  sleep 2200
+endloop
+
+loop 6
+  say .newnpc c_orc
+  sleep 1000
+  say .act.p=2558,488,0
+  sleep 800
+  say .act.kill
+  sleep 1800
+endloop
+
+say all test spawns and kills complete take2
+sleep 1500
+say .save
+sleep 15000
+say saved
+sleep 1500
+logout

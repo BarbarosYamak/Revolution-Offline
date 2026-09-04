@@ -13,6 +13,14 @@
 - [Sparring parties](sparring-parties.md) — owner memory: 2-3 bots party, iron set + weak weapon, hit each other; others bandage for Healing; M13 social loop, unimplemented
 - [Caster STR via Wrestling](caster-str-via-wrestling.md) — owner 2026-09-04: temp Wrestling spar → STR target → Wrestling DOWN; Magery STAT_STR=20 so it's the only route
 - [Feathers are carved](feathers-are-carved.md) — owner 2026-09-04: bird/chicken 25, eagle 36, harpy 50; bowyer NPC only buys; archer = kill+carve chain
+- [Revolution loot rulings](revolution-loot-rulings.md) — owner rates 2026-09-04: dragon 1/4 weapon 1/5 map, small/big split, crystals, low mobs +3 1/3, lich scrolls 5-8th
+- [Dismount to gather](dismount-to-gather.md) — owner rule: dismount for mining/lumberjack, remount after; shard stays permissive; unimplemented
+- [Sphere Rnn loot chance](sphere-rnn-loot-chance.md) — ITEM=x,Rnn = 1-in-nn (CItem.cpp:479); R99≈1%; audits had it UNKNOWN
+- [TNS reference tree](tns-reference-tree.md) — references/tns/scripts (plural); creature drop tables still stock as of 2026-09-04, only +N mechanics/chests done
+- [Dedup inflates counts](dedup-inflates-counts.md) — log_slice --dedup merges coords; "×251 loop" was literally 2; grep -c the literal before briefing
+- [Revolution creature looks](revolution-creature-looks.md) — owner memory: swamp tentacles=kraken +9, bog thing=rotting corpse +9, sibling redirects list, open UNKNOWNs
+- [Artless bodies: redirect](artless-bodies-redirect.md) — client draws only anim.mul; savages = human body COLOR 1425 (owner); redirect ID=, don't prune blind
+- [Tailor pasture home-only](tailor-pasture-home-only.md) — owner 2026-09-04: shear closest-to-Britain flock (1318,1811) only, 400-tile cap; cows there for leather later
 - [Spellbook is a side goal](spellbook-is-a-side-goal.md) — owner: casters fill the book (buy circles 1-4, hunt drops for 5-8); scribe can only make spells already in the book
 
 - [Open items 2026-09-04](project_open_items_2026-09-04.md) — Faustus mace, Aurelius vendor_buy, Rhea taming, chest ResourceType; bow↔log, meditation %, weapon-merge era
