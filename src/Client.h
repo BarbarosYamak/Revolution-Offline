@@ -1073,6 +1073,16 @@ public:
     void EnsurePeaceMode();
     bool WarModeOn() const { return playerWarMode_; }
     const travel::WarModeWatchdog& WarWatchdog() const { return war_; }
+    // WHO IS SWINGING AT US. 0x2F names the attacker on every swing aimed at
+    // this character. The war watchdog only knows the fight WE opened, so a
+    // bot that did not start one never knew it was in one: Aurelius
+    // (2026-09-05 10:36) stood at one tile from a skeleton reading "*Skeleton
+    // is attacking you!*" while his hunt loop kept scoring it as a fight not
+    // worth STARTING. These answer "is this thing hitting me" from the packet
+    // that says so, within a short window (a swing every few seconds).
+    bool IsAttackingMe(u32 serial, i64 windowMs = 8000) const;
+    i32  RecentAttackerCount(i64 windowMs = 8000) const;
+    void NoteAttackEmote(u32 sourceSerial, const char* text);
 
     // Answer a generic gump (0xB0) the server opened -- the public moongate's
     // destination list is one. `optionIndex` is a radio/checkbox id from
@@ -1929,6 +1939,7 @@ private:
     travel::Journey             journey_;
     travel::PersonalKnowledge   knowledge_;
     travel::WarModeWatchdog     war_;
+    std::unordered_map<u32, i64> attackersOnMe_;   // serial -> last 0x2F ms
     std::string travelFailure_;
     std::string travelLabel_;
     bool  travelSucceeded_ = false;

@@ -470,7 +470,19 @@ const std::vector<Profession>& All() {
             // Healing skill AND bandages, alchemist / mage_blacksmith / scribe
             // already carry CrafterHealPotions(). (audit 2026-08-30, finding 2.)
             p.consumables = {HealPotions(), Food()};
-            p.riskTolerance = 0.30;      // squishy; disengages early
+            // 0.50, NOT 0.30. combat::Classify scores an unhurt red monster in
+            // view at 0.35 before it does anything (full bar 0.20, murderer
+            // 0.10, distance 0.05+), so at 0.30 this life could never OPEN a
+            // lawful fight -- Aurelius stood at the Britain graveyard on
+            // 2026-09-05 refusing every skeleton "threat 0.60 above this
+            // character's tolerance 0.30" until one of them started on him.
+            // 0.50 opens on a single quiet monster within three tiles (0.45),
+            // waits on one standing at its feet (0.54) until it swings -- at
+            // which point the attacker record makes it a defence -- and still
+            // refuses one already in war mode at its feet (0.70). Below the
+            // swordsman's 0.55 on purpose (m5_professions). Disengaging is
+            // the survival layer's business, from context, not a number here.
+            p.riskTolerance = 0.50;
             p.goldReserve = 800;         // reagents are a running cost
                         // Moonglow is the mage city; Britain has the largest mage shop.
             p.homeCities = {"Moonglow", "Britain", "Nujel'm"};
@@ -879,6 +891,7 @@ const std::vector<Profession>& All() {
             // also felled its own trees would not need the CR-07 loop.
             p.gathers = "";
             p.produces = {"i_arrow_shaft", "i_arrow", "i_bow"};
+            p.tools = {{"dagger", {0x0F51, 0x0F52}, false}};
             p.consumes = {"i_log", "i_feather"};
             p.consumables = {Bandages(), HealPotions(), Food()};
             p.riskTolerance = 0.50;      // kites at range, disengages if closed on
@@ -1074,8 +1087,13 @@ const std::vector<Profession>& All() {
             // this runtime yet. Guardian loot is what actually pays today.
             p.income = {Income::Hunt};
             p.gathers = "";
-            p.consumes = {"i_reag_black_pearl", "i_reag_mandrake_root"};
+            p.consumes = {"i_reag_black_pearl", "i_reag_mandrake_root", "i_map_blank"};
+            // CARTOGRAPHY IS TRAINED BY DRAWING MAPS (owner, 2026-09-05).
+            // Hardest first; a map nobody buys is still the skill's ladder.
+            p.produces = {"i_map_world", "i_map_sea_chart", "i_map_city", "i_map_local"};
+            p.trainingCrafts = p.produces;
             p.tools = {{"shovel",    {kShovel},    false},   // wield requirement UNKNOWN
+                       {"mapmaker's pen", {0x0FBF, 0x0FC0}, false},   // ID=i_pen_and_ink
                        {"spellbook", {kSpellbook}, false}};
             p.consumables = {Lockpicks(), Bandages(), Food()};
             p.riskTolerance = 0.45;      // handles guardians, disengages once looted
@@ -1430,7 +1448,12 @@ const std::vector<Profession>& All() {
             p.income = {Income::Craft};
             // The defining trait: it gathers NOTHING. Every raw input is
             // bought from someone who did.
-            p.gathers = "";
+            // A TINKER WITH MINING 50 DIGS ITS OWN INGOTS. gathers=="ore" is what
+            // keys the mine/smelt loop (Needs.cpp, Craft.cpp); with "" this life
+            // waited on a BUY_SUPPLIES that no NPC serves (i_ingot_iron is a
+            // player-market good, tm_vend SELL lines commented) and spent 82% of
+            // a 60-min wave on EXPLORE/IDLE (Odessa, Serena, 2026-09-04).
+            p.gathers = "ore";
             p.produces = {"i_gears", "i_lockpick", "i_tinker_tools",
                           "i_pickaxe", "i_scissors", "i_sewing_kit",
                           "i_pen_and_ink", "i_barrel_tap", "i_barrel_hoops",

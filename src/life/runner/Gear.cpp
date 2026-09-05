@@ -7,6 +7,35 @@ namespace uo::life {
 using namespace runner_detail;
 
 
+// --- WHICH COUNTERS ARE ALREADY EMPTY ---------------------------------------
+//
+// Sphere's shelf is a real container: buying it out leaves it empty until the
+// ten-minute restock timer fires (Source-X CCharNPCAct_Vendor.cpp:32-92).
+// Reopening it in the meantime shows the drained count, so the only way to a
+// hundred bandages through NPCs is the NEXT counter.
+void Runner::NoteDrainedShelf(u32 serial, i64 nowMs) {
+    if (!serial) return;
+    for (DrainedShelf& d : drainedShelves_) {
+        if (d.serial != serial) continue;
+        d.whenMs = nowMs;
+        return;
+    }
+    DrainedShelf d;
+    d.serial = serial;
+    d.whenMs = nowMs;
+    drainedShelves_.push_back(d);
+}
+
+std::vector<u32> Runner::DrainedShelves(i64 nowMs) const {
+    std::vector<u32> out;
+    for (const DrainedShelf& d : drainedShelves_) {
+        if (nowMs - d.whenMs >= kShelfRestockMs) continue;   // restocked by now
+        out.push_back(d.serial);
+    }
+    return out;
+}
+
+
 // --- tools and equipment ---------------------------------------------------
 
 // Which trade sells a given tool, and where the world model files them.
@@ -41,6 +70,8 @@ const ToolVendor kToolVendors[] = {
     {"pickaxe",      "tinker",      wm::Service::Tinker},
     {"fishing pole", "fisherman",   wm::Service::Fisherman},
     {"mortar",       "alchemist",   wm::Service::Alchemist},
+    {"mapmaker's pen", "mapmaker",  wm::Service::Mapmaker},
+    {"dagger",       "weaponsmith", wm::Service::Blacksmith},
     {"spellbook",    "mage",        wm::Service::Mage},
     // FOUR TOOLS THE CATALOGUE ASKS FOR AND NOBODY SOLD.
     //
@@ -947,10 +978,20 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs, bool med
     const bool wantsBandages = life::WantsConsumable(needCfg_, "bandage") &&
         (!medicineOnly || obs.SkillTenths(rules::kHealing) >= 300);
     life::AcquirePlan bandagePlan;   // default Done -- vacuously satisfied
-    // `low` triggers a restock attempt; it is not a requirement that one NPC
-    // must fill the pack all the way to `restockTo`. Once a partial purchase
-    // crosses the safety floor, move on to the other missing kit.
-    if (wantsBandages && obs.bandages < needCfg_.bandageLow) {
+    // `low` TRIGGERS THE RESTOCK; `bandageFull` ENDS IT.
+    //
+    // This used to read "once a partial purchase crosses the safety floor,
+    // move on to the other missing kit", and with a floor of eight that was
+    // survivable. It is not survivable at the owner's hundred: one healer's
+    // shelf is i_bandage {5 20}, so the pack crosses the floor while the
+    // errand is barely started. Castor bought twenty from Dale on
+    // 2026-09-05, the plan read Done -- "nothing on the list could be
+    // replaced this pass" -- and he met a skeleton with 27.
+    if (wantsBandages && obs.bandages >= needCfg_.bandageFull)
+        bandageTopUp_ = false;
+    if (wantsBandages && obs.bandages < needCfg_.bandageLow)
+        bandageTopUp_ = true;
+    if (wantsBandages && bandageTopUp_) {
         life::AcquireRequest bandageReq;
         bandageReq.graphic = kBandage;
         bandageReq.item = "bandages";
@@ -1124,6 +1165,14 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs, bool med
             req.desiredTotal = needCfg_.bandageFull;
             req.minimumGoldReserve = 0;
             req.Sell("healer", wm::Service::Healer);
+            // A SECOND SHELF, NOT A SECOND VISIT. The healer's list is
+            // i_bandage {5 20} (tm_vend.scp:1106-1114) and the vet's is
+            // {6 66} (tm_vend.scp:547), so one healer cannot fill a
+            // fighter's pack and the vet is the obvious next counter.
+            req.Sell("veterinarian", wm::Service::Veterinarian);
+            // Do not walk back to a counter this character has already
+            // emptied -- it stays empty for ten minutes.
+            for (u32 drained : DrainedShelves(obs.nowMs)) req.Avoid(drained);
             bandageBuy_.Begin(req);
         }
         const life::ActivityTickResult r = bandageBuy_.Tick(client, obs);
@@ -1141,7 +1190,20 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs, bool med
         // behind it spent the whole budget in 300ms
         // (run_r4/w_Bruin.console.txt:317-323). REPLACE_EQUIPMENT was
         // re-picked 39 times while that single ask was still outstanding.
-            if (r.acted) planner_.NoteAttempt(obs.nowMs);
+            if (r.acted) {
+                // A LEG THAT LANDED IS PROGRESS: reaching the shop, finding the
+                // keeper, getting within reach. Only an ask that went unanswered
+                // is a try. Hector (2026-09-05 14:40): trip 1, three scans, trip 2
+                // = five attempts and the goal was abandoned before the second
+                // counter was even reached.
+                const bool legLanded = r.offerOpen ||
+                    (r.reason && (std::strstr(r.reason, "found a") ||
+                                  std::strstr(r.reason, "within reach") ||
+                                  std::strstr(r.reason, "ARRIVED") ||
+                                  std::strstr(r.reason, "the shop is open")));
+                if (legLanded) planner_.NoteProgress();
+                else planner_.NoteAttempt(obs.nowMs);
+            }
             return false;
         }
 
@@ -1167,6 +1229,37 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs, bool med
                 break;
             }
             planner_.NoteProgress();
+            bandageShopFails_ = 0;
+
+            // A PARTIAL BUY IS A DRAINED SHELF, NOT A FINISHED ERRAND.
+            //
+            // The errand asks for min(shortfall, what the shelf holds), so
+            // coming back short means we took everything this counter had.
+            // Castor did exactly this on 2026-09-05: twenty bandages from
+            // Dale, then REPLACE_EQUIPMENT stood down -- "nothing on the list
+            // could be replaced this pass" -- and he fought a skeleton with
+            // 27. The request is a TOTAL; the goal keeps going until the
+            // total is reached or every counter in town is empty.
+            const i32 nowHeld =
+                static_cast<i32>(client.BackpackItemCount(kBandage));
+            if (nowHeld < needCfg_.bandageFull) {
+                NoteDrainedShelf(bandageBuy_.Keeper(), obs.nowMs);
+                // THE FLOOR IS THE OWNER'S NUMBER; THE TOTAL IS A WISH. Once
+                // the pack holds the floor and a shelf has just run dry, the
+                // rest of the total waits for the next session -- Hector
+                // (2026-09-05 14:39-14:48) spent 577 s and zero fights
+                // chasing 300 through a town whose healers held 16.
+                if (nowHeld >= needCfg_.bandageLow) {
+                    LogLine("bandages: %d held is past the floor of %d and this "
+                            "counter is dry -- enough for today, the rest can wait",
+                            nowHeld, needCfg_.bandageLow);
+                    bandageTopUp_ = false;
+                    return true;
+                }
+                LogLine("bandages: %d of %d after this counter -- its shelf is "
+                        "empty for ten minutes, looking for another",
+                        nowHeld, needCfg_.bandageFull);
+            }
             return false;
         }
 
@@ -1174,8 +1267,43 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs, bool med
         // running, so a caller that recognised only Failed would Begin() a
         // fresh one next tick -- the spin this whole layer exists to end,
         // reintroduced at the seam.
+        // A SILENT OR EMPTY COUNTER IS ONE COUNTER. The shelf this errand
+        // just failed at is written off for the restock window, and the goal
+        // asks the next shopkeeper of the trade rather than ending an errand
+        // that is still short of the total.
+        NoteDrainedShelf(bandageBuy_.Keeper(), obs.nowMs);
+        const i32 stillHeld =
+            static_cast<i32>(client.BackpackItemCount(kBandage));
+        // NOBODY OF THAT TRADE WAS THERE -- not a drained shelf but an empty
+        // room, and the atlas has one healer place per town, so "another
+        // counter" is the same room again. Faustus (2026-09-05 12:54-12:57)
+        // walked it nine times. An empty room ends the shop errand at once.
+        const bool nobodyThere = std::strstr(r.reason, "answered") != nullptr;
+        if (!nobodyThere && ++bandageShopFails_ < kMaxBandageShops &&
+            stillHeld < needCfg_.bandageLow) {
+            LogLine("bandages: %s (%d/%d held) -- trying another counter "
+                    "(%d of %d)", r.reason, stillHeld, needCfg_.bandageFull,
+                    bandageShopFails_ + 1, kMaxBandageShops);
+            nextActionMs_ = obs.nowMs + kShortRestMs;
+            return false;
+        }
+        // EVERY COUNTER TRIED. Stand down cleanly and go and MAKE them: the
+        // cloth route (buy loose cloth, cut it) lives in DoMakeBandages.
         LogLine("goal_failed=REPLACE_EQUIPMENT status=%s reason=\"%s\"",
                 life::ActivityStatusName(r.status), r.reason);
+        // TELL THE NEED MODEL WHAT THE TOWN IS OUT OF. Without this the
+        // handoff below is advice nobody can take: NeedMakeBandages is
+        // deliberately blocked while there is money to shop with, and money
+        // is not a source once every shelf is empty.
+        {
+            char detail[32];
+            std::snprintf(detail, sizeof(detail), "session=%d",
+                          needCfg_.sessionIndex);
+            state_.memory.NoteEvent("bandage_counters_empty", detail, "",
+                                    obs.x, obs.y, obs.nowMs);
+        }
+        bandageShopFails_ = 0;
+        bandageTopUp_ = false;
         const i64 rest = (r.status == life::ActivityStatus::RetryableFailure)
                              ? kShortRestMs : kGearCooldownMs;
         return HandOff(planner_.Current().kind, GoalKind::MakeBandages, rest,

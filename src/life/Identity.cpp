@@ -391,7 +391,8 @@ const CraftMenuPath kCraftMenus[] = {
     {"i_scroll_recall",      "^fourth circle", "recall",  nullptr},
     {"i_bow",                "bow",            nullptr,   nullptr},
     {"i_crossbow",           "crossbow",       nullptr,   nullptr},
-    {"i_arrow_shaft",        "arrow_shaft",    nullptr,   nullptr},
+    {"i_arrow_shaft",        "shaft",          nullptr,   nullptr},
+    {"i_arrow",              "^arrow",         nullptr,   nullptr},
     // BLACKSMITHING. Corwyn reached 58 ingots and then stopped dead on
     // "no menu path known for i_dagger" -- the table had no smith entry at
     // all, so the whole mine -> smelt -> smith -> sell chain ended one step
@@ -416,6 +417,13 @@ const CraftMenuPath kCraftMenus[] = {
     {"i_potion_poison",      "^Poison",        nullptr,   nullptr},
     {"i_potion_poisongreat", "^Greater Poison",nullptr,   nullptr},
     {"i_potion_poisondeadly","^Deadly Poison", nullptr,   nullptr},
+    // CARTOGRAPHY: sm_cartography, one level, "Local Map" .. "World Map"
+    // (sm_legacy_cartography.scp:15-25). Opened by the mapmaker's pen.
+    {"i_map_local",          "^Local Map",     nullptr,   nullptr},
+    {"i_map_city",           "^City Map",      nullptr,   nullptr},
+    {"i_map_sea_chart",      "^Sea Chart Map", nullptr,   nullptr},
+    {"i_map_world",          "^World Map",     nullptr,   nullptr},
+    {"i_mapmakers_pen",      "Tools",          "mapmaker", nullptr},
     {"i_spear_short",        "Weapons",        "Spears and Forks", "short spear"},
     // COOKING. Two levels, from sm_legacy_cooking.scp (this shard runs the
     // legacy menu: crafting_settings.scp has scp.NewCrafting_Cooking=0):
@@ -564,7 +572,18 @@ CraftIntent ChooseCraft(const prof::Profession& p, const Observation& obs,
     };
     if (batch < 1) batch = 1;
 
-    for (const std::string& made : p.produces) {
+    std::vector<std::string> products = p.produces;
+    if (NeedsArrowStock(p, obs)) {
+        const i32 remaining = kArrowCarry + kArrowReserve -
+            market::QtyOf(obs.pack, "i_arrow") - market::QtyOf(obs.bank, "i_arrow");
+        batch = std::min(batch, remaining);
+        // Finish shafts already held before making another intermediate.
+        products = {market::QtyOf(obs.pack, "i_arrow_shaft") > 0
+            ? "i_arrow" : "i_arrow_shaft"};
+        if (products.front() == "i_arrow")
+            batch = std::min(batch, market::QtyOf(obs.pack, "i_arrow_shaft"));
+    }
+    for (const std::string& made : products) {
         // ONLY WHAT MAY BE SOLD -- TO ANYONE.
         //
         // This asked faucet::AllowedForItem, which answers "will an NPC pay
@@ -609,7 +628,12 @@ CraftIntent ChooseCraft(const prof::Profession& p, const Observation& obs,
             route == faucet::SaleRoute::PlayerMarket ||
             (route == faucet::SaleRoute::Unrecorded &&
              faucet::OutputClassIsPlayerMarket(p.id.c_str()));
-        if (!sellable) continue;
+        const bool ownAmmo = NeedsArrowStock(p, obs) &&
+            (made == "i_arrow" || made == "i_arrow_shaft");
+        bool ownTraining = false;
+        for (const std::string& t : p.trainingCrafts)
+            if (t == made) ownTraining = true;
+        if (!sellable && !ownAmmo && !ownTraining) continue;
         // Gathered things are not crafted things. A fisher's "produces" holds
         // fish, and fish come out of the sea.
         if (!r->inputs[0].item) continue;

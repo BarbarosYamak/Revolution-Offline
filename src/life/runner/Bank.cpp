@@ -93,6 +93,50 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
             return false;
         }
 
+        if (needCfg_.profession && needCfg_.profession->combatStrategy == CombatStrategyId::Ranged) {
+            const i32 carried = market::QtyOf(obs.pack, "i_arrow");
+            if (carried < kArrowCarry) {
+                const u16 arrow = 0x0F3F;
+                const u32 stack = client.FindContainerItemByGraphic(box, &arrow, 1);
+                const i32 take = std::min(kArrowCarry - carried, market::QtyOf(obs.bank, "i_arrow"));
+                if (stack && take > 0) {
+                    LogLine("ammo: withdrawing %d arrows for the next hunt", take);
+                    IssueBankItemMove(client, obs, stack, static_cast<u16>(take), client.BackpackSerial());
+                    return false;
+                }
+            } else if (carried > kArrowCarry) {
+                const u32 stack = FindBackpackItemByName(client, "i_arrow", nullptr);
+                if (stack) {
+                    LogLine("ammo: banking %d arrows, keeping %d for hunting", carried - kArrowCarry, kArrowCarry);
+                    IssueBankItemMove(client, obs, stack, static_cast<u16>(carried - kArrowCarry), box);
+                    return false;
+                }
+            }
+        }
+
+        // A CASTER CARRIES ITS REAGENTS. The dead-weight pass below keeps only
+        // what the profession declares, the mage declares potions and food,
+        // and so every reagent it ever bought went into the box and stayed
+        // there. Top the pack up to kReagentCarry of each from the bank while
+        // the box is open, one stack per tick like everything else here.
+        if (needCfg_.profession &&
+            needCfg_.profession->combatStrategy == CombatStrategyId::Mage) {
+            for (const market::Stock& stored : obs.bank) {
+                if (stored.qty <= 0 || stored.item.compare(0, 7, "i_reag_") != 0)
+                    continue;
+                const i32 carried = market::QtyOf(obs.pack, stored.item);
+                if (carried >= kReagentCarry) continue;
+                i32 have = 0;
+                const u32 stack = FindContainerItemByName(client, box, stored.item.c_str(), &have);
+                const i32 take = std::min(kReagentCarry - carried, std::min(stored.qty, have));
+                if (!stack || take <= 0) continue;
+                LogLine("reagents: withdrawing %d %s (carrying %d, working set %d)",
+                        take, stored.item.c_str(), carried, kReagentCarry);
+                IssueBankItemMove(client, obs, stack, static_cast<u16>(take), client.BackpackSerial());
+                return false;
+            }
+        }
+
         // Keep one working smithing batch but bank the rest.  The generic
         // keep-list below protects all declared crafting inputs; for miner
         // smiths that previously meant *every* ingot stayed in the pack even
@@ -249,6 +293,7 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
         if (needCfg_.profession && (loadDemandsIt ||
                                     needCfg_.profession->produces.empty())) {
             for (const std::string& made : needCfg_.profession->produces) {
+                if (made == "i_arrow" && needCfg_.profession->combatStrategy == CombatStrategyId::Ranged) continue;
                 // FIND AND COUNT THE SAME THING (S1). This used to take the
                 // serial from FindBackpackItemByGraphic -- ONE stack, of
                 // whatever hue happened to come first -- and the amount from
@@ -326,6 +371,7 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
         if (needCfg_.profession) {
             const i32 keepToWorkWith = needCfg_.craftBatch * 2;
             for (const std::string& made : needCfg_.profession->produces) {
+                if (made == "i_arrow" && needCfg_.profession->combatStrategy == CombatStrategyId::Ranged) continue;
                 if (market::MaySellToNpc(*needCfg_.profession, made.c_str(),
                                          state_.ledger).allowed)
                     continue;   // it has an NPC route; selling beats storing
@@ -491,6 +537,14 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
                     for (const std::string& k : keepNames)
                         if (k == itemName) { named = true; break; }
                 }
+                // A caster's reagents are its kit whatever the profession
+                // list says (see the reagent top-up above). Banking them as
+                // dead weight is how Aurelius came to own 570 reagents he
+                // could not cast with.
+                if (!named && itemName && needCfg_.profession &&
+                    needCfg_.profession->combatStrategy == CombatStrategyId::Mage &&
+                    std::strncmp(itemName, "i_reag_", 7) == 0)
+                    named = true;
                 if (named) continue;
 
                 // GOLD IS DEPOSITED IN PART, NOT WHOLESALE.

@@ -187,6 +187,12 @@ bool Runner::Configure(const RunnerConfig& cfg, std::string* err) {
 
     // The goal that came back from disk is an INTENTION. Its clock and
     // counters are transient and are rebuilt at reconciliation.
+    // Set the consumable numbers once at configure time as well, so a line
+    // logged before the first planning tick shows this life's thresholds
+    // rather than the struct defaults. Gold is not known yet; the planning
+    // tick refreshes them against the purse.
+    ResolveConsumableThresholds(needCfg_, 0);
+
     planner_.Mutable() = state_.goal;
     configured_ = true;
     return true;
@@ -314,6 +320,18 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
 
     obs.axeInPack = FindAny(client, kHatchet, 2) != 0 || FindAny(client, kAxe, 2) != 0;
     obs.weaponEquipped = HandsBusy(client);
+    obs.schoolWeaponEquipped = false;
+    if (needCfg_.profession) {
+        if (const SchoolWeapon* school = SchoolWeaponFor(*needCfg_.profession)) {
+            for (u8 layer : {kLayerHand1, kLayerHand2}) {
+                const u16 g = client.EquippedGraphicAt(layer);
+                for (u16 want : school->graphics)
+                    if (g && g == want) obs.schoolWeaponEquipped = true;
+            }
+        } else {
+            obs.schoolWeaponEquipped = obs.weaponEquipped;   // no school: any weapon
+        }
+    }
     // Read the worn graphic rather than inferring from a full hand. The first
     // live run swung the newbie katana at a tree for two minutes because a
     // filled weapon hand was taken to mean "the axe is out".
@@ -371,8 +389,14 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
     // then spent twenty seconds failing to dent it. The war watchdog's target
     // is the client's own record that a fight is actually happening, so that
     // is the gate; adjacent hostiles only scale the pressure once it is.
-    obs.underAttack = warTarget != 0 && warTarget != clothKillSheep_;
-    obs.attackersOnMe = obs.underAttack ? std::max(1, adjacent) : 0;
+    // ...and the OTHER side of a fight: something swinging at us that we
+    // never targeted. The 0x2F record (Client::RecentAttackerCount) is the
+    // server saying so; without it a character that did not open the fight
+    // stood in one reading "is attacking you!" and calling it not a fight.
+    const i32 swingingAtMe = client.RecentAttackerCount();
+    obs.underAttack = (warTarget != 0 && warTarget != clothKillSheep_) ||
+                      swingingAtMe > 0;
+    obs.attackersOnMe = obs.underAttack ? std::max({1, adjacent, swingingAtMe}) : 0;
 
     const travel::DeathRecord& death = client.Knowledge().LastDeath();
     // The death location is enough to begin a recovery run.  The corpse serial
@@ -384,6 +408,8 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
     obs.corpseY = death.y;
     obs.corpseRecoveryAttempts = death.recoveryAttempts;
     obs.huntReturnPending = state_.huntReturnPending;
+    obs.huntingRoutine = needCfg_.profession &&
+        (WantsToHunt(*needCfg_.profession) || WantsSpellCombat(*needCfg_.profession));
 
     // Arrival is a claim about the TILE. `TreeCount` asks the shard's own
     // statics whether there is anything here to chop, which travel success
@@ -1318,6 +1344,12 @@ void Runner::Tick(Client& client, i64 nowMs) {
             // Aftermath may have just received the last item from a corpse.
             Observation planningObs = obs;
             planningObs.huntReturnPending = state_.huntReturnPending;
+            // WHAT THIS CHARACTER CONSIDERS A FULL PACK OF BANDAGES, TODAY.
+            // Resolved here rather than left at the struct's defaults because
+            // the numbers depend on the life (a fighter's floor is the
+            // owner's 100) and on the purse, and both the need model below
+            // and DoReplaceEquipment read them this tick.
+            ResolveConsumableThresholds(needCfg_, planningObs.gold);
             const std::vector<Need> needs =
                 AssessNeeds(state_.plan, state_.memory, planningObs, needCfg_);
             std::string why;
@@ -1366,6 +1398,9 @@ void Runner::Tick(Client& client, i64 nowMs) {
                 // all -- one scan in the whole session, back in Vesper.
                 const bool sameErrand = wasActive && previous == planner_.Current().kind;
                 if (!sameErrand) {
+                    if (planner_.Current().kind == GoalKind::TrainCombat &&
+                        (client.TravelBusy() || client.GotoBusy()))
+                        client.TravelAbort("training supersedes the previous shopping or exploration trip");
                     chopTargetValid_ = false;
                     chopCursorPending_ = false;
                     travelInFlight_ = false;
@@ -1431,6 +1466,7 @@ void Runner::Tick(Client& client, i64 nowMs) {
 
         case Phase::WindDown: {
             if (!client.IsInWorld()) { phase_ = Phase::Done; finished_ = true; return; }
+            if (nowMs < windDownStartedMs_) return;
             // Logging out somewhere hostile is how this project lost three
             // characters -- Source-X does not drop a combat-flagged connection
             // immediately, and one died in the gap AFTER logout_ack. So the
@@ -1480,7 +1516,7 @@ void Runner::Tick(Client& client, i64 nowMs) {
             const bool outOfTime = windDownMs > budgetMs;
             if (outOfTime && client.TravelBusy()) {
                 LogLine("wind-down: the trip has run past its deadline (%llds, "
-                        "%s); abandoning it and logging out where I stand",
+                        "%s); abandoning this route and reassessing safety",
                         static_cast<long long>(windDownMs / 1000),
                         stillMoving ? "still moving, but far too long"
                                     : "not moving");
@@ -1503,11 +1539,13 @@ void Runner::Tick(Client& client, i64 nowMs) {
             // start an avoidable one in the first place when where we are
             // standing already answers to a guard.
             const wm::Region* hereRegion = client.CurrentRegion();
-            const bool safeHere = client.BankContainer() != 0 ||
-                                  windDownArrived_ ||
+            std::vector<Client::HostileHit> logoutThreats;
+            client.ScanHostiles(12, logoutThreats);
+            const bool safeHere = logoutThreats.empty() &&
+                                 (client.BankContainer() != 0 ||
                                   (hereRegion && hereRegion->flags.guarded) ||
                                   (bank && TileDist(bank->x, bank->y, client.PlayerX(),
-                                                    client.PlayerY()) <= 6);
+                                                    client.PlayerY()) <= 6));
 
             if (travelInFlight_) {
                 travelInFlight_ = false;
@@ -1581,18 +1619,21 @@ void Runner::Tick(Client& client, i64 nowMs) {
                     travelInFlight_ = client.TravelToService(wm::Service::Banker, nullptr);
                 }
                 if (!travelInFlight_) {
-                    LogLine("wind-down: could not start the trip (%s); logging out here",
+                    LogLine("wind-down: could not start the trip (%s); remaining online for safety",
                             client.TravelFailureText());
                 }
                 return;
             }
             if (!safeHere) {
-                LogLine("wind-down: giving up on reaching a safe spot after %d "
-                        "attempt(s); logging out at %d,%d and recording it",
+                LogLine("wind-down: safe logout blocked after %d "
+                        "attempt(s) at %d,%d; remaining online and retrying",
                         windDownTrips_, client.PlayerX(), client.PlayerY());
-                state_.memory.NoteEvent("logout_unsafe",
+                state_.memory.NoteEvent("logout_safety_blocked",
                                         "could not reach a known-safe spot", "",
                                         client.PlayerX(), client.PlayerY(), nowMs);
+                windDownTrips_ = 0;
+                windDownStartedMs_ = nowMs + 30000;
+                return;
             }
 
             session_.endedMs = nowMs;
@@ -2019,7 +2060,7 @@ bool Runner::RestTick(Client& client, const Observation& obs, GoalKind owner) {
     // safeHere.
     const wm::Region* here = client.CurrentRegion();
     see.somewhereSafe = (here && here->flags.guarded) || client.BankContainer() != 0;
-    see.worthExploring = !exploredEverything_;
+    see.worthExploring = !exploredEverything_ && !obs.huntingRoutine;
     // No direct regen signal exists on this shard; hunger stopping HP
     // regeneration is the fact include/uo/activities/heal.h is written
     // around, so "not hungry and not full" is the cheapest honest proxy.

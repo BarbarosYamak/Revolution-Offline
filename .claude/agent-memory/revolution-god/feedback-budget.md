@@ -16,3 +16,5 @@ Do not spend agents on one profession's chain link by link. Owner: "you spend 20
 - Query hostiles (`world_query.py --near`) before placing any content coordinate.
 - Park content side-quests until owner asks.
 - Prefer sonnet for triage; opus only when root cause unknown after direct look.
+
+**2026-09-05 addendum:** after three agents in one morning the owner said "dont start agents today do it yourself". Read as: at most one agent per session, research/verification only; implementation stays in the main thread once the root cause is in hand.

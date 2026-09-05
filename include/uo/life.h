@@ -563,6 +563,10 @@ struct Observation {
     bool axeInPack = false;
     bool axeEquipped = false;
     bool weaponEquipped = false;
+    // The equipped weapon belongs to this life's own school (kSchoolWeapons).
+    // A macer holding a dagger is armed and still has no mace -- Faustus,
+    // 2026-09-05, hunted at Mace Fighting 50 with a dagger in hand.
+    bool schoolWeaponEquipped = false;
     // Three protected layers with a core torso/leg piece among them -- the
     // gate DoTrainCombat refuses to leave for a hunting ground without
     // (Runner::HasBasicArmor). Defaults TRUE so a pure need model with no
@@ -626,6 +630,7 @@ struct Observation {
     // Corpse state, only meaningful after a death we observed.
     bool corpseKnown = false;
     bool huntReturnPending = false;
+    bool huntingRoutine = false; // Earn/train through combat, rather than sightseeing.
     i32  corpseX = 0, corpseY = 0;
     i32  corpseRecoveryAttempts = 0;
 
@@ -876,6 +881,20 @@ int SpellTaughtByScroll(const std::string& item);
 // `focus` is optional. When given, a fully-stocked recipe this life has just
 // spent a sitting on yields to another fully-stocked one; when omitted (or
 // when it is the only thing workable) the answer is unchanged.
+constexpr i32 kArrowCarry = 100;
+// A CASTER'S WORKING SET OF EACH REAGENT, the arrow rule's twin. Aurelius
+// (2026-09-05) had 138-146 of every reagent in the bank and none in the pack,
+// so every fight and every practice sitting was attempted with nothing.
+// Fifty of each is a hunt's worth at one to two per cast; the rest stays in
+// the box, where full loot on death cannot reach it.
+constexpr i32 kReagentCarry = 50;
+constexpr i32 kArrowReserve = 400;
+inline bool NeedsArrowStock(const prof::Profession& p, const Observation& obs) {
+    return p.combatStrategy == CombatStrategyId::Ranged &&
+        market::QtyOf(obs.pack, "i_arrow") + market::QtyOf(obs.bank, "i_arrow") <
+            kArrowCarry + kArrowReserve;
+}
+
 CraftIntent ChooseCraft(const prof::Profession& p, const Observation& obs,
                         i32 batch, const CraftFocus* focus = nullptr);
 
@@ -945,6 +964,8 @@ bool WoolChainWorkInProgress(const prof::Profession& p,
 // grant in a weapon school intends to use it. Shared because two systems ask:
 // the need model (is there a reason to travel?) and the goal that travels.
 bool WantsToHunt(const prof::Profession& p);
+
+
 bool WantsSpellCombat(const prof::Profession& p);
 
 // The build's own weapon-school basic -- katana, kryss, club or bow -- read
@@ -1099,6 +1120,16 @@ struct NeedConfig {
     i32    craftBatch       = 5;
     double fleeHpFraction   = 0.32;  // M3.9.1 live: disengaged at ~32% and survived
     double healHpFraction   = 0.80;
+    // RESOLVED PER CHARACTER, NOT A GLOBAL. See ResolveConsumableThresholds:
+    // these two are rewritten every planning tick from the life's own
+    // catalogue entry and its purse. The values here are only what a
+    // character with no profession (the M4 lumberjack) keeps.
+    //
+    // "every fighting bot carries at least 100 bandages" (project owner,
+    // 2026-09-05, watching Castor fight a skeleton with 27). The old 8/30
+    // was global and never touched by a profession, so a hunter restocked to
+    // thirty and stood down -- REPLACE_EQUIPMENT reported "nothing on the
+    // list could be replaced this pass" the moment the pack crossed eight.
     i32    bandageLow       = 8;     // uo-offline's threshold shape, our numbers
     i32    bandageFull      = 30;
     double bankWeightFrac   = 0.85;
@@ -1152,6 +1183,22 @@ struct NeedConfig {
     // SESSIONS is the honest unit for "not again today".
     i32 sessionIndex = 0;
 };
+
+// THE OWNER'S FLOOR FOR A FIGHTING LIFE. A bot that hunts carries at least
+// this many bandages before it goes looking for something to fight
+// (project owner, 2026-09-05). It is a floor, not the target: the target is
+// derived from the purse, see ResolveConsumableThresholds.
+constexpr i32 kFighterBandageFloor = 100;
+
+// REWRITE cfg.bandageLow / cfg.bandageFull FOR THIS CHARACTER, THIS TICK.
+//
+// The base numbers are the life's own catalogue entry (prof::ConsumableNeed
+// "bandage"), so a non-fighting life keeps its own smaller ones. A life that
+// hunts gets the owner's floor as its restock TRIGGER, and a total above it
+// that scales with the purse -- "thresholds must be dynamic" (owner rule):
+// a fighter with 9,000 gold can afford to walk out with hundreds, one with
+// 200 cannot, and neither number belongs in a constant.
+void ResolveConsumableThresholds(NeedConfig& cfg, i32 gold);
 
 // WHERE "TOO HEAVY" STARTS for this life. A fighter's line is the hunt gate
 // (huntWeightFrac): once the pack is too full to hunt, the load goes in the

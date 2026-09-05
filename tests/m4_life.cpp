@@ -2283,6 +2283,52 @@ void TestACorneredFighterMayHunt() {
 
 // "if warrior economy is good then he can buy bandage and potion, otherwise go
 // get yourself wool make bandage" (project owner, 2026-08-29).
+// THE OWNER'S BANDAGE FLOOR, AND THAT IT IS NOT A GLOBAL.
+//
+// "every fighting bot carries at least 100 bandages" (project owner,
+// 2026-09-05). The numbers used to be two constants in NeedConfig that no
+// profession ever touched, so a fencer and a scribe wanted the same thirty.
+void TestTheFightingFloorIsAHundred() {
+    Section("needs: a fighter's bandage floor is the owner's hundred");
+
+    const prof::Profession* fencer = prof::Find("fencer");
+    const prof::Profession* scribe = prof::Find("scribe");
+    if (!fencer) { Check(false, "no fencer"); return; }
+
+    life::NeedConfig fighter;
+    fighter.profession = fencer;
+    life::ResolveConsumableThresholds(fighter, 0);
+    Check(fighter.bandageLow >= life::kFighterBandageFloor,
+          "a broke fencer still triggers a restock at 100");
+    Check(fighter.bandageFull > fighter.bandageLow,
+          "the restock total sits above the trigger, or the errand ends "
+          "where it starts");
+
+    // DYNAMIC, NOT A SECOND CONSTANT: the total follows the purse.
+    life::NeedConfig rich;
+    rich.profession = fencer;
+    life::ResolveConsumableThresholds(rich, 5000);
+    Check(rich.bandageFull > fighter.bandageFull,
+          "a full purse buys a deeper pack than an empty one");
+    Check(rich.bandageLow == fighter.bandageLow,
+          "the floor is the owner's and does not move with money");
+
+    // Idempotent: the planner resolves these every tick.
+    life::NeedConfig again = rich;
+    life::ResolveConsumableThresholds(again, 5000);
+    Check(again.bandageLow == rich.bandageLow &&
+              again.bandageFull == rich.bandageFull,
+          "resolving twice gives the same answer");
+
+    if (scribe) {
+        life::NeedConfig quiet;
+        quiet.profession = scribe;
+        life::ResolveConsumableThresholds(quiet, 5000);
+        Check(quiet.bandageLow < life::kFighterBandageFloor,
+              "a life that does not hunt keeps its own smaller numbers");
+    }
+}
+
 void TestAPoorFighterMakesItsOwnBandages() {
     Section("needs: a broke fighter shears a sheep, a rich one visits a shop");
 
@@ -2629,6 +2675,12 @@ void TestACooledExploreYieldsToIdleBriefly() {
           "with nothing else on the table, something is still picked");
     Check(p.Current().kind == life::GoalKind::IdleBriefly,
           "and with EXPLORE cooling, that something is IDLE_BRIEFLY");
+    p.ClearCooldown(life::GoalKind::Explore);
+    obs.huntingRoutine = true;
+    for (const auto& goal : p.Score(none, obs, mem)) {
+        if (goal.kind == life::GoalKind::Explore)
+            Check(!goal.feasible, "combat routine does not turn downtime into sightseeing");
+    }
 }
 
 // --------------------------------------------------------------------------
@@ -3543,6 +3595,25 @@ void TestRecoveryForEveryArchetype() {
 }
 
 void TestHuntBankReturnPriority() {
+    {
+        const auto* archer = prof::Find("archer");
+        auto ammo = HealthyLumberjackAtWork();
+        ammo.skills = life::PlanFromProfession(*archer).skills;
+        ammo.pack = {{"i_log", 20}};
+        const auto shaft = life::ChooseCraft(*archer, ammo, 1);
+        Check(shaft.item && std::string(shaft.item) == "i_arrow_shaft", "archer makes shafts before sale bows when ammunition is missing");
+        ammo.pack = {{"i_arrow_shaft", 20}, {"i_feather", 20}};
+        const auto arrow = life::ChooseCraft(*archer, ammo, 1);
+        Check(arrow.item && std::string(arrow.item) == "i_arrow" && arrow.missing.empty(), "archer finishes arrows from shafts and feathers");
+        ammo.pack = {{"i_arrow", 100}};
+        ammo.bank = {{"i_arrow", 400}};
+        Check(!life::NeedsArrowStock(*archer, ammo), "100 carried plus 400 banked satisfies the reserve");
+        ammo.pack.clear();
+        life::NeedConfig cfg; cfg.profession = archer;
+        auto needs = life::AssessNeeds(life::PlanFromProfession(*archer), life::Memory{}, ammo, cfg);
+        const auto* bank = Find(needs, life::NeedKind::NeedBank);
+        Check(bank && !bank->blocked && bank->urgency == 1.0, "empty quiver withdraws banked arrows before hunting");
+    }
     const prof::Profession* fighter = prof::Find("fencer");
     life::NeedConfig cfg; cfg.profession = fighter;
     auto plan = life::PlanFromProfession(*fighter);
@@ -3620,6 +3691,7 @@ int main(int argc, char** argv) {
     TestScrollShoppingStandsDownWhenNobodySells();
     TestACorneredFighterMayHunt();
     TestAPoorFighterMakesItsOwnBandages();
+    TestTheFightingFloorIsAHundred();
     TestExploringBeatsStandingStill();
     TestGearIsCheckedAndClassBound();
     TestAGoalThatSucceedsAtNothingIsStopped();

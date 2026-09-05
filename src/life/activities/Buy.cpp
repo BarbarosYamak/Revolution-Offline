@@ -53,6 +53,7 @@ ActivityTickResult BuyActivity::Tick(Client& client, const Observation& obs) {
         spec.what = req_.item;
         spec.goldFloor = req_.minimumGoldReserve;
         spec.maxPricePerUnit = req_.maxPricePerUnit;
+        for (i32 i = 0; i < req_.avoidCount; ++i) spec.Avoid(req_.avoid[i]);
         errand_.Begin(spec);
     }
 
@@ -64,6 +65,7 @@ ActivityTickResult BuyActivity::Tick(Client& client, const Observation& obs) {
     out.wake = r.wake;
     out.delayMs = r.delayMs;
     out.acted = r.acted;
+    out.offerOpen = r.offerOpen;
     // The errand's reason is a std::string built per tick; hold it here so
     // the caller's const char* stays valid for the length of this tick.
     lastWhy_ = r.why;

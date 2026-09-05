@@ -1322,7 +1322,19 @@ void Client::OnDeleteObject(const u8* data, usize size) {
     // the rest of the session: every later lift -- the next scroll, the bank
     // coin -- was "lift refused locally" (run_gates/g_Elara.console.txt
     // 01:24:51 first scroll ok, 01:24:56 onward 42 refused lifts).
-    if (drag_.InFlight() && drag_.Serial() == serial) drag_.Reset();
+    // A LIFT WE OURSELVES SENT is not the item leaving the world -- it is
+    // relocating (to a container drop or a worn layer), and Sphere always
+    // precedes that with a 0x1D for the item's old spot. If this object is
+    // itself a container, erasing containerItems_[serial] below would wipe
+    // its cached CONTENTS every time it is merely picked up and set back
+    // down -- exactly what happened to a spellbook: STAT_FARM unequipped it
+    // (pack, still 19 spells cached), then re-equipped it a second later,
+    // and the re-equip's own pickup 0x1D erased that cache. PRACTICE_SKILL
+    // read the same still-worn, still-full book as empty right after
+    // (run_gates/g_Aurelius.console.txt:83-90,596-624, 2026-09-05). The
+    // book never left the world, so its contents cache should not either.
+    const bool ownLift = drag_.InFlight() && drag_.Serial() == serial;
+    if (ownLift) drag_.Reset();
     ActionOnObjectDeleted(serial);
     // An item leaving the world is an item leaving a trade window, if that is
     // where it was.
@@ -1360,10 +1372,12 @@ void Client::OnDeleteObject(const u8* data, usize size) {
                        [&](const ContainerItem& e) { return e.serial == serial; }),
                    list.end());
     }
-    containerItems_.erase(serial);
-    openContainers_.erase(std::remove_if(openContainers_.begin(), openContainers_.end(),
-                              [&](const OpenContainer& c) { return c.serial == serial; }),
-                          openContainers_.end());
+    if (!ownLift) {
+        containerItems_.erase(serial);
+        openContainers_.erase(std::remove_if(openContainers_.begin(), openContainers_.end(),
+                                  [&](const OpenContainer& c) { return c.serial == serial; }),
+                              openContainers_.end());
+    }
 }
 
 // Range cull, mirroring CObjectManager_UpdateMovement @0x4c8b00: the official
@@ -1933,13 +1947,28 @@ void Client::OnSwing(const u8* data, usize size) {
     if (size < 10) return;
     const u32 attacker = LoadBE32(data + 2);
     const u32 defender = LoadBE32(data + 6);
-    if (defender == playerSerial_ && attacker != 0)
+    if (defender == playerSerial_ && attacker != 0) {
+        attackersOnMe_[attacker] = NowMs();
         uo::js::EmitAttackedEvent(attacker);  // -> Player 'attacked' (serial)
+    }
     else if (attacker == playerSerial_ && defender != 0)
         uo::js::EmitCombatEvent(defender);    // -> Player 'combat' (serial)
     // Either direction is combat still happening, which keeps war mode alive.
     if (attacker == playerSerial_ || defender == playerSerial_)
         war_.OnCombatEvent(NowMs());
+}
+
+bool Client::IsAttackingMe(u32 serial, i64 windowMs) const {
+    const auto it = attackersOnMe_.find(serial);
+    return it != attackersOnMe_.end() && NowMs() - it->second <= windowMs;
+}
+
+i32 Client::RecentAttackerCount(i64 windowMs) const {
+    const i64 now = NowMs();
+    i32 n = 0;
+    for (const auto& kv : attackersOnMe_)
+        if (now - kv.second <= windowMs) ++n;
+    return n;
 }
 
 // 0x2E Worn Item (15B fixed): cmd, item serial(4), graphic(2), pad(1),
@@ -5457,6 +5486,8 @@ void Client::OnStats(const u8* data, usize size) {
     if (size < 41) return;
     const u32 serial = LoadBE32(data + 3) & 0x7FFFFFFFu;
     if (playerSerial_ != 0 && serial != playerSerial_) {
+        const std::string name = PacketString(data + 7, 30);
+        RememberMobileName(serial, name.c_str());
         // Status of another mobile (from our 0x34 query): cache its HP so the bot
         // can judge a fight before committing. curHp@37, maxHp@39 are in the fixed
         // header; the rest of the extended block is only sent for self/editing.
@@ -5577,6 +5608,7 @@ void Client::OnAsciiMessage(const u8* data, usize size) {
     RememberJournalMessage(sourceSerial, sourceBody, type, hue, font,
                            speaker.c_str(), text.c_str());
     LogInfo("[chat ascii] %s: %s\n", speaker.c_str(), text.c_str());
+    NoteAttackEmote(sourceSerial, text.c_str());
 
     // Stamina signal: the server denies movement and says "too fatigued to
     // move" when stamina is spent. Record it so a reject right after is
@@ -5625,6 +5657,24 @@ void Client::OnUnicodeMessage(const u8* data, usize size) {
     RememberJournalMessage(sourceSerial, sourceBody, type, hue, font,
                            speaker.c_str(), buf);
     LogInfo("[chat uni  ] %s: %s\n", speaker.c_str(), buf);
+    NoteAttackEmote(sourceSerial, buf);
+}
+
+// "*Skeleton is attacking you!*" is Sphere's own announcement of a swing at
+// this character, spoken BY the attacker (its serial is the message source).
+// Live on 2026-09-05 11:29-11:30 Aurelius received two of these and no 0x2F
+// for either, so the emote is the signal that actually arrives for an NPC
+// hitting a player on this shard; OnSwing stays for the cases that do send
+// the packet. Other people's fights ("*Castor is attacking Skeleton!*") do
+// not say "you" and are ignored.
+void Client::NoteAttackEmote(u32 sourceSerial, const char* text) {
+    if (!text || sourceSerial == 0 || sourceSerial == 0xFFFFFFFFu) return;
+    const u32 serial = sourceSerial & 0x7FFFFFFFu;
+    if (serial == playerSerial_) return;
+    if (std::strstr(text, "is attacking you") == nullptr) return;
+    attackersOnMe_[serial] = NowMs();
+    war_.OnCombatEvent(NowMs());
+
 }
 
 // ---------------------------------------------------------------------------

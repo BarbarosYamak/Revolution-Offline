@@ -280,7 +280,22 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
             break;
         }
     }
-    const CraftConfirmResult conf = ConfirmCraft(cin);
+    CraftConfirmResult conf = ConfirmCraft(cin);
+    // THE SHARD SAID IT WENT IN. "You put the Poison in your pack." is
+    // Sphere's ItemBounce line for a made item, and Elara (2026-09-04 15:42
+    // onward) heard it on every swing while the cached count stood still --
+    // the world save later held exactly the potions those swings made. The
+    // count is the first witness; when it is silent and the shard has spoken,
+    // the shard wins, and the pack is re-read so the count catches up.
+    if (conf.verdict != CraftVerdict::Made && !cin.heard &&
+        client.JournalSaidSince("in your pack", craftJournalMs_)) {
+        conf.verdict = CraftVerdict::Made;
+        conf.made = 1;
+        conf.reason = "the shard said it put the item in the pack";
+        LogLine("craft: the shard put a %s in the pack but the count still reads %d "
+                "-- taking its word and re-reading the pack", craftItem_.c_str(), now);
+        if (!client.ActionBusy()) client.ActionOpenBackpack();
+    }
     if (conf.verdict == CraftVerdict::ShardRefused ||
         conf.verdict == CraftVerdict::NoProgress) {
         // A goal that achieved nothing says so and stands DOWN, so the planner
@@ -305,6 +320,7 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
         planner_.NoteAttempt(obs.nowMs);
     }
     if (conf.verdict == CraftVerdict::Made) {
+        craftJournalMs_ = client.JournalNowMs();
         craftMade_ += conf.made;
         craftHadBefore_ = now;
         craftWait_.Reset();            // the thing we were waiting for arrived
@@ -664,8 +680,10 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
     // Special-casing the smith hammer alone left alchemy double-clicking a
     // reagent and being told "You can't think of a way to use that item".
     const ToolOpener* opener_tool = OpenerFor(r->tool);
+    const bool bowCarving = r->skillId == rules::kBowcraft &&
+        std::string(r->inputs[0].item) == "i_log";
     const std::vector<u16> openGfx =
-        r->station == prod::Station::Fire
+        bowCarving ? std::vector<u16>{0x0F51, 0x0F52} : r->station == prod::Station::Fire
             ? std::vector<u16>(kCookingToolGfx, kCookingToolGfx + 3)
             : (opener_tool
                    ? std::vector<u16>(opener_tool->gfx,
@@ -694,7 +712,7 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
                 "open the %s menu with (%s)",
                 faucet::RefusalName(faucet::Refusal::MissingTool),
                 craftItem_.c_str(), r->inputs[0].item);
-        return HandOff(GoalKind::Craft, GoalKind::BuySupplies,
+        return HandOff(GoalKind::Craft, bowCarving ? GoalKind::GetTool : GoalKind::BuySupplies,
                        kCraftStuckCooldownMs, "no material to start from",
                        obs.nowMs);
     }
@@ -716,7 +734,7 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
     // the root menu -- cloth opens sm_tailor_cloth, leather sm_tailor_leather
     // (CClientTarg.cpp:2383-2399). Aelia and Amara used the kit and waited
     // for a menu that only comes after the cloth is targeted.
-    const bool toolArmsCursor = r->tool == prod::Tool::SmithHammer ||
+    const bool toolArmsCursor = bowCarving || r->tool == prod::Tool::SmithHammer ||
                                 r->tool == prod::Tool::SewingKit;
     if (toolArmsCursor) {
         if (craftCursorPending_) {

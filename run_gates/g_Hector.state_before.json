@@ -47,26 +47,27 @@
     "target_str": 100,
     "unresolved_tenths": 1000
   },
-  "checkpoint_ms": 2044519488,
+  "checkpoint_ms": 2064614795,
   "death_count": 0,
   "goal": {
     "active": true,
     "attempts": 0,
     "failure_reason": "",
-    "kind": "REPLACE_EQUIPMENT",
+    "kind": "UPGRADE_GEAR",
     "progress": 0,
-    "started_at_ms": 2044179255
+    "started_at_ms": 2064558210
   },
   "home_city": "Trinsic",
+  "hunt_return_pending": false,
   "identity": {
     "account_name": "RevGen3_25",
     "character_name": "Hector",
     "created_at_ms": 0,
     "first_seen_at_ms": 1942899654,
     "identity_id": "revgen3_25.hector",
-    "last_seen_at_ms": 2043921938,
-    "sessions": 3,
-    "total_play_time_ms": 4715410
+    "last_seen_at_ms": 2064314810,
+    "sessions": 6,
+    "total_play_time_ms": 5618183
   },
   "known_spells": [],
   "known_spells_seen_ms": 0,
@@ -74,7 +75,7 @@
   "last_server_report": {
     "dead": false,
     "dex": 25,
-    "gold": 8702,
+    "gold": 7936,
     "int": 5,
     "skills": [
       {
@@ -103,8 +104,8 @@
       }
     ],
     "str": 51,
-    "x": 2523,
-    "y": 284
+    "x": 2471,
+    "y": 562
   },
   "ledger": [],
   "memory": {
@@ -116,24 +117,7 @@
         "name": "Lich"
       }
     ],
-    "danger": [
-      {
-        "at_ms": 2043921999,
-        "heat": 2,
-        "radius": 20,
-        "threat": "death",
-        "x": 5735,
-        "y": 3193
-      },
-      {
-        "at_ms": 2043937120,
-        "heat": 0.5,
-        "radius": 14,
-        "threat": "",
-        "x": 5740,
-        "y": 3217
-      }
-    ],
+    "danger": [],
     "events": [
       {
         "at_ms": 1942899654,
@@ -198,6 +182,30 @@
         "place": "",
         "x": 2523,
         "y": 284
+      },
+      {
+        "at_ms": 2044643063,
+        "detail": "recover after resurrection",
+        "kind": "corpse_pending",
+        "place": "",
+        "x": 2523,
+        "y": 284
+      },
+      {
+        "at_ms": 2063579063,
+        "detail": "decayed before this session",
+        "kind": "corpse_abandoned",
+        "place": "",
+        "x": 2523,
+        "y": 284
+      },
+      {
+        "at_ms": 2064417880,
+        "detail": "session=6",
+        "kind": "mount_unavailable",
+        "place": "",
+        "x": 2534,
+        "y": 538
       }
     ],
     "places": [
@@ -260,6 +268,26 @@
         "x": 1416,
         "y": 3782,
         "z": 0
+      },
+      {
+        "kind": "healer",
+        "last_verified_ms": 2064612230,
+        "learned_ms": 2044768702,
+        "name": "Erskine, the healer",
+        "visits": 7831,
+        "x": 2579,
+        "y": 599,
+        "z": 0
+      },
+      {
+        "kind": "safe",
+        "last_verified_ms": 2064614734,
+        "learned_ms": 2064614734,
+        "name": "logout point",
+        "visits": 1,
+        "x": 2471,
+        "y": 562,
+        "z": 5
       }
     ],
     "resources": [],
@@ -319,6 +347,57 @@
       "skill_tenths_end": 1001,
       "skill_tenths_start": 1001,
       "started_ms": 2043921938,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2044940521,
+      "goals_attempted": 8,
+      "goals_completed": 0,
+      "goals_failed": 0,
+      "gold_end": 8367,
+      "gold_start": 8702,
+      "logs_gathered": 0,
+      "places_learned": 7,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1001,
+      "skill_tenths_start": 1001,
+      "started_ms": 2044643053,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2063876555,
+      "goals_attempted": 1,
+      "goals_completed": 0,
+      "goals_failed": 0,
+      "gold_end": 8321,
+      "gold_start": 8367,
+      "logs_gathered": 0,
+      "places_learned": 7,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1001,
+      "skill_tenths_start": 1001,
+      "started_ms": 2063579063,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2064614795,
+      "goals_attempted": 8,
+      "goals_completed": 1,
+      "goals_failed": 0,
+      "gold_end": 7936,
+      "gold_start": 8321,
+      "logs_gathered": 0,
+      "places_learned": 8,
+      "self_supersessions": 1,
+      "skill_tenths_end": 1001,
+      "skill_tenths_start": 1001,
+      "started_ms": 2064314810,
       "suppliers_learned": 0
     }
   ]

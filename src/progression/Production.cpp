@@ -298,6 +298,31 @@ const std::vector<Recipe>& Table() {
     {"i_spellbook_runebook", 1, Provenance::PlayerMarket, Station::None, Tool::PenAndInk,
      kInscription, 450, kNoSkill, 0,
      {{"i_scroll_blank", 8}, {"i_rune_marker", 1}, {"i_scroll_recall", 1}, {"i_scroll_gate_travel", 1}},
+     "SCRIPT i_spellbook_runebook"},
+
+    // CARTOGRAPHY, the treasure hunter's trained skill (owner, 2026-09-05:
+    // "for treasure hunter it needs cartography to train as well"). Four
+    // rungs, every one a blank map drawn with a mapmaker's pen, whose ID is
+    // i_pen_and_ink's graphic (i_profession_cartographer.scp:213-296). The
+    // menu is sm_cartography (crafting/interface/legacy skillmenu/
+    // sm_legacy_cartography.scp:15-25). Nobody buys a drawn map -- these are
+    // training crafts (Profession::trainingCrafts), not goods.
+    {"i_map_local", 1, Provenance::PlayerCrafted, Station::None, Tool::PenAndInk,
+     rules::kCartography, 0, kNoSkill, 0, {{"i_map_blank", 1}},
+     "SCRIPT i_map_local SKILLMAKE=Cartography 0.0,t_cartography; RESOURCES=1 i_map_blank"},
+    {"i_map_city", 1, Provenance::PlayerCrafted, Station::None, Tool::PenAndInk,
+     rules::kCartography, 250, kNoSkill, 0, {{"i_map_blank", 1}},
+     "SCRIPT i_map_city SKILLMAKE=Cartography 25.0,t_cartography; RESOURCES=1 i_map_blank"},
+    {"i_map_sea_chart", 1, Provenance::PlayerCrafted, Station::None, Tool::PenAndInk,
+     rules::kCartography, 350, kNoSkill, 0, {{"i_map_blank", 1}},
+     "SCRIPT i_map_sea_chart SKILLMAKE=Cartography 35.0,t_cartography; RESOURCES=1 i_map_blank"},
+    {"i_map_world", 1, Provenance::PlayerCrafted, Station::None, Tool::PenAndInk,
+     rules::kCartography, 500, kNoSkill, 0, {{"i_map_blank", 1}},
+     "SCRIPT i_map_world SKILLMAKE=Cartography 50.0,t_cartography; RESOURCES=1 i_map_blank"},
+    // The pen itself: a tinker's product (Tinkering 25, one ingot); the
+    // shard's tinker menu got a row for it on 2026-09-05.
+    {"i_mapmakers_pen", 1, Provenance::PlayerCrafted, Station::None, Tool::TinkerTools,
+     kTinkering, 250, kNoSkill, 0, {{"i_ingot_iron", 1}},
      "SCRIPT revolution/revolution_runebook.scp SKILLMAKE=Inscription 45.0,i_pen_and_ink; REVOLUTION cooperative 19.12.2008; NO MENU ENTRY"},
 
     // --- fishing ------------------------------------------------------------

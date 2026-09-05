@@ -67,8 +67,11 @@ bool Runner::ProcessHuntAftermath(Client& client, const Observation& obs) {
     }
     i32 x = 0, y = 0;
     const bool visible = client.WorldItemPosition(huntLootCorpse_, &x, &y);
-    if (!visible || huntLootFailures_ >= 3 || obs.WeightFraction() >= 0.70 ||
-        obs.hostilesNear >= 3) {
+    std::vector<Client::HostileHit> nearby;
+    client.ScanHostiles(combat::kCrowdRadius, nearby);
+    const bool heavy = obs.WeightFraction() >= BankWeightLine(needCfg_);
+    if (heavy) state_.huntReturnPending = true;
+    if (!visible || huntLootFailures_ >= 3 || heavy || nearby.size() >= 3) {
         LogLine("hunt: ending loot attempt visible=%d failures=%d hp=%.0f%% load=%.0f%%",
                 visible ? 1 : 0, huntLootFailures_, obs.HpFraction()*100, obs.WeightFraction()*100);
         huntLootCorpse_ = 0;
@@ -91,7 +94,8 @@ bool Runner::ProcessHuntAftermath(Client& client, const Observation& obs) {
         return true;
     }
     if (client.ContainerItemCount(huntLootCorpse_) == 0) {
-        LogLine("hunt: corpse emptied; returning to bank");
+        LogLine("hunt: corpse emptied; %s", state_.huntReturnPending
+            ? "returning to bank" : "ready for next target");
         huntLootCorpse_ = 0;
         Checkpoint(client, obs.nowMs, "hunt loot complete");
         return false;
@@ -184,7 +188,8 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
             // The interaction range is wider than adjacency, so path to an
             // accessible tile in that range instead of attempting to occupy
             // the NPC's sealed tile through the wall.
-            constexpr i32 kHealerReach = 4;
+            // Sphere's NPC_LookAtCharHealer requires distance <= 3.
+            constexpr i32 kHealerReach = 2;
             if (client.MobilePosition(healer, &hx, &hy, &hz) &&
                 TileDist(obs.x, obs.y, hx, hy) > kHealerReach && !client.TravelBusy()) {
                 LogLine("dead: a healer is here -- getting close enough to be "
@@ -357,9 +362,21 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
     if (strategy == CombatStrategyId::Mage) {
         // Defensive casts at a lawful hostile, from actual book/reagents.
         // Never turn a mage into a sword user when its spell is unavailable.
-        if (dist <= 2) {
+        // Point-blank is where a defensive fight IS: the thing hitting us is
+        // adjacent by definition, and a mage that only ever backs away from
+        // it never casts once (Aurelius, 2026-09-05: skeleton at 1 tile for
+        // two minutes, zero casts). Retreat when hurt or when there is
+        // nothing to cast; otherwise cast at it from where we stand.
+        if (attackSpell < 0) {
             RetreatToSafety(client);
         } else if (!client.ActionBusy()) {
+            currentFoe_ = target->serial;
+            currentFoeName_ = target->name;
+            if (client.TravelBusy() || client.GotoBusy()) {
+                client.TravelAbort("hold position to cast at range");
+                travelInFlight_ = false;
+                survivalRetreat_ = false;
+            }
             const int heal = obs.HpFraction() < needCfg_.healHpFraction
                 ? PickSurvivalSpell(client, obs, true) : -1;
             client.ActionCastSpell(heal >= 0 ? heal : attackSpell,
@@ -489,6 +506,13 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
     // for a while, the foe is written off and work resumes.
     const i32 combatRange = strategy == CombatStrategyId::Ranged ? 6 : 1;
     if (dist <= combatRange) {
+        if (strategy == CombatStrategyId::Ranged &&
+            (client.TravelBusy() || client.GotoBusy())) {
+            // Sphere delays bow swings until the archer stops walking.
+            client.TravelAbort("hold firing range");
+            travelInFlight_ = false;
+            survivalRetreat_ = false;
+        }
         chaseBestDist_ = dist;
         chaseProgressMs_ = obs.nowMs;
     } else if (dist < chaseBestDist_) {
@@ -517,10 +541,8 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
         }
     }
     if (!client.WarModeOn()) client.EnterWarMode();
-    // Attack is a target-selection command, not a weapon swing.  Once the
-    // server has accepted it, it owns the normal melee cadence.  Reissuing it
-    // each 1.2-second life tick was resetting that cadence before the first
-    // hit could resolve, leaving a healthy Zombie and a dead newcomer.
+    // Sphere ignores a repeated attack on the same target while the weapon
+    // skill is active. Reassert occasionally to resume after a healing skill.
     constexpr i64 kAttackReassertMs = 6000;
     if (lastAttackOrderTarget_ != target->serial ||
         obs.nowMs - lastAttackOrderMs_ >= kAttackReassertMs) {

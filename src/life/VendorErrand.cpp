@@ -5,6 +5,7 @@
 #include "uo/interaction/progress.h"
 
 #include <cstdio>
+#include <vector>
 
 namespace uo::life {
 
@@ -134,7 +135,9 @@ VendorErrandResult VendorErrand::Tick(Client& client, const Observation& obs) {
             // distance -- and a guildmaster keeps no shop. Corwyn asked
             // Riley to open a bandage list eight seconds at a time, twice,
             // and got silence, while the real healer stood four tiles on.
-            keeper_ = client.NearestMobileWithTrade(who.trade);
+            const std::vector<u32> drained(spec_.avoid,
+                                          spec_.avoid + spec_.avoidCount);
+            keeper_ = client.NearestMobileWithTrade(who.trade, drained);
             if (keeper_) {
                 scans_ = 0;
                 step_ = Step::Approach;

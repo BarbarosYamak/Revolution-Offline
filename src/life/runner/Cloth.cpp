@@ -27,7 +27,14 @@ using namespace runner_detail;
 bool Runner::DoMakeBandages(Client& client, const Observation& obs) {
     if (client.ActionBusy()) return false;
 
-    if (obs.bandages >= kBandagesWanted) {
+    // HOW MANY IS ENOUGH IS THE CHARACTER'S NUMBER, NOT A CONSTANT.
+    // needCfg_.bandageFull is resolved per life and per purse each planning
+    // tick (ResolveConsumableThresholds), and for a life that hunts it sits
+    // above the owner's floor of a hundred. kBandagesWanted survives only as
+    // the fallback for a character with no profession.
+    const i32 want = needCfg_.bandageFull > 0 ? needCfg_.bandageFull
+                                              : kBandagesWanted;
+    if (obs.bandages >= want) {
         LogLine("bandages: %d is enough to fight on", obs.bandages);
         planner_.Finish(true, nullptr, obs.nowMs);
         return true;
@@ -77,7 +84,7 @@ bool Runner::DoMakeBandages(Client& client, const Observation& obs) {
                                 sizeof(kCuttableClothing) /
                                     sizeof(kCuttableClothing[0]))) {
         LogLine("bandages: cutting up looted clothing (%d bandages so far, "
-                "want %d)", obs.bandages, kBandagesWanted);
+                "want %d)", obs.bandages, want);
         client.ActionUseItemOn(scissors, rag);
         planner_.NoteProgress();
         nextActionMs_ = obs.nowMs + 2500;
@@ -86,9 +93,20 @@ bool Runner::DoMakeBandages(Client& client, const Observation& obs) {
 
     // 1. CLOTH -> BANDAGES. One bandage per cloth, so this is the step that
     //    actually pays and it runs before anything else.
-    if (const u32 cloth = client.FindBackpackItemByGraphic(kClothGraphic)) {
+    //
+    //    NOT WHILE A PURCHASE IS STILL BEING COUNTED. The buy errand records
+    //    the pack BEFORE it asks and compares afterwards (section 18), so
+    //    cutting the cloth up inside that window makes the purchase look
+    //    like a theft: Castor, 2026-09-05 11:07:35, bought 16 cloth, cut it
+    //    16ms later, and the errand reported "gold left the purse and no
+    //    goods arrived (pack +0, purse -48)" and walked off to Yew for
+    //    sheep -- carrying the sixteen bandages it had just made.
+    const u32 cloth = bandageClothBuy_.Running()
+                          ? 0
+                          : client.FindBackpackItemByGraphic(kClothGraphic);
+    if (cloth) {
         LogLine("bandages: cutting cloth (%d bandages so far, want %d)",
-                obs.bandages, kBandagesWanted);
+                obs.bandages, want);
         client.ActionUseItemOn(scissors, cloth);
         planner_.NoteProgress();
         nextActionMs_ = obs.nowMs + 2500;
@@ -142,6 +160,76 @@ bool Runner::DoMakeBandages(Client& client, const Observation& obs) {
         planner_.NoteProgress();
         nextActionMs_ = obs.nowMs + 3000;
         return false;
+    }
+
+    // 4b. NOTHING IN THE PACK TO WORK WITH, BUT THERE IS A PURSE: BUY CLOTH.
+    //
+    // Scissors on loose cloth give one bandage per cloth, engine-hardcoded and
+    // with no skill check (Source-X CClientTarg.cpp:2135-2184), and loose
+    // i_cloth is on the weaver's shelf at {3 38} and the tailor's at four
+    // rows of {2 24} for 3 gp (tm_vend.scp:875-887, 899-966). That is the
+    // only route to a hundred bandages in one sitting: a healer's shelf holds
+    // at most twenty and refills once every ten minutes.
+    //
+    // NARROW ON PURPOSE. The standing ruling "never buy cloth/thread/yarn
+    // from NPCs" (owner, 2026-09-02) is about a TAILOR's supply -- a crafter
+    // must not buy the thing she makes, and DoMakeCloth below still obeys it
+    // by gathering. This branch is a fighter buying a consumable input for
+    // bandages when every counter in town is empty, which is why it is gated
+    // on WantsToHunt and on being short of the fighting floor.
+    const bool hunts =
+        needCfg_.profession && WantsToHunt(*needCfg_.profession);
+    if (hunts && obs.bandages < want && obs.gold >= kClothMaxPrice) {
+        if (!bandageClothBuy_.Running()) {
+            life::BuyRequest req;
+            req.graphic = kClothGraphic;
+            req.item = "loose cloth";
+            // One cloth is one bandage, so the shortfall IS the order.
+            req.desiredTotal = want - obs.bandages;
+            req.minimumGoldReserve = 0;
+            req.maxPricePerUnit = kClothMaxPrice;
+            req.Sell("weaver", wm::Service::Tailor);
+            req.Sell("tailor", wm::Service::Tailor);
+            for (u32 drained : DrainedShelves(obs.nowMs)) req.Avoid(drained);
+            bandageClothBuy_.Begin(req);
+        }
+        const life::ActivityTickResult r = bandageClothBuy_.Tick(client, obs);
+        LogErrandReason("bandage cloth", r.reason, obs.nowMs);
+        if (r.wake == life::Wake::AfterDelay && r.delayMs > 0)
+            nextActionMs_ = obs.nowMs + r.delayMs;
+        if (!life::IsTerminal(r.status)) {
+            if (r.acted) {
+                // A LEG THAT LANDED IS PROGRESS: reaching the shop, finding the
+                // keeper, getting within reach. Only an ask that went unanswered
+                // is a try. Hector (2026-09-05 14:40): trip 1, three scans, trip 2
+                // = five attempts and the goal was abandoned before the second
+                // counter was even reached.
+                const bool legLanded = r.offerOpen ||
+                    (r.reason && (std::strstr(r.reason, "found a") ||
+                                  std::strstr(r.reason, "within reach") ||
+                                  std::strstr(r.reason, "ARRIVED") ||
+                                  std::strstr(r.reason, "the shop is open")));
+                if (legLanded) planner_.NoteProgress();
+                else planner_.NoteAttempt(obs.nowMs);
+            }
+            return false;
+        }
+        if (r.status == life::ActivityStatus::Success) {
+            planner_.NoteProgress();
+            // NO DRAINED-SHELF NOTE HERE, unlike the healer's counter. The
+            // weaver's list holds i_cloth in FOUR separate rows (16/16/5/13
+            // in Castor's window on 2026-09-05) and the errand buys the
+            // first matching row, so a partial buy is a row emptied, not a
+            // shop emptied. When the rows really do run out the errand says
+            // "does not stock" and the failure path below remembers it.
+            const i32 cloth =
+                static_cast<i32>(client.BackpackItemCount(kClothGraphic));
+            LogLine("bandages: %d cloth bought -- cutting it next pass", cloth);
+            return false;                 // step 1 above cuts it
+        }
+        NoteDrainedShelf(bandageClothBuy_.Keeper(), obs.nowMs);
+        LogLine("bandages: no cloth bought (%s) -- back to the wool chain",
+                r.reason);
     }
 
     // 5. A SHEEP -> WOOL. The only free step, and the start of everything.

@@ -495,7 +495,13 @@ std::vector<ScoredGoal> Planner::Score(const std::vector<Need>& needs,
     // RunGoal dispatches on Current().kind whether or not Select succeeded,
     // so an empty feasible set would run a stale handler.
     // See S2_WIRING_PLAN.md S2.2's prerequisite defect.
-    if (Cooling(GoalKind::Explore, obs.nowMs)) {
+    if (obs.huntingRoutine) {
+        ScoredGoal explore;
+        explore.kind = GoalKind::Explore;
+        explore.feasible = false;
+        explore.blockedWhy = "combat routine: prepare, train, loot and bank before exploring";
+        out.push_back(std::move(explore));
+    } else if (Cooling(GoalKind::Explore, obs.nowMs)) {
         ScoredGoal explore;
         explore.kind = GoalKind::Explore;
         explore.feasible = false;

@@ -1,24 +1,18 @@
 start: Hector is a fencer and lives in Trinsic -> starting city index 4
 map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
 map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
-[19:31:51.834] WARN  [g_Hector] [bot] 0x20 resync; aborting path
-[19:33:03.524] WARN  [g_Hector] [ITEM] drag cancelled by server: cannot lift that (code 0)
-[19:33:03.524] WARN  [g_Hector] [ITEM] 0x4001132D refused a lift from our own pack -- dropping it from the pack cache (stale)
-[19:33:03.524] WARN  [g_Hector] [ACTION_RESULT] equip rejected (0ms) cannot lift that
-[19:33:03.538] WARN  [g_Hector] [ITEM] drag cancelled by server: unspecified (code 5)
-[19:33:25.163] WARN  [g_Hector] [ITEM] drag cancelled by server: cannot lift that (code 0)
-[19:33:25.163] WARN  [g_Hector] [ITEM] 0x400112B4 refused a lift from our own pack -- dropping it from the pack cache (stale)
-[19:33:25.163] WARN  [g_Hector] [ACTION_RESULT] equip rejected (0ms) cannot lift that
-[19:33:25.178] WARN  [g_Hector] [ITEM] drag cancelled by server: unspecified (code 5)
-[19:33:54.291] WARN  [g_Hector] [ITEM] drag cancelled by server: cannot lift that (code 0)
-[19:33:54.291] WARN  [g_Hector] [ITEM] 0x400110D5 refused a lift from our own pack -- dropping it from the pack cache (stale)
-[19:33:54.291] WARN  [g_Hector] [ACTION_RESULT] equip rejected (0ms) cannot lift that
-[19:33:54.306] WARN  [g_Hector] [ITEM] drag cancelled by server: unspecified (code 5)
-[19:34:16.470] WARN  [g_Hector] [ITEM] drag cancelled by server: cannot lift that (code 0)
-[19:34:16.470] WARN  [g_Hector] [ITEM] 0x40010DEC refused a lift from our own pack -- dropping it from the pack cache (stale)
-[19:34:16.470] WARN  [g_Hector] [ACTION_RESULT] equip rejected (0ms) cannot lift that
-[19:34:16.470] WARN  [g_Hector] [ITEM] drag cancelled by server: unspecified (code 5)
-[19:34:36.566] WARN  [g_Hector] [ITEM] drag cancelled by server: cannot lift that (code 0)
-[19:34:36.566] WARN  [g_Hector] [ITEM] 0x40010BCC refused a lift from our own pack -- dropping it from the pack cache (stale)
-[19:34:36.566] WARN  [g_Hector] [ACTION_RESULT] equip rejected (15ms) cannot lift that
-[19:34:36.566] WARN  [g_Hector] [ITEM] drag cancelled by server: unspecified (code 5)
+[14:40:49.463] WARN  [g_Hector] [travel] no place offers veterinarian
+[14:40:51.474] WARN  [g_Hector] [travel] no place offers veterinarian
+[14:40:53.534] WARN  [g_Hector] [travel] no place offers veterinarian
+[14:42:34.268] WARN  [g_Hector] [bot] no path to (2521,544) avoiding 0 block(s); stopping (search 924665.9us)
+[14:42:34.268] WARN  [g_Hector] [bot] start (2522,542,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 171 item(s), 4 mobile(s))
+[14:42:37.974] WARN  [g_Hector] [bot] no path to (2521,544) avoiding 0 block(s); stopping (search 913717.4us)
+[14:42:37.974] WARN  [g_Hector] [bot] start (2522,542,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 171 item(s), 4 mobile(s))
+[14:42:43.237] WARN  [g_Hector] [bot] no path to (2521,544) avoiding 0 block(s); stopping (search 922997.7us)
+[14:42:43.237] WARN  [g_Hector] [bot] start (2522,542,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 171 item(s), 4 mobile(s))
+[14:42:50.004] WARN  [g_Hector] [bot] no path to (2521,544) avoiding 0 block(s); stopping (search 939904.1us)
+[14:42:50.004] WARN  [g_Hector] [bot] start (2522,542,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 171 item(s), 4 mobile(s))
+[14:46:55.945] WARN  [g_Hector] [0x21] move REJECTED seq=13; server says (563,1111,0) facing=5
+[14:46:55.945] WARN  [g_Hector] [bot] 0x20 resync; aborting path
+[14:46:57.487] WARN  [g_Hector] [0x21] move REJECTED seq=1; server says (563,1111,0) facing=5
+[14:46:58.221] WARN  [g_Hector] [0x21] move REJECTED seq=0; server says (563,1111,0) facing=5

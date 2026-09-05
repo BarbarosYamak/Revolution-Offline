@@ -108,6 +108,21 @@ struct VendorErrandSpec {
     // activity decides what it is willing to pay; the errand refuses rows
     // above it rather than buying whatever the shop happens to quote.
     i32 maxPricePerUnit = 0;
+
+    // SHELVES ALREADY EMPTIED. A Sphere vendor's stock is a real container:
+    // buying it out leaves it empty and it refills on a hardcoded ten-minute
+    // timer (Source-X CCharNPCAct_Vendor.cpp:32-92, restock delay 10*60s), so
+    // walking back to the same healer inside that window buys nothing and
+    // costs the whole trip. The caller remembers who it drained; the errand
+    // walks past them to the next shopkeeper of the same trade.
+    u32 avoid[4] = {};
+    i32 avoidCount = 0;
+    void Avoid(u32 serial) {
+        if (!serial || avoidCount >= 4) return;
+        for (i32 i = 0; i < avoidCount; ++i)
+            if (avoid[i] == serial) return;
+        avoid[avoidCount++] = serial;
+    }
 };
 
 struct VendorErrandResult {

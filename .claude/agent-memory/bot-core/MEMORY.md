@@ -18,3 +18,4 @@
 - [A dismount reads as horselessness](dismount-reads-as-horselessness.md) — deliberate state changes need an "on purpose" bit in Observation, or a need re-scores against you; mount clicks never confirm
 - [Bank withdraw is a drag-split](bank-withdraw-is-a-drag-split.md) — not speech; it works, and the proof is the need going quiet on the next tick, not a packet
 - [Function-local statics break silently when split](function-local-statics-break-silently-when-split.md) — one definition per lazy table accessor or the loader fills a copy the reader never sees; prove it with dumpbin, not a log line
+- [A pickup is a deletion](a-pickup-is-a-deletion.md) — our own lift arrives as a real 0x1D; OnDeleteObject used to erase a still-open container's own contents cache on every equip/unequip round-trip

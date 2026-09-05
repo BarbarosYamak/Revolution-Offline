@@ -198,6 +198,10 @@ constexpr i32 kSpellShoppingSpare = 1000;
 // fighting stock outright -- and walking to a shop beats shearing a sheep,
 // spinning it, weaving it and cutting it up.
 constexpr i32 kBandagesBuyable = 200;
+// Sphere's vendor restock delay, hardcoded at ten minutes (Source-X
+// CCharNPCAct_Vendor.cpp:45) and not overridden by any region on this
+// runtime. How long an emptied shelf stays worthless.
+constexpr i64 kShelfRestockMs = 600000;
 // Working change kept on top of the profession's own reserve. Enough for an
 // unplanned purchase without making the character worth robbing.
 // HOW MUCH A LIFE WALKS AROUND WITH, whatever its savings target.
@@ -346,6 +350,71 @@ bool WantsTool(const NeedConfig& cfg, const char* name) {
     if (!cfg.profession) return true;
     for (const prof::ToolNeed& t : cfg.profession->tools) {
         if (t.name == name) return true;
+    }
+    return false;
+}
+
+// HOW MANY BANDAGES THIS CHARACTER WALKS OUT WITH, TODAY.
+//
+// Two numbers, both per character rather than global:
+//
+//   low   the restock TRIGGER. For a life that hunts it is the owner's floor
+//         (kFighterBandageFloor, life.h) -- "every fighting bot carries at
+//         least 100 bandages" (2026-09-05, watching Castor fight a skeleton
+//         with 27 after one healer sold him twenty). Everyone else keeps the
+//         number their own catalogue entry declares; a scribe short of
+//         bandages is not in danger.
+//   full  what the errand aims to END UP holding, and it must sit above the
+//         trigger or the restock stops the moment it starts. Derived from the
+//         purse per the project's "thresholds must be dynamic" rule: a tenth
+//         of the spare gold at ~1gp a bandage, bounded so that a broke
+//         fighter still asks for twenty more than the floor and a rich one
+//         does not try to buy out the whole trade.
+//
+// Called every planning tick, because gold changes and the answer with it.
+void ResolveConsumableThresholds(NeedConfig& cfg, i32 gold) {
+    i32 low  = cfg.bandageLow;
+    i32 full = cfg.bandageFull;
+    if (!cfg.profession) return;      // the M4 lumberjack keeps the old pair
+
+    // The life's own declaration first. prof::ConsumableNeed already carries
+    // low/restockTo per profession; nothing ever read them for bandages, which
+    // is exactly how a global 8/30 survived this long.
+    for (const prof::ConsumableNeed& c : cfg.profession->consumables) {
+        if (c.name != "bandage") continue;
+        if (c.low > 0) low = c.low;
+        if (c.restockTo > 0) full = c.restockTo;
+        break;
+    }
+
+    if (WantsToHunt(*cfg.profession)) {
+        if (low < kFighterBandageFloor) low = kFighterBandageFloor;
+        const i32 spare = gold > cfg.goldFloor ? gold - cfg.goldFloor : 0;
+        i32 extra = spare / 10;
+        if (extra < 20)  extra = 20;
+        if (extra > 100) extra = 100;   // a town supplies ~20 per healer per 10 min
+        if (full < low + extra) full = low + extra;
+    }
+
+    cfg.bandageLow  = low;
+    cfg.bandageFull = full;
+}
+
+// EVERY BANDAGE COUNTER IN TOWN IS EMPTY, as recorded by DoReplaceEquipment
+// when it gave up (event "bandage_counters_empty"), within Sphere's restock
+// window and within THIS session (atMs is a per-process clock). Read by both
+// bandage needs so that the shop errand yields to the cloth-cutting one
+// instead of the two taking turns for ten minutes.
+static bool BandageCountersEmpty(const Memory& mem, const NeedConfig& cfg,
+                                 const Observation& obs) {
+    for (const LifeEvent& e : mem.Events()) {
+        if (e.kind != "bandage_counters_empty") continue;
+        i32 sess = -1;
+        if (std::sscanf(e.detail.c_str(), "session=%d", &sess) != 1) continue;
+        if (sess != cfg.sessionIndex) continue;
+        if (e.atMs > obs.nowMs) continue;
+        if (obs.nowMs - e.atMs >= kShelfRestockMs) continue;
+        return true;
     }
     return false;
 }
@@ -554,12 +623,18 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         for (const prof::ToolNeed& t : cfg.profession->tools) {
             if (obs.HasTool(t.name)) continue;
             const KnownSupplier* supplier = mem.BestSupplier(t.name.c_str());
+            // WHILE THE BANK IS FETCHING THE COIN, WAIT. GET_TOOL stands down
+            // for 45 s "so the bank goal can fetch it", the bank is 288 tiles
+            // off, and at 46 s this need re-picked GET_TOOL over the walk it
+            // had asked for -- Xerxes, 2026-09-05 13:17, twice a minute.
+            const bool coinComing = obs.coinWanted > obs.goldOnHand;
             add(NeedKind::NeedTool, 0.9, t.name,
-                "this life cannot do its own work without one",
+                coinComing ? "waiting for the bank trip that fetches the coin"
+                           : "this life cannot do its own work without one",
                 supplier ? Fmt("known supplier '%s' at %d,%d",
                                supplier->name.c_str(), supplier->x, supplier->y)
                          : Fmt("no known supplier of a %s", t.name.c_str()),
-                supplier == nullptr && obs.gold < 20);
+                (supplier == nullptr && obs.gold < 20) || coinComing);
         }
     } else if (!obs.axeInPack && !obs.axeEquipped) {
         const KnownSupplier* supplier = mem.BestSupplier("hatchet");
@@ -585,7 +660,9 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
             Fmt("axe_pack=%d axe_worn=%d", obs.axeInPack ? 1 : 0,
                 obs.axeEquipped ? 1 : 0));
     } else if (cfg.profession && WantsToHunt(*cfg.profession) &&
-               !WantsSpellCombat(*cfg.profession) && !obs.weaponEquipped) {
+               !WantsSpellCombat(*cfg.profession) &&
+               (!obs.weaponEquipped ||
+                (!obs.schoolWeaponEquipped && !WantsTool(cfg, "hatchet")))) {
         // A FIGHTER WITH EMPTY HANDS. The buy side has existed since the
         // school-weapon table (Identity.cpp kSchoolWeapons, Gear.cpp
         // DoReplaceEquipment), but nothing ever ASKED for it: only hatchet
@@ -595,8 +672,12 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         // TRADE_WITH_PLAYER, because no need said "weapon" (g_Titus
         // 2026-09-05 01:41). Ten minutes of IDLE_BRIEFLY followed.
         add(NeedKind::NeedEquipment, 0.7, "weapon",
-            "a fighter with nothing in hand cannot hunt or defend itself",
-            "weapon_worn=0");
+            obs.weaponEquipped
+                ? "armed with something outside this build's weapon school -- "
+                  "the skill being trained is not the one swinging"
+                : "a fighter with nothing in hand cannot hunt or defend itself",
+            Fmt("weapon_worn=%d school_weapon=%d", obs.weaponEquipped ? 1 : 0,
+                obs.schoolWeaponEquipped ? 1 : 0));
     }
 
     // DRESSED. Cutting up the resurrection robe leaves a character standing
@@ -696,6 +777,14 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
                                  (cfg.healHpFraction > 0 ? cfg.healHpFraction : 1.0);
             bandageUrgency = 0.5 + 0.45 * (wound < 1.0 ? wound : 1.0);
         }
+        // THE SHOP ERRAND YIELDS WHEN THE SHOPS ARE EMPTY. Castor, 2026-09-05
+        // 11:18-11:21: every healer counter drained, REPLACE_EQUIPMENT handed
+        // off to MAKE_BANDAGES and was re-picked the moment its cooldown
+        // ended because this need still scored 130. Kept visible (a wound
+        // still raises it) but below the cloth-cutting need until the
+        // restock window passes.
+        if (BandageCountersEmpty(mem, cfg, obs) && hpFrac >= cfg.healHpFraction)
+            bandageUrgency = 0.10;
         add(NeedKind::NeedEquipment, bandageUrgency, "bandages",
             (hpFrac < cfg.healHpFraction)
                 ? "wounded with nothing to heal with -- bandages before "
@@ -737,6 +826,30 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
     // A fighter's line is the hunt gate, not the gatherer's 85% -- see
     // BankWeightLine() in life.h and the Castor case recorded there.
     const double bankLine = BankWeightLine(cfg);
+    if (cfg.profession && cfg.profession->combatStrategy == CombatStrategyId::Ranged) {
+        const i32 carried = market::QtyOf(obs.pack, "i_arrow");
+        const i32 stored = market::QtyOf(obs.bank, "i_arrow");
+        if ((carried < 20 && stored > 0) ||
+            (carried > kArrowCarry && carried + stored >= kArrowCarry + kArrowReserve))
+            add(NeedKind::NeedBank, 1.0, "arrow stock",
+                "keep 100 working arrows and bank the reserve", "ammunition preparation");
+    }
+    // The caster's twin of the arrow rule: a reagent the bank holds and the
+    // pack lacks is a bank trip, not a shop trip (Bank.cpp does the lifting).
+    if (cfg.profession && cfg.profession->combatStrategy == CombatStrategyId::Mage) {
+        std::string short_;
+        for (const market::Stock& s : obs.bank) {
+            if (s.qty <= 0 || s.item.compare(0, 7, "i_reag_") != 0) continue;
+            if (market::QtyOf(obs.pack, s.item) < kReagentCarry / 5) {
+                if (!short_.empty()) short_ += ",";
+                short_ += s.item.substr(7);
+            }
+        }
+        if (!short_.empty())
+            add(NeedKind::NeedBank, 0.9, "reagent stock",
+                "reagents are in the bank and not in the pack -- withdraw the working set",
+                Fmt("short in pack, stocked in bank: %s", short_.c_str()));
+    }
 
     // IS THE LOAD ITSELF THE INCOME? A character at its carry limit holding
     // fifteen fish has two ways to put the weight down, and only one of them
@@ -1256,7 +1369,7 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
 
         if (craft.item && craft.skillsMet) {
             if (craft.missing.empty()) {
-                add(NeedKind::NeedCraft, 0.50, "make goods to sell",
+                add(NeedKind::NeedCraft, NeedsArrowStock(*cfg.profession, obs) ? 0.95 : 0.50, "make goods to sell",
                     "holds every input for something this life can legitimately "
                     "sell -- to an NPC or, for a player-market good, to a player",
                     Fmt("%s: %s", craft.item, craft.why));
@@ -1681,7 +1794,10 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
             (WantsToHunt(*cfg.profession) || WantsSpellCombat(*cfg.profession)) &&
             obs.hp * 100 >= obs.hpMax * huntHpPct &&
             obs.WeightFraction() < cfg.huntWeightFrac;
-        const bool blocked = obs.huntReturnPending || (nothingHere && !couldGoHunting);
+        const bool noArrows = cfg.profession &&
+            cfg.profession->combatStrategy == CombatStrategyId::Ranged &&
+            market::QtyOf(obs.pack, "i_arrow") == 0;
+        const bool blocked = noArrows || obs.huntReturnPending || (nothingHere && !couldGoHunting);
         // A FIGHTER'S URGENCY, ON THE SAME SCALE AS EVERY OTHER TRADE'S.
         //
         // 0.15 + 0.25 x gap tops out at 0.40, which is what a life feels about
@@ -1747,7 +1863,20 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
     // danger; a fencer is.
     if (cfg.profession && WantsToHunt(*cfg.profession) &&
         obs.bandages < cfg.bandageLow) {
-        const bool canAffordToBuy = obs.gold >= kBandagesBuyable;
+        // MONEY IS NOT A SOURCE WHEN THE SHELVES ARE EMPTY.
+        //
+        // "a shop is faster than a sheep" is true only while a shop has any.
+        // A healer's shelf is i_bandage {5 20} and refills on a hardcoded
+        // ten-minute timer, so a fighter wanting a hundred empties the town
+        // and then stands there rich and unarmed -- Castor, 2026-09-05
+        // 10:58: three healers tried, none stocked, REPLACE_EQUIPMENT handed
+        // off to MAKE_BANDAGES and the need refused it for having 6,354
+        // gold. DoReplaceEquipment records the fact when it gives up; this
+        // reads it back, within the restock window and within the SAME
+        // session (atMs is a per-process clock).
+        const bool countersEmpty = BandageCountersEmpty(mem, cfg, obs);
+        const bool canAffordToBuy = obs.gold >= kBandagesBuyable &&
+                                    !countersEmpty;
         const double shortfall =
             1.0 - static_cast<double>(obs.bandages) /
                       static_cast<double>(cfg.bandageLow > 0 ? cfg.bandageLow : 1);
@@ -1755,6 +1884,9 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
             canAffordToBuy
                 ? "short of bandages, but there is money to buy them -- a shop "
                   "is faster than a sheep"
+                : countersEmpty
+                ? "short of bandages and every counter in town is empty: buy "
+                  "cloth and cut it, or shear"
                 : "no bandages and no money for any: shear, spin, weave, cut",
             Fmt("bandages %d/%d gold %d (buyable at %d)", obs.bandages,
                 cfg.bandageLow, obs.gold, kBandagesBuyable),
@@ -1870,9 +2002,10 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
             // could go on (84.5) and OVER the wool chore (42) and the armour
             // browse (22), so the horse still gets bought on a day when the
             // fighting is blocked, cooled or unreachable.
-            const bool fighter = cfg.profession && WantsToHunt(*cfg.profession);
+            const bool fighter = cfg.profession &&
+                (WantsToHunt(*cfg.profession) || WantsSpellCombat(*cfg.profession));
             double urgency = canAfford ? 0.8 : 0.05;
-            if (fighter && canAfford) urgency = 0.30;
+            if (fighter && canAfford) urgency = 0.15;
             // THE SAME RULE, FOR A CRAFTER WITH NOTHING ON THE SHELVES.
             //
             // The fighter clause above says a horse must not outbid the work

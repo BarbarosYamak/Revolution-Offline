@@ -191,6 +191,11 @@ struct Profession {
     // interdependence rather than every bot doing every stage.
     std::vector<std::string> consumes;
 
+    // Made for the SKILL, not for sale: a drawn map trains Cartography and
+    // then means nothing to anyone. ChooseCraft lets these through the
+    // "only what may be sold" filter the way an archer's own arrows go.
+    std::vector<std::string> trainingCrafts;
+
     // How readily this life picks a fight it did not start. A miner deep in a
     // cave and a swordsman on the road should not behave alike.
     double riskTolerance = 0.5;   // 0 = flee everything, 1 = stand and fight

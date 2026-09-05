@@ -75,6 +75,18 @@ struct BuyRequest {
     VendorErrandSpec::Seller sellers[3] = {};
     i32                      sellerCount = 0;
 
+    // Shopkeepers whose shelf this life has already emptied. Passed straight
+    // through to the errand -- see VendorErrandSpec::avoid for why a drained
+    // shelf is a fact about the world and not about the errand.
+    u32 avoid[4] = {};
+    i32 avoidCount = 0;
+    void Avoid(u32 serial) {
+        if (!serial || avoidCount >= 4) return;
+        for (i32 i = 0; i < avoidCount; ++i)
+            if (avoid[i] == serial) return;
+        avoid[avoidCount++] = serial;
+    }
+
     void Sell(const char* trade, wm::Service service) {
         if (sellerCount >= 3) return;
         sellers[sellerCount].trade = trade;

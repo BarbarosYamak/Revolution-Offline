@@ -248,6 +248,14 @@ const Row kMatrix[] = {
     // starts from, so an unresolved Unknown here made every scribe in the
     // catalogue unable to earn a copper.
     {"i_scroll_blank",       VendorClass::RevolutionNpcVerified},
+    // Cartography chain (2026-09-05): the mapmaker sells blank maps
+    // (tm_vend.scp:1155 SELL=i_map_blank,{240 250}) and, from today, the pen.
+    {"i_map_blank",          VendorClass::RevolutionNpcVerified},
+    {"i_mapmakers_pen",      VendorClass::BasicCraftTool},
+    {"i_map_local",          VendorClass::PlayerCrafted},
+    {"i_map_city",           VendorClass::PlayerCrafted},
+    {"i_map_sea_chart",      VendorClass::PlayerCrafted},
+    {"i_map_world",          VendorClass::PlayerCrafted},
     // Written scrolls: the mage shop BUYS these back by circle
     // (VENDOR_B_MAGE_SHOP, templates/tm_vend.scp:666-669, and poison is in
     // random_third_circle -- templates/tm_magic.scp:29). Selling them is the
@@ -360,6 +368,7 @@ const GraphicRow kGraphics[] = {
     {0x1F4C, "i_scroll_recall"},
     {0x0F0E, "i_bottle_empty"},
     {0x1BD1, "i_feather"},
+    {0x1BD4, "i_arrow_shaft"}, // i_profession.scp:2241, t_shaft
     {0x0F3F, "i_arrow"},
     {0x1BFB, "i_xbolt"},
     {0x102E, "i_nails"},
@@ -510,6 +519,7 @@ const GraphicRow kGraphics[] = {
     {0x0E9B, "i_mortar_pestle"},
     {0x0DBF, "i_fishing_pole"},  {0x0DC0, "i_fishing_pole"},
     {0x0FBF, "i_pen_and_ink"},   {0x0FC0, "i_pen_and_ink"},
+    {0x14EB, "i_map_blank"},     // i_profession_cartographer.scp:23-24; every drawn map keeps this ID
     // The cooking chain: kindling (0x0DE1, DUPELIST 0x0DE2) and the
     // rolling pin (0x1043), ids from i_provisions_misc.scp:121 and
     // i_profession_cook_barkeep_baker.scp:1265. Without these rows the pack
@@ -827,6 +837,16 @@ bool IsFloorMaterial(const char* item) {
     // reason that is an artefact of the script format, not a judgement.
     if (std::strncmp(item, "i_ore_", 6) == 0) return true;
     if (std::strncmp(item, "i_ingot_", 8) == 0) return true;
+
+    // THE TINKER'S FINISHED GOODS, interim. The NPC tinker BUYS gears,
+    // lockpicks and tinker tools (tm_vend.scp VENDOR_B_TINKER, {4 34}) and
+    // no bot needs them yet: Serena carried 9 gears "with nobody known to buy
+    // it" for a 60-minute wave (2026-09-04). Same rule as materials -- players
+    // first, the NPC only after they declined -- and re-tightened the day a
+    // bot asks for gears (owner interim ruling, 2026-09-02).
+    if (std::strcmp(item, "i_gears") == 0 || std::strcmp(item, "i_lockpick") == 0 ||
+        std::strcmp(item, "i_tinker_tools") == 0)
+        return true;
 
     switch (ClassifyForVendor(item)) {
         case VendorClass::WorldGathered:   // logs, ore, hides, wool, fish...

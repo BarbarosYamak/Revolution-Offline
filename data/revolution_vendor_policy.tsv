@@ -101,6 +101,12 @@ i_reag_grave_dust	ERA_CONFLICT	0	0	belongs to a later era than revolution_2009_2
 i_reag_dead_wood	ERA_CONFLICT	0	0	belongs to a later era than revolution_2009_2010
 i_reag_wyrm_heart	ERA_CONFLICT	0	0	belongs to a later era than revolution_2009_2010
 i_scroll_blank	REVOLUTION_NPC_VERIFIED	1	0	a dated Revolution update records an NPC selling this
+i_map_blank	REVOLUTION_NPC_VERIFIED	1	0	a dated Revolution update records an NPC selling this
+i_mapmakers_pen	BASIC_CRAFT_TOOL	1	0	a basic craft tool: a tool is not a resource, it shortcuts no chain, and without a purchasable first tool the craft tree cannot be bootstrapped at all
+i_map_local	PLAYER_CRAFTED	0	0	a player craft produces this; craft it or buy from a player
+i_map_city	PLAYER_CRAFTED	0	0	a player craft produces this; craft it or buy from a player
+i_map_sea_chart	PLAYER_CRAFTED	0	0	a player craft produces this; craft it or buy from a player
+i_map_world	PLAYER_CRAFTED	0	0	a player craft produces this; craft it or buy from a player
 i_scroll_poison	REVOLUTION_NPC_VERIFIED	1	0	a dated Revolution update records an NPC selling this
 i_scroll_recall	REVOLUTION_NPC_VERIFIED	1	0	a dated Revolution update records an NPC selling this
 i_bottle_empty	REVOLUTION_NPC_VERIFIED	1	0	a dated Revolution update records an NPC selling this

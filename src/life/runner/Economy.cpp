@@ -517,6 +517,22 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
             LogLine("earn_gold: no '%s' reachable after %d trips; trying the "
                     "next trade that buys %s", sellTrade_.c_str(), sellTrips_,
                     sellItem_.c_str());
+            // A BUYER WHO IS NOT THERE THREE TIMES IS NOT A BUYER. The note
+            // pointed Elara at 3731,2154 in Magincia every session (a banker
+            // and a minter stand there now, no alchemist) and each session
+            // spent its three trips walking to it. Forget the spot so the
+            // next attempt asks the atlas instead of the memory.
+            {
+                const std::string need = std::string("buyer:") + sellItem_;
+                const KnownSupplier* known = state_.memory.BestSupplier(need.c_str());
+                if (known && known->name == sellTrade_ &&
+                    TileDist(known->x, known->y, obs.x, obs.y) <= kReturnToKnownBuyerWithin) {
+                    LogLine("earn_gold: forgetting the '%s' noted at %d,%d -- "
+                            "nobody of that trade was there", known->name.c_str(),
+                            known->x, known->y);
+                    state_.memory.ForgetSupplier(need.c_str(), known->x, known->y);
+                }
+            }
             ++sellBuyerIndex_;
             sellTrade_.clear();
             sellTrips_ = 0;
@@ -2023,6 +2039,8 @@ const char* SupplierTradeFor(const std::string& item) {
     if (item.rfind("i_reag_", 0) == 0) return "mage";
     if (item == "i_scroll_blank")      return "mage";
     if (item == "i_bottle_empty")      return "alchemist";
+    if (item == "i_map_blank")         return "mapmaker";      // tm_vend.scp:1155
+    if (item == "i_mapmakers_pen")     return "mapmaker";      // added 2026-09-05
     if (item == "i_feather")           return "provisioner";
     // KINDLING, which is what a campfire is made of and therefore what
     // cooking needs. Marla caught fish, cut them into steaks and then SOLD

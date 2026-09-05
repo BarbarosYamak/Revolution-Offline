@@ -69,6 +69,13 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
     // start on -- and it meant the whole M6 layer (Classify, ChooseTarget,
     // ChoosePrey and 54 unit tests) was called by nothing at all.
     if (obs.underAttack || obs.attackersOnMe > 0) return DoSurvive(client, obs);
+    if (needCfg_.profession && needCfg_.profession->combatStrategy == CombatStrategyId::Ranged &&
+        market::QtyOf(obs.pack, "i_arrow") < 20) {
+        const bool stocked = market::QtyOf(obs.bank, "i_arrow") > 0;
+        return HandOff(GoalKind::TrainCombat, stocked ? GoalKind::Bank : GoalKind::Craft,
+                       30000, stocked ? "withdraw ammunition before hunting"
+                                      : "fletch ammunition before hunting", obs.nowMs);
+    }
     const bool caster = needCfg_.profession && WantsSpellCombat(*needCfg_.profession);
     int attackSpell = -1;
     if (caster) {
@@ -84,6 +91,12 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
         if (attackSpell < 0) {
             const int known = PickSurvivalSpell(client, obs, false, false);
             const spell::SpellDef* spell = spell::DefForSpell(known);
+            // SAY WHAT THE BOOK GAVE. Aurelius (2026-09-05 10:34) walked to the
+            // graveyard with an empty pack and no hand-off in the log, which
+            // this line would have explained in one read.
+            LogLine("hunt: caster attack spell -- supplied=%d known=%d (%s) book=0x%08X",
+                    attackSpell, known, spell ? spell->name : "none",
+                    obs.spellbookSerial);
             if (spell) {
                 std::vector<std::string> missing;
                 for (const char* reagent : spell->reagents) {
@@ -91,6 +104,17 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
                     if (market::QtyOf(obs.pack, reagent) <= 0) missing.push_back(reagent);
                 }
                 if (!missing.empty()) {
+                    // THE BANK BEFORE THE SHOP. Aurelius had 138-146 of every
+                    // reagent in the box and none in the pack; buying more is
+                    // what a player who forgot the bank does, not a plan.
+                    bool banked = true;
+                    for (const std::string& r : missing)
+                        if (market::QtyOf(obs.bank, r) <= 0) banked = false;
+                    if (banked) {
+                        return HandOff(GoalKind::TrainCombat, GoalKind::Bank, 30000,
+                                       "withdraw attack-spell reagents before hunting",
+                                       obs.nowMs);
+                    }
                     reagentWants_ = missing;
                     const auto shopping = spell::PlanReagentBuy(0, 20, 0, obs.gold,
                                                                static_cast<int>(missing.size()));
@@ -119,7 +143,7 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
         return HandOff(GoalKind::TrainCombat, GoalKind::Heal, 10000,
                        "recover before opening another fight", obs.nowMs);
     }
-    if (obs.WeightFraction() >= 0.70) {
+    if (obs.WeightFraction() >= BankWeightLine(needCfg_)) {
         state_.huntReturnPending = true;
         return HandOff(GoalKind::TrainCombat, GoalKind::Bank, 10000,
                        "make room for loot before fighting", obs.nowMs);
@@ -128,6 +152,26 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
         PickSurvivalSpell(client, obs, true) < 0) {
         return HandOff(GoalKind::TrainCombat, GoalKind::ReplaceEquipment, 30000,
                        "restock healing supplies before the next fight", obs.nowMs);
+    }
+    // THE OWNER'S FLOOR: a fighting life carries at least bandageLow (100 for
+    // a hunter, ResolveConsumableThresholds) before it goes looking for a
+    // fight (2026-09-05). Both restock routes cooling -- shops drained AND the
+    // cloth route rested -- is the one case it goes as it is, the same rule
+    // the armour errand already follows.
+    if (needCfg_.profession && WantsToHunt(*needCfg_.profession) &&
+        obs.bandages < needCfg_.bandageLow &&
+        life::WantsConsumable(needCfg_, "bandage")) {
+        const bool bothResting =
+            planner_.Cooling(GoalKind::ReplaceEquipment, obs.nowMs) &&
+            planner_.Cooling(GoalKind::MakeBandages, obs.nowMs);
+        if (!bothResting) {
+            return HandOff(GoalKind::TrainCombat, GoalKind::ReplaceEquipment, 30000,
+                           "below the bandage floor -- restock before the next fight",
+                           obs.nowMs);
+        }
+        LogLine("hunt: %d bandages against a floor of %d, and both restock "
+                "errands are resting -- going as I am", obs.bandages,
+                needCfg_.bandageLow);
     }
 
     // Do not open a fight while an earlier errand is still walking us toward
@@ -203,6 +247,10 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
             cands.reserve(seen.size());
             for (const Client::HostileHit& h : seen) {
                 if (IsUnreachable(h.serial, obs.nowMs)) continue;
+                if (h.name.empty()) {
+                    client.RequestMobileStatus(h.serial);
+                    continue; // Identify prey before applying creature danger.
+                }
                 combat::Candidate c;
                 c.serial = h.serial;
                 c.name   = h.name;
@@ -215,6 +263,7 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
                 c.hpCur  = h.hpCur;
                 c.hpMax  = h.hpMax;
                 c.warMode = h.warMode;
+                c.attackingMe = client.IsAttackingMe(h.serial);
                 cands.push_back(std::move(c));
             }
             if (cands.empty()) {
@@ -234,8 +283,8 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
             // the scorer calls company.
             {
                 int inReach = 0;
-                for (const combat::Candidate& c : cands)
-                    if (c.dist <= combat::kCrowdRadius) ++inReach;
+                for (const Client::HostileHit& h : seen)
+                    if (TileDist(h.x, h.y, obs.x, obs.y) <= combat::kCrowdRadius) ++inReach;
                 if (inReach >= 3) {
                     LogLine("engage=no in_reach=%d hp=%.0f%% reason=\"%d hostiles "
                             "within %d tiles -- cannot take them one at a time\"",
@@ -342,14 +391,15 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
                         policy.riskTolerance, v.reason.c_str());
             }
         }
-        return DoSurvive(client, obs);
+        // Rejected prey is not an invitation to attack through self-defence.
+        nextActionMs_ = obs.nowMs + 3000;
+        return false;
     }
     if (obs.hostilesNear > 0 && !inGuardedRegion) {
         // DoSurvive may report that there is presently nothing to defend
         // against.  That is not successful combat training and must not mark
         // TRAIN_COMBAT complete merely because an opened target has not yet
         // retaliated or has briefly left the mobile cache.
-        DoSurvive(client, obs);
         return false;
     }
     if (obs.hostilesNear > 0 && inGuardedRegion) {
@@ -427,7 +477,18 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
                         "ground, not the nearest one\"",
                         early->name.c_str(), weaponTenths / 10.0, heat,
                         kSeasonedWeaponTenths / 10.0);
-                travelInFlight_ = client.TravelToPlace(kNoviceHuntGroundId);
+                // The place radius can include the entrance, out of sight of
+                // prey. Walk inside, and make short local searches when empty.
+                i32 x = early->position.x, y = early->position.y;
+                if (TileDist(obs.x, obs.y, x, y) <= 12) {
+                    const i32 offset = std::min(6, early->radius);
+                    const int leg = static_cast<int>((obs.nowMs / 15000) % 4);
+                    // Atlas anchor is the southeast corner of the yard.
+                    x -= leg == 1 || leg == 2 ? offset : 0;
+                    y -= leg == 2 || leg == 3 ? offset : 0;
+                    LogLine("hunt: searching inside Britain Graveyard");
+                }
+                travelInFlight_ = client.TravelToPoint(x, y, 2, "Britain Graveyard training");
                 if (travelInFlight_) huntPlace = early->name;
             } else {
                 // NOT a failure of the atlas and not something a retry fixes:
@@ -727,6 +788,7 @@ bool Runner::DoStatFarm(Client& client, const Observation& obs) {
             c.hpCur  = h.hpCur;
             c.hpMax  = h.hpMax;
             c.warMode = h.warMode;
+            c.attackingMe = client.IsAttackingMe(h.serial);
             cands.push_back(std::move(c));
         }
         if (!cands.empty()) {
@@ -1518,15 +1580,27 @@ bool Runner::BuyScrollFrom(Client& client, const Observation& obs,
     // The live-NPC lookup below still accepts a blacksmith standing nearby.
     const bool armourErrand = std::strcmp(trade, "armorer") == 0;
     // Service::None here means "the title must say armorer": the service
-    // fallback inside NearestShopkeeperWithTrade otherwise accepts any
-    // blacksmith (Curtis, 0x10CE8, c_blacksmith) as the armorer we asked for.
+    // fallback inside NearestShopkeeperWithTrade otherwise accepts ANY
+    // Blacksmith-service NPC -- which includes a weaponsmith, since
+    // ServiceForPaperdollJob maps "blacksmith", "smith", "armourer",
+    // "armorer" AND "weaponsmith" all onto wm::Service::Blacksmith
+    // (ClientTravel.cpp kAliases). Passing `svc` (Blacksmith) here let a
+    // weaponsmith stand in for the armorer we asked for -- Bae and Eulalia,
+    // both weaponsmiths, were opened instead of Belora/Rudd the armourers
+    // (run_gates/g_Castor.console.txt:72-92,508-601, 2026-09-05). Title
+    // match must win for every armour class, leather included.
     const char* sellerTrade = trade;
     u32 keeper = client.NearestShopkeeperWithTrade(
-        sellerTrade, wantLeather ? wm::Service::None : svc,
+        sellerTrade, armourErrand ? wm::Service::None : svc,
         &spellbookSkipSellers_);
-    if (!keeper && !wantLeather && std::strcmp(trade, "armorer") == 0) {
+    if (!keeper && !wantLeather && armourErrand) {
+        // Second choice: a true blacksmith's shelf runs ring/chain/plate too.
+        // Match the TITLE "blacksmith" exactly here as well -- `svc` would
+        // let this fallback re-admit the same weaponsmith the pass above
+        // just excluded.
         sellerTrade = "blacksmith";
-        keeper = client.NearestShopkeeperWithTrade(sellerTrade, svc,
+        keeper = client.NearestShopkeeperWithTrade(sellerTrade,
+                                                   wm::Service::None,
                                                    &spellbookSkipSellers_);
     }
     if (!keeper) {
@@ -2084,8 +2158,36 @@ bool Runner::DoPracticeSkill(Client& client, const Observation& obs) {
             LogLine("practice: opening the spellbook to see what can be cast");
             client.ActionUseObject(obs.spellbookSerial);
             spellbookOpened_ = true;
+            practiceRecheckedBook_ = false;
             nextActionMs_ = obs.nowMs + 2500;
             return false;
+        }
+        // spellbookOpened_ ONLY MEANS "OPENED AT SOME POINT THIS SESSION".
+        //
+        // FILL_SPELLBOOK and PRACTICE_SKILL share that one flag, so an open
+        // FILL_SPELLBOOK did minutes ago satisfies this gate even if
+        // containerItems_ for that same serial has since gone empty --
+        // Aurelius: FILL_SPELLBOOK opened the book and cached 19 items
+        // (run_gates/g_Aurelius.console.txt:86-90), then an equip in between
+        // (:610-624 "worn on the requested layer") left the cache reading 0,
+        // and this gate took the shared flag's word for it: "the book holds 0
+        // item(s) ... nothing safe to cast at myself -- standing down"
+        // (:624, 2026-09-05). Re-open once before believing an empty read; a
+        // book that is STILL empty after that is the genuine article and
+        // falls through to PickPracticeSpell's own "nothing safe to cast"
+        // reasoning below.
+        if (client.ContainerItemCount(obs.spellbookSerial) == 0) {
+            if (!practiceRecheckedBook_) {
+                LogLine("practice: the book reads empty but was already "
+                        "opened this session -- re-opening once before "
+                        "believing that");
+                client.ActionUseObject(obs.spellbookSerial);
+                practiceRecheckedBook_ = true;
+                nextActionMs_ = obs.nowMs + 2500;
+                return false;
+            }
+        } else {
+            practiceRecheckedBook_ = false;
         }
         // READ THE SERVER'S ANSWER TO THE LAST CAST BEFORE SENDING ANOTHER.
         //

@@ -8,7 +8,7 @@ i_sash	PLAYER_CRAFTED	PLAYER_CRAFTED	0	SCRIPT sm_cloth_misc; i_sash SKILLMAKE=Ta
 i_robe	PLAYER_CRAFTED	PLAYER_CRAFTED	0	SCRIPT i_robe SKILLMAKE=Tailoring 59.0
 i_hide	PVM_DROP	WORLD_GATHERED	0	ENGINE CCharUse.cpp:49 Use_CarveCorpse; SCRIPT c_cow_brown RESOURCES=8 i_ribs_raw,12 i_hide
 i_hides_cut	WORLD_PROCESSED	WORLD_PROCESSED	0	ENGINE CClientTarg.cpp:2159 (IT_HIDE -> TDATA1)
-i_leather_tunic	PLAYER_CRAFTED	PLAYER_CRAFTED	0	SCRIPT sm_leather_armor; SKILLMAKE=Tailoring 70.5,Armslore 10.0
+i_leather_tunic	PLAYER_CRAFTED	PLAYER_CRAFTED	0	SCRIPT sm_leather_armor; SKILLMAKE=Tailoring 70.5 (Armslore removed 2026-09-03, owner ruling)
 i_ore_iron	WORLD_GATHERED	WORLD_GATHERED	0	SCRIPT core/regiontypes.scp r_default_rock 50.0 mr_iron; regionresources.scp mr_iron SKILL=1.0,30.0
 i_ingot_iron	WORLD_PROCESSED	PLAYER_MARKET_GOOD	0	ENGINE CCharSkill.cpp:1154 iResourceQty=1; TDATA1=20.0 TDATA2=50.0; failure loses up to half
 i_dagger	PLAYER_CRAFTED	PLAYER_CRAFTED	0	ENGINE CClientUse.cpp:1273 LayerFind(LAYER_HAND1), :1282 IsItemTypeNear(IT_FORGE,3); SCRIPT i_dagger SKILLMAKE=Blacksmithing 0.0
@@ -47,7 +47,12 @@ i_scroll_poison	PLAYER_CRAFTED	REVOLUTION_NPC_VERIFIED	0	SCRIPT SKILLMAKE=Inscri
 i_scroll_recall	PLAYER_CRAFTED	REVOLUTION_NPC_VERIFIED	0	SCRIPT SKILLMAKE=Inscription 40.0,Magery 30.0; REVOLUTION forum 59111 band 60-80
 i_scroll_gate_travel	PLAYER_CRAFTED	UNKNOWN	0	SCRIPT SKILLMAKE=Inscription 70.0,Magery 60.0; no vendor sells 7th circle
 i_scroll_resurrection	PLAYER_CRAFTED	UNKNOWN	0	SCRIPT SKILLMAKE=Inscription 80.0,Magery 70.0; REVOLUTION forum 59111 band 80-100
-i_spellbook_runebook	PLAYER_MARKET	PLAYER_MARKET_GOOD	0	SCRIPT revolution/revolution_runebook.scp SKILLMAKE=Inscription 45.0,i_pen_and_ink; REVOLUTION cooperative 19.12.2008; NO MENU ENTRY
+i_spellbook_runebook	PLAYER_MARKET	PLAYER_MARKET_GOOD	0	SCRIPT i_spellbook_runebook
+i_map_local	PLAYER_CRAFTED	PLAYER_CRAFTED	0	SCRIPT i_map_local SKILLMAKE=Cartography 0.0,t_cartography; RESOURCES=1 i_map_blank
+i_map_city	PLAYER_CRAFTED	PLAYER_CRAFTED	0	SCRIPT i_map_city SKILLMAKE=Cartography 25.0,t_cartography; RESOURCES=1 i_map_blank
+i_map_sea_chart	PLAYER_CRAFTED	PLAYER_CRAFTED	0	SCRIPT i_map_sea_chart SKILLMAKE=Cartography 35.0,t_cartography; RESOURCES=1 i_map_blank
+i_map_world	PLAYER_CRAFTED	PLAYER_CRAFTED	0	SCRIPT i_map_world SKILLMAKE=Cartography 50.0,t_cartography; RESOURCES=1 i_map_blank
+i_mapmakers_pen	PLAYER_CRAFTED	BASIC_CRAFT_TOOL	0	SCRIPT revolution/revolution_runebook.scp SKILLMAKE=Inscription 45.0,i_pen_and_ink; REVOLUTION cooperative 19.12.2008; NO MENU ENTRY
 i_fish_big_1	WORLD_GATHERED	WORLD_GATHERED	0	SCRIPT r_default_water 60.0 nothing / 10.0 each of four fish; REAPAMOUNT=1,3
 i_fish_cut_cooked	PLAYER_CRAFTED	WORLD_PROCESSED	0	SCRIPT i_fish_cut_cooked RESOURCES=1 i_fish_cut_raw, SKILLMAKE=Cooking 0.0,t_cooking; ENGINE CCharUse.cpp:294 Use_Kindling -> Skill_UseQuick(SKILL_CAMPING) -> ITEMID_CAMPFIRE 0x0de3
 i_fish_cut_raw	WORLD_PROCESSED	WORLD_PROCESSED	0	ENGINE CClientTarg.cpp:1950 SetAmount(4 * GetAmount()); LIVE m3_cut1
@@ -77,4 +82,8 @@ i_reag_blood_moss	UNKNOWN	REVOLUTION_NPC_VERIFIED	1	leaf: nothing in the graph p
 i_reag_garlic	UNKNOWN	REVOLUTION_NPC_VERIFIED	1	leaf: nothing in the graph produces it
 i_reag_ginseng	UNKNOWN	REVOLUTION_NPC_VERIFIED	1	leaf: nothing in the graph produces it
 i_rune_marker	UNKNOWN	STOCK_SPHERE_ONLY	1	leaf: nothing in the graph produces it
+i_map_blank	UNKNOWN	REVOLUTION_NPC_VERIFIED	1	leaf: nothing in the graph produces it
+i_map_blank	UNKNOWN	REVOLUTION_NPC_VERIFIED	1	leaf: nothing in the graph produces it
+i_map_blank	UNKNOWN	REVOLUTION_NPC_VERIFIED	1	leaf: nothing in the graph produces it
+i_map_blank	UNKNOWN	REVOLUTION_NPC_VERIFIED	1	leaf: nothing in the graph produces it
 i_kindling	UNKNOWN	REVOLUTION_NPC_VERIFIED	1	leaf: nothing in the graph produces it

@@ -101,6 +101,12 @@ struct ActivityTickResult {
     // So: true only on a tick that ISSUED something -- a speech, a vendor
     // request, a purchase. A tick spent waiting for an answer is not a try.
     bool           acted = false;
+    // THE COUNTER IS OPEN OR A PURCHASE IS IN FLIGHT. An ask that got this
+    // far is progress, not a try: Castor's cloth errand (2026-09-05 11:33:50)
+    // walked, found the weaver, opened the shop and issued the buy -- five
+    // acted ticks -- and the planner's attempt backstop abandoned the goal in
+    // the same millisecond, before the pack could move.
+    bool           offerOpen = false;
 
     // ALWAYS POPULATED, success or failure. A refusal nobody can read is the
     // defect this whole layer exists to stop repeating, and every unexplained

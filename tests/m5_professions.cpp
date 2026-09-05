@@ -683,7 +683,16 @@ void TestEveryProducingLifeHasSomewhereToSell() {
         bool anyCraftable = false;
         const bool classIsPlayerMarket =
             faucet::OutputClassIsPlayerMarket(p.id.c_str());
+        // A TRAINING CRAFT IS NOT A PRODUCT. A drawn map trains Cartography
+        // and sells to nobody (Profession::trainingCrafts); it must not
+        // count as the life's way of earning, and it must not count against
+        // it either -- the treasure hunter earns by hunting.
+        int candidates = 0;
         for (const std::string& made : p.produces) {
+            bool training = false;
+            for (const std::string& t : p.trainingCrafts) if (t == made) training = true;
+            if (training) continue;
+            ++candidates;
             const faucet::SaleRoute route = faucet::RouteForItem(made.c_str());
             const prod::Recipe* r = prod::FindRecipe(made.c_str());
             const bool sellable =
@@ -695,6 +704,12 @@ void TestEveryProducingLifeHasSomewhereToSell() {
             anySellable = true;
             // inputs[0] empty == gathered, not crafted (a fisher's fish).
             if (r && r->inputs[0].item) anyCraftable = true;
+        }
+        if (candidates == 0) {
+            bool hunts = false;
+            for (prof::Income in : p.income) if (in == prof::Income::Hunt) hunts = true;
+            Check(hunts, (p.id + " makes only training crafts, so it must earn some other way (hunt)").c_str());
+            continue;
         }
         if (!anySellable) {
             std::printf("  FAIL: %s declares %d product(s) and not one of them "

@@ -1,0 +1,6 @@
+[rev] gates: 2 characters, 5 min each, stagger 3s
+[rev] gate Hector: pre-state snapshot -> g_Hector.state_before.json
+[rev] gate Hector: launched on RevGen3_25 as fencer for 5 min
+[rev] gate Odessa: pre-state snapshot -> g_Odessa.state_before.json
+[rev] gate Odessa: launched on RevGen3_20 as merchant_tinker for 5 min
+[rev] gates: launched 2/2 (rest were live). wait with `python tools/rev.py wait`

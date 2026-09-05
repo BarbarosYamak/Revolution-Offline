@@ -44,3 +44,10 @@
 - [Interim NPC sales](interim-npc-sales.md) — owner 2026-09-02: materials may go to NPCs until bots need each other; player-first, VendorPolicy switch, re-tighten later
 - [Wool: fighters kill+carve, sell cloth](wool-lamb-carve.md) — owner rule; tailors shear only; corpse loot needs open-after-carve, dead-mobile sweep, carve msg confirm
 - [Wave runs need full duration](wave-runs-need-full-duration.md) — killed wave grades as fake regressions; fix checks = 5-min smoke on affected chars, 30-min only for verdicts
+- [Bandages ≥100](bandages-hundred-minimum.md) — owner rule: fighting bots carry at least 100 bandages; shelf holds 20, so a top-up loop is needed
+- [Session 2026-09-05](../../../docs/SESSION_STATE_2026-09-05.md) — armour/bandages/mage chain landed live; tree uncommitted; 6 open items
+- [NPC swing = emote](npc-swing-is-an-emote.md) — "*X is attacking you!*" is the attack signal, not 0x2F; Client::IsAttackingMe
+- [Threat floor vs tolerance](threat-floor-vs-tolerance.md) — idle red monster ≥0.35; tolerance below that never opens; mage now 0.50
+- [Caster reagent working set](caster-reagent-working-set.md) — 50 each in pack, never dead-weight banked, NeedBank withdraws
+- [Archetypes top to bottom](archetypes-top-to-bottom.md) — owner 2026-09-05: finish one archetype at a time, alchemist first; treasure hunter trains Cartography
+- [Verdict is per archetype](verdict-is-per-archetype.md) — owner 2026-09-05: no sub-loop PASS; whole rounded day or PARTIAL/BLOCKED

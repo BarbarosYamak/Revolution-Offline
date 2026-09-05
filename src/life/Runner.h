@@ -577,6 +577,31 @@ private:
     // members shared between goals, and a gear trip spent the spellbook's
     // allowance.
     life::BuyActivity bandageBuy_;
+    // SHELVES THIS CHARACTER HAS ALREADY EMPTIED, and when.
+    //
+    // A healer's shelf holds {5 20} bandages and refills on Sphere's
+    // hardcoded ten-minute timer, so a fighter who wants a hundred empties
+    // the first counter and must walk to the next one rather than reopening
+    // the same drained window. Remembered here, on the life, because it is
+    // knowledge about the town -- the purchase activity is deliberately
+    // stateless between errands.
+    struct DrainedShelf { u32 serial = 0; i64 whenMs = 0; };
+    std::vector<DrainedShelf> drainedShelves_;
+    void NoteDrainedShelf(u32 serial, i64 nowMs);
+    // Serials still inside the restock window, freshest first.
+    std::vector<u32> DrainedShelves(i64 nowMs) const;
+    // Bandage errands that ended without a purchase since the last one that
+    // worked. Bounds the walk from healer to healer: three silent counters
+    // is a town without stock, and the cloth route answers that.
+    i32 bandageShopFails_ = 0;
+    // TOPPING UP, not merely short. `bandageLow` is the trigger that OPENS
+    // the restock; once open the errand runs to `bandageFull`, because a
+    // request phrased as a total that stops the instant it crosses the floor
+    // is the reason Castor walked out of Britain with 27.
+    bool bandageTopUp_ = false;
+    // Loose cloth, bought to be cut into bandages when no counter in town
+    // still has any. See DoMakeBandages.
+    life::BuyActivity bandageClothBuy_;
     // Heal potions, for lives whose Healing skill cannot make a bandage work.
     life::BuyActivity potionBuy_;
     // --- acquiring gear (S2.7) -------------------------------------------
@@ -793,6 +818,13 @@ private:
     static constexpr i64 kErrandReasonRepeatMs = 60 * 1000;
 
     bool spellbookOpened_ = false;
+    // spellbookOpened_ only means "opened at some point this session"; it says
+    // nothing about whether containerItems_ still holds what that open sent.
+    // A goal that reads the cache as empty while this flag is already true
+    // gets one re-open before it is believed -- see the practice gate in
+    // DoPracticeSkill. Reset whenever a non-empty read is seen, or whenever
+    // spellbookOpened_ itself is reset to force a fresh open.
+    bool practiceRecheckedBook_ = false;
     // The scroll graphic last dropped on the book, and the spell count before
     // it, so the next tick can tell a real add from a refusal.
     u16  scrollOfferedGraphic_ = 0;

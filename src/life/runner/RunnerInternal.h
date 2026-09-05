@@ -160,6 +160,7 @@ const ToolOpener kToolOpeners[] = {
     {prod::Tool::TinkerTools,   {0x1EBC, 0, 0, 0},        1},
     {prod::Tool::Scissors,      {0x0F9E, 0x0F9F, 0, 0},   2},
     {prod::Tool::SmithHammer,   {0x13E3, 0x13E4, 0, 0},   2},
+    {prod::Tool::PenAndInk,     {0x0FBF, 0x0FC0, 0, 0},   2},   // mapmaker's pen (ID=i_pen_and_ink)
 };
 inline const ToolOpener* OpenerFor(prod::Tool t) {
     for (const ToolOpener& o : kToolOpeners) if (o.tool == t) return &o;
@@ -228,6 +229,19 @@ constexpr i32 kMaxTradeTrips = 3;
 // character through several graveyard trips, short of hoarding wool it could
 // have spun into something saleable.
 constexpr i32 kBandagesWanted = 60;
+// HOW LONG A SHELF STAYS EMPTY. Sphere's vendor restock delay is hardcoded
+// at ten minutes (Source-X CCharNPCAct_Vendor.cpp:45,
+// iRestockDelay = 10*60*MSECS_PER_SEC) and no region on this runtime
+// overrides it, so a counter bought out is worth nothing to us for that long.
+constexpr i64 kShelfRestockMs = 600000;
+// A drained-counter walk is not infinite. Three shopkeepers of the trade with
+// nothing to sell is a town out of bandages, and the cloth route answers that
+// better than a fourth walk.
+constexpr i32 kMaxBandageShops = 2;
+// Loose cloth is VALUE=3 (items/i_profession_tailor_tanner.scp:466) and
+// vendors mark up 15% (sphere.ini:627), so anything above this is not the
+// cloth this errand came for.
+constexpr i32 kClothMaxPrice = 6;
 constexpr i32 kMaxBandageTrips = 3;
 constexpr i64 kNoBandageCooldownMs = 180000;
 // When even the map is exhausted, rest a while before asking again.
