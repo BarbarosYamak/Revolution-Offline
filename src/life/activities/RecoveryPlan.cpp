@@ -30,6 +30,12 @@ RecoveryPlan DecideRecovery(const RecoverySight& see,
         return out;
     }
 
+    if (see.threatened) {
+        out.step = RecoveryStep::Recover;
+        out.reason = "break contact before attempting corpse recovery";
+        return out;
+    }
+
     // GEAR IN THE PACK BELONGS ON THE PAPERDOLL, and this comes before going
     // back for anything else: a character that loots its armour and walks off
     // still wearing nothing has recovered its things and not its safety.
@@ -67,7 +73,7 @@ RecoveryPlan DecideRecovery(const RecoverySight& see,
     }
 
     // ENOUGH TRIPS. A corpse decays; an errand that cannot count does not.
-    if (see.attemptsSoFar >= tune.maxAttempts) {
+    if (see.attemptsSoFar >= tune.maxAttempts && see.corpseDistance > 2) {
         out.step = RecoveryStep::Abandon;
         out.reason = "walked at this corpse as often as it is worth";
         return out;
@@ -103,7 +109,8 @@ RecoveryPlan DecideRecovery(const RecoverySight& see,
     // the nominal three-trip budget unreachable and wrote off every valuable
     // full-loot corpse immediately.  After one failed approach, learned danger
     // may legitimately veto further trips.
-    if (see.attemptsSoFar > 0 && see.dangerHeatAtCorpse > tolerated) {
+    if (see.corpseDistance > 2 && see.attemptsSoFar > 0 &&
+        see.dangerHeatAtCorpse > tolerated) {
         out.step = RecoveryStep::Abandon;
         out.reason = "that place has killed this character too often to be "
                      "worth the gear";

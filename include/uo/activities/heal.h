@@ -54,6 +54,12 @@ struct HealSight {
     // afternoon into a deadlock.
     bool   hungry = false;
     bool   inDanger = false;      // something is attacking right now
+    bool   useBandages = true;    // Healing build, not Veterinary-only supplies
+    bool   canBuySupplies = true;
+    // Tiles to the nearest counter that sells bandages; -1 when unknown. The
+    // rest-before-shopping gate is about not walking a wounded character
+    // across the map, not about refusing a counter it can already see.
+    i32    supplyDistance = -1;
 
     double HpFraction() const {
         return hpMax > 0 ? static_cast<double>(hp) / hpMax : 0.0;
@@ -67,6 +73,12 @@ struct HealTuning {
     i32    bandagePrice = 2;
     // Gold this life will not spend on consumables.
     i32    goldReserve = 0;
+    double minHpToShop = 0.55;
+    // A supply counter within this many tiles is "right here": buy, do not
+    // rest. Faustus, raised at Papua's healer at 21/50 with 8,814 gold and no
+    // bandages, stood beside that healer's own counter for ten minutes at
+    // Regen0=40 (one point per 40s) waiting to reach 55% (2026-09-05 01:38).
+    i32    nearShopTiles = 40;
 };
 
 enum class HealStep : u8 {

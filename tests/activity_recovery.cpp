@@ -119,6 +119,11 @@ void TestAttemptsRunOut() {
     tried.attemptsSoFar = 2;
     ExpectStep(DecideRecovery(tried, Default()), RecoveryStep::TravelToCorpse,
                "two is not yet three");
+    tried.attemptsSoFar = 3;
+    tried.corpseDistance = 1;
+    tried.corpseVisible = true;
+    ExpectStep(DecideRecovery(tried, Default()), RecoveryStep::Loot,
+               "arrival on the last allowed trip still gets to loot");
 }
 
 // A character that loots its armour and walks off still wearing nothing has
@@ -187,6 +192,16 @@ void TestADecayedCorpseIsGivenUpOn() {
                "the corpse turned up late, so loot it");
 }
 
+void TestThreatInterruptsRecovery() {
+    RecoverySight s = Fallen();
+    s.threatened = true;
+    ExpectStep(DecideRecovery(s, Default()), RecoveryStep::Recover,
+               "even full health does not justify looting while attacked");
+    s.gearInPack = true;
+    ExpectStep(DecideRecovery(s, Default()), RecoveryStep::Recover,
+               "break contact before a dressing or shopping loop");
+}
+
 void TestEveryPlanSaysWhy() {
     std::printf("[recovery: no silent decisions]\n");
     const RecoveryPlan cases[] = {
@@ -212,6 +227,7 @@ int main() {
     TestNothingToRecover();
     TestStandingOverItLoots();
     TestADecayedCorpseIsGivenUpOn();
+    TestThreatInterruptsRecovery();
     TestEveryPlanSaysWhy();
     std::printf("%d checks, %d failures\n", g_checks, g_failures);
     return g_failures == 0 ? 0 : 1;

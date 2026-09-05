@@ -68,7 +68,67 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
     // right when something is already swinging and wrong when choosing whom to
     // start on -- and it meant the whole M6 layer (Classify, ChooseTarget,
     // ChoosePrey and 54 unit tests) was called by nothing at all.
-    if (obs.attackersOnMe > 0) return DoSurvive(client, obs);
+    if (obs.underAttack || obs.attackersOnMe > 0) return DoSurvive(client, obs);
+    const bool caster = needCfg_.profession && WantsSpellCombat(*needCfg_.profession);
+    int attackSpell = -1;
+    if (caster) {
+        if (obs.spellbookSerial && !client.ContainerKnown(obs.spellbookSerial)) {
+            if (!client.ActionBusy()) {
+                client.ActionOpenContainer(obs.spellbookSerial);
+                planner_.NoteAttempt(obs.nowMs);
+                nextActionMs_ = obs.nowMs + 2000;
+            }
+            return false;
+        }
+        attackSpell = PickSurvivalSpell(client, obs, false);
+        if (attackSpell < 0) {
+            const int known = PickSurvivalSpell(client, obs, false, false);
+            const spell::SpellDef* spell = spell::DefForSpell(known);
+            if (spell) {
+                std::vector<std::string> missing;
+                for (const char* reagent : spell->reagents) {
+                    if (!reagent) break;
+                    if (market::QtyOf(obs.pack, reagent) <= 0) missing.push_back(reagent);
+                }
+                if (!missing.empty()) {
+                    reagentWants_ = missing;
+                    const auto shopping = spell::PlanReagentBuy(0, 20, 0, obs.gold,
+                                                               static_cast<int>(missing.size()));
+                    reagentWantQty_ = std::max(1, shopping.buy);
+                    return HandOff(GoalKind::TrainCombat, GoalKind::BuySupplies, 60000,
+                                   "restock attack-spell reagents through the existing supply errand",
+                                   obs.nowMs);
+                }
+                if (obs.mana < spell->mana && obs.hostilesNear == 0 && !client.ActionBusy()) {
+                    client.ActionUseSkill(rules::kMeditation);
+                    nextActionMs_ = obs.nowMs + 6000;
+                    return false;
+                }
+            }
+            return HandOff(GoalKind::TrainCombat, GoalKind::PracticeSkill, 60000,
+                           "no castable attack spell: train or improve the spellbook first",
+                           obs.nowMs);
+        }
+    }
+    if (state_.huntReturnPending) {
+        return HandOff(GoalKind::TrainCombat, GoalKind::Bank, 10000,
+                       "secure the last hunt's loot before starting another", obs.nowMs);
+    }
+    // Readiness gates apply to a target already in view as well as to travel.
+    if (obs.HpFraction() < needCfg_.healHpFraction) {
+        return HandOff(GoalKind::TrainCombat, GoalKind::Heal, 10000,
+                       "recover before opening another fight", obs.nowMs);
+    }
+    if (obs.WeightFraction() >= 0.70) {
+        state_.huntReturnPending = true;
+        return HandOff(GoalKind::TrainCombat, GoalKind::Bank, 10000,
+                       "make room for loot before fighting", obs.nowMs);
+    }
+    if (obs.bandages == 0 && obs.healPotions == 0 &&
+        PickSurvivalSpell(client, obs, true) < 0) {
+        return HandOff(GoalKind::TrainCombat, GoalKind::ReplaceEquipment, 30000,
+                       "restock healing supplies before the next fight", obs.nowMs);
+    }
 
     // Do not open a fight while an earlier errand is still walking us toward
     // its destination.  The food run proved why: the planner selected combat
@@ -80,7 +140,7 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
     // Preparation comes before selecting a new target.  A character may defend
     // itself above, but it must not initiate a town fight or graveyard trip
     // until it has a weapon and basic armour.
-    if (!obs.weaponEquipped) {
+    if (!caster && !obs.weaponEquipped) {
         return HandOff(GoalKind::TrainCombat, GoalKind::ReplaceEquipment,
                        kGearCooldownMs, "no gear yet -- shopping before the "
                        "graveyard", obs.nowMs);
@@ -106,7 +166,7 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
     // longer gets asked again by proxy. A fighter with a weapon, bandages and
     // no armour available to buy goes hunting in what it is wearing, which is
     // what a player with 8k gold and an empty armoury does.
-    if (!HasBasicArmor(client, obs)) {
+    if (!caster && !HasBasicArmor(client, obs)) {
         if (!planner_.Cooling(GoalKind::UpgradeGear, obs.nowMs)) {
             // kShortRestMs, NOT kGearCooldownMs. The handoff cools the goal it
             // leaves, and four minutes is an entire session on this shard's
@@ -244,7 +304,8 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
                         "reason=\"one target, board is not crowded\"",
                         c.name.c_str(), c.dist, obs.HpFraction() * 100.0,
                         obs.bandages);
-                client.ActionAttack(c.serial);
+                if (caster) client.ActionCastSpell(attackSpell, c.serial);
+                else client.ActionAttack(c.serial);
                 currentFoe_ = c.serial;
                 currentFoeName_ = c.name;
                 // TRAIN_COMBAT opens the fight, but SURVIVE owns it as soon
@@ -300,7 +361,7 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
     // it is why M6 has never once been exercised live: the layer that decides
     // what may legally be attacked was never given anything to decide about.
     // A fighter with no fight in reach should go and find one.
-    if (!needCfg_.profession || !WantsToHunt(*needCfg_.profession)) return true;
+    if (!needCfg_.profession || (!WantsToHunt(*needCfg_.profession) && !caster)) return true;
 
     // GEAR UP BEFORE THE FIRST HUNT. "hunting ground can be graveyards for
     // early hunting, brit sewers maybe, but they need gear too" (project
@@ -349,7 +410,9 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
         }
         // WHICH GROUND, AND WHY. Nearest is not the same question as
         // survivable: see kNoviceHuntGroundId above for the Jhelom evidence.
-        const i32 weaponTenths = BestWeaponSkillTenths(obs);
+        const SchoolWeapon* school = SchoolWeaponFor(*needCfg_.profession);
+        const i32 weaponTenths = caster ? obs.SkillTenths(rules::kMagery)
+            : school ? obs.SkillTenths(school->skill) : BestWeaponSkillTenths(obs);
         const bool novice = weaponTenths < kSeasonedWeaponTenths;
         std::string huntPlace;
         if (novice) {

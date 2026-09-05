@@ -88,6 +88,7 @@ void TestAMageCastsWhenItHasNothingElse() {
 void TestMoneyFixesIt() {
     std::printf("[heal: nothing to hand is not a problem if there is gold]\n");
     HealSight s = Hurt();
+    s.hp = 60;
     s.gold = 500;
     ExpectStep(DecideHeal(s, Default()), HealStep::BuySupplies,
                "buy what is missing");
@@ -100,12 +101,41 @@ void TestMoneyFixesIt() {
                "the whole purse is reserve; do not raid it for bandages");
 }
 
+// Faustus, 2026-09-05 01:38: raised by Papua's healer at 21/50 with 8,814 gold
+// and no bandages. Papua is unguarded in the shard's own area files, so the
+// rest-before-shopping gate fired and he stood beside the healer's counter
+// for ten minutes at Regen0=40. The gate exists to keep a wounded character
+// off a cross-map circuit; a counter a screen away is not a circuit.
+void TestACounterRightHereIsNotAShoppingTrip() {
+    std::printf("[heal: a bandage counter next door beats resting at 1hp/40s]\n");
+    HealSight s = Hurt();
+    s.hp = 21; s.hpMax = 50;   // 42%, under minHpToShop
+    s.gold = 8814;
+    s.supplyDistance = 12;
+    ExpectStep(DecideHeal(s, Default()), HealStep::BuySupplies,
+               "the healer's counter is twelve tiles off -- buy, do not rest");
+
+    s.supplyDistance = 300;
+    ExpectStep(DecideHeal(s, Default()), HealStep::Rest,
+               "a counter across the map is the circuit the gate was written for");
+
+    s.supplyDistance = -1;
+    ExpectStep(DecideHeal(s, Default()), HealStep::Rest,
+               "unknown distance keeps the old, cautious answer");
+
+    s.supplyDistance = 12;
+    s.canBuySupplies = false;
+    ExpectStep(DecideHeal(s, Default()), HealStep::Rest,
+               "a build that does not use bandages still rests");
+}
+
 // "if warrior economy is good then he can buy bandage and potion, otherwise
 // go get yourself wool make bandage" (project owner). The POOR branch, and
 // only the poor branch.
 void TestThePoorBranch() {
     std::printf("[heal: make bandages when you cannot buy them, not before]\n");
     HealSight poor = Hurt();
+    poor.hp = 60;
     poor.gold = 1;
     poor.hasBandageMaterial = true;
     ExpectStep(DecideHeal(poor, Default()), HealStep::MakeBandages,
@@ -144,6 +174,26 @@ void TestTheDeadlockIsNamed() {
                "fed, regeneration works, so waiting is real");
 }
 
+void TestResurrectionAndBuildResources() {
+    HealSight s = Hurt();
+    s.hp = 12; s.gold = 5000;
+    ExpectStep(DecideHeal(s, Default()), HealStep::Rest,
+               "fresh resurrection does not start an equipment shopping circuit");
+    s.hungry = true;
+    ExpectStep(DecideHeal(s, Default()), HealStep::Stuck,
+               "starving resurrection needs food, not an endless rest");
+    s.hungry = false; s.bandages = 20; s.useBandages = false;
+    s.healPotions = 3;
+    ExpectStep(DecideHeal(s, Default()), HealStep::DrinkPotion,
+               "crafter does not use incidental or veterinary bandages");
+    s.canCastHeal = true; s.mana = 20;
+    ExpectStep(DecideHeal(s, Default()), HealStep::CastHeal,
+               "caster uses its supplied healing spell before potion reserves");
+    s.useBandages = true;
+    ExpectStep(DecideHeal(s, Default()), HealStep::Bandage,
+               "Healing build can use bandages even immediately after resurrection");
+}
+
 void TestEveryPlanSaysWhy() {
     std::printf("[heal: no silent decisions]\n");
     const HealPlan cases[] = {
@@ -166,8 +216,10 @@ int main() {
     TestDangerChangesTheOrder();
     TestAMageCastsWhenItHasNothingElse();
     TestMoneyFixesIt();
+    TestACounterRightHereIsNotAShoppingTrip();
     TestThePoorBranch();
     TestTheDeadlockIsNamed();
+    TestResurrectionAndBuildResources();
     TestEveryPlanSaysWhy();
     std::printf("%d checks, %d failures\n", g_checks, g_failures);
     return g_failures == 0 ? 0 : 1;

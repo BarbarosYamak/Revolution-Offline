@@ -1901,12 +1901,14 @@ private:
     // their behalf, so it is off unless a scenario says `survival on`. M4's
     // autonomous characters will turn it on and leave it on.
     bool survivalEnabled_ = false;
+    bool survivalBandagesAllowed_ = true;
     i64  survivalNextActionMs_ = 0;   // don't re-decide every single tick
     i64  survivalLastLogMs_ = 0;
     int  survivalLastTactic_ = -1;
     void SurvivalTick();
 public:
     void SetSurvivalEnabled(bool on);
+    void SetSurvivalBandagesAllowed(bool on) { survivalBandagesAllowed_ = on; }
     bool SurvivalEnabled() const { return survivalEnabled_; }
 private:
     bool EnsureWorldKnowledge();

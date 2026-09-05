@@ -288,6 +288,7 @@ json::Value ToJson(const PersistentState& st) {
 
     root.Set("checkpoint_ms", st.checkpointMs);
     root.Set("death_count", static_cast<i64>(st.deathCount));
+    root.Set("hunt_return_pending", st.huntReturnPending);
     root.Set("recent_deaths", static_cast<i64>(st.recentDeaths));
     root.Set("last_death_ms", st.lastDeathMs);
 
@@ -609,6 +610,7 @@ bool FromJson(const json::Value& v, PersistentState* out, std::string* err) {
 
     st.checkpointMs = v["checkpoint_ms"].AsInt(0);
     st.deathCount   = static_cast<i32>(v["death_count"].AsInt(0));
+    st.huntReturnPending = v["hunt_return_pending"].AsBool(false);
     st.recentDeaths = static_cast<i32>(v["recent_deaths"].AsInt(0));
     st.lastDeathMs  = v["last_death_ms"].AsInt(0);
 

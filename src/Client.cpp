@@ -4092,6 +4092,15 @@ void Client::ActionOnBodyChange(u16 body) {
         action_.kind == act::Kind::Resurrect) {
         FinishAction(act::Result::Success, "character is alive again");
     }
+    // Faustus, 2026-09-05 01:57: logged in as a ghost, so the login-time
+    // backpack open answered "Your ghostly hand passes through the object."
+    // Sphere only registers a container as opened when the open succeeds
+    // (CClientMsg.cpp addContainerSetup), and Cmd_Use_Item refuses every
+    // double-click on the contents of a pack it has not seen opened
+    // (CClientUse.cpp:85, "You can't use this where it is."). Five heal
+    // potions sat unusable in his pack for ten minutes. A resurrected
+    // character opens its pack again, exactly as a human would.
+    if (life_ == act::LifeState::Alive) OpenBackpack();
 }
 
 void Client::ActionOnVendorOffer(u32 vendorSerial) {

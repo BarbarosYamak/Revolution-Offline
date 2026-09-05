@@ -456,8 +456,8 @@ void TestNeeds() {
         dead.corpseRecoveryAttempts = 3;
         const std::vector<life::Need> tired = life::AssessNeeds(plan, mem, dead, cfg);
         const life::Need* exhausted = Find(tired, life::NeedKind::RecoverCorpse);
-        Check(exhausted != nullptr && exhausted->blocked,
-              "corpse recovery is bounded: three failed attempts and it stops");
+        Check(exhausted != nullptr && !exhausted->blocked,
+              "exhausted recovery must run once to clear the corpse record");
     }
 }
 
@@ -828,7 +828,8 @@ life::PersistentState SampleState() {
 void TestStateRoundTrip() {
     Section("persistence: schema round trip");
 
-    const life::PersistentState st = SampleState();
+    life::PersistentState st = SampleState();
+    st.huntReturnPending = true;
     const json::Value doc = life::ToJson(st);
     const std::string text = doc.Serialize(2);
 
@@ -845,6 +846,7 @@ void TestStateRoundTrip() {
     std::string err;
     Check(life::FromJson(back, &loaded, &err), "the written state loads");
 
+    Check(loaded.huntReturnPending, "unfinished hunt bank return survives a reconnect");
     Check(loaded.identity.identityId == st.identity.identityId, "identity survives");
     Check(loaded.identity.characterName == st.identity.characterName, "name survives");
     Check(loaded.identity.totalPlayTimeMs == st.identity.totalPlayTimeMs,
@@ -3515,10 +3517,86 @@ void TestStrengthAWizardCannotEarnByCasting() {
           "STAT_FARM is scored and feasible for the caster");
 }
 
+void TestRecoveryForEveryArchetype() {
+    for (const prof::Profession& profession : prof::All()) {
+        life::NeedConfig cfg; cfg.profession = &profession;
+        const life::BuildPlan plan = life::PlanFromProfession(profession);
+        life::Memory memory;
+        life::Observation obs = HealthyLumberjackAtWork();
+        obs.hp = 12; obs.hpMax = 100; obs.bandages = 0;
+        obs.healPotions = 0; obs.corpseKnown = true;
+        auto needs = life::AssessNeeds(plan, memory, obs, cfg);
+        const life::Need* heal = Find(needs, life::NeedKind::Heal);
+        Check(heal && !heal->blocked, profession.id.c_str());
+        life::Planner planner;
+        planner.Cooldown(life::GoalKind::RecoverCorpse, obs.nowMs + 60000);
+        auto goals = planner.Score(needs, obs, memory);
+        bool healFeasible = false;
+        for (const auto& goal : goals)
+            if (goal.kind == life::GoalKind::Heal) healFeasible = goal.feasible;
+        Check(healFeasible, "no-bandage recovery handoff reaches HEAL for every build");
+        obs.corpseRecoveryAttempts = 3;
+        needs = life::AssessNeeds(plan, memory, obs, cfg);
+        const life::Need* corpse = Find(needs, life::NeedKind::RecoverCorpse);
+        Check(corpse && !corpse->blocked, "attempt limit can clear persisted corpse");
+    }
+}
+
+void TestHuntBankReturnPriority() {
+    const prof::Profession* fighter = prof::Find("fencer");
+    life::NeedConfig cfg; cfg.profession = fighter;
+    auto plan = life::PlanFromProfession(*fighter);
+    life::Memory memory;
+    auto obs = HealthyLumberjackAtWork();
+    obs.huntReturnPending = true;
+    auto needs = life::AssessNeeds(plan, memory, obs, cfg);
+    const auto* bank = Find(needs, life::NeedKind::NeedBank);
+    Check(bank && !bank->blocked && bank->urgency == 1.0,
+          "a small loot haul still has a bank return, without needing overload");
+    const auto* training = Find(needs, life::NeedKind::NeedTraining);
+    Check(training && training->blocked, "finish banking before another hunt");
+    auto veteran = obs;
+    veteran.huntReturnPending = false;
+    veteran.skills = plan.skills;
+    auto veteranNeeds = life::AssessNeeds(plan, memory, veteran, cfg);
+    const auto* income = Find(veteranNeeds, life::NeedKind::NeedTraining);
+    Check(income && !income->blocked, "a capped warrior continues hunting for income");
+    obs.underAttack = true; obs.attackersOnMe = 1;
+    needs = life::AssessNeeds(plan, memory, obs, cfg);
+    life::Planner planner;
+    auto goals = planner.Score(needs, obs, memory);
+    double survival = 0, banking = 0;
+    for (const auto& goal : goals) {
+        if (goal.kind == life::GoalKind::Survive) survival = goal.score;
+        if (goal.kind == life::GoalKind::Bank) banking = goal.score;
+    }
+    Check(survival > banking, "banking loot never outranks an attacker");
+}
+
+void TestMageCombatIsAnActivity() {
+    const auto* mage = prof::Find("mage");
+    const auto* scribe = prof::Find("scribe");
+    Check(mage && life::WantsSpellCombat(*mage), "combat mage hunts with spells");
+    Check(scribe && !life::WantsSpellCombat(*scribe), "utility caster keeps its own profession");
+    life::NeedConfig cfg; cfg.profession = mage;
+    auto plan = life::PlanFromProfession(*mage);
+    life::Memory memory;
+    auto obs = HealthyLumberjackAtWork();
+    obs.weaponEquipped = false; obs.mana = 50; obs.hp = obs.hpMax = 50;
+    const auto needs = life::AssessNeeds(plan, memory, obs, cfg);
+    const auto* combat = Find(needs, life::NeedKind::NeedTraining);
+    const auto* practice = Find(needs, life::NeedKind::NeedPractice);
+    Check(combat && !combat->blocked, "mage can choose a hunt without a physical weapon");
+    Check(practice && !practice->blocked, "mage retains casting/meditation training choice");
+}
+
 int main(int argc, char** argv) {
     std::printf("m4_life\n");
     const std::string tmpDir = (argc > 1) ? argv[1] : ".";
 
+    TestMageCombatIsAnActivity();
+    TestHuntBankReturnPriority();
+    TestRecoveryForEveryArchetype();
     TestJsonRoundTrip();
     TestBuildPlanLegality();
     TestMemory();

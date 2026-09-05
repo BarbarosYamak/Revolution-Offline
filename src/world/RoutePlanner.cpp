@@ -37,6 +37,56 @@ struct OpenNode {
     bool operator>(const OpenNode& o) const { return f > o.f; }
 };
 
+const i32 kNeighbour[8][2] = {
+    {0, -1}, {1, -1}, {1, 0}, {1, 1}, {0, 1}, {-1, 1}, {-1, 0}, {-1, -1},
+};
+
+// Can a walker leave this cell for at least one passable neighbour?
+bool HasOutboundEdge(const navgrid::NavGrid& g, i32 cx, i32 cy) {
+    for (u8 dir = 0; dir < 8; ++dir) {
+        if (!g.EdgeOpen(cx, cy, dir)) continue;
+        if (g.Passable(cx + kNeighbour[dir][0], cy + kNeighbour[dir][1]))
+            return true;
+    }
+    return false;
+}
+
+// Can a walker enter this cell from at least one passable neighbour? Edges are
+// stored on the source cell, so ask each neighbour about the opposite heading.
+bool HasInboundEdge(const navgrid::NavGrid& g, i32 cx, i32 cy) {
+    for (u8 dir = 0; dir < 8; ++dir) {
+        const i32 nx = cx + kNeighbour[dir][0];
+        const i32 ny = cy + kNeighbour[dir][1];
+        if (!g.Passable(nx, ny)) continue;
+        if (g.EdgeOpen(nx, ny, static_cast<u8>((dir + 4) & 7))) return true;
+    }
+    return false;
+}
+
+// Nearest passable cell within `maxRings` that is connected to the rest of the
+// grid (outbound edge for a start, inbound for a goal). Leaves (outCx,outCy)
+// untouched and returns false when none is found; the caller then plans from
+// the island as before and reports the failure honestly.
+bool SnapToConnected(const navgrid::NavGrid& g, i32 cx, i32 cy, i32 maxRings,
+                     bool inbound, i32* outCx, i32* outCy) {
+    for (i32 r = 1; r <= maxRings; ++r) {
+        for (i32 dy = -r; dy <= r; ++dy) {
+            for (i32 dx = -r; dx <= r; ++dx) {
+                if (dx != -r && dx != r && dy != -r && dy != r) continue;
+                const i32 nx = cx + dx, ny = cy + dy;
+                if (!g.Passable(nx, ny)) continue;
+                const bool connected = inbound ? HasInboundEdge(g, nx, ny)
+                                               : HasOutboundEdge(g, nx, ny);
+                if (!connected) continue;
+                *outCx = nx;
+                *outCy = ny;
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 } // namespace
 
 const char* LegKindName(LegKind k) {
@@ -185,6 +235,19 @@ WorldRoute RoutePlanner::Plan(i32 startX, i32 startY, i32 goalX, i32 goalY,
         out.failure = "no walkable ground near the destination";
         return out;
     }
+    // A cell can be passable yet an island: its anchor landed on a roof, a
+    // fenced yard or a shop floor the edge pass could not walk out of, so it
+    // has no edge to any neighbour. A character standing there is not
+    // stranded -- the tile walker leaves such pockets fine -- but a macro
+    // search seeded from it finds nothing. Faustus' ghost logged in on one at
+    // (5674,3136) in Papua and every healer trip ended "no place offers
+    // healer" (2026-09-05). Seed from the nearest connected cell instead.
+    if (!HasOutboundEdge(grid_, startCx, startCy))
+        SnapToConnected(grid_, startCx, startCy, 3, /*inbound=*/false,
+                        &startCx, &startCy);
+    if (!HasInboundEdge(grid_, goalCx, goalCy))
+        SnapToConnected(grid_, goalCx, goalCy, 3, /*inbound=*/true,
+                        &goalCx, &goalCy);
 
     const u32 cellsX = grid_.CellsX();
     const u32 startCell = static_cast<u32>(startCy) * cellsX + startCx;

@@ -244,7 +244,7 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
         }
 
         const bool loadDemandsIt =
-            obs.WeightFraction() >= needCfg_.bankWeightFrac;
+            obs.WeightFraction() >= needCfg_.bankWeightFrac || state_.huntReturnPending;
         if (needCfg_.profession && (loadDemandsIt ||
                                     needCfg_.profession->produces.empty())) {
             for (const std::string& made : needCfg_.profession->produces) {
@@ -531,6 +531,15 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
                                     obs.y, obs.nowMs);
         }
 
+        if (state_.huntReturnPending) {
+            state_.huntReturnPending = false;
+            state_.memory.NoteEvent("hunt_banked", "loot secured; ready to restock", "bank",
+                                    obs.x, obs.y, obs.nowMs);
+            LogLine("hunt: bank return complete; resume preparation for next hunt");
+            Checkpoint(client, obs.nowMs, "hunt bank return complete");
+            return true;
+        }
+
         // A VISIT THAT DEPOSITED NOTHING IS NOT A COMPLETED BANK GOAL.
         //
         // Reporting success here is what produced the churn: Finish(true)
@@ -587,7 +596,30 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
             const i32 seededDist = seeded
                                        ? TileDist(seeded->x, seeded->y, obs.x, obs.y)
                                        : 0x7FFFFFFF;
-            if (proven && provenDist <= seededDist) {
+            // Every player knows every town has a bank. The seeded counter is
+            // the HOME one, and a novice fighter's hunting ground is chosen by
+            // tier (Britain graveyard), not by home: Castor, homed in Trinsic,
+            // killed one skeleton at Britain graveyard and then moongated
+            // 1331 tiles to "Bank of Britannia - Trinsic Branch" with Britain's
+            // own bank ~190 tiles away (g_Castor 2026-09-05 01:39). When the
+            // atlas knows a materially nearer counter than anything remembered,
+            // that counter is the one a player would walk to.
+            const wm::Place* atlasBank = client.NearestServicePlace(wm::Service::Banker);
+            const i32 atlasDist = atlasBank
+                                      ? TileDist(atlasBank->position.x,
+                                                 atlasBank->position.y, obs.x, obs.y)
+                                      : 0x7FFFFFFF;
+            const i32 bestKnown = provenDist < seededDist ? provenDist : seededDist;
+            if (atlasBank && atlasDist * 2 < bestKnown) {
+                LogLine("bank: %s is %d tiles off but %s at %d,%d is only %d -- "
+                        "every town has a bank, going to the near one",
+                        proven && provenDist <= seededDist ? "the bank we know"
+                                                           : "the home bank",
+                        bestKnown, atlasBank->name.c_str(), atlasBank->position.x,
+                        atlasBank->position.y, atlasDist);
+                travelInFlight_ = client.TravelToPoint(
+                    atlasBank->position.x, atlasBank->position.y, 5, "nearest_bank");
+            } else if (proven && provenDist <= seededDist) {
                 LogLine("bank: walking back to a bank we have used before, "
                         "%d,%d (%d tiles; seeded alternative %d)",
                         proven->x, proven->y, provenDist, seededDist);

@@ -37,7 +37,7 @@ HealPlan DecideHeal(const HealSight& see, const HealTuning& tune) {
         out.reason = "under attack, and a potion is the only thing fast enough";
         return out;
     }
-    if (see.bandages > 0) {
+    if (see.useBandages && see.bandages > 0) {
         out.step = HealStep::Bandage;
         out.reason = "bandages in the pack, which is what they are for";
         return out;
@@ -55,7 +55,18 @@ HealPlan DecideHeal(const HealSight& see, const HealTuning& tune) {
 
     // --- nothing to hand: can this be fixed with money? -------------------
     const i32 spendable = see.gold - tune.goldReserve;
-    if (spendable >= tune.bandagePrice) {
+    // A freshly raised character should regenerate at the healer before
+    // walking an equipment-shopping circuit. Hunger needs food instead.
+    const bool shopIsRightHere =
+        see.supplyDistance >= 0 && see.supplyDistance <= tune.nearShopTiles;
+    if (!see.inDanger && see.HpFraction() < tune.minHpToShop &&
+        !(shopIsRightHere && see.canBuySupplies && spendable >= tune.bandagePrice)) {
+        out.step = see.hungry ? HealStep::Stuck : HealStep::Rest;
+        out.reason = see.hungry ? "need food before regeneration can help"
+                               : "recover health here before a shopping trip";
+        return out;
+    }
+    if (see.canBuySupplies && spendable >= tune.bandagePrice) {
         out.step = HealStep::BuySupplies;
         out.reason = "nothing to hand, but enough gold to fix that";
         return out;
@@ -65,7 +76,7 @@ HealPlan DecideHeal(const HealSight& see, const HealTuning& tune) {
     // then he can buy bandage and potion, otherwise go get yourself wool make
     // bandage" (project owner). Firing this for a character that could simply
     // pay wastes the afternoon.
-    if (see.hasBandageMaterial) {
+    if (see.useBandages && see.hasBandageMaterial) {
         out.step = HealStep::MakeBandages;
         out.reason = "too poor to buy them, but there is cloth to cut up";
         return out;

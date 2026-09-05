@@ -932,6 +932,9 @@ bool Client::ReturnHome() {
 }
 
 void Client::TravelAbort(const char* why) {
+    // A direct chase may be active without a journey. Emergency retreat must
+    // cancel it too, or the old target keeps pulling us back into contact.
+    if (nav_.bot.active || nav_.bot.planning) BotAbortPath(why ? why : "travel aborted");
     if (!journey_.Active()) return;
     journey_.Abort(why);
     if (nav_.bot.active || nav_.bot.planning) BotAbortPath(why ? why : "travel aborted");
@@ -1779,7 +1782,7 @@ void Client::SurvivalTick() {
     constexpr u16 kYellowPotionGraphic = 0x0F0C;
     const u32 bandage = FindBackpackItemByGraphic(kBandageGraphic);
     const u32 potion  = FindBackpackItemByGraphic(kYellowPotionGraphic);
-    v.bandages    = bandage ? 1 : 0;
+    v.bandages    = bandage && survivalBandagesAllowed_ ? 1 : 0;
     v.healPotions = potion ? 1 : 0;
 
     const combat::Tactic t = combat::Decide(v);
@@ -1795,7 +1798,7 @@ void Client::SurvivalTick() {
             break;   // nothing to do; the fight is already happening
 
         case combat::Tactic::DrinkPotion: {
-            if (potion) {
+            if (potion && !action_.Active()) {
                 LogEvent("survival_potion", "");
                 ActionUseObject(potion);
                 survivalNextActionMs_ = now + 2000;

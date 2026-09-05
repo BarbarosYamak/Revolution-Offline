@@ -276,6 +276,13 @@ int NextSkillToBuy(const BuildPlan& plan, const Observation& obs,
 // a swordsman goes looking. Read off the build rather than off a list of
 // archetype names: a profession that wants MORE than the 50.0 a weapon school
 // is granted at creation intends to use it.
+bool WantsSpellCombat(const prof::Profession& p) {
+    if (p.combatStrategy != CombatStrategyId::Mage) return false;
+    for (prof::Income income : p.income)
+        if (income == prof::Income::Hunt) return true;
+    return false;
+}
+
 bool WantsToHunt(const prof::Profession& p) {
     for (const prof::SkillTargetSpec& t : p.targets) {
         const bool weapon = t.skillId == rules::kSwordsmanship ||

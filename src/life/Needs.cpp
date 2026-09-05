@@ -433,7 +433,7 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
                           : "gear and carried resources are on the corpse",
                 Fmt("corpse=%d,%d attempts=%d", obs.corpseX, obs.corpseY,
                     obs.corpseRecoveryAttempts),
-                exhausted);
+                false);
         }
         return needs;   // a ghost has no other needs it can act on
     }
@@ -486,7 +486,7 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
                       : "resurrected; gear and carried resources remain on the corpse",
             Fmt("corpse=%d,%d attempts=%d", obs.corpseX, obs.corpseY,
                 obs.corpseRecoveryAttempts),
-            exhausted);
+            false);  // let recovery execute its terminal abandonment decision
     }
 
     const double hpFrac = obs.HpFraction();
@@ -526,7 +526,7 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
                 Fmt("hp=%.0f%% bail=%.0f%% attackers=%d",
                     hpFrac * 100.0, bailAt * 100.0, obs.attackersOnMe));
         } else {
-            add(NeedKind::StayAlive, 0.55, "a fight already started",
+            add(NeedKind::StayAlive, 0.9, "a fight already started",
                 "something is attacking or standing in melee range",
                 Fmt("attackers=%d hostiles_seen=%d hp=%.0f%%",
                     obs.attackersOnMe, obs.hostilesNear, hpFrac * 100.0));
@@ -539,7 +539,7 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
             haveBandages ? "wounded and carrying bandages"
                          : "wounded with no bandages carried",
             Fmt("hp=%d/%d bandages=%d", obs.hp, obs.hpMax, obs.bandages),
-            !haveBandages);
+            false);  // potions, spells, food and regeneration are also healing
     }
 
     // --- the tool the whole profession depends on --------------------------
@@ -584,6 +584,19 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
                          : "nothing to fight with",
             Fmt("axe_pack=%d axe_worn=%d", obs.axeInPack ? 1 : 0,
                 obs.axeEquipped ? 1 : 0));
+    } else if (cfg.profession && WantsToHunt(*cfg.profession) &&
+               !WantsSpellCombat(*cfg.profession) && !obs.weaponEquipped) {
+        // A FIGHTER WITH EMPTY HANDS. The buy side has existed since the
+        // school-weapon table (Identity.cpp kSchoolWeapons, Gear.cpp
+        // DoReplaceEquipment), but nothing ever ASKED for it: only hatchet
+        // users got a weapon need. Titus, an archer stripped of his bow by a
+        // death, had TRAIN_COMBAT hand off to REPLACE_EQUIPMENT with "no gear
+        // yet -- shopping before the graveyard" and the planner then picked
+        // TRADE_WITH_PLAYER, because no need said "weapon" (g_Titus
+        // 2026-09-05 01:41). Ten minutes of IDLE_BRIEFLY followed.
+        add(NeedKind::NeedEquipment, 0.7, "weapon",
+            "a fighter with nothing in hand cannot hunt or defend itself",
+            "weapon_worn=0");
     }
 
     // DRESSED. Cutting up the resurrection robe leaves a character standing
@@ -783,7 +796,10 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         }
     }
 
-    if (obs.overloaded) {
+    if (obs.huntReturnPending) {
+        add(NeedKind::NeedBank, 1.0, "secure hunt loot",
+            "finish the hunt by putting surplus in the bank", "loot received from confirmed corpse");
+    } else if (obs.overloaded) {
         // Already spilling onto the ground. Nothing else matters about the
         // pack: every further log is dropped where anyone can take it.
         add(NeedKind::NeedBank, 0.95, "deposit carried load",
@@ -1658,9 +1674,10 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
             obs.bandages <= 0 && obs.gold < cfg.goldFloor && obs.hungry;
         const int huntHpPct = outOfOptions ? 50 : 80;
         const bool couldGoHunting =
-            nothingHere && cfg.profession && WantsToHunt(*cfg.profession) &&
+            nothingHere && cfg.profession &&
+            (WantsToHunt(*cfg.profession) || WantsSpellCombat(*cfg.profession)) &&
             obs.hp * 100 >= obs.hpMax * huntHpPct && obs.WeightFraction() < 0.7;
-        const bool blocked = nothingHere && !couldGoHunting;
+        const bool blocked = obs.huntReturnPending || (nothingHere && !couldGoHunting);
         // A FIGHTER'S URGENCY, ON THE SAME SCALE AS EVERY OTHER TRADE'S.
         //
         // 0.15 + 0.25 x gap tops out at 0.40, which is what a life feels about
@@ -1691,6 +1708,20 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
             Fmt("%s %.1f -> %.1f", SkillName(t.skillId), have / 10.0,
                 t.tenths / 10.0),
             blocked);
+    }
+
+    // Reaching the combat skill cap does not end a hunter's income loop.
+    if (cfg.profession && (WantsToHunt(*cfg.profession) || WantsSpellCombat(*cfg.profession))) {
+        bool trainingExists = false;
+        for (const Need& need : needs)
+            if (need.kind == NeedKind::NeedTraining) trainingExists = true;
+        if (!trainingExists) {
+            const bool ready = !obs.huntReturnPending &&
+                obs.HpFraction() >= cfg.healHpFraction && obs.WeightFraction() < 0.70;
+            add(NeedKind::NeedTraining, obs.hostilesNear > 0 ? 0.65 : 0.45,
+                "hunt for income", "completed combat build still earns through hunting",
+                "all combat skill targets reached", !ready);
+        }
     }
 
     // --- bandages this character must MAKE ---------------------------------

@@ -245,6 +245,50 @@ void TestRealAtlasFromMinoc(const std::string& dataDir) {
     }
 }
 
+// A ghost in Papua must be able to reach Papua's own healer. Faustus died in
+// the Lost Lands and logged back in at (5674,3136) on 2026-09-05; every
+// "walking to a healer" trip ended in "no place offers healer" although
+// papua_healer sits ~105 tiles away at (5737,3222). PickServicePlace drops a
+// candidate silently when the planner returns !ok, so this pins the route.
+void TestRealAtlasGhostInPapua(const std::string& dataDir) {
+    std::printf("-- real atlas: healer reachable from Papua --\n");
+    world_atlas::Atlas atlas;
+    std::string err;
+    if (!atlas.Load((dataDir + "/revolution_atlas.txt").c_str(), &err)) {
+        Check(false, "the generated atlas loads");
+        return;
+    }
+    navgrid::NavGrid grid;
+    if (!grid.Load((dataDir + "/revolution_navgrid.bin").c_str())) {
+        Check(false, "the generated navgrid loads");
+        return;
+    }
+    route::RoutePlanner planner(atlas, grid);
+
+    const i32 ghostX = 5674, ghostY = 3136;   // Faustus' login tile, run log
+    const wm::Place* papuaHealer = atlas.PlaceById("papua_healer");
+    Check(papuaHealer != nullptr, "the atlas still has papua_healer");
+    if (!papuaHealer) return;
+
+    route::RouteOptions opt;
+    opt.allowMoongates = true;
+    const route::WorldRoute direct = planner.Plan(
+        ghostX, ghostY, papuaHealer->position.x, papuaHealer->position.y, opt);
+    if (!direct.ok)
+        std::printf("  (planner: %s)\n", direct.failure);
+    Check(direct.ok, "the planner routes from the Papua ghost tile to papua_healer");
+
+    std::vector<world_atlas::ServiceRejection> rej;
+    const world_atlas::ServicePick pick = world_atlas::PickServicePlace(
+        atlas, planner, wm::Service::Healer, ghostX, ghostY, {},
+        /*farOk=*/false, &rej);
+    Check(pick.place != nullptr, "a healer is found from the Papua ghost tile");
+    if (pick.place) {
+        Check(pick.place->id == "papua_healer",
+              "Healer resolves to Papua's own, not one across the gates");
+    }
+}
+
 } // namespace
 
 int main(int argc, char** argv) {
@@ -254,6 +298,7 @@ int main(int argc, char** argv) {
     }
     TestPolicySynthetic();
     TestRealAtlasFromMinoc(argv[1]);
+    TestRealAtlasGhostInPapua(argv[1]);
 
     std::printf("%d checks, %d failed\n", g_checks, g_failures);
     return g_failures == 0 ? 0 : 1;

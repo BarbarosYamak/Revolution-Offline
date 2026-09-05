@@ -772,14 +772,14 @@ bool Runner::WearBasicClothing(Client& client, const Observation& obs) {
 // weapon-skill target, same threshold, so the two never disagree). See there
 // for the per-weapon citations.
 
-bool Runner::DoReplaceEquipment(Client& client, const Observation& obs) {
+bool Runner::DoReplaceEquipment(Client& client, const Observation& obs, bool medicineOnly) {
     // FREE BANDAGES BEFORE BOUGHT ONES.
-    if (CutResurrectionRobe(client, obs)) {
+    if (!medicineOnly && CutResurrectionRobe(client, obs)) {
         planner_.NoteProgress();
         return false;
     }
     // AND DRESS FROM THE PACK BEFORE WALKING TO A SHOP.
-    if (WearBasicClothing(client, obs)) {
+    if (!medicineOnly && WearBasicClothing(client, obs)) {
         planner_.NoteProgress();
         return false;
     }
@@ -787,7 +787,7 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs) {
     // The cheapest fix first: something usable is already in the pack. The axe
     // is preferred -- it is this build's weapon AND its tool, so arming it
     // solves both needs at once.
-    if (!obs.weaponEquipped) {
+    if (!medicineOnly && !obs.weaponEquipped) {
         // WAITING IS NOT PROGRESS.
         //
         // ArmAxe returns true for TWO different things: "I issued an
@@ -913,7 +913,7 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs) {
                 const i64 rest =
                     (wr.status == life::ActivityStatus::RetryableFailure)
                         ? kShortRestMs : kGearCooldownMs;
-                return HandOff(GoalKind::ReplaceEquipment, GoalKind::Bank,
+                return HandOff(planner_.Current().kind, GoalKind::Bank,
                                rest, "no weapon bought", obs.nowMs);
             }
         }
@@ -944,7 +944,8 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs) {
     //
     // A family with no bandages in `consumables` treats this plan as Done,
     // which is the truth: it is not short of something it does not carry.
-    const bool wantsBandages = life::WantsConsumable(needCfg_, "bandage");
+    const bool wantsBandages = life::WantsConsumable(needCfg_, "bandage") &&
+        (!medicineOnly || obs.SkillTenths(rules::kHealing) >= 300);
     life::AcquirePlan bandagePlan;   // default Done -- vacuously satisfied
     // `low` triggers a restock attempt; it is not a requirement that one NPC
     // must fill the pack all the way to `restockTo`. Once a partial purchase
@@ -975,6 +976,7 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs) {
     const ClothingPiece* garment = nullptr;
     life::AcquirePlan garmentPlan;   // default Done -- vacuously satisfied
     for (const ClothingPiece& p : kBasicClothing) {
+        if (medicineOnly) break;
         const u8 layer = client.ItemEquipLayer(p.graphic);
         if (!layer) continue;
         bool worn = false;
@@ -1031,7 +1033,7 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs) {
             // Unlike bandages this is not the last-coin emergency: a character
             // that spends its final gold on potions cannot buy the ore that
             // earns the next lot.
-            req.minimumGoldReserve = 50;
+            req.minimumGoldReserve = medicineOnly ? 0 : 50;
             req.Sell("healer", wm::Service::Healer);
             req.Sell("alchemist", wm::Service::Alchemist);
             potionPlan = life::DecideAcquire(req, held, 0);
@@ -1044,7 +1046,7 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs) {
 
     // ALL THREE DONE. Every plan in this check, on purpose -- dropping one is
     // the exact regression named above.
-    if (obs.weaponEquipped && bandagePlan.step == life::AcquireStep::Done &&
+    if ((medicineOnly || obs.weaponEquipped) && bandagePlan.step == life::AcquireStep::Done &&
         garmentPlan.step == life::AcquireStep::Done &&
         potionPlan.step == life::AcquireStep::Done)
         return true;
@@ -1056,21 +1058,21 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs) {
         LogLine("goal_blocked=REPLACE_EQUIPMENT reason=\"%s\"", bandagePlan.reason);
         state_.memory.NoteEvent("policy_refused", "i_bandage", "", obs.x, obs.y,
                                 obs.nowMs);
-        return HandOff(GoalKind::ReplaceEquipment, GoalKind::Bank,
+        return HandOff(planner_.Current().kind, GoalKind::Bank,
                        kGearCooldownMs, bandagePlan.reason, obs.nowMs);
     }
     if (garment && garmentPlan.step == life::AcquireStep::Refuse) {
         LogLine("goal_blocked=REPLACE_EQUIPMENT reason=\"%s\"", garmentPlan.reason);
         state_.memory.NoteEvent("policy_refused", garment->item, "", obs.x,
                                 obs.y, obs.nowMs);
-        return HandOff(GoalKind::ReplaceEquipment, GoalKind::Bank,
+        return HandOff(planner_.Current().kind, GoalKind::Bank,
                        kGearCooldownMs, garmentPlan.reason, obs.nowMs);
     }
     if (potionPlan.step == life::AcquireStep::Refuse) {
         LogLine("goal_blocked=REPLACE_EQUIPMENT reason=\"%s\"", potionPlan.reason);
         state_.memory.NoteEvent("policy_refused", "i_potion_heal", "", obs.x,
                                 obs.y, obs.nowMs);
-        return HandOff(GoalKind::ReplaceEquipment, GoalKind::Bank,
+        return HandOff(planner_.Current().kind, GoalKind::Bank,
                        kGearCooldownMs, potionPlan.reason, obs.nowMs);
     }
 
@@ -1176,7 +1178,7 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs) {
                 life::ActivityStatusName(r.status), r.reason);
         const i64 rest = (r.status == life::ActivityStatus::RetryableFailure)
                              ? kShortRestMs : kGearCooldownMs;
-        return HandOff(GoalKind::ReplaceEquipment, GoalKind::MakeBandages, rest,
+        return HandOff(planner_.Current().kind, GoalKind::MakeBandages, rest,
                        "no bandages bought", obs.nowMs);
     }
 
@@ -1241,7 +1243,7 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs) {
             req.graphic = potionGfx;
             req.item = "heal potion";
             req.desiredTotal = potions->restockTo;
-            req.minimumGoldReserve = 50;
+            req.minimumGoldReserve = medicineOnly ? 0 : 50;
             req.Sell("healer", wm::Service::Healer);
             req.Sell("alchemist", wm::Service::Alchemist);
             potionBuy_.Begin(req);
@@ -1284,7 +1286,7 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs) {
     // DoEarnGold already follows for "nothing spare to sell".
     LogLine("equipment: nothing on the list could be replaced this pass -- "
             "standing down so something that CAN act gets a turn");
-    planner_.Cooldown(GoalKind::ReplaceEquipment, obs.nowMs + kGearCooldownMs);
+    planner_.Cooldown(planner_.Current().kind, obs.nowMs + kGearCooldownMs);
     planner_.Finish(false, "nothing on the equipment list could be replaced",
                     obs.nowMs);
     return false;

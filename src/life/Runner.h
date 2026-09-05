@@ -181,7 +181,7 @@ private:
     bool DoHeal(Client& client, const Observation& obs);
     bool DoRecoverCorpse(Client& client, const Observation& obs);
     bool DoGetTool(Client& client, const Observation& obs);
-    bool DoReplaceEquipment(Client& client, const Observation& obs);
+    bool DoReplaceEquipment(Client& client, const Observation& obs, bool medicineOnly = false);
     bool DoBank(Client& client, const Observation& obs);
     // Send one item into the bank box and remember that it is unsettled.
     // Deliberately does NOT call NoteProgress() -- see bankItemMovePending_.
@@ -846,6 +846,15 @@ private:
     // slice exists to end. HealStep::None at construction matches DoHeal's
     // "healthy enough" starting assumption.
     HealStep lastHealPlan_ = HealStep::None;
+    int PickSurvivalSpell(Client& client, const Observation& obs, bool healing,
+                          bool requireSupplies = true) const;
+    bool survivalRetreat_ = false;
+    void RetreatToSafety(Client& client);
+    bool ProcessHuntAftermath(Client& client, const Observation& obs);
+    u32 huntLootCorpse_ = 0;
+    i32 huntLootFailures_ = 0;
+    bool huntLootMovePending_ = false;
+    i64 huntLootNextMs_ = 0;
     // --- buying a skill from an NPC ------------------------------------
     static constexpr i32 kMaxTrainTrips = 3;
     // How long TRAIN_AT_NPC rests after finding no trainer, or after one

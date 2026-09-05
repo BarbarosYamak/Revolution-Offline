@@ -36,6 +36,7 @@ namespace uo::life {
 struct RecoverySight {
     // A ghost can do nothing else until it is raised.
     bool   dead = false;
+    bool   threatened = false;
     // Do we even know where we fell?
     bool   corpseKnown = false;
     i32    corpseDistance = 0;

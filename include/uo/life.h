@@ -625,6 +625,7 @@ struct Observation {
 
     // Corpse state, only meaningful after a death we observed.
     bool corpseKnown = false;
+    bool huntReturnPending = false;
     i32  corpseX = 0, corpseY = 0;
     i32  corpseRecoveryAttempts = 0;
 
@@ -944,6 +945,7 @@ bool WoolChainWorkInProgress(const prof::Profession& p,
 // grant in a weapon school intends to use it. Shared because two systems ask:
 // the need model (is there a reason to travel?) and the goal that travels.
 bool WantsToHunt(const prof::Profession& p);
+bool WantsSpellCombat(const prof::Profession& p);
 
 // The build's own weapon-school basic -- katana, kryss, club or bow -- read
 // off the SAME weapon-skill target WantsToHunt reads (life/Identity.cpp), so
@@ -1700,6 +1702,7 @@ struct PersistentState {
 
     i64 checkpointMs = 0;
     i32 deathCount = 0;
+    bool huntReturnPending = false;
     // Consecutive recent deaths, decayed after a quiet hour. A character that
     // keeps dying in one place should stop going there (audit section 3.9).
     i32 recentDeaths = 0;

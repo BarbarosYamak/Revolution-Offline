@@ -1,4 +1,5 @@
 #include "RunnerInternal.h"
+#include <algorithm>
 
 namespace uo::life {
 // The families were one translation unit until the split; the
@@ -12,6 +13,107 @@ using namespace runner_detail;
 // SurvivalTick already owns potion / bandage / disengage, proven live in
 // M3.9.1. This goal adds the two things a tick-level policy cannot decide:
 // whether to fight back at all, and where to go when the answer is no.
+
+bool Runner::ProcessHuntAftermath(Client& client, const Observation& obs) {
+    if (currentFoe_) {
+        const u32 corpse = client.CorpseOfMobile(currentFoe_);
+        if (corpse) {
+            ++session_.kills;
+            const bool cheap = obs.HpFraction() >= 0.75;
+            state_.memory.NoteCreatureOutcome(currentFoeName_.c_str(),
+                cheap ? kCreatureEvidenceCheapKill : kCreatureEvidenceCostlyKill, obs.nowMs);
+            state_.memory.NoteEvent("confirmed_kill", currentFoeName_.c_str(), "",
+                                    obs.x, obs.y, obs.nowMs);
+            LogLine("hunt: confirmed kill target='%s' corpse=0x%08X", currentFoeName_.c_str(), corpse);
+            huntLootCorpse_ = corpse;
+            huntLootFailures_ = 0;
+            currentFoe_ = 0;
+        }
+    }
+    if (!huntLootCorpse_) return false;
+    if (obs.dead) { huntLootCorpse_ = 0; return false; }
+    // Never open a corpse instead of dealing with an attacker.
+    if (obs.underAttack || obs.attackersOnMe > 0) return false;
+    // Let the normal healing/food goals work, retaining the known corpse.
+    if (obs.HpFraction() < needCfg_.healHpFraction) return false;
+    if (obs.nowMs < huntLootNextMs_) return true;
+    if (client.ActionBusy()) return true;
+    if (huntLootMovePending_) {
+        huntLootMovePending_ = false;
+        if (client.ActionResult() == act::Result::Success) {
+            huntLootFailures_ = 0;
+            // ONE CORPSE IS NOT A BANK RUN. Castor killed a single skeleton at
+            // Britain graveyard, looted it and left for the bank at once, then
+            // walked back for the next one (g_Castor 2026-09-05 01:39) -- a
+            // kill/loot/bank/return loop that spends the session on the road.
+            // A player stays in the yard and banks when the pack is getting
+            // heavy or the coin on hand is worth more than the risk of losing
+            // it -- "worth" measured against this character's own wealth, not
+            // a global constant.
+            const i32 secureCoin = std::max(needCfg_.goldFloor, obs.gold / 10);
+            const bool heavy = obs.WeightFraction() >= needCfg_.bankWeightFrac;
+            const bool richPack = obs.goldOnHand >= secureCoin;
+            if (heavy || richPack) {
+                state_.huntReturnPending = true;
+                LogLine("hunt: loot transfer confirmed; bank return required "
+                        "(load=%.0f%% coin=%d/%d)",
+                        obs.WeightFraction() * 100, obs.goldOnHand, secureCoin);
+            } else {
+                LogLine("hunt: loot transfer confirmed; staying in the yard "
+                        "(load=%.0f%% coin=%d/%d)",
+                        obs.WeightFraction() * 100, obs.goldOnHand, secureCoin);
+            }
+        } else ++huntLootFailures_;
+    }
+    i32 x = 0, y = 0;
+    const bool visible = client.WorldItemPosition(huntLootCorpse_, &x, &y);
+    if (!visible || huntLootFailures_ >= 3 || obs.WeightFraction() >= 0.70 ||
+        obs.hostilesNear >= 3) {
+        LogLine("hunt: ending loot attempt visible=%d failures=%d hp=%.0f%% load=%.0f%%",
+                visible ? 1 : 0, huntLootFailures_, obs.HpFraction()*100, obs.WeightFraction()*100);
+        huntLootCorpse_ = 0;
+        Checkpoint(client, obs.nowMs, "hunt loot attempt ended");
+        return false;
+    }
+    if (TileDist(obs.x, obs.y, x, y) > 2) {
+        if (!client.TravelBusy() && !client.GotoBusy()) {
+            ++huntLootFailures_;
+            client.TravelToPoint(x, y, 2, "loot confirmed hunt corpse");
+        }
+        huntLootNextMs_ = obs.nowMs + 2000;
+        return true;
+    }
+    client.EnsurePeaceMode();
+    if (!client.ContainerKnown(huntLootCorpse_)) {
+        ++huntLootFailures_;
+        client.ActionOpenContainer(huntLootCorpse_);
+        huntLootNextMs_ = obs.nowMs + 2000;
+        return true;
+    }
+    if (client.ContainerItemCount(huntLootCorpse_) == 0) {
+        LogLine("hunt: corpse emptied; returning to bank");
+        huntLootCorpse_ = 0;
+        Checkpoint(client, obs.nowMs, "hunt loot complete");
+        return false;
+    }
+    u32 item = 0; u16 graphic = 0, amount = 0;
+    if (client.ContainerItemAt(huntLootCorpse_, 0, &item, &graphic, &amount)) {
+        client.ActionMoveItem(item, amount ? amount : 1, client.BackpackSerial());
+        huntLootMovePending_ = true;
+        huntLootNextMs_ = obs.nowMs + 1000;
+    }
+    return true;
+}
+
+void Runner::RetreatToSafety(Client& client) {
+    client.EnsurePeaceMode();
+    if (!survivalRetreat_) {
+        client.TravelAbort("survival retreat supersedes the old errand");
+        travelInFlight_ = false;
+        survivalRetreat_ = true;
+    }
+    if (!client.TravelBusy()) client.TravelToService(wm::Service::Banker, nullptr);
+}
 
 bool Runner::DoSurvive(Client& client, const Observation& obs) {
     if (obs.dead) {
@@ -102,7 +204,7 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
             }
             LogLine("dead: walking to a healer (trip %d)", ghostTrips_);
             travelInFlight_ =
-                client.TravelToService(wm::Service::Healer, HomeOrNearest(state_.homeCity));
+                client.TravelToService(wm::Service::Healer, nullptr);
         }
         nextActionMs_ = obs.nowMs + 5000;
         return false;
@@ -114,6 +216,7 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
     std::vector<Client::HostileHit> hostiles;
     client.ScanHostiles(12, hostiles);
     if (hostiles.empty()) {
+        survivalRetreat_ = false;
         currentFoe_ = 0;
         client.EnsurePeaceMode();
         return true;   // the danger passed
@@ -128,78 +231,22 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
                                  0.5, obs.nowMs);
     }
 
-    // AvoidCombat only (S2_WIRING_PLAN.md S2.6). A null profession is a
-    // pre-catalogue life -- combatStrategy defaults to AvoidCombat
-    // (professions.h:235), so gating on the enum alone would silently turn
-    // every legacy character pacifist. Every other strategy falls through to
-    // the body below byte-for-byte; Melee/Ranged/Mage/Tamer tuning is R2's.
-    bool avoidCombatDisengage = false;
-    if (needCfg_.profession &&
-        needCfg_.profession->combatStrategy == life::CombatStrategyId::AvoidCombat) {
-        life::CombatSight see;
-        see.hp = obs.hp;
-        see.hpMax = obs.hpMax;
-        see.mana = obs.mana;
-        // UNKNOWN: no Observation field and no status flag for this on the
-        // shard (the same gap Runner.cpp records for weight). Left 0.
-        see.manaMax = 0;
-        // Neither the hostile nor the target-selection loop has run yet at
-        // this point in the function -- write what we have, the nearest
-        // hostile, same source NoteDanger above just used.
-        see.foeDistance =
-            TileDist(hostiles.front().x, hostiles.front().y, obs.x, obs.y);
-        see.foeHpFraction = hostiles.front().hpCur >= 0 && hostiles.front().hpMax > 0
-                                ? static_cast<double>(hostiles.front().hpCur) /
-                                      hostiles.front().hpMax
-                                : -1.0;
-        see.attackersOnMe = obs.attackersOnMe;
-        see.bandages = obs.bandages;
-        // UNKNOWN: obs.hasPet answers ownership, not health. Left at
-        // defaults (petAlive=false, petHpFraction=-1.0).
-        {
-            bool armedNow = false;
-            for (usize i = 0; i < sizeof(kMeleeWeaponGfx) / sizeof(u16); ++i) {
-                const u16 g = kMeleeWeaponGfx[i];
-                if (client.EquippedGraphicAt(kLayerHand1) == g ||
-                    client.EquippedGraphicAt(kLayerHand2) == g) {
-                    armedNow = true;
-                    break;
-                }
-            }
-            see.armed = armedNow;
-        }
-
-        life::CombatTuning tune;
-        tune.fleeHpFraction = needCfg_.fleeHpFraction;
-        tune.healHpFraction = needCfg_.healHpFraction;
-        // UNKNOWN: neither field exists on NeedConfig or a personality
-        // record. Left at the struct defaults (preferredRange=6,
-        // riskTolerance=0.5).
-
-        const life::CombatDecision d = life::DecideCombat(
-            needCfg_.profession->combatStrategy, see, tune);
-        if (d.move != lastCombatMove_) {
-            LogPlan(life::CombatMoveName(d.move), d.reason);
-            lastCombatMove_ = d.move;
-        }
-
-        // AvoidCombat always decides Disengage (CombatStrategy.cpp:71-73),
-        // before ShouldBreakOff is even consulted -- so this is the only
-        // reachable arm in S2. Every other CombatMove is unreachable here.
-        // Only peace mode happens right here: returning true on the spot
-        // (the earlier version) skipped the bailAt block below entirely,
-        // which meant an AvoidCombat life fled with none of the FLEE
-        // path's creature-outcome evidence, first_near_death event, or
-        // rate-limited danger note -- a second, thinner retreat instead of
-        // the proven one (S2_WIRING_PLAN.md review finding 5).
-        // avoidCombatDisengage forces that block to run below regardless
-        // of HP, since this life never reaches the fight-back code after
-        // it either way.
-        if (d.move == life::CombatMove::Disengage) {
-            client.EnsurePeaceMode();
-            avoidCombatDisengage = true;
-        }
+    CombatStrategyId strategy = needCfg_.profession
+        ? needCfg_.profession->combatStrategy : CombatStrategyId::Melee;
+    const int attackSpell = strategy == CombatStrategyId::Mage
+        ? PickSurvivalSpell(client, obs, false) : -1;
+    if (strategy == CombatStrategyId::Mage && attackSpell < 0 && needCfg_.profession) {
+        const SchoolWeapon* fallback = SchoolWeaponFor(*needCfg_.profession);
+        if (fallback && obs.SkillTenths(fallback->skill) > 0)
+            strategy = fallback->skill == rules::kArchery ? CombatStrategyId::Ranged
+                                                        : CombatStrategyId::Melee;
     }
+    // Pet ownership does not prove a live, controllable combat pet. Until the
+    // pet command transport exists, a tamer must retreat instead of melee.
+    const bool avoidCombatDisengage = strategy == CombatStrategyId::AvoidCombat ||
+        strategy == CombatStrategyId::Tamer ||
+        (strategy == CombatStrategyId::Mage && attackSpell < 0) ||
+        (strategy == CombatStrategyId::Ranged && market::QtyOf(obs.pack, "i_arrow") == 0);
 
     // Same nerve-adjusted threshold Needs.cpp uses for the StayAlive need, so
     // the need model and the flee interrupt agree on when a fight is lost.
@@ -283,16 +330,7 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
             state_.memory.NoteEvent("first_near_death", hostiles.front().name.c_str(),
                                     "", obs.x, obs.y, obs.nowMs);
         }
-        // Retreat toward somewhere known-safe rather than a random direction.
-        const KnownPlace* bank = state_.memory.NearestPlace("bank", obs.x, obs.y);
-        if (bank && !client.TravelBusy()) {
-            client.TravelToPoint(bank->x, bank->y, 3, "flee_to_bank");
-        } else if (!client.TravelBusy()) {
-            // A new character may not have personally recorded a bank yet;
-            // the world atlas still knows where guarded bankers are.
-            client.TravelToService(wm::Service::Banker,
-                                   HomeOrNearest(state_.homeCity));
-        }
+        RetreatToSafety(client);
         nextActionMs_ = obs.nowMs + 2000;
         planner_.NoteAttempt(obs.nowMs);
         return false;
@@ -303,6 +341,7 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
     const Client::HostileHit* target = nullptr;
     for (const Client::HostileHit& h : hostiles) {
         if (IsUnreachable(h.serial, obs.nowMs)) continue;
+        if (h.serial == currentFoe_) { target = &h; break; }
         if (!target || TileDist(h.x, h.y, obs.x, obs.y) <
                            TileDist(target->x, target->y, obs.x, obs.y)) {
             target = &h;
@@ -315,71 +354,44 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
 
     const i32 dist = TileDist(target->x, target->y, obs.x, obs.y);
 
-    // DID THE LAST ONE DIE?
-    //
-    // Nothing in this file ever recorded WINNING a fight:
-    // kCreatureEvidenceCheapKill and kCreatureEvidenceCostlyKill were declared
-    // and never used, so a creature's danger could only ever go UP -- fleeing
-    // added 1.0, dying added 2.0, and killing something added nothing at all.
-    // A character that beat a zombie ten times learned exactly as much about
-    // zombies as one that had never seen one.
-    //
-    // The foe vanishing from the mobile list while we were fighting it is the
-    // kill: Sphere removes the mobile and drops a corpse. Cheap or costly is
-    // decided by the health we finished on, which is the thing that actually
-    // matters when choosing the next fight.
-    if (currentFoe_ != 0 && currentFoe_ != target->serial &&
-        !currentFoeName_.empty()) {
-        bool stillThere = false;
-        for (const Client::HostileHit& h : hostiles)
-            stillThere = stillThere || (h.serial == currentFoe_);
-        if (!stillThere) {
-            const bool cheap = obs.HpFraction() >= 0.75;
-            LogLine("hunt: killed '%s' -- finished at %.0f%% health, recording "
-                    "it as a %s win", currentFoeName_.c_str(),
-                    obs.HpFraction() * 100.0, cheap ? "cheap" : "costly");
-            state_.memory.NoteCreatureOutcome(
-                currentFoeName_.c_str(),
-                cheap ? kCreatureEvidenceCheapKill : kCreatureEvidenceCostlyKill,
-                obs.nowMs);
-            if (!state_.memory.HasEvent("first_kill")) {
-                state_.memory.NoteEvent("first_kill", currentFoeName_.c_str(),
-                                        "", obs.x, obs.y, obs.nowMs);
-            }
-            session_.kills++;
+    if (strategy == CombatStrategyId::Mage) {
+        // Defensive casts at a lawful hostile, from actual book/reagents.
+        // Never turn a mage into a sword user when its spell is unavailable.
+        if (dist <= 2) {
+            RetreatToSafety(client);
+        } else if (!client.ActionBusy()) {
+            const int heal = obs.HpFraction() < needCfg_.healHpFraction
+                ? PickSurvivalSpell(client, obs, true) : -1;
+            client.ActionCastSpell(heal >= 0 ? heal : attackSpell,
+                                  heal >= 0 ? client.PlayerSerial() : target->serial);
         }
+        nextActionMs_ = obs.nowMs + 4000;
+        return false;
     }
-
-    // TAKE THE WEAPON OUT OF THE BAG FIRST.
-    //
-    // Nothing in the life layer ever wielded one. The fighting professions
-    // define no tools at all (fencer, macer and archer all have empty
-    // p.tools), so no goal ever asked for a weapon in hand -- and the shard
-    // hands every fighter one at creation, which then sits in the backpack for
-    // the character's whole life. The result reads as a combat problem and is
-    // not one: "20s of fighting and Spectre is still at the same health; this
-    // is a stalemate", swung with bare fists.
-    if (!client.ActionBusy()) {
-        bool armed = false;
-        for (usize i = 0; i < sizeof(kMeleeWeaponGfx) / sizeof(u16); ++i) {
-            const u16 g = kMeleeWeaponGfx[i];
-            if (client.EquippedGraphicAt(kLayerHand1) == g ||
-                client.EquippedGraphicAt(kLayerHand2) == g) {
-                armed = true;
-                break;
-            }
-        }
-        if (!armed) {
-            const u32 inPack = FindAny(client, kMeleeWeaponGfx,
-                                       sizeof(kMeleeWeaponGfx) / sizeof(u16));
-            if (inPack) {
-                LogLine("combat: drawing a weapon before swinging -- it was in "
-                        "the pack");
-                client.ActionEquip(inPack, kLayerHand1);
-                nextActionMs_ = obs.nowMs + 2500;
+    // Equip only the weapon school selected by the build. A bow or kryss
+    // carried alongside a tool must not be replaced by an arbitrary sword.
+    if (needCfg_.profession) {
+        if (const SchoolWeapon* school = SchoolWeaponFor(*needCfg_.profession)) {
+            bool armed = false;
+            for (u16 g : school->graphics)
+                armed = armed || client.EquippedGraphicAt(kLayerHand1) == g ||
+                                 client.EquippedGraphicAt(kLayerHand2) == g;
+            if (!armed) {
+                if (client.ActionBusy()) return false;
+                const u32 weapon = FindAny(client, school->graphics, 2);
+                if (weapon) client.ActionEquip(weapon, kLayerServerChooses);
+                else {
+                    RetreatToSafety(client);
+                }
+                nextActionMs_ = obs.nowMs + 2000;
                 return false;
             }
         }
+    }
+    if (strategy == CombatStrategyId::Ranged && dist <= 2) {
+        RetreatToSafety(client);
+        nextActionMs_ = obs.nowMs + 1500;
+        return false;
     }
 
     if (currentFoe_ != target->serial) {
@@ -471,7 +483,8 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
     // run spent four of its five minutes chasing one fleeing mobile and never
     // returned to the trees. Progress means getting CLOSER; when there is none
     // for a while, the foe is written off and work resumes.
-    if (dist <= 1) {
+    const i32 combatRange = strategy == CombatStrategyId::Ranged ? 6 : 1;
+    if (dist <= combatRange) {
         chaseBestDist_ = dist;
         chaseProgressMs_ = obs.nowMs;
     } else if (dist < chaseBestDist_) {
@@ -488,6 +501,17 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
         return true;
     }
 
+    if (client.ActionBusy()) return false;
+    if (obs.HpFraction() < needCfg_.healHpFraction && obs.bandages > 0 &&
+        WantsConsumable(needCfg_, "bandage") && obs.SkillTenths(rules::kHealing) > 0 &&
+        (strategy != CombatStrategyId::Ranged || dist >= combatRange)) {
+        const u32 bandage = client.FindBackpackItemByGraphic(kBandage);
+        if (bandage) {
+            client.ActionUseBandage(bandage, client.PlayerSerial());
+            nextActionMs_ = obs.nowMs + 4000;
+            return false;
+        }
+    }
     if (!client.WarModeOn()) client.EnterWarMode();
     // Attack is a target-selection command, not a weapon swing.  Once the
     // server has accepted it, it owns the normal melee cadence.  Reissuing it
@@ -500,12 +524,54 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
         lastAttackOrderTarget_ = target->serial;
         lastAttackOrderMs_ = obs.nowMs;
     }
-    if (dist > 1 && !client.GotoBusy()) client.ActionGotoMobile(target->serial, 1);
+    if (dist > combatRange && !client.GotoBusy())
+        client.ActionGotoMobile(target->serial, combatRange);
     nextActionMs_ = obs.nowMs + 1200;
     return false;
 }
 
+int Runner::PickSurvivalSpell(Client& client, const Observation& obs, bool healing,
+                              bool requireSupplies) const {
+    if (!obs.spellbookSerial) return -1;
+    for (u8 layer = 1; layer <= 24; ++layer) {
+        const ArmorPiece* armor = ArmorFor(client.EquippedGraphicAt(layer));
+        if (armor && (armor->cls == ArmorClass::Metal || armor->cls == ArmorClass::Shield))
+            return -1;
+    }
+    spell::LoadSpellTable(client.DataDir());
+    const spell::SpellDef* best = nullptr;
+    for (const spell::SpellDef& d : spell::SpellTable()) {
+        if (d.unknownFlags || !(d.flags & spell::kFlagTargChar) ||
+            (d.flags & (spell::kFlagArea | spell::kFlagField | spell::kFlagSummon |
+                        spell::kFlagTargDead)) ||
+            obs.SkillTenths(rules::kMagery) < d.minSkillTenths ||
+            (requireSupplies && obs.mana < d.mana) ||
+            !BookHasSpell(client, obs.spellbookSerial, d.spell)) continue;
+        if (healing ? (!(d.flags & spell::kFlagHeal) || (d.flags & spell::kFlagHarm))
+                    : (!(d.flags & spell::kFlagDamage) || !(d.flags & spell::kFlagHarm))) continue;
+        bool supplied = true;
+        for (const char* reagent : d.reagents) {
+            if (!reagent) break;
+            if (market::QtyOf(obs.pack, reagent) < 1) supplied = false;
+        }
+        if ((!requireSupplies || supplied) && (!best || d.mana < best->mana)) best = &d;
+    }
+    return best ? best->spell : -1;
+}
+
 bool Runner::DoHeal(Client& client, const Observation& obs) {
+    if (obs.dead) return DoSurvive(client, obs);
+    if (obs.underAttack || obs.attackersOnMe > 0) return DoSurvive(client, obs);
+    if (obs.HpFraction() >= needCfg_.healHpFraction) return true;
+    client.EnsurePeaceMode();
+    // Read a real book before declaring that a caster has no healing spell.
+    if (obs.spellbookSerial && !client.ContainerKnown(obs.spellbookSerial) &&
+        !client.ActionBusy()) {
+        client.ActionOpenContainer(obs.spellbookSerial);
+        planner_.NoteAttempt(obs.nowMs);
+        nextActionMs_ = obs.nowMs + 2000;
+        return false;
+    }
     // See docs/S2_WIRING_PLAN.md S2.1 for the field-source table this mirrors.
     HealSight see;
     see.hp = obs.hp;
@@ -517,7 +583,15 @@ bool Runner::DoHeal(Client& client, const Observation& obs) {
     // BookHasGraphic with the book open, not just a skill/spellbook check.
     // Left false for this slice; a crafter has no Magery at all (the R4 pair
     // are miner_smith / lumberjack_swordsman), so nothing here loses by it.
-    see.canCastHeal = false;
+    const int healingSpell = PickSurvivalSpell(client, obs, true);
+    see.canCastHeal = healingSpell >= 0;
+    see.useBandages = WantsConsumable(needCfg_, "bandage") &&
+                      obs.SkillTenths(rules::kHealing) > 0;
+    see.canBuySupplies = WantsConsumable(needCfg_, "bandage") ||
+                        WantsConsumable(needCfg_, "heal potion");
+    // Bandages are a healer's counter (Gear.cpp bandageReq.Sell("healer")).
+    if (const wm::Place* shop = client.NearestServicePlace(wm::Service::Healer))
+        see.supplyDistance = TileDist(obs.x, obs.y, shop->position.x, shop->position.y);
     // obs.gold is the BANK total on this shard, not the pack (obs.goldOnHand
     // is that) -- "can this be fixed with money" is the bank question, not
     // "can I hand it over right now".
@@ -538,16 +612,14 @@ bool Runner::DoHeal(Client& client, const Observation& obs) {
     // A bandage on an untrained healer only produces the shard's "barely
     // help" one-point result.  A warrior must not consume its emergency kit
     // that way: obtain a healing potion first, then resume healing/training.
-    constexpr i32 kUsableHealingTenths = 300;
-    if (obs.SkillTenths(rules::kHealing) < kUsableHealingTenths &&
-        see.healPotions == 0 && obs.gold >= 200) {
-        return HandOff(GoalKind::Heal, GoalKind::ReplaceEquipment, 60000,
-                       "Healing is untrained; buying a potion instead of wasting bandages",
-                       obs.nowMs);
-    }
+    if (obs.SkillTenths(rules::kHealing) < 300 &&
+        (see.healPotions > 0 || see.canCastHeal)) see.useBandages = false;
 
     HealTuning tune;
     tune.healHpFraction = needCfg_.healHpFraction;
+    const wm::Region* healingRegion = client.CurrentRegion();
+    if (healingRegion && healingRegion->flags.guarded)
+        tune.minHpToShop = 0.0;  // a local medical errand inside town is safe
     // UNKNOWN until an observation exists; the struct default of 2 stands in
     // for it until then.
     if (const market::PriceObservation* p = state_.prices.Latest(
@@ -631,19 +703,21 @@ bool Runner::DoHeal(Client& client, const Observation& obs) {
         }
 
         case HealStep::CastHeal:
-            // Unreachable while canCastHeal is hardwired false above. Casting
-            // a spell id is a new mechanic this slice does not add.
-            nextActionMs_ = obs.nowMs + 3000;
+            if (!client.ActionBusy()) {
+                client.ActionCastSpell(healingSpell, client.PlayerSerial());
+                nextActionMs_ = obs.nowMs + 6000;
+                planner_.NoteAttempt(obs.nowMs);
+            }
             return false;
 
         case HealStep::BuySupplies:
-            // NOT GoalKind::BuySupplies -- DoBuySupplies shops for craft
-            // inputs only. The bandage/potion buyer is ReplaceEquipment.
-            return HandOff(GoalKind::Heal, GoalKind::ReplaceEquipment, 60000,
-                           "nothing to heal with; going shopping", obs.nowMs);
+            // Reuse the existing purchasing policy and activities, but defer
+            // weapon/clothing shopping until the patient has recovered.
+            DoReplaceEquipment(client, obs, true);
+            return false;
 
         case HealStep::MakeBandages:
-            return HandOff(GoalKind::Heal, GoalKind::MakeBandages, 60000,
+            return HandOff(planner_.Current().kind, GoalKind::MakeBandages, 60000,
                            "too poor to buy; cutting cloth", obs.nowMs);
 
         case HealStep::Rest:
@@ -654,7 +728,7 @@ bool Runner::DoHeal(Client& client, const Observation& obs) {
 
         case HealStep::Stuck:
             LogLine("goal_stuck=HEAL reason=\"%s\"", p.reason);
-            return HandOff(GoalKind::Heal, GoalKind::GetFood, 120000, p.reason,
+            return HandOff(planner_.Current().kind, GoalKind::GetFood, 120000, p.reason,
                            obs.nowMs);
     }
     return false;
@@ -679,6 +753,7 @@ bool Runner::DoRecoverCorpse(Client& client, const Observation& obs) {
 
     RecoverySight see;
     see.dead = obs.dead;
+    see.threatened = obs.underAttack || obs.attackersOnMe > 0;
     see.corpseKnown = obs.corpseKnown;
     see.corpseDistance = TileDist(death.x, death.y, obs.x, obs.y);
     // This character's OWN memory of the corpse's place, not of here --
@@ -705,10 +780,14 @@ bool Runner::DoRecoverCorpse(Client& client, const Observation& obs) {
     // goal, which is what happens today; ReEquip below is unreachable.
     see.gearInPack = false;
 
-    // RecoveryTuning: riskTolerance, minHpToReturn and maxAttempts all left
-    // at their struct defaults. riskTolerance is UNKNOWN -- no per-character
-    // personality field exists yet (spec S3 defers it).
     RecoveryTuning tune;
+    if (needCfg_.profession) tune.riskTolerance = needCfg_.profession->riskTolerance;
+    tune.minHpToReturn = needCfg_.healHpFraction;
+
+    // Starting a trip consumes its attempt. Let that last permitted trip
+    // arrive before evaluating whether another attempt would exceed budget.
+    if (travelInFlight_ && client.TravelBusy() && !see.threatened &&
+        see.hpFraction >= tune.minHpToReturn) return false;
 
     const RecoveryPlan plan = DecideRecovery(see, tune);
     if (plan.step != lastRecoveryPlan_) {
@@ -723,16 +802,18 @@ bool Runner::DoRecoverCorpse(Client& client, const Observation& obs) {
             // Both goals can be the one running while the character is a
             // ghost, so both had the fault.
             if (client.ActionBusy()) return false;
-            client.ActionResurrectAccept();
-            nextActionMs_ = obs.nowMs + 10000;
-            return false;
+            return DoSurvive(client, obs);
 
         case RecoveryStep::Recover:
             // Mandatory: without this cooldown RecoverCorpse (950) outscores
             // Heal (700) forever and the character never heals up to walk
             // back -- the exact death loop this handler exists to prevent.
-            return HandOff(GoalKind::RecoverCorpse, GoalKind::Heal, 60000,
-                           plan.reason, obs.nowMs);
+            // Keep ownership until healthy; a timed handoff can expire while
+            // regeneration is still working and restart the corpse trip.
+            if (!see.threatened && client.TravelBusy())
+                client.TravelAbort("heal before corpse recovery");
+            travelInFlight_ = false;
+            return DoHeal(client, obs);
 
         case RecoveryStep::TravelToCorpse:
             if (client.TravelBusy()) return false;
@@ -749,7 +830,7 @@ bool Runner::DoRecoverCorpse(Client& client, const Observation& obs) {
             }
             travelInFlight_ = false;
             if (!client.TravelSucceeded()) {
-                client.Knowledge().NoteCorpseRecoveryAttempt();
+                // TravelToLastCorpse already counted this trip.
                 planner_.NoteAttempt(obs.nowMs);
             }
             return false;

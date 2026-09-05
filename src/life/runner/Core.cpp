@@ -383,6 +383,7 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
     obs.corpseX = death.x;
     obs.corpseY = death.y;
     obs.corpseRecoveryAttempts = death.recoveryAttempts;
+    obs.huntReturnPending = state_.huntReturnPending;
 
     // Arrival is a claim about the TILE. `TreeCount` asks the shard's own
     // statics whether there is anything here to chop, which travel success
@@ -1201,13 +1202,20 @@ void Runner::Tick(Client& client, i64 nowMs) {
         case Phase::Live: {
             if (!client.IsInWorld()) return;
             const Observation obs = Observe(client, nowMs);
+            client.SetSurvivalBandagesAllowed(
+                WantsConsumable(needCfg_, "bandage") &&
+                obs.SkillTenths(rules::kHealing) > 0);
 
             // WHEN DID THIS LIFE COME BACK? The robe the server hands out at a
             // resurrection is only identifiable by the moment it appears (see
             // CutResurrectionRobe), so the dead->alive transition has to be
             // noticed as it happens rather than inferred later from a robe
             // that might be anyone's.
-            if (wasDead_ && !obs.dead) resurrectedAtMs_ = nowMs;
+            if (wasDead_ && !obs.dead) {
+                resurrectedAtMs_ = nowMs;
+                deathBlamed_ = false;
+                survivalRetreat_ = false;
+            }
             // A DEATH IS THE STRONGEST THING A PLACE CAN TEACH. Fleeing at low
             // health writes heat 1.5 (Survive.cpp), so dying writes more --
             // and it is written HERE, on the alive->dead edge, because that is
@@ -1218,6 +1226,9 @@ void Runner::Tick(Client& client, i64 nowMs) {
             // novice ground picker refuses a yard over kHuntGroundHeatLimit.
             if (!obs.dead) sawAliveOnce_ = true;
             if (sawAliveOnce_ && !wasDead_ && obs.dead) {
+                ++state_.deathCount;
+                ++state_.recentDeaths;
+                state_.lastDeathMs = nowMs;
                 state_.memory.NoteDanger(obs.x, obs.y, 20, "death", 2.0, nowMs);
                 LogLine("disengage=died at=%d,%d reason=\"died here -- this "
                         "ground is now remembered as lethal\"", obs.x, obs.y);
@@ -1303,12 +1314,16 @@ void Runner::Tick(Client& client, i64 nowMs) {
             }
 
             // --- decide ----------------------------------------------------
+            if (ProcessHuntAftermath(client, obs)) return;
+            // Aftermath may have just received the last item from a corpse.
+            Observation planningObs = obs;
+            planningObs.huntReturnPending = state_.huntReturnPending;
             const std::vector<Need> needs =
-                AssessNeeds(state_.plan, state_.memory, obs, needCfg_);
+                AssessNeeds(state_.plan, state_.memory, planningObs, needCfg_);
             std::string why;
             const GoalKind previous = planner_.Current().kind;
             const bool wasActive = planner_.Current().active;
-            if (planner_.Select(needs, obs, state_.memory, nowMs, &why)) {
+            if (planner_.Select(needs, planningObs, state_.memory, nowMs, &why)) {
                 session_.goalsAttempted++;
                 {
                     const int gi = static_cast<int>(planner_.Current().kind);
