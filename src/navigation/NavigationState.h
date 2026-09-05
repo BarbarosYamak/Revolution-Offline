@@ -78,6 +78,13 @@ struct BotState {
     // them separately so a doorway/mobile obstruction cannot rewrite the same
     // short path forever without ever consuming the normal replan budget.
     u32 lookaheadPatches = 0;
+    // Where the character stood at the last lookahead patch. The counter is
+    // only reset by a step sent from a DIFFERENT tile: a step sent from the
+    // same tile is the same trap again (Castor, Trinsic 2026-09-05 02:41:
+    // 2,024 patches in nine minutes at (2030,2810), every one followed by a
+    // "sent" step that never moved him, so the cap never tripped).
+    i32 lookaheadPatchX = -1;
+    i32 lookaheadPatchY = -1;
     // Latched for one replan when a failed plan found the character enclosed
     // with mobiles among the walls. Cleared by any plan that produces a path,
     // so a genuinely unreachable goal still fails in finite time.

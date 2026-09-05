@@ -734,6 +734,9 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
 
     // --- weight and banking ------------------------------------------------
     const double weightFrac = obs.WeightFraction();
+    // A fighter's line is the hunt gate, not the gatherer's 85% -- see
+    // BankWeightLine() in life.h and the Castor case recorded there.
+    const double bankLine = BankWeightLine(cfg);
 
     // IS THE LOAD ITSELF THE INCOME? A character at its carry limit holding
     // fifteen fish has two ways to put the weight down, and only one of them
@@ -806,10 +809,10 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
             "the pack has overflowed and logs are going on the floor",
             Fmt("server said 'it is too heavy'; weight=%d/%d logs=%d",
                 obs.weight, obs.maxWeight, obs.logs));
-    } else if (weightFrac >= cfg.bankWeightFrac && !loadIsSellable) {
+    } else if (weightFrac >= bankLine && !loadIsSellable) {
         add(NeedKind::NeedBank,
             loadIsWorkInProgress ? 0.0
-                                 : 0.6 + (weightFrac - cfg.bankWeightFrac),
+                                 : 0.6 + (weightFrac - bankLine),
             "deposit carried load",
             loadIsWorkInProgress
                 ? "close to the carry limit, but the weight IS the unfinished "
@@ -1676,7 +1679,8 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         const bool couldGoHunting =
             nothingHere && cfg.profession &&
             (WantsToHunt(*cfg.profession) || WantsSpellCombat(*cfg.profession)) &&
-            obs.hp * 100 >= obs.hpMax * huntHpPct && obs.WeightFraction() < 0.7;
+            obs.hp * 100 >= obs.hpMax * huntHpPct &&
+            obs.WeightFraction() < cfg.huntWeightFrac;
         const bool blocked = obs.huntReturnPending || (nothingHere && !couldGoHunting);
         // A FIGHTER'S URGENCY, ON THE SAME SCALE AS EVERY OTHER TRADE'S.
         //
@@ -1717,7 +1721,8 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
             if (need.kind == NeedKind::NeedTraining) trainingExists = true;
         if (!trainingExists) {
             const bool ready = !obs.huntReturnPending &&
-                obs.HpFraction() >= cfg.healHpFraction && obs.WeightFraction() < 0.70;
+                obs.HpFraction() >= cfg.healHpFraction &&
+                obs.WeightFraction() < cfg.huntWeightFrac;
             add(NeedKind::NeedTraining, obs.hostilesNear > 0 ? 0.65 : 0.45,
                 "hunt for income", "completed combat build still earns through hunting",
                 "all combat skill targets reached", !ready);

@@ -244,7 +244,8 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
         }
 
         const bool loadDemandsIt =
-            obs.WeightFraction() >= needCfg_.bankWeightFrac || state_.huntReturnPending;
+            obs.WeightFraction() >= BankWeightLine(needCfg_) ||
+            state_.huntReturnPending;
         if (needCfg_.profession && (loadDemandsIt ||
                                     needCfg_.profession->produces.empty())) {
             for (const std::string& made : needCfg_.profession->produces) {

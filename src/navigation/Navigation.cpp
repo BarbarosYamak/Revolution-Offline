@@ -72,6 +72,9 @@ constexpr usize kPathLookaheadScanSteps = 5;
 constexpr usize kPathLookaheadAnchorExtra = 5;
 constexpr u32   kLookaheadMaxNodesExpanded = 4096;
 constexpr u32   kMaxLookaheadPatches = 12;
+// How far a character must get from where a repair streak began before the
+// streak counts as "walking fine" rather than "trapped and oscillating".
+constexpr i32   kLookaheadProgressTiles = 3;
 constexpr i64   kDoorRetryWaitMs = 700;
 constexpr i32   kGoalZPreferenceRadius = 24;
 constexpr i32   kRejectedEdgeZTolerance = 2;
@@ -721,6 +724,13 @@ bool Client::BotLookaheadPatchPath() {
         for (usize i = anchor + 1; i < nav_.bot.path.size(); ++i)
             next.push_back(nav_.bot.path[i]);
         nav_.bot.path.swap(next);
+        // Anchor the streak where it STARTED, not where the latest patch
+        // happened: a character oscillating between two tiles patches from
+        // a new tile every time, and anchoring per patch never sees it.
+        if (nav_.bot.lookaheadPatches == 0) {
+            nav_.bot.lookaheadPatchX = playerX_;
+            nav_.bot.lookaheadPatchY = playerY_;
+        }
         if (++nav_.bot.lookaheadPatches > kMaxLookaheadPatches) {
             LogWarn("[bot] %u lookahead repairs without movement; abandoning "
                     "this trip instead of remaining trapped\n",
@@ -1234,7 +1244,17 @@ void Client::BotPumpMoves() {
             // Vorar, Falen both kept advancing between patches yet hit the old
             // per-trip counter's threshold and self-aborted with distance
             // still left to cover).
-            nav_.bot.lookaheadPatches = 0;
+            // ...but only NET movement counts. Castor, Trinsic inn upstairs,
+            // 2026-09-05 03:03: one accepted run step, one patch, one step
+            // back -- 1,392 patches at the run cadence and never more than a
+            // tile from where the streak began, each Sent step resetting the
+            // counter because the tile differed from the last patch's. The
+            // streak resets only once the character is genuinely clear of
+            // where it started patching.
+            if (ChebyshevDistance(playerX_, playerY_, nav_.bot.lookaheadPatchX,
+                                  nav_.bot.lookaheadPatchY) >=
+                kLookaheadProgressTiles)
+                nav_.bot.lookaheadPatches = 0;
         } else if (res == StepSubmit::Turned) {
             lastStepMs_ = 0;     // same direction is offered again as a step
         } else if (res == StepSubmit::Failed) {

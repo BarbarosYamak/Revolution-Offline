@@ -51,7 +51,7 @@ bool Runner::ProcessHuntAftermath(Client& client, const Observation& obs) {
             // it -- "worth" measured against this character's own wealth, not
             // a global constant.
             const i32 secureCoin = std::max(needCfg_.goldFloor, obs.gold / 10);
-            const bool heavy = obs.WeightFraction() >= needCfg_.bankWeightFrac;
+            const bool heavy = obs.WeightFraction() >= BankWeightLine(needCfg_);
             const bool richPack = obs.goldOnHand >= secureCoin;
             if (heavy || richPack) {
                 state_.huntReturnPending = true;
@@ -459,10 +459,14 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
                     target->name.empty() ? "it" : target->name.c_str(),
                     foeHp >= 0.0 ? "the same" : "unknown");
             MarkUnreachable(target->serial, obs.nowMs);
-            state_.memory.NoteDanger(obs.x, obs.y, 16,
-                                     target->name.empty() ? "a stalemate foe"
-                                                          : target->name.c_str(),
-                                     1.0, obs.nowMs);
+            // The FOE is struck off; the GROUND is not. A stalemate is a
+            // fight nobody is losing, and Castor 2026-09-05 02:25 logged two
+            // of them in a row against one skeleton -- heat 2.66 -> 5.42 at
+            // Britain Graveyard, past kHuntGroundHeatLimit, and with a 45 min
+            // half-life the only novice ground was gone for the session. He
+            // spent it exploring Trinsic. Danger heat is for being hurt,
+            // fleeing and dying (the notes above and in Core.cpp); an
+            // undented skeleton is not evidence the yard kills people.
             currentFoe_ = 0;
             client.EnsurePeaceMode();
             // Walk away, or the same foe is simply re-engaged next tick.

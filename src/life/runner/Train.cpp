@@ -1506,6 +1506,17 @@ bool Runner::BuyScrollFrom(Client& client, const Observation& obs,
     // (run_gates/g_Castor.console.txt:614, 2026-09-03).
     const ArmorPiece* wantPiece = graphic ? ArmorFor(graphic) : nullptr;
     const bool wantLeather = wantPiece && wantPiece->cls == ArmorClass::Leather;
+    // THE ATLAS TRIP GOES TO AN ARMOURY FOR EVERY ARMOUR CLASS. c_armorer
+    // sells VENDOR_S_ARMORER_LEATHER, _RING, _CHAIN, _PLATE and _SHIELDS
+    // (runtime/scripts/npcs/c_vendor_human.scp:646-650); the smithy carries
+    // the metal rows too but is what the forge errand wants. With
+    // armouryOnly=false the travel layer applies the forge rule -- "an
+    // armoury is not a smithy" -- and strikes every armorer off the list, so
+    // Castor (ringmail sleeves, 2026-09-05 02:26) walked past Britain's three
+    // armourers and set out for the Jhelom blacksmith, 2,100 tiles and a
+    // moongate away. "we have armor ... all at britain" (project owner).
+    // The live-NPC lookup below still accepts a blacksmith standing nearby.
+    const bool armourErrand = std::strcmp(trade, "armorer") == 0;
     // Service::None here means "the title must say armorer": the service
     // fallback inside NearestShopkeeperWithTrade otherwise accepts any
     // blacksmith (Curtis, 0x10CE8, c_blacksmith) as the armorer we asked for.
@@ -1553,7 +1564,7 @@ bool Runner::BuyScrollFrom(Client& client, const Observation& obs,
         // returning to the same seller that was just unreachable or empty.
         travelInFlight_ = client.TravelToServiceSkipping(
             svc, HomeOrNearest(state_.homeCity), spellbookSkipSellers_,
-            &spellbookSkipPlaces_, true, wantLeather);
+            &spellbookSkipPlaces_, true, wantLeather || armourErrand);
         nextActionMs_ = obs.nowMs + 2000;
         return false;
     }
@@ -1705,7 +1716,7 @@ bool Runner::BuyScrollFrom(Client& client, const Observation& obs,
                 GoalKindName(owner), sellerTrade, skipped, spellbookTrips_);
         travelInFlight_ = client.TravelToServiceSkipping(
             svc, HomeOrNearest(state_.homeCity), spellbookSkipSellers_,
-            &spellbookSkipPlaces_, true, wantLeather);
+            &spellbookSkipPlaces_, true, wantLeather || armourErrand);
         planner_.NoteAttempt(obs.nowMs);
         nextActionMs_ = obs.nowMs + 2000;
         return false;

@@ -1102,6 +1102,14 @@ struct NeedConfig {
     i32    bandageLow       = 8;     // uo-offline's threshold shape, our numbers
     i32    bandageFull      = 30;
     double bankWeightFrac   = 0.85;
+    // THE WEIGHT AT WHICH A FIGHTER STOPS HUNTING. Loot has to fit in the pack,
+    // so the hunt need stands down here -- and the bank need must pick up at
+    // the SAME line, or a fighter between the two stands still. Castor,
+    // 2026-09-05 03:02: a halberd and a maul of might off two corpses put him
+    // at 70%, TRAIN_COMBAT went BLOCKED on this gate, "deposit carried load"
+    // waited for 85%, and he explored Trinsic inns for a whole session. See
+    // BankWeightLine().
+    double huntWeightFrac   = 0.70;
     i32    goldFloor        = 100;   // below this, gold itself becomes a need
     i32    logsWorthBanking = 20;
     // A load worth walking to town for. Below this, gathering more beats the
@@ -1144,6 +1152,19 @@ struct NeedConfig {
     // SESSIONS is the honest unit for "not again today".
     i32 sessionIndex = 0;
 };
+
+// WHERE "TOO HEAVY" STARTS for this life. A fighter's line is the hunt gate
+// (huntWeightFrac): once the pack is too full to hunt, the load goes in the
+// box. Everyone else keeps the gatherer's 85%. Needs.cpp scores NeedBank from
+// this and runner/Bank.cpp decides what to put down from it -- they must read
+// the same number or the need and the action disagree and the goal spins.
+inline double BankWeightLine(const NeedConfig& cfg) {
+    if (cfg.profession &&
+        (WantsToHunt(*cfg.profession) || WantsSpellCombat(*cfg.profession)))
+        return cfg.huntWeightFrac < cfg.bankWeightFrac ? cfg.huntWeightFrac
+                                                       : cfg.bankWeightFrac;
+    return cfg.bankWeightFrac;
+}
 
 std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
                               const Observation& obs, const NeedConfig& cfg);

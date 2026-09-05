@@ -1124,6 +1124,15 @@ void Client::OnMobileHp(const u8* data, usize size) {
                 // still happening; WarMode.h always promised this counted.
                 if (serial == war_.TargetSerial() && oldCur >= 0 && m.hpCur != oldCur)
                     war_.OnCombatEvent(NowMs());
+                // Castor 2026-09-05 02:25: two 20 s "stalemate" verdicts wrote
+                // Britain Graveyard off for the session and nothing in the
+                // console showed what the foe's bar did. Source-X sends other
+                // mobiles' health as 0..100 percent (send.cpp
+                // PacketHealthUpdate); it is the whole evidence the stalemate
+                // test is judged on, so it is logged.
+                if (serial == war_.TargetSerial())
+                    LogInfo("[0xA1] foe 0x%08X hp %d/%d%s\n", serial, m.hpCur, m.hpMax,
+                            m.hpCur != oldCur ? " (changed)" : "");
                 break;
             }
         }
@@ -4177,6 +4186,22 @@ void Client::ActionOnSysMessage(const char* text, u32 sourceSerial, u8 type) {
         return;
     }
     if (contains("you have no line of sight")) {
+        FinishAction(act::Result::Rejected, text);
+        return;
+    }
+    // "You can't use this where it is." is Sphere's DEFMSG_REACH_UNABLE from
+    // Cmd_Use_Item (CClientUse.cpp:85): the item sits in a container THIS
+    // connection has not successfully opened. Titus 2026-09-05 02:23 logged
+    // in dead with a living body (0x0190, hp 0), so the login-time pack open
+    // met "Your ghostly hand passes through the object", no body change ever
+    // fired on resurrection, and five heal potions in his pack drew this
+    // refusal every 4 s. The item is fine; the pack needs opening. Reopen it
+    // and fail fast so the caller retries after the 0x3C arrives.
+    if ((action_.kind == act::Kind::UseObject ||
+         action_.kind == act::Kind::UseItemOn) &&
+        contains("can't use this where it is")) {
+        LogInfo("[backpack] server has not seen the pack opened this session -- reopening\n");
+        OpenBackpack();
         FinishAction(act::Result::Rejected, text);
         return;
     }

@@ -25,7 +25,10 @@
 - [Tailor pasture home-only](tailor-pasture-home-only.md) — owner 2026-09-04: shear closest-to-Britain flock (1318,1811) only, 400-tile cap; cows there for leather later
 - [Spellbook is a side goal](spellbook-is-a-side-goal.md) — owner: casters fill the book (buy circles 1-4, hunt drops for 5-8); scribe can only make spells already in the book
 
-- [Open items 2026-09-04](project_open_items_2026-09-04.md) — Faustus mace, Aurelius vendor_buy, Rhea taming, chest ResourceType; bow↔log, meditation %, weapon-merge era
+- [Sphere opened containers](sphere-opened-containers.md) — "can't use this where it is" = pack not opened on this connection; ghost login open fails; reopen on resurrect
+- [Navgrid island cells](navgrid-island-cells.md) — passable cells w/o edges break A*; PickServicePlace skips silently; SnapToConnected fix; Regen0=40, Papua unguarded
+- [Archer ammo loop open](project_open_items_2026-09-04.md) — Titus' arrows sit in bank; no item-withdraw primitive, no arrow buy/craft path; Ranged refuses with 0 arrows
+- [Open items 2026-09-04/05](project_open_items_2026-09-04.md) — Faustus wool↔combat flip, inn-upstairs no-path, bank-one-item-and-leave, archer ammo, bow↔log, meditation %
 - [Owner rulings on truth pack](owner-rulings-2026-09-03-truthpack.md) — taming 53.1/55.1+pack, meditation+creation historical, TNS trapped pouch, fewer mounts, no headhunters, guildmasters teach to 30.0, sinks later
 - [Truth pack](truth-pack-reference.md) — REVOLUTION_UO_HISTORICAL_TRUTH_PACK_FOR_FABLE.md at repo root is THE mechanics evidence source (2009-10 era); check before deciding any mechanic
 - [Tailoring cloth-only](tailoring-cloth-only.md) — owner: no thread/Armslore in tailor recipes, studded keeps iron; mage robe = Hardening Crystal + cloth (pack §9), not i_robe
