@@ -58,6 +58,15 @@ i32 BestWeaponSkillTenths(const Observation& obs) {
 
 }  // namespace
 
+// LEAVING THE HUNT HANDS THE TRIP ALLOWANCE BACK. Every hand-off below goes
+// to a different goal kind -- heal, bank, buy, practise -- and that goal
+// plans its own journeys; the walks it makes are not attempts to reach a
+// hunting ground. Counting them was D9 (Aurelius, 00:20:08).
+bool Runner::HandOffFromHunt(GoalKind to, i64 forMs, const char* why, i64 nowMs) {
+    huntTrips_ = 0;
+    return HandOff(GoalKind::TrainCombat, to, forMs, why, nowMs);
+}
+
 bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
     // Something is already here: finish that fight. This is how every
     // character trains, hunter or not.
@@ -72,7 +81,7 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
     if (needCfg_.profession && needCfg_.profession->combatStrategy == CombatStrategyId::Ranged &&
         market::QtyOf(obs.pack, "i_arrow") < 20) {
         const bool stocked = market::QtyOf(obs.bank, "i_arrow") > 0;
-        return HandOff(GoalKind::TrainCombat, stocked ? GoalKind::Bank : GoalKind::Craft,
+        return HandOffFromHunt(stocked ? GoalKind::Bank : GoalKind::Craft,
                        30000, stocked ? "withdraw ammunition before hunting"
                                       : "fletch ammunition before hunting", obs.nowMs);
     }
@@ -98,10 +107,21 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
                     attackSpell, known, spell ? spell->name : "none",
                     obs.spellbookSerial);
             if (spell) {
+                // WHAT THE LADDER COSTS, not what one rung costs. The fight
+                // walks down from the strongest castable spell, so the errand
+                // shops for every rung's reagents (cheapest rung first, so a
+                // partly-stocked shop still puts this character back in a
+                // fight). D8, artifacts/validation_wave_2026-09-06.md.
+                std::vector<const spell::SpellDef*> ladder;
+                AttackLadder(client, obs, ladder);
                 std::vector<std::string> missing;
-                for (const char* reagent : spell->reagents) {
-                    if (!reagent) break;
-                    if (market::QtyOf(obs.pack, reagent) <= 0) missing.push_back(reagent);
+                for (auto rung = ladder.rbegin(); rung != ladder.rend(); ++rung) {
+                    for (const char* reagent : (*rung)->reagents) {
+                        if (!reagent) break;
+                        if (market::QtyOf(obs.pack, reagent) > 0) continue;
+                        if (std::find(missing.begin(), missing.end(), reagent) ==
+                            missing.end()) missing.push_back(reagent);
+                    }
                 }
                 if (!missing.empty()) {
                     // THE BANK BEFORE THE SHOP. Aurelius had 138-146 of every
@@ -111,7 +131,7 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
                     for (const std::string& r : missing)
                         if (market::QtyOf(obs.bank, r) <= 0) banked = false;
                     if (banked) {
-                        return HandOff(GoalKind::TrainCombat, GoalKind::Bank, 30000,
+                        return HandOffFromHunt(GoalKind::Bank, 30000,
                                        "withdraw attack-spell reagents before hunting",
                                        obs.nowMs);
                     }
@@ -119,7 +139,7 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
                     const auto shopping = spell::PlanReagentBuy(0, 20, 0, obs.gold,
                                                                static_cast<int>(missing.size()));
                     reagentWantQty_ = std::max(1, shopping.buy);
-                    return HandOff(GoalKind::TrainCombat, GoalKind::BuySupplies, 60000,
+                    return HandOffFromHunt(GoalKind::BuySupplies, 60000,
                                    "restock attack-spell reagents through the existing supply errand",
                                    obs.nowMs);
                 }
@@ -129,28 +149,28 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
                     return false;
                 }
             }
-            return HandOff(GoalKind::TrainCombat, GoalKind::PracticeSkill, 60000,
+            return HandOffFromHunt(GoalKind::PracticeSkill, 60000,
                            "no castable attack spell: train or improve the spellbook first",
                            obs.nowMs);
         }
     }
     if (state_.huntReturnPending) {
-        return HandOff(GoalKind::TrainCombat, GoalKind::Bank, 10000,
+        return HandOffFromHunt(GoalKind::Bank, 10000,
                        "secure the last hunt's loot before starting another", obs.nowMs);
     }
     // Readiness gates apply to a target already in view as well as to travel.
     if (obs.HpFraction() < needCfg_.healHpFraction) {
-        return HandOff(GoalKind::TrainCombat, GoalKind::Heal, 10000,
+        return HandOffFromHunt(GoalKind::Heal, 10000,
                        "recover before opening another fight", obs.nowMs);
     }
     if (obs.WeightFraction() >= BankWeightLine(needCfg_)) {
         state_.huntReturnPending = true;
-        return HandOff(GoalKind::TrainCombat, GoalKind::Bank, 10000,
+        return HandOffFromHunt(GoalKind::Bank, 10000,
                        "make room for loot before fighting", obs.nowMs);
     }
     if (obs.bandages == 0 && obs.healPotions == 0 &&
         PickSurvivalSpell(client, obs, true) < 0) {
-        return HandOff(GoalKind::TrainCombat, GoalKind::ReplaceEquipment, 30000,
+        return HandOffFromHunt(GoalKind::ReplaceEquipment, 30000,
                        "restock healing supplies before the next fight", obs.nowMs);
     }
     // THE OWNER'S FLOOR: a fighting life carries at least bandageLow (100 for
@@ -158,20 +178,36 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
     // fight (2026-09-05). Both restock routes cooling -- shops drained AND the
     // cloth route rested -- is the one case it goes as it is, the same rule
     // the armour errand already follows.
+    //
+    // TWO LINES, BECAUSE THE TRIP IS NOT THE SAME TRIP. This gate runs on
+    // every tick of TRAIN_COMBAT, not only at hunt start, so at the graveyard
+    // it is asking "is one bandage worth a walk back to Britain?" -- and at
+    // needCfg_.bandageLow the answer was yes: Hector left the yard one second
+    // after a kill on 99 against a floor of 100 (D12,
+    // artifacts/validation_wave_2026-09-06.md). In town, before the walk, the
+    // full floor is right and cheap. In the field the line is
+    // needCfg_.bandageFieldLow -- the floor less one fight's worth, resolved
+    // beside it in ResolveConsumableThresholds -- so the restock waits for a
+    // trip that was going to happen anyway. "In the field" is read from the
+    // region: a hunting ground is unguarded, a bandage counter is in a town.
+    const wm::Region* bandageRegion = client.CurrentRegion();
+    const bool inTownForSupplies = bandageRegion && bandageRegion->flags.guarded;
+    const i32 bandageGateLow =
+        inTownForSupplies ? needCfg_.bandageLow : needCfg_.bandageFieldLow;
     if (needCfg_.profession && WantsToHunt(*needCfg_.profession) &&
-        obs.bandages < needCfg_.bandageLow &&
+        obs.bandages < bandageGateLow &&
         life::WantsConsumable(needCfg_, "bandage")) {
         const bool bothResting =
             planner_.Cooling(GoalKind::ReplaceEquipment, obs.nowMs) &&
             planner_.Cooling(GoalKind::MakeBandages, obs.nowMs);
         if (!bothResting) {
-            return HandOff(GoalKind::TrainCombat, GoalKind::ReplaceEquipment, 30000,
+            return HandOffFromHunt(GoalKind::ReplaceEquipment, 30000,
                            "below the bandage floor -- restock before the next fight",
                            obs.nowMs);
         }
         LogLine("hunt: %d bandages against a floor of %d, and both restock "
                 "errands are resting -- going as I am", obs.bandages,
-                needCfg_.bandageLow);
+                bandageGateLow);
     }
 
     // Do not open a fight while an earlier errand is still walking us toward
@@ -185,7 +221,7 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
     // itself above, but it must not initiate a town fight or graveyard trip
     // until it has a weapon and basic armour.
     if (!caster && !obs.weaponEquipped) {
-        return HandOff(GoalKind::TrainCombat, GoalKind::ReplaceEquipment,
+        return HandOffFromHunt(GoalKind::ReplaceEquipment,
                        kGearCooldownMs, "no gear yet -- shopping before the "
                        "graveyard", obs.nowMs);
     }
@@ -218,7 +254,7 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
             // not come back to the hunt afterwards even when the shopping
             // finished in thirty seconds. The rest only has to be long enough
             // for the gear errand to be picked instead.
-            return HandOff(GoalKind::TrainCombat, GoalKind::UpgradeGear,
+            return HandOffFromHunt(GoalKind::UpgradeGear,
                            kShortRestMs, "no gear yet -- shopping before the "
                            "graveyard", obs.nowMs);
         }
@@ -429,7 +465,10 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
     // very next need re-picked. A goal that decided not to act did nothing,
     // and "did nothing" stands down (goal-that-did-nothing-must-stand-down),
     // it does not report success.
-    if (obs.hp * 100 < obs.hpMax * 80) {
+    // 80 WAS A SECOND COPY OF needCfg_.healHpFraction (0.80, life.h) --
+    // the same line DoTrainCombat's own readiness gate above and DecideHeal
+    // both read. One number, one place.
+    if (obs.HpFraction() < needCfg_.healHpFraction) {
         LogLine("hunt: %d/%d health -- not going looking for a fight",
                 obs.hp, obs.hpMax);
         planner_.Cooldown(GoalKind::TrainCombat, obs.nowMs + kHuntStandDownMs);
@@ -437,7 +476,10 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
         nextActionMs_ = obs.nowMs + 3000;
         return false;
     }
-    if (obs.WeightFraction() >= 0.7) {
+    // THE HUNT WEIGHT LINE, not a literal: needCfg_.huntWeightFrac (0.70,
+    // life.h) is the same number NeedTraining reads when it asks whether this
+    // life can hunt at all (Needs.cpp), so the need and the goal agree.
+    if (obs.WeightFraction() >= needCfg_.huntWeightFrac) {
         LogLine("hunt: carrying too much to fight (%.0f%%)",
                 obs.WeightFraction() * 100.0);
         planner_.Cooldown(GoalKind::TrainCombat, obs.nowMs + kHuntStandDownMs);
@@ -448,7 +490,16 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
 
     if (client.TravelBusy()) return false;
     if (!travelInFlight_) {
-        if (++huntTrips_ > kMaxHuntTrips) {
+        // A TRIP IS A JOURNEY THAT WAS ACTUALLY STARTED. This counter used to
+        // rise on every pass through here, including passes that never picked
+        // a ground and passes that failed to start a walk, so Aurelius failed
+        // "no hunting ground reachable after 4 trips" at 00:20:08 with no
+        // graveyard travel planned since 00:19:04 -- the intervening plans
+        // were a healer and a vendor (D9,
+        // artifacts/validation_wave_2026-09-06.md). It is now incremented
+        // below, only where travelInFlight_ actually became true, and reset
+        // by HandOffFromHunt whenever this goal is left for another kind.
+        if (huntTrips_ >= kMaxHuntTrips) {
             LogLine("goal_failed=TRAIN_COMBAT reason=\"no hunting ground "
                     "reachable after %d trips\"", huntTrips_);
             planner_.Cooldown(GoalKind::TrainCombat,
@@ -519,7 +570,7 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
         }
         if (travelInFlight_) {
             LogLine("hunt: heading to %s to train (trip %d)",
-                    huntPlace.c_str(), huntTrips_);
+                    huntPlace.c_str(), ++huntTrips_);
         } else {
             LogLine("goal_blocked=TRAIN_COMBAT reason=\"%s\"",
                     client.TravelFailureText());
@@ -1871,7 +1922,7 @@ spell::PracticeChoice Runner::PickPracticeSpell(Client& client,
     see.pack = obs.pack;
     see.uncastable = practiceRefusedSpells_;
     const spell::PracticeChoice choice = spell::ChoosePracticeSpell(see);
-    if (choice.spell >= 0 || !choice.missing.empty()) return choice;
+    if (choice.spell >= 0 || choice.manaNeeded > 0 || !choice.missing.empty()) return choice;
 
     const usize n = client.ContainerItemCount(obs.spellbookSerial);
     // SAY WHAT IS ACTUALLY IN THERE. "Nothing safe to cast" is a claim about
@@ -2040,6 +2091,16 @@ bool Runner::DoFillSpellbook(Client& client, const Observation& obs) {
     if (scrollShopSinceMs_ == 0 ||
         obs.nowMs - scrollShopTickMs_ > kScrollShopGapStaleMs) {
         scrollShopSinceMs_ = obs.nowMs;
+    } else if (client.TravelBusy() || travelInFlight_) {
+        // THE CLOCK STOPS ON THE ROAD. Walking is what shopping costs on this
+        // shard, and the budget exists to catch standing at counters that
+        // never sell -- not to punish the walk to the next one. Aurelius set
+        // out for the mage shop at 00:15:43 and the goal failed at 00:16:15,
+        // "90s of shopping and not one spell added", while he was still in
+        // the street, then sat out a 899-second cooldown (D3,
+        // artifacts/validation_wave_2026-09-06.md). Rolling the mark forward
+        // by the elapsed tick leaves the budget measuring shop time only.
+        scrollShopSinceMs_ += obs.nowMs - scrollShopTickMs_;
     } else if (obs.nowMs - scrollShopSinceMs_ > kScrollShopBudgetMs) {
         const i64 spent = obs.nowMs - scrollShopSinceMs_;
         char why[160];
@@ -2229,6 +2290,22 @@ bool Runner::DoPracticeSkill(Client& client, const Observation& obs) {
         }
 
         const spell::PracticeChoice pick = PickPracticeSpell(client, obs);
+        if (pick.manaNeeded > 0) {
+            // Rest is part of the casting loop. Bound retries so interrupted
+            // or ineffective meditation cannot monopolize the planner.
+            if (obs.underAttack || obs.hostilesNear > 0 ||
+                ++selfPracticeRuns_ >= kSelfPracticeBeforeRethink) {
+                selfPracticeRuns_ = 0;
+                planner_.Cooldown(GoalKind::PracticeSkill, obs.nowMs + 15000);
+                planner_.Finish(false, "mana recovery needs a break", obs.nowMs);
+                return false;
+            }
+            LogLine("practice: mana %d below %d -- meditating before the next cast",
+                    obs.mana, pick.manaNeeded);
+            client.ActionUseSkill(rules::kMeditation);
+            nextActionMs_ = obs.nowMs + 12000;
+            return false;
+        }
         // OUT OF REAGENTS IS A SHOPPING LIST, NOT A DEAD END.
         //
         // The pack is short of what every spell in this book costs, so there is
@@ -2329,6 +2406,7 @@ bool Runner::DoPracticeSkill(Client& client, const Observation& obs) {
                     cost.empty() ? "no reagent cost" : cost.c_str());
         }
         practiceCastMark_ = client.JournalNowMs();
+        selfPracticeRuns_ = 0;
         practiceCastSpell_ = spell;
         ++practiceCasts_;
         {

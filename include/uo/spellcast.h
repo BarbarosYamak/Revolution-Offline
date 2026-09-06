@@ -282,6 +282,7 @@ struct PracticeSight {
 };
 
 struct PracticeChoice {
+    i32                      manaNeeded = 0; // stocked spell blocked only by mana
     int                      spell = -1;   // what to cast, or -1
     int                      circle = 0;   // the circle it belongs to
     int                      shortFor = -1;// the spell `missing` belongs to
@@ -347,19 +348,35 @@ inline PracticeChoice ChoosePracticeSpell(const PracticeSight& see) {
     // not refused by the server this session.
     std::vector<const SpellDef*> cand;
     bool anyInBook = false;
+    i32 manaNeeded = 0;
     for (int s : see.inBook) {
         const SpellDef* d = DefForSpell(s);
         if (!d) continue;
         anyInBook = true;
         if (!SafeToPractiseOnSelf(*d)) continue;
         if (see.magery < d->minSkillTenths) continue;
-        if (see.mana >= 0 && see.mana < d->mana) continue;
         bool refused = false;
         for (int r : see.uncastable) if (r == d->spell) refused = true;
         if (refused) continue;
+        if (see.mana >= 0 && see.mana < d->mana) {
+            bool stocked = true;
+            for (const char* const* r = d->reagents; *r; ++r)
+                if (QtyOfIn(see.pack, *r) <= 0) stocked = false;
+            if (stocked && (manaNeeded == 0 || d->mana < manaNeeded))
+                manaNeeded = d->mana;
+            // If both inputs are missing, retain the reagent shopping list.
+            // Low mana must not disguise a usable book as an empty one.
+            if (!stocked) cand.push_back(d);
+            continue;
+        }
         cand.push_back(d);
     }
     if (cand.empty()) {
+        if (manaNeeded > 0) {
+            out.manaNeeded = manaNeeded;
+            out.reason = "not enough mana";
+            return out;
+        }
         out.reason = anyInBook
                          ? "no spell in this book is safe to practise with at "
                            "this Magery and mana"
@@ -432,6 +449,13 @@ inline PracticeChoice ChoosePracticeSpell(const PracticeSight& see) {
         if (!out.missing.empty() || pass == 1) break;
     }
 
+    if (manaNeeded > 0) {
+        out.manaNeeded = manaNeeded;
+        out.missing.clear();
+        out.shortFor = -1;
+        out.reason = "not enough mana";
+        return out;
+    }
     if (!out.missing.empty()) {
         out.reason = "out of reagents";
         return out;

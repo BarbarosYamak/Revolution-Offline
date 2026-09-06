@@ -164,13 +164,25 @@ set(UO_CLIENT_SOURCES
     src/render/MiniFBWindow.cpp
 )
 
-add_executable(uo_client ${UO_CLIENT_SOURCES})
-target_include_directories(uo_client PRIVATE include src ${quickjs_SOURCE_DIR})
-target_link_libraries(uo_client PRIVATE uo_mul uo_world qjs)
+# --- uo_client_core: every client translation unit except the entry point ---
+# uo_client, uo_viewer and tests/life_harness all need the SAME objects: the
+# real Client, the real Runner, the real life layer. Compiling them once as an
+# OBJECT library (rather than listing the sources into each executable) keeps
+# one definition of every function-local static in the program -- the split
+# hazard RunnerShared.cpp's comment above warns about -- and stops the build
+# from compiling the whole client three times.
+set(UO_CLIENT_CORE_SOURCES ${UO_CLIENT_SOURCES})
+list(REMOVE_ITEM UO_CLIENT_CORE_SOURCES src/main.cpp)
 
+add_library(uo_client_core OBJECT ${UO_CLIENT_CORE_SOURCES})
+target_include_directories(uo_client_core PUBLIC include src ${quickjs_SOURCE_DIR})
+target_link_libraries(uo_client_core PUBLIC uo_mul uo_world qjs)
 if(WIN32)
-    target_link_libraries(uo_client PRIVATE ws2_32 user32 gdi32)
+    target_link_libraries(uo_client_core PUBLIC ws2_32 user32 gdi32)
 endif()
+
+add_executable(uo_client src/main.cpp)
+target_link_libraries(uo_client PRIVATE uo_client_core)
 
 # --- uo_viewer: the observer client (replaces ClassicUO) -----------------
 # Same session engine as uo_client -- it logs in through the very same
@@ -180,17 +192,8 @@ endif()
 # so an out-of-era graphic (0x3EB4, the unicorn-that-is-a-ship-prow that killed
 # ClassicUO) draws a placeholder instead of taking the process down.
 # See docs/OBSERVER_CLIENT.md.
-set(UO_VIEWER_SOURCES ${UO_CLIENT_SOURCES})
-list(REMOVE_ITEM UO_VIEWER_SOURCES src/main.cpp)
-list(APPEND UO_VIEWER_SOURCES src/viewer/ViewerMain.cpp)
-
-add_executable(uo_viewer ${UO_VIEWER_SOURCES})
-target_include_directories(uo_viewer PRIVATE include src ${quickjs_SOURCE_DIR})
-target_link_libraries(uo_viewer PRIVATE uo_mul uo_world qjs)
-
-if(WIN32)
-    target_link_libraries(uo_viewer PRIVATE ws2_32 user32 gdi32)
-endif()
+add_executable(uo_viewer src/viewer/ViewerMain.cpp)
+target_link_libraries(uo_viewer PRIVATE uo_client_core)
 
 # --- MUL static library (M2) -------------------------------------------
 set(UO_MUL_SOURCES

@@ -1,0 +1,11 @@
+[rev] cmd> cmake --build build-m1 --target m4_life
+[1/4] Building CXX object tests\CMakeFiles\m4_life.dir\__\src\life\Identity.cpp.obj
+cl : Command line warning D9025 : overriding '/EHs' with '/EHs-'
+cl : Command line warning D9025 : overriding '/EHc' with '/EHc-'
+[2/4] Building CXX object tests\CMakeFiles\m4_life.dir\m4_life.cpp.obj
+cl : Command line warning D9025 : overriding '/EHs' with '/EHs-'
+cl : Command line warning D9025 : overriding '/EHc' with '/EHc-'
+[3/4] Building CXX object tests\CMakeFiles\m4_life.dir\__\src\life\Needs.cpp.obj
+cl : Command line warning D9025 : overriding '/EHs' with '/EHs-'
+cl : Command line warning D9025 : overriding '/EHc' with '/EHc-'
+[4/4] Linking CXX executable tests\m4_life.exe

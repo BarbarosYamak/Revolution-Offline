@@ -198,20 +198,15 @@ bool Runner::DoMakeBandages(Client& client, const Observation& obs) {
         if (r.wake == life::Wake::AfterDelay && r.delayMs > 0)
             nextActionMs_ = obs.nowMs + r.delayMs;
         if (!life::IsTerminal(r.status)) {
-            if (r.acted) {
-                // A LEG THAT LANDED IS PROGRESS: reaching the shop, finding the
-                // keeper, getting within reach. Only an ask that went unanswered
-                // is a try. Hector (2026-09-05 14:40): trip 1, three scans, trip 2
-                // = five attempts and the goal was abandoned before the second
-                // counter was even reached.
-                const bool legLanded = r.offerOpen ||
-                    (r.reason && (std::strstr(r.reason, "found a") ||
-                                  std::strstr(r.reason, "within reach") ||
-                                  std::strstr(r.reason, "ARRIVED") ||
-                                  std::strstr(r.reason, "the shop is open")));
-                if (legLanded) planner_.NoteProgress();
-                else planner_.NoteAttempt(obs.nowMs);
-            }
+            // Finding the keeper and reaching the counter are transitions,
+            // even when this tick sends no action. They reset failed attempts.
+            const bool legLanded = r.offerOpen ||
+                (r.reason && (std::strstr(r.reason, "found a") ||
+                              std::strstr(r.reason, "within reach") ||
+                              std::strstr(r.reason, "ARRIVED") ||
+                              std::strstr(r.reason, "the shop is open")));
+            if (legLanded) planner_.NoteProgress();
+            else if (r.acted) planner_.NoteAttempt(obs.nowMs);
             return false;
         }
         if (r.status == life::ActivityStatus::Success) {

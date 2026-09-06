@@ -264,6 +264,16 @@ public:
     act::Result  ActionResult() const { return action_.result; }
     act::Kind    ActionKind() const { return action_.kind; }
     const act::Action& CurrentAction() const { return action_; }
+    // GOAL EXIT (Runner::LeaveGoal). Whatever the departing goal started is
+    // the departing goal's: an action still Pending, a target cursor the
+    // server armed for it, and a lift it never dropped all belong to a goal
+    // that is over. Left alone they are answered by, or answer over, the goal
+    // that comes next -- Xerxes reissued the same open_container across four
+    // goal boundaries (artifacts/review_runtime_evidence_2026-09-05.md,
+    // family 2). The drag reset mirrors the one ActionTick already does on a
+    // timeout, for the same reason: the client must not believe it holds an
+    // item the server never confirmed.
+    void AbandonGoalOwnedAction(const char* why);
     // Feeds one already-framed packet (cmd byte first) through the real
     // dispatcher. Dispatch() itself stays private -- this exists so
     // deterministic tests (tests/trade_verify.cpp) can script a 0x6F/0x25/
@@ -278,6 +288,33 @@ public:
     // ever arrives.
     bool ConnectForTest(const char* host, u16 port) {
         return ConnectAndSendSeed(host, port);
+    }
+
+    // --- offline harness seams (tests/life_harness.cpp) -------------------
+    // Same idea and the same rule as DispatchPacketForTest above: the live
+    // paths are untouched, and nothing here mutates server state -- these
+    // only replace the two things a deterministic test cannot have, a wall
+    // clock and a socket, and give a test the two things it must be able to
+    // say, "the server answered" and "we are in the world".
+    //
+    // Clock: NowMs() returns this value while it is >= 0. Every wall-clock
+    // read in Client goes through NowMs(), so one setter freezes the whole
+    // session's sense of time.
+    void SetClockForTest(i64 nowMs) { clockOverrideMs_ = nowMs; }
+    // Offline: Send() records the packet instead of writing it to sock_, so a
+    // socketless session neither logs send_failed on every action nor lets an
+    // action fail InvalidState before the test can answer it.
+    void SetOfflineForTest(bool on) { offlineForTest_ = on; }
+    struct SentPacket { u8 opcode; usize size; std::vector<u8> bytes; };
+    const std::vector<SentPacket>& SentForTest() const { return sentForTest_; }
+    void ClearSentForTest() { sentForTest_.clear(); }
+    // The world state a Runner needs before it will leave Phase::AwaitWorld.
+    void SetInWorldForTest() { state_ = State::InWorld; }
+    // "The server answered." Drives the real FinishAction, so the action_
+    // lifecycle, the [ACTION_RESULT] line and the action_result event are the
+    // live ones.
+    void CompleteActionForTest(act::Result r, const char* why) {
+        FinishAction(r, why);
     }
 
     // Objects and containers
@@ -1489,6 +1526,10 @@ private:
     State  state_;
 
     net::Socket       sock_;
+    // Offline harness seams; -1 / false / empty in every live session.
+    i64                     clockOverrideMs_ = -1;
+    bool                    offlineForTest_ = false;
+    std::vector<SentPacket> sentForTest_;
     net::PacketStream stream_;
     net::Huffman      huff_;
 

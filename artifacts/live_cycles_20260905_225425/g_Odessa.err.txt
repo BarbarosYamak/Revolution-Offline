@@ -1,0 +1,21 @@
+start: Odessa is a merchant_tinker and lives in Britain -> starting city index 2
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+[18:52:59.551] WARN  [g_Odessa] [0x21] move REJECTED seq=32; server says (1423,1599,20) facing=7
+[18:53:00.284] WARN  [g_Odessa] [0x21] move REJECTED seq=0; server says (1423,1599,20) facing=7
+[18:53:01.430] WARN  [g_Odessa] [bot] no path to (1416,1592) avoiding 1 block(s); stopping (search 1087424.1us)
+[18:53:01.430] WARN  [g_Odessa] [bot] start (1423,1599,20) exits: open=6 terrain=0 mobile=0 dynamic=1 door=0 blacklist=1 (overlay saw 291 item(s), 7 mobile(s))
+[18:53:03.828] WARN  [g_Odessa] [bot] no path to (1416,1592) avoiding 0 block(s); stopping (search 1050669.2us)
+[18:53:03.828] WARN  [g_Odessa] [bot] start (1423,1599,20) exits: open=7 terrain=0 mobile=0 dynamic=1 door=0 blacklist=0 (overlay saw 291 item(s), 7 mobile(s))
+[18:55:11.121] WARN  [g_Odessa] [bot] THREAT (HP 50 -> 45): halting travel (TODO engage/flee/recall)
+[18:55:14.834] WARN  [g_Odessa] [ACTION_RESULT] use_object invalid_state (2541ms) no goal was running
+[18:55:24.309] WARN  [g_Odessa] [bot] THREAT (HP 50 -> 43): halting travel (TODO engage/flee/recall)
+[18:55:35.214] WARN  [g_Odessa] [bot] no path to (1416,1592) avoiding 0 block(s); stopping (search 1210919.8us)
+[18:55:35.214] WARN  [g_Odessa] [bot] start (1432,1560,30) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 419 item(s), 3 mobile(s))
+[18:55:36.971] WARN  [g_Odessa] [bot] 0x20 resync; aborting path
+[18:55:39.446] WARN  [g_Odessa] [bot] no path to (1416,1592) avoiding 0 block(s); stopping (search 1166270.9us)
+[18:55:39.446] WARN  [g_Odessa] [bot] start (1432,1560,30) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 420 item(s), 3 mobile(s))
+[18:55:42.514] WARN  [g_Odessa] [bot] THREAT (HP 44 -> 38): halting travel (TODO engage/flee/recall)
+[18:55:53.604] WARN  [g_Odessa] [bot] 0x20 resync; aborting path
+[18:56:41.863] WARN  [g_Odessa] [0x21] move REJECTED seq=15; server says (1439,1693,0) facing=3
+[18:56:41.878] WARN  [g_Odessa] [bot] 0x20 resync; aborting path

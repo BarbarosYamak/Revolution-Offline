@@ -1,0 +1,827 @@
+[15:36:23.915] INFO  session 0: 127.0.0.1:2593 user='RevGen3_22' char=Aurelius tag='g_Aurelius'
+[15:36:23.916] LOG   [g_Aurelius] event session_start: text log opened
+[15:36:23.916] LOG   [g_Aurelius] event net_connect_begin: connect 127.0.0.1:2593
+[15:36:23.916] INFO  [g_Aurelius] [net] connecting to 127.0.0.1:2593 ...
+[15:36:23.918] LOG   [g_Aurelius] event net_connected: connect 127.0.0.1:2593
+[15:36:23.918] INFO  [g_Aurelius] [net] connected.
+[15:36:23.918] INFO  [g_Aurelius] [seed] sent 0x7F000001 (plaintext)
+[15:36:23.918] LOG   [g_Aurelius] event seed_out: 0x7F000001 hex=7f000001
+[15:36:23.919] INFO  [life] loaded persistent state for Aurelius (29 places, 0 suppliers, 16 events, 11 prior sessions)
+[15:36:23.919] INFO  [life] needs: reading 'mage' from the profession catalogue
+[15:36:23.919] INFO  [life] build plan 'mage': 300.0 resolved + 400.0 unresolved = 700.0/700.0, stats 100/35/90 = 225
+[15:36:23.919] INFO  [g_Aurelius] [life] autonomous player active for 'Aurelius' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 5 min)
+[15:36:23.919] INFO  [g_Aurelius] [0xA8] 1 server(s):
+[15:36:23.919] INFO  [g_Aurelius]   [0] MyShard                   1.0.0.127  full=1%  tz=0
+[15:36:23.935] INFO  [g_Aurelius] [0x8C] game server = 127.0.0.1:2593  seed=0xC117414A
+[15:36:23.935] LOG   [g_Aurelius] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xC117414A
+[15:36:23.935] INFO  [g_Aurelius] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[15:36:23.935] LOG   [g_Aurelius] event relay_same_socket: no seed re-sent; 0x91 follows
+[15:36:23.936] INFO  [g_Aurelius] [0xB9] server features = 0x0005
+[15:36:23.936] INFO  [g_Aurelius] [0xA9] 5 slot(s) (populated 1):
+[15:36:23.936] INFO  [g_Aurelius]   [0] Aurelius
+[15:36:23.936] INFO  [g_Aurelius]   [1] <empty>
+[15:36:23.936] INFO  [g_Aurelius]   [2] <empty>
+[15:36:23.936] INFO  [g_Aurelius]   [3] <empty>
+[15:36:23.936] INFO  [g_Aurelius]   [4] <empty>
+[15:36:23.936] INFO  [g_Aurelius] [ui] playing slot 0 ('Aurelius')
+[15:36:23.951] INFO  [g_Aurelius] [0x1B] serial=0x0000EE07 body=0x0191 pos=(1489,1555,30)
+[15:36:23.951] LOG   [g_Aurelius] event login_confirm: serial=0x0000EE07 body=0x0191 pos=(1489,1555,30)
+[15:36:23.951] INFO  [g_Aurelius] [0x20] player @(1489,1555,30) facing=7
+[15:36:23.951] INFO  [g_Aurelius] [0x55] login complete — entering world
+[15:36:23.951] LOG   [g_Aurelius] event in_world: 0x55 received
+[15:36:23.951] INFO  [g_Aurelius] [backpack] opening 0x4000EE02
+[15:36:23.951] INFO  [g_Aurelius] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[15:36:23.951] INFO  [g_Aurelius] [chat ascii] System: There are 2 other players here.
+[15:36:23.951] INFO  [g_Aurelius] [chat ascii] System: Last logged: 2026/09/05 11:45:32
+[15:36:23.951] INFO  [g_Aurelius] [chat ascii] System: You are under the protection of the city guards
+[15:36:23.955] INFO  [g_Aurelius] [action] requesting the skill list
+[15:36:23.955] INFO  [life] in world; asked the server for the skill list
+[15:36:23.955] INFO  [g_Aurelius] [0x24] open container 0x4000EE02 gump=60
+[15:36:23.955] INFO  [g_Aurelius] [0x3C] container contents: 14 item(s)
+[15:36:23.955] LOG   [g_Aurelius] event backpack_contents: serial=0x4000EE02 items=14
+[15:36:23.966] INFO  [g_Aurelius] [chat ascii] System: You are fairly content
+[15:36:23.966] INFO  [g_Aurelius] [chat ascii] Aurelius: *You looks fairly content*
+[15:36:26.570] INFO  [g_Aurelius] [bot] world data loaded (0 blacklisted spot(s)).
+[15:36:26.570] INFO  [life] reconciliation: resuming a life, 0 field(s) differed
+[15:36:26.570] INFO  [life]   gold         persisted=6624       server=6624       -> server value accepted
+[15:36:26.570] INFO  [life]   str          persisted=50         server=50         -> server value accepted
+[15:36:26.570] INFO  [life]   dex          persisted=5          server=5          -> server value accepted
+[15:36:26.570] INFO  [life]   int          persisted=25         server=25         -> server value accepted
+[15:36:26.570] INFO  [life]   skill_25     persisted=50.0       server=50.0       -> server value accepted
+[15:36:26.570] INFO  [life]   skill_46     persisted=50.0       server=50.0       -> server value accepted
+[15:36:26.570] INFO  [life]   skill_16     persisted=30.0       server=30.0       -> server value accepted
+[15:36:26.570] INFO  [life]   position     persisted=1489,1555  server=1489,1555  -> server value accepted
+[15:36:26.570] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[15:36:26.570] INFO  [life]   restored objective KEPT: FILL_SPELLBOOK (progress 0)
+[15:36:26.570] INFO  [g_Aurelius] [survival] on
+[15:36:26.570] LOG   [g_Aurelius] event survival_mode: on
+[15:36:26.573] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_22.aurelius/state.json
+[15:36:26.573] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:36:26.625] INFO  [life] spellbook: opening the book to see what is already in it
+[15:36:26.625] INFO  [g_Aurelius] [ACTION] use_object start
+[15:36:26.625] INFO  [g_Aurelius] [ACTION] use_object serial=0x4000EDD5
+[15:36:26.625] INFO  [g_Aurelius] [0x3C] container contents: 20 item(s)
+[15:36:26.625] INFO  [g_Aurelius] [ACTION_RESULT] use_object success (0ms) contents received
+[15:36:26.625] LOG   [g_Aurelius] event action_result: use_object success took=0ms contents received
+[15:36:29.135] INFO  [life] FILL_SPELLBOOK: looking for a 'scribe' to sell a spell this book lacks (trip 1)
+[15:36:29.146] INFO  [g_Aurelius] [travel] Lord British's Castle scribe -> (1409,1590) r=5 from (1489,1555)
+[15:36:29.146] LOG   [g_Aurelius] event travel_start: label='Lord British's Castle scribe' target=(1409,1590) radius=5 from=(1489,1555)
+[15:36:29.146] INFO  [g_Aurelius] [travel] mode moongate         usable   <- chosen
+[15:36:29.146] INFO  [g_Aurelius] [travel] mode walk             usable
+[15:36:29.146] INFO  [g_Aurelius] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:36:29.146] INFO  [g_Aurelius] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:36:29.146] LOG   [g_Aurelius] event travel_mode: moongate
+[15:36:29.146] INFO  [g_Aurelius] [travel] plan Lord British's Castle scribe: ok legs=3 ~96 tiles transit=0 nodes=65
+[15:36:29.212] INFO  [g_Aurelius] [action] goto (1464,1544) from (1489,1555,30)
+[15:36:29.212] LOG   [g_Aurelius] event goto_start: target=(1464,1544) from=(1489,1555)
+[15:36:29.212] INFO  [g_Aurelius] [bot] running from (1489,1555,30) to (1464,1544)
+[15:36:29.212] INFO  [g_Aurelius] [bot] planning path to (1464,1544) in background
+[15:36:29.258] INFO  [g_Aurelius] [bot] replan to (1464,1544): 65 steps in 12534.8us
+[15:36:31.623] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:36:36.645] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:36:41.656] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:36:46.689] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:36:49.209] INFO  [g_Aurelius] [bot] arrived at (1464,1544,30)
+[15:36:49.209] INFO  [g_Aurelius] [action] goto finished at (1464,1544,30); target (1464,1544); ARRIVED (off by 0 tile(s))
+[15:36:49.209] LOG   [g_Aurelius] event goto_done: at=(1464,1544) target=(1464,1544) arrived=1 off=0
+[15:36:49.209] INFO  [g_Aurelius] [action] goto (1432,1576) from (1464,1544,30)
+[15:36:49.209] LOG   [g_Aurelius] event goto_start: target=(1432,1576) from=(1464,1544)
+[15:36:49.209] INFO  [g_Aurelius] [bot] running from (1464,1544,30) to (1432,1576)
+[15:36:49.209] INFO  [g_Aurelius] [bot] planning path to (1432,1576) in background
+[15:36:49.271] INFO  [g_Aurelius] [bot] replan to (1432,1576): 61 steps in 3543.3us
+[15:36:51.726] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:36:56.768] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:37:01.792] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:37:05.394] INFO  [g_Aurelius] [bot] arrived at (1432,1576,30)
+[15:37:05.395] INFO  [g_Aurelius] [action] goto finished at (1432,1576,30); target (1432,1576); ARRIVED (off by 0 tile(s))
+[15:37:05.395] LOG   [g_Aurelius] event goto_done: at=(1432,1576) target=(1432,1576) arrived=1 off=0
+[15:37:05.395] INFO  [g_Aurelius] [action] goto (1409,1590) from (1432,1576,30)
+[15:37:05.395] LOG   [g_Aurelius] event goto_start: target=(1409,1590) from=(1432,1576)
+[15:37:05.395] INFO  [g_Aurelius] [bot] running from (1432,1576,30) to (1409,1590,z42)
+[15:37:05.395] INFO  [g_Aurelius] [bot] planning path to (1409,1590) in background
+[15:37:05.455] INFO  [g_Aurelius] [bot] replan to (1409,1590): 38 steps in 5294.1us
+[15:37:06.822] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:37:10.723] INFO  [g_Aurelius] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=22 in 316.8us
+[15:37:11.879] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:37:16.083] INFO  [g_Aurelius] [travel] Lord British's Castle scribe ARRIVED at (1414,1594,30)
+[15:37:16.083] LOG   [g_Aurelius] event travel_done: label='Lord British's Castle scribe' ok=1 at=(1414,1594) legs=3 plans=1 why=''
+[15:37:16.145] INFO  [life] FILL_SPELLBOOK: arrived at a scribe shop -- scanning nearby sellers
+[15:37:16.145] INFO  [g_Aurelius] [action] scanning nearby mobiles for names
+[15:37:16.145] INFO  [g_Aurelius] [action] requested 2 paperdoll(s) for trade titles
+[15:37:16.160] INFO  [g_Aurelius] [mobiles] nearby (4):
+[15:37:16.160] INFO  [g_Aurelius]   Raisa 0x0000103B
+[15:37:16.160] INFO  [g_Aurelius]   Mathea 0x00001242
+[15:37:16.160] INFO  [g_Aurelius]   Shandy 0x0000108C
+[15:37:16.160] INFO  [g_Aurelius]   Grear 0x00001126
+[15:37:16.160] INFO  [g_Aurelius] [0x20] player @(1414,1594,30) facing=0
+[15:37:16.160] INFO  [g_Aurelius] [0x88] paperdoll 0x00001242: "Mathea, the miner guildmistress"
+[15:37:16.160] INFO  [g_Aurelius] [0x20] player @(1414,1594,30) facing=6
+[15:37:16.160] INFO  [g_Aurelius] [0x88] paperdoll 0x0000103B: "Raisa, the scribe"
+[15:37:16.160] INFO  [g_Aurelius] [world] Raisa, the scribe is a scribe at (1409,1592)
+[15:37:16.865] INFO  [g_Aurelius] [chat ascii] System: World save in 10 seconds
+[15:37:16.927] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:37:18.182] INFO  [life] FILL_SPELLBOOK: the scribe is 5 tiles away -- walking up
+[15:37:18.182] INFO  [g_Aurelius] [travel] entity stand candidate 1/8 at (1410,1591)
+[15:37:18.182] INFO  [g_Aurelius] [travel] mobile 0x0000103B -> (1410,1591) r=0 from (1414,1594)
+[15:37:18.182] LOG   [g_Aurelius] event travel_start: label='mobile 0x0000103B' target=(1410,1591) radius=0 from=(1414,1594)
+[15:37:18.182] INFO  [g_Aurelius] [travel] mode walk             usable   <- chosen
+[15:37:18.183] INFO  [g_Aurelius] [travel] mode moongate         usable
+[15:37:18.183] INFO  [g_Aurelius] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:37:18.183] INFO  [g_Aurelius] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:37:18.183] LOG   [g_Aurelius] event travel_mode: walk
+[15:37:18.183] INFO  [g_Aurelius] [travel] plan mobile 0x0000103B: ok legs=1 ~4 tiles transit=0 nodes=0
+[15:37:18.244] INFO  [g_Aurelius] [action] goto finished at (1414,1594,30); target (1409,1590); stopped short (off by 9 tile(s))
+[15:37:18.244] LOG   [g_Aurelius] event goto_done: at=(1414,1594) target=(1409,1590) arrived=0 off=9
+[15:37:18.244] INFO  [g_Aurelius] [action] goto (1410,1591) from (1414,1594,30)
+[15:37:18.244] LOG   [g_Aurelius] event goto_start: target=(1410,1591) from=(1414,1594)
+[15:37:18.244] INFO  [g_Aurelius] [bot] running from (1414,1594,30) to (1410,1591,z50)
+[15:37:18.244] INFO  [g_Aurelius] [bot] planning path to (1410,1591) in background
+[15:37:18.305] INFO  [g_Aurelius] [bot] planning path to (1410,1590) in background
+[15:37:18.366] INFO  [g_Aurelius] [bot] replan to (1410,1590): 5 steps in 196.7us
+[15:37:20.462] INFO  [g_Aurelius] [bot] arrived at (1410,1590,30)
+[15:37:20.462] INFO  [g_Aurelius] [action] goto finished at (1410,1590,30); target (1410,1591); stopped short (off by 1 tile(s))
+[15:37:20.462] LOG   [g_Aurelius] event goto_done: at=(1410,1590) target=(1410,1591) arrived=0 off=1
+[15:37:21.685] INFO  [g_Aurelius] [travel] mode walk             usable   <- chosen
+[15:37:21.685] INFO  [g_Aurelius] [travel] mode moongate         usable
+[15:37:21.685] INFO  [g_Aurelius] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:37:21.685] INFO  [g_Aurelius] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:37:21.685] LOG   [g_Aurelius] event travel_mode: walk
+[15:37:21.685] INFO  [g_Aurelius] [travel] plan mobile 0x0000103B: ok legs=1 ~1 tiles transit=0 nodes=0
+[15:37:21.977] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:37:23.201] INFO  [g_Aurelius] [action] goto (1410,1591) from (1410,1590,30)
+[15:37:23.201] LOG   [g_Aurelius] event goto_start: target=(1410,1591) from=(1410,1590)
+[15:37:23.201] INFO  [g_Aurelius] [bot] running from (1410,1590,30) to (1410,1591,z50)
+[15:37:23.201] INFO  [g_Aurelius] [bot] planning path to (1410,1591) in background
+[15:37:23.263] INFO  [g_Aurelius] [bot] planning path to (1410,1590) in background
+[15:37:23.385] INFO  [g_Aurelius] [action] goto finished at (1410,1590,30); target (1410,1591); stopped short (off by 1 tile(s))
+[15:37:23.385] LOG   [g_Aurelius] event goto_done: at=(1410,1590) target=(1410,1591) arrived=0 off=1
+[15:37:24.626] INFO  [g_Aurelius] [travel] mode walk             usable   <- chosen
+[15:37:24.626] INFO  [g_Aurelius] [travel] mode moongate         usable
+[15:37:24.626] INFO  [g_Aurelius] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:37:24.626] INFO  [g_Aurelius] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:37:24.626] LOG   [g_Aurelius] event travel_mode: walk
+[15:37:24.626] INFO  [g_Aurelius] [travel] plan mobile 0x0000103B: ok legs=1 ~1 tiles transit=0 nodes=0
+[15:37:26.570] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_22.aurelius/state.json
+[15:37:26.897] INFO  [g_Aurelius] [chat ascii] System: World save has been initiated.
+[15:37:27.015] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:37:27.628] INFO  [g_Aurelius] [action] goto (1410,1591) from (1410,1590,30)
+[15:37:27.628] LOG   [g_Aurelius] event goto_start: target=(1410,1591) from=(1410,1590)
+[15:37:27.628] INFO  [g_Aurelius] [bot] running from (1410,1590,30) to (1410,1591,z50)
+[15:37:27.628] INFO  [g_Aurelius] [bot] planning path to (1410,1591) in background
+[15:37:27.690] INFO  [g_Aurelius] [bot] planning path to (1410,1590) in background
+[15:37:27.812] INFO  [g_Aurelius] [action] goto finished at (1410,1590,30); target (1410,1591); stopped short (off by 1 tile(s))
+[15:37:27.812] LOG   [g_Aurelius] event goto_done: at=(1410,1590) target=(1410,1591) arrived=0 off=1
+[15:37:29.053] INFO  [g_Aurelius] [travel] mode walk             usable   <- chosen
+[15:37:29.053] INFO  [g_Aurelius] [travel] mode moongate         usable
+[15:37:29.053] INFO  [g_Aurelius] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:37:29.053] INFO  [g_Aurelius] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:37:29.053] LOG   [g_Aurelius] event travel_mode: walk
+[15:37:29.053] INFO  [g_Aurelius] [travel] plan mobile 0x0000103B: ok legs=1 ~1 tiles transit=0 nodes=0
+[15:37:29.832] INFO  [g_Aurelius] [chat ascii] Raisa: Aye?
+[15:37:32.066] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:37:33.579] INFO  [g_Aurelius] [action] goto (1410,1591) from (1410,1590,30)
+[15:37:33.579] LOG   [g_Aurelius] event goto_start: target=(1410,1591) from=(1410,1590)
+[15:37:33.579] INFO  [g_Aurelius] [bot] running from (1410,1590,30) to (1410,1591,z50)
+[15:37:33.579] INFO  [g_Aurelius] [bot] planning path to (1410,1591) in background
+[15:37:33.639] INFO  [g_Aurelius] [bot] planning path to (1410,1590) in background
+[15:37:33.763] INFO  [g_Aurelius] [action] goto finished at (1410,1590,30); target (1410,1591); stopped short (off by 1 tile(s))
+[15:37:33.763] LOG   [g_Aurelius] event goto_done: at=(1410,1590) target=(1410,1591) arrived=0 off=1
+[15:37:33.763] LOG   [g_Aurelius] event travel_escape: from=(1410,1590,30) to=(1398,1592) attempt=1
+[15:37:33.763] INFO  [g_Aurelius] [action] goto (1398,1592) from (1410,1590,30)
+[15:37:33.763] LOG   [g_Aurelius] event goto_start: target=(1398,1592) from=(1410,1590)
+[15:37:33.763] INFO  [g_Aurelius] [bot] running from (1410,1590,30) to (1398,1592,z30)
+[15:37:33.763] INFO  [g_Aurelius] [bot] planning path to (1398,1592) in background
+[15:37:33.991] INFO  [g_Aurelius] [bot] replan to (1398,1592): 141 steps in 192780.3us
+[15:37:37.125] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:37:42.175] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:37:43.814] INFO  [g_Aurelius] [bot] lookahead patched around block at step 5: anchor=6 new segment=9 path=110 in 469.1us
+[15:37:47.175] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:37:49.105] INFO  [g_Aurelius] [chat ascii] System: You have left the protection of the city guards
+[15:37:49.105] INFO  [g_Aurelius] [chat ascii] System: You have a feeling of complete safety
+[15:37:52.222] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:37:57.242] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:37:59.149] INFO  [life] goal_failed=FILL_SPELLBOOK reason="90s of shopping and not one spell added to the book" -- 1 empty scroll errand(s) running, resting 900s so practice, earning and training get the turn (the book is still wanted)
+[15:37:59.210] INFO  [life] goal=TRAIN_COMBAT reason="previous goal abandoned: nobody selling scrolls"
+[15:37:59.210] INFO  [life] needs considered: NeedSpells(spells 0.49) NeedTraining(hunt for income 0.45) NeedStrength(Strength 0.39) NeedPractice(Evaluating Intelligence BLOCKED 0.38) NeedPractice(Magery BLOCKED 0.33) NeedPractice(Meditation BLOCKED 0.33) NeedMount(riding horse BLOCKED 0.00)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[15:37:59.210] INFO  [life]   score=58.5
+[15:37:59.210] INFO  [life]   reason: NeedTraining urgency 0.45 x 130 = 58.5
+[15:37:59.210] INFO  [life]   reason: all combat skill targets reached
+[15:37:59.210] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: below target, but no skill advances in this region -- move somewhere ordinary first (Evaluating Intelligence 30.0 -> 100.0 mana=25 no_gain_region=1)
+[15:37:59.210] INFO  [life]   BLOCKED_NEED FILL_SPELLBOOK: on cooldown for another 899s after achieving nothing
+[15:37:59.210] INFO  [life]   BLOCKED_NEED BUY_MOUNT: no trainer could be reached in a recent session; resting the errand for a few sessions (gold 6624 reserve 800 price<=500 stood_down=1 last_fail_session=10 session=12)
+[15:37:59.210] INFO  [life]   BLOCKED_NEED EXPLORE: combat routine: prepare, train, loot and bank before exploring
+[15:37:59.210] INFO  [g_Aurelius] [travel] mobile 0x0000103B FAILED at (1382,1609,30) -- training supersedes the previous shopping or exploration trip
+[15:37:59.210] LOG   [g_Aurelius] event travel_failed: label='mobile 0x0000103B' ok=0 at=(1382,1609) legs=1 plans=4 why='training supersedes the previous shopping or exploration trip'
+[15:37:59.210] INFO  [life] hunt_ground=Britain Graveyard tier=novice weapon=50.0 heat=0.00 reason="best weapon skill under 60 -- the early ground, not the nearest one"
+[15:37:59.210] INFO  [g_Aurelius] [travel] Britain Graveyard training -> (1384,1492) r=2 from (1382,1609)
+[15:37:59.210] LOG   [g_Aurelius] event travel_start: label='Britain Graveyard training' target=(1384,1492) radius=2 from=(1382,1609)
+[15:37:59.210] INFO  [life] hunt: heading to Britain Graveyard to train (trip 1)
+[15:37:59.210] INFO  [g_Aurelius] [travel] mode moongate         usable   <- chosen
+[15:37:59.210] INFO  [g_Aurelius] [travel] mode walk             usable
+[15:37:59.210] INFO  [g_Aurelius] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:37:59.210] INFO  [g_Aurelius] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:37:59.210] LOG   [g_Aurelius] event travel_mode: moongate
+[15:37:59.210] INFO  [g_Aurelius] [travel] plan Britain Graveyard training: ok legs=4 ~192 tiles transit=0 nodes=198
+[15:37:59.271] INFO  [g_Aurelius] [action] goto finished at (1382,1609,30); target (1398,1592); stopped short (off by 33 tile(s))
+[15:37:59.271] LOG   [g_Aurelius] event goto_done: at=(1382,1609) target=(1398,1592) arrived=0 off=33
+[15:37:59.271] INFO  [g_Aurelius] [action] goto (1416,1592) from (1382,1609,30)
+[15:37:59.271] LOG   [g_Aurelius] event goto_start: target=(1416,1592) from=(1382,1609)
+[15:37:59.271] INFO  [g_Aurelius] [bot] running from (1382,1609,30) to (1416,1592)
+[15:37:59.271] INFO  [g_Aurelius] [bot] planning path to (1416,1592) in background
+[15:38:00.680] INFO  [g_Aurelius] [action] goto finished at (1382,1609,30); target (1416,1592); stopped short (off by 51 tile(s))
+[15:38:00.681] LOG   [g_Aurelius] event goto_done: at=(1382,1609) target=(1416,1592) arrived=0 off=51
+[15:38:01.899] INFO  [g_Aurelius] [action] goto (1416,1592) from (1382,1609,30)
+[15:38:01.899] LOG   [g_Aurelius] event goto_start: target=(1416,1592) from=(1382,1609)
+[15:38:01.899] INFO  [g_Aurelius] [bot] running from (1382,1609,30) to (1416,1592)
+[15:38:01.899] INFO  [g_Aurelius] [bot] planning path to (1416,1592) in background
+[15:38:02.265] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:38:03.321] INFO  [g_Aurelius] [action] goto finished at (1382,1609,30); target (1416,1592); stopped short (off by 51 tile(s))
+[15:38:03.321] LOG   [g_Aurelius] event goto_done: at=(1382,1609) target=(1416,1592) arrived=0 off=51
+[15:38:04.562] INFO  [g_Aurelius] [action] goto (1416,1592) from (1382,1609,30)
+[15:38:04.562] LOG   [g_Aurelius] event goto_start: target=(1416,1592) from=(1382,1609)
+[15:38:04.562] INFO  [g_Aurelius] [bot] running from (1382,1609,30) to (1416,1592)
+[15:38:04.562] INFO  [g_Aurelius] [bot] planning path to (1416,1592) in background
+[15:38:06.002] INFO  [g_Aurelius] [action] goto finished at (1382,1609,30); target (1416,1592); stopped short (off by 51 tile(s))
+[15:38:06.002] LOG   [g_Aurelius] event goto_done: at=(1382,1609) target=(1416,1592) arrived=0 off=51
+[15:38:07.226] INFO  [g_Aurelius] [travel] mode moongate         usable   <- chosen
+[15:38:07.226] INFO  [g_Aurelius] [travel] mode walk             usable
+[15:38:07.226] INFO  [g_Aurelius] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:38:07.226] INFO  [g_Aurelius] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:38:07.226] LOG   [g_Aurelius] event travel_mode: moongate
+[15:38:07.227] INFO  [g_Aurelius] [travel] plan Britain Graveyard training: ok legs=5 ~216 tiles transit=0 nodes=229
+[15:38:07.288] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:38:08.762] INFO  [g_Aurelius] [action] goto (1416,1624) from (1382,1609,30)
+[15:38:08.762] LOG   [g_Aurelius] event goto_start: target=(1416,1624) from=(1382,1609)
+[15:38:08.762] INFO  [g_Aurelius] [bot] running from (1382,1609,30) to (1416,1624)
+[15:38:08.762] INFO  [g_Aurelius] [bot] planning path to (1416,1624) in background
+[15:38:08.823] INFO  [g_Aurelius] [bot] replan to (1416,1624): 41 steps in 2157.3us
+[15:38:12.348] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:38:17.362] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:38:18.250] INFO  [g_Aurelius] [chat ascii] System: You are now under the protection of the city guards
+[15:38:18.250] INFO  [g_Aurelius] [chat ascii] System: You lose your feeling of safety
+[15:38:19.890] INFO  [g_Aurelius] [bot] arrived at (1416,1624,22)
+[15:38:19.890] INFO  [g_Aurelius] [action] goto finished at (1416,1624,22); target (1416,1624); ARRIVED (off by 0 tile(s))
+[15:38:19.890] LOG   [g_Aurelius] event goto_done: at=(1416,1624) target=(1416,1624) arrived=1 off=0
+[15:38:19.890] INFO  [g_Aurelius] [action] goto (1448,1592) from (1416,1624,22)
+[15:38:19.890] LOG   [g_Aurelius] event goto_start: target=(1448,1592) from=(1416,1624)
+[15:38:19.890] INFO  [g_Aurelius] [bot] running from (1416,1624,22) to (1448,1592)
+[15:38:19.890] INFO  [g_Aurelius] [bot] planning path to (1448,1592) in background
+[15:38:19.950] INFO  [g_Aurelius] [bot] replan to (1448,1592): 51 steps in 11473.4us
+[15:38:22.370] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:38:26.597] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_22.aurelius/state.json
+[15:38:27.374] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:38:32.408] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:38:32.776] INFO  [g_Aurelius] [bot] door ahead at (1450,1599,z20); OpenDoor before step
+[15:38:32.776] INFO  [g_Aurelius] [chat ascii] System: Opening door...
+[15:38:35.678] INFO  [g_Aurelius] [bot] arrived at (1448,1592,20)
+[15:38:35.678] INFO  [g_Aurelius] [action] goto finished at (1448,1592,20); target (1448,1592); ARRIVED (off by 0 tile(s))
+[15:38:35.678] LOG   [g_Aurelius] event goto_done: at=(1448,1592) target=(1448,1592) arrived=1 off=0
+[15:38:35.678] INFO  [g_Aurelius] [action] goto (1432,1560) from (1448,1592,20)
+[15:38:35.678] LOG   [g_Aurelius] event goto_start: target=(1432,1560) from=(1448,1592)
+[15:38:35.678] INFO  [g_Aurelius] [bot] running from (1448,1592,20) to (1432,1560)
+[15:38:35.678] INFO  [g_Aurelius] [bot] planning path to (1432,1560) in background
+[15:38:35.739] INFO  [g_Aurelius] [bot] replan to (1432,1560): 46 steps in 5257.4us
+[15:38:37.449] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:38:40.756] INFO  [g_Aurelius] [bot] door ahead at (1443,1583,z20); OpenDoor before step
+[15:38:40.770] INFO  [g_Aurelius] [chat ascii] System: Opening door...
+[15:38:42.270] INFO  [g_Aurelius] [bot] door ahead at (1442,1584,z20); OpenDoor before step
+[15:38:42.284] INFO  [g_Aurelius] [chat ascii] System: Opening door...
+[15:38:42.468] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:38:47.485] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:38:51.843] INFO  [g_Aurelius] [bot] arrived at (1432,1560,30)
+[15:38:51.844] INFO  [g_Aurelius] [action] goto finished at (1432,1560,30); target (1432,1560); ARRIVED (off by 0 tile(s))
+[15:38:51.844] LOG   [g_Aurelius] event goto_done: at=(1432,1560) target=(1432,1560) arrived=1 off=0
+[15:38:51.844] INFO  [g_Aurelius] [action] goto (1416,1528) from (1432,1560,30)
+[15:38:51.844] LOG   [g_Aurelius] event goto_start: target=(1416,1528) from=(1432,1560)
+[15:38:51.844] INFO  [g_Aurelius] [bot] running from (1432,1560,30) to (1416,1528)
+[15:38:51.844] INFO  [g_Aurelius] [bot] planning path to (1416,1528) in background
+[15:38:51.904] INFO  [g_Aurelius] [bot] replan to (1416,1528): 36 steps in 8974.4us
+[15:38:52.532] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:38:57.547] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:39:02.583] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:39:05.152] INFO  [g_Aurelius] [bot] arrived at (1416,1528,28)
+[15:39:05.152] INFO  [g_Aurelius] [action] goto finished at (1416,1528,28); target (1416,1528); ARRIVED (off by 0 tile(s))
+[15:39:05.152] LOG   [g_Aurelius] event goto_done: at=(1416,1528) target=(1416,1528) arrived=1 off=0
+[15:39:05.152] INFO  [g_Aurelius] [action] goto (1384,1492) from (1416,1528,28)
+[15:39:05.152] LOG   [g_Aurelius] event goto_start: target=(1384,1492) from=(1416,1528)
+[15:39:05.152] INFO  [g_Aurelius] [bot] running from (1416,1528,28) to (1384,1492)
+[15:39:05.152] INFO  [g_Aurelius] [bot] planning path to (1384,1492) in background
+[15:39:05.214] INFO  [g_Aurelius] [bot] replan to (1384,1492): 45 steps in 3014.1us
+[15:39:07.623] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:39:08.697] INFO  [g_Aurelius] [chat ascii] System: You have left the protection of the city guards
+[15:39:12.638] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:39:17.644] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:39:18.873] INFO  [g_Aurelius] [travel] Britain Graveyard training ARRIVED at (1385,1494,10)
+[15:39:18.873] LOG   [g_Aurelius] event travel_done: label='Britain Graveyard training' ok=1 at=(1385,1494) legs=5 plans=2 why=''
+[15:39:18.934] INFO  [life] hunt: every visible hostile is on the recent retreat list -- not re-engaging
+[15:39:22.651] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:39:22.992] INFO  [life] hunt: picked 'Skeleton' at 6 tiles -- verdict=lawful threat=0.35 learned_danger=0.09 (murderer: lawful to attack)
+[15:39:22.992] INFO  [life] engage=yes target='Skeleton' dist=6 hp=100% bandages=0 reason="one target, board is not crowded"
+[15:39:22.992] INFO  [g_Aurelius] [ACTION] cast_spell start
+[15:39:22.992] INFO  [g_Aurelius] [ACTION] cast_spell id=5 target=0x0000C91E mana=25
+[15:39:22.993] INFO  [g_Aurelius] [chat ascii] System: Select target...
+[15:39:22.993] INFO  [g_Aurelius] [0x6C] TARGET requested id=0x000002CA type=object subtype=1 gen=1
+[15:39:22.993] LOG   [g_Aurelius] event target_requested: id=0x000002CA type=0 subtype=1 gen=1
+[15:39:22.993] INFO  [g_Aurelius] [TARGET] auto-reply for cast_spell -> 0x0000C91E
+[15:39:22.993] INFO  [g_Aurelius] [TARGET] reply serial=0x0000C91E gen=1
+[15:39:22.993] INFO  [g_Aurelius] [target] object 0x0000C91E (1379,1494,10) model 0x0032
+[15:39:23.008] INFO  [g_Aurelius] [0x20] player @(1385,1494,10) facing=6
+[15:39:23.008] INFO  [g_Aurelius] [chat ascii] Aurelius: In Por Ylem
+[15:39:23.527] INFO  [g_Aurelius] [chat ascii] Skeleton: *Skeleton is attacking you!*
+[15:39:23.527] INFO  [g_Aurelius] [ACTION_RESULT] cast_spell success (534ms) mana 25 -> 21
+[15:39:23.527] LOG   [g_Aurelius] event action_result: cast_spell success took=534ms mana 25 -> 21
+[15:39:23.527] INFO  [life] goal_changed=SURVIVE from=TRAIN_COMBAT reason="SURVIVE 900.0 superseded TRAIN_COMBAT 84.5 (emergency preempt)"
+[15:39:23.527] INFO  [life] needs considered: StayAlive(a fight already started 0.90) NeedTraining(hunt for income 0.65) NeedSpells(spells 0.49) NeedStrength(Strength 0.39) NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedMount(riding horse BLOCKED 0.00)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[15:39:23.527] INFO  [life]   score=900.0
+[15:39:23.527] INFO  [life]   reason: StayAlive urgency 0.90 x 1000 = 900.0
+[15:39:23.527] INFO  [life]   reason: attackers=1 hostiles_seen=2 hp=100%
+[15:39:23.527] INFO  [life]   BLOCKED_NEED FILL_SPELLBOOK: on cooldown for another 815s after achieving nothing
+[15:39:23.527] INFO  [life]   BLOCKED_NEED BUY_MOUNT: no trainer could be reached in a recent session; resting the errand for a few sessions (gold 6624 reserve 800 price<=500 stood_down=1 last_fail_session=10 session=12)
+[15:39:23.527] INFO  [life]   BLOCKED_NEED EXPLORE: combat routine: prepare, train, loot and bank before exploring
+[15:39:25.496] INFO  [g_Aurelius] [action] goto finished at (1385,1494,10); target (1384,1492); stopped short (off by 3 tile(s))
+[15:39:25.496] LOG   [g_Aurelius] event goto_done: at=(1385,1494) target=(1384,1492) arrived=0 off=3
+[15:39:25.496] INFO  [g_Aurelius] [ACTION] cast_spell start
+[15:39:25.496] INFO  [g_Aurelius] [ACTION] cast_spell id=5 target=0x0000C91E mana=22
+[15:39:25.496] INFO  [g_Aurelius] [chat ascii] System: Select target...
+[15:39:25.496] INFO  [g_Aurelius] [0x6C] TARGET requested id=0x000002CA type=object subtype=1 gen=2
+[15:39:25.496] LOG   [g_Aurelius] event target_requested: id=0x000002CA type=0 subtype=1 gen=2
+[15:39:25.496] INFO  [g_Aurelius] [TARGET] auto-reply for cast_spell -> 0x0000C91E
+[15:39:25.496] INFO  [g_Aurelius] [TARGET] reply serial=0x0000C91E gen=2
+[15:39:25.496] INFO  [g_Aurelius] [target] object 0x0000C91E (1380,1494,10) model 0x0032
+[15:39:25.511] INFO  [g_Aurelius] [chat ascii] Aurelius: In Por Ylem
+[15:39:26.130] INFO  [g_Aurelius] [ACTION_RESULT] cast_spell success (635ms) mana 22 -> 18
+[15:39:26.130] LOG   [g_Aurelius] event action_result: cast_spell success took=635ms mana 22 -> 18
+[15:39:26.627] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_22.aurelius/state.json
+[15:39:27.683] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:39:29.520] INFO  [g_Aurelius] [ACTION] cast_spell start
+[15:39:29.520] INFO  [g_Aurelius] [ACTION] cast_spell id=5 target=0x0000C91E mana=18
+[15:39:29.520] INFO  [g_Aurelius] [chat ascii] System: Select target...
+[15:39:29.520] INFO  [g_Aurelius] [0x6C] TARGET requested id=0x000002CA type=object subtype=1 gen=3
+[15:39:29.520] LOG   [g_Aurelius] event target_requested: id=0x000002CA type=0 subtype=1 gen=3
+[15:39:29.520] INFO  [g_Aurelius] [TARGET] auto-reply for cast_spell -> 0x0000C91E
+[15:39:29.520] INFO  [g_Aurelius] [TARGET] reply serial=0x0000C91E gen=3
+[15:39:29.520] INFO  [g_Aurelius] [target] object 0x0000C91E (1383,1494,10) model 0x0032
+[15:39:29.521] INFO  [g_Aurelius] [chat ascii] Aurelius: In Por Ylem
+[15:39:30.106] INFO  [g_Aurelius] [ACTION_RESULT] cast_spell success (586ms) mana 18 -> 14
+[15:39:30.106] LOG   [g_Aurelius] event action_result: cast_spell success took=586ms mana 18 -> 14
+[15:39:32.742] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:39:33.544] INFO  [g_Aurelius] [ACTION] cast_spell start
+[15:39:33.544] INFO  [g_Aurelius] [ACTION] cast_spell id=5 target=0x0000C91E mana=14
+[15:39:33.544] INFO  [g_Aurelius] [chat ascii] System: Select target...
+[15:39:33.544] INFO  [g_Aurelius] [0x6C] TARGET requested id=0x000002CA type=object subtype=1 gen=4
+[15:39:33.544] LOG   [g_Aurelius] event target_requested: id=0x000002CA type=0 subtype=1 gen=4
+[15:39:33.544] INFO  [g_Aurelius] [TARGET] auto-reply for cast_spell -> 0x0000C91E
+[15:39:33.544] INFO  [g_Aurelius] [TARGET] reply serial=0x0000C91E gen=4
+[15:39:33.544] INFO  [g_Aurelius] [target] object 0x0000C91E (1384,1494,10) model 0x0032
+[15:39:33.544] INFO  [g_Aurelius] [chat ascii] Aurelius: In Por Ylem
+[15:39:34.160] INFO  [g_Aurelius] [ACTION_RESULT] cast_spell success (616ms) mana 14 -> 10
+[15:39:34.160] LOG   [g_Aurelius] event action_result: cast_spell success took=616ms mana 14 -> 10
+[15:39:37.597] INFO  [g_Aurelius] [ACTION] cast_spell start
+[15:39:37.598] INFO  [g_Aurelius] [ACTION] cast_spell id=5 target=0x0000C91E mana=10
+[15:39:37.598] INFO  [g_Aurelius] [chat ascii] System: Select target...
+[15:39:37.598] INFO  [g_Aurelius] [0x6C] TARGET requested id=0x000002CA type=object subtype=1 gen=5
+[15:39:37.598] LOG   [g_Aurelius] event target_requested: id=0x000002CA type=0 subtype=1 gen=5
+[15:39:37.598] INFO  [g_Aurelius] [TARGET] auto-reply for cast_spell -> 0x0000C91E
+[15:39:37.598] INFO  [g_Aurelius] [TARGET] reply serial=0x0000C91E gen=5
+[15:39:37.598] INFO  [g_Aurelius] [target] object 0x0000C91E (1384,1494,10) model 0x0032
+[15:39:37.613] INFO  [g_Aurelius] [chat ascii] Aurelius: In Por Ylem
+[15:39:37.784] INFO  [g_Aurelius] [survival] hp 46/50 (92%) -> fight
+[15:39:38.124] INFO  [g_Aurelius] [chat ascii] System: You have gained a bit of fame.
+[15:39:38.124] INFO  [g_Aurelius] [chat ascii] System: You have gained a bit of karma.
+[15:39:38.124] INFO  [g_Aurelius] [ACTION_RESULT] cast_spell success (526ms) mana 10 -> 6
+[15:39:38.124] LOG   [g_Aurelius] event action_result: cast_spell success took=526ms mana 10 -> 6
+[15:39:38.124] INFO  [life] hunt: confirmed kill target='Skeleton' corpse=0x40019BB4
+[15:39:38.124] INFO  [g_Aurelius] [war] leaving war mode
+[15:39:38.124] INFO  [g_Aurelius] [ACTION] open_container start
+[15:39:38.124] INFO  [g_Aurelius] [ACTION] open_container serial=0x40019BB4
+[15:39:38.139] INFO  [g_Aurelius] [0x24] open container 0x40019BB4 gump=9
+[15:39:38.139] INFO  [g_Aurelius] [ACTION_RESULT] open_container success (15ms) container opened
+[15:39:38.139] LOG   [g_Aurelius] event action_result: open_container success took=15ms container opened
+[15:39:38.139] INFO  [g_Aurelius] [0x3C] container contents: 3 item(s)
+[15:39:40.172] INFO  [g_Aurelius] [ACTION] move_item start
+[15:39:40.172] INFO  [g_Aurelius] [ACTION] move_item serial=0x40019BB8 amount=48 dest=0x4000EE02
+[15:39:40.172] INFO  [g_Aurelius] [ITEM] drag serial=0x40019BB8 amount=48
+[15:39:40.172] INFO  [g_Aurelius] [ITEM] drop container=0x4000EE02
+[15:39:40.172] INFO  [g_Aurelius] [ACTION_RESULT] move_item success (0ms) item consumed by the destination
+[15:39:40.172] LOG   [g_Aurelius] event action_result: move_item success took=0ms item consumed by the destination
+[15:39:41.193] INFO  [life] hunt: loot transfer confirmed; staying in the yard (load=46% coin=96/667)
+[15:39:41.193] INFO  [g_Aurelius] [ACTION] move_item start
+[15:39:41.193] INFO  [g_Aurelius] [ACTION] move_item serial=0x40019BB6 amount=1 dest=0x4000EE02
+[15:39:41.193] INFO  [g_Aurelius] [ITEM] drag serial=0x40019BB6 amount=1
+[15:39:41.193] INFO  [g_Aurelius] [ITEM] drop container=0x4000EE02
+[15:39:41.193] INFO  [g_Aurelius] [ACTION_RESULT] move_item success (1ms) item consumed by the destination
+[15:39:41.193] LOG   [g_Aurelius] event action_result: move_item success took=1ms item consumed by the destination
+[15:39:41.780] INFO  [g_Aurelius] [chat ascii] Skeleton: *Skeleton is attacking you!*
+[15:39:41.781] INFO  [g_Aurelius] [ACTION] cast_spell start
+[15:39:41.781] INFO  [g_Aurelius] [ACTION] cast_spell id=5 target=0x0000E348 mana=6
+[15:39:41.781] INFO  [g_Aurelius] [chat ascii] System: Select target...
+[15:39:41.781] INFO  [g_Aurelius] [0x6C] TARGET requested id=0x000002CA type=object subtype=1 gen=6
+[15:39:41.781] LOG   [g_Aurelius] event target_requested: id=0x000002CA type=0 subtype=1 gen=6
+[15:39:41.781] INFO  [g_Aurelius] [TARGET] auto-reply for cast_spell -> 0x0000E348
+[15:39:41.781] INFO  [g_Aurelius] [TARGET] reply serial=0x0000E348 gen=6
+[15:39:41.781] INFO  [g_Aurelius] [target] object 0x0000E348 (1379,1483,10) model 0x0032
+[15:39:41.796] INFO  [g_Aurelius] [0x20] player @(1385,1494,10) facing=7
+[15:39:41.796] INFO  [g_Aurelius] [chat ascii] Aurelius: In Por Ylem
+[15:39:42.337] INFO  [g_Aurelius] [ACTION_RESULT] cast_spell success (556ms) mana 6 -> 2
+[15:39:42.337] LOG   [g_Aurelius] event action_result: cast_spell success took=556ms mana 6 -> 2
+[15:39:42.832] INFO  [g_Aurelius] [survival] hp 46/50 (92%) -> fight
+[15:39:45.787] INFO  [life] interrupt=FLEE reason="HP 94%; 1 attacker(s); bail at 32%"
+[15:39:45.787] INFO  [life] disengage=yes attackers=1 in_reach=0 tolerate=2 hp=94% bandages=0 reason="this life avoids combat"
+[15:39:46.620] INFO  [g_Aurelius] [travel] place: skipping Vesper banker -- 1304 tiles and 1 gate for a service Britain banker offers
+[15:39:46.620] INFO  [g_Aurelius] [travel] place: skipping Delucia banker -- 1908 tiles and 3 gates for a service Britain banker offers
+[15:39:46.620] INFO  [g_Aurelius] [travel] Britain banker -> (1425,1690) r=5 from (1385,1494)
+[15:39:46.620] LOG   [g_Aurelius] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1385,1494)
+[15:39:46.620] INFO  [g_Aurelius] [travel] mode moongate         usable   <- chosen
+[15:39:46.620] INFO  [g_Aurelius] [travel] mode walk             usable
+[15:39:46.620] INFO  [g_Aurelius] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:39:46.620] INFO  [g_Aurelius] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:39:46.620] LOG   [g_Aurelius] event travel_mode: moongate
+[15:39:46.620] INFO  [g_Aurelius] [travel] plan Britain banker: ok legs=6 ~232 tiles transit=0 nodes=443
+[15:39:46.620] INFO  [g_Aurelius] [action] goto (1416,1528) from (1385,1494,10)
+[15:39:46.620] LOG   [g_Aurelius] event goto_start: target=(1416,1528) from=(1385,1494)
+[15:39:46.620] INFO  [g_Aurelius] [bot] running from (1385,1494,10) to (1416,1528)
+[15:39:46.620] INFO  [g_Aurelius] [bot] planning path to (1416,1528) in background
+[15:39:46.672] INFO  [g_Aurelius] [bot] replan to (1416,1528): 43 steps in 5129.1us
+[15:39:47.809] INFO  [life] interrupt=FLEE reason="HP 94%; 1 attacker(s); bail at 32%"
+[15:39:47.809] INFO  [life] disengage=yes attackers=1 in_reach=0 tolerate=2 hp=94% bandages=0 reason="this life avoids combat"
+[15:39:47.871] INFO  [g_Aurelius] [survival] hp 47/50 (94%) -> fight
+[15:39:49.790] INFO  [life] hunt: loot transfer confirmed; staying in the yard (load=49% coin=96/667)
+[15:39:52.917] INFO  [g_Aurelius] [survival] hp 47/50 (94%) -> fight
+[15:39:56.758] INFO  [g_Aurelius] [chat ascii] System: You are now under the protection of the city guards
+[15:39:57.937] INFO  [g_Aurelius] [survival] hp 47/50 (94%) -> fight
+[15:40:00.580] INFO  [g_Aurelius] [bot] arrived at (1416,1528,28)
+[15:40:00.580] INFO  [g_Aurelius] [action] goto finished at (1416,1528,28); target (1416,1528); ARRIVED (off by 0 tile(s))
+[15:40:00.580] LOG   [g_Aurelius] event goto_done: at=(1416,1528) target=(1416,1528) arrived=1 off=0
+[15:40:00.580] INFO  [g_Aurelius] [action] goto (1432,1560) from (1416,1528,28)
+[15:40:00.580] LOG   [g_Aurelius] event goto_start: target=(1432,1560) from=(1416,1528)
+[15:40:00.580] INFO  [g_Aurelius] [bot] running from (1416,1528,28) to (1432,1560)
+[15:40:00.581] INFO  [g_Aurelius] [bot] planning path to (1432,1560) in background
+[15:40:00.641] INFO  [g_Aurelius] [bot] replan to (1432,1560): 36 steps in 3238.5us
+[15:40:02.952] INFO  [g_Aurelius] [survival] hp 47/50 (94%) -> fight
+[15:40:07.968] INFO  [g_Aurelius] [survival] hp 47/50 (94%) -> fight
+[15:40:12.146] INFO  [g_Aurelius] [bot] arrived at (1432,1560,30)
+[15:40:12.146] INFO  [g_Aurelius] [action] goto finished at (1432,1560,30); target (1432,1560); ARRIVED (off by 0 tile(s))
+[15:40:12.146] LOG   [g_Aurelius] event goto_done: at=(1432,1560) target=(1432,1560) arrived=1 off=0
+[15:40:12.146] INFO  [g_Aurelius] [action] goto (1416,1592) from (1432,1560,30)
+[15:40:12.146] LOG   [g_Aurelius] event goto_start: target=(1416,1592) from=(1432,1560)
+[15:40:12.146] INFO  [g_Aurelius] [bot] running from (1432,1560,30) to (1416,1592)
+[15:40:12.146] INFO  [g_Aurelius] [bot] planning path to (1416,1592) in background
+[15:40:13.002] INFO  [g_Aurelius] [survival] hp 47/50 (94%) -> fight
+[15:40:13.551] INFO  [g_Aurelius] [action] goto finished at (1432,1560,30); target (1416,1592); stopped short (off by 48 tile(s))
+[15:40:13.551] LOG   [g_Aurelius] event goto_done: at=(1432,1560) target=(1416,1592) arrived=0 off=48
+[15:40:14.776] INFO  [g_Aurelius] [action] goto (1416,1592) from (1432,1560,30)
+[15:40:14.776] LOG   [g_Aurelius] event goto_start: target=(1416,1592) from=(1432,1560)
+[15:40:14.776] INFO  [g_Aurelius] [bot] running from (1432,1560,30) to (1416,1592)
+[15:40:14.776] INFO  [g_Aurelius] [bot] planning path to (1416,1592) in background
+[15:40:16.249] INFO  [g_Aurelius] [action] goto finished at (1432,1560,30); target (1416,1592); stopped short (off by 48 tile(s))
+[15:40:16.249] LOG   [g_Aurelius] event goto_done: at=(1432,1560) target=(1416,1592) arrived=0 off=48
+[15:40:17.470] INFO  [g_Aurelius] [action] goto (1416,1592) from (1432,1560,30)
+[15:40:17.470] LOG   [g_Aurelius] event goto_start: target=(1416,1592) from=(1432,1560)
+[15:40:17.470] INFO  [g_Aurelius] [bot] running from (1432,1560,30) to (1416,1592)
+[15:40:17.470] INFO  [g_Aurelius] [bot] planning path to (1416,1592) in background
+[15:40:18.023] INFO  [g_Aurelius] [survival] hp 47/50 (94%) -> fight
+[15:40:18.837] INFO  [g_Aurelius] [action] goto finished at (1432,1560,30); target (1416,1592); stopped short (off by 48 tile(s))
+[15:40:18.837] LOG   [g_Aurelius] event goto_done: at=(1432,1560) target=(1416,1592) arrived=0 off=48
+[15:40:20.067] INFO  [g_Aurelius] [travel] mode moongate         usable   <- chosen
+[15:40:20.068] INFO  [g_Aurelius] [travel] mode walk             usable
+[15:40:20.068] INFO  [g_Aurelius] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:40:20.068] INFO  [g_Aurelius] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:40:20.068] LOG   [g_Aurelius] event travel_mode: moongate
+[15:40:20.068] INFO  [g_Aurelius] [travel] plan Britain banker: ok legs=4 ~160 tiles transit=0 nodes=191
+[15:40:21.591] INFO  [g_Aurelius] [action] goto (1448,1592) from (1432,1560,30)
+[15:40:21.591] LOG   [g_Aurelius] event goto_start: target=(1448,1592) from=(1432,1560)
+[15:40:21.591] INFO  [g_Aurelius] [bot] running from (1432,1560,30) to (1448,1592)
+[15:40:21.591] INFO  [g_Aurelius] [bot] planning path to (1448,1592) in background
+[15:40:21.651] INFO  [g_Aurelius] [bot] replan to (1448,1592): 46 steps in 8250.4us
+[15:40:23.039] INFO  [g_Aurelius] [survival] hp 47/50 (94%) -> fight
+[15:40:28.040] INFO  [g_Aurelius] [survival] hp 48/50 (96%) -> fight
+[15:40:30.637] INFO  [g_Aurelius] [bot] door ahead at (1444,1583,z20); OpenDoor before step
+[15:40:30.637] INFO  [g_Aurelius] [chat ascii] System: Opening door...
+[15:40:30.637] INFO  [g_Aurelius] [0x20] player @(1443,1584,20) facing=0
+[15:40:30.637] INFO  [g_Aurelius] [action] goto finished at (1443,1584,20); target (1448,1592); stopped short (off by 13 tile(s))
+[15:40:30.637] LOG   [g_Aurelius] event goto_done: at=(1443,1584) target=(1448,1592) arrived=0 off=13
+[15:40:31.882] INFO  [g_Aurelius] [action] goto (1448,1592) from (1443,1584,20)
+[15:40:31.882] LOG   [g_Aurelius] event goto_start: target=(1448,1592) from=(1443,1584)
+[15:40:31.883] INFO  [g_Aurelius] [bot] running from (1443,1584,20) to (1448,1592)
+[15:40:31.883] INFO  [g_Aurelius] [bot] planning path to (1448,1592) in background
+[15:40:31.944] INFO  [g_Aurelius] [bot] replan to (1448,1592): 17 steps in 1810.1us
+[15:40:33.078] INFO  [g_Aurelius] [survival] hp 48/50 (96%) -> fight
+[15:40:38.106] INFO  [g_Aurelius] [survival] hp 48/50 (96%) -> fight
+[15:40:38.182] INFO  [g_Aurelius] [bot] arrived at (1448,1592,20)
+[15:40:38.182] INFO  [g_Aurelius] [action] goto finished at (1448,1592,20); target (1448,1592); ARRIVED (off by 0 tile(s))
+[15:40:38.182] LOG   [g_Aurelius] event goto_done: at=(1448,1592) target=(1448,1592) arrived=1 off=0
+[15:40:38.182] INFO  [g_Aurelius] [travel] avoiding 2 teleporter pad(s) on this leg
+[15:40:38.182] INFO  [g_Aurelius] [action] goto (1464,1624) from (1448,1592,20)
+[15:40:38.182] LOG   [g_Aurelius] event goto_start: target=(1464,1624) from=(1448,1592)
+[15:40:38.182] INFO  [g_Aurelius] [bot] running from (1448,1592,20) to (1464,1624)
+[15:40:38.182] INFO  [g_Aurelius] [bot] planning path to (1464,1624) in background
+[15:40:38.244] INFO  [g_Aurelius] [bot] replan to (1464,1624): 34 steps in 2381.8us
+[15:40:40.836] INFO  [g_Aurelius] [bot] door ahead at (1456,1599,z20); OpenDoor before step
+[15:40:40.836] INFO  [g_Aurelius] [chat ascii] System: Opening door...
+[15:40:43.118] INFO  [g_Aurelius] [survival] hp 48/50 (96%) -> fight
+[15:40:48.151] INFO  [g_Aurelius] [survival] hp 48/50 (96%) -> fight
+[15:40:48.762] INFO  [g_Aurelius] [bot] arrived at (1464,1624,20)
+[15:40:48.762] INFO  [g_Aurelius] [action] goto finished at (1464,1624,20); target (1464,1624); ARRIVED (off by 0 tile(s))
+[15:40:48.762] LOG   [g_Aurelius] event goto_done: at=(1464,1624) target=(1464,1624) arrived=1 off=0
+[15:40:48.762] INFO  [g_Aurelius] [travel] avoiding 2 teleporter pad(s) on this leg
+[15:40:48.762] INFO  [g_Aurelius] [action] goto (1464,1656) from (1464,1624,20)
+[15:40:48.762] LOG   [g_Aurelius] event goto_start: target=(1464,1656) from=(1464,1624)
+[15:40:48.762] INFO  [g_Aurelius] [bot] running from (1464,1624,20) to (1464,1656)
+[15:40:48.762] INFO  [g_Aurelius] [bot] planning path to (1464,1656) in background
+[15:40:48.822] INFO  [g_Aurelius] [bot] replan to (1464,1656): 32 steps in 1668.8us
+[15:40:53.180] INFO  [g_Aurelius] [survival] hp 48/50 (96%) -> fight
+[15:40:58.221] INFO  [g_Aurelius] [survival] hp 48/50 (96%) -> fight
+[15:40:58.543] INFO  [g_Aurelius] [bot] arrived at (1464,1656,10)
+[15:40:58.544] INFO  [g_Aurelius] [action] goto finished at (1464,1656,10); target (1464,1656); ARRIVED (off by 0 tile(s))
+[15:40:58.544] LOG   [g_Aurelius] event goto_done: at=(1464,1656) target=(1464,1656) arrived=1 off=0
+[15:40:58.544] INFO  [g_Aurelius] [travel] avoiding 2 teleporter pad(s) on this leg
+[15:40:58.544] INFO  [g_Aurelius] [action] goto (1425,1690) from (1464,1656,10)
+[15:40:58.544] LOG   [g_Aurelius] event goto_start: target=(1425,1690) from=(1464,1656)
+[15:40:58.544] INFO  [g_Aurelius] [bot] running from (1464,1656,10) to (1425,1690,z0)
+[15:40:58.544] INFO  [g_Aurelius] [bot] planning path to (1425,1690) in background
+[15:40:58.604] INFO  [g_Aurelius] [bot] replan to (1425,1690): 60 steps in 16450.8us
+[15:41:03.272] INFO  [g_Aurelius] [survival] hp 48/50 (96%) -> fight
+[15:41:08.290] INFO  [g_Aurelius] [survival] hp 49/50 (98%) -> fight
+[15:41:08.721] INFO  [g_Aurelius] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=24 in 585.6us
+[15:41:11.771] INFO  [g_Aurelius] [bot] door ahead at (1438,1692,z0); OpenDoor before step
+[15:41:11.787] INFO  [g_Aurelius] [chat ascii] System: Opening door...
+[15:41:13.305] INFO  [g_Aurelius] [survival] hp 49/50 (98%) -> fight
+[15:41:16.010] INFO  [g_Aurelius] [travel] Britain banker ARRIVED at (1429,1690,0)
+[15:41:16.010] LOG   [g_Aurelius] event travel_done: label='Britain banker' ok=1 at=(1429,1690) legs=4 plans=2 why=''
+[15:41:17.049] INFO  [g_Aurelius] [action] goto finished at (1429,1690,0); target (1425,1690); stopped short (off by 4 tile(s))
+[15:41:17.049] LOG   [g_Aurelius] event goto_done: at=(1429,1690) target=(1425,1690) arrived=0 off=4
+[15:41:17.049] INFO  [g_Aurelius] [travel] loot confirmed hunt corpse -> (1384,1494) r=2 from (1429,1690)
+[15:41:17.049] LOG   [g_Aurelius] event travel_start: label='loot confirmed hunt corpse' target=(1384,1494) radius=2 from=(1429,1690)
+[15:41:17.049] INFO  [g_Aurelius] [travel] mode moongate         usable   <- chosen
+[15:41:17.049] INFO  [g_Aurelius] [travel] mode walk             usable
+[15:41:17.049] INFO  [g_Aurelius] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:41:17.049] INFO  [g_Aurelius] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:41:17.049] LOG   [g_Aurelius] event travel_mode: moongate
+[15:41:17.049] INFO  [g_Aurelius] [travel] plan loot confirmed hunt corpse: ok legs=6 ~232 tiles transit=0 nodes=420
+[15:41:17.111] INFO  [g_Aurelius] [action] goto (1416,1656) from (1429,1690,0)
+[15:41:17.111] LOG   [g_Aurelius] event goto_start: target=(1416,1656) from=(1429,1690)
+[15:41:17.111] INFO  [g_Aurelius] [bot] running from (1429,1690,0) to (1416,1656)
+[15:41:17.111] INFO  [g_Aurelius] [bot] planning path to (1416,1656) in background
+[15:41:17.174] INFO  [g_Aurelius] [bot] replan to (1416,1656): 64 steps in 18457.8us
+[15:41:18.336] INFO  [g_Aurelius] [survival] hp 49/50 (98%) -> fight
+[15:41:20.605] INFO  [g_Aurelius] [bot] door ahead at (1437,1693,z0); OpenDoor before step
+[15:41:20.620] INFO  [g_Aurelius] [chat ascii] System: Opening door...
+[15:41:23.341] INFO  [g_Aurelius] [survival] hp 49/50 (98%) -> fight
+[15:41:23.966] INFO  [life] session_end_requested reason="session time limit reached"
+[15:41:28.351] INFO  [g_Aurelius] [survival] hp 49/50 (98%) -> fight
+[15:41:33.368] INFO  [g_Aurelius] [survival] hp 49/50 (98%) -> fight
+[15:41:36.307] INFO  [g_Aurelius] [bot] arrived at (1416,1656,10)
+[15:41:36.307] INFO  [g_Aurelius] [action] goto finished at (1416,1656,10); target (1416,1656); ARRIVED (off by 0 tile(s))
+[15:41:36.307] LOG   [g_Aurelius] event goto_done: at=(1416,1656) target=(1416,1656) arrived=1 off=0
+[15:41:36.307] INFO  [g_Aurelius] [action] goto (1416,1624) from (1416,1656,10)
+[15:41:36.307] LOG   [g_Aurelius] event goto_start: target=(1416,1624) from=(1416,1656)
+[15:41:36.307] INFO  [g_Aurelius] [bot] running from (1416,1656,10) to (1416,1624)
+[15:41:36.307] INFO  [g_Aurelius] [bot] planning path to (1416,1624) in background
+[15:41:36.367] INFO  [g_Aurelius] [bot] replan to (1416,1624): 32 steps in 2127.9us
+[15:41:37.743] INFO  [g_Aurelius] [chat ascii] System: Hector has departed from Yew.
+[15:41:38.389] INFO  [g_Aurelius] [survival] hp 49/50 (98%) -> fight
+[15:41:43.398] INFO  [g_Aurelius] [survival] hp 49/50 (98%) -> fight
+[15:41:44.963] INFO  [g_Aurelius] [bot] arrived at (1416,1624,22)
+[15:41:44.963] INFO  [g_Aurelius] [action] goto finished at (1416,1624,22); target (1416,1624); ARRIVED (off by 0 tile(s))
+[15:41:44.963] LOG   [g_Aurelius] event goto_done: at=(1416,1624) target=(1416,1624) arrived=1 off=0
+[15:41:44.963] INFO  [g_Aurelius] [action] goto (1416,1592) from (1416,1624,22)
+[15:41:44.963] LOG   [g_Aurelius] event goto_start: target=(1416,1592) from=(1416,1624)
+[15:41:44.963] INFO  [g_Aurelius] [bot] running from (1416,1624,22) to (1416,1592)
+[15:41:44.963] INFO  [g_Aurelius] [bot] planning path to (1416,1592) in background
+[15:41:46.691] INFO  [g_Aurelius] [action] goto finished at (1416,1624,22); target (1416,1592); stopped short (off by 32 tile(s))
+[15:41:46.691] LOG   [g_Aurelius] event goto_done: at=(1416,1624) target=(1416,1592) arrived=0 off=32
+[15:41:47.899] INFO  [g_Aurelius] [action] goto (1416,1592) from (1416,1624,22)
+[15:41:47.899] LOG   [g_Aurelius] event goto_start: target=(1416,1592) from=(1416,1624)
+[15:41:47.899] INFO  [g_Aurelius] [bot] running from (1416,1624,22) to (1416,1592)
+[15:41:47.900] INFO  [g_Aurelius] [bot] planning path to (1416,1592) in background
+[15:41:48.402] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:41:49.564] INFO  [g_Aurelius] [action] goto finished at (1416,1624,22); target (1416,1592); stopped short (off by 32 tile(s))
+[15:41:49.564] LOG   [g_Aurelius] event goto_done: at=(1416,1624) target=(1416,1592) arrived=0 off=32
+[15:41:50.822] INFO  [g_Aurelius] [action] goto (1416,1592) from (1416,1624,22)
+[15:41:50.823] LOG   [g_Aurelius] event goto_start: target=(1416,1592) from=(1416,1624)
+[15:41:50.823] INFO  [g_Aurelius] [bot] running from (1416,1624,22) to (1416,1592)
+[15:41:50.823] INFO  [g_Aurelius] [bot] planning path to (1416,1592) in background
+[15:41:52.463] INFO  [g_Aurelius] [action] goto finished at (1416,1624,22); target (1416,1592); stopped short (off by 32 tile(s))
+[15:41:52.463] LOG   [g_Aurelius] event goto_done: at=(1416,1624) target=(1416,1592) arrived=0 off=32
+[15:41:53.443] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:41:53.687] INFO  [g_Aurelius] [travel] mode moongate         usable   <- chosen
+[15:41:53.687] INFO  [g_Aurelius] [travel] mode walk             usable
+[15:41:53.687] INFO  [g_Aurelius] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:41:53.687] INFO  [g_Aurelius] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:41:53.687] LOG   [g_Aurelius] event travel_mode: moongate
+[15:41:53.688] INFO  [g_Aurelius] [travel] plan loot confirmed hunt corpse: ok legs=4 ~176 tiles transit=0 nodes=225
+[15:41:55.244] INFO  [g_Aurelius] [action] goto (1448,1592) from (1416,1624,22)
+[15:41:55.244] LOG   [g_Aurelius] event goto_start: target=(1448,1592) from=(1416,1624)
+[15:41:55.244] INFO  [g_Aurelius] [bot] running from (1416,1624,22) to (1448,1592)
+[15:41:55.244] INFO  [g_Aurelius] [bot] planning path to (1448,1592) in background
+[15:41:55.306] INFO  [g_Aurelius] [bot] replan to (1448,1592): 51 steps in 14066.7us
+[15:41:58.456] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:42:03.503] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:42:08.198] INFO  [g_Aurelius] [bot] door ahead at (1450,1599,z20); OpenDoor before step
+[15:42:08.213] INFO  [g_Aurelius] [chat ascii] System: Opening door...
+[15:42:08.518] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:42:11.091] INFO  [g_Aurelius] [bot] arrived at (1448,1592,20)
+[15:42:11.091] INFO  [g_Aurelius] [action] goto finished at (1448,1592,20); target (1448,1592); ARRIVED (off by 0 tile(s))
+[15:42:11.091] LOG   [g_Aurelius] event goto_done: at=(1448,1592) target=(1448,1592) arrived=1 off=0
+[15:42:11.091] INFO  [g_Aurelius] [action] goto (1432,1560) from (1448,1592,20)
+[15:42:11.091] LOG   [g_Aurelius] event goto_start: target=(1432,1560) from=(1448,1592)
+[15:42:11.092] INFO  [g_Aurelius] [bot] running from (1448,1592,20) to (1432,1560)
+[15:42:11.092] INFO  [g_Aurelius] [bot] planning path to (1432,1560) in background
+[15:42:11.153] INFO  [g_Aurelius] [bot] replan to (1432,1560): 46 steps in 6422.8us
+[15:42:13.560] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:42:16.211] INFO  [g_Aurelius] [bot] door ahead at (1443,1583,z20); OpenDoor before step
+[15:42:16.225] INFO  [g_Aurelius] [chat ascii] System: Opening door...
+[15:42:17.159] INFO  [g_Aurelius] [chat ascii] System: World save in 10 seconds
+[15:42:17.650] INFO  [g_Aurelius] [bot] door ahead at (1442,1584,z20); OpenDoor before step
+[15:42:17.666] INFO  [g_Aurelius] [chat ascii] System: Opening door...
+[15:42:18.581] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:42:23.636] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:42:27.180] INFO  [g_Aurelius] [chat ascii] System: World save has been initiated.
+[15:42:27.411] INFO  [g_Aurelius] [bot] arrived at (1432,1560,30)
+[15:42:27.411] INFO  [g_Aurelius] [action] goto finished at (1432,1560,30); target (1432,1560); ARRIVED (off by 0 tile(s))
+[15:42:27.411] LOG   [g_Aurelius] event goto_done: at=(1432,1560) target=(1432,1560) arrived=1 off=0
+[15:42:27.411] INFO  [g_Aurelius] [action] goto (1416,1528) from (1432,1560,30)
+[15:42:27.411] LOG   [g_Aurelius] event goto_start: target=(1416,1528) from=(1432,1560)
+[15:42:27.411] INFO  [g_Aurelius] [bot] running from (1432,1560,30) to (1416,1528)
+[15:42:27.411] INFO  [g_Aurelius] [bot] planning path to (1416,1528) in background
+[15:42:27.472] INFO  [g_Aurelius] [bot] replan to (1416,1528): 36 steps in 14416.9us
+[15:42:28.637] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:42:33.655] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:42:38.678] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:42:40.751] INFO  [g_Aurelius] [bot] arrived at (1416,1528,28)
+[15:42:40.751] INFO  [g_Aurelius] [action] goto finished at (1416,1528,28); target (1416,1528); ARRIVED (off by 0 tile(s))
+[15:42:40.751] LOG   [g_Aurelius] event goto_done: at=(1416,1528) target=(1416,1528) arrived=1 off=0
+[15:42:40.751] INFO  [g_Aurelius] [action] goto (1384,1494) from (1416,1528,28)
+[15:42:40.751] LOG   [g_Aurelius] event goto_start: target=(1384,1494) from=(1416,1528)
+[15:42:40.751] INFO  [g_Aurelius] [bot] running from (1416,1528,28) to (1384,1494)
+[15:42:40.751] INFO  [g_Aurelius] [bot] planning path to (1384,1494) in background
+[15:42:40.811] INFO  [g_Aurelius] [bot] replan to (1384,1494): 43 steps in 3719.3us
+[15:42:43.686] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:42:44.928] INFO  [g_Aurelius] [chat ascii] System: You have left the protection of the city guards
+[15:42:48.704] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:42:53.760] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:42:54.189] INFO  [g_Aurelius] [travel] loot confirmed hunt corpse ARRIVED at (1386,1496,10)
+[15:42:54.189] LOG   [g_Aurelius] event travel_done: label='loot confirmed hunt corpse' ok=1 at=(1386,1496) legs=4 plans=2 why=''
+[15:42:54.251] INFO  [life] wind-down: no bank learned yet; asking the world for one (attempt 1)
+[15:42:55.040] INFO  [g_Aurelius] [travel] place: skipping Vesper banker -- 1304 tiles and 1 gate for a service Britain banker offers
+[15:42:55.040] INFO  [g_Aurelius] [travel] place: skipping Delucia banker -- 1908 tiles and 3 gates for a service Britain banker offers
+[15:42:55.040] INFO  [g_Aurelius] [travel] Britain banker -> (1425,1690) r=5 from (1386,1496)
+[15:42:55.040] LOG   [g_Aurelius] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1386,1496)
+[15:42:55.040] INFO  [g_Aurelius] [travel] mode moongate         usable   <- chosen
+[15:42:55.040] INFO  [g_Aurelius] [travel] mode walk             usable
+[15:42:55.040] INFO  [g_Aurelius] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:42:55.040] INFO  [g_Aurelius] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:42:55.040] LOG   [g_Aurelius] event travel_mode: moongate
+[15:42:55.040] INFO  [g_Aurelius] [travel] plan Britain banker: ok legs=6 ~232 tiles transit=0 nodes=443
+[15:42:55.092] INFO  [g_Aurelius] [action] goto finished at (1386,1496,10); target (1384,1494); stopped short (off by 4 tile(s))
+[15:42:55.092] LOG   [g_Aurelius] event goto_done: at=(1386,1496) target=(1384,1494) arrived=0 off=4
+[15:42:55.092] INFO  [g_Aurelius] [action] goto (1416,1528) from (1386,1496,10)
+[15:42:55.092] LOG   [g_Aurelius] event goto_start: target=(1416,1528) from=(1386,1496)
+[15:42:55.092] INFO  [g_Aurelius] [bot] running from (1386,1496,10) to (1416,1528)
+[15:42:55.092] INFO  [g_Aurelius] [bot] planning path to (1416,1528) in background
+[15:42:55.152] INFO  [g_Aurelius] [bot] replan to (1416,1528): 41 steps in 6050.7us
+[15:42:58.774] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:43:03.832] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:43:04.262] INFO  [g_Aurelius] [chat ascii] System: You are now under the protection of the city guards
+[15:43:07.996] INFO  [g_Aurelius] [bot] arrived at (1416,1528,28)
+[15:43:07.996] INFO  [g_Aurelius] [action] goto finished at (1416,1528,28); target (1416,1528); ARRIVED (off by 0 tile(s))
+[15:43:07.996] LOG   [g_Aurelius] event goto_done: at=(1416,1528) target=(1416,1528) arrived=1 off=0
+[15:43:07.996] INFO  [g_Aurelius] [action] goto (1432,1560) from (1416,1528,28)
+[15:43:07.996] LOG   [g_Aurelius] event goto_start: target=(1432,1560) from=(1416,1528)
+[15:43:07.996] INFO  [g_Aurelius] [bot] running from (1416,1528,28) to (1432,1560)
+[15:43:07.996] INFO  [g_Aurelius] [bot] planning path to (1432,1560) in background
+[15:43:08.058] INFO  [g_Aurelius] [bot] replan to (1432,1560): 36 steps in 3403.9us
+[15:43:08.842] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:43:13.860] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:43:18.715] INFO  [g_Aurelius] [chat ascii] System: You are not strong enough to push Harpy out of the way.
+[15:43:18.715] INFO  [g_Aurelius] [bot] reject at (1432,1559): mobile in the way — waiting 500ms, retrying (1) [no blacklist]
+[15:43:18.715] INFO  [g_Aurelius] [bot] planning path to (1432,1560) in background
+[15:43:18.883] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:43:20.289] INFO  [g_Aurelius] [action] goto finished at (1432,1558,30); target (1432,1560); stopped short (off by 2 tile(s))
+[15:43:20.289] LOG   [g_Aurelius] event goto_done: at=(1432,1558) target=(1432,1560) arrived=0 off=2
+[15:43:20.289] INFO  [g_Aurelius] [action] goto (1416,1592) from (1432,1558,30)
+[15:43:20.289] LOG   [g_Aurelius] event goto_start: target=(1416,1592) from=(1432,1558)
+[15:43:20.289] INFO  [g_Aurelius] [bot] running from (1432,1558,30) to (1416,1592)
+[15:43:20.289] INFO  [g_Aurelius] [bot] planning path to (1416,1592) in background
+[15:43:21.956] INFO  [g_Aurelius] [action] goto finished at (1432,1558,30); target (1416,1592); stopped short (off by 50 tile(s))
+[15:43:21.956] LOG   [g_Aurelius] event goto_done: at=(1432,1558) target=(1416,1592) arrived=0 off=50
+[15:43:23.179] INFO  [g_Aurelius] [action] goto (1416,1592) from (1432,1558,30)
+[15:43:23.179] LOG   [g_Aurelius] event goto_start: target=(1416,1592) from=(1432,1558)
+[15:43:23.179] INFO  [g_Aurelius] [bot] running from (1432,1558,30) to (1416,1592)
+[15:43:23.179] INFO  [g_Aurelius] [bot] planning path to (1416,1592) in background
+[15:43:23.928] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:43:24.867] INFO  [g_Aurelius] [action] goto finished at (1432,1558,30); target (1416,1592); stopped short (off by 50 tile(s))
+[15:43:24.867] LOG   [g_Aurelius] event goto_done: at=(1432,1558) target=(1416,1592) arrived=0 off=50
+[15:43:26.083] INFO  [g_Aurelius] [travel] mode moongate         usable   <- chosen
+[15:43:26.083] INFO  [g_Aurelius] [travel] mode walk             usable
+[15:43:26.083] INFO  [g_Aurelius] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:43:26.083] INFO  [g_Aurelius] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:43:26.083] LOG   [g_Aurelius] event travel_mode: moongate
+[15:43:26.083] INFO  [g_Aurelius] [travel] plan Britain banker: ok legs=4 ~160 tiles transit=0 nodes=191
+[15:43:27.591] INFO  [g_Aurelius] [action] goto (1448,1592) from (1432,1558,30)
+[15:43:27.591] LOG   [g_Aurelius] event goto_start: target=(1448,1592) from=(1432,1558)
+[15:43:27.591] INFO  [g_Aurelius] [bot] running from (1432,1558,30) to (1448,1592)
+[15:43:27.591] INFO  [g_Aurelius] [bot] planning path to (1448,1592) in background
+[15:43:27.653] INFO  [g_Aurelius] [bot] replan to (1448,1592): 48 steps in 10432.6us
+[15:43:28.962] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:43:29.165] INFO  [g_Aurelius] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=42 in 680.1us
+[15:43:29.581] INFO  [g_Aurelius] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=41 in 253.7us
+[15:43:29.859] INFO  [g_Aurelius] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=40 in 148.4us
+[15:43:30.154] INFO  [g_Aurelius] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=40 in 212.9us
+[15:43:30.430] INFO  [g_Aurelius] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=38 in 309.3us
+[15:43:30.724] INFO  [g_Aurelius] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=38 in 384.4us
+[15:43:31.262] INFO  [g_Aurelius] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=36 in 429.8us
+[15:43:32.584] INFO  [g_Aurelius] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=32 in 542.6us
+[15:43:32.831] INFO  [g_Aurelius] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=31 in 436.5us
+[15:43:33.997] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:43:34.687] INFO  [g_Aurelius] [bot] lookahead patched around block at step 2: anchor=5 new segment=4 path=25 in 311.6us
+[15:43:35.381] INFO  [g_Aurelius] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=25 in 161.1us
+[15:43:35.644] INFO  [g_Aurelius] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=25 in 245.7us
+[15:43:36.522] INFO  [g_Aurelius] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=24 in 435.2us
+[15:43:37.386] INFO  [g_Aurelius] [bot] lookahead patched around block at step 3: anchor=5 new segment=6 path=23 in 297.8us
+[15:43:37.646] INFO  [g_Aurelius] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=23 in 371.1us
+[15:43:39.006] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:43:39.068] INFO  [g_Aurelius] [bot] door ahead at (1442,1584,z20); OpenDoor before step
+[15:43:39.068] INFO  [g_Aurelius] [chat ascii] System: Opening door...
+[15:43:40.561] INFO  [g_Aurelius] [bot] step (1443,1584,20)->(1444,1583,20) rejected; OpenDoor + retry
+[15:43:40.562] INFO  [g_Aurelius] [chat ascii] System: Opening door...
+[15:43:40.562] INFO  [g_Aurelius] [0x20] player @(1443,1584,20) facing=0
+[15:43:40.562] INFO  [g_Aurelius] [action] goto finished at (1443,1584,20); target (1448,1592); stopped short (off by 13 tile(s))
+[15:43:40.562] LOG   [g_Aurelius] event goto_done: at=(1443,1584) target=(1448,1592) arrived=0 off=13
+[15:43:41.776] INFO  [g_Aurelius] [action] goto (1448,1592) from (1443,1584,20)
+[15:43:41.776] LOG   [g_Aurelius] event goto_start: target=(1448,1592) from=(1443,1584)
+[15:43:41.776] INFO  [g_Aurelius] [bot] running from (1443,1584,20) to (1448,1592)
+[15:43:41.776] INFO  [g_Aurelius] [bot] planning path to (1448,1592) in background
+[15:43:41.837] INFO  [g_Aurelius] [bot] replan to (1448,1592): 18 steps in 2364.6us
+[15:43:44.039] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:43:47.607] INFO  [g_Aurelius] [bot] arrived at (1448,1592,20)
+[15:43:47.607] INFO  [g_Aurelius] [action] goto finished at (1448,1592,20); target (1448,1592); ARRIVED (off by 0 tile(s))
+[15:43:47.607] LOG   [g_Aurelius] event goto_done: at=(1448,1592) target=(1448,1592) arrived=1 off=0
+[15:43:47.607] INFO  [g_Aurelius] [travel] avoiding 2 teleporter pad(s) on this leg
+[15:43:47.607] INFO  [g_Aurelius] [action] goto (1464,1624) from (1448,1592,20)
+[15:43:47.607] LOG   [g_Aurelius] event goto_start: target=(1464,1624) from=(1448,1592)
+[15:43:47.607] INFO  [g_Aurelius] [bot] running from (1448,1592,20) to (1464,1624)
+[15:43:47.607] INFO  [g_Aurelius] [bot] planning path to (1464,1624) in background
+[15:43:47.667] INFO  [g_Aurelius] [bot] replan to (1464,1624): 34 steps in 2810.0us
+[15:43:49.071] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:43:54.079] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:43:57.834] INFO  [g_Aurelius] [bot] arrived at (1464,1624,20)
+[15:43:57.835] INFO  [g_Aurelius] [action] goto finished at (1464,1624,20); target (1464,1624); ARRIVED (off by 0 tile(s))
+[15:43:57.835] LOG   [g_Aurelius] event goto_done: at=(1464,1624) target=(1464,1624) arrived=1 off=0
+[15:43:57.835] INFO  [g_Aurelius] [travel] avoiding 2 teleporter pad(s) on this leg
+[15:43:57.835] INFO  [g_Aurelius] [action] goto (1464,1656) from (1464,1624,20)
+[15:43:57.835] LOG   [g_Aurelius] event goto_start: target=(1464,1656) from=(1464,1624)
+[15:43:57.835] INFO  [g_Aurelius] [bot] running from (1464,1624,20) to (1464,1656)
+[15:43:57.835] INFO  [g_Aurelius] [bot] planning path to (1464,1656) in background
+[15:43:57.895] INFO  [g_Aurelius] [bot] replan to (1464,1656): 32 steps in 1700.0us
+[15:43:59.094] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:44:04.103] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:44:07.552] INFO  [g_Aurelius] [bot] arrived at (1464,1656,10)
+[15:44:07.552] INFO  [g_Aurelius] [action] goto finished at (1464,1656,10); target (1464,1656); ARRIVED (off by 0 tile(s))
+[15:44:07.552] LOG   [g_Aurelius] event goto_done: at=(1464,1656) target=(1464,1656) arrived=1 off=0
+[15:44:07.552] INFO  [g_Aurelius] [travel] avoiding 2 teleporter pad(s) on this leg
+[15:44:07.552] INFO  [g_Aurelius] [action] goto (1425,1690) from (1464,1656,10)
+[15:44:07.552] LOG   [g_Aurelius] event goto_start: target=(1425,1690) from=(1464,1656)
+[15:44:07.552] INFO  [g_Aurelius] [bot] running from (1464,1656,10) to (1425,1690,z0)
+[15:44:07.552] INFO  [g_Aurelius] [bot] planning path to (1425,1690) in background
+[15:44:07.612] INFO  [g_Aurelius] [bot] replan to (1425,1690): 61 steps in 19677.9us
+[15:44:09.148] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:44:14.155] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:44:17.587] INFO  [g_Aurelius] [chat ascii] System: Odessa has departed from Britain.
+[15:44:19.156] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:44:19.909] INFO  [g_Aurelius] [bot] step (1440,1694,0)->(1439,1693,0) rejected; OpenDoor + retry
+[15:44:19.909] INFO  [g_Aurelius] [chat ascii] System: Opening door...
+[15:44:19.909] INFO  [g_Aurelius] [0x20] player @(1440,1694,0) facing=0
+[15:44:19.909] INFO  [g_Aurelius] [action] goto finished at (1440,1694,0); target (1425,1690); stopped short (off by 19 tile(s))
+[15:44:19.909] LOG   [g_Aurelius] event goto_done: at=(1440,1694) target=(1425,1690) arrived=0 off=19
+[15:44:21.128] INFO  [g_Aurelius] [action] goto (1425,1690) from (1440,1694,0)
+[15:44:21.128] LOG   [g_Aurelius] event goto_start: target=(1425,1690) from=(1440,1694)
+[15:44:21.128] INFO  [g_Aurelius] [bot] running from (1440,1694,0) to (1425,1690,z0)
+[15:44:21.128] INFO  [g_Aurelius] [bot] planning path to (1425,1690) in background
+[15:44:21.189] INFO  [g_Aurelius] [bot] replan to (1425,1690): 16 steps in 961.0us
+[15:44:21.699] INFO  [g_Aurelius] [bot] step (1439,1693,0)->(1438,1692,0) rejected; OpenDoor + retry
+[15:44:21.699] INFO  [g_Aurelius] [chat ascii] System: Opening door...
+[15:44:21.699] INFO  [g_Aurelius] [0x20] player @(1439,1693,0) facing=0
+[15:44:21.699] INFO  [g_Aurelius] [action] goto finished at (1439,1693,0); target (1425,1690); stopped short (off by 17 tile(s))
+[15:44:21.699] LOG   [g_Aurelius] event goto_done: at=(1439,1693) target=(1425,1690) arrived=0 off=17
+[15:44:22.948] INFO  [g_Aurelius] [action] goto (1425,1690) from (1439,1693,0)
+[15:44:22.948] LOG   [g_Aurelius] event goto_start: target=(1425,1690) from=(1439,1693)
+[15:44:22.948] INFO  [g_Aurelius] [bot] running from (1439,1693,0) to (1425,1690,z0)
+[15:44:22.948] INFO  [g_Aurelius] [bot] planning path to (1425,1690) in background
+[15:44:23.010] INFO  [g_Aurelius] [bot] replan to (1425,1690): 15 steps in 623.8us
+[15:44:24.214] INFO  [g_Aurelius] [survival] hp 50/50 (100%) -> fight
+[15:44:25.002] INFO  [g_Aurelius] [chat ascii] Hyman: Hmm?
+[15:44:25.576] INFO  [g_Aurelius] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=9 in 502.2us
+[15:44:26.298] INFO  [g_Aurelius] [travel] Britain banker ARRIVED at (1430,1690,0)
+[15:44:26.298] LOG   [g_Aurelius] event travel_done: label='Britain banker' ok=1 at=(1430,1690) legs=4 plans=2 why=''
+[15:44:26.359] INFO  [life] wind-down: arrived somewhere safe at 1430,1690
+[15:44:26.419] INFO  [life] session_summary duration=482s goals=0/2 gold=6624->6672 skills=130.0->130.0 logs=+0 kills=1 deaths=0 places=29 suppliers=0
+[15:44:26.419] INFO  [life] session_goals families=2 picks=2 top=50% varied=0 self_superseded=0 | emergency=1(50%) training=1(50%) | SURVIVE=1(50%) TRAIN_COMBAT=1(50%)
+[15:44:26.421] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_22.aurelius/state.json
+[15:44:26.421] INFO  [life] logging out
+[15:44:26.421] INFO  [g_Aurelius] [action] logout requested
+[15:44:26.422] LOG   [g_Aurelius] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[15:44:26.422] INFO  [g_Aurelius] [0xD1] logout acknowledged (accepted=1)
+[15:44:26.422] LOG   [g_Aurelius] event logout_ack: accepted
+[15:44:26.422] INFO  [g_Aurelius] [net] closing connection (logout acknowledged)
+[15:44:26.422] LOG   [g_Aurelius] event logout_complete: acked

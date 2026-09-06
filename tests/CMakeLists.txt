@@ -648,19 +648,12 @@ add_test(NAME trade_gear COMMAND trade_gear)
 # the root CMakeLists.txt, and opens a loopback listener of its own so
 # Client::Send() has somewhere real to write outbound packets (never
 # inspected; only local state is asserted on).
-set(TRADE_VERIFY_SOURCES ${UO_CLIENT_SOURCES})
-list(REMOVE_ITEM TRADE_VERIFY_SOURCES src/main.cpp)
-list(TRANSFORM TRADE_VERIFY_SOURCES PREPEND ${CMAKE_SOURCE_DIR}/)
-
-add_executable(trade_verify trade_verify.cpp ${TRADE_VERIFY_SOURCES})
-target_include_directories(trade_verify PRIVATE
-    ${CMAKE_SOURCE_DIR}/include
-    ${CMAKE_SOURCE_DIR}/src
-    ${quickjs_SOURCE_DIR})
-target_link_libraries(trade_verify PRIVATE uo_mul uo_world qjs)
-if(WIN32)
-    target_link_libraries(trade_verify PRIVATE ws2_32 user32 gdi32)
-endif()
+# It takes those objects from uo_client_core (root CMakeLists.txt), the same
+# OBJECT library uo_client, uo_viewer and life_harness link: listing the
+# sources here compiled the whole client a second time and gave this
+# executable its own copy of every function-local static.
+add_executable(trade_verify trade_verify.cpp)
+target_link_libraries(trade_verify PRIVATE uo_client_core)
 
 add_test(NAME trade_verify COMMAND trade_verify)
 
@@ -699,18 +692,19 @@ add_test(NAME move_ack COMMAND move_ack)
 # trade_verify, this needs the real Client (its packet handlers are not seamed
 # out from sockets), so it links the whole client minus main.cpp and opens a
 # loopback listener purely so Client::Send() has somewhere to write.
-set(MOONGATE_GUMP_SOURCES ${UO_CLIENT_SOURCES})
-list(REMOVE_ITEM MOONGATE_GUMP_SOURCES src/main.cpp)
-list(TRANSFORM MOONGATE_GUMP_SOURCES PREPEND ${CMAKE_SOURCE_DIR}/)
-
-add_executable(moongate_gump moongate_gump.cpp ${MOONGATE_GUMP_SOURCES})
-target_include_directories(moongate_gump PRIVATE
-    ${CMAKE_SOURCE_DIR}/include
-    ${CMAKE_SOURCE_DIR}/src
-    ${quickjs_SOURCE_DIR})
-target_link_libraries(moongate_gump PRIVATE uo_mul uo_world qjs)
-if(WIN32)
-    target_link_libraries(moongate_gump PRIVATE ws2_32 user32 gdi32)
-endif()
+# Again from uo_client_core rather than a private copy of the sources.
+add_executable(moongate_gump moongate_gump.cpp)
+target_link_libraries(moongate_gump PRIVATE uo_client_core)
 
 add_test(NAME moongate_gump COMMAND moongate_gump)
+
+# --- life_harness: the deterministic offline life harness ------------------
+# The real Runner driving the real Client with an injected clock, an injected
+# Observation and captured (never sent) packets -- goal LIFETIME under test:
+# an errand must not survive a genuine goal change, a same-kind re-pick must
+# keep its journey (the Corran rule), and an in-flight action must be finished
+# when the goal changes. Links the client objects once, from uo_client_core.
+add_executable(life_harness life_harness.cpp)
+target_link_libraries(life_harness PRIVATE uo_client_core)
+
+add_test(NAME life_harness COMMAND life_harness ${CMAKE_CURRENT_BINARY_DIR})

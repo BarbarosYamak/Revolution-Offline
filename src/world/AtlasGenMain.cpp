@@ -711,8 +711,10 @@ void DerivePlacesFromRegions(Atlas& atlas) {
         } else if (r.kind == wm::RegionKind::Graveyard) {
             p.category = wm::PlaceCategory::Graveyard;
             p.radius = 12;
-        } else if (n.find("mine") != std::string::npos ||
-                   n.find("mining") != std::string::npos) {
+        } else if (r.kind != wm::RegionKind::Building &&
+                   (n.find("mine") != std::string::npos ||
+                    n.find("mining") != std::string::npos)) {
+            // Mining guilds and supply shops are buildings, not ore deposits.
             p.category = wm::PlaceCategory::ResourceArea;
             p.resources.push_back(wm::ResourceKind::Mining);
             p.radius = 20;

@@ -184,6 +184,28 @@ void Memory::NoteDanger(i32 x, i32 y, i32 radius, const char* threat, double hea
     CapOldestFirst(danger_, kMaxDanger, &DangerMemory::atMs);
 }
 
+// EVIDENCE THE OTHER WAY, for places. A ground that pays -- a kill, a looted
+// corpse -- is a ground this character has just proven it can work, and heat
+// that only ever rises locks a novice out of the one yard it is ready for:
+// Aurelius left the Britain graveyard at heat 3.20 with one kill and ZERO
+// deaths (artifacts/validation_wave_2026-09-06.md D11). Unlike a creature
+// TYPE, a place is not exonerated below "unknown": there is no such thing as
+// safer than never-scared-me, so the floor is 0.0 and a good outcome
+// somewhere never remembered writes nothing at all.
+void Memory::CoolDanger(i32 x, i32 y, double relief, i64 nowMs) {
+    if (relief <= 0.0) return;
+    for (DangerMemory& d : danger_) {
+        if (TileDist(d.x, d.y, x, y) > d.radius) continue;
+        // Decay first, exactly like NoteDanger -- relief applies to what the
+        // character actually still fears, not to an hour-old raw number.
+        const double halves =
+            static_cast<double>(nowMs - d.atMs) / static_cast<double>(kDangerHalfLifeMs);
+        const double current = nowMs > d.atMs ? d.heat * std::pow(0.5, halves) : d.heat;
+        d.heat = std::max(0.0, current - relief);
+        d.atMs = nowMs;
+    }
+}
+
 double Memory::DangerHeatAt(i32 x, i32 y, i64 nowMs) const {
     double total = 0.0;
     for (const DangerMemory& d : danger_) {

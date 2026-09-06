@@ -941,6 +941,31 @@ const NpcBuyer kNpcBuyers[] = {
     {"i_hide",          "tanner"},       // :482  {5 55}; furtrader :406 same svc
     {"i_hides_cut",     "cobbler"},      // :342  {2 6}
     {"i_hides_cut",     "tanner"},       // :480  {5 55}
+
+    // THE TINKER'S FINISHED GOODS (owner interim ruling, 2026-09-02; see
+    // progression/VendorPolicy.cpp:841-848 IsFloorMaterial). Gears, lockpicks
+    // and tinker tools are floor materials -- reachable only once the
+    // player-first WTS window closed unanswered -- and the row was missing
+    // here, so a bot with the floor open still got an empty NpcBuyersFor and
+    // "no buyer known" (Odessa: WTS 24 i_gears 2gp x12, marketQuiet true,
+    // NeedGold still stuck -- Needs.cpp:1152).
+    //
+    // Trade is "tinker": VENDOR_B_TINKER carries all three BUY rows live
+    // (tm_vend.scp:1069 i_gears, :1081 i_lockpick, :1083 i_tinker_tools, all
+    // {4 34} restock). ServiceForTrade already maps "tinker" ->
+    // wm::Service::Tinker (RunnerInternal.h:1134), so no world-model change
+    // is needed for the errand to find the shop.
+    //
+    // i_gears: ITEMDEF 01053 VALUE=5 (i_profession.scp:1074) -> payout ~4
+    // after the 15% markdown. i_lockpick: ITEMDEF 014fb VALUE=9
+    // (i_profession.scp:1531) -> payout ~7. i_tinker_tools: ITEMDEF 01ebc
+    // (i_profession.scp:2665) carries RESOURCES+SKILLMAKE but NO VALUE= line,
+    // so Sphere computes the payout the same way it does for i_ingot_iron --
+    // UNVERIFIED until a purse has moved for it, read off the 0x9E window,
+    // never predicted.
+    {"i_gears",         "tinker"},       // :1069 {4 34}
+    {"i_lockpick",      "tinker"},       // :1081 {4 34}
+    {"i_tinker_tools",  "tinker"},       // :1083 {4 34}
 };
 
 }  // namespace

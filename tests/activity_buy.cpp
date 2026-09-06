@@ -8,6 +8,7 @@
 // No server, no MULs.
 
 #include "uo/activities/buy.h"
+#include "uo/vendor_errand.h"
 
 #include <cstdio>
 
@@ -141,6 +142,34 @@ void TestEveryPlanSaysWhy() {
         Expect(p.reason && p.reason[0], "the plan states its reasoning");
 }
 
+// WHICH ERRAND LEGS SPEND THE CALLER'S ATTEMPT BUDGET.
+//
+// The planner abandons a goal at maxAttempts=5 (life.h) while one VendorErrand
+// may legitimately act eight times, so the scan leg -- "asking who is here" --
+// used to end the GOAL before the errand could report an empty room (Hector /
+// Faustus, 2026-09-05; architecture review item 3). The strings are the ones
+// VendorErrand.cpp actually emits.
+void TestScanLegIsNotAnAttempt() {
+    std::printf("[errand legs: a question is not a try]\n");
+    Expect(ClassifyErrandLeg(false, true,
+                             "at the shop, asking who is here (scan 1 of 3)") ==
+               ErrandLeg::Waited,
+           "a scan acts, but does not spend an attempt");
+    Expect(ClassifyErrandLeg(false, true,
+                             "asking the 'healer' to show bandages (attempt 1)") ==
+               ErrandLeg::Attempt,
+           "the shop ask is an attempt");
+    Expect(ClassifyErrandLeg(false, false, "found a 'healer'") ==
+               ErrandLeg::Landed,
+           "finding the keeper is progress");
+    Expect(ClassifyErrandLeg(true, false, "the shop is open") ==
+               ErrandLeg::Landed,
+           "an open offer is progress");
+    Expect(ClassifyErrandLeg(false, false, "still walking") ==
+               ErrandLeg::Waited,
+           "waiting is neither progress nor an attempt");
+}
+
 }  // namespace
 
 int main() {
@@ -153,6 +182,7 @@ int main() {
     TestThePriceCeiling();
     TestNoPriceYet();
     TestEveryPlanSaysWhy();
+    TestScanLegIsNotAnAttempt();
     std::printf("%d checks, %d failures\n", g_checks, g_failures);
     return g_failures == 0 ? 0 : 1;
 }

@@ -1,0 +1,664 @@
+{
+  "bank": [],
+  "bank_seen_ms": 2117180820,
+  "build_plan": {
+    "create_dex": 20,
+    "create_int": 10,
+    "create_skills": [
+      {
+        "skill": 37,
+        "tenths": 500
+      },
+      {
+        "skill": 45,
+        "tenths": 500
+      }
+    ],
+    "create_str": 50,
+    "family": "merchant_tinker",
+    "skills": [
+      {
+        "skill": 37,
+        "tenths": 1000
+      },
+      {
+        "skill": 45,
+        "tenths": 500
+      }
+    ],
+    "target_dex": 75,
+    "target_int": 50,
+    "target_str": 100,
+    "unresolved_tenths": 5500
+  },
+  "checkpoint_ms": 2117520301,
+  "death_count": 0,
+  "goal": {
+    "active": true,
+    "attempts": 0,
+    "failure_reason": "",
+    "kind": "MINE",
+    "progress": 1,
+    "started_at_ms": 2117319113
+  },
+  "home_city": "Britain",
+  "hunt_return_pending": false,
+  "identity": {
+    "account_name": "RevGen3_20",
+    "character_name": "Odessa",
+    "created_at_ms": 0,
+    "first_seen_at_ms": 1942884608,
+    "identity_id": "revgen3_20.odessa",
+    "last_seen_at_ms": 2117047279,
+    "sessions": 5,
+    "total_play_time_ms": 4797366
+  },
+  "known_spells": [],
+  "known_spells_seen_ms": 0,
+  "last_death_ms": 0,
+  "last_server_report": {
+    "dead": false,
+    "dex": 20,
+    "gold": 9326,
+    "int": 10,
+    "skills": [
+      {
+        "skill": 37,
+        "tenths": 500
+      },
+      {
+        "skill": 45,
+        "tenths": 500
+      }
+    ],
+    "str": 50,
+    "x": 1429,
+    "y": 1691
+  },
+  "ledger": [
+    {
+      "amount": 568,
+      "detail": "riding horse",
+      "flow": 6,
+      "when_ms": 2117141815
+    }
+  ],
+  "memory": {
+    "creatures": [],
+    "danger": [],
+    "events": [
+      {
+        "at_ms": 1942884608,
+        "detail": "Britain",
+        "kind": "newbie_knowledge_seeded",
+        "place": "",
+        "x": 1496,
+        "y": 1628
+      },
+      {
+        "at_ms": 1942884804,
+        "detail": "session=1",
+        "kind": "mount_unavailable",
+        "place": "",
+        "x": 1496,
+        "y": 1628
+      },
+      {
+        "at_ms": 1942921231,
+        "detail": "opened a bank box",
+        "kind": "bank_learned",
+        "place": "bank",
+        "x": 1428,
+        "y": 1690
+      },
+      {
+        "at_ms": 2030172125,
+        "detail": "i_ingot_iron",
+        "kind": "no_player_seller",
+        "place": "",
+        "x": 1430,
+        "y": 1690
+      },
+      {
+        "at_ms": 2031017325,
+        "detail": "i_ingot_iron",
+        "kind": "no_player_seller",
+        "place": "",
+        "x": 1430,
+        "y": 1690
+      },
+      {
+        "at_ms": 2031920787,
+        "detail": "i_ingot_iron",
+        "kind": "no_player_seller",
+        "place": "",
+        "x": 1430,
+        "y": 1688
+      },
+      {
+        "at_ms": 2032710457,
+        "detail": "i_ingot_iron",
+        "kind": "no_player_seller",
+        "place": "",
+        "x": 1430,
+        "y": 1688
+      },
+      {
+        "at_ms": 2033510005,
+        "detail": "i_ingot_iron",
+        "kind": "no_player_seller",
+        "place": "",
+        "x": 1430,
+        "y": 1688
+      }
+    ],
+    "places": [
+      {
+        "kind": "common_knowledge_bank",
+        "last_verified_ms": 1942884608,
+        "learned_ms": 1942884608,
+        "name": "Britain banker",
+        "visits": 1,
+        "x": 1425,
+        "y": 1690,
+        "z": 0
+      },
+      {
+        "kind": "common_knowledge_healer",
+        "last_verified_ms": 1942884608,
+        "learned_ms": 1942884608,
+        "name": "Britain healer",
+        "visits": 1,
+        "x": 1471,
+        "y": 1611,
+        "z": 20
+      },
+      {
+        "kind": "common_knowledge_provisioner",
+        "last_verified_ms": 1942884608,
+        "learned_ms": 1942884608,
+        "name": "Britain provisioner",
+        "visits": 1,
+        "x": 1469,
+        "y": 1668,
+        "z": 0
+      },
+      {
+        "kind": "healer",
+        "last_verified_ms": 2033536679,
+        "learned_ms": 1942964780,
+        "name": "Dale, the healer",
+        "visits": 60887,
+        "x": 1472,
+        "y": 1614,
+        "z": 20
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2030176673,
+        "learned_ms": 2030176673,
+        "name": "britain_bank_2",
+        "visits": 1,
+        "x": 1430,
+        "y": 1690,
+        "z": 0
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2113654928,
+        "learned_ms": 2030194904,
+        "name": "britain_tailor_2",
+        "visits": 4,
+        "x": 1456,
+        "y": 1681,
+        "z": 0
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2030209636,
+        "learned_ms": 2030209636,
+        "name": "britain_provisioner_2",
+        "visits": 1,
+        "x": 1473,
+        "y": 1673,
+        "z": 0
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2030229385,
+        "learned_ms": 2030229385,
+        "name": "britain_herbalist",
+        "visits": 1,
+        "x": 1503,
+        "y": 1658,
+        "z": 27
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2030245586,
+        "learned_ms": 2030245586,
+        "name": "britain_start",
+        "visits": 1,
+        "x": 1500,
+        "y": 1632,
+        "z": 10
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2030251883,
+        "learned_ms": 2030251883,
+        "name": "britain_inn_2",
+        "visits": 1,
+        "x": 1495,
+        "y": 1621,
+        "z": 20
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2030269116,
+        "learned_ms": 2030269116,
+        "name": "britain_healer",
+        "visits": 1,
+        "x": 1476,
+        "y": 1612,
+        "z": 20
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2030282862,
+        "learned_ms": 2030282862,
+        "name": "britain_baker",
+        "visits": 1,
+        "x": 1455,
+        "y": 1614,
+        "z": 20
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2030296708,
+        "learned_ms": 2030296708,
+        "name": "britain_tanner",
+        "visits": 1,
+        "x": 1436,
+        "y": 1612,
+        "z": 20
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2030328117,
+        "learned_ms": 2030328117,
+        "name": "britain_carpenter",
+        "visits": 1,
+        "x": 1435,
+        "y": 1598,
+        "z": 20
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2030345379,
+        "learned_ms": 2030345379,
+        "name": "britain_bowyer",
+        "visits": 1,
+        "x": 1474,
+        "y": 1583,
+        "z": 20
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2030392596,
+        "learned_ms": 2030392596,
+        "name": "britain_armorer",
+        "visits": 1,
+        "x": 1488,
+        "y": 1579,
+        "z": 27
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2030402526,
+        "learned_ms": 2030402526,
+        "name": "britain_mage",
+        "visits": 1,
+        "x": 1490,
+        "y": 1555,
+        "z": 30
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2030427114,
+        "learned_ms": 2030427114,
+        "name": "britain_stable",
+        "visits": 1,
+        "x": 1514,
+        "y": 1548,
+        "z": 25
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2030453465,
+        "learned_ms": 2030453465,
+        "name": "britain_inn_7",
+        "visits": 1,
+        "x": 1463,
+        "y": 1520,
+        "z": 20
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2030485606,
+        "learned_ms": 2030485606,
+        "name": "britain_blacksmith",
+        "visits": 1,
+        "x": 1417,
+        "y": 1552,
+        "z": 30
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2030511762,
+        "learned_ms": 2030511762,
+        "name": "britain_armorer_3",
+        "visits": 1,
+        "x": 1416,
+        "y": 1528,
+        "z": 28
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2030562904,
+        "learned_ms": 2030562904,
+        "name": "britain_tinkerguildmaster",
+        "visits": 1,
+        "x": 1419,
+        "y": 1649,
+        "z": 14
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2030600848,
+        "learned_ms": 2030600848,
+        "name": "britain_inn_6",
+        "visits": 1,
+        "x": 1427,
+        "y": 1721,
+        "z": 20
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2030612447,
+        "learned_ms": 2030612447,
+        "name": "britain_butcher",
+        "visits": 1,
+        "x": 1445,
+        "y": 1728,
+        "z": 0
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2030624984,
+        "learned_ms": 2030624984,
+        "name": "britain_fisherman_2",
+        "visits": 1,
+        "x": 1435,
+        "y": 1755,
+        "z": 7
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2030639644,
+        "learned_ms": 2030639644,
+        "name": "britain_shipwright",
+        "visits": 1,
+        "x": 1419,
+        "y": 1749,
+        "z": 10
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2030673613,
+        "learned_ms": 2030673613,
+        "name": "britain_fisherman",
+        "visits": 1,
+        "x": 1470,
+        "y": 1761,
+        "z": -2
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2030696318,
+        "learned_ms": 2030696318,
+        "name": "britain_scribe",
+        "visits": 1,
+        "x": 1494,
+        "y": 1720,
+        "z": 7
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2030712644,
+        "learned_ms": 2030712644,
+        "name": "britain_inn_5",
+        "visits": 1,
+        "x": 1502,
+        "y": 1695,
+        "z": 20
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2030735644,
+        "learned_ms": 2030735644,
+        "name": "britain_tailor",
+        "visits": 1,
+        "x": 1551,
+        "y": 1662,
+        "z": 26
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2030754768,
+        "learned_ms": 2030754768,
+        "name": "britain_mage_2",
+        "visits": 1,
+        "x": 1591,
+        "y": 1659,
+        "z": 10
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2031078034,
+        "learned_ms": 2031078034,
+        "name": "britain_inn_3",
+        "visits": 1,
+        "x": 1550,
+        "y": 1772,
+        "z": 10
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2031113954,
+        "learned_ms": 2031113954,
+        "name": "britain_provisioner",
+        "visits": 1,
+        "x": 1602,
+        "y": 1716,
+        "z": 20
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2031147596,
+        "learned_ms": 2031147596,
+        "name": "britain_armorer_2",
+        "visits": 1,
+        "x": 1641,
+        "y": 1688,
+        "z": 25
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2031168930,
+        "learned_ms": 2031168930,
+        "name": "britain_jeweler_2",
+        "visits": 1,
+        "x": 1654,
+        "y": 1646,
+        "z": 0
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2031193724,
+        "learned_ms": 2031193724,
+        "name": "britain_bank",
+        "visits": 1,
+        "x": 1654,
+        "y": 1612,
+        "z": 20
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2031217876,
+        "learned_ms": 2031217876,
+        "name": "britain_inn",
+        "visits": 1,
+        "x": 1625,
+        "y": 1585,
+        "z": 0
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2031237856,
+        "learned_ms": 2031237856,
+        "name": "britain_inn_4",
+        "visits": 1,
+        "x": 1589,
+        "y": 1591,
+        "z": 20
+      },
+      {
+        "kind": "safe",
+        "last_verified_ms": 2117520240,
+        "learned_ms": 2117520240,
+        "name": "logout point",
+        "visits": 1,
+        "x": 1429,
+        "y": 1691,
+        "z": 0
+      }
+    ],
+    "resources": [
+      {
+        "failures": 0,
+        "hinted": false,
+        "label": "",
+        "last_seen_ms": 2117343060,
+        "last_success_ms": 2117343060,
+        "resource": "ore",
+        "successes": 2,
+        "x": 1449,
+        "y": 1246,
+        "z": 5
+      }
+    ],
+    "suppliers": [],
+    "trainers": []
+  },
+  "prices": [
+    {
+      "item": "riding horse",
+      "price": 568,
+      "source": 0,
+      "when_ms": 2117141815,
+      "who": "tan horse",
+      "x": 1387,
+      "y": 1658
+    }
+  ],
+  "recent_deaths": 0,
+  "schema_version": 2,
+  "sessions": [
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 1943003445,
+      "goals_attempted": 5,
+      "goals_completed": 0,
+      "goals_failed": 0,
+      "gold_end": 9910,
+      "gold_start": 10000,
+      "logs_gathered": 0,
+      "places_learned": 4,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1000,
+      "skill_tenths_start": 1000,
+      "started_ms": 1942884608,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2033536739,
+      "goals_attempted": 172,
+      "goals_completed": 132,
+      "goals_failed": 0,
+      "gold_end": 9894,
+      "gold_start": 9910,
+      "logs_gathered": 0,
+      "places_learned": 38,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1000,
+      "skill_tenths_start": 1000,
+      "started_ms": 2029939201,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2113919143,
+      "goals_attempted": 23,
+      "goals_completed": 17,
+      "goals_failed": 0,
+      "gold_end": 9894,
+      "gold_start": 9894,
+      "logs_gathered": 0,
+      "places_learned": 38,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1000,
+      "skill_tenths_start": 1000,
+      "started_ms": 2113621631,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2116854214,
+      "goals_attempted": 18,
+      "goals_completed": 10,
+      "goals_failed": 0,
+      "gold_end": 9894,
+      "gold_start": 9894,
+      "logs_gathered": 0,
+      "places_learned": 38,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1000,
+      "skill_tenths_start": 1000,
+      "started_ms": 2116556759,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2117520301,
+      "goals_attempted": 8,
+      "goals_completed": 0,
+      "goals_failed": 0,
+      "gold_end": 9326,
+      "gold_start": 9894,
+      "logs_gathered": 0,
+      "places_learned": 39,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1000,
+      "skill_tenths_start": 1000,
+      "started_ms": 2117047279,
+      "suppliers_learned": 0
+    }
+  ]
+}

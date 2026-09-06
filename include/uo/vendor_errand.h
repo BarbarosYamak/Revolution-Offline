@@ -43,6 +43,7 @@
 #include "uo/types.h"
 #include "uo/world_model.h"
 
+#include <cstring>
 #include <string>
 
 namespace uo {
@@ -142,6 +143,42 @@ struct VendorErrandResult {
     bool offerOpen = false;
     u32  keeper = 0;
 };
+
+// HOW A CALLER COUNTS ONE ERRAND TICK AGAINST ITS OWN BUDGET.
+//
+// Three answers, not two. The planner abandons a goal after maxAttempts=5
+// (life.h) while ONE errand may legitimately act eight times -- three scans
+// (kMaxScans) plus three open asks plus the buy -- so counting every `acted`
+// tick ended the GOAL before the errand could reach its own verdict, and the
+// empty room was never reported (architecture review 2026-09-05, item 3).
+//
+//   Landed   a leg completed: the keeper was found, reached, or the shop
+//            opened. Real progress, and it clears the failed attempts.
+//   Attempt  a request that can fail on its own terms -- the shop ask, the
+//            purchase. These are what a budget is for.
+//   Waited   asking who is standing here, or simply waiting. A question is
+//            not a try: the errand's own kMaxScans already bounds it.
+//
+// Pure and Client-free so it can be reasoned about and tested (tests/
+// activity_buy.cpp) without a server.
+enum class ErrandLeg : u8 { Landed, Attempt, Waited };
+
+inline ErrandLeg ClassifyErrandLeg(bool offerOpen, bool acted,
+                                   const char* reason) {
+    if (offerOpen) return ErrandLeg::Landed;
+    if (reason) {
+        if (std::strstr(reason, "found a") ||
+            std::strstr(reason, "within reach") ||
+            std::strstr(reason, "ARRIVED") ||
+            std::strstr(reason, "the shop is open"))
+            return ErrandLeg::Landed;
+        // "at the shop, asking who is here (scan N of 3)" -- VendorErrand's
+        // Step::Find scan leg. It sends a packet, so it is `acted`, but it
+        // is a question about the room, not an attempt at the errand.
+        if (std::strstr(reason, "asking who is here")) return ErrandLeg::Waited;
+    }
+    return acted ? ErrandLeg::Attempt : ErrandLeg::Waited;
+}
 
 // A tick-machine, because the runner is one. It keeps its own trip and chase
 // counters, which is deliberate: those counters used to be Runner members

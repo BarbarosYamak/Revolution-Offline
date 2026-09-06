@@ -23,6 +23,8 @@ bool Runner::SettleBankItemMove(Client& client, const Observation& obs) {
     const act::Result r = client.ActionResult();
     if (r == act::Result::Success) {
         bankItemMoveFails_ = 0;
+        bankDepositTries_ = 0;
+        bankDepositItem_.clear();
         planner_.NoteProgress();
         return false;
     }
@@ -316,6 +318,26 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
                             "stock; it gets finished, not stored", amount,
                             made.c_str());
                     continue;
+                }
+                // WHAT THIS LIFE MAKES *FROM* STAYS OUT OF THE BOX.
+                //
+                // A smith's produces names i_ingot_iron and so do its own
+                // recipes, and this branch -- the LOADED one -- banked every
+                // last ingot, while ChooseCraft counts the pack only
+                // (life/Identity.cpp) and nothing anywhere withdraws a craft
+                // input again. "Stocked, stop mining" and "no inputs" on the
+                // same tick (review 2026-09-05, 4b). Same working batch the
+                // two branches below keep, from one place: CraftInputReserve.
+                const i32 inputReserve = life::CraftInputReserve(
+                    *needCfg_.profession, made.c_str(), needCfg_.craftBatch);
+                if (inputReserve > 0) {
+                    if (amount <= inputReserve) {
+                        LogLine("bank: keeping %d %s -- it is what the next "
+                                "batch is made from, not stock", amount,
+                                made.c_str());
+                        continue;
+                    }
+                    amount -= inputReserve;
                 }
                 // A DEPOSIT THAT NEVER LANDS MUST NOT BE RETRIED FOREVER.
                 //

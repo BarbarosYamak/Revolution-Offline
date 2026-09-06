@@ -22,6 +22,15 @@ bool Runner::ProcessHuntAftermath(Client& client, const Observation& obs) {
             const bool cheap = obs.HpFraction() >= 0.75;
             state_.memory.NoteCreatureOutcome(currentFoeName_.c_str(),
                 cheap ? kCreatureEvidenceCheapKill : kCreatureEvidenceCostlyKill, obs.nowMs);
+            // AND THE GROUND GETS THE SAME VERDICT. Heat that only ever rose
+            // shut a novice out of the one yard it was ready for after a
+            // WINNING session (D11, artifacts/validation_wave_2026-09-06.md:
+            // Aurelius 1.38 -> 3.20 with one kill and no deaths). A kill is
+            // this character's own evidence that the place is workable, worth
+            // as much relief as it is worth exoneration for the creature.
+            state_.memory.CoolDanger(obs.x, obs.y,
+                cheap ? -kCreatureEvidenceCheapKill : -kCreatureEvidenceCostlyKill,
+                obs.nowMs);
             state_.memory.NoteEvent("confirmed_kill", currentFoeName_.c_str(), "",
                                     obs.x, obs.y, obs.nowMs);
             LogLine("hunt: confirmed kill target='%s' corpse=0x%08X", currentFoeName_.c_str(), corpse);
@@ -106,6 +115,34 @@ bool Runner::ProcessHuntAftermath(Client& client, const Observation& obs) {
         huntLootMovePending_ = true;
         huntLootNextMs_ = obs.nowMs + 1000;
     }
+    return true;
+}
+
+// THE ZONE IS THE WEAPON. Inside a guarded region a player in trouble does
+// not out-walk the thing chasing him -- he shouts, and Sphere's guardcall
+// keyword answers: `guardcall GUARD,GUARDS`
+// (runtime/scripts/core/defs.scp:16), with GuardsInstantKill=1 on this shard.
+// Odessa was killed by c_lizardman_mace INSIDE a_townBritain at 00:38:38 on
+// 2026-09-06, sixteen seconds after the client logged "You are now under the
+// protection of the city guards", having called nobody (D14,
+// artifacts/validation_wave_2026-09-06.md).
+//
+// Returns true when the guards were the answer -- i.e. the caller is standing
+// in the protection it needs and should not also run.
+bool Runner::CallGuardsIfProtected(Client& client, const Observation& obs) {
+    const wm::Region* here = client.CurrentRegion();
+    if (!here || !here->flags.guarded) return false;
+    // Once every fifteen seconds, not once per tick: a shout is a packet and
+    // a repeated one is the same retry-inside-its-own-deadline fault the
+    // resurrect, bank and vendor asks all had.
+    constexpr i64 kGuardCallIntervalMs = 15000;
+    if (lastGuardCallMs_ != 0 &&
+        obs.nowMs - lastGuardCallMs_ < kGuardCallIntervalMs) return true;
+    lastGuardCallMs_ = obs.nowMs;
+    LogLine("interrupt=GUARDS reason=\"hurt at %.0f%% inside %s with a "
+            "hostile on me -- calling the guards\"",
+            obs.HpFraction() * 100.0, here->name.c_str());
+    client.ActionSay("Guards!");
     return true;
 }
 
@@ -221,19 +258,44 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
     std::vector<Client::HostileHit> hostiles;
     client.ScanHostiles(12, hostiles);
     if (hostiles.empty()) {
+        // The last attacker can leave sight before the attack observation
+        // expires. Keep the retreat alive until both sources say it is safe.
+        if (obs.underAttack || obs.attackersOnMe > 0) {
+            RetreatToSafety(client);
+            nextActionMs_ = obs.nowMs + 2000;
+            return false;
+        }
         survivalRetreat_ = false;
         currentFoe_ = 0;
+        dangerWatchHp_ = -1;    // the next fight is watched from its own start
         client.EnsurePeaceMode();
         return true;   // the danger passed
     }
 
     // Remember where this went badly -- ONCE PER FIGHT, not once per tick.
     // Per-tick notes are how one twenty-minute stalemate compounded a single
-    // wolf into heat 499.89 and made the whole forest look lethal.
+    // wolf into heat 499.89 and made the whole forest look lethal. The
+    // once-a-minute cadence is that anti-stalemate guard and stays.
+    //
+    // WHAT THE MINUTE WRITES IS HARM, NOT TIME. A flat 0.5 per minute of any
+    // fight heated a ground the character was WINNING exactly as fast as one
+    // that was killing it: Aurelius went 1.38 -> 3.20 at the Britain
+    // graveyard with one kill and zero deaths and was then refused the yard
+    // (D11, artifacts/validation_wave_2026-09-06.md). What a player actually
+    // remembers about a spot is how much it cost, so the note is the damage
+    // taken during that minute as a fraction of this character's own maximum
+    // health -- half your life in a minute writes 0.5, an unscratched minute
+    // writes nothing at all.
+    if (dangerWatchHp_ < 0) dangerWatchHp_ = obs.hp;
     if (obs.nowMs - lastDangerNoteMs_ > 60000) {
+        const i32 hurt = std::max(0, dangerWatchHp_ - obs.hp);
         lastDangerNoteMs_ = obs.nowMs;
-        state_.memory.NoteDanger(obs.x, obs.y, 14, hostiles.front().name.c_str(),
-                                 0.5, obs.nowMs);
+        dangerWatchHp_ = obs.hp;
+        if (hurt > 0 && obs.hpMax > 0)
+            state_.memory.NoteDanger(obs.x, obs.y, 14, hostiles.front().name.c_str(),
+                                     static_cast<double>(hurt) /
+                                         static_cast<double>(obs.hpMax),
+                                     obs.nowMs);
     }
 
     CombatStrategyId strategy = needCfg_.profession
@@ -308,6 +370,7 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
                                                        "this nerve stands in"
                                           : "health below the bail line");
         client.EnsurePeaceMode();
+        dangerWatchHp_ = -1;
         // Once per fight, not once per tick -- same guard as the note
         // above (S2_WIRING_PLAN.md review finding 4). This is now also
         // where the AvoidCombat arm's danger note lands, since it always
@@ -335,6 +398,7 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
             state_.memory.NoteEvent("first_near_death", hostiles.front().name.c_str(),
                                     "", obs.x, obs.y, obs.nowMs);
         }
+        CallGuardsIfProtected(client, obs);
         RetreatToSafety(client);
         nextActionMs_ = obs.nowMs + 2000;
         planner_.NoteAttempt(obs.nowMs);
@@ -353,8 +417,9 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
         }
     }
     if (!target) {
-        client.EnsurePeaceMode();
-        return true;
+        RetreatToSafety(client);
+        nextActionMs_ = obs.nowMs + 2000;
+        return false;
     }
 
     const i32 dist = TileDist(target->x, target->y, obs.x, obs.y);
@@ -565,29 +630,68 @@ int Runner::PickSurvivalSpell(Client& client, const Observation& obs, bool heali
             return -1;
     }
     spell::LoadSpellTable(client.DataDir());
-    const spell::SpellDef* best = nullptr;
+    std::vector<SpellRung> rungs;
     for (const spell::SpellDef& d : spell::SpellTable()) {
         if (d.unknownFlags || !(d.flags & spell::kFlagTargChar) ||
             (d.flags & (spell::kFlagArea | spell::kFlagField | spell::kFlagSummon |
                         spell::kFlagTargDead)) ||
-            obs.SkillTenths(rules::kMagery) < d.minSkillTenths ||
-            (requireSupplies && obs.mana < d.mana) ||
             !BookHasSpell(client, obs.spellbookSerial, d.spell)) continue;
         if (healing ? (!(d.flags & spell::kFlagHeal) || (d.flags & spell::kFlagHarm))
                     : (!(d.flags & spell::kFlagDamage) || !(d.flags & spell::kFlagHarm))) continue;
-        bool supplied = true;
+        SpellRung r;
+        r.spell = d.spell;
+        r.circle = d.circle;
+        r.mana = d.mana;
+        r.minSkillTenths = d.minSkillTenths;
+        r.supplied = true;
         for (const char* reagent : d.reagents) {
             if (!reagent) break;
-            if (market::QtyOf(obs.pack, reagent) < 1) supplied = false;
+            if (market::QtyOf(obs.pack, reagent) < 1) r.supplied = false;
         }
-        if ((!requireSupplies || supplied) && (!best || d.mana < best->mana)) best = &d;
+        rungs.push_back(r);
     }
-    return best ? best->spell : -1;
+    // The choice itself is pure and lives with the rest of the life policy
+    // (life.h): strongest castable rung to attack with, cheapest to heal with,
+    // walking back down the ladder when mana or reagents run short.
+    return PickSpellRung(rungs, obs.SkillTenths(rules::kMagery), obs.mana,
+                         healing, requireSupplies);
+}
+
+// EVERY ATTACK SPELL THIS BOOK AND THIS SKILL ALLOW, strongest rung first,
+// ignoring mana and the pack. This is the ladder the fight will walk down, and
+// therefore the list the reagent errand has to shop for: stocking only the
+// cheapest rung is why Aurelius fought a whole session with Magic Arrow while
+// holding Harm, Fireball, Poison and Lightning (D8,
+// artifacts/validation_wave_2026-09-06.md).
+void Runner::AttackLadder(Client& client, const Observation& obs,
+                          std::vector<const spell::SpellDef*>& out) const {
+    out.clear();
+    if (!obs.spellbookSerial) return;
+    spell::LoadSpellTable(client.DataDir());
+    for (const spell::SpellDef& d : spell::SpellTable()) {
+        if (d.unknownFlags || !(d.flags & spell::kFlagTargChar) ||
+            (d.flags & (spell::kFlagArea | spell::kFlagField | spell::kFlagSummon |
+                        spell::kFlagTargDead)) ||
+            !(d.flags & spell::kFlagDamage) || !(d.flags & spell::kFlagHarm) ||
+            obs.SkillTenths(rules::kMagery) < d.minSkillTenths ||
+            !BookHasSpell(client, obs.spellbookSerial, d.spell)) continue;
+        out.push_back(&d);
+    }
+    std::sort(out.begin(), out.end(),
+              [](const spell::SpellDef* a, const spell::SpellDef* b) {
+                  SpellRung ra, rb;
+                  ra.circle = a->circle; ra.mana = a->mana;
+                  rb.circle = b->circle; rb.mana = b->mana;
+                  return StrongerRung(ra, rb, false);
+              });
 }
 
 bool Runner::DoHeal(Client& client, const Observation& obs) {
     if (obs.dead) return DoSurvive(client, obs);
-    if (obs.underAttack || obs.attackersOnMe > 0) return DoSurvive(client, obs);
+    if (obs.underAttack || obs.attackersOnMe > 0) {
+        DoSurvive(client, obs);
+        return false;
+    }
     if (obs.HpFraction() >= needCfg_.healHpFraction) return true;
     client.EnsurePeaceMode();
     // Read a real book before declaring that a caster has no healing spell.
@@ -613,10 +717,31 @@ bool Runner::DoHeal(Client& client, const Observation& obs) {
     see.canCastHeal = healingSpell >= 0;
     see.useBandages = WantsConsumable(needCfg_, "bandage") &&
                       obs.SkillTenths(rules::kHealing) > 0;
-    see.canBuySupplies = WantsConsumable(needCfg_, "bandage") ||
-                        WantsConsumable(needCfg_, "heal potion");
-    // Bandages are a healer's counter (Gear.cpp bandageReq.Sell("healer")).
-    if (const wm::Place* shop = client.NearestServicePlace(wm::Service::Healer))
+    const bool canBuyBandages = see.useBandages && obs.SkillTenths(rules::kHealing) >= 300;
+    // NOTHING TO HEAL WITH AND NOTHING ON THE WAY. Below the heal line with
+    // no bandage, no potion and no heal spell, the only question left is
+    // whether a counter will sell something -- and the healer's own list
+    // holds both i_bandage {5 20} and i_potion_heal {3 12}
+    // (tm_vend.scp:1110-1111), with gold paid from the bank. Odessa was in
+    // this exact state at 6/50 HP beside that healer on 2026-09-06 and the
+    // errand had nothing it was allowed to ask for (D13,
+    // artifacts/validation_wave_2026-09-06.md).
+    //
+    // AND IT IS AN EMERGENCY, NOT MERELY A SCRATCH. The line is this life's
+    // own flee fraction -- the health at which it breaks off a fight -- so a
+    // tamer at 66% with Veterinary and no Healing still gets the standing
+    // answer ("get a potion, a bandage you cannot use is not the fix"), and
+    // only a character that is actually dying overrides its catalogue.
+    const bool emergency = obs.bandages == 0 && obs.healPotions == 0 &&
+                           !see.canCastHeal &&
+                           obs.HpFraction() < needCfg_.fleeHpFraction;
+    see.canBuySupplies = canBuyBandages ||
+                        WantsConsumable(needCfg_, "heal potion") ||
+                        emergency;
+    // Use the counter for this build's self-healing supplies.
+    const wm::Service healingService = canBuyBandages
+        ? wm::Service::Healer : wm::Service::Alchemist;
+    if (const wm::Place* shop = client.NearestServicePlace(healingService))
         see.supplyDistance = TileDist(obs.x, obs.y, shop->position.x, shop->position.y);
     // obs.gold is the BANK total on this shard, not the pack (obs.goldOnHand
     // is that) -- "can this be fixed with money" is the bank question, not
@@ -646,6 +771,13 @@ bool Runner::DoHeal(Client& client, const Observation& obs) {
     const wm::Region* healingRegion = client.CurrentRegion();
     if (healingRegion && healingRegion->flags.guarded)
         tune.minHpToShop = 0.0;  // a local medical errand inside town is safe
+    // WAITING IS ONLY A PLAN IF WAITING FIXES IT. minHpToShop exists so a
+    // character regenerates to a safe margin before walking a shopping
+    // circuit -- sound when it has SOMETHING, and the Faustus case in
+    // heal.h:78-82 shows what it costs when it has nothing: ten minutes
+    // beside a counter that was selling the answer. In the emergency the
+    // counter IS the plan.
+    if (emergency) tune.minHpToShop = 0.0;
     // UNKNOWN until an observation exists; the struct default of 2 stands in
     // for it until then.
     if (const market::PriceObservation* p = state_.prices.Latest(
@@ -739,18 +871,52 @@ bool Runner::DoHeal(Client& client, const Observation& obs) {
         case HealStep::BuySupplies:
             // Reuse the existing purchasing policy and activities, but defer
             // weapon/clothing shopping until the patient has recovered.
+            //
+            // THE FLAG IS SET FOR THIS CALL AND NO OTHER. DoReplaceEquipment
+            // is also a GOAL, picked by the planner for upkeep, and upkeep is
+            // where the "a crafter does not buy bandages" rule belongs. What
+            // the flag says is narrower and true only here: this patient has
+            // nothing to heal with at all, so the medicine the counter DOES
+            // stock is the medicine to buy.
+            emergencySelfHeal_ = emergency;
             DoReplaceEquipment(client, obs, true);
+            emergencySelfHeal_ = false;
             return false;
 
         case HealStep::MakeBandages:
             return HandOff(planner_.Current().kind, GoalKind::MakeBandages, 60000,
                            "too poor to buy; cutting cloth", obs.nowMs);
 
-        case HealStep::Rest:
+        case HealStep::Rest: {
+            // RESTING IS A THING YOU DO SOMEWHERE SAFE.
+            //
+            // DecideHeal's rest arm reads see.inDanger = obs.underAttack,
+            // which is the moment of a swing, not the presence of a pursuer.
+            // Odessa's plan on 2026-09-06 at 00:37:28 was "rest -- recover
+            // health here before a shopping trip" while a named lizardman
+            // that had followed her from the road took her from 12 HP to
+            // dead (D14). A hostile in sight makes this ground the wrong
+            // ground: shout if the guards can hear, otherwise walk to where
+            // they can.
+            const bool threatened = obs.underAttack || obs.attackersOnMe > 0 ||
+                                    obs.hostilesNear > 0;
+            if (threatened) {
+                if (!CallGuardsIfProtected(client, obs)) {
+                    LogLine("interrupt=FLEE_TO_GUARDS reason=\"hurt at %.0f%% "
+                            "with %d hostile(s) in sight and no guard "
+                            "protection here -- resting is not an option\"",
+                            obs.HpFraction() * 100.0, obs.hostilesNear);
+                    RetreatToSafety(client);
+                }
+                nextActionMs_ = obs.nowMs + 2000;
+                planner_.NoteAttempt(obs.nowMs);
+                return false;
+            }
             // No NoteProgress -- resting is not progress; five of these trip
             // the anti-spin backstop, which is correct here.
             nextActionMs_ = obs.nowMs + 5000;
             return false;
+        }
 
         case HealStep::Stuck:
             LogLine("goal_stuck=HEAL reason=\"%s\"", p.reason);
@@ -816,6 +982,8 @@ bool Runner::DoRecoverCorpse(Client& client, const Observation& obs) {
         see.hpFraction >= tune.minHpToReturn) return false;
 
     const RecoveryPlan plan = DecideRecovery(see, tune);
+    const bool interruptCorpseTrip = lastRecoveryPlan_ == RecoveryStep::TravelToCorpse &&
+                                    plan.step == RecoveryStep::Recover;
     if (plan.step != lastRecoveryPlan_) {
         LogPlan(RecoveryStepName(plan.step), plan.reason);
         lastRecoveryPlan_ = plan.step;
@@ -836,9 +1004,11 @@ bool Runner::DoRecoverCorpse(Client& client, const Observation& obs) {
             // back -- the exact death loop this handler exists to prevent.
             // Keep ownership until healthy; a timed handoff can expire while
             // regeneration is still working and restart the corpse trip.
-            if (!see.threatened && client.TravelBusy())
+            if (interruptCorpseTrip) {
                 client.TravelAbort("heal before corpse recovery");
-            travelInFlight_ = false;
+                travelInFlight_ = false;
+            }
+            // Subsequent ticks may own a medical-supply journey. Let it arrive.
             return DoHeal(client, obs);
 
         case RecoveryStep::TravelToCorpse:

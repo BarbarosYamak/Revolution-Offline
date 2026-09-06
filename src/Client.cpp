@@ -319,6 +319,18 @@ bool Client::ConnectAndSendSeed(const char* host, u16 port) {
 }
 
 bool Client::Send(const u8* data, usize size, const char* note) {
+    // Offline harness: capture instead of write. Nothing else changes -- the
+    // packet was still built by the live builder, so a test asserts on the
+    // exact bytes the shard would have received.
+    if (offlineForTest_) {
+        SentPacket p;
+        p.opcode = size ? data[0] : 0;
+        p.size = size;
+        p.bytes.assign(data, data + size);
+        sentForTest_.push_back(std::move(p));
+        LogPacketRedacted(Direction::Out, data, size, note);
+        return true;
+    }
     if (!sock_.SendAll(data, size)) {
         char detail[160];
         std::snprintf(detail, sizeof(detail),
@@ -2831,6 +2843,21 @@ void Client::ActionTick() {
         }
         target_.OnCancelled();
     }
+}
+
+// The goal that started an action is the goal that owns it. See the
+// declaration in Client.h for the evidence this exists for.
+void Client::AbandonGoalOwnedAction(const char* why) {
+    const char* reason = (why && why[0]) ? why : "goal changed";
+    if (action_.Active()) {
+        if (drag_.InFlight()) {
+            LogWarn("[ITEM] drag of 0x%08X abandoned (%s)\n",
+                    drag_.Serial(), reason);
+            drag_.Reset();
+        }
+        FinishAction(act::Result::InvalidState, reason);
+    }
+    CancelTargetCursor(reason);   // no-op unless a cursor is actually armed
 }
 
 // --- helpers ---------------------------------------------------------------
@@ -6344,6 +6371,10 @@ void Client::SendResurrectChoice(u8 choice) {
 }
 
 i64 Client::NowMs() const {
+    // SetClockForTest freezes every wall-clock read in one place: all 48
+    // in-file uses go through here, so a harness that steps the clock steps
+    // deadlines, retry gaps and action timeouts with it.
+    if (clockOverrideMs_ >= 0) return clockOverrideMs_;
     return std::chrono::duration_cast<std::chrono::milliseconds>(
                std::chrono::steady_clock::now().time_since_epoch()).count();
 }

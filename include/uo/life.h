@@ -339,6 +339,52 @@ inline constexpr i64 kDangerHalfLifeMs = 45 * 60 * 1000;
 // character's own profession score negative, so it idled instead of working.
 inline constexpr double kMaxDangerHeat = 4.0;
 
+// ONE RUNG OF A CASTER'S LADDER, described in what the character can observe:
+// the spell table's own circle (SKILLREQ/10) and mana cost, the Magery it
+// wants, and whether its reagents are in the pack right now. Nothing here
+// knows a spell id's meaning -- the caller reads the rows out of
+// spell::SpellTable().
+struct SpellRung {
+    int  spell = 0;
+    int  circle = 0;
+    int  mana = 0;
+    i32  minSkillTenths = 0;
+    bool supplied = false;      // every reagent it needs is in the pack
+};
+
+// WHICH OF TWO SPELLS IS THE BETTER ANSWER.
+//
+// Healing wants the CHEAPEST thing that heals: mana spent on overkill is mana
+// not spent on the next heal. Attacking wants the STRONGEST rung -- the owner's
+// rule of 2026-09-06 is that a mage fights with the full offensive ladder its
+// Magery allows (Magic Arrow, Harm, Poison, Fireball, Lightning, ...), not
+// only Magic Arrow, which is what picking the lowest mana cost produced for a
+// whole session (artifacts/validation_wave_2026-09-06.md D8). Strength is the
+// circle, with mana cost as the tie-break inside a circle.
+inline bool StrongerRung(const SpellRung& a, const SpellRung& b, bool healing) {
+    if (healing) return a.mana < b.mana;
+    if (a.circle != b.circle) return a.circle > b.circle;
+    return a.mana > b.mana;
+}
+
+// The rung to cast NOW: the best one this character's Magery, mana and pack
+// allow. Mana shortage is what walks the attack ladder back down -- a mage
+// with 8 mana casts Magic Arrow, the same mage with 30 casts Lightning --
+// and an unsupplied rung is not castable at all. `requireSupplies=false`
+// answers the other question, "what does this book hold that I could cast if
+// I were stocked", which is what the reagent errand shops against.
+// Returns -1 when nothing qualifies.
+inline int PickSpellRung(const std::vector<SpellRung>& rungs, i32 mageryTenths,
+                         i32 mana, bool healing, bool requireSupplies) {
+    const SpellRung* best = nullptr;
+    for (const SpellRung& r : rungs) {
+        if (mageryTenths < r.minSkillTenths) continue;
+        if (requireSupplies && (mana < r.mana || !r.supplied)) continue;
+        if (!best || StrongerRung(r, *best, healing)) best = &r;
+    }
+    return best ? best->spell : -1;
+}
+
 // Evidence magnitudes a fight's OUTCOME contributes to a CreatureVerdict.
 // Negative = safe, positive = dangerous. Proving danger takes one bad
 // surprise; proving safety takes repetition -- a single cheap kill should not
@@ -411,6 +457,12 @@ public:
                                         i64 nowMs) const;
     void NoteSupplier(const KnownSupplier& s);
     void NoteDanger(i32 x, i32 y, i32 radius, const char* threat, double heat, i64 nowMs);
+    // The opposite evidence for a PLACE: a fight won here, a corpse looted
+    // here. Lowers the remembered heat of every danger record covering the
+    // spot, floored at 0.0 (a place cannot be proven safer than unknown), and
+    // records nothing where nothing was ever remembered. Decays the stored
+    // value before subtracting, the same way NoteDanger compounds onto it.
+    void CoolDanger(i32 x, i32 y, double relief, i64 nowMs);
     void NoteEvent(const char* kind, const char* detail, const char* place,
                    i32 x, i32 y, i64 nowMs);
 
@@ -959,6 +1011,22 @@ bool WoolChainWorkInProgress(const prof::Profession& p,
                              const std::vector<market::Stock>& holdings,
                              i32 craftBatch, const char* item);
 
+// HOW MANY OF `item` THIS LIFE MUST KEEP TO HAVE ANYTHING TO CRAFT WITH.
+//
+// Zero unless `item` is one of the profession's own craft inputs -- declared
+// in `consumes` or named by a recipe for something in `produces`, the same
+// union runner/Bank.cpp's input-deposit branch already builds.
+//
+// WHAT IT FIXES: a smith's `produces` names i_ingot_iron and so does its
+// armour recipes, so the loaded branch of DoBank deposited every ingot in the
+// pack while ChooseCraft counts the PACK only (life/Identity.cpp) and no
+// craft-input withdrawal exists anywhere -- "stocked, stop mining" and "no
+// inputs" on the same tick (architecture review 2026-09-05, item 4b). The
+// reserve is craftBatch*2, the same working batch the unsellable-stock and
+// input branches of DoBank already keep, so all three agree.
+i32 CraftInputReserve(const prof::Profession& p, const char* item,
+                      i32 craftBatch);
+
 // Does this life go looking for fights, or only finish the ones that find it?
 // Read off the build -- a profession that wants MORE than the 50.0 creation
 // grant in a weapon school intends to use it. Shared because two systems ask:
@@ -1132,6 +1200,18 @@ struct NeedConfig {
     // list could be replaced this pass" the moment the pack crossed eight.
     i32    bandageLow       = 8;     // uo-offline's threshold shape, our numbers
     i32    bandageFull      = 30;
+    // THE LINE THAT MATTERS IN THE FIELD, as opposed to the line that matters
+    // in town. `bandageLow` is the owner's DEPARTURE floor -- what a hunter
+    // walks out with -- and reading it as the restock trigger everywhere took
+    // Hector out of the Britain graveyard for ONE bandage, mid-hunt, right
+    // after a kill (99 against a floor of 100; REPLACE_EQUIPMENT 130
+    // superseded SURVIVE, artifacts/validation_wave_2026-09-06.md D12).
+    // Resolved beside the other two: the departure floor less one fight's
+    // worth of bandages, which is the life's OWN catalogue `low` (prof::
+    // Bandages() = 8, described there as what a warrior stands in a fight
+    // with). Equal to bandageLow for a life that does not hunt, so nothing
+    // that never leaves town changes.
+    i32    bandageFieldLow  = 8;
     double bankWeightFrac   = 0.85;
     // THE WEIGHT AT WHICH A FIGHTER STOPS HUNTING. Loot has to fit in the pack,
     // so the hunt need stands down here -- and the bank need must pick up at
@@ -1228,6 +1308,41 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
 // use, and the heal-potion branch sitting behind it never ran.
 bool WantsTool(const NeedConfig& cfg, const char* name);
 bool WantsConsumable(const NeedConfig& cfg, const char* name);
+
+// WHICH SHOPKEEPER TRADE SELLS A CRAFT INPUT, as the paperdoll names them.
+// Read off this shard's own vendor templates, never guessed: the mage shop
+// carries both halves of the Inscription chain -- SELL=i_scroll_blank,{10 15}
+// and every Magery reagent (templates/tm_vend.scp:633-656) -- which is why a
+// scribe's whole shopping trip is one stop.
+//
+// LIVES HERE, NOT IN THE ERRAND, so the NEED can ask the same question the
+// ERRAND asks before it scores a shopping trip. Odessa picked BUY_SUPPLIES at
+// 0.95 five times in one session and was handed off every time -- "i_ingot_iron
+// is a player-market good ... another profession makes this, not a shopkeeper"
+// -- because the need never consulted the route (D7,
+// artifacts/validation_wave_2026-09-06.md). It is `npcTradeKnown` for
+// market::RouteForInput, and that argument decides precedence: a scribe's blank
+// scrolls are BOUGHT even though the lumberjack line also produces them.
+// nullptr = no NPC trade known.
+inline const char* SupplierTradeFor(const std::string& item) {
+    if (item.rfind("i_reag_", 0) == 0) return "mage";
+    if (item == "i_scroll_blank")      return "mage";
+    if (item == "i_bottle_empty")      return "alchemist";
+    if (item == "i_map_blank")         return "mapmaker";      // tm_vend.scp:1155
+    if (item == "i_mapmakers_pen")     return "mapmaker";      // added 2026-09-05
+    if (item == "i_feather")           return "provisioner";
+    // KINDLING, which is what a campfire is made of and therefore what
+    // cooking needs. Marla caught fish, cut them into steaks and then SOLD
+    // the steaks raw at 2 gold because she could not cook: NeedCraft never
+    // appeared in her list at all, since the recipe wanted a fire and she had
+    // nothing to light. Cooked steaks are worth 6 (i_fish_cut_cooked
+    // VALUE=6), so the missing gap was threefold value on every fish.
+    //
+    // The provisioner stocks it -- her own vendor window showed "kindling
+    // gfx=0x0DE1 qty=36 price=1" while she stood there buying bread.
+    if (item == "i_kindling")          return "provisioner";
+    return nullptr;
+}
 
 // ===========================================================================
 // STAT FARMING -- the STR a build's own skills can never give it

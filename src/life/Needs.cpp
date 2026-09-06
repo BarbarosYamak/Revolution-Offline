@@ -176,6 +176,31 @@ bool WoolChainWorkInProgress(const prof::Profession& p,
     return cloth < perSitting;
 }
 
+// See the declaration in life.h.
+i32 CraftInputReserve(const prof::Profession& p, const char* item,
+                      i32 craftBatch) {
+    if (item == nullptr) return 0;
+    bool isInput = false;
+    for (const std::string& c : p.consumes) {
+        if (c == item) { isInput = true; break; }
+    }
+    if (!isInput) {
+        for (const std::string& made : p.produces) {
+            const prod::Recipe* r = prod::FindRecipe(made.c_str());
+            if (r == nullptr) continue;
+            for (const prod::Ingredient& in : r->inputs) {
+                if (in.item && std::strcmp(in.item, item) == 0) {
+                    isInput = true;
+                    break;
+                }
+            }
+            if (isInput) break;
+        }
+    }
+    if (!isInput) return 0;
+    return std::max(1, craftBatch) * 2;
+}
+
 namespace {
 
 // HOW FULL IS FULL ENOUGH, for the purpose of wanting more.
@@ -386,6 +411,12 @@ void ResolveConsumableThresholds(NeedConfig& cfg, i32 gold) {
         if (c.restockTo > 0) full = c.restockTo;
         break;
     }
+    // ONE FIGHT'S WORTH, as the catalogue itself defines it: prof::Bandages()
+    // declares low = 8 and CrafterHealPotions() calls that "the warrior's
+    // eight ... for standing in a fight". Kept before the owner's floor is
+    // applied below, because the floor is about LEAVING TOWN and this is about
+    // what a single fight costs.
+    const i32 perFight = low;
 
     if (WantsToHunt(*cfg.profession)) {
         if (low < kFighterBandageFloor) low = kFighterBandageFloor;
@@ -398,6 +429,14 @@ void ResolveConsumableThresholds(NeedConfig& cfg, i32 gold) {
 
     cfg.bandageLow  = low;
     cfg.bandageFull = full;
+    // THE FIELD LINE. A hunter standing in a graveyard does not walk 196 tiles
+    // back to a healer because it is ONE bandage under the departure floor;
+    // it finishes the trip and tops up on the next town errand. The line is
+    // the floor less one fight's worth, never below the life's own declared
+    // low -- and identical to the floor for a life that does not hunt.
+    cfg.bandageFieldLow = WantsToHunt(*cfg.profession)
+                              ? std::max(perFight, low - perFight)
+                              : low;
 }
 
 // EVERY BANDAGE COUNTER IN TOWN IS EMPTY, as recorded by DoReplaceEquipment
@@ -417,6 +456,85 @@ static bool BandageCountersEmpty(const Memory& mem, const NeedConfig& cfg,
         return true;
     }
     return false;
+}
+
+// EVERY HEAL-POTION COUNTER IN TOWN IS EMPTY, the bandage clause's twin.
+// Recorded by Gear.cpp's DoReplaceEquipment (event "potion_counters_empty")
+// when both known counters -- healer and alchemist -- are drained; read here
+// so the need model damps instead of re-scoring the same dead shelf every
+// cooldown. Without this, NeedEquipment(heal potions) kept scoring
+// 0.5 x 260 = 130 through an empty Britain healer shelf (Odessa 00:15:42,
+// 00:20:44, 00:26:00, 00:33:25; Hector 00:34:27, same counter, 2026-09-06).
+static bool PotionCountersEmpty(const Memory& mem, const NeedConfig& cfg,
+                                const Observation& obs) {
+    for (const LifeEvent& e : mem.Events()) {
+        if (e.kind != "potion_counters_empty") continue;
+        i32 sess = -1;
+        if (std::sscanf(e.detail.c_str(), "session=%d", &sess) != 1) continue;
+        if (sess != cfg.sessionIndex) continue;
+        if (e.atMs > obs.nowMs) continue;
+        if (obs.nowMs - e.atMs >= kShelfRestockMs) continue;
+        return true;
+    }
+    return false;
+}
+
+// THE MANA A CASTER NEEDS BEFORE IT WALKS TO A HUNTING GROUND.
+//
+// Hunt readiness asked about health, weight and unbanked loot and never about
+// the pool the character actually fights with. Aurelius (2026-09-06 00:16:51)
+// said "meditating before the next cast", entered the trance, and 1.5 s later
+// TRAIN_COMBAT at 58.5 superseded PRACTICE at 45 and took him back to the
+// graveyard at mana 0; the pair repeated at 00:23:03-00:23:08 (D5,
+// artifacts/validation_wave_2026-09-06.md). Owner rule 2026-09-06: a mage
+// fights with the strongest rung its Magery, mana and pack allow, so the bar
+// is that rung's own cost -- the opening cast the runner will actually pick.
+//
+// Read from the spell table's own rows, never a constant, and by definition
+// reachable: the rung is chosen at a FULL pool, so a rested caster always
+// clears it. Two fallbacks, both deliberately conservative:
+//   * an unread book (knownSpells empty means NOT KNOWN, not empty) or a
+//     pouch that supplies no rung at all -- then the bar is the same fraction
+//     of the pool this life already demands of its health before a fight
+//     (healHpFraction), which a full pool also clears.
+//   * max mana is Intelligence on this shard; the spellbook need already
+//     reads the pair that way ("costs %d mana and this character can hold
+//     %d"). obs.mana is taken as a floor in case intel has not been seen yet.
+static bool CasterOpeningMana(const NeedConfig& cfg, const Observation& obs,
+                              i32* wantOut, i32* poolOut) {
+    const i32 pool = std::max(obs.intel, obs.mana);
+    i32 want = 0;
+    if (obs.SpellbookRead()) {
+        std::vector<SpellRung> rungs;
+        for (const spell::SpellDef& d : spell::SpellTable()) {
+            if (d.unknownFlags) continue;
+            if (!(d.flags & spell::kFlagDamage) ||
+                !(d.flags & spell::kFlagHarm) ||
+                !(d.flags & spell::kFlagTargChar)) continue;
+            if (d.flags & (spell::kFlagArea | spell::kFlagField |
+                           spell::kFlagSummon | spell::kFlagTargDead)) continue;
+            if (!obs.KnowsSpell(d.spell)) continue;
+            SpellRung r;
+            r.spell = d.spell;
+            r.circle = d.circle;
+            r.mana = d.mana;
+            r.minSkillTenths = d.minSkillTenths;
+            r.supplied = true;
+            for (const char* reagent : d.reagents) {
+                if (!reagent) break;
+                if (market::QtyOf(obs.pack, reagent) < 1) r.supplied = false;
+            }
+            rungs.push_back(r);
+        }
+        const int rung =
+            PickSpellRung(rungs, obs.SkillTenths(rules::kMagery), pool,
+                          /*healing=*/false, /*requireSupplies=*/true);
+        if (const spell::SpellDef* d = spell::DefForSpell(rung)) want = d->mana;
+    }
+    if (want <= 0) want = static_cast<i32>(cfg.healHpFraction * pool);
+    if (wantOut) *wantOut = want;
+    if (poolOut) *poolOut = pool;
+    return obs.mana >= want;
 }
 
 bool WantsConsumable(const NeedConfig& cfg, const char* name) {
@@ -731,14 +849,27 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
             // fighter, gatherer and below-the-gate crafter keeps the old 0.5
             // exactly, which is the non-crafter upkeep path the brief protects.
             const bool brews = BrewsOwnHealPotion(*cfg.profession, obs);
-            add(NeedKind::NeedEquipment, brews ? 0.20 : 0.5, "heal potions",
-                brews ? "no Healing skill -- but this life BREWS heal potions "
+            double potionUrgency = brews ? 0.20 : 0.5;
+            // THE SHOP ERRAND YIELDS WHEN THE SHOPS ARE EMPTY, same shape as
+            // the bandage clause above: only damped while not currently
+            // wounded, so a bleeding character still asks for the potion at
+            // full urgency and an alchemist route (WTB) may still open.
+            const bool countersEmpty = PotionCountersEmpty(mem, cfg, obs);
+            if (countersEmpty && hpFrac >= cfg.healHpFraction)
+                potionUrgency = 0.10;
+            add(NeedKind::NeedEquipment, potionUrgency, "heal potions",
+                countersEmpty && hpFrac >= cfg.healHpFraction
+                    ? "every known heal-potion counter is drained -- damped "
+                      "until the shelf restocks rather than re-scored every "
+                      "cooldown"
+                : brews ? "no Healing skill -- but this life BREWS heal potions "
                         "and carries the skill for it, so buying them off a "
                         "shelf is the wrong errand"
                       : "no Healing skill to make a bandage work -- a potion is "
                         "the only self-heal this life has",
-                Fmt("potions=%d low=%d gold=%d brews_own=%d", obs.healPotions,
-                    low, obs.gold, brews ? 1 : 0));
+                Fmt("potions=%d low=%d gold=%d brews_own=%d counters_empty=%d",
+                    obs.healPotions, low, obs.gold, brews ? 1 : 0,
+                    countersEmpty ? 1 : 0));
         }
     }
 
@@ -785,17 +916,36 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         // restock window passes.
         if (BandageCountersEmpty(mem, cfg, obs) && hpFrac >= cfg.healHpFraction)
             bandageUrgency = 0.10;
+        // A SHORTFALL SMALLER THAN ONE FIGHT IS NOT A TRIP.
+        //
+        // The floor is what a hunter LEAVES TOWN with; between the field line
+        // and the floor it is still short, but not short enough to be worth
+        // abandoning where it is. Hector, 2026-09-05 00:29:47: 99 bandages
+        // against a floor of 100, REPLACE_EQUIPMENT 130 superseded SURVIVE
+        // one second after a kill and walked him out of the graveyard for a
+        // single bandage (D12). Damped to the same 0.10 the drained-counter
+        // clause above uses -- visible in telemetry, under a hunt (0.45) and
+        // under the work goals, so the top-up happens on the next town errand
+        // rather than instead of the session. Below the field line the full
+        // urgency (and the wound scaling) is untouched, and so is every life
+        // that does not hunt: for those bandageFieldLow == bandageLow.
+        const bool smallShortfall = obs.bandages >= cfg.bandageFieldLow &&
+                                    cfg.bandageFieldLow < cfg.bandageLow;
+        if (smallShortfall && bandageUrgency > 0.10) bandageUrgency = 0.10;
         add(NeedKind::NeedEquipment, bandageUrgency, "bandages",
-            (hpFrac < cfg.healHpFraction)
+            smallShortfall
+                ? "under the floor by less than one fight's worth -- top up on "
+                  "the next trip to town, not by leaving the field for it"
+            : (hpFrac < cfg.healHpFraction)
                 ? "wounded with nothing to heal with -- bandages before "
                   "anything else money can buy"
                 : "below the bandage floor; a fight without them is a death",
             supplier != nullptr
-                ? Fmt("bandages=%d low=%d, supplier '%s'", obs.bandages,
-                      cfg.bandageLow, supplier->name.c_str())
-                : Fmt("bandages=%d low=%d, no supplier and the vendor policy "
-                      "grades a bandage %s", obs.bandages, cfg.bandageLow,
-                      econ::VendorClassName(ruling.klass)),
+                ? Fmt("bandages=%d low=%d field=%d, supplier '%s'", obs.bandages,
+                      cfg.bandageLow, cfg.bandageFieldLow, supplier->name.c_str())
+                : Fmt("bandages=%d low=%d field=%d, no supplier and the vendor "
+                      "policy grades a bandage %s", obs.bandages, cfg.bandageLow,
+                      cfg.bandageFieldLow, econ::VendorClassName(ruling.klass)),
             noRoute);
     }
 
@@ -869,7 +1019,7 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
     if (cfg.profession) {
         const std::vector<market::Offer> onHand =
             market::Surplus(*cfg.profession, obs.pack,
-                            market::PolicyForPurse(obs.goldOnHand));
+                            market::PolicyForPurse(obs.gold));
         for (const market::Offer& o : onHand) {
             // A BOLT ON THE WAY TO CLOTH IS NOT STOCK. See
             // WoolChainWorkInProgress in life.h -- without this the tailor's
@@ -1066,7 +1216,7 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         }
         std::vector<market::Offer> spare =
             market::Surplus(*cfg.profession, holdings,
-                            market::PolicyForPurse(obs.goldOnHand));
+                            market::PolicyForPurse(obs.gold));
         // NOT THE HALF-MADE CLOTH. Same ruling as the bank side above: while
         // this life still owes itself cloth, the bolt it just wove is the next
         // gesture's input, not a thing to carry to a buyer.
@@ -1124,8 +1274,23 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
             // gatherer -- logs and ingots are player-market goods -- so it has
             // to read as a legible blocked state rather than a loop.
             std::string route;
+            // THE NPC FLOOR OPENS ONCE THE PLAYERS HAVE DECLINED. HasNpcBuyer's
+            // default (playersDeclined=false) keeps every floor material and
+            // the tinker's finished goods off the NPC list for the player-first
+            // rule -- which is right until the announce cycle has actually
+            // ended unanswered, and then it is a deadlock. Odessa shouted WTS
+            // for 24 i_gears six times to an empty bank (00:15:02-00:15:42,
+            // 2026-09-06) and NeedGold still read "no buyer known", so
+            // EARN_GOLD stayed BLOCKED while VendorPolicy's MaterialFloorOpen
+            // would have opened the tinker counter for exactly that item (D2).
+            // marketQuiet IS that fact: set by a real, unanswered trade
+            // attempt. Only the ROUTE LOOKUP reads it -- the NeedBank clause
+            // above must stay independent of it, for the reason recorded there.
             for (const market::Offer& o : spare) {
-                if (market::HasNpcBuyer(o.item.c_str())) { route = "an NPC"; break; }
+                if (market::HasNpcBuyer(o.item.c_str(), obs.marketQuiet)) {
+                    route = "an NPC";
+                    break;
+                }
                 const KnownSupplier* buyer =
                     mem.BestSupplier((std::string("buyer:") + o.item).c_str());
                 if (buyer) { route = buyer->name; break; }
@@ -1198,7 +1363,7 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         }();
         if (!alreadyTrading && !freshOreGatherer) {
             const market::TradePolicy buyPolicy =
-                market::PolicyForPurse(obs.goldOnHand);
+                market::PolicyForPurse(obs.gold);
             // No refusal string is asked for here: AssessNeeds is pure and
             // cannot log. The Runner asks for it, on the tick where it can
             // print it (`market: ... not buying`).
@@ -1393,6 +1558,23 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
                 const prod::Ingredient& first = shop.missing.front();
                 const econ::VendorRuling ruling =
                     econ::CanBuyFromNPC(first.item);
+                // AND IS THERE A SHOPKEEPER AT ALL? The vendor ruling answers
+                // "may this life buy it from an NPC", which is not the same
+                // question as "does any NPC trade sell it". BUY_SUPPLIES asks
+                // the second one on entry -- SupplierTradeFor, then
+                // market::RouteForInput -- and when the answer is PlayerMarket
+                // it hands the errand straight to TRADE_WITH_PLAYER. Odessa
+                // scored this need 0.95 x 140 = 133 and was handed off five
+                // times in one session for i_ingot_iron, with
+                // goal_spinning=BUY_SUPPLIES at 00:25:45, while MINE (58.5) --
+                // the work that would have produced the ingots -- lost every
+                // cycle (D7). A rendezvous is not a shopping trip: asked here,
+                // the need reads as BLOCKED and NeedTrade's own row carries it.
+                const market::SupplyRoute route =
+                    market::RouteForInput(*cfg.profession, first.item,
+                                          SupplierTradeFor(first.item) != nullptr);
+                const bool playerMade =
+                    route == market::SupplyRoute::PlayerMarket;
                 // BELOW NeedCraft (0.50) and below selling. Shopping is what
                 // a crafter does when it cannot work, never instead of
                 // working: this used to be 0.52, which put the shop ahead of
@@ -1450,10 +1632,15 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
                                       static_cast<double>(sitting));
                 const double supplyUrgency = std::max(0.44, 0.95 - 0.51 * funded);
                 add(NeedKind::NeedSupplies,
-                    (ruling.allowed && !noCapital) ? supplyUrgency : 0.0,
+                    (ruling.allowed && !noCapital && !playerMade)
+                        ? supplyUrgency : 0.0,
                     "buy craft inputs",
                     !ruling.allowed
                         ? "short of an input no NPC may legitimately sell it"
+                    : playerMade
+                        ? "short of an input no shopkeeper sells -- another "
+                          "profession makes it, so this is a rendezvous with a "
+                          "player, not a shopping trip"
                         : (noCapital
                                ? "short of inputs AND of the gold to buy them "
                                  "-- what it has made has to be sold first"
@@ -1463,13 +1650,15 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
                                         "not a restock"
                                       : "short of what it needs to make its "
                                         "own goods")),
-                    Fmt("%s x%d needs %d x %s (can make %d of %d)%s", shop.item,
-                        stockBatch, first.qty, first.item, madeable, stockBatch,
+                    Fmt("%s x%d needs %d x %s (can make %d of %d, route %s)%s",
+                        shop.item, stockBatch, first.qty, first.item, madeable,
+                        stockBatch, market::SupplyRouteName(route),
                         !ruling.allowed ? " -- and the vendor policy refuses "
                                           "that purchase"
+                        : playerMade    ? " -- and no shopkeeper stocks it"
                                         : (noCapital ? " -- and the purse is empty"
                                                      : "")),
-                    !ruling.allowed || noCapital);
+                    !ruling.allowed || noCapital || playerMade);
             }
         } else if (craft.item == nullptr && !cfg.profession->produces.empty()) {
             // Nothing sellable this life can make. Legible, and not a loop.
@@ -1524,7 +1713,7 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         if (!clothShort.empty()) {
             const bool asked = obs.NoSellerFor(clothShort);
             const market::TradePolicy buyPolicy =
-                market::PolicyForPurse(obs.goldOnHand);
+                market::PolicyForPurse(obs.gold);
             const bool broke = !market::CanAffordToShop(
                 *cfg.profession, obs.goldOnHand, buyPolicy);
             const bool noTime = !obs.marketTripFitsSession;
@@ -1744,20 +1933,17 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         if (how == PracticeBy::Working) continue;
 
         if (how != PracticeBy::Fighting) {
-            // Casting needs mana; self-use needs nothing but the character.
+            // Casting can recover mana through meditation inside practice.
             // Neither needs a foe, and neither may be blocked for want of one.
             // A REGION THAT REFUSES SKILL GAIN MAKES PRACTICE POINTLESS.
             // Not dangerous, not blocked by the server -- simply wasted. The
             // character must move before it is worth a single cast.
             const bool canGain = !obs.inNoGainRegion;
-            const bool ready = canGain &&
-                               ((how == PracticeBy::SelfUse) || obs.mana >= 10);
+            const bool ready = canGain;
             add(NeedKind::NeedPractice, 0.20 + 0.25 * gap, SkillName(t.skillId),
                 ready ? "below target, and this skill is raised by using it"
-                      : (!canGain
-                             ? "below target, but no skill advances in this "
-                               "region -- move somewhere ordinary first"
-                             : "below target, but there is not enough mana to cast"),
+                      : "below target, but no skill advances in this "
+                        "region -- move somewhere ordinary first",
                 Fmt("%s %.1f -> %.1f mana=%d no_gain_region=%d",
                     SkillName(t.skillId), have / 10.0, t.tenths / 10.0,
                     obs.mana, obs.inNoGainRegion ? 1 : 0),
@@ -1789,11 +1975,19 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         const bool outOfOptions =
             obs.bandages <= 0 && obs.gold < cfg.goldFloor && obs.hungry;
         const int huntHpPct = outOfOptions ? 50 : 80;
+        // A CASTER'S SECOND POOL. Health and weight are what a swordsman
+        // needs; a mage that arrives at the graveyard empty has nothing to
+        // fight with and meditates there instead -- or, as happened, is taken
+        // off the trance it had just started. See CasterOpeningMana.
+        const bool caster = cfg.profession && WantsSpellCombat(*cfg.profession);
+        i32 openingMana = 0, manaPool = 0;
+        const bool manaReady =
+            !caster || CasterOpeningMana(cfg, obs, &openingMana, &manaPool);
         const bool couldGoHunting =
             nothingHere && cfg.profession &&
             (WantsToHunt(*cfg.profession) || WantsSpellCombat(*cfg.profession)) &&
             obs.hp * 100 >= obs.hpMax * huntHpPct &&
-            obs.WeightFraction() < cfg.huntWeightFrac;
+            obs.WeightFraction() < cfg.huntWeightFrac && manaReady;
         const bool noArrows = cfg.profession &&
             cfg.profession->combatStrategy == CombatStrategyId::Ranged &&
             market::QtyOf(obs.pack, "i_arrow") == 0;
@@ -1817,16 +2011,26 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         add(NeedKind::NeedTraining, urgency, SkillName(t.skillId),
             couldGoHunting
                 ? (outOfOptions
-                       ? "below target -- and with no bandages, no money and an "
-                         "empty stomach, hunting is the only way out, so go at "
-                         "whatever health there is"
-                       : "below target, and there is a graveyard to go and "
-                         "practise in")
-                : (nothingHere
-                       ? "below target, but nothing is here to practise combat on"
-                       : "below the target build value for this skill"),
-            Fmt("%s %.1f -> %.1f", SkillName(t.skillId), have / 10.0,
-                t.tenths / 10.0),
+                       ? std::string(
+                             "below target -- and with no bandages, no money "
+                             "and an empty stomach, hunting is the only way "
+                             "out, so go at whatever health there is")
+                       : std::string("below target, and there is a graveyard "
+                                     "to go and practise in"))
+                : (!manaReady
+                       ? Fmt("below target, but mana %d/%d will not pay for an "
+                             "opening cast of %d -- meditate first", obs.mana,
+                             manaPool, openingMana)
+                   : nothingHere
+                       ? std::string("below target, but nothing is here to "
+                                     "practise combat on")
+                       : std::string("below the target build value for this "
+                                     "skill")),
+            caster ? Fmt("%s %.1f -> %.1f mana=%d/%d opening=%d",
+                         SkillName(t.skillId), have / 10.0, t.tenths / 10.0,
+                         obs.mana, manaPool, openingMana)
+                   : Fmt("%s %.1f -> %.1f", SkillName(t.skillId), have / 10.0,
+                         t.tenths / 10.0),
             blocked);
     }
 
@@ -1836,12 +2040,26 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         for (const Need& need : needs)
             if (need.kind == NeedKind::NeedTraining) trainingExists = true;
         if (!trainingExists) {
+            // The same second pool the training branch reads: a finished mage
+            // still cannot open a fight it has no mana for (D5).
+            const bool caster = WantsSpellCombat(*cfg.profession);
+            i32 openingMana = 0, manaPool = 0;
+            const bool manaReady =
+                !caster || CasterOpeningMana(cfg, obs, &openingMana, &manaPool);
             const bool ready = !obs.huntReturnPending &&
                 obs.HpFraction() >= cfg.healHpFraction &&
-                obs.WeightFraction() < cfg.huntWeightFrac;
+                obs.WeightFraction() < cfg.huntWeightFrac && manaReady;
             add(NeedKind::NeedTraining, obs.hostilesNear > 0 ? 0.65 : 0.45,
-                "hunt for income", "completed combat build still earns through hunting",
-                "all combat skill targets reached", !ready);
+                "hunt for income",
+                manaReady ? std::string("completed combat build still earns "
+                                        "through hunting")
+                          : Fmt("mana %d/%d will not pay for an opening cast "
+                                "of %d -- meditate before hunting", obs.mana,
+                                manaPool, openingMana),
+                caster ? Fmt("all combat skill targets reached, mana=%d/%d "
+                             "opening=%d", obs.mana, manaPool, openingMana)
+                       : std::string("all combat skill targets reached"),
+                !ready);
         }
     }
 
@@ -2065,11 +2283,34 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         const bool hurt = obs.hp * 100 < obs.hpMax * 80;
         if (sellsWool) {
             const bool poor = obs.gold < cfg.profession->goldReserve;
-            const bool blocked = loaded || hurt;
+            // A FUNDED FIGHTER DOES NOT GO SHEARING.
+            //
+            // The chore half of this need ("a quiet hour", 0.30 x 140 = 42)
+            // beat blocked training twice in one session for Hector, who was
+            // carrying 7,962 gold against a reserve of 350, and both attempts
+            // ended the same way 75 s later: "no pasture within 400 tiles of
+            // home (1813,2825)" -- the second one after the goal had already
+            // walked him from the graveyard to the bank. Two three-minute
+            // round trips lost in fifteen minutes for a chore whose income
+            // this character did not need (D4,
+            // artifacts/validation_wave_2026-09-06.md).
+            //
+            // The distance test itself cannot be made here: the pasture table
+            // and kMaxPastureTilesFromHome are runner-private
+            // (runner/RunnerInternal.h, loaded in RunnerShared.cpp) and the
+            // need model has no home anchor, so the honest rule is the one
+            // this need can actually evaluate -- income is the only reason a
+            // fighter shears, so a purse over the reserve ends the errand.
+            // Poverty still opens it, which is the owner's original case
+            // ("additional income source", 2026-09-02).
+            const bool blocked = loaded || hurt || !poor;
             add(NeedKind::NeedWoolIncome, blocked ? 0.0 : (poor ? 0.50 : 0.30),
                 "wool",
                 loaded ? "already carrying a load -- sell it first"
                 : hurt ? "too hurt to be putting sheep down"
+                : !poor ? "wool is a fighter's INCOME, and this purse is over "
+                          "its own reserve -- the flock is a long walk for coin "
+                          "it does not need"
                 : poor ? "purse under the reserve; sheep are the nearest coin"
                        : "wool sells to tailors and the flock is free",
                 Fmt("wool=%d gold=%d reserve=%d weight=%.0f%%", woolCarried,

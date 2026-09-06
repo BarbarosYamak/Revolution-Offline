@@ -203,6 +203,14 @@ bool Runner::Configure(const RunnerConfig& cfg, std::string* err) {
 // ---------------------------------------------------------------------------
 
 Observation Runner::Observe(Client& client, i64 nowMs) const {
+    // Offline harness (tests/life_harness.cpp): the scripted world, with this
+    // tick's clock. Everything downstream -- needs, planner, handlers -- is
+    // the live code path.
+    if (obsOverride_) {
+        Observation scripted = *obsOverride_;
+        scripted.nowMs = nowMs;
+        return scripted;
+    }
     Observation obs;
     obs.nowMs = nowMs;
     obs.inWorld = client.IsInWorld();
@@ -1227,6 +1235,14 @@ void Runner::Tick(Client& client, i64 nowMs) {
 
         case Phase::Live: {
             if (!client.IsInWorld()) return;
+            // A goal that handed off ended last tick; clear its slate before
+            // anything else reads it. `to` is unknown here, which is why
+            // LeaveGoal's TravelAbort branch requires a real change of kind.
+            if (leavePending_) {
+                leavePending_ = false;
+                LeaveGoal(client, leavePendingFrom_, leavePendingFrom_, false,
+                          leavePendingWhy_.c_str());
+            }
             const Observation obs = Observe(client, nowMs);
             client.SetSurvivalBandagesAllowed(
                 WantsConsumable(needCfg_, "bandage") &&
@@ -1254,6 +1270,12 @@ void Runner::Tick(Client& client, i64 nowMs) {
             if (sawAliveOnce_ && !wasDead_ && obs.dead) {
                 ++state_.deathCount;
                 ++state_.recentDeaths;
+                // AND THE SESSION'S OWN TALLY. session_summary reported
+                // deaths=0 for Odessa on 2026-09-06 after two real deaths
+                // (Sphere log :13715, :18265) because nothing ever wrote it --
+                // the alive->dead edge is the only place that knows, and it
+                // updated the persistent counters and not the session one.
+                ++session_.deaths;
                 state_.lastDeathMs = nowMs;
                 state_.memory.NoteDanger(obs.x, obs.y, 20, "death", 2.0, nowMs);
                 LogLine("disengage=died at=%d,%d reason=\"died here -- this "
@@ -1314,6 +1336,9 @@ void Runner::Tick(Client& client, i64 nowMs) {
                 const bool defer =
                     obs.dead || planner_.Current().kind == GoalKind::RecoverCorpse;
                 if (!defer) {
+                    LeaveGoal(client, planner_.Current().kind,
+                              planner_.Current().kind, false,
+                              "session time limit reached");
                     EndSession("session time limit reached");
                     return;
                 }
@@ -1329,6 +1354,9 @@ void Runner::Tick(Client& client, i64 nowMs) {
                     travelInFlight_ = false;
                     if (planner_.Current().active)
                         planner_.Finish(false, "session time limit reached", nowMs);
+                    LeaveGoal(client, planner_.Current().kind,
+                              planner_.Current().kind, false,
+                              "session time limit reached (grace spent)");
                     EndSession("session time limit reached (grace spent)");
                     return;
                 }
@@ -1397,41 +1425,8 @@ void Runner::Tick(Client& client, i64 nowMs) {
                 // milliseconds after getting there. He never scanned Minoc at
                 // all -- one scan in the whole session, back in Vesper.
                 const bool sameErrand = wasActive && previous == planner_.Current().kind;
-                if (!sameErrand) {
-                    if (planner_.Current().kind == GoalKind::TrainCombat &&
-                        (client.TravelBusy() || client.GotoBusy()))
-                        client.TravelAbort("training supersedes the previous shopping or exploration trip");
-                    chopTargetValid_ = false;
-                    chopCursorPending_ = false;
-                    travelInFlight_ = false;
-                    travelAttempts_ = 0;
-                    // Each DoXxx handler's lastXxxPlan_ exists only so
-                    // LogPlan fires on a plan transition, not every tick
-                    // (S2_WIRING_PLAN.md S2.0). Left across a goal change, a
-                    // plan whose name happens to match the last one logged
-                    // this session -- e.g. plan=disengage picked up again
-                    // several goals later -- reads as "no change" and never
-                    // logs, even though it is a brand new goal's first tick.
-                    // Reset every one of them to its sentinel here, with the
-                    // rest of the transient slate this guard already wipes
-                    // (review finding 6).
-                    lastCombatMove_ = life::CombatMove::Wait;
-                    lastHealPlan_ = HealStep::None;
-                    lastRestPlan_ = static_cast<RestStep>(0xFF);
-                    lastRecoveryPlan_ = static_cast<RecoveryStep>(0xFF);
-                    lastTrainPlan_ = TrainStep::Done;
-                    lastCraftPlan_ = static_cast<CraftStep>(0xFF);
-                    lastBandageAcquirePlan_ = AcquireStep::Done;
-                    lastPotionAcquirePlan_ = AcquireStep::Done;
-                    lastGarmentAcquirePlan_ = AcquireStep::Done;
-                    lastToolAcquirePlanByItem_.clear();
-                }
-                // Per-errand counters belong to the errand. vendorChases_
-                // bounds how long a wandering shopkeeper may be followed, and
-                // a fresh goal deserves a fresh allowance -- otherwise one
-                // restless vendor early in a session silences every purchase
-                // made after it.
-                vendorChases_ = 0;
+                LeaveGoal(client, previous, planner_.Current().kind, sameErrand,
+                          why.c_str());
                 logsAtGoalStart_ = obs.logs;
             }
             // Select itself can end a goal -- an attempts-exhausted one goes
@@ -1791,6 +1786,141 @@ void Runner::LogErrandReason(const char* tag, const char* reason,
     LogLine("%s: %s", tag, reason);
 }
 
+// --- the one place a goal ends --------------------------------------------
+//
+// Before this existed, the goal-change block in Tick() cleared four transient
+// flags and eleven log sentinels and nothing else, and only on the path where
+// Planner::Select happened to pick a different kind. Everything else a goal
+// leaves behind outlived it:
+//
+//   * a BuyActivity/VendorErrand mid-Verify, holding pack and purse baselines
+//     from the interrupted visit. Resumed after a Survive preempt that spent
+//     bandages and gold, Verify reads Contradicted and blacklists a shopkeeper
+//     that never refused anything (artifacts/review_combat_trace_2026-09-05.md
+//     section 3). Neither BuyActivity::Cancel nor VendorErrand::Cancel had a
+//     caller anywhere outside Begin().
+//   * an in-flight Client action. Xerxes reissued open_container 0x4000CB1D
+//     every four seconds across four goal boundaries; at the action stream the
+//     new goal was indistinguishable from the old one
+//     (artifacts/review_runtime_evidence_2026-09-05.md, family 2a).
+//   * an armed target cursor, an unsettled bank drag, an unsettled purchase
+//     ledger entry and the craft transients
+//     (artifacts/review_production_trace_2026-09-05.md section 1.5).
+//
+// Cancel is enough for the errands: BuyActivity::Begin and VendorErrand::Begin
+// reset step, baselines, trips and retry policy, so the next pick starts a
+// genuinely fresh visit rather than resuming a stale one.
+void Runner::LeaveGoal(Client& client, GoalKind from, GoalKind to,
+                       bool sameKind, const char* why) {
+    // Per-errand counters belong to the errand: a fresh goal deserves a fresh
+    // allowance, otherwise one restless vendor early in a session silences
+    // every purchase made after it. Unconditional, as before.
+    vendorChases_ = 0;
+    if (sameKind) return;   // Corran rule: a re-pick keeps its journey.
+
+    // NOT WIDENED. Only TrainCombat aborts the previous goal's trip; every
+    // other goal change still lets the walk finish, because a shopping trip
+    // that is nearly there is usually still worth arriving at. Changing that
+    // is a policy decision, not this hook's business.
+    if (to == GoalKind::TrainCombat && to != from &&
+        (client.TravelBusy() || client.GotoBusy()))
+        client.TravelAbort("training supersedes the previous shopping or "
+                           "exploration trip");
+
+    // AND THE WALK TO A FIGHT IS NEVER "NEARLY THERE AND WORTH FINISHING".
+    //
+    // The rule above is about arriving somewhere useful. Its converse is the
+    // one case where finishing the leg is pure waste: TRAIN_COMBAT's own
+    // readiness gates -- weight, HP, the bandage floor, the opening cast --
+    // hand off to Bank, Heal or ReplaceEquipment precisely because the
+    // character is NOT fit to fight, so every remaining tile of the graveyard
+    // walk is a tile that must be walked back. Hector's hand-off fired at
+    // 00:11:30 on 2026-09-06 while he was standing at the Britain bank; the
+    // walk continued, he reached the graveyard at 00:12:17 and returned 196
+    // tiles (D1, artifacts/validation_wave_2026-09-06.md).
+    //
+    // Deliberately NOT widened past those three: a hand-off to PracticeSkill,
+    // BuySupplies or UpgradeGear may legitimately be served at or near the
+    // destination, and every other goal change keeps its journey as before.
+    if (from == GoalKind::TrainCombat && to != from &&
+        (to == GoalKind::Bank || to == GoalKind::Heal ||
+         to == GoalKind::ReplaceEquipment) &&
+        (client.TravelBusy() || client.GotoBusy()))
+        client.TravelAbort("not fit to fight -- the walk to the hunting ground "
+                           "is abandoned, not paused");
+
+    chopTargetValid_ = false;
+    chopCursorPending_ = false;
+    travelInFlight_ = false;
+    travelAttempts_ = 0;
+    // Each DoXxx handler's lastXxxPlan_ exists only so LogPlan fires on a plan
+    // transition, not every tick (S2_WIRING_PLAN.md S2.0). Left across a goal
+    // change, a plan whose name happens to match the last one logged this
+    // session -- e.g. plan=disengage picked up again several goals later --
+    // reads as "no change" and never logs, even though it is a brand new
+    // goal's first tick.
+    lastCombatMove_ = life::CombatMove::Wait;
+    lastHealPlan_ = HealStep::None;
+    lastRestPlan_ = static_cast<RestStep>(0xFF);
+    lastRecoveryPlan_ = static_cast<RecoveryStep>(0xFF);
+    lastTrainPlan_ = TrainStep::Done;
+    lastCraftPlan_ = static_cast<CraftStep>(0xFF);
+    lastBandageAcquirePlan_ = AcquireStep::Done;
+    lastPotionAcquirePlan_ = AcquireStep::Done;
+    lastGarmentAcquirePlan_ = AcquireStep::Done;
+    lastToolAcquirePlanByItem_.clear();
+
+    // The errands themselves.
+    const bool hadErrand =
+        bandageBuy_.Running() || bandageClothBuy_.Running() ||
+        potionBuy_.Running() || clothingBuy_.Running() ||
+        weaponBuy_.Running() || foodErrand_.Running() || bankErrand_.Running();
+    bandageBuy_.Cancel();
+    bandageClothBuy_.Cancel();
+    potionBuy_.Cancel();
+    clothingBuy_.Cancel();
+    weaponBuy_.Cancel();
+    foodErrand_.Cancel();
+    bankErrand_.Cancel();
+
+    // Unsettled bookkeeping. The purchase ledger entry and the bank drag are
+    // both "I am waiting to see what happened"; nobody is going to look now.
+    pendingBuyItem_.clear();
+    pendingBuyGoldBefore_ = 0;
+    craftHadBefore_ = 0;
+    craftJournalMs_ = 0;
+
+    // Client-side: the departing goal's hands. Client tracks no owner for an
+    // action, so this cancels unconditionally on a real goal change -- which
+    // is right for every case seen live (the in-flight action always belonged
+    // to the goal that just ended) and, on an emergency preempt, costs at most
+    // one already-doomed request that the new goal would have superseded a
+    // tick later anyway.
+    const bool hadAction = client.ActionBusy();
+    client.AbandonGoalOwnedAction(why && why[0] ? why : "goal changed");
+    // Settling it now would score the InvalidState above as a failed deposit.
+    bankItemMovePending_ = false;
+
+    if (hadErrand || hadAction) {
+        LogLine("goal_exit=%s->%s dropped%s%s reason=\"%s\"",
+                GoalKindName(from), GoalKindName(to),
+                hadErrand ? " errand" : "", hadAction ? " action" : "",
+                why ? why : "");
+    }
+}
+
+bool Runner::ErrandRunningForTest(const char* which) const {
+    const std::string w = which ? which : "";
+    if (w == "bandage")      return bandageBuy_.Running();
+    if (w == "bandageCloth") return bandageClothBuy_.Running();
+    if (w == "potion")       return potionBuy_.Running();
+    if (w == "clothing")     return clothingBuy_.Running();
+    if (w == "weapon")       return weaponBuy_.Running();
+    if (w == "food")         return foodErrand_.Running();
+    if (w == "bank")         return bankErrand_.Running();
+    return false;
+}
+
 // The ONLY legal way a plan hands the turn to another goal (S2_WIRING_PLAN.md
 // S2.0). `to` is advisory only -- it is logged, never dispatched; the
 // receiving goal is chosen by Planner::Select on the next tick from whatever
@@ -1800,6 +1930,14 @@ bool Runner::HandOff(GoalKind from, GoalKind to, i64 restMs, const char* why,
                      i64 nowMs) {
     planner_.Cooldown(from, nowMs + restMs);
     planner_.Finish(false, why, nowMs);
+    // A hand-off ends `from` as surely as a supersession does, and the 47 call
+    // sites pass no Client. Recording it here and running LeaveGoal at the top
+    // of the next Live tick keeps the exit in one place without threading a
+    // Client through every handler; nothing can tick in between, because
+    // nextActionMs_ below holds RunGoal off for two seconds.
+    leavePending_ = true;
+    leavePendingFrom_ = from;
+    leavePendingWhy_ = why ? why : "handed off";
     LogLine("handoff=%s->%s reason=\"%s\"", GoalKindName(from), GoalKindName(to),
             why);
     nextActionMs_ = nowMs + 2000;
@@ -1918,6 +2056,11 @@ void Runner::RunGoal(Client& client, const Observation& obs) {
         session_.goalsFailed++;
         planner_.Finish(false, exhaustedWhy.c_str(), obs.nowMs);
         planner_.Cooldown(spent, obs.nowMs + kExhaustedCooldownMs);
+        // The goal is over here, not on the tick a successor is chosen: the
+        // wedged errand and the action it was waiting on must not tick on
+        // through the gap. `sameKind` is false because the goal just went on
+        // cooldown -- the identical kind cannot be the next pick.
+        LeaveGoal(client, spent, spent, false, exhaustedWhy.c_str());
         return;
     }
 

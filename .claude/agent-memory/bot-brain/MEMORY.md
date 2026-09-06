@@ -26,3 +26,5 @@
 - [An unopened container is not empty](an-unopened-container-is-not-empty.md) — the book read 0 rows at login, FILL_SPELLBOOK won 77.0 every session and did nothing; the score was right, the input was wrong
 - [A stat ceiling is a skill property](a-stat-ceiling-is-a-skill-property.md) — reachable STR is max STAT_STR over the PLANNED skills; gate the Wrestling detour on the ceiling or a lumberjack drops his axe to punch rabbits
 - [An errand's exit cannot live in the errand](an-errands-exit-cannot-live-in-the-errand.md) — success silences the need, so the goal is never picked again; move the closing lock/flag to a per-tick keeper with a durable marker
+- [A stand-down that forgets reopens](a-standdown-that-forgets-reopens.md) — clearing the drained-counter count is safe only when the goal hands off to a different route
+- [An emergency overrides the catalogue](an-emergency-overrides-the-catalogue.md) — a crafter dying at 6/50 buys bandages; the override needs the life's own flee line or the tamer rule breaks

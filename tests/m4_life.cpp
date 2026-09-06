@@ -462,6 +462,41 @@ void TestNeeds() {
 }
 
 // --------------------------------------------------------------------------
+void TestCombatWaitsForBandages() {
+    Section("combat does not repeatedly cancel its own supply prerequisite");
+    life::Planner planner;
+    life::Memory memory;
+    auto obs = HealthyLumberjackAtWork();
+    obs.hp = obs.hpMax;
+    life::Need bandages;
+    bandages.kind = life::NeedKind::NeedMakeBandages;
+    bandages.urgency = 0.27;
+    std::vector<life::Need> needs = {bandages};
+    std::string why;
+    planner.Select(needs, obs, memory, obs.nowMs, &why);
+    Check(planner.Current().kind == life::GoalKind::MakeBandages, "supply errand started");
+    life::Need combat;
+    combat.kind = life::NeedKind::NeedTraining;
+    combat.urgency = 0.9;
+    needs.push_back(combat);
+    obs.nowMs += 31000;
+    planner.Select(needs, obs, memory, obs.nowMs, &why);
+    Check(planner.Current().kind == life::GoalKind::MakeBandages,
+          "combat cooldown expiring does not restart the cloth journey");
+    life::Need danger;
+    danger.kind = life::NeedKind::StayAlive;
+    danger.urgency = 1.0;
+    needs.push_back(danger);
+    planner.Select(needs, obs, memory, ++obs.nowMs, &why);
+    Check(planner.Current().kind == life::GoalKind::Survive, "danger still interrupts supplies");
+    life::Planner finished;
+    finished.Select({bandages}, obs, memory, obs.nowMs, &why);
+    obs.nowMs += 31000;
+    finished.Select({combat}, obs, memory, obs.nowMs, &why);
+    Check(finished.Current().kind == life::GoalKind::TrainCombat,
+          "combat resumes when the supply need disappears");
+}
+
 void TestPlanner() {
     Section("planner: scoring, commitment, bounded failure");
 
@@ -1232,14 +1267,14 @@ void TestSurplusNeedsSomewhereToGo() {
 
     life::Memory mem;
 
-    auto needsFor = [&](const prof::Profession& p, const char* item, i32 qty) {
+    auto needsFor = [&](const prof::Profession& p, const char* item, i32 qty, i32 gold = 1000) {
         life::NeedConfig cfg;
         cfg.profession = &p;
         life::BuildPlan plan = life::PlanFromProfession(p);
         life::Observation obs;
         obs.inWorld = true;
         obs.hp = obs.hpMax = 25;
-        obs.gold = 1000;                        // NOT broke -- the whole point
+        obs.gold = gold;
         obs.weight = 10; obs.maxWeight = 500;   // nowhere near encumbered
         obs.pack.push_back({item, qty});
         obs.axeEquipped = true;
@@ -1279,6 +1314,12 @@ void TestSurplusNeedsSomewhereToGo() {
     // a blocked need. This project has been bitten by exactly that once
     // before, in M4.
     const std::vector<life::Need> fewNeeds  = needsFor(*mg, "i_scroll_poison", 6);
+    const auto tinyNeeds = needsFor(*mg, "i_scroll_poison", 2);
+    Check(sellNeed(tinyNeeds) == nullptr,
+          "bank-funded scribe does not make a tiny sale because pack coin is zero");
+    const auto poorNeeds = needsFor(*mg, "i_scroll_poison", 2, 100);
+    Check(sellNeed(poorNeeds) != nullptr,
+          "poor scribe can still sell a tiny lot to fund supplies");
     const std::vector<life::Need> manyNeeds = needsFor(*mg, "i_scroll_poison", 40);
     const life::Need* few  = sellNeed(fewNeeds);
     const life::Need* many = sellNeed(manyNeeds);
@@ -1807,6 +1848,12 @@ void TestNoSkillGainRegionBlocksPractice() {
     Check(ok != nullptr, "a mage below target wants to practise");
     if (ok) Check(!ok->blocked, "and out in the world it is actionable");
 
+    obs.mana = 0;
+    const std::vector<life::Need> nsRest = life::AssessNeeds(plan, mem, obs, cfg);
+    const life::Need* rest = practiceNeed(nsRest);
+    Check(rest && !rest->blocked,
+          "an exhausted mage can enter practice to recover mana");
+
     // At a shrine: reported, but blocked, and the reason says why.
     obs.inNoGainRegion = true;
     const std::vector<life::Need> nsNo = life::AssessNeeds(plan, mem, obs, cfg);
@@ -1821,17 +1868,13 @@ void TestNoSkillGainRegionBlocksPractice() {
               "with the flag in the evidence so a log can be grepped");
     }
 
-    // Mana is a SEPARATE gate and must not be confused with it: plenty of
-    // mana in a shrine is still pointless, and no mana in the world is a
-    // different problem with a different answer.
+    // Mana can recover during practice; a no-gain region cannot.
     obs.inNoGainRegion = false;
     obs.mana = 0;
     const std::vector<life::Need> nsDry = life::AssessNeeds(plan, mem, obs, cfg);
     const life::Need* dry = practiceNeed(nsDry);
     if (dry) {
-        Check(dry->blocked, "no mana also blocks");
-        Check(dry->reason.find("mana") != std::string::npos,
-              "and that one blames the mana, which is the fixable thing");
+        Check(!dry->blocked, "no mana permits a meditation-and-cast loop");
     }
 }
 
@@ -3321,6 +3364,23 @@ void TestPracticeChecksTheReagentPouch() {
     Check(spell::ChoosePracticeSpell(see).spell != 29,
           "with 8 mana an 11-mana spell is not attempted");
 
+    see.mana = 0;
+    const spell::PracticeChoice tired = spell::ChoosePracticeSpell(see);
+    Check(tired.spell < 0 && tired.manaNeeded > 0 && tired.missing.empty(),
+          "a stocked exhausted mage needs meditation, not a new book or reagents");
+    see.mana = tired.manaNeeded;
+    Check(spell::ChoosePracticeSpell(see).spell >= 0,
+          "casting resumes once meditation restores enough mana");
+    see.mana = 0;
+    see.uncastable = see.inBook;
+    Check(spell::ChoosePracticeSpell(see).manaNeeded == 0,
+          "meditation cannot fix spells refused by the server");
+    see.uncastable.clear();
+    see.pack.clear();
+    const spell::PracticeChoice depleted = spell::ChoosePracticeSpell(see);
+    Check(depleted.spell < 0 && depleted.manaNeeded == 0 && !depleted.missing.empty(),
+          "no mana and no reagents still identifies the missing supplies");
+
     // A book with nothing safe in it is a DIFFERENT problem -- that one
     // belongs to FILL_SPELLBOOK -- and must not be reported as a shopping list.
     // Magic Arrow is harmful; Wall of Stone needs a ground target; Weaken here
@@ -3333,6 +3393,9 @@ void TestPracticeChecksTheReagentPouch() {
     spell::PracticeChoice empty = spell::ChoosePracticeSpell(bare);
     Check(empty.spell < 0 && empty.missing.empty(),
           "an unusable book asks for no reagents");
+    bare.mana = 0;
+    Check(spell::ChoosePracticeSpell(bare).manaNeeded == 0,
+          "an unsafe book does not send the mage into meditation");
 
     // The real export must exist and agree with the shard's own ladder.
     Check(spell::LoadSpellTableFromText(tsv) == 8, "table reload is clean");
@@ -3409,6 +3472,136 @@ void TestAnEmptyPouchIsAShoppingErrand() {
         if (n.kind == life::NeedKind::NeedSupplies) { poor = &n; break; }
     Check(poor != nullptr && poor->blocked,
           "with no working capital the trip is blocked, not hidden");
+}
+
+// A SMITH'S INGOTS ARE ALSO ITS RAW MATERIAL.
+//
+// DoBank's loaded branch banked every i_ingot_iron in the pack because ingots
+// are in `produces`; ChooseCraft counts the PACK only (life/Identity.cpp) and
+// nothing withdraws a craft input again, so "stocked, stop mining" and "no
+// inputs" landed on the same tick (architecture review 2026-09-05, item 4b).
+// The reserve is the same working batch the other two deposit branches keep.
+void TestASmithKeepsIngotsToWorkWith() {
+    Section("bank: what the next batch is made from is not a deposit");
+
+    const prof::Profession* smith = prof::Find("miner_smith");
+    Check(smith != nullptr, "the smith exists");
+    if (!smith) return;
+
+    const i32 batch = 5;
+    Check(life::CraftInputReserve(*smith, "i_ingot_iron", batch) == batch * 2,
+          "the smith keeps a working batch of ingots out of the box");
+    Check(life::CraftInputReserve(*smith, "i_gold", batch) == 0,
+          "something the smith never crafts from is not reserved");
+
+    const prof::Profession* tailor = prof::Find("tailor");
+    if (tailor) {
+        Check(life::CraftInputReserve(*tailor, "i_ingot_iron", batch) == 0,
+              "a tailor keeps no ingots back -- it makes nothing from them");
+    }
+}
+
+// A HAND-OFF MUST BE ADDRESSED TO SOMEBODY WHO CAN ANSWER IT.
+//
+// DoTrainCombat sends a fighter below the bandage floor to REPLACE_EQUIPMENT,
+// and that errand's bandage branch is gated on WantsConsumable(cfg,
+// "bandage") -- false for a pure mage, whose catalogue entry carries heal
+// potions instead (Professions.cpp). The gate on the hand-off has to be the
+// SAME question, or the request goes to a goal that will not act on it.
+void TestAPureMageIsNotSentShoppingForBandages() {
+    Section("gear: the bandage hand-off asks what the errand asks");
+
+    const prof::Profession* mage = prof::Find("mage");
+    const prof::Profession* fencer = prof::Find("fencer");
+    Check(mage && fencer, "both lives exist");
+    if (!mage || !fencer) return;
+
+    life::NeedConfig mageCfg;
+    mageCfg.profession = mage;
+    life::NeedConfig fencerCfg;
+    fencerCfg.profession = fencer;
+
+    Check(!life::WantsConsumable(mageCfg, "bandage"),
+          "a pure mage does not carry bandages, so it is never sent for them");
+    Check(life::WantsConsumable(mageCfg, "heal potion"),
+          "the heal it CAN use is the potion, and it does ask for that");
+    Check(life::WantsConsumable(fencerCfg, "bandage"),
+          "a fencer does carry them -- the gate is not simply off");
+}
+
+// A DRAINED POTION SHELF DAMPS THE NEED, THE BANDAGE CLAUSE'S TWIN.
+//
+// Gear.cpp's DoReplaceEquipment records "potion_counters_empty" (session=N)
+// when every known heal-potion counter is drained, but nothing read it here,
+// so NeedEquipment(heal potions) kept scoring 0.5 x 260 = 130 through an
+// empty shelf and was re-picked every cooldown (Odessa 00:15:42, 00:20:44,
+// 00:26:00, 00:33:25; Hector 00:34:27, same Britain healer, 2026-09-06).
+void TestADrainedPotionShelfDampsTheNeed() {
+    Section("needs: a drained potion shelf damps the need, like bandages");
+
+    const prof::Profession* smith = prof::Find("miner_smith");
+    Check(smith != nullptr, "the smith exists");
+    if (!smith) return;
+
+    life::NeedConfig cfg;
+    cfg.profession = smith;
+    life::BuildPlan plan = life::PlanFromProfession(*smith);
+
+    life::Observation obs;
+    obs.inWorld = true;
+    obs.hp = obs.hpMax = 32;                 // full health: not currently wounded
+    obs.weight = 10; obs.maxWeight = 200;
+    obs.healPotions = 0;
+    obs.gold = 500;
+    obs.skills.push_back({rules::kMining, 500});
+    obs.nowMs = 1000000;
+
+    auto potionNeed = [](const std::vector<life::Need>& ns) -> const life::Need* {
+        for (const life::Need& n : ns)
+            if (n.kind == life::NeedKind::NeedEquipment && n.what == "heal potions")
+                return &n;
+        return nullptr;
+    };
+
+    // Baseline: no event recorded, the ordinary 0.5 urgency applies.
+    life::Memory mem;
+    const std::vector<life::Need> nsBaseline = life::AssessNeeds(plan, mem, obs, cfg);
+    const life::Need* baseline = potionNeed(nsBaseline);
+    Check(baseline != nullptr && std::fabs(baseline->urgency - 0.5) < 1e-9,
+          "with no drained-shelf event the crafter's ordinary 0.5 urgency "
+          "applies (score 130, matching the live regression)");
+
+    // Every counter in town drained, THIS session, and health is fine: the
+    // need is damped so it no longer beats work.
+    mem.NoteEvent("potion_counters_empty", "session=0", "", obs.x, obs.y,
+                  obs.nowMs);
+    const std::vector<life::Need> nsDrained = life::AssessNeeds(plan, mem, obs, cfg);
+    const life::Need* drained = potionNeed(nsDrained);
+    Check(drained != nullptr && std::fabs(drained->urgency - 0.10) < 1e-9,
+          "a drained shelf damps the potion need to 0.10 (score 26) -- below "
+          "CRAFT (0.5 x 130 = 65) and BUY_SUPPLIES, so it no longer outscores "
+          "work");
+    if (drained)
+        Check(drained->reason.find("drained") != std::string::npos,
+              "the reason names the drained shelf, not the old blanket text");
+
+    // A WOUND STILL SAYS SO. A bleeding crafter is not told to wait out a
+    // restock window it may not survive.
+    life::Observation hurt = obs;
+    hurt.hp = 10;   // well under healHpFraction
+    const std::vector<life::Need> nsHurt = life::AssessNeeds(plan, mem, hurt, cfg);
+    const life::Need* hurtNeed = potionNeed(nsHurt);
+    Check(hurtNeed != nullptr && std::fabs(hurtNeed->urgency - 0.5) < 1e-9,
+          "wounded and out of potions is NOT damped even with the drained "
+          "event live -- the emergency route stays open");
+
+    // Outside the restock window the damping expires like the bandage one.
+    life::Observation later = obs;
+    later.nowMs = obs.nowMs + 700000;   // past kShelfRestockMs (600000)
+    const std::vector<life::Need> nsLater = life::AssessNeeds(plan, mem, later, cfg);
+    const life::Need* laterNeed = potionNeed(nsLater);
+    Check(laterNeed != nullptr && std::fabs(laterNeed->urgency - 0.5) < 1e-9,
+          "past the restock window the ordinary urgency returns");
 }
 
 }  // namespace
@@ -3661,6 +3854,446 @@ void TestMageCombatIsAnActivity() {
     Check(practice && !practice->blocked, "mage retains casting/meditation training choice");
 }
 
+
+void TestAMageFightsWithItsWholeLadder() {
+    Section("caster: the strongest spell it can cast now, not the cheapest");
+
+    // Aurelius's own book, as the save recorded it (MORE1=0x386acdff):
+    // Magic Arrow, Harm, Fireball, Poison, Lightning. Circles and mana are the
+    // spell table's, not invented here.
+    std::vector<life::SpellRung> book = {
+        {/*spell*/18, /*circle*/1, /*mana*/4,  /*skill*/ 50, true},   // Magic Arrow
+        {/*spell*/11, /*circle*/2, /*mana*/6,  /*skill*/150, true},   // Harm
+        {/*spell*/27, /*circle*/3, /*mana*/9,  /*skill*/250, true},   // Fireball
+        {/*spell*/31, /*circle*/4, /*mana*/11, /*skill*/350, true},   // Poison
+        {/*spell*/38, /*circle*/4, /*mana*/20, /*skill*/450, true},   // Lightning
+    };
+
+    // Funded and rested: the top of the ladder this Magery reaches.
+    Check(life::PickSpellRung(book, 500, 40, false, true) == 38,
+          "a mage with skill and mana opens with Lightning, not Magic Arrow");
+
+    // Mana short: it walks back DOWN the ladder rather than refusing to fight.
+    Check(life::PickSpellRung(book, 500, 8, false, true) == 11,
+          "at 8 mana the same mage casts Harm");
+    Check(life::PickSpellRung(book, 500, 5, false, true) == 18,
+          "at 5 mana it is Magic Arrow -- the cheap rung is a fallback, not the plan");
+    Check(life::PickSpellRung(book, 500, 3, false, true) < 0,
+          "with less mana than the cheapest rung there is nothing to cast");
+
+    // Skill gates the ladder the same way -- a 30.0 mage never sees Lightning.
+    Check(life::PickSpellRung(book, 300, 40, false, true) == 27,
+          "Magery it does not have is not a rung it can stand on");
+
+    // An unstocked rung is not castable, and the choice falls to the next one.
+    std::vector<life::SpellRung> unstocked = book;
+    unstocked[4].supplied = false;      // no sulfurous ash / mandrake for Lightning
+    Check(life::PickSpellRung(unstocked, 500, 40, false, true) == 31,
+          "a rung whose reagents are not in the pack is skipped");
+    // ... but the reagent errand still has to KNOW about it.
+    Check(life::PickSpellRung(unstocked, 500, 40, false, false) == 38,
+          "ignoring supplies answers what to shop for, which is the whole ladder");
+
+    // Healing is the other question: cheapest thing that heals.
+    std::vector<life::SpellRung> heals = {
+        {/*Heal*/4, 1, 11, 50, true},
+        {/*Greater Heal*/29, 4, 20, 350, true},
+    };
+    Check(life::PickSpellRung(heals, 500, 40, true, true) == 4,
+          "healing still takes the cheapest spell that does the job");
+}
+
+void TestAWonFightDoesNotHeatTheGround() {
+    Section("memory: a ground that pays cools, a ground that hurts heats");
+
+    life::Memory mem;
+    const i64 t0 = 1000000;
+
+    // The graveyard scared this character once: a low-health retreat.
+    mem.NoteDanger(1420, 1500, 14, "a skeleton", 1.5, t0);
+    const double afterScare = mem.DangerHeatAt(1420, 1500, t0);
+    Check(afterScare > 1.49 && afterScare < 1.51, "a retreat is remembered at full weight");
+
+    // Then it killed three things there without being hurt. Aurelius left this
+    // yard at heat 3.20 with one kill and ZERO deaths and was refused it
+    // (artifacts/validation_wave_2026-09-06.md D11).
+    for (int i = 0; i < 3; ++i)
+        mem.CoolDanger(1420, 1500, -life::kCreatureEvidenceCheapKill, t0);
+    const double afterKills = mem.DangerHeatAt(1420, 1500, t0);
+    Check(afterKills < afterScare, "kills at a ground lower its remembered heat");
+    Check(afterKills >= 0.0, "a place is never remembered as safer than unknown");
+
+    // And the ground stays usable: below the limit the hunt picker enforces.
+    Check(afterKills < 3.0,
+          "a winning session does not lock a novice out of its only ground");
+
+    // Cooling somewhere never feared records nothing at all -- relief is not
+    // a memory, it only ever answers one.
+    Check(mem.DangerHeatAt(3000, 3000, t0) == 0.0, "precondition: unknown ground");
+    mem.CoolDanger(3000, 3000, 0.5, t0);
+    Check(mem.DangerHeatAt(3000, 3000, t0) == 0.0,
+          "a kill somewhere never feared writes no memory");
+
+    // A place that keeps hurting still heats: relief does not disarm fear.
+    mem.NoteDanger(1420, 1500, 14, "a lich", 2.0, t0);
+    Check(mem.DangerHeatAt(1420, 1500, t0) > afterKills + 1.9,
+          "harm after relief still compounds onto what is left");
+}
+
+
+// ---------------------------------------------------------------------------
+// D5: A CASTER'S HUNT READINESS INCLUDES THE POOL IT FIGHTS WITH.
+//
+// Aurelius, 2026-09-06 00:16:51-54: "meditating before the next cast", "You
+// enter a meditative trance", and 1.5 s later TRAIN_COMBAT (0.45 x 130 = 58.5)
+// superseded PRACTICE (45) and walked him back to the graveyard at mana 0.
+// Repeated 00:23:03-00:23:08. Readiness asked about health, weight and
+// unbanked loot only (Needs.cpp), so an empty mage read as ready.
+// ---------------------------------------------------------------------------
+void TestAMageMeditatesBeforeItHunts() {
+    Section("needs: a caster with no mana is not ready to hunt");
+
+    // A table in the shape tools/spellgen.py writes out of
+    // runtime/scripts/spells/spells_magery.scp. Two attack rungs, so the bar
+    // can be seen to come from the LADDER and not from a number.
+    const std::string tsv =
+        "spell\tdefname\tname\tcircle\tminskill\tmana\tflags\treagents\n"
+        "5\ts_magic_arrow\tMagic Arrow\t1\t100\t5\t"
+        "spellflag_targ_char|spellflag_harm|spellflag_damage\ti_reag_sulfur_ash\n"
+        "27\ts_fireball\tFireball\t3\t300\t9\t"
+        "spellflag_targ_char|spellflag_harm|spellflag_damage\ti_reag_black_pearl\n";
+    Check(spell::LoadSpellTableFromText(tsv) == 2,
+          "the two attack rungs load from data");
+
+    const prof::Profession* mage = prof::Find("mage");
+    if (!mage) { Check(false, "no mage profession"); return; }
+
+    life::NeedConfig cfg;
+    cfg.profession = mage;
+    life::BuildPlan plan = life::PlanFromProfession(*mage);
+    life::Memory mem;
+
+    life::Observation obs;
+    obs.inWorld = true;
+    obs.hp = obs.hpMax = 30;
+    obs.intel = 25;                  // max mana IS Intelligence on this shard
+    obs.gold = 500;
+    obs.weight = 10; obs.maxWeight = 200;
+    obs.skills.push_back({rules::kMagery, 500});
+    obs.knownSpells = {5, 27};       // the book has been READ this session
+    obs.pack.push_back({"i_reag_sulfur_ash", 20});
+    obs.pack.push_back({"i_reag_black_pearl", 20});
+
+    auto huntNeed = [](const std::vector<life::Need>& ns) -> const life::Need* {
+        for (const life::Need& n : ns)
+            if (n.kind == life::NeedKind::NeedTraining &&
+                n.what == "hunt for income") return &n;
+        return nullptr;
+    };
+
+    obs.mana = 4;
+    const std::vector<life::Need> drained =
+        life::AssessNeeds(plan, mem, obs, cfg);
+    const life::Need* empty = huntNeed(drained);
+    Check(empty != nullptr, "the hunting need is still reported, not hidden");
+    if (empty) {
+        Check(empty->blocked,
+              "a mage at 4 of 25 mana is NOT ready to hunt -- it meditates "
+              "first, which is what it had already started doing");
+        Check(empty->reason.find("meditate") != std::string::npos,
+              "and the reason says so in words a log can be read from");
+        Check(empty->reason.find("opening cast of 9") != std::string::npos,
+              "the bar is the strongest rung a rested pool could cast "
+              "(Fireball, 9 mana) -- read off the table, not a constant");
+    }
+
+    obs.mana = 9;                    // exactly one opening Fireball
+    const std::vector<life::Need> nsRested =
+        life::AssessNeeds(plan, mem, obs, cfg);
+    const life::Need* rested = huntNeed(nsRested);
+    Check(rested != nullptr && !rested->blocked,
+          "with the opening cast paid for, the same mage may go");
+
+    // THE LADDER SETS THE BAR. Take away the Fireball reagent and the rung the
+    // fight would open with falls to Magic Arrow, so 5 mana is now enough.
+    obs.pack.clear();
+    obs.pack.push_back({"i_reag_sulfur_ash", 20});
+    obs.mana = 5;
+    const std::vector<life::Need> nsArrow =
+        life::AssessNeeds(plan, mem, obs, cfg);
+    const life::Need* arrow = huntNeed(nsArrow);
+    Check(arrow != nullptr && !arrow->blocked,
+          "an unsupplied rung is not the bar -- the pack decides what opens "
+          "the fight, and Magic Arrow costs 5");
+    obs.mana = 4;
+    const std::vector<life::Need> nsUnder =
+        life::AssessNeeds(plan, mem, obs, cfg);
+    const life::Need* under = huntNeed(nsUnder);
+    Check(under != nullptr && under->blocked &&
+              under->reason.find("opening cast of 5") != std::string::npos,
+          "one mana under the cheapest rung it can supply is still not ready");
+
+    // AND NO SWORDSMAN IS AFFECTED. Mana is a caster's gate, nobody else's.
+    const prof::Profession* fencer = prof::Find("fencer");
+    if (fencer) {
+        life::NeedConfig fcfg;
+        fcfg.profession = fencer;
+        life::ResolveConsumableThresholds(fcfg, 5000);
+        life::BuildPlan fplan = life::PlanFromProfession(*fencer);
+        life::Observation fo;
+        fo.inWorld = true;
+        fo.hp = fo.hpMax = 40;
+        fo.mana = 0;
+        fo.gold = 5000;
+        fo.bandages = fcfg.bandageFull;
+        fo.weight = 10; fo.maxWeight = 400;
+        fo.skills.push_back({rules::kFencing, 171});
+        const std::vector<life::Need> fns =
+            life::AssessNeeds(fplan, mem, fo, fcfg);
+        const life::Need* fight = nullptr;
+        for (const life::Need& n : fns)
+            if (n.kind == life::NeedKind::NeedTraining) { fight = &n; break; }
+        Check(fight != nullptr && !fight->blocked,
+              "a fencer at 0 mana hunts exactly as before");
+    }
+}
+
+// ---------------------------------------------------------------------------
+// D12: THE FLOOR IS FOR LEAVING TOWN, NOT FOR STANDING IN A GRAVEYARD.
+//
+// Hector, 2026-09-06 00:29:47: REPLACE_EQUIPMENT at 130 "bandages=99 low=100"
+// superseded SURVIVE one second after a kill and took him out of the Britain
+// graveyard for a single bandage.
+// ---------------------------------------------------------------------------
+void TestOneBandageIsNotATripToTown() {
+    Section("needs: a hunter does not leave the field one bandage short");
+
+    const prof::Profession* fencer = prof::Find("fencer");
+    if (!fencer) { Check(false, "no fencer"); return; }
+
+    life::NeedConfig cfg;
+    cfg.profession = fencer;
+    life::ResolveConsumableThresholds(cfg, 5000);
+    Check(cfg.bandageFieldLow < cfg.bandageLow,
+          "a hunter's field line sits below its departure floor");
+    Check(cfg.bandageFieldLow >= cfg.bandageLow - cfg.bandageFieldLow,
+          "and it is the floor less ONE fight's worth, not half a pack");
+
+    life::BuildPlan plan = life::PlanFromProfession(*fencer);
+    life::Memory mem;
+
+    life::Observation obs;
+    obs.inWorld = true;
+    obs.hp = obs.hpMax = 51;
+    obs.gold = 8000;
+    obs.weight = 10; obs.maxWeight = 400;
+    obs.skills.push_back({rules::kFencing, 500});
+
+    auto bandageNeed = [](const std::vector<life::Need>& ns) -> const life::Need* {
+        for (const life::Need& n : ns)
+            if (n.kind == life::NeedKind::NeedEquipment && n.what == "bandages")
+                return &n;
+        return nullptr;
+    };
+
+    obs.bandages = cfg.bandageLow - 1;          // Hector's 99 against 100
+    const std::vector<life::Need> nsOne =
+        life::AssessNeeds(plan, mem, obs, cfg);
+    const life::Need* one = bandageNeed(nsOne);
+    Check(one != nullptr, "the shortfall is still reported -- it IS short");
+    if (one) {
+        Check(one->urgency <= 0.10,
+              "but at 0.10 x 260 = 26 it cannot outbid a hunt (58.5) or a "
+              "fight in progress -- the top-up waits for the next town trip");
+        Check(one->reason.find("one fight") != std::string::npos,
+              "and the reason says what the line means");
+    }
+
+    obs.bandages = cfg.bandageFieldLow - 1;     // a fight's worth gone
+    const std::vector<life::Need> nsGone =
+        life::AssessNeeds(plan, mem, obs, cfg);
+    const life::Need* gone = bandageNeed(nsGone);
+    Check(gone != nullptr && gone->urgency >= 0.5,
+          "below the field line the errand is the full 0.50 again -- this is "
+          "hysteresis, not a lower floor");
+
+    // A LIFE THAT DOES NOT HUNT IS UNTOUCHED: one line, in town and out.
+    const prof::Profession* scribe = prof::Find("scribe");
+    if (scribe) {
+        life::NeedConfig scfg;
+        scfg.profession = scribe;
+        life::ResolveConsumableThresholds(scfg, 5000);
+        Check(scfg.bandageFieldLow == scfg.bandageLow,
+              "a scribe restocks at its own single line");
+    }
+}
+
+// ---------------------------------------------------------------------------
+// D2: THE NPC FLOOR OPENS ONCE THE ANNOUNCE CYCLE ENDED UNANSWERED.
+//
+// Odessa shouted WTS six times to an empty bank (00:15:02-00:15:42) and
+// NeedGold still read "no buyer known", so EARN_GOLD stayed BLOCKED --
+// market::HasNpcBuyer was asked with its default playersDeclined=false, while
+// econ::MaterialFloorOpen (VendorPolicy.cpp) opens exactly that route once the
+// players have declined.
+// ---------------------------------------------------------------------------
+void TestAQuietMarketOpensTheNpcFloor() {
+    Section("needs: after an unanswered WTS the route becomes an NPC");
+
+    const prof::Profession* smith = prof::Find("miner_smith");
+    if (!smith) { Check(false, "no miner_smith"); return; }
+
+    life::NeedConfig cfg;
+    cfg.profession = smith;
+    life::BuildPlan plan = life::PlanFromProfession(*smith);
+    life::Memory mem;
+
+    life::Observation obs;
+    obs.inWorld = true;
+    obs.hp = obs.hpMax = 50;
+    obs.gold = 1000;
+    obs.weight = 100; obs.maxWeight = 600;
+    obs.pack.push_back({"i_ingot_iron", 600});
+
+    auto sellNeed = [](const std::vector<life::Need>& ns) -> const life::Need* {
+        for (const life::Need& n : ns)
+            if (n.kind == life::NeedKind::NeedGold && n.what == "sell surplus")
+                return &n;
+        return nullptr;
+    };
+
+    obs.marketQuiet = false;
+    const std::vector<life::Need> nsFirst =
+        life::AssessNeeds(plan, mem, obs, cfg);
+    const life::Need* first = sellNeed(nsFirst);
+    Check(first != nullptr, "a smith with spare ingots reports a sale need");
+    if (first) {
+        Check(first->blocked,
+              "player-first: while the market has not been asked, an ingot has "
+              "no NPC route and the need is a legible blocked state");
+        Check(first->evidence.find("no buyer known") != std::string::npos,
+              "and the evidence says which half is missing");
+    }
+
+    obs.marketQuiet = true;
+    const std::vector<life::Need> nsAfter =
+        life::AssessNeeds(plan, mem, obs, cfg);
+    const life::Need* after = sellNeed(nsAfter);
+    Check(after != nullptr && !after->blocked,
+          "once the announce cycle ended unanswered the floor opens and the "
+          "errand is actionable rather than deadlocked");
+    if (after)
+        Check(after->evidence.find("an NPC") != std::string::npos,
+              "and the route it names is the NPC counter");
+}
+
+// ---------------------------------------------------------------------------
+// D7: A RENDEZVOUS IS NOT A SHOPPING TRIP.
+//
+// Odessa picked BUY_SUPPLIES (0.95 x 140 = 133) at 00:11:31, 00:16:52,
+// 00:18:52, 00:27:46 and 00:29:50 and was handed off every time --
+// "i_ingot_iron is a player-market good ... another profession makes this, not
+// a shopkeeper" -- with goal_spinning=BUY_SUPPLIES at 00:25:45, while MINE
+// (58.5), the work that makes the ingots, lost every cycle.
+// ---------------------------------------------------------------------------
+void TestAPlayerMadeInputIsNotAShoppingTrip() {
+    Section("needs: an input no shopkeeper sells is blocked, not shopped for");
+
+    const prof::Profession* tinker = prof::Find("merchant_tinker");
+    if (!tinker) { Check(false, "no merchant_tinker"); return; }
+
+    life::NeedConfig cfg;
+    cfg.profession = tinker;
+    life::BuildPlan plan = life::PlanFromProfession(*tinker);
+    life::Memory mem;
+
+    life::Observation obs;
+    obs.inWorld = true;
+    obs.hp = obs.hpMax = 50;
+    obs.gold = obs.goldOnHand = 500;
+    obs.weight = 10; obs.maxWeight = 400;
+    obs.skills.push_back({rules::kTinkering, 500});
+    obs.skills.push_back({rules::kMining, 500});
+    obs.toolsHeld.push_back("tinker tools");
+
+    const std::vector<life::Need> ns = life::AssessNeeds(plan, mem, obs, cfg);
+    const life::Need* sup = nullptr;
+    for (const life::Need& n : ns)
+        if (n.kind == life::NeedKind::NeedSupplies &&
+            n.what == "buy craft inputs") { sup = &n; break; }
+    Check(sup != nullptr, "the tinker still reports what it is short of");
+    if (sup) {
+        Check(sup->blocked && sup->urgency == 0.0,
+              "but a player-market input is BLOCKED at need level: the errand "
+              "that would be picked can only hand itself off");
+        Check(sup->reason.find("rendezvous") != std::string::npos,
+              "and the reason names the market it really belongs to");
+    }
+
+    // AND THE VENDOR TABLE STILL KEEPS PRECEDENCE. A scribe's blank scrolls
+    // are produced by the lumberjack line too, but the mage shop sells them,
+    // so that trip is not touched (market::RouteForInput's own rule).
+    Check(life::SupplierTradeFor("i_scroll_blank") != nullptr &&
+              life::SupplierTradeFor("i_ingot_iron") == nullptr,
+          "the shopkeeper table is what separates the two cases");
+}
+
+// ---------------------------------------------------------------------------
+// D4: A FUNDED FIGHTER DOES NOT WALK TO A FLOCK.
+//
+// Hector (7,962 gold against a reserve of 350) picked HARVEST_WOOL at 00:16:55
+// and again at 00:24:49 -- NeedWoolIncome 0.30 x 140 = 42 beating blocked
+// training -- and both attempts died 75 s later on "no pasture within 400
+// tiles of home (1813,2825)", the second after walking him off the graveyard.
+// ---------------------------------------------------------------------------
+void TestAFundedFighterDoesNotGoShearing() {
+    Section("needs: wool is a fighter's INCOME, not a chore for a full purse");
+
+    const prof::Profession* fencer = prof::Find("fencer");
+    if (!fencer) { Check(false, "no fencer"); return; }
+
+    life::NeedConfig cfg;
+    cfg.profession = fencer;
+    life::ResolveConsumableThresholds(cfg, 8000);
+    life::BuildPlan plan = life::PlanFromProfession(*fencer);
+    life::Memory mem;
+
+    life::Observation obs;
+    obs.inWorld = true;
+    obs.hp = obs.hpMax = 51;
+    obs.gold = 7962;                            // Hector's purse
+    obs.bandages = cfg.bandageFull;
+    obs.weight = 10; obs.maxWeight = 400;
+    obs.skills.push_back({rules::kFencing, 500});
+
+    auto woolNeed = [](const std::vector<life::Need>& ns) -> const life::Need* {
+        for (const life::Need& n : ns)
+            if (n.kind == life::NeedKind::NeedWoolIncome) return &n;
+        return nullptr;
+    };
+
+    const std::vector<life::Need> nsRich =
+        life::AssessNeeds(plan, mem, obs, cfg);
+    const life::Need* rich = woolNeed(nsRich);
+    Check(rich != nullptr, "the wool need is still reported for a fencer");
+    if (rich) {
+        Check(rich->blocked && rich->urgency == 0.0,
+              "with 7,962 gold against a reserve of 350 the shearing trip is "
+              "BLOCKED -- the errand exists for income this life does not need");
+        Check(rich->reason.find("reserve") != std::string::npos,
+              "and the reason names the test it failed");
+    }
+
+    // POVERTY STILL OPENS IT -- the owner's original case, unchanged.
+    obs.gold = 100;
+    const std::vector<life::Need> nsPoor =
+        life::AssessNeeds(plan, mem, obs, cfg);
+    const life::Need* poor = woolNeed(nsPoor);
+    Check(poor != nullptr && !poor->blocked && poor->urgency >= 0.5,
+          "under its own reserve the flock is the nearest coin, exactly as "
+          "the 2026-09-02 ruling asked");
+}
+
 int main(int argc, char** argv) {
     std::printf("m4_life\n");
     const std::string tmpDir = (argc > 1) ? argv[1] : ".";
@@ -3673,6 +4306,7 @@ int main(int argc, char** argv) {
     TestMemory();
     TestNeeds();
     TestPlanner();
+    TestCombatWaitsForBandages();
     TestGatherLogsSurplusYieldsToTrade();
     TestStateRoundTrip();
     TestStore(tmpDir);
@@ -3710,6 +4344,16 @@ int main(int argc, char** argv) {
     TestPracticeChecksTheReagentPouch();
     TestAnEmptyPouchIsAShoppingErrand();
     TestStrengthAWizardCannotEarnByCasting();
+    TestASmithKeepsIngotsToWorkWith();
+    TestAPureMageIsNotSentShoppingForBandages();
+    TestADrainedPotionShelfDampsTheNeed();
+    TestAMageFightsWithItsWholeLadder();
+    TestAWonFightDoesNotHeatTheGround();
+    TestAMageMeditatesBeforeItHunts();
+    TestOneBandageIsNotATripToTown();
+    TestAQuietMarketOpensTheNpcFloor();
+    TestAPlayerMadeInputIsNotAShoppingTrip();
+    TestAFundedFighterDoesNotGoShearing();
 
     std::printf("%d checks, %d failures\n", g_checks, g_failures);
     return g_failures == 0 ? 0 : 1;

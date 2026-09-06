@@ -79,6 +79,35 @@ public:
     const PersistentState& State() const { return state_; }
     const Planner& GetPlanner() const { return planner_; }
 
+    // --- offline harness seams (tests/life_harness.cpp) -------------------
+    // The life layer has no clock and no randomness of its own, so the only
+    // thing between a deterministic test and the REAL goal loop is where the
+    // Observation comes from. While an override is set, Observe() returns it
+    // (with this tick's nowMs patched in) instead of reading the Client.
+    // Nothing else changes: the same Planner, the same Do* handlers, the same
+    // Client. Live sessions never set it.
+    void SetObservationOverrideForTest(const Observation* obs) {
+        obsOverride_ = obs;
+    }
+    // Is a Runner-owned errand still mid-purchase? Nothing else exposes it,
+    // and "the errand did not survive the goal change" is exactly the fact
+    // LeaveGoal exists to make true. Names: "bandage", "bandageCloth",
+    // "potion", "clothing", "weapon", "food", "bank".
+    bool ErrandRunningForTest(const char* which) const;
+
+    // Test seam: pretend this character has just bought a bandage counter
+    // out. Live sessions reach the same state through a partial purchase in
+    // DoReplaceEquipment; there is no vendor in the harness to buy from.
+    void NoteBandageCounterDrainedForTest(u32 serial, i64 nowMs) {
+        NoteDrainedShelf(serial, nowMs);
+        ++bandageCountersDrained_;
+    }
+    // The same seam for the heal-potion shelf.
+    void NotePotionCounterDrainedForTest(u32 serial, i64 nowMs) {
+        NoteDrainedShelf(serial, nowMs);
+        ++potionCountersDrained_;
+    }
+
     // Persist immediately (clean logout, host shutdown, a meaningful change).
     bool Checkpoint(Client& client, i64 nowMs, const char* why);
 
@@ -87,6 +116,7 @@ public:
     void EndSession(const char* why);
 
 private:
+    friend struct RunnerHarnessAccess;
     enum class Phase : u8 {
         AwaitWorld = 0,
         Reconcile,
@@ -149,6 +179,17 @@ private:
     // Always returns false (the goal did not complete this tick). `nowMs` is
     // `obs.nowMs` at every call site -- there is no cached Runner-side clock
     // member, so it is taken as a parameter rather than read from one.
+    // THE ONE PLACE A GOAL ENDS. Called from every exit -- the planner picking
+    // a different goal, RunGoal's Exhausted branch, HandOff, and the session
+    // limit -- so the transient slate a goal leaves behind is cleared once,
+    // by name, instead of by whichever handler happens to run next.
+    //
+    // `sameKind` (a re-pick of the identical GoalKind) keeps the journey and
+    // the errand exactly as they were: that is the Corran rule the reset block
+    // in Tick() documents, and widening it is what sent him to Britain 61ms
+    // after arriving in Minoc.
+    void        LeaveGoal(Client& client, GoalKind from, GoalKind to,
+                          bool sameKind, const char* why);
     bool        HandOff(GoalKind from, GoalKind to, i64 restMs, const char* why,
                         i64 nowMs);
 
@@ -590,6 +631,32 @@ private:
     void NoteDrainedShelf(u32 serial, i64 nowMs);
     // Serials still inside the restock window, freshest first.
     std::vector<u32> DrainedShelves(i64 nowMs) const;
+    // How many BANDAGE counters this pass has emptied. Not the same list as
+    // drainedShelves_, which also holds cloth and clothing shelves.
+    i32 bandageCountersDrained_ = 0;
+    // True once a counter has been emptied and no other healer or vet this
+    // character can see is still worth walking to.
+    bool BandageCountersAllDrained(Client& client, const Observation& obs) const;
+    // The same fact for the OTHER medicine. i_potion_heal is stocked {3 12} by
+    // VENDOR_S_HEALER_SHOP (tm_vend.scp:1111) and by the alchemist, and the
+    // shelf rolls empty: Odessa opened the Britain healer's at 00:16:26,
+    // 00:23:35 and 00:33:25 on 2026-09-06 and was told "does not stock heal
+    // potion" all three times, each one a fresh cross-town trip (D10,
+    // artifacts/validation_wave_2026-09-06.md). A drained potion shelf is
+    // remembered exactly like a drained bandage shelf.
+    i32 potionCountersDrained_ = 0;
+    bool PotionCountersAllDrained(Client& client, const Observation& obs) const;
+    // THE PATIENT HAS NOTHING TO HEAL WITH AND IS STANDING AT A COUNTER.
+    // Set for the duration of one DoReplaceEquipment(medicineOnly) call made
+    // from DoHeal, and only when the pack holds no bandage, no potion and the
+    // book no heal spell. It is what lets a life whose catalogue deliberately
+    // drops bandages (every crafter -- "so crafter do not buy bandages",
+    // project owner 2026-08-30) still buy the ONE medicine the healer has in
+    // stock rather than walk away at 12% HP.
+    bool emergencySelfHeal_ = false;
+    // The single exit from the bandage shop route (see Gear.cpp).
+    bool StandDownBandageShopping(const Observation& obs, const char* why,
+                                  i64 restMs);
     // Bandage errands that ended without a purchase since the last one that
     // worked. Bounds the walk from healer to healer: three silent counters
     // is a town without stock, and the cloth route answers that.
@@ -658,6 +725,13 @@ private:
     // SchoolWeaponFor in Runner.cpp.
     life::BuyActivity weaponBuy_;
     life::BankErrand   bankErrand_;
+    // Offline harness seam; null in every live session.
+    const Observation* obsOverride_ = nullptr;
+    // A HandOff ends the goal but has no Client to clean up with; Tick runs
+    // LeaveGoal from these on the next Live tick. See Runner::HandOff.
+    bool        leavePending_ = false;
+    GoalKind    leavePendingFrom_ = GoalKind::IdleBriefly;
+    std::string leavePendingWhy_;
     life::VendorErrand foodErrand_;
     i32  toolTrips_ = 0;
     // The rock currently being struck: position, the z of its visible
@@ -880,8 +954,20 @@ private:
     HealStep lastHealPlan_ = HealStep::None;
     int PickSurvivalSpell(Client& client, const Observation& obs, bool healing,
                           bool requireSupplies = true) const;
+    // Every attack spell this book and this Magery allow, strongest first,
+    // ignoring mana and pack -- the ladder the fight walks down and the list
+    // the reagent errand shops for.
+    void AttackLadder(Client& client, const Observation& obs,
+                      std::vector<const spell::SpellDef*>& out) const;
     bool survivalRetreat_ = false;
     void RetreatToSafety(Client& client);
+    // Shout for the guards when this tile is under their protection. True
+    // means the shout was the right answer here (so the caller need not also
+    // run); false means there is no protection to call on. See Survive.cpp.
+    bool CallGuardsIfProtected(Client& client, const Observation& obs);
+    // When the last "Guards!" was shouted, so a per-tick decision does not
+    // become a per-tick packet.
+    i64 lastGuardCallMs_ = 0;
     bool ProcessHuntAftermath(Client& client, const Observation& obs);
     u32 huntLootCorpse_ = 0;
     i32 huntLootFailures_ = 0;
@@ -969,6 +1055,14 @@ private:
     std::vector<u32> trainerSilent_;
     // Trips taken looking for a hunting ground this goal.
     int huntTrips_ = 0;
+    // HandOff out of TRAIN_COMBAT, returning the trip allowance: the goal that
+    // takes over plans its own journeys and they are not attempts to reach a
+    // hunting ground.
+    bool HandOffFromHunt(GoalKind to, i64 forMs, const char* why, i64 nowMs);
+    // HP at the last per-minute danger note of the fight in progress; -1 when
+    // no fight is being watched. What Survive.cpp turns into "how much did
+    // this ground actually cost me this minute".
+    i32 dangerWatchHp_ = -1;
     static constexpr int kMaxHuntTrips = 3;
     // --- stat farming (STAT_FARM) ------------------------------------------
     // The locks are in the farming configuration right now: STR UP, DEX

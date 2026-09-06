@@ -51,3 +51,6 @@
 - [Caster reagent working set](caster-reagent-working-set.md) — 50 each in pack, never dead-weight banked, NeedBank withdraws
 - [Archetypes top to bottom](archetypes-top-to-bottom.md) — owner 2026-09-05: finish one archetype at a time, alchemist first; treasure hunter trains Cartography
 - [Verdict is per archetype](verdict-is-per-archetype.md) — owner 2026-09-05: no sub-loop PASS; whole rounded day or PARTIAL/BLOCKED
+- [Goal exit ownership](goal-exit-ownership.md) — 2026-09-05 review: errand/action state outlived goal_changed; one LeaveGoal hook; same-kind re-pick keeps journey
+- [Offline life harness](offline-life-harness.md) — tests/life_harness reaches Runner::Tick offline; failing scenario first, then fix, then 5-min smoke
+- [Open slices after review](review-2026-09-05-open-slices.md) — order: errand-owned attempts, Objective+Bank keep, ContainerSync, thresholds to table

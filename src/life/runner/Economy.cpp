@@ -57,7 +57,7 @@ market::MaterialSaleGate Runner::MaterialSaleGateFor(
     return market::MaterialNpcSaleGate(
         *me, item.c_str(), held, PlayersDeclined(item, obs.nowMs),
         needCfg_.craftBatch, obs.gold, gaps,
-        market::PolicyForPurse(obs.goldOnHand));
+        market::PolicyForPurse(obs.gold));
 }
 
 bool Runner::DoEarnGold(Client& client, const Observation& obs) {
@@ -225,8 +225,8 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
     const bool sweeping = sellSweeps_ > 0 && sellSweeps_ < kMaxSellSweeps &&
                           sellSweepGold_ > 0 && sellVendorSerial_ != 0;
 
-    // The threshold bends when the purse is empty: see PolicyForPurse.
-    const market::TradePolicy tp = market::PolicyForPurse(obs.goldOnHand);
+    // Bank gold funds supplies here; an empty pack purse is not poverty.
+    const market::TradePolicy tp = market::PolicyForPurse(obs.gold);
     const std::vector<market::Offer> offers =
         market::Surplus(*me, obs.pack, tp);
     if (offers.empty() && !sweeping) {
@@ -2030,30 +2030,10 @@ void Runner::ResetTradeState() {
 // nightshade yet" is a bot lying about its own state.
 // ---------------------------------------------------------------------------
 
-// Who sells a craft input, as the paperdoll names them. Read off this shard's
-// own vendor templates, never guessed: the mage shop carries both halves of
-// the Inscription chain -- SELL=i_scroll_blank,{10 15} and every Magery
-// reagent (templates/tm_vend.scp:633-656) -- which is why a scribe's whole
-// shopping trip is one stop.
-const char* SupplierTradeFor(const std::string& item) {
-    if (item.rfind("i_reag_", 0) == 0) return "mage";
-    if (item == "i_scroll_blank")      return "mage";
-    if (item == "i_bottle_empty")      return "alchemist";
-    if (item == "i_map_blank")         return "mapmaker";      // tm_vend.scp:1155
-    if (item == "i_mapmakers_pen")     return "mapmaker";      // added 2026-09-05
-    if (item == "i_feather")           return "provisioner";
-    // KINDLING, which is what a campfire is made of and therefore what
-    // cooking needs. Marla caught fish, cut them into steaks and then SOLD
-    // the steaks raw at 2 gold because she could not cook: NeedCraft never
-    // appeared in her list at all, since the recipe wanted a fire and she had
-    // nothing to light. Cooked steaks are worth 6 (i_fish_cut_cooked
-    // VALUE=6), so the missing gap was threefold value on every fish.
-    //
-    // The provisioner stocks it -- her own vendor window showed "kindling
-    // gfx=0x0DE1 qty=36 price=1" while she stood there buying bread.
-    if (item == "i_kindling")          return "provisioner";
-    return nullptr;
-}
+// Who sells a craft input moved to include/uo/life.h (inline
+// SupplierTradeFor) so the NEED can ask it before it scores a shopping trip --
+// D7, artifacts/validation_wave_2026-09-06.md. Same table, same evidence, one
+// copy; this errand still calls it below.
 
 // HOW MANY OF ONE INPUT A STOCKING TRIP BUYS.
 //
@@ -2506,7 +2486,7 @@ bool Runner::DoBuySupplies(Client& client, const Observation& obs) {
             const std::vector<market::Offer> couldSell =
                 needCfg_.profession
                     ? market::Surplus(*needCfg_.profession, obs.pack,
-                                      market::PolicyForPurse(obs.goldOnHand))
+                                      market::PolicyForPurse(obs.gold))
                     : std::vector<market::Offer>{};
             i32 sellable = 0;
             for (const market::Offer& o : couldSell) sellable += o.qty;

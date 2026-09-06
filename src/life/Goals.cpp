@@ -363,7 +363,7 @@ std::vector<ScoredGoal> Planner::Score(const std::vector<Need>& needs,
                 const i32 held = market::QtyOf(obs.pack, "i_log") +
                                  market::QtyOf(obs.bank, "i_log");
                 const i32 keep =
-                    market::PolicyForPurse(obs.goldOnHand).keepOfOwnOutput;
+                    market::PolicyForPurse(obs.gold).keepOfOwnOutput;
                 const i32 spare = held - keep;
                 const bool surplusDamped = keep > 0 && spare >= 2 * keep;
 
@@ -684,6 +684,15 @@ bool Planner::Select(const std::vector<Need>& needs, const Observation& obs,
                           GoalKindName(best->kind), best->score,
                           cfg_.preemptScore);
         }
+        return false;
+    }
+
+    // Combat that is waiting for bandages must not cancel the errand making
+    // them as soon as its own short cooldown expires. The normal attempt and
+    // time budgets still end a failed errand; emergencies still preempt it.
+    if (incumbentStillFeasible && !emergency &&
+        goal_.kind == GoalKind::MakeBandages && best->kind == GoalKind::TrainCombat) {
+        if (whyOut) *whyOut = "finish making the hunting supplies before combat training";
         return false;
     }
 
