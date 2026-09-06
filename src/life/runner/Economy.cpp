@@ -505,6 +505,9 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
         sellService_ = ServiceForTrade(buyer->trade);
         sellAsked_ = false;
         sellReachChecked_ = false;
+        // A different trade is a different set of counters.
+        sellShopsTried_.clear();
+        sellKnownX_ = sellKnownY_ = 0;
     }
 
     if (client.TravelBusy()) return false;
@@ -536,12 +539,43 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
             ++sellBuyerIndex_;
             sellTrade_.clear();
             sellTrips_ = 0;
+            sellShopsTried_.clear();
+            sellKnownX_ = sellKnownY_ = 0;
             return false;
         }
         if (!travelInFlight_) {
+            const std::string need = std::string("buyer:") + sellItem_;
+
+            // ONE MISS IS THE STRIKE.
+            //
+            // A remembered buyer is a POSITION, not a mobile: the NPC that
+            // earned it wanders, dies and is re-rolled by its spawner. Until
+            // now the note was only dropped after kMaxSellTrips, so the
+            // character walked to the same empty tile three times before
+            // asking anything else -- Kharain spent a whole EARN_GOLD on the
+            // 'blacksmith' noted at 2562,502 and forgot it only on the way
+            // out (run_gates/g_Kharain.console.txt:4075-4076). Standing on
+            // the spot and seeing nobody of that trade is the disproof, and
+            // it lands on the first visit. Same rule Train.cpp already
+            // applies to trainers.
+            if ((sellKnownX_ || sellKnownY_) &&
+                TileDist(obs.x, obs.y, sellKnownX_, sellKnownY_) <=
+                    kStaleNoteMissWithin) {
+                LogLine("earn_gold: no '%s' where we remembered one at %d,%d "
+                        "-- forgetting it and looking properly",
+                        sellTrade_.c_str(), sellKnownX_, sellKnownY_);
+                state_.memory.ForgetSupplier(need.c_str(), sellKnownX_,
+                                             sellKnownY_);
+                sellKnownX_ = sellKnownY_ = 0;
+                // Do not charge a trip for a note that turned out to be
+                // empty: the next one is the first real look.
+                client.ActionScanMobiles();
+                nextActionMs_ = obs.nowMs + 2000;
+                return false;
+            }
+
             ++sellTrips_;
-            const KnownSupplier* known = state_.memory.BestSupplier(
-                (std::string("buyer:") + sellItem_).c_str());
+            const KnownSupplier* known = state_.memory.BestSupplier(need.c_str());
             // A REMEMBERED BUYER IS ONLY WORTH RETURNING TO IF IT IS NEARBY.
             //
             // This branch had no distance test at all, and it is how Corwyn
@@ -566,6 +600,8 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
                 LogLine("earn_gold: back to a buyer we have used before, "
                         "'%s' at %d,%d (%d tiles)", known->name.c_str(),
                         known->x, known->y, knownDist);
+                sellKnownX_ = known->x;
+                sellKnownY_ = known->y;
                 travelInFlight_ =
                     client.TravelToPoint(known->x, known->y, 2, "buyer");
             } else {
@@ -576,7 +612,16 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
                 LogLine("earn_gold: looking for a '%s' to buy %d %s (trip %d)",
                         sellTrade_.c_str(), sellWanted_, sellItem_.c_str(),
                         sellTrips_);
-                travelInFlight_ = client.TravelToService(sellService_, HomeOrNearest(state_.homeCity));
+                // A SECOND TRIP MUST BE A SECOND SHOP. TravelToService
+                // answers with the nearest provider every time, so trips 2
+                // and 3 re-walked to the counter that had just failed --
+                // twice arriving at the same tile seconds apart. The
+                // skipping form records the shop it picked and moves on to
+                // the next one, which is what a player does after a "no".
+                sellKnownX_ = sellKnownY_ = 0;
+                travelInFlight_ = client.TravelToServiceSkipping(
+                    sellService_, HomeOrNearest(state_.homeCity), sellSilent_,
+                    &sellShopsTried_);
             }
             if (!travelInFlight_) {
                 LogLine("goal_blocked=EARN_GOLD reason=\"%s\"",

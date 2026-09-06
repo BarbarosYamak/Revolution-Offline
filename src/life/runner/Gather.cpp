@@ -208,28 +208,34 @@ bool Runner::DoGatherLogs(Client& client, const Observation& obs) {
                 travelInFlight_ =
                     client.TravelToPoint(hint->x, hint->y, 6, "forest_hint");
             } else {
-                // WALK OUT AND LOOK, RATHER THAN WAIT FOR AN ATLAS ENTRY
-                // THAT DOES NOT EXIST. Project owner, 2026-08-31: "if he
-                // left the guard zone at Britain he would see farmable
-                // trees" -- and the atlas backs this up literally:
-                // data/revolution_atlas.txt has zero PLACE rows with
-                // resources=lumber (grep -i "\tlumber$"), so
-                // TravelToResource(Lumber) can never succeed here. A real
-                // player in this position walks out of town; this is that,
-                // bounded (world/GuardZoneAdvance.h -- same shape as
-                // DoMine's DeeperMiningTarget, opposite direction).
-                i32 stepX = 0, stepY = 0;
-                if (client.StepOutOfGuardZone(obs.x, obs.y, &stepX, &stepY)) {
-                    LogLine("gather: no stand and no lead left, and this is "
-                            "guarded ground -- walking out to where trees can "
-                            "actually be worked");
-                    travelInFlight_ =
-                        client.TravelToPoint(stepX, stepY, 4, "past_guard_line");
-                } else {
-                    LogLine("gather: no stand and no lead left; asking the "
-                            "world for lumber");
-                    travelInFlight_ =
-                        client.TravelToResource(wm::ResourceKind::Lumber);
+                // ASK THE WORLD FIRST, THEN WALK OUT AND LOOK.
+                //
+                // This branch used to try the guard-zone hop first, because
+                // the atlas HAD no lumber to ask for: uo_atlasgen's forest
+                // pass was skipped by a --skip-grid refresh and the file went
+                // from 43 lumber rows to zero, so TravelToResource(Lumber)
+                // could only ever answer "no known source of that resource".
+                // Vorar then hopped seven tiles past the Britain guard line
+                // into treeless street 107 times in one session. With the
+                // woods measured back in, a named forest is the better answer
+                // and the hop is what it was written to be: the fallback for
+                // a character standing where the atlas knows nothing (project
+                // owner, 2026-08-31: "if he left the guard zone at Britain he
+                // would see farmable trees"; world/GuardZoneAdvance.h).
+                LogLine("gather: no stand and no lead left; asking the world "
+                        "for lumber");
+                travelInFlight_ =
+                    client.TravelToResource(wm::ResourceKind::Lumber);
+                if (!travelInFlight_) {
+                    i32 stepX = 0, stepY = 0;
+                    if (client.StepOutOfGuardZone(obs.x, obs.y, &stepX, &stepY)) {
+                        LogLine("gather: the world knows no forest (%s), and "
+                                "this is guarded ground -- walking out to "
+                                "where trees can actually be worked",
+                                client.TravelFailureText());
+                        travelInFlight_ =
+                            client.TravelToPoint(stepX, stepY, 4, "past_guard_line");
+                    }
                 }
             }
             if (!travelInFlight_) {

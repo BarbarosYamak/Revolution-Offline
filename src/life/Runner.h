@@ -1205,6 +1205,23 @@ private:
     usize sellBuyerIndex_ = 0;         // which buyer of sellItem_ we are trying
     i32   sellTrips_ = 0;
     i32   sellWanted_ = 0;             // how many units we mean to sell
+    // Shops of this trade already walked to while trying to sell. Without it
+    // every trip asked the atlas the same question and got the same answer:
+    // Odessa "arrived at 1427,1658" on trip 1 and again on trip 2 four
+    // seconds later, then wrote the trade off (run_gates/g_Odessa.console.txt
+    // :774,788,798). Same shape, and the same cure, as trainerShopsTried_.
+    std::vector<std::string> sellShopsTried_;
+    // No mobile is silenced for selling -- the parameter exists so the
+    // skipping lookup can be reused, and an empty list keeps that explicit.
+    std::vector<u32> sellSilent_;
+    // Where a remembered buyer was said to be, while we walk to it. Standing
+    // there and seeing nobody of the trade is the disproof (Train.cpp does
+    // the same for trainers); the note is dropped on that FIRST miss.
+    i32   sellKnownX_ = 0;
+    i32   sellKnownY_ = 0;
+    // Close enough to a noted spot to call it visited. Three tiles is the
+    // same tolerance Train.cpp uses before forgetting a trainer.
+    static constexpr i32 kStaleNoteMissWithin = 3;
     // A ceiling this buyer has proved it can afford. Halved each time a
     // quoted sale leaves the purse unmoved -- an NPC vendor's own gold is
     // finite and it will list an offer it cannot pay for. 0 = no cap.
