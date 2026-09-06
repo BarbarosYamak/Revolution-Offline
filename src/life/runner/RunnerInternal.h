@@ -262,6 +262,22 @@ constexpr i32 kMaxBandageShops = 2;
 // vendors mark up 15% (sphere.ini:627), so anything above this is not the
 // cloth this errand came for.
 constexpr i32 kClothMaxPrice = 6;
+// A BOLT IS THE SAME SHELF'S OTHER ROW, AND IT IS THE ONE THAT SCALES.
+//
+// i_cloth_bolt is VALUE=150 (items/i_profession_tailor_tanner.scp:72-80) and
+// with the 15% markup the weaver quoted 173 gp live (Ravan, 2026-09-06
+// 23:00:14, `bolts of cloth gfx=0x0F95 qty=5 price=173`). One bolt cuts to
+// fifty cloth in ONE gesture, and a stack of cloth cuts to bandages in one
+// more -- measured in the same run, where a stack of 18 cloth took the
+// bandage count 17 -> 35. So 173 gp is ~3.5 gp per bandage, level with loose
+// cloth at 3, and it is the only counter in town that can fill a fighter's
+// hundred before the shelves restock. 180 leaves headroom over the quote
+// without paying for a dyed novelty.
+constexpr i32 kClothBoltMaxPrice = 180;
+// TWO BOLTS A TRIP, NOT THE WHOLE SHORTFALL. WEIGHT=50.0 each (same itemdef),
+// so four bolts is 200 stones on a fighter already carrying armour -- the
+// errand comes back for more rather than walking home overloaded.
+constexpr i32 kMaxBoltsPerTrip = 2;
 constexpr i32 kMaxBandageTrips = 3;
 constexpr i64 kNoBandageCooldownMs = 180000;
 // When even the map is exhausted, rest a while before asking again.

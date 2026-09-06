@@ -7,6 +7,43 @@ namespace uo::life {
 using namespace runner_detail;
 
 
+// ONE TICK OF A BANDAGE-INPUT PURCHASE. Declared in Runner.h, which carries
+// the reasoning. Both rows of the weaver's shelf -- loose cloth and bolts --
+// are bought by the same handshake, and the plumbing around it was already
+// thirty lines the second row would have copied verbatim.
+bool Runner::TickBandageInputBuy(Client& client, const Observation& obs,
+                                 life::BuyActivity& buy, const char* tag,
+                                 bool& bought) {
+    bought = false;
+    const life::ActivityTickResult r = buy.Tick(client, obs);
+    LogErrandReason(tag, r.reason, obs.nowMs);
+    if (r.wake == life::Wake::AfterDelay && r.delayMs > 0)
+        nextActionMs_ = obs.nowMs + r.delayMs;
+    if (!life::IsTerminal(r.status)) {
+        // Finding the keeper and reaching the counter are transitions,
+        // even when this tick sends no action. They reset failed attempts.
+        const bool legLanded = r.offerOpen ||
+            (r.reason && (std::strstr(r.reason, "found a") ||
+                          std::strstr(r.reason, "within reach") ||
+                          std::strstr(r.reason, "ARRIVED") ||
+                          std::strstr(r.reason, "the shop is open")));
+        if (legLanded) planner_.NoteProgress();
+        else if (r.acted) planner_.NoteAttempt(obs.nowMs);
+        return true;
+    }
+    if (r.status == life::ActivityStatus::Success) {
+        planner_.NoteProgress();
+        bought = true;
+        return false;
+    }
+    // NO DRAINED-SHELF NOTE ON A PARTIAL BUY, unlike the healer's counter.
+    // The weaver's list holds i_cloth in FOUR separate rows (16/16/5/13 in
+    // Castor's window on 2026-09-05) and the errand buys the first matching
+    // row, so a partial buy is a row emptied, not a shop emptied. Only the
+    // terminal failure below -- "does not stock" -- means the shop is out.
+    return false;
+}
+
 // ---------------------------------------------------------------------------
 // MAKING BANDAGES.
 //
@@ -26,6 +63,11 @@ using namespace runner_detail;
 // who loots cloth walks straight to the last step.
 bool Runner::DoMakeBandages(Client& client, const Observation& obs) {
     if (client.ActionBusy()) return false;
+    // The flock table, for the last step. Read from the world save by
+    // tools/pasturegen.py, never assumed -- and read HERE rather than at the
+    // pasture branch so the distance rule below can be applied before any
+    // travel is planned.
+    LoadPastures(client.DataDir());
 
     // HOW MANY IS ENOUGH IS THE CHARACTER'S NUMBER, NOT A CONSTANT.
     // needCfg_.bandageFull is resolved per life and per purse each planning
@@ -36,6 +78,8 @@ bool Runner::DoMakeBandages(Client& client, const Observation& obs) {
                                               : kBandagesWanted;
     if (obs.bandages >= want) {
         LogLine("bandages: %d is enough to fight on", obs.bandages);
+        bandageTrips_ = 0;
+        bandageBoltsOut_ = false;       // a fresh shortfall gets a fresh look
         planner_.Finish(true, nullptr, obs.nowMs);
         return true;
     }
@@ -113,8 +157,13 @@ bool Runner::DoMakeBandages(Client& client, const Observation& obs) {
         return false;
     }
 
-    // 2. BOLT -> CLOTH.
-    if (const u32 bolt = client.FindBackpackItemByGraphic(kClothBoltGraphic)) {
+    // 2. BOLT -> CLOTH. Fifty cloth in one gesture (ConvertBolttoCloth).
+    //    Same purchase-window guard as the cloth above: a bolt cut inside the
+    //    errand's own before/after comparison reads as a theft.
+    const u32 bolt = bandageBoltBuy_.Running()
+                         ? 0
+                         : client.FindBackpackItemByGraphic(kClothBoltGraphic);
+    if (bolt) {
         LogLine("bandages: cutting a bolt of cloth into cloth");
         client.ActionUseItemOn(scissors, bolt);
         planner_.NoteProgress();
@@ -162,7 +211,8 @@ bool Runner::DoMakeBandages(Client& client, const Observation& obs) {
         return false;
     }
 
-    // 4b. NOTHING IN THE PACK TO WORK WITH, BUT THERE IS A PURSE: BUY CLOTH.
+    // 4b/4c. NOTHING IN THE PACK TO WORK WITH, BUT THERE IS A PURSE: BUY
+    // THE INPUT AT A TAILOR RATHER THAN WALKING TO A FLOCK.
     //
     // Scissors on loose cloth give one bandage per cloth, engine-hardcoded and
     // with no skill check (Source-X CClientTarg.cpp:2135-2184), and loose
@@ -170,6 +220,15 @@ bool Runner::DoMakeBandages(Client& client, const Observation& obs) {
     // rows of {2 24} for 3 gp (tm_vend.scp:875-887, 899-966). That is the
     // only route to a hundred bandages in one sitting: a healer's shelf holds
     // at most twenty and refills once every ten minutes.
+    //
+    // THE ROWS RUN OUT AND THE BOLTS DO NOT. Ravan emptied the weaver's four
+    // cloth rows in one visit (4 + 18 + 12), heard "this weaver does not
+    // stock loose cloth", and set off for the Yew pasture 960 tiles away --
+    // with 10,000 gold in hand and three rows of bolts, 5/23/18 at 173 gp,
+    // on the shelf he was standing at (2026-09-06 23:00:14-23:01:16). A bolt
+    // is fifty cloth in one gesture, so a hundred-bandage shortfall is two
+    // purchases, not a cross-map hike. The bigger row goes first when the
+    // shortfall is a bolt's worth; loose cloth is the top-up and the fallback.
     //
     // NARROW ON PURPOSE. The standing ruling "never buy cloth/thread/yarn
     // from NPCs" (owner, 2026-09-02) is about a TAILOR's supply -- a crafter
@@ -179,52 +238,90 @@ bool Runner::DoMakeBandages(Client& client, const Observation& obs) {
     // on WantsToHunt and on being short of the fighting floor.
     const bool hunts =
         needCfg_.profession && WantsToHunt(*needCfg_.profession);
-    if (hunts && obs.bandages < want && obs.gold >= kClothMaxPrice) {
-        if (!bandageClothBuy_.Running()) {
-            life::BuyRequest req;
-            req.graphic = kClothGraphic;
-            req.item = "loose cloth";
-            // One cloth is one bandage, so the shortfall IS the order.
-            req.desiredTotal = want - obs.bandages;
-            req.minimumGoldReserve = 0;
-            req.maxPricePerUnit = kClothMaxPrice;
-            req.Sell("weaver", wm::Service::Tailor);
-            req.Sell("tailor", wm::Service::Tailor);
-            for (u32 drained : DrainedShelves(obs.nowMs)) req.Avoid(drained);
-            bandageClothBuy_.Begin(req);
+    // WHAT IS STILL SHORT AFTER THE PACK IS COUNTED. Cloth and bolts already
+    // carried are bandages that have not been cut yet, and the order must not
+    // count them twice: Hector bought two bolts, cut one, and bought two more
+    // while the first pair was still in his pack -- 200 stones and 70% of his
+    // carry weight for a shortfall he had already covered (2026-09-07
+    // 00:27:04-00:28:31). Steps 1 and 2 above normally consume these before
+    // the tick gets here; this holds during the purchase window, when they
+    // are deliberately hidden.
+    const i32 convertible =
+        static_cast<i32>(client.BackpackItemCount(kClothGraphic)) +
+        static_cast<i32>(client.BackpackItemCount(kClothBoltGraphic)) *
+            kClothPerBolt;
+    const i32 shortfall = want - obs.bandages - convertible;
+    if (hunts && shortfall > 0) {
+        bool bought = false;
+        // 4b. A BOLT, when the shortfall is worth one and the purse can pay
+        //     the quote. Never more than kMaxBoltsPerTrip: WEIGHT=50.0 each.
+        if (bandageBoltBuy_.Running() ||
+            (!bandageBoltsOut_ && shortfall >= kClothPerBolt &&
+             obs.gold >= kClothBoltMaxPrice)) {
+            if (!bandageBoltBuy_.Running()) {
+                life::BuyRequest req;
+                req.graphic = kClothBoltGraphic;
+                req.item = "a bolt of cloth";
+                const i32 bolts =
+                    (shortfall + kClothPerBolt - 1) / kClothPerBolt;
+                req.desiredTotal = std::min(bolts, kMaxBoltsPerTrip);
+                req.minimumGoldReserve = 0;
+                req.maxPricePerUnit = kClothBoltMaxPrice;
+                req.Sell("weaver", wm::Service::Tailor);
+                req.Sell("tailor", wm::Service::Tailor);
+                for (u32 drained : DrainedShelves(obs.nowMs)) req.Avoid(drained);
+                bandageBoltBuy_.Begin(req);
+            }
+            if (TickBandageInputBuy(client, obs, bandageBoltBuy_,
+                                    "bandage bolt", bought))
+                return false;
+            if (bought) {
+                LogLine("bandages: %d bolt(s) bought -- fifty cloth apiece, "
+                        "cutting them next pass",
+                        static_cast<i32>(
+                            client.BackpackItemCount(kClothBoltGraphic)));
+                return false;             // step 2 above cuts it
+            }
+            // NO DRAINED-SHELF NOTE. That note is keyed by shopkeeper and
+            // would hide this same keeper's loose-cloth row, which is exactly
+            // where the fallback below is going. A session latch instead.
+            bandageBoltsOut_ = true;
+            LogLine("bandages: no bolt of cloth to be had -- trying the loose "
+                    "cloth row on the same shelf");
         }
-        const life::ActivityTickResult r = bandageClothBuy_.Tick(client, obs);
-        LogErrandReason("bandage cloth", r.reason, obs.nowMs);
-        if (r.wake == life::Wake::AfterDelay && r.delayMs > 0)
-            nextActionMs_ = obs.nowMs + r.delayMs;
-        if (!life::IsTerminal(r.status)) {
-            // Finding the keeper and reaching the counter are transitions,
-            // even when this tick sends no action. They reset failed attempts.
-            const bool legLanded = r.offerOpen ||
-                (r.reason && (std::strstr(r.reason, "found a") ||
-                              std::strstr(r.reason, "within reach") ||
-                              std::strstr(r.reason, "ARRIVED") ||
-                              std::strstr(r.reason, "the shop is open")));
-            if (legLanded) planner_.NoteProgress();
-            else if (r.acted) planner_.NoteAttempt(obs.nowMs);
-            return false;
+        // 4c. LOOSE CLOTH. One cloth is one bandage, so the shortfall IS the
+        //     order, and a whole stack cuts in a single gesture (measured:
+        //     18 cloth took Ravan from 17 bandages to 35).
+        if (bandageClothBuy_.Running() || obs.gold >= kClothMaxPrice) {
+            if (!bandageClothBuy_.Running()) {
+                life::BuyRequest req;
+                req.graphic = kClothGraphic;
+                req.item = "loose cloth";
+                req.desiredTotal = shortfall;
+                req.minimumGoldReserve = 0;
+                req.maxPricePerUnit = kClothMaxPrice;
+                req.Sell("weaver", wm::Service::Tailor);
+                req.Sell("tailor", wm::Service::Tailor);
+                for (u32 drained : DrainedShelves(obs.nowMs)) req.Avoid(drained);
+                bandageClothBuy_.Begin(req);
+            }
+            if (TickBandageInputBuy(client, obs, bandageClothBuy_,
+                                    "bandage cloth", bought))
+                return false;
+            if (bought) {
+                const i32 clothHeld =
+                    static_cast<i32>(client.BackpackItemCount(kClothGraphic));
+                LogLine("bandages: %d cloth bought -- cutting it next pass",
+                        clothHeld);
+                return false;             // step 1 above cuts it
+            }
+            // The rows really are out at this counter, and this one IS a
+            // shop note: nothing on this shelf answers the goal for the ten
+            // minutes it takes to restock.
+            NoteDrainedShelf(bandageClothBuy_.Keeper(), obs.nowMs);
+            LogLine("bandages: nothing bought at the cloth counter -- back to "
+                    "the wool chain");
         }
-        if (r.status == life::ActivityStatus::Success) {
-            planner_.NoteProgress();
-            // NO DRAINED-SHELF NOTE HERE, unlike the healer's counter. The
-            // weaver's list holds i_cloth in FOUR separate rows (16/16/5/13
-            // in Castor's window on 2026-09-05) and the errand buys the
-            // first matching row, so a partial buy is a row emptied, not a
-            // shop emptied. When the rows really do run out the errand says
-            // "does not stock" and the failure path below remembers it.
-            const i32 cloth =
-                static_cast<i32>(client.BackpackItemCount(kClothGraphic));
-            LogLine("bandages: %d cloth bought -- cutting it next pass", cloth);
-            return false;                 // step 1 above cuts it
-        }
-        NoteDrainedShelf(bandageClothBuy_.Keeper(), obs.nowMs);
-        LogLine("bandages: no cloth bought (%s) -- back to the wool chain",
-                r.reason);
     }
 
     // 5. A SHEEP -> WOOL. The only free step, and the start of everything.
@@ -265,30 +362,80 @@ bool Runner::DoMakeBandages(Client& client, const Observation& obs) {
         return false;
     }
 
-    // NO SHEEP IN SIGHT. Go where they are.
+    // NO SHEEP IN SIGHT, AND A FLOCK IS THE LAST RESORT, NOT THE FIRST.
     //
-    // The pastures are read from the world save rather than assumed: of 246
-    // sheep on map 0, the three real flocks are at 572,1098 (15), 669,943 (13)
-    // and 669,1175 (11), which is the farmland north-east of Yew. The rest are
-    // ones and twos wandering. The owner's recollection was Jhelom and
-    // Britain; the save says Yew, and the save is what the bot has to walk to.
+    // This used to hold three hard-coded points -- 572,1098 / 669,943 /
+    // 669,1175, the Yew farmland -- walked in order with no distance test at
+    // all. Ravan, a Britain fighter with 10,000 gold, planned 23 legs and
+    // ~960 tiles through the Yew moongate for them and the session ended with
+    // him standing in the wild at 634,849 (2026-09-06 23:01:16). Yew is never
+    // a destination of choice (owner, 2026-08-30), and the same rule
+    // DoMakeCloth already obeys applies here: the flock has to be OUR flock.
+    //
+    // So: the save-derived table (tools/pasturegen.py), ranked by distance
+    // from this life's own home bank, and nothing beyond
+    // kMaxPastureTilesFromHome of it. That radius is not a number picked
+    // here -- it is the atlas gap between a home flock and someone else's:
+    // Britain bank to the Britain farmland flock at 1321,1817 is ~120 tiles,
+    // while the next rows in the table are the Yew flocks at ~750 and Jhelom
+    // at ~1900. 400 admits the first and excludes the rest.
+    //
+    // The anchor is the seeded home bank, not where the character happens to
+    // stand, so a fighter stranded up-country still shears at home.
     if (client.TravelBusy()) return false;
-    if (++bandageTrips_ > kMaxBandageTrips) {
-        LogLine("goal_failed=MAKE_BANDAGES reason=\"no sheep found after %d "
-                "trips to the pastures\"", bandageTrips_ - 1);
-        planner_.Cooldown(GoalKind::MakeBandages, obs.nowMs + kNoBandageCooldownMs);
-        planner_.Finish(false, "no sheep reachable", obs.nowMs);
-        bandageTrips_ = 0;
-        return false;
+    i32 anchorX = obs.x, anchorY = obs.y;
+    const char* anchorWhat = "here";
+    if (const KnownPlace* homeBank =
+            state_.memory.BestPlace("common_knowledge_bank")) {
+        anchorX = homeBank->x;
+        anchorY = homeBank->y;
+        anchorWhat = "home";
     }
-    static const struct { i32 x, y; } kPastures[] = {
-        {572, 1098}, {669, 943}, {669, 1175},
-    };
-    const int which = (bandageTrips_ - 1) % 3;
-    LogLine("bandages: no sheep in sight -- walking to the pasture at %d,%d "
-            "(trip %d)", kPastures[which].x, kPastures[which].y, bandageTrips_);
+    const std::vector<Pasture>& pastures = Pastures();
+    std::vector<usize> nearby;   // `near` is a Windows macro
+    for (usize i = 0; i < pastures.size(); ++i)
+        if (TileDist(anchorX, anchorY, pastures[i].x, pastures[i].y) <=
+            kMaxPastureTilesFromHome)
+            nearby.push_back(i);
+    if (nearby.empty()) {
+        // EVERY ROUTE TO A BANDAGE IS SHUT: the healer's counters are empty
+        // (that is why this goal was picked at all), the tailor sold no cloth
+        // and no bolt, and there is no flock this character would walk to.
+        // Stand down and say so, rather than leaving the planner to re-pick
+        // HEAL / REPLACE_EQUIPMENT / GET_FOOD in a ten-second ring the way
+        // Hector did at 00:00:47-00:01:07 (2026-09-07).
+        bandageTrips_ = 0;
+        bandageBoltsOut_ = false;
+        return BlockNeed(GoalKind::MakeBandages, life::NeedKind::NeedMakeBandages,
+                         life::BlockScope::Session,
+                         Fmt2("no bandages to buy, no cloth or bolt on any "
+                              "counter, and no flock within %d tiles of %s "
+                              "(%d,%d)", kMaxPastureTilesFromHome, anchorWhat,
+                              anchorX, anchorY).c_str(),
+                         kNoBandageCooldownMs, obs.nowMs);
+    }
+    if (++bandageTrips_ > kMaxBandageTrips) {
+        const std::string why =
+            Fmt2("no sheep found after %d trips to the pastures",
+                 bandageTrips_ - 1);
+        bandageTrips_ = 0;
+        bandageBoltsOut_ = false;
+        // Window, not Session: a flock walks back, and so does a shelf.
+        return BlockNeed(GoalKind::MakeBandages, life::NeedKind::NeedMakeBandages,
+                         life::BlockScope::Window, why.c_str(),
+                         kNoBandageCooldownMs, obs.nowMs);
+    }
+    std::stable_sort(nearby.begin(), nearby.end(), [&](usize a, usize b) {
+        return TileDist(anchorX, anchorY, pastures[a].x, pastures[a].y) <
+               TileDist(anchorX, anchorY, pastures[b].x, pastures[b].y);
+    });
+    const Pasture& p =
+        pastures[nearby[static_cast<usize>(bandageTrips_ - 1) % nearby.size()]];
+    LogLine("bandages: no sheep in sight -- walking to the flock of %d at "
+            "%d,%d, %d tiles off, nearest to %s (trip %d)", p.count, p.x, p.y,
+            TileDist(obs.x, obs.y, p.x, p.y), anchorWhat, bandageTrips_);
     travelInFlight_ =
-        client.TravelToPoint(kPastures[which].x, kPastures[which].y, 6, "pasture");
+        client.TravelToPoint(p.x, p.y, std::max(4, p.radius / 2), "pasture");
     nextActionMs_ = obs.nowMs + 2500;
     return false;
 }

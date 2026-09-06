@@ -309,6 +309,16 @@ private:
                                             const Observation& obs) const;
     bool DoFillSpellbook(Client& client, const Observation& obs);
     bool DoMakeBandages(Client& client, const Observation& obs);
+    // ONE TICK OF A BANDAGE-INPUT PURCHASE (loose cloth, or a bolt of it).
+    // The two rows sit on the same weaver's shelf and are bought by the same
+    // handshake, so the errand plumbing -- reason logging, the landed/attempt
+    // classification, the drained-shelf note -- is stated once here. Returns
+    // true while the errand is still live (the caller's tick is over);
+    // false when it has reached a terminal status, with `bought` set if the
+    // goods actually arrived.
+    bool TickBandageInputBuy(Client& client, const Observation& obs,
+                             life::BuyActivity& buy, const char* tag,
+                             bool& bought);
     // Sheep -> wool -> yarn -> bolt -> cloth, for a life whose CRAFT is
     // blocked on cloth and whose WTB window found no seller. Walks the same
     // five gestures DoMakeBandages does and stops at cloth instead of going
@@ -696,6 +706,15 @@ private:
     // Loose cloth, bought to be cut into bandages when no counter in town
     // still has any. See DoMakeBandages.
     life::BuyActivity bandageClothBuy_;
+    // The same shelf's other row. Loose cloth sells in rows of a dozen or two
+    // and runs out; a bolt is fifty cloth in one purchase, and it is what a
+    // player with a purse buys rather than walking to Yew for sheep.
+    life::BuyActivity bandageBoltBuy_;
+    // "The weavers I can reach have no bolts today." A session latch, not a
+    // shop note: a drained-shelf note is keyed by SHOPKEEPER and would also
+    // hide that keeper's loose-cloth row, which is the row the fallback
+    // wants. Cleared when the bandage goal is satisfied or stands down.
+    bool bandageBoltsOut_ = false;
     // Heal potions, for lives whose Healing skill cannot make a bandage work.
     life::BuyActivity potionBuy_;
     // --- acquiring gear (S2.7) -------------------------------------------

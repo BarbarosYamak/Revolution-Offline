@@ -2083,6 +2083,7 @@ bool Runner::ErrandRunningForTest(const char* which) const {
     const std::string w = which ? which : "";
     if (w == "bandage")      return bandageBuy_.Running();
     if (w == "bandageCloth") return bandageClothBuy_.Running();
+    if (w == "bandageBolt")  return bandageBoltBuy_.Running();
     if (w == "potion")       return potionBuy_.Running();
     if (w == "clothing")     return clothingBuy_.Running();
     if (w == "weapon")       return weaponBuy_.Running();

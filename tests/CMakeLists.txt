@@ -713,6 +713,12 @@ add_test(NAME moongate_gump COMMAND moongate_gump)
 # when the goal changes. Links the client objects once, from uo_client_core.
 add_executable(life_harness life_harness.cpp)
 target_link_libraries(life_harness PRIVATE uo_client_core)
+# S5 reads data/revolution_pastures.tsv (the flock table the bandage chain
+# ranks by distance from home). ctest runs from the build tree, so the path is
+# named here rather than guessed; Client::DataDir() takes the directory of it.
+# The file itself need not exist -- it is only ever used for its directory.
+target_compile_definitions(life_harness PRIVATE
+    LIFE_HARNESS_ATLAS_PATH="${CMAKE_SOURCE_DIR}/data/revolution_atlas.txt")
 
 add_test(NAME life_harness COMMAND life_harness ${CMAKE_CURRENT_BINARY_DIR})
 

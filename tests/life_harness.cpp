@@ -33,6 +33,7 @@
 #include <cstring>
 #include <memory>
 #include <string>
+#include <vector>
 
 using namespace uo;
 
@@ -148,6 +149,16 @@ struct RunnerHarnessAccess {
                                  GoalKind to) {
         runner.LeaveGoal(client, from, to, from == to, "harness");
     }
+    // S5: one tick of the bandage chain, called as the planner would call it.
+    static bool MakeBandages(Runner& runner, Client& client,
+                             const Observation& obs) {
+        return runner.DoMakeBandages(client, obs);
+    }
+    // Trips to a flock this chain has actually STARTED. Zero after a tick
+    // that bought cloth or stood down; one after a tick that set off.
+    static i32 BandageFlockTrips(const Runner& runner) {
+        return runner.bandageTrips_;
+    }
     static bool SuccessfulDepositResetsBudget(Runner& runner, Client& client,
                                              const Observation& obs) {
         runner.bankDepositTries_ = 4;
@@ -182,9 +193,15 @@ struct Harness {
     life::Observation       obs;
     i64                     nowMs = 1'000'000;
 
+    // Where Client::DataDir() should point. Only the scenarios that read a
+    // shard data table (S5 reads revolution_pastures.tsv) set it; the rest
+    // keep the harness's deliberate emptiness.
+    const char* atlasPathForDataDir = nullptr;
+
     bool Boot(const std::string& dataRoot, const char* professionId) {
         Client::Config cfg{};
         cfg.loginHost = "127.0.0.1";
+        cfg.atlasPath = atlasPathForDataDir;
         cfg.username = "life_harness";
         cfg.password = "life_harness";
         cfg.version = "2.0.7";
@@ -778,10 +795,206 @@ void ScenarioTrainTripsAreHandedBackOnAGoalChange(const std::string& tmpDir) {
           "a same-kind re-pick keeps the trips it has already spent");
 }
 
+
+// --- three packets, so a scenario can put something in the pack ------------
+//
+// The harness world is empty on purpose, but the bandage chain's first
+// gesture needs a real item in a real backpack. These are the shapes
+// Client.cpp already parses (the same three tests/trade_verify.cpp builds),
+// dispatched through DispatchPacketForTest so the container cache is filled
+// by the client's own code and not by a test-only setter.
+void StoreBE16(u8* p, u16 v) { p[0] = u8(v >> 8); p[1] = u8(v); }
+void StoreBE32(u8* p, u32 v) {
+    p[0] = u8(v >> 24); p[1] = u8(v >> 16); p[2] = u8(v >> 8); p[3] = u8(v);
+}
+// 0x1B LOGIN_CONFIRM: serial(4) .. body@9(2) x@11(2) y@13(2).
+std::vector<u8> MakeLoginConfirm(u32 serial, u16 x, u16 y) {
+    std::vector<u8> p(37, 0);
+    p[0] = 0x1B;
+    StoreBE32(&p[1], serial);
+    StoreBE16(&p[9], 0x0190);
+    StoreBE16(&p[11], x);
+    StoreBE16(&p[13], y);
+    return p;
+}
+// 0x2E EQUIP_ITEM: serial(4) graphic(2) pad(1) layer(1) mobile(4) hue(2).
+std::vector<u8> MakeEquip(u32 item, u16 graphic, u8 layer, u32 mobile) {
+    std::vector<u8> p(15, 0);
+    p[0] = 0x2E;
+    StoreBE32(&p[1], item);
+    StoreBE16(&p[5], graphic);
+    p[8] = layer;
+    StoreBE32(&p[9], mobile);
+    return p;
+}
+// 0x25 ADD_ITEM_TO_CONTAINER: serial(4) graphic(2) pad(1) amount(2) x(2)
+// y(2) container(4) hue(2).
+std::vector<u8> MakeAddItem(u32 serial, u16 graphic, u16 amount, u32 container) {
+    std::vector<u8> p(20, 0);
+    p[0] = 0x25;
+    StoreBE32(&p[1], serial);
+    StoreBE16(&p[5], graphic);
+    StoreBE16(&p[8], amount);
+    StoreBE32(&p[14], container);
+    return p;
+}
+
 }  // namespace
+
+
+// --- S5 -------------------------------------------------------------------
+// THE BANDAGE CHAIN BUYS BEFORE IT WALKS.
+//
+// Two live traces, one family (2026-09-06/07):
+//
+//   Ravan (pk, 10,000 gp) emptied the weaver's four LOOSE-CLOTH rows, heard
+//   "this weaver does not stock loose cloth", and set off for the Yew
+//   pasture -- 23 legs, ~960 tiles, through the Yew moongate -- while three
+//   rows of BOLTS (5/23/18 at 173 gp, fifty cloth each) sat on the shelf he
+//   was standing at. The session ended with him in the wild at 634,849.
+//   (artifacts/extra22_smoke_20260906/Ravan.console.txt:846-857.)
+//
+//   Hector (fencer, 5,550 gp) came back from a death with 0 bandages, found
+//   every healer counter in Britain empty, and spent the session ringing
+//   HEAL -> REPLACE_EQUIPMENT -> GET_FOOD without ever reaching the cloth
+//   route. (run_gates/g_Hector.console.txt:95-421.)
+//
+// What a Revolution player does with a purse is buy the input at a tailor
+// and cut it; shearing is for the poor, and only at a flock near home. So:
+// a shop first, a NEARBY flock second, and a stand-down third -- never a
+// cross-map hike, and never a silent nothing.
+//
+// The flock table is the shard's own (data/revolution_pastures.tsv) and the
+// radius is kMaxPastureTilesFromHome: the Britain farmland flock at
+// 1321,1817 is ~130 tiles from the Britain bank, the next rows are Yew at
+// ~750 and Jhelom at ~1900.
+void ScenarioBandagesAreBoughtBeforeTheyAreSheared(const std::string& tmpDir,
+                                                   const char* dataDir) {
+    Section("S5 the bandage chain buys cloth before it walks to a flock");
+
+    // A pair of scissors in the pack, because without them the chain has no
+    // first gesture and the goal goes shopping for shears instead. Three
+    // packets, the same ones the server sends: who I am, what I am wearing,
+    // what is inside it.
+    auto arm = [](Client& c) {
+        const u32 me = 0x0000ED04, pack = 0x4000ED02;
+        auto login = MakeLoginConfirm(me, 1421, 1690);
+        c.DispatchPacketForTest(login.data(), login.size());
+        auto worn = MakeEquip(pack, 0x0E75, 0x15, me);      // layer 21
+        c.DispatchPacketForTest(worn.data(), worn.size());
+        auto shears = MakeAddItem(0x4001A7D0, 0x0F9E, 1, pack);
+        c.DispatchPacketForTest(shears.data(), shears.size());
+        return c.FindBackpackItemByGraphic(0x0F9E) != 0;
+    };
+
+    // (a) EVERY COUNTER EMPTY, PURSE FULL -> the tailor's shelf, not a flock.
+    {
+        Harness h;
+        h.atlasPathForDataDir = dataDir;
+        h.obs = BaselineFencer(h.nowMs);
+        h.obs.bandages = 0;
+        h.obs.gold = 5550;
+        h.obs.goldOnHand = 5550;
+        if (!h.Boot(tmpDir + "/s5a", "fencer")) return;
+        Check(arm(*h.client), "the fencer is carrying scissors");
+        h.runner.NoteBandageCounterDrainedForTest(0x4000AAAAu, h.nowMs);
+        h.obs.nowMs = h.nowMs;
+        life::RunnerHarnessAccess::MakeBandages(h.runner, *h.client, h.obs);
+        std::printf("  bolt errand=%d cloth errand=%d flock trips=%d\n",
+                    h.runner.ErrandRunningForTest("bandageBolt") ? 1 : 0,
+                    h.runner.ErrandRunningForTest("bandageCloth") ? 1 : 0,
+                    life::RunnerHarnessAccess::BandageFlockTrips(h.runner));
+        Check(h.runner.ErrandRunningForTest("bandageBolt"),
+              "a shortfall of a bolt's worth is bought as a BOLT -- fifty "
+              "cloth in one purchase, the row that does not run out");
+        Check(life::RunnerHarnessAccess::BandageFlockTrips(h.runner) == 0,
+              "no walk to a flock while a counter still sells the input");
+    }
+
+    // (b) A SMALL TOP-UP is loose cloth, not a fifty-stone bolt.
+    {
+        Harness h;
+        h.atlasPathForDataDir = dataDir;
+        h.obs = BaselineFencer(h.nowMs);
+        h.obs.gold = 5550;
+        h.obs.goldOnHand = 5550;
+        if (!h.Boot(tmpDir + "/s5b", "fencer")) return;
+        Check(arm(*h.client), "the fencer is carrying scissors");
+        // FIVE SHORT OF THIS LIFE'S OWN FLOOR, not five short of a constant:
+        // bandageFull is resolved per character and per purse
+        // (ResolveConsumableThresholds), and for a fencer it sits well above
+        // the fifty cloth a bolt yields.
+        const i32 want = life::RunnerHarnessAccess::Needs(h.runner).bandageFull;
+        h.obs.bandages = (want > 0 ? want : 60) - 5;
+        h.obs.nowMs = h.nowMs;
+        life::RunnerHarnessAccess::MakeBandages(h.runner, *h.client, h.obs);
+        Check(h.runner.ErrandRunningForTest("bandageCloth"),
+              "a five-bandage shortfall buys loose cloth, not a bolt");
+        Check(!h.runner.ErrandRunningForTest("bandageBolt"),
+              "no bolt for a top-up");
+    }
+
+    // (c) NOTHING TO BUY WITH AND THE ONLY FLOCKS ARE SOMEBODY ELSE'S ->
+    //     stand down with a reason. This is the Hector ring: with no shop
+    //     and no flock the goal must take itself out of the running instead
+    //     of completing having done nothing.
+    {
+        Harness h;
+        h.atlasPathForDataDir = dataDir;
+        h.obs = BaselineFencer(h.nowMs);
+        h.obs.bandages = 0;
+        h.obs.gold = 2;                  // below the price of one cloth
+        h.obs.goldOnHand = 2;
+        h.obs.x = 2500;                  // Minoc: no flock within 400 tiles
+        h.obs.y = 560;
+        if (!h.Boot(tmpDir + "/s5c", "fencer")) return;
+        Check(arm(*h.client), "the fencer is carrying scissors");
+        h.obs.nowMs = h.nowMs;
+        life::RunnerHarnessAccess::MakeBandages(h.runner, *h.client, h.obs);
+        std::printf("  flock trips=%d cooling=%d\n",
+                    life::RunnerHarnessAccess::BandageFlockTrips(h.runner),
+                    h.runner.GetPlanner().Cooling(life::GoalKind::MakeBandages,
+                                                  h.nowMs) ? 1 : 0);
+        Check(life::RunnerHarnessAccess::BandageFlockTrips(h.runner) == 0,
+              "no trip is begun to a flock that belongs to another city");
+        Check(h.runner.GetPlanner().Cooling(life::GoalKind::MakeBandages,
+                                            h.nowMs),
+              "the goal stood down on a cooldown instead of ringing");
+    }
+
+    // (d) POOR, BUT THE FLOCK IS NEXT DOOR -> shear. The free step is still
+    //     the right answer when it is a short walk and the purse is empty.
+    {
+        Harness h;
+        h.atlasPathForDataDir = dataDir;
+        h.obs = BaselineFencer(h.nowMs);
+        h.obs.bandages = 0;
+        h.obs.gold = 2;
+        h.obs.goldOnHand = 2;
+        h.obs.x = 1321;                  // standing in the Britain farmland
+        h.obs.y = 1817;
+        if (!h.Boot(tmpDir + "/s5d", "fencer")) return;
+        Check(arm(*h.client), "the fencer is carrying scissors");
+        h.obs.nowMs = h.nowMs;
+        life::RunnerHarnessAccess::MakeBandages(h.runner, *h.client, h.obs);
+        std::printf("  flock trips=%d cooling=%d\n",
+                    life::RunnerHarnessAccess::BandageFlockTrips(h.runner),
+                    h.runner.GetPlanner().Cooling(life::GoalKind::MakeBandages,
+                                                  h.nowMs) ? 1 : 0);
+        Check(life::RunnerHarnessAccess::BandageFlockTrips(h.runner) == 1,
+              "a poor fighter beside the home farmland sets off to shear");
+        Check(!h.runner.GetPlanner().Cooling(life::GoalKind::MakeBandages,
+                                             h.nowMs),
+              "and does not stand down while a flock is in reach");
+    }
+}
 
 int main(int argc, char** argv) {
     const std::string tmpDir = (argc > 1) ? argv[1] : ".";
+    // Where Client::DataDir() resolves to for the scenarios that read a
+    // shard data table. Named at CONFIGURE time by tests/CMakeLists.txt, not
+    // guessed from the working directory: ctest runs from the build tree.
+    static const char* kDataDir = LIFE_HARNESS_ATLAS_PATH;
     std::printf("life_harness: deterministic offline life harness\n");
 
     ScenarioErrandDoesNotSurviveGoalChange(tmpDir);
@@ -798,6 +1011,7 @@ int main(int argc, char** argv) {
     ScenarioAKillIsCombatTrainingProgress(tmpDir);
     ScenarioPracticeSucceedsOnlyOnASkillGain(tmpDir);
     ScenarioTrainTripsAreHandedBackOnAGoalChange(tmpDir);
+    ScenarioBandagesAreBoughtBeforeTheyAreSheared(tmpDir, kDataDir);
 
     std::printf("%s: %d checks, %d failures\n",
                 g_failures ? "FAILED" : "PASSED", g_checks, g_failures);
