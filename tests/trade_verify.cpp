@@ -596,6 +596,91 @@ void TestOccludedShopkeeperIsStillFound() {
           "skipping the tried seller falls through to the next one");
 }
 
+// ---------------------------------------------------------------------------
+// Spellbook: the 0x24 whose gump id is 0xFFFF is an OPEN, not a close.
+//
+// Sphere's CClient::addSpellbookOpen answers a spellbook double-click with
+// addOpenGump(book, GUMP_OPEN_SPELLBOOK) -- gump id 0xFFFF -- and only then,
+// and only when the book holds at least one spell, a 0x3C with the rows. The
+// client used to read 0xFFFF as "close this container" and return, so
+// open_container never saw an answer and timed out for its full deadline,
+// five times, on every caster (run_gates/g_Aurelius.console.txt:58-125).
+// ---------------------------------------------------------------------------
+std::vector<u8> MakeSpellbookContents(u32 book, const std::vector<u16>& spells) {
+    const usize n = spells.size();
+    std::vector<u8> p(5 + n * 19, 0);
+    p[0] = 0x3C;
+    StoreBE16(&p[1], static_cast<u16>(p.size()));
+    StoreBE16(&p[3], static_cast<u16>(n));
+    usize o = 5;
+    for (u16 spell : spells) {
+        StoreBE32(&p[o], 0x40000000u + spell);  o += 4;
+        StoreBE16(&p[o], 0x1F2E);               o += 2;   // every row's graphic
+        p[o] = 0;                               o += 1;
+        StoreBE16(&p[o], spell);                o += 2;   // amount IS the spell
+        StoreBE16(&p[o], 0);                    o += 2;
+        StoreBE16(&p[o], 0);                    o += 2;
+        StoreBE32(&p[o], book);                 o += 4;
+        StoreBE16(&p[o], 0);                    o += 2;
+    }
+    return p;
+}
+
+void TestSpellbookGumpIsAnOpenNotAClose() {
+    Section("spellbook: gump 0xFFFF opens the book and answers the action");
+
+    // 1. An EMPTY book. Sphere sends the 0x24 and nothing else, so this one
+    //    packet has to both finish the action and make the book "known" --
+    //    otherwise the caller re-opens it forever.
+    {
+        auto c = MakeConnectedClient();
+        const u32 book = 0x40013046;   // Aurelius' pack spellbook, no spells
+        c->ActionOpenContainer(book);
+        Check(c->ActionBusy(), "open_container started");
+
+        auto open = MakeDrawContainer(book, 0xFFFF);
+        c->DispatchPacketForTest(open.data(), open.size());
+
+        Check(c->ActionResult() == act::Result::Success,
+              "the spellbook gump finishes open_container");
+        Check(c->ContainerKnown(book),
+              "an empty book that has been opened counts as read");
+        Check(c->ContainerItemCount(book) == 0, "and it reads as empty");
+    }
+
+    // 2. A book that HOLDS spells: the 0x3C that follows must still land, and
+    //    the pre-seeded empty listing must not swallow it.
+    {
+        auto c = MakeConnectedClient();
+        const u32 book = 0x4000EDD5;   // Aurelius' banked book, 23 spells
+        c->ActionOpenContainer(book);
+        auto open = MakeDrawContainer(book, 0xFFFF);
+        c->DispatchPacketForTest(open.data(), open.size());
+        auto rows = MakeSpellbookContents(book, {1, 5, 27});
+        c->DispatchPacketForTest(rows.data(), rows.size());
+
+        Check(c->ContainerItemCount(book) == 3,
+              "the contents packet still fills the book");
+        u32 serial = 0; u16 gfx = 0, amount = 0;
+        Check(c->ContainerItemAt(book, 2, &serial, &gfx, &amount) && amount == 27,
+              "and a row's amount is still the spell number");
+    }
+
+    // 3. A spellbook is not a bank box. ActionOnContainerOpened adopts an
+    //    unsolicited container as the bank while open_bank is outstanding;
+    //    the spellbook gump must be excluded from that.
+    {
+        auto c = MakeConnectedClient();
+        c->ActionOpenBank(0x00000EE1);
+        Check(c->ActionBusy(), "open_bank started");
+        auto open = MakeDrawContainer(0x40013046, 0xFFFF);
+        c->DispatchPacketForTest(open.data(), open.size());
+        Check(c->BankContainer() == 0,
+              "a spellbook is not adopted as the bank box");
+        Check(c->ActionBusy(), "and open_bank is still waiting for a real one");
+    }
+}
+
 int main() {
     net::Socket::WSAStart();
     std::printf("trade verification + speech resolution tests\n\n");
@@ -609,6 +694,7 @@ int main() {
     TestUnicodeSpeechResolvesKnownSerial();
     TestUnicodeSpeechUnknownSerialStaysRaw();
     TestOccludedShopkeeperIsStillFound();
+    TestSpellbookGumpIsAnOpenNotAClose();
 
     std::printf("\n%d checks, %d failure(s)\n", g_checks, g_failures);
     if (g_failures == 0) std::printf("OK\n");

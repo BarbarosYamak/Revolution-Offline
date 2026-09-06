@@ -21,3 +21,4 @@
 - [A pickup is a deletion](a-pickup-is-a-deletion.md) — our own lift arrives as a real 0x1D; OnDeleteObject used to erase a still-open container's own contents cache on every equip/unequip round-trip
 - [Goal exit is one hook](goal-exit-is-one-hook.md) — Runner::LeaveGoal cancels errands/actions on a real goal change; a same-kind re-pick must still reset nothing
 - [Offline life harness](offline-life-harness.md) — real Runner + real Client with no server; no atlas means no travel, and Client::Tick never sweeps, so assert lifetime not outcomes
+- [Spellbook gump is 0xFFFF](spellbook-gump-is-0xffff.md) — it OPENS the book, Sphere never closes with 0x24, and an empty book gets no 0x3C at all

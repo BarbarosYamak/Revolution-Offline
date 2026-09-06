@@ -1469,20 +1469,40 @@ void Client::PurgeOutOfRange() {
 // 0x24 Draw Container (7 bytes): cmd, serial(4 BE), gumpId(2 BE). The real
 // client opens a gump bound to the container entity (Packet_HandleDrawContainer
 // @ 0x417f70); we just register it so DrawContainers() can list the contents.
-// gumpId 0xFFFF closes it; 500/501 = bank, 10/48 = paperdoll.
+// gumpId 0xFFFF is the SPELLBOOK gump (see below); 500/501 = bank,
+// 10/48 = paperdoll.
 void Client::OnDrawContainer(const u8* data, usize size) {
     if (size < 7) return;
     const u32 serial = LoadBE32(data + 1);
     const u16 gumpId = LoadBE16(data + 5);
 
     auto sameSerial = [&](const OpenContainer& c) { return c.serial == serial; };
-    if (gumpId == 0xFFFF) {  // close / clear
-        openContainers_.erase(std::remove_if(openContainers_.begin(),
-                                  openContainers_.end(), sameSerial),
-                              openContainers_.end());
-        containerItems_.erase(serial);
-        return;
-    }
+    // GUMP 0xFFFF IS A SPELLBOOK OPENING, NOT A CONTAINER CLOSING.
+    //
+    // This branch used to erase the container and return before anything else
+    // ran -- no registration, no [0x24] log line, no ActionOnContainerOpened.
+    // Sphere's ONLY sender of 0x24 is CClient::addOpenGump
+    // (server/Source-X/src/game/clients/CClientMsg.cpp:449, the single caller
+    // of PacketContainerOpen), and the one gump id it passes that is not a
+    // real container gump is GUMP_OPEN_SPELLBOOK = 0xFFFF
+    // (src/game/uo_files/uofiles_enums.h:1093), sent from
+    // CClient::addSpellbookOpen (CClientMsg.cpp:2325). This shard never sends
+    // a 0x24 to close anything, so reading 0xFFFF as a close swallowed every
+    // spellbook double-click: open_container sat pending for its full 4s
+    // deadline, five times, and the planner abandoned the goal with progress 0
+    // and re-picked it forever -- which is every caster in the fleet
+    // (run_gates/g_Aurelius.console.txt:58-125, 2026-09-06; the raw log shows
+    // no [0x24] and no [0x3C] between the request and the timeout).
+    //
+    // A book with NO spells in it gets no 0x3C either: addSpellbookOpen
+    // returns on `count <= 0` before `new PacketItemContents`
+    // (CClientMsg.cpp:2337-2340). So for an empty book this 0x24 is the only
+    // answer that will ever arrive, and the contents entry has to be created
+    // HERE or ContainerKnown() stays false and the caller re-opens forever.
+    // An existing listing is left alone -- for a book that does hold spells
+    // the 0x3C follows immediately and clears/refills it.
+    if (gumpId == 0xFFFF)
+        containerItems_.emplace(serial, std::vector<ContainerItem>{});
     if (gumpId == 0x30) {  // vendor buy gump — `serial` is the vendor MOBILE
         uo::js::EmitVendorOffer(serial);  // builds payload from pendingVendor_ now
         // The 0x24 gump 0x30 is what terminates the 0x2E/0x3C/0x74 burst, so
@@ -3949,8 +3969,11 @@ void Client::ActionResurrectAccept() {
 
 void Client::ActionOnContainerOpened(u32 serial, u16 gumpId) {
     // The bank box arrives as a container we did not double-click, while an
-    // open_bank action is outstanding.
-    if (action_.Active() && action_.kind == act::Kind::OpenBank) {
+    // open_bank action is outstanding. A spellbook (gump 0xFFFF, see
+    // OnDrawContainer) is never the bank box, so it must not be adopted as
+    // one just because it happened to open first.
+    if (action_.Active() && action_.kind == act::Kind::OpenBank &&
+        gumpId != 0xFFFF) {
         bankContainer_ = serial;
         // Sphere stamps the box with the tile we were standing on right now
         // (CItemContainer.cpp:1119) and will not accept a drop or a lift from
