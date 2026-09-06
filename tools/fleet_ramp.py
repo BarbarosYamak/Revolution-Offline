@@ -1,4 +1,4 @@
-"""Prepare and admit a stable 70/30 fleet in reviewed 20, 50, 100 stages.
+"""Prepare and admit a stable 70/30 fleet in reviewed 20, 50, 100, 122 stages.
 
 Accounts are created through normal login, never through edits to shard saves.
 Credentials remain under local/dev and travel only through child environments.
@@ -24,6 +24,13 @@ ROSTER = BOT / 'run_gates/roster100.tsv'
 COMBAT = {'fencer': 12, 'macer': 12, 'archer': 11, 'warlock': 17, 'mage': 18}
 CRAFT = {'miner_smith': 6, 'lumberjack_swordsman': 5, 'full_crafter': 4,
          'tailor': 4, 'alchemist': 4, 'scribe': 4, 'merchant_tinker': 3}
+# Owner 2026-09-06: the five catalogue rows the 100-block omitted are admitted
+# as an additional block after the first 100, so the 70/30 stages keep their
+# original composition and the whole 17-row catalogue is observed.
+EXTRA_COMBAT = {'pk': 5, 'tamer': 5, 'treasure_hunter': 4}
+EXTRA_CRAFT = {'fisher': 5, 'mage_blacksmith': 3}
+COMBAT_FAMILIES = set(COMBAT) | set(EXTRA_COMBAT)
+FLEET_SIZE = 100 + sum(EXTRA_COMBAT.values()) + sum(EXTRA_CRAFT.values())
 
 
 def read_roster(path):
@@ -42,9 +49,10 @@ def account_passwords():
 
 
 def prepare():
-    if ROSTER.exists():
-        return read_roster(ROSTER)
-    existing = read_roster(BOT / 'run_gates/roster30.tsv')
+    roster = read_roster(ROSTER) if ROSTER.exists() else []
+    if len(roster) >= FLEET_SIZE:
+        return roster
+    existing = read_roster(BOT / 'run_gates/roster30.tsv') + roster
     passwords = account_passwords()
     used = {row[0].lower() for row in existing}
     for path in (BOT / 'bot_data').glob('*/state.json'):
@@ -55,19 +63,20 @@ def prepare():
     names = iter(n for n in re.findall(r'^\d{4}\. ([A-Za-z]{3,16})$', book, re.M)
                  if n.lower() not in used)
     credentials = json.loads(CREDS.read_text()) if CREDS.exists() else {}
-    pools = {}
     serial = 1
-    for family, count in (COMBAT | CRAFT).items():
+
+    def fill(family, count):
+        nonlocal serial
         rows = [r for r in existing if r[2] == family][:count]
         # Retain the three canary identities in the earliest stage.
         rows.sort(key=lambda r: r[0] not in ('Hector', 'Aurelius', 'Odessa'))
         for name, account, _ in rows:
-            if account.lower() not in passwords:
+            if account.lower() not in passwords and account not in credentials:
                 raise RuntimeError('missing credentials for existing account ' + account)
         while len(rows) < count:
             account = f'RevScale100_{serial:03d}'
             serial += 1
-            if account.lower() in passwords:
+            if account.lower() in passwords or account in credentials:
                 continue
             name = next(names)
             while name.lower() in used:
@@ -76,22 +85,31 @@ def prepare():
             # Source-X stores at most MAX_ACCOUNT_PASSWORD_ENTER (16) chars.
             credentials.setdefault(account, secrets.token_hex(8))
             rows.append([name, account, family])
-        pools[family] = deque(rows)
-    def group(families):
-        out = []
-        while any(pools[f] for f in families):
-            for f in families:
-                if pools[f]:
-                    out.append(pools[f].popleft())
-        return deque(out)
-    fighters, crafters = group(COMBAT), group(CRAFT)
-    # Each ten admissions is exactly seven combat and three craft.
-    roster = []
-    for _ in range(10):
-        roster.extend(fighters.popleft() for _ in range(7))
-        roster.extend(crafters.popleft() for _ in range(3))
+        return rows
+
+    if len(roster) < 100:
+        pools = {family: deque(fill(family, count))
+                 for family, count in (COMBAT | CRAFT).items()}
+        def group(families):
+            out = []
+            while any(pools[f] for f in families):
+                for f in families:
+                    if pools[f]:
+                        out.append(pools[f].popleft())
+            return deque(out)
+        fighters, crafters = group(COMBAT), group(CRAFT)
+        # Each ten admissions is exactly seven combat and three craft.
+        roster = []
+        for _ in range(10):
+            roster.extend(fighters.popleft() for _ in range(7))
+            roster.extend(crafters.popleft() for _ in range(3))
+    present = {r[0] for r in roster}
+    for family, count in (EXTRA_COMBAT | EXTRA_CRAFT).items():
+        roster.extend(r for r in fill(family, count) if r[0] not in present)
     CREDS.write_text(json.dumps(credentials, indent=2))
-    ROSTER.write_text('# name\taccount\tprofession; 70 combat / 30 craft\n' +
+    ROSTER.write_text('# name\taccount\tprofession; 70 combat / 30 craft, then '
+                      f'{sum(EXTRA_COMBAT.values()) + sum(EXTRA_CRAFT.values())} '
+                      'extra (pk/tamer/treasure_hunter/fisher/mage_blacksmith)\n' +
                       ''.join('\t'.join(r) + '\n' for r in roster))
     return roster
 
@@ -146,7 +164,7 @@ def watch(directory):
         if done == len(admitted) or time.time() >= deadline:
             break
         time.sleep(30)
-    combat_count = sum(r['family'] in COMBAT for r in admitted.values())
+    combat_count = sum(r['family'] in COMBAT_FAMILIES for r in admitted.values())
     lines = ['# Bot validation results', '',
              f'{len(admitted)} accounts: {combat_count} combat / {len(admitted) - combat_count} crafting.', '',
              '| Character | Profession | Result |', '|---|---|---|']
@@ -222,7 +240,7 @@ def admit(roster, directory, target, minutes):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--directory', type=Path)
-    parser.add_argument('--admit', type=int, choices=(20, 50, 100))
+    parser.add_argument('--admit', type=int, choices=(20, 50, 100, FLEET_SIZE))
     parser.add_argument('--minutes', type=int, default=45)
     parser.add_argument('--status', action='store_true')
     parser.add_argument('--watch', action='store_true')
