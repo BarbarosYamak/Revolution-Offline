@@ -4,3 +4,4 @@
 - [Two arrival tests must agree](two-arrival-tests-must-agree.md) — ping-pong bug class: the trip gate must consume the "am I there" predicate, not re-derive a looser one
 - [--dedup templates numbers](dedup-templates-numbers.md) — a TEMPLATE xN count is per line-shape, not per coordinate; re-grep the literal before calling it a loop
 - [atlasgen --skip-grid drops forests](atlasgen-skip-grid-drops-forests.md) — lumber PLACE rows come only from the navgrid; check the resource column after every atlas regen, and watch the 200-tile seeding radius
+- [One edge is not connectivity](one-edge-is-not-connectivity.md) — navgrid pockets of 2-5 cells; cave interiors are z-band pockets over a mountain anchor; BFS the grid before blaming the atlas

@@ -289,6 +289,91 @@ void TestRealAtlasGhostInPapua(const std::string& dataDir) {
     }
 }
 
+// Kharain, miner_smith, mining inside Minoc Mine 1 at (2569,479,0): the
+// navgrid cell he stands in (160,29) is a passable ISLAND whose anchor is the
+// mountain top at z 40, and its passable neighbours (159,27/28/29), (161,29)
+// form a five-cell pocket with edges only to each other. The old "does this
+// cell have any edge" snap therefore hopped from the island onto a two-cell
+// dead end and the macro search still had nowhere to go: "no place offers
+// banker" x58 in one gate (run_gates/g_Kharain.err.txt, 2026-09-06).
+void TestRealAtlasMinerInMinocMine(const std::string& dataDir) {
+    std::printf("-- real atlas: banker reachable from inside Minoc Mine 1 --\n");
+    world_atlas::Atlas atlas;
+    std::string err;
+    if (!atlas.Load((dataDir + "/revolution_atlas.txt").c_str(), &err)) {
+        Check(false, "the generated atlas loads");
+        return;
+    }
+    navgrid::NavGrid grid;
+    if (!grid.Load((dataDir + "/revolution_navgrid.bin").c_str())) {
+        Check(false, "the generated navgrid loads");
+        return;
+    }
+    route::RoutePlanner planner(atlas, grid);
+
+    const i32 mineX = 2569, mineY = 479;   // Kharain's mining stand tile
+    const wm::Place* minocBank = atlas.PlaceById("minoc_bank");
+    Check(minocBank != nullptr, "the atlas still has minoc_bank");
+    if (!minocBank) return;
+
+    route::RouteOptions opt;
+    opt.allowMoongates = true;
+    const route::WorldRoute direct = planner.Plan(
+        mineX, mineY, minocBank->position.x, minocBank->position.y, opt);
+    if (!direct.ok) std::printf("  (planner: %s)\n", direct.failure);
+    Check(direct.ok, "the planner routes out of Minoc Mine 1 to minoc_bank");
+
+    std::vector<world_atlas::ServiceRejection> rej;
+    const world_atlas::ServicePick pick = world_atlas::PickServicePlace(
+        atlas, planner, wm::Service::Banker, mineX, mineY, {},
+        /*farOk=*/false, &rej);
+    Check(pick.place != nullptr, "a banker is found from inside Minoc Mine 1");
+    if (pick.place) {
+        Check(pick.place->id == "minoc_bank",
+              "Banker resolves to Minoc's own bank, not one across the map");
+    }
+}
+
+// A lookup that finds nothing must be able to say why. With no route at all
+// out of the pocket -- forced here by a service the shard's atlas offers only
+// far away plus a start with nothing routable -- PickServicePlace must hand
+// the caller the planner's own failure text instead of an empty list.
+void TestUnroutableLookupExplainsItself() {
+    std::printf("-- unroutable service lookup reports a reason --\n");
+    static const char* const kText =
+        "MAP\t0\t256\t256\n"
+        "REGION\ta_world\tworld\t0\t128\t128\t0\tALLMAP\tBritannia\n"
+        "RECT\ta_world\t0\t0\t255\t255\n"
+        "PLACE\tfar_bank\tbank\ta_world\t200\t200\t0\t5\tbanker\t\tFar bank\n";
+    world_atlas::Atlas atlas;
+    std::string err;
+    if (!atlas.LoadFromText(kText, &err)) {
+        Check(false, "synthetic atlas loads");
+        std::printf("  (%s)\n", err.c_str());
+        return;
+    }
+    navgrid::NavGrid grid;
+    // 16x16 cells over a 256-tile map. Everything is impassable except the
+    // cell the character stands in and the cell the bank stands in, and
+    // neither has a single edge: two islands, no road between them.
+    std::vector<navgrid::Cell> cells(16 * 16);
+    for (navgrid::Cell& c : cells) { c.anchorOffX = 8; c.anchorOffY = 8; }
+    cells[0].flags = navgrid::kCellPassable;                  // (0,0)
+    cells[(200 / 16) * 16 + (200 / 16)].flags = navgrid::kCellPassable;
+    Check(grid.Adopt(16, 16, cells.data()), "synthetic grid adopted");
+
+    route::RoutePlanner planner(atlas, grid);
+    std::vector<world_atlas::ServiceRejection> rej;
+    const world_atlas::ServicePick pick = world_atlas::PickServicePlace(
+        atlas, planner, wm::Service::Banker, 0, 0, {}, /*farOk=*/true, &rej);
+    Check(pick.place == nullptr, "no banker is picked when none can be routed to");
+    Check(!rej.empty(), "the unroutable candidate is reported, not swallowed");
+    if (!rej.empty()) {
+        Check(!rej[0].reason.empty(), "the rejection carries the planner's reason");
+        std::printf("  (reason: %s)\n", rej[0].reason.c_str());
+    }
+}
+
 } // namespace
 
 int main(int argc, char** argv) {
@@ -299,6 +384,8 @@ int main(int argc, char** argv) {
     TestPolicySynthetic();
     TestRealAtlasFromMinoc(argv[1]);
     TestRealAtlasGhostInPapua(argv[1]);
+    TestRealAtlasMinerInMinocMine(argv[1]);
+    TestUnroutableLookupExplainsItself();
 
     std::printf("%d checks, %d failed\n", g_checks, g_failures);
     return g_failures == 0 ? 0 : 1;

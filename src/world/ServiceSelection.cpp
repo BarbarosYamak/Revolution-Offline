@@ -36,13 +36,26 @@ ServicePick PickServicePlace(const Atlas& atlas, const route::RoutePlanner& plan
     // before, at the cost of one bad trip rather than every trip.
     opt.allowMoongates = true;
 
+    // WHY NOTHING WAS PICKED HAS TO BE SAYABLE. An unroutable candidate is not
+    // a geography-policy rejection, so it stays out of `rejections` while a
+    // winner exists -- but when EVERY candidate is unroutable the caller can
+    // only print "no place offers banker", which reads as "the shard has no
+    // bank" and is wrong. Kharain spent 20 minutes of a gate on that message
+    // from inside Minoc Mine 1 (2026-09-06). Keep the first few reasons.
+    struct Unroutable { const wm::Place* place; const char* why; };
+    std::vector<Unroutable> unroutable;
+
     usize tested = 0;
     for (const wm::Place* p : candidates) {
         if (tested >= maxCandidates) break;
         ++tested;
         const route::WorldRoute r =
             planner.Plan(x, y, p->position.x, p->position.y, opt);
-        if (!r.ok) continue;   // not a geography-policy rejection; just not a route
+        if (!r.ok) {
+            if (unroutable.size() < 3)
+                unroutable.push_back(Unroutable{p, r.failure});
+            continue;   // not a geography-policy rejection; just not a route
+        }
 
         const bool overTheCap = !farOk && r.estimatedTiles > kMaxServiceTripTiles;
 
@@ -66,6 +79,15 @@ ServicePick PickServicePlace(const Atlas& atlas, const route::RoutePlanner& plan
     }
 
     const ServicePick& chosen = bestInCap.place ? bestInCap : bestOverall;
+
+    if (rejections && !chosen.place) {
+        for (const Unroutable& u : unroutable) {
+            ServiceRejection rej;
+            rej.place = u.place;
+            rej.reason = u.why && *u.why ? u.why : "the planner found no route";
+            rejections->push_back(rej);
+        }
+    }
 
     if (rejections && chosen.place) {
         for (const OverCapCandidate& c : overCap) {

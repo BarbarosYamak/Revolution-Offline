@@ -1708,36 +1708,63 @@ void Runner::Tick(Client& client, i64 nowMs) {
                                       ? TileDist(bank->x, bank->y, client.PlayerX(),
                                                  client.PlayerY())
                                       : -1;
+                // Once the loud failure below has been reported, the same
+                // round runs every 30 s with nothing new to say; keep trying,
+                // stop narrating.
+                const bool narrate = !windDownBlockedLogged_;
                 if (bank && known <= kWindDownPreferKnownWithin) {
-                    LogLine("wind-down: travelling to a known bank at %d,%d, "
-                            "%d tiles off (attempt %d)",
-                            bank->x, bank->y, known, windDownTrips_);
+                    if (narrate)
+                        LogLine("wind-down: travelling to a known bank at %d,%d, "
+                                "%d tiles off (attempt %d)",
+                                bank->x, bank->y, known, windDownTrips_);
                     travelInFlight_ =
                         client.TravelToPoint(bank->x, bank->y, 3, "logout_safe");
                 } else {
-                    if (bank)
+                    if (narrate && bank)
                         LogLine("wind-down: the nearest bank this life has "
                                 "learned is %d tiles away -- asking the world "
                                 "for a closer one (attempt %d)",
                                 known, windDownTrips_);
-                    else
+                    else if (narrate)
                         LogLine("wind-down: no bank learned yet; asking the "
                                 "world for one (attempt %d)", windDownTrips_);
                     travelInFlight_ = client.TravelToService(wm::Service::Banker, nullptr);
                 }
-                if (!travelInFlight_) {
+                if (!travelInFlight_ && narrate) {
                     LogLine("wind-down: could not start the trip (%s); remaining online for safety",
                             client.TravelFailureText());
                 }
                 return;
             }
             if (!safeHere) {
-                LogLine("wind-down: safe logout blocked after %d "
-                        "attempt(s) at %d,%d; remaining online and retrying",
-                        windDownTrips_, client.PlayerX(), client.PlayerY());
-                state_.memory.NoteEvent("logout_safety_blocked",
-                                        "could not reach a known-safe spot", "",
-                                        client.PlayerX(), client.PlayerY(), nowMs);
+                if (!windDownBlockedLogged_) {
+                    windDownBlockedLogged_ = true;
+                    // The navgrid cell, not just the tile: a wind-down that
+                    // cannot start a trip is nearly always the cell being a
+                    // sealed pocket, and the cell is what an offline
+                    // reachability check needs.
+                    LogLine("goal_failed=WIND_DOWN reason=\"no safe logout "
+                            "from %d,%d (navgrid cell %d,%d): %s\"",
+                            client.PlayerX(), client.PlayerY(),
+                            client.PlayerX() / 16, client.PlayerY() / 16,
+                            client.TravelFailureText());
+                    char detail[160];
+                    std::snprintf(detail, sizeof(detail),
+                                  "wind-down found no route out; cell %d,%d (%s)",
+                                  client.PlayerX() / 16, client.PlayerY() / 16,
+                                  client.TravelFailureText());
+                    state_.memory.NoteEvent("stuck", detail, "",
+                                            client.PlayerX(), client.PlayerY(),
+                                            nowMs);
+                    state_.memory.NoteEvent("logout_safety_blocked",
+                                            "could not reach a known-safe spot",
+                                            "", client.PlayerX(),
+                                            client.PlayerY(), nowMs);
+                }
+                // Retry silently from here. The retry is deliberate -- never
+                // logging out is worse than trying again -- but it has nothing
+                // new to say, and 58 copies of the same warning buried the one
+                // line that mattered.
                 windDownTrips_ = 0;
                 windDownStartedMs_ = nowMs + 30000;
                 return;

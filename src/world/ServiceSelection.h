@@ -86,8 +86,12 @@ struct ServiceRejection {
 //      (a service the shard only offers far away is still a service; the
 //      cap steers away from it, it does not strand the character).
 //   4. Candidates the planner cannot route to at all (no walkable ground,
-//      no world route) are silently passed over -- that is a data problem,
-//      not a geography-policy call, and is not what `rejections` reports.
+//      no world route) are passed over -- that is a data problem, not a
+//      geography-policy call, and is not what `rejections` reports WHILE A
+//      WINNER EXISTS. When nothing at all could be routed to, the first few
+//      such candidates DO go into `rejections` carrying the planner's own
+//      failure text, so the caller can say why instead of only "no place
+//      offers X".
 //
 // `maxCandidates` bounds how many places actually get a route plan (each is
 // a RoutePlanner::Plan call); candidates arrive RAW-DISTANCE-sorted from the

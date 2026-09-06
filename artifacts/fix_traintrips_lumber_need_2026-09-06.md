@@ -65,9 +65,17 @@ its ceiling, and the Corran same-kind re-pick still keeps what it spent.
 ### NOT PROVEN LIVE
 
 Kharain (miner_smith, Minoc) never picked TRAIN_AT_NPC in the 5-minute window
-— MINE / SMELT / EARN_GOLD / BANK only (`run_gates/g_Kharain.console.txt`
-:135,145,154,207,423,467,477). Same outcome navigation-world reported for the
-same character at 18:19-18:26. The change is unit-proven, not runtime-proven.
+— MINE / SMELT / EARN_GOLD / BANK only. Same outcome navigation-world
+reported for the same character at 18:19-18:26, and again in an unrelated
+19:47-19:53 gate someone else launched (`goals=0/4`, no `training:` line at
+all). The change is unit-proven, not runtime-proven.
+
+**EVIDENCE FILE OVERWRITTEN.** The line numbers this section originally cited
+(`g_Kharain.console.txt:135,145,154,207,423,467,477` for the 18:39-18:45 run)
+no longer resolve: `run_gates/` keeps one console per character and a later
+gate for Kharain, launched outside this brief at ~19:47, replaced the file.
+The observation above is reported from the read taken at the time, not from a
+file that still exists — treat it as agent-recorded, not re-checkable.
 
 ---
 
@@ -172,12 +180,20 @@ step off the stand and the need is back to 0.40.
 
 ## Open, NOT touched (outside this brief)
 
-- **Kharain cannot wind down from inside Minoc Mine 1.** From (2569,479),
-  `PickServicePlace` answers `[travel] no place offers banker` 56 times and
-  wind-down loops "safe logout blocked ... remaining online and retrying"
-  (`g_Kharain.err.txt`, `g_Kharain.console.txt:985-990`). The same bank
-  lookup succeeded from Minoc town twenty minutes earlier (`:164`, "Minoc
-  banker at 2503,552"). Mine-interior reachability, navigation-world's seam.
-  The 5-minute gate never terminated and was killed manually.
+- **Kharain could not wind down from inside Minoc Mine 1.** From (2569,479),
+  `PickServicePlace` answered `[travel] no place offers banker` 56 times and
+  wind-down looped "safe logout blocked ... remaining online and retrying".
+  The same bank lookup had succeeded from Minoc town twenty minutes earlier
+  ("Minoc banker at 2503,552"). The 5-minute gate never terminated
+  (`rev.py wait` TIMEOUT at 2340s) and the process was killed manually.
+  Mine-interior reachability, navigation-world's seam.
+
+  **Position-dependent, and the evidence is gone.** A later Kharain gate at
+  19:47-19:53, launched outside this brief, wound down and logged out
+  cleanly with ZERO occurrences of the warning — and it overwrote both
+  `g_Kharain.console.txt` and `g_Kharain.err.txt`, so the 56 warnings and the
+  `:985-990` wind-down loop can no longer be re-read from disk. Reproducing
+  it needs a character that is actually inside the mine when wind-down
+  starts.
 - Vorar's `.err.txt` still shows the tile-A* leg budget exhausting near the
   Britain graveyard wall (navigation-world's own note, ITEM 1 "New defect").

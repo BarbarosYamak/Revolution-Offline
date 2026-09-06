@@ -41,51 +41,20 @@ const i32 kNeighbour[8][2] = {
     {0, -1}, {1, -1}, {1, 0}, {1, 1}, {0, 1}, {-1, 1}, {-1, 0}, {-1, -1},
 };
 
-// Can a walker leave this cell for at least one passable neighbour?
-bool HasOutboundEdge(const navgrid::NavGrid& g, i32 cx, i32 cy) {
-    for (u8 dir = 0; dir < 8; ++dir) {
-        if (!g.EdgeOpen(cx, cy, dir)) continue;
-        if (g.Passable(cx + kNeighbour[dir][0], cy + kNeighbour[dir][1]))
-            return true;
-    }
-    return false;
-}
+// How many connected cells make a cell part of the world rather than a sealed
+// pocket. ONE EDGE IS NOT CONNECTIVITY: the Papua fix asked only "does this
+// cell have an edge", which is true of every cell in Minoc Mine 1's ledge
+// pocket -- five cells at z 15/40/60 with edges only to each other, sitting
+// over the cave floor at z 0 where the miner actually stands. Kharain snapped
+// from his island onto a two-cell neighbour and the macro search still had
+// nowhere to go ("no place offers banker" x58, 2026-09-06). 24 cells is small
+// enough that a genuine walled-off area still routes internally and large
+// enough that no one-storey pocket passes.
+constexpr usize kConnectedComponentCells = 24;
 
-// Can a walker enter this cell from at least one passable neighbour? Edges are
-// stored on the source cell, so ask each neighbour about the opposite heading.
-bool HasInboundEdge(const navgrid::NavGrid& g, i32 cx, i32 cy) {
-    for (u8 dir = 0; dir < 8; ++dir) {
-        const i32 nx = cx + kNeighbour[dir][0];
-        const i32 ny = cy + kNeighbour[dir][1];
-        if (!g.Passable(nx, ny)) continue;
-        if (g.EdgeOpen(nx, ny, static_cast<u8>((dir + 4) & 7))) return true;
-    }
-    return false;
-}
-
-// Nearest passable cell within `maxRings` that is connected to the rest of the
-// grid (outbound edge for a start, inbound for a goal). Leaves (outCx,outCy)
-// untouched and returns false when none is found; the caller then plans from
-// the island as before and reports the failure honestly.
-bool SnapToConnected(const navgrid::NavGrid& g, i32 cx, i32 cy, i32 maxRings,
-                     bool inbound, i32* outCx, i32* outCy) {
-    for (i32 r = 1; r <= maxRings; ++r) {
-        for (i32 dy = -r; dy <= r; ++dy) {
-            for (i32 dx = -r; dx <= r; ++dx) {
-                if (dx != -r && dx != r && dy != -r && dy != r) continue;
-                const i32 nx = cx + dx, ny = cy + dy;
-                if (!g.Passable(nx, ny)) continue;
-                const bool connected = inbound ? HasInboundEdge(g, nx, ny)
-                                               : HasOutboundEdge(g, nx, ny);
-                if (!connected) continue;
-                *outCx = nx;
-                *outCy = ny;
-                return true;
-            }
-        }
-    }
-    return false;
-}
+// How far to look for a connected cell. Three rings is ~48 tiles, the same
+// budget NearestPassable uses.
+constexpr i32 kSnapRings = 3;
 
 } // namespace
 
@@ -162,6 +131,85 @@ void RoutePlanner::BuildTransitIndex() {
     transitEdges_.reserve(transitCellKeys_.size());
     for (u32 key : transitCellKeys_)
         transitEdges_.push_back(byCell[key]);
+
+    // Both ends, so a room that can only be teleported INTO is not mistaken
+    // for a sealed pocket by the connectivity test.
+    for (const auto& kv : byCell) {
+        transitTouchedCells_.push_back(kv.first);
+        for (const TransitEdge& e : kv.second)
+            transitTouchedCells_.push_back(e.toCell);
+    }
+    std::sort(transitTouchedCells_.begin(), transitTouchedCells_.end());
+    transitTouchedCells_.erase(
+        std::unique(transitTouchedCells_.begin(), transitTouchedCells_.end()),
+        transitTouchedCells_.end());
+}
+
+bool RoutePlanner::TouchesTransit(u32 cell) const {
+    return std::binary_search(transitTouchedCells_.begin(),
+                              transitTouchedCells_.end(), cell);
+}
+
+usize RoutePlanner::ComponentReach(i32 cx, i32 cy, usize cap,
+                                   bool inbound) const {
+    if (cap == 0 || !grid_.Passable(cx, cy)) return 0;
+    const i32 cellsX = static_cast<i32>(grid_.CellsX());
+    const u32 start = static_cast<u32>(cy) * static_cast<u32>(cellsX) +
+                      static_cast<u32>(cx);
+    if (TouchesTransit(start)) return cap;
+
+    std::unordered_map<u32, bool> seen;
+    seen.reserve(cap * 2);
+    std::vector<u32> stack;
+    seen[start] = true;
+    stack.push_back(start);
+    usize count = 1;
+    while (!stack.empty() && count < cap) {
+        const u32 cur = stack.back();
+        stack.pop_back();
+        i32 x, y;
+        CellCoords(cur, &x, &y);
+        for (u8 dir = 0; dir < 8; ++dir) {
+            const i32 nx = x + kNeighbour[dir][0];
+            const i32 ny = y + kNeighbour[dir][1];
+            if (!grid_.Passable(nx, ny)) continue;
+            // Edges live on the source cell: walking the graph backwards means
+            // asking the neighbour about the opposite heading.
+            const bool open =
+                inbound ? grid_.EdgeOpen(nx, ny, static_cast<u8>((dir + 4) & 7))
+                        : grid_.EdgeOpen(x, y, dir);
+            if (!open) continue;
+            const u32 next = static_cast<u32>(ny) * static_cast<u32>(cellsX) +
+                             static_cast<u32>(nx);
+            if (seen.find(next) != seen.end()) continue;
+            seen[next] = true;
+            if (TouchesTransit(next)) return cap;
+            ++count;
+            if (count >= cap) break;
+            stack.push_back(next);
+        }
+    }
+    return count;
+}
+
+bool RoutePlanner::SnapToConnected(i32 cx, i32 cy, i32 maxRings, bool inbound,
+                                   i32* outCx, i32* outCy) const {
+    for (i32 r = 1; r <= maxRings; ++r) {
+        for (i32 dy = -r; dy <= r; ++dy) {
+            for (i32 dx = -r; dx <= r; ++dx) {
+                if (dx != -r && dx != r && dy != -r && dy != r) continue;
+                const i32 nx = cx + dx, ny = cy + dy;
+                if (!grid_.Passable(nx, ny)) continue;
+                if (ComponentReach(nx, ny, kConnectedComponentCells, inbound) <
+                    kConnectedComponentCells)
+                    continue;
+                *outCx = nx;
+                *outCy = ny;
+                return true;
+            }
+        }
+    }
+    return false;
 }
 
 const std::vector<RoutePlanner::TransitEdge>* RoutePlanner::EdgesFrom(
@@ -242,11 +290,13 @@ WorldRoute RoutePlanner::Plan(i32 startX, i32 startY, i32 goalX, i32 goalY,
     // search seeded from it finds nothing. Faustus' ghost logged in on one at
     // (5674,3136) in Papua and every healer trip ended "no place offers
     // healer" (2026-09-05). Seed from the nearest connected cell instead.
-    if (!HasOutboundEdge(grid_, startCx, startCy))
-        SnapToConnected(grid_, startCx, startCy, 3, /*inbound=*/false,
+    if (ComponentReach(startCx, startCy, kConnectedComponentCells,
+                       /*inbound=*/false) < kConnectedComponentCells)
+        SnapToConnected(startCx, startCy, kSnapRings, /*inbound=*/false,
                         &startCx, &startCy);
-    if (!HasInboundEdge(grid_, goalCx, goalCy))
-        SnapToConnected(grid_, goalCx, goalCy, 3, /*inbound=*/true,
+    if (ComponentReach(goalCx, goalCy, kConnectedComponentCells,
+                       /*inbound=*/true) < kConnectedComponentCells)
+        SnapToConnected(goalCx, goalCy, kSnapRings, /*inbound=*/true,
                         &goalCx, &goalCy);
 
     const u32 cellsX = grid_.CellsX();

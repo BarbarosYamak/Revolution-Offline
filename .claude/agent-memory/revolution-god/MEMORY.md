@@ -1,56 +1,10 @@
-# Memory index
-
-- [Agent stop rule](feedback-agent-stop-rule.md) — ~25 calls no root cause / 2 failed smokes / out of brief → BLOCKED, no third try
-- [Observe via agent](feedback-observe-via-agent.md) — wave watching/log slicing goes to one sonnet qa agent; main thread reads only its report
-- [Agent spend rules](feedback-agent-spend.md) — sonnet triage / opus fixes / Fable main only; serial not parallel; no pre-fix triage pass; qa only for live verdicts
-- [No fixed disengage](feedback-no-fixed-disengage.md) — owner 2026-09-04: no "flee at 40%" constant; survival = target choice + context, else PvP never happens
-- [NPC-only consumables, bank outside](npc-only-consumables-and-bank-outside.md) — owner 2026-09-04: blank scroll/bottle never player-traded; bank = in, act, out; idle outside
-- [Stat targets and variants](stat-targets-and-variants.md) — owner table 2026-09-04 applied; variant rolls per family + "final stats ≠ training strategy" pending
-- [Living world chains](living-world-chains.md) — owner 2026-09-04: activities must spawn each other; 15-activity catalogue + 9 hubs in docs/LIVING_WORLD_ACTIVITIES.md
-- [Alchemist loop](alchemist-loop.md) — owner 2026-09-04: bulk nightshade+bottles, brew poison = train+sell same batch; never open by buying NPC potions
-- [Crafters stock then sit](crafters-stock-then-sit.md) — owner rule: bulk materials, one pack-sized sitting for every crafter; shard DELAY table per craft skill
-- [Mage/scribe start 50/25/5](start-stats-mage-50-25-5.md) — owner: STR 50 INT 25 DEX 5 is normal creation for casters; scribe fixed from 50/20/10
-- [Sparring parties](sparring-parties.md) — owner memory: 2-3 bots party, iron set + weak weapon, hit each other; others bandage for Healing; M13 social loop, unimplemented
-- [Caster STR via Wrestling](caster-str-via-wrestling.md) — owner 2026-09-04: temp Wrestling spar → STR target → Wrestling DOWN; Magery STAT_STR=20 so it's the only route
-- [Feathers are carved](feathers-are-carved.md) — owner 2026-09-04: bird/chicken 25, eagle 36, harpy 50; bowyer NPC only buys; archer = kill+carve chain
-- [Stale spawns keep old scripts](stale-spawns-keep-old-scripts.md) — look/hue/loot roll once at @Create; resync + `.f_revo_respawn_monsters` after every creature pass
-- [Session 2026-09-04 evening](../../../docs/SESSION_STATE_2026-09-04.md) — docs/SESSION_STATE_2026-09-04.md: landed work, 10 ranked open defects, owner questions pending
-- [Revolution loot rulings](revolution-loot-rulings.md) — owner rates 2026-09-04: dragon 1/4 weapon 1/5 map, small/big split, crystals, low mobs +3 1/3, lich scrolls 5-8th
-- [Dismount to gather](dismount-to-gather.md) — owner rule: dismount for mining/lumberjack, remount after; shard stays permissive; unimplemented
-- [Sphere Rnn loot chance](sphere-rnn-loot-chance.md) — ITEM=x,Rnn = 1-in-nn (CItem.cpp:479); R99≈1%; audits had it UNKNOWN
-- [TNS reference tree](tns-reference-tree.md) — references/tns/scripts (plural); creature drop tables still stock as of 2026-09-04, only +N mechanics/chests done
-- [Dedup inflates counts](dedup-inflates-counts.md) — log_slice --dedup merges coords; "×251 loop" was literally 2; grep -c the literal before briefing
-- [Revolution creature looks](revolution-creature-looks.md) — owner memory: swamp tentacles=kraken +9, bog thing=rotting corpse +9, sibling redirects list, open UNKNOWNs
-- [Artless bodies: redirect](artless-bodies-redirect.md) — client draws only anim.mul; savages = human body COLOR 1425 (owner); redirect ID=, don't prune blind
-- [Tailor pasture home-only](tailor-pasture-home-only.md) — owner 2026-09-04: shear closest-to-Britain flock (1318,1811) only, 400-tile cap; cows there for leather later
-- [Spellbook is a side goal](spellbook-is-a-side-goal.md) — owner: casters fill the book (buy circles 1-4, hunt drops for 5-8); scribe can only make spells already in the book
-
-- [Sphere opened containers](sphere-opened-containers.md) — "can't use this where it is" = pack not opened on this connection; ghost login open fails; reopen on resurrect
-- [Navgrid island cells](navgrid-island-cells.md) — passable cells w/o edges break A*; PickServicePlace skips silently; SnapToConnected fix; Regen0=40, Papua unguarded
-- [Archer ammo loop open](project_open_items_2026-09-04.md) — Titus' arrows sit in bank; no item-withdraw primitive, no arrow buy/craft path; Ranged refuses with 0 arrows
-- [Open items 2026-09-04/05](project_open_items_2026-09-04.md) — Faustus wool↔combat flip, inn-upstairs no-path, bank-one-item-and-leave, archer ammo, bow↔log, meditation %
-- [Owner rulings on truth pack](owner-rulings-2026-09-03-truthpack.md) — taming 53.1/55.1+pack, meditation+creation historical, TNS trapped pouch, fewer mounts, no headhunters, guildmasters teach to 30.0, sinks later
-- [Truth pack](truth-pack-reference.md) — REVOLUTION_UO_HISTORICAL_TRUTH_PACK_FOR_FABLE.md at repo root is THE mechanics evidence source (2009-10 era); check before deciding any mechanic
-- [Tailoring cloth-only](tailoring-cloth-only.md) — owner: no thread/Armslore in tailor recipes, studded keeps iron; mage robe = Hardening Crystal + cloth (pack §9), not i_robe
-- [Craft market tiers](craft-market-tiers.md) — owner rulings: tiered sets sell, cheap output self/train, magic weapons = loot from everyone, fish always cooked
-- [Token discipline](token-discipline.md) — output contracts on all specialists, slicer tools over raw reads
-- [Spawner groups first-name-only](spawner-groups-first-name-only.md) — CORRECTED 2026-09-03: t_custom_spawner_char re-picks each @timer; only non-world_spawner names fail
-- [Shard ops: restart and saves](shard-ops-restart-and-saves.md) — runtime/scripts is truth (Scripts-X mirror dropped); X# restart; .save skips statics; back up before admin scenarios
-- [Budget feedback](feedback-budget.md) — 20% weekly usage on one char; direct edits, one gate at end, no per-link agents
-- [World save stalls server](world-save-stalls-server.md) — ~5s global client freeze at save; watchdog discriminates stall vs lost move; timing assertions must tolerate it
-- [Grader + loop gaps](grader-and-loop-gaps.md) — 17 families scoreable; §7b bugs left unfixed on purpose; treasure_hunter loop is missing content
-- [Tailor cloth source](tailor-cloth-source.md) — player-first WTB (forum: bolts 17gp bulk), self shear→spin→weave fallback, never NPC; thread-vs-yarn UNKNOWN
-- [Era content prune](era-content-prune.md) — SE/ninja clothing in Scripts-X must go from craft menus, vendor stock, loot, bot recipes (open)
-- [Interim NPC sales](interim-npc-sales.md) — owner 2026-09-02: materials may go to NPCs until bots need each other; player-first, VendorPolicy switch, re-tighten later
-- [Wool: fighters kill+carve, sell cloth](wool-lamb-carve.md) — owner rule; tailors shear only; corpse loot needs open-after-carve, dead-mobile sweep, carve msg confirm
-- [Wave runs need full duration](wave-runs-need-full-duration.md) — killed wave grades as fake regressions; fix checks = 5-min smoke on affected chars, 30-min only for verdicts
-- [Bandages ≥100](bandages-hundred-minimum.md) — owner rule: fighting bots carry at least 100 bandages; shelf holds 20, so a top-up loop is needed
-- [Session 2026-09-05](../../../docs/SESSION_STATE_2026-09-05.md) — armour/bandages/mage chain landed live; tree uncommitted; 6 open items
-- [NPC swing = emote](npc-swing-is-an-emote.md) — "*X is attacking you!*" is the attack signal, not 0x2F; Client::IsAttackingMe
-- [Threat floor vs tolerance](threat-floor-vs-tolerance.md) — idle red monster ≥0.35; tolerance below that never opens; mage now 0.50
-- [Caster reagent working set](caster-reagent-working-set.md) — 50 each in pack, never dead-weight banked, NeedBank withdraws
-- [Archetypes top to bottom](archetypes-top-to-bottom.md) — owner 2026-09-05: finish one archetype at a time, alchemist first; treasure hunter trains Cartography
-- [Verdict is per archetype](verdict-is-per-archetype.md) — owner 2026-09-05: no sub-loop PASS; whole rounded day or PARTIAL/BLOCKED
-- [Goal exit ownership](goal-exit-ownership.md) — 2026-09-05 review: errand/action state outlived goal_changed; one LeaveGoal hook; same-kind re-pick keeps journey
-- [Offline life harness](offline-life-harness.md) — tests/life_harness reaches Runner::Tick offline; failing scenario first, then fix, then 5-min smoke
-- [Open slices after review](review-2026-09-05-open-slices.md) — order: errand-owned attempts, Objective+Bank keep, ContainerSync, thresholds to table
+- [Crafters stock then sit](crafters-stock-then-sit.md) — owner rule: bulk materials first, long craft sittings, for every crafter; alchemist (89aa11e) is the template
+- [Sphere shutdown](sphere-shutdown.md) — close via sphere_console.ps1 "X#" (plain X refused by Secure mode); taskkill /F only after save
+- [Population ramp plan](population-ramp-plan.md) � after 3-char validation: 20 -> 50 -> 100 load test, 70/30 combat/craft hypothesis, crafters supply fighters
+- [Mage combat ladder](mage-combat-ladder.md) � owner rule: mage uses full offensive ladder within Magery (harm/poison/lightning), self-trains once funded
+- [Session 2026-09-06 validation](session-2026-09-06-validation.md) � read docs/SESSION_STATE_2026-09-06.md first; wave grades, D1-D14 ledger, sequential fix agents
+- [Newbie items survive death](newbie-items-survive-death.md) � ATTR=04 starter tools stay on death; corpse holds only earned/bought items
+- [Speed over hand-polling](feedback-speed-over-hand-polling.md) - owner-approved accelerators: commit often/worktrees, offline atlas harness, need<->handler contract; observer agent from minute 1
+- [Parallel fixer Astra](parallel-fixer-astra.md) - owner runs a second fixer session; ask what it holds before dispatching fix agents
+- [Graveyard tiers separated](graveyard-tiers-separated.md) - owner: keep strong undead in Britain graveyard but in a separate part from the weak band
+- [Meditation only for attack builds](meditation-only-for-attack-builds.md) - owner: crafters drop Meditation; Sphere refuses it at full mana

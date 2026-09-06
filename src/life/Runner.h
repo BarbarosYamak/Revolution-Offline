@@ -417,6 +417,12 @@ private:
     i64 windDownStartedMs_ = 0;
     i32 windDownTrips_ = 0;
     bool windDownArrived_ = false;
+    // Say "I cannot get out of here" ONCE. The blocked branch below re-arms
+    // itself every 30 s on purpose (never logging out is worse than trying
+    // again), but Kharain printed the same two lines 58 times from inside
+    // Minoc Mine 1 and the one fact worth reading -- which cell -- was in
+    // none of them.
+    bool windDownBlockedLogged_ = false;
 
     SessionSummary session_;
 
