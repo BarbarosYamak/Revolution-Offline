@@ -1,0 +1,32 @@
+# Britain graveyard STRONG TIER re-place -- owner ruling 2026-09-06,
+# "tiers separated": skeletal knights / lich / lich lord each get their own
+# non-overlapping ring, ordered as a difficulty gradient from the bot entrance.
+#
+# RUN ONLY AS THE ADMIN ACCOUNT (character "Observer") via run_admin.ps1:
+#   .\run_admin.ps1 -Scenario m40_gy_britain_strong -Tag gy_strong1 -TimeoutSec 300
+#
+# Calls revolution/f_m40_gy_britain_strong, which clears rect 1358,1443-1374,1465
+# (the three pre-move strong gems, no weak gem) and rect 1380,1443-1391,1466
+# (the new plots, so a re-run leaves one set), then places the three new gems.
+# It does NOT touch the weak band, the other six yards, or anything outside
+# the Britain graveyard AREADEF.
+#
+# f_m40_gy_britain_strong lives in a file spheretables.scp already knows
+# (revolution/f_m40_graveyards.scp), so .serv.resync is enough -- no .serv.load.
+
+wait_world
+sleep 3000
+
+say .serv.resync
+sleep 30000
+
+say .f_m40_gy_britain_strong
+sleep 15000
+
+# Gems are ATTR=080 (not attr_static), so a plain .save persists them.
+say .save
+sleep 30000
+
+say m40 britain strong tier re-placed
+sleep 1500
+logout
