@@ -755,6 +755,14 @@ private:
     std::string leavePendingWhy_;
     life::VendorErrand foodErrand_;
     i32  toolTrips_ = 0;
+    // SHOPKEEPERS WHOSE STOCK LIST HAS BEEN READ AND DID NOT HOLD THE TOOL.
+    // "One NPC is not the trade": a blacksmith whose restock roll came up
+    // short is not evidence that no blacksmith sells a dagger, so the errand
+    // remembers who it has already asked and walks to the next one instead of
+    // reopening the same four-item shelf every eight seconds. Cleared when the
+    // tool being sought changes, and when one is finally bought.
+    std::vector<u32> toolVendorsTried_;
+    std::string      toolVendorsTriedFor_;
     // The rock currently being struck: position, the z of its visible
     // surface, and 0 for rock land or the rock static's id (a cave floor is a
     // static and is answered as one -- see DoMine's cursor reply).

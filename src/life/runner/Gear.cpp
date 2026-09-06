@@ -331,6 +331,13 @@ bool Runner::DoGetTool(Client& client, const Observation& obs) {
         toolGfx.push_back(kAxe[1]);
     }
 
+    // A DIFFERENT TOOL IS A DIFFERENT SHOPPING LIST. The shopkeepers ruled out
+    // for a dagger say nothing about who sells a mortar.
+    if (toolVendorsTriedFor_ != toolName) {
+        toolVendorsTriedFor_ = toolName;
+        toolVendorsTried_.clear();
+    }
+
     const ToolVendor* tv = VendorForTool(toolName);
     if (!tv) {
         LogLine("goal_failed=GET_TOOL reason=\"%s\" tool=%s",
@@ -430,7 +437,8 @@ bool Runner::DoGetTool(Client& client, const Observation& obs) {
         }
         travelInFlight_ = false;
         // Arrived (or gave up). Ask whoever is here to show their wares.
-        const u32 keeper = client.NearestShopkeeperWithTrade(tv->trade, tv->service);
+        const u32 keeper = client.NearestShopkeeperWithTrade(tv->trade, tv->service,
+                                                             &toolVendorsTried_);
         if (!keeper) {
             // BOUND THE TRIPS. This was the last travelling goal without a
             // limit, and it cost a whole session: Edrik logged "arrived but no
@@ -524,6 +532,7 @@ bool Runner::DoGetTool(Client& client, const Observation& obs) {
             return false;
         }
         toolGoldBefore_ = obs.gold;
+        toolVendorsTried_.clear();
         client.ActionVendorBuy(vendor, v.serial, 1);
         state_.ledger.Note(market::GoldFlow::DestroyedVendorPurchase,
                            static_cast<i32>(v.price), toolName.c_str(),
@@ -533,11 +542,70 @@ bool Runner::DoGetTool(Client& client, const Observation& obs) {
         return false;
     }
 
-    LogLine("goal_blocked=GET_TOOL reason=\"%s\" this %zu-item list has no %s",
+    // THIS SHELF DOES NOT HAVE IT. Two rules meet here and neither was obeyed.
+    //
+    // "One NPC is not the trade": a blacksmith DOES stock i_dagger on this
+    // shard (VENDOR_S_WEAPONS_BLADED, runtime/scripts/templates/tm_vend.scp:
+    // 1794-1804, carried by c_blacksmith, c_blacksmith_f, c_weaponsmith_blade
+    // and c_weaponsmith_blade_f) -- a four-item window means THIS keeper's
+    // restock came up short, not that the trade cannot sell one. A player
+    // walks to the next smith. So do we: the serial goes on a skip list and
+    // the lookup above is asked again for somebody else of that trade.
+    //
+    // "A goal that did nothing must stand down": when nobody else of the trade
+    // is in sight this used to log goal_blocked, wait eight seconds and ask the
+    // SAME keeper again forever -- Odessa reopened one tinker's three-item list
+    // twenty-two times and the planner's backstop fired
+    // (artifacts/fleet_ramp_20260906/Odessa.console.txt:2925-3059,
+    // goal_spinning=GET_TOOL). A read shelf that lacks the item is a settled
+    // answer for now: fail with a reason and take the cooldown, exactly as
+    // BUY_SUPPLIES does with the same fact.
+    const usize shelfSize = client.VendorOffer().size();
+    bool alreadyTried = false;
+    for (u32 sk : toolVendorsTried_) { if (sk == vendor) { alreadyTried = true; break; } }
+    if (!alreadyTried) toolVendorsTried_.push_back(vendor);
+    state_.memory.NoteEvent("vendor_lacks", toolName.c_str(), tv->trade,
+                            obs.x, obs.y, obs.nowMs);
+    // The window is read and useless -- close it, or VendorOfferFrom() keeps
+    // naming it and the next tick lands right back in this branch.
+    client.ForgetVendorOffer();
+
+    const u32 other = client.NearestShopkeeperWithTrade(tv->trade, tv->service,
+                                                        &toolVendorsTried_);
+    if (other) {
+        LogLine("get_tool: this %zu-item list has no %s; trying another %s "
+                "(0x%08X, %zu already asked)",
+                shelfSize, toolName.c_str(), tv->trade, other,
+                toolVendorsTried_.size());
+        // Ask the NEXT one here rather than falling back through the travel
+        // arm above: travelInFlight_ is already false at this point, so that
+        // arm would set off on a fresh walk to the service the character is
+        // standing in. Same walk-up-then-open shape it uses.
+        i32 ox = 0, oy = 0; i8 oz = 0;
+        if (client.MobilePosition(other, &ox, &oy, &oz)) {
+            const i32 d = TileDist(obs.x, obs.y, ox, oy);
+            const i32 dz = (obs.z > oz) ? (obs.z - oz) : (oz - obs.z);
+            if (d > 1 || dz > 3) {
+                travelInFlight_ = client.TravelToEntity(other, 1);
+                planner_.NoteAttempt(obs.nowMs);
+                nextActionMs_ = obs.nowMs + 2000;
+                return false;
+            }
+        }
+        client.ActionVendorOpen(other);
+        planner_.NoteAttempt(obs.nowMs);
+        nextActionMs_ = obs.nowMs + 2500;
+        return false;
+    }
+
+    LogLine("goal_failed=GET_TOOL reason=\"%s\" %zu %s asked and none stocked "
+            "a %s",
             faucet::RefusalName(faucet::Refusal::VendorNotObserved),
-            client.VendorOffer().size(), toolName.c_str());
-    planner_.NoteAttempt(obs.nowMs);
-    nextActionMs_ = obs.nowMs + 8000;
+            toolVendorsTried_.size(), tv->trade, toolName.c_str());
+    planner_.Cooldown(GoalKind::GetTool, obs.nowMs + kNoToolCooldownMs);
+    planner_.Finish(false, "no shopkeeper of that trade stocked it", obs.nowMs);
+    toolVendorsTried_.clear();
+    toolTrips_ = 0;
     return false;
 }
 

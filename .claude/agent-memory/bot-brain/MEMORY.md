@@ -33,3 +33,5 @@
 - [A keyword mechanic is a per-tick state](a-keyword-mechanic-is-a-per-tick-state.md) — he reached the guard zone and died in it without shouting; the ask belongs in Tick, not in the flee arm
 - [A tool list is a keep list](a-tool-list-is-a-keep-list.md) — a second `p.tools =` deleted the mage's spellbook, so DoBank boxed a 23-spell book as dead weight
 - [Unknown beats proven poor](unknown-beats-proven-poor.md) — an unopened book scored 0.5 and lost to the empty one with two rows; when looking is free, rank it near the top
+- [A short shelf is not the trade](a-short-shelf-is-not-the-trade.md) — skip that keeper's serial, ForgetVendorOffer, ask the next; only then goal_failed
+- [The atlas has no lumber](the-atlas-has-no-lumber.md) — zero PLACE rows yield lumber, so no seed and no nearest-forest fallback can exist
