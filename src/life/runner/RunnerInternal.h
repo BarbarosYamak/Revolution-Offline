@@ -26,6 +26,7 @@
 #include "uo/newbie_knowledge.h"
 #include "uo/trade.h"
 #include "uo/combat.h"
+#include "life/runner/NoviceEngage.h"
 #include "uo/professions.h"
 #include "uo/sphere_rules.h"
 #include "uo/vendor_policy.h"
@@ -56,6 +57,36 @@ inline i32 BestWeaponSkillTenths(const Observation& obs) {
     i32 best = 0;
     for (int id : ids) best = std::max(best, obs.SkillTenths(id));
     return best;
+}
+
+// HOW MANY WAYS THIS BUILD INTENDS TO HURT SOMETHING, counted from the plan
+// rather than from today's skill sheet. A weapon school or Magery held as a
+// Primary or Secondary target is a character that means to fight; the same
+// skill at Utility is not (a dexxer's Recall Magery, a crafter's Wrestling
+// left over from creation). Zero is the answer for merchant_tinker, tailor,
+// alchemist and every other pure crafter -- see novice::BuildMayFight.
+//
+// Wrestling is deliberately IN the list: a monk-ish build that plans Wrestling
+// as its school is a fighter. It just is not a fighter by accident, because
+// nothing plans Wrestling at Primary/Secondary without meaning it.
+inline int PlannedCombatSkills(const prof::Profession& p) {
+    const int ids[] = {rules::kSwordsmanship, rules::kFencing,
+                       rules::kMaceFighting,  rules::kArchery,
+                       rules::kWrestling,     rules::kMagery};
+    int n = 0;
+    for (const prof::SkillTargetSpec& t : p.targets) {
+        if (t.role != prof::SkillRole::Primary &&
+            t.role != prof::SkillRole::Secondary) continue;
+        if (t.tenths <= 0) continue;
+        for (int id : ids) if (t.skillId == id) { ++n; break; }
+    }
+    return n;
+}
+
+// Does this life fight at all? A profession that plans no combat skill never
+// opens a fight and never stands in one -- it runs for the guards.
+inline bool BuildFightsAtAll(const prof::Profession* p) {
+    return !p || novice::BuildMayFight(PlannedCombatSkills(*p));
 }
 
 

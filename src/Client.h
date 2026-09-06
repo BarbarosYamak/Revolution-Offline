@@ -1956,6 +1956,10 @@ private:
     bool survivalBandagesAllowed_ = true;
     i64  survivalNextActionMs_ = 0;   // don't re-decide every single tick
     i64  survivalLastLogMs_ = 0;
+    // When a hostile was last inside the watchdog's scan radius. The tactic
+    // "rest" is only honest after this has been quiet for
+    // combat::kRestAllClearSeconds; 0 means none has ever been seen.
+    i64  survivalLastHostileMs_ = 0;
     int  survivalLastTactic_ = -1;
     void SurvivalTick();
 public:

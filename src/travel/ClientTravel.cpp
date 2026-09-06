@@ -1808,10 +1808,25 @@ void Client::SurvivalTick() {
     v.bandages    = bandage && survivalBandagesAllowed_ ? 1 : 0;
     v.healPotions = potion ? 1 : 0;
 
+    // IS ANYTHING STILL OUT THERE? War mode and a chosen target are the wrong
+    // witnesses for a character that never fights back: Odessa (merchant_
+    // tinker, no combat skill) was in neither while a Harpy and three orcs
+    // walked her hp from 50 to 5, and this policy answered "rest" twice on the
+    // way down (g_Odessa.console.txt:1338,1360-1361). The same 12-tile radius
+    // DoSurvive uses, so the goal loop and the watchdog see one board.
+    std::vector<HostileHit> around;
+    ScanHostiles(12, around);
+    v.hostilesNear = static_cast<i32>(around.size());
+    if (v.hostilesNear > 0) survivalLastHostileMs_ = now;
+    v.quietSeconds = survivalLastHostileMs_ == 0
+        ? combat::kRestAllClearSeconds
+        : static_cast<i32>((now - survivalLastHostileMs_) / 1000);
+
     const combat::Tactic t = combat::Decide(v);
     if (static_cast<int>(t) != survivalLastTactic_ || now - survivalLastLogMs_ > 5000) {
-        LogInfo("[survival] hp %d/%d (%d%%) -> %s\n", v.hpNow, v.hpMax,
-                combat::HealthPercent(v), combat::TacticName(t));
+        LogInfo("[survival] hp %d/%d (%d%%) hostiles=%d quiet=%ds -> %s\n",
+                v.hpNow, v.hpMax, combat::HealthPercent(v), v.hostilesNear,
+                v.quietSeconds, combat::TacticName(t));
         survivalLastTactic_ = static_cast<int>(t);
         survivalLastLogMs_ = now;
     }

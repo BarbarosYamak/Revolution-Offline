@@ -80,6 +80,19 @@ inline constexpr i32 kResumePercent    = 80;  // healed enough to re-engage
 // why it is never the answer while an enemy is adjacent.
 inline constexpr i32 kBandageSeconds = 3;
 
+// HOW LONG AN EMPTY BOARD HAS TO STAY EMPTY BEFORE SITTING DOWN IS SAFE.
+//
+// Read off the run that made this necessary. Odessa (merchant_tinker, 50 hp)
+// was chased north out of Britain by a Harpy and three orcs on 2026-09-07 and
+// the watchdog's 5 s poll saw TWO ten-second lulls in the middle of it --
+// g_Odessa.console.txt:
+//   00:54:49 40/50   00:54:54 40/50   00:54:59 40/50   00:55:04 31/50
+//   00:55:15 50/50   00:55:20 50/50   00:55:25 38/50
+// Ten seconds without a landed blow, twice, while four hostiles were still on
+// her. So ten seconds of quiet is not safety; the smallest number the trace
+// supports is one poll beyond the longest observed lull.
+inline constexpr i32 kRestAllClearSeconds = 15;
+
 struct Vitals {
     i32  hpNow = -1;          // -1 = not yet known
     i32  hpMax = -1;
@@ -87,6 +100,16 @@ struct Vitals {
     bool enemyAdjacent = false;
     int  healPotions = 0;
     int  bandages = 0;
+    // WHAT IS ON THE BOARD, independent of war mode. `inCombat` is war mode
+    // and `enemyAdjacent` needs a chosen target, so a character who never
+    // swings back -- a crafter, a fleeing mage -- looked SAFE to this policy
+    // while it was being beaten to death, and the tactic came out `rest`
+    // (Odessa, g_Odessa.console.txt:1338,1360-1361: "hp 15/50 (30%) -> rest",
+    // "hp 5/50 (10%) -> rest", dead at 00:55:57).
+    i32  hostilesNear = 0;      // hostiles within scan range right now
+    // Seconds since one was last seen there. Defaults to "long clear" so a
+    // caller that does not fill it in keeps the old behaviour exactly.
+    i32  quietSeconds = kRestAllClearSeconds;
     i32  healingTenths = 0;   // bandages still work untrained, just worse
 };
 

@@ -751,7 +751,12 @@ add_test(NAME build_mana_plan COMMAND build_mana_plan)
 # WEAK band of the Britain graveyard (artifacts/novice_engagement_2026-09-06.md).
 # Header-only and pure: no Client, no server, no world data, so the test links
 # nothing at all.
-add_executable(novice_engage novice_engage.cpp)
+# CombatPolicy.cpp comes along because the same brief owns the HP watchdog's
+# rest/flee choice: combat::Decide is what printed "hp 15/50 (30%) -> rest"
+# while four hostiles were beating Odessa to death on 2026-09-07. It depends
+# on nothing but uo/types.h, so the test still links no client and no server.
+add_executable(novice_engage novice_engage.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/CombatPolicy.cpp)
 target_include_directories(novice_engage PRIVATE
     ${CMAKE_SOURCE_DIR}/include
     ${CMAKE_SOURCE_DIR}/src)

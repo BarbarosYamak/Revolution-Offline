@@ -351,7 +351,18 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
     }
     // Pet ownership does not prove a live, controllable combat pet. Until the
     // pet command transport exists, a tamer must retreat instead of melee.
-    const bool avoidCombatDisengage = strategy == CombatStrategyId::AvoidCombat ||
+    // A BUILD WITH NO COMBAT SKILL IN ITS PLAN NEVER TRADES BLOWS.
+    //
+    // combatStrategy is a separate column from the skill plan and the two can
+    // disagree: a profession may carry Melee because it once had a weapon
+    // target, or AvoidCombat because a table author typed it. The plan cannot
+    // disagree with itself -- if nothing in the 700 points buys a way to hurt
+    // something, there is no fight here to win. Odessa (merchant_tinker, 50 hp,
+    // zero weapon/Magery targets) was killed by a Harpy and three orcs north
+    // of Britain on 2026-09-07 (g_Odessa.console.txt:1161-1361).
+    const bool noCombatBuild = !BuildFightsAtAll(needCfg_.profession);
+    const bool avoidCombatDisengage = noCombatBuild ||
+        strategy == CombatStrategyId::AvoidCombat ||
         strategy == CombatStrategyId::Tamer ||
         (strategy == CombatStrategyId::Mage && attackSpell < 0) ||
         (strategy == CombatStrategyId::Ranged && market::QtyOf(obs.pack, "i_arrow") == 0);
@@ -421,7 +432,14 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
         novice::IsNovice(static_cast<int>(BestWeaponSkillTenths(obs)), obs.hpMax);
     const i32 crowdTolerated =
         novicePolicy ? 1 : std::min(2, 1 + static_cast<i32>(nerve * 4.0));
-    const i32 crowdCeiling = novicePolicy ? 2 : 3;
+    // ONE CEILING FOR EVERYONE: 3+ within reach and this life leaves. The
+    // novice's extra caution is spent on ATTACKERS (crowdTolerated == 1) and
+    // on the retreat floor, not on a second bystander in the yard. A ceiling
+    // of 2 for novices refused every board at the Britain graveyard -- Hector
+    // logged five break-offs at 100% health with attackers=1 or 0 and fought
+    // nothing at all in ten minutes (g_Hector.console.txt:108,128,632,1106,
+    // 1127,1129).
+    const i32 crowdCeiling = novice::kNoviceCrowdCeiling;
 
     if (avoidCombatDisengage || obs.attackersOnMe > crowdTolerated ||
         inReach >= crowdCeiling || obs.HpFraction() < bailAt) {
@@ -433,11 +451,9 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
                 "hp=%.0f%% bandages=%d reason=\"%s\"",
                 obs.attackersOnMe, inReach, crowdTolerated, novicePolicy ? 1 : 0,
                 obs.HpFraction() * 100.0, obs.bandages,
-                avoidCombatDisengage      ? "this life avoids combat"
-                : inReach >= crowdCeiling ? (novicePolicy
-                                              ? "a second hostile joined and this "
-                                                "one fights duels"
-                                              : "3+ hostiles within reach")
+                noCombatBuild             ? "this build plans no combat skill"
+                : avoidCombatDisengage    ? "this life avoids combat"
+                : inReach >= crowdCeiling ? "3+ hostiles within reach"
                 : obs.attackersOnMe > crowdTolerated ? "more attackers than "
                                                        "this nerve stands in"
                 : floorBinds              ? "not enough health left to walk out "
@@ -475,7 +491,20 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
         CallGuardsIfProtected(client, obs);
         RetreatToSafety(client);
         nextActionMs_ = obs.nowMs + 2000;
-        planner_.NoteAttempt(obs.nowMs);
+        // A RETREAT THAT IS MOVING IS NOT A FAILED ATTEMPT.
+        //
+        // This arm ticks every 2 s, so five plain NoteAttempt calls exhausted
+        // SURVIVE ten seconds into every flight: Odessa went
+        // SURVIVE -> "previous goal abandoned: attempts 5 >= 5" -> BANK ->
+        // SURVIVE (emergency preempt) three times in forty seconds
+        // (g_Odessa.console.txt:648,659,687,698,727), and each handover
+        // aborted and re-planned the escape route she was standing in.
+        //
+        // Ground covered is the progress; a retreat with no route is still an
+        // attempt, so a genuinely stuck flee still exhausts on schedule and
+        // the goal's own time limit still bounds both.
+        if (client.TravelBusy()) planner_.NoteProgress();
+        else planner_.NoteAttempt(obs.nowMs);
         return false;
     }
 

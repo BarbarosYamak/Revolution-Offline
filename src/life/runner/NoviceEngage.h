@@ -1,3 +1,4 @@
+#pragma once
 // Novice engagement policy -- how a low-skill, low-hp fighter opens and
 // breaks off a fight. Pure: ints and doubles only, no Client, no Observation,
 // no world model, so tests/novice_engage.cpp links it with nothing.
@@ -73,27 +74,62 @@ inline constexpr bool IsNovice(int bestWeaponTenths, int hpMax) {
     return bestWeaponTenths < kNoviceWeaponTenths || hpMax < kNoviceHpMax;
 }
 
-// DO NOT OPEN ON A GROUP. A novice may start a fight only when the board is a
-// duel: one hostile close enough to trade with, and nothing else near enough
-// to join before the fight is over. `inReach` is counted at combat::
-// kCrowdRadius (4 tiles, combat.h:194); `nearby` at kSoloRadius.
+// A BUILD WITH NO COMBAT SKILL NEVER FIGHTS AT ALL.
 //
-// kSoloRadius is 8 -- twice the crowd radius, and wide enough to cover the
-// Britain graveyard's ring spacing of 6-7 tiles
-// (artifacts/hunt_tier_gate_2026-09-06.md section 1), which is how a pull in
-// one ring becomes a fight with two.
-inline constexpr int kSoloRadius = 8;
-
-inline constexpr bool NoviceMayOpen(int inReach, int nearby) {
-    return inReach <= 1 && nearby <= 1;
+// Odessa (merchant_tinker, 50 hp, Tinkering/Blacksmithing/Mining, no weapon
+// or Magery target anywhere in her plan) walked north out of Britain to the
+// mine on 2026-09-07, was picked up by a Harpy and three orcs at 1448,1375
+// and beaten from 50/50 down over ninety seconds
+// (run_gates/g_Odessa.console.txt:1161-1361; sphere2026-09-07.log
+// "00:55:P'Odessa' was killed by N'Harpy'., N'Hysil'., N'Noogugh'.,
+// N'Fitaki'."). Nothing in that fight was winnable: she had no weapon skill
+// to win it with. `plannedCombatSkills` counts the Primary/Secondary weapon
+// or Magery targets in the character's 700-point plan -- zero means every
+// engagement question below is already answered "no", whatever the board
+// looks like and whatever the character's nerve says.
+inline constexpr bool BuildMayFight(int plannedCombatSkills) {
+    return plannedCombatSkills > 0;
 }
 
-// BREAK CONTACT WHEN A SECOND ONE JOINS -- at whatever health, not at 25%.
+// DO NOT OPEN ON A GROUP -- BUT COUNT THE RIGHT THING.
+//
+// The first version of this rule counted hostiles WITHIN REACH, and that read
+// a duel next to a bystander as a group. Hector, 2026-09-07: he picked a
+// Cougar at 9 tiles and a Spectre at 10, walked in, and both times a second
+// skeleton drifted inside four tiles on the way -- so `in_reach=2` fired the
+// break-off at 100% health with attackers=1 and once with attackers=0
+// (run_gates/g_Hector.console.txt:108,128,632,1106,1127,1129). Five refusals,
+// zero fights, zero kills in ten minutes, then
+// goal_failed=TRAIN_COMBAT "no hunting ground reachable after 3 trips".
+// A graveyard always has a second skeleton somewhere in the yard; a player
+// who waited for an empty one would never train.
+//
+// So the duel test is about who is SWINGING AT US, not who is standing near.
+// Company still costs something -- it raises the retreat floor above, because
+// `board` is max(attackers, inReach) -- but it no longer vetoes the fight.
+// What survives unchanged is the owner's hard ceiling (2026-09-04): "don't
+// fight where 3+ hostiles are within reach", which is where both 2026-09-06
+// deaths actually happened.
+inline constexpr int kNoviceCrowdCeiling = 3;   // 3+ within reach: leave
+
+// A radius wide enough to see a pull turn into a pack: the Britain graveyard's
+// ring spacing is 6-7 tiles (artifacts/hunt_tier_gate_2026-09-06.md section 1).
+// It is REPORTED, not vetoed on -- see above.
+inline constexpr int kSoloRadius = 8;
+
+// May a novice START a fight? One thing already on us at most, and fewer than
+// three things within reach of joining it.
+inline constexpr bool NoviceMayOpen(int attackersOnMe, int inReach) {
+    return attackersOnMe <= 1 && inReach < kNoviceCrowdCeiling;
+}
+
+// BREAK CONTACT WHEN A SECOND ONE ATTACKS -- at whatever health, not at 25%.
 // Trace A's flee fired at 25% with two attackers and was one second too late;
 // by RetreatFloorFraction a novice with two attackers is already under the
-// line at 63% of a 51-hp bar, so the honest rule is simply "two is too many".
+// line at 63% of a 51-hp bar, so the honest rule is "two ON ME is too many".
+// The in-reach arm keeps the owner's 3+ ceiling and nothing narrower.
 inline constexpr bool NoviceMustDisengage(int attackersOnMe, int inReach) {
-    return attackersOnMe >= 2 || inReach >= 2;
+    return attackersOnMe >= 2 || inReach >= kNoviceCrowdCeiling;
 }
 
 }  // namespace uo::life::novice

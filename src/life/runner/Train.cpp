@@ -458,9 +458,30 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
                 // for the hp-per-exchange rows this comes from.
                 const bool novicePolicy =
                     novice::IsNovice(BestWeaponSkillTenths(obs), obs.hpMax);
+                // WHO IS SWINGING, NOT WHO IS STANDING NEAR. Counting reach
+                // refused a duel next to a bystander: Hector picked a Cougar
+                // at 9 tiles and a Spectre at 10, a second skeleton drifted
+                // inside four on the walk in, and the break-off fired at 100%
+                // health with attackers=1 -- five times, zero fights, in ten
+                // minutes (g_Hector.console.txt:108,128,632,1106,1127,1129).
+                // `nearby` is still counted and logged, because a pack at
+                // joining distance is worth seeing in the trace, but the veto
+                // is the owner's 3+ within reach and the attacker count.
                 const bool crowded =
-                    novicePolicy ? !novice::NoviceMayOpen(inReach, nearby)
+                    novicePolicy ? !novice::NoviceMayOpen(obs.attackersOnMe, inReach)
                                  : inReach >= 3;
+                // AND A BUILD THAT PLANS NO COMBAT SKILL NEVER OPENS AT ALL.
+                if (!BuildFightsAtAll(needCfg_.profession)) {
+                    LogLine("engage=no in_reach=%d near=%d hp=%.0f%% "
+                            "reason=\"this build plans no combat skill\"",
+                            inReach, nearby, obs.HpFraction() * 100.0);
+                    client.EnsurePeaceMode();
+                    planner_.Cooldown(GoalKind::TrainCombat,
+                                      obs.nowMs + kHuntStandDownMs);
+                    planner_.Finish(false, "this build does not fight", obs.nowMs);
+                    nextActionMs_ = obs.nowMs + 4000;
+                    return false;
+                }
                 if (crowded) {
                     LogLine("engage=no in_reach=%d near=%d novice=%d hp=%.0f%% "
                             "reason=\"%d hostile(s) within %d tiles, %d within "
