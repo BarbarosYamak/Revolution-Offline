@@ -720,3 +720,20 @@ add_test(NAME life_harness COMMAND life_harness ${CMAKE_CURRENT_BINARY_DIR})
 add_executable(life_world_harness life_world_harness.cpp)
 target_link_libraries(life_world_harness PRIVATE uo_client_core)
 add_test(NAME life_world_harness COMMAND life_world_harness ${CMAKE_CURRENT_BINARY_DIR})
+
+# --- Meditation belongs to builds that spend mana --------------------------
+# Owner ruling 2026-09-06 ("if it is craft no need, if it's attack sure") as a
+# catalogue invariant: a profession may plan Meditation only if it also plans
+# Magery in a mana-spending role. Sphere refuses Meditation at full mana, so a
+# crafter that plans it hands NeedSkillTraining a permanent, ungainable answer
+# -- which is exactly what Selene the alchemist did for a whole session.
+# Pure data: the catalogue and the skill table, no server and no MULs.
+add_executable(build_mana_plan build_mana_plan.cpp
+    ${CMAKE_SOURCE_DIR}/src/life/Professions.cpp
+    ${CMAKE_SOURCE_DIR}/src/life/strategies/CombatStrategy.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/Rules.cpp)
+target_include_directories(build_mana_plan PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+
+add_test(NAME build_mana_plan COMMAND build_mana_plan)

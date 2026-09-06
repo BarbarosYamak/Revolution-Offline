@@ -504,22 +504,29 @@ const std::vector<Profession>& All() {
             // Wears: Cloth. a brewer that also casts; robes only
             p.wears = Profession::Wear::Cloth;
             p.maysShield = false;
-            // Meditation begins at LITERALLY 0.0, not at the 0.0-19.9 the
-            // server rolls for every other skill. It has no [NEWBIE] section
-            // at all, so claiming the third creation slot for it costs the
-            // character nothing it did not earn -- and gives it a skill it
-            // must buy or grind up from nothing.
-            p.startZeroSkill = rules::kMeditation;
+            // NO THIRD SLOT. This build used to claim it for Meditation, and
+            // that was a plan the character could never finish: Sphere's
+            // Skill_Meditation refuses at full mana ("You are at peace",
+            // CCharSkill.cpp:2674) and a brewer never spends any. Selene sat
+            // at Meditation 0.0 for a whole session with want_train=Meditation
+            // on every tick (artifacts/fleet_ramp_20260906/Selene.console.txt).
+            // Owner ruling 2026-09-06: "if it is craft no need, if it's attack
+            // sure". Left unset, creation falls back to Remove Trap at 0.0.
+            p.startZeroSkill = -1;
             p.label = "Alchemist";
             p.startSkillA = rules::kAlchemy;
             p.startSkillB = rules::kMagery;
             p.startStr = 50; p.startDex = 20; p.startInt = 10;
+            // Magery stays a Utility dabble at its creation 50.0 -- enough to
+            // cast, never enough to be worth a mana pool. That is exactly why
+            // Meditation is gone: the only skill this life would still have
+            // had to TRAIN was one it could not gain a tenth of.
             p.targets = {
                 {rules::kAlchemy,     1000, 5, false, SkillRole::Primary},
                 {rules::kMagery,       500, 3, false, SkillRole::Utility},
-                {rules::kMeditation,   500, 2, true,  SkillRole::Utility},
             };
-            p.unresolvedTenths = 4500;
+            // +500: the budget Meditation used to hold is unspent, not lost.
+            p.unresolvedTenths = 5000;
             p.targetStr = 90; p.targetDex = 35; p.targetInt = 100;   // owner stat table 2026-09-04
             // THE TRAINING IS THE PRODUCTION. An alchemist does not grind
             // Alchemy and then separately make stock to sell -- every practice
@@ -1460,13 +1467,7 @@ const std::vector<Profession>& All() {
             // (tinker_output_to_vendor, Policy::RefusePlayerMarket) -- the
             // most player-market-dependent income in the whole catalogue.
             p.income = {Income::Craft};
-            // The defining trait: it gathers NOTHING. Every raw input is
-            // bought from someone who did.
-            // A TINKER WITH MINING 50 DIGS ITS OWN INGOTS. gathers=="ore" is what
-            // keys the mine/smelt loop (Needs.cpp, Craft.cpp); with "" this life
-            // waited on a BUY_SUPPLIES that no NPC serves (i_ingot_iron is a
-            // player-market good, tm_vend SELL lines commented) and spent 82% of
-            // a 60-min wave on EXPLORE/IDLE (Odessa, Serena, 2026-09-04).
+            // Buy suitable stock from suppliers; retain mining as a fallback.
             p.gathers = "ore";
             p.produces = {"i_gears", "i_lockpick", "i_tinker_tools",
                           "i_pickaxe", "i_scissors", "i_sewing_kit",
@@ -1479,11 +1480,11 @@ const std::vector<Profession>& All() {
                           "i_feather", "i_ink_well", "i_sewing_needle",
                           "i_thread", "i_yarn_ball"};
             p.tools = {{"tinker tools", {kTinkerTools}, false},
-                       {"pickaxe",      V(kPickaxe, 2), true}};
+                       {"pickaxe", V(kPickaxe, 2), true}};
             p.consumables = {CrafterHealPotions(), Food()};
             p.riskTolerance = 0.30;
             p.goldReserve = 250;         // spends rather than hoards; that IS the business
-            p.homeCities = {"Britain", "Minoc"};
+            p.homeCities = {"Minoc"};
             v.push_back(std::move(p));
         }
 
