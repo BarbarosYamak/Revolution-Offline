@@ -142,11 +142,48 @@ bool Runner::CallGuardsIfProtected(Client& client, const Observation& obs) {
     if (lastGuardCallMs_ != 0 &&
         obs.nowMs - lastGuardCallMs_ < kGuardCallIntervalMs) return true;
     lastGuardCallMs_ = obs.nowMs;
-    LogLine("interrupt=GUARDS reason=\"hurt at %.0f%% inside %s with a "
-            "hostile on me -- calling the guards\"",
-            obs.HpFraction() * 100.0, here->name.c_str());
+    // The wording is deliberately about what is TRUE at the call: the keeper
+    // (KeepCallingGuards) shouts for a hostile merely in sight as well as one
+    // already swinging, so "on me" was a claim this line could not make.
+    LogLine("interrupt=GUARDS reason=\"at %.0f%% HP inside %s with %d "
+            "hostile(s) in sight (%d on me) -- calling the guards\"",
+            obs.HpFraction() * 100.0, here->name.c_str(), obs.hostilesNear,
+            obs.attackersOnMe);
     client.ActionSay("Guards!");
     return true;
+}
+
+// THE SHOUT HAS TO OUTLIVE THE DECISION THAT FIRST MADE IT.
+//
+// CallGuardsIfProtected is reached from exactly two places -- the near-death
+// flee arm (below) and DecideHeal's rest arm -- and both of them are decided
+// ONCE, on the tile the character is standing on at that moment. A retreat
+// that starts OUTSIDE a guard zone therefore asks "can the guards hear me?",
+// is told no, and never asks again, including for the whole stretch after it
+// crosses the town line. Tordor, 2026-09-06 03:12:17-03:13:09
+// (run_gates fleet_ramp_20260906/Tordor.console.txt:1218-1510): interrupt=
+// FLEE_TO_GUARDS at 40% HP with three hostiles; forty seconds later the
+// client printed "You are now under the protection of the city guards"; twelve
+// seconds after that he was dead at 1447,1528, INSIDE a_townBritain, having
+// never said the word. Sphere summons guards on the spoken keyword and on
+// nothing else (Source-X CClientEvent.cpp:1871), so the zone he reached was
+// worth exactly what he asked of it.
+//
+// So the shout is a per-tick keeper, not a branch: every tick, under whatever
+// goal, while something hostile is in sight or on us -- or while a survival
+// retreat is still in flight and this life is still hurt -- if this tile is
+// guarded, call. The 15 s throttle inside CallGuardsIfProtected is what keeps
+// one answer from becoming a packet storm; nothing here bypasses it.
+void Runner::KeepCallingGuards(Client& client, const Observation& obs) {
+    if (!obs.inWorld || obs.dead) return;
+    const bool threatened =
+        obs.underAttack || obs.attackersOnMe > 0 || obs.hostilesNear > 0;
+    // A retreat flag left set after the danger passed is not a reason to
+    // shout at an empty street: full health and nothing in sight means there
+    // is nothing to call the guards about.
+    const bool retreatingHurt = survivalRetreat_ && obs.HpFraction() < 1.0;
+    if (!threatened && !retreatingHurt) return;
+    CallGuardsIfProtected(client, obs);
 }
 
 void Runner::RetreatToSafety(Client& client) {

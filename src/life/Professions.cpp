@@ -461,7 +461,17 @@ const std::vector<Profession>& All() {
             // only this one lacked a heal: warlock and treasure_hunter carry
             // Healing skill AND bandages, alchemist / mage_blacksmith / scribe
             // already carry CrafterHealPotions(). (audit 2026-08-30, finding 2.)
-            p.tools = {{"dagger", {0x0F51, 0x0F52}, false}};
+            // AND THE BOOK IS STILL A TOOL. This was `p.tools = {dagger}`,
+            // an ASSIGNMENT eleven lines below the spellbook's own -- so the
+            // pure mage's declared tool list held a dagger and no book at
+            // all. DoBank's dead-weight pass keeps what the profession
+            // declares, which is why Aurelius' 23-spell book (0x4000edd5)
+            // went into her bank box as "this life has no use for it"
+            // (artifacts/mage_bank_followup_20260906/Aurelius.console.txt:81)
+            // and she then bought the empty replacement she could not cast
+            // from. The dagger is Poisoning's; both belong here.
+            p.tools = {{"spellbook", {kSpellbook}, false},
+                       {"dagger", {0x0F51, 0x0F52}, false}};
             p.consumes.push_back("i_potion_poison");
             p.consumables = {HealPotions(), Food()};
             // 0.50, NOT 0.30. combat::Classify scores an unhurt red monster in
@@ -581,7 +591,11 @@ const std::vector<Profession>& All() {
             p.consumes = {"i_reag_black_pearl", "i_reag_garlic",
                           "i_reag_ginseng", "i_reag_nightshade",
                           "i_bottle_empty"};
-            p.tools = {{"mortar", {kMortar}, false}};
+            // The book belongs on every Mage-strategy row: DoBank keeps what
+            // the profession declares and boxes the rest, so an undeclared
+            // spellbook is dead weight to the one pass that empties a pack.
+            p.tools = {{"mortar", {kMortar}, false},
+                       {"spellbook", {kSpellbook}, false}};
             p.consumables = {CrafterHealPotions(), Food()};
             p.riskTolerance = 0.25;
             p.goldReserve = 600;
@@ -954,6 +968,12 @@ const std::vector<Profession>& All() {
             // this build never touches Inscription, so it buys finished
             // scrolls rather than blank ones.
             p.consumes = {"i_reag_black_pearl", "i_reag_nightshade"};
+            // A warlock casts, so a warlock owns a book -- and the row said
+            // nothing about one, which leaves it dead weight to DoBank's
+            // keep list. All seventeen live warlocks carry a filled book
+            // (artifacts/caster_spellbook_audit_2026-09-06.md); this is what
+            // stops one of them being banked the way Aurelius' was.
+            p.tools = {{"spellbook", {kSpellbook}, false}};
             p.consumables = {Bandages(), HealPotions(), Food()};
             p.riskTolerance = 0.65;      // duel-oriented, per the WL-01/WL-03 family
             p.goldReserve = 700;         // reagents AND weapon upkeep

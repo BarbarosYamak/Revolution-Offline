@@ -26,6 +26,12 @@ struct RunnerHarnessAccess {
         runner.travelInFlight_ = true;
         runner.DoRecoverCorpse(client, obs);
     }
+    // The per-tick keeper Tick() runs before any goal (Core.cpp).
+    static void GuardKeeper(Runner& runner, Client& client,
+                            const Observation& obs) {
+        runner.KeepCallingGuards(client, obs);
+    }
+    static bool Retreating(const Runner& runner) { return runner.survivalRetreat_; }
 };
 }
 
@@ -44,6 +50,20 @@ void Position(Client& client, u16 x, u16 y) {
     StoreBE16(packet + 11, x);
     StoreBE16(packet + 13, y);
     client.DispatchPacketForTest(packet, sizeof(packet));
+}
+
+// How many "Guards!" shouts the client actually put on the wire (0x03 ascii
+// speech). Asserting on the sent packet, not on a log line, because the
+// packet is the only thing Sphere's guardcall keyword ever sees.
+int GuardShouts(const Client& client) {
+    int n = 0;
+    for (const auto& p : client.SentForTest()) {
+        if (p.opcode != 0x03) continue;
+        const std::string body(reinterpret_cast<const char*>(p.bytes.data()),
+                               p.bytes.size());
+        if (body.find("Guards!") != std::string::npos) ++n;
+    }
+    return n;
 }
 }
 
@@ -127,6 +147,59 @@ int main(int argc, char** argv) {
         Check(client->CurrentRegion() && client->CurrentRegion()->flags.guarded,
               "server arrival selects guarded town");
         client->TravelAbort("fixture arrival");
+
+        // D14 remainder: a retreat that CROSSES the town line must shout.
+        // Tordor (2026-09-06 03:12:17-03:13:09) fled from outside a guard
+        // zone, reached one, and died inside a_townBritain without ever
+        // saying the word -- because the only two callers of
+        // CallGuardsIfProtected are decision arms that ran once, on the tile
+        // he fled FROM. The keeper runs every tick instead.
+        {
+            life::Observation flee;
+            flee.inWorld = true;
+            flee.nowMs = 1000000;
+            flee.hp = 40; flee.hpMax = 100;
+            flee.hostilesNear = 3;
+            flee.attackersOnMe = 1;
+            flee.underAttack = true;
+
+            client->ClearSentForTest();
+            Position(*client, 200, 200);
+            flee.x = flee.y = 200;
+            Check(life::RunnerHarnessAccess::Retreating(runner),
+                  "the survival retreat is still in flight");
+            life::RunnerHarnessAccess::GuardKeeper(runner, *client, flee);
+            Check(GuardShouts(*client) == 0,
+                  "out in the wilderness there is nobody to shout to");
+
+            Position(*client, 40, 40);
+            flee.x = flee.y = 40;
+            life::RunnerHarnessAccess::GuardKeeper(runner, *client, flee);
+            Check(GuardShouts(*client) == 1,
+                  "crossing into the guarded town with a hostile still on "
+                  "him, the retreating character calls the guards");
+
+            // Same second, same tick shape: the throttle -- not the decision
+            // -- is what stops this becoming a packet per tick.
+            life::RunnerHarnessAccess::GuardKeeper(runner, *client, flee);
+            flee.nowMs += 5000;
+            life::RunnerHarnessAccess::GuardKeeper(runner, *client, flee);
+            Check(GuardShouts(*client) == 1,
+                  "five seconds later it is still one shout, not three");
+
+            // Nothing in sight and unhurt: a stale retreat flag is not a
+            // reason to shout at an empty street.
+            life::Observation calm = flee;
+            calm.nowMs += 60000;
+            calm.hp = calm.hpMax;
+            calm.hostilesNear = 0;
+            calm.attackersOnMe = 0;
+            calm.underAttack = false;
+            life::RunnerHarnessAccess::GuardKeeper(runner, *client, calm);
+            Check(GuardShouts(*client) == 1,
+                  "safe and whole again, the shouting stops");
+            client->ClearSentForTest();
+        }
 
         life::Observation obs;
         obs.inWorld = true;

@@ -139,6 +139,32 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
             }
         }
 
+        // A CASTER'S BOOK DOES NOT LIVE IN THE BANK.
+        //
+        // The trade is in the book: a mage away from a bank with an empty one
+        // in the pack is a mage who cannot cast at all. Aurelius' 23-spell
+        // book (0x4000edd5) was banked as dead weight on 2026-09-06 and she
+        // bought an empty replacement (0x40013046) rather than fetch it, then
+        // refused every hunt for "no castable attack spell". So while the box
+        // is open and this life's own book reads empty -- or it has no book at
+        // all -- the banked one comes home. Bounded by that same condition: as
+        // soon as a book with spells in it is in the pack, this stops asking.
+        if (needCfg_.profession &&
+            needCfg_.profession->combatStrategy == CombatStrategyId::Mage &&
+            obs.spellsKnown < kSpellbookComfortableRuntime) {
+            const u16 bookGfx = kSpellbookGraphic;
+            const u32 stored = client.FindContainerItemByGraphic(box, &bookGfx, 1);
+            if (stored) {
+                // Same line the need was raised on (Needs.cpp), or the trip
+                // arrives at an open box and takes nothing.
+                LogLine("spellbook: there is a book in the box and the one in "
+                        "the pack holds %d of %d spells -- taking it out",
+                        obs.spellsKnown, kSpellbookComfortableRuntime);
+                IssueBankItemMove(client, obs, stored, 1, client.BackpackSerial());
+                return false;
+            }
+        }
+
         // Keep one working smithing batch but bank the rest.  The generic
         // keep-list below protects all declared crafting inputs; for miner
         // smiths that previously meant *every* ingot stayed in the pack even
@@ -568,6 +594,19 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
                 if (!named && itemName && needCfg_.profession &&
                     needCfg_.profession->combatStrategy == CombatStrategyId::Mage &&
                     std::strncmp(itemName, "i_reag_", 7) == 0)
+                    named = true;
+                // AND A CASTER'S BOOK IS NEVER DEAD WEIGHT, whatever its
+                // profession row happens to declare. Aurelius' 23-spell book
+                // went in the box here at 12:36:15 on 2026-09-06
+                // (artifacts/mage_bank_followup_20260906/Aurelius.console.txt:81)
+                // because the pure mage's tool list had been overwritten with
+                // a dagger (Professions.cpp, now fixed) -- but a rule that
+                // only holds while one table row is right is not a rule. A
+                // book is one stone and it is the whole trade; a SPARE book
+                // is sold to another player, not stored where it cannot be
+                // cast from.
+                if (!named && gfx == kSpellbookGraphic && needCfg_.profession &&
+                    needCfg_.profession->combatStrategy == CombatStrategyId::Mage)
                     named = true;
                 if (named) continue;
 

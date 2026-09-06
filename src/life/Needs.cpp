@@ -1036,6 +1036,26 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
             add(NeedKind::NeedBank, 0.9, "reagent stock",
                 "reagents are in the bank and not in the pack -- withdraw the working set",
                 Fmt("short in pack, stocked in bank: %s", short_.c_str()));
+
+        // AND THE SAME RULE FOR THE BOOK, which is worth more than every
+        // reagent in the box. A caster whose carried book reads empty while a
+        // spellbook sits in the bank has one cheap answer -- walk to the bank
+        // -- and one ruinously expensive one: buy the whole book again, one
+        // scroll at a time. Aurelius chose the second on 2026-09-06, spending
+        // a five-minute life walking between a scribe and two mage shops with
+        // her own 23-spell book in her box (run_gates/g_Aurelius.console.txt).
+        // The line is the SAME one NeedSpells shops against: while the book
+        // this life carries is short of a working one and there is a book in
+        // the box, the box is the answer. (It was `== 0` for one run, which
+        // the first bought scroll -- a 23-gold Heal -- immediately falsified:
+        // "spells 1/24 book=carried", g_Aurelius.console.txt:69.)
+        const i32 booksBanked = market::QtyOf(obs.bank, "i_spellbook");
+        if (booksBanked > 0 && obs.spellsKnown < kSpellbookComfortable)
+            add(NeedKind::NeedBank, 1.0, "the spellbook is in the bank",
+                "the book in the pack is not a working one and there is a "
+                "spellbook in the box -- fetch it before buying scrolls",
+                Fmt("carried spells %d of %d, spellbooks banked %d",
+                    obs.spellsKnown, kSpellbookComfortable, booksBanked));
     }
 
     // IS THE LOAD ITSELF THE INCOME? A character at its carry limit holding

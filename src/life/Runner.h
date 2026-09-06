@@ -913,6 +913,10 @@ private:
     static constexpr i64 kErrandReasonRepeatMs = 60 * 1000;
 
     bool spellbookOpened_ = false;
+    // WHICH book that flag is about. A life can hold two (an empty one it
+    // bought and the full one it just took out of the bank), and one bool
+    // would give the second book the first one's "already looked".
+    u32 spellbookOpenedSerial_ = 0;
     // spellbookOpened_ only means "opened at some point this session"; it says
     // nothing about whether containerItems_ still holds what that open sent.
     // A goal that reads the cache as empty while this flag is already true
@@ -986,6 +990,10 @@ private:
     // means the shout was the right answer here (so the caller need not also
     // run); false means there is no protection to call on. See Survive.cpp.
     bool CallGuardsIfProtected(Client& client, const Observation& obs);
+    // The per-tick keeper for the shout. CallGuardsIfProtected is only
+    // reached from two decision points; a retreat that CROSSES into a guard
+    // zone reaches neither. Runs from Tick() every tick, whatever the goal.
+    void KeepCallingGuards(Client& client, const Observation& obs);
     // When the last "Guards!" was shouted, so a per-tick decision does not
     // become a per-tick packet.
     i64 lastGuardCallMs_ = 0;

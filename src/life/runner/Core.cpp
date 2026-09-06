@@ -682,7 +682,45 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
     // a second spellbook 32 times, and Magery could never be practised
     // ("Create Food is not in this character's spellbook") because the book she
     // was wearing was invisible to the only code that reads it.
-    obs.spellbookSerial = client.FindBackpackItemByGraphic(kSpellbookGraphic);
+    // WHICH BOOK, when this life owns more than one. FindBackpackItemByGraphic
+    // returns the FIRST 0x0EFA in the pack, and first is not fullest: Aurelius
+    // carried an empty book she had bought to replace the 23-spell one that
+    // had been banked as dead weight, and every cast decision read the empty
+    // one (run_gates/g_Aurelius.console.txt:134 "book=0x40013046 ... (none)").
+    // Ranking, best first: a book the client has read rows out of, by row
+    // count; then a book nobody has opened yet (it may hold anything, and
+    // opening it is free); last, a book known to be empty.
+    obs.spellbookSerial = 0;
+    {
+        double best = -1.0;
+        const u32 pack = client.BackpackSerial();
+        const usize n = client.ContainerItemCount(pack);
+        for (usize i = 0; i < n; ++i) {
+            u32 serial = 0; u16 gfx = 0, amount = 0;
+            if (!client.ContainerItemAt(pack, i, &serial, &gfx, &amount)) continue;
+            if (gfx != kSpellbookGraphic || !serial) continue;
+            // AN UNOPENED BOOK OUTRANKS EVERY UNFINISHED ONE. Scoring it at
+            // 0.5 was not enough: Aurelius fetched her 23-spell book out of
+            // the bank at 17:34:07 on 2026-09-06 and went on using the empty
+            // one she was carrying, because that one had TWO rows the client
+            // had read and two beats a half (g_Aurelius.console.txt:153-590).
+            // Opening a book costs one action and no gold, so anything not yet
+            // looked in is worth more than any book that is not already a
+            // working one -- and less than a working one, which needs nothing.
+            // A book that WAS asked and still says nothing drops to the
+            // bottom: asking it again is the retry-inside-its-own-deadline
+            // fault, and one such book must not shadow a real one forever.
+            const bool known = client.ContainerKnown(serial);
+            const double score =
+                known ? static_cast<double>(client.ContainerItemCount(serial))
+                      : (serial == spellbookOpenedSerial_
+                             ? -0.5
+                             : kSpellbookComfortableRuntime - 0.5);
+            if (score > best) { best = score; obs.spellbookSerial = serial; }
+        }
+    }
+    if (!obs.spellbookSerial)
+        obs.spellbookSerial = client.FindBackpackItemByGraphic(kSpellbookGraphic);
     if (!obs.spellbookSerial) {
         for (u8 layer : {kLayerHand1, kLayerHand2}) {
             if (client.EquippedGraphicAt(layer) == kSpellbookGraphic) {
@@ -721,7 +759,13 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
         // Observe() is const by design, so the REMEMBERING of a fresh reading
         // happens in LearnFromObservation; here the remembered book only
         // stands in while this session has not opened it yet.
-        if (obs.knownSpells.empty()) obs.knownSpells = state_.knownSpells;
+        // ...and only while it is UNOPENED. Once the book has been opened the
+        // rows on the wire are the whole truth about it, empty included:
+        // standing the remembered list in for an opened-and-empty book is how
+        // a character with a full book in the BANK and an empty one in the
+        // pack went on believing it could cast 23 spells (Aurelius, 2026-09-06).
+        if (obs.knownSpells.empty() && !client.ContainerKnown(obs.spellbookSerial))
+            obs.knownSpells = state_.knownSpells;
     }
     obs.spellsKnown = static_cast<int>(obs.knownSpells.size());
 
@@ -1323,6 +1367,12 @@ void Runner::Tick(Client& client, i64 nowMs) {
 
             LearnFromObservation(client, obs);
             MaintainBuildLocks(client, obs);
+
+            // THE ZONE IS ONLY A WEAPON IF YOU USE IT. Runs here, before any
+            // goal, because the tick that matters is the one where a retreat
+            // crosses the town line -- and by then no decision arm that knows
+            // how to shout will run again (Survive.cpp, KeepCallingGuards).
+            KeepCallingGuards(client, obs);
 
             // THE REAGENT LIST IS SETTLED WHERE IT CAN BE SEEN, not only where
             // it is spent. BUY_SUPPLIES prunes it too, but once the last

@@ -256,6 +256,28 @@ void TestArchetypesDiffer() {
 }
 
 // --------------------------------------------------------------------------
+// EVERY CASTER DECLARES ITS BOOK. DoBank's dead-weight pass keeps what the
+// profession declares as a tool and boxes the rest; the pure mage's row said
+// `p.tools = {spellbook}` and then, eleven lines later, `p.tools = {dagger}`
+// -- an assignment, not an append -- so a mage's declared kit held no book at
+// all. Aurelius' 23-spell book went into her bank box as "this life has no
+// use for it" (artifacts/mage_bank_followup_20260906/Aurelius.console.txt:81)
+// and she bought an empty replacement she could not cast from.
+void TestEveryCasterDeclaresItsSpellbook() {
+    Section("casters: the spellbook is a declared tool, not dead weight");
+    constexpr u16 kSpellbookGfx = 0x0EFA;
+    for (const prof::Profession& p : prof::All()) {
+        if (p.combatStrategy != life::CombatStrategyId::Mage) continue;
+        bool book = false;
+        for (const prof::ToolNeed& t : p.tools) {
+            for (u16 g : t.graphics) if (g == kSpellbookGfx) book = true;
+        }
+        std::string why = p.id + " declares a spellbook among its tools";
+        Check(book, why.c_str());
+    }
+}
+
+// --------------------------------------------------------------------------
 void TestMinerConstraintIsRecorded() {
     Section("miner: the pickaxe STR gate is expressed, not hidden");
 
@@ -1197,6 +1219,7 @@ int main() {
     TestBuildsAreEarnedNotGranted();
     TestRefusals();
     TestArchetypesDiffer();
+    TestEveryCasterDeclaresItsSpellbook();
     TestMinerConstraintIsRecorded();
     TestPlanFromProfession();
     TestNextSkillToBuy();

@@ -2143,10 +2143,17 @@ bool Runner::DoFillSpellbook(Client& client, const Observation& obs) {
     // contents, which happens when the book is opened. Treating an unopened
     // book as an empty one would send the character shopping for spells it
     // already owns.
-    if (!spellbookOpened_) {
+    // ...and a DIFFERENT book is a different unknown. spellbookOpened_ is one
+    // flag for whatever book Observe picked this tick, so a second book (one
+    // just fetched out of the bank) would inherit the first one's "already
+    // looked" and never be read. Comparing the SERIAL is what makes the flag
+    // mean this book -- and it is the serial rather than ContainerKnown so a
+    // book that refuses to answer is still asked only once.
+    if (!spellbookOpened_ || spellbookOpenedSerial_ != obs.spellbookSerial) {
         LogLine("spellbook: opening the book to see what is already in it");
         client.ActionUseObject(obs.spellbookSerial);
         spellbookOpened_ = true;
+        spellbookOpenedSerial_ = obs.spellbookSerial;
         nextActionMs_ = obs.nowMs + 2500;
         return false;
     }
@@ -2345,10 +2352,11 @@ bool Runner::DoPracticeSkill(Client& client, const Observation& obs) {
             nextActionMs_ = obs.nowMs + 5000;
             return false;
         }
-        if (!spellbookOpened_) {
+        if (!spellbookOpened_ || spellbookOpenedSerial_ != obs.spellbookSerial) {
             LogLine("practice: opening the spellbook to see what can be cast");
             client.ActionUseObject(obs.spellbookSerial);
             spellbookOpened_ = true;
+            spellbookOpenedSerial_ = obs.spellbookSerial;
             practiceRecheckedBook_ = false;
             nextActionMs_ = obs.nowMs + 2500;
             return false;
