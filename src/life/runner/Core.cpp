@@ -232,6 +232,7 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
     obs.hp    = client.PlayerHp();
     obs.hpMax = client.PlayerHpMax();
     obs.mana  = client.PlayerMana();
+    obs.manaMax = client.PlayerManaMax();
 
     obs.str   = client.PlayerStr();
     obs.dex   = client.PlayerDex();
@@ -636,6 +637,14 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
         if (obs.SkillTenths(t.skillId) >= t.tenths) continue;
         if (t.skillId != rules::kMeditation &&
             t.skillId != rules::kMagery) continue;   // see DoPracticeSkill
+        // A FULL MANA POOL IS NOT A MEDITATION LESSON. Sphere refuses to start
+        // the skill at all while mana is capped (CCharSkill.cpp
+        // Skill_Meditation, SKTRIG_START -> -SKTRIG_QTY), so pointing the goal
+        // at it burns the attempt budget for nothing. Casting is what spends
+        // mana, so let Magery have the turn if this life has it planned.
+        if (t.skillId == rules::kMeditation && obs.manaMax > 0 &&
+            obs.mana >= obs.manaMax)
+            continue;
         obs.wantPracticeSkill = t.skillId;
         break;
     }

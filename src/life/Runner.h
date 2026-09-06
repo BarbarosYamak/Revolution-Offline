@@ -809,6 +809,23 @@ private:
     // the batch command goes out once per sitting rather than once per item.
     // Consecutive turns spent on a self-use skill that cannot fail.
     i32  selfPracticeRuns_ = 0;
+    // WHAT THE SKILL READ WHEN THIS BOUT OF PRACTICE BEGAN.
+    //
+    // A self-use skill never answers "that failed", so the only honest
+    // measure of a practice bout is the server's own skill table before and
+    // after it (Client::OnSkills, 0x3A). Selene issued ten
+    // ActionUseSkill(Meditation) calls and stood down `Finish(true)` twice
+    // with the skill at 20.0 the whole time (artifacts/
+    // selene_train_false_positive_2026-09-06.md). Baseline is per skill: a
+    // different wantPracticeSkill starts a new bout.
+    int  practiceBaselineSkill_ = -1;
+    i32  practiceBaselineTenths_ = 0;
+    i32  practiceGains_ = 0;
+    // Which selection of the goal the baseline belongs to
+    // (GoalState::startedAtMs). Without it a bout that gained nothing leaves
+    // its baseline behind, and a tenth won later at a trainer or in a fight
+    // would be reported by the NEXT bout as won by practice.
+    i64  practiceBoutMs_ = -1;
     // When the current item was ordered from the craft menu, so the next one
     // is not started on top of it.
     // The wait for a craft to actually produce something. A Handshake, not
@@ -1027,6 +1044,11 @@ private:
     // Observation, so a real gain during a fight is said out loud once.
     std::map<int, i32> combatSkillSeen_;
     void NoteCombatSkillGains(const Observation& obs, bool inFight);
+    // Practice bout bookkeeping: baseline on entry, one line per real gain.
+    // Returns true if the skill has risen since the bout began.
+    bool NotePracticeGain(int skillId, i32 have);
+    // Closes a practice bout: success only if the skill actually moved.
+    bool EndPracticeBout(const Observation& obs, int skillId, i64 cooldownMs);
     u32 huntLootCorpse_ = 0;
     i32 huntLootFailures_ = 0;
     bool huntLootMovePending_ = false;

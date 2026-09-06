@@ -103,6 +103,34 @@ struct RunnerHarnessAccess {
     static i32 PendingHuntKills(const Runner& runner) {
         return runner.huntKillsPending_;
     }
+    // A PRACTICE BOUT IS JUDGED BY THE SKILL, NOT BY THE ATTEMPT COUNT.
+    //
+    // Selene sent ten ActionUseSkill(Meditation) calls and PRACTICE_SKILL
+    // completed twice with the skill on 20.0 throughout
+    // (artifacts/selene_train_false_positive_2026-09-06.md). Drives the
+    // handler until it claims an outcome, moving the observed skill up by one
+    // tenth on tick `gainAtTick` (negative: never). Returns the handler's
+    // success return.
+    static bool PracticeBoutClaimsSuccess(Runner& runner, Client& client,
+                                          Observation& obs, int skillId,
+                                          int gainAtTick, i32* gains) {
+        obs.wantPracticeSkill = skillId;
+        bool done = false;
+        for (int i = 0; i < 8 && !done; ++i) {
+            if (gainAtTick >= 0 && i == gainAtTick) {
+                for (SkillTarget& sk : obs.skills)
+                    if (sk.skillId == skillId) sk.tenths += 1;
+            }
+            done = runner.DoPracticeSkill(client, obs);
+            // The counter belongs to the bout and EndPracticeBout clears it,
+            // so the high-water mark is what the bout actually reported.
+            if (runner.practiceGains_ > *gains) *gains = runner.practiceGains_;
+            if (client.ActionBusy())
+                client.CompleteActionForTest(act::Result::Success, "harness");
+            obs.nowMs += 12000;
+        }
+        return done;
+    }
     static HealStep LastHealPlan(const Runner& runner) {
         return runner.lastHealPlan_;
     }
@@ -666,6 +694,43 @@ void ScenarioAKillIsCombatTrainingProgress(const std::string& tmpDir) {
 // --- D-item 1 -------------------------------------------------------------
 // A TRIP ALLOWANCE BELONGS TO THE ERRAND. TRAIN_AT_NPC interrupted by BANK
 // and picked up again must travel again, not fail on its stale ceiling.
+// --- Selene ---------------------------------------------------------------
+// PRACTICE_SKILL may only claim success on an observed skill delta.
+void ScenarioPracticeSucceedsOnlyOnASkillGain(const std::string& tmpDir) {
+    Section("Selene practice succeeds only on an observed skill gain");
+    Harness h;
+    h.obs = BaselineFencer(h.nowMs);
+    // Below max mana, so Sphere's Skill_Meditation would actually start.
+    h.obs.mana = 5;
+    h.obs.manaMax = 20;
+    h.obs.skills.push_back({rules::kMeditation, 200});
+    if (!h.Boot(tmpDir + "/practice", "alchemist")) return;
+    h.EnterLive();
+
+    i32 gains = 0;
+    const bool flat = life::RunnerHarnessAccess::PracticeBoutClaimsSuccess(
+        h.runner, *h.client, h.obs, rules::kMeditation, -1, &gains);
+    std::printf("  skill never moved: done=%d gains=%d\n", flat ? 1 : 0, gains);
+    Check(!flat, "a bout that gained nothing does not complete the goal");
+    Check(gains == 0, "and nothing is reported as gained by practice");
+
+    i32 gains2 = 0;
+    const bool won = life::RunnerHarnessAccess::PracticeBoutClaimsSuccess(
+        h.runner, *h.client, h.obs, rules::kMeditation, 2, &gains2);
+    std::printf("  one tenth gained: done=%d gains=%d\n", won ? 1 : 0, gains2);
+    Check(won, "a bout that gained a tenth completes the goal");
+    Check(gains2 == 1, "the gain is reported once");
+
+    // Full mana: the server refuses to start the skill at all, so the handler
+    // must not spend a single attempt on it.
+    h.obs.mana = h.obs.manaMax;
+    i32 gains3 = 0;
+    const bool capped = life::RunnerHarnessAccess::PracticeBoutClaimsSuccess(
+        h.runner, *h.client, h.obs, rules::kMeditation, -1, &gains3);
+    std::printf("  full mana: done=%d\n", capped ? 1 : 0);
+    Check(!capped, "meditation at full mana is a refusal, not a completion");
+}
+
 void ScenarioTrainTripsAreHandedBackOnAGoalChange(const std::string& tmpDir) {
     Section("D1 the trainer trip allowance does not survive a goal change");
     Harness h;
@@ -731,6 +796,7 @@ int main(int argc, char** argv) {
     ScenarioADrainedPotionShelfIsSkipped(tmpDir);
     ScenarioTheFieldLineIsNotTheTownFloor(tmpDir);
     ScenarioAKillIsCombatTrainingProgress(tmpDir);
+    ScenarioPracticeSucceedsOnlyOnASkillGain(tmpDir);
     ScenarioTrainTripsAreHandedBackOnAGoalChange(tmpDir);
 
     std::printf("%s: %d checks, %d failures\n",

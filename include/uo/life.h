@@ -582,6 +582,13 @@ struct Observation {
 
     i32 hp = 0, hpMax = 0;
     i32 mana = 0;
+    // The pool, not just what is in it. Sphere's Skill_Meditation
+    // refuses to START while mana is already full
+    // (server/Source-X/src/game/chars/CCharSkill.cpp:2674-2679 returns
+    // -SKTRIG_QTY, and CChar::Skill_Start:4505-4520 cleans up on a
+    // negative difficulty), so practising Meditation at full mana can
+    // never gain. The need model has to be able to see that.
+    i32 manaMax = 0;
 
     i32 str = 0, dex = 0, intel = 0;
     std::vector<SkillTarget> skills;   // as the server reported them

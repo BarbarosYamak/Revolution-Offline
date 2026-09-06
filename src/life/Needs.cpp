@@ -2038,16 +2038,41 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
             // Not dangerous, not blocked by the server -- simply wasted. The
             // character must move before it is worth a single cast.
             const bool canGain = !obs.inNoGainRegion;
-            const bool ready = canGain && (t.skillId != rules::kPoisoning ||
+            // MEDITATION AT FULL MANA IS REFUSED BEFORE IT STARTS. Sphere's
+            // Skill_Meditation answers SKTRIG_START with -SKTRIG_QTY and "You
+            // are at peace" while mana is capped (server/Source-X/src/game/
+            // chars/CCharSkill.cpp:2674-2679), and Skill_Start then cleans the
+            // skill up, so Skill_Experience is never reached: no tenth can be
+            // won. Selene burned ten attempts on exactly this
+            // (artifacts/selene_train_false_positive_2026-09-06.md). Said in
+            // the need, so the BLOCKED_NEED line explains it, rather than in
+            // the handler after six wasted uses.
+            const bool manaCapped = t.skillId == rules::kMeditation &&
+                                    obs.manaMax > 0 && obs.mana >= obs.manaMax;
+            const bool ready = canGain && !manaCapped &&
+                (t.skillId != rules::kPoisoning ||
                 (market::QtyOf(obs.pack, "i_potion_poison") > 0 &&
                  market::QtyOf(obs.pack, "i_dagger") > 0));
-            add(NeedKind::NeedPractice, 0.20 + 0.25 * gap, SkillName(t.skillId),
+            // A BLOCKED PRACTICE MUST NOT SHADOW A READY ONE. One skill gets
+            // one need each, the vector is sorted by urgency and FindNeed
+            // takes the first NeedPractice -- so a blocked Poisoning at 0.45
+            // stands in front of a Magery at 0.32 and PRACTICE_SKILL reads as
+            // blocked for a mage who could be casting (Aurelius,
+            // run_gates/g_Aurelius.console.txt:66, 2026-09-06). Zero is what
+            // NeedBlockActive already gives an observed refusal, so a blocked
+            // entry sorts below every practicable one and still gets printed
+            // with its reason.
+            add(NeedKind::NeedPractice, ready ? 0.20 + 0.25 * gap : 0.0,
+                SkillName(t.skillId),
                 ready ? "below target, and this skill is raised by using it"
                       : !canGain ? "no skill advances in this region"
+                      : manaCapped ? "Meditation cannot start at full mana -- "
+                                     "mana has to be spent before resting "
+                                     "teaches anything"
                                  : "Poisoning practice needs a dagger and a poison potion",
-                Fmt("%s %.1f -> %.1f mana=%d no_gain_region=%d",
+                Fmt("%s %.1f -> %.1f mana=%d/%d no_gain_region=%d",
                     SkillName(t.skillId), have / 10.0, t.tenths / 10.0,
-                    obs.mana, obs.inNoGainRegion ? 1 : 0),
+                    obs.mana, obs.manaMax, obs.inNoGainRegion ? 1 : 0),
                 !ready);
             continue;
         }

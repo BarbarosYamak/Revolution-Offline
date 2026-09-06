@@ -37,3 +37,5 @@
 - [The atlas has no lumber](the-atlas-has-no-lumber.md) — zero PLACE rows yield lumber, so no seed and no nearest-forest fallback can exist
 - [A new goal does not stop the old walk](a-new-goal-does-not-stop-the-old-walk.md) — GATHER_LOGS won and the un-aborted hunt walk still carried him to the graveyard and killed him
 - [An allowance resets, knowledge does not](an-allowance-resets-knowledge-does-not.md) — trip counters belong to the errand and count arrivals; shops-already-tried lists survive
+- [A self-use skill has no failure message](a-self-use-skill-has-no-failure-message.md) — judge a practice bout by the 0x3A delta; Meditation at full mana cannot even start
+- [A blocked need shadows a ready one](a-blocked-need-shadows-a-ready-one.md) — FindNeed takes the first of a kind and the list is urgency-sorted; blocked entries get 0.0

@@ -219,6 +219,12 @@ constexpr i64 kPracticeCastPeriodMs = 6000;
 // figure, as the no-spell case above. Without it PRACTICE_SKILL takes the turn
 // straight back and the errand that would fix it never runs.
 constexpr i64 kNoReagentCooldownMs = 240000;   // four minutes
+// PRACTISING SOMETHING THAT CANNOT GAIN. Meditation at full mana is refused
+// by the server before the skill even starts (CCharSkill.cpp Skill_Meditation
+// SKTRIG_START), so the answer does not change until mana has been spent --
+// a cast, a fight, or nothing at all. Long enough that the goals which DO
+// spend mana get the turn instead.
+constexpr i64 kNoPracticeGainCooldownMs = 180000;   // three minutes
 constexpr i32 kMaxSpellbookTrips = 3;
 // Long enough that a character which cannot sell anything goes and does
 // something else for a while -- hunts, gathers, crafts -- rather than asking

@@ -113,6 +113,28 @@ void Runner::NoteCombatSkillGains(const Observation& obs, bool inFight) {
     }
 }
 
+// A SKILL GAIN EARNED BY PRACTISING, MEASURED THE SAME WAY.
+//
+// PRACTICE_SKILL used to end `Finish(true)` on nothing but an attempt count:
+// Selene sent ten ActionUseSkill(Meditation) calls and completed the goal
+// twice with the skill reading 20.0 throughout
+// (artifacts/selene_train_false_positive_2026-09-06.md). A self-use skill
+// never answers "that failed", so the only outcome this client can observe is
+// the server's own skill table (0x3A, Client::OnSkills -> Observation::skills).
+//
+// Baseline is per bout (skill + the goal selection that owns it) and moves up
+// with every gain, so one tenth is reported once.
+bool Runner::NotePracticeGain(int skillId, i32 have) {
+    if (practiceBaselineSkill_ != skillId) return false;
+    if (have <= practiceBaselineTenths_) return false;
+    LogLine("train: %s %.1f->%.1f gained by practice",
+            rules::SkillName(skillId), practiceBaselineTenths_ / 10.0,
+            have / 10.0);
+    practiceBaselineTenths_ = have;
+    ++practiceGains_;
+    return true;
+}
+
 // LEAVING THE HUNT HANDS THE TRIP ALLOWANCE BACK. Every hand-off below goes
 // to a different goal kind -- heal, bank, buy, practise -- and that goal
 // plans its own journeys; the walks it makes are not attempts to reach a
@@ -2310,12 +2332,91 @@ bool Runner::DoFillSpellbook(Client& client, const Observation& obs) {
     return false;
 }
 
+// THE END OF A PRACTICE BOUT, JUDGED BY THE SKILL AND NOTHING ELSE.
+//
+// Success is a tenth actually gained on the practised skill while this bout
+// ran (NotePracticeGain, above). An exhausted attempt budget with the skill
+// where it started is a FAILURE with a reason -- the whole Selene defect was
+// that it was reported as a completion.
+bool Runner::EndPracticeBout(const Observation& obs, int skillId,
+                             i64 cooldownMs) {
+    const i32 gains = practiceGains_;
+    const i32 was = practiceBaselineTenths_;
+    selfPracticeRuns_ = 0;
+    practiceBaselineSkill_ = -1;
+    practiceBoutMs_ = -1;
+    practiceGains_ = 0;
+    planner_.Cooldown(GoalKind::PracticeSkill, obs.nowMs + cooldownMs);
+    if (gains > 0) {
+        LogLine("practice: %s is now %.1f -- %d gain(s) this bout",
+                rules::SkillName(skillId), was / 10.0, gains);
+        planner_.Finish(true, nullptr, obs.nowMs);
+        return true;
+    }
+    LogLine("goal_failed=PRACTICE_SKILL reason=\"%d attempts at %s and the "
+            "skill never moved off %.1f\"",
+            kSelfPracticeBeforeRethink, rules::SkillName(skillId), was / 10.0);
+    // So the next session knows this was tried and paid nothing. The cooldown
+    // above stops the immediate re-pick; this is the durable half.
+    state_.memory.NoteEvent("practice_no_gain", rules::SkillName(skillId),
+                            "self-practice", obs.x, obs.y, obs.nowMs);
+    planner_.Finish(false, "no skill gain observed", obs.nowMs);
+    return false;
+}
+
 bool Runner::DoPracticeSkill(Client& client, const Observation& obs) {
     const int skillId = obs.wantPracticeSkill;
-    if (skillId < 0) return true;
+    if (skillId < 0) {
+        // NOT A SUCCESS. This used to `return true`, which RunGoal reports as
+        // goal_completed with progress 0 -- a goal succeeding at nothing.
+        LogLine("goal_failed=PRACTICE_SKILL reason=\"nothing this life can "
+                "practise right now\"");
+        planner_.Cooldown(GoalKind::PracticeSkill, obs.nowMs + 60000);
+        planner_.Finish(false, "no skill to practise", obs.nowMs);
+        return false;
+    }
     if (client.ActionBusy()) return false;
 
     const i32 have = obs.SkillTenths(skillId);
+
+    // ONE BOUT, ONE BASELINE. A bout is this skill under this selection of the
+    // goal; anything else (a new goal instance, a different skill) starts over.
+    if (practiceBaselineSkill_ != skillId ||
+        practiceBoutMs_ != planner_.Current().startedAtMs) {
+        practiceBaselineSkill_ = skillId;
+        practiceBoutMs_ = planner_.Current().startedAtMs;
+        practiceBaselineTenths_ = have;
+        practiceGains_ = 0;
+        selfPracticeRuns_ = 0;
+    }
+    // Say every real gain out loud, the tick the server's skill table shows it.
+    if (NotePracticeGain(skillId, have)) planner_.NoteProgress();
+
+    // MEDITATION AT FULL MANA CANNOT GAIN, SO IT MUST NOT BE ATTEMPTED.
+    //
+    // Verified in the server source: CChar::Skill_Meditation
+    // (server/Source-X/src/game/chars/CCharSkill.cpp:2674-2679) answers
+    // SKTRIG_START with -SKTRIG_QTY and "You are at peace." while
+    // Stat_GetVal(STAT_INT) >= Stat_GetMaxAdjusted(STAT_INT); CChar::Skill_Start
+    // (:4505-4520) then cleans the skill up because m_Act_Difficulty < 0, so
+    // Skill_Done -- and with it Skill_Experience -- is never reached. Mana has
+    // to be SPENT before meditating is worth anything, which for this client
+    // means casting (Magery practice) or fighting with spells.
+    if (skillId == rules::kMeditation && obs.manaMax > 0 &&
+        obs.mana >= obs.manaMax) {
+        LogLine("goal_failed=PRACTICE_SKILL reason=\"Meditation cannot start "
+                "at full mana (%d/%d) -- 'You are at peace' gives no skill "
+                "credit; mana must be spent first\"",
+                obs.mana, obs.manaMax);
+        state_.memory.NoteEvent("practice_blocked",
+                                rules::SkillName(skillId), "full mana",
+                                obs.x, obs.y, obs.nowMs);
+        planner_.Cooldown(GoalKind::PracticeSkill,
+                          obs.nowMs + kNoPracticeGainCooldownMs);
+        planner_.Finish(false, "meditation cannot gain at full mana",
+                        obs.nowMs);
+        return false;
+    }
 
     if (skillId == rules::kPoisoning) {
         const u32 dagger = client.FindBackpackItemByGraphic(0x0F51)
@@ -2327,10 +2428,7 @@ bool Runner::DoPracticeSkill(Client& client, const Observation& obs) {
             return false;
         }
         if (++selfPracticeRuns_ >= kSelfPracticeBeforeRethink) {
-            selfPracticeRuns_ = 0;
-            planner_.Cooldown(GoalKind::PracticeSkill, obs.nowMs + 60000);
-            planner_.Finish(true, nullptr, obs.nowMs);
-            return true;
+            return EndPracticeBout(obs, skillId, 60000);
         }
         client.ActionApplyPoison(dagger, poison);
         planner_.NoteAttempt(obs.nowMs);
@@ -2596,10 +2694,7 @@ bool Runner::DoPracticeSkill(Client& client, const Observation& obs) {
         LogLine("practice: %d turns of %s -- standing down so the planner can "
                 "look at the rest of this life",
                 selfPracticeRuns_, rules::SkillName(skillId));
-        selfPracticeRuns_ = 0;
-        planner_.Cooldown(GoalKind::PracticeSkill, obs.nowMs + 60000);
-        planner_.Finish(true, nullptr, obs.nowMs);
-        return true;
+        return EndPracticeBout(obs, skillId, 60000);
     }
 
     LogLine("practice: using %s to raise it (%.1f)", rules::SkillName(skillId),

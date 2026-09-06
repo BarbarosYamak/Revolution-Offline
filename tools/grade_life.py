@@ -207,8 +207,14 @@ def main():
     # ---- TRAIN -----------------------------------------------------------
     r.add("TRAIN-1", sk_b > sk_a, "skills %.1f->%.1f" % (sk_a, sk_b), summ)
 
-    verified = (find(lines, r"train: \S+ [\d.]+->[\d.]+ (bought from a trainer|gained in combat)")
-                + find(lines, r"practice: (using .* to raise it|casting spell \d+ at myself)")
+    # OUTCOMES ONLY. `practice: using X to raise it` was an ATTEMPT log --
+    # Selene matched it ten times with Meditation frozen at 20.0 all session
+    # (artifacts/selene_train_false_positive_2026-09-06.md), and
+    # `casting spell N at myself` never matched the emitted line at all
+    # (Train.cpp logs "casting <name> (spell N, circle C, ...) at myself") and
+    # was an attempt log too. A skill name may contain a space
+    # (Mace Fighting), so the name is .+ rather than \S+.
+    verified = (find(lines, r"train: .+ [\d.]+->[\d.]+ (bought from a trainer|gained in combat|gained by practice)")
                 + find(lines, r"goal_completed=(%s) progress=[1-9]" % "|".join(TRAIN_GOALS)))
     r.add("TRAIN-2", bool(verified), "verified training events %d" % len(verified), verified)
 
