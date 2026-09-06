@@ -942,7 +942,22 @@ bool Runner::DoHeal(Client& client, const Observation& obs) {
         }
 
         case HealStep::Stuck:
+            // ARM B OF THE NEED/HANDLER CONTRACT
+            // (docs/NEED_HANDLER_CONTRACT.md). "Nothing to heal with and
+            // nothing on the way" is a sum of the pack, the purse, the book
+            // and the nearest counter -- DecideHeal's, not the need model's,
+            // which sees only the health bar. So NeedHeal kept scoring 700,
+            // winning, and being handed away, and Odessa's HEAL was abandoned
+            // on "attempts 5 >= 5" at 6/50 HP (D13). Recorded here in
+            // DecideHeal's own words, for the restock window, so the planner
+            // spends those ticks on the errand that can actually change the
+            // situation instead.
+            //
+            // Window, never Session: this is the one need that must reopen the
+            // moment a bandage, a potion or a coin arrives.
             LogLine("goal_stuck=HEAL reason=\"%s\"", p.reason);
+            life::NoteNeedBlocked(state_.memory, life::NeedKind::Heal, p.reason,
+                                  life::BlockScope::Window, needCfg_, obs.nowMs);
             return HandOff(planner_.Current().kind, GoalKind::GetFood, 120000, p.reason,
                            obs.nowMs);
     }

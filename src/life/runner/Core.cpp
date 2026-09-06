@@ -1962,6 +1962,24 @@ bool Runner::HandOff(GoalKind from, GoalKind to, i64 restMs, const char* why,
     return false;
 }
 
+// ARM B OF THE NEED/HANDLER CONTRACT. Declared in Runner.h, which carries the
+// reasoning; see docs/NEED_HANDLER_CONTRACT.md section 2.
+//
+// The three things a refusal has always done -- say so, rest the goal, end the
+// turn -- plus the one it never did: tell the need. The log line is unchanged
+// (`goal_blocked=<GOAL> reason="..."`, the same shape every site here already
+// emits) so tools/grade_life.py and the wiki table are untouched.
+bool Runner::BlockNeed(GoalKind goal, life::NeedKind need,
+                       life::BlockScope scope, const char* why,
+                       i64 cooldownMs, i64 nowMs) {
+    const char* reason = (why && why[0]) ? why : "refused, without a reason";
+    LogLine("goal_blocked=%s reason=\"%s\"", GoalKindName(goal), reason);
+    life::NoteNeedBlocked(state_.memory, need, reason, scope, needCfg_, nowMs);
+    planner_.Cooldown(goal, nowMs + cooldownMs);
+    planner_.Finish(false, reason, nowMs);
+    return false;
+}
+
 bool Runner::VetoTripOverSessionBudget(Client& client, const Observation& obs,
                                        GoalKind goal, const char* goalName,
                                        i64 cooldownMs) {

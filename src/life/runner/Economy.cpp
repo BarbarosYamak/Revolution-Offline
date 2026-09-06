@@ -2222,13 +2222,27 @@ bool Runner::DoBuySupplies(Client& client, const Observation& obs) {
         const market::SupplyRoute route =
             market::RouteForInput(*me, supplyItem_.c_str(),
                                   /*npcTradeKnown=*/false);
+        // ARM A OF THE NEED/HANDLER CONTRACT (docs/NEED_HANDLER_CONTRACT.md).
+        // The words this errand refuses with are now the words NeedSupplies
+        // scores with, because both sides ask life::CanAct. Odessa scored 133
+        // and was handed off from here five times in one session before the
+        // spin backstop caught it (D7).
+        //
+        // The hand-off targets stay: they are advice about what to do INSTEAD,
+        // which the need model does not carry. What changed is that the reason
+        // is no longer written twice.
+        const life::GateVerdict gate =
+            life::CanAct(life::NeedKind::NeedSupplies,
+                         life::GateSubject{supplyItem_.c_str(), false},
+                         state_.memory, obs, needCfg_);
         if (route == market::SupplyRoute::SelfProduce) {
             const GoalKind make = ProducingGoalFor(supplyItem_);
             LogLine("supplies: no NPC sells %s and this life makes it -- "
                     "handing the errand to %s instead of shopping for it",
                     supplyItem_.c_str(), GoalKindName(make));
             return HandOff(GoalKind::BuySupplies, make, kCraftStuckCooldownMs,
-                           "this life produces its own input", obs.nowMs);
+                           gate.ok ? "this life produces its own input"
+                                   : gate.why.c_str(), obs.nowMs);
         }
         if (route == market::SupplyRoute::PlayerMarket) {
             LogLine("supplies: %s is a player-market good -- no NPC may sell "
@@ -2236,9 +2250,15 @@ bool Runner::DoBuySupplies(Client& client, const Observation& obs) {
                     supplyItem_.c_str());
             return HandOff(GoalKind::BuySupplies, GoalKind::TradeWithPlayer,
                            kCraftStuckCooldownMs,
-                           "another profession makes this, not a shopkeeper",
+                           gate.ok ? "another profession makes this, not a "
+                                     "shopkeeper"
+                                   : gate.why.c_str(),
                            obs.nowMs);
         }
+        // NOT BlockNeed: this refusal is about ONE item, and an arm-B block is
+        // recorded per NeedKind. A crafter short of an unbuyable input today
+        // must still be able to shop for a different, buyable one an hour
+        // later, so this stays a cooldown -- the per-item half is arm A above.
         LogLine("goal_failed=BUY_SUPPLIES reason=\"%s\" item=%s route=%s",
                 faucet::RefusalName(faucet::Refusal::NoKnownSupplier),
                 supplyItem_.c_str(), market::SupplyRouteName(route));
