@@ -109,6 +109,17 @@ struct RunnerHarnessAccess {
     static const NeedConfig& Needs(const Runner& runner) {
         return runner.needCfg_;
     }
+    // Kharain (wave 2): trainTrips_ survived goal supersession, so a
+    // TRAIN_AT_NPC that was interrupted resumed already on its ceiling and
+    // failed "no 'tinker' reachable after 3 trips" without travelling. The
+    // allowance belongs to the errand.
+    static i32 TrainTrips(const Runner& runner) { return runner.trainTrips_; }
+    static void SetTrainTrips(Runner& runner, i32 n) { runner.trainTrips_ = n; }
+    static i32 MaxTrainTrips() { return Runner::kMaxTrainTrips; }
+    static void LeaveGoalForTest(Runner& runner, Client& client, GoalKind from,
+                                 GoalKind to) {
+        runner.LeaveGoal(client, from, to, from == to, "harness");
+    }
     static bool SuccessfulDepositResetsBudget(Runner& runner, Client& client,
                                              const Observation& obs) {
         runner.bankDepositTries_ = 4;
@@ -652,6 +663,56 @@ void ScenarioAKillIsCombatTrainingProgress(const std::string& tmpDir) {
     Check(!anySpin, "five kills in a row do not read as a spinning goal");
 }
 
+// --- D-item 1 -------------------------------------------------------------
+// A TRIP ALLOWANCE BELONGS TO THE ERRAND. TRAIN_AT_NPC interrupted by BANK
+// and picked up again must travel again, not fail on its stale ceiling.
+void ScenarioTrainTripsAreHandedBackOnAGoalChange(const std::string& tmpDir) {
+    Section("D1 the trainer trip allowance does not survive a goal change");
+    Harness h;
+    h.obs = BaselineFencer(h.nowMs);
+    if (!h.Boot(tmpDir + "/trainTrips", "fencer")) return;
+    h.EnterLive();
+
+    const i32 ceiling = life::RunnerHarnessAccess::MaxTrainTrips();
+
+    // Kharain's shape: the errand had spent its whole allowance, then
+    // BUY_SUPPLIES/BANK superseded it.
+    life::RunnerHarnessAccess::SetTrainTrips(h.runner, ceiling);
+    life::RunnerHarnessAccess::LeaveGoalForTest(h.runner, *h.client,
+                                                life::GoalKind::TrainAtNpc,
+                                                life::GoalKind::Bank);
+    const i32 afterLeaving = life::RunnerHarnessAccess::TrainTrips(h.runner);
+    std::printf("  trips %d before TRAIN_AT_NPC->BANK, %d after\n", ceiling,
+                afterLeaving);
+    Check(afterLeaving == 0,
+          "leaving TRAIN_AT_NPC for another goal hands the trip allowance back");
+    Check(afterLeaving < ceiling,
+          "a resumed TRAIN_AT_NPC is not already standing on its ceiling");
+
+    // And the other direction: arriving AT the errand from somewhere else
+    // starts it clean too.
+    life::RunnerHarnessAccess::SetTrainTrips(h.runner, ceiling);
+    life::RunnerHarnessAccess::LeaveGoalForTest(h.runner, *h.client,
+                                                life::GoalKind::Bank,
+                                                life::GoalKind::TrainAtNpc);
+    std::printf("  trips after BANK->TRAIN_AT_NPC: %d\n",
+                life::RunnerHarnessAccess::TrainTrips(h.runner));
+    Check(life::RunnerHarnessAccess::TrainTrips(h.runner) == 0,
+          "a fresh pick of TRAIN_AT_NPC starts from a full allowance");
+
+    // The Corran rule still holds: a same-kind re-pick keeps its journey AND
+    // its accounting, so a goal re-selected mid-walk cannot buy itself an
+    // unbounded number of trips.
+    life::RunnerHarnessAccess::SetTrainTrips(h.runner, 2);
+    life::RunnerHarnessAccess::LeaveGoalForTest(h.runner, *h.client,
+                                                life::GoalKind::TrainAtNpc,
+                                                life::GoalKind::TrainAtNpc);
+    std::printf("  trips after a same-kind re-pick: %d\n",
+                life::RunnerHarnessAccess::TrainTrips(h.runner));
+    Check(life::RunnerHarnessAccess::TrainTrips(h.runner) == 2,
+          "a same-kind re-pick keeps the trips it has already spent");
+}
+
 }  // namespace
 
 int main(int argc, char** argv) {
@@ -670,6 +731,7 @@ int main(int argc, char** argv) {
     ScenarioADrainedPotionShelfIsSkipped(tmpDir);
     ScenarioTheFieldLineIsNotTheTownFloor(tmpDir);
     ScenarioAKillIsCombatTrainingProgress(tmpDir);
+    ScenarioTrainTripsAreHandedBackOnAGoalChange(tmpDir);
 
     std::printf("%s: %d checks, %d failures\n",
                 g_failures ? "FAILED" : "PASSED", g_checks, g_failures);

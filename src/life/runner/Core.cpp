@@ -1004,8 +1004,34 @@ void Runner::SeedNewbieKnowledge(Client& client, i64 nowMs) {
     // miner with a BANK goal but no counter it can route to.  The seed is
     // idempotent; only skip when this life has the complete current version.
     const bool minocMiner = needCfg_.profession && needCfg_.profession->id == "miner_smith";
-    if (minocMiner && state_.memory.HasEvent("minoc_mining_home_seeded")) return;
-    if (!minocMiner && state_.memory.HasEvent("newbie_knowledge_seeded") &&
+
+    // THE MARKER IS NOT PER-CATEGORY, AND THAT LOCKED AN OMISSION IN FOR LIFE.
+    //
+    // The bank clause below already says so for one category ("a miner with a
+    // BANK goal but no counter it can route to"). The resource lead needs the
+    // same treatment and did not have it: data/revolution_atlas.txt carried
+    // ZERO lumber PLACE rows across two atlas revisions
+    // (artifacts/fix_atlas_lumber_stale_npc_2026-09-06.md -- 43 rows at
+    // 9b7ca0b, 0 at ad146a9), so every lumberjack that logged in during that
+    // window wrote "newbie_knowledge_seeded" having learned no forest at all,
+    // and the marker then refused to look again after the atlas regained 676
+    // of them. A category this profession actually WORKS, with no known place
+    // in it, is a re-seed rather than a skip. Seeding is idempotent
+    // (NotePlace/HintResource dedupe on kind+location), so re-running costs a
+    // few atlas lookups and cannot duplicate anything.
+    bool haveGatherLead = true;
+    if (needCfg_.profession && !needCfg_.profession->gathers.empty()) {
+        haveGatherLead = false;
+        for (const KnownResourceSource& r : state_.memory.Resources()) {
+            if (r.resource != needCfg_.profession->gathers) continue;
+            haveGatherLead = true;
+            break;
+        }
+    }
+    if (minocMiner && haveGatherLead &&
+        state_.memory.HasEvent("minoc_mining_home_seeded")) return;
+    if (!minocMiner && haveGatherLead &&
+        state_.memory.HasEvent("newbie_knowledge_seeded") &&
         state_.memory.BestPlace("common_knowledge_bank")) return;
     if (!client.WorldKnowledgeReady()) return;
 
@@ -1919,17 +1945,48 @@ void Runner::LeaveGoal(Client& client, GoalKind from, GoalKind to,
     // Deliberately NOT widened past those three: a hand-off to PracticeSkill,
     // BuySupplies or UpgradeGear may legitimately be served at or near the
     // destination, and every other goal change keeps its journey as before.
+    //
+    // GATHER_LOGS JOINED THE LIST ON THE EVIDENCE OF ITS OWN FIRST WIN.
+    // 2026-09-06 18:39:13 Vorar started the graveyard walk under TRAIN_COMBAT;
+    // at 18:39:33 GATHER_LOGS took the goal (94.5 vs 58.5) and armed the axe,
+    // but the hunting walk was never cancelled -- it replanned at 18:39:55,
+    // carried him 168 more tiles, ARRIVED at the graveyard at 18:40:52 and he
+    // was dead by 18:40:58, losing the hatchet and with it every log this
+    // session could have cut (run_gates/g_Vorar.console.txt:63-66,145,225,300).
+    // A gathering errand is never served at a hunting ground, which is the
+    // same test the three below pass; still deliberately a LIST, not "any goal
+    // change", because a shop or a practice errand can legitimately be served
+    // on the way.
     if (from == GoalKind::TrainCombat && to != from &&
         (to == GoalKind::Bank || to == GoalKind::Heal ||
-         to == GoalKind::ReplaceEquipment) &&
+         to == GoalKind::ReplaceEquipment || to == GoalKind::GatherLogs) &&
         (client.TravelBusy() || client.GotoBusy()))
-        client.TravelAbort("not fit to fight -- the walk to the hunting ground "
-                           "is abandoned, not paused");
+        client.TravelAbort(to == GoalKind::GatherLogs
+                               ? "there is work to do instead -- the walk to "
+                                 "the hunting ground is abandoned, not paused"
+                               : "not fit to fight -- the walk to the hunting "
+                                 "ground is abandoned, not paused");
 
     chopTargetValid_ = false;
     chopCursorPending_ = false;
     travelInFlight_ = false;
     travelAttempts_ = 0;
+    // A TRIP ALLOWANCE BELONGS TO THE ERRAND, NOT TO THE RUNNER.
+    //
+    // huntTrips_ is handed back by HandOffFromHunt (Train.cpp) for exactly
+    // this reason; trainTrips_ had no equivalent, so it survived every
+    // supersession. Kharain, wave 2: BUY_SUPPLIES superseded TRAIN_AT_NPC at
+    // 02:19:19 and again at 02:21:19, and when the goal came back it was
+    // already standing on its ceiling -- "no 'tinker' reachable after 3 trips"
+    // at 02:13:44 and 02:28:28 without a single travel_start in between
+    // (artifacts/fix_atlas_lumber_stale_npc_2026-09-06.md, "Separate defect").
+    // A fresh pick of the errand deserves a fresh allowance; the Corran rule
+    // above already protects a same-kind re-pick, which returns before here.
+    //
+    // trainerShopsTried_ is deliberately NOT cleared: a shop already visited
+    // and found empty is knowledge this session earned, not an allowance.
+    if (from == GoalKind::TrainAtNpc || to == GoalKind::TrainAtNpc)
+        trainTrips_ = 0;
     // Each DoXxx handler's lastXxxPlan_ exists only so LogPlan fires on a plan
     // transition, not every tick (S2_WIRING_PLAN.md S2.0). Left across a goal
     // change, a plan whose name happens to match the last one logged this

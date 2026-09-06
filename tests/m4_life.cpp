@@ -595,6 +595,15 @@ void TestPlanner() {
         life::Observation tie = work;
         tie.nowMs += 40000;               // well past the commitment floor
         tie.logs = 22;                    // worth banking, but the pack is not full
+        // BETWEEN STANDS, NOT ON ONE. A lumberjack standing in the trees with
+        // the axe in hand is deliberately no longer a near-tie with anything:
+        // NeedLogs reads 0.65 there and GATHER_LOGS takes "the walk is already
+        // paid for +60" (Needs.cpp / Goals.cpp, the Vorar case of 2026-09-06).
+        // The hysteresis this block is about needs two goals within 25% of
+        // each other, and that is a character walking between stands -- which
+        // is also when a full-ish pack genuinely competes with the bank.
+        tie.atWorkSite = false;
+        tie.treeAdjacent = false;
         const std::vector<life::Need> needs =
             life::AssessNeeds(plan, withBank, tie, needCfg);
         const std::vector<life::ScoredGoal> scored = p6.Score(needs, tie, withBank);
@@ -769,8 +778,13 @@ void TestGatherLogsSurplusYieldsToTrade() {
 
     const std::vector<life::Need> needs = life::AssessNeeds(plan, mem, obs, needCfg);
     const life::Need* logsNeed = Find(needs, life::NeedKind::NeedLogs);
-    Check(logsNeed != nullptr && logsNeed->urgency > 0.39 && logsNeed->urgency < 0.41,
-          "NeedLogs urgency is the flat 0.40 for a canWork lumberjack");
+    // 0.15, THE LOGGING FLOOR, NOT THE OLD FLAT 0.40. The need itself now
+    // tapers with the same glut the damper below reads -- 113 logs is past
+    // 2x keep (40), so cutting more is the least valuable thing this life
+    // could do and the urgency says so rather than leaving the whole
+    // judgement to the score modifiers.
+    Check(logsNeed != nullptr && logsNeed->urgency > 0.14 && logsNeed->urgency < 0.16,
+          "NeedLogs has tapered to its floor: 113 logs is well past 2x keep");
     const life::Need* tradeNeed = Find(needs, life::NeedKind::NeedTrade);
     Check(tradeNeed != nullptr && tradeNeed->urgency > 0.54 && tradeNeed->urgency < 0.56,
           "NeedTrade urgency is 0.55 -- 93 spare logs against a 20-log trip is a full load");
@@ -791,10 +805,13 @@ void TestGatherLogsSurplusYieldsToTrade() {
     }
     Check(gatherScore >= 0.0, "GATHER_LOGS is scored at all");
     Check(tradeScore >= 0.0, "TRADE_WITH_PLAYER is scored at all");
-    // 130 x 0.40 = 52, with neither bonus added: the damper dropped both.
-    Check(gatherScore > 51.0 && gatherScore < 53.0,
-          "GATHER_LOGS keeps only its bare need score -- the proven-stand "
-          "and axe-in-hand bonuses were dropped by the surplus damper");
+    // 130 x 0.15 = 19.5, with no bonus added: the damper dropped the
+    // proven-stand, axe-in-hand and standing-in-the-trees bonuses, and the
+    // need had already tapered to its floor.
+    Check(gatherScore > 18.5 && gatherScore < 20.5,
+          "GATHER_LOGS keeps only its bare need score -- the proven-stand, "
+          "axe-in-hand and at-the-stand bonuses were dropped by the surplus "
+          "damper");
     // 145 x 0.55 = 79.75, unaffected by the gathering-side damper.
     Check(tradeScore > 79.0 && tradeScore < 80.5,
           "TRADE_WITH_PLAYER scores its ordinary 79.75");
@@ -804,6 +821,70 @@ void TestGatherLogsSurplusYieldsToTrade() {
     Check(gatherReasons.find("spare") != std::string::npos &&
               gatherReasons.find("dropping the stand/axe bonuses") != std::string::npos,
           "the damper explains itself in the reasons vector");
+}
+
+// --------------------------------------------------------------------------
+// The other half of the same decision, from the same day's run log: a
+// lumberjack that walked 216 tiles to the woods must CUT before it walks back
+// to town for a comfort-level errand.
+//
+// Vorar, 2026-09-06: arrived at Britain Territory woods (1334,1496) at
+// 18:20:26 with a hatchet in hand, an empty pack and 84 bandages against a
+// floor of 100. GATHER_LOGS scored 72.0 (0.40 x 130 + 20 axe),
+// REPLACE_EQUIPMENT scored 130, the planner never came back to the woods in
+// the four minutes left, and session_summary read logs=+0
+// (run_gates/g_Vorar.console.txt:88,136,189).
+void TestStandingInTheWoodsOutscoresAComfortErrand() {
+    Section("planner: a gatherer at its stand cuts before it shops");
+
+    const prof::Profession* jack = prof::Find("lumberjack_swordsman");
+    if (!jack) { Check(false, "no lumberjack_swordsman"); return; }
+
+    life::NeedConfig needCfg;
+    needCfg.profession = jack;
+    const life::BuildPlan plan = life::PlanFromProfession(*jack);
+
+    life::Memory mem;
+    life::Observation obs = HealthyLumberjackAtWork();   // atWorkSite, axe in hand
+    obs.gold = 1000;
+    obs.goldOnHand = 1000;
+    obs.bandages = 40;      // short of the floor, at full health: a top-up
+    obs.weight = 40;        // room to carry what gets cut
+
+    const std::vector<life::Need> needs = life::AssessNeeds(plan, mem, obs, needCfg);
+    const life::Need* logsNeed = Find(needs, life::NeedKind::NeedLogs);
+    Check(logsNeed != nullptr && logsNeed->urgency > 0.64 && logsNeed->urgency < 0.66,
+          "standing in the trees with an axe and an empty pack reads 0.65");
+
+    life::Planner planner;
+    const std::vector<life::ScoredGoal> scored = planner.Score(needs, obs, mem);
+    double gather = -1.0, shop = -1.0;
+    std::string gatherReasons;
+    for (const life::ScoredGoal& g : scored) {
+        if (g.kind == life::GoalKind::GatherLogs) {
+            gather = g.score;
+            for (const std::string& r : g.reasons) gatherReasons += r + " | ";
+        }
+        if (g.kind == life::GoalKind::ReplaceEquipment) shop = g.score;
+    }
+    std::printf("  GATHER_LOGS %.1f vs REPLACE_EQUIPMENT %.1f\n", gather, shop);
+    Check(gather > 0.0 && shop > 0.0, "both goals are scored");
+    // The margin matters, not just the ordering: PlannerConfig::incumbentBonus
+    // is 0.15, and REPLACE_EQUIPMENT was the incumbent when Vorar arrived.
+    Check(gather > shop * 1.15,
+          "cutting beats the bandage top-up by more than the incumbent margin");
+    Check(gatherReasons.find("standing in the trees") != std::string::npos,
+          "and the score explains itself");
+
+    // AND IT IS NOT A LICENCE TO STAND THERE FOREVER: walk off the stand and
+    // the same character is back to its ordinary 0.40.
+    life::Observation away = obs;
+    away.atWorkSite = false;
+    away.treeAdjacent = false;
+    const life::Need* awayNeed =
+        Find(life::AssessNeeds(plan, mem, away, needCfg), life::NeedKind::NeedLogs);
+    Check(awayNeed != nullptr && awayNeed->urgency > 0.39 && awayNeed->urgency < 0.41,
+          "away from the trees the need is the ordinary 0.40");
 }
 
 // --------------------------------------------------------------------------
@@ -4579,6 +4660,7 @@ int main(int argc, char** argv) {
     TestPlanner();
     TestCombatWaitsForBandages();
     TestGatherLogsSurplusYieldsToTrade();
+    TestStandingInTheWoodsOutscoresAComfortErrand();
     TestStateRoundTrip();
     TestStore(tmpDir);
     TestReconciliation();

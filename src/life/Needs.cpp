@@ -1826,15 +1826,50 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         const bool provenSrc = src != nullptr;
         if (!src) src = mem.BestHint("logs", obs.x, obs.y, obs.nowMs);
         const bool canWork = obs.axeInPack || obs.axeEquipped;
-        add(NeedKind::NeedLogs, canWork ? 0.4 : 0.1, "logs",
-            "logs are this character's income and its Lumberjacking training",
+        // STANDING IN THE TREES IS THE ARGUMENT -- the same shape NeedOre
+        // below already uses, and for the same measured reason.
+        //
+        // Vorar (lumberjack_swordsman, 2026-09-06 18:20:26) walked 216 tiles
+        // to Britain Territory woods, arrived with a hatchet in hand, and cut
+        // nothing: a flat 0.40 x 130 = 52 could not hold the planner against a
+        // sixteen-bandage top-up (REPLACE_EQUIPMENT 130), and GATHER_LOGS was
+        // never re-picked in the four minutes that were left
+        // (run_gates/g_Vorar.console.txt:88,136,189; session_summary logs=+0).
+        // A person who has already paid for the walk chops before walking
+        // back.
+        //
+        // AND A GLUT IS A REASON TO STOP, so the boost cannot become "chop
+        // forever". The line is the one GatherLogs' own surplus damper reads
+        // (Goals.cpp: keepOfOwnOutput, pack AND bank) rather than a second
+        // constant invented here: at twice the keep the need has tapered to
+        // its floor and TRADE/EARN_GOLD carry the pile instead.
+        const i32 logsHeld = QtyIn(obs.pack, "i_log") + QtyIn(obs.bank, "i_log");
+        const i32 logsKeep = market::PolicyForPurse(obs.gold).keepOfOwnOutput;
+        const i32 logsWant = logsKeep > 0 ? 2 * logsKeep : 0;
+        constexpr double kLoggingFloor = 0.15;
+        const double logGlut =
+            logsWant > 0
+                ? std::min(1.0, static_cast<double>(logsHeld) / logsWant)
+                : 1.0;
+        const double logBase = obs.atWorkSite ? 0.65 : 0.40;
+        const double logUrgency = logBase - (logBase - kLoggingFloor) * logGlut;
+        add(NeedKind::NeedLogs, canWork ? logUrgency : 0.1, "logs",
+            obs.atWorkSite
+                ? "standing in the trees with an axe -- this is the job"
+                : "logs are this character's income and its Lumberjacking training",
             src ? (provenSrc
-                       ? Fmt("proven stand at %d,%d (%d successes, %d failures)",
-                             src->x, src->y, src->successes, src->failures)
-                       : Fmt("a lead on %s at %d,%d, untested",
+                       ? Fmt("proven stand at %d,%d (%d successes, %d failures), "
+                             "%d logs of %d wanted, at_work_site=%d",
+                             src->x, src->y, src->successes, src->failures,
+                             logsHeld, logsWant, obs.atWorkSite ? 1 : 0)
+                       : Fmt("a lead on %s at %d,%d, untested, %d logs of %d "
+                             "wanted, at_work_site=%d",
                              src->label.empty() ? "woods" : src->label.c_str(),
-                             src->x, src->y))
-                : std::string("no stand and no lead"),
+                             src->x, src->y, logsHeld, logsWant,
+                             obs.atWorkSite ? 1 : 0))
+                : Fmt("no stand and no lead, %d logs of %d wanted, "
+                      "at_work_site=%d", logsHeld, logsWant,
+                      obs.atWorkSite ? 1 : 0),
             !canWork);
     }
 

@@ -371,6 +371,27 @@ std::vector<ScoredGoal> Planner::Score(const std::vector<Need>& needs,
                     g.score += 20.0;
                     g.reasons.push_back("axe already in hand +20");
                 }
+                // THE WALK IS ALREADY PAID FOR. Exactly the claim the Bank
+                // case below makes with its "+60 already standing at the
+                // bank", and measured on the same day: Vorar arrived in
+                // Britain Territory woods at 18:20:26 with a hatchet in hand
+                // and left without cutting, because 72.0 could not take the
+                // planner off a sixteen-bandage top-up scoring 130
+                // (run_gates/g_Vorar.console.txt:88,136,189).
+                //
+                // Gated on all three things a person would check before
+                // deciding to work rather than travel: the trees are HERE
+                // (Observation::atWorkSite is TreeCount>0 for a life that
+                // gathers logs, runner/Core.cpp), the tool is in hand, and
+                // there is room to carry what gets cut. The surplus damper
+                // switches it off with the other two bonuses, so a character
+                // already holding twice its keep still goes and sells.
+                if (obs.atWorkSite && obs.axeEquipped && !surplusDamped &&
+                    obs.WeightFraction() <= 0.7) {
+                    g.score += 60.0;
+                    g.reasons.push_back("standing in the trees with the axe "
+                                        "and room to carry +60");
+                }
                 // Only a stand that has ACTUALLY PAID OUT earns the bonus.
                 // Crediting any remembered spot is what kept a character in
                 // the scrub: it held 64 spots it had merely stood in, each

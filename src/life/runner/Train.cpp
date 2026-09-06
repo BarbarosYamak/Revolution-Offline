@@ -1263,7 +1263,15 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
                            obs.nowMs);
         }
         if (!travelInFlight_) {
-            ++trainTrips_;
+            // A TRIP IS A JOURNEY THAT ACTUALLY ARRIVED SOMEWHERE (D9 rule,
+            // the same one HandOffFromHunt states). This used to increment
+            // HERE, before the walk was even planned, and then decrement
+            // itself again on the stale-note branch -- so a trip that never
+            // started, or a travel request the router refused, still spent
+            // the allowance and the failure line blamed the world for three
+            // journeys it had not made. The counter now rises once, at the
+            // arrival branch below, where the character has genuinely stood
+            // somewhere and found nobody of the trade.
             const KnownSupplier* known = state_.memory.BestSupplier(
                 (std::string("trainer:") + trainerTrade_).c_str());
             if (known) {
@@ -1294,7 +1302,6 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
                         known->x, known->y);
                     // Do not spend a trip on a lesson. Rescan from here first:
                     // the trade may be a few tiles off rather than absent.
-                    --trainTrips_;
                     client.ActionScanMobiles();
                     nextActionMs_ = obs.nowMs + 2000;
                     return false;
@@ -1305,7 +1312,8 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
                     client.TravelToPoint(known->x, known->y, 2, "trainer");
             } else {
                 LogLine("training: looking for a '%s' to teach %s (trip %d)",
-                        trainerTrade_.c_str(), rules::SkillName(skillId), trainTrips_);
+                        trainerTrade_.c_str(), rules::SkillName(skillId),
+                        trainTrips_ + 1);
                 travelInFlight_ = client.TravelToServiceSkipping(
                     trainerService_, HomeOrNearest(state_.homeCity), trainerSilent_,
                     &trainerShopsTried_);
@@ -1319,8 +1327,11 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
             return false;
         }
         travelInFlight_ = false;
-        LogLine("training: arrived at %d,%d -- asking who is here",
-                client.PlayerX(), client.PlayerY());
+        // THE TRIP IS SPENT HERE, and only here. Arriving with no trainer in
+        // sight is the one observation that says "this journey was wasted".
+        ++trainTrips_;
+        LogLine("training: arrived at %d,%d -- asking who is here (trip %d of %d)",
+                client.PlayerX(), client.PlayerY(), trainTrips_, kMaxTrainTrips);
         client.ActionScanMobiles();
         nextActionMs_ = obs.nowMs + 2500;
         return false;
@@ -1342,6 +1353,12 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
         trainApproaches_ = 0;
         trainSilentAsks_ = 0;
         trainAsked_ = false;
+        // AND THE SEARCH SUCCEEDED, so the travel allowance is handed back.
+        // A trainer of this trade is standing in front of us; whatever the
+        // conversation costs, it is not "no '%s' reachable". If this one is
+        // later silenced or refuses, the next search starts from a full
+        // allowance -- the same thing the refusal path below already does.
+        trainTrips_ = 0;
     }
     if (!trainerApproached_) {
         i32 tx = 0, ty = 0; i8 tz = 0;

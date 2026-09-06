@@ -35,3 +35,5 @@
 - [Unknown beats proven poor](unknown-beats-proven-poor.md) — an unopened book scored 0.5 and lost to the empty one with two rows; when looking is free, rank it near the top
 - [A short shelf is not the trade](a-short-shelf-is-not-the-trade.md) — skip that keeper's serial, ForgetVendorOffer, ask the next; only then goal_failed
 - [The atlas has no lumber](the-atlas-has-no-lumber.md) — zero PLACE rows yield lumber, so no seed and no nearest-forest fallback can exist
+- [A new goal does not stop the old walk](a-new-goal-does-not-stop-the-old-walk.md) — GATHER_LOGS won and the un-aborted hunt walk still carried him to the graveyard and killed him
+- [An allowance resets, knowledge does not](an-allowance-resets-knowledge-does-not.md) — trip counters belong to the errand and count arrivals; shops-already-tried lists survive
