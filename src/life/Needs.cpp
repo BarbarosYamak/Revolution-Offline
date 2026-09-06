@@ -1,6 +1,7 @@
 #include "uo/life.h"
 
 #include "uo/builders.h"
+#include "uo/needgate.h"
 #include "uo/spellcast.h"
 #include "uo/vendor_policy.h"
 
@@ -592,9 +593,28 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
     std::vector<Need> needs;
     if (!obs.inWorld) return needs;
 
-    auto add = [&needs](NeedKind kind, double urgency, std::string what,
-                        std::string reason, std::string evidence,
-                        bool blocked = false) {
+    auto add = [&needs, &mem, &obs, &cfg](NeedKind kind, double urgency,
+                                          std::string what, std::string reason,
+                                          std::string evidence,
+                                          bool blocked = false) {
+        // ARM B OF THE NEED/HANDLER CONTRACT (docs/NEED_HANDLER_CONTRACT.md).
+        //
+        // Some of a handler's preconditions cannot be evaluated here at all:
+        // they need the Client, a runner-private table or the result of a
+        // walk. "No pasture within 400 tiles of home" is one; "nothing to heal
+        // with and nothing on the way" is another. Those handlers RECORD the
+        // refusal, in their own words, and this is where the need hears it --
+        // once, for every kind, instead of a bespoke reader per pair.
+        //
+        // An observed refusal outranks anything this pure model inferred, so
+        // it overwrites the reason: the BLOCKED_NEED line must say what the
+        // handler actually found, not what the need guessed.
+        std::string observedRefusal;
+        if (NeedBlockActive(mem, kind, cfg, obs, &observedRefusal)) {
+            blocked = true;
+            urgency = 0.0;
+            reason = observedRefusal;
+        }
         Need n;
         n.kind = kind;
         n.urgency = std::min(1.0, std::max(0.0, urgency));
@@ -668,12 +688,27 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
     // branch above and vanished on the exact tick it became actionable.
     if (obs.corpseKnown) {
         const bool exhausted = obs.corpseRecoveryAttempts >= 3;
+        // THE CONTRACT (docs/NEED_HANDLER_CONTRACT.md). DoRecoverCorpse's own
+        // first decision is DecideRecovery's Recover step -- "too hurt to walk
+        // back, heal first" -- which it took by handing the turn away three
+        // seconds after this need's 712 won the pick, every time. Asked here,
+        // HEAL (700) simply wins on its own need and the corpse run resumes
+        // when the character can make the walk.
+        //
+        // Only the two REVERSIBLE gates block. The terminal decisions --
+        // abandonment, and a corpse that has decayed -- stay the handler's,
+        // exactly as before: they clear the death record, which is what ends
+        // this need for good.
+        const GateVerdict corpseGate =
+            CanAct(NeedKind::RecoverCorpse, GateSubject{}, mem, obs, cfg);
         add(NeedKind::RecoverCorpse, exhausted ? 0.2 : 0.75, "own corpse",
-            exhausted ? "corpse recovery attempts exhausted"
-                      : "resurrected; gear and carried resources remain on the corpse",
+            !corpseGate.ok ? corpseGate.why
+            : exhausted ? std::string("corpse recovery attempts exhausted")
+                      : std::string("resurrected; gear and carried resources "
+                                    "remain on the corpse"),
             Fmt("corpse=%d,%d attempts=%d", obs.corpseX, obs.corpseY,
                 obs.corpseRecoveryAttempts),
-            false);  // let recovery execute its terminal abandonment decision
+            !corpseGate.ok);
     }
 
     const double hpFrac = obs.HpFraction();
@@ -1573,8 +1608,17 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
                 const market::SupplyRoute route =
                     market::RouteForInput(*cfg.profession, first.item,
                                           SupplierTradeFor(first.item) != nullptr);
-                const bool playerMade =
-                    route == market::SupplyRoute::PlayerMarket;
+                // THE CONTRACT (docs/NEED_HANDLER_CONTRACT.md): the route
+                // question is now asked in ONE place, life::CanAct, and
+                // DoBuySupplies asks the identical one on its first tick. The
+                // three answers that end the errand -- a player-market good, a
+                // good this life makes itself, and a good nothing sells --
+                // block the need with the handler's own words instead of being
+                // discovered a tick after the goal was picked.
+                const GateVerdict supplyGate =
+                    CanAct(NeedKind::NeedSupplies, GateSubject{first.item, false},
+                           mem, obs, cfg);
+                const bool handlerRefuses = !supplyGate.ok;
                 // BELOW NeedCraft (0.50) and below selling. Shopping is what
                 // a crafter does when it cannot work, never instead of
                 // working: this used to be 0.52, which put the shop ahead of
@@ -1632,15 +1676,13 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
                                       static_cast<double>(sitting));
                 const double supplyUrgency = std::max(0.44, 0.95 - 0.51 * funded);
                 add(NeedKind::NeedSupplies,
-                    (ruling.allowed && !noCapital && !playerMade)
+                    (ruling.allowed && !noCapital && !handlerRefuses)
                         ? supplyUrgency : 0.0,
                     "buy craft inputs",
                     !ruling.allowed
                         ? "short of an input no NPC may legitimately sell it"
-                    : playerMade
-                        ? "short of an input no shopkeeper sells -- another "
-                          "profession makes it, so this is a rendezvous with a "
-                          "player, not a shopping trip"
+                    : handlerRefuses
+                        ? supplyGate.why.c_str()
                         : (noCapital
                                ? "short of inputs AND of the gold to buy them "
                                  "-- what it has made has to be sold first"
@@ -1655,10 +1697,10 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
                         stockBatch, market::SupplyRouteName(route),
                         !ruling.allowed ? " -- and the vendor policy refuses "
                                           "that purchase"
-                        : playerMade    ? " -- and no shopkeeper stocks it"
+                        : handlerRefuses ? " -- and no shopkeeper stocks it"
                                         : (noCapital ? " -- and the purse is empty"
                                                      : "")),
-                    !ruling.allowed || noCapital || playerMade);
+                    !ruling.allowed || noCapital || handlerRefuses);
             }
         } else if (craft.item == nullptr && !cfg.profession->produces.empty()) {
             // Nothing sellable this life can make. Legible, and not a loop.
@@ -1988,10 +2030,16 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
             (WantsToHunt(*cfg.profession) || WantsSpellCombat(*cfg.profession)) &&
             obs.hp * 100 >= obs.hpMax * huntHpPct &&
             obs.WeightFraction() < cfg.huntWeightFrac && manaReady;
-        const bool noArrows = cfg.profession &&
-            cfg.profession->combatStrategy == CombatStrategyId::Ranged &&
-            market::QtyOf(obs.pack, "i_arrow") == 0;
-        const bool blocked = noArrows || obs.huntReturnPending || (nothingHere && !couldGoHunting);
+        // THE CONTRACT (docs/NEED_HANDLER_CONTRACT.md). DoTrainCombat's own
+        // readiness gates -- the loot still to bank, the ammunition line, the
+        // health line and the carry line -- used to be discovered a tick AFTER
+        // this need had won the pick, and the walk to the graveyard had
+        // already started (D1/D5). They are now one predicate, asked here and
+        // on the handler's first tick. `huntGate.why` is the handler's own
+        // sentence, so the BLOCKED_NEED line reads the same either way.
+        const GateVerdict huntGate =
+            CanAct(NeedKind::NeedTraining, GateSubject{nullptr, true}, mem, obs, cfg);
+        const bool blocked = !huntGate.ok || (nothingHere && !couldGoHunting);
         // A FIGHTER'S URGENCY, ON THE SAME SCALE AS EVERY OTHER TRADE'S.
         //
         // 0.15 + 0.25 x gap tops out at 0.40, which is what a life feels about
@@ -2009,7 +2057,9 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
             if (base > urgency) urgency = base;
         }
         add(NeedKind::NeedTraining, urgency, SkillName(t.skillId),
-            couldGoHunting
+            !huntGate.ok
+                ? huntGate.why
+            : couldGoHunting
                 ? (outOfOptions
                        ? std::string(
                              "below target -- and with no bandages, no money "
@@ -2046,12 +2096,16 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
             i32 openingMana = 0, manaPool = 0;
             const bool manaReady =
                 !caster || CasterOpeningMana(cfg, obs, &openingMana, &manaPool);
-            const bool ready = !obs.huntReturnPending &&
-                obs.HpFraction() >= cfg.healHpFraction &&
-                obs.WeightFraction() < cfg.huntWeightFrac && manaReady;
+            // The same shared predicate the training branch above uses: this
+            // is the identical hunt, so it must answer to the identical gates.
+            const GateVerdict incomeGate =
+                CanAct(NeedKind::NeedTraining, GateSubject{nullptr, true}, mem,
+                       obs, cfg);
+            const bool ready = incomeGate.ok && manaReady;
             add(NeedKind::NeedTraining, obs.hostilesNear > 0 ? 0.65 : 0.45,
                 "hunt for income",
-                manaReady ? std::string("completed combat build still earns "
+                !incomeGate.ok ? incomeGate.why
+                : manaReady ? std::string("completed combat build still earns "
                                         "through hunting")
                           : Fmt("mana %d/%d will not pay for an opening cast "
                                 "of %d -- meditate before hunting", obs.mana,

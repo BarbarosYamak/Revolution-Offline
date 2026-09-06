@@ -16,6 +16,7 @@
 // ---------------------------------------------------------------------------
 
 #include "uo/life.h"
+#include "uo/needgate.h"
 #include "uo/world_model.h"
 #include "uo/activities/acquire.h"
 #include "uo/activities/buy.h"
@@ -192,6 +193,24 @@ private:
                           bool sameKind, const char* why);
     bool        HandOff(GoalKind from, GoalKind to, i64 restMs, const char* why,
                         i64 nowMs);
+
+    // ARM B OF THE NEED/HANDLER CONTRACT (docs/NEED_HANDLER_CONTRACT.md).
+    //
+    // The one way a handler tells the NEED MODEL why it refused, for a reason
+    // the need model cannot compute for itself -- a runner-private table, a
+    // failed walk, an empty shelf. Ends the goal exactly as the sites it
+    // replaces did (log, cooldown, Finish(false)) AND records the refusal in
+    // Memory, where life::CanAct reads it back with the same words. Without
+    // the second half the need re-scores the same impossible thing every
+    // cooldown until the anti-spin backstop fires; that is the whole defect
+    // this contract exists to end.
+    //
+    // `scope` is Session for a fact that will not change today (no pasture
+    // near home) and Window for one the world undoes on its own (a drained
+    // shelf). Always returns false, so a handler can `return BlockNeed(...)`.
+    bool        BlockNeed(GoalKind goal, life::NeedKind need,
+                          life::BlockScope scope, const char* why,
+                          i64 cooldownMs, i64 nowMs);
 
     // GENERALISES kMarketTripBudgetMs (below) past TRADE_WITH_PLAYER. A
     // service pick can land far enough away that the walk alone eats the

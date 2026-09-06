@@ -15,8 +15,11 @@
 // No server, no MULs, no world data. The store test writes into a temp dir
 // passed by CTest.
 
+#include "uo/activities/recovery.h"
 #include "uo/json.h"
 #include "uo/life.h"
+#include "uo/market.h"
+#include "uo/needgate.h"
 #include "uo/production.h"
 #include "uo/professions.h"
 #include "uo/rules.h"
@@ -4294,6 +4297,268 @@ void TestAFundedFighterDoesNotGoShearing() {
           "the 2026-09-02 ruling asked");
 }
 
+// ---------------------------------------------------------------------------
+// THE NEED/HANDLER CONTRACT (docs/NEED_HANDLER_CONTRACT.md).
+//
+// One assertion, five pairs: "the handler would refuse" must imply "the need
+// is blocked, in the handler's own words". Before this contract existed, seven
+// needs in one wave scored high, were picked, and were handed away a tick
+// later on a fact the need had never been shown.
+//
+// Arm A is tested by comparing life::CanAct against the decision function the
+// HANDLER runs -- DecideRecovery, market::RouteForInput -- not against a copy
+// of the rule written here, which would only prove the test agrees with
+// itself. Arm B is tested by writing the block the handler writes and
+// requiring AssessNeeds to fall silent in the same sentence.
+// ---------------------------------------------------------------------------
+void TestContractCorpseGateMatchesTheHandler() {
+    Section("contract: the corpse need refuses exactly when recovery would");
+
+    const life::BuildPlan plan = life::FrontierLumberjackSwordsman();
+    life::NeedConfig cfg;
+
+    // Every combination of the four facts DecideRecovery weighs on a live
+    // character: how hurt, whether something is on us, how many trips have
+    // been spent, and how far away the corpse is.
+    const int  hps[]       = {12, 45, 60};
+    const bool threats[]   = {false, true};
+    const int  attempts[]  = {0, 2, 3, 5};
+    const int  distances[] = {0, 2, 40};
+
+    int compared = 0, agreed = 0;
+    for (int hp : hps)
+    for (bool threatened : threats)
+    for (int tries : attempts)
+    for (int dist : distances) {
+        life::Memory mem;
+        life::Observation obs = HealthyLumberjackAtWork();
+        obs.hp = hp; obs.hpMax = 60;
+        obs.underAttack = threatened;
+        obs.corpseKnown = true;
+        obs.corpseRecoveryAttempts = tries;
+        obs.corpseX = obs.x + dist; obs.corpseY = obs.y;
+
+        // What the HANDLER would do with the same sight: Survive.cpp fills
+        // this struct from exactly these observation fields.
+        life::RecoverySight see;
+        see.threatened = threatened;
+        see.corpseKnown = true;
+        see.corpseDistance = dist;
+        see.hpFraction = obs.HpFraction();
+        see.attemptsSoFar = tries;
+        life::RecoveryTuning tune;
+        tune.minHpToReturn = cfg.healHpFraction;
+        const life::RecoveryPlan handler = life::DecideRecovery(see, tune);
+
+        const std::vector<life::Need> ns = life::AssessNeeds(plan, mem, obs, cfg);
+        const life::Need* corpse = Find(ns, life::NeedKind::RecoverCorpse);
+        if (!corpse) continue;
+        ++compared;
+        // "Recover" is the handler REFUSING the corpse for now. Every other
+        // step is work it would actually do -- including Abandon, which is how
+        // the death record gets cleared, so blocking there would leave the
+        // need carried forever with no way to end it.
+        const bool handlerRefuses = handler.step == life::RecoveryStep::Recover;
+        if (corpse->blocked == handlerRefuses) ++agreed;
+    }
+    Check(compared == 72, "every corpse case produced a need to compare");
+    Check(agreed == compared,
+          "the need blocks in exactly the cases DecideRecovery answers "
+          "'recover first', and in no others");
+
+    // The two ends of that matrix, named, so a failure says which way it broke.
+    {
+        life::Memory mem;
+        life::Observation obs = HealthyLumberjackAtWork();
+        obs.hp = 12; obs.hpMax = 60;
+        obs.corpseKnown = true;
+        obs.corpseX = obs.x + 40; obs.corpseY = obs.y;
+        const std::vector<life::Need> hurt = life::AssessNeeds(plan, mem, obs, cfg);
+        const life::Need* hurtCorpse = Find(hurt, life::NeedKind::RecoverCorpse);
+        Check(hurtCorpse && hurtCorpse->blocked &&
+                  hurtCorpse->reason.find("heal first") != std::string::npos,
+              "at a fifth of its health the corpse run is blocked in the "
+              "handler's words, so HEAL wins on its own need");
+
+        obs.corpseRecoveryAttempts = 3;
+        const std::vector<life::Need> spent = life::AssessNeeds(plan, mem, obs, cfg);
+        const life::Need* spentCorpse = Find(spent, life::NeedKind::RecoverCorpse);
+        Check(spentCorpse && !spentCorpse->blocked,
+              "but with its trips spent the need stays open, because "
+              "abandonment is the handler step that clears the death record");
+    }
+}
+
+void TestContractArmBSilencesTheNeed() {
+    Section("contract: a handler's recorded refusal silences the need");
+
+    const life::BuildPlan plan = life::FrontierLumberjackSwordsman();
+    life::NeedConfig cfg;
+    cfg.sessionIndex = 4;
+
+    life::Observation obs = HealthyLumberjackAtWork();
+    obs.hp = 10; obs.hpMax = 60;      // HEAL is wide open on the health bar
+    obs.bandages = 0; obs.healPotions = 0; obs.gold = 0;
+
+    {
+        life::Memory mem;
+        const std::vector<life::Need> before = life::AssessNeeds(plan, mem, obs, cfg);
+        const life::Need* h = Find(before, life::NeedKind::Heal);
+        Check(h && !h->blocked && h->urgency > 0.0,
+              "with nothing recorded, a bleeding character wants to heal");
+    }
+    {
+        // The sentence DoHeal writes at HealStep::Stuck (Survive.cpp).
+        life::Memory mem;
+        const char* stuck = "nothing to heal with and nothing on the way";
+        life::NoteNeedBlocked(mem, life::NeedKind::Heal, stuck,
+                              life::BlockScope::Window, cfg, obs.nowMs);
+        const std::vector<life::Need> after = life::AssessNeeds(plan, mem, obs, cfg);
+        const life::Need* h = Find(after, life::NeedKind::Heal);
+        Check(h && h->blocked && h->urgency == 0.0,
+              "once the errand has said it is stuck, the need stops scoring "
+              "instead of winning the pick every cooldown (D13)");
+        Check(h && h->reason == stuck,
+              "and BLOCKED_NEED carries the handler's sentence, not a guess");
+
+        // THE ONE BLOCK THAT MUST NOT OUTLIVE ITS FACT. A bandage in the pack
+        // ends "nothing to heal with"; a stand-down with the medicine in hand
+        // is the deadlock the block exists to prevent.
+        life::Observation healed = obs;
+        healed.bandages = 5;
+        const std::vector<life::Need> supplied =
+            life::AssessNeeds(plan, mem, healed, cfg);
+        const life::Need* h2 = Find(supplied, life::NeedKind::Heal);
+        Check(h2 && !h2->blocked,
+              "a bandage arriving reopens HEAL immediately -- the block is "
+              "only good while the fact behind it is");
+
+        // A WINDOW EXPIRES ON ITS OWN. The shelf restocks, the flock walks
+        // back; a windowed block is not a life sentence.
+        life::Observation later = obs;
+        later.nowMs = obs.nowMs + life::kBlockWindowMs + 1;
+        const std::vector<life::Need> aged = life::AssessNeeds(plan, mem, later, cfg);
+        const life::Need* h3 = Find(aged, life::NeedKind::Heal);
+        Check(h3 && !h3->blocked, "and the window runs out by itself");
+    }
+    {
+        // Session scope: what DoMakeCloth writes for "no pasture near home".
+        const prof::Profession* fencer = prof::Find("fencer");
+        if (!fencer) { Check(false, "no fencer"); return; }
+        life::NeedConfig wool;
+        wool.profession = fencer;
+        wool.sessionIndex = 4;
+        life::ResolveConsumableThresholds(wool, 100);
+        const life::BuildPlan fplan = life::PlanFromProfession(*fencer);
+        life::Memory mem;
+
+        life::Observation poor;
+        poor.inWorld = true;
+        poor.nowMs = 5000000;
+        poor.hp = poor.hpMax = 51;
+        poor.gold = 100;
+        poor.bandages = wool.bandageFull;
+        poor.weight = 10; poor.maxWeight = 400;
+        poor.skills.push_back({rules::kFencing, 500});
+
+        const std::vector<life::Need> open = life::AssessNeeds(fplan, mem, poor, wool);
+        const life::Need* w = Find(open, life::NeedKind::NeedWoolIncome);
+        Check(w && !w->blocked, "a broke fencer would go shearing");
+
+        const char* noPasture =
+            "no pasture within 400 tiles of Britain (1500,1600) -- not "
+            "walking across the map for wool";
+        life::NoteNeedBlocked(mem, life::NeedKind::NeedWoolIncome, noPasture,
+                              life::BlockScope::Session, wool, poor.nowMs);
+        const std::vector<life::Need> shut = life::AssessNeeds(fplan, mem, poor, wool);
+        const life::Need* w2 = Find(shut, life::NeedKind::NeedWoolIncome);
+        Check(w2 && w2->blocked && w2->reason == noPasture,
+              "after the trip failed on the pasture table the need is quiet in "
+              "the same words -- no second three-minute walk (D4)");
+
+        // NEXT SESSION IS A NEW WORLD. The one durable clock a need has.
+        life::NeedConfig tomorrow = wool;
+        tomorrow.sessionIndex = 5;
+        const std::vector<life::Need> next =
+            life::AssessNeeds(fplan, mem, poor, tomorrow);
+        const life::Need* w3 = Find(next, life::NeedKind::NeedWoolIncome);
+        Check(w3 && !w3->blocked,
+              "and a session-scoped block ends with the session, not with the "
+              "process");
+    }
+}
+
+void TestContractArmAMatchesTheErrand() {
+    Section("contract: the need refuses the errands the handler refuses");
+
+    // --- BUY_SUPPLIES: the gate and market::RouteForInput are one rule -----
+    bool routesAgree = true, reasonsGiven = true;
+    for (const prof::Profession& p : prof::All()) {
+        life::NeedConfig cfg; cfg.profession = &p;
+        life::Memory mem;
+        life::Observation obs;
+        obs.inWorld = true; obs.nowMs = 5000000;
+        obs.hp = obs.hpMax = 50;
+        obs.gold = 500;
+        obs.weight = 10; obs.maxWeight = 400;
+        for (const std::string& input : p.consumes) {
+            const market::SupplyRoute route = market::RouteForInput(
+                p, input.c_str(), life::SupplierTradeFor(input) != nullptr);
+            const life::GateVerdict v =
+                life::CanAct(life::NeedKind::NeedSupplies,
+                             life::GateSubject{input.c_str(), false}, mem, obs, cfg);
+            if (v.ok != (route == market::SupplyRoute::NpcVendor)) routesAgree = false;
+            if (!v.ok && v.why.empty()) reasonsGiven = false;
+        }
+    }
+    Check(routesAgree,
+          "across every profession's inputs, the need shops for exactly what "
+          "an NPC vendor can answer for -- the errand's own route rule (D7)");
+    Check(reasonsGiven, "and a refused input always carries a reason");
+
+    // --- TRAIN_COMBAT readiness: the loot still to bank -------------------
+    {
+        const life::BuildPlan plan = life::FrontierLumberjackSwordsman();
+        life::NeedConfig cfg;
+        life::Memory mem;
+        life::Observation obs = HealthyLumberjackAtWork();
+        obs.huntReturnPending = true;
+
+        const life::GateVerdict v =
+            life::CanAct(life::NeedKind::NeedTraining,
+                         life::GateSubject{nullptr, true}, mem, obs, cfg);
+        Check(!v.ok, "a hunt's loot still to secure refuses the next hunt");
+
+        const std::vector<life::Need> ns = life::AssessNeeds(plan, mem, obs, cfg);
+        const life::Need* t = Find(ns, life::NeedKind::NeedTraining);
+        Check(t && t->blocked && t->reason == v.why,
+              "and the need says so in the same words instead of scoring the "
+              "walk to the graveyard first (D1/D5)");
+    }
+
+    // --- and the ready case is untouched ----------------------------------
+    {
+        const life::BuildPlan plan = life::FrontierLumberjackSwordsman();
+        life::NeedConfig cfg;
+        life::Memory mem;
+        const life::Observation obs = HealthyLumberjackAtWork();
+        const life::GateVerdict v =
+            life::CanAct(life::NeedKind::NeedTraining,
+                         life::GateSubject{nullptr, true}, mem, obs, cfg);
+        Check(v.ok && v.why.empty(),
+              "an armed, unhurt, unburdened character is refused nothing");
+        // Not "training is unblocked": a lumberjack at a work site may still
+        // be blocked for reasons that have nothing to do with the contract
+        // (no hunting ground within reach, say). The claim is narrower and
+        // exactly the contract's: the readiness refusal is GONE once the
+        // fact behind it is.
+        const std::vector<life::Need> ns = life::AssessNeeds(plan, mem, obs, cfg);
+        const life::Need* t = Find(ns, life::NeedKind::NeedTraining);
+        Check(t && t->reason.find("secure the last hunt") == std::string::npos,
+              "so no readiness sentence is attached once the loot is banked");
+    }
+}
+
 int main(int argc, char** argv) {
     std::printf("m4_life\n");
     const std::string tmpDir = (argc > 1) ? argv[1] : ".";
@@ -4354,6 +4619,9 @@ int main(int argc, char** argv) {
     TestAQuietMarketOpensTheNpcFloor();
     TestAPlayerMadeInputIsNotAShoppingTrip();
     TestAFundedFighterDoesNotGoShearing();
+    TestContractCorpseGateMatchesTheHandler();
+    TestContractArmBSilencesTheNeed();
+    TestContractArmAMatchesTheErrand();
 
     std::printf("%d checks, %d failures\n", g_checks, g_failures);
     return g_failures == 0 ? 0 : 1;

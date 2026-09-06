@@ -147,6 +147,11 @@ add_executable(m4_life m4_life.cpp
     ${CMAKE_SOURCE_DIR}/src/life/Identity.cpp
     ${CMAKE_SOURCE_DIR}/src/life/Memory.cpp
     ${CMAKE_SOURCE_DIR}/src/life/Needs.cpp
+    # The need/handler gate AssessNeeds now asks before a need may score.
+    ${CMAKE_SOURCE_DIR}/src/life/NeedGate.cpp
+    # The corpse-run contract test compares the gate against the decision
+    # function DoRecoverCorpse itself runs, rather than a copy of its rules.
+    ${CMAKE_SOURCE_DIR}/src/life/activities/RecoveryPlan.cpp
     ${CMAKE_SOURCE_DIR}/src/life/Goals.cpp
     ${CMAKE_SOURCE_DIR}/src/life/State.cpp
     ${CMAKE_SOURCE_DIR}/src/progression/Rules.cpp)
@@ -553,6 +558,8 @@ add_executable(m8_market_trip m8_market_trip.cpp
     ${CMAKE_SOURCE_DIR}/src/life/Identity.cpp
     ${CMAKE_SOURCE_DIR}/src/life/Memory.cpp
     ${CMAKE_SOURCE_DIR}/src/life/Needs.cpp
+    # The need/handler gate AssessNeeds now asks before a need may score.
+    ${CMAKE_SOURCE_DIR}/src/life/NeedGate.cpp
     ${CMAKE_SOURCE_DIR}/src/life/Goals.cpp)
 target_include_directories(m8_market_trip PRIVATE
     ${CMAKE_SOURCE_DIR}/include

@@ -919,22 +919,33 @@ bool Runner::DoMakeCloth(Client& client, const Observation& obs) {
 
     // 5. NO SHEEP IN SIGHT. Go where the save says they are.
     if (client.TravelBusy()) return false;
+    // ARM B OF THE NEED/HANDLER CONTRACT (docs/NEED_HANDLER_CONTRACT.md).
+    // The pasture table and kMaxPastureTilesFromHome are runner-private, so
+    // NeedWoolIncome and NeedCloth cannot evaluate "is there a flock I would
+    // walk to" for themselves -- which is why Hector picked HARVEST_WOOL
+    // twice in fifteen minutes and lost two three-minute round trips to the
+    // identical refusal (D4). The refusal is now recorded where the need can
+    // read it, in these same words, for the rest of the session.
+    const life::NeedKind flockNeed = fighter ? life::NeedKind::NeedWoolIncome
+                                             : life::NeedKind::NeedCloth;
     const std::vector<Pasture>& pastures = Pastures();
     if (pastures.empty()) {
-        LogLine("goal_failed=%s reason=\"no pasture table -- run "
-                "tools/pasturegen.py against the world save\"", GoalKindName(self));
-        planner_.Cooldown(self, obs.nowMs + kNoClothCooldownMs);
-        planner_.Finish(false, "no pasture data", obs.nowMs);
-        return false;
+        return BlockNeed(self, flockNeed, life::BlockScope::Session,
+                         "no pasture table -- run tools/pasturegen.py against "
+                         "the world save",
+                         kNoClothCooldownMs, obs.nowMs);
     }
     if (++clothTrips_ > kMaxClothTrips) {
-        LogLine("goal_failed=%s reason=\"no sheep found after %d trips "
-                "to the pastures\"", GoalKindName(self), clothTrips_ - 1);
+        const std::string why =
+            Fmt2("no sheep found after %d trips to the pastures",
+                 clothTrips_ - 1);
         clothTrips_ = 0;
         clothPastureIdx_ = 0;
-        planner_.Cooldown(self, obs.nowMs + kNoClothCooldownMs);
-        planner_.Finish(false, "no sheep reachable", obs.nowMs);
-        return false;
+        // Window, not Session: a flock walks back. This is the one the world
+        // undoes on its own, so the need is quiet for the restock window and
+        // then free to ask again.
+        return BlockNeed(self, flockNeed, life::BlockScope::Window, why.c_str(),
+                         kNoClothCooldownMs, obs.nowMs);
     }
     // NEAREST FLOCK TO HOME FIRST, NOT BIGGEST AND NOT NEAREST TO HERE.
     //
@@ -981,15 +992,16 @@ bool Runner::DoMakeCloth(Client& client, const Observation& obs) {
             kMaxPastureTilesFromHome)
             order.push_back(i);
     if (order.empty()) {
-        LogLine("goal_failed=%s reason=\"no pasture within %d tiles of %s "
-                "(%d,%d) -- not walking across the map for wool\"",
-                GoalKindName(self), kMaxPastureTilesFromHome, anchorWhat,
-                anchorX, anchorY);
         clothTrips_ = 0;
         clothPastureIdx_ = 0;
-        planner_.Cooldown(self, obs.nowMs + kNoClothCooldownMs);
-        planner_.Finish(false, "no pasture near home", obs.nowMs);
-        return false;
+        // Arm B, as above: the distance rule lives in a runner-private table,
+        // so the need is told the answer rather than left to re-ask.
+        return BlockNeed(self, flockNeed, life::BlockScope::Session,
+                         Fmt2("no pasture within %d tiles of %s (%d,%d) -- not "
+                             "walking across the map for wool",
+                             kMaxPastureTilesFromHome, anchorWhat, anchorX,
+                             anchorY).c_str(),
+                         kNoClothCooldownMs, obs.nowMs);
     }
     std::stable_sort(order.begin(), order.end(), [&](usize a, usize b) {
         return TileDist(anchorX, anchorY, pastures[a].x, pastures[a].y) <

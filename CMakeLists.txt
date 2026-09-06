@@ -95,6 +95,10 @@ set(UO_CLIENT_SOURCES
     # with. This stays Client-free, but Runner invokes it during bootstrap.
     src/life/NewbieKnowledge.cpp
     src/life/Needs.cpp
+    # The need/handler contract: the one predicate both AssessNeeds and
+    # the Runner goal handlers ask before a need may score
+    # (docs/NEED_HANDLER_CONTRACT.md).
+    src/life/NeedGate.cpp
     src/life/Goals.cpp
     src/life/State.cpp
     src/life/Professions.cpp
