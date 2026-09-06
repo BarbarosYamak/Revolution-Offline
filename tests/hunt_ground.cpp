@@ -95,6 +95,59 @@ int main(int argc, char** argv) {
         } else Check(false, "Britain graveyard geometry exists");
     }
 
+    Section("Britain graveyard: strong tier is distinct from the weak band");
+    {
+        // Owner ruling 2026-09-06 (artifacts/graveyard_tier_split_2026-09-06.md):
+        // the weak skeleton/zombie band and the strong undead (skeletal
+        // knight, lich, lich lord) are separate, non-overlapping rings so a
+        // novice fighter and a geared one can tell them apart. Coordinates
+        // verified live via tools/world_query.py against the current world
+        // save (--near 1385,1459/1452/1446 --type c_skeleton_knight/c_lich/
+        // c_lich_lord, each n>=1 inside radius 6). DeriveGraveyardStrongTier
+        // (AtlasGenMain.cpp) derives these from
+        // Graveyards_spawns_felucca.scp, not the AREADEF, so they are a
+        // second source alongside the existing per-region row.
+        const wm::Place* weak = atlas.PlaceById("britain_graveyard_graveyard");
+        const wm::Place* knights = atlas.PlaceById("britain_graveyard_knights");
+        const wm::Place* lich = atlas.PlaceById("britain_graveyard_lich");
+        const wm::Place* lichLord = atlas.PlaceById("britain_graveyard_lich_lord");
+        Check(weak != nullptr, "the weak band's own PLACE row still exists");
+        Check(knights != nullptr, "the strong knights ring is a distinct PLACE");
+        Check(lich != nullptr, "the strong lich ring is a distinct PLACE");
+        Check(lichLord != nullptr, "the strong lich lord ring is a distinct PLACE");
+
+        if (weak && knights && lich && lichLord) {
+            Check(knights->id != weak->id && lich->id != weak->id &&
+                      lichLord->id != weak->id,
+                  "strong-tier ids differ from the weak band's id");
+            Check(knights->category == wm::PlaceCategory::Graveyard &&
+                      lich->category == wm::PlaceCategory::Graveyard &&
+                      lichLord->category == wm::PlaceCategory::Graveyard,
+                  "strong-tier rings are still category Graveyard");
+
+            Check(knights->position.x == 1385 && knights->position.y == 1459,
+                  "knights ring matches the world_query-verified center");
+            Check(lich->position.x == 1385 && lich->position.y == 1452,
+                  "lich ring matches the world_query-verified center");
+            Check(lichLord->position.x == 1385 && lichLord->position.y == 1446,
+                  "lich lord ring matches the world_query-verified center");
+
+            auto cheby = [](const wm::Point& a, const wm::Point& b) {
+                const i32 dx = a.x > b.x ? a.x - b.x : b.x - a.x;
+                const i32 dy = a.y > b.y ? a.y - b.y : b.y - a.y;
+                return dx > dy ? dx : dy;
+            };
+            Check(cheby(knights->position, lich->position) > knights->radius &&
+                      cheby(knights->position, lich->position) > lich->radius,
+                  "knights ring and lich ring do not overlap");
+            Check(cheby(lich->position, lichLord->position) > lich->radius &&
+                      cheby(lich->position, lichLord->position) > lichLord->radius,
+                  "lich ring and lich lord ring do not overlap");
+            Check(cheby(weak->position, knights->position) > weak->radius,
+                  "the weak band's own radius does not reach the nearest strong ring");
+        }
+    }
+
     Section("refuses when the atlas has nothing in range");
     {
         // Yew Graveyard is ~178 Chebyshev tiles from Yew's own town centre
