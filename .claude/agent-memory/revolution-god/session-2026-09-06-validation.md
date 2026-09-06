@@ -20,3 +20,8 @@ mechanics.
 disjoint files (shared build dir; uncommitted tree forbids worktrees); every fix is smoked 5 min on the affected
 characters and re-verified by qa-forensics before the next validation wave. Every smoke/wave report is
 cross-checked against Sphere's `was killed by` log lines -- a fix agent's smoke (01:59) missed a real death.
+
+
+**Close-out 2026-09-06 ~21:00:** revolution-sphere-m1 pushed at b5ebc13; runtime/scripts 89295d9 (graveyard
+split live). Read docs/SESSION_STATE_2026-09-06.md 'Close-out' + 'Next session' first. Fleet-100 root families
+fixed at handler+grader level but the honest re-measure is wave 3; nothing is PASS on runtime until then.
