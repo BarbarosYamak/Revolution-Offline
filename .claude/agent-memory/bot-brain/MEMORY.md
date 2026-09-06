@@ -29,3 +29,4 @@
 - [A stand-down that forgets reopens](a-standdown-that-forgets-reopens.md) — clearing the drained-counter count is safe only when the goal hands off to a different route
 - [An emergency overrides the catalogue](an-emergency-overrides-the-catalogue.md) — a crafter dying at 6/50 buys bandages; the override needs the life's own flee line or the tamer rule breaks
 - [A terminal step is work, not a refusal](a-terminal-step-is-work-not-a-refusal.md) — gate the handler's refusals only; `Abandon` clears the death record, and staleness belongs in the reader
+- [A kill belongs to the trip, not the fight](a-kill-belongs-to-the-trip-not-the-fight.md) — pre-selection hooks must record, not NoteProgress; TRAIN-2 wants a literal progress=1

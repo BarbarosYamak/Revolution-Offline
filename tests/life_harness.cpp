@@ -81,6 +81,28 @@ struct RunnerHarnessAccess {
         runner.DoHeal(client, obs);
         return runner.survivalRetreat_;
     }
+    // Cause A (artifacts/fleet100_triage_2026-09-06.md): a confirmed kill
+    // must reach the goal that went hunting. ProcessHuntAftermath records
+    // the kill in huntKillsPending_; this drives the consumption side --
+    // one DoTrainCombat tick, then the same Finish/NoteRan pair RunGoal
+    // performs when a handler returns true.
+    static bool CreditedKillEndsTheHunt(Runner& runner, Client& client,
+                                        const Observation& obs, int kills,
+                                        int* progressGained, bool* spun) {
+        runner.huntKillsPending_ = kills;
+        const int before = runner.planner_.Current().progress;
+        const bool done = runner.DoTrainCombat(client, obs);
+        *progressGained = runner.planner_.Current().progress - before;
+        if (done) {
+            runner.planner_.NoteRan(runner.planner_.Current().kind, obs.nowMs);
+            runner.planner_.Finish(true, nullptr, obs.nowMs);
+        }
+        *spun = runner.planner_.TakeSpinDetected() != GoalKind::Count;
+        return done;
+    }
+    static i32 PendingHuntKills(const Runner& runner) {
+        return runner.huntKillsPending_;
+    }
     static HealStep LastHealPlan(const Runner& runner) {
         return runner.lastHealPlan_;
     }
@@ -584,6 +606,52 @@ void ScenarioTheFieldLineIsNotTheTownFloor(const std::string& tmpDir) {
           "under the field line the hunt still stops to restock");
 }
 
+// --- Cause A --------------------------------------------------------------
+// A kill made during TRAIN_COMBAT is that goal's progress, and five of them
+// in a row are not a spin.
+void ScenarioAKillIsCombatTrainingProgress(const std::string& tmpDir) {
+    Section("fleet-100 Cause A a confirmed kill is TRAIN_COMBAT progress");
+    Harness h;
+    h.obs = BaselineFencer(h.nowMs);
+    h.obs.bandages = 200;      // past the hunt's own readiness gates
+    if (!h.Boot(tmpDir + "/causeA", "fencer")) return;
+    h.EnterLive();
+
+    int gained = 0;
+    bool spun = false;
+    const bool done = life::RunnerHarnessAccess::CreditedKillEndsTheHunt(
+        h.runner, *h.client, h.obs, 1, &gained, &spun);
+    std::printf("  one credited kill: done=%d progress+%d spin=%d\n",
+                done ? 1 : 0, gained, spun ? 1 : 0);
+    Check(done, "a confirmed kill gives the hunting goal a success return");
+    Check(gained > 0, "the kill is counted as progress on the goal that ran");
+    Check(life::RunnerHarnessAccess::PendingHuntKills(h.runner) == 0,
+          "the credit is consumed once, not re-counted every tick");
+
+    // Without a kill the same tick must NOT report success -- the defect
+    // this guards against is a goal that completes having done nothing.
+    int again = 0;
+    bool spunAgain = false;
+    const bool freeWin = life::RunnerHarnessAccess::CreditedKillEndsTheHunt(
+        h.runner, *h.client, h.obs, 0, &again, &spunAgain);
+    std::printf("  no kill pending: done=%d progress+%d\n",
+                freeWin ? 1 : 0, again);
+    Check(!freeWin, "with nothing killed the hunt does not claim success");
+
+    // Five credited kills in a row: the anti-spin backstop must stay quiet,
+    // because every one of them is real progress.
+    bool anySpin = false;
+    for (int i = 0; i < 5; ++i) {
+        int p = 0;
+        bool s = false;
+        life::RunnerHarnessAccess::CreditedKillEndsTheHunt(h.runner, *h.client,
+                                                           h.obs, 1, &p, &s);
+        if (s) anySpin = true;
+    }
+    std::printf("  five credited kills: goal_spinning=%d\n", anySpin ? 1 : 0);
+    Check(!anySpin, "five kills in a row do not read as a spinning goal");
+}
+
 }  // namespace
 
 int main(int argc, char** argv) {
@@ -601,6 +669,7 @@ int main(int argc, char** argv) {
     ScenarioAHurtCharacterDoesNotRestBesideAHostile(tmpDir);
     ScenarioADrainedPotionShelfIsSkipped(tmpDir);
     ScenarioTheFieldLineIsNotTheTownFloor(tmpDir);
+    ScenarioAKillIsCombatTrainingProgress(tmpDir);
 
     std::printf("%s: %d checks, %d failures\n",
                 g_failures ? "FAILED" : "PASSED", g_checks, g_failures);

@@ -1,6 +1,6 @@
 ---
 name: grader-and-loop-gaps
-description: grade_life.py covers all 17 families now; known grader bugs documented in LIFE_GATES.md §7b; treasure_hunter has NO gameplay loop at all
+description: grade_life.py covers all 17 families; TRAIN-2 counts only NPC purchases so combat/craft skill gain reads as 'never trained'; §7b bugs; treasure_hunter has NO loop
 metadata:
   type: project
 ---
@@ -24,3 +24,12 @@ old waves; treasure_hunter loop is missing CONTENT (roadmap item), don't
 grade it as a failure of the character. A truncated run (no session_summary)
 zeroes TRAIN-1/STOCK-3/LIVE-1/2/4/5 for everyone — check run length before
 reading scores.
+
+**Fleet-100 lesson (2026-09-06):** TRAIN-2 fails 92/98 largely because it only
+accepts `train: X a->b bought from a trainer` -- combat kills and Working-
+practiced craft gains (Needs.cpp skips NeedTraining for Tailoring/Tinkering/
+Smithing/Inscription/Alchemy) are invisible to it, while TRAIN-1 (skill delta)
+shows the real growth. Read TRAIN-1 as the truth for training; TRAIN-2 is
+"bought training" until a `gained in combat` / craft-gain line exists. The
+hunt-kill grep was stale (`hunt: killed '` -> `hunt: confirmed kill target=`),
+fixed 2026-09-06. Ledger: artifacts/fleet100_triage_2026-09-06.md.

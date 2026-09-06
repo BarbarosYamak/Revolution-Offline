@@ -1,2 +1,3 @@
 - [Sheep flocks + worldgen spawners](sheep-flocks-and-worldgen-spawners.md) — f_create_spawner arg layout, worldgen script != live world, `.uid.X.start` fills a flock, all flock coords
 - [Tailoring legacy menu + cloth chain](tailoring-legacy-menu-and-cloth-chain.md) — sash/robe/leather_tunic route strings, sewing-kit root-select-by-target, wool->yarn(engine-hardcoded)->loom->bolt->scissors->cloth
+- [Guard call requires speech trigger](guard-call-requires-speech-trigger.md) — guards never auto-summon on evil-creature attack; only chat "GUARD/GUARDS" does (CClientEvent.cpp:1871); bot never sends it, root cause of in-town deaths

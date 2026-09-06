@@ -56,7 +56,62 @@ i32 BestWeaponSkillTenths(const Observation& obs) {
     return best;
 }
 
+// WHICH SKILLS A FIGHT CAN RAISE. The weapon schools plus the support
+// skills Sphere rolls during a swing or a cast; ids from uo/rules.h, which
+// reads them off the runtime's own skill<N>_*.scp file names. Healing and
+// Meditation are deliberately absent: they rise from bandaging and resting,
+// which happen away from a fight as often as in one, and this line is about
+// combat training specifically.
+bool IsCombatOrMagerySkill(int skillId) {
+    switch (skillId) {
+        case rules::kSwordsmanship:
+        case rules::kFencing:
+        case rules::kMaceFighting:
+        case rules::kArchery:
+        case rules::kWrestling:
+        case rules::kTactics:
+        case rules::kAnatomy:
+        case rules::kParrying:
+        case rules::kMagery:
+        case rules::kEvaluatingIntel:
+            return true;
+        default:
+            return false;
+    }
+}
+
 }  // namespace
+
+// A SKILL GAIN EARNED IN A FIGHT, SAID OUT LOUD ONCE.
+//
+// The NPC path already prints `train: X a->b bought from a trainer`
+// (DoTrainAtNpc below) and it is the only training this project could
+// verify from a log. Combat training was invisible: the values move in the
+// server's 0x3A skill packet (Client::OnSkills), reach the life layer as
+// Observation::skills, and nothing ever compared two ticks of them.
+//
+// The baseline is refreshed on EVERY call, including calls that do not
+// print, so a lesson bought from a trainer or a lock change cannot be
+// re-reported later as a gain won in combat.
+void Runner::NoteCombatSkillGains(const Observation& obs, bool inFight) {
+    for (const SkillTarget& s : obs.skills) {
+        if (!IsCombatOrMagerySkill(s.skillId)) continue;
+        auto it = combatSkillSeen_.find(s.skillId);
+        if (it == combatSkillSeen_.end()) {
+            // First sighting is a baseline, never a gain: a skill absent
+            // from the table reads 0.0, and 0.0 -> 51.2 is the first full
+            // 0x3A arriving, not something this character did.
+            combatSkillSeen_[s.skillId] = s.tenths;
+            continue;
+        }
+        const i32 was = it->second;
+        it->second = s.tenths;
+        if (s.tenths <= was) continue;
+        if (!inFight) continue;
+        LogLine("train: %s %.1f->%.1f gained in combat",
+                rules::SkillName(s.skillId), was / 10.0, s.tenths / 10.0);
+    }
+}
 
 // LEAVING THE HUNT HANDS THE TRIP ALLOWANCE BACK. Every hand-off below goes
 // to a different goal kind -- heal, bank, buy, practise -- and that goal
@@ -64,6 +119,7 @@ i32 BestWeaponSkillTenths(const Observation& obs) {
 // hunting ground. Counting them was D9 (Aurelius, 00:20:08).
 bool Runner::HandOffFromHunt(GoalKind to, i64 forMs, const char* why, i64 nowMs) {
     huntTrips_ = 0;
+    huntEmptyArrivals_ = 0;
     return HandOff(GoalKind::TrainCombat, to, forMs, why, nowMs);
 }
 
@@ -78,6 +134,30 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
     // start on -- and it meant the whole M6 layer (Classify, ChooseTarget,
     // ChoosePrey and 54 unit tests) was called by nothing at all.
     if (obs.underAttack || obs.attackersOnMe > 0) return DoSurvive(client, obs);
+
+    // THE FIGHT THIS GOAL WENT OUT FOR IS OVER AND IT WAS WON.
+    //
+    // Until now DoTrainCombat had no success return a fighter or a caster
+    // could ever reach -- the single `return true` below is gated on
+    // "neither hunts nor casts" -- so a character with four confirmed kills
+    // reported nothing, and the anti-spin backstop cooled the goal off for
+    // "completing with progress 0" (fleet-100, 60+/98 characters;
+    // artifacts/fleet100_triage_2026-09-06.md Cause A).
+    //
+    // The kill was recorded by ProcessHuntAftermath, which runs before the
+    // goal is chosen and cannot know whose trip it was; this is the goal
+    // that walked to the graveyard, so this is where it counts. Reached
+    // only once the corpse is dealt with: while looting is in progress
+    // ProcessHuntAftermath owns the tick and RunGoal is never called.
+    if (huntKillsPending_ > 0) {
+        const i32 killed = huntKillsPending_;
+        huntKillsPending_ = 0;
+        huntEmptyArrivals_ = 0;
+        for (i32 i = 0; i < killed; ++i) planner_.NoteProgress();
+        LogLine("hunt: %d confirmed kill(s) this trip -- combat training done "
+                "for now", killed);
+        return true;
+    }
     if (needCfg_.profession && needCfg_.profession->combatStrategy == CombatStrategyId::Ranged &&
         market::QtyOf(obs.pack, "i_arrow") < 20) {
         const bool stocked = market::QtyOf(obs.bank, "i_arrow") > 0;
@@ -410,6 +490,7 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
                                     : -1.0;
                 foeHpAskedMs_ = obs.nowMs;
                 client.RequestMobileStatus(c.serial);
+                huntEmptyArrivals_ = 0;
                 planner_.NoteProgress();
                 nextActionMs_ = obs.nowMs + 2500;
                 return false;
@@ -586,6 +667,29 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
     }
     travelInFlight_ = false;
     huntTrips_ = 0;
+    // ARRIVING IS NOT TRAINING, AND AN EMPTY YARD MUST END SOMEWHERE.
+    //
+    // huntTrips_ is cleared by arriving, so the "no hunting ground reachable"
+    // bound above can never fire for a character that keeps arriving at a
+    // ground with nothing in it: it patrols the next point, arrives again,
+    // and spends the session doing that. This is the other half of the same
+    // rule -- a goal that cannot find prey FAILS with a reason instead of
+    // completing with nothing (Faustus, x11 "nothing is here", fleet-100).
+    // The allowance is the same kMaxHuntTrips journeys the travel side gets,
+    // and it is cleared the moment a fight is opened or a kill is credited.
+    if (++huntEmptyArrivals_ >= kMaxHuntTrips) {
+        LogLine("goal_failed=TRAIN_COMBAT reason=\"nothing to fight after %d "
+                "arrivals at a hunting ground\"", huntEmptyArrivals_);
+        // Transient, not structural: the yard repopulates, so this is the
+        // short stand-down (RunnerInternal.h kHuntStandDownMs), not the
+        // three-minute one the atlas failure takes.
+        planner_.Cooldown(GoalKind::TrainCombat, obs.nowMs + kHuntStandDownMs);
+        planner_.Finish(false, "nothing to fight at the hunting ground",
+                        obs.nowMs);
+        huntEmptyArrivals_ = 0;
+        nextActionMs_ = obs.nowMs + 3000;
+        return false;
+    }
     // Arrived. Ask what is here; the targeting layer judges legality, and a
     // graveyard's dead are the one thing on this shard that is always lawful
     // to swing at.

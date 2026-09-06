@@ -1386,6 +1386,15 @@ void Runner::Tick(Client& client, i64 nowMs) {
             }
 
             // --- decide ----------------------------------------------------
+            // WHAT THE FIGHT TAUGHT, WHERE IT WAS TAUGHT. The 0x3A skill
+            // values arrive in the Observation; comparing two ticks of them
+            // is the only way a log can show combat training happening at
+            // all (the trainer path has said its own line since M4). The
+            // baseline is updated on every tick, printed only inside a
+            // fight or under the goal that owns one.
+            NoteCombatSkillGains(obs, obs.underAttack || obs.attackersOnMe > 0 ||
+                                      currentFoe_ != 0 || huntKillsPending_ > 0 ||
+                                      planner_.Current().kind == GoalKind::TrainCombat);
             if (ProcessHuntAftermath(client, obs)) return;
             // Aftermath may have just received the last item from a corpse.
             Observation planningObs = obs;

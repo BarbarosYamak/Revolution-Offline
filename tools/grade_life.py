@@ -22,7 +22,7 @@ import argparse, json, re, sys
 #           cloth chain is shared with bandage manufacture; that is the real
 #           prefix, not a typo.
 #   "tame"  Runner.cpp:11189  "tame: trying '%s' (needs Taming %.1f, ...)"
-#   "hunt"  Runner.cpp:2913   "hunt: killed '%s' -- finished at ..."
+#   "hunt"  Survive.cpp:36    "hunt: confirmed kill target='%s' corpse=..."
 #   ""      no dedicated farm loop -- income is the faucet instead.
 #
 # The 17 ids below are exactly the 17 Profession p.id values in
@@ -168,7 +168,7 @@ def main():
     elif gathers == "hunt":
         # Runner.cpp:2913.  A monster corpse is the only faucet an
         # Income::Hunt life has, so a kill or a risen purse is the evidence.
-        hits = find(lines, r"hunt: killed '")
+        hits = find(lines, r"hunt: confirmed kill target='")
         ok = gold_b > gold_a or bool(hits)
         r.add("FARM-2", ok, "gold %d->%d, kills %d" % (gold_a, gold_b, len(hits)),
               hits or summ)
@@ -207,9 +207,9 @@ def main():
     # ---- TRAIN -----------------------------------------------------------
     r.add("TRAIN-1", sk_b > sk_a, "skills %.1f->%.1f" % (sk_a, sk_b), summ)
 
-    verified = (find(lines, r"train: \S+ [\d.]+->[\d.]+ bought from a trainer")
+    verified = (find(lines, r"train: \S+ [\d.]+->[\d.]+ (bought from a trainer|gained in combat)")
                 + find(lines, r"practice: (using .* to raise it|casting spell \d+ at myself)")
-                + find(lines, r"goal_completed=(%s) progress=1" % "|".join(TRAIN_GOALS)))
+                + find(lines, r"goal_completed=(%s) progress=[1-9]" % "|".join(TRAIN_GOALS)))
     r.add("TRAIN-2", bool(verified), "verified training events %d" % len(verified), verified)
 
     spin_tr = find(lines, r"goal_spinning=(%s)" % "|".join(TRAIN_GOALS))

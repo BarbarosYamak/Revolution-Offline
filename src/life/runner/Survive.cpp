@@ -19,6 +19,9 @@ bool Runner::ProcessHuntAftermath(Client& client, const Observation& obs) {
         const u32 corpse = client.CorpseOfMobile(currentFoe_);
         if (corpse) {
             ++session_.kills;
+            // The trip's owner gets the credit, not whichever goal happens
+            // to hold the slot during the fight. See Runner::huntKillsPending_.
+            ++huntKillsPending_;
             const bool cheap = obs.HpFraction() >= 0.75;
             state_.memory.NoteCreatureOutcome(currentFoeName_.c_str(),
                 cheap ? kCreatureEvidenceCheapKill : kCreatureEvidenceCostlyKill, obs.nowMs);

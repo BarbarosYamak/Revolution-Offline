@@ -990,6 +990,27 @@ private:
     // become a per-tick packet.
     i64 lastGuardCallMs_ = 0;
     bool ProcessHuntAftermath(Client& client, const Observation& obs);
+    // A CONFIRMED KILL BELONGS TO THE GOAL THAT WENT HUNTING, NOT TO THE
+    // ERRAND THAT FOUGHT. ProcessHuntAftermath runs once per tick from
+    // Tick() (Core.cpp), before the goal is chosen, and the fight itself is
+    // usually owned by SURVIVE -- so calling NoteProgress() where the kill
+    // is confirmed would credit whichever goal happened to be current
+    // (measured: goal_completed=SURVIVE progress=0 while TRAIN_COMBAT, the
+    // goal that walked to the graveyard, completed with progress 0 until
+    // the anti-spin backstop cooled it off -- Hector 4 kills, Leander 6,
+    // artifacts/fleet100_triage_2026-09-06.md Cause A). The kill is
+    // RECORDED here and CONSUMED by DoTrainCombat on its next tick, which
+    // is the goal that owns the trip.
+    i32 huntKillsPending_ = 0;
+    // Arrivals at a hunting ground that produced no fight. A yard with
+    // nothing in it must end as a failure with a reason, not as a goal that
+    // completes having done nothing. Reset when a fight is opened, when a
+    // kill is credited, and by HandOffFromHunt.
+    i32 huntEmptyArrivals_ = 0;
+    // Combat/Magery skill values as the last 0x3A left them in the
+    // Observation, so a real gain during a fight is said out loud once.
+    std::map<int, i32> combatSkillSeen_;
+    void NoteCombatSkillGains(const Observation& obs, bool inFight);
     u32 huntLootCorpse_ = 0;
     i32 huntLootFailures_ = 0;
     bool huntLootMovePending_ = false;
