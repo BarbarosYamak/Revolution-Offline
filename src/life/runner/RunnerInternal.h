@@ -44,6 +44,20 @@ namespace runner_detail {
 std::string Fmt2(const char* fmt, ...);
 GoalKind ProducingGoalFor(const std::string& item);
 
+// The best weapon skill this character actually holds. Wrestling counts --
+// it is a weapon skill on this shard and a bare-handed character fights with
+// it -- but a plan to train Fencing later is not skill today. Shared: the
+// hunt gate (Train.cpp) and the novice flee policy (Survive.cpp) must read
+// the same number or they disagree about who is a novice.
+inline i32 BestWeaponSkillTenths(const Observation& obs) {
+    const int ids[] = {rules::kSwordsmanship, rules::kFencing,
+                       rules::kMaceFighting,  rules::kArchery,
+                       rules::kWrestling};
+    i32 best = 0;
+    for (int id : ids) best = std::max(best, obs.SkillTenths(id));
+    return best;
+}
+
 
 // Item graphics, all read off the runtime's own itemdefs -- never guessed from
 // generic UO tables. i_hatchet is [ITEMDEF 0f43] with DUPELIST 0f44 (the

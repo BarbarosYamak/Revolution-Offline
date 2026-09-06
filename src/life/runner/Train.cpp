@@ -1,4 +1,5 @@
 #include "RunnerInternal.h"
+#include "NoviceEngage.h"
 
 namespace uo::life {
 // The families were one translation unit until the split; the
@@ -75,17 +76,8 @@ bool ClearsStrongHuntTier(const Observation& obs, i32 weaponTenths) {
     return false;
 }
 
-// The best weapon skill this character actually holds. Wrestling counts --
-// it is a weapon skill on this shard and a bare-handed character fights with
-// it -- but a plan to train Fencing later is not skill today.
-i32 BestWeaponSkillTenths(const Observation& obs) {
-    const int ids[] = {rules::kSwordsmanship, rules::kFencing,
-                       rules::kMaceFighting,  rules::kArchery,
-                       rules::kWrestling};
-    i32 best = 0;
-    for (int id : ids) best = std::max(best, obs.SkillTenths(id));
-    return best;
-}
+// BestWeaponSkillTenths moved to RunnerInternal.h (runner_detail): the
+// novice engagement policy in Survive.cpp needs the same number.
 
 // WHICH SKILLS A FIGHT CAN RAISE. The weapon schools plus the support
 // skills Sphere rolls during a swing or a cast; ids from uo/rules.h, which
@@ -452,13 +444,30 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
             // the scorer calls company.
             {
                 int inReach = 0;
-                for (const Client::HostileHit& h : seen)
-                    if (TileDist(h.x, h.y, obs.x, obs.y) <= combat::kCrowdRadius) ++inReach;
-                if (inReach >= 3) {
-                    LogLine("engage=no in_reach=%d hp=%.0f%% reason=\"%d hostiles "
-                            "within %d tiles -- cannot take them one at a time\"",
-                            inReach, obs.HpFraction() * 100.0, inReach,
-                            combat::kCrowdRadius);
+                int nearby  = 0;
+                for (const Client::HostileHit& h : seen) {
+                    const i32 d = TileDist(h.x, h.y, obs.x, obs.y);
+                    if (d <= combat::kCrowdRadius) ++inReach;
+                    if (d <= novice::kSoloRadius) ++nearby;
+                }
+                // A NOVICE ONLY FIGHTS DUELS (2026-09-06). Two plain skeletons
+                // are enough to kill a 51-hp fencer at ~50 weapon skill, twice
+                // in one day, so below the novice band the board must hold one
+                // hostile and nothing within joining distance of it. See
+                // NoviceEngage.h and artifacts/novice_engagement_2026-09-06.md
+                // for the hp-per-exchange rows this comes from.
+                const bool novicePolicy =
+                    novice::IsNovice(BestWeaponSkillTenths(obs), obs.hpMax);
+                const bool crowded =
+                    novicePolicy ? !novice::NoviceMayOpen(inReach, nearby)
+                                 : inReach >= 3;
+                if (crowded) {
+                    LogLine("engage=no in_reach=%d near=%d novice=%d hp=%.0f%% "
+                            "reason=\"%d hostile(s) within %d tiles, %d within "
+                            "%d -- cannot take them one at a time\"",
+                            inReach, nearby, novicePolicy ? 1 : 0,
+                            obs.HpFraction() * 100.0, inReach,
+                            combat::kCrowdRadius, nearby, novice::kSoloRadius);
                     // Remember the spot, so the ground picker above and the
                     // corpse run both learn this yard is busier than this
                     // character can handle.

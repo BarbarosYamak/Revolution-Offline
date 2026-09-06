@@ -1,4 +1,5 @@
 #include "RunnerInternal.h"
+#include "NoviceEngage.h"
 #include <algorithm>
 
 namespace uo::life {
@@ -370,6 +371,33 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
     const i32 extra = obs.attackersOnMe - 1;
     if (extra > 0) bailAt = std::min(0.90, bailAt + 0.08 * std::min(3, extra));
 
+    // ATTACKERS ARE NOT THE WHOLE BOARD. Three things that can reach us are
+    // three things that are about to be attackers, and the moment to leave is
+    // before the second one swings, not after the third.
+    i32 inReach = 0;
+    for (const Client::HostileHit& h : hostiles)
+        if (TileDist(h.x, h.y, obs.x, obs.y) <= combat::kCrowdRadius) ++inReach;
+
+    // A PERCENT IS THE WRONG UNIT FOR A RETREAT. What has to be true is that
+    // enough health is left to survive the blows that land while breaking
+    // contact -- and 22% of a 51-hp bar is 11 hp, under two of them. Hector
+    // died twice on 2026-09-06 with the flee interrupt firing on time by its
+    // own rule and one second too late by the clock: 02:16 "HP 25%; 2
+    // attacker(s); bail at 30%", dead 1 s later; 23:38 last seen at 21/51
+    // (41%) with "bail at 22%", dead 3.1 s later
+    // (artifacts/novice_engagement_2026-09-06.md).
+    //
+    // So the line is also expressed in expected-hits-to-live: 8 hp per landed
+    // blow, two blows of margin, per hostile that can reach us. This can only
+    // move the bail line UP -- max(), never min() -- so no character that
+    // survives today is made bolder by it. For a 100-hp veteran with one
+    // attacker it is 16% and the nerve line above still wins.
+    const i32 board = std::max<i32>(1, std::max(obs.attackersOnMe, inReach));
+    const double retreatFloor =
+        novice::RetreatFloorFraction(static_cast<int>(board), obs.hpMax);
+    const bool floorBinds = retreatFloor > bailAt;
+    bailAt = std::max(bailAt, retreatFloor);
+
     // How many adjacent attackers this life will stand in before it breaks
     // contact regardless of health. The old rule was a flat two, and a
     // graveyard hands a warrior three at once: Faustus (macer, 2026-09-03)
@@ -386,28 +414,34 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
     // same eighteen seconds and died (run_gates/g_Hector.console.txt:977-1017).
     // A timid character still breaks contact sooner; a bold one no longer
     // stands in a pack.
+    // A NOVICE STANDS IN ONE, whatever its nerve says. Both 2026-09-06 deaths
+    // were groups a bold fencer's tolerance of two let him stay in: the second
+    // attacker is the moment to leave, not 25% health.
+    const bool novicePolicy =
+        novice::IsNovice(static_cast<int>(BestWeaponSkillTenths(obs)), obs.hpMax);
     const i32 crowdTolerated =
-        std::min(2, 1 + static_cast<i32>(nerve * 4.0));
-
-    // ATTACKERS ARE NOT THE WHOLE BOARD. Three things that can reach us are
-    // three things that are about to be attackers, and the moment to leave is
-    // before the second one swings, not after the third.
-    i32 inReach = 0;
-    for (const Client::HostileHit& h : hostiles)
-        if (TileDist(h.x, h.y, obs.x, obs.y) <= combat::kCrowdRadius) ++inReach;
+        novicePolicy ? 1 : std::min(2, 1 + static_cast<i32>(nerve * 4.0));
+    const i32 crowdCeiling = novicePolicy ? 2 : 3;
 
     if (avoidCombatDisengage || obs.attackersOnMe > crowdTolerated ||
-        inReach >= 3 || obs.HpFraction() < bailAt) {
-        LogLine("interrupt=FLEE reason=\"HP %.0f%%; %d attacker(s); bail at %.0f%%\"",
-                obs.HpFraction() * 100.0, obs.attackersOnMe, bailAt * 100.0);
-        LogLine("disengage=yes attackers=%d in_reach=%d tolerate=%d hp=%.0f%% "
-                "bandages=%d reason=\"%s\"",
-                obs.attackersOnMe, inReach, crowdTolerated,
+        inReach >= crowdCeiling || obs.HpFraction() < bailAt) {
+        LogLine("interrupt=FLEE reason=\"HP %.0f%%; %d attacker(s); bail at %.0f%% "
+                "(retreat floor %.0f%% for %d on the board%s)\"",
+                obs.HpFraction() * 100.0, obs.attackersOnMe, bailAt * 100.0,
+                retreatFloor * 100.0, board, floorBinds ? ", binding" : "");
+        LogLine("disengage=yes attackers=%d in_reach=%d tolerate=%d novice=%d "
+                "hp=%.0f%% bandages=%d reason=\"%s\"",
+                obs.attackersOnMe, inReach, crowdTolerated, novicePolicy ? 1 : 0,
                 obs.HpFraction() * 100.0, obs.bandages,
                 avoidCombatDisengage      ? "this life avoids combat"
-                : inReach >= 3            ? "3+ hostiles within reach"
+                : inReach >= crowdCeiling ? (novicePolicy
+                                              ? "a second hostile joined and this "
+                                                "one fights duels"
+                                              : "3+ hostiles within reach")
                 : obs.attackersOnMe > crowdTolerated ? "more attackers than "
                                                        "this nerve stands in"
+                : floorBinds              ? "not enough health left to walk out "
+                                            "of reach"
                                           : "health below the bail line");
         client.EnsurePeaceMode();
         dangerWatchHp_ = -1;

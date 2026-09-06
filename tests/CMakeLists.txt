@@ -737,3 +737,17 @@ target_include_directories(build_mana_plan PRIVATE
     ${CMAKE_SOURCE_DIR}/src)
 
 add_test(NAME build_mana_plan COMMAND build_mana_plan)
+
+# --- novice engagement policy ----------------------------------------------
+#
+# src/life/runner/NoviceEngage.h -- how a low-skill, low-hp fighter opens and
+# breaks off a fight, derived from the two 2026-09-06 Hector deaths in the
+# WEAK band of the Britain graveyard (artifacts/novice_engagement_2026-09-06.md).
+# Header-only and pure: no Client, no server, no world data, so the test links
+# nothing at all.
+add_executable(novice_engage novice_engage.cpp)
+target_include_directories(novice_engage PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+
+add_test(NAME novice_engage COMMAND novice_engage)
