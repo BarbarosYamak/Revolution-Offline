@@ -280,6 +280,11 @@ bool CanAffordToShop(const prof::Profession& p, i32 gold,
     return gold - policy.blindPriceCeiling >= p.goldReserve;
 }
 
+// Owner market rule: scrolls come from NPCs; yarn is processed into cloth.
+static bool NpcOnlyOrIntermediate(const std::string& item) {
+    return item.compare(0, 9, "i_scroll_") == 0 || item == "i_yarn_ball";
+}
+
 std::vector<Want> PlayerMarketWants(const prof::Profession& p,
                                     const std::vector<Stock>& holdings,
                                     i32 gold,
@@ -302,7 +307,7 @@ std::vector<Want> PlayerMarketWants(const prof::Profession& p,
     for (const Want& w : shortOf) {
         // The world makes it. Go and gather it, or buy it from a vendor --
         // either way nobody is standing at a bank with any to sell.
-        if (w.rawResource) continue;
+        if (w.rawResource || NpcOnlyOrIntermediate(w.item)) continue;
         out.push_back(w);
     }
     if (out.empty() && whyNotOut) {
@@ -1460,7 +1465,7 @@ bool ChooseSellOffer(const prof::Profession& p,
         // If an NPC will take it, that is a shorter errand and the player
         // market does not need to carry it. This is the whole reason the
         // player path exists: it is for what the NPCs refuse.
-        if (HasNpcBuyer(o.item.c_str())) continue;
+        if (HasNpcBuyer(o.item.c_str()) || NpcOnlyOrIntermediate(o.item)) continue;
 
         const i32 believed = book.BelievedSalePrice(o.item.c_str());
         // No belief is not silence. See TradePolicy::openingAsk: a belief
@@ -1528,7 +1533,7 @@ bool AnswerBuyWant(const prof::Profession& p,
                    const TradePolicy& policy,
                    const TradeIntent& want,
                    TradeIntent* out) {
-    if (!out || want.item.empty()) return false;
+    if (!out || want.item.empty() || NpcOnlyOrIntermediate(want.item)) return false;
 
     // A DIRECT REQUEST OUTRANKS THE TRIP THRESHOLD -- but not the rule that a
     // life only ever hands over what its own profession makes. Surplus() owns
@@ -1727,6 +1732,10 @@ BuyDecision ConsiderOffer(const prof::Profession& p,
                           const TradeIntent& offer,
                           const std::vector<WornItem>& worn) {
     BuyDecision d;
+    if (NpcOnlyOrIntermediate(offer.item)) {
+        d.reason = "scrolls are NPC purchases; buy finished cloth instead of yarn";
+        return d;
+    }
     if (!offer.Valid()) {
         d.reason = "not a well-formed offer";
         return d;

@@ -444,8 +444,11 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
             }
             const int heal = obs.HpFraction() < needCfg_.healHpFraction
                 ? PickSurvivalSpell(client, obs, true) : -1;
-            client.ActionCastSpell(heal >= 0 ? heal : attackSpell,
+            const int poison = heal < 0 && poisonOpenedTarget_ != target->serial
+                ? PickPoisonOpener(client, obs) : -1;
+            client.ActionCastSpell(heal >= 0 ? heal : poison >= 0 ? poison : attackSpell,
                                   heal >= 0 ? client.PlayerSerial() : target->serial);
+            if (poison >= 0) poisonOpenedTarget_ = target->serial;
         }
         nextActionMs_ = obs.nowMs + 4000;
         return false;
@@ -621,6 +624,26 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
     return false;
 }
 
+int Runner::PickPoisonOpener(Client& client, const Observation& obs) const {
+    if (!obs.spellbookSerial || obs.SkillTenths(rules::kPoisoning) <= 0 || !needCfg_.profession) return -1;
+    bool planned = false;
+    for (const auto& target : needCfg_.profession->targets)
+        planned |= target.skillId == rules::kPoisoning;
+    if (!planned) return -1;
+    for (const auto& d : spell::SpellTable()) {
+        // Defname comes from the shard export; Poison is not a direct-damage spell.
+        if (std::strcmp(d.defname, "s_poison") != 0) continue;
+        if (obs.SkillTenths(rules::kMagery) < d.minSkillTenths || obs.mana < d.mana ||
+            !BookHasSpell(client, obs.spellbookSerial, d.spell)) return -1;
+        for (const char* reagent : d.reagents) {
+            if (!reagent) break;
+            if (market::QtyOf(obs.pack, reagent) < 1) return -1;
+        }
+        return d.spell;
+    }
+    return -1;
+}
+
 int Runner::PickSurvivalSpell(Client& client, const Observation& obs, bool healing,
                               bool requireSupplies) const {
     if (!obs.spellbookSerial) return -1;
@@ -672,7 +695,7 @@ void Runner::AttackLadder(Client& client, const Observation& obs,
         if (d.unknownFlags || !(d.flags & spell::kFlagTargChar) ||
             (d.flags & (spell::kFlagArea | spell::kFlagField | spell::kFlagSummon |
                         spell::kFlagTargDead)) ||
-            !(d.flags & spell::kFlagDamage) || !(d.flags & spell::kFlagHarm) ||
+            (!(d.flags & spell::kFlagDamage) && std::strcmp(d.defname, "s_poison") != 0) || !(d.flags & spell::kFlagHarm) ||
             obs.SkillTenths(rules::kMagery) < d.minSkillTenths ||
             !BookHasSpell(client, obs.spellbookSerial, d.spell)) continue;
         out.push_back(&d);

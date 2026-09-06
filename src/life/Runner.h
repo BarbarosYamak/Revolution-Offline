@@ -443,6 +443,8 @@ private:
     i32  logsAtGoalStart_ = 0;
     i32  logsAtSessionStart_ = -1;
     u32  currentFoe_ = 0;
+    int PickPoisonOpener(Client& client, const Observation& obs) const;
+    u32 poisonOpenedTarget_ = 0;
     // Chase bound: how long without getting closer before a foe is written off.
     static constexpr i64 kChaseGiveUpMs = 8000;
     i32  chaseBestDist_ = 0;
@@ -1055,6 +1057,7 @@ private:
     std::vector<u32> trainerSilent_;
     // Trips taken looking for a hunting ground this goal.
     int huntTrips_ = 0;
+    usize huntPatrolStep_ = 0;
     // HandOff out of TRAIN_COMBAT, returning the trip allowance: the goal that
     // takes over plans its own journeys and they are not attempts to reach a
     // hunting ground.

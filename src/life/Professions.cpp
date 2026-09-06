@@ -378,7 +378,7 @@ const std::vector<Profession>& All() {
             p.goldReserve = 500;
                         // Minoc is the mining town -- the mountain is why it is there. Vesper
             // works the same range from the north.
-            p.homeCities = {"Minoc", "Britain", "Vesper"};
+            p.homeCities = {"Minoc"};
             v.push_back(std::move(p));
         }
 
@@ -410,21 +410,13 @@ const std::vector<Profession>& All() {
             // this mage spends the remaining creation points on Intelligence.
             p.startStr = 50; p.startDex = 5; p.startInt = 25;
             p.targets = {
-                // THREE SKILLS. No melee plan, no crafting plan, no hybrid
-                // thinking (owner's pure-mage spec, 2026-08-29). Inscription
-                // used to sit here at 50.0 and it was scribe thinking wearing
-                // a mage's robe: it gave the build a crafting income and a
-                // reason to stand in a shop, which is a different life.
                 {rules::kMagery,          1000, 5, false, SkillRole::Primary},
                 {rules::kMeditation,      1000, 4, false, SkillRole::Secondary},
                 {rules::kEvaluatingIntel, 1000, 3, true,  SkillRole::Secondary},
+                {rules::kPoisoning,       1000, 2, false, SkillRole::Secondary},
             };
-            // 300.0 resolved across three skills leaves 400.0 UNSPENT, and
-            // that is deliberate rather than an oversight: a pure mage is
-            // three skills, and the rest of the budget stays open until
-            // there is evidence about what Revolution mages actually took
-            // with it. Unresolved is a first-class value in this project.
-            p.unresolvedTenths = 4000;
+            // Owner pure-mage update: Poisoning supports offensive magic.
+            p.unresolvedTenths = 3000;
             p.targetStr = 100; p.targetDex = 35; p.targetInt = 90;   // owner stat table 2026-09-04
             // LOOT, not crafting. The day-one economy is starting reagents
             // -> graveyard kills -> loot -> sell -> gold -> more reagents,
@@ -469,6 +461,8 @@ const std::vector<Profession>& All() {
             // only this one lacked a heal: warlock and treasure_hunter carry
             // Healing skill AND bandages, alchemist / mage_blacksmith / scribe
             // already carry CrafterHealPotions(). (audit 2026-08-30, finding 2.)
+            p.tools = {{"dagger", {0x0F51, 0x0F52}, false}};
+            p.consumes.push_back("i_potion_poison");
             p.consumables = {HealPotions(), Food()};
             // 0.50, NOT 0.30. combat::Classify scores an unhurt red monster in
             // view at 0.35 before it does anything (full bar 0.20, murderer

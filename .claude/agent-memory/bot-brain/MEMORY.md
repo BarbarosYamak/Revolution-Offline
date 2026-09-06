@@ -28,3 +28,4 @@
 - [An errand's exit cannot live in the errand](an-errands-exit-cannot-live-in-the-errand.md) — success silences the need, so the goal is never picked again; move the closing lock/flag to a per-tick keeper with a durable marker
 - [A stand-down that forgets reopens](a-standdown-that-forgets-reopens.md) — clearing the drained-counter count is safe only when the goal hands off to a different route
 - [An emergency overrides the catalogue](an-emergency-overrides-the-catalogue.md) — a crafter dying at 6/50 buys bandages; the override needs the life's own flee line or the tamer rule breaks
+- [A terminal step is work, not a refusal](a-terminal-step-is-work-not-a-refusal.md) — gate the handler's refusals only; `Abandon` clears the death record, and staleness belongs in the reader

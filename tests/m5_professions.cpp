@@ -229,6 +229,13 @@ void TestArchetypesDiffer() {
     Check(lj && ms && mg, "the three live archetypes are present");
     if (!lj || !ms || !mg) return;
 
+    bool poisoning = false;
+    for (const auto& t : mg->targets)
+        poisoning |= t.skillId == rules::kPoisoning && t.tenths == 1000;
+    Check(poisoning, "pure mage plans Poisoning to 100.0");
+    Check(ms->homeCities.size() == 1 && ms->homeCities.front() == "Minoc",
+          "miners base their mine/forge/bank loop in Minoc");
+
     // The M5 gate asks for "meaningfully different behaviour". These are the
     // fields the behaviour layers actually branch on, so if they were equal
     // the professions would be cosmetic.

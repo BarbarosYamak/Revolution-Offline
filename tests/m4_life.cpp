@@ -4295,6 +4295,12 @@ void TestAFundedFighterDoesNotGoShearing() {
 }
 
 int main(int argc, char** argv) {
+    Check(uo::life::BankInputReserve(true, "i_reag_mandrake_root", 5) == uo::life::kReagentCarry,
+          "caster reagent deposits preserve the same stock withdrawals restore");
+    Check(uo::life::BankInputReserve(false, "i_reag_nightshade", 5) == 10 &&
+          uo::life::BankInputReserve(true, "i_log", 5) == 10,
+          "crafting inputs retain the normal working batch");
+
     std::printf("m4_life\n");
     const std::string tmpDir = (argc > 1) ? argv[1] : ".";
 

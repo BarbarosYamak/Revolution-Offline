@@ -1405,6 +1405,29 @@ bool Client::TravelTryEscape() {
     world_knowledge_->planner->EscapeCandidates(playerX_, playerY_, 12,
                                                 candidates);
 
+    // Coarse grid anchors can sit on the mountain above a cave. First walk
+    // to the atlas entrance at its floor height, then beyond its nearest edge.
+    // Minoc: the interior->entrance and entrance->outside routes are proven
+    // against MULs; the nearby z=15 mountain anchor has no path from z=0.
+    const wm::Region* cave = CurrentRegion();
+    if (cave && cave->kind == wm::RegionKind::Cave && !cave->rects.empty()) {
+        const wm::Rect* bounds = &cave->rects.front();
+        for (const auto& rect : cave->rects)
+            if (rect.Area() > bounds->Area()) bounds = &rect;
+        wm::Point outside = cave->center;
+        const i32 distances[] = {outside.x - bounds->x1, bounds->x2 - outside.x,
+                                 outside.y - bounds->y1, bounds->y2 - outside.y};
+        int edge = 0;
+        for (int i = 1; i < 4; ++i) if (distances[i] < distances[edge]) edge = i;
+        if (edge == 0) outside.x = bounds->x1 - 6;
+        if (edge == 1) outside.x = bounds->x2 + 6;
+        if (edge == 2) outside.y = bounds->y1 - 6;
+        if (edge == 3) outside.y = bounds->y2 + 6;
+        candidates.insert(candidates.begin(), outside);
+        if (Chebyshev(playerX_, playerY_, cave->center.x, cave->center.y) > 2)
+            candidates.insert(candidates.begin(), cave->center);
+    }
+
     for (const wm::Point& c : candidates) {
         bool tried = false;
         for (const wm::Point& t : travelEscapeTried_)

@@ -389,7 +389,11 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
                         "reason=\"one target, board is not crowded\"",
                         c.name.c_str(), c.dist, obs.HpFraction() * 100.0,
                         obs.bandages);
-                if (caster) client.ActionCastSpell(attackSpell, c.serial);
+                if (caster) {
+                    const int poison = PickPoisonOpener(client, obs);
+                    client.ActionCastSpell(poison >= 0 ? poison : attackSpell, c.serial);
+                    if (poison >= 0) poisonOpenedTarget_ = c.serial;
+                }
                 else client.ActionAttack(c.serial);
                 currentFoe_ = c.serial;
                 currentFoeName_ = c.name;
@@ -427,11 +431,10 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
                         policy.riskTolerance, v.reason.c_str());
             }
         }
-        // Rejected prey is not an invitation to attack through self-defence.
-        nextActionMs_ = obs.nowMs + 3000;
-        return false;
+        // No acceptable prey here: continue the search instead of waiting at the gate.
+
     }
-    if (obs.hostilesNear > 0 && !inGuardedRegion) {
+    if (obs.hostilesNear > 0 && !inGuardedRegion && client.ActionBusy()) {
         // DoSurvive may report that there is presently nothing to defend
         // against.  That is not successful combat training and must not mark
         // TRAIN_COMBAT complete merely because an opened target has not yet
@@ -528,18 +531,13 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
                         "ground, not the nearest one\"",
                         early->name.c_str(), weaponTenths / 10.0, heat,
                         kSeasonedWeaponTenths / 10.0);
-                // The place radius can include the entrance, out of sight of
-                // prey. Walk inside, and make short local searches when empty.
-                i32 x = early->position.x, y = early->position.y;
-                if (TileDist(obs.x, obs.y, x, y) <= 12) {
-                    const i32 offset = std::min(6, early->radius);
-                    const int leg = static_cast<int>((obs.nowMs / 15000) % 4);
-                    // Atlas anchor is the southeast corner of the yard.
-                    x -= leg == 1 || leg == 2 ? offset : 0;
-                    y -= leg == 2 || leg == 3 ? offset : 0;
-                    LogLine("hunt: searching inside Britain Graveyard");
-                }
-                travelInFlight_ = client.TravelToPoint(x, y, 2, "Britain Graveyard training");
+                const auto* atlas = client.WorldAtlas();
+                const auto points = atlas ? atlas->HuntingPatrol(*early)
+                                          : std::vector<wm::Point>{early->position};
+                // Per-character phase spreads the fleet; progress does not depend on wall time.
+                const auto& point = points[(client.PlayerSerial() + huntPatrolStep_++) % points.size()];
+                LogLine("hunt: searching Britain Graveyard at %d,%d", point.x, point.y);
+                travelInFlight_ = client.TravelToPoint(point.x, point.y, 2, "Britain Graveyard patrol");
                 if (travelInFlight_) huntPlace = early->name;
             } else {
                 // NOT a failure of the atlas and not something a retry fixes:
@@ -561,7 +559,14 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
             // TravelToHuntingGround resolves the nearest graveyard-category
             // place from world_atlas::Atlas::NearestHuntingGround, and logs
             // where it is actually going, not just "the nearest graveyard".
-            travelInFlight_ = client.TravelToHuntingGround(&huntPlace);
+            const auto* atlas = client.WorldAtlas();
+            const auto* ground = atlas ? atlas->NearestHuntingGround(obs.x, obs.y) : nullptr;
+            if (ground) {
+                const auto points = atlas->HuntingPatrol(*ground);
+                const auto& point = points[(client.PlayerSerial() + huntPatrolStep_++) % points.size()];
+                travelInFlight_ = client.TravelToPoint(point.x, point.y, 2, "graveyard patrol");
+                huntPlace = ground->name;
+            }
             if (travelInFlight_) {
                 LogLine("hunt_ground=%s tier=seasoned weapon=%.1f "
                         "reason=\"nearest graveyard, and skilled enough for it\"",
@@ -2183,6 +2188,27 @@ bool Runner::DoPracticeSkill(Client& client, const Observation& obs) {
     if (client.ActionBusy()) return false;
 
     const i32 have = obs.SkillTenths(skillId);
+
+    if (skillId == rules::kPoisoning) {
+        const u32 dagger = client.FindBackpackItemByGraphic(0x0F51)
+            ? client.FindBackpackItemByGraphic(0x0F51) : client.FindBackpackItemByGraphic(0x0F52);
+        const u32 poison = client.FindBackpackItemByGraphic(0x0F0A);
+        if (!dagger || !poison) {
+            planner_.Cooldown(GoalKind::PracticeSkill, obs.nowMs + 30000);
+            planner_.Finish(false, "poisoning supplies no longer available", obs.nowMs);
+            return false;
+        }
+        if (++selfPracticeRuns_ >= kSelfPracticeBeforeRethink) {
+            selfPracticeRuns_ = 0;
+            planner_.Cooldown(GoalKind::PracticeSkill, obs.nowMs + 60000);
+            planner_.Finish(true, nullptr, obs.nowMs);
+            return true;
+        }
+        client.ActionApplyPoison(dagger, poison);
+        planner_.NoteAttempt(obs.nowMs);
+        nextActionMs_ = obs.nowMs + 4000;
+        return false;
+    }
 
     // MAGERY IS RAISED BY CASTING, WITH OR WITHOUT A FOE.
     //

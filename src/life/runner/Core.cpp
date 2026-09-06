@@ -126,6 +126,11 @@ bool Runner::Configure(const RunnerConfig& cfg, std::string* err) {
                 "original lumberjack needs", state_.plan.family.c_str());
     }
 
+    if (needCfg_.profession && needCfg_.profession->id == "miner_smith" && state_.homeCity != "Minoc") {
+        state_.homeCity = "Minoc";
+        LogLine("home: miner uses Minoc for mine, forge and banking");
+    }
+
     // Pick a home, once. Deterministic from the identity id rather than random,
     // so the same character always gets the same home even if the state file is
     // lost -- and so a fleet spreads across the map instead of every member
@@ -635,6 +640,15 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
         break;
     }
 
+    // Poisoning practice uses supplies, never food or a combat detour.
+    if (obs.SkillTenths(rules::kPoisoning) < 1000 &&
+        market::QtyOf(obs.pack, "i_potion_poison") > 0 &&
+        market::QtyOf(obs.pack, "i_dagger") > 0) {
+        for (const SkillTarget& t : state_.plan.skills)
+            if (t.skillId == rules::kPoisoning && obs.SkillTenths(t.skillId) < t.tenths)
+                obs.wantPracticeSkill = t.skillId;
+    }
+
     // The reagent shopping list PRACTICE_SKILL left behind, if any, minus
     // anything the pack has since acquired. Kept here rather than in the goal
     // so it survives a goal change: the whole point is that a DIFFERENT goal
@@ -945,7 +959,9 @@ void Runner::SeedNewbieKnowledge(Client& client, i64 nowMs) {
     // predates common_knowledge_bank, so treating it as complete leaves a
     // miner with a BANK goal but no counter it can route to.  The seed is
     // idempotent; only skip when this life has the complete current version.
-    if (state_.memory.HasEvent("newbie_knowledge_seeded") &&
+    const bool minocMiner = needCfg_.profession && needCfg_.profession->id == "miner_smith";
+    if (minocMiner && state_.memory.HasEvent("minoc_mining_home_seeded")) return;
+    if (!minocMiner && state_.memory.HasEvent("newbie_knowledge_seeded") &&
         state_.memory.BestPlace("common_knowledge_bank")) return;
     if (!client.WorldKnowledgeReady()) return;
 
@@ -958,6 +974,8 @@ void Runner::SeedNewbieKnowledge(Client& client, i64 nowMs) {
     life::SeedNewbieKnowledge(state_, needCfg_.profession, state_.homeCity,
                               *atlas, nowMs);
 
+    if (minocMiner)
+        state_.memory.NoteEvent("minoc_mining_home_seeded", "Minoc", "", 0, 0, nowMs);
     state_.memory.NoteEvent("newbie_knowledge_seeded", state_.homeCity.c_str(),
                             "", client.PlayerX(), client.PlayerY(), nowMs);
     LogLine("newbie knowledge: %zu place(s) and %zu resource hint(s) seeded "

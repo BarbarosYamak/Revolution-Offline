@@ -102,6 +102,7 @@ public:
     // too, or whether sewers stay a deliberate destination). Null when no
     // graveyard is known within `maxDist` (<= 0 means "anywhere").
     const wm::Place* NearestHuntingGround(i32 x, i32 y, i32 maxDist = 0) const;
+    std::vector<wm::Point> HuntingPatrol(const wm::Place& place) const;
     // Nearest place inside a named region, so "the bank in Yew" is expressible
     // without hard-coding which bank that is.
     const wm::Place* NearestPlaceWithServiceInRegion(wm::Service s,

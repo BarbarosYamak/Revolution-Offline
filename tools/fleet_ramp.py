@@ -14,6 +14,7 @@ import re
 import secrets
 import shutil
 import subprocess
+import sys
 import time
 
 BOT = Path(__file__).resolve().parents[1]
@@ -72,7 +73,8 @@ def prepare():
             while name.lower() in used:
                 name = next(names)
             used.add(name.lower())
-            credentials.setdefault(account, secrets.token_hex(12))
+            # Source-X stores at most MAX_ACCOUNT_PASSWORD_ENTER (16) chars.
+            credentials.setdefault(account, secrets.token_hex(8))
             rows.append([name, account, family])
         pools[family] = deque(rows)
     def group(families):
@@ -107,11 +109,16 @@ def memory_free_gib():
     return data.available / 2**30
 
 
-def status(directory):
+def status(directory, verbose=True):
     results = []
-    for path in directory.glob('*.console.txt'):
+    admitted = json.loads((directory / 'admitted.json').read_text())
+    for name in admitted:
+        path = directory / (name + '.console.txt')
         text = path.read_text(errors='replace')
+        error = (directory / (name + '.err.txt')).read_text(errors='replace')
         results.append({'name': path.name.removesuffix('.console.txt'),
+                        'in_world': 'needs considered:' in text,
+                        'login_denied': 'LOGIN DENIED' in error,
                         'logged_out': 'event logout_complete: acked' in text,
                         'spins': text.count('goal_spinning='),
                         'deaths': text.count('event death_location:'),
@@ -122,7 +129,50 @@ def status(directory):
                         'summary': re.findall(r'session_summary .*', text)[-1:]})
     data = {'free_memory_gib': round(memory_free_gib(), 2), 'bots': results}
     (directory / 'status.json').write_text(json.dumps(data, indent=2))
-    print(json.dumps(data, indent=2))
+    if verbose:
+        print(json.dumps(data, indent=2))
+    return data
+
+
+def watch(directory):
+    """One run only: record progress, grade after logout, never relaunch bots."""
+    admitted = json.loads((directory / 'admitted.json').read_text())
+    deadline = max(row['at'] + (row['minutes'] + 20) * 60 for row in admitted.values())
+    while True:
+        data = status(directory, verbose=False)
+        done = sum(row['logged_out'] for row in data['bots'])
+        print(f'{time.strftime("%H:%M:%S")} {done}/{len(admitted)} logged out; '
+              f'{data["free_memory_gib"]} GiB free', flush=True)
+        if done == len(admitted) or time.time() >= deadline:
+            break
+        time.sleep(30)
+    combat_count = sum(r['family'] in COMBAT for r in admitted.values())
+    lines = ['# Bot validation results', '',
+             f'{len(admitted)} accounts: {combat_count} combat / {len(admitted) - combat_count} crafting.', '',
+             '| Character | Profession | Result |', '|---|---|---|']
+    for row in data['bots']:
+        name = row['name']
+        config = admitted[name]
+        if not row['logged_out']:
+            verdict = 'Incomplete: no acknowledged logout before monitor deadline'
+        else:
+            after = BOT / 'bot_data' / (config['account'] + '.' + name) / 'state.json'
+            result = subprocess.run([sys.executable, str(BOT / 'tools/grade_life.py'),
+                str(directory / (name + '.console.txt')),
+                str(directory / (name + '.state_before.json')), str(after),
+                '--family', config['family']], capture_output=True, text=True,
+                encoding='utf-8', errors='replace')
+            (directory / (name + '.grade.txt')).write_text(result.stdout + result.stderr)
+            scores = re.findall(r'^.*\d+/\d+.*PASS.*$', result.stdout, re.M)
+            failing = re.findall(r'^FAILING RULES:.*$', result.stdout, re.M)
+            verdict = '; '.join(scores + failing) or f'grader exit {result.returncode}; see grade file'
+        lines.append(f'| {name} | {config["family"]} | {verdict} |')
+    lines += ['', f'Acknowledged logouts: {done}/{len(admitted)}.',
+              f'Deaths: {sum(r["deaths"] for r in data["bots"])}. '
+              f'Confirmed kills: {sum(r["kills"] for r in data["bots"])}.',
+              'A process launch or a completed run alone is not an archetype pass.']
+    (directory / 'results.md').write_text('\n'.join(lines), encoding='utf-8')
+    print('Wrote results.md and per-character grades.', flush=True)
 
 
 def admit(roster, directory, target, minutes):
@@ -165,6 +215,8 @@ def admit(roster, directory, target, minutes):
         record.write_text(json.dumps(admitted, indent=2))
         print(f'admitted {len(admitted)}/{target}: {name} ({family})', flush=True)
         time.sleep(3)
+        if 'LOGIN DENIED' in (directory / (name + '.err.txt')).read_text(errors='replace'):
+            raise RuntimeError('admission paused: login rejected for ' + name)
 
 
 if __name__ == '__main__':
@@ -173,14 +225,17 @@ if __name__ == '__main__':
     parser.add_argument('--admit', type=int, choices=(20, 50, 100))
     parser.add_argument('--minutes', type=int, default=45)
     parser.add_argument('--status', action='store_true')
+    parser.add_argument('--watch', action='store_true')
     args = parser.parse_args()
     roster = prepare()
-    if args.admit or args.status:
+    if args.admit or args.status or args.watch:
         if not args.directory:
             parser.error('--directory is required for admission/status')
         if args.admit:
             admit(roster, args.directory.resolve(), args.admit, args.minutes)
         if args.status:
             status(args.directory.resolve())
+        if args.watch:
+            watch(args.directory.resolve())
     else:
         print('Prepared:', len(roster), 'accounts;', dict(Counter(r[2] for r in roster)))

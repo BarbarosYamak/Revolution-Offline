@@ -3509,7 +3509,12 @@ void Client::OnTargetArmedForAction() {
         LogInfo("[TARGET] auto-reply for %s -> 0x%08X\n",
                 act::KindName(action_.kind), action_.destination);
         ActionTargetObject(action_.destination);
-        action_.awaitingTarget = false;
+        if (action_.kind == act::Kind::UseSkill && action_.id == 30 && action_.subject) {
+            action_.destination = action_.subject;
+            action_.subject = 0;
+        } else {
+            action_.awaitingTarget = false;
+        }
         // The action itself is confirmed by its own effect (message, mana,
         // bandage completion); the target reply is only a step along the way.
     }
@@ -3528,6 +3533,16 @@ void Client::ActionUseSkill(int skillId, u32 targetSerial) {
     u8 buf[64];
     const usize n = build::UseSkill(buf, skillId);
     Send(buf, n, "0x12 UseSkill");
+}
+
+void Client::ActionApplyPoison(u32 weapon, u32 potion) {
+    if (!weapon || !potion) {
+        BeginAction(act::Kind::UseSkill, kSkillTimeoutMs);
+        FinishAction(act::Result::InvalidState, "poisoning needs weapon and potion");
+        return;
+    }
+    ActionUseSkill(30, weapon);
+    action_.subject = potion; // Sphere asks for the weapon first, then the potion.
 }
 
 void Client::ActionCastSpell(int spellId, u32 targetSerial) {
@@ -4331,6 +4346,10 @@ void Client::ActionOnSysMessage(const char* text, u32 sourceSerial, u8 type) {
     // attempt (~2 s) -- and a failed attempt still earns skill, because
     // CChar::Skill_Fail calls Skill_Experience just as success does.
     if (action_.kind == act::Kind::UseSkill) {
+        if (action_.id == 30 && (contains("you apply the poison") || contains("fail to apply a sufficient dose"))) {
+            FinishAction(act::Result::Success, text);
+            return;
+        }
         // Gathering. Sphere reports the outcome as text (core/messages.scp
         // fishing_*), so these phrases are the result packet.
         if (contains("you pull out")) {

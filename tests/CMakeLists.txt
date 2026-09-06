@@ -708,3 +708,8 @@ add_executable(life_harness life_harness.cpp)
 target_link_libraries(life_harness PRIVATE uo_client_core)
 
 add_test(NAME life_harness COMMAND life_harness ${CMAKE_CURRENT_BINARY_DIR})
+
+# Separate process: SharedWorld deliberately loads exactly one atlas per process.
+add_executable(life_world_harness life_world_harness.cpp)
+target_link_libraries(life_world_harness PRIVATE uo_client_core)
+add_test(NAME life_world_harness COMMAND life_world_harness ${CMAKE_CURRENT_BINARY_DIR})

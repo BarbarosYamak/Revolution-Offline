@@ -342,6 +342,7 @@ PracticeBy HowToPractise(int skillId) {
         case rules::kMagery:
         case rules::kEvaluatingIntel:
             return PracticeBy::Casting;
+        case rules::kPoisoning:
         case rules::kMeditation:
             // Hiding and Stealth belong here too; this build's rules.h
             // does not name them yet, so they fall to Working rather
@@ -746,7 +747,8 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
             // off, and at 46 s this need re-picked GET_TOOL over the walk it
             // had asked for -- Xerxes, 2026-09-05 13:17, twice a minute.
             const bool coinComing = obs.coinWanted > obs.goldOnHand;
-            add(NeedKind::NeedTool, 0.9, t.name,
+            const bool poisonTool = cfg.profession->id == "mage" && t.name == "dagger";
+            add(NeedKind::NeedTool, poisonTool ? 0.10 : 0.9, t.name,
                 coinComing ? "waiting for the bank trip that fetches the coin"
                            : "this life cannot do its own work without one",
                 supplier ? Fmt("known supplier '%s' at %d,%d",
@@ -1939,11 +1941,13 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
             // Not dangerous, not blocked by the server -- simply wasted. The
             // character must move before it is worth a single cast.
             const bool canGain = !obs.inNoGainRegion;
-            const bool ready = canGain;
+            const bool ready = canGain && (t.skillId != rules::kPoisoning ||
+                (market::QtyOf(obs.pack, "i_potion_poison") > 0 &&
+                 market::QtyOf(obs.pack, "i_dagger") > 0));
             add(NeedKind::NeedPractice, 0.20 + 0.25 * gap, SkillName(t.skillId),
                 ready ? "below target, and this skill is raised by using it"
-                      : "below target, but no skill advances in this "
-                        "region -- move somewhere ordinary first",
+                      : !canGain ? "no skill advances in this region"
+                                 : "Poisoning practice needs a dagger and a poison potion",
                 Fmt("%s %.1f -> %.1f mana=%d no_gain_region=%d",
                     SkillName(t.skillId), have / 10.0, t.tenths / 10.0,
                     obs.mana, obs.inNoGainRegion ? 1 : 0),

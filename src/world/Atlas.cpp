@@ -459,6 +459,25 @@ const Place* Atlas::NearestHuntingGround(i32 x, i32 y, i32 maxDist) const {
     return NearestPlaceOfCategory(wm::PlaceCategory::Graveyard, x, y, maxDist);
 }
 
+std::vector<wm::Point> Atlas::HuntingPatrol(const wm::Place& place) const {
+    std::vector<wm::Point> points;
+    const Region* region = RegionById(place.regionId.c_str());
+    if (!region) return {place.position};
+    for (const wm::Rect& r : region->rects) {
+        // Ten-tile lanes overlap the twelve-tile prey scan. Stay off boundaries.
+        int row = 0;
+        for (i32 y = r.y1 + 3; y <= r.y2 - 3; y += 10, ++row) {
+            std::vector<wm::Point> lane;
+            for (i32 x = r.x1 + 3; x <= r.x2 - 3; x += 10)
+                lane.push_back({x, y, place.position.z, place.position.map});
+            if (row % 2) std::reverse(lane.begin(), lane.end());
+            points.insert(points.end(), lane.begin(), lane.end());
+        }
+    }
+    if (points.empty()) points.push_back(place.position);
+    return points;
+}
+
 const Place* Atlas::NearestPlaceWithServiceInRegion(wm::Service s,
                                                     const char* regionId,
                                                     i32 x, i32 y) const {

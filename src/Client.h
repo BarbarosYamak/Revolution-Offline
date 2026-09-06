@@ -348,6 +348,7 @@ public:
 
     // Skills and magery
     void ActionUseSkill(int skillId, u32 targetSerial = 0);
+    void ActionApplyPoison(u32 weapon, u32 potion);
     void ActionCastSpell(int spellId, u32 targetSerial = 0);
     // Cast the spell carried by a scroll. Sphere treats a scroll as the caster
     // (src/game/clients/CClientUse.cpp:350-371), so this is the route a player

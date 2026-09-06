@@ -940,6 +940,12 @@ constexpr i32 kArrowCarry = 100;
 // Fifty of each is a hunt's worth at one to two per cast; the rest stays in
 // the box, where full loot on death cannot reach it.
 constexpr i32 kReagentCarry = 50;
+inline i32 BankInputReserve(bool caster, const std::string& item, i32 craftBatch) {
+    const i32 work = craftBatch * 2;
+    return caster && item.compare(0, 7, "i_reag_") == 0 && work < kReagentCarry
+        ? kReagentCarry : work;
+}
+
 constexpr i32 kArrowReserve = 400;
 inline bool NeedsArrowStock(const prof::Profession& p, const Observation& obs) {
     return p.combatStrategy == CombatStrategyId::Ranged &&

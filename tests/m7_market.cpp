@@ -1436,6 +1436,13 @@ void TestDemandSideWtb() {
     Check(ms && lj, "the smith and the lumberjack exist");
     if (!ms || !lj) return;
 
+    for (const auto& profession : prof::All()) {
+        const auto wants = PlayerMarketWants(profession, {}, 100000, TradePolicy{}, nullptr);
+        for (const auto& w : wants)
+            Check(w.item.compare(0, 9, "i_scroll_") != 0 && w.item != "i_yarn_ball",
+                  "no profession requests scrolls or yarn from players");
+    }
+
     // --- the wire form, both directions ------------------------------------
     TradeIntent want;
     want.item = "i_log"; want.qty = 20; want.pricePerUnit = 4;

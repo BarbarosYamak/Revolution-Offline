@@ -428,7 +428,6 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
         // Keep a working batch and box the rest, so the next errand can
         // actually be walked to.
         if (loadDemandsIt && needCfg_.profession) {
-            const i32 keep = needCfg_.craftBatch * 2;
             // WHAT THIS LIFE CONSUMES, from the RECIPES rather than from the
             // hand-written list. The scribe has no `consumes` at all -- its
             // inputs were only ever implied by what it makes -- so a list-only
@@ -449,6 +448,9 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
                 }
             }
             for (const std::string& input : inputs) {
+                const i32 keep = BankInputReserve(
+                    needCfg_.profession->combatStrategy == CombatStrategyId::Mage,
+                    input, needCfg_.craftBatch);
                 // Find and count the same NAME -- see the produces loop above.
                 i32 amount = 0;
                 const u32 serial =

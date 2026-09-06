@@ -79,6 +79,22 @@ int main(int argc, char** argv) {
         }
     }
 
+    Section("patrol covers the whole Britain graveyard");
+    {
+        const auto* place = atlas.PlaceById("britain_graveyard_graveyard");
+        const auto* region = atlas.RegionById("a_britain_graveyard_1");
+        if (place && region) {
+            const auto points = atlas.HuntingPatrol(*place);
+            bool northwest = false, south = false;
+            for (const auto& point : points) {
+                Check(region->Contains(point.x, point.y), "patrol stays inside the cemetery");
+                northwest |= point.x < 1350 && point.y < 1460;
+                south |= point.y > 1494;
+            }
+            Check(northwest && south, "search reaches northwest and southern extension, beyond entrance");
+        } else Check(false, "Britain graveyard geometry exists");
+    }
+
     Section("refuses when the atlas has nothing in range");
     {
         // Yew Graveyard is ~178 Chebyshev tiles from Yew's own town centre
