@@ -1,0 +1,61 @@
+start: Kharain is a miner_smith and lives in Minoc -> starting city index 1
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+[02:10:09.374] WARN  [g_Kharain] [0x21] move REJECTED seq=18; server says (2556,499,0) facing=4
+[02:10:10.097] WARN  [g_Kharain] [0x21] move REJECTED seq=0; server says (2556,499,0) facing=4
+[02:10:11.067] WARN  [g_Kharain] [0x21] move REJECTED seq=3; server says (2555,499,0) facing=4
+[02:10:11.804] WARN  [g_Kharain] [0x21] move REJECTED seq=0; server says (2555,499,0) facing=4
+[02:11:24.063] WARN  [g_Kharain] [0x21] move REJECTED seq=7; server says (2525,375,23) facing=0
+[02:11:31.506] WARN  [g_Kharain] [ACTION_RESULT] use_object invalid_state (1ms) SMELT 66.5 superseded BUY_MOUNT 0.0
+[02:11:37.020] WARN  [g_Kharain] [bot] no path to (2514,408) avoiding 0 block(s); stopping (search 1236228.8us)
+[02:11:37.020] WARN  [g_Kharain] [bot] start (2522,373,23) exits: open=6 terrain=1 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 207 item(s), 1 mobile(s))
+[02:11:39.540] WARN  [g_Kharain] [bot] no path to (2514,408) avoiding 0 block(s); stopping (search 1184616.7us)
+[02:11:39.540] WARN  [g_Kharain] [bot] start (2522,373,23) exits: open=6 terrain=1 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 207 item(s), 1 mobile(s))
+[02:11:42.126] WARN  [g_Kharain] [bot] no path to (2514,408) avoiding 0 block(s); stopping (search 1247451.2us)
+[02:11:42.126] WARN  [g_Kharain] [bot] start (2522,373,23) exits: open=6 terrain=1 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 207 item(s), 1 mobile(s))
+[02:15:55.756] WARN  [g_Kharain] [0x21] move REJECTED seq=20; server says (1438,1693,0) facing=5
+[02:15:55.772] WARN  [g_Kharain] [bot] 0x20 resync; aborting path
+[02:16:15.989] WARN  [g_Kharain] [ACTION_RESULT] unequip invalid_state (1ms) GET_TOOL 468.0 superseded CRAFT 65.0
+[02:17:56.821] WARN  [g_Kharain] [0x21] move REJECTED seq=12; server says (1438,1693,0) facing=5
+[02:17:56.835] WARN  [g_Kharain] [bot] 0x20 resync; aborting path
+[02:19:47.584] WARN  [g_Kharain] [0x21] move REJECTED seq=14; server says (1438,1693,0) facing=5
+[02:19:47.599] WARN  [g_Kharain] [bot] 0x20 resync; aborting path
+[02:21:05.522] WARN  [g_Kharain] [0x21] move REJECTED seq=45; server says (3623,2139,86) facing=1
+[02:21:06.230] WARN  [g_Kharain] [0x21] move REJECTED seq=0; server says (3623,2139,86) facing=1
+[02:22:53.508] WARN  [g_Kharain] [0x21] move REJECTED seq=52; server says (2555,501,1) facing=0
+[02:22:54.250] WARN  [g_Kharain] [0x21] move REJECTED seq=0; server says (2555,501,1) facing=0
+[02:22:54.912] WARN  [g_Kharain] [0x21] move REJECTED seq=3; server says (2556,501,0) facing=0
+[02:22:55.657] WARN  [g_Kharain] [0x21] move REJECTED seq=0; server says (2556,501,0) facing=0
+[02:23:04.949] WARN  [g_Kharain] [ACTION_RESULT] use_object timeout (no server confirmation)
+[02:23:21.890] WARN  [g_Kharain] [ACTION_RESULT] use_object invalid_state (2076ms) this life produces its own input
+[02:23:27.886] WARN  [g_Kharain] [ACTION_RESULT] use_object timeout (no server confirmation)
+[02:24:05.267] WARN  [g_Kharain] [ACTION_RESULT] use_object invalid_state (2092ms) previous goal abandoned: needs coin from the bank
+[02:24:09.409] WARN  [g_Kharain] [0x21] move REJECTED seq=16; server says (2555,499,0) facing=4
+[02:24:10.149] WARN  [g_Kharain] [0x21] move REJECTED seq=0; server says (2555,499,0) facing=4
+[02:24:10.826] WARN  [g_Kharain] [0x21] move REJECTED seq=3; server says (2556,499,0) facing=4
+[02:24:11.597] WARN  [g_Kharain] [0x21] move REJECTED seq=0; server says (2556,499,0) facing=4
+[02:25:39.358] WARN  [g_Kharain] [0x21] move REJECTED seq=6; server says (2458,453,15) facing=3
+[02:25:39.359] WARN  [g_Kharain] [bot] 0x20 resync; aborting path
+[02:28:05.208] WARN  [g_Kharain] [bot] goal (1424,1690) is not walkable; snapping to nearest standable tile (1425,1689,0) instead
+[02:28:25.675] WARN  [g_Kharain] [0x21] move REJECTED seq=18; server says (1438,1693,0) facing=5
+[02:28:25.675] WARN  [g_Kharain] [bot] 0x20 resync; aborting path
+[02:28:45.546] WARN  [g_Kharain] [ACTION_RESULT] unequip invalid_state (1ms) GET_TOOL 468.0 superseded CRAFT 65.0
+[02:30:17.041] WARN  [g_Kharain] [0x21] move REJECTED seq=11; server says (1360,1778,15) facing=3
+[02:30:17.056] WARN  [g_Kharain] [bot] 0x20 resync; aborting path
+[02:31:54.215] WARN  [g_Kharain] [0x21] move REJECTED seq=52; server says (2555,501,1) facing=0
+[02:31:54.929] WARN  [g_Kharain] [0x21] move REJECTED seq=0; server says (2555,501,1) facing=0
+[02:31:55.648] WARN  [g_Kharain] [0x21] move REJECTED seq=3; server says (2556,501,0) facing=0
+[02:31:56.379] WARN  [g_Kharain] [0x21] move REJECTED seq=0; server says (2556,501,0) facing=0
+[02:32:05.533] WARN  [g_Kharain] [ACTION_RESULT] use_object timeout (no server confirmation)
+[02:33:43.543] WARN  [g_Kharain] [ACTION_RESULT] use_object invalid_state (2078ms) this life produces its own input
+[02:34:23.743] WARN  [g_Kharain] [ACTION_RESULT] vendor_sell invalid_state (16ms) CRAFT 65.0 superseded EARN_GOLD 0.0
+[02:35:18.805] WARN  [g_Kharain] [0x21] move REJECTED seq=37; server says (2555,501,1) facing=0
+[02:35:19.538] WARN  [g_Kharain] [0x21] move REJECTED seq=0; server says (2555,501,1) facing=0
+[02:35:20.274] WARN  [g_Kharain] [0x21] move REJECTED seq=3; server says (2556,501,0) facing=0
+[02:35:21.031] WARN  [g_Kharain] [0x21] move REJECTED seq=0; server says (2556,501,0) facing=0
+[02:35:30.239] WARN  [g_Kharain] [ACTION_RESULT] use_object timeout (no server confirmation)
+[02:35:46.629] WARN  [g_Kharain] [ACTION_RESULT] use_object invalid_state (2092ms) this life produces its own input
+[02:36:01.949] WARN  [g_Kharain] [ACTION_RESULT] use_object timeout (no server confirmation)
+[02:37:49.948] WARN  [g_Kharain] [ACTION_RESULT] use_object invalid_state (2093ms) this life produces its own input
+[02:37:55.924] WARN  [g_Kharain] [ACTION_RESULT] use_object timeout (no server confirmation)
+[02:39:18.130] WARN  [g_Kharain] [ACTION_RESULT] use_object timeout (no server confirmation)

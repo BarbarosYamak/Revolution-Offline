@@ -1,0 +1,59 @@
+start: Odessa is a merchant_tinker and lives in Britain -> starting city index 2
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+[02:10:01.921] WARN  [g_Odessa] [bot] 0x20 resync; aborting path
+[02:10:17.047] WARN  [g_Odessa] [ACTION_RESULT] use_object rejected (0ms) You can't use this where it is.
+[02:10:23.091] WARN  [g_Odessa] [ACTION_RESULT] use_object timeout (no server confirmation)
+[02:10:27.189] WARN  [g_Odessa] [ACTION_RESULT] use_object timeout (no server confirmation)
+[02:10:31.309] WARN  [g_Odessa] [ACTION_RESULT] use_object timeout (no server confirmation)
+[02:10:35.430] WARN  [g_Odessa] [ACTION_RESULT] use_object timeout (no server confirmation)
+[02:10:36.685] WARN  [g_Odessa] [ACTION_RESULT] use_object invalid_state (1195ms) no goal was running
+[02:10:53.289] WARN  [g_Odessa] [ACTION_RESULT] use_item_on timeout (no server confirmation)
+[02:12:02.341] WARN  [g_Odessa] [0x21] move REJECTED seq=22; server says (1475,1670,0) facing=5
+[02:12:02.342] WARN  [g_Odessa] [bot] 0x20 resync; aborting path
+[02:13:20.043] WARN  [g_Odessa] [0x21] move REJECTED seq=14; server says (1439,1693,0) facing=3
+[02:13:20.044] WARN  [g_Odessa] [bot] 0x20 resync; aborting path
+[02:14:21.618] WARN  [g_Odessa] [0x21] move REJECTED seq=46; server says (1416,1593,30) facing=0
+[02:14:23.415] WARN  [g_Odessa] [bot] no path to (1416,1592) avoiding 0 block(s); stopping (search 1749744.7us)
+[02:14:23.415] WARN  [g_Odessa] [bot] start (1416,1593,30) exits: open=5 terrain=0 mobile=0 dynamic=3 door=0 blacklist=0 (overlay saw 693 item(s), 4 mobile(s))
+[02:19:25.264] WARN  [g_Odessa] [bot] THREAT (HP 50 -> 45): halting travel (TODO engage/flee/recall)
+[02:19:28.756] WARN  [g_Odessa] [bot] 0x20 resync; aborting path
+[02:19:35.437] WARN  [g_Odessa] [bot] 0x20 resync; aborting path
+[02:19:38.277] WARN  [g_Odessa] [bot] 0x20 resync; aborting path
+[02:19:41.432] WARN  [g_Odessa] [ACTION_RESULT] use_object invalid_state (2599ms) no goal was running
+[02:20:13.159] WARN  [g_Odessa] [bot] THREAT (HP 50 -> 43): halting travel (TODO engage/flee/recall)
+[02:20:15.128] WARN  [g_Odessa] [bot] 0x20 resync; aborting path
+[02:20:16.383] WARN  [g_Odessa] [bot] THREAT (HP 50 -> 44): halting travel (TODO engage/flee/recall)
+[02:20:17.934] WARN  [g_Odessa] [ACTION_RESULT] use_object invalid_state (2617ms) no goal was running
+[02:20:21.007] WARN  [g_Odessa] [bot] 0x20 resync; aborting path
+[02:20:23.808] WARN  [g_Odessa] [bot] 0x20 resync; aborting path
+[02:20:25.189] WARN  [g_Odessa] [bot] THREAT (HP 44 -> 39): halting travel (TODO engage/flee/recall)
+[02:20:32.304] WARN  [g_Odessa] [bot] 0x20 resync; aborting path
+[02:20:36.361] WARN  [g_Odessa] [bot] 0x20 resync; aborting path
+[02:20:55.451] WARN  [g_Odessa] [bot] THREAT (HP 28 -> 23): halting travel (TODO engage/flee/recall)
+[02:22:14.923] WARN  [g_Odessa] [0x21] move REJECTED seq=34; server says (1439,1693,0) facing=7
+[02:22:14.938] WARN  [g_Odessa] [bot] 0x20 resync; aborting path
+[02:22:22.396] WARN  [g_Odessa] [0x21] move REJECTED seq=11; server says (1438,1691,0) facing=3
+[02:22:22.397] WARN  [g_Odessa] [bot] 0x20 resync; aborting path
+[02:22:24.803] WARN  [g_Odessa] [0x21] move REJECTED seq=5; server says (1439,1693,0) facing=3
+[02:22:24.803] WARN  [g_Odessa] [bot] 0x20 resync; aborting path
+[02:23:55.753] WARN  [g_Odessa] [0x21] move REJECTED seq=13; server says (1438,1693,0) facing=5
+[02:23:55.753] WARN  [g_Odessa] [bot] 0x20 resync; aborting path
+[02:24:29.063] WARN  [g_Odessa] [0x21] move REJECTED seq=40; server says (1361,1772,15) facing=5
+[02:24:29.819] WARN  [g_Odessa] [0x21] move REJECTED seq=0; server says (1361,1772,15) facing=5
+[02:26:18.553] WARN  [g_Odessa] [0x21] move REJECTED seq=54; server says (1437,1694,0) facing=1
+[02:26:18.554] WARN  [g_Odessa] [bot] 0x20 resync; aborting path
+[02:27:15.275] WARN  [g_Odessa] [0x21] move REJECTED seq=15; server says (1439,1693,0) facing=3
+[02:27:15.276] WARN  [g_Odessa] [bot] 0x20 resync; aborting path
+[02:28:42.755] WARN  [g_Odessa] [bot] no path to (1416,1592) avoiding 0 block(s); stopping (search 1585292.2us)
+[02:28:42.755] WARN  [g_Odessa] [bot] start (1416,1624,22) exits: open=7 terrain=0 mobile=0 dynamic=1 door=0 blacklist=0 (overlay saw 946 item(s), 1 mobile(s))
+[02:28:45.666] WARN  [g_Odessa] [bot] no path to (1416,1592) avoiding 0 block(s); stopping (search 1582024.7us)
+[02:28:45.666] WARN  [g_Odessa] [bot] start (1416,1624,22) exits: open=7 terrain=0 mobile=0 dynamic=1 door=0 blacklist=0 (overlay saw 946 item(s), 1 mobile(s))
+[02:31:07.660] WARN  [g_Odessa] [bot] THREAT (HP 38 -> 30): halting travel (TODO engage/flee/recall)
+[02:31:09.958] WARN  [g_Odessa] [bot] 0x20 resync; aborting path
+[02:31:12.786] WARN  [g_Odessa] [bot] 0x20 resync; aborting path
+[02:31:17.302] WARN  [g_Odessa] [bot] THREAT (HP 20 -> 13): halting travel (TODO engage/flee/recall)
+[02:31:21.870] WARN  [g_Odessa] [bot] THREAT (HP 7 -> 1): halting travel (TODO engage/flee/recall)
+[02:34:01.325] WARN  [g_Odessa] [bot] 0x20 resync; aborting path
+[02:36:02.503] WARN  [g_Odessa] [0x21] move REJECTED seq=15; server says (1439,1693,0) facing=3
+[02:36:02.519] WARN  [g_Odessa] [bot] 0x20 resync; aborting path

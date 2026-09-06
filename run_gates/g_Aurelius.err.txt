@@ -1,0 +1,28 @@
+start: Aurelius is a mage and lives in Moonglow -> starting city index 3
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+[02:09:41.195] WARN  [g_Aurelius] [bot] goal (1560,1656) is not walkable; snapping to nearest standable tile (1558,1654,20) instead
+[02:09:42.272] WARN  [g_Aurelius] [bot] no path to (1558,1654) avoiding 0 block(s); stopping (search 1074974.6us)
+[02:09:42.272] WARN  [g_Aurelius] [bot] start (1592,1653,10) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 17 item(s), 5 mobile(s))
+[02:09:43.621] WARN  [g_Aurelius] [bot] goal (1560,1656) is not walkable; snapping to nearest standable tile (1558,1654,20) instead
+[02:09:44.746] WARN  [g_Aurelius] [bot] no path to (1558,1654) avoiding 0 block(s); stopping (search 1081356.8us)
+[02:09:44.746] WARN  [g_Aurelius] [bot] start (1592,1653,10) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 17 item(s), 5 mobile(s))
+[02:09:46.087] WARN  [g_Aurelius] [bot] goal (1560,1656) is not walkable; snapping to nearest standable tile (1558,1654,20) instead
+[02:09:47.191] WARN  [g_Aurelius] [bot] no path to (1558,1654) avoiding 0 block(s); stopping (search 1065615.9us)
+[02:09:47.191] WARN  [g_Aurelius] [bot] start (1592,1653,10) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 17 item(s), 5 mobile(s))
+[02:09:54.942] WARN  [g_Aurelius] [0x21] move REJECTED seq=19; server says (1591,1664,10) facing=5
+[02:09:54.942] WARN  [g_Aurelius] [bot] 0x20 resync; aborting path
+[02:11:13.869] WARN  [g_Aurelius] [0x21] move REJECTED seq=28; server says (1427,1540,30) facing=7
+[02:11:14.634] WARN  [g_Aurelius] [0x21] move REJECTED seq=0; server says (1427,1540,30) facing=7
+[02:11:40.297] WARN  [g_Aurelius] [ACTION_RESULT] cast_spell invalid_state (740ms) SURVIVE 900.0 superseded TRAIN_COMBAT 84.5 (emergency preempt)
+[02:11:54.085] WARN  [g_Aurelius] [ACTION_RESULT] cast_spell timeout (no server confirmation)
+[02:12:00.338] WARN  [g_Aurelius] [ACTION_RESULT] cast_spell invalid_state (6191ms) TRAIN_COMBAT 54.5 superseded SURVIVE 0.0
+[02:12:16.773] WARN  [g_Aurelius] [ACTION_RESULT] cast_spell server_failure (445ms) The spell fizzles
+[02:12:20.866] WARN  [g_Aurelius] [ACTION_RESULT] use_object timeout (no server confirmation)
+[02:12:30.631] WARN  [g_Aurelius] [ACTION_RESULT] cast_spell server_failure (538ms) The spell fizzles
+[02:12:36.159] WARN  [g_Aurelius] [ACTION_RESULT] cast_spell server_failure (47ms) The spell fizzles
+[02:12:50.151] WARN  [g_Aurelius] [ITEM] drag cancelled by server: cannot lift that (code 0)
+[02:12:50.152] WARN  [g_Aurelius] [ITEM] drag cancelled by server: unspecified (code 5)
+[02:13:31.786] WARN  [g_Aurelius] [0x21] move REJECTED seq=56; server says (1417,1593,30) facing=7
+[02:13:33.395] WARN  [g_Aurelius] [bot] no path to (1416,1592) avoiding 0 block(s); stopping (search 1559755.3us)
+[02:13:33.395] WARN  [g_Aurelius] [bot] start (1417,1593,30) exits: open=5 terrain=0 mobile=0 dynamic=3 door=0 blacklist=0 (overlay saw 602 item(s), 6 mobile(s))
