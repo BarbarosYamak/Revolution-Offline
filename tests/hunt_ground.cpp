@@ -148,6 +148,62 @@ int main(int argc, char** argv) {
         }
     }
 
+    Section("tiers: a novice never resolves a strong ring, a gated one can");
+    {
+        // The split put lethal undead inside the same Graveyard category as
+        // the weak band (chardef evidence: artifacts/hunt_tier_gate_2026-09-06
+        // .md -- c_skeleton_knight DAM 18,43 vs c_skeleton DAM 3,7), so the
+        // plain resolver has to mean "weak tier" and the strong tier has to be
+        // asked for by name.
+        for (const wm::Place& p : atlas.Places()) {
+            if (p.category != wm::PlaceCategory::Graveyard) continue;
+            const bool band = p.id.size() > 10 &&
+                              p.id.compare(p.id.size() - 10, 10, "_graveyard") == 0;
+            Check(world_atlas::HuntTierOf(p) ==
+                      (band ? world_atlas::HuntTier::Weak
+                            : world_atlas::HuntTier::Strong),
+                  "every graveyard row's tier follows its id, band or ring");
+        }
+
+        // Standing ON the lich lord ring, the untiered call still walks the
+        // novice out to the weak band -- this is the case that killed people.
+        const wm::Place* fromRing = atlas.NearestHuntingGround(1385, 1446);
+        Check(fromRing != nullptr, "a weak band is found from inside the rings");
+        if (fromRing) {
+            Check(fromRing->id == "britain_graveyard_graveyard",
+                  "from the lich lord ring the untiered resolver still returns "
+                  "the weak band, not the ring it is standing in");
+            Check(world_atlas::HuntTierOf(*fromRing) == world_atlas::HuntTier::Weak,
+                  "the untiered resolver is weak-tier by definition");
+        }
+
+        // And from Britain proper.
+        const wm::Place* novice = atlas.NearestHuntingGround(1495, 1629);
+        Check(novice && novice->id == "britain_graveyard_graveyard",
+              "a novice near Britain still gets the weak band");
+
+        // A character that clears the gate can ask for the hard part, and gets
+        // a real strong ring rather than nothing.
+        const wm::Place* strong = atlas.NearestHuntingGroundOfTier(
+            world_atlas::HuntTier::Strong, 1495, 1629);
+        Check(strong != nullptr, "a strong-tier ground is resolvable at all");
+        if (strong) {
+            Check(world_atlas::HuntTierOf(*strong) == world_atlas::HuntTier::Strong,
+                  "the strong-tier resolver returns a strong ring");
+            Check(strong->id != "britain_graveyard_graveyard",
+                  "the strong-tier answer is not the weak band");
+            Check(strong->id.rfind("britain_graveyard_", 0) == 0,
+                  "and it is Britain's own ring, not another city's");
+        }
+
+        // The leash still applies per tier: nothing strong near Yew's newbie
+        // yard, which has no strong ring at all ("NEWBIE YARD, KEEP IT WEAK",
+        // Graveyards_spawns_felucca.scp).
+        Check(atlas.NearestHuntingGroundOfTier(world_atlas::HuntTier::Strong,
+                                               724, 1134, 40) == nullptr,
+              "no strong ring within 40 tiles of the Yew newbie yard");
+    }
+
     Section("refuses when the atlas has nothing in range");
     {
         // Yew Graveyard is ~178 Chebyshev tiles from Yew's own town centre

@@ -44,6 +44,37 @@ constexpr i32 kSeasonedWeaponTenths = 600;
 // character already keeps rather than in a counter invented for it.
 constexpr double kHuntGroundHeatLimit = 3.0;
 
+// MAY THIS CHARACTER ENTER A STRONG RING? Today: nobody may, and that is a
+// stated UNKNOWN rather than a threshold nobody could back.
+//
+// Derivation and the numbers behind it: artifacts/hunt_tier_gate_2026-09-06.md.
+// In short, from runtime/scripts (Graveyards_spawns_felucca.scp for the mix,
+// npcs/c_monster_classic.scp for the chardefs):
+//
+//   weak band   c_skeleton      DAM 3,7   MAXHITS 34-48   Wrestling 45-55
+//   strong ring c_skeleton_knight DAM 18,43 MAXHITS 118-150 Swords/Tactics 85-100
+//   strong ring c_lich          DAM 24,26  MAXHITS 103-120 Magery 70-80
+//   strong ring c_lich_lord     DAM 30,38  MAXHITS 250-303 Magery 90-100
+//
+// Turning that into "strong needs skill >= N, hp >= M" needs this shard's
+// damage-after-armour rule (unverified here) and the character's own AR, which
+// Observation does not carry at all -- it has hp/hpMax, skills and a boolean
+// hasBasicArmor. Measured behaviour points the same way: on 2026-09-06 two
+// plain c_skeleton killed Hector at 51 hp and ~50 weapon skill
+// (sphere2026-09-06.log 02:16), and every recorded contact with a strong
+// undead -- Aurir 03:28, Aurelius 17:57, Vorar 18:40 and 19:07 -- ended in a
+// bot corpse, with no bot ever observed killing one.
+//
+// So the gate is shut. Weak tier is the only tier anything resolves, exactly
+// as before the split, until a measured survival or a verified damage formula
+// says otherwise. The parameters stay in the signature because they are what a
+// real gate will read.
+bool ClearsStrongHuntTier(const Observation& obs, i32 weaponTenths) {
+    (void)obs;
+    (void)weaponTenths;
+    return false;
+}
+
 // The best weapon skill this character actually holds. Wrestling counts --
 // it is a weapon skill on this shard and a bare-handed character fights with
 // it -- but a plan to train Fencing later is not skill today.
@@ -624,6 +655,16 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
         std::string huntPlace;
         if (novice) {
             const wm::Place* early = client.KnownPlace(kNoviceHuntGroundId);
+            // The named id is the weak band; assert it rather than trust it.
+            // If a regenerated atlas ever renames that row into a strong ring
+            // the novice refuses instead of walking into the lich.
+            if (early && world_atlas::HuntTierOf(*early) !=
+                             world_atlas::HuntTier::Weak) {
+                LogLine("hunt_ground=none tier=novice weapon=%.1f "
+                        "reason=\"%s is no longer the weak band of the yard\"",
+                        weaponTenths / 10.0, kNoviceHuntGroundId);
+                early = nullptr;
+            }
             const double heat =
                 early ? state_.memory.DangerHeatAt(early->position.x,
                                                    early->position.y, obs.nowMs)
@@ -659,11 +700,18 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
                 return false;
             }
         } else {
-            // TravelToHuntingGround resolves the nearest graveyard-category
-            // place from world_atlas::Atlas::NearestHuntingGround, and logs
-            // where it is actually going, not just "the nearest graveyard".
+            // WHICH PART OF THE YARD. Since the 2026-09-06 tier split a
+            // graveyard is a weak band PLUS separate strong rings (skeleton
+            // knights, lich, lich lord), all category Graveyard, so the old
+            // "nearest graveyard-category place" could hand a seasoned-but-
+            // ordinary fighter a lich ring. The tier is asked for explicitly.
+            const bool strongOk = ClearsStrongHuntTier(obs, weaponTenths);
+            const auto tier = strongOk ? world_atlas::HuntTier::Strong
+                                       : world_atlas::HuntTier::Weak;
             const auto* atlas = client.WorldAtlas();
-            const auto* ground = atlas ? atlas->NearestHuntingGround(obs.x, obs.y) : nullptr;
+            const auto* ground =
+                atlas ? atlas->NearestHuntingGroundOfTier(tier, obs.x, obs.y)
+                      : nullptr;
             if (ground) {
                 const auto points = atlas->HuntingPatrol(*ground);
                 const auto& point = points[(client.PlayerSerial() + huntPatrolStep_++) % points.size()];
@@ -671,9 +719,14 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
                 huntPlace = ground->name;
             }
             if (travelInFlight_) {
-                LogLine("hunt_ground=%s tier=seasoned weapon=%.1f "
-                        "reason=\"nearest graveyard, and skilled enough for it\"",
-                        huntPlace.c_str(), weaponTenths / 10.0);
+                LogLine("hunt_ground=%s tier=seasoned band=%s weapon=%.1f "
+                        "hp=%d/%d reason=\"%s\"",
+                        huntPlace.c_str(), strongOk ? "strong" : "weak",
+                        weaponTenths / 10.0, obs.hp, obs.hpMax,
+                        strongOk ? "cleared the strong-undead gate"
+                                 : "nearest weak band -- the strong rings are "
+                                   "gated shut, see "
+                                   "artifacts/hunt_tier_gate_2026-09-06.md");
             }
         }
         if (travelInFlight_) {

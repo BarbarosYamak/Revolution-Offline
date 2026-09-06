@@ -455,8 +455,33 @@ const Place* Atlas::NearestPlaceOfCategory(wm::PlaceCategory c, i32 x, i32 y,
     return best;
 }
 
+// The generator's whole-yard band row is `<yard>_<category>`; every strong
+// ring is `<yard>_<creature>`. Suffix, not coordinates -- the atlas is
+// regenerated and the ids survive that, the numbers do not.
+HuntTier HuntTierOf(const Place& p) {
+    static const std::string kBand = "_graveyard";
+    const std::string& id = p.id;
+    const bool band = id.size() > kBand.size() &&
+                      id.compare(id.size() - kBand.size(), kBand.size(), kBand) == 0;
+    return band ? HuntTier::Weak : HuntTier::Strong;
+}
+
 const Place* Atlas::NearestHuntingGround(i32 x, i32 y, i32 maxDist) const {
-    return NearestPlaceOfCategory(wm::PlaceCategory::Graveyard, x, y, maxDist);
+    return NearestHuntingGroundOfTier(HuntTier::Weak, x, y, maxDist);
+}
+
+const Place* Atlas::NearestHuntingGroundOfTier(HuntTier tier, i32 x, i32 y,
+                                               i32 maxDist) const {
+    const Place* best = nullptr;
+    i32 bestD = 0;
+    for (const Place& p : places_) {
+        if (p.category != wm::PlaceCategory::Graveyard) continue;
+        if (HuntTierOf(p) != tier) continue;
+        const i32 d = Chebyshev(x, y, p.position.x, p.position.y);
+        if (maxDist > 0 && d > maxDist) continue;
+        if (!best || d < bestD) { best = &p; bestD = d; }
+    }
+    return best;
 }
 
 std::vector<wm::Point> Atlas::HuntingPatrol(const wm::Place& place) const {

@@ -20,6 +20,32 @@
 
 namespace uo::world_atlas {
 
+// --- hunting-ground tiers --------------------------------------------------
+//
+// A graveyard is not one difficulty. Since the 2026-09-06 tier split (owner
+// ruling: strong undead stay in the yard but in a separate part of it) the
+// atlas carries, per yard, ONE whole-yard band row -- id suffixed with the
+// category, `britain_graveyard_graveyard`, radius 12 -- plus a small ring row
+// per strong spawner: `britain_graveyard_knights` (skeleton knights x2),
+// `britain_graveyard_lich`, `britain_graveyard_lich_lord`, radius 2-5. All of
+// them are category Graveyard, so "the nearest graveyard" would happily walk a
+// novice into the lich ring, which is how the split created a new hazard.
+//
+// Threat evidence for the creatures behind the split, and why no character
+// currently clears the strong tier: artifacts/hunt_tier_gate_2026-09-06.md.
+enum class HuntTier : u8 { Weak = 0, Strong = 1 };
+
+// Tier is read off the ROW, never off coordinates -- the atlas is the source
+// and it is regenerated. The generator names the whole-yard band
+// `<yard>_<category>` and every strong ring `<yard>_<creature>`, so the band
+// is exactly the graveyard place whose id ends in "_graveyard".
+//
+// FAIL DANGEROUS: anything else of category Graveyard reads Strong. An
+// unrecognised ring is assumed lethal because the cost of the other mistake is
+// a corpse and full loot loss, and because a future strong spawner will be
+// named after its creature, not after the category.
+HuntTier HuntTierOf(const wm::Place& p);
+
 class Atlas {
 public:
     Atlas() = default;
@@ -101,7 +127,18 @@ public:
     // can rank the same way; UNKNOWN whether it should auto-resolve there
     // too, or whether sewers stay a deliberate destination). Null when no
     // graveyard is known within `maxDist` (<= 0 means "anywhere").
+    //
+    // WEAK TIER ONLY, since the 2026-09-06 split: the plain call means "the
+    // ground a fighter with no proven strength should walk to", so a caller
+    // that has not thought about tiers cannot be handed a lich ring. Ask
+    // NearestHuntingGroundOfTier for anything else.
     const wm::Place* NearestHuntingGround(i32 x, i32 y, i32 maxDist = 0) const;
+    // Nearest hunting ground OF A GIVEN TIER (see HuntTierOf above). The
+    // Strong overload exists so a character that has cleared a threat gate can
+    // choose the hard part of a yard deliberately; deciding WHO clears that
+    // gate is life-layer policy, not the atlas's business.
+    const wm::Place* NearestHuntingGroundOfTier(HuntTier tier, i32 x, i32 y,
+                                                i32 maxDist = 0) const;
     std::vector<wm::Point> HuntingPatrol(const wm::Place& place) const;
     // Nearest place inside a named region, so "the bank in Yew" is expressible
     // without hard-coding which bank that is.
