@@ -487,17 +487,61 @@ const Place* Atlas::NearestHuntingGroundOfTier(HuntTier tier, i32 x, i32 y,
 std::vector<wm::Point> Atlas::HuntingPatrol(const wm::Place& place) const {
     std::vector<wm::Point> points;
     const Region* region = RegionById(place.regionId.c_str());
-    if (!region) return {place.position};
-    for (const wm::Rect& r : region->rects) {
-        // Ten-tile lanes overlap the twelve-tile prey scan. Stay off boundaries.
-        int row = 0;
-        for (i32 y = r.y1 + 3; y <= r.y2 - 3; y += 10, ++row) {
-            std::vector<wm::Point> lane;
-            for (i32 x = r.x1 + 3; x <= r.x2 - 3; x += 10)
-                lane.push_back({x, y, place.position.z, place.position.map});
-            if (row % 2) std::reverse(lane.begin(), lane.end());
-            points.insert(points.end(), lane.begin(), lane.end());
+    if (!region || region->rects.empty()) return {place.position};
+
+    // A region's AREADEF can bundle ground that has nothing to do with the
+    // selected place. Britain's graveyard is the evidenced case (wave30
+    // triage, 2026-09-07, tools/log_slice.py on Calar/Nairdris/Baelos/Kharos):
+    // the weak band's own anchor (1384,1492) AND its skeletal-knight/lich/
+    // lich-lord rings (y1446-1459) all sit inside the SAME walled RECT
+    // (1336,1443)-(1391,1494) -- the region's other RECT, south of the wall,
+    // has no spawns in it at all. Sweeping every RECT of the region, as this
+    // used to, sent a tier=novice patrol straight through the strong rings.
+    // Scope lanes to (a) the one RECT that actually holds this place -- never
+    // the union -- and (b) that place's own ring size (place.radius, already
+    // the shard's idea of how big this specific spot is; see
+    // DeriveGraveyardStrongTier / ParseVendorSpawns' homeRange convention),
+    // so two places sharing a RECT still get disjoint patrols.
+    const Rect* chosen = nullptr;
+    for (const Rect& r : region->rects) {
+        if (r.Contains(place.position.x, place.position.y)) { chosen = &r; break; }
+    }
+    if (!chosen) {
+        i64 bestD = -1;
+        for (const Rect& r : region->rects) {
+            const i32 cx = std::clamp(place.position.x, r.x1, r.x2);
+            const i32 cy = std::clamp(place.position.y, r.y1, r.y2);
+            const i64 dx = static_cast<i64>(cx) - place.position.x;
+            const i64 dy = static_cast<i64>(cy) - place.position.y;
+            const i64 d = dx * dx + dy * dy;
+            if (bestD < 0 || d < bestD) { bestD = d; chosen = &r; }
         }
+    }
+    if (!chosen) return {place.position};
+
+    const i32 half = place.radius > 0 ? place.radius : 12;
+    const i32 bx1 = std::max(chosen->x1, place.position.x - half);
+    const i32 bx2 = std::min(chosen->x2, place.position.x + half);
+    const i32 by1 = std::max(chosen->y1, place.position.y - half);
+    const i32 by2 = std::min(chosen->y2, place.position.y + half);
+
+    std::fprintf(stderr,
+                 "hunt: patrol lanes scoped to RECT (%d,%d)-(%d,%d) of %s\n",
+                 bx1, by1, bx2, by2, place.name.c_str());
+
+    // Ten-tile lanes overlap the twelve-tile prey scan. Stay off boundaries,
+    // but a tight ring (e.g. the lich lord's, radius 2) can be smaller than a
+    // 3-tile pull-back on each side -- shrink the margin instead of inverting
+    // the range into an empty loop.
+    const i32 mx = std::min(3, (bx2 - bx1) / 2);
+    const i32 my = std::min(3, (by2 - by1) / 2);
+    int row = 0;
+    for (i32 y = by1 + my; y <= by2 - my; y += 10, ++row) {
+        std::vector<wm::Point> lane;
+        for (i32 x = bx1 + mx; x <= bx2 - mx; x += 10)
+            lane.push_back({x, y, place.position.z, place.position.map});
+        if (row % 2) std::reverse(lane.begin(), lane.end());
+        points.insert(points.end(), lane.begin(), lane.end());
     }
     if (points.empty()) points.push_back(place.position);
     return points;

@@ -79,20 +79,93 @@ int main(int argc, char** argv) {
         }
     }
 
-    Section("patrol covers the whole Britain graveyard");
+    Section("a hunting patrol stays inside its place's own RECT");
     {
-        const auto* place = atlas.PlaceById("britain_graveyard_graveyard");
+        // Regression (wave30_bandage20_20260907/triage.md; consoles Calar/
+        // Nairdris/Baelos/Kharos): a tier=novice patrol on the weak band used
+        // to sweep the WHOLE region -- every RECT of a_britain_graveyard_1 --
+        // which reached straight into the strong undead's ring and killed
+        // four characters. The weak band's own anchor (1384,1492) and the
+        // strong rings (1385, y1446-1459) are all inside the SAME RECT
+        // (1336,1443)-(1391,1494) per the atlas / raw AREADEF
+        // (map0_areas.scp:2868-2875); the region's other RECT,
+        // (1336,1494)-(1376,1511), is unrelated ground south of the yard wall
+        // with no spawns in it. So a patrol must be scoped by the place's own
+        // ring (position +/- radius), not merely "which RECT" -- two places
+        // sharing one RECT still need disjoint patrols.
+        const auto* weak = atlas.PlaceById("britain_graveyard_graveyard");
+        const auto* knights = atlas.PlaceById("britain_graveyard_knights");
+        const auto* lich = atlas.PlaceById("britain_graveyard_lich");
+        const auto* lichLord = atlas.PlaceById("britain_graveyard_lich_lord");
         const auto* region = atlas.RegionById("a_britain_graveyard_1");
-        if (place && region) {
-            const auto points = atlas.HuntingPatrol(*place);
-            bool northwest = false, south = false;
-            for (const auto& point : points) {
-                Check(region->Contains(point.x, point.y), "patrol stays inside the cemetery");
-                northwest |= point.x < 1350 && point.y < 1460;
-                south |= point.y > 1494;
+        Check(region && region->rects.size() == 2,
+              "the yard AREADEF still carries its two RECTs");
+
+        if (weak && knights && lich && lichLord && region) {
+            const auto weakPts = atlas.HuntingPatrol(*weak);
+            Check(!weakPts.empty(), "the weak band resolves a patrol");
+            for (const auto& point : weakPts) {
+                Check(region->Contains(point.x, point.y),
+                      "weak patrol stays inside the yard region");
+                // The strong rings top out at y=1462 (knights r3 centered
+                // 1459); a novice patrol must never reach that far north.
+                Check(point.y > 1462,
+                      "weak-band patrol point stays south of the strong rings");
             }
-            Check(northwest && south, "search reaches northwest and southern extension, beyond entrance");
-        } else Check(false, "Britain graveyard geometry exists");
+
+            for (const wm::Place* ring : {knights, lich, lichLord}) {
+                const auto pts = atlas.HuntingPatrol(*ring);
+                Check(!pts.empty(), "a strong ring resolves a patrol");
+                for (const auto& point : pts) {
+                    Check(region->Contains(point.x, point.y),
+                          "strong-ring patrol stays inside the yard region");
+                    const i32 dx = point.x > ring->position.x
+                                       ? point.x - ring->position.x
+                                       : ring->position.x - point.x;
+                    const i32 dy = point.y > ring->position.y
+                                       ? point.y - ring->position.y
+                                       : ring->position.y - point.y;
+                    Check(dx <= ring->radius && dy <= ring->radius,
+                          "strong-ring patrol point stays within that ring's "
+                          "own radius, not the whole yard");
+                }
+            }
+        } else {
+            Check(false, "Britain graveyard tier geometry exists");
+        }
+    }
+
+    Section("a single-RECT region's patrol is unchanged");
+    {
+        // A place whose ring comfortably covers its one-and-only RECT (radius
+        // far bigger than the RECT itself) must still sweep the whole thing,
+        // exactly as before this fix -- the new radius clip must never shrink
+        // coverage for the common, single-RECT case.
+        world_atlas::Atlas single;
+        std::string err;
+        const char* text =
+            "MAP\t0\t7168\t4096\n"
+            "REGION\ta_solo\ttown\t0\t100\t100\t0\tTest\tSolo Yard\n"
+            "RECT\ta_solo\t80\t80\t130\t130\n"
+            "PLACE\tsolo_yard\tgraveyard\ta_solo\t100\t100\t0\t60\t\t\tSolo Yard\n";
+        Check(single.LoadFromText(text, &err), "single-RECT fixture parses");
+        if (err.size()) std::printf("  (%s)\n", err.c_str());
+
+        const auto* place = single.PlaceById("solo_yard");
+        Check(place != nullptr, "solo place resolves");
+        if (place) {
+            const auto pts = single.HuntingPatrol(*place);
+            bool northwest = false, southeast = false;
+            for (const auto& point : pts) {
+                Check(point.x >= 83 && point.x <= 127 && point.y >= 83 &&
+                          point.y <= 127,
+                      "lane stays within the 3-tile margin of the one RECT");
+                northwest |= point.x < 90 && point.y < 90;
+                southeast |= point.x > 120 && point.y > 120;
+            }
+            Check(northwest && southeast,
+                  "coverage still reaches both corners of the single RECT");
+        }
     }
 
     Section("Britain graveyard: strong tier is distinct from the weak band");
