@@ -69,6 +69,35 @@ FAMILIES = {
     "treasure_hunter":    ("hunt", "TRAIN_COMBAT", []),
 }
 SMITH_FAMILIES = ("miner_smith", "full_crafter", "mage_blacksmith")
+# TRAIN-1 fallback set, owner ruling 2026-09-07 (triage_skillgain.md in
+# artifacts/fleet122c30_20260907): "if we are hitting and killing that is
+# fine". Sphere's ADV_RATE gives roughly 150 landed hits per +0.1 skill near
+# skill 50, and fighters get well under two minutes of real melee inside a
+# 30-minute session once travel/survival time is subtracted, so a flat
+# skills-rose test fails 116/122 of them by design, not by defect. This is
+# the same nine ids the owner named, cross-checked against
+# docs/BOT_ARCHETYPE_COVERAGE.md's economy-role column (hunting/PvM/pet
+# combat) and src/life/Professions.cpp -- note three of them
+# (lumberjack_swordsman, tamer, archer) are NOT FARM-2's "hunt" gatherer
+# clause above (their faucets are logs/tame/craft respectively) but do carry
+# a genuine weapon-skill branch per that table, matching the owner's list.
+#
+# No console line records an individual landed hit or swing outcome --
+# grepped src/life/runner/Survive.cpp, src/life/runner/Train.cpp and
+# src/Client.cpp: OnSwing (0x2F) and OnCharacterAnimation (0x6E) only update
+# in-memory war-watchdog state and fire JS events (EmitCombatEvent /
+# EmitAttackedEvent, ClientBindings.cpp), never a LogLine. The two lines that
+# do exist are the confirmed-kill line FARM-2 already counts for the hunt
+# clause (Survive.cpp:40 "hunt: confirmed kill target=...") and the two
+# disengage= lines that close out a fight (Survive.cpp:507 "disengage=yes
+# attackers=...", Core.cpp:1361 "disengage=died at=..."). Per the brief, use
+# kills + those fight-exchange lines as the fallback and say so in the
+# detail text. Caveat carried into the detail string: disengage=yes can also
+# fire from a crowd-size retreat at 100% health with the target untouched
+# (Survive.cpp:491-500, Hector 2026-09-07), so it is weaker evidence than a
+# kill -- included only because no stronger per-hit line exists.
+COMBAT_TRAIN = ("archer", "fencer", "macer", "mage", "warlock", "pk",
+                "lumberjack_swordsman", "tamer", "treasure_hunter")
 TRAIN_GOALS = ("TRAIN_AT_NPC", "TRAIN_COMBAT", "PRACTICE_SKILL")
 # STOCK-4 exemptions: a consumable may be bought as often as it is used up.
 CONSUMABLE = re.compile(r"^i_(bandage|potion_|reag_|bread_|food_|kindling|bottle_empty|cloth|thread)")
@@ -206,7 +235,20 @@ def main():
     r.add("FARM-5", not far, "coords with x>=%d: %d" % (LOST_LANDS_X, len(far)), far)
 
     # ---- TRAIN -----------------------------------------------------------
-    r.add("TRAIN-1", sk_b > sk_a, "skills %.1f->%.1f" % (sk_a, sk_b), summ)
+    if a.family in COMBAT_TRAIN:
+        # Fallback evidence set (see COMBAT_TRAIN comment above): a kill or a
+        # fight-ending disengage= line stands in for a skill-cap rise, since
+        # no per-hit/swing line exists to prove landed blows directly.
+        kills = find(lines, r"hunt: confirmed kill target='")
+        disengage = find(lines, r"disengage=(yes|died)")
+        ok1 = sk_b > sk_a or bool(kills) or bool(disengage)
+        r.add("TRAIN-1", ok1,
+              "skills %.1f->%.1f, kills %d, disengage=%d (no landed-hit line "
+              "exists; kills+disengage used, owner ruling 2026-09-07)"
+              % (sk_a, sk_b, len(kills), len(disengage)),
+              kills + disengage or summ)
+    else:
+        r.add("TRAIN-1", sk_b > sk_a, "skills %.1f->%.1f" % (sk_a, sk_b), summ)
 
     # OUTCOMES ONLY. `practice: using X to raise it` was an ATTEMPT log --
     # Selene matched it ten times with Meditation frozen at 20.0 all session
