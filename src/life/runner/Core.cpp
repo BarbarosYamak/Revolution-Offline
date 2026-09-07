@@ -1228,6 +1228,30 @@ void Runner::BumpHuntEngageTries(u32 serial) {
     huntEngageTries_.emplace_back(serial, 1);
 }
 
+double Runner::HuntEngageStartHp(u32 serial) const {
+    for (const auto& e : huntEngageStartHp_)
+        if (e.first == serial) return e.second;
+    return -1.0;
+}
+
+void Runner::SetHuntEngageStartHp(u32 serial, double hpFrac) {
+    // FIRST WRITE WINS. The anchor must stay put across every try in one
+    // budget window, or a hp reading taken mid-fight would understate how
+    // much damage has actually landed since the target was first engaged.
+    for (const auto& e : huntEngageStartHp_)
+        if (e.first == serial) return;
+    huntEngageStartHp_.emplace_back(serial, hpFrac);
+}
+
+void Runner::ResetHuntEngageTries(u32 serial) {
+    for (auto it = huntEngageTries_.begin(); it != huntEngageTries_.end(); ++it) {
+        if (it->first == serial) { huntEngageTries_.erase(it); break; }
+    }
+    for (auto it = huntEngageStartHp_.begin(); it != huntEngageStartHp_.end(); ++it) {
+        if (it->first == serial) { huntEngageStartHp_.erase(it); break; }
+    }
+}
+
 bool Runner::IsHuntExcluded(u32 serial) const {
     for (u32 s : huntExcludedThisTrip_)
         if (s == serial) return true;
@@ -1239,10 +1263,14 @@ void Runner::MarkHuntExcluded(u32 serial) {
     for (auto it = huntEngageTries_.begin(); it != huntEngageTries_.end(); ++it) {
         if (it->first == serial) { huntEngageTries_.erase(it); break; }
     }
+    for (auto it = huntEngageStartHp_.begin(); it != huntEngageStartHp_.end(); ++it) {
+        if (it->first == serial) { huntEngageStartHp_.erase(it); break; }
+    }
 }
 
 void Runner::ClearHuntEngageState() {
     huntEngageTries_.clear();
+    huntEngageStartHp_.clear();
     huntExcludedThisTrip_.clear();
 }
 

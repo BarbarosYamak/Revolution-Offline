@@ -376,6 +376,19 @@ std::vector<u8> MakeMobName(u32 serial, const char* name) {
     return p;
 }
 
+// 0xA1 Update Mobile Hits (9B fixed): cmd(1) serial(4 BE) maxHp(2 BE)
+// curHp(2 BE) (Client.cpp OnMobileHp). For a foreign serial this is the
+// only client-visible evidence a hit landed on it -- Source-X sends no
+// per-swing packet.
+std::vector<u8> MakeMobileHp(u32 serial, u16 maxHp, u16 curHp) {
+    std::vector<u8> p(9, 0);
+    p[0] = 0xA1;
+    StoreBE32(&p[1], serial);
+    StoreBE16(&p[5], maxHp);
+    StoreBE16(&p[7], curHp);
+    return p;
+}
+
 // 0x6F SECURE_TRADE_OPEN (action 0): partner(4) myContainer(4)
 // theirContainer(4) flag(1) name[30].
 std::vector<u8> MakeTradeOpen(u32 partner, u32 myContainer, u32 theirContainer,
@@ -1867,6 +1880,128 @@ int main(int argc, char** argv) {
               "opening attack -- DoSurvive owns it now, not the picker");
         Check(!life::RunnerHarnessAccess::IsHuntExcludedForTest(runner, foe),
               "a retaliating target is never excluded");
+    }
+
+    // --- a target that is taking real damage but never retaliates is NOT
+    // written off, even past the 3-try budget (owner brief 2026-09-07, live
+    // wave fleet122d30_20260907: "giving up on 'Chickadee'"/"'Rat'" excluded
+    // two animals mid-fight -- correct for Spectre, wrong for a fleeing or
+    // dying target we are actually hitting). The only client-visible proof a
+    // hit landed is the target's own health bar (0xA1), since Source-X sends
+    // no per-swing packet. -----------------------------------------------
+    {
+        Client::Config config{};
+        config.loginHost = "127.0.0.1";
+        config.username = config.password = "offline_world";
+        config.version = "2.0.7";
+        config.sessionTag = "hunt_engage_damage_no_retaliate";
+        config.atlasPath = atlasPath.c_str();
+        config.navgridPath = gridPath.c_str();
+        auto client = std::make_unique<Client>(config);
+        client->SetOfflineForTest(true);
+        client->SetInWorldForTest();
+        client->SetClockForTest(1000000);
+
+        life::Runner runner;
+        life::RunnerConfig rc;
+        rc.dataRoot = root + "/hunt_engage_damage_no_retaliate";
+        rc.accountName = "offline_world";
+        rc.characterName = "hunt_engage_damage_no_retaliate";
+        rc.professionId = "fencer";
+        std::string error;
+        Check(runner.Configure(rc, &error), error.c_str());
+
+        Check(client->WorldKnowledgeReady(), "real Client loads atlas and grid");
+        Position(*client, 452, 450);
+        Check(client->CurrentRegion() && !client->CurrentRegion()->flags.guarded,
+              "hunting ground for this fixture is unguarded");
+        life::RunnerHarnessAccess::CoolGearErrandForTest(runner, 1000000);
+
+        const u32 foe = 0x40200003u;
+        SpawnHostile(*client, foe, 453, 450, 3);
+        auto nm = MakeMobName(foe, "Harness Rat");
+        client->DispatchPacketForTest(nm.data(), nm.size());
+        // Full health before the opening attack, so the FIRST engage attempt
+        // anchors the exchange check at 100%.
+        auto fullHp = MakeMobileHp(foe, 50, 50);
+        client->DispatchPacketForTest(fullHp.data(), fullHp.size());
+
+        life::Observation obs;
+        obs.inWorld = true;
+        obs.x = 452; obs.y = 450;
+        obs.hp = obs.hpMax = 100;
+        obs.hostilesNear = 1;
+        obs.underAttack = false;
+        obs.attackersOnMe = 0;
+        obs.bandages = 200;
+        obs.weaponEquipped = true;
+        obs.nowMs = 1000000;
+
+        // Opening attack: anchors HuntEngageStartHp at 100% (50/50). The
+        // pending attack action must be resolved (as the Ghoul fixture does)
+        // or client.ActionBusy() blocks every later tick from ever reaching
+        // the candidate loop again.
+        obs.nowMs += 2500;
+        client->SetClockForTest(obs.nowMs);
+        life::RunnerHarnessAccess::DoTrainCombatForTest(runner, *client, obs);
+        client->CompleteActionForTest(act::Result::Timeout,
+                                      "no swing landed -- test");
+        Check(life::RunnerHarnessAccess::HuntEngageTriesForTest(runner, foe) == 1,
+              "the opening attack counts as one engage attempt");
+
+        // It never retaliates (obs.attackersOnMe stays 0), but it IS taking
+        // damage -- the rat is fleeing at half health, not fighting back.
+        auto dentedHp = MakeMobileHp(foe, 50, 25);
+        client->DispatchPacketForTest(dentedHp.data(), dentedHp.size());
+
+        // Two more attempts (tries 2 and 3): the give-up check only runs
+        // once tries has already reached the budget, so these still fire
+        // unconditionally, same as the never-damaged fixture above.
+        for (int i = 0; i < 2; ++i) {
+            obs.nowMs += 2500;
+            client->SetClockForTest(obs.nowMs);
+            life::RunnerHarnessAccess::DoTrainCombatForTest(runner, *client, obs);
+            client->CompleteActionForTest(act::Result::Timeout,
+                                          "no swing landed -- test");
+        }
+        Check(life::RunnerHarnessAccess::HuntEngageTriesForTest(runner, foe) == 3,
+              "three engage attempts recorded, exactly like the never-"
+              "damaged fixture");
+
+        // The 4th tick is where the never-damaged fixture excludes the
+        // target. Here the health bar has visibly dropped since the first
+        // attack (100% -> 50%), so it must NOT be excluded -- the budget
+        // resets and the fight continues instead.
+        obs.nowMs += 2500;
+        client->SetClockForTest(obs.nowMs);
+        life::RunnerHarnessAccess::DoTrainCombatForTest(runner, *client, obs);
+        Check(!life::RunnerHarnessAccess::IsHuntExcludedForTest(runner, foe),
+              "a target taking damage without retaliating is never excluded");
+        Check(life::RunnerHarnessAccess::CurrentFoeForTest(runner) == foe,
+              "the fight keeps going -- the reset re-attacked the same foe "
+              "this tick instead of walking away from it");
+        Check(life::RunnerHarnessAccess::HuntEngageTriesForTest(runner, foe) == 1,
+              "the try budget was reset to a fresh attempt (this tick's "
+              "re-attack), not left pinned at the old ceiling");
+        client->CompleteActionForTest(act::Result::Timeout,
+                                      "no swing landed -- test");
+
+        // Damage stops landing from here on (the rat has outrun the swing
+        // range, say), so the SAME evidence rule must still give up once a
+        // fresh 3-try budget also shows no further exchange.
+        for (int i = 0; i < 2; ++i) {
+            obs.nowMs += 2500;
+            client->SetClockForTest(obs.nowMs);
+            life::RunnerHarnessAccess::DoTrainCombatForTest(runner, *client, obs);
+            client->CompleteActionForTest(act::Result::Timeout,
+                                          "no swing landed -- test");
+        }
+        obs.nowMs += 2500;
+        client->SetClockForTest(obs.nowMs);
+        life::RunnerHarnessAccess::DoTrainCombatForTest(runner, *client, obs);
+        Check(life::RunnerHarnessAccess::IsHuntExcludedForTest(runner, foe),
+              "once the health bar stops moving too, the same target is "
+              "still eventually written off");
     }
 
     std::printf("%d checks, %d failures\n", checks, failures);

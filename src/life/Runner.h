@@ -556,6 +556,18 @@ private:
     static constexpr int kMaxHuntEngageTries = 3;
     std::vector<std::pair<u32, int>> huntEngageTries_;
     std::vector<u32> huntExcludedThisTrip_;
+    // AN ATTEMPT ONLY COUNTS WHEN NOTHING WAS EXCHANGED (2026-09-07,
+    // fleet122d30_20260907: "giving up on 'Chickadee'"/"'Rat'" excluded two
+    // animals that were fleeing or dying under real damage and had simply
+    // never gotten in range to hit back -- correct for Spectre, wrong for
+    // them). Source-X sends no per-swing packet, so the target's own health
+    // bar dropping since the FIRST attack on this serial is the only
+    // observable proof a hit landed; recorded once per serial (first write
+    // wins) and cleared whenever the budget resets or the trip ends.
+    std::vector<std::pair<u32, double>> huntEngageStartHp_;
+    double HuntEngageStartHp(u32 serial) const;      // -1.0 if unknown
+    void SetHuntEngageStartHp(u32 serial, double hpFrac);
+    void ResetHuntEngageTries(u32 serial);           // damage landed: fresh budget
     i32  HuntEngageTries(u32 serial) const;
     void BumpHuntEngageTries(u32 serial);
     bool IsHuntExcluded(u32 serial) const;

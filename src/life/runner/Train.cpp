@@ -671,13 +671,40 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
                 // (fleet122c30_20260907, "hunt: picked 'Spectre'" x28, zero
                 // swings). Checked here, before ActionAttack, not after.
                 if (HuntEngageTries(c.serial) >= kMaxHuntEngageTries) {
-                    LogLine("hunt: giving up on '%s' 0x%08X after %d tries -- "
-                            "next target", c.name.c_str(), c.serial,
-                            HuntEngageTries(c.serial));
-                    MarkHuntExcluded(c.serial);
-                    if (currentFoe_ == c.serial) currentFoe_ = 0;
-                    nextActionMs_ = obs.nowMs + 500;
-                    return false;
+                    // AN ATTEMPT ONLY COUNTS AGAINST THE TARGET WHEN NOTHING
+                    // WAS EXCHANGED (owner brief 2026-09-07, live wave
+                    // fleet122d30_20260907): "giving up on 'Chickadee'" and
+                    // "giving up on 'Rat'" excluded two animals that fled or
+                    // died while taking real damage and simply never got in
+                    // range to hit back -- correct for Spectre (zero swings
+                    // either way), wrong for them. Source-X sends no
+                    // per-swing packet (0x2F fires once per fight; see
+                    // OnMobileHp/OnMobileAttributes), so the target's own
+                    // health bar dropping since the FIRST attack on this
+                    // serial is the only observable proof a hit landed. If
+                    // it has, the budget resets instead of writing the
+                    // target off.
+                    const double startFrac = HuntEngageStartHp(c.serial);
+                    const double curFrac = (c.hpCur >= 0 && c.hpMax > 0)
+                        ? static_cast<double>(c.hpCur) / c.hpMax : -1.0;
+                    const bool exchanged = startFrac >= 0.0 && curFrac >= 0.0 &&
+                                           (startFrac - curFrac) >= 0.05;
+                    if (exchanged) {
+                        LogLine("hunt: '%s' 0x%08X is taking damage without "
+                                "retaliating (%.0f%%->%.0f%% hp) -- still "
+                                "worth pressing", c.name.c_str(), c.serial,
+                                startFrac * 100.0, curFrac * 100.0);
+                        ResetHuntEngageTries(c.serial);
+                    } else {
+                        LogLine("hunt: giving up on '%s' 0x%08X after %d "
+                                "tries (no exchange) -- next target",
+                                c.name.c_str(), c.serial,
+                                HuntEngageTries(c.serial));
+                        MarkHuntExcluded(c.serial);
+                        if (currentFoe_ == c.serial) currentFoe_ = 0;
+                        nextActionMs_ = obs.nowMs + 500;
+                        return false;
+                    }
                 }
                 const combat::Classification v =
                     combat::Classify(c, me, combat::RevolutionCrimeRules(), policy,
@@ -701,6 +728,12 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
                     if (poison >= 0) poisonOpenedTarget_ = c.serial;
                 }
                 else client.ActionAttack(c.serial);
+                // First write wins (SetHuntEngageStartHp): this anchors the
+                // exchange check above to the hp reading at the START of the
+                // current try budget, not whatever the bar reads on a later
+                // retry.
+                SetHuntEngageStartHp(c.serial, c.hpCur >= 0 && c.hpMax > 0
+                    ? static_cast<double>(c.hpCur) / c.hpMax : -1.0);
                 BumpHuntEngageTries(c.serial);
                 currentFoe_ = c.serial;
                 currentFoeName_ = c.name;
