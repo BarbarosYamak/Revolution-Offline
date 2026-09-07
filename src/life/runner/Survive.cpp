@@ -150,7 +150,7 @@ bool Runner::CallGuardsIfProtected(Client& client, const Observation& obs) {
             "hostile(s) in sight (%d on me) -- calling the guards\"",
             obs.HpFraction() * 100.0, here->name.c_str(), obs.hostilesNear,
             obs.attackersOnMe);
-    client.ActionSay("Guards!");
+    client.ActionSay("Guards");  // bare word: Source-X FindStrWord rejects a trailing "!" (CClientEvent.cpp:1861)
     return true;
 }
 

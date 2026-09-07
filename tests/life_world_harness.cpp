@@ -269,7 +269,7 @@ void OpenBank(Client& client, u32 serial) {
     client.DispatchPacketForTest(packet, sizeof(packet));
 }
 
-// How many "Guards!" shouts the client actually put on the wire (0x03 ascii
+// How many "Guards" shouts the client actually put on the wire (0x03 ascii
 // speech). Asserting on the sent packet, not on a log line, because the
 // packet is the only thing Sphere's guardcall keyword ever sees.
 int GuardShouts(const Client& client) {
@@ -278,7 +278,7 @@ int GuardShouts(const Client& client) {
         if (p.opcode != 0x03) continue;
         const std::string body(reinterpret_cast<const char*>(p.bytes.data()),
                                p.bytes.size());
-        if (body.find("Guards!") != std::string::npos) ++n;
+        if (body.find("Guards") != std::string::npos) ++n;
     }
     return n;
 }
