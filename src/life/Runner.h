@@ -128,6 +128,11 @@ private:
     };
 
     Observation Observe(Client& client, i64 nowMs) const;
+    // The alive<->dead edge, tracked once per tick regardless of phase_. Not
+    // folded into Observe() because Observe() is phase-agnostic and pure
+    // (obsOverride_ replays it verbatim for the offline harness), while this
+    // writes session/persistent counters -- see Tick()'s call site.
+    void        TrackDeathEdge(Client& client, i64 nowMs);
     // Unequip whatever is in the weapon hand, then wear the axe. Two actions,
     // because Sphere will not wear a second weapon over a full hand.
     bool        ArmAxe(Client& client, const Observation& obs);

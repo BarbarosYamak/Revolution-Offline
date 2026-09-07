@@ -160,6 +160,14 @@ std::vector<u8> MakeEquip(u32 item, u16 graphic, u8 layer, u32 mobile) {
     return p;
 }
 
+// 0x1D DELETE_OBJECT (Client.cpp OnDeleteObject, 5 bytes): cmd + serial(4 BE).
+std::vector<u8> MakeDeleteObject(u32 serial) {
+    std::vector<u8> p(5, 0);
+    p[0] = 0x1D;
+    StoreBE32(&p[1], serial);
+    return p;
+}
+
 // 0x1C ASCII_MESSAGE (Client.cpp OnAsciiMessage): serial(4) body(2) type(1)
 // hue(2) font(2) name[30] text (NUL-terminated ASCII). Header is 44 bytes.
 std::vector<u8> MakeAsciiMessage(u32 serial, const char* name, const char* text) {
@@ -681,6 +689,111 @@ void TestSpellbookGumpIsAnOpenNotAClose() {
     }
 }
 
+// ---------------------------------------------------------------------------
+// Dismount/mount: layer-25 equip change IS the reply, and use_object must not
+// wait out its whole 4s deadline for it.
+//
+// Kharain, run_gates/g_Kharain.console.txt ~00:46:52 (2026-09-07): "[ACTION]
+// dismount" -> 16ms later "[move] dismounted ... event mount_state:
+// dismounted" -> 4s later "event action_result: use_object timeout". Six such
+// false timeouts in one 10-minute session, three per mining sitting
+// (Runner::DismountToWork / RemountAfterWork in src/life/runner/Gather.cpp).
+// ---------------------------------------------------------------------------
+void TestDismountFinishesOnMountItemRemoval() {
+    Section("dismount: the mount item leaving layer 25 finishes use_object");
+
+    auto c = MakeConnectedClient();
+    const u32 me    = 0x00012345;
+    const u32 horse = 0x40020001;
+
+    auto login = MakeLoginConfirm(me, 1426, 1687);
+    c->DispatchPacketForTest(login.data(), login.size());
+    auto ride = MakeEquip(horse, 0x3E9F, 25, me);   // layer 25 = kLayerMount
+    c->DispatchPacketForTest(ride.data(), ride.size());
+    Check(c->PlayerIsMounted(), "riding after the equip");
+
+    c->ActionDismount();
+    Check(c->ActionBusy(), "dismount started (double-click self)");
+    Check(c->ActionKind() == act::Kind::UseObject, "dismount is a use_object");
+
+    // Source-X reverses a mount by deleting the layer-25 item and putting the
+    // animal back in the world -- no gump, no text, no confirmation packet of
+    // its own.
+    auto gone = MakeDeleteObject(horse);
+    c->DispatchPacketForTest(gone.data(), gone.size());
+
+    Check(!c->PlayerIsMounted(), "dismounted");
+    Check(!c->ActionBusy(), "the action is not left pending for its timeout");
+    Check(c->ActionResult() == act::Result::Success,
+          "the layer-25 removal is read as the dismount's own reply");
+}
+
+// THE ITEM SERIAL ON LAYER 25 IS NOT THE DOUBLE-CLICKED SERIAL. A first
+// version of this fix matched action_.subject == itemSerial, on the
+// assumption that Source-X re-serials the double-clicked animal as the
+// equipped item. Live evidence contradicted it: Kharain's own remounts
+// (run_gates/g_Kharain.console.txt 01:26:18.421-436 and 01:31:00.731-746)
+// double-click horse 0x0000B222 and get mount_state:mounted 15ms later, but
+// the 0x2E's item serial never equals 0x0000B222 -- the subject check never
+// matched and use_object still timed out 4s later both times, twice in the
+// same smoke run the dismount half of this fix was proven against. The item
+// serial here is deliberately a THIRD serial, matching neither `me` nor the
+// double-clicked horse, to keep that mistake from coming back.
+void TestMountFinishesOnLayer25EquipRegardlessOfItemSerial() {
+    Section("mount: the horse landing on layer 25 finishes use_object even "
+            "when the equipped item's serial differs from the click");
+
+    auto c = MakeConnectedClient();
+    const u32 me         = 0x00012346;
+    const u32 horse      = 0x40020002;   // what RemountAfterWork double-clicks
+    const u32 mountItem  = 0x400200FF;   // what the 0x2E actually names
+
+    auto login = MakeLoginConfirm(me, 1426, 1687);
+    c->DispatchPacketForTest(login.data(), login.size());
+
+    c->ActionUseObject(horse);   // Runner::RemountAfterWork's own gesture
+    Check(c->ActionBusy(), "mount started (double-click the horse)");
+
+    auto mounted = MakeEquip(mountItem, 0x3E9F, 25, me);
+    c->DispatchPacketForTest(mounted.data(), mounted.size());
+
+    Check(c->PlayerIsMounted(), "mounted");
+    Check(!c->ActionBusy(), "the action is not left pending for its timeout");
+    Check(c->ActionResult() == act::Result::Success,
+          "the layer-25 equip is read as the mount's own reply");
+}
+
+// The single-action-slot model (act::Action -- "a player does one deliberate
+// thing at a time") is what makes the loosened match above safe: WHATEVER
+// use_object is pending when we land on layer 25 is finished by it, on the
+// same precedent the target-cursor completion a few hundred lines up already
+// uses (kind == UseObject, no subject check). This is a known, accepted
+// trade-off, not an oversight -- it is asserted here so a future tightening
+// of one without the other is a deliberate choice, not an accident.
+void TestAnyPendingUseObjectFinishesOnOurOwnMount() {
+    Section("mount: any pending use_object completes on our own mount "
+            "(single-action-slot trade-off, asserted on purpose)");
+
+    auto c = MakeConnectedClient();
+    const u32 me        = 0x00012347;
+    const u32 mountItem = 0x40030005;
+    const u32 otherItem = 0x40030004;
+
+    auto login = MakeLoginConfirm(me, 1426, 1687);
+    c->DispatchPacketForTest(login.data(), login.size());
+
+    c->ActionUseObject(otherItem);   // some other, unrelated double-click
+    Check(c->ActionBusy(), "the unrelated action started");
+
+    auto mounted = MakeEquip(mountItem, 0x3E9F, 25, me);
+    c->DispatchPacketForTest(mounted.data(), mounted.size());
+
+    Check(c->PlayerIsMounted(), "mounted, as the packet says");
+    Check(!c->ActionBusy() && c->ActionResult() == act::Result::Success,
+          "the otherItem action is finished too -- no other pending "
+          "use_object could have put us on layer 25");
+}
+
 int main() {
     net::Socket::WSAStart();
     std::printf("trade verification + speech resolution tests\n\n");
@@ -695,6 +808,9 @@ int main() {
     TestUnicodeSpeechUnknownSerialStaysRaw();
     TestOccludedShopkeeperIsStillFound();
     TestSpellbookGumpIsAnOpenNotAClose();
+    TestDismountFinishesOnMountItemRemoval();
+    TestMountFinishesOnLayer25EquipRegardlessOfItemSerial();
+    TestAnyPendingUseObjectFinishesOnOurOwnMount();
 
     std::printf("\n%d checks, %d failure(s)\n", g_checks, g_failures);
     if (g_failures == 0) std::printf("OK\n");

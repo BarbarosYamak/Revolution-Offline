@@ -2019,6 +2019,25 @@ void Client::OnEquipItem(const u8* data, usize size) {
                 sphere::MountedStepMs(nav_.movement.runStepMs, true),
                 sphere::MountedStepMs(nav_.movement.walkStepMs, true));
         LogEvent("mount_state", "mounted");
+        // A mount double-click has no reply of its own (ActionDismount's
+        // comment above is stale on this point) -- THIS layer-25 equip IS the
+        // reply. The action's own subject is NOT usable to confirm it: an
+        // earlier version of this fix required action_.subject == itemSerial
+        // on the assumption that Source-X re-serials the double-clicked
+        // animal as the equipped item, but live evidence contradicts that --
+        // Kharain's own remounts (g_Kharain.console.txt 01:26:18.421-436 and
+        // 01:31:00.731-746) double-click horse 0x0000B222 and get
+        // mount_state:mounted 15ms later, yet the item serial in this 0x2E
+        // never equals 0x0000B222 (the subject check silently never matched,
+        // and use_object still timed out 4s later both times). A player does
+        // one deliberate thing at a time (act::Action's own single-slot
+        // model), and no OTHER pending use_object can put something on our
+        // own layer 25 -- exactly the precedent below already uses for a
+        // target cursor (kind == UseObject, no subject check) -- so any
+        // pending use_object finishes here.
+        if (action_.Active() && action_.kind == act::Kind::UseObject) {
+            FinishAction(act::Result::Success, "server mounted (layer 25 equipped)");
+        }
     }
     ActionOnItemEquipped(mobile, itemSerial, layer);
 }
@@ -4843,6 +4862,17 @@ void Client::ForgetEquippedItem(u32 itemSerial) {
         LogInfo("[move] dismounted; step cadence back to %u/%ums\n",
                 nav_.movement.runStepMs, nav_.movement.walkStepMs);
         LogEvent("mount_state", "dismounted");
+        // ActionDismount aims its double-click at ourselves (action_.subject
+        // == playerSerial_), never at the mount item, so it cannot be
+        // answered by matching itemSerial the way ActionOnItemEquipped's
+        // mount case does above. This layer-25 REMOVAL is the dismount's own
+        // reply (Client::ActionDismount's comment calling neither gesture "a
+        // packet of its own" is stale on this point); finish the pending
+        // use_object here instead of running out its whole timeout window.
+        if (action_.Active() && action_.kind == act::Kind::UseObject &&
+            action_.subject == playerSerial_) {
+            FinishAction(act::Result::Success, "server dismounted (layer 25 cleared)");
+        }
     }
     for (auto& m : mobileCache_) drop(m.equip);
 }

@@ -1205,9 +1205,51 @@ void Runner::EndSession(const char* why) {
 // Tick
 // ---------------------------------------------------------------------------
 
+// A DEATH IS THE STRONGEST THING A PLACE CAN TEACH, and it must be counted
+// wherever it happens -- not only while Phase::Live's own bookkeeping runs.
+// This used to live inside case Phase::Live below, reading obs.dead off that
+// case's own Observe() call. That missed a death mid Phase::WindDown (heading
+// home to log out): Client::RecordOwnDeath fires from the 0x2C/body-change
+// packet handlers independent of phase_ and calls TravelAbort("died")
+// immediately (src/Client.cpp:2138), so Odessa's wind-down trip correctly
+// logged "the trip did not arrive (died)" while session_.deaths stayed 0 for
+// the whole session (2026-09-07 00:44 gate; deaths=0 in session_summary vs
+// Sphere's "P'Odessa' was killed by N'Harpy'" and her own death_location
+// event). Calling this once per tick, before the phase switch, makes the
+// session tally follow the exact same fact (Client::IsDead()) death_location
+// itself is built from, in every phase.
+void Runner::TrackDeathEdge(Client& client, i64 nowMs) {
+    if (!client.IsInWorld()) return;
+    const bool dead = client.IsDead();
+    if (wasDead_ && !dead) {
+        // WHEN DID THIS LIFE COME BACK? The robe the server hands out at a
+        // resurrection is only identifiable by the moment it appears (see
+        // CutResurrectionRobe), so the dead->alive transition has to be
+        // noticed as it happens rather than inferred later from a robe that
+        // might be anyone's.
+        resurrectedAtMs_ = nowMs;
+        deathBlamed_ = false;
+        survivalRetreat_ = false;
+    }
+    if (!dead) sawAliveOnce_ = true;
+    if (sawAliveOnce_ && !wasDead_ && dead) {
+        ++state_.deathCount;
+        ++state_.recentDeaths;
+        // AND THE SESSION'S OWN TALLY.
+        ++session_.deaths;
+        state_.lastDeathMs = nowMs;
+        const i32 x = client.PlayerX(), y = client.PlayerY();
+        state_.memory.NoteDanger(x, y, 20, "death", 2.0, nowMs);
+        LogLine("disengage=died at=%d,%d reason=\"died here -- this "
+                "ground is now remembered as lethal\"", x, y);
+    }
+    wasDead_ = dead;
+}
+
 void Runner::Tick(Client& client, i64 nowMs) {
     if (!configured_ || finished_) return;
     lastTickMs_ = nowMs;
+    TrackDeathEdge(client, nowMs);
 
     switch (phase_) {
         case Phase::AwaitWorld: {
@@ -1345,40 +1387,11 @@ void Runner::Tick(Client& client, i64 nowMs) {
                 WantsConsumable(needCfg_, "bandage") &&
                 obs.SkillTenths(rules::kHealing) > 0);
 
-            // WHEN DID THIS LIFE COME BACK? The robe the server hands out at a
-            // resurrection is only identifiable by the moment it appears (see
-            // CutResurrectionRobe), so the dead->alive transition has to be
-            // noticed as it happens rather than inferred later from a robe
-            // that might be anyone's.
-            if (wasDead_ && !obs.dead) {
-                resurrectedAtMs_ = nowMs;
-                deathBlamed_ = false;
-                survivalRetreat_ = false;
-            }
-            // A DEATH IS THE STRONGEST THING A PLACE CAN TEACH. Fleeing at low
-            // health writes heat 1.5 (Survive.cpp), so dying writes more --
-            // and it is written HERE, on the alive->dead edge, because that is
-            // the one tick at which the tile under the corpse is still the
-            // tile that killed us. Two effects, both owner rules of
-            // 2026-09-04: DecideRecovery abandons a corpse whose place has
-            // proven lethal (RecoveryPlan.cpp:106), and DoTrainCombat's
-            // novice ground picker refuses a yard over kHuntGroundHeatLimit.
-            if (!obs.dead) sawAliveOnce_ = true;
-            if (sawAliveOnce_ && !wasDead_ && obs.dead) {
-                ++state_.deathCount;
-                ++state_.recentDeaths;
-                // AND THE SESSION'S OWN TALLY. session_summary reported
-                // deaths=0 for Odessa on 2026-09-06 after two real deaths
-                // (Sphere log :13715, :18265) because nothing ever wrote it --
-                // the alive->dead edge is the only place that knows, and it
-                // updated the persistent counters and not the session one.
-                ++session_.deaths;
-                state_.lastDeathMs = nowMs;
-                state_.memory.NoteDanger(obs.x, obs.y, 20, "death", 2.0, nowMs);
-                LogLine("disengage=died at=%d,%d reason=\"died here -- this "
-                        "ground is now remembered as lethal\"", obs.x, obs.y);
-            }
-            wasDead_ = obs.dead;
+            // The alive<->dead edge (session/persistent death counters,
+            // resurrection timestamp, the danger-memory write) is tracked
+            // once per tick by TrackDeathEdge(), called from Tick() before
+            // this switch -- not here, so it also catches a death mid
+            // Phase::WindDown. See TrackDeathEdge's own comment.
 
             // A HORSE THIS LIFE COULD NOT BUY TODAY IS NOT A HORSE IT CAN BUY
             // TOMORROW EITHER, usually. DoBuyMount's own brake is

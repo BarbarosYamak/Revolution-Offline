@@ -169,6 +169,11 @@ struct RunnerHarnessAccess {
         runner.SettleBankItemMove(client, obs);
         return runner.bankDepositTries_ == 0 && runner.bankDepositItem_.empty();
     }
+    // S16: the session's own death tally, tracked once per Tick() by
+    // TrackDeathEdge -- independent of Phase and of obsOverride_'s scripted
+    // Observation (TrackDeathEdge reads client.IsDead() directly, the same
+    // fact death_location's RecordOwnDeath is built from).
+    static i32 SessionDeaths(const Runner& runner) { return runner.session_.deaths; }
 };
 }
 
@@ -795,6 +800,63 @@ void ScenarioTrainTripsAreHandedBackOnAGoalChange(const std::string& tmpDir) {
           "a same-kind re-pick keeps the trips it has already spent");
 }
 
+// --- S16: the death counter must follow the same fact death_location uses --
+//
+// session_.deaths used to be incremented only inside case Phase::Live's own
+// obs.dead edge check, so a death detected while the runner was in a
+// DIFFERENT phase never reached it -- Odessa mid Phase::WindDown (heading
+// home to log out), 2026-09-07 00:44 gate: Sphere's "P'Odessa' was killed by
+// N'Harpy'" and her own death_location event both fired, but session_summary
+// still printed deaths=0. TrackDeathEdge (Core.cpp, called from Tick() before
+// the phase switch, reading client.IsDead() straight off the client rather
+// than the phase-local Observation) is the fix; this proves it against the
+// exact packet death_location itself is built from -- 0x2C, the resurrection
+// menu -- with obsOverride_'s scripted Observation left alone throughout
+// (TrackDeathEdge never reads obs.dead).
+void ScenarioDeathIsCountedOnTheResurrectMenuPacket(const std::string& tmpDir) {
+    Section("S16 the resurrect-menu packet increments the session death "
+            "tally once");
+    Harness h;
+    h.obs = BaselineFencer(h.nowMs);
+    if (!h.Boot(tmpDir + "/deathCounter", "fencer")) return;
+    h.EnterLive();
+    // EnterLive() only reaches Phase::Reconcile's OWN entry tick; Reconcile's
+    // one-time session_ = SessionSummary{} (Core.cpp, login reconciliation)
+    // runs on the NEXT tick, same as every other scenario in this file that
+    // pads with an extra Steps() before touching session state. Without this,
+    // a death dispatched immediately after EnterLive() lands on the very tick
+    // that resets session_ and looks like TrackDeathEdge lost it.
+    h.Steps(2, 1000);
+
+    Check(!h.client->IsDead(), "alive at the start, per the client's own state");
+    Check(life::RunnerHarnessAccess::SessionDeaths(h.runner) == 0,
+          "no deaths counted yet");
+
+    // 0x2C Resurrection Menu (2 bytes: cmd, action). Action 0 is the death
+    // prompt Client::OnResurrectionMenu treats as "this packet IS the death
+    // notification for our own character" (Client.cpp).
+    u8 resurrectMenu[2] = {0x2C, 0x00};
+    h.client->DispatchPacketForTest(resurrectMenu, sizeof(resurrectMenu));
+    Check(h.client->IsDead(), "the 0x2C set the client's own dead flag");
+
+    h.Step(1000);
+    std::printf("  deaths after the first 0x2C: %d\n",
+                life::RunnerHarnessAccess::SessionDeaths(h.runner));
+    Check(life::RunnerHarnessAccess::SessionDeaths(h.runner) == 1,
+          "one death counted on the alive->dead edge, in whatever phase the "
+          "runner was in");
+
+    // A RESEND of the same menu (Sphere can repeat it) must not double count:
+    // OnResurrectionMenu itself is idempotent (`if (!IsDead())`), so the
+    // client's dead flag never re-flips, and TrackDeathEdge's own edge test
+    // (`!wasDead_ && dead`) cannot fire twice in a row either.
+    h.client->DispatchPacketForTest(resurrectMenu, sizeof(resurrectMenu));
+    h.Step(1000);
+    std::printf("  deaths after the resend: %d\n",
+                life::RunnerHarnessAccess::SessionDeaths(h.runner));
+    Check(life::RunnerHarnessAccess::SessionDeaths(h.runner) == 1,
+          "the resend does not count a second death");
+}
 
 // --- three packets, so a scenario can put something in the pack ------------
 //
@@ -1011,6 +1073,7 @@ int main(int argc, char** argv) {
     ScenarioAKillIsCombatTrainingProgress(tmpDir);
     ScenarioPracticeSucceedsOnlyOnASkillGain(tmpDir);
     ScenarioTrainTripsAreHandedBackOnAGoalChange(tmpDir);
+    ScenarioDeathIsCountedOnTheResurrectMenuPacket(tmpDir);
     ScenarioBandagesAreBoughtBeforeTheyAreSheared(tmpDir, kDataDir);
 
     std::printf("%s: %d checks, %d failures\n",
