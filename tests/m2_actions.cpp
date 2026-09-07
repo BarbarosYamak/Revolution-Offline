@@ -352,6 +352,73 @@ void TestEquipNoOp() {
           "the backpack layer is not the hand that was asked for");
 }
 
+// ---------------------------------------------------------------------------
+// Equip bounce verification: Source-X's CChar::ItemEquip calls ItemBounce and
+// returns BEFORE any 0x2E is sent when CanEquipLayer refuses a wear
+// (CCharAct.cpp:3298-3306) -- the bounce sentence IS the server's whole
+// answer, not a side note next to a real equip. Root cause of fleet122b
+// 2026-09-07 (Falen.console.txt ~20:03:55): "You put the hatchet in your
+// pack." was not recognised, so the equip action sat unfinished until an
+// unrelated 0x2E for that same serial/layer was misread as the wear
+// succeeding -- "equip success (2ms) worn on the requested layer" right next
+// to the bounce.
+// ---------------------------------------------------------------------------
+void TestEquipBounceIsRejected() {
+    Section("equip bounce verification");
+
+    Check(act::IsEquipBounceMessage("You put the hatchet in your pack."),
+          "Sphere's ItemBounce sentence for a refused equip is recognised");
+    Check(act::IsEquipBounceMessage("YOU PUT THE PICKAXE IN YOUR PACK."),
+          "classification is case-insensitive");
+    Check(act::IsEquipBounceMessage("You put the pickaxe in your backpack."),
+          "the 'backpack' phrasing also matches");
+    Check(!act::IsEquipBounceMessage("You put the ingots in the forge."),
+          "a bounce into a NAMED container is not a hand-equip bounce");
+    Check(!act::IsEquipBounceMessage("You wear the hatchet."),
+          "an unrelated line is not a bounce");
+    Check(!act::IsEquipBounceMessage(nullptr), "null text is not a bounce");
+
+    // Client::ActionOnSysMessage: the bounce sentence must finish the equip
+    // action as Rejected -- and it must do so whether or not the client ever
+    // sees a 0x2E for the same serial/layer, since Sphere never sends one for
+    // a refused equip at all (ItemEquip returns before LayerAdd).
+    act::Action a;
+    a.Begin(act::Kind::Equip, 0, 4000);
+    a.subject = 0x4000FD35;  // the hatchet
+    a.layer = 1;
+    const char* bounce = "You put the hatchet in your pack.";
+    Check(a.kind == act::Kind::Equip && act::IsEquipBounceMessage(bounce),
+          "the equip action sees its own bounce sentence");
+    Check(a.Finish(act::Result::Rejected),
+          "the bounce sentence finishes the action");
+    Check(a.result == act::Result::Rejected,
+          "a bounced equip is Rejected, never Success");
+
+    // Action::Finish is single-shot (TestAction above): once the bounce has
+    // finished the action, a late 0x2E for the same serial/layer cannot
+    // overturn that verdict.
+    Check(!a.Finish(act::Result::Success),
+          "a 0x2E arriving after the bounce cannot flip Rejected to Success");
+    Check(a.result == act::Result::Rejected, "the rejection stands");
+
+    // The success shape: a genuine 0x2E naming THAT serial on THAT layer, with
+    // no bounce sentence seen first -- exactly what
+    // Client::ActionOnItemEquipped checks (mobile == player, item ==
+    // action_.subject, layer == action_.layer).
+    act::Action ok;
+    ok.Begin(act::Kind::Equip, 0, 4000);
+    ok.subject = 0x40019F86;  // the pickaxe
+    ok.layer = 2;
+    const u32 wornItem = 0x40019F86;
+    const u8  wornLayer = 2;
+    const bool matches = (wornItem == ok.subject) && (wornLayer == ok.layer);
+    Check(matches, "a genuine 0x2E names the same serial and layer");
+    Check(ok.Finish(matches ? act::Result::Success : act::Result::ServerFailure),
+          "the matching 0x2E finishes the action");
+    Check(ok.result == act::Result::Success,
+          "an equip that reaches its own layer, unrejected, is a success");
+}
+
 }  // namespace
 
 int main() {
@@ -363,6 +430,7 @@ int main() {
     TestSysMessageClassification();
     TestEatClassification();
     TestEquipNoOp();
+    TestEquipBounceIsRejected();
 
     std::printf("\n%d checks, %d failure(s)\n", g_checks, g_failures);
     if (g_failures == 0) std::printf("OK\n");

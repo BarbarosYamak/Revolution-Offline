@@ -366,6 +366,61 @@ bool Runner::DoGetTool(Client& client, const Observation& obs) {
 
             if (plan.step == life::AcquireStep::Wear) {
                 if (client.ActionBusy()) return false;
+                // EMPTY THE HAND FIRST. A weapon or shield already worn on
+                // either hand makes the server bounce a wielded tool straight
+                // back to the pack -- "You put the hatchet in your pack." --
+                // every single time (fleet122b 2026-09-07, Falen.console.txt
+                // ~20:03:55, 3 attempts and never a worn graphic).
+                // Client::ActionOnSysMessage now reports that as
+                // Result::Rejected instead of a false success (see
+                // act::IsEquipBounceMessage), but the fix here is to stop
+                // paying for a guaranteed bounce: free a hand before the
+                // wear, exactly like the smith-hammer clearing in Craft.cpp,
+                // so a lumberjack_swordsman can swap a sword for a hatchet.
+                // Gated on mustBeWielded (not the resolved `layer`, which is
+                // 0 whenever tiledata quality lookup misses) because a
+                // SRC.WEAPON tool always lands in one of the two hands
+                // regardless of what layer this client could resolve for it.
+                if (t.mustBeWielded) {
+                    const u8 occupiedLayer = client.EquippedAtLayer(kLayerHand1)
+                        ? kLayerHand1
+                        : (client.EquippedAtLayer(kLayerHand2) ? kLayerHand2 : 0);
+                    const u32 occupant = occupiedLayer
+                        ? client.EquippedAtLayer(occupiedLayer) : 0;
+                    // AN OCCUPANT FROM THIS SAME CATALOGUE IS NOT "IN THE WAY".
+                    // A full crafter's own pickaxe and hatchet are BOTH
+                    // wielded tools competing for the one hand a SRC.WEAPON
+                    // skill has -- evicting one to wear the other on every
+                    // tick, unconditionally, never lets either stay: Falen
+                    // alternated "putting away ... for the hatchet" and
+                    // "putting the pickaxe in hand" every 1.2s for the whole
+                    // session (fleet smoke, 2026-09-07 20:54-20:55, 40+
+                    // cycles, hatchet never worn). Only a FOREIGN item -- a
+                    // combat weapon or shield, no catalogue tool graphic --
+                    // is what this fix exists to clear (the brief's own
+                    // "swap sword for a hatchet"); two of the profession's
+                    // own tools trading the same hand is a pre-existing
+                    // structural limit the wearTries bound below already
+                    // handles the same way it always has.
+                    const u16 occupantGfx = occupiedLayer
+                        ? client.EquippedGraphicAt(occupiedLayer) : 0;
+                    bool occupantIsOwnTool = false;
+                    if (occupantGfx && needCfg_.profession) {
+                        for (const prof::ToolNeed& t2 : needCfg_.profession->tools) {
+                            for (u16 g2 : t2.graphics) {
+                                if (g2 == occupantGfx) { occupantIsOwnTool = true; break; }
+                            }
+                            if (occupantIsOwnTool) break;
+                        }
+                    }
+                    if (occupant && occupant != have && !occupantIsOwnTool) {
+                        LogLine("tool: putting away what is in hand to free "
+                                "a hand for the %s", t.name.c_str());
+                        client.ActionUnequip(occupant);
+                        nextActionMs_ = obs.nowMs + 1200;
+                        return false;
+                    }
+                }
                 if (wearTries >= kMaxToolWearTries) {
                     LogLine("goal_blocked=GET_TOOL reason=\"the %s is in the "
                             "pack but %d equip attempts left the hand empty\"",

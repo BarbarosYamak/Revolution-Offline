@@ -320,6 +320,22 @@ inline bool IsVendorRateLimited(const char* text) {
     return ContainsCI(text, "selling too fast") || ContainsCI(text, "buying too fast");
 }
 
+// A wear Source-X's CanEquipLayer refuses (occupied hand, wrong item type,
+// not strong enough, ...) never reaches LayerAdd at all: CChar::ItemEquip
+// calls ItemBounce(pItem) and returns false BEFORE any 0x2E is ever sent
+// for that item (CCharAct.cpp:3298-3306). ItemBounce puts the item back in
+// the pack and narrates it with MSG_ITEMPLACE + MSG_BOUNCE_PACK
+// (defmessages.tbl:456,392): "You put the %s in your pack." That sentence
+// IS the server's whole answer to a refused equip -- not a side note next
+// to a real one -- so it must outrank any 0x2E the client goes on to see for
+// the same serial/layer (fleet122b 2026-09-07, Falen.console.txt ~20:03:55:
+// "You put the hatchet in your pack." immediately followed by a false
+// "worn on the requested layer" success).
+inline bool IsEquipBounceMessage(const char* text) {
+    return ContainsCI(text, "you put the") &&
+           (ContainsCI(text, "in your pack") || ContainsCI(text, "in your backpack"));
+}
+
 // --- eating -----------------------------------------------------------------
 // A double-click on food is answered by TEXT AND NOTHING ELSE. CChar::Use_Eat
 // (Source-X src/game/chars/CCharUse.cpp:929-993) either refuses with one of

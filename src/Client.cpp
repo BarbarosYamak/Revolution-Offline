@@ -1751,6 +1751,17 @@ void Client::OnAddItemToContainer(const u8* data, usize size) {
                   [&](const ContainerItem& e) { return e.serial == ci.serial; });
     if (it == list.end()) list.push_back(ci);
     else *it = ci;
+    // AN ITEM IN A CONTAINER IS NOT WORN. ForgetEquippedItem only ran off a
+    // 0x1D delete (a mount's animal leaving the world), so an ordinary
+    // unequip -- lift a worn item, drop it in the pack, 0x25 confirms it --
+    // left playerEquip_'s upsert-by-layer entry stale at the OLD serial
+    // forever: nothing ever erases a layer, only a NEW item worn there
+    // overwrites it. A caller that frees a hand before re-wielding (GET_TOOL,
+    // the smith-hammer swap in Craft.cpp) reads EquippedAtLayer right after
+    // the unequip lands and saw the same "occupied" serial it just took off,
+    // so it unequipped the same already-unequipped item forever and the new
+    // tool never reached the hand.
+    ForgetEquippedItem(ci.serial);
     ActionOnItemInContainer(ci.serial, cont);
     if (std::find_if(openContainers_.begin(), openContainers_.end(),
             [&](const OpenContainer& c) { return c.serial == cont; })
@@ -4138,6 +4149,20 @@ void Client::ActionOnItemInContainer(u32 item, u32 container) {
                       "item 0x%08X landed in 0x%08X, not the destination 0x%08X",
                       item, container, action_.destination);
         FinishAction(act::Result::ServerFailure, why);
+    } else if (action_.kind == act::Kind::Equip) {
+        // The item we tried to wear landed in a container instead of on the
+        // requested layer -- CanEquipLayer refused it and ItemEquip bounced
+        // it into the pack before ever reaching LayerAdd (CCharAct.cpp:
+        // 3298-3306), so no 0x2E for it is coming. The bounce speech usually
+        // gets here first (ActionOnSysMessage), but a 0x25 with no preceding
+        // speech -- or one this client missed -- must reject just the same
+        // rather than sit pending for the full equip deadline.
+        char why[128];
+        std::snprintf(why, sizeof(why),
+                      "item 0x%08X was bounced into container 0x%08X instead "
+                      "of being worn on layer %u",
+                      item, container, action_.layer);
+        FinishAction(act::Result::Rejected, why);
     } else if (action_.kind == act::Kind::VendorBuy) {
         FinishAction(act::Result::Success, "purchased item delivered");
     }
@@ -4314,6 +4339,16 @@ void Client::ActionOnSysMessage(const char* text, u32 sourceSerial, u8 type) {
     // recorded a purchase each time (run_m5/p0gate1). A definitive refusal
     // that is not read is worse than no message at all.
     if (act::IsReachRefusal(text)) {
+        FinishAction(act::Result::Rejected, text);
+        return;
+    }
+    // "You put the hatchet in your pack." is Sphere bouncing a refused wear
+    // BEFORE any 0x2E for the item is ever sent (act::IsEquipBounceMessage).
+    // Catching it here, ahead of the 0x2E handler, is what stops a later
+    // ActionOnItemEquipped from reporting a bounced equip as worn: once this
+    // finishes the action as Rejected, action_.Active() is false and the
+    // 0x2E guard (item == action_.subject) becomes a no-op.
+    if (action_.kind == act::Kind::Equip && act::IsEquipBounceMessage(text)) {
         FinishAction(act::Result::Rejected, text);
         return;
     }

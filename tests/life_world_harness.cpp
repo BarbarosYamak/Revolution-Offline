@@ -176,6 +176,19 @@ struct RunnerHarnessAccess {
         runner.tradeGoldBefore_ = goldBefore;
         runner.tradeOfferPrice_ = agreedUnitPrice;
     }
+
+    // --- GET_TOOL frees an occupied hand before a wielded-tool wear
+    // (Gear.cpp, 2026-09-07) -- stubs the profession catalogue directly so
+    // the test drives Runner::DoGetTool's real per-tool loop without needing
+    // a shard-loaded profession record.
+    static void SetToolProfessionForTest(Runner& runner,
+                                         const prof::Profession* p) {
+        runner.needCfg_.profession = p;
+    }
+    static bool DoGetToolForTest(Runner& runner, Client& client,
+                                 const Observation& obs) {
+        return runner.DoGetTool(client, obs);
+    }
 };
 }
 
@@ -1308,6 +1321,117 @@ int main(int argc, char** argv) {
         Check(life::RunnerHarnessAccess::BelievedSalePrice(runner, "i_bandage") == 3,
               "a 47/unit observation against a 4gp ceiling is discarded, "
               "leaving only the shard seed -- never taught to the fleet");
+    }
+
+    // --- GET_TOOL frees an occupied hand before a wielded-tool wear ---------
+    // A refused equip used to read back as a false success (the bounce
+    // sentence, "You put the hatchet in your pack.", was not classified --
+    // see act::IsEquipBounceMessage / Client::ActionOnSysMessage), burning
+    // every one of GET_TOOL's wear attempts without the sword ever coming
+    // off, so a lumberjack_swordsman could never wield the hatchet at all
+    // (fleet122b 2026-09-07, Falen.console.txt ~20:03:55: goal_blocked=
+    // GET_TOOL "3 equip attempts left the hand empty"). Drives the real
+    // Runner::DoGetTool with a sword worn on HAND1 and a hatchet in the pack.
+    {
+        const u32 me = 0x00019101;
+        const u32 myPack = 0x40021001;
+        const u32 sword = 0x40021002;
+        const u32 hatchet = 0x40021003;
+        const u16 kSwordGfx = 0x0F5E;    // a weapon graphic, not this tool's own
+        const u16 kHatchetGfx = 0x0F43;  // i_hatchet's classic graphic
+
+        Client::Config config{};
+        config.loginHost = "127.0.0.1";
+        config.username = config.password = "get_tool_swap";
+        config.version = "2.0.7";
+        config.sessionTag = "get_tool_swap";
+        auto client = std::make_unique<Client>(config);
+        client->SetOfflineForTest(true);
+        client->SetInWorldForTest();
+        client->SetClockForTest(8000000);
+
+        auto login = MakeLoginConfirm(me, 100, 100);
+        client->DispatchPacketForTest(login.data(), login.size());
+        auto pack = MakeEquip(myPack, 0x0E75, 0x15, me);
+        client->DispatchPacketForTest(pack.data(), pack.size());
+        Check(client->BackpackSerial() == myPack, "the backpack serial is known");
+
+        // The sword is worn on HAND1 before the goal ever runs.
+        auto worn = MakeEquip(sword, kSwordGfx, life::runner_detail::kLayerHand1, me);
+        client->DispatchPacketForTest(worn.data(), worn.size());
+        Check(client->EquippedAtLayer(life::runner_detail::kLayerHand1) == sword,
+              "the sword starts worn on HAND1");
+
+        // The hatchet sits in the pack, never worn.
+        auto item = MakeAddItem(hatchet, kHatchetGfx, 1, myPack);
+        client->DispatchPacketForTest(item.data(), item.size());
+        Check(client->FindBackpackItemByGraphic(kHatchetGfx) == hatchet,
+              "the hatchet is in the pack");
+
+        life::Runner runner;
+        life::RunnerConfig rc;
+        rc.dataRoot = root + "/get_tool_swap";
+        rc.accountName = "get_tool_swap";
+        rc.characterName = "get_tool_swap";
+        rc.professionId = "fencer";
+        std::string error;
+        Check(runner.Configure(rc, &error), error.c_str());
+
+        // A synthetic catalogue entry: a SRC.WEAPON tool, exactly the shape
+        // ToolNeed::mustBeWielded exists for.
+        prof::ToolNeed hatchetNeed;
+        hatchetNeed.name = "hatchet";
+        hatchetNeed.graphics = {kHatchetGfx};
+        hatchetNeed.mustBeWielded = true;
+        prof::Profession lumberjackSwordsman;
+        lumberjackSwordsman.id = "lumberjack_swordsman_test";
+        lumberjackSwordsman.tools = {hatchetNeed};
+        life::RunnerHarnessAccess::SetToolProfessionForTest(runner,
+                                                            &lumberjackSwordsman);
+
+        life::Observation obs;
+        obs.inWorld = true;
+        obs.nowMs = 8000000;
+        obs.x = 100; obs.y = 100; obs.z = 0;
+        obs.gold = 0;
+
+        Check(!life::RunnerHarnessAccess::DoGetToolForTest(runner, *client, obs),
+              "GET_TOOL is not finished yet -- it just asked to free the hand");
+        bool sawUnequipLift = false;
+        for (const auto& p : client->SentForTest()) {
+            if (p.opcode != 0x07 || p.bytes.size() < 5) continue;
+            if (LoadBE32(p.bytes.data() + 1) == sword) sawUnequipLift = true;
+        }
+        Check(sawUnequipLift, "the sword is what got lifted off, not the hatchet");
+
+        // The server answers: the sword lands in the pack (0x25), same as any
+        // unequip -- and ForgetEquippedItem (Client::OnAddItemToContainer)
+        // is what actually clears it off HAND1, since nothing else does.
+        auto swordBounced = MakeAddItem(sword, kSwordGfx, 1, myPack);
+        client->DispatchPacketForTest(swordBounced.data(), swordBounced.size());
+        Check(client->EquippedAtLayer(life::runner_detail::kLayerHand1) == 0,
+              "the sword is off HAND1 once the unequip lands");
+
+        // Now the hand is free: the SAME goal call equips the hatchet instead
+        // of unequipping the (already unequipped) sword again.
+        obs.nowMs += 2000;
+        Check(!life::RunnerHarnessAccess::DoGetToolForTest(runner, *client, obs),
+              "GET_TOOL now asks to wear the hatchet");
+        bool sawHatchetEquip = false;
+        for (const auto& p : client->SentForTest()) {
+            if (p.opcode != 0x13 || p.bytes.size() < 5) continue;
+            if (LoadBE32(p.bytes.data() + 1) == hatchet) sawHatchetEquip = true;
+        }
+        Check(sawHatchetEquip, "the hatchet is equipped once the hand is free");
+
+        // The server confirms the wear -- a genuine 0x2E, since the hand
+        // really was empty this time.
+        auto hatchetWorn = MakeEquip(hatchet, kHatchetGfx,
+                                     life::runner_detail::kLayerHand1, me);
+        client->DispatchPacketForTest(hatchetWorn.data(), hatchetWorn.size());
+        Check(client->EquippedAtLayer(life::runner_detail::kLayerHand1) == hatchet,
+              "the hatchet is worn on HAND1 -- the swap completed without "
+              "ever hitting the 'hand empty' block");
     }
 
     std::printf("%d checks, %d failures\n", checks, failures);
