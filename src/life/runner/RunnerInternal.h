@@ -59,6 +59,16 @@ inline i32 BestWeaponSkillTenths(const Observation& obs) {
     return best;
 }
 
+// THE BEST SKILL THIS CHARACTER CAN ACTUALLY HURT SOMETHING WITH, in tenths.
+// BestWeaponSkillTenths deliberately excludes Magery -- the novice engagement
+// policy it feeds is about hp lost per melee exchange -- but the question
+// "may I open on a creature of this KIND" is answered by whichever way this
+// character fights. A pure mage at Magery 90.0 with Wrestling 0.0 is not a
+// novice, and must not be told to walk away from a lich it can kill.
+inline i32 BestFightSkillTenths(const Observation& obs) {
+    return std::max(BestWeaponSkillTenths(obs), obs.SkillTenths(rules::kMagery));
+}
+
 // HOW MANY WAYS THIS BUILD INTENDS TO HURT SOMETHING, counted from the plan
 // rather than from today's skill sheet. A weapon school or Magery held as a
 // Primary or Secondary target is a character that means to fight; the same

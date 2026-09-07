@@ -84,6 +84,18 @@ struct Candidate {
     bool attackingMe = false;   // currently swinging at us
     bool aggressedMe = false;   // IT started it (Source-X MEMORY_AGGREIVED)
     bool isMyPet     = false;   // our own follower
+
+    // WHAT KIND OF THING THIS IS, as a player recognises it by sight.
+    //
+    // 0..1, and it is NOT a stat block: no hit points, no armour, no damage
+    // roll reaches this struct. It is one number for "how bad is a thing of
+    // this NAME", which is precisely the knowledge a human has when a skeletal
+    // knight walks into view and a zombie does not scare them. The caller
+    // supplies it -- from this character's own learned verdicts and, failing
+    // those, from the shard-derived prior in data/revolution_creatures.tsv --
+    // so combat.h still owns no creature table. 0.0 = never heard of it, which
+    // is the same answer a first-time player gives.
+    double speciesDanger = 0.0;
 };
 
 // Where WE are standing, and what we already are. Legality depends on both.
@@ -108,6 +120,14 @@ enum class Legality : u8 {
 };
 
 const char* LegalityName(Legality l);
+
+// The one word a decision trace should print for a verdict. `LegalityName`
+// answers "is this a crime"; a refusal on RISK is lawful and still a refusal,
+// and printing "lawful" for a fight the character just walked away from is how
+// `hunt: picked 'skeletal knight' -- verdict=lawful` came to describe four
+// deaths. "avoid" is the honest word for that case.
+struct Classification;
+const char* VerdictName(const Classification& v);
 
 struct Classification {
     Legality legality = Legality::Forbidden;
@@ -134,7 +154,45 @@ struct EngagePolicy {
     // Do not open a fight below this health fraction.
     double minHpFractionToOpen = 0.60;
     i32    maxEngageDistance = 10;
+    // THE STRONGEST KIND OF THING THIS CHARACTER WILL OPEN ON, on the same
+    // 0..1 scale as Candidate::speciesDanger. 1.0 (the default) is "anything",
+    // which is exactly what every caller had before this field existed.
+    // SpeciesCeiling() below turns a fight skill into this number.
+    double maxSpeciesDanger = 1.0;
 };
+
+// HOW STRONG A SPECIES THIS CHARACTER MAY PICK A FIGHT WITH, from its best
+// fighting skill in tenths (weapon school or Magery, whichever is higher).
+//
+// WHY THIS EXISTS. On 2026-09-07 four novices -- Eldian, Zaran, Leander,
+// Rhalan, all under 60.0 weapon skill -- deliberately opened on a skeletal
+// knight and all four died (artifacts/fleet122c30_20260907/triage_deaths.md).
+// Every one of those picks logged `threat=0.35-0.67 learned_danger=0.00`,
+// because Classify scored only the situation: a knight standing still at nine
+// tiles read exactly like a zombie standing still at nine tiles. A player does
+// not make that mistake, and not because they can see the knight's hit points.
+//
+// THE RANKING IS DATA, THE TWO CUT LINES ARE POLICY. The ranking comes from
+// the shard's own chardefs, via data/revolution_creatures.tsv (danger column,
+// computed from DAM / armour / STR / Magery -- see RunnerInternal.h). For the
+// Britain graveyard it reads:
+//
+//   Zombie .037  Skeleton .038  Ghoul .054  Skeletal Mage .097  Spectre .101
+//   | -- the gap --------------------------------------------------------- |
+//   Skeletal Mount .168  Lich .180  skeletal knight .185  lich lord .269
+//
+// The two ceilings are placed in the gaps of that generated ranking, not
+// picked off a hand-written species list:
+//   0.12 sits in the .101 -> .168 gap: above every undead a novice has been
+//        observed to farm, below every one that has killed a bot.
+//   0.20 sits in the .185 -> .237 gap: a knight and a lich are in reach of a
+//        trained fighter; a lich lord and an ancient lich are not, and no bot
+//        has ever been observed killing one (hunt_tier_gate_2026-09-06.md).
+// Where the bands END is a policy choice and is stated as one: 60.0 is the
+// existing novice line (life/novice::kNoviceWeaponTenths), 80.0 is where a
+// character is called trained, and the ramp between them is linear so nothing
+// flips on a single skill gain.
+double SpeciesCeiling(i32 bestFightSkillTenths);
 
 // The whole M6 legality question for one candidate. Pure: no clock, no I/O.
 Classification Classify(const Candidate& c, const Stance& me,

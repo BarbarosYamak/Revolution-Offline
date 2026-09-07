@@ -622,7 +622,13 @@ add_test(NAME mine_advance COMMAND mine_advance ${CMAKE_SOURCE_DIR}/data)
 # graveyards for early hunting". m25_world.cpp style, but against the real
 # generated atlas so a regenerated atlas that drops Britain's or Yew's
 # graveyard fails this suite; the data dir arrives as argv[1].
-add_executable(hunt_ground hunt_ground.cpp)
+# It also owns the "a novice does not open on a skeletal knight" regression
+# (fleet122c30_20260907/triage_deaths.md), which needs the targeting layer and
+# the life memory alongside the atlas -- both compile standalone, so they are
+# added as sources rather than dragging in the client.
+add_executable(hunt_ground hunt_ground.cpp
+    ${CMAKE_SOURCE_DIR}/src/combat/Targeting.cpp
+    ${CMAKE_SOURCE_DIR}/src/life/Memory.cpp)
 target_include_directories(hunt_ground PRIVATE
     ${CMAKE_SOURCE_DIR}/include
     ${CMAKE_SOURCE_DIR}/src)

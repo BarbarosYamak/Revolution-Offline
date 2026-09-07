@@ -2027,6 +2027,19 @@ bool Client::IsAttackingMe(u32 serial, i64 windowMs) const {
     return it != attackersOnMe_.end() && NowMs() - it->second <= windowMs;
 }
 
+std::string Client::LastAttackerName(i64 windowMs) const {
+    const i64 now = NowMs();
+    u32 best = 0;
+    i64 bestMs = 0;
+    for (const auto& kv : attackersOnMe_) {
+        if (now - kv.second > windowMs) continue;
+        if (kv.second >= bestMs) { bestMs = kv.second; best = kv.first; }
+    }
+    if (best == 0) return std::string();
+    const char* nm = MobileName(best);
+    return nm && nm[0] ? std::string(nm) : std::string();
+}
+
 i32 Client::RecentAttackerCount(i64 windowMs) const {
     const i64 now = NowMs();
     i32 n = 0;
