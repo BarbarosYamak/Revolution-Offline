@@ -62,6 +62,8 @@ struct RunnerHarnessAccess {
         runner.windDownTrips_ = 0;
         runner.windDownArrived_ = false;
         runner.windDownBlockedLogged_ = false;
+        runner.windDownStuckCycles_ = 0;
+        runner.windDownUnsafeLogout_ = false;
         runner.travelInFlight_ = false;
         runner.windDownLastX_ = -1;
         runner.windDownLastY_ = -1;
@@ -74,6 +76,24 @@ struct RunnerHarnessAccess {
     }
     static bool IsLoggingOut(const Runner& runner) {
         return runner.phase_ == Runner::Phase::LoggingOut;
+    }
+    // Forces the wind-down deadline to already be behind us (past the grace
+    // period too, so the "still moving" sentinel from a fresh EnterWindDown
+    // cannot buy the longer budget by accident) without waiting the real
+    // 2-5 minutes out in simulated clock. Kharazar-shaped regression: a spot
+    // with no known safe ground reachable, deadline already blown.
+    static void ForceWindDownOutOfTime(Runner& runner, i64 nowMs) {
+        runner.windDownStartedMs_ =
+            nowMs - (Runner::kWindDownGraceMs + 60000);
+    }
+    static i32 WindDownStuckCycles(const Runner& runner) {
+        return runner.windDownStuckCycles_;
+    }
+    static bool WindDownForcedUnsafe(const Runner& runner) {
+        return runner.windDownUnsafeLogout_;
+    }
+    static bool SessionCleanLogout(const Runner& runner) {
+        return runner.session_.cleanLogout;
     }
 };
 }
@@ -517,6 +537,79 @@ int main(int argc, char** argv) {
               "the tick after arrival trusts it and logs out -- no repeat "
               "'arrived somewhere safe' loop");
         Check(LogoutIssued(*client), "an 0xD1 logout request reached the wire");
+    }
+
+    // --- wind-down regression: a session past its limit always ends -------
+    // Kharazar (2026-09-07, 11:03): wind-down ran return_home for 300s, hit
+    // "no safe logout from 5925,3621 ... wind-down deadline", and then just
+    // sat in survival ticks with no further logout attempt until the process
+    // was killed by hand. No known bank, no route the atlas can offer, no
+    // hostile in the way -- safeHere never turns true and the old code
+    // retried the same silent cycle forever. One more retreat lap is worth
+    // it (never logging out is worse than trying again once); a second lap
+    // that is just as unsafe means the pocket is sealed and the session must
+    // end anyway, on the wire, right where it stands.
+    {
+        Client::Config config{};
+        config.loginHost = "127.0.0.1";
+        config.username = config.password = "offline_world";
+        config.version = "2.0.7";
+        config.sessionTag = "winddown_unsafe";
+        config.atlasPath = atlasPath.c_str();
+        config.navgridPath = gridPath.c_str();
+        auto client = std::make_unique<Client>(config);
+        client->SetOfflineForTest(true);
+        client->SetInWorldForTest();
+        client->SetClockForTest(2000000);
+
+        life::Runner runner;
+        life::RunnerConfig rc;
+        rc.dataRoot = root + "/winddown_unsafe";
+        rc.accountName = "offline_world";
+        rc.characterName = "winddown_unsafe";
+        rc.professionId = "fencer";
+        std::string error;
+        Check(runner.Configure(rc, &error), error.c_str());
+
+        // Unguarded wilderness, no bank this fresh life has learned, nothing
+        // hostile in scan -- safeHere resolves false on every one of its
+        // checks, exactly the dead end Kharazar's session hit.
+        Check(client->WorldKnowledgeReady(), "real Client loads atlas and grid");
+        Position(*client, 200, 200);
+        Check(client->CurrentRegion() && !client->CurrentRegion()->flags.guarded,
+              "standing in unguarded wilderness with nothing hostile nearby");
+        std::vector<Client::HostileHit> seen;
+        Check(client->ScanHostiles(12, seen) == 0,
+              "nothing to fight and nothing to hide from -- the dead end is "
+              "purely about there being no safe ground to reach");
+
+        life::RunnerHarnessAccess::EnterWindDown(runner, 2000000);
+        life::RunnerHarnessAccess::ForceWindDownOutOfTime(runner, 2000000);
+        runner.Tick(*client, 2000000);
+        Check(!life::RunnerHarnessAccess::IsLoggingOut(runner),
+              "the first dead-end tick spends its one extra retreat lap "
+              "rather than giving up immediately");
+        Check(!LogoutIssued(*client),
+              "no logout on the wire yet -- one more lap was owed first");
+        Check(life::RunnerHarnessAccess::WindDownStuckCycles(runner) == 1,
+              "the retreat lap is counted so a second dead end cannot loop "
+              "forever the way Kharazar's session did");
+
+        // Same dead end again, well past the reset grace window: the second
+        // lap is exactly as unsafe as the first, so this must be the one
+        // that ends the session instead of resetting for a third try.
+        life::RunnerHarnessAccess::ForceWindDownOutOfTime(runner, 2100000);
+        runner.Tick(*client, 2100000);
+        Check(life::RunnerHarnessAccess::IsLoggingOut(runner),
+              "a session past its limit always ends -- the second dead-end "
+              "lap forces the logout instead of retrying a third time");
+        Check(LogoutIssued(*client), "an 0xD1 logout request reached the wire");
+        Check(life::RunnerHarnessAccess::WindDownForcedUnsafe(runner),
+              "the forced logout is recorded as unsafe, not as an ordinary "
+              "clean wind-down");
+        Check(!life::RunnerHarnessAccess::SessionCleanLogout(runner),
+              "the session summary must not read this dead end as a clean "
+              "logout");
     }
 
     std::printf("%d checks, %d failures\n", checks, failures);

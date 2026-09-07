@@ -1907,13 +1907,37 @@ void Runner::Tick(Client& client, i64 nowMs) {
                                             "", client.PlayerX(),
                                             client.PlayerY(), nowMs);
                 }
-                // Retry silently from here. The retry is deliberate -- never
-                // logging out is worse than trying again -- but it has nothing
-                // new to say, and 58 copies of the same warning buried the one
-                // line that mattered.
-                windDownTrips_ = 0;
-                windDownStartedMs_ = nowMs + 30000;
-                return;
+                // A SESSION PAST ITS LIMIT ALWAYS ENDS. One retry is
+                // deliberate -- never logging out is worse than trying
+                // again once -- but a genuinely sealed pocket (no route out
+                // at all) must not retry forever. Kharazar's wind-down hit
+                // this exact branch at 11:03 on 2026-09-07, printed
+                // "no safe logout ... wind-down deadline" once, and then sat
+                // in survival ticks for minutes with no further logout
+                // attempt until the process was killed by hand. The retry
+                // below still has nothing new to say (58 copies of the same
+                // warning buried the one line that mattered), so it stays
+                // silent; only the cycle count changes.
+                if (windDownStuckCycles_ < 1) {
+                    windDownStuckCycles_++;
+                    windDownTrips_ = 0;
+                    windDownStartedMs_ = nowMs + 30000;
+                    return;
+                }
+                LogLine("wind-down: no safe ground reachable -- logging out "
+                        "here at %d,%d", client.PlayerX(), client.PlayerY());
+                state_.memory.NoteEvent(
+                    "session_end_unsafe",
+                    "wind-down deadline exceeded with no safe ground "
+                    "reachable; logged out in place", "", client.PlayerX(),
+                    client.PlayerY(), nowMs);
+                windDownUnsafeLogout_ = true;
+                // No return here: fall through to the shared logout below,
+                // the same 0xD1 path the safe branch takes. A real player
+                // stuck the same way would still end the session rather
+                // than stand there forever; Source-X's post-disconnect
+                // linger on unguarded ground is the accepted risk (see the
+                // block comment at the top of this case).
             }
 
             session_.endedMs = nowMs;
@@ -1933,7 +1957,11 @@ void Runner::Tick(Client& client, i64 nowMs) {
                     : 0;
             session_.placesLearned = static_cast<i32>(state_.memory.Places().size());
             session_.suppliersLearned = static_cast<i32>(state_.memory.Suppliers().size());
-            session_.cleanLogout = true;
+            // A forced unsafe logout still ends the session (see above), but
+            // it is not the clean, safe-ground verdict this flag otherwise
+            // means -- graders reading session summaries need to tell the
+            // two apart.
+            session_.cleanLogout = !windDownUnsafeLogout_;
 
             state_.identity.totalPlayTimeMs += (nowMs - sessionStartMs_);
             state_.sessions.push_back(session_);

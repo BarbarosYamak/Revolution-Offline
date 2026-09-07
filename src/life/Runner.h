@@ -441,6 +441,15 @@ private:
     // Minoc Mine 1 and the one fact worth reading -- which cell -- was in
     // none of them.
     bool windDownBlockedLogged_ = false;
+    // A SESSION PAST ITS LIMIT ALWAYS ENDS. Reaching the "no safe ground"
+    // give-up branch once is worth one more retreat lap (never logging out
+    // is worse than trying again); reaching it a second time means the spot
+    // is a genuinely sealed pocket, and the fix is to log out here rather
+    // than retry forever -- Kharazar (2026-09-07) ran wind-down past its
+    // 300s deadline, printed "no safe logout", and then never logged out at
+    // all, just survival ticks until the process was killed by hand.
+    i32  windDownStuckCycles_ = 0;
+    bool windDownUnsafeLogout_ = false;
 
     SessionSummary session_;
 
