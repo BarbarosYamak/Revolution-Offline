@@ -106,6 +106,37 @@ class GradeLifeRegressionTests(unittest.TestCase):
             {"bank": []}, {"bank": [{"item": "i_log", "qty": 1}]})
         self.assertEqual(result.returncode, 0, result.stdout)
 
+    def test_already_safe_logout_with_no_travel_leg_still_passes_live4(self):
+        # Hector/Castor/Leander/Baelos/Dravys (fleet122_20260907) all end this
+        # way: WindDown finds `safeHere` true immediately (already on guarded
+        # ground / at an open bank box), so no "wind-down: arrived somewhere
+        # safe" line is ever printed -- the very next line is "checkpoint
+        # (clean logout)", gated on the identical `safeHere` flag
+        # (src/life/runner/Core.cpp). Quoted shape from Dravys.console.txt.
+        result = grade("mage", [
+            "INFO [life] session_summary duration=600s goals=4/4 gold=100->110 skills=100.0->101.0 logs=+1",
+            "INFO [life] session_goals families=4 picks=4 top=25% varied=1 self_superseded=0 | upkeep=1(25%) wander=1(25%)",
+            "INFO [life] train: Tactics 10.0->10.1 gained by practice",
+            "INFO [life] hunt: confirmed kill target='Skeleton' corpse=0x1234",
+            "INFO [life] checkpoint (clean logout) -> C:/bot_data/x.dravys/state.json",
+            "INFO [life] logging out",
+            "LOG event logout_complete: acked",
+        ])
+        self.assertEqual(result.returncode, 0, result.stdout)
+        self.assertIn("18/18 PASS", result.stdout)
+
+    def test_logout_without_either_safe_marker_still_fails_live4(self):
+        result = grade("mage", [
+            "INFO [life] session_summary duration=600s goals=4/4 gold=100->110 skills=100.0->101.0 logs=+1",
+            "INFO [life] session_goals families=4 picks=4 top=25% varied=1 self_superseded=0 | upkeep=1(25%) wander=1(25%)",
+            "INFO [life] train: Tactics 10.0->10.1 gained by practice",
+            "INFO [life] hunt: confirmed kill target='Skeleton' corpse=0x1234",
+            "LOG event logout_complete: acked",
+        ])
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("FAILING RULES", result.stdout)
+        self.assertIn("LIVE-4", result.stdout.split("FAILING RULES:")[1])
+
     def test_bank_pick_after_pack_full_is_not_banking(self):
         result = grade("lumberjack_swordsman", base_console(
             "INFO [life] first logs gathered at 100,100 (pack now holds 1)",

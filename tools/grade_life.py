@@ -311,7 +311,21 @@ def main():
     spin = find(lines, r"goal_spinning=")
     r.add("LIVE-3", not spin, "goal_spinning lines %d" % len(spin), spin)
     out = find(lines, r"event logout_complete")
-    safe = find(lines, r"wind-down: arrived somewhere safe")
+    # SAFE HAS TWO SHAPES, ONE LOG LINE EACH. Core.cpp's WindDown phase only
+    # reaches the "clean logout" checkpoint (Checkpoint(client, nowMs,
+    # "clean logout"), the one call site that uses that exact `why`) by
+    # falling through both of its `if (!safeHere) { ...; return; }` guards --
+    # i.e. `safeHere` was true. That happens two ways: (1) WindDown had to
+    # travel to get there and prints "wind-down: arrived somewhere safe" on
+    # arrival, or (2) the character was ALREADY on guarded ground / at an open
+    # bank box / within 6 tiles of a known bank when WindDown started, so no
+    # travel leg ever ran and that line never printed -- but the very next
+    # thing in the log is "checkpoint (clean logout)", gated on the same
+    # `safeHere` flag, so it proves the identical fact. Fleet122: all 96
+    # sampled LIVE-4 FAILs already had "checkpoint (clean logout)" plus
+    # logout_complete and were failing only for lacking the travel-branch
+    # line (e.g. Hector/Castor/Leander/Baelos/Dravys .console.txt).
+    safe = find(lines, r"wind-down: arrived somewhere safe|checkpoint \(clean logout\)")
     r.add("LIVE-4", bool(out) and bool(safe),
           "logout_complete=%d safe_end=%d" % (len(out), len(safe)), out + safe)
     wn = int(wander.group(1)) if wander else 0
