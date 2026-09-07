@@ -3,6 +3,10 @@
 // covers region decisions and journey ownership, not MUL tile movement.
 #include "Client.h"
 #include "life/Runner.h"
+// The RETURN_HOME resolver both halves of the pair share
+// (runner_detail::ResolveHomeReturn); see the stranded block in main().
+#include "life/runner/RunnerInternal.h"
+#include "world/Atlas.h"
 #include "world/NavGrid.h"
 #include "uo/endian.h"
 
@@ -280,6 +284,71 @@ int main(int argc, char** argv) {
                   life::RestStep::Settle,
               "rest does not treat an off-tile bank container as logout safety");
     }
+    // --- STRANDED ON THE WRONG FACET (owner ruling 2026-09-07) -------------
+    //
+    // Alder and Kharazar logged in at the Papua bank and could not leave: the
+    // Lost Lands are four thousand tiles from the Britain bank they call home
+    // and every service lookup made from Papua answers with a Papua provider.
+    // Observe and DoReturnHome must agree about where home is and how far it
+    // is, so both go through ONE resolver and this is the test of it.
+    //
+    // The atlas rows below are COPIED from data/revolution_atlas.txt, tabs,
+    // coordinates and all -- a_townBritain's flags (guarded) and first
+    // rectangle, a_papua_4's flags (none) and first rectangle, and the two
+    // bank places. Nothing here is invented.
+    {
+        uo::world_atlas::Atlas atlas;
+        std::string err;
+        const char* rows =
+            "MAP\t0\t7168\t4096\n"
+            "REGION\ta_world\tworld\t0\t1323\t1624\t55\tALLMAP\tFelucca\n"
+            "RECT\ta_world\t0\t0\t7167\t4095\n"
+            "REGION\ta_townBritain\ttown\t1\t1495\t1629\t10\tBritain\tBritain\n"
+            "RECT\ta_townBritain\t1410\t1517\t1690\t1777\n"
+            "REGION\ta_papua_4\twilderness\t0\t5729\t3209\t-1\tPapua\tPapua\n"
+            "RECT\ta_papua_4\t5633\t3088\t5742\t3328\n"
+            "PLACE\tbritain_bank\tbank\ta_townBritain\t1650\t1608\t20\t5\t"
+                "banker\t\tBritain banker\n"
+            "PLACE\tpapua_bank\tbank\ta_papua_4\t5669\t3131\t14\t5\t"
+                "banker\t\tPapua minter\n";
+        Check(atlas.LoadFromText(rows, &err), "stranded fixture atlas loads");
+
+        // The tile Alder and Kharazar actually log in on.
+        const life::runner_detail::HomeReturn lost =
+            life::runner_detail::ResolveHomeReturn(&atlas, "Britain", 5674, 3134);
+        Check(lost.resolved && !lost.inHome,
+              "a character at the Papua bank is not in its home region");
+        Check(lost.x == 1650 && lost.y == 1608,
+              "and the way home ends at the Britain BANK, not at the AREADEF "
+              "centre -- the bank is where a player's life is kept");
+        Check(lost.tiles == 4024,
+              "the distance the need scores on is the distance the errand "
+              "walks: 4,024 tiles, well past the service trip budget");
+        Check(lost.tiles > uo::life::kStrandedFromHomeTiles,
+              "which is what makes it stranded rather than merely away");
+
+        // Standing on the home bank tile: home, and zero to go.
+        const life::runner_detail::HomeReturn athome =
+            life::runner_detail::ResolveHomeReturn(&atlas, "Britain", 1650, 1608);
+        Check(athome.resolved && athome.inHome && athome.tiles == 0,
+              "at the Britain bank the character is home and the need dies");
+
+        // Arm A of the need/handler contract: no home city, and a home city
+        // the atlas has never heard of, both leave the errand with nowhere to
+        // walk -- so `resolved` is false and Observe leaves homeKnown false.
+        Check(!life::runner_detail::ResolveHomeReturn(&atlas, "", 5674, 3134)
+                   .resolved,
+              "no home city means no errand, so the need may not score");
+        Check(!life::runner_detail::ResolveHomeReturn(&atlas, "Atlantis",
+                                                      5674, 3134)
+                   .resolved,
+              "nor does a home city this atlas does not know");
+        Check(!life::runner_detail::ResolveHomeReturn(nullptr, "Britain",
+                                                      5674, 3134)
+                   .resolved,
+              "nor a character whose world knowledge has not loaded");
+    }
+
     std::printf("%d checks, %d failures\n", checks, failures);
     return failures ? 1 : 0;
 }

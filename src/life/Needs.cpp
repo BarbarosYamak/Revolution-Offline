@@ -41,6 +41,7 @@ const char* NeedKindName(NeedKind k) {
         case NeedKind::NeedMount:     return "NeedMount";
         case NeedKind::NeedWoolIncome: return "NeedWoolIncome";
         case NeedKind::NeedStrength:  return "NeedStrength";
+        case NeedKind::NeedHome:      return "NeedHome";
         case NeedKind::Count:         break;
     }
     return "?";
@@ -658,6 +659,37 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
                 false);
         }
         return needs;   // a ghost has no other needs it can act on
+    }
+
+    // --- AM I EVEN IN THE RIGHT PART OF THE WORLD? -------------------------
+    //
+    // Before any errand, because no errand this character knows how to run
+    // can be served from the wrong facet. Alder and Kharazar logged in at the
+    // Papua bank (5674,3134) on 2026-09-07 -- 4,024 tiles and a teleporter
+    // away from the Britain bank they call home -- and every service lookup
+    // they made from there answered with a Papua provider, so nothing they
+    // could score ever moved them. Owner ruling the same day: a stranded bot
+    // goes home by normal travel.
+    //
+    // ARM A OF THE NEED/HANDLER CONTRACT. `homeKnown` is the handler's own
+    // precondition -- Observe sets it only when the atlas resolved the home
+    // city to a region AND to a tile DoReturnHome would walk to -- so the
+    // need cannot score while the errand would refuse, and it stops scoring
+    // the moment the character is home rather than needing a cooldown to
+    // stay quiet.
+    //
+    // NOT raised while something is actually swinging at us: SURVIVE (1000)
+    // owns that tick, and a cross-facet walk begun under attack is the walk
+    // that killed Odessa (Core.cpp wind-down). It is raised again as soon as
+    // the fight is over.
+    if (obs.homeKnown && !obs.inHomeRegion &&
+        obs.tilesFromHome > kStrandedFromHomeTiles && !obs.underAttack &&
+        obs.attackersOnMe == 0) {
+        add(NeedKind::NeedHome, 0.95, "home city",
+            "stranded too far from home for any errand to reach a provider "
+            "it knows",
+            Fmt("at=%d,%d tiles_from_home=%d limit=%d", obs.x, obs.y,
+                obs.tilesFromHome, kStrandedFromHomeTiles));
     }
 
     // --- IS THE SHOP OPEN YET? ---------------------------------------------

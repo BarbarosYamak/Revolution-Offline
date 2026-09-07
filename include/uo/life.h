@@ -716,6 +716,40 @@ struct Observation {
     // gone -- see Atlas::AllowsSkillGainAt.
     bool inNoGainRegion = false;
 
+    // --- STRANDED: HOW FAR THIS CHARACTER IS FROM WHERE IT LIVES -----------
+    //
+    // Alder and Kharazar woke at the Papua bank (5674,3134) on 2026-09-07 and
+    // could never leave: Papua is in the Lost Lands, 4,024 tiles from the
+    // Britain bank they call home, and once a character is standing there
+    // every ordinary errand resolves to a PAPUA provider. Nothing in the need
+    // model could see that the character was in the wrong hemisphere, so
+    // nothing ever asked it to go home.
+    //
+    // Three facts, filled in Observe from the atlas (runner_detail::
+    // ResolveHomeReturn), because the pure need model has no atlas:
+    //
+    //   homeKnown     -- the atlas resolved state_.homeCity to a region AND a
+    //                    place to walk to. FALSE by default so a need model
+    //                    with no world behind it never invents the errand;
+    //                    this is the arm-A "the handler could act" gate.
+    //   inHomeRegion  -- standing inside the home city's own region. TRUE by
+    //                    default for the same reason.
+    //   tilesFromHome -- Chebyshev tiles to the exact tile the RETURN_HOME
+    //                    handler would walk to, so the need and the errand
+    //                    measure ONE distance (need/handler contract 2.1).
+    //
+    // Deliberately NOT gated on "the ground here is unguarded". Papua's
+    // STREETS are unguarded (a_papua_4 carries no flags) but its shop
+    // interiors are REGION_FLAG_GUARDED in the shard's own scripts --
+    // runtime/scripts/maps/map0/map0_rooms.scp:1806-1812, [ROOMDEF
+    // a_olde_loan_savings_1], which is the very bank tile these two characters
+    // log in on. A guarded-here gate would therefore flap on and off room by
+    // room. Being a facet away from home is the durable fact; standing on a
+    // guarded tile inside a town nobody can reach from home is not safety.
+    bool homeKnown = false;
+    bool inHomeRegion = true;
+    i32  tilesFromHome = 0;
+
     // What the profession wants bought from a trainer next, or -1. Set by the
     // runner from the build plan; the need model does not know about
     // professions, only about a skill it has been pointed at.
@@ -1192,10 +1226,32 @@ enum class NeedKind : u8 {
     // real skills take the points back. See NeedTraining, which is the
     // opposite case -- a skill below target that this life CAN train.
     NeedStrength,
+    // TO BE BACK WHERE THIS CHARACTER LIVES, when it is not.
+    //
+    // Not a comfort: a character a facet away from home cannot do ANY of its
+    // work, because every service lookup, every hunting ground and every
+    // market it knows resolves to a provider it can only reach by a route no
+    // ordinary errand is allowed to plan. See Observation::homeKnown for the
+    // Papua case this was written for.
+    NeedHome,
     Count,
 };
 
 const char* NeedKindName(NeedKind k);
+
+// PAST THIS MANY TILES FROM HOME A CHARACTER IS NOT ON AN ERRAND, IT IS LOST.
+//
+// The same number as world_atlas::kMaxServiceTripTiles, and deliberately so:
+// that is the planned-tile cap above which the service picker refuses to send
+// a character anywhere, so beyond it there is nothing at home the character
+// can still reach and nothing out here that belongs to its life. The two are
+// held together by a static_assert in src/life/runner/RunnerShared.cpp; the
+// life layer keeps its own copy because it links no world code.
+//
+// Measured against the real atlas: Britain -> Trinsic is 1,110 tiles and
+// Vesper -> Minoc 440, so no legitimate same-facet errand trips this; Papua ->
+// Britain bank is 4,024.
+constexpr i32 kStrandedFromHomeTiles = 1200;
 
 // "NeedTool=true" is not a need. A need names the thing and the evidence.
 struct Need {
@@ -1543,6 +1599,14 @@ enum class GoalKind : u8 {
     // target -- then lock Wrestling DOWN so the real skills reclaim its
     // points. The one goal whose PURPOSE is a stat rather than a skill.
     StatFarm,
+    // GO HOME. The one goal whose whole content is a journey, and the only
+    // way out of a town on the wrong facet: Alder and Kharazar logged in at
+    // the Papua bank and every other goal they could score was answered by a
+    // Papua provider, so they would have stood there for ever. Owner ruling
+    // 2026-09-07: "a bot that finds itself stranded away from home goes home
+    // by normal travel" -- the ordinary travel system, teleporters and all,
+    // never a recall shortcut it has not earned.
+    ReturnHome,
     IdleBriefly,
     Count,
 };

@@ -319,6 +319,18 @@ constexpr i64 kExploredAllCooldownMs = 300000;
 // tick does not immediately re-report the fault, short enough that a
 // genuinely freed-up errand is not left idle for the rest of the session.
 constexpr i64 kStagnantCooldownMs = 5 * 60 * 1000;
+// GOING HOME. Two trips, not three: "unreachable = 1 try, max 2" (owner rule)
+// -- and a cross-facet walk is the most expensive trip a character can take,
+// so a third attempt is most of a session spent proving the same thing. The
+// long rest afterwards is deliberate: whatever stopped the route (a gate that
+// would not answer, a leg with no path) will not have changed in a minute,
+// and the character is still better off working where it stands than pacing.
+constexpr i32 kMaxReturnHomeTrips = 2;
+constexpr i64 kReturnHomeCooldownMs = 10 * 60 * 1000;
+// A short bar on re-picking the goal at the moment it succeeds. The need
+// itself goes quiet on arrival (Observation::inHomeRegion), so this only
+// covers the character that stops a step outside the home rectangles.
+constexpr i64 kHomeArrivedCooldownMs = 60000;
 // A pair of scissors is a few dozen coins from any tailor. Worth a walk.
 constexpr i32 kScissorsMoney = 60;
 constexpr i32 kMaxToolTrips = 3;
@@ -1463,6 +1475,35 @@ const wm::Place* PickAllowedMine(const world_atlas::Atlas* atlas,
 // Null when the atlas knows no guarded place at all.
 const wm::Place* NearestGuardedPlace(const world_atlas::Atlas* atlas, i32 x,
                                      i32 y);
+
+// WHERE THIS CHARACTER LIVES, AND HOW FAR IT IS FROM WHERE IT IS STANDING.
+//
+// ONE resolver for both halves of the RETURN_HOME pair: Observe fills
+// Observation::homeKnown / inHomeRegion / tilesFromHome from it so the need
+// can score, and DoReturnHome walks to the very tile it reports. A need that
+// measured one distance while the errand walked to another would be the
+// contract violation docs/NEED_HANDLER_CONTRACT.md exists to end.
+//
+// The destination is the home city's BANK, not the region's AREADEF centre:
+// the bank is where a Revolution player's life is kept, it is inside the
+// guard line, and it is the tile every other errand measures from. The centre
+// is the fallback for a home region the atlas lists no banker in.
+//
+// `resolved` is false when there is no home city, no atlas, or the atlas
+// knows no such region -- the arm-A gate that keeps NeedHome silent when
+// DoReturnHome would have nowhere to go.
+struct HomeReturn {
+    const wm::Region* region = nullptr;
+    i32  x = 0, y = 0;
+    i32  arriveRadius = 5;
+    // Points into atlas storage, which outlives every caller here.
+    const char* label = "";
+    i32  tiles = 0;         // Chebyshev from the queried (x, y) to (x, y) above
+    bool inHome = false;    // standing inside the home region's rectangles
+    bool resolved = false;
+};
+HomeReturn ResolveHomeReturn(const world_atlas::Atlas* atlas,
+                             const std::string& homeCity, i32 x, i32 y);
 
 
 }  // namespace runner_detail

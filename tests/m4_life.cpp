@@ -4733,6 +4733,132 @@ void TestContractCorpseGateMatchesTheHandler() {
     }
 }
 
+// ---------------------------------------------------------------------------
+// STRANDED ON THE WRONG FACET (owner ruling 2026-09-07).
+//
+// Alder and Kharazar logged in at the Papua bank on 2026-09-07 and could not
+// leave: Papua is in the Lost Lands, its town region a_papua_4 carries no
+// guard flag, and every service lookup made from there answers with a Papua
+// provider. Nothing in the need model could see that the character was in the
+// wrong hemisphere, so nothing ever asked it to go home.
+//
+// EVERY NUMBER HERE IS MEASURED, NOT REASONED (bot-brain rule
+// "scenario constants from evidence"):
+//   (5674,3134) is the tile both characters log in on;
+//   a_papua_4 (data/revolution_atlas.txt) has flags 0 -- unguarded;
+//   4,024 is the Chebyshev distance from there to britain_bank (1650,1608),
+//   which is the tile runner_detail::ResolveHomeReturn picks for home
+//   "Britain" -- the nearer of the two Britain bankers in the atlas.
+void TestStrandedCharacterGoesHome() {
+    Section("stranded: a character on the wrong facet goes home first");
+
+    const prof::Profession* jack = prof::Find("lumberjack_swordsman");
+    if (!jack) { Check(false, "no lumberjack_swordsman"); return; }
+    life::NeedConfig cfg;
+    cfg.profession = jack;
+    const life::BuildPlan plan = life::PlanFromProfession(*jack);
+    life::Memory mem;
+
+    // (1) PAPUA. Same healthy fighter, standing 4,024 tiles from its home
+    // bank, with nothing here it could work at.
+    life::Observation lost = HealthyLumberjackAtWork();
+    lost.x = 5674; lost.y = 3134;
+    lost.atWorkSite = false;
+    lost.treeAdjacent = false;
+    lost.homeKnown = true;        // the atlas resolved home_city "Britain"
+    lost.inHomeRegion = false;    // standing in a_papua_4, not a_townBritain
+    lost.tilesFromHome = 4024;
+
+    const std::vector<life::Need> needs = life::AssessNeeds(plan, mem, lost, cfg);
+    const life::Need* home = Find(needs, life::NeedKind::NeedHome);
+    Check(home != nullptr && !home->blocked && home->urgency > 0.9,
+          "four thousand tiles from home is a need, not a preference");
+    Check(home != nullptr &&
+              home->evidence.find("tiles_from_home=4024") != std::string::npos,
+          "and the need shows the distance it judged on");
+
+    life::Planner planner;
+    const std::vector<life::ScoredGoal> scored = planner.Score(needs, lost, mem);
+    double goHome = -1.0, train = -1.0, best = -1.0;
+    life::GoalKind bestKind = life::GoalKind::Count;
+    for (const life::ScoredGoal& g : scored) {
+        if (g.kind == life::GoalKind::ReturnHome) goHome = g.score;
+        if (g.kind == life::GoalKind::TrainCombat) train = g.score;
+        if (g.feasible && g.score > best) { best = g.score; bestKind = g.kind; }
+    }
+    std::printf("  RETURN_HOME %.1f vs TRAIN_COMBAT %.1f (best %s %.1f)\n",
+                goHome, train, life::GoalKindName(bestKind), best);
+    Check(goHome > 0.0, "RETURN_HOME is scored");
+    Check(goHome > train,
+          "going home outranks going hunting: the hunting ground it would "
+          "find is on the wrong facet too");
+    Check(bestKind == life::GoalKind::ReturnHome,
+          "and it outranks every other errand this life can score, because "
+          "every one of them resolves to a Papua provider");
+
+    // ...BUT NOT THE EMERGENCIES. A cross-facet walk begun at 6 hp is the
+    // walk that killed Odessa; the corpse is here, not at home.
+    {
+        life::Observation hurt = lost;
+        hurt.hp = 6;
+        const std::vector<life::Need> hn = life::AssessNeeds(plan, mem, hurt, cfg);
+        double heal = -1.0, goHomeHurt = -1.0;
+        for (const life::ScoredGoal& g : planner.Score(hn, hurt, mem)) {
+            if (g.kind == life::GoalKind::Heal) heal = g.score;
+            if (g.kind == life::GoalKind::ReturnHome) goHomeHurt = g.score;
+        }
+        Check(heal > goHomeHurt, "HEAL still comes first when hurt");
+    }
+
+    // ...NOR WHILE SOMETHING IS SWINGING. SURVIVE owns that tick.
+    {
+        life::Observation fight = lost;
+        fight.underAttack = true;
+        fight.attackersOnMe = 1;
+        fight.hostilesNear = 1;
+        Check(Find(life::AssessNeeds(plan, mem, fight, cfg),
+                   life::NeedKind::NeedHome) == nullptr,
+              "a character under attack does not set off on a cross-facet walk");
+    }
+
+    // (2) AT HOME. The same character standing in its own guarded town wants
+    // nothing of the sort -- and it goes quiet on the REGION, not on a
+    // cooldown, so the goal cannot spin.
+    {
+        life::Observation athome = HealthyLumberjackAtWork();
+        athome.homeKnown = true;
+        athome.inHomeRegion = true;
+        athome.tilesFromHome = 0;
+        Check(Find(life::AssessNeeds(plan, mem, athome, cfg),
+                   life::NeedKind::NeedHome) == nullptr,
+              "in its own town the need does not exist at all");
+    }
+
+    // Nor does a legitimate errand trip it: Britain -> Trinsic is 1,110 tiles
+    // in the real atlas, comfortably inside the service trip budget.
+    {
+        life::Observation visiting = HealthyLumberjackAtWork();
+        visiting.homeKnown = true;
+        visiting.inHomeRegion = false;
+        visiting.tilesFromHome = 1110;
+        Check(Find(life::AssessNeeds(plan, mem, visiting, cfg),
+                   life::NeedKind::NeedHome) == nullptr,
+              "a trip to the next city is an errand, not being stranded");
+    }
+
+    // (3) NO HOME CITY. Arm A of the need/handler contract: DoReturnHome has
+    // nowhere to walk to, so the need must not score at all -- not score and
+    // be blocked, not score and fail. `homeKnown` is exactly the flag the
+    // handler resolves, so the two cannot disagree.
+    {
+        life::Observation homeless = lost;
+        homeless.homeKnown = false;
+        Check(Find(life::AssessNeeds(plan, mem, homeless, cfg),
+                   life::NeedKind::NeedHome) == nullptr,
+              "with no home city the atlas knows, the need is silent");
+    }
+}
+
 void TestContractArmBSilencesTheNeed() {
     Section("contract: a handler's recorded refusal silences the need");
 
@@ -4984,6 +5110,7 @@ int main(int argc, char** argv) {
     TestContractCorpseGateMatchesTheHandler();
     TestContractArmBSilencesTheNeed();
     TestContractArmAMatchesTheErrand();
+    TestStrandedCharacterGoesHome();
 
     std::printf("%d checks, %d failures\n", g_checks, g_failures);
     return g_failures == 0 ? 0 : 1;

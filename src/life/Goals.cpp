@@ -36,6 +36,7 @@ const char* GoalKindName(GoalKind g) {
         case GoalKind::BuyMount:             return "BUY_MOUNT";
         case GoalKind::HarvestWool:          return "HARVEST_WOOL";
         case GoalKind::StatFarm:             return "STAT_FARM";
+        case GoalKind::ReturnHome:           return "RETURN_HOME";
         case GoalKind::IdleBriefly:           return "IDLE_BRIEFLY";
         case GoalKind::Count:                 break;
     }
@@ -64,6 +65,11 @@ GoalFamily FamilyOf(GoalKind k) {
         case GoalKind::Heal:
         case GoalKind::RecoverCorpse:
         case GoalKind::GetTool:
+        // Being on the wrong facet is not a chore, it is the reason nothing
+        // else this character wants can happen at all -- and, like GetTool,
+        // it must be exempt from family satiation: a day is not "balanced"
+        // by spending part of it stranded.
+        case GoalKind::ReturnHome:
             return GoalFamily::Emergency;
         case GoalKind::Bank:
         case GoalKind::ReplaceEquipment:
@@ -298,6 +304,19 @@ const GoalSpec kGoals[] = {
     // bench (130) and to a fighter with a graveyard in reach (84.5), and beats
     // exploring and idling.
     {GoalKind::StatFarm,              NeedKind::NeedStrength,      118.0},
+    // ABOVE EVERY ERRAND, BELOW EVERY EMERGENCY.
+    //
+    // A character stranded on the wrong facet can still score GET_TOOL (520),
+    // BUY_MOUNT (255) and the whole 130-150 shelf of work -- and every one of
+    // them would be answered by a shop in the town it is trying to leave,
+    // which is how Alder and Kharazar spent whole sessions in Papua. So this
+    // has to outrank the lot. It must NOT outrank HEAL (700), RECOVER_CORPSE
+    // (950) or SURVIVE (1000): a long overland walk started at 6 hp is the
+    // Odessa route (Core.cpp wind-down), and the corpse is here, not at home.
+    //
+    // 600 x the 0.95 urgency the need carries = 570, which clears GET_TOOL's
+    // ceiling of 520 and stays a clear 130 under HEAL.
+    {GoalKind::ReturnHome,            NeedKind::NeedHome,          600.0},
 };
 
 }  // namespace

@@ -462,6 +462,20 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
         const wm::Region* here = client.CurrentRegion();
         obs.inNoGainRegion = here && here->flags.safe;
     }
+    // AND WHETHER THIS IS ANYWHERE NEAR WHERE THE CHARACTER LIVES.
+    //
+    // Same resolver DoReturnHome walks with, so the need's distance and the
+    // errand's destination are one fact rather than two that can disagree
+    // (docs/NEED_HANDLER_CONTRACT.md 2.1). No atlas, no home city, or a home
+    // city the atlas does not know -> homeKnown stays false and NeedHome
+    // never scores, which is the arm-A gate.
+    {
+        const runner_detail::HomeReturn home = runner_detail::ResolveHomeReturn(
+            client.WorldAtlas(), state_.homeCity, obs.x, obs.y);
+        obs.homeKnown = home.resolved;
+        obs.inHomeRegion = !home.resolved || home.inHome;
+        obs.tilesFromHome = home.tiles;
+    }
     obs.treeAdjacent = client.TreeCount(obs.x, obs.y, 2) > 0;
     // A box opened in Magincia is not a box we are standing at in Ocllo:
     // the serial outlives the walk away (Client::BankOpenTileHeld is the
@@ -2386,6 +2400,7 @@ void Runner::RunGoal(Client& client, const Observation& obs) {
         case GoalKind::TrainCombat:           done = DoTrainCombat(client, obs); break;
         case GoalKind::EarnGold:              done = DoEarnGold(client, obs); break;
         case GoalKind::TravelToRequiredPlace: done = DoTravel(client, obs); break;
+        case GoalKind::ReturnHome:            done = DoReturnHome(client, obs); break;
         case GoalKind::TrainAtNpc:            done = DoTrainAtNpc(client, obs); break;
         case GoalKind::TradeWithPlayer:       done = DoTradeWithPlayer(client, obs); break;
         case GoalKind::Fish:                  done = DoFish(client, obs); break;
@@ -2466,6 +2481,105 @@ bool Runner::DoTravel(Client& client, const Observation& obs) {
     }
     LogLine("travel: did not arrive (%s)", client.TravelFailureText());
     planner_.NoteAttempt(obs.nowMs);
+    return false;
+}
+
+// ---------------------------------------------------------------------------
+// GOING HOME -- the errand that exists because arriving somewhere is not the
+// same as being able to leave it.
+//
+// Alder and Kharazar logged in at the Papua bank (5674,3134) on 2026-09-07.
+// Papua is in the Lost Lands: its town region a_papua_4 carries no guard
+// flag, swamp dragons spawn inside it, and it is 4,024 tiles from the Britain
+// bank both characters call home. Every service lookup they made from there
+// answered with a Papua provider -- correctly, since that IS the nearest one
+// -- so nothing they could score ever moved them, and the fix on the
+// selection side (world/ServiceSelection.cpp) only stops them being SENT
+// there. Getting back out is a need, and this is its errand.
+//
+// Owner ruling, 2026-09-07: "a bot that finds itself stranded away from home
+// goes home by normal travel." So this is one TravelToPoint at the home
+// bank and nothing else -- the same call the bank errand makes, planned by
+// TravelPlanRoute with teleporters allowed, which is how it walks to the
+// Papua exit pad and carries on from the other side. No recall it has not
+// earned, no repositioning, no shortcut.
+//
+// Everything that can go wrong ends the goal WITH a cooldown, because a goal
+// that fails without one is re-picked on the very next tick and becomes the
+// goal_spinning backstop's problem (Core.cpp LogSpinIfDetected).
+bool Runner::DoReturnHome(Client& client, const Observation& obs) {
+    const runner_detail::HomeReturn home = runner_detail::ResolveHomeReturn(
+        client.WorldAtlas(), state_.homeCity, obs.x, obs.y);
+
+    if (!home.resolved) {
+        // The need's own gate is homeKnown, which is this same flag, so
+        // reaching here at all is a fault rather than a decision -- report it
+        // in those terms and stop asking.
+        LogLine("goal_failed=RETURN_HOME reason=\"no home city the atlas "
+                "knows (home='%s')\"",
+                state_.homeCity.empty() ? "unset" : state_.homeCity.c_str());
+        planner_.Cooldown(GoalKind::ReturnHome,
+                          obs.nowMs + kReturnHomeCooldownMs);
+        planner_.Finish(false, "no home city to return to", obs.nowMs);
+        return false;
+    }
+
+    if (home.inHome) {
+        LogLine("home: standing in %s again -- the way home is walked",
+                home.region->name.c_str());
+        travelInFlight_ = false;
+        planner_.NoteProgress();
+        planner_.Cooldown(GoalKind::ReturnHome,
+                          obs.nowMs + kHomeArrivedCooldownMs);
+        planner_.Finish(true, "home again", obs.nowMs);
+        return true;
+    }
+
+    if (client.TravelBusy()) return false;
+
+    if (!travelInFlight_) {
+        if (travelAttempts_ >= kMaxReturnHomeTrips) {
+            LogLine("goal_failed=RETURN_HOME reason=\"%d trips did not reach "
+                    "%s, still %d tiles away\"",
+                    travelAttempts_, home.label, home.tiles);
+            planner_.Cooldown(GoalKind::ReturnHome,
+                              obs.nowMs + kReturnHomeCooldownMs);
+            planner_.Finish(false, "the way home did not arrive", obs.nowMs);
+            return false;
+        }
+        travelAttempts_++;
+        LogLine("home: %d tiles from %s and nothing here belongs to this life "
+                "-- walking home (trip %d of %d)",
+                home.tiles, home.label, travelAttempts_, kMaxReturnHomeTrips);
+        travelInFlight_ = client.TravelToPoint(home.x, home.y,
+                                               home.arriveRadius, "return_home");
+        if (!travelInFlight_) {
+            // No route AT ALL is a durable fact about this pair of places, not
+            // a bad tick: rest the goal rather than re-planning it every
+            // 8 seconds for the rest of the session.
+            LogLine("goal_failed=RETURN_HOME reason=\"%s\"",
+                    client.TravelFailureText());
+            planner_.Cooldown(GoalKind::ReturnHome,
+                              obs.nowMs + kReturnHomeCooldownMs);
+            planner_.Finish(false, client.TravelFailureText(), obs.nowMs);
+        }
+        return false;
+    }
+
+    travelInFlight_ = false;
+    if (client.TravelSucceeded()) {
+        // ARRIVAL IS A REGION READ, NOT THE JOURNEY'S OWN VERDICT. A trip can
+        // report success having stopped short of the home rectangles -- at the
+        // far side of a gate, say -- and the goal is not done until the
+        // character is actually standing in the place it lives. The next tick
+        // takes the inHome branch above, or spends the second trip.
+        planner_.NoteProgress();
+        nextActionMs_ = obs.nowMs + 2000;
+        return false;
+    }
+    LogLine("home: the walk home did not arrive (%s)", client.TravelFailureText());
+    planner_.NoteAttempt(obs.nowMs);
+    nextActionMs_ = obs.nowMs + 5000;
     return false;
 }
 

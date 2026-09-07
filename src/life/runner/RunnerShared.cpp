@@ -1,5 +1,15 @@
 #include "RunnerInternal.h"
 
+#include "world/ServiceSelection.h"
+
+// The life layer links no world code, so it keeps its own copy of the cap
+// (life::kStrandedFromHomeTiles). This is where the two are held together:
+// past the planned-tile cap the service picker will not send a character
+// anywhere, so past it there is nothing at home it can still reach.
+static_assert(uo::life::kStrandedFromHomeTiles ==
+                  uo::world_atlas::kMaxServiceTripTiles,
+              "stranded-from-home line drifted from the service trip cap");
+
 namespace uo::life {
 namespace runner_detail {
 
@@ -191,6 +201,35 @@ const wm::Place* NearestGuardedPlace(const world_atlas::Atlas* atlas, i32 x,
         if (!best || d < bestDist) { best = &p; bestDist = d; }
     }
     return best;
+}
+
+HomeReturn ResolveHomeReturn(const world_atlas::Atlas* atlas,
+                             const std::string& homeCity, i32 x, i32 y) {
+    HomeReturn h;
+    if (!atlas || !atlas->Ready() || homeCity.empty()) return h;
+    // FindRegion widens id -> exact NAME -> substring, so a state.homeCity of
+    // "Britain" finds AREADEF a_townBritain without the life layer knowing
+    // the defname.
+    const wm::Region* home = atlas->FindRegion(homeCity.c_str());
+    if (!home) return h;
+    h.region = home;
+    h.inHome = home->Contains(x, y);
+    const wm::Place* bank = atlas->NearestPlaceWithServiceInRegion(
+        wm::Service::Banker, homeCity.c_str(), x, y);
+    if (bank) {
+        h.x = bank->position.x;
+        h.y = bank->position.y;
+        h.arriveRadius = 5;
+        h.label = bank->name.c_str();
+    } else {
+        h.x = home->center.x;
+        h.y = home->center.y;
+        h.arriveRadius = 8;
+        h.label = home->name.c_str();
+    }
+    h.tiles = TileDist(h.x, h.y, x, y);
+    h.resolved = true;
+    return h;
 }
 
 }  // namespace runner_detail

@@ -269,6 +269,9 @@ private:
     void EndStatFarm(Client& client, const Observation& obs);
     bool DoEarnGold(Client& client, const Observation& obs);
     bool DoTravel(Client& client, const Observation& obs);
+    // Walk back to the city this character lives in, by ordinary travel.
+    // See GoalKind::ReturnHome and Observation::homeKnown.
+    bool DoReturnHome(Client& client, const Observation& obs);
     bool DoTrainAtNpc(Client& client, const Observation& obs);
     bool DoTradeWithPlayer(Client& client, const Observation& obs);
     bool DoFish(Client& client, const Observation& obs);
