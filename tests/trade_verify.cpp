@@ -873,6 +873,56 @@ void TestOccludedShopkeeperIsStillFound() {
 }
 
 // ---------------------------------------------------------------------------
+// 3b. A BANKER BEHIND THE COUNTER IS STILL A BANKER.
+//
+// Client::NearestMobileWithTrade -- the plain trade+skip lookup BankErrand's
+// Step::Find calls -- had the same sight-line-as-identity bug as the
+// shopkeeper lookup above, just never given the visible/blind fallback when
+// that one was fixed. Odessa knew "Jarvinia, the banker" (0x000096B1) at
+// Minoc from a scan one look earlier, stood 8 tiles off at (2505,557) with
+// Jarvinia behind the counter at (2502,549), and BankErrand::Step::Find
+// logged "no banker within 16 tiles ... after 4 looks at the crowd" while
+// she was on screen the whole time (fleet122d30_20260907,
+// Odessa.console.txt:444-500). Same harness limitation as above: no world
+// data loaded, so MobileInLineOfSight is false for anything past one tile,
+// which stands in for "occluded".
+// ---------------------------------------------------------------------------
+void TestOccludedBankerIsStillFound() {
+    Section("banker lookup: a known banker behind the counter is not erased");
+
+    auto c = MakeConnectedClient();
+    const u32 kPlayer  = 0x00001112;
+    const u32 kJarvinia = 0x000096B1;
+    const std::vector<u8> login = MakeLoginConfirm(kPlayer, 2505, 557);
+    c->DispatchPacketForTest(login.data(), login.size());
+    const std::vector<u8> jarvinia = MakeMobileIncoming(kJarvinia, 2502, 549);
+    c->DispatchPacketForTest(jarvinia.data(), jarvinia.size());
+    const std::vector<u8> doll =
+        MakePaperdoll(kJarvinia, "Jarvinia, the banker");
+    c->DispatchPacketForTest(doll.data(), doll.size());
+
+    Check(!c->MobileInLineOfSight(kJarvinia),
+          "and with no world data she is treated as out of sight -- the "
+          "occluded case this regression is about");
+
+    static const std::vector<u32> kNoSkip;
+    const u32 found = c->NearestMobileWithTrade("banker", kNoSkip);
+    Check(found == kJarvinia,
+          "the errand finds the banker it already knows about instead of "
+          "reporting nobody within 16 tiles");
+
+    // An untitled mobile standing just as close must never be handed back as
+    // a banker -- the fallback widens WHERE a known banker may stand, never
+    // WHO counts as one.
+    const u32 kBystander = 0x00004945;
+    const std::vector<u8> bystander =
+        MakeMobileIncoming(kBystander, 2503, 550);
+    c->DispatchPacketForTest(bystander.data(), bystander.size());
+    Check(c->NearestMobileWithTrade("banker", kNoSkip) == kJarvinia,
+          "an untitled neighbour does not outrank the known banker");
+}
+
+// ---------------------------------------------------------------------------
 // Spellbook: the 0x24 whose gump id is 0xFFFF is an OPEN, not a close.
 //
 // Sphere's CClient::addSpellbookOpen answers a spellbook double-click with
@@ -1081,6 +1131,7 @@ int main() {
     TestShoutAndTradeWindowJoinOnSerial();
     TestShoutAndTradeWindowJoinWithNames();
     TestOccludedShopkeeperIsStillFound();
+    TestOccludedBankerIsStillFound();
     TestSpellbookGumpIsAnOpenNotAClose();
     TestDismountFinishesOnMountItemRemoval();
     TestMountFinishesOnLayer25EquipRegardlessOfItemSerial();

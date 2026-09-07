@@ -3135,6 +3135,18 @@ u32 Client::NearestShopkeeperWithTrade(const char* trade,
     return best ? best : blind;
 }
 
+// SIGHT IS A REACH TEST, NOT AN IDENTITY TEST -- same rule as
+// NearestShopkeeperWithTrade (see its comment above), and the same bug in
+// the same shape: a banker whose title this life already knows stands
+// behind the bank counter, MobileInLineOfSight says no, and this lookup used
+// to return 0 even though the caller (BankErrand::Step::Approach) walks up
+// and re-checks reach before ever touching the mobile. Jarvinia, the banker
+// at Minoc, was 8 tiles from Odessa at (2505,557) -- known from her own
+// paperdoll one look earlier -- and BankErrand logged "no banker within 16
+// tiles ... after 4 looks at the crowd" while she stood on screen the whole
+// time (fleet122d30_20260907, Odessa.console.txt:444-500). Prefer a visible
+// match at any distance, same as the shopkeeper lookup, but fall back to the
+// nearest KNOWN one behind glass/counter rather than reporting nobody here.
 u32 Client::NearestMobileWithTrade(const char* trade,
                                    const std::vector<u32>& skip) const {
     if (!trade || !trade[0]) return 0;
@@ -3152,9 +3164,13 @@ u32 Client::NearestMobileWithTrade(const char* trade,
 
     u32 best = 0;
     int bestD = 0;
+    // Second-choice: title matches, sight-line does not. Kept separate so a
+    // visible match always wins over an occluded one at any distance -- see
+    // NearestShopkeeperWithTrade for why.
+    u32 blind = 0;
+    int blindD = 0;
     for (const MobileObj& m : mobileCache_) {
         if (m.serial == playerSerial_) continue;
-        if (!MobileInLineOfSight(m.serial)) continue;
         bool skipped = false;
         for (u32 sk : skip) { if (sk == m.serial) { skipped = true; break; } }
         if (skipped) continue;
@@ -3190,9 +3206,14 @@ u32 Client::NearestMobileWithTrade(const char* trade,
 
         const int dx = m.x - playerX_, dy = m.y - playerY_;
         const int d = (dx < 0 ? -dx : dx) + (dy < 0 ? -dy : dy);
-        if (!best || d < bestD) { best = m.serial; bestD = d; }
+        if (MobileInLineOfSight(m.serial)) {
+            if (!best || d < bestD) { best = m.serial; bestD = d; }
+        } else if (!blind || d < blindD) {
+            blind = m.serial;
+            blindD = d;
+        }
     }
-    return best;
+    return best ? best : blind;
 }
 
 u32 Client::NearestMobileNamed(const char* needle) const {
