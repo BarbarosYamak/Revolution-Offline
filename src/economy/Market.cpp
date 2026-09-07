@@ -1392,6 +1392,92 @@ void PriceBook::Expire(i64 nowMs, i64 maxAgeMs) {
 }
 
 // ---------------------------------------------------------------------------
+// A crafter's own margin. See CraftedGoodFloor / ComputeCraftedGoodFloor in
+// market.h for the full derivation and the owner ruling that requires it.
+// ---------------------------------------------------------------------------
+namespace {
+
+// IS THIS ITEM THE SORT OF THING A CRAFTER'S MARGIN APPLIES TO?
+//
+// NOT the same test as "has a Production.cpp recipe with PlayerCrafted
+// provenance" -- that also matches i_board (SKILLMAKE=Carpentry 0.0, one log,
+// PlayerCrafted) and every other INTERMEDIATE a skill menu happens to cut,
+// which kSellMatrix already and deliberately classifies as a material, not a
+// good (`{"i_board", NpcSellClass::RawResource}`). Gating on that alone put a
+// carpentry-cut floor under a board and broke TestForumPriceSeedsGroundFirstOffers'
+// own "there is no seed for a board" case.
+//
+// The line this project already draws is "materials never go to NPCs,
+// finished goods may" (docs/SHARD_MECHANICS_LEARNED.md section 6). Two tables
+// already encode exactly that decision per item: kNpcBuyers (an NPC trade is
+// on record buying it) and kSellMatrix's CraftedGood rows. Either one saying
+// yes is enough.
+bool IsFinishedCraftedGood(const char* item) {
+    if (!item || NpcOnlyOrIntermediate(item)) return false;
+    if (HasNpcBuyer(item)) return true;
+    if (ClassifyForNpcSale(item) == NpcSellClass::CraftedGood) return true;
+    // i_bandage is neither: no NPC on this shard BUYS one back (it only
+    // SELLS them -- "RevolutionNpcVerified" above) and it is not in
+    // kSellMatrix. But it is exactly the good this floor exists for: the
+    // incident that motivated it
+    // (artifacts/smoke_Aelia_Wren_Baelos_Calar_20260907_1632).
+    return std::strcmp(item, "i_bandage") == 0;
+}
+
+}  // namespace
+
+CraftedGoodFloor ComputeCraftedGoodFloor(const char* item,
+                                         const PriceBook& book) {
+    CraftedGoodFloor f;
+    if (!IsFinishedCraftedGood(item)) return f;
+
+    if (const uo::prod::Recipe* r = uo::prod::FindRecipe(item)) {
+        if (r->provenance == uo::prod::Provenance::PlayerCrafted &&
+            r->outputQty > 0) {
+            i32 cost = 0;
+            bool known = true;
+            for (const uo::prod::Ingredient& in : r->inputs) {
+                if (!in.item || in.qty <= 0) continue;
+                i32 unit = book.BelievedSalePrice(in.item);
+                if (unit < 0) unit = SeedSalePrice(in.item);
+                if (unit < 0) { known = false; break; }
+                cost += unit * in.qty;
+            }
+            if (known) {
+                f.materialCost = cost / r->outputQty;
+                // See the header comment: linear in the skill gate, 1.0x at
+                // no gate to 2.0x at the 100.0 cap. skillTenths is already in
+                // tenths (0-1000).
+                f.labour = 1.0 + static_cast<double>(r->skillTenths) / 1000.0;
+                f.fromRecipe = true;
+            }
+        }
+    }
+
+    if (!f.fromRecipe) {
+        const i32 seed = SeedSalePrice(item);
+        if (seed < 0) return f;   // no recipe and no seed -- nothing to floor
+        f.materialCost = seed;
+        f.labour = 1.0;
+    }
+
+    i32 floor = static_cast<i32>(
+        f.materialCost * f.labour +
+        0.999999);   // round up: a floor that rounds down is not a floor
+    if (floor < 1) floor = 1;
+
+    if (const PriceObservation* npc =
+            book.Latest(item, PriceSource::NpcVendorBuys)) {
+        f.npcPayout = npc->pricePerUnit;
+        if (floor < f.npcPayout) floor = f.npcPayout;
+    }
+
+    f.floor = floor;
+    f.applies = true;
+    return f;
+}
+
+// ---------------------------------------------------------------------------
 // Player-to-player trade
 // ---------------------------------------------------------------------------
 namespace {
@@ -1598,9 +1684,17 @@ bool ChooseSellOffer(const prof::Profession& p,
         // without evidence would be a lie, but an OPENING ASK is just an
         // offer, and somebody has to name a number first or no price is ever
         // discovered and the market never starts.
+        i32 ask = (believed >= 0) ? believed : policy.openingAsk;
+        // A CRAFTER NEVER UNDERCUTS ITS OWN MATERIALS. `believed` can be a
+        // completed trade that itself fell below cost (the exact defect this
+        // floor exists to close -- see CraftedGoodFloor in market.h), so the
+        // floor is applied AFTER the belief, not folded into it.
+        const CraftedGoodFloor floor = ComputeCraftedGoodFloor(o.item.c_str(),
+                                                               book);
+        if (floor.applies && ask < floor.floor) ask = floor.floor;
         out->item = o.item;
         out->qty = o.qty;
-        out->pricePerUnit = (believed >= 0) ? believed : policy.openingAsk;
+        out->pricePerUnit = ask;
         return out->Valid();
     }
     return false;
@@ -1609,9 +1703,22 @@ bool ChooseSellOffer(const prof::Profession& p,
 // The most this life will pay per unit for `item`, sight unseen. EXACTLY the
 // ceiling ConsiderOffer applies, factored out so the two can never drift: a
 // shouted ceiling the buyer then refuses at the window is worse than silence.
-static i32 CeilingPerUnit(const TradePolicy& policy, const char* item) {
+//
+// RISES TO A CRAFTER'S FLOOR, for a good this life needs a player to supply.
+// Without this a fighter's bandage ceiling stayed at the plain seed band
+// (2-4gp) even where the floor -- materials plus labour, or an observed NPC
+// payout -- sat higher, and no trade could ever close at the seller's own
+// floor. The rise still answers only "the most this life is WILLING to
+// name"; ChooseBuyWant's own spendable/goldReserve check right after this is
+// what keeps it inside the purse -- "the wealth band" this life can actually
+// afford, not a promise beyond it.
+static i32 CeilingPerUnit(const TradePolicy& policy, const char* item,
+                          const PriceBook& book) {
     const i32 seed = SeedSalePrice(item);
-    return seed >= 0 ? seed + seed / 2 : policy.blindPriceCeiling;
+    i32 ceiling = seed >= 0 ? seed + seed / 2 : policy.blindPriceCeiling;
+    const CraftedGoodFloor floor = ComputeCraftedGoodFloor(item, book);
+    if (floor.applies && floor.floor > ceiling) ceiling = floor.floor;
+    return ceiling;
 }
 
 bool ChooseBuyWant(const prof::Profession& p,
@@ -1626,7 +1733,7 @@ bool ChooseBuyWant(const prof::Profession& p,
     const std::vector<Want> wants =
         PlayerMarketWants(p, holdings, gold, policy, nullptr);
     for (const Want& w : wants) {
-        i32 ask = CeilingPerUnit(policy, w.item.c_str());
+        i32 ask = CeilingPerUnit(policy, w.item.c_str(), book);
         // A KNOWN PRICE BEATS A CEILING. Announcing the ceiling when this life
         // has actually watched the thing trade at 2gp invites every seller in
         // earshot to charge the ceiling, and the fleet's price discovery goes
@@ -1634,6 +1741,12 @@ bool ChooseBuyWant(const prof::Profession& p,
         // ConsiderOffer allows against a forum seed.
         const i32 believed = book.BelievedSalePrice(w.item.c_str());
         if (believed >= 0) ask = std::min(ask, believed + believed / 2);
+        // BUT NOT BACK BELOW THE FLOOR. A believed price folded in above can
+        // itself be a bad, below-cost trade (see ChooseSellOffer) -- the
+        // floor is the last word for a crafter's own goods, same as there.
+        const CraftedGoodFloor floor = ComputeCraftedGoodFloor(w.item.c_str(),
+                                                               book);
+        if (floor.applies && ask < floor.floor) ask = floor.floor;
         if (ask <= 0) continue;
 
         // WHAT THE PURSE CAN ACTUALLY HONOUR, at that ceiling, without eating
@@ -1673,10 +1786,18 @@ bool AnswerBuyWant(const prof::Profession& p,
     if (spare <= 0) return false;
 
     const i32 believed = book.BelievedSalePrice(want.item.c_str());
-    const i32 ask = (believed >= 0) ? believed : policy.openingAsk;
-    // The buyer named a ceiling. Undercutting an observed price to meet it
-    // teaches the fleet a number this life does not believe, so decline
-    // instead -- the goods keep, and the buyer may come back higher.
+    i32 ask = (believed >= 0) ? believed : policy.openingAsk;
+    // A CRAFTER'S OWN FLOOR OUTRANKS A BAD BELIEF. `believed` can itself be a
+    // completed trade that undercut its own materials -- exactly the incident
+    // CraftedGoodFloor exists to stop (see market.h) -- so it is raised here,
+    // BEFORE the ceiling check below decides whether to sell at all.
+    const CraftedGoodFloor floor = ComputeCraftedGoodFloor(want.item.c_str(),
+                                                           book);
+    if (floor.applies && ask < floor.floor) ask = floor.floor;
+    // The buyer named a ceiling. Undercutting an observed price -- or this
+    // life's own materials floor -- to meet it teaches the fleet a wrong
+    // number, so decline instead: the goods keep, and the buyer may come back
+    // higher.
     if (want.pricePerUnit > 0 && ask > want.pricePerUnit) return false;
 
     out->item = want.item;

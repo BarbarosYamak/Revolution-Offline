@@ -1808,6 +1808,125 @@ void TestBandagesAreAPlayerMarketGood() {
                 wts.pricePerUnit);
 }
 
+// --------------------------------------------------------------------------
+// A crafter's own margin (owner ruling, 2026-09-07): a finished crafted good
+// never announces, nor accepts, below materials + labour, and never below an
+// observed NPC payout. Raw NPC inputs are untouched.
+void TestCraftedGoodFloor() {
+    Section("a crafter's floor: never below materials + labour, or an NPC's "
+            "own payout");
+
+    const prof::Profession* tai = prof::Find("tailor");
+    const prof::Profession* fen = prof::Find("fencer");
+    const prof::Profession* ms  = prof::Find("miner_smith");
+    Check(tai && fen && ms, "the tailor, fencer and miner_smith exist");
+    if (!tai || !fen || !ms) return;
+
+    TradePolicy pol;
+
+    // --- i_bandage: no Production.cpp recipe at all -- falls back to the
+    // item's own seed (kShardValueSeeds: i_cloth VALUE=3, no skill). ---------
+    PriceBook blind;
+    const CraftedGoodFloor bandageFloor =
+        ComputeCraftedGoodFloor("i_bandage", blind);
+    Check(bandageFloor.applies, "a bandage is a good this floor covers");
+    Check(bandageFloor.labour >= 1.0, "labour is never a discount");
+    Check(bandageFloor.floor >= 3,
+          "floor is at least the cloth it costs (3gp), no skill involved");
+    Check(bandageFloor.npcPayout == -1,
+          "no NPC buy price has been observed, so none constrains it here");
+
+    // Raise the floor with an OBSERVED NPC payout above the material cost --
+    // the floor must never sit below what the NPC counter itself already
+    // pays.
+    PriceBook withNpc;
+    PriceObservation npcBuy;
+    npcBuy.item = "i_bandage";
+    npcBuy.pricePerUnit = 10;
+    npcBuy.source = PriceSource::NpcVendorBuys;
+    npcBuy.who = "a healer";
+    npcBuy.whenMs = 1000;
+    withNpc.Note(npcBuy);
+    const CraftedGoodFloor bandageFloorNpc =
+        ComputeCraftedGoodFloor("i_bandage", withNpc);
+    Check(bandageFloorNpc.applies && bandageFloorNpc.floor == 10,
+          "an observed NPC payout above materials becomes the floor");
+
+    // --- i_dagger: a REAL Production.cpp recipe (4 i_ingot_iron, no skill
+    // gate) -- the forum seed for iron ingots (35gp) drives the floor up to
+    // an "expensive" number, exactly the owner's "armor, bandage, weapons ...
+    // expensive price" ruling. -------------------------------------------
+    const CraftedGoodFloor daggerFloor =
+        ComputeCraftedGoodFloor("i_dagger", blind);
+    Check(daggerFloor.applies && daggerFloor.fromRecipe,
+          "a dagger's floor comes from its own recipe, not a hand-seeded "
+          "number");
+    Check(daggerFloor.materialCost == 4 * 35,
+          "4 ingots at the forum's 35gp each");
+    Check(daggerFloor.floor >= daggerFloor.materialCost,
+          "labour never discounts the materials");
+
+    // --- raw NPC inputs are untouched: reagents and blank scrolls keep the
+    // NPC price, exactly as the owner drew the line ("not like reagents or
+    // blank scrolls"). --------------------------------------------------
+    Check(!ComputeCraftedGoodFloor("i_reag_black_pearl", blind).applies,
+          "a reagent gets no crafter margin -- it is an NPC input");
+    Check(!ComputeCraftedGoodFloor("i_scroll_blank", blind).applies,
+          "a blank scroll gets no crafter margin either");
+
+    // --- A WTS NEVER ANNOUNCES BELOW THE FLOOR, even chasing an observed
+    // trade that itself undercut cost. This is the exact incident that
+    // motivated the floor: Aelia sold 85 i_bandage for 168 gold (~2gp) and
+    // then announced "WTS 211 i_bandage 1gp" 42 times
+    // (artifacts/smoke_Aelia_Wren_Baelos_Calar_20260907_1632). ------------
+    PriceBook badTrade;
+    PriceObservation cheap;
+    cheap.item = "i_bandage";
+    cheap.pricePerUnit = 1;
+    cheap.source = PriceSource::PlayerTraded;
+    cheap.who = "Calar";
+    cheap.whenMs = 2000;
+    badTrade.Note(cheap);
+    Check(badTrade.BelievedSalePrice("i_bandage") == 1,
+          "the bad trade IS the believed price -- a completed trade outranks "
+          "everything");
+
+    const std::vector<Stock> stock = {{"i_bandage", 80}};
+    TradeIntent wts;
+    Check(ChooseSellOffer(*tai, stock, badTrade, pol, &wts),
+          "a tailor with bandages still has something to announce");
+    Check(wts.pricePerUnit >= bandageFloor.floor,
+          "the WTS never quotes below the floor, whatever was believed");
+    std::printf("  tailor WTS %s x%d at %d gp (believed 1gp, floor %d)\n",
+                wts.item.c_str(), wts.qty, wts.pricePerUnit,
+                bandageFloor.floor);
+
+    // The same floor makes AnswerBuyWant DECLINE a buyer whose named ceiling
+    // sits below it, rather than accept and undercut.
+    TradeIntent lowball;
+    lowball.item = "i_bandage";
+    lowball.qty = 10;
+    lowball.pricePerUnit = 1;   // the buyer will pay no more than this
+    TradeIntent answer;
+    Check(!AnswerBuyWant(*tai, stock, badTrade, pol, lowball, &answer),
+          "a tailor declines rather than sell under its own materials floor");
+
+    // --- a fighter's ceiling for i_bandage reaches the floor within its
+    // wealth band, so a trade can actually close once the floor is raised
+    // by an observed NPC payout. -----------------------------------------
+    const std::vector<Stock> none = {{"i_bandage", 0}};
+    TradeIntent ask;
+    Check(ChooseBuyWant(*fen, none, withNpc, pol, 5000, &ask),
+          "a wealthy fighter still forms a WTB");
+    if (ask.item == "i_bandage") {
+        Check(ask.pricePerUnit >= bandageFloorNpc.floor,
+              "its ceiling rises to meet the raised floor, not just the "
+              "plain seed band");
+        std::printf("  fencer WTB %d i_bandage at %d gp (floor %d)\n",
+                    ask.qty, ask.pricePerUnit, bandageFloorNpc.floor);
+    }
+}
+
 int main() {
     std::printf("m7_market\n");
     TestInterdependence();
@@ -1836,6 +1955,7 @@ int main() {
     TestDemandSideWtb();
     TestBuyerFundsTheWindowItAskedFor();
     TestBandagesAreAPlayerMarketGood();
+    TestCraftedGoodFloor();
     std::printf("%d checks, %d failures\n", g_checks, g_failures);
     return g_failures == 0 ? 0 : 1;
 }

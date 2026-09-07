@@ -30,6 +30,20 @@ bool Runner::SellersDeclined(const std::string& item, i64 nowMs) const {
     return false;
 }
 
+// See the declaration in Runner.h. Pure telemetry: computes nothing this
+// character's own trade functions have not already computed, and changes no
+// decision -- it only writes the floor down once so a grader can see the
+// number a WTS/WTB/answer was actually held to.
+void Runner::NoteCraftedGoodFloorOnce(const std::string& item) {
+    if (item.empty() || priceFloorLogged_.count(item)) return;
+    const market::CraftedGoodFloor f =
+        market::ComputeCraftedGoodFloor(item.c_str(), state_.prices);
+    if (!f.applies) return;
+    priceFloorLogged_.insert(item);
+    LogLine("price: %s floor %d (materials %d x labour %.2f; npc payout %d)",
+            item.c_str(), f.floor, f.materialCost, f.labour, f.npcPayout);
+}
+
 // The surplus half of the same ruling. See the declaration in Runner.h.
 market::MaterialSaleGate Runner::MaterialSaleGateFor(
     const std::string& item, const Observation& obs) const {
@@ -1323,6 +1337,7 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
             market::TradeIntent fill;
             if (market::AnswerBuyWant(*me, obs.pack, state_.prices,
                                       tradePolicy_, wtb, &fill)) {
+                NoteCraftedGoodFloorOnce(fill.item);
                 // SAY IT OUT LOUD, in the seller's own form. The buyer is
                 // already listening for a WTS (the branch below), so this both
                 // closes the loop mechanically and reads, to a human watching
@@ -1889,6 +1904,7 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
                     static_cast<long long>(kListenMs / 1000));
         }
         if (haveWant && obs.nowMs - tradeAnnouncedMs_ >= kAnnounceIntervalMs) {
+            NoteCraftedGoodFloorOnce(want.item);
             const std::string line = market::FormatBuyWant(want);
             LogLine("trade: announcing '%s'", line.c_str());
             client.ActionSay(line.c_str());
@@ -2051,6 +2067,7 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
     }
 
     if (obs.nowMs - tradeAnnouncedMs_ >= kAnnounceIntervalMs) {
+        NoteCraftedGoodFloorOnce(announce.item);
         const std::string line = market::FormatSellOffer(announce);
         LogLine("trade: announcing '%s'", line.c_str());
         client.ActionSay(line.c_str());

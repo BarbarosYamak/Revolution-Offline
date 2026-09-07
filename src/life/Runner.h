@@ -32,6 +32,7 @@
 #include "uo/types.h"
 
 #include <map>
+#include <set>
 #include <string>
 #include <vector>
 
@@ -1459,6 +1460,16 @@ private:
     // what the build plan still has to climb, and what the boxes hold.
     market::MaterialSaleGate MaterialSaleGateFor(const std::string& item,
                                                  const Observation& obs) const;
+    // ONE LOG LINE PER ITEM PER SESSION, when a crafter's own floor
+    // (market::ComputeCraftedGoodFloor) applies to `item`: "price: <item>
+    // floor N (materials M x labour L; npc payout P)". Not logged for a raw
+    // NPC input or an item with no floor -- CraftedGoodFloor::applies is
+    // false for those, and this writes nothing. Called from every site that
+    // actually uses the floor (WTS announce, WTB announce, answering a heard
+    // WTB) so a grader can see the number that decided the price, without
+    // repeating the line every announce cycle.
+    void NoteCraftedGoodFloorOnce(const std::string& item);
+    std::set<std::string> priceFloorLogged_;
     i32   sellGoldBefore_ = -1;        // purse before the sale, to verify it
     // ...and what the pack held, so a sale is confirmed by goods LEAVING as
     // well as gold arriving. See DoEarnGold.

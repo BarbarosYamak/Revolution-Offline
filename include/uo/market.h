@@ -581,6 +581,70 @@ private:
 };
 
 // ---------------------------------------------------------------------------
+// A CRAFTER'S OWN MARGIN (owner ruling, 2026-09-07).
+//
+//   "if it is something can be crafted -- armor, bandage, weapons -- game
+//    should have expensive price so crafters will sell more"; "not like
+//    reagents or blank scrolls".
+//
+// A believed sale price alone is not a floor: BelievedSalePrice ranks a
+// completed trade above everything else, including a seed, so ONE bad trade
+// (a buyer's low ceiling met instead of declined) permanently drags every
+// later ask down with it. Aelia sold 85 i_bandage for 168 gold (~2gp, itself
+// below the cloth it cost) and then announced "WTS 211 i_bandage 1gp" 42
+// times in a row -- the observed price chased the buyer's floor with nothing
+// stopping it (artifacts/smoke_Aelia_Wren_Baelos_Calar_20260907_1632).
+//
+// This is the floor UNDER that belief for a FINISHED crafted good: never
+// below what the materials cost plus a labour margin, and never below an
+// NPC's own observed buy price for the same item. Raw inputs an NPC sells
+// (reagents, blank scrolls, cloth bolts, vendor ingots, kindling) are
+// deliberately untouched -- `applies` is false for them, and their price
+// keeps coming from the NPC/seed path exactly as before.
+struct CraftedGoodFloor {
+    bool   applies      = false;  // false for raw/intermediate/unpriced goods
+    i32    floor         = 0;     // gp per unit; only meaningful if applies
+    i32    materialCost  = 0;     // gp per unit of OUTPUT, from the recipe or the item's own seed
+    double labour        = 1.0;   // multiplier on materialCost; see ComputeCraftedGoodFloor
+    i32    npcPayout     = -1;    // this character's own observed NpcVendorBuys price, or -1
+    bool   fromRecipe    = false; // true: computed from a Production.cpp recipe; false: the item's own seed
+};
+
+// THE FLOOR ITSELF.
+//
+// Two ways to reach a number, in order:
+//
+//  1. A Production.cpp recipe exists AND its provenance is PlayerCrafted (a
+//     skill-menu item, not raw gathering or a skill-less world process like
+//     smelting). materialCost is the sum of each input's own believed/seeded
+//     price times its quantity, divided by the recipe's outputQty -- and if
+//     ANY input has no price this character or the seed tables can name, the
+//     whole computation is unknown and falls through to (2) rather than
+//     guessing.
+//
+//     labour SCALES WITH SKILL DIFFICULTY: `1.0 + skillTenths / 1000.0`,
+//     where skillTenths is the recipe's own SKILLMAKE gate in tenths (0 for
+//     no gate, 1000 for the 100.0 skill cap). A recipe with no skill
+//     requirement asks materials only (1.0x); the hardest recipe on the
+//     shard asks double. This ramp is a DESIGN CHOICE, not a sourced
+//     Revolution number -- the shard states no crafting-margin formula
+//     anywhere -- chosen linear and capped at the skill cap for the same
+//     reason the treasure-chest magic-weapon table is marked DESIGNED rather
+//     than historical: a number had to exist and none was attested.
+//
+//  2. No recipe (i_bandage: RESOURCES=1 i_cloth, no SKILLMAKE line at all) or
+//     an input's price is unknown: the item's OWN seed (kForumPriceSeeds /
+//     kShardValueSeeds above) stands in as materialCost with labour 1.0 --
+//     which for i_bandage already IS a materials number (i_cloth VALUE=3),
+//     not an invented one.
+//
+// Either way, the floor never falls below this character's own observed
+// PriceSource::NpcVendorBuys quote for the same item, when it has one --
+// selling BELOW what the NPC counter already pays is never a crafter's
+// margin, it is a mistake.
+CraftedGoodFloor ComputeCraftedGoodFloor(const char* item, const PriceBook& book);
+
+// ---------------------------------------------------------------------------
 // Player-to-player trade.
 //
 // This is what the milestone is actually for. Once materials stopped being
