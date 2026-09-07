@@ -56,3 +56,6 @@
 - [A label is not a defname](a-label-is-not-a-defname.md) — ConsumableNeed::name is prose; obs.pack/produces/PriceBook are defnames, so a label-named want matches nothing
 - [A seed is not a forum quote](a-seed-is-not-a-forum-quote.md) — the forum table stays verbatim; a good nobody priced gets a lower-ranked seed from the shard itemdef VALUE
 - [A handoff needs its own clock](a-handoff-needs-its-own-clock.md) — HandOff is advice and no_player_seller names the wrong item; a player-first wait carries its own 48s bound
+- [A cut consumes the whole stack](a-cut-consumes-the-whole-stack.md) — scissors delete the entire targeted cloth stack; size the withdrawal, never the cut, and keep the bench's share in the box
+- [A pack-only reader cannot see a crafter's stock](a-pack-only-reader-cannot-see-a-crafters-stock.md) — a crafter's goods live in the bank; obs.bank is free and a pack-only need reads a full box as empty-handed
+- [Upkeep shadows a crafter's work goal](upkeep-shadows-a-crafters-work-goal.md) — REPLACE_EQUIPMENT 260x0.50=130 beats every work weight; satisfy the comforts in a test, damp with a recorded fact live
