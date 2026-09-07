@@ -1801,6 +1801,27 @@ void Client::RememberMobileName(u32 serial, const char* name) {
     mobileNames_[serial] = name;
 }
 
+// Ask for a name we do not have, the way the client already asks for any
+// mobile's (0x98 AllNames query; the reply lands in OnMobName, which fills
+// mobileNames_). NON-BLOCKING by construction: nothing waits on the answer,
+// and every caller must already work with a blank name.
+//
+// Rate-limited per serial because the caller is a speech handler: a shouting
+// character whose name never resolves (an NPC out of range, a mobile we
+// cannot see) would otherwise send one query per line spoken.
+void Client::RequestMobileName(u32 sourceSerial) {
+    if (sourceSerial == 0 || sourceSerial == 0xFFFFFFFFu) return;
+    const u32 serial = sourceSerial & 0x7FFFFFFFu;
+    if (serial == playerSerial_) return;
+    if (mobileNames_.count(serial)) return;
+    const i64 now = NowMs();
+    auto it = nameAskedMs_.find(serial);
+    if (it != nameAskedMs_.end() && now - it->second < kNameAskGapMs) return;
+    nameAskedMs_[serial] = now;
+    u8 pkt[8];
+    Send(pkt, build::MobNameQuery(pkt, serial), "0x98 AllNames (speaker name)");
+}
+
 std::string Client::ResolveSpeakerName(u32 sourceSerial,
                                        const std::string& raw) const {
     if (!raw.empty() || sourceSerial == 0 || sourceSerial == 0xFFFFFFFFu)
@@ -5716,10 +5737,28 @@ void Client::OnAsciiMessage(const u8* data, usize size) {
 }
 
 // ---------------------------------------------------------------------------
-// 0xAE Unicode Message (variable). Speaker name at offset 14 ASCII,
-// text at offset 48 as UTF-16BE (NUL-terminated). For the M1 log we
-// degrade UTF-16 to ASCII (best-effort) so the console output stays
-// readable.
+// 0xAE Unicode Message (variable):
+//   [0] cmd  [1..2] length  [3..6] serial  [7..8] body  [9] mode
+//   [10..11] hue  [12..13] font  [14..17] language (4 ASCII)
+//   [18..47] speaker name (30 ASCII)  [48..] text, UTF-16BE NUL-terminated.
+// For the M1 log we degrade UTF-16 to ASCII (best-effort) so the console
+// output stays readable.
+//
+// THE NAME IS AT 18, NOT 14. Offset 14 is the four-byte LANGUAGE code that
+// Source-X writes immediately before the name (network/send.cpp,
+// PacketMessageUNICODE: writeStringFixedASCII(language.GetStr(), 4) then
+// writeStringFixedASCII(source->GetName(), 30)), and which this shard leaves
+// NUL-filled. PacketString stops at the first NUL, so reading 30 bytes from
+// offset 14 returned an EMPTY name for EVERY unicode speaker -- ours and
+// everyone else's (artifacts/wave30_bandage20_20260907/Kharos.console.txt:
+// every `[chat uni  ]` line from another player logs a blank name, and 252
+// `trade: heard '...' from ` lines carry a blank `from`). Only the ASCII
+// opcode 0x1C has no language field, so its name genuinely is at 14 -- see
+// OnAsciiMessage. Layout also in pol_packets.md, "Packet: 0xAE".
+//
+// This is what broke the market handshake: a seller that cannot name the
+// buyer it is answering says an UNADDRESSED reply, and market::AddressedTo on
+// the buyer's side then refuses to take it as an answer to its own WTB.
 // ---------------------------------------------------------------------------
 void Client::OnUnicodeMessage(const u8* data, usize size) {
     if (size < 50) return;
@@ -5728,16 +5767,20 @@ void Client::OnUnicodeMessage(const u8* data, usize size) {
     const u8 type = data[9];
     const u16 hue = LoadBE16(data + 10);
     const u16 font = LoadBE16(data + 12);
-    const std::string rawSpeaker = PacketString(data + 14, 30);
-    // Unlike 0x1C, this opcode's name field comes back empty for the
-    // player's own speech (and possibly other cases) -- resolve it through
-    // the world cache rather than filing/logging a nameless journal line.
-    // See ResolveSpeakerName; run_r4 20:53:30.418-32.277 pair_Tarath: every
-    // uni-chat line for our own "WTS ..."/"WTB ..." announcements had an
-    // empty speaker.
+    const std::string rawSpeaker = PacketString(data + 18, 30);
+    // The packet is the first source of truth; the world cache is the
+    // fallback, so a mode or shard that sends no name still files a journal
+    // line naming somebody we already know. See ResolveSpeakerName.
     const std::string speaker = ResolveSpeakerName(sourceSerial, rawSpeaker);
     if (sourceSerial != 0 && sourceSerial != 0xFFFFFFFFu)
         RememberMobileName(sourceSerial & 0x7FFFFFFFu, speaker.c_str());
+    // Neither the packet nor the cache knew who this was: ask the way the
+    // client already asks for any mobile's name (0x98 AllNames query ->
+    // OnMobName). Fire-and-forget -- the journal entry below is filed NOW,
+    // carrying the serial and a blank name, so nothing waits on the answer;
+    // only the NEXT line from this speaker reads better. Identity for the
+    // trade handshake is the SERIAL, which is always present.
+    if (speaker.empty()) RequestMobileName(sourceSerial);
 
     char buf[256];
     usize n = 0;

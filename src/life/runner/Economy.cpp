@@ -6,6 +6,27 @@ namespace uo::life {
 // to what the old anonymous namespace gave them.
 using namespace runner_detail;
 
+// HOW A PARTNER READS IN THE LOG. Identity in this handshake is the SERIAL --
+// it is on every 0xAE we hear and on every 0x6F that opens a window, and it is
+// what tradePartner_ holds. The name is cosmetic: it comes from the packet or
+// the mobile-name cache, and it can legitimately be empty for a moment (a
+// speaker we have never seen; see Client::RequestMobileName). Printing an
+// empty name produced lines like `trade: opening a window with  for 10
+// i_bandage` (artifacts/smoke_Kharos_Aelia_..._20260907_1902), which read as a
+// bug even when the trade was proceeding correctly on the serial. Fall back to
+// the serial so every line identifies somebody.
+//
+// NOT for speech: market::FormatBuyReply/FormatDecline address a partner by
+// the name the OTHER side will match with market::AddressedTo, and "<0x...>"
+// is not that name. Those keep passing the raw name (empty reads as "said to
+// the room", which is the tolerant direction).
+static std::string TradeLabel(u32 serial, const std::string& name) {
+    if (!name.empty()) return name;
+    if (serial == 0) return "somebody";
+    char buf[16];
+    std::snprintf(buf, sizeof(buf), "<0x%08X>", serial);
+    return buf;
+}
 
 // The reader for the fact DoTradeWithPlayer has been writing all along. See
 // the declaration in Runner.h for why the floor is gated on it.
@@ -1111,7 +1132,7 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
         std::string declName;
         if (client.TakeDeclinedTrade(&declSerial, &declName)) {
             LogLine("trade: declined a second window from %s -- already sorted "
-                    "with %s", declName.c_str(), tradePartnerName_.c_str());
+                    "with %s", declName.c_str(), TradeLabel(tradePartner_, tradePartnerName_).c_str());
             client.ActionSay(market::FormatDecline(declName).c_str());
             tradeDeclined_.push_back(declSerial);
         }
@@ -1123,7 +1144,7 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
         return DriveOpenTrade(client, obs);
     }
     if (tr.CurrentPhase() == trade::Phase::Completed) {
-        LogLine("trade: window closed complete with %s", tradePartnerName_.c_str());
+        LogLine("trade: window closed complete with %s", TradeLabel(tradePartner_, tradePartnerName_).c_str());
         // The PACK is the proof. A completed window means the server moved
         // the goods; believing the packet without checking is how a "sale"
         // that moved nothing gets recorded as income.
@@ -1132,7 +1153,7 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
             const i32 moved = tradePackBefore_ - now;
             const i32 paid = obs.gold - tradeGoldBefore_;
             LogLine("trade: gave %d %s to %s for %d gold", moved,
-                    tradeItem_.c_str(), tradePartnerName_.c_str(), paid);
+                    tradeItem_.c_str(), TradeLabel(tradePartner_, tradePartnerName_).c_str(), paid);
             if (paid > 0) {
                 const i32 perUnit = paid / moved;
                 // POISON GUARD -- see the buyer-side twin below for the full
@@ -1153,7 +1174,7 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
                     po.item = tradeItem_;
                     po.pricePerUnit = perUnit;
                     po.source = market::PriceSource::PlayerTraded;
-                    po.who = tradePartnerName_;
+                    po.who = TradeLabel(tradePartner_, tradePartnerName_);
                     po.x = obs.x; po.y = obs.y; po.whenMs = obs.nowMs;
                     state_.prices.Note(po);
                 }
@@ -1165,14 +1186,14 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
                                    tradeItem_.c_str(), obs.nowMs);
             }
             state_.memory.NoteEvent("traded_with_player", tradeItem_.c_str(),
-                                    tradePartnerName_.c_str(), obs.x, obs.y,
+                                    TradeLabel(tradePartner_, tradePartnerName_).c_str(), obs.x, obs.y,
                                     obs.nowMs);
             planner_.NoteProgress();
         } else if (tradeSellingQty_ == 0 && now > tradePackBefore_) {
             const i32 got = now - tradePackBefore_;
             const i32 spent = tradeGoldBefore_ - obs.gold;
             LogLine("trade: got %d %s from %s for %d gold", got,
-                    tradeItem_.c_str(), tradePartnerName_.c_str(), spent);
+                    tradeItem_.c_str(), TradeLabel(tradePartner_, tradePartnerName_).c_str(), spent);
             if (spent > 0) {
                 const i32 perUnit = spent / got;
                 // POISON GUARD. `ceiling` is the most this life ever said it
@@ -1201,7 +1222,7 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
                     po.item = tradeItem_;
                     po.pricePerUnit = perUnit;
                     po.source = market::PriceSource::PlayerTraded;
-                    po.who = tradePartnerName_;
+                    po.who = TradeLabel(tradePartner_, tradePartnerName_);
                     po.x = obs.x; po.y = obs.y; po.whenMs = obs.nowMs;
                     state_.prices.Note(po);
                 }
@@ -1221,10 +1242,10 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
         return true;
     }
     if (tr.CurrentPhase() == trade::Phase::Cancelled) {
-        LogLine("trade: %s cancelled (%s)", tradePartnerName_.c_str(),
+        LogLine("trade: %s cancelled (%s)", TradeLabel(tradePartner_, tradePartnerName_).c_str(),
                 trade::CloseReasonName(tr.Reason()));
         state_.memory.NoteEvent("trade_cancelled", tradeItem_.c_str(),
-                                tradePartnerName_.c_str(), obs.x, obs.y,
+                                TradeLabel(tradePartner_, tradePartnerName_).c_str(), obs.x, obs.y,
                                 obs.nowMs);
         // A CANCEL IS ACKNOWLEDGED ONCE.
         //
@@ -1278,9 +1299,9 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
             market::ParseDecline(h.text, nullptr) &&
             market::AddressedTo(h.text, myName)) {
             LogLine("trade: %s sorted it with somebody else -- standing down",
-                    h.name.c_str());
+                    TradeLabel(h.speaker, h.name).c_str());
             state_.memory.NoteEvent("trade_declined", tradeItem_.c_str(),
-                                    h.name.c_str(), obs.x, obs.y, obs.nowMs);
+                                    TradeLabel(h.speaker, h.name).c_str(), obs.x, obs.y, obs.nowMs);
             ResetTradeState();
             planner_.NoteAttempt(obs.nowMs);
             planner_.Cooldown(GoalKind::TradeWithPlayer,
@@ -1308,7 +1329,7 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
             !tradeOffer_.item.empty() && tradePartner_ == 0 &&
             wtb.item == tradeOffer_.item &&
             market::AddressedTo(h.text, myName)) {
-            LogLine("trade: %s wants our %s", h.name.c_str(), wtb.item.c_str());
+            LogLine("trade: %s wants our %s", TradeLabel(h.speaker, h.name).c_str(), wtb.item.c_str());
             tradePartner_ = h.speaker;
             tradePartnerName_ = h.name;
             tradeItem_ = tradeOffer_.item;
@@ -1344,7 +1365,7 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
                 // the bank, like one player answering another.
                 const std::string line = market::FormatSellOffer(fill);
                 LogLine("trade: %s wants %d %s -- answering '%s'",
-                        h.name.c_str(), wtb.qty, wtb.item.c_str(), line.c_str());
+                        TradeLabel(h.speaker, h.name).c_str(), wtb.qty, wtb.item.c_str(), line.c_str());
                 client.ActionSay(line.c_str());
                 tradePartner_ = h.speaker;
                 tradePartnerName_ = h.name;
@@ -1370,8 +1391,8 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
                           h.speaker) != tradeDeclined_.end();
             if (!told && h.speaker != tradePartner_ && offer.item == tradeItem_) {
                 LogLine("trade: %s also offers %s -- already sorted with %s",
-                        h.name.c_str(), offer.item.c_str(),
-                        tradePartnerName_.c_str());
+                        TradeLabel(h.speaker, h.name).c_str(), offer.item.c_str(),
+                        TradeLabel(tradePartner_, tradePartnerName_).c_str());
                 client.ActionSay(market::FormatDecline(h.name).c_str());
                 tradeDeclined_.push_back(h.speaker);
             }
@@ -1391,7 +1412,7 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
         const market::BuyDecision d = market::ConsiderOffer(
             *me, obs.pack, obs.goldOnHand, tradePolicy_, offer, wornNow);
         LogLine("trade: heard '%s' from %s -> %s (%s)", h.text.c_str(),
-                h.name.c_str(), d.accept ? "want it" : "no", d.reason);
+                TradeLabel(h.speaker, h.name).c_str(), d.accept ? "want it" : "no", d.reason);
         if (!d.accept) continue;
         // Say so out loud. The seller is listening for exactly this, and
         // saying it is also what makes the deal visible to a human watching.
@@ -1421,7 +1442,7 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
         if (client.TravelBusy()) return false;
         i32 px = 0, py = 0; i8 pz = 0;
         if (!client.MobilePosition(tradePartner_, &px, &py, &pz)) {
-            LogLine("trade: lost sight of %s", tradePartnerName_.c_str());
+            LogLine("trade: lost sight of %s", TradeLabel(tradePartner_, tradePartnerName_).c_str());
             ResetTradeState();
             return false;
         }
@@ -1452,7 +1473,7 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
             tradePackBefore_ = market::QtyOf(obs.pack, tradeItem_);
             tradeGoldBefore_ = obs.gold;
             LogLine("trade: opening a window with %s for %d %s",
-                    tradePartnerName_.c_str(), tradeSellingQty_,
+                    TradeLabel(tradePartner_, tradePartnerName_).c_str(), tradeSellingQty_,
                     tradeItem_.c_str());
             client.ActionTradeStart(tradePartner_, serial);
             nextActionMs_ = obs.nowMs + 2500;
@@ -1462,7 +1483,7 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
         tradePackBefore_ = market::QtyOf(obs.pack, tradeItem_);
         tradeGoldBefore_ = obs.gold;
         if (obs.nowMs - tradeAnnouncedMs_ > 20000) {
-            LogLine("trade: %s never opened a window", tradePartnerName_.c_str());
+            LogLine("trade: %s never opened a window", TradeLabel(tradePartner_, tradePartnerName_).c_str());
             // AND END THE ERRAND. Resetting alone left the goal live with no
             // partner, so the buyer went straight back to listening where it
             // stood -- which is what "Kharain and Elvar stuck at bank" looked
@@ -2194,11 +2215,11 @@ bool Runner::DriveOpenTrade(Client& client, const Observation& obs) {
         if (!haveSellerAsk) {
             LogLine("trade: %s opened a window for the %d %s we asked for, "
                     "but never said a WTS we heard -- waiting rather than "
-                    "funding our own ceiling", tradePartnerName_.c_str(),
+                    "funding our own ceiling", TradeLabel(tradePartner_, tradePartnerName_).c_str(),
                     tradeWant_.qty, tradeWant_.item.c_str());
         } else if (sellerAsk.pricePerUnit > tradeWant_.pricePerUnit) {
             LogLine("trade: %s asked %dgp for %s, more than our %dgp "
-                    "ceiling -- no deal", tradePartnerName_.c_str(),
+                    "ceiling -- no deal", TradeLabel(tradePartner_, tradePartnerName_).c_str(),
                     sellerAsk.pricePerUnit, tradeWant_.item.c_str(),
                     tradeWant_.pricePerUnit);
             client.ActionTradeCancel();
@@ -2219,7 +2240,7 @@ bool Runner::DriveOpenTrade(Client& client, const Observation& obs) {
             const market::FundingDecision fd =
                 market::FundOpenWindow(planned, obs.goldOnHand, reserve);
             LogLine("trade: %s opened a window for the %s we asked for, "
-                    "asking %dgp for %d -- %s", tradePartnerName_.c_str(),
+                    "asking %dgp for %d -- %s", TradeLabel(tradePartner_, tradePartnerName_).c_str(),
                     tradeWant_.item.c_str(), sellerAsk.pricePerUnit,
                     sellerAsk.qty, fd.reason);
             if (fd.accept) {
@@ -2299,7 +2320,7 @@ bool Runner::DriveOpenTrade(Client& client, const Observation& obs) {
         }
         client.ActionTradeOffer(gold, static_cast<u16>(owed));
         LogLine("trade: %s put %d %s in the window -- offering %d gold "
-                "for %d", tradePartnerName_.c_str(), delivered,
+                "for %d", TradeLabel(tradePartner_, tradePartnerName_).c_str(), delivered,
                 tradeItem_.c_str(), owed, pay);
         tradeOfferedQty_ = pay;
         tradeOffered_ = true;
@@ -2324,7 +2345,7 @@ bool Runner::DriveOpenTrade(Client& client, const Observation& obs) {
             if (nowPay != tradeOfferedQty_) {
                 LogLine("trade: %s changed the window after the gold went "
                         "in (%d -> %d %s) -- cancelling, not accepting",
-                        tradePartnerName_.c_str(), tradeOfferedQty_, nowPay,
+                        TradeLabel(tradePartner_, tradePartnerName_).c_str(), tradeOfferedQty_, nowPay,
                         tradeItem_.c_str());
                 client.ActionTradeCancel();
                 client.TradeForget();
@@ -2343,7 +2364,7 @@ bool Runner::DriveOpenTrade(Client& client, const Observation& obs) {
             if (need > 0 && goldOffered < need) {
                 LogLine("trade: %s put %d gold in for %d %s at %dgp each -- "
                         "needs %d, not accepting yet",
-                        tradePartnerName_.c_str(), goldOffered,
+                        TradeLabel(tradePartner_, tradePartnerName_).c_str(), goldOffered,
                         tradeSellingQty_, tradeItem_.c_str(),
                         tradeOffer_.pricePerUnit, need);
                 nextActionMs_ = obs.nowMs + 1000;
@@ -2359,11 +2380,11 @@ bool Runner::DriveOpenTrade(Client& client, const Observation& obs) {
 
     if (obs.nowMs - tradeOpenedMs_ > kTradeGiveUpMs) {
         LogLine("trade: %s put nothing in after %llds -- cancelling",
-                tradePartnerName_.c_str(),
+                TradeLabel(tradePartner_, tradePartnerName_).c_str(),
                 static_cast<long long>(kTradeGiveUpMs / 1000));
         client.ActionTradeCancel();
         state_.memory.NoteEvent("trade_timeout", tradeItem_.c_str(),
-                                tradePartnerName_.c_str(), obs.x, obs.y,
+                                TradeLabel(tradePartner_, tradePartnerName_).c_str(), obs.x, obs.y,
                                 obs.nowMs);
         // ActionTradeCancel latches Phase::Cancelled locally; forget it here
         // so the Cancelled branch in DoTradeWithPlayer does not then report the

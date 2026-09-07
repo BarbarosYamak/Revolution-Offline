@@ -56,6 +56,7 @@
 
 #include "Client.h"
 #include "net/Socket.h"
+#include "uo/market.h"
 #include "uo/endian.h"
 
 #include <cstdio>
@@ -197,19 +198,33 @@ std::vector<u8> MakeAsciiMessage(u32 serial, const char* name, const char* text)
     return p;
 }
 
-// 0xAE UNICODE_MESSAGE (Client.cpp OnUnicodeMessage): same 44-byte header as
-// 0x1C, then a 4-byte language code, then UTF-16BE text, NUL-terminated.
-std::vector<u8> MakeUnicodeMessage(u32 serial, const char* name, const char* text) {
+// 0xAE UNICODE_MESSAGE (Client.cpp OnUnicodeMessage):
+//   serial@3 body@7 mode@9 hue@10 font@12 language(4 ASCII)@14
+//   name(30 ASCII)@18, UTF-16BE NUL-terminated text @48.
+// THE LANGUAGE COMES BEFORE THE NAME. This builder used to put the name at
+// 14 and the language at 44, mirroring a handler that read the same wrong
+// offsets, so the pair agreed with each other and with nothing on the wire.
+// The real order is Source-X's PacketMessageUNICODE (network/send.cpp:
+// writeStringFixedASCII(language, 4) then writeStringFixedASCII(name, 30))
+// and pol_packets.md "Packet: 0xAE". `lang` is a parameter because a
+// NUL-filled language field is exactly what made the old reader return an
+// empty name for every speaker -- see TestUnicodeSpeechNameFromPacket.
+std::vector<u8> MakeUnicodeMessage(u32 serial, const char* name,
+                                   const char* text, const char* lang = "") {
     const usize chars = std::strlen(text);
     std::vector<u8> p(48 + (chars + 1) * 2, 0);
     p[0] = 0xAE;
+    StoreBE16(&p[1], static_cast<u16>(p.size()));
     StoreBE32(&p[3], serial);
     p[9] = 0;
+    if (lang) {
+        const usize n = std::strlen(lang);
+        std::memcpy(&p[14], lang, n < 4 ? n : 4);
+    }
     if (name) {
         const usize n = std::strlen(name);
-        std::memcpy(&p[14], name, n < 30 ? n : 30);
+        std::memcpy(&p[18], name, n < 30 ? n : 30);
     }
-    std::memcpy(&p[44], "ENU", 3);
     for (usize i = 0; i < chars; ++i)
         StoreBE16(&p[48 + i * 2],
                   static_cast<u16>(static_cast<unsigned char>(text[i])));
@@ -616,7 +631,9 @@ void TestUnicodeSpeechResolvesKnownSerial() {
 
 // ---------------------------------------------------------------------------
 // 2b. Negative: a serial never seen before keeps its raw (empty) name --
-// the fix must not fabricate an attribution it cannot support.
+// the fix must not fabricate an attribution it cannot support -- but the
+// SERIAL is on the journal entry either way, because that is the identity the
+// market handshake joins on.
 // ---------------------------------------------------------------------------
 void TestUnicodeSpeechUnknownSerialStaysRaw() {
     Section("unicode speech: empty name with an unknown serial stays raw");
@@ -628,6 +645,128 @@ void TestUnicodeSpeechUnknownSerialStaysRaw() {
     c->DispatchPacketForTest(uni.data(), uni.size());
     Check(c->LastJournalSpeakerForTest().empty(),
           "no fabricated name for a serial this session has never seen");
+
+    std::vector<Client::Heard> heard;
+    c->JournalHeardSince(0, heard);
+    bool carriedSerial = false;
+    for (const auto& h : heard)
+        if (h.text == "hello?" && h.speaker == speaker) carriedSerial = true;
+    Check(carriedSerial,
+          "the nameless line still carries the speaker serial");
+}
+
+// ---------------------------------------------------------------------------
+// 2c. THE NAME IS AT OFFSET 18. Regression for the off-by-four that made every
+// unicode speaker anonymous: offset 14 is the four-byte language code, which
+// this shard NUL-fills, so a reader at 14 stopped at the first NUL and
+// returned "" for everyone (artifacts/wave30_bandage20_20260907/
+// Kharos.console.txt -- 252 `trade: heard '...' from ` lines with a blank
+// from). Both language forms are exercised: NUL-filled (what Sphere sends
+// here, and what hid the bug) and "ENU" (what a reader at 14 would have
+// mistaken for the name).
+// ---------------------------------------------------------------------------
+void TestUnicodeSpeechNameFromPacket() {
+    Section("unicode speech: the packet's own name field is read at offset 18");
+
+    auto c = MakeConnectedClient();
+
+    const u32 blankLang = 0x0001AAAA;
+    auto uni = MakeUnicodeMessage(blankLang, "Aelia", "WTS 10 i_bandage 3gp", "");
+    c->DispatchPacketForTest(uni.data(), uni.size());
+    Check(c->LastJournalSpeakerForTest() == "Aelia",
+          "a speaker never seen before is named by the packet alone");
+
+    const u32 enuLang = 0x0001BBBB;
+    auto uni2 = MakeUnicodeMessage(enuLang, "Kharos", "WTB 20 i_cloth 12gp", "ENU");
+    c->DispatchPacketForTest(uni2.data(), uni2.size());
+    Check(c->LastJournalSpeakerForTest() == "Kharos",
+          "a populated language code is not mistaken for the name");
+
+    // And the name went into the cache, so the NEXT line from that serial is
+    // named even if it arrives without one.
+    auto uni3 = MakeUnicodeMessage(blankLang, "", "still here");
+    c->DispatchPacketForTest(uni3.data(), uni3.size());
+    Check(c->LastJournalSpeakerForTest() == "Aelia",
+          "the packet name is remembered for the serial");
+}
+
+// ---------------------------------------------------------------------------
+// 2d. THE HANDSHAKE JOINS ON THE SERIAL, NOT THE NAME.
+//
+// This is the protocol contract the market's heard path keys on
+// (Economy.cpp DriveOpenTrade: `if (h.speaker != tradePartner_) continue;`
+// against a tradePartner_ backfilled from TradeState::PartnerSerial()). Prove
+// it at the packet level, in the WORST case: a WTS heard from a speaker
+// nothing can name, and a 0x6F open from the same serial with a blank name
+// field. The two must still be the same person.
+//
+// smoke_Kharos_Aelia_Wren_Kaelor_Tarath_Faustus_20260907_1902 is the run where
+// that failed: Aelia logged "opening a window with (empty name)" and Kharos
+// logged "opened a window ... but never said a WTS we heard".
+// ---------------------------------------------------------------------------
+void TestShoutAndTradeWindowJoinOnSerial() {
+    Section("market handshake: a nameless WTS and a nameless window join on "
+            "the serial");
+
+    auto c = MakeConnectedClient();
+    const u32 seller = 0x0001C0DE;
+
+    auto uni = MakeUnicodeMessage(seller, "", "WTS 10 i_bandage 3gp");
+    c->DispatchPacketForTest(uni.data(), uni.size());
+
+    auto open = MakeTradeOpen(seller, 0x40000001, 0x40000002, "");
+    c->DispatchPacketForTest(open.data(), open.size());
+
+    Check(c->Trade().Active(), "the window opened");
+    Check(c->Trade().PartnerSerial() == seller,
+          "0x6F names the partner by serial even with a blank name field");
+    Check(c->Trade().PartnerName().empty(),
+          "and the name really is unavailable (worst case, as intended)");
+
+    std::vector<Client::Heard> heard;
+    c->JournalHeardSince(0, heard);
+    bool matched = false;
+    for (const auto& h : heard) {
+        if (h.speaker != c->Trade().PartnerSerial()) continue;
+        market::TradeIntent offer;
+        if (!market::ParseSellOffer(h.text, &offer)) continue;
+        matched = offer.item == "i_bandage" && offer.qty == 10 &&
+                  offer.pricePerUnit == 3;
+    }
+    Check(matched,
+          "the WTS heard from that serial is matched to the window it opened");
+}
+
+// ---------------------------------------------------------------------------
+// 2e. The same handshake with names present is unchanged: the serial still
+// joins the two, and the name is now also there for the log.
+// ---------------------------------------------------------------------------
+void TestShoutAndTradeWindowJoinWithNames() {
+    Section("market handshake: names present changes nothing about the join");
+
+    auto c = MakeConnectedClient();
+    const u32 seller = 0x0001BEEF;
+
+    auto uni = MakeUnicodeMessage(seller, "Aelia", "WTS 10 i_bandage 3gp");
+    c->DispatchPacketForTest(uni.data(), uni.size());
+    Check(c->LastJournalSpeakerForTest() == "Aelia",
+          "the WTS is filed under the speaker's name");
+
+    auto open = MakeTradeOpen(seller, 0x40000001, 0x40000002, "Aelia");
+    c->DispatchPacketForTest(open.data(), open.size());
+    Check(c->Trade().PartnerSerial() == seller, "same serial from 0x6F");
+    Check(c->Trade().PartnerName() == "Aelia", "and the same name");
+
+    std::vector<Client::Heard> heard;
+    c->JournalHeardSince(0, heard);
+    bool matched = false;
+    for (const auto& h : heard) {
+        if (h.speaker != c->Trade().PartnerSerial()) continue;
+        market::TradeIntent offer;
+        if (market::ParseSellOffer(h.text, &offer) && offer.item == "i_bandage")
+            matched = h.name == "Aelia";
+    }
+    Check(matched, "the join still holds, and now carries the name too");
 }
 
 }  // namespace
@@ -938,6 +1077,9 @@ int main() {
     TestWithdrawalStuckInTheBoxIsAFailure();
     TestUnicodeSpeechResolvesKnownSerial();
     TestUnicodeSpeechUnknownSerialStaysRaw();
+    TestUnicodeSpeechNameFromPacket();
+    TestShoutAndTradeWindowJoinOnSerial();
+    TestShoutAndTradeWindowJoinWithNames();
     TestOccludedShopkeeperIsStillFound();
     TestSpellbookGumpIsAnOpenNotAClose();
     TestDismountFinishesOnMountItemRemoval();

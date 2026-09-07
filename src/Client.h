@@ -1438,6 +1438,10 @@ private:
     std::string ResolveSpeakerName(u32 sourceSerial, const std::string& raw) const;
     u32 ResolveFollowSerialByName(const char* name) const;
     void RememberMobileName(u32 serial, const char* name);
+    // Fire-and-forget 0x98 AllNames query for a serial we have no name for.
+    // Never blocks and never fills anything synchronously; the reply arrives
+    // at OnMobName. Rate-limited per serial (kNameAskGapMs).
+    void RequestMobileName(u32 sourceSerial);
     bool ParseSerial(const char* text, u32* out) const;
     bool ParseDistance(const char* text, u32* out) const;
 
@@ -1800,6 +1804,11 @@ private:
     };
     std::deque<MobileObj> mobileCache_;
     std::unordered_map<u32, std::string> mobileNames_;
+    // When we last sent a 0x98 name query for a serial whose name we did not
+    // have. See RequestMobileName -- the gap keeps a speech handler from
+    // querying once per line spoken by somebody who never resolves.
+    std::unordered_map<u32, i64> nameAskedMs_;
+    static constexpr i64 kNameAskGapMs = 30000;
     // Paperdoll title ("<name> the <job>", e.g. "Aldo the healer") learned from
     // an 0x88 OPEN_PAPERDOLL after we double-click a mobile. The job suffix is the
     // only client-visible way to tell a healer from a tavernkeeper, so the restock
