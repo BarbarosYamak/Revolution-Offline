@@ -4112,6 +4112,144 @@ void TestReagentBand() {
           "fifty mandrake is not a reason to walk to the shop");
 }
 
+// THE POUCH IS TOPPED UP BEFORE A CAST IS REFUSED, not after.
+//
+// Aurelius walked to a graveyard on 2026-09-07 holding 13 nightshade against a
+// low-water mark of 20 and no shopping errand ever fired: the band was only
+// consulted once PRACTICE_SKILL or the hunt gate had already been refused, and
+// DoBuySupplies struck a reagent off its list at qty > 0.
+void TestReagentBandTopUpNeed() {
+    Section("caster: the reagent band is a need, not an afterthought");
+
+    const prof::Profession* mage = prof::Find("mage");
+    const prof::Profession* alch = prof::Find("alchemist");
+    const prof::Profession* jack = prof::Find("lumberjack_swordsman");
+    if (!mage || !alch || !jack) { Check(false, "professions missing"); return; }
+
+    Check(life::BuildCastsSpells(mage),
+          "a mage plans Magery as a Primary -- it casts for a living");
+    Check(!life::BuildCastsSpells(alch),
+          "an alchemist's Magery is a Utility dabble, so she carries no band");
+    Check(!life::BuildCastsSpells(jack), "a lumberjack is not a caster");
+    Check(!life::BuildCastsSpells(nullptr), "no profession, no band");
+
+    life::NeedConfig cfg;
+    cfg.profession = mage;
+    const life::BuildPlan plan = life::PlanFromProfession(*mage);
+    life::Memory mem;
+
+    life::Observation obs;
+    obs.inWorld = true;
+    obs.hp = obs.hpMax = 30;
+    obs.mana = 20;
+    obs.gold = 2000;                     // status-bar gold: purse plus box
+    obs.weight = 20; obs.maxWeight = 300;
+    obs.toolsHeld.push_back("spellbook");
+    obs.skills.push_back({rules::kMagery, 500});
+
+    // Seven of the eight at the band; nightshade at Aurelius's thirteen.
+    int kinds = 0;
+    const char* const* all = spell::Reagents(&kinds);
+    auto stockPouch = [&](i32 nightshade) {
+        obs.pack.clear();
+        for (int i = 0; i < kinds; ++i) {
+            const bool ns = std::string(all[i]) == "i_reag_nightshade";
+            market::Stock st;
+            st.item = all[i];
+            st.qty = ns ? nightshade : spell::ReagentBandFor(all[i], obs.gold);
+            obs.pack.push_back(st);
+        }
+    };
+    auto bandNeed = [](const std::vector<life::Need>& ns) -> const life::Need* {
+        for (const life::Need& n : ns)
+            if (n.kind == life::NeedKind::NeedSupplies &&
+                n.what == "top up the reagent band") return &n;
+        return nullptr;
+    };
+
+    const i32 low = spell::ReagentRestockFloor("i_reag_nightshade", obs.gold);
+    Check(low > 13, "thirteen leaves is under the low-water mark");
+
+    stockPouch(13);
+    const std::vector<life::Need> shortNeeds =
+        life::AssessNeeds(plan, mem, obs, cfg);
+    const life::Need* want = bandNeed(shortNeeds);
+    Check(want != nullptr,
+          "a partial pouch raises the band need -- not only an empty one");
+    if (want) {
+        Check(!want->blocked && want->urgency > 0.0,
+              "with gold to spend the errand is open");
+        Check(want->evidence.find("i_reag_nightshade") != std::string::npos,
+              "the telemetry names the weakest reagent and its count");
+    }
+
+    // The goal that answers it is the shopping errand, and it is on the board.
+    life::Planner planner;
+    const std::vector<life::ScoredGoal> scored =
+        planner.Score(shortNeeds, obs, mem);
+    bool sawBuy = false;
+    for (const life::ScoredGoal& g : scored)
+        if (g.kind == life::GoalKind::BuySupplies && g.score > 0.0) sawBuy = true;
+    Check(sawBuy, "BUY_SUPPLIES is scored for the reagent shortfall");
+
+    // Emptier is more urgent: a reagent at zero is a rung this character owns
+    // the spell for and cannot cast.
+    life::Observation empty = obs;
+    stockPouch(0);
+    empty.pack = obs.pack;
+    const std::vector<life::Need> emptyNeeds =
+        life::AssessNeeds(plan, mem, empty, cfg);
+    const life::Need* atZero = bandNeed(emptyNeeds);
+    Check(atZero != nullptr && want != nullptr &&
+              atZero->urgency > want->urgency,
+          "an empty pouch outranks a thin one");
+
+    // Bought up to the band: the need is gone, not merely quieter.
+    stockPouch(spell::ReagentBandFor("i_reag_nightshade", obs.gold));
+    const std::vector<life::Need> fullNeeds =
+        life::AssessNeeds(plan, mem, obs, cfg);
+    Check(bandNeed(fullNeeds) == nullptr,
+          "a pouch at the band raises no shopping need at all");
+
+    // AND IT STANDS DOWN WHEN NOBODY CAN FILL IT. No gold above the hard floor
+    // BUY_SUPPLIES spends against, and nothing in the box either.
+    life::Observation broke = obs;
+    stockPouch(0);
+    broke.pack = obs.pack;
+    broke.gold = 40;
+    broke.bank.clear();
+    const std::vector<life::Need> brokeNeeds =
+        life::AssessNeeds(plan, mem, broke, cfg);
+    const life::Need* stood = bandNeed(brokeNeeds);
+    Check(stood != nullptr, "the need is still REPORTED, so the telemetry says why");
+    if (stood) {
+        Check(stood->blocked && stood->urgency == 0.0,
+              "with neither gold nor a box to draw on it stands down at 0.0");
+        Check(!stood->reason.empty(), "and it says what has to happen first");
+    }
+
+    // ARM A OF THE NEED/HANDLER CONTRACT: the gate must agree that a reagent
+    // is a legitimate shop errand, or the need scores and the handler refuses.
+    const life::GateVerdict gate =
+        life::CanAct(life::NeedKind::NeedSupplies,
+                     life::GateSubject{"i_reag_nightshade", false}, mem, obs,
+                     cfg);
+    Check(gate.ok,
+          "a mage shop is a legitimate source for a reagent -- the gate agrees "
+          "with the errand");
+
+    // The shortfall list itself is emptiest-first and stable, because the
+    // buyer takes the front of it.
+    std::vector<std::string> missing;
+    i32 qty = 0;
+    stockPouch(13);
+    spell::ReagentBandShortfall(obs.pack, obs.gold, &missing, &qty);
+    Check(missing.size() == 1 && missing.front() == "i_reag_nightshade",
+          "only the reagent under its mark is on the shopping list");
+    Check(qty == spell::ReagentBandFor("i_reag_nightshade", obs.gold) - 13,
+          "and the quantity is the gap to the band, not to the mark");
+}
+
 void TestAWonFightDoesNotHeatTheGround() {
     Section("memory: a ground that pays cools, a ground that hurts heats");
 
@@ -4828,6 +4966,7 @@ int main(int argc, char** argv) {
     TestAMageFightsWithItsWholeLadder();
     TestTargObjSpellsAreStillAttackRungs();
     TestReagentBand();
+    TestReagentBandTopUpNeed();
     TestAWonFightDoesNotHeatTheGround();
     TestAMageMeditatesBeforeItHunts();
     TestOneBandageIsNotATripToTown();

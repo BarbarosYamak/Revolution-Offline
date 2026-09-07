@@ -32,6 +32,7 @@
 #include "uo/market.h"
 #include "uo/types.h"
 
+#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
@@ -321,6 +322,44 @@ inline i32 ReagentBandFor(const char* item, i32 gold) {
 inline i32 ReagentRestockFloor(const char* item, i32 gold) {
     const i32 band = ReagentBandFor(item, gold);
     return band / 3;
+}
+
+// THE POUCH AS A SHOPPING LIST, in one place because three callers ask it.
+//
+// Every reagent whose count has fallen BELOW its low-water mark, emptiest
+// first (the buyer takes the front of the list, and the one at zero is the one
+// costing a rung right now); ties broken by name so the pick is stable from
+// tick to tick. `qtyOut` is one number for the whole trip -- the LARGEST gap
+// to the band -- because a player buying round lots buys a few spare of the
+// cheaper kinds anyway, and reagents keep.
+//
+// Written against the pack a caller hands in rather than against an
+// Observation, so the need model (src/life/Needs.cpp) and the shopping errand
+// (src/life/runner/Economy.cpp) cannot drift apart from the hunt gate that
+// first used it (src/life/runner/Train.cpp).
+inline void ReagentBandShortfall(const std::vector<market::Stock>& pack,
+                                 i32 gold, std::vector<std::string>* missing,
+                                 i32* qtyOut) {
+    if (missing) missing->clear();
+    i32 gap = 0;
+    int count = 0;
+    const char* const* all = Reagents(&count);
+    std::vector<std::pair<i32, std::string>> shortfall;
+    for (int i = 0; i < count; ++i) {
+        const i32 have = market::QtyOf(pack, all[i]);
+        if (have >= ReagentRestockFloor(all[i], gold)) continue;
+        shortfall.emplace_back(have, std::string(all[i]));
+        gap = std::max(gap, ReagentBandFor(all[i], gold) - have);
+    }
+    std::sort(shortfall.begin(), shortfall.end(),
+              [](const std::pair<i32, std::string>& a,
+                 const std::pair<i32, std::string>& b) {
+                  return a.first != b.first ? a.first < b.first
+                                            : a.second < b.second;
+              });
+    if (missing)
+        for (const auto& row : shortfall) missing->push_back(row.second);
+    if (qtyOut) *qtyOut = gap;
 }
 
 // --- who may be practised on --------------------------------------------------

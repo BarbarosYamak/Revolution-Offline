@@ -25,25 +25,9 @@ namespace {
 // player buying round lots does anyway, and reagents keep.
 void ReagentBandShortfall(const Observation& obs,
                           std::vector<std::string>& missing, i32* qtyOut) {
-    missing.clear();
-    i32 gap = 0;
-    int count = 0;
-    const char* const* all = spell::Reagents(&count);
-    std::vector<std::pair<i32, std::string>> shortfall;
-    for (int i = 0; i < count; ++i) {
-        const i32 have = market::QtyOf(obs.pack, all[i]);
-        if (have >= spell::ReagentRestockFloor(all[i], obs.gold)) continue;
-        shortfall.emplace_back(have, std::string(all[i]));
-        gap = std::max(gap, spell::ReagentBandFor(all[i], obs.gold) - have);
-    }
-    std::sort(shortfall.begin(), shortfall.end(),
-              [](const std::pair<i32, std::string>& a,
-                 const std::pair<i32, std::string>& b) {
-                  return a.first != b.first ? a.first < b.first
-                                            : a.second < b.second;
-              });
-    for (const auto& row : shortfall) missing.push_back(row.second);
-    if (qtyOut) *qtyOut = gap;
+    // The rule itself lives with the band it is read off (uo/spellcast.h), so
+    // the need model and the shopping errand ask the same question this does.
+    spell::ReagentBandShortfall(obs.pack, obs.gold, &missing, qtyOut);
 }
 
 // WHICH HUNTING GROUND, BY TIER (project owner, 2026-09-04).

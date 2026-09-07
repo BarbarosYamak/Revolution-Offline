@@ -983,6 +983,18 @@ CraftIntent ChooseCraft(const prof::Profession& p, const Observation& obs,
 i32 CraftBatchFromStock(const prof::Profession& p, const Observation& obs,
                         i32 floorBatch, const CraftFocus* focus = nullptr);
 
+// DOES THIS BUILD FIGHT (OR TRAVEL) WITH SPELLS?
+//
+// Magery held as a Primary or Secondary target, read off the PLAN and not off
+// today's skill sheet. Utility Magery is deliberately excluded: a dexxer's
+// Recall and a crafter's leftover creation roll are capped on purpose (see
+// prof::SkillRole), and a tinker who carries eight reagents in sixties is a
+// tinker who has spent her tool money on a pouch she will never burn.
+//
+// Named here because two systems ask it and must not disagree -- the reagent
+// band need (Needs.cpp) and the errand that fills it (runner/Economy.cpp).
+bool BuildCastsSpells(const prof::Profession* p);
+
 // IS THIS SOMETHING THE SHEEP-TO-CLOTH CHAIN PRODUCES?
 //
 // Named once because two systems ask it and they must not disagree: the need

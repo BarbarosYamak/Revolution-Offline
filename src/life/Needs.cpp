@@ -362,6 +362,20 @@ PracticeBy HowToPractise(int skillId) {
 
 }  // namespace
 
+// A CASTER IS A BUILD THAT PLANNED MAGERY, not one that happens to hold it.
+// (Declared in uo/life.h; see prof::SkillRole for why Utility is not a caster.)
+bool BuildCastsSpells(const prof::Profession* p) {
+    if (!p) return false;
+    for (const prof::SkillTargetSpec& t : p->targets) {
+        if (t.skillId != rules::kMagery) continue;
+        if (t.tenths <= 0) continue;
+        if (t.role == prof::SkillRole::Primary ||
+            t.role == prof::SkillRole::Secondary)
+            return true;
+    }
+    return false;
+}
+
 // Does this life carry the thing at all? The catalogue is the answer; a life
 // saved before the catalogue existed (cfg.profession == nullptr) keeps the M4
 // lumberjack answers, so nothing that already works changes.
@@ -1483,6 +1497,79 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
                         "a mage shop sells every one of them",
             Fmt("%d x each of %s", obs.practiceReagentQty, list.c_str()),
             noCapital);
+    }
+
+    // --- the standing reagent band, BEFORE a cast is refused ---------------
+    //
+    // The clause above is REACTIVE: it fires only once PRACTICE_SKILL or the
+    // hunt gate has already found a spell it cannot pay for, which is a mage
+    // discovering the hole in her pouch at the moment she needs the rung. A
+    // player does not shop that way. The owner's rule (revolution-god memory
+    // `mage-reagent-stock`) is a STANDING band of all eight, so the shopping
+    // trip belongs where the pouch runs low, not where the fight stops.
+    //
+    // Aurelius walked to the graveyard on 2026-09-07 holding 13 nightshade
+    // against a low-water mark of 20 and the errand never fired: the old
+    // pruning rule in DoBuySupplies took a reagent off the list at qty > 0,
+    // so a partial pouch was only ever restocked from exactly zero.
+    //
+    // Urgency is read off the WEAKEST reagent, because a band with one hole in
+    // it is a ladder with one rung missing however full the other seven are.
+    //
+    // ONE ERRAND, ONE ROW. When the clause above has already spoken, this one
+    // stays quiet: FindNeed (Goals.cpp) returns the FIRST NeedSupplies row of
+    // the list and both rows send the character to the same mage shop, so a
+    // second row would only decide which sentence the telemetry prints. The
+    // refused cast is the more urgent kind of empty and keeps the floor --
+    // and the hunt gate already merges the whole band into that same shopping
+    // list (runner/Train.cpp, ReagentBandShortfall).
+    if (obs.practiceReagentsShort.empty() && BuildCastsSpells(cfg.profession)) {
+        std::vector<std::string> band;
+        i32 bandQty = 0;
+        spell::ReagentBandShortfall(obs.pack, obs.gold, &band, &bandQty);
+        if (!band.empty()) {
+            // How deep the hole is, as a fraction of the low-water mark:
+            // 1.0 at zero of it, 0.0 at the mark. Emptiest first, so the front
+            // of the list IS the weakest.
+            const i32 low = spell::ReagentRestockFloor(band.front().c_str(),
+                                                       obs.gold);
+            const i32 have = market::QtyOf(obs.pack, band.front());
+            const double frac =
+                low > 0 ? std::min(1.0, std::max(0.0,
+                              static_cast<double>(low - have) / low))
+                        : 0.0;
+            // Below the reactive clause's 0.46 while the pouch merely thins,
+            // above it when a reagent is at zero -- at zero the character has
+            // lost a rung it owns the spell for.
+            const double urgency = 0.20 + 0.30 * frac;
+
+            // WHERE IT COULD COME FROM. Two answers, and the need stands down
+            // only when BOTH say no: the shop (which needs working capital
+            // above the same hard floor of 100 BUY_SUPPLIES spends against)
+            // and the box (a bank trip is NeedBank's business, and it outranks
+            // this -- naming it here keeps the telemetry honest).
+            const bool noCapital = (obs.gold - 100) <= 0;
+            i32 banked = 0;
+            for (const std::string& r : band)
+                banked += market::QtyOf(obs.bank, r);
+            const bool blocked = noCapital && banked <= 0;
+            std::string list;
+            for (const std::string& r : band) {
+                if (list.size() > 60) { list += ",..."; break; }
+                list += (list.empty() ? "" : ",") + r.substr(7);
+            }
+            add(NeedKind::NeedSupplies, blocked ? 0.0 : urgency,
+                "top up the reagent band",
+                blocked ? "the reagent pouch is below its low-water mark and "
+                          "there is neither the gold to buy more nor any in "
+                          "the box -- something has to be sold first"
+                        : "the reagent pouch is below its low-water mark, and "
+                          "a mage shop sells every one of the eight",
+                Fmt("weakest %s %d of %d (band top-up %d x each of %s), "
+                    "%d banked", band.front().c_str(), have, low, bandQty,
+                    list.c_str(), banked),
+                blocked);
+        }
     }
 
     // --- making things -----------------------------------------------------

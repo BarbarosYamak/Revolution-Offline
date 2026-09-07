@@ -151,6 +151,7 @@ sites in each handler. Status: **A** migrated to arm A, **B** migrated to arm B,
 | NeedTrade | TradeWithPlayer 145 | Economy.cpp:966 | surplus, marketQuiet, session budget, cooldown | no banker; stock still in the bank; market unreachable | C |
 | NeedCatch | Fish 130 | Gather.cpp:1028 | profession fishes | no pole; no dock reachable | open |
 | NeedSupplies | BuySupplies 140 | Economy.cpp:2099 | vendor ruling, capital, route==PlayerMarket (D7) | route==SelfProduce; no trade sells it; vendor unreachable twice; list lacks the item | **A** (route + supplier); reach failures stay a cooldown |
+| NeedSupplies (reagent band) | BuySupplies 140 | Economy.cpp `DoBuySupplies` band arm | caster build (`life::BuildCastsSpells`) whose weakest reagent is under `spell::ReagentRestockFloor`; urgency scales with how deep the hole is | no gold above the 100 hard floor AND none in the box | shares NeedSupplies' arm A; raised only while `practiceReagentsShort` is empty, so the refused-cast row keeps the floor |
 | NeedCraft | Craft 130 | Craft.cpp:44 | inputs held, recipe known | no fire; no smith hammer; no menu path; cursor refused | open |
 | NeedPractice | PracticeSkill 120 | Train.cpp:2180 | skill gap, reagents | nothing here to practise on | open |
 | NeedSpells | FillSpellbook 110 | Train.cpp:1972 | book read, budget, scroll rows | shop does not stock the circle; scribe unreachable | open |

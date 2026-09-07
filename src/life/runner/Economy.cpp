@@ -2211,12 +2211,20 @@ bool Runner::DoBuySupplies(Client& client, const Observation& obs) {
     // answers "mage" for the i_reag_ family -- so it reuses this whole path
     // rather than growing a second vendor flow. It jumps the queue because a
     // mage with an empty pouch cannot practise at all.
-    // Anything the pack has since acquired is off the list -- bought here a
-    // moment ago, looted, or carried all along.
+    // Anything the pack now holds AT ITS LOW-WATER MARK is off the list --
+    // bought here a moment ago, looted, or carried all along.
+    //
+    // NOT "> 0". A single leaf answered the old test, so a pouch that held 13
+    // nightshade against a mark of 20 was struck off the shopping list and
+    // only ever restocked from exactly zero -- which is the state the band
+    // exists to prevent (Aurelius, 2026-09-07). The line is the same one the
+    // band itself uses, spell::ReagentRestockFloor.
     for (usize i = 0; i < reagentWants_.size();) {
-        if (market::QtyOf(obs.pack, reagentWants_[i]) > 0) {
-            LogLine("supplies: %s is in the pack now -- off the reagent list",
-                    reagentWants_[i].c_str());
+        const i32 have = market::QtyOf(obs.pack, reagentWants_[i]);
+        if (have >= spell::ReagentRestockFloor(reagentWants_[i].c_str(),
+                                               obs.gold)) {
+            LogLine("supplies: %s is at %d, at or above its low-water mark -- "
+                    "off the reagent list", reagentWants_[i].c_str(), have);
             reagentWants_.erase(reagentWants_.begin() +
                                 static_cast<std::ptrdiff_t>(i));
             // The reason PRACTICE_SKILL stood down has just been carried out
@@ -2229,6 +2237,33 @@ bool Runner::DoBuySupplies(Client& client, const Observation& obs) {
         }
     }
 
+    // THE BAND, WITHOUT WAITING FOR A REFUSED CAST.
+    //
+    // reagentWants_ is written by PRACTICE_SKILL and the hunt gate, and both
+    // only speak once a cast has ALREADY been refused. The need model raises
+    // the same errand as soon as the pouch falls below its low-water mark
+    // (NeedSupplies, "top up the reagent band", src/life/Needs.cpp), so when
+    // this goal is picked for that reason there is no list to work from and
+    // the errand used to fall through to the craft path and report "nothing
+    // short after all" -- a goal that did nothing.
+    //
+    // Derived fresh each tick rather than stored: the per-tick keeper in
+    // Core.cpp clears reagentWants_ as soon as every entry is above zero, and
+    // a band restock spends most of its life in exactly that state.
+    std::vector<std::string> bandWants;
+    i32 bandQty = 0;
+    if (reagentWants_.empty() && life::BuildCastsSpells(me)) {
+        spell::ReagentBandShortfall(obs.pack, obs.gold, &bandWants, &bandQty);
+        // ONCE PER PICK, NOT ONCE PER TICK. This runs on every tick of a walk
+        // to the shop, and said the same sentence 359 times in twenty seconds
+        // on the first live run of it (g_Aurelius, 02:14:18-02:14:38).
+        if (!bandWants.empty() && supplyItem_ != bandWants.front())
+            LogLine("supplies: the reagent band is short of %zu of the eight "
+                    "(weakest %s) -- topping up %d x each before it costs a "
+                    "rung", bandWants.size(), bandWants.front().c_str(),
+                    bandQty);
+    }
+
     prod::Ingredient want;
     // prod::Ingredient::item is a const char*, so the string it points at has
     // to outlive the rest of this function -- hence the local copy.
@@ -2237,10 +2272,12 @@ bool Runner::DoBuySupplies(Client& client, const Observation& obs) {
     // ratio at the counter (BulkSupplyQty). Empty for the spell-reagent path
     // above, whose quantity PRACTICE_SKILL already decided.
     std::string craftOutput;
-    if (!reagentWants_.empty()) {
-        reagentPick = reagentWants_.front();
+    if (!reagentWants_.empty() || !bandWants.empty()) {
+        const bool fromBand = reagentWants_.empty();
+        reagentPick = fromBand ? bandWants.front() : reagentWants_.front();
         want.item = reagentPick.c_str();
-        want.qty = reagentWantQty_ > 0 ? reagentWantQty_ : 1;
+        want.qty = fromBand ? std::max(1, bandQty)
+                            : (reagentWantQty_ > 0 ? reagentWantQty_ : 1);
     } else {
         // THE SAME SITTING THE NEED MODEL COSTED. Asking at needCfg_.craftBatch
         // here while AssessNeeds asked at the stocked size makes the goal
