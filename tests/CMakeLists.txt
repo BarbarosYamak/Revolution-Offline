@@ -45,6 +45,23 @@ target_include_directories(path_probe PRIVATE
     ${CMAKE_SOURCE_DIR}/src)
 target_link_libraries(path_probe PRIVATE uo_world)
 
+# nav_dynamic_goal: regression for a goal occupied by a live decorator item
+# (2026-09-07, Britain (1416,1592) under a Sphere-placed bookcase the offline
+# atlasgen never modeled). Configuration A always runs (no client data).
+# Configurations B/C need UO_MUL_DIR and are skipped cleanly without it --
+# same pattern as viewer_safety's UNBOUND/LOADED split.
+# PathPlanner.cpp lives in UO_CLIENT_SOURCES (see the top-level CMakeLists.txt
+# comment above its listing), not in uo_world, so this test compiles its own
+# copy the same way m25_world pulls in Journey.cpp directly.
+add_executable(nav_dynamic_goal nav_dynamic_goal.cpp
+    ${CMAKE_SOURCE_DIR}/src/navigation/PathPlanner.cpp)
+target_include_directories(nav_dynamic_goal PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+target_link_libraries(nav_dynamic_goal PRIVATE uo_world)
+
+add_test(NAME nav_dynamic_goal COMMAND nav_dynamic_goal)
+
 # M3 progression, economy and secure-trade state machines. Pure logic: no
 # server, no MULs, no world data.
 add_executable(m3_progression m3_progression.cpp
