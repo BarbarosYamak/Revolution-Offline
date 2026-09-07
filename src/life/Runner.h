@@ -343,6 +343,18 @@ private:
     // on to bandages. See the definition for why every step is measured by an
     // inventory delta rather than by having issued the click.
     bool DoMakeCloth(Client& client, const Observation& obs);
+    // FETCH THE CLOTH SURPLUS OUT OF THE BANK BOX AND CUT IT FOR SALE.
+    //
+    // The other end of DoMakeCloth: that one is short of cloth, this one is
+    // long of it. CutClothForSale could only ever see the PACK and only ever
+    // ran from MAKE_CLOTH's "batch covered" exit, so a tailor whose finished
+    // cloth sits in the box -- which is where it goes -- never reached it.
+    // One withdraw-and-cut batch per run, a cooldown on every exit.
+    bool DoMakeBandagesForSale(Client& client, const Observation& obs);
+    // Put the bandages above the sale shelf back in the box, but only while
+    // the box is already open. True when it issued the move.
+    bool BankSaleBandages(Client& client, const Observation& obs, i32 held,
+                          i32 target);
     // BUY A RIDING HORSE FROM AN ANIMAL TRAINER AND MOUNT IT. Same shop
     // shape as DoGetTool (travel to the trade, scan titles, walk up, open,
     // read the offer, buy). The purchase releases the animal at our feet;
@@ -682,6 +694,15 @@ private:
     // has actually sold, so two tailors get two numbers and a tailor nobody
     // buys from stops at one batch ("thresholds must be dynamic", owner rule).
     i32  BandageSaleTarget() const;
+    // --- one withdraw-and-cut batch per BANDAGES_FOR_SALE run ---------------
+    //
+    // Both are cleared by LeaveGoal, so a fresh pick gets a fresh batch and a
+    // supersession cannot leave the goal believing it already did its work.
+    // `saleClothTaken_` exists because a withdrawal can LAND and still not put
+    // enough cloth in the pack to cut (a clamped move, a partial stack); asking
+    // the box again on the next tick is precisely how a goal spins.
+    bool saleCutMade_ = false;
+    bool saleClothTaken_ = false;
     // How many times the bandage errand has asked who is standing in the
     // healer's shop. Reset on success; three unanswered scans stand the
     // goal down instead of re-walking to the same tile.

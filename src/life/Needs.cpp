@@ -38,6 +38,7 @@ const char* NeedKindName(NeedKind k) {
         case NeedKind::NeedSmelt:     return "NeedSmelt";
         case NeedKind::NeedCraft:     return "NeedCraft";
         case NeedKind::NeedCloth:     return "NeedCloth";
+        case NeedKind::NeedBandagesForSale: return "NeedBandagesForSale";
         case NeedKind::NeedMount:     return "NeedMount";
         case NeedKind::NeedWoolIncome: return "NeedWoolIncome";
         case NeedKind::NeedStrength:  return "NeedStrength";
@@ -362,6 +363,29 @@ PracticeBy HowToPractise(int skillId) {
 
 
 }  // namespace
+
+// See the declaration in life.h. Was Runner::BandageSaleTarget, which the need
+// could not reach -- so the need had no way to ask "is the sale shelf full?"
+// with the same number the handler stops at.
+i32 BandageSaleTarget(const Memory& mem, i32 craftBatch) {
+    // ONE SITTING'S WORTH TO START WITH. craftBatch is what this life's plan
+    // calls a unit of work; it is resolved per character, so this is not a
+    // fleet constant dressed up as a target.
+    const i32 batch = std::max<i32>(1, craftBatch);
+
+    // AND WHAT THE MARKET HAS ACTUALLY TAKEN. Every completed bandage trade is
+    // one more batch worth cutting -- demand this character OBSERVED, not
+    // demand it was told about. A tailor nobody buys from stays at one batch
+    // and goes back to sewing, which is the honest answer to no orders.
+    // Bounded by Memory's own event cap (kMaxEvents).
+    i32 sold = 0;
+    for (const LifeEvent& e : mem.Events()) {
+        if (e.kind != "traded_with_player") continue;
+        if (e.detail != "i_bandage") continue;
+        ++sold;
+    }
+    return batch * (1 + sold);
+}
 
 // A CASTER IS A BUILD THAT PLANNED MAGERY, not one that happens to hold it.
 // (Declared in uo/life.h; see prof::SkillRole for why Utility is not a caster.)
@@ -1951,6 +1975,59 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
                       : Fmt("%d x %s short", clothShortQty,
                             clothShort.c_str()),
                 !declined);
+        }
+
+        // --- CLOTH ALREADY MADE, WORTH MORE AS BANDAGES --------------------
+        //
+        // The mirror of the clause above. NeedCloth asks "am I short of cloth
+        // for the bench"; this asks "is there cloth beyond the bench that the
+        // fleet's fighters would buy". Cutting takes no Tailoring at all, and
+        // i_bandage is in the tailor's `produces` for exactly this reason
+        // (Professions.cpp:1409) -- so what it makes is Surplus() and the
+        // ordinary WTS machinery sells it.
+        //
+        // WHY IT IS NOT ALREADY PART OF MAKE_CLOTH. CutClothForSale
+        // (runner/Cloth.cpp) is reachable only from MAKE_CLOTH's "the batch is
+        // covered" exit and it counts the PACK only -- so a tailor whose
+        // finished cloth is in the BOX, which is where a tailor's cloth goes,
+        // can never reach it while the batch is still short. Aelia sat on 280
+        // banked i_cloth and 10 in the pack for a whole gate, shearing
+        // (artifacts/gate_bandage20_20260907/, tools/world_query.py --char
+        // Aelia).
+        //
+        // ONE PREDICATE, ARMING AND PRUNING. The urgency here and the
+        // withdrawal DoMakeBandagesForSale sizes both come from
+        // ClothCuttableForSale, so this never raises a goal whose handler has
+        // nothing to do -- the spinning-goal family this file has paid for
+        // four times already.
+        bool sellsBandages = false;
+        for (const std::string& made : cfg.profession->produces)
+            if (made == "i_bandage") { sellsBandages = true; break; }
+        if (sellsBandages) {
+            const i32 keep   = std::max<i32>(1, cfg.craftBatch);
+            const i32 target = BandageSaleTarget(mem, cfg.craftBatch);
+            const i32 held   = obs.bandages;
+            const i32 packCloth = QtyIn(obs.pack, "i_cloth");
+            const i32 bankCloth = QtyIn(obs.bank, "i_cloth");
+            const i32 cut = ClothCuttableForSale(packCloth, bankCloth, keep,
+                                                 target - held);
+            if (cut > 0) {
+                // Same shape as NeedMakeBandages: full at an empty sale shelf,
+                // tapering as the stock fills, so a tailor that has cut its
+                // batch goes back to the bench instead of cutting for ever.
+                const double shortfall =
+                    1.0 - static_cast<double>(held) /
+                              static_cast<double>(target > 0 ? target : 1);
+                add(NeedKind::NeedBandagesForSale,
+                    0.25 + 0.40 * (shortfall > 0.0 ? shortfall : 0.0),
+                    "cut the cloth surplus into bandages",
+                    "there is more cloth than the bench will use, and a "
+                    "fighter with an empty healer's counter has nowhere else "
+                    "to buy -- cut it and offer it",
+                    Fmt("%d cloth in the pack and %d in the box, bench keeps "
+                        "%d; %d of %d bandages held, cut of %d",
+                        packCloth, bankCloth, keep, held, target, cut));
+            }
         }
     }
 

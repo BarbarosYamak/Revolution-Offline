@@ -1122,6 +1122,55 @@ bool WoolChainWorkInProgress(const prof::Profession& p,
 i32 CraftInputReserve(const prof::Profession& p, const char* item,
                       i32 craftBatch);
 
+// HOW MANY BANDAGES THIS TAILOR IS TRYING TO HAVE ON THE SHELF.
+//
+// One sitting to start with, plus one more sitting for every bandage trade
+// this character has actually completed -- demand it OBSERVED, never demand it
+// was told about. Lives here rather than on Runner because the need has to be
+// able to ask the same question the handler stops on; a sale target the need
+// cannot see is a goal that keeps being raised after the shelf is full.
+i32 BandageSaleTarget(const Memory& mem, i32 craftBatch);
+
+// HOW MUCH CLOTH A TAILOR CAN TURN INTO BANDAGES FOR SALE RIGHT NOW, counting
+// the BOX as well as the pack.
+//
+// One resolver, read by the need that raises BANDAGES_FOR_SALE (life/Needs.cpp)
+// and by the handler that acts on it (runner/Cloth.cpp), because a need sized
+// differently from the errand that fills it is the contract violation this
+// project keeps paying for (docs/NEED_HANDLER_CONTRACT.md). Returns the size of
+// the cut this tick -- the number of cloth that would go under the scissors --
+// or 0 when there is no cut to make, which is also the arming test.
+//
+// WHY THE BANK HALF EXISTS. CutClothForSale only ever looked at the PACK, and a
+// tailor's finished cloth does not stay there: Aelia held 280 i_cloth in the
+// bank and 10 in the pack on 2026-09-07 (artifacts/gate_bandage20_20260907/,
+// tools/world_query.py --char Aelia) while MAKE_CLOTH kept shearing, because
+// the sale path was only reachable from MAKE_CLOTH's "the batch is covered"
+// exit and the batch was never covered. Banked finished cloth above the bench's
+// keep is exactly the surplus a tailor should be cutting up for the fleet's
+// fighters.
+//
+// WHY THE WHOLE PACK STACK IS THE CUT SIZE. Scissors on cloth are the engine's,
+// not the shard's (type_scissors.scp:41 returns 0 for t_cloth): Source-X takes
+// `iOutQty = pItemTarg->GetAmount()` and then `pItemTarg->Delete()`
+// (CClientTarg.cpp:2152-2179), so ONE gesture consumes the entire stack and
+// yields one bandage per cloth. There is no cutting "twenty of the thirty" --
+// which is why the bench's keep has to survive in the BOX rather than in the
+// pack, and why the withdrawal is sized rather than the cut.
+inline i32 ClothCuttableForSale(i32 packCloth, i32 bankCloth, i32 keep,
+                                i32 want) {
+    if (keep < 1) keep = 1;
+    if (want < 1 || packCloth < 0 || bankCloth < 0) return 0;
+    // Already carrying more than the bench needs: cut what is in hand, no trip.
+    if (packCloth > keep) return packCloth;
+    // Otherwise the cut has to be fetched, and the box must still hold the
+    // sitting after the fetch.
+    const i32 spare = bankCloth - keep;
+    if (spare <= 0) return 0;
+    const i32 take = spare < want ? spare : want;
+    return packCloth + take;
+}
+
 // Does this life go looking for fights, or only finish the ones that find it?
 // Read off the build -- a profession that wants MORE than the 50.0 creation
 // grant in a weapon school intends to use it. Shared because two systems ask:
@@ -1235,6 +1284,16 @@ enum class NeedKind : u8 {
     // a tailor walking to Yew while a lumberjack stood at the bank with a
     // bale for sale.
     NeedCloth,
+    // CLOTH ALREADY MADE, SITTING IN THE BOX, WORTH MORE AS BANDAGES.
+    //
+    // The other side of NeedCloth: that one is "I am short of cloth", this one
+    // is "I have more than the bench will use". Cutting takes no Tailoring at
+    // all (type_scissors.scp hands t_cloth to the engine), the fleet's fighters
+    // empty every healer counter in town, and a tailor supplying them is the
+    // 4013ad5 intent. Raised only for a life whose catalogue lists i_bandage in
+    // `produces` -- the tailor alone (Professions.cpp) -- and only while its
+    // sale stock is under BandageSaleTarget().
+    NeedBandagesForSale,
     // A riding horse. Every Revolution player bought one first -- a
     // dated forum price (800 gp, 24.03.2011) and the owner's own rule
     // ("buy a horse first, mount, then do the rest", 2026-09-02). Raised
@@ -1710,6 +1769,14 @@ enum class GoalKind : u8 {
     // stops when the craft batch has enough CLOTH, and it is Work rather than
     // Upkeep because for a tailor it IS the work.
     MakeCloth,
+    // Fetch the cloth surplus out of the bank box and cut it into bandages to
+    // sell. Distinct from MakeBandages, which is a FIGHTER topping up its own
+    // kit from whatever it can find and stops at bandageFull, and from
+    // MakeCloth, which is short of cloth rather than long of it. This one is a
+    // tailor's income work: one withdraw-and-cut batch per run, the finished
+    // stock above the sale target goes back in the box, and the ordinary WTS
+    // machinery carries it from there.
+    MakeBandagesForSale,
     // Walk to an animal trainer, buy a riding horse, mount it. Sphere
     // releases an NPC-bought figurine at the buyer's feet in the same
     // packet (CClientEvent.cpp:1309 -> Use_Figurine), so the only step

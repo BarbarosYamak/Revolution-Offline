@@ -33,6 +33,7 @@ const char* GoalKindName(GoalKind g) {
         case GoalKind::TameAnimal:           return "TAME_ANIMAL";
         case GoalKind::UpgradeGear:          return "UPGRADE_GEAR";
         case GoalKind::MakeCloth:            return "MAKE_CLOTH";
+        case GoalKind::MakeBandagesForSale:  return "BANDAGES_FOR_SALE";
         case GoalKind::BuyMount:             return "BUY_MOUNT";
         case GoalKind::HarvestWool:          return "HARVEST_WOOL";
         case GoalKind::StatFarm:             return "STAT_FARM";
@@ -94,6 +95,9 @@ GoalFamily FamilyOf(GoalKind k) {
         // same shape as Mine -> Smelt. For a tailor this is the work itself,
         // not upkeep -- which is where it differs from MakeBandages.
         case GoalKind::MakeCloth:
+        // Cutting the cloth surplus up for sale is the same shelf: it is what
+        // the tailor SELLS, not something it needs for itself.
+        case GoalKind::MakeBandagesForSale:
         case GoalKind::HarvestWool:
             return GoalFamily::Work;
         case GoalKind::TrainCombat:
@@ -289,6 +293,13 @@ const GoalSpec kGoals[] = {
     // and must not outrank the shopping errand that can fetch the OTHER
     // inputs of the same recipe in one walk.
     {GoalKind::MakeCloth,             NeedKind::NeedCloth,         135.0},
+    // THE SAME SHELF AS MAKE_CLOTH, deliberately, because it is the same
+    // tailor's work at the other end of the chain -- what decides between them
+    // is the NEED, not the weight. NeedCloth tops out at 0.55 (135 x 0.55 =
+    // 74.2); this one at 0.65 (87.8), so a box with cloth above the bench's
+    // keep stops the shearing and starts the cutting, and an empty box leaves
+    // MAKE_CLOTH the winner it already was.
+    {GoalKind::MakeBandagesForSale,   NeedKind::NeedBandagesForSale, 135.0},
     // Above every kind of work and above the bank run: a horse is the first
     // thing a Revolution player bought, and everything after it -- the wool
     // trip, the shop errand, the hunt -- is faster mounted. Below GetTool

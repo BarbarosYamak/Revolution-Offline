@@ -2180,6 +2180,11 @@ void Runner::LeaveGoal(Client& client, GoalKind from, GoalKind to,
 
     chopTargetValid_ = false;
     chopCursorPending_ = false;
+    // ONE BATCH BELONGS TO ONE RUN OF BANDAGES_FOR_SALE. Left standing across a
+    // goal change, `saleCutMade_` would tell the next pick its batch was
+    // already cut and it would stand down having done nothing.
+    saleCutMade_ = false;
+    saleClothTaken_ = false;
     travelInFlight_ = false;
     travelAttempts_ = 0;
     // A TRIP ALLOWANCE BELONGS TO THE ERRAND, NOT TO THE RUNNER.
@@ -2472,6 +2477,7 @@ void Runner::RunGoal(Client& client, const Observation& obs) {
         case GoalKind::PracticeSkill:         done = DoPracticeSkill(client, obs); break;
         case GoalKind::FillSpellbook:         done = DoFillSpellbook(client, obs); break;
         case GoalKind::MakeBandages:         done = DoMakeBandages(client, obs); break;
+        case GoalKind::MakeBandagesForSale:  done = DoMakeBandagesForSale(client, obs); break;
         case GoalKind::MakeCloth:            done = DoMakeCloth(client, obs); break;
         case GoalKind::HarvestWool:          done = DoMakeCloth(client, obs); break;
         case GoalKind::BuyMount:             done = DoBuyMount(client, obs); break;

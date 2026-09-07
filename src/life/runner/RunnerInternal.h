@@ -469,6 +469,18 @@ constexpr u16 kBladedGraphics[] = {
 constexpr i32 kMaxEmptyClothSteps = 3;
 constexpr i32 kMaxClothTrips = 4;
 constexpr i64 kNoClothCooldownMs = 300000;
+// HOW LONG BANDAGES_FOR_SALE RESTS AFTER A BATCH.
+//
+// One withdraw-and-cut batch per run, then a rest -- long enough that the WTS
+// announce and a buyer's walk both fit inside it, short enough that a tailor
+// with a chest of cloth gets through it in a session. The goal's own success
+// silences its need, so this cooldown is what keeps a PARTIAL batch (a clamped
+// withdrawal, a shut box) from being retried on the very next tick.
+constexpr i64 kBandageSaleRestMs = 120000;
+// And the rest it takes while BANK does the walking for it. Matched to the
+// bank goal's own trip so the hand-off has time to land before this scores
+// again.
+constexpr i64 kBandageSaleTripMs = 60000;
 // Farthest a flock may be from the home bank before it is not "our" pasture.
 // Britain bank -> Britain farmland flock (1318,1811) is ~130 tiles; the next
 // nearest rows are the Yew flocks at ~750 and Jhelom at ~1900, both a

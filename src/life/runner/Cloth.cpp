@@ -582,26 +582,11 @@ bool Runner::ReachStation(Client& client, const Observation& obs, u32 station,
     return false;
 }
 
-// See the declaration in Runner.h.
+// See the declaration in Runner.h. The arithmetic itself moved to
+// life::BandageSaleTarget (life/Needs.cpp) so the need that raises
+// BANDAGES_FOR_SALE and the handler that ends it stop on the same number.
 i32 Runner::BandageSaleTarget() const {
-    // ONE SITTING'S WORTH TO START WITH. needCfg_.craftBatch is what this
-    // life's plan calls a unit of work; it is resolved per character, so this
-    // is not a fleet constant dressed up as a target.
-    const i32 batch = std::max<i32>(1, needCfg_.craftBatch);
-
-    // AND WHAT THE MARKET HAS ACTUALLY TAKEN. Every completed bandage trade is
-    // one more batch worth cutting -- demand this character OBSERVED, not
-    // demand it was told about. A tailor nobody buys from stays at one batch
-    // and goes back to sewing, which is the honest answer to no orders.
-    // Bounded by Memory's own event cap (kMaxEvents) and by the window
-    // SellersDeclined uses, so it cannot grow without limit.
-    i32 sold = 0;
-    for (const LifeEvent& e : state_.memory.Events()) {
-        if (e.kind != "traded_with_player") continue;
-        if (e.detail != "i_bandage") continue;
-        ++sold;
-    }
-    return batch * (1 + sold);
+    return life::BandageSaleTarget(state_.memory, needCfg_.craftBatch);
 }
 
 // See the declaration in Runner.h.
@@ -638,6 +623,233 @@ bool Runner::CutClothForSale(Client& client, const Observation& obs,
     client.ActionUseItemOn(scissors, piece);
     planner_.NoteProgress();
     nextActionMs_ = obs.nowMs + 2500;
+    return true;
+}
+
+// ---------------------------------------------------------------------------
+// CUTTING THE CLOTH SURPLUS UP FOR SALE.
+//
+// "banked finished cloth beyond keep IS the surplus the tailor should turn
+// into bandages" (lead brief, 2026-09-07), and the 4013ad5 intent was that
+// tailors supply fighters. CutClothForSale already did the cutting; what it
+// could not do was reach the cloth, because it only ever ran from MAKE_CLOTH's
+// "the batch is covered" exit and only ever counted the PACK. A tailor's
+// finished cloth is in the BOX -- Aelia: 280 banked, 10 carried, and MAKE_CLOTH
+// still shearing (artifacts/gate_bandage20_20260907/).
+//
+// So this goal is the fetch. Its whole content is: get the box open, take out
+// the size of cut life::ClothCuttableForSale asked for, cut it, put the stock
+// above the sale target back in the box, stand down. ONE withdraw-and-cut batch
+// per run, and a cooldown on every exit -- the goal's own need is silenced by
+// its own success (the shelf fills), so nothing else would stop a re-pick.
+//
+// The bench's keep survives in the BOX, not in the pack: a scissors gesture
+// deletes the whole targeted stack (Source-X CClientTarg.cpp:2152-2179), so
+// there is no such thing as cutting part of what is carried.
+bool Runner::DoMakeBandagesForSale(Client& client, const Observation& obs) {
+    if (client.ActionBusy()) return false;
+
+    const prof::Profession* me = needCfg_.profession;
+    if (!me) {
+        planner_.Cooldown(GoalKind::MakeBandagesForSale,
+                          obs.nowMs + kNoBandageCooldownMs);
+        planner_.Finish(false, "no profession", obs.nowMs);
+        return false;
+    }
+
+    const i32 keep   = std::max<i32>(1, needCfg_.craftBatch);
+    const i32 target = BandageSaleTarget();
+    const i32 held   = static_cast<i32>(client.BackpackItemCount(kBandage));
+
+    // THE SHELF IS FULL. The one exit that is a success, and it is also the
+    // condition that silences the need -- so the cooldown here is belt and
+    // braces rather than the thing doing the work.
+    if (held >= target) {
+        LogLine("bandages_for_sale: %d bandages is the sale stock (target %d) "
+                "-- the market's turn now", held, target);
+        saleCutMade_ = false;
+        saleClothTaken_ = false;
+        planner_.Cooldown(GoalKind::MakeBandagesForSale,
+                          obs.nowMs + kBandageSaleRestMs);
+        planner_.Finish(true, nullptr, obs.nowMs);
+        return true;
+    }
+
+    // NO SCISSORS, NO TRADE. DoMakeBandages buys a pair for a fighter who has
+    // none, because for a fighter this is the difference between healing and
+    // not. For a tailor it is a stock errand, so it says so and rests instead
+    // of spending the bench's money on a detour.
+    const u32 scissors = client.FindBackpackItemByGraphic(kScissorsGraphic);
+    if (!scissors) {
+        return BlockNeed(GoalKind::MakeBandagesForSale,
+                         life::NeedKind::NeedBandagesForSale,
+                         life::BlockScope::Window,
+                         "no scissors in the pack to cut cloth with",
+                         kNoBandageCooldownMs, obs.nowMs);
+    }
+
+    i32 packCloth = 0;
+    FindBackpackItemByName(client, "i_cloth", &packCloth);
+    const i32 bankCloth = market::QtyOf(obs.bank, "i_cloth");
+
+    // 1. CLOTH IN HAND ABOVE THE BENCH'S KEEP -- cut it, no trip needed.
+    //    Shares CutClothForSale with MAKE_CLOTH's exit, so there is one cutting
+    //    gesture and one "bandages_for_sale: cutting cloth" line in the code.
+    if (packCloth > keep) {
+        if (CutClothForSale(client, obs, packCloth)) {
+            saleCutMade_ = true;
+            return false;
+        }
+        // It refused for a reason of its own (catalogue, target, scissors).
+        // Nothing here can improve on that, so rest.
+        LogLine("goal_failed=BANDAGES_FOR_SALE reason=\"%d cloth carried but "
+                "the cut was refused\"", packCloth);
+        planner_.Cooldown(GoalKind::MakeBandagesForSale,
+                          obs.nowMs + kNoBandageCooldownMs);
+        planner_.Finish(false, "the cut was refused", obs.nowMs);
+        return false;
+    }
+
+    // 2. THE BATCH IS CUT. One withdraw-and-cut per run: the withdrawal
+    //    happened, the cloth went under the scissors, and the pack is back down
+    //    to the keep. Bank whatever is above the sale target while the box is
+    //    still open, then stand down -- a second batch is the NEXT pick's, and
+    //    the need will still be there if it is warranted.
+    if (saleCutMade_) {
+        if (BankSaleBandages(client, obs, held, target)) return false;
+        LogLine("bandages_for_sale: the batch is cut -- %d of %d bandages on "
+                "the shelf, %d cloth left in the box for the bench",
+                held, target, bankCloth);
+        saleCutMade_ = false;
+        saleClothTaken_ = false;
+        planner_.Cooldown(GoalKind::MakeBandagesForSale,
+                          obs.nowMs + kBandageSaleRestMs);
+        planner_.Finish(true, nullptr, obs.nowMs);
+        return true;
+    }
+
+    // ONE WITHDRAWAL PER RUN, and this one has already been made without
+    // putting enough in hand to cut. Asking the box again on the next tick is
+    // how a goal spins; the need is still true, so the NEXT pick may try again
+    // after the rest.
+    if (saleClothTaken_) {
+        saleClothTaken_ = false;
+        return BlockNeed(GoalKind::MakeBandagesForSale,
+                         life::NeedKind::NeedBandagesForSale,
+                         life::BlockScope::Window,
+                         Fmt2("the withdrawal left %d cloth in the pack, still "
+                              "not above the bench's keep of %d",
+                              packCloth, keep).c_str(),
+                         kBandageSaleRestMs, obs.nowMs);
+    }
+
+    // 3. THE CLOTH IS IN THE BOX. Same size the need armed on, so the trip is
+    //    never made for a cut that turns out not to exist.
+    const i32 cut = life::ClothCuttableForSale(packCloth, bankCloth, keep,
+                                               target - held);
+    const i32 take = cut - packCloth;
+    if (take <= 0) {
+        return BlockNeed(GoalKind::MakeBandagesForSale,
+                         life::NeedKind::NeedBandagesForSale,
+                         life::BlockScope::Window,
+                         Fmt2("%d cloth carried and %d in the box: nothing "
+                              "above the bench's keep of %d to cut",
+                              packCloth, bankCloth, keep).c_str(),
+                         kBandageSaleRestMs, obs.nowMs);
+    }
+
+    // Get to a counter and open the box. The travel half is DoBank's -- it is
+    // the only code that knows which bank a life should walk to -- so this
+    // hands the whole "not at a bank yet" case to BANK rather than growing a
+    // second, worse copy of it.
+    if (!obs.atBank) {
+        if (!NearAnyBank(client, obs)) {
+            return HandOff(GoalKind::MakeBandagesForSale, GoalKind::Bank,
+                           kBandageSaleTripMs,
+                           "the cloth to cut is in the bank box", obs.nowMs);
+        }
+        if (client.TravelBusy()) return false;
+        if (!bankErrand_.Running()) bankErrand_.Begin();
+        bankErrand_.SetAtKnownBank(true);
+        const life::BankErrandResult br = bankErrand_.Tick(client, obs);
+        LogErrandReason("bandages_for_sale", br.why.c_str(), obs.nowMs);
+        if (br.wake == life::Wake::AfterDelay && br.delayMs > 0)
+            nextActionMs_ = obs.nowMs + br.delayMs;
+        if (br.status == life::ActivityStatus::Success) {
+            planner_.NoteProgress();
+            return false;             // the fetch runs next tick
+        }
+        if (!life::IsTerminal(br.status)) {
+            if (br.acted) planner_.NoteAttempt(obs.nowMs);
+            return false;
+        }
+        LogLine("goal_failed=BANDAGES_FOR_SALE reason=\"no banker opened a box "
+                "for the cloth (%s)\"", br.why.c_str());
+        bankErrand_.Cancel();
+        planner_.Cooldown(GoalKind::MakeBandagesForSale,
+                          obs.nowMs + kBandageSaleRestMs);
+        planner_.Finish(false, "no banker answered", obs.nowMs);
+        return false;
+    }
+
+    // A LIFT IS AN ACTION AND YOU STAND STILL TO MAKE ONE -- the same rule the
+    // market withdrawal pays for in Economy.cpp: the box only answers from the
+    // tile it was opened on (Source-X CCharStatus.cpp:1063-1069).
+    if (client.TravelBusy()) return false;
+    if (!client.BankOpenTileHeld()) {
+        LogLine("bandages_for_sale: the box was opened at (%d,%d) and we are "
+                "at (%d,%d) -- opening it again from here",
+                client.BankOpenX(), client.BankOpenY(), obs.x, obs.y);
+        client.ForgetBankContainer();
+        planner_.NoteAttempt(obs.nowMs);
+        nextActionMs_ = obs.nowMs + 1000;
+        return false;
+    }
+    if (SettleBankItemMove(client, obs)) return false;
+
+    // BY NAME, NOT BY GRAPHIC: `bankCloth` was hue-resolved out of obs.bank,
+    // so the serial has to be found the same way (S1).
+    i32 inBox = 0;
+    const u32 stack = FindContainerItemByName(client, client.BankContainer(),
+                                              "i_cloth", &inBox);
+    if (!stack || inBox <= 0) {
+        return BlockNeed(GoalKind::MakeBandagesForSale,
+                         life::NeedKind::NeedBandagesForSale,
+                         life::BlockScope::Window,
+                         Fmt2("the box was open and held no cloth (remembered "
+                              "%d)", bankCloth).c_str(),
+                         kBandageSaleRestMs, obs.nowMs);
+    }
+    const i32 moving = std::min(take, inBox);
+    LogLine("bandages_for_sale: withdrawing %d cloth to cut (%d in the box, "
+            "%d stays for the bench, %d of %d bandages held)",
+            moving, inBox, keep, held, target);
+    saleClothTaken_ = true;
+    IssueBankItemMove(client, obs, stack, static_cast<u16>(moving),
+                      client.BackpackSerial());
+    return false;
+}
+
+// THE STOCK ABOVE THE SALE SHELF GOES BACK IN THE BOX, while it is open.
+//
+// Only while it is open: a bandage deposit is not worth a bank trip of its own,
+// and the ordinary BANK goal already carries surplus `produces` away. Returns
+// true when it issued a move, i.e. when the caller should come back next tick.
+bool Runner::BankSaleBandages(Client& client, const Observation& obs, i32 held,
+                             i32 target) {
+    if (held <= target) return false;
+    const u32 box = client.BankContainer();
+    if (!box || !obs.atBank) return false;
+    if (client.TravelBusy() || client.ActionBusy()) return false;
+    if (!client.BankOpenTileHeld()) return false;
+    if (SettleBankItemMove(client, obs)) return true;
+    i32 carried = 0;
+    const u32 stack = FindBackpackItemByName(client, "i_bandage", &carried);
+    if (!stack || carried <= target) return false;
+    const i32 moving = carried - target;
+    LogLine("bandages_for_sale: banking %d bandages, keeping %d on the sale "
+            "shelf", moving, target);
+    IssueBankItemMove(client, obs, stack, static_cast<u16>(moving), box);
     return true;
 }
 

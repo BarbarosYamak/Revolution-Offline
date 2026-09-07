@@ -3335,6 +3335,168 @@ void TestThreeEmptyClothStepsStandTheGoalDown() {
     Check(backOnTheTable, "after the rest the sheep are worth another try");
 }
 
+// --------------------------------------------------------------------------
+// A TAILOR'S BANKED CLOTH SURPLUS IS BANDAGE STOCK, NOT A REASON TO SHEAR.
+//
+// Live, 2026-09-07: Aelia held 280 i_cloth in the BANK and 10 in the pack, with
+// scissors, and cut none of it -- CutClothForSale is reachable only from
+// MAKE_CLOTH's "the batch is covered" exit and it counts the pack only, so
+// while the batch was still short she kept shearing over a full box
+// (artifacts/gate_bandage20_20260907/, tools/world_query.py --char Aelia).
+// Amara and Wren banked cloth the same way.
+//
+// The three things worth pinning: the goal exists and OUTRANKS the shearing it
+// replaces; one batch ends the run with a cooldown rather than a re-pick; and
+// a box that holds no more than the bench needs raises nothing at all.
+void TestBankedClothIsCutForSale() {
+    Section("bandages: a tailor cuts its BANKED cloth surplus, not more wool");
+
+    const prof::Profession* t = prof::Find("tailor");
+    Check(t != nullptr, "the tailor exists");
+    if (!t) return;
+
+    const life::BuildPlan plan = life::PlanFromProfession(*t);
+    life::NeedConfig cfg;
+    cfg.profession = t;
+    const i32 keep = cfg.craftBatch;      // the bench's sitting IS the keep
+
+    // A tailor standing at the Britain bank with the box open: the cloth she
+    // has made is in it, a loose handful is in the pack, and the sale shelf is
+    // empty. Broke on purpose -- that is what makes NeedCloth fire too
+    // (market::CanAffordToShop refuses, which counts as the player market
+    // declining), so the two goals are genuinely scored against each other.
+    auto tailorAtTheBank = [&](i32 packCloth, i32 bankCloth,
+                               i32 bandages) -> life::Observation {
+        life::Observation obs;
+        obs.nowMs = 5000000;
+        obs.inWorld = true;
+        obs.x = 1421; obs.y = 1698;       // Britain bank
+        obs.hp = obs.hpMax = 40;
+        obs.str = 50; obs.dex = 25; obs.intel = 20;
+        obs.gold = obs.goldOnHand = 0;
+        obs.weight = 60; obs.maxWeight = 400;
+        obs.food = 3;
+        obs.bandages = bandages;
+        // Her own comforts are seen to, so nothing UPKEEP is competing: a
+        // crafter's heal-potion low is 2 (prof::CrafterHealPotions) and an
+        // empty potion pouch raises NeedEquipment at 0.50 x 260 = 130, which
+        // outranks every work goal a tailor has. That is the shop errand
+        // behaving correctly; it is not what this test is about.
+        obs.healPotions = 2;
+        obs.atBank = true;
+        obs.skills = {{rules::kTailoring, 500}, {rules::kTinkering, 100}};
+        obs.pack.push_back({"i_cloth", packCloth});
+        obs.bank.push_back({"i_cloth", bankCloth});
+        return obs;
+    };
+
+    life::Memory mem;
+    mem.NotePlace("bank", "Britain bank", 1421, 1698, 0, 1);
+    // THE PREMISE OF THE WHOLE FEATURE, stated as the fact the character
+    // learned rather than as an assumption. A healer's shelf is i_bandage
+    // {5 20} on a ten-minute restock and the fleet's fighting half drains
+    // every counter in town (docs/BANDAGE_SUPPLY_SPEC.md section 1), which is
+    // what DoReplaceEquipment records when it gives up. Without it the shop
+    // errand (REPLACE_EQUIPMENT, 260 x 0.50 = 130) outranks every work goal a
+    // tailor has, including this one -- deliberately, because a life that CAN
+    // buy bandages should; Needs.cpp:1041-1049 already damps it to 0.10 on
+    // exactly this fact so that "the shop errand yields to the cloth-cutting
+    // one". This test asserts the second half of that sentence.
+    mem.NoteEvent("bandage_counters_empty", "session=0", "", 1421, 1698,
+                  4990000);
+
+    // --- the box is full and the shelf is empty ----------------------------
+    {
+        const life::Observation obs = tailorAtTheBank(10, 280, 0);
+        const std::vector<life::Need> needs =
+            life::AssessNeeds(plan, mem, obs, cfg);
+
+        const life::Need* sale =
+            Find(needs, life::NeedKind::NeedBandagesForSale);
+        Check(sale != nullptr && !sale->blocked,
+              "280 cloth in the box and none on the sale shelf raises "
+              "NeedBandagesForSale");
+        if (sale) {
+            Check(sale->evidence.find("in the box") != std::string::npos,
+                  "and the evidence names the BANK, which is the half "
+                  "CutClothForSale could never see");
+        }
+
+        life::Planner p;
+        std::string why;
+        Check(p.Select(needs, obs, mem, obs.nowMs, &why),
+              "the planner picks something");
+        Check(p.Current().kind == life::GoalKind::MakeBandagesForSale,
+              "and it is BANDAGES_FOR_SALE -- cutting the cloth already made "
+              "beats going back to the sheep for more");
+
+        // The comparison that matters, stated as scores rather than implied by
+        // the pick: both sit at weight 135, so this is the NEED winning.
+        const std::vector<life::ScoredGoal> scored = p.Score(needs, obs, mem);
+        const life::ScoredGoal* cut = nullptr;
+        const life::ScoredGoal* shear = nullptr;
+        for (const life::ScoredGoal& g : scored) {
+            if (g.kind == life::GoalKind::MakeBandagesForSale) cut = &g;
+            if (g.kind == life::GoalKind::MakeCloth)           shear = &g;
+        }
+        Check(cut != nullptr && cut->feasible, "the cutting goal is feasible");
+        if (cut && shear)
+            Check(cut->score > shear->score,
+                  "and it outscores MAKE_CLOTH, which is the goal that was "
+                  "winning while the box filled up");
+
+        // --- one batch, then a rest ---------------------------------------
+        //
+        // What DoMakeBandagesForSale does at the end of its withdraw-and-cut
+        // batch. Without the cooldown the goal is handed straight back on the
+        // next tick and cuts for ever; Finish(true) alone does not stop it.
+        p.Cooldown(life::GoalKind::MakeBandagesForSale,
+                   obs.nowMs + 120000);
+        p.Finish(true, nullptr, obs.nowMs);
+
+        life::Observation after = obs;
+        after.nowMs += 5000;
+        const std::vector<life::ScoredGoal> resting =
+            p.Score(needs, after, mem);
+        const life::ScoredGoal* cooled = nullptr;
+        for (const life::ScoredGoal& g : resting)
+            if (g.kind == life::GoalKind::MakeBandagesForSale) cooled = &g;
+        Check(cooled != nullptr, "the cooled goal is still REPORTED, not hidden");
+        if (cooled) {
+            Check(!cooled->feasible,
+                  "but it is not feasible during the rest, so the batch cannot "
+                  "be immediately re-cut");
+            Check(!cooled->blockedWhy.empty(), "and the log says for how long");
+        }
+    }
+
+    // --- nothing above the bench's keep ------------------------------------
+    //
+    // The prune line and the arming line are the same predicate
+    // (life::ClothCuttableForSale), so a box that holds only what the sitting
+    // needs must raise nothing -- a need whose handler has no cut to make is
+    // the spinning-goal family this planner has paid for four times.
+    {
+        const life::Observation obs = tailorAtTheBank(0, keep, 0);
+        const std::vector<life::Need> needs =
+            life::AssessNeeds(plan, mem, obs, cfg);
+        Check(Find(needs, life::NeedKind::NeedBandagesForSale) == nullptr,
+              "with cloth at or below the bench's keep the need is not raised "
+              "at all");
+    }
+
+    // --- and the shelf, once stocked, closes it ----------------------------
+    {
+        const i32 target = life::BandageSaleTarget(mem, cfg.craftBatch);
+        const life::Observation obs = tailorAtTheBank(10, 280, target);
+        const std::vector<life::Need> needs =
+            life::AssessNeeds(plan, mem, obs, cfg);
+        Check(Find(needs, life::NeedKind::NeedBandagesForSale) == nullptr,
+              "a full sale shelf ends the errand -- the tailor goes back to "
+              "the bench rather than cutting the whole box up");
+    }
+}
+
 // --- practice casting pays for itself ---------------------------------------
 //
 // Wave 2026-09-02: four mages cast a self-safe spell every six seconds for a
@@ -5219,6 +5381,7 @@ int main(int argc, char** argv) {
     TestYarnInThePackIsWorkNotStock();
     TestTheWoolChainBookkeeping();
     TestThreeEmptyClothStepsStandTheGoalDown();
+    TestBankedClothIsCutForSale();
     TestPracticeChecksTheReagentPouch();
     TestAnEmptyPouchIsAShoppingErrand();
     TestStrengthAWizardCannotEarnByCasting();
