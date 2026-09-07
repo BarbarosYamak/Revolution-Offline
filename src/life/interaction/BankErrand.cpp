@@ -40,10 +40,34 @@ constexpr i32 kBankersWorthTrying = 3;
 // The keyword fallback, for a bank whose banker we cannot name.
 constexpr i32 kMaxShouts = 3;
 
-// How stale a mobile scan may be before asking again. Titles arrive only when
-// requested, and "no banker here" read off an unpopulated table is not an
-// answer -- it is a question never asked.
-constexpr i64 kScanFreshMs = 20000;
+// A CROWDED MARKET CAN HIDE THE BANKER IN ONE LOOK.
+//
+// Client::ActionScanMobiles double-clicks at most 8 not-yet-titled mobiles
+// per call and skips whoever already has a known title, so a market with
+// more than 8 strangers in it can leave the one who is the banker unclicked
+// after a single scan -- and the old code only ever scanned once per errand,
+// gating any second look behind a 20s "is the scan stale yet" clock that
+// left this whole errand dead in under two seconds.
+// Breniel, Halar and Arvdris all proved it live in the same fleet: 14-28
+// mobiles nearby, 8 paperdolls requested, the banker (Hyman, 0x1033) never
+// among them, "no banker in sight" inside two seconds of that one scan
+// (fleet122c30_20260907/{Breniel,Halar,Arvdris}.console.txt). Because
+// ActionScanMobiles skips titles it already knows, each further call reaches
+// the NEXT batch rather than repeating the first -- so look a few more times,
+// back to back, before believing this market has nobody to bank at.
+constexpr i32 kMaxScanRounds = 4;
+
+// THE SKIP LIST MUST NEVER PERMANENTLY HIDE THE ONLY BANKER IN RANGE.
+//
+// rotation_.Skip() excludes anyone who has already gone silent on this
+// errand, which is correct when there is somebody else to try and wrong when
+// there is not: NearestMobileWithTrade("banker", skip) then reports "no
+// banker in sight" about a banker standing right there. Give the sole
+// candidate a short rest and one more look rather than failing the whole
+// errand around him -- bounded, so a banker who is genuinely never going to
+// answer still fails honestly instead of being retried forever.
+constexpr i64 kOnlyBankerCooldownMs = 5000;
+constexpr i32 kMaxOnlyBankerRounds = 2;
 
 std::string Fmt(const char* fmt, ...) {
     char buf[224];
@@ -79,6 +103,26 @@ BankErrandResult Acted(BankErrandResult r) {
 
 }  // namespace
 
+OnlyBankerDecision DecideOnlyBankerRetry(bool skipNonEmpty, bool anyBankerFound,
+                                         i64 nowMs, OnlyBankerState& state,
+                                         i64 cooldownMs, i32 maxRounds,
+                                         i64* waitMsOut) {
+    if (waitMsOut) *waitMsOut = 0;
+    if (!skipNonEmpty || !anyBankerFound) return OnlyBankerDecision::NotApplicable;
+
+    if (state.rounds >= maxRounds) return OnlyBankerDecision::GiveUp;
+
+    if (!state.retryAtMs) state.retryAtMs = nowMs + cooldownMs;
+    if (nowMs < state.retryAtMs) {
+        if (waitMsOut) *waitMsOut = state.retryAtMs - nowMs;
+        return OnlyBankerDecision::Wait;
+    }
+
+    ++state.rounds;
+    state.retryAtMs = 0;
+    return OnlyBankerDecision::RetryNow;
+}
+
 void BankErrand::Begin() {
     step_ = Step::Find;
     running_ = true;
@@ -86,6 +130,8 @@ void BankErrand::Begin() {
     banker_ = 0;
     shouts_ = 0;
     scannedAtMs_ = 0;
+    scanRounds_ = 0;
+    onlyBanker_ = OnlyBankerState{};
 
     RetryPolicy rp;
     rp.actionDeadlineMs = kBankActionDeadlineMs;
@@ -161,21 +207,74 @@ BankErrandResult BankErrand::Tick(Client& client, const Observation& obs) {
                 rotation_.Aim(found);
                 banker_ = found;
                 step_ = Step::Approach;
+                onlyBanker_ = OnlyBankerState{};
                 return Working(Wake::Now, 0, "found a banker");
             }
 
-            // ASK WHO IS HERE before believing nobody is.
-            if (!scannedAtMs_ || obs.nowMs - scannedAtMs_ > kScanFreshMs) {
-                client.ActionScanMobiles();
-                scannedAtMs_ = obs.nowMs;
-                return Acted(Working(Wake::AfterDelay, 2000,
-                                     "asking who is standing in the bank"));
+            // See kOnlyBankerCooldownMs above and DecideOnlyBankerRetry: a
+            // banker who is on the skip list is not the same thing as no
+            // banker being here.
+            {
+                static const std::vector<u32> kNoSkip;
+                const u32 anyBanker = rotation_.Skip().empty()
+                    ? 0
+                    : client.NearestMobileWithTrade("banker", kNoSkip);
+                i64 waitMs = 0;
+                switch (DecideOnlyBankerRetry(
+                    !rotation_.Skip().empty(), anyBanker != 0, obs.nowMs,
+                    onlyBanker_, kOnlyBankerCooldownMs, kMaxOnlyBankerRounds,
+                    &waitMs)) {
+                    case OnlyBankerDecision::Wait:
+                        return Working(
+                            Wake::AfterDelay, waitMs,
+                            "the only banker here went quiet -- resting "
+                            "before trying again");
+                    case OnlyBankerDecision::RetryNow:
+                        rotation_.Reset();
+                        rotation_.Aim(anyBanker);
+                        banker_ = anyBanker;
+                        step_ = Step::Approach;
+                        return Working(Wake::Now, 0,
+                                       "cooldown over -- trying the only "
+                                       "banker again");
+                    case OnlyBankerDecision::GiveUp: {
+                        running_ = false;
+                        BankErrandResult r;
+                        r.status = ActivityStatus::RetryableFailure;
+                        r.why = Fmt(
+                            "the only banker here never opened a box after "
+                            "%d cooldown retries", onlyBanker_.rounds);
+                        return r;
+                    }
+                    case OnlyBankerDecision::NotApplicable:
+                        break;
+                }
             }
 
+            // ASK WHO IS HERE before believing nobody is. A crowded market
+            // can answer that wrongly on the very first look -- see
+            // kMaxScanRounds above -- so look a few more times, close
+            // together, before deciding this spot has nobody to bank at.
+            if (scanRounds_ < kMaxScanRounds) {
+                ++scanRounds_;
+                client.ActionScanMobiles();
+                scannedAtMs_ = obs.nowMs;
+                return Acted(Working(
+                    Wake::AfterDelay, 2000,
+                    Fmt("asking who is standing in the bank (look %d of %d)",
+                        scanRounds_, kMaxScanRounds)));
+            }
+
+            // GENUINELY NOBODY HERE. Say so with the distance the search
+            // actually covered (Client::ActionScanMobiles' own radius, the
+            // same 16-tile Chebyshev "earshot" PlayersNearby uses) rather
+            // than the bare "no banker in sight" that used to cover both
+            // this case and the crowded-market false negative above.
             running_ = false;
             BankErrandResult r;
             r.status = ActivityStatus::RetryableFailure;
-            r.why = "no banker in sight";
+            r.why = Fmt("no banker within 16 tiles of (%d,%d) after %d "
+                        "looks at the crowd", obs.x, obs.y, scanRounds_);
             return r;
         }
 

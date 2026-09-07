@@ -55,6 +55,41 @@ namespace uo::life {
 
 struct Observation;   // uo/life.h
 
+// ---------------------------------------------------------------------------
+// THE ONLY-BANKER-WAS-SKIPPED DECISION, pulled out pure so ctest can prove it
+// without a Client or MUL data -- the same reasoning as uo/activities/buy.h:
+// "the arithmetic half... is where this project's bugs actually lived".
+//
+// rotation_.Skip() excludes anyone who has already gone silent on this
+// errand, which is right when there is somebody else to ask and wrong when
+// there is not: Step::Find would otherwise report "no banker in sight" about
+// a banker standing right there. This function is the whole rule -- give the
+// sole candidate a short rest and a bounded number of extra looks rather than
+// failing the errand around him, and still fail honestly once that budget is
+// spent. See BankErrand::Step::Find for the caller.
+// ---------------------------------------------------------------------------
+enum class OnlyBankerDecision : u8 {
+    NotApplicable,  // the skip list is empty, or nobody is left even blind
+    Wait,           // still resting; try again after `waitMs`
+    RetryNow,       // cooldown elapsed -- reset the rotation and ask again
+    GiveUp,         // bounded out: the errand fails honestly
+};
+
+struct OnlyBankerState {
+    i64 retryAtMs = 0;
+    i32 rounds = 0;
+};
+
+// `skipNonEmpty`: rotation_.Skip() is non-empty. `anyBankerFound`: a banker
+// exists once the skip filter is ignored (0/false means genuinely nobody, in
+// which case this returns NotApplicable and the caller falls through to its
+// own "nobody here" handling). `state` is one per errand, owned by the
+// caller and reset on Begin().
+OnlyBankerDecision DecideOnlyBankerRetry(bool skipNonEmpty, bool anyBankerFound,
+                                         i64 nowMs, OnlyBankerState& state,
+                                         i64 cooldownMs, i32 maxRounds,
+                                         i64* waitMsOut);
+
 struct BankErrandResult {
     ActivityStatus status = ActivityStatus::Waiting;
     Wake           wake = Wake::Now;
@@ -91,6 +126,9 @@ private:
     u32         banker_ = 0;
     i32         shouts_ = 0;
     i64         scannedAtMs_ = 0;
+    i32         scanRounds_ = 0;
+    // The sole-banker-was-skipped recovery: see DecideOnlyBankerRetry above.
+    OnlyBankerState onlyBanker_;
     Handshake   ask_;
     NpcRotation rotation_;
 };

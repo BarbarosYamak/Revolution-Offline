@@ -397,6 +397,19 @@ target_include_directories(interaction_rotation PRIVATE
 
 add_test(NAME interaction_rotation COMMAND interaction_rotation)
 
+# --- bank_errand: the only banker in sight must never be skipped forever ---
+#
+# fleet122c30_20260907: Breniel, Halar and Arvdris each stood next to the
+# only banker at the market spot and got "no banker in sight" within two
+# seconds of a single mobile scan (Client::ActionScanMobiles caps paperdoll
+# requests at 8 per call). Needs the real Client -- BankErrand takes one, and
+# the late-box-open case dispatches a real 0x24 packet -- so this links the
+# whole client like trade_verify does, offline (SetOfflineForTest), no MULs.
+add_executable(bank_errand bank_errand.cpp)
+target_link_libraries(bank_errand PRIVATE uo_client_core)
+
+add_test(NAME bank_errand COMMAND bank_errand)
+
 # --- Activities: the arithmetic of crafting ---------------------------------
 #
 # docs/BOT_ARCHITECTURE.md sections 18 and 19. The WAIT is covered by

@@ -22,3 +22,5 @@
 - [Goal exit is one hook](goal-exit-is-one-hook.md) — Runner::LeaveGoal cancels errands/actions on a real goal change; a same-kind re-pick must still reset nothing
 - [Offline life harness](offline-life-harness.md) — real Runner + real Client with no server; no atlas means no travel, and Client::Tick never sweeps, so assert lifetime not outcomes
 - [Spellbook gump is 0xFFFF](spellbook-gump-is-0xffff.md) — it OPENS the book, Sphere never closes with 0x24, and an empty book gets no 0x3C at all
+- [A scan cap can hide the only banker](a-scan-cap-can-hide-the-only-banker.md) — ActionScanMobiles caps at 8 paperdolls/call; a crowded market can starve the banker's title for a whole errand if it only scans once
+- [Pure decisions need their own seam](pure-decisions-need-their-own-seam.md) — Client::world_ is never set in any offline test, so NearestMobileWithTrade's success path is untestable; extract the decision, test that instead
