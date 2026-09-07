@@ -18,6 +18,12 @@ import sys
 import time
 
 BOT = Path(__file__).resolve().parents[1]
+# A worktree under .claude/worktrees/<agent>/ has no runtime/, local/ or
+# bot_data of its own: pin the project root and shared state to the main
+# checkout so a smoke from a worktree plays the same persistent characters.
+_MAIN = Path('C:/Projects/RevolutionOffline/bot/uo-client')
+if '.claude' in BOT.parts and 'worktrees' in BOT.parts:
+    BOT = _MAIN
 ROOT = BOT.parents[1]
 CREDS = ROOT / 'local/dev/fleet100_credentials.json'
 ROSTER = BOT / 'run_gates/roster100.tsv'
