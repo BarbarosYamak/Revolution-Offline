@@ -1077,8 +1077,9 @@ private:
     // completes having done nothing. Reset when a fight is opened, when a
     // kill is credited, and by HandOffFromHunt.
     i32 huntEmptyArrivals_ = 0;
-    // Combat/Magery skill values as the last 0x3A left them in the
-    // Observation, so a real gain during a fight is said out loud once.
+    // Every skill's value (Meditation excepted) as the last 0x3A left it in
+    // the Observation, so a real gain -- in a fight, at the bench, in the
+    // field or over a patient -- is said out loud once.
     std::map<int, i32> combatSkillSeen_;
     void NoteCombatSkillGains(const Observation& obs, bool inFight);
     // Practice bout bookkeeping: baseline on entry, one line per real gain.

@@ -137,6 +137,37 @@ class GradeLifeRegressionTests(unittest.TestCase):
         self.assertIn("FAILING RULES", result.stdout)
         self.assertIn("LIVE-4", result.stdout.split("FAILING RULES:")[1])
 
+    def test_craft_gather_and_heal_gains_satisfy_train2(self):
+        # qa-forensics (2026-09-07, fleet122_20260907/regrade/summary.md):
+        # TRAIN-2 only ever credited "gained in combat", "gained by
+        # practice" or "bought from a trainer", so a character with real
+        # Mining/Blacksmithing/Tinkering gains (measured off TRAIN-1's
+        # skill totals) logged nothing that TRAIN-2 could see. Train.cpp
+        # now also prints "gained by crafting/gathering/healing" while one
+        # of those goals is active; this checks the grader accepts them
+        # without leaning on a goal_completed=TRAIN_* line, which would
+        # credit TRAIN-2 on its own regardless of this fix.
+        def console(extra_train_line):
+            return [
+                "INFO [life] session_summary duration=600s goals=4/4 gold=100->110 skills=100.0->101.0 logs=+1",
+                "INFO [life] session_goals families=4 picks=4 top=25% varied=1 self_superseded=0 | "
+                "upkeep=1(25%) wander=1(25%)",
+                extra_train_line,
+                "INFO [life] wind-down: arrived somewhere safe at 100,100",
+                "LOG event logout_complete: acked",
+            ]
+
+        no_marker = grade("miner_smith", console("INFO [life] mine: ORE at 2446,515"))
+        self.assertNotEqual(no_marker.returncode, 0)
+        self.assertIn("TRAIN-2", no_marker.stdout.split("FAILING RULES:")[1])
+
+        for suffix in ("crafting", "gathering", "healing"):
+            credited = grade("miner_smith", console(
+                "INFO [life] train: Mining 20.0->20.1 gained by %s" % suffix))
+            fail_section = (credited.stdout.split("FAILING RULES:")[1]
+                             if "FAILING RULES:" in credited.stdout else "")
+            self.assertNotIn("TRAIN-2", fail_section, credited.stdout)
+
     def test_bank_pick_after_pack_full_is_not_banking(self):
         result = grade("lumberjack_swordsman", base_console(
             "INFO [life] first logs gathered at 100,100 (pack now holds 1)",

@@ -215,7 +215,8 @@ def main():
     # (Train.cpp logs "casting <name> (spell N, circle C, ...) at myself") and
     # was an attempt log too. A skill name may contain a space
     # (Mace Fighting), so the name is .+ rather than \S+.
-    verified = (find(lines, r"train: .+ [\d.]+->[\d.]+ (bought from a trainer|gained in combat|gained by practice)")
+    verified = (find(lines, r"train: .+ [\d.]+->[\d.]+ (bought from a trainer|gained in combat|"
+                            r"gained by practice|gained by crafting|gained by gathering|gained by healing)")
                 + find(lines, r"goal_completed=(%s) progress=[1-9]" % "|".join(TRAIN_GOALS)))
     r.add("TRAIN-2", bool(verified), "verified training events %d" % len(verified), verified)
 

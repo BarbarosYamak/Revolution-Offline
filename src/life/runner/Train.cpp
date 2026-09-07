@@ -124,22 +124,62 @@ bool IsCombatOrMagerySkill(int skillId) {
     }
 }
 
+// WHICH GOAL EARNS A NON-COMBAT SKILL GAIN "BY CRAFTING", "BY GATHERING" OR
+// "BY HEALING" -- the same shape of line combat and practice already get.
+//
+// qa-forensics (2026-09-07, artifacts/fleet122_20260907/regrade/summary.md)
+// found TRAIN-2 only ever credited "gained in combat", "gained by practice"
+// or "bought from a trainer": a character with real gains in Mining,
+// Blacksmithing or Tinkering (Ghalor 100.1->150.4, Dravys 100.1->130.1,
+// both measured off TRAIN-1's skill totals) logged nothing that named the
+// gain, so 112/118 characters failed the gate even when they trained.
+//
+// The category is read off the ACTIVE GOAL, not the skill id, because one
+// skill (Tailoring, say) can rise from more than one kind of goal and the
+// goal is the reason a player would give. Meditation is not looked up here
+// at all -- see the comment on IsCombatOrMagerySkill above; it rises from
+// resting, not from doing, in every one of these lines.
+const char* TrainCategoryForGoalKind(GoalKind kind) {
+    switch (kind) {
+        case GoalKind::Craft:
+        case GoalKind::Smelt:
+        case GoalKind::MakeCloth:
+        case GoalKind::MakeBandages:
+            return "crafting";
+        case GoalKind::Mine:
+        case GoalKind::GatherLogs:
+        case GoalKind::Fish:
+        case GoalKind::HarvestWool:
+            return "gathering";
+        case GoalKind::Heal:
+            return "healing";
+        default:
+            return nullptr;
+    }
+}
+
 }  // namespace
 
-// A SKILL GAIN EARNED IN A FIGHT, SAID OUT LOUD ONCE.
+// A SKILL GAIN EARNED IN A FIGHT, AT THE BENCH, IN THE FIELD OR OVER A
+// PATIENT, SAID OUT LOUD ONCE.
 //
 // The NPC path already prints `train: X a->b bought from a trainer`
-// (DoTrainAtNpc below) and it is the only training this project could
-// verify from a log. Combat training was invisible: the values move in the
-// server's 0x3A skill packet (Client::OnSkills), reach the life layer as
-// Observation::skills, and nothing ever compared two ticks of them.
+// (DoTrainAtNpc below) and it was the only training this project could
+// verify from a log besides a fight. Every other source was invisible: the
+// values move in the server's 0x3A skill packet (Client::OnSkills), reach
+// the life layer as Observation::skills, and nothing ever compared two
+// ticks of them for anything but the combat/Magery list.
 //
-// The baseline is refreshed on EVERY call, including calls that do not
-// print, so a lesson bought from a trainer or a lock change cannot be
-// re-reported later as a gain won in combat.
+// The baseline is refreshed on EVERY call, for EVERY skill (not just the
+// combat list), including calls that do not print, so a lesson bought from
+// a trainer or a lock change cannot be re-reported later as a gain won some
+// other way.
 void Runner::NoteCombatSkillGains(const Observation& obs, bool inFight) {
     for (const SkillTarget& s : obs.skills) {
-        if (!IsCombatOrMagerySkill(s.skillId)) continue;
+        // Meditation rises from resting, not from doing; excluded from
+        // every line below, combat or otherwise.
+        if (s.skillId == rules::kMeditation) continue;
+        const bool combatSkill = IsCombatOrMagerySkill(s.skillId);
         auto it = combatSkillSeen_.find(s.skillId);
         if (it == combatSkillSeen_.end()) {
             // First sighting is a baseline, never a gain: a skill absent
@@ -151,9 +191,22 @@ void Runner::NoteCombatSkillGains(const Observation& obs, bool inFight) {
         const i32 was = it->second;
         it->second = s.tenths;
         if (s.tenths <= was) continue;
-        if (!inFight) continue;
-        LogLine("train: %s %.1f->%.1f gained in combat",
-                rules::SkillName(s.skillId), was / 10.0, s.tenths / 10.0);
+        if (combatSkill) {
+            if (!inFight) continue;
+            LogLine("train: %s %.1f->%.1f gained in combat",
+                    rules::SkillName(s.skillId), was / 10.0, s.tenths / 10.0);
+            continue;
+        }
+        // Not a weapon/Magery skill: the only other source this function
+        // can name is the goal running right now. Anything else (idle,
+        // travel, banking...) stays silent -- the baseline above still
+        // moved, so a later gain under a countable goal reports only its
+        // own delta, never one earned somewhere this function cannot see.
+        const char* category = TrainCategoryForGoalKind(planner_.Current().kind);
+        if (!category) continue;
+        LogLine("train: %s %.1f->%.1f gained by %s",
+                rules::SkillName(s.skillId), was / 10.0, s.tenths / 10.0,
+                category);
     }
 }
 
