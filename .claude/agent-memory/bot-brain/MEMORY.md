@@ -52,3 +52,6 @@
 - [A phase is not a goal](a-phase-is-not-a-goal.md) — no goal runs in Phase::WindDown, so DoSurvive never guarded the logout walk; safety lives in the destination
 - [A label match is not a place](a-label-match-is-not-a-place.md) — "home city inside the hint's label" sent a Britain tinker to Brit Mine1; owner rules about WHERE need atlas PLACE ids
 - [A prune line must match the arming line](a-prune-line-must-match-the-arming-line.md) — 13 nightshade under a mark of 20 was struck off at qty>0; one predicate, one need row, one log per pick
+- [A label is not a defname](a-label-is-not-a-defname.md) — ConsumableNeed::name is prose; obs.pack/produces/PriceBook are defnames, so a label-named want matches nothing
+- [A seed is not a forum quote](a-seed-is-not-a-forum-quote.md) — the forum table stays verbatim; a good nobody priced gets a lower-ranked seed from the shard itemdef VALUE
+- [A handoff needs its own clock](a-handoff-needs-its-own-clock.md) — HandOff is advice and no_player_seller names the wrong item; a player-first wait carries its own 48s bound
