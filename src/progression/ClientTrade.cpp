@@ -165,6 +165,34 @@ void Client::OnSecureTrade(const u8* data, usize size) {
             break;
         }
         case 1: {   // CLOSE
+            // A CLOSE ONLY CLOSES ITS OWN WINDOW.
+            //
+            // The serial at [4..7] is the container being deleted:
+            // `CItemContainer::Trade_Delete` builds the packet with
+            // `prepareClose(this)` and sends it to that container's own owner
+            // (Source-X CItemContainer.cpp:298-306, send.cpp:1902-1911), so a
+            // close meant for us always names one of OUR live trade's two
+            // containers. Any other serial belongs to a window this session is
+            // not trading in -- in practice the SECOND window we just declined
+            // above, whose container the server deletes on our own 0x6F CLOSE
+            // (receive.cpp:1137-1139) and reports back here. Applying it to
+            // trade_ killed the live deal instead: Kharos closed Wren's second
+            // window at 18:06:51.134 and lost the Aelia bandage trade 15ms
+            // later, while Aelia's client -- which never got a close -- sat
+            // until its own 25s timeout
+            // (artifacts/wave30_bandage20_20260907/Kharos.console.txt:432-441,
+            // Aelia.console.txt:805-812).
+            if (!trade_.Active() ||
+                (a != trade_.MyContainer() && a != trade_.TheirContainer())) {
+                const u32 active = trade_.Active() ? trade_.MyContainer() : 0;
+                LogWarn("[trade] ignoring close for window 0x%08X (active is "
+                        "0x%08X)\n", a, active);
+                char dev[80];
+                std::snprintf(dev, sizeof(dev), "window=0x%08X active=0x%08X",
+                              a, active);
+                LogEvent("trade_close_ignored", dev);
+                break;
+            }
             // Sphere sends CLOSE for both a completed trade and a cancelled
             // one. "Both boxes were ticked when it closed" is the only thing
             // that distinguishes them from here.

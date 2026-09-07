@@ -107,6 +107,19 @@ std::vector<u8> MakeTradeOpen(u32 partner, u32 myContainer, u32 theirContainer,
     return p;
 }
 
+// 0x6F SECURE_TRADE_CLOSE (ClientTrade.cpp OnSecureTrade), 17 bytes:
+//   [3]=1 action, [4..7] the container being closed, [8..15] zero, [16] 0.
+// Source-X writes the deleted container's own UID there
+// (PacketTradeAction::prepareClose, send.cpp:1902-1911) and sends it to that
+// container's owner (CItemContainer::Trade_Delete, CItemContainer.cpp:298-306).
+std::vector<u8> MakeTradeClose(u32 container) {
+    std::vector<u8> p(17, 0);
+    p[0] = 0x6F;
+    p[3] = 0x01;
+    StoreBE32(&p[4], container);
+    return p;
+}
+
 // 0x25 ADD_ITEM_TO_CONTAINER (Client.cpp OnAddItemToContainer), 20 bytes:
 // serial(4) graphic(2) gfxOffset(1) amount(2) x(2) y(2) container(4) hue(2).
 std::vector<u8> MakeAddItem(u32 serial, u16 graphic, u16 amount, u32 container) {
@@ -273,6 +286,122 @@ void TestTradeWindowAltContainerIsSuccess() {
     c->DispatchPacketForTest(add.data(), add.size());
     Check(c->ActionResult() == act::Result::Success,
           "landing in the trade partner's own container still verifies");
+}
+
+// ---------------------------------------------------------------------------
+// 1d. A CLOSE ONLY CLOSES ITS OWN WINDOW.
+//
+// wave30 (artifacts/wave30_bandage20_20260907): Kharos was mid-trade with
+// Aelia when Wren dropped goods on him too. The second window was correctly
+// declined on the wire, but the CLOSE the server sent back for THAT container
+// was applied to the one live trade object: Kharos.console.txt:432-441 shows
+// the decline at 18:06:51.134 and "window closed (partner_cancelled)" 15ms
+// later, while Aelia.console.txt:805-812 shows her side never closed and
+// timing itself out 25s afterwards. Twenty bots at one bank make competing
+// windows routine, so the close has to name the window it belongs to.
+//
+// No socket here: SetOfflineForTest captures Client::Send instead of writing
+// it, which is also how the outbound decline is inspected below.
+// ---------------------------------------------------------------------------
+std::unique_ptr<Client> MakeOfflineClient() {
+    auto c = std::make_unique<Client>(MakeConfig());
+    c->SetOfflineForTest(true);
+    return c;
+}
+
+void TestCloseForAnotherWindowLeavesTheLiveTradeOpen() {
+    Section("trade: a close for a foreign window does not end the live trade");
+
+    auto c = MakeOfflineClient();
+    const u32 partner = 0x0000FD27;      // Aelia
+    const u32 mineA   = 0x4001A496;      // our side of the live window
+    const u32 theirsA = 0x4001A497;
+    auto open = MakeTradeOpen(partner, mineA, theirsA, "Aelia");
+    c->DispatchPacketForTest(open.data(), open.size());
+    Check(c->Trade().Active(), "trade A opened");
+
+    // (1) A close addressed to a container that is neither side of A.
+    const u32 mineB = 0x4001B111;
+    auto strayClose = MakeTradeClose(mineB);
+    c->DispatchPacketForTest(strayClose.data(), strayClose.size());
+    Check(c->Trade().Active(), "trade A survives a close for another window");
+    Check(c->Trade().PartnerSerial() == partner, "still trading with Aelia");
+    Check(c->Trade().MyContainer() == mineA, "A's container is untouched");
+
+    // (2) The close that DOES name our window still ends it, exactly as before.
+    auto ourClose = MakeTradeClose(mineA);
+    c->DispatchPacketForTest(ourClose.data(), ourClose.size());
+    Check(!c->Trade().Active(), "the close for our own window closes A");
+    Check(c->Trade().CurrentPhase() == trade::Phase::Cancelled,
+          "and with nothing accepted it reads as a cancellation");
+
+    // A repeat of the same close -- Sphere sends one per container deletion --
+    // no longer re-fires the closed-window handling.
+    c->DispatchPacketForTest(ourClose.data(), ourClose.size());
+    Check(c->Trade().Reason() == trade::CloseReason::PartnerCancelled,
+          "a second close after the window is gone changes nothing");
+}
+
+// The partner's side is a legitimate close too: Trade_Delete deletes both
+// containers, and which serial reaches us is the server's business.
+void TestCloseNamingThePartnerContainerStillCloses() {
+    Section("trade: a close naming the partner's container still closes");
+
+    auto c = MakeOfflineClient();
+    auto open = MakeTradeOpen(0x0000FD27, 0x4001A496, 0x4001A497, "Aelia");
+    c->DispatchPacketForTest(open.data(), open.size());
+    auto close = MakeTradeClose(0x4001A497);
+    c->DispatchPacketForTest(close.data(), close.size());
+    Check(!c->Trade().Active(), "the partner-side close ends the trade");
+}
+
+// (3) The decline of a second window is a CLOSE for THAT window only, and the
+// live trade must be untouched by both the decline and the close it provokes.
+void TestSecondWindowDeclineClosesOnlyTheSecondWindow() {
+    Section("trade: declining a second window leaves the first one running");
+
+    auto c = MakeOfflineClient();
+    const u32 aelia = 0x0000FD27;
+    const u32 mineA = 0x4001A496, theirsA = 0x4001A497;
+    auto openA = MakeTradeOpen(aelia, mineA, theirsA, "Aelia");
+    c->DispatchPacketForTest(openA.data(), openA.size());
+    Check(c->Trade().Active(), "trade A opened");
+    c->ClearSentForTest();
+
+    // Wren's competing window, the wave30 shape.
+    const u32 wren = 0x0000E96C;
+    const u32 mineB = 0x4001B222, theirsB = 0x4001B223;
+    auto openB = MakeTradeOpen(wren, mineB, theirsB, "Wren");
+    c->DispatchPacketForTest(openB.data(), openB.size());
+
+    Check(c->Trade().Active(), "A is still the active trade");
+    Check(c->Trade().PartnerSerial() == aelia, "A's partner is unchanged");
+    Check(c->Trade().MyContainer() == mineA, "A's container is unchanged");
+
+    // Exactly one 0x6F went out, and it closed B.
+    int closes = 0;
+    u32 closedContainer = 0;
+    for (const auto& sent : c->SentForTest()) {
+        if (sent.opcode != 0x6F || sent.size < 12) continue;
+        if (sent.bytes[3] != 0x01) continue;
+        ++closes;
+        closedContainer = LoadBE32(&sent.bytes[4]);
+    }
+    Check(closes == 1, "one close was sent for the second window");
+    Check(closedContainer == mineB,
+          "the decline closes B's container, never A's");
+
+    // And the server's answer to that decline -- a close for B -- is ignored.
+    auto closeB = MakeTradeClose(mineB);
+    c->DispatchPacketForTest(closeB.data(), closeB.size());
+    Check(c->Trade().Active(),
+          "the close provoked by our own decline does not kill trade A");
+
+    u32 declinedSerial = 0;
+    std::string declinedName;
+    Check(c->TakeDeclinedTrade(&declinedSerial, &declinedName) &&
+              declinedSerial == wren && declinedName == "Wren",
+          "the declined partner is still reported to the life layer");
 }
 
 // ---------------------------------------------------------------------------
@@ -799,6 +928,9 @@ int main() {
     std::printf("trade verification + speech resolution tests\n\n");
 
     TestTradeWindowAltContainerIsSuccess();
+    TestCloseForAnotherWindowLeavesTheLiveTradeOpen();
+    TestCloseNamingThePartnerContainerStillCloses();
+    TestSecondWindowDeclineClosesOnlyTheSecondWindow();
     TestSplitEchoWaitsForTheDestination();
     TestSplitEchoThenBounceIsAFailure();
     TestFullBounceBackIsStillAFailure();

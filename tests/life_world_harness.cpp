@@ -326,14 +326,18 @@ std::vector<u8> MakeTradeChange(bool mine, bool theirs) {
     return p;
 }
 
-// 0x6F SECURE_TRADE_CLOSE (action 1). Whether it reads as completed or
-// cancelled depends only on TradeState::BothAccepted() at the time it
-// arrives (ClientTrade.cpp case 1's own comment), not on anything in this
-// packet.
-std::vector<u8> MakeTradeClose() {
+// 0x6F SECURE_TRADE_CLOSE (action 1): container(4) 0 0 0. The container is
+// the window being deleted -- Sphere sends each side its own
+// (CItemContainer::Trade_Delete -> PacketTradeAction::prepareClose), and
+// ClientTrade.cpp case 1 now requires it to name the live trade. Whether the
+// close reads as completed or cancelled still depends only on
+// TradeState::BothAccepted() at the time it arrives, not on anything else in
+// this packet.
+std::vector<u8> MakeTradeClose(u32 myContainer) {
     std::vector<u8> p(17, 0);
     p[0] = 0x6F;
     p[3] = 1;
+    StoreBE32(&p[4], myContainer);
     return p;
 }
 
@@ -1233,7 +1237,7 @@ int main(int argc, char** argv) {
         // completed.
         auto change = MakeTradeChange(true, true);
         client->DispatchPacketForTest(change.data(), change.size());
-        auto close = MakeTradeClose();
+        auto close = MakeTradeClose(myContainer);
         client->DispatchPacketForTest(close.data(), close.size());
 
         // The Completed-phase handler reads the OBSERVATION's own pack/gold,
@@ -1267,7 +1271,7 @@ int main(int argc, char** argv) {
         client->DispatchPacketForTest(open.data(), open.size());
         auto change = MakeTradeChange(true, true);
         client->DispatchPacketForTest(change.data(), change.size());
-        auto close = MakeTradeClose();
+        auto close = MakeTradeClose(0x4003A001);
         client->DispatchPacketForTest(close.data(), close.size());
 
         life::Runner runner;
