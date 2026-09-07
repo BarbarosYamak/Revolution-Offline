@@ -129,12 +129,49 @@ void TestBreakingContact() {
           "nothing is attacking us at all: there is nothing to break off");
     Check(novice::NoviceMustDisengage(2, 2),
           "a second ATTACKER means leave now, at whatever health");
-    Check(novice::NoviceMustDisengage(1, 3),
-          "the owner's ceiling stands: 3+ within reach and this life leaves");
+    // OWNER RULING 2026-09-07 ("novice rule too strict"): the 3+ ceiling
+    // refuses to OPEN on that board, but it does not end a duel already under
+    // way. Hector, 2026-09-07 01:11-01:15: three engagements, every one ended
+    // `disengage=yes attackers=1 in_reach=3 ... "3+ hostiles within reach"` at
+    // 100% health, zero kills (g_Hector.console.txt:518,539,946,967).
+    Check(!novice::NoviceMustDisengage(1, 3),
+          "one attacker with three in reach: keep fighting -- the third "
+          "skeleton in the yard is not what kills you");
     Check(novice::NoviceMustDisengage(3, 3),
-          "the 23:38 trio is a disengage");
+          "the 23:38 trio is a disengage -- because three are SWINGING");
     Check(!novice::NoviceMustDisengage(0, 0),
           "an empty board is not a disengage");
+    // The board is still refused before the fight starts.
+    Check(!novice::NoviceMayOpen(1, 3),
+          "the ceiling survives where it belongs: nobody OPENS on three");
+}
+
+// COMPANY COSTS A BLOW OF MARGIN, NOT THE WHOLE YARD.
+//
+// The retreat board used to be max(attackers, inReach), which put a 51-hp
+// novice's floor at 94% the moment a third skeleton drifted in -- ending the
+// fight on health one tick after the in-reach veto stopped ending it directly.
+// A bystander is not swinging, and bystanders join one at a time.
+void TestRetreatBoard() {
+    std::printf("what the retreat has to survive\n");
+    Check(novice::RetreatBoard(1, 1) == 1,
+          "a clean duel is one hostile's worth of margin");
+    Check(novice::RetreatBoard(1, 3) == 2,
+          "one attacker and a busy yard: one extra blow of margin, not two");
+    Check(novice::RetreatBoard(1, 8) == 2,
+          "eight bystanders buy the same one blow -- they join one at a time");
+    Check(novice::RetreatBoard(2, 2) == 2,
+          "two attackers and nobody else: the attackers are the board");
+    Check(novice::RetreatBoard(3, 3) == 3, "three swinging is three");
+    Check(novice::RetreatBoard(0, 0) == 1, "the board is never below one");
+    Check(novice::RetreatBoard(0, 2) == 1 + 1,
+          "nothing on us yet, but two are close");
+    // And the whole point: a novice fighting one thing in a busy yard keeps a
+    // floor it can actually fight above.
+    Check(novice::RetreatFloorFraction(novice::RetreatBoard(1, 3),
+                                       kHectorHpMax) < 0.70,
+          "Hector can fight a skeleton down from 100% with two others in the "
+          "yard; the old board put that floor at 90%");
 }
 
 // A build with no combat skill in its plan -- merchant_tinker, tailor,
@@ -213,6 +250,7 @@ int main() {
     TestRetreatFloor();
     TestOpeningAFight();
     TestBreakingContact();
+    TestRetreatBoard();
     TestCrafterNeverEngages();
     TestWatchdogNeverRestsUnderAttack();
     std::printf("%s: %d checks, %d failures\n",

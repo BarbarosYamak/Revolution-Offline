@@ -127,9 +127,32 @@ inline constexpr bool NoviceMayOpen(int attackersOnMe, int inReach) {
 // Trace A's flee fired at 25% with two attackers and was one second too late;
 // by RetreatFloorFraction a novice with two attackers is already under the
 // line at 63% of a 51-hp bar, so the honest rule is "two ON ME is too many".
-// The in-reach arm keeps the owner's 3+ ceiling and nothing narrower.
-inline constexpr bool NoviceMustDisengage(int attackersOnMe, int inReach) {
-    return attackersOnMe >= 2 || inReach >= kNoviceCrowdCeiling;
+//
+// ATTACKERS ONLY (owner ruling, 2026-09-07: "novice rule too strict"). The
+// in-reach arm used to end fights here too, and the counting fix above only
+// moved the failure from the opening to the fight: Hector 01:10-01:22 opened
+// three times and every one of the three ended `in_reach=3` with attackers=1
+// and zero kills. A graveyard yard always has a third skeleton somewhere in
+// it; a player does not drop a duel he is winning because of one. What the
+// company still costs is the retreat margin -- see RetreatBoard -- and the
+// owner's 3+ ceiling still refuses to OPEN on that board (NoviceMayOpen).
+inline constexpr bool NoviceMustDisengage(int attackersOnMe, int /*inReach*/) {
+    return attackersOnMe >= 2;
+}
+
+// WHAT THE RETREAT HAS TO SURVIVE, in hostiles.
+//
+// A bystander is not swinging, so counting it as an attacker (the old
+// max(attackers, inReach)) put a novice's floor at 94% of its bar the moment a
+// third skeleton drifted into the yard -- which ends the fight on health one
+// tick after the in-reach arm above stopped ending it directly, and leaves the
+// same zero kills. But a bystander is not nothing either: it may join, and
+// they join ONE AT A TIME, which is the same "one target at a time" the owner's
+// crowd rule is built on. So company adds exactly one more blow's worth of
+// margin, however much of it is standing there.
+inline constexpr int RetreatBoard(int attackersOnMe, int inReach) {
+    const int atk = attackersOnMe < 1 ? 1 : attackersOnMe;
+    return inReach > attackersOnMe ? atk + 1 : atk;
 }
 
 }  // namespace uo::life::novice

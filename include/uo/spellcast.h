@@ -219,6 +219,110 @@ inline const SpellDef* DefForSpell(int spell) {
     return nullptr;
 }
 
+// --- what a fight may stand on -----------------------------------------------
+//
+// WHICH TARGET FLAG A SPELL CARRIES IS NOT WHICH TARGET IT TAKES.
+//
+// The first version of this test demanded `spellflag_targ_char`, and that is
+// how Aurelius fought a whole session with two rungs. On this shard's export
+// (data/revolution_spells.tsv) Harm and Magic Arrow are `spellflag_targ_char`
+// but Fireball, Poison, Lightning and Energy Bolt are `spellflag_targ_obj` --
+// the flag says the cursor accepts an object, and a character IS an object, so
+// every one of them lands on a mobile exactly the same way. Filtering on
+// targ_char alone deleted circles 3, 4 and 6 from every mage's ladder
+// (run_gates/g_Aurelius.console.txt 2026-09-07 00:44: 14 casts, ids 10/11/12
+// only, with Fireball, Poison and Lightning all in the book).
+//
+// What still has to be excluded is a target this character is not aiming at:
+// a ground tile (targ_xyz), an item, a corpse, an area, a field, a summon.
+inline bool TargetsAMobile(const SpellDef& d) {
+    if (d.unknownFlags) return false;
+    if (!(d.flags & (kFlagTargChar | kFlagTargObj))) return false;
+    if (d.flags & (kFlagArea | kFlagField | kFlagSummon | kFlagTargDead |
+                   kFlagTargXyz | kFlagTargItem))
+        return false;
+    return true;
+}
+
+// A RUNG THE ATTACK LADDER MAY STAND ON.
+//
+// `spellflag_damage` is not the whole of "this hurts": Poison is
+// `spellflag_harm|spellflag_tick` with no damage flag, because Sphere applies
+// it over time rather than in one blow. Requiring the damage flag is why
+// Poison was never a rung and reached the fight only through a separate opener
+// gated on the Poisoning SKILL -- which is the wrong skill entirely, since
+// Poison the spell is cast out of Magery.
+inline bool IsAttackRung(const SpellDef& d) {
+    if (!TargetsAMobile(d)) return false;
+    if (!(d.flags & kFlagHarm)) return false;
+    return (d.flags & (kFlagDamage | kFlagTick)) != 0;
+}
+
+// The other half: something this character may cast on itself to stay alive.
+inline bool IsHealRung(const SpellDef& d) {
+    if (!TargetsAMobile(d)) return false;
+    if (d.flags & kFlagHarm) return false;
+    return (d.flags & kFlagHeal) != 0;
+}
+
+// --- what a caster carries ---------------------------------------------------
+
+// THE EIGHT. Every Magery reagent on this shard, by defname, as the spell
+// table and LackNeedleFor below both name them.
+inline const char* const* Reagents(int* count) {
+    static const char* const kAll[] = {
+        "i_reag_black_pearl", "i_reag_blood_moss", "i_reag_garlic",
+        "i_reag_ginseng",     "i_reag_mandrake_root", "i_reag_nightshade",
+        "i_reag_spider_silk", "i_reag_sulfur_ash",
+    };
+    if (count) *count = 8;
+    return kAll;
+}
+
+// HOW MANY OF EACH A MAGE CARRIES (owner ruling, 2026-09-06,
+// .claude/agent-memory/revolution-god/mage-reagent-stock.md): sixty to seventy
+// of EVERY one of the eight, not a working set sized off the one spell it
+// happens to be practising. A mage who owns the reagents for Lightning and not
+// for Fireball has a ladder with a hole in it, and the hole is only visible at
+// the moment it needs the rung.
+//
+// The two that get seventy are the ones a mage actually burns fastest:
+// mandrake root and black pearl are in Recall as well as in the ladder
+// (Lightning takes mandrake, Fireball and Energy Bolt take black pearl), so
+// the travel budget and the fight budget come out of the same pile. Bloodmoss
+// is Recall's other half and stays at the base band -- it is spent only on
+// travel.
+inline constexpr i32 kReagentBandBase = 60;
+inline constexpr i32 kReagentBandBurner = 70;
+
+// WEALTH, NOT A CONSTANT (owner rule: thresholds are derived per character).
+// A band of 60-70 across eight kinds is ~520 units; at the 3 gp Aurelius was
+// charged that is ~1,560 gold of stock, which is most of a poor mage's purse
+// and pocket change to a rich one. The steps below are a POLICY CHOICE about
+// where "rich" begins, not a measured threshold: a mage who can restock the
+// whole pouch several times over carries more of it, because the walk to the
+// shop costs more than the reagents do.
+inline i32 ReagentBandFor(const char* item, i32 gold) {
+    if (!item) return 0;
+    i32 band = (std::strcmp(item, "i_reag_mandrake_root") == 0 ||
+                std::strcmp(item, "i_reag_black_pearl") == 0)
+                   ? kReagentBandBurner
+                   : kReagentBandBase;
+    if (gold >= 30000)      band = band * 2;
+    else if (gold >= 10000) band = band + band / 2;
+    return band;
+}
+
+// WHEN TO GO SHOPPING FOR IT. Not "one short" -- a band checked exactly would
+// send a mage back to the counter after every fight, and the Britain mage's
+// shelf does not restock that fast anyway. A third of the band left is the
+// point at which the next hunt is at risk, which is the same low-water shape
+// the bank top-up already used (kReagentCarry / 5, Needs.cpp).
+inline i32 ReagentRestockFloor(const char* item, i32 gold) {
+    const i32 band = ReagentBandFor(item, gold);
+    return band / 3;
+}
+
 // --- who may be practised on --------------------------------------------------
 //
 // Cast at oneself, alone, with nobody else involved. That rules out every harm

@@ -403,7 +403,12 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
     // move the bail line UP -- max(), never min() -- so no character that
     // survives today is made bolder by it. For a 100-hp veteran with one
     // attacker it is 16% and the nerve line above still wins.
-    const i32 board = std::max<i32>(1, std::max(obs.attackersOnMe, inReach));
+    // Company raises the margin by one blow, not by the whole yard --
+    // NoviceEngage.h RetreatBoard explains why max(attackers, inReach) was
+    // the in-reach veto wearing a health bar.
+    const i32 board = static_cast<i32>(
+        novice::RetreatBoard(static_cast<int>(obs.attackersOnMe),
+                             static_cast<int>(inReach)));
     const double retreatFloor =
         novice::RetreatFloorFraction(static_cast<int>(board), obs.hpMax);
     const bool floorBinds = retreatFloor > bailAt;
@@ -432,17 +437,18 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
         novice::IsNovice(static_cast<int>(BestWeaponSkillTenths(obs)), obs.hpMax);
     const i32 crowdTolerated =
         novicePolicy ? 1 : std::min(2, 1 + static_cast<i32>(nerve * 4.0));
-    // ONE CEILING FOR EVERYONE: 3+ within reach and this life leaves. The
-    // novice's extra caution is spent on ATTACKERS (crowdTolerated == 1) and
-    // on the retreat floor, not on a second bystander in the yard. A ceiling
-    // of 2 for novices refused every board at the Britain graveyard -- Hector
-    // logged five break-offs at 100% health with attackers=1 or 0 and fought
-    // nothing at all in ten minutes (g_Hector.console.txt:108,128,632,1106,
-    // 1127,1129).
-    const i32 crowdCeiling = novice::kNoviceCrowdCeiling;
-
+    // A FIGHT ENDS ON ATTACKERS OR ON HEALTH, NOT ON BYSTANDERS (owner ruling,
+    // 2026-09-07, "novice rule too strict"). The 3+ ceiling
+    // (novice::kNoviceCrowdCeiling) still refuses to OPEN on that board -- it
+    // is enforced where the prey is picked, Train.cpp NoviceMayOpen -- but it
+    // no longer breaks off a duel already under way. Hector, 2026-09-07:
+    // three engagements at 01:11-01:15, every one ended
+    // `disengage=yes attackers=1 in_reach=3 ... "3+ hostiles within reach"` at
+    // 100% health with the target still alive, and the session killed nothing
+    // (g_Hector.console.txt:518,539,946,967). in_reach is still counted, still
+    // logged, and still buys a blow of retreat margin through RetreatBoard.
     if (avoidCombatDisengage || obs.attackersOnMe > crowdTolerated ||
-        inReach >= crowdCeiling || obs.HpFraction() < bailAt) {
+        obs.HpFraction() < bailAt) {
         LogLine("interrupt=FLEE reason=\"HP %.0f%%; %d attacker(s); bail at %.0f%% "
                 "(retreat floor %.0f%% for %d on the board%s)\"",
                 obs.HpFraction() * 100.0, obs.attackersOnMe, bailAt * 100.0,
@@ -453,7 +459,6 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
                 obs.HpFraction() * 100.0, obs.bandages,
                 noCombatBuild             ? "this build plans no combat skill"
                 : avoidCombatDisengage    ? "this life avoids combat"
-                : inReach >= crowdCeiling ? "3+ hostiles within reach"
                 : obs.attackersOnMe > crowdTolerated ? "more attackers than "
                                                        "this nerve stands in"
                 : floorBinds              ? "not enough health left to walk out "
@@ -727,12 +732,17 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
     return false;
 }
 
+// POISON THE SPELL IS CAST OUT OF MAGERY, NOT OUT OF POISONING.
+//
+// This used to require the Poisoning SKILL above zero and a Poisoning target
+// in the 700-point plan -- the skill that applies venom to a blade, which has
+// nothing to do with s_poison in a spellbook. The gate meant no pure mage ever
+// cast it: Aurelius held Poison (id 20) in her book through a whole session
+// and cast Harm instead (run_gates/g_Aurelius.console.txt 2026-09-07 00:44).
+// The only gates that belong here are the ones every other rung answers to --
+// the book holds it, Magery reaches it, mana and reagents pay for it.
 int Runner::PickPoisonOpener(Client& client, const Observation& obs) const {
-    if (!obs.spellbookSerial || obs.SkillTenths(rules::kPoisoning) <= 0 || !needCfg_.profession) return -1;
-    bool planned = false;
-    for (const auto& target : needCfg_.profession->targets)
-        planned |= target.skillId == rules::kPoisoning;
-    if (!planned) return -1;
+    if (!obs.spellbookSerial) return -1;
     for (const auto& d : spell::SpellTable()) {
         // Defname comes from the shard export; Poison is not a direct-damage spell.
         if (std::strcmp(d.defname, "s_poison") != 0) continue;
@@ -758,12 +768,12 @@ int Runner::PickSurvivalSpell(Client& client, const Observation& obs, bool heali
     spell::LoadSpellTable(client.DataDir());
     std::vector<SpellRung> rungs;
     for (const spell::SpellDef& d : spell::SpellTable()) {
-        if (d.unknownFlags || !(d.flags & spell::kFlagTargChar) ||
-            (d.flags & (spell::kFlagArea | spell::kFlagField | spell::kFlagSummon |
-                        spell::kFlagTargDead)) ||
-            !BookHasSpell(client, obs.spellbookSerial, d.spell)) continue;
-        if (healing ? (!(d.flags & spell::kFlagHeal) || (d.flags & spell::kFlagHarm))
-                    : (!(d.flags & spell::kFlagDamage) || !(d.flags & spell::kFlagHarm))) continue;
+        // WHAT COUNTS AS A RUNG lives with the rest of the spell knowledge
+        // (uo/spellcast.h): a mobile target -- targ_char OR targ_obj, because
+        // this shard flags Fireball, Poison and Lightning as targ_obj and they
+        // all land on a creature -- and harm that either damages or ticks.
+        if (!BookHasSpell(client, obs.spellbookSerial, d.spell)) continue;
+        if (healing ? !spell::IsHealRung(d) : !spell::IsAttackRung(d)) continue;
         SpellRung r;
         r.spell = d.spell;
         r.circle = d.circle;
@@ -795,10 +805,7 @@ void Runner::AttackLadder(Client& client, const Observation& obs,
     if (!obs.spellbookSerial) return;
     spell::LoadSpellTable(client.DataDir());
     for (const spell::SpellDef& d : spell::SpellTable()) {
-        if (d.unknownFlags || !(d.flags & spell::kFlagTargChar) ||
-            (d.flags & (spell::kFlagArea | spell::kFlagField | spell::kFlagSummon |
-                        spell::kFlagTargDead)) ||
-            (!(d.flags & spell::kFlagDamage) && std::strcmp(d.defname, "s_poison") != 0) || !(d.flags & spell::kFlagHarm) ||
+        if (!spell::IsAttackRung(d) ||
             obs.SkillTenths(rules::kMagery) < d.minSkillTenths ||
             !BookHasSpell(client, obs.spellbookSerial, d.spell)) continue;
         out.push_back(&d);

@@ -119,21 +119,26 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
         // A CASTER CARRIES ITS REAGENTS. The dead-weight pass below keeps only
         // what the profession declares, the mage declares potions and food,
         // and so every reagent it ever bought went into the box and stayed
-        // there. Top the pack up to kReagentCarry of each from the bank while
-        // the box is open, one stack per tick like everything else here.
+        // there. Top the pack up to this character's BAND of each -- 60 of the
+        // eight, 70 of the two the ladder and Recall both burn, more when the
+        // purse is deep (owner ruling 2026-09-06,
+        // .claude/agent-memory/revolution-god/mage-reagent-stock.md; the
+        // numbers themselves are spell::ReagentBandFor). One stack per tick
+        // like everything else here.
         if (needCfg_.profession &&
             needCfg_.profession->combatStrategy == CombatStrategyId::Mage) {
             for (const market::Stock& stored : obs.bank) {
                 if (stored.qty <= 0 || stored.item.compare(0, 7, "i_reag_") != 0)
                     continue;
+                const i32 band = spell::ReagentBandFor(stored.item.c_str(), obs.gold);
                 const i32 carried = market::QtyOf(obs.pack, stored.item);
-                if (carried >= kReagentCarry) continue;
+                if (carried >= band) continue;
                 i32 have = 0;
                 const u32 stack = FindContainerItemByName(client, box, stored.item.c_str(), &have);
-                const i32 take = std::min(kReagentCarry - carried, std::min(stored.qty, have));
+                const i32 take = std::min(band - carried, std::min(stored.qty, have));
                 if (!stack || take <= 0) continue;
-                LogLine("reagents: withdrawing %d %s (carrying %d, working set %d)",
-                        take, stored.item.c_str(), carried, kReagentCarry);
+                LogLine("reagents: withdrawing %d %s (carrying %d, band %d)",
+                        take, stored.item.c_str(), carried, band);
                 IssueBankItemMove(client, obs, stack, static_cast<u16>(take), client.BackpackSerial());
                 return false;
             }

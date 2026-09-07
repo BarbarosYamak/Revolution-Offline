@@ -9,6 +9,43 @@ using namespace runner_detail;
 
 namespace {
 
+// THE POUCH A MAGE SHOULD BE CARRYING, AS A SHOPPING LIST.
+//
+// The old list was whatever the CURRENT spell needed and had none of, which is
+// how Aurelius walked into a graveyard on 2026-09-07 holding 50 mandrake, 44
+// spider silk, 36 ginseng -- and ZERO black pearl, so Fireball was not a rung
+// she owned even though her book held it, and the ladder collapsed to Harm.
+// A player does not shop one spell at a time; the owner's rule is a standing
+// band of every one of the eight (spell::ReagentBandFor).
+//
+// Emptiest first, because BUY_SUPPLIES buys reagentWants_.front() and the
+// reagent at zero is the one costing this character a rung right now. The
+// quantity is one number for the whole trip (`N x each of ...`), so it is the
+// LARGEST gap on the list -- buying a few spare of the cheaper kinds is what a
+// player buying round lots does anyway, and reagents keep.
+void ReagentBandShortfall(const Observation& obs,
+                          std::vector<std::string>& missing, i32* qtyOut) {
+    missing.clear();
+    i32 gap = 0;
+    int count = 0;
+    const char* const* all = spell::Reagents(&count);
+    std::vector<std::pair<i32, std::string>> shortfall;
+    for (int i = 0; i < count; ++i) {
+        const i32 have = market::QtyOf(obs.pack, all[i]);
+        if (have >= spell::ReagentRestockFloor(all[i], obs.gold)) continue;
+        shortfall.emplace_back(have, std::string(all[i]));
+        gap = std::max(gap, spell::ReagentBandFor(all[i], obs.gold) - have);
+    }
+    std::sort(shortfall.begin(), shortfall.end(),
+              [](const std::pair<i32, std::string>& a,
+                 const std::pair<i32, std::string>& b) {
+                  return a.first != b.first ? a.first < b.first
+                                            : a.second < b.second;
+              });
+    for (const auto& row : shortfall) missing.push_back(row.second);
+    if (qtyOut) *qtyOut = gap;
+}
+
 // WHICH HUNTING GROUND, BY TIER (project owner, 2026-09-04).
 //
 // "New fighters (weapon skill <~50) go to Britain graveyard / Brit sewers,
@@ -232,22 +269,15 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
                     attackSpell, known, spell ? spell->name : "none",
                     obs.spellbookSerial);
             if (spell) {
-                // WHAT THE LADDER COSTS, not what one rung costs. The fight
-                // walks down from the strongest castable spell, so the errand
-                // shops for every rung's reagents (cheapest rung first, so a
-                // partly-stocked shop still puts this character back in a
-                // fight). D8, artifacts/validation_wave_2026-09-06.md.
-                std::vector<const spell::SpellDef*> ladder;
-                AttackLadder(client, obs, ladder);
+                // NOT WHAT ONE RUNG COSTS, NOR EVEN WHAT THIS LADDER COSTS:
+                // what a mage carries. Shopping the current ladder still left
+                // holes -- a book gains rungs as Magery grows, and the reagent
+                // for the rung it is about to learn is the one it never has.
+                // The standing band covers all eight (owner ruling 2026-09-06,
+                // ReagentBandShortfall above).
                 std::vector<std::string> missing;
-                for (auto rung = ladder.rbegin(); rung != ladder.rend(); ++rung) {
-                    for (const char* reagent : (*rung)->reagents) {
-                        if (!reagent) break;
-                        if (market::QtyOf(obs.pack, reagent) > 0) continue;
-                        if (std::find(missing.begin(), missing.end(), reagent) ==
-                            missing.end()) missing.push_back(reagent);
-                    }
-                }
+                i32 bandGap = 0;
+                ReagentBandShortfall(obs, missing, &bandGap);
                 if (!missing.empty()) {
                     // THE BANK BEFORE THE SHOP. Aurelius had 138-146 of every
                     // reagent in the box and none in the pack; buying more is
@@ -261,11 +291,24 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
                                        obs.nowMs);
                     }
                     reagentWants_ = missing;
-                    const auto shopping = spell::PlanReagentBuy(0, 20, 0, obs.gold,
-                                                               static_cast<int>(missing.size()));
+                    // The band, capped by what the purse can actually pay for
+                    // across this many kinds at the price this character has
+                    // seen -- PlanReagentBuy's own affordability arm, given the
+                    // band as its target instead of a per-session cast count.
+                    i32 unit = 0;
+                    if (const market::PriceObservation* pr = state_.prices.Latest(
+                            missing.front().c_str(), market::PriceSource::NpcVendorSells))
+                        unit = pr->pricePerUnit;
+                    const auto shopping = spell::PlanReagentBuy(
+                        0, bandGap, unit, obs.gold, static_cast<int>(missing.size()));
                     reagentWantQty_ = std::max(1, shopping.buy);
+                    std::string list;
+                    for (const std::string& r : reagentWants_)
+                        list += (list.empty() ? "" : ", ") + r;
+                    LogLine("hunt: reagent band short -- wants %d of each of [%s] "
+                            "(%s)", reagentWantQty_, list.c_str(), shopping.why);
                     return HandOffFromHunt(GoalKind::BuySupplies, 60000,
-                                   "restock attack-spell reagents through the existing supply errand",
+                                   "restock the reagent band through the existing supply errand",
                                    obs.nowMs);
                 }
                 if (obs.mana < spell->mana && obs.hostilesNear == 0 && !client.ActionBusy()) {
@@ -2676,10 +2719,20 @@ bool Runner::DoPracticeSkill(Client& client, const Observation& obs) {
                     market::PriceSource::NpcVendorSells))
                 unit = p->pricePerUnit;
             const i32 shortest = market::QtyOf(obs.pack, pick.missing.front().c_str());
-            const spell::ReagentPlan plan = spell::PlanReagentBuy(
-                shortest, casts, unit, obs.gold,
-                static_cast<int>(pick.missing.size()));
+            // ONE TRIP, THE WHOLE POUCH. What blocks the practice spell goes
+            // first -- it is why this goal stood down -- but the walk to the
+            // mage is the expensive part, so anything else under its band
+            // rides along on the same trip (owner ruling 2026-09-06).
             reagentWants_ = pick.missing;
+            std::vector<std::string> band;
+            i32 bandGap = 0;
+            ReagentBandShortfall(obs, band, &bandGap);
+            for (const std::string& r : band)
+                if (std::find(reagentWants_.begin(), reagentWants_.end(), r) ==
+                    reagentWants_.end()) reagentWants_.push_back(r);
+            const spell::ReagentPlan plan = spell::PlanReagentBuy(
+                shortest, std::max(casts, bandGap), unit, obs.gold,
+                static_cast<int>(reagentWants_.size()));
             reagentWantQty_ = plan.buy > 0 ? plan.buy : 1;
             std::string list;
             for (const std::string& r : reagentWants_)

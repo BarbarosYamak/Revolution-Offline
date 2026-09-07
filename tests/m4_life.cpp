@@ -3987,6 +3987,131 @@ void TestAMageFightsWithItsWholeLadder() {
           "healing still takes the cheapest spell that does the job");
 }
 
+// A LADDER THE FLAGS DO NOT DELETE.
+//
+// The rows below are copied verbatim out of data/revolution_spells.tsv --
+// including the detail that broke it: on this shard Harm and Magic Arrow carry
+// `spellflag_targ_char` while Fireball, Poison and Lightning carry
+// `spellflag_targ_obj`. The picker used to demand targ_char, so a mage holding
+// all five could reach exactly two of them, and Aurelius spent the 2026-09-07
+// 00:44 gate casting ids 10/11/12 with Fireball(18), Poison(20) and
+// Lightning(30) sitting in her book.
+void TestTargObjSpellsAreStillAttackRungs() {
+    Section("caster: targ_obj is a rung, and Poison is a rung without a damage flag");
+
+    const std::string tsv =
+        "spell\tdefname\tname\tcircle\tminskill\tmana\tflags\treagents\n"
+        "4\ts_heal\tHeal\t1\t100\t4\t"
+        "spellflag_targ_char|spellflag_good|spellflag_heal\ti_reag_garlic\n"
+        "5\ts_magic_arrow\tMagic Arrow\t1\t100\t4\t"
+        "spellflag_targ_char|spellflag_harm|spellflag_damage\ti_reag_sulfur_ash\n"
+        "12\ts_harm\tHarm\t2\t200\t6\t"
+        "spellflag_targ_char|spellflag_harm|spellflag_damage\ti_reag_nightshade\n"
+        "18\ts_fireball\tFireball\t3\t300\t9\t"
+        "spellflag_targ_obj|spellflag_harm|spellflag_damage\ti_reag_black_pearl\n"
+        "20\ts_poison\tPoison\t3\t300\t9\t"
+        "spellflag_targ_obj|spellflag_harm|spellflag_tick\ti_reag_nightshade\n"
+        "30\ts_lightning\tLightning\t4\t400\t11\t"
+        "spellflag_targ_obj|spellflag_harm|spellflag_damage\ti_reag_mandrake_root\n"
+        "39\ts_poison_field\tPoison Field\t5\t500\t14\t"
+        "spellflag_targ_xyz|spellflag_harm|spellflag_field|spellflag_tick\ti_reag_nightshade\n";
+    Check(spell::LoadSpellTableFromText(tsv) == 7, "the shard's own rows load");
+
+    auto isRung = [](int id) {
+        const spell::SpellDef* d = spell::DefForSpell(id);
+        return d && spell::IsAttackRung(*d);
+    };
+    Check(isRung(12), "Harm (targ_char, damage) is a rung");
+    Check(isRung(18), "Fireball is a rung even though the shard flags it targ_obj");
+    Check(isRung(30), "Lightning is a rung even though the shard flags it targ_obj");
+    Check(isRung(20),
+          "Poison is a rung: harm that ticks is still harm, damage flag or not");
+    Check(!isRung(39), "a field is not a rung -- it is not aimed at the mobile");
+    Check(!isRung(4), "Heal is not an attack rung");
+
+    const spell::SpellDef* heal = spell::DefForSpell(4);
+    Check(heal && spell::IsHealRung(*heal), "Heal is the healing rung");
+    const spell::SpellDef* harm = spell::DefForSpell(12);
+    Check(harm && !spell::IsHealRung(*harm), "Harm never heals");
+
+    // And the ladder that comes out of those rungs is the one the fight walks.
+    // Aurelius's live numbers: Magery 51.2, mana 25, every reagent but black
+    // pearl in the pack.
+    std::vector<life::SpellRung> book;
+    for (int id : {5, 12, 18, 20, 30}) {
+        const spell::SpellDef* d = spell::DefForSpell(id);
+        if (!d || !spell::IsAttackRung(*d)) continue;
+        life::SpellRung r;
+        r.spell = d->spell; r.circle = d->circle; r.mana = d->mana;
+        r.minSkillTenths = d->minSkillTenths;
+        r.supplied = std::strcmp(d->reagents[0], "i_reag_black_pearl") != 0;
+        book.push_back(r);
+    }
+    Check(book.size() == 5, "all five of Aurelius's attack spells survive the filter");
+    // Magery 51.2 is 512 tenths -- above Lightning's 400 -- and 25 mana pays
+    // for its 11.
+    Check(life::PickSpellRung(book, 512, 25, false, true) == 30,
+          "Aurelius opens with Lightning, not with Harm");
+    Check(life::PickSpellRung(book, 512, 10, false, true) == 20,
+          "at 10 mana Poison (circle 3) outranks Harm (circle 2) -- and Poison "
+          "only exists as a rung because harm-that-ticks now counts");
+    Check(life::PickSpellRung(book, 512, 9, false, true) == 20,
+          "at 9 mana it is still Poison; Fireball costs the same but the pack "
+          "holds no black pearl");
+    Check(life::PickSpellRung(book, 512, 6, false, true) == 12,
+          "at 6 mana it walks down to Harm");
+    Check(life::PickSpellRung(book, 512, 4, false, true) == 5,
+          "at 4 mana Magic Arrow is the fallback, not the plan");
+}
+
+// WHAT A MAGE CARRIES, not what its current spell happens to need.
+void TestReagentBand() {
+    Section("caster: a standing band of all eight reagents, sized by the purse");
+
+    int kinds = 0;
+    const char* const* all = spell::Reagents(&kinds);
+    Check(kinds == 8, "there are eight Magery reagents");
+    for (int i = 0; i < kinds; ++i)
+        Check(std::string(all[i]).compare(0, 7, "i_reag_") == 0,
+              "every one is named by its defname");
+
+    // Poor mage: the owner's 60-70 band.
+    Check(spell::ReagentBandFor("i_reag_garlic", 500) == 60,
+          "sixty of a plain reagent");
+    Check(spell::ReagentBandFor("i_reag_mandrake_root", 500) == 70,
+          "seventy of mandrake -- Recall and Lightning share the pile");
+    Check(spell::ReagentBandFor("i_reag_black_pearl", 500) == 70,
+          "seventy of black pearl -- Recall and Fireball share the pile");
+    Check(spell::ReagentBandFor("i_reag_blood_moss", 500) == 60,
+          "bloodmoss is Recall's alone, so it stays at the base band");
+
+    // Rich mage: the band moves with the purse, it is not a constant.
+    Check(spell::ReagentBandFor("i_reag_garlic", 12000) > 60 &&
+          spell::ReagentBandFor("i_reag_garlic", 12000) <
+              spell::ReagentBandFor("i_reag_garlic", 40000),
+          "a deeper purse carries a deeper pouch");
+    Check(spell::ReagentBandFor("i_reag_mandrake_root", 40000) >
+          spell::ReagentBandFor("i_reag_garlic", 40000),
+          "the burners keep their premium at every wealth");
+
+    // The restock line is a low-water mark, not the band itself: a mage that
+    // shopped every time it was one short would live at the counter, and the
+    // Britain shelf does not restock that fast.
+    for (int i = 0; i < kinds; ++i) {
+        const i32 floorQty = spell::ReagentRestockFloor(all[i], 500);
+        Check(floorQty > 0 && floorQty < spell::ReagentBandFor(all[i], 500),
+              "the restock floor sits under the band and above empty");
+    }
+    // Aurelius's own pack, 2026-09-07 00:44: black pearl 0 and nightshade 13
+    // are under the floor; mandrake 50 and spider silk 44 are not.
+    Check(0 < spell::ReagentRestockFloor("i_reag_black_pearl", 9330),
+          "an empty pearl pouch is short");
+    Check(13 < spell::ReagentRestockFloor("i_reag_nightshade", 9330),
+          "thirteen nightshade is short of the floor");
+    Check(50 >= spell::ReagentRestockFloor("i_reag_mandrake_root", 9330),
+          "fifty mandrake is not a reason to walk to the shop");
+}
+
 void TestAWonFightDoesNotHeatTheGround() {
     Section("memory: a ground that pays cools, a ground that hurts heats");
 
@@ -4701,6 +4826,8 @@ int main(int argc, char** argv) {
     TestAPureMageIsNotSentShoppingForBandages();
     TestADrainedPotionShelfDampsTheNeed();
     TestAMageFightsWithItsWholeLadder();
+    TestTargObjSpellsAreStillAttackRungs();
+    TestReagentBand();
     TestAWonFightDoesNotHeatTheGround();
     TestAMageMeditatesBeforeItHunts();
     TestOneBandageIsNotATripToTown();
