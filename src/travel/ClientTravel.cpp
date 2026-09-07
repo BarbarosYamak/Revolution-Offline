@@ -1275,9 +1275,28 @@ void Client::TravelDriveLeg() {
     // the New Magincia gate 10x -- the pad sits 12 z above the surrounding
     // shore, and a z-blind goto let A* burn its whole node budget probing
     // the wrong floor before ever finding the ramp).
-    if (cur && (cur->kind == route::LegKind::Moongate ||
-                cur->kind == route::LegKind::Teleporter)) {
+    if (cur && cur->kind == route::LegKind::Teleporter) {
+        ActionGoto(tx, ty, /*hasZ=*/true, tz, /*allowBlockedGoal=*/true);
+        return;
+    }
+    if (cur && cur->kind == route::LegKind::Moongate) {
         ActionGoto(tx, ty, /*hasZ=*/true, tz);
+        return;
+    }
+    // The walk leg immediately before a teleporter hop (RoutePlanner emits it
+    // as a separate Walk leg targeting the pad, RoutePlanner.cpp ~534) must
+    // land exactly on the pad tile. Sphere's own decoration for the spot (a
+    // pentagram, or the shield_chaos graphic standing in for the t_telepad
+    // item) routinely reads as an obstacle to our terrain/dynamic-item
+    // walkability model even though the exact tile is precisely where the
+    // mechanic fires -- without this the tile A* quietly settles for the
+    // nearest walkable neighbour and the leg never actually reaches the pad
+    // (2026-09-07, Alder/tp_278: goto (5736,3196) always stopped at
+    // (5735,3195), off by 1 diagonal tile, forever).
+    if (next && next->kind == route::LegKind::Teleporter &&
+        next->target.x == tx && next->target.y == ty) {
+        ActionGoto(tx, ty, /*hasZ=*/true, next->target.z,
+                  /*allowBlockedGoal=*/true);
         return;
     }
     ActionGoto(tx, ty);
@@ -1289,8 +1308,21 @@ void Client::TravelUseTransit() {
 
     if (leg->kind == route::LegKind::Teleporter) {
         // A Sphere teleporter pad fires when you step on it. The walk leg
-        // before this one already put us on the tile, so there is nothing to
-        // send: the journey just waits for the position jump.
+        // before this one is supposed to have put us exactly on the tile
+        // (TravelDriveLeg/TravelTick's exact-arrival requirement); verify it
+        // rather than trusting that -- a plan that changed under us, or a
+        // leg that reached this phase some other way, must not sit here
+        // logging "standing on it" forever while never actually being on it.
+        if (playerX_ != leg->target.x || playerY_ != leg->target.y) {
+            LogWarn("[travel] not standing on teleporter %s pad (%d,%d); at "
+                    "(%d,%d) instead -- failing the leg\n",
+                    leg->transitId.c_str(), leg->target.x, leg->target.y,
+                    playerX_, playerY_);
+            journey_.OnLegFailed("missed the teleporter pad", NowMs());
+            return;
+        }
+        // There is nothing to send: the journey just waits for the position
+        // jump.
         journey_.NoteCommandIssued(travel::Command::UseTransit, NowMs());
         LogInfo("[travel] standing on teleporter %s -> (%d,%d)\n",
                 leg->transitId.c_str(), leg->arrive.x, leg->arrive.y);
@@ -1548,7 +1580,19 @@ void Client::TravelTick() {
                 wrongFloor = dz > kSameFloorZ;
             }
         }
-        if (!wrongFloor && (GotoSucceeded() || off <= kLegArriveSlack)) {
+        // The walk leg approaching a teleporter pad must land EXACTLY on it --
+        // Sphere triggers the pad on the exact tile, not "close enough", and
+        // the ordinary kLegArriveSlack (3 tiles) is what let a bot advance
+        // into AtTransit while standing a diagonal tile short (2026-09-07,
+        // Alder/tp_278). A miss here fails the leg through the normal bounded
+        // recovery ladder instead of silently pretending to have arrived.
+        const route::RouteLeg* approaching = journey_.NextLeg();
+        const bool needsExactPad = approaching &&
+            approaching->kind == route::LegKind::Teleporter &&
+            approaching->target.x == travelLegTargetX_ &&
+            approaching->target.y == travelLegTargetY_;
+        const i32 arriveSlack = needsExactPad ? 0 : kLegArriveSlack;
+        if (!wrongFloor && (GotoSucceeded() || off <= arriveSlack)) {
             journey_.OnLegArrived(playerX_, playerY_, playerZ_, now);
         } else {
             if (wrongFloor)

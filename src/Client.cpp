@@ -2710,7 +2710,7 @@ bool Client::WalkQueueBusy() const {
     return !directSteps_.empty() || !nav_.movement.pending.empty();
 }
 
-void Client::ActionGoto(i32 x, i32 y, bool hasZ, i8 z) {
+void Client::ActionGoto(i32 x, i32 y, bool hasZ, i8 z, bool allowBlockedGoal) {
     gotoRequested_ = true;
     gotoArrived_ = false;
     gotoTargetX_ = x;
@@ -2721,7 +2721,7 @@ void Client::ActionGoto(i32 x, i32 y, bool hasZ, i8 z) {
     std::snprintf(ev, sizeof(ev), "target=(%d,%d) from=(%d,%d)",
                   x, y, playerX_, playerY_);
     LogEvent("goto_start", ev);
-    BotStartGoto(x, y, hasZ, z);
+    BotStartGoto(x, y, hasZ, z, /*terrainBias=*/true, allowBlockedGoal);
 }
 
 bool Client::MobilePosition(u32 serial, i32* x, i32* y, i8* z) const {

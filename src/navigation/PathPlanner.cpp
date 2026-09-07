@@ -105,6 +105,15 @@ bool ExtraBlocked(i32 x, i32 y, i8 z, void* user) {
         IsMobileBlocking(*overlay->request, x, y, z)) {
         return true;
     }
+    // The exact teleporter-pad tile is exempt from the dynamic-item verdict:
+    // Sphere's own decorative overlay for the spot (pentagram / a reused
+    // shield graphic standing in for the t_telepad item) reads as an
+    // obstacle to this model, but standing on it is precisely how the
+    // mechanic fires. The mobile check above still applies.
+    if (overlay->request->allowBlockedGoal && overlay->request->hasGoalZ &&
+        x == overlay->request->goalX && y == overlay->request->goalY) {
+        return false;
+    }
     return IsDynamicItemBlocking(*overlay, x, y, z);
 }
 
@@ -187,6 +196,18 @@ bool GoalColumnIsWalkable(const world::World& world, const RuntimeOverlay& overl
     q.hasPreferredZ = request.hasGoalZ;
     q.preferredZ = static_cast<i8>(request.goalZ);
     const auto result = world.QueryCell(q);
+
+    if (request.allowBlockedGoal && request.hasGoalZ) {
+        // A known teleporter pad: the terrain/z-tolerance/dynamic-item
+        // verdicts are skipped for this one cell (see ExtraBlocked's comment
+        // for why they routinely misfire here); only a live body actually
+        // standing on the pad right now still blocks the trip.
+        const i8 standZ = result.walkable ? result.standZ
+                                           : static_cast<i8>(request.goalZ);
+        return request.ignoreMobiles ||
+               !IsMobileBlocking(request, request.goalX, request.goalY, standZ);
+    }
+
     if (!result.walkable) return false;
     if (request.hasGoalZ &&
         AbsDiff(static_cast<i32>(result.standZ), request.goalZ) > kGoalZTolerance) {
@@ -299,6 +320,7 @@ void PathPlanner::WorkerLoop() {
                 opts.foliagePenalty = request.foliagePenalty;
                 opts.hasGoalZ = request.hasGoalZ;
                 opts.goalZ = request.goalZ;
+                opts.allowBlockedGoal = request.allowBlockedGoal;
                 opts.maxNodesExpanded = request.maxNodesExpanded;
 
                 opts.extraBlocked = &ExtraBlocked;

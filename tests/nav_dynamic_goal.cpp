@@ -21,6 +21,17 @@
 //       swallowing the whole node budget, and
 //   (b) the real Britain Graveyard weak-band tile is reachable from all
 //       three starts once the poisoned waypoint stops being pursued.
+//
+// Configuration D (same UO_MUL_DIR gate): companion regression for
+// PathRequest/PathOptions::allowBlockedGoal (Alder/tp_278, 2026-09-07) --
+// a teleporter pad's own decoration reads as the same kind of false-positive
+// obstacle as the bookcase above, and allowBlockedGoal is the exemption a
+// Teleporter-kind travel leg asks for so the walk leg can actually land on
+// the literal pad tile. Reuses the same poisoned (1416,1592) tile/overlay as
+// a stand-in pad. Confirms the exemption (a) reports the pad walkable and
+// finds a real path to it, (b) still respects a live mobile standing there,
+// and (c) the raw tile A* itself -- not just the upfront verdict -- ends
+// its returned path exactly on the pad tile.
 
 #include "navigation/PathPlanner.h"
 #include "bot/Pathfinding.h"
@@ -93,6 +104,18 @@ navigation::PathDynamicItem BookcaseOverlayItem() {
     return it;
 }
 
+// Stands in for a live decoration overlay that blocks exactly one cell --
+// used by TestAllowBlockedGoalPathTerminatesOnPad as bot::PathOptions::
+// extraBlocked, the same shape PathPlanner.cpp wires ExtraBlocked into.
+struct SingleCellOverlay {
+    i32 x = 0;
+    i32 y = 0;
+    static bool Blocked(i32 x, i32 y, i8 /*z*/, void* user) {
+        const auto* self = static_cast<const SingleCellOverlay*>(user);
+        return self && x == self->x && y == self->y;
+    }
+};
+
 struct Start {
     const char* label;
     i32 x, y;
@@ -141,6 +164,117 @@ void TestOccupiedGoalIsNotWalkable(navigation::PathPlanner& planner) {
     }
 }
 
+// Regression for the teleporter-pad companion defect (Alder/tp_278,
+// 2026-09-07): a Sphere teleporter pad's own decoration -- here stood in for
+// by the same bookcase overlay used above -- reads as an obstacle to the
+// ordinary walkable/dynamic-item verdict even though stepping onto that
+// exact tile is how the mechanic fires. PathRequest::allowBlockedGoal (and
+// bot::PathOptions::allowBlockedGoal underneath it) exempt the literal goal
+// cell from that verdict while a live mobile standing there still blocks it.
+void TestAllowBlockedGoalStepsOntoPad(navigation::PathPlanner& planner) {
+    Section("D: allowBlockedGoal steps onto a pad the ordinary verdict "
+            "would reject");
+    u64 nextId = 200;
+
+    // D1: the same poisoned tile, now requested as a teleporter pad. Without
+    // the flag this is TestOccupiedGoalIsNotWalkable's case (goalWalkable
+    // false); with it, the overlay item stops mattering.
+    {
+        navigation::PathRequest req;
+        req.requestId = nextId++;
+        req.startX = 1432; req.startY = 1672; req.startZ = 10;
+        req.goalX = 1416; req.goalY = 1592;
+        req.hasGoalZ = true;
+        req.goalZ = 30;  // the bookcase's own z, per spherestatics.scp
+        req.allowBlockedGoal = true;
+        req.maxNodesExpanded = 65732;
+        req.dynamicItems.push_back(BookcaseOverlayItem());
+        planner.Request(req);
+
+        navigation::PathResult res;
+        const bool got = PollWithTimeout(planner, &res);
+        Check(got, "D1: planner answered");
+        if (got) {
+            Check(res.goalWalkable,
+                  "D1: allowBlockedGoal exempts the pad tile from the "
+                  "dynamic-item verdict");
+            Check(!res.path.empty(),
+                  "D1: a path to the pad tile is actually found, not just "
+                  "declared walkable");
+        }
+    }
+
+    // D2: a live mobile standing exactly on the pad still blocks it --
+    // allowBlockedGoal is not a blanket "ignore everything" escape hatch,
+    // only an exemption from the terrain/decoration false positive.
+    {
+        navigation::PathRequest req;
+        req.requestId = nextId++;
+        req.startX = 1432; req.startY = 1672; req.startZ = 10;
+        req.goalX = 1416; req.goalY = 1592;
+        req.hasGoalZ = true;
+        req.goalZ = 30;
+        req.allowBlockedGoal = true;
+        req.maxNodesExpanded = 65732;
+        req.dynamicItems.push_back(BookcaseOverlayItem());
+        navigation::PathMobileBlocker body;
+        body.serial = 0xDEAD0001;
+        body.x = 1416; body.y = 1592; body.z = 30;
+        body.seenMs = 0;
+        req.mobiles.push_back(body);
+        planner.Request(req);
+
+        navigation::PathResult res;
+        const bool got = PollWithTimeout(planner, &res);
+        Check(got, "D2: planner answered");
+        if (got) {
+            Check(!res.goalWalkable,
+                  "D2: a live mobile actually standing on the pad still "
+                  "blocks it even with allowBlockedGoal");
+        }
+    }
+}
+
+// D3: the raw A* (no PathPlanner overlay-goal short-circuit) must actually
+// terminate its returned path ON the exact goal tile when allowBlockedGoal
+// is set, walking the direction list out to confirm -- goalWalkable=true is
+// not proof the search itself ever reaches the column.
+void TestAllowBlockedGoalPathTerminatesOnPad(world::World& world) {
+    Section("D3: the tile A* path itself ends exactly on the pad tile");
+    constexpr i32 kGoalX = 1416, kGoalY = 1592;
+    constexpr i32 kStartX = 1432, kStartY = 1672;
+    constexpr i8  kStartZ = 10;
+
+    SingleCellOverlay overlay{kGoalX, kGoalY};  // stands in for the pad decoration
+
+    bot::PathOptions opts;
+    opts.maxNodesExpanded = 400000;
+    opts.hasGoalZ = true;
+    opts.goalZ = 30;
+    opts.allowBlockedGoal = true;
+    opts.extraBlocked = &SingleCellOverlay::Blocked;
+    opts.extraBlockedUser = &overlay;
+
+    const auto path = bot::FindPath(world, kStartX, kStartY, kStartZ,
+                                    kGoalX, kGoalY, opts);
+    Check(!path.empty(), "D3: a path exists despite extraBlocked rejecting "
+                          "the literal goal cell");
+    if (path.empty()) return;
+
+    i32 x = kStartX, y = kStartY;
+    for (u8 dir : path) {
+        i32 dx = 0, dy = 0;
+        bot::DirToDelta(dir, &dx, &dy);
+        x += dx;
+        y += dy;
+    }
+    char what[128];
+    std::snprintf(what, sizeof(what),
+                  "D3: replaying the path lands on the literal pad tile "
+                  "(%d,%d), got (%d,%d)", kGoalX, kGoalY, x, y);
+    Check(x == kGoalX && y == kGoalY, what);
+}
+
 void TestGraveyardBandReachable(world::World& world) {
     Section("C: the Britain Graveyard weak band is reachable from all three "
             "starts once the poisoned waypoint is not the target");
@@ -180,6 +314,7 @@ int main() {
         cfg.acceptDoors = true;
         navigation::PathPlanner planner(cfg);
         TestOccupiedGoalIsNotWalkable(planner);
+        TestAllowBlockedGoalStepsOntoPad(planner);
 
         tiledata::TileDataLoader td;
         if (td.Load(cfg.tiledataPath.c_str())) {
@@ -190,6 +325,7 @@ int main() {
                 world::World world(td, m);
                 world.SetAcceptDoors(true);
                 TestGraveyardBandReachable(world);
+                TestAllowBlockedGoalPathTerminatesOnPad(world);
             } else {
                 std::printf("[skip] map0.mul open failed under UO_MUL_DIR=%s\n", d.c_str());
             }

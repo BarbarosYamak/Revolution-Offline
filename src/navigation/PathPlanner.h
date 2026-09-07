@@ -50,6 +50,11 @@ struct PathRequest {
     i32 goalY = 0;
     i32 goalZ = 0;
     bool hasGoalZ = false;
+    // See bot::PathOptions::allowBlockedGoal -- the exact goal tile is exempt
+    // from the terrain-walkable and dynamic-item verdicts (a known teleporter
+    // pad), but a live mobile actually standing there still blocks it. Only
+    // meaningful together with hasGoalZ.
+    bool allowBlockedGoal = false;
     u32 maxNodesExpanded = 32768;
     u32 grassPenalty = 0;
     u32 foliagePenalty = 0;

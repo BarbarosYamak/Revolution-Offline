@@ -167,19 +167,36 @@ std::vector<u8> FindPath(world::World& world,
             wq.charHeight = opts.charHeight;
             wq.hasPreferredZ = ShouldPreferGoalZ(opts, nx, ny, gx, gy);
             wq.preferredZ    = opts.goalZ;
-            const auto wr = world.QueryCell(wq);
-            if (!wr.walkable) continue;
+            auto wr = world.QueryCell(wq);
+            const bool isExemptGoalCell = opts.allowBlockedGoal &&
+                                          opts.hasGoalZ && nx == gx && ny == gy;
+            if (!wr.walkable) {
+                if (!isExemptGoalCell) continue;
+                // The pad reads as blocked by our terrain/surface model; trust
+                // the caller's known pad elevation instead of the query's
+                // (meaningless, on failure) standZ.
+                wr.walkable = true;
+                wr.standZ = static_cast<i8>(opts.goalZ);
+            }
 
-            // After the normal MUL checks, reject learned/overlay blocks.
-            if (opts.blacklist && opts.blacklist->IsBlocked(nx, ny, wr.standZ))
-                continue;
-            if (opts.extraBlocked &&
-                opts.extraBlocked(nx, ny, wr.standZ, opts.extraBlockedUser))
-                continue;
-            if (opts.extraBlockedStep &&
-                opts.extraBlockedStep(n.x, n.y, n.z, nx, ny, wr.standZ,
-                                      opts.extraBlockedUser))
-                continue;
+            // After the normal MUL checks, reject learned/overlay blocks --
+            // except on the exempt goal cell itself. A live mobile actually
+            // standing there is not something this generic bool overlay can
+            // distinguish from the decoration it exists to ignore, but the
+            // caller (PathPlanner's GoalColumnIsWalkable) already vetted that
+            // case BEFORE this search ever ran: allowBlockedGoal only reaches
+            // FindPath at all once the goal column is known mobile-free.
+            if (!isExemptGoalCell) {
+                if (opts.blacklist && opts.blacklist->IsBlocked(nx, ny, wr.standZ))
+                    continue;
+                if (opts.extraBlocked &&
+                    opts.extraBlocked(nx, ny, wr.standZ, opts.extraBlockedUser))
+                    continue;
+                if (opts.extraBlockedStep &&
+                    opts.extraBlockedStep(n.x, n.y, n.z, nx, ny, wr.standZ,
+                                          opts.extraBlockedUser))
+                    continue;
+            }
 
             // UO diagonal corner rule: a diagonal step from (n) to
             // (nx,ny) requires BOTH adjacent straight cells to be

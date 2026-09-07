@@ -233,7 +233,12 @@ public:
     // upper gallery above him is a different room, and a bot that "arrived"
     // on the wrong one is out of earshot of the vendor it walked across the
     // continent to talk to.
-    void ActionGoto(i32 x, i32 y, bool hasZ = false, i8 z = 0);
+    // `allowBlockedGoal` exempts the exact (x,y) tile from the terrain/
+    // dynamic-item walkability verdict (a known teleporter pad's own
+    // decorative overlay routinely misreads as an obstacle); only meaningful
+    // together with hasZ. A live mobile standing there still blocks it.
+    void ActionGoto(i32 x, i32 y, bool hasZ = false, i8 z = 0,
+                    bool allowBlockedGoal = false);
     // Walk to a mobile the server has told us about. NPCs wander, so a
     // scenario cannot assume a fixed tile for a vendor or a banker.
     bool ActionGotoMobile(u32 serial, int stopWithin = 1);
@@ -1455,7 +1460,7 @@ public:
     void MarkStump(i32 x, i32 y, i8 z, u16 treeGraphic, i64 ttlMs = 0);
 private:
     void BotStartGoto(i32 tx, i32 ty, bool hasZ = false, i32 tz = 0,
-                      bool terrainBias = true);
+                      bool terrainBias = true, bool allowBlockedGoal = false);
     void BotStartFollow(u32 serial, u32 followDistance);
     void BotStopFollow(const char* reason);
     void BotNoteFatigueMessage();

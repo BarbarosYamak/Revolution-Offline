@@ -68,6 +68,10 @@ struct BotState {
     i32 goalY = 0;
     i32 goalZ = 0;              // valid only when hasGoalZ is true
     bool hasGoalZ = false;
+    // The exact goal tile is a known teleporter pad: skip the terrain/
+    // dynamic-item walkability verdict for that one cell (see
+    // bot::PathOptions::allowBlockedGoal). A live mobile there still blocks.
+    bool allowBlockedGoal = false;
     bool active = false;
     bool planning = false;
     bool terrainBias = true;    // false = no grass/foliage penalty (e.g. tree-to-tree)

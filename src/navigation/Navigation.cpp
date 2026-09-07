@@ -787,6 +787,7 @@ bool Client::BotReplanToGoal() {
     request.goalY = nav_.bot.goalY;
     request.goalZ = nav_.bot.goalZ;
     request.hasGoalZ = nav_.bot.hasGoalZ;
+    request.allowBlockedGoal = nav_.bot.allowBlockedGoal;
     request.maxNodesExpanded = static_cast<u32>(budget);
     // For follow we want the shortest valid path to keep up with a moving
     // target; road/grass bias only makes us lag behind. terrainBias=false
@@ -1137,7 +1138,8 @@ void Client::BotFollowTick() {
 }
 
 
-void Client::BotStartGoto(i32 tx, i32 ty, bool hasZ, i32 tz, bool terrainBias) {
+void Client::BotStartGoto(i32 tx, i32 ty, bool hasZ, i32 tz, bool terrainBias,
+                          bool allowBlockedGoal) {
     if (!EnsureWorldLoaded()) return;
     nav_.follow.active = false;
     if (!nav_.movement.pending.empty() || !nav_.bot.path.empty() || nav_.bot.planning) {
@@ -1152,6 +1154,7 @@ void Client::BotStartGoto(i32 tx, i32 ty, bool hasZ, i32 tz, bool terrainBias) {
     nav_.bot.goalY = ty;
     nav_.bot.goalZ = tz;
     nav_.bot.hasGoalZ = hasZ;
+    nav_.bot.allowBlockedGoal = allowBlockedGoal;
     nav_.bot.terrainBias = terrainBias;
     nav_.bot.active = true;
     nav_.bot.planning = false;

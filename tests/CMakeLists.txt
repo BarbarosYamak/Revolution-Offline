@@ -47,9 +47,11 @@ target_link_libraries(path_probe PRIVATE uo_world)
 
 # nav_dynamic_goal: regression for a goal occupied by a live decorator item
 # (2026-09-07, Britain (1416,1592) under a Sphere-placed bookcase the offline
-# atlasgen never modeled). Configuration A always runs (no client data).
-# Configurations B/C need UO_MUL_DIR and are skipped cleanly without it --
-# same pattern as viewer_safety's UNBOUND/LOADED split.
+# atlasgen never modeled), plus the allowBlockedGoal exemption a teleporter
+# pad needs from the same false-positive (2026-09-07, Alder/tp_278).
+# Configuration A always runs (no client data). Configurations B/C/D need
+# UO_MUL_DIR and are skipped cleanly without it -- same pattern as
+# viewer_safety's UNBOUND/LOADED split.
 # PathPlanner.cpp lives in UO_CLIENT_SOURCES (see the top-level CMakeLists.txt
 # comment above its listing), not in uo_world, so this test compiles its own
 # copy the same way m25_world pulls in Journey.cpp directly.
