@@ -1,35 +1,39 @@
 ---
 name: return-home-goal
-description: RETURN_HOME/NeedHome design - why the stranded test is distance-from-home, not "unguarded here", and the Papua evidence behind it
+description: RETURN_HOME/NeedHome design - the stranded test is travel cost with moongates PLUS a guarded-town suppressor, and the Papua/Alder evidence behind both
 metadata:
   type: project
 ---
 
 `GoalKind::ReturnHome` / `NeedKind::NeedHome` (added 2026-09-07, commit
-a45eecb on branch worktree-agent-abd50150f1e83c10f) fire on exactly one fact:
-the character is outside its home region AND further from it than
-`world_atlas::kMaxServiceTripTiles` (1200), mirrored in the life layer as
-`life::kStrandedFromHomeTiles`.
+a45eecb; **corrected the same day**, commit 7d7aa90 on branch
+worktree-agent-a97bcd0c271ccf5b6).
 
-**Why:** Alder and Kharazar logged in at the Papua bank (5674,3134). Papua is
-Lost Lands; every service lookup from there answers with a Papua provider, so
-no goal they could score ever moved them. The brief suggested an alternative
-test -- "no guarded place within the service trip budget" -- and that test is
-WRONG on this world data: `runner_detail::NearestGuardedPlace` returns
-`papua_bank` at 5 tiles, because Papua's shop INTERIORS carry
-REGION_FLAG_GUARDED in the shard's own scripts
-(`runtime/scripts/maps/map0/map0_rooms.scp:1806-1812`, ROOMDEF
-`a_olde_loan_savings_1`) even though the town region `a_papua_4` carries no
-flags at all. A "guarded here" gate flaps room by room in any Lost Lands town.
+Current arm condition, all inside `runner_detail::ResolveHomeReturn`:
+outside the home region, AND travel cost home > `kStrandedFromHomeTiles`
+(1200, mirrored from `world_atlas::kMaxServiceTripTiles`), AND NOT standing
+on errand ground. Under attack it stays silent; HEAL still outranks it.
 
-**How to apply:** when a rule wants "is this place safe", check whether the
-atlas's guarded bit is set on a shop interior before treating the town as
-unguarded, and prefer a distance-from-home test for stranding. Real distances
-that bound the threshold: Britain->Trinsic 1,110; Vesper->Minoc 440;
-Papua->britain_bank(1650,1608) 4,024.
+**Why it needed correcting:** the first version armed on raw Chebyshev alone.
+Alder (home Trinsic) took an ordinary moongate errand to Skara Brae for
+UPGRADE_GEAR and RETURN_HOME -- weight 600 -- fired on "1207 tiles from Bank
+of Britannia - Trinsic Branch banker" and dragged him home mid-errand
+(`artifacts/alder_home_20260907/Alder.console.txt` 12:22). Owner ruling
+2026-09-07, option a: stranded bots go home; ordinary players travel to other
+towns on purpose.
+
+**The two measurements that make it work** are the general lesson and live in
+[[distance-is-travel-cost]]: travel cost with the public moongates allowed
+(Skara->Trinsic 202, not 1,226; Papua->Britain still 2,240), and a
+guarded-**TOWN** test rather than a guarded-tile one (the Papua bank ROOMDEF
+`a_olde_loan_savings_1` is REGION_FLAG_GUARDED while `a_papua_4` is filed as
+wilderness, so a per-tile gate flaps room by room).
+
+**How to apply:** if this need ever misfires again, look first at which of the
+two arms let it through, and fix it in the resolver -- the need and the
+handler read the same `HomeReturn`, so changing one place changes both
+([[one-resolver-for-need-and-handler]]).
 
 Execution detail worth keeping: the handler uses `TravelToPoint` at the home
 bank, NOT `TravelToService(Banker, homeCity)` -- see
 [[travel-to-service-prefers-sightings]].
-
-Related: [[one-resolver-for-need-and-handler]].
