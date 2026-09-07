@@ -197,6 +197,48 @@ void Runner::RetreatToSafety(Client& client) {
     if (!client.TravelBusy()) client.TravelToService(wm::Service::Banker, nullptr);
 }
 
+bool Runner::ContinueSurvivalRetreat(Client& client, const Observation& obs) {
+    if (!survivalRetreat_) return false;
+
+    // A new hostile observation still gets the full survival decision. That
+    // branch may call guards, fight defensively, or deliberately abort the
+    // journey to make room for an urgent defensive cast.
+    if (obs.underAttack || obs.attackersOnMe > 0 || obs.hostilesNear > 0) {
+        DoSurvive(client, obs);
+        return true;
+    }
+
+    // Attack attribution and hostile scans do not clear in lockstep. Once a
+    // flee has started, the first quiet observation is evidence to continue
+    // toward safety, not permission for a newly picked errand to cancel it.
+    // RunGoal checks its exhaustion bound before this helper, so a route that
+    // is genuinely stuck remains bounded by the active goal's normal limit.
+    if (client.TravelBusy() || client.GotoBusy()) {
+        client.EnsurePeaceMode();
+        planner_.NoteProgress();
+        nextActionMs_ = obs.nowMs + 2000;
+        return true;
+    }
+
+    // A finished route is safe only when it actually arrived. A failed route
+    // gets another normal retreat attempt; progress versus attempt accounting
+    // keeps the existing planner bound effective when no route can be made.
+    const wm::Region* here = client.CurrentRegion();
+    const bool safeHere = (here && here->flags.guarded) ||
+        (client.BankContainer() && client.BankOpenTileHeld());
+    if (!client.TravelSucceeded() && !safeHere) {
+        survivalRetreat_ = false;
+        RetreatToSafety(client);
+        if (client.TravelBusy()) planner_.NoteProgress();
+        else planner_.NoteAttempt(obs.nowMs);
+        nextActionMs_ = obs.nowMs + 2000;
+        return true;
+    }
+
+    survivalRetreat_ = false;
+    return false;
+}
+
 bool Runner::DoSurvive(Client& client, const Observation& obs) {
     if (obs.dead) {
         // ASK ONCE AND WAIT. Resurrection is driven by the world -- a healer
@@ -821,6 +863,7 @@ void Runner::AttackLadder(Client& client, const Observation& obs,
 
 bool Runner::DoHeal(Client& client, const Observation& obs) {
     if (obs.dead) return DoSurvive(client, obs);
+    if (ContinueSurvivalRetreat(client, obs)) return false;
     if (obs.underAttack || obs.attackersOnMe > 0) {
         DoSurvive(client, obs);
         return false;

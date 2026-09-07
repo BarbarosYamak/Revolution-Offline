@@ -31,6 +31,7 @@ EXTRA_COMBAT = {'pk': 5, 'tamer': 5, 'treasure_hunter': 4}
 EXTRA_CRAFT = {'fisher': 5, 'mage_blacksmith': 3}
 COMBAT_FAMILIES = set(COMBAT) | set(EXTRA_COMBAT)
 FLEET_SIZE = 100 + sum(EXTRA_COMBAT.values()) + sum(EXTRA_CRAFT.values())
+ALL_FAMILIES = sorted(set(COMBAT) | set(CRAFT) | set(EXTRA_COMBAT) | set(EXTRA_CRAFT))
 
 
 def read_roster(path):
@@ -152,12 +153,28 @@ def status(directory, verbose=True):
     return data
 
 
+def snapshot_logged_out_states(directory, admitted, bots):
+    """Freeze each bot's state at its first observed acknowledged logout."""
+    for row in bots:
+        if not row['logged_out']:
+            continue
+        name = row['name']
+        destination = directory / (name + '.state_after.json')
+        if destination.exists():
+            continue
+        config = admitted[name]
+        source = BOT / 'bot_data' / (config['account'] + '.' + name) / 'state.json'
+        if source.exists():
+            shutil.copy2(source, destination)
+
+
 def watch(directory):
     """One run only: record progress, grade after logout, never relaunch bots."""
     admitted = json.loads((directory / 'admitted.json').read_text())
     deadline = max(row['at'] + (row['minutes'] + 20) * 60 for row in admitted.values())
     while True:
         data = status(directory, verbose=False)
+        snapshot_logged_out_states(directory, admitted, data['bots'])
         done = sum(row['logged_out'] for row in data['bots'])
         print(f'{time.strftime("%H:%M:%S")} {done}/{len(admitted)} logged out; '
               f'{data["free_memory_gib"]} GiB free', flush=True)
@@ -167,24 +184,40 @@ def watch(directory):
     combat_count = sum(r['family'] in COMBAT_FAMILIES for r in admitted.values())
     lines = ['# Bot validation results', '',
              f'{len(admitted)} accounts: {combat_count} combat / {len(admitted) - combat_count} crafting.', '',
-             '| Character | Profession | Result |', '|---|---|---|']
+             'These are generic LIFE-GATE scores, not full end-to-end archetype certification.', '',
+             '| Character | Profession | Generic result |', '|---|---|---|']
+    family = {name: {'total': 0, 'graded': 0, 'passed': 0}
+              for name in ALL_FAMILIES}
     for row in data['bots']:
         name = row['name']
         config = admitted[name]
+        summary = family[config['family']]
+        summary['total'] += 1
         if not row['logged_out']:
             verdict = 'Incomplete: no acknowledged logout before monitor deadline'
         else:
-            after = BOT / 'bot_data' / (config['account'] + '.' + name) / 'state.json'
-            result = subprocess.run([sys.executable, str(BOT / 'tools/grade_life.py'),
-                str(directory / (name + '.console.txt')),
-                str(directory / (name + '.state_before.json')), str(after),
-                '--family', config['family']], capture_output=True, text=True,
-                encoding='utf-8', errors='replace')
-            (directory / (name + '.grade.txt')).write_text(result.stdout + result.stderr)
-            scores = re.findall(r'^.*\d+/\d+.*PASS.*$', result.stdout, re.M)
-            failing = re.findall(r'^FAILING RULES:.*$', result.stdout, re.M)
-            verdict = '; '.join(scores + failing) or f'grader exit {result.returncode}; see grade file'
+            after = directory / (name + '.state_after.json')
+            if not after.exists():
+                verdict = 'Incomplete: no state snapshot after acknowledged logout'
+            else:
+                result = subprocess.run([sys.executable, str(BOT / 'tools/grade_life.py'),
+                    str(directory / (name + '.console.txt')),
+                    str(directory / (name + '.state_before.json')), str(after),
+                    '--family', config['family']], capture_output=True, text=True,
+                    encoding='utf-8', errors='replace')
+                (directory / (name + '.grade.txt')).write_text(result.stdout + result.stderr)
+                scores = re.findall(r'^.*\d+/\d+.*PASS.*$', result.stdout, re.M)
+                failing = re.findall(r'^FAILING RULES:.*$', result.stdout, re.M)
+                verdict = '; '.join(scores + failing) or f'grader exit {result.returncode}; see grade file'
+                summary['graded'] += 1
+                summary['passed'] += result.returncode == 0
         lines.append(f'| {name} | {config["family"]} | {verdict} |')
+    lines += ['', '## Per-family generic summary', '',
+              '| Profession | Passed | Graded | Admitted |',
+              '|---|---:|---:|---:|']
+    for name in ALL_FAMILIES:
+        row = family[name]
+        lines.append(f'| {name} | {row["passed"]} | {row["graded"]} | {row["total"]} |')
     lines += ['', f'Acknowledged logouts: {done}/{len(admitted)}.',
               f'Deaths: {sum(r["deaths"] for r in data["bots"])}. '
               f'Confirmed kills: {sum(r["kills"] for r in data["bots"])}.',

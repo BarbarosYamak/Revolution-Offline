@@ -288,6 +288,15 @@ inline bool ContainsCI(const char* text, const char* needle) {
     return false;
 }
 
+// Includes SPELL_TARG_LOS from Source-X defmessages.tbl, observed on casts
+// at graveyard targets. An explicit refusal must not wait for a timeout.
+inline bool IsReachRefusal(const char* text) {
+    return ContainsCI(text, "you cannot reach") || ContainsCI(text, "you can't reach") ||
+           ContainsCI(text, "out of range") || ContainsCI(text, "too far away") ||
+           ContainsCI(text, "cannot see") || ContainsCI(text, "you have no line of sight") ||
+           ContainsCI(text, "target is not in line of sight");
+}
+
 // "You lack sufficient mana for this spell" (spell_try_nomana) and
 // "You lack %s for this spell" (spell_try_noregs, %s = the reagent name) are
 // Sphere's own refusal text for an unaffordable cast. Neither the literal

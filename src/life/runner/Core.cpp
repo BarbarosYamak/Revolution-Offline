@@ -1662,7 +1662,8 @@ void Runner::Tick(Client& client, i64 nowMs) {
             std::vector<Client::HostileHit> logoutThreats;
             client.ScanHostiles(12, logoutThreats);
             bool safeHere = logoutThreats.empty() &&
-                                 (client.BankContainer() != 0 ||
+                                 ((client.BankContainer() != 0 &&
+                                   client.BankOpenTileHeld()) ||
                                   (hereRegion && hereRegion->flags.guarded) ||
                                   (bank && TileDist(bank->x, bank->y, client.PlayerX(),
                                                     client.PlayerY()) <= 6));
@@ -2059,7 +2060,7 @@ void Runner::LeaveGoal(Client& client, GoalKind from, GoalKind to,
     // other goal change still lets the walk finish, because a shopping trip
     // that is nearly there is usually still worth arriving at. Changing that
     // is a policy decision, not this hook's business.
-    if (to == GoalKind::TrainCombat && to != from &&
+    if (to == GoalKind::TrainCombat && to != from && !survivalRetreat_ &&
         (client.TravelBusy() || client.GotoBusy()))
         client.TravelAbort("training supersedes the previous shopping or "
                            "exploration trip");
@@ -2351,6 +2352,15 @@ void Runner::RunGoal(Client& client, const Observation& obs) {
         return;
     }
 
+    // A survival retreat is a commitment to reach safety, not a momentary
+    // planner goal. Threat observations can clear for one tick while the
+    // character is still walking away; do not let that transient TRAIN_COMBAT
+    // or HEAL pick issue work that cancels the live banker journey.
+    // ContinueSurvivalRetreat delegates fresh danger back to DoSurvive, and
+    // the exhaustion check above deliberately remains the bound for a stuck
+    // retreat.
+    if (ContinueSurvivalRetreat(client, obs)) return;
+
     // THE SITTING IS OVER THE MOMENT THE ERRAND IS. DoMine and DoGatherLogs
     // put the character on the ground to work (owner rule, 2026-09-04) and get
     // it back on the horse before they walk to the next stand -- but they only
@@ -2486,10 +2496,11 @@ bool Runner::RestTick(Client& client, const Observation& obs, GoalKind owner) {
         (obs.nowMs - sessionStartMs_) >= cfg_.sessionLimitMs - kRestSettleLeadMs;
     // The same guarded-region read as MayWear's caller (Runner.cpp, around
     // inGuardedRegion) -- NOT flags.safe, which is the no-skill-gain flag, a
-    // different fact. An open bank box counts too, matching wind-down's
-    // safeHere.
+    // different fact. A bank box counts only on the tile where it was opened,
+    // matching wind-down's safeHere.
     const wm::Region* here = client.CurrentRegion();
-    see.somewhereSafe = (here && here->flags.guarded) || client.BankContainer() != 0;
+    see.somewhereSafe = (here && here->flags.guarded) ||
+                        (client.BankContainer() != 0 && client.BankOpenTileHeld());
     see.worthExploring = !exploredEverything_ && !obs.huntingRoutine;
     // No direct regen signal exists on this shard; hunger stopping HP
     // regeneration is the fact include/uo/activities/heal.h is written

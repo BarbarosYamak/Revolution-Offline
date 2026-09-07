@@ -29,6 +29,7 @@
 #include "uo/rules.h"
 #include "uo/json.h"
 #include "uo/types.h"
+#include "uo/spellcast.h"
 
 #include <string>
 #include <utility>
@@ -947,10 +948,12 @@ constexpr i32 kArrowCarry = 100;
 // Fifty of each is a hunt's worth at one to two per cast; the rest stays in
 // the box, where full loot on death cannot reach it.
 constexpr i32 kReagentCarry = 50;
-inline i32 BankInputReserve(bool caster, const std::string& item, i32 craftBatch) {
+inline i32 BankInputReserve(bool caster, const std::string& item, i32 craftBatch, i32 gold) {
     const i32 work = craftBatch * 2;
-    return caster && item.compare(0, 7, "i_reag_") == 0 && work < kReagentCarry
-        ? kReagentCarry : work;
+    // Deposits must preserve the band restored by withdrawals on the same tick.
+    const i32 band = caster && item.compare(0, 7, "i_reag_") == 0
+        ? spell::ReagentBandFor(item.c_str(), gold) : 0;
+    return std::max(work, band);
 }
 
 constexpr i32 kArrowReserve = 400;

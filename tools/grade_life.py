@@ -1,10 +1,10 @@
 #!/usr/bin/env python
-"""Deterministic LIFE-GATE grader.  Rules and citations: docs/LIFE_GATES.md.
+"""Deterministic generic LIFE-GATE grader. Rules: docs/LIFE_GATES.md.
 
     python grade_life.py <console.txt> <state_before.json> <state_after.json> --family <id>
 
-Pure regex and counting.  No heuristics, no thresholds that are not written
-down in LIFE_GATES.md.  Exit 0 only when every rule PASSes.
+Pure regex and counting. Exit 0 only when every generic rule PASSes. An 18/18
+result is not full end-to-end certification of the selected archetype.
 """
 import argparse, json, re, sys
 
@@ -33,8 +33,8 @@ FAMILIES = {
     "lumberjack_swordsman": ("logs", "GATHER_LOGS", ["i_log", "i_board", "i_parchment", "i_scroll_blank", "i_club"]),
     "full_crafter":       ("ore",  "MINE",        ["i_board", "i_dagger", "i_spear_short", "i_club", "i_bottle_empty", "i_potion_cure", "i_sash"]),
     "fisher":             ("fish", "FISH",        ["i_fish_big_1", "i_fish_big_2", "i_fish_big_3", "i_fish_big_4", "i_fish_small", "i_fish_cut_raw", "i_fish_cut_cooked"]),
-    "mage":               ("",     "CRAFT",       []),
-    "fencer":             ("",     "CRAFT",       []),
+    "mage":               ("hunt", "TRAIN_COMBAT", []),
+    "fencer":             ("hunt", "TRAIN_COMBAT", []),
     "scribe":             ("",     "CRAFT",       ["i_scroll_poison", "i_scroll_recall", "i_scroll_gate_travel", "i_scroll_resurrection"]),
     "alchemist":          ("",     "CRAFT",       ["i_potion_heal", "i_potion_healgreat", "i_potion_cure", "i_potion_refresh", "i_potion_poison", "i_potion_poisonless", "i_potion_poisongreat", "i_potion_poisondeadly"]),
     # --- the nine added for the full 17-row fleet -------------------------
@@ -100,6 +100,7 @@ class Report:
         print("%d/%d PASS" % (len(self.rows) - len(bad), len(self.rows)))
         if bad:
             print("FAILING RULES: " + " ".join(bad))
+        print("SCOPE: generic LIFE-GATE only; not full archetype certification")
         return 0 if not bad else 1
 
 
@@ -160,11 +161,11 @@ def main():
               "wool chain x%d, CRAFT completions x%d" % (len(chain), len(made)),
               chain or made)
     elif gathers == "tame":
-        # Runner.cpp:11189 is the attempt; the completion is the success.
-        # "tame: nothing tamable here" (11159) is a refusal and does NOT count.
-        hits = (find(lines, r"tame: trying '")
-                + find(lines, r"goal_completed=TAME_ANIMAL progress=[1-9]"))
-        r.add("FARM-2", bool(hits), "taming attempts/completions %d" % len(hits), hits)
+        # An attempt is not a tame. Tame.cpp emits `tame: success` only after
+        # the server confirms ownership; goal completion is the same outcome.
+        hits = (find(lines, r"tame: success ")
+                + find(lines, r"goal_completed=TAME_ANIMAL progress=[1-9]\d*"))
+        r.add("FARM-2", bool(hits), "confirmed taming outcomes %d" % len(hits), hits)
     elif gathers == "hunt":
         # Runner.cpp:2913.  A monster corpse is the only faucet an
         # Income::Hunt life has, so a kill or a risen purse is the evidence.
@@ -179,21 +180,21 @@ def main():
               hits or summ)
 
     gettool = find(lines, r"\[life\] goal=GET_TOOL ")
-    refarm = find(lines, r"\[life\] goal=%s " % farm_goal)
+    refarm = find(lines, r"goal_completed=%s progress=[1-9]\d*" % farm_goal)
     if not gettool:
         r.add("FARM-3", True, "no GET_TOOL pick -- nothing to return from", ())
     else:
         back = [h for h in refarm if h[0] > gettool[-1][0]]
-        r.add("FARM-3", bool(back), "GET_TOOL x%d, %s resumed after x%d"
+        r.add("FARM-3", bool(back), "GET_TOOL x%d, %s completed after x%d"
               % (len(gettool), farm_goal, len(back)), back or gettool)
 
     full = find(lines, r"pack full at|as full as this life will carry")
     if not full:
         r.add("FARM-4", True, "pack never reached the carry limit", ())
     else:
-        banked = [h for h in find(lines, r"goal=BANK |goal_completed=BANK progress=1")
+        banked = [h for h in find(lines, r"goal_completed=BANK progress=[1-9]\d*")
                   if h[0] > full[0][0]]
-        r.add("FARM-4", bool(banked), "pack-full x%d then BANK x%d" % (len(full), len(banked)),
+        r.add("FARM-4", bool(banked), "pack-full x%d then completed BANK x%d" % (len(full), len(banked)),
               banked or full)
 
     far = []
@@ -232,9 +233,9 @@ def main():
             bad = []
             for n, _ in smith_train:
                 prior = [h for h in stock if h[0] < n]
-                if prior and int(re.search(r"(\d+) ore\+ingots", prior[-1][1]).group(1)) < 550:
+                if not prior or int(re.search(r"(\d+) ore\+ingots", prior[-1][1]).group(1)) < 550:
                     bad.append((n, ""))
-            r.add("TRAIN-4", not bad, "smith training below the 550 stock: %d" % len(bad),
+            r.add("TRAIN-4", not bad, "smith training without proven 550 stock: %d" % len(bad),
                   bad or smith_train)
 
     # ---- STOCK -----------------------------------------------------------
@@ -242,17 +243,34 @@ def main():
         return sum(int(b.get("qty", 0)) for b in s.get("bank", []))
 
     def bank_items(s):
-        return {b.get("item") for b in s.get("bank", [])}
+        out = {}
+        for b in s.get("bank", []):
+            item = b.get("item")
+            if item:
+                out[item] = out.get(item, 0) + int(b.get("qty", 0))
+        return out
 
     b0, b1 = bank_sum(before), bank_sum(after)
-    grew = b1 >= b0
-    if gathers and produces:
-        has = bank_items(after) & set(produces)
-        grew = grew and bool(has)
-        detail = "bank %d->%d, produce banked: %s" % (b0, b1, ",".join(sorted(has)) or "none")
+    before_items, after_items = bank_items(before), bank_items(after)
+    if produces:
+        gains = {item: after_items.get(item, 0) - before_items.get(item, 0)
+                 for item in produces
+                 if after_items.get(item, 0) > before_items.get(item, 0)}
+        sold = {}
+        for n, line in find(lines, r"earn_gold: sold \d+ \w+ for \d+ gold"):
+            match = re.search(r"earn_gold: sold (\d+) (\w+) for (\d+) gold", line)
+            if match and match.group(2) in produces:
+                sold.setdefault(match.group(2), []).append((n, line))
+        grew = bool(gains or sold)
+        detail = "produce delta: %s; realized sales: %s" % (
+            ",".join("%s:+%d" % item for item in sorted(gains.items())) or "none",
+            ",".join("%s:x%d" % (item, len(hits)) for item, hits in sorted(sold.items())) or "none")
+        stock_hits = [hit for hits in sold.values() for hit in hits]
     else:
+        grew = b1 > b0
         detail = "bank %d->%d" % (b0, b1)
-    r.add("STOCK-1", grew, detail, ())
+        stock_hits = ()
+    r.add("STOCK-1", grew, detail, stock_hits)
 
     # KNOWN INTERACTION (not yet observed live, so not changed here): the
     # tailor/bandage cloth chain also logs under the "[life] bandages:" prefix

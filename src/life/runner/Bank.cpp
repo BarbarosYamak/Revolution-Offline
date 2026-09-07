@@ -481,7 +481,7 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
             for (const std::string& input : inputs) {
                 const i32 keep = BankInputReserve(
                     needCfg_.profession->combatStrategy == CombatStrategyId::Mage,
-                    input, needCfg_.craftBatch);
+                    input, needCfg_.craftBatch, obs.gold);
                 // Find and count the same NAME -- see the produces loop above.
                 i32 amount = 0;
                 const u32 serial =

@@ -4904,10 +4904,18 @@ void TestContractArmAMatchesTheErrand() {
 }
 
 int main(int argc, char** argv) {
-    Check(uo::life::BankInputReserve(true, "i_reag_mandrake_root", 5) == uo::life::kReagentCarry,
-          "caster reagent deposits preserve the same stock withdrawals restore");
-    Check(uo::life::BankInputReserve(false, "i_reag_nightshade", 5) == 10 &&
-          uo::life::BankInputReserve(true, "i_log", 5) == 10,
+    for (int gold : {0, 4486, 10000, 30000}) {
+        for (const char* reagent : {"i_reag_mandrake_root", "i_reag_black_pearl", "i_reag_nightshade"}) {
+            const int withdrawn = uo::spell::ReagentBandFor(reagent, gold);
+            const int retained = uo::life::BankInputReserve(true, reagent, 5, gold);
+            Check(retained >= withdrawn,
+                  "banking cannot redeposit the caster stock it just withdrew");
+        }
+    }
+    Check(uo::life::BankInputReserve(true, "i_reag_nightshade", 100, 0) == 200,
+          "large crafting batches remain available above the combat band");
+    Check(uo::life::BankInputReserve(false, "i_reag_nightshade", 5, 30000) == 10 &&
+          uo::life::BankInputReserve(true, "i_log", 5, 30000) == 10,
           "crafting inputs retain the normal working batch");
 
     std::printf("m4_life\n");

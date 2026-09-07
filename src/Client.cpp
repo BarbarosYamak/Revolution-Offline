@@ -4292,13 +4292,7 @@ void Client::ActionOnSysMessage(const char* text, u32 sourceSerial, u8 type) {
     // seconds against a vendor that had simply walked away, and the ledger
     // recorded a purchase each time (run_m5/p0gate1). A definitive refusal
     // that is not read is worse than no message at all.
-    if (contains("you cannot reach") || contains("you can't reach") ||
-        contains("out of range") || contains("too far away") ||
-        contains("cannot see")) {
-        FinishAction(act::Result::Rejected, text);
-        return;
-    }
-    if (contains("you have no line of sight")) {
+    if (act::IsReachRefusal(text)) {
         FinishAction(act::Result::Rejected, text);
         return;
     }

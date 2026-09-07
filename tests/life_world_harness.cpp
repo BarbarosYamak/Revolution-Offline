@@ -32,6 +32,22 @@ struct RunnerHarnessAccess {
         runner.KeepCallingGuards(client, obs);
     }
     static bool Retreating(const Runner& runner) { return runner.survivalRetreat_; }
+    static bool Heal(Runner& runner, Client& client, const Observation& obs) {
+        return runner.DoHeal(client, obs);
+    }
+    static void LeaveGoal(Runner& runner, Client& client, GoalKind from,
+                          GoalKind to) {
+        runner.LeaveGoal(client, from, to, from == to, "harness");
+    }
+    static RestStep RestStepForTest(Runner& runner, Client& client,
+                                    const Observation& obs) {
+        runner.RestTick(client, obs, GoalKind::IdleBriefly);
+        return runner.lastRestPlan_;
+    }
+    static void MakeSessionEnding(Runner& runner, i64 nowMs) {
+        runner.cfg_.sessionLimitMs = 1000;
+        runner.sessionStartMs_ = nowMs - 1000;
+    }
 };
 }
 
@@ -49,6 +65,15 @@ void Position(Client& client, u16 x, u16 y) {
     StoreBE16(packet + 5, 0x0190);
     StoreBE16(packet + 11, x);
     StoreBE16(packet + 13, y);
+    client.DispatchPacketForTest(packet, sizeof(packet));
+}
+
+void OpenBank(Client& client, u32 serial) {
+    u8 packet[7]{};
+    packet[0] = 0x24;
+    StoreBE32(packet + 1, serial);
+    StoreBE16(packet + 5, 0x004A);
+    client.ActionOpenBank(0, "bank");
     client.DispatchPacketForTest(packet, sizeof(packet));
 }
 
@@ -143,6 +168,23 @@ int main(int argc, char** argv) {
         Check(client->TravelToPoint(400, 400, 2, "old errand"), "old errand starts");
         life::RunnerHarnessAccess::Retreat(runner, *client);
         Check(client->TravelBusy(), "retreat replaces the old errand with a live journey");
+
+        // Hector and Aurelius: a FLEE began a banker trip, its attackers
+        // cleared for one observation, and the planner picked TRAIN_COMBAT.
+        // That pick must not cancel survival's live journey; HEAL also has to
+        // leave it alone while the escape is in flight.
+        life::Observation quiet;
+        quiet.inWorld = true;
+        quiet.nowMs = 1000000;
+        quiet.hp = quiet.hpMax = 88;
+        life::RunnerHarnessAccess::LeaveGoal(
+            runner, *client, life::GoalKind::Survive, life::GoalKind::TrainCombat);
+        Check(client->TravelBusy(),
+              "TRAIN_COMBAT does not abort a banker retreat after attackers clear");
+        Check(!life::RunnerHarnessAccess::Heal(runner, *client, quiet),
+              "HEAL yields while a quiet survival retreat is still travelling");
+        Check(client->TravelBusy() && life::RunnerHarnessAccess::Retreating(runner),
+              "the quiet HEAL tick preserves the escape journey and its latch");
         Position(*client, 40, 40);
         Check(client->CurrentRegion() && client->CurrentRegion()->flags.guarded,
               "server arrival selects guarded town");
@@ -219,6 +261,24 @@ int main(int argc, char** argv) {
         Check(client->CurrentRegion() && client->CurrentRegion()->flags.underground &&
               client->CurrentRegion()->flags.BlocksRecallOut(),
               "dungeon flags are read from the atlas after leaving town");
+
+        // A remembered bank serial is not a safe place to log out: Sphere
+        // accepts bank touches only from the tile where that gump opened.
+        Position(*client, 200, 200);
+        OpenBank(*client, 0x40014400u);
+        Check(client->BankContainer() != 0 && client->BankOpenTileHeld(),
+              "bank safety begins on the tile that opened the box");
+        Position(*client, 201, 200);
+        Check(!client->BankOpenTileHeld(),
+              "one step leaves a stale bank serial without bank safety");
+        life::Observation logout;
+        logout.inWorld = true;
+        logout.nowMs = 1000000;
+        logout.hp = logout.hpMax = 100;
+        life::RunnerHarnessAccess::MakeSessionEnding(runner, logout.nowMs);
+        Check(life::RunnerHarnessAccess::RestStepForTest(runner, *client, logout) ==
+                  life::RestStep::Settle,
+              "rest does not treat an off-tile bank container as logout safety");
     }
     std::printf("%d checks, %d failures\n", checks, failures);
     return failures ? 1 : 0;

@@ -203,6 +203,19 @@ void TestLifeState() {
 void TestSysMessageClassification() {
     Section("system-message classification");
 
+    // SPELL_TARG_LOS (Source-X defmessages.tbl); Aurelius previously waited
+    // twelve seconds after this explicit refusal while enemies approached.
+    Check(act::IsReachRefusal("Target is not in line of sight"),
+          "blocked spell target is a rejection without waiting for timeout");
+    Check(act::IsReachRefusal("TARGET IS NOT IN LINE OF SIGHT"),
+          "target visibility rejection is case insensitive");
+    Check(act::IsReachRefusal("You can't reach the Vendor") &&
+          act::IsReachRefusal("You have no line of sight"),
+          "existing vendor and visibility refusals remain recognized");
+    Check(!act::IsReachRefusal("Select target...") &&
+          !act::IsReachRefusal(nullptr),
+          "target prompt and absent text do not reject an action");
+
     // core/messages.scp:891 spell_try_noregs, verbatim (run_gates/
     // g_Illyria.console.txt:86, g_Selene.console.txt:91).
     Check(act::IsSpellCastRefusal("You lack Sulfurous Ash for this spell"),

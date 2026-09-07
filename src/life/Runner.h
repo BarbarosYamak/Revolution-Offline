@@ -1041,6 +1041,10 @@ private:
                       std::vector<const spell::SpellDef*>& out) const;
     bool survivalRetreat_ = false;
     void RetreatToSafety(Client& client);
+    // A retreat owns its journey even if the planner's instantaneous threat
+    // observations clear before the character reaches safety. Returns true
+    // while the caller must leave the survival work alone.
+    bool ContinueSurvivalRetreat(Client& client, const Observation& obs);
     // Shout for the guards when this tile is under their protection. True
     // means the shout was the right answer here (so the caller need not also
     // run); false means there is no protection to call on. See Survive.cpp.
