@@ -943,53 +943,65 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
 // below replaces it with each character's own home-town bank.
 // ---------------------------------------------------------------------------
 
-// S6: THE MARKET IS THE HOME-TOWN BANK, not one shard-wide rendezvous.
+// S7: THE MARKET HAS TWO HUBS -- Britain bank and Minoc bank -- and a
+// character trades at whichever is cheaper to reach. Owner ruling,
+// 2026-09-07: "normally a warrior would ask in britain or minoc since both
+// are main markets", superseding S6's interim home-town-bank rule (below).
+// That rule had its own defect: it sent every character to its OWN home
+// bank regardless of how far that was from either real market, which is not
+// how players actually converged on Britain and Minoc.
 //
-// The single Minoc rendezvous (market::kMarketBankPlaceId) sat behind every
-// trip-cost check no matter where a character actually lived: with 46
-// Britain-homed characters banking 1,500+ tiles away, every WTB died
-// `goal_blocked=TRADE_WITH_PLAYER reason="not enough session left for the
-// trip"` even standing at the character's own home bank (Baelos,
-// artifacts/smoke_Baelos_Calar_Kharos_Varos_20260907_1356). Owner ruling,
-// 2026-09-07: buyers ask and sellers announce where they bank -- the
-// rendezvous is home, so Britain becomes the hub by population the way
-// players traded bank-side, and Minoc-homed miners keep trading with each
-// other at Minoc bank.
+// S6's own problem, unchanged evidence: the single Minoc rendezvous
+// (market::kMarketBankPlaceId) sat behind every trip-cost check no matter
+// where a character actually lived, with 46 Britain-homed characters
+// banking 1,500+ tiles away (Baelos,
+// artifacts/smoke_Baelos_Calar_Kharos_Varos_20260907_1356).
 //
-// ANCHORED ON THE HOME REGION'S OWN CENTRE (world_model's AREADEF `P=`
-// point), the same anchor life::SeedNewbieKnowledge uses for the home bank it
-// seeds into memory -- never on this character's live position. Two Britain
-// fighters standing on opposite sides of town must resolve to the SAME
-// Britain bank or "the rendezvous" stops meaning anything; Britain alone has
-// two (britain_bank at 1650,1608, britain_bank_2 at 1425,1690), and ranking
-// by distance to the town centre (1495,1629) is what makes britain_bank_2
-// win every time, for every Britain-homed character.
+// THE COMPARISON ITSELF is runner_detail::ResolveMarketHub -- the same
+// TravelTilesWithGates rule RETURN_HOME already uses (moongates allowed,
+// teleporters excluded), so this file does not keep a second copy of what a
+// gate is worth. What THIS function owns is the one thing ResolveMarketHub
+// cannot know for itself: where to measure FROM. In world, that is wherever
+// the character is actually standing -- the ordinary "ask nearest" rule
+// every other errand in this file follows. Not yet in world (the atlas
+// loaded before the login handshake finished), the only tile that means
+// anything is the character's own home bank, resolved the same way S6
+// resolved a home-town rendezvous.
 std::string Runner::ResolveHomeMarketPlaceId(Client& client) const {
     const world_atlas::Atlas* atlas = client.WorldAtlas();
     if (!atlas) return market::kMarketBankPlaceId;
 
-    // 1. THE HOME TOWN'S OWN BANK.
-    if (!state_.homeCity.empty()) {
+    i32 x = 0, y = 0;
+    if (client.IsInWorld()) {
+        x = client.PlayerX();
+        y = client.PlayerY();
+    } else if (!state_.homeCity.empty()) {
         if (const wm::Region* home = atlas->FindRegion(state_.homeCity.c_str())) {
             if (const wm::Place* p = atlas->NearestPlaceWithServiceInRegion(
                     wm::Service::Banker, state_.homeCity.c_str(),
                     home->center.x, home->center.y)) {
-                return p->id;
+                x = p->position.x;
+                y = p->position.y;
+            } else {
+                x = home->center.x;
+                y = home->center.y;
             }
         }
     }
 
-    // 2. NO HOME BANK ON RECORD (home city unknown, or the atlas files no
-    // bank under it): the nearest guarded bank at all, from wherever this
-    // character is actually standing -- the same "ordinary errand" fallback
-    // every other service lookup in this file already uses.
-    if (const wm::Place* p = atlas->NearestPlaceWithService(
-            wm::Service::Banker, client.PlayerX(), client.PlayerY())) {
-        return p->id;
+    const runner_detail::MarketHubPick pick =
+        runner_detail::ResolveMarketHub(atlas, x, y);
+    if (pick.resolved) {
+        char why[128];
+        std::snprintf(why, sizeof(why), "nearer than %s by %d tiles",
+                      pick.otherLabel.c_str(), pick.otherTiles - pick.tiles);
+        marketPlaceWhy_ = why;
+        return pick.placeId;
     }
 
-    // 3. THE ATLAS KNOWS NO BANK AT ALL. Keep the old single rendezvous
+    // THE ATLAS KNOWS NEITHER HUB AT ALL. Keep the old single rendezvous
     // rather than hand back an empty id.
+    marketPlaceWhy_ = "no britain or minoc bank in the atlas";
     return market::kMarketBankPlaceId;
 }
 
@@ -1016,8 +1028,8 @@ bool Runner::MarketPlaceUsable(Client& client) {
         marketPlaceOk_ = 0;
         return false;
     }
-    LogLine("market: the market is %s (%s) at %d,%d, radius %d, guarded",
-            marketPlaceId_.c_str(), p->name.c_str(), p->position.x,
+    LogLine("market: the market is %s (%s), at %d,%d, radius %d, guarded",
+            marketPlaceId_.c_str(), marketPlaceWhy_.c_str(), p->position.x,
             p->position.y, p->radius);
     marketPlaceOk_ = 1;
     return true;

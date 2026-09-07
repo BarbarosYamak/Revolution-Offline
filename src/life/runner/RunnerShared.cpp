@@ -236,6 +236,16 @@ i32 GateDistanceToRegion(const world_atlas::Atlas& atlas,
     return best;
 }
 
+// The bank a market hub resolves to: NearestPlaceWithServiceInRegion
+// anchored on the region's own AREADEF centre, never on the caller's live
+// position -- see ResolveMarketHub below for why that anchor matters.
+const wm::Place* RegionBank(const world_atlas::Atlas& atlas, const char* city) {
+    const wm::Region* r = atlas.FindRegion(city);
+    if (!r) return nullptr;
+    return atlas.NearestPlaceWithServiceInRegion(wm::Service::Banker, city,
+                                                 r->center.x, r->center.y);
+}
+
 }  // namespace
 
 i32 TravelTilesWithGates(const world_atlas::Atlas& atlas, i32 fromX, i32 fromY,
@@ -297,6 +307,52 @@ HomeReturn ResolveHomeReturn(const world_atlas::Atlas* atlas,
     h.onErrandGround = OnErrandTownGround(*atlas, x, y);
     h.resolved = true;
     return h;
+}
+
+// S7: THE MARKET HAS TWO HUBS, not one home-town rendezvous. See the
+// declaration (RunnerInternal.h) for the owner ruling and rationale. Each
+// hub is resolved the same way S6 resolved a home-town rendezvous --
+// RegionBank, anchored on the region's own AREADEF centre, never on the
+// caller's live position, so every character asking "where is the Britain
+// hub" gets the SAME Britain bank (britain_bank_2, by that anchor) rather
+// than whichever one happens to be nearer to wherever it is standing today.
+MarketHubPick ResolveMarketHub(const world_atlas::Atlas* atlas, i32 x, i32 y) {
+    MarketHubPick pick;
+    if (!atlas || !atlas->Ready()) return pick;
+
+    const wm::Place* britain = RegionBank(*atlas, "Britain");
+    const wm::Place* minoc   = RegionBank(*atlas, "Minoc");
+    if (!britain && !minoc) return pick;   // the atlas knows neither hub
+
+    if (!britain || !minoc) {
+        // Only one hub exists in this atlas at all: nothing to compare, so
+        // it wins by default rather than leaving the caller with no market.
+        const wm::Place* only = britain ? britain : minoc;
+        pick.place      = only;
+        pick.placeId    = only->id;
+        pick.tiles      = TravelTilesWithGates(*atlas, x, y, only->position.x,
+                                               only->position.y);
+        pick.otherTiles = pick.tiles;
+        pick.otherLabel = "the only hub the atlas knows";
+        pick.resolved   = true;
+        return pick;
+    }
+
+    const i32 tilesBritain = TravelTilesWithGates(
+        *atlas, x, y, britain->position.x, britain->position.y);
+    const i32 tilesMinoc = TravelTilesWithGates(
+        *atlas, x, y, minoc->position.x, minoc->position.y);
+
+    // A tie favours Britain -- the hub by population (S6's own reasoning),
+    // not an arbitrary pick.
+    const bool britainWins = tilesBritain <= tilesMinoc;
+    pick.place      = britainWins ? britain : minoc;
+    pick.placeId    = pick.place->id;
+    pick.tiles      = britainWins ? tilesBritain : tilesMinoc;
+    pick.otherTiles = britainWins ? tilesMinoc : tilesBritain;
+    pick.otherLabel = (britainWins ? minoc : britain)->name;
+    pick.resolved   = true;
+    return pick;
 }
 
 }  // namespace runner_detail

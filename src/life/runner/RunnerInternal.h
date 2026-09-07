@@ -1548,6 +1548,25 @@ i32 TravelTilesWithGates(const world_atlas::Atlas& atlas, i32 fromX, i32 fromY,
 // Papua bank room is guarded while Papua itself is not a town at all.
 bool OnErrandTownGround(const world_atlas::Atlas& atlas, i32 x, i32 y);
 
+// THE MARKET'S TWO HUBS (owner ruling 2026-09-07): "normally a warrior would
+// ask in britain or minoc since both are main markets" -- superseding the
+// interim home-town-bank rule (S6). Every character trades at whichever of
+// Britain bank or Minoc bank is cheaper to reach from (x, y), moongates
+// allowed and nothing else -- the exact same TravelTilesWithGates rule
+// RETURN_HOME already uses, so a Trinsic errand and a Trinsic market trip
+// agree about what a gate is worth. Runner::ResolveHomeMarketPlaceId
+// (Economy.cpp) is the only caller; it supplies (x, y) as the character's
+// live position when in world, its home bank otherwise.
+struct MarketHubPick {
+    std::string      placeId;      // "britain_bank" / "minoc_bank" / empty
+    const wm::Place* place = nullptr;
+    i32              tiles = 0;        // the winning hub's travel cost
+    i32              otherTiles = 0;   // the losing hub's travel cost
+    std::string      otherLabel;       // the losing hub's display name
+    bool             resolved = false; // false only when the atlas has
+                                       // neither Britain's nor Minoc's bank
+};
+MarketHubPick ResolveMarketHub(const world_atlas::Atlas* atlas, i32 x, i32 y);
 
 }  // namespace runner_detail
 

@@ -367,16 +367,22 @@ int main(int argc, char** argv) {
                           246000,
                       "and the 1,136 tiles to the rendezvous still do not");
 
-                // === S6: the "0 tiles" above is what the RESOLVER actually
+                // === S7: the "0 tiles" above is what the RESOLVER actually
                 // produces for this character, not a number asserted on
-                // faith. Before the fix this was always minoc_bank, 1,500+
-                // tiles from every Britain-homed character's own counter.
+                // faith. Before S6 this was always minoc_bank, 1,500+ tiles
+                // from every Britain-homed character's own counter; S6's own
+                // home-town rule is superseded by S7's two hubs (owner
+                // ruling 2026-09-07). Standing AT a home bank makes it the
+                // trivially cheapest of the two hubs to reach -- the same
+                // "measured from wherever the character actually stands"
+                // rule that decides every other trip in this file.
                 life::RunnerHarnessAccess::SetHomeCity(wtb, "Britain");
+                Position(*client, 40, 40);
                 const std::string britainMarket =
                     life::RunnerHarnessAccess::ResolveMarketPlaceId(wtb, *client);
                 Check(britainMarket == "bank",
-                      "a Britain-homed character's market resolves to the "
-                      "Britain bank, not a shard-wide Minoc rendezvous");
+                      "standing at the Britain bank, the two-hub resolver "
+                      "still picks Britain -- it is zero tiles away");
                 if (const wm::Place* p = client->KnownPlace(britainMarket.c_str())) {
                     Check(p->position.x == atBank.x && p->position.y == atBank.y,
                           "standing at the Britain bank IS standing at this "
@@ -384,18 +390,20 @@ int main(int argc, char** argv) {
                 }
 
                 life::RunnerHarnessAccess::SetHomeCity(wtb, "Minoc");
+                Position(*client, 490, 490);
                 Check(life::RunnerHarnessAccess::ResolveMarketPlaceId(wtb, *client) ==
                           "minoc_bank",
-                      "and a Minoc-homed character resolves the Minoc bank "
-                      "instead -- miners keep trading with miners");
+                      "and standing at the Minoc bank, the same resolver "
+                      "picks Minoc -- miners at their own counter are not "
+                      "sent 450 tiles to Britain");
 
                 life::RunnerHarnessAccess::SetHomeCity(wtb, "Nowhereville");
                 Position(*client, 40, 40);
                 Check(life::RunnerHarnessAccess::ResolveMarketPlaceId(wtb, *client) ==
                           "bank",
-                      "an unrecognised home city falls back to the nearest "
-                      "guarded bank from where the character stands, not a "
-                      "hardcoded default");
+                      "an unrecognised home city is irrelevant to a resolver "
+                      "that never reads it any more -- from the Britain "
+                      "bank, Britain is still the nearer of the two hubs");
 
                 // The window can only close on evidence about sellers. A
                 // character that never spoke has learned nothing.
@@ -586,7 +594,45 @@ int main(int argc, char** argv) {
             "TRANSIT\tmg_britain__trinsic\tmoongate\t1336\t1997\t5\t1828\t2948\t-20\t0\tTrinsic\n"
             "TRANSIT\tmg_britain__skara_brae\tmoongate\t1336\t1997\t5\t643\t2067\t5\t0\tSkara Brae\n"
             "TRANSIT\tmg_skara_brae__britain\tmoongate\t643\t2067\t5\t1336\t1997\t5\t0\tBritain\n"
-            "TRANSIT\tmg_skara_brae__trinsic\tmoongate\t643\t2067\t5\t1828\t2948\t-20\t0\tTrinsic\n";
+            "TRANSIT\tmg_skara_brae__trinsic\tmoongate\t643\t2067\t5\t1828\t2948\t-20\t0\tTrinsic\n"
+            // S7 (two-hub market): Minoc and Vesper, COPIED the same way --
+            // a_townMinoc/minoc_bank and a_townVesper/vesper_bank are
+            // data/revolution_atlas.txt:953/2184 and :768/2317 verbatim
+            // (RECTs omitted: NearestPlaceWithServiceInRegion matches a place
+            // filed under a region by id, and PlaceIsGuarded reads the
+            // region's own flags -- neither needs the rectangles here). The
+            // Trinsic/Minoc and Britain/Minoc moongate pairs are
+            // :3913/:3917/:3926/:3880 -- this shard's public network is a
+            // complete graph over its pads (RunnerShared.cpp
+            // TravelTilesWithGates), so every city the resolver compares
+            // against Minoc needs its own real edge to it, not just to
+            // Britain.
+            "REGION\ta_townMinoc\ttown\t1\t2466\t544\t0\tMinoc\tMinoc\n"
+            "PLACE\tminoc_bank\tbank\ta_townMinoc\t2503\t552\t0\t5\t"
+                "banker\t\tMinoc banker\n"
+            // Britain's SECOND bank (:2109), closer to the AREADEF centre
+            // (1495,1629) than britain_bank is -- 70 tiles against 155 --
+            // which is why RegionBank("Britain") (the same anchor S6 used)
+            // resolves the Britain hub to THIS one, not britain_bank. Left
+            // out, the Trinsic and Vesper numbers below would be measured
+            // against the wrong Britain bank.
+            "PLACE\tbritain_bank_2\tbank\ta_townBritain\t1425\t1690\t0\t5\t"
+                "banker\t\tBritain banker\n"
+            "REGION\ta_townVesper\ttown\t1\t2899\t676\t0\tVesper\tVesper\n"
+            "PLACE\tvesper_bank\tbank\ta_townVesper\t2881\t684\t0\t5\t"
+                "banker\t\tVesper banker\n"
+            "TRANSIT\tmg_minoc__britain\tmoongate\t2701\t692\t5\t1336\t1997\t5\t0\tBritain\n"
+            "TRANSIT\tmg_britain__minoc\tmoongate\t1336\t1997\t5\t2701\t692\t5\t0\tMinoc\n"
+            "TRANSIT\tmg_trinsic__minoc\tmoongate\t1828\t2948\t-20\t2701\t692\t5\t0\tMinoc\n"
+            "TRANSIT\tmg_minoc__trinsic\tmoongate\t2701\t692\t5\t1828\t2948\t-20\t0\tTrinsic\n"
+            // The direct Trinsic pad -> Britain pad edge (:3922), the
+            // reverse of mg_britain__trinsic already above. Without it the
+            // only walk-to-a-gate route TravelTilesWithGates can find from
+            // Trinsic bank toward Britain bank is the accidental one through
+            // the MINOC pad (Trinsic pad -> Minoc's arrival tile -> overland
+            // to Britain), which is a worse number than the real direct
+            // gate and would understate what Britain actually costs.
+            "TRANSIT\tmg_trinsic__britain\tmoongate\t1828\t2948\t-20\t1336\t1997\t5\t0\tBritain\n";
         Check(atlas.LoadFromText(rows, &err), "stranded fixture atlas loads");
 
         // (1) THE PAPUA BANK -- the tile Alder and Kharazar actually log in
@@ -661,6 +707,90 @@ int main(int argc, char** argv) {
                                                       5674, 3134)
                    .resolved,
               "nor a character whose world knowledge has not loaded");
+
+        // --- S7: the market has two hubs -- Britain bank and Minoc bank,
+        // nearer one wins (owner ruling 2026-09-07). ResolveMarketHub is the
+        // pure atlas function Runner::ResolveHomeMarketPlaceId calls; tested
+        // directly here the same way ResolveHomeReturn is above, against real
+        // coordinates -- INCLUDING britain_bank_2 (:2109, 1425,1690), 70
+        // tiles from the AREADEF centre against britain_bank's 155, which is
+        // why RegionBank("Britain") (S6's own anchor) picks IT as the
+        // Britain hub. Every number below was checked against a standalone
+        // run of ResolveMarketHub over the actual data/revolution_atlas.txt,
+        // not derived by hand.
+        {
+            // Standing at each hub's own bank, that hub is zero tiles away
+            // and trivially wins.
+            const life::runner_detail::MarketHubPick atBritain =
+                life::runner_detail::ResolveMarketHub(&atlas, 1425, 1690);
+            Check(atBritain.resolved && atBritain.placeId == "britain_bank_2" &&
+                      atBritain.tiles == 0,
+                  "standing at the Britain hub, Britain wins at zero tiles");
+
+            const life::runner_detail::MarketHubPick atMinoc =
+                life::runner_detail::ResolveMarketHub(&atlas, 2503, 552);
+            Check(atMinoc.resolved && atMinoc.placeId == "minoc_bank" &&
+                      atMinoc.tiles == 0,
+                  "standing at the Minoc bank, Minoc wins at zero tiles");
+
+            // Trinsic-homed, standing at its own bank (1813, 2825 --
+            // bank_of_britannia_trinsic_branch_bank, the same tile
+            // ResolveHomeReturn's own Trinsic case above uses).
+            //
+            // THIS CONTRADICTS THE BRIEF'S OWN ASSUMPTION ("Trinsic-homed at
+            // Trinsic bank -> Britain"). By the real atlas, Minoc is
+            // cheaper: both hubs are one moongate hop from the Trinsic pad
+            // (123 tiles to walk to it either way -- mg_trinsic__minoc and
+            // mg_trinsic__britain share the same "from"), so the difference
+            // is entirely the OTHER end of the hop. Minoc's own bank sits
+            // 198 tiles from Minoc's pad; britain_bank_2 sits 307 from
+            // Britain's. 123+198=321 beats 123+307=430. This shard's
+            // moongate network is a complete graph (RunnerShared.cpp
+            // TravelTilesWithGates), so Trinsic can gate to Minoc directly
+            // without detouring through Britain -- confirmed both here and
+            // by an ad hoc ResolveMarketHub run against the live
+            // data/revolution_atlas.txt (321 / 430, exact match). The live
+            // smoke (Alder, Castor) logged britain_bank_2 instead only
+            // because both characters' saved positions were already inside
+            // Britain when the resolver ran, not because they were standing
+            // at their own Trinsic bank -- see this brief's own report for
+            // the console evidence.
+            const life::runner_detail::MarketHubPick trinsic =
+                life::runner_detail::ResolveMarketHub(&atlas, 1813, 2825);
+            Check(trinsic.resolved && trinsic.placeId == "minoc_bank" &&
+                      trinsic.tiles == 321 && trinsic.otherTiles == 430,
+                  "a Trinsic-homed character AT ITS OWN BANK resolves to "
+                  "Minoc (321 tiles) over Britain (430) -- the real atlas' "
+                  "answer, not the brief's assumed one");
+            Check(life::MarketTripNeedMs(trinsic.tiles, 6 * 8000,
+                                        2 * 60 * 1000) <= 600000,
+                  "and that trip is not vetoed with 600 s of session left");
+
+            // Vesper-homed, standing at its own bank (2881, 684). Vesper has
+            // no public moongate of its own in this atlas or in
+            // data/revolution_atlas.txt; the nearest gate pad at all is
+            // Minoc's, 180 tiles from the Vesper bank. Vesper->Minoc is the
+            // raw walk (378, cheaper than detouring through the gate to
+            // reach the very town it sits next to); Vesper->Britain is
+            // 180+307=487 via that same pad. Minoc wins again, confirmed the
+            // same way against the live atlas (378 / 487, exact match).
+            const life::runner_detail::MarketHubPick vesper =
+                life::runner_detail::ResolveMarketHub(&atlas, 2881, 684);
+            Check(vesper.resolved && vesper.placeId == "minoc_bank" &&
+                      vesper.tiles == 378 && vesper.otherTiles == 487,
+                  "a Vesper-homed character's cheaper hub is Minoc, 378 "
+                  "tiles against Britain's 487 -- whichever the atlas says, "
+                  "not assumed either way");
+
+            // No home city at all: the resolver never reads one (unlike S6),
+            // so an unrecognised or absent home city is simply irrelevant --
+            // it always ranks the two hubs from wherever (x, y) is.
+            const life::runner_detail::MarketHubPick fromNowhere =
+                life::runner_detail::ResolveMarketHub(&atlas, 1425, 1690);
+            Check(fromNowhere.resolved && fromNowhere.placeId == "britain_bank_2",
+                  "an unknown home city is moot -- the nearest of the two "
+                  "hubs from wherever the character stands still resolves");
+        }
     }
     // --- wind-down regression: guarded ground, hostile merely in scan ------
     // fleet122_20260907: Morven, Rhaler and Kharain looped ~9,300 times each

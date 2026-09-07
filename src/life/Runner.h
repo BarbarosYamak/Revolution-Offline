@@ -279,15 +279,19 @@ private:
     bool DoCraft(Client& client, const Observation& obs);
     bool DriveOpenTrade(Client& client, const Observation& obs);
     void ResetTradeState();
-    // WHICH BANK IS THIS CHARACTER'S MARKET. Home-town first: the atlas
-    // region named by `state_.homeCity`, anchored on that region's own
-    // centre (not this character's live position) so every character who
-    // calls the same town home converges on the SAME bank -- the whole point
-    // of a rendezvous. Falls back to the nearest guarded bank the atlas
-    // knows of at all when the home city has none filed under it or is
-    // unknown, and to market::kMarketBankPlaceId only when the atlas can
-    // answer neither question. Resolved once per life and cached in
-    // marketPlaceId_.
+    // WHICH BANK IS THIS CHARACTER'S MARKET. TWO HUBS ONLY (owner ruling
+    // 2026-09-07, superseding the interim home-town-bank rule): Britain bank
+    // and Minoc bank, and every character -- however it lives -- trades at
+    // whichever is cheaper to reach, by the same moongates-allowed travel
+    // cost RETURN_HOME already uses (runner_detail::ResolveMarketHub,
+    // TravelTilesWithGates). Measured from wherever the character is
+    // actually standing when it is in world; from its own home bank when it
+    // is not (the atlas loaded before the login handshake finished, and
+    // there is no live position yet to measure from). Falls back to
+    // market::kMarketBankPlaceId only when the atlas carries neither bank at
+    // all. Resolved once per life and cached in marketPlaceId_; the
+    // comparison that decided it is cached alongside in marketPlaceWhy_ for
+    // the one-time log line.
     std::string ResolveHomeMarketPlaceId(Client& client) const;
     // Is this character's market place (ResolveHomeMarketPlaceId) usable at
     // all: present in the atlas, offering Service::Banker, and guarded?
@@ -1527,6 +1531,11 @@ private:
     // alongside marketPlaceOk_ so it is computed once per life, not once per
     // tick.
     std::string marketPlaceId_;
+    // WHY: the two-hub comparison's own explanation ("nearer than Minoc bank
+    // by 1132 tiles"), set by ResolveHomeMarketPlaceId (mutable: that method
+    // stays const) and read once by MarketPlaceUsable for the session's one
+    // `market: the market is ...` log line.
+    mutable std::string marketPlaceWhy_;
     // A BUYER HAS NOTHING TO SAY. It answers what it hears, so its whole
     // errand at the market is to be present while somebody else announces.
     // Bounded: one full announce cycle is kMaxAnnounces x kAnnounceIntervalMs
