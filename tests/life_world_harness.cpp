@@ -119,6 +119,13 @@ struct RunnerHarnessAccess {
     static bool SessionCleanLogout(const Runner& runner) {
         return runner.session_.cleanLogout;
     }
+    // --- S6: the market is the home-town bank (Economy.cpp) ----------------
+    static void SetHomeCity(Runner& runner, const std::string& city) {
+        runner.state_.homeCity = city;
+    }
+    static std::string ResolveMarketPlaceId(Runner& runner, Client& client) {
+        return runner.ResolveHomeMarketPlaceId(client);
+    }
 };
 }
 
@@ -218,7 +225,15 @@ int main(int argc, char** argv) {
                  // (fleet122_20260907): the atlas calls the landmark guarded,
                  // the ground under a bot standing next to it is not.
                  "REGION\tminocgate\tdungeon\t1\t450\t450\t0\tMinocGate\tMinocGate\n"
-                 "PLACE\tminocmine\tlandmark\tminocgate\t450\t450\t0\t5\t\t\tMinoc Mine 1\n";
+                 "PLACE\tminocmine\tlandmark\tminocgate\t450\t450\t0\t5\t\t\tMinoc Mine 1\n"
+                 // A SECOND HOME TOWN, for the home-town-bank resolver (S6):
+                 // Runner::ResolveHomeMarketPlaceId must land a Minoc-homed
+                 // character on THIS bank and a Britain-homed one on "bank"
+                 // above, never on either by coincidence of distance.
+                 "REGION\ttownminoc\ttown\t1\t490\t490\t0\tMinoc\tMinoc\n"
+                 "RECT\ttownminoc\t480\t480\t500\t500\n"
+                 "PLACE\tminoc_bank\tbank\ttownminoc\t490\t490\t0\t5\t"
+                     "banker\t\tMinoc Bank\n";
     }
     std::vector<navgrid::Cell> cells(32 * 32);
     const int delta[8][2] = {{0,-1},{1,-1},{1,0},{1,1},{0,1},{-1,1},{-1,0},{-1,-1}};
@@ -351,6 +366,36 @@ int main(int argc, char** argv) {
                 Check(life::MarketTripNeedMs(1136, announceCycle, windDown) >
                           246000,
                       "and the 1,136 tiles to the rendezvous still do not");
+
+                // === S6: the "0 tiles" above is what the RESOLVER actually
+                // produces for this character, not a number asserted on
+                // faith. Before the fix this was always minoc_bank, 1,500+
+                // tiles from every Britain-homed character's own counter.
+                life::RunnerHarnessAccess::SetHomeCity(wtb, "Britain");
+                const std::string britainMarket =
+                    life::RunnerHarnessAccess::ResolveMarketPlaceId(wtb, *client);
+                Check(britainMarket == "bank",
+                      "a Britain-homed character's market resolves to the "
+                      "Britain bank, not a shard-wide Minoc rendezvous");
+                if (const wm::Place* p = client->KnownPlace(britainMarket.c_str())) {
+                    Check(p->position.x == atBank.x && p->position.y == atBank.y,
+                          "standing at the Britain bank IS standing at this "
+                          "character's own resolved market -- zero tiles");
+                }
+
+                life::RunnerHarnessAccess::SetHomeCity(wtb, "Minoc");
+                Check(life::RunnerHarnessAccess::ResolveMarketPlaceId(wtb, *client) ==
+                          "minoc_bank",
+                      "and a Minoc-homed character resolves the Minoc bank "
+                      "instead -- miners keep trading with miners");
+
+                life::RunnerHarnessAccess::SetHomeCity(wtb, "Nowhereville");
+                Position(*client, 40, 40);
+                Check(life::RunnerHarnessAccess::ResolveMarketPlaceId(wtb, *client) ==
+                          "bank",
+                      "an unrecognised home city falls back to the nearest "
+                      "guarded bank from where the character stands, not a "
+                      "hardcoded default");
 
                 // The window can only close on evidence about sellers. A
                 // character that never spoke has learned nothing.

@@ -121,8 +121,16 @@ inline i32 StockAboveFloor(i32 floor, i32 spareGold) {
     return floor + extra;
 }
 
-// One shared rendezvous for inter-crafter trade. Owner requested Minoc first.
-// Resolve the atlas place id so every participant uses the same guarded bank.
+// THE LAST-RESORT RENDEZVOUS, not the only one any more.
+//
+// Owner ruling, 2026-09-07: "the rendezvous is the character's home-town
+// bank" -- a character trades where it banks, the way players actually did
+// it, rather than every character in the fleet converging on one shard-wide
+// spot. Runner::ResolveHomeMarketPlaceId (Economy.cpp) resolves the ACTUAL
+// place id per character from `state_.homeCity` and the atlas; this constant
+// is only what it falls back to when the atlas cannot answer that question at
+// all (no home city known AND no bank anywhere in the atlas) -- the original
+// single-Minoc-rendezvous design this replaced.
 constexpr const char* kMarketBankPlaceId = "minoc_bank";
 
 // THE THRESHOLD BENDS WHEN THE PURSE IS EMPTY. A small lot is not worth a trip

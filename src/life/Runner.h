@@ -279,11 +279,21 @@ private:
     bool DoCraft(Client& client, const Observation& obs);
     bool DriveOpenTrade(Client& client, const Observation& obs);
     void ResetTradeState();
-    // Is the shard's market place (market::kMarketBankPlaceId) usable at all:
-    // present in the atlas, offering Service::Banker, and guarded? Resolved
-    // once per life and cached; logs the answer the first time. When it is
-    // not, the trade errand keeps today's nearest-bank behaviour rather than
-    // inventing coordinates for a place the atlas does not have.
+    // WHICH BANK IS THIS CHARACTER'S MARKET. Home-town first: the atlas
+    // region named by `state_.homeCity`, anchored on that region's own
+    // centre (not this character's live position) so every character who
+    // calls the same town home converges on the SAME bank -- the whole point
+    // of a rendezvous. Falls back to the nearest guarded bank the atlas
+    // knows of at all when the home city has none filed under it or is
+    // unknown, and to market::kMarketBankPlaceId only when the atlas can
+    // answer neither question. Resolved once per life and cached in
+    // marketPlaceId_.
+    std::string ResolveHomeMarketPlaceId(Client& client) const;
+    // Is this character's market place (ResolveHomeMarketPlaceId) usable at
+    // all: present in the atlas, offering Service::Banker, and guarded?
+    // Resolved once per life and cached; logs the answer the first time.
+    // When it is not, the trade errand keeps today's nearest-bank behaviour
+    // rather than inventing coordinates for a place the atlas does not have.
     bool MarketPlaceUsable(Client& client);
     // Standing at the market, judged by GEOMETRY. `obs.atBank` means the BOX
     // IS OPEN (Runner::Observe), so a buyer standing at the Britain bank with
@@ -1489,8 +1499,13 @@ private:
     // spam an empty room every tick, short enough that the pair still has a
     // chance to overlap within the same session.
     static constexpr i64 kNoAudienceMs = 2 * 60 * 1000;     // two minutes
-    // Is market::kMarketBankPlaceId usable? -1 not resolved yet, 0 no, 1 yes.
+    // Is this character's home-town market place usable? -1 not resolved
+    // yet, 0 no, 1 yes.
     int  marketPlaceOk_ = -1;
+    // The resolved place id itself (ResolveHomeMarketPlaceId), cached
+    // alongside marketPlaceOk_ so it is computed once per life, not once per
+    // tick.
+    std::string marketPlaceId_;
     // A BUYER HAS NOTHING TO SAY. It answers what it hears, so its whole
     // errand at the market is to be present while somebody else announces.
     // Bounded: one full announce cycle is kMaxAnnounces x kAnnounceIntervalMs

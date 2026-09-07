@@ -938,9 +938,60 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
 // Minoc and lumberjack_swordsman always in Britain -- 1,500 tiles and two
 // different banks apart -- and the producer and the consumer of the one live
 // trade edge in the catalogue could never be inside kTradeEarshot of each
-// other. A market has to be ONE place. It is market::kMarketBankPlaceId,
-// which cites the atlas line and the forum evidence for why that one.
+// other. A market has to be a place both sides can actually reach. S5 made
+// that place market::kMarketBankPlaceId, one shard-wide Minoc rendezvous; S6
+// below replaces it with each character's own home-town bank.
 // ---------------------------------------------------------------------------
+
+// S6: THE MARKET IS THE HOME-TOWN BANK, not one shard-wide rendezvous.
+//
+// The single Minoc rendezvous (market::kMarketBankPlaceId) sat behind every
+// trip-cost check no matter where a character actually lived: with 46
+// Britain-homed characters banking 1,500+ tiles away, every WTB died
+// `goal_blocked=TRADE_WITH_PLAYER reason="not enough session left for the
+// trip"` even standing at the character's own home bank (Baelos,
+// artifacts/smoke_Baelos_Calar_Kharos_Varos_20260907_1356). Owner ruling,
+// 2026-09-07: buyers ask and sellers announce where they bank -- the
+// rendezvous is home, so Britain becomes the hub by population the way
+// players traded bank-side, and Minoc-homed miners keep trading with each
+// other at Minoc bank.
+//
+// ANCHORED ON THE HOME REGION'S OWN CENTRE (world_model's AREADEF `P=`
+// point), the same anchor life::SeedNewbieKnowledge uses for the home bank it
+// seeds into memory -- never on this character's live position. Two Britain
+// fighters standing on opposite sides of town must resolve to the SAME
+// Britain bank or "the rendezvous" stops meaning anything; Britain alone has
+// two (britain_bank at 1650,1608, britain_bank_2 at 1425,1690), and ranking
+// by distance to the town centre (1495,1629) is what makes britain_bank_2
+// win every time, for every Britain-homed character.
+std::string Runner::ResolveHomeMarketPlaceId(Client& client) const {
+    const world_atlas::Atlas* atlas = client.WorldAtlas();
+    if (!atlas) return market::kMarketBankPlaceId;
+
+    // 1. THE HOME TOWN'S OWN BANK.
+    if (!state_.homeCity.empty()) {
+        if (const wm::Region* home = atlas->FindRegion(state_.homeCity.c_str())) {
+            if (const wm::Place* p = atlas->NearestPlaceWithServiceInRegion(
+                    wm::Service::Banker, state_.homeCity.c_str(),
+                    home->center.x, home->center.y)) {
+                return p->id;
+            }
+        }
+    }
+
+    // 2. NO HOME BANK ON RECORD (home city unknown, or the atlas files no
+    // bank under it): the nearest guarded bank at all, from wherever this
+    // character is actually standing -- the same "ordinary errand" fallback
+    // every other service lookup in this file already uses.
+    if (const wm::Place* p = atlas->NearestPlaceWithService(
+            wm::Service::Banker, client.PlayerX(), client.PlayerY())) {
+        return p->id;
+    }
+
+    // 3. THE ATLAS KNOWS NO BANK AT ALL. Keep the old single rendezvous
+    // rather than hand back an empty id.
+    return market::kMarketBankPlaceId;
+}
 
 bool Runner::MarketPlaceUsable(Client& client) {
     if (marketPlaceOk_ >= 0) return marketPlaceOk_ == 1;
@@ -948,7 +999,8 @@ bool Runner::MarketPlaceUsable(Client& client) {
     // has loaded, so do not cache a "no" that is really a "not yet".
     if (!client.WorldKnowledgeReady()) return false;
 
-    const wm::Place* p = client.KnownPlace(market::kMarketBankPlaceId);
+    marketPlaceId_ = ResolveHomeMarketPlaceId(client);
+    const wm::Place* p = client.KnownPlace(marketPlaceId_.c_str());
     const char* bad = nullptr;
     if (!p)                                  bad = "the atlas has no such place";
     else if (!p->Offers(wm::Service::Banker)) bad = "it offers no banker";
@@ -960,19 +1012,20 @@ bool Runner::MarketPlaceUsable(Client& client) {
         // that is the nearest bank the world actually knows about, not a pair
         // of literal coordinates baked into the bot.
         LogLine("market: no usable market place '%s' (%s) -- falling back to "
-                "the nearest bank", market::kMarketBankPlaceId, bad);
+                "the nearest bank", marketPlaceId_.c_str(), bad);
         marketPlaceOk_ = 0;
         return false;
     }
     LogLine("market: the market is %s (%s) at %d,%d, radius %d, guarded",
-            market::kMarketBankPlaceId, p->name.c_str(), p->position.x,
+            marketPlaceId_.c_str(), p->name.c_str(), p->position.x,
             p->position.y, p->radius);
     marketPlaceOk_ = 1;
     return true;
 }
 
 bool Runner::AtMarketBank(const Client& client) const {
-    const wm::Place* p = client.KnownPlace(market::kMarketBankPlaceId);
+    if (marketPlaceId_.empty()) return false;
+    const wm::Place* p = client.KnownPlace(marketPlaceId_.c_str());
     if (!p) return false;
     // The place's own radius plus two. Arriving is a pathfinder result, not a
     // tile equality: the walker stops on whatever legal tile it can reach, and
@@ -981,8 +1034,8 @@ bool Runner::AtMarketBank(const Client& client) const {
                     p->position.y) <= p->radius + 2;
 }
 
-// A DIFFERENT QUESTION FROM AtMarketBank: that one asks "am I at THE market
-// bank" (market::kMarketBankPlaceId, the one designated trade rendezvous);
+// A DIFFERENT QUESTION FROM AtMarketBank: that one asks "am I at MY market
+// bank" (marketPlaceId_, this character's own resolved home-town rendezvous);
 // this asks "am I near A bank at all" -- the nearest one the atlas knows of,
 // full stop. DoBank's own arrival test, so a fresh character's first BANK
 // goal knows whether it has to travel before BankErrand's mobile scan has
@@ -1420,10 +1473,12 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
 
     // --- go to the market ---------------------------------------------------
     //
-    // ONE PLACE FOR THE WHOLE FLEET. The nearest bank is the right answer for
-    // every other errand and the wrong one for this: a rendezvous where each
-    // party picks its own nearest bank is not a rendezvous. See
-    // market::kMarketBankPlaceId for which bank and why.
+    // ONE PLACE PER HOME TOWN. The nearest bank to wherever this character
+    // happens to be standing is the right answer for every other errand and
+    // the wrong one for this: a rendezvous where each party picks its own
+    // nearest bank is not a rendezvous. See ResolveHomeMarketPlaceId for
+    // which bank and why -- every character homed in the same town resolves
+    // to the same one.
     //
     // ARRIVAL IS GEOMETRY, NOT AN OPEN BOX. `obs.atBank` means the bank
     // container is open (Observe), which a buyer has no reason to do -- and
@@ -1468,7 +1523,7 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
             // a real one. EstimateTripTimeMs's own 50% slack covers the rest.
             i32 marketTiles = 0;
             if (const wm::Place* dest =
-                    haveMarket ? client.KnownPlace(market::kMarketBankPlaceId)
+                    haveMarket ? client.KnownPlace(marketPlaceId_.c_str())
                                : client.NearestServicePlace(wm::Service::Banker))
                 marketTiles = TileDist(obs.x, obs.y, dest->position.x,
                                        dest->position.y);
@@ -1509,17 +1564,17 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
             if (wantsToSell)
                 LogLine("market: taking %d %s to %s (trip %d)", offer.qty,
                         offer.item.c_str(),
-                        haveMarket ? market::kMarketBankPlaceId
+                        haveMarket ? marketPlaceId_.c_str()
                                    : "the nearest bank",
                         tradeTrips_);
             else
                 LogLine("market: going to %s to buy %d %s (trip %d)",
-                        haveMarket ? market::kMarketBankPlaceId
+                        haveMarket ? marketPlaceId_.c_str()
                                    : "the nearest bank",
                         buyable.front().qty, buyable.front().item.c_str(),
                         tradeTrips_);
             travelInFlight_ =
-                haveMarket ? client.TravelToPlace(market::kMarketBankPlaceId)
+                haveMarket ? client.TravelToPlace(marketPlaceId_.c_str())
                            : client.TravelToService(wm::Service::Banker, nullptr);
             if (!travelInFlight_) {
                 LogLine("goal_blocked=TRADE_WITH_PLAYER reason=\"%s\"",
