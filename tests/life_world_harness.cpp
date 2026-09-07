@@ -48,6 +48,30 @@ struct RunnerHarnessAccess {
         runner.RestTick(client, obs, GoalKind::IdleBriefly);
         return runner.lastRestPlan_;
     }
+    // --- the bandage WTB hand-off (runner/Gear.cpp) ------------------------
+    // The stand-down needs no Client: it reads the Observation, the plan and
+    // the planner, and hands off. That is exactly the seam the defect lived
+    // in, so the regression drives it directly.
+    static bool StandDownBandages(Runner& runner, const Observation& obs) {
+        return runner.StandDownBandageShopping(obs, "no bandages bought",
+                                               30000);
+    }
+    static GoalKind NextPick(Runner& runner, const std::vector<Need>& needs,
+                             const Observation& obs) {
+        std::string why;
+        runner.planner_.Select(needs, obs, runner.state_.memory, obs.nowMs,
+                               &why);
+        return runner.planner_.Current().kind;
+    }
+    static bool Cooling(const Runner& runner, GoalKind kind, i64 nowMs) {
+        return runner.planner_.Cooling(kind, nowMs);
+    }
+    static i64 BandageWtbAskedMs(const Runner& runner) {
+        return runner.bandageWtbAskedMs_;
+    }
+    static const prof::Profession* ProfessionOf(const Runner& runner) {
+        return runner.needCfg_.profession;
+    }
     static void MakeSessionEnding(Runner& runner, i64 nowMs) {
         runner.cfg_.sessionLimitMs = 1000;
         runner.sessionStartMs_ = nowMs - 1000;
@@ -251,6 +275,99 @@ int main(int argc, char** argv) {
         rc.professionId = family;
         std::string error;
         if (!runner.Configure(rc, &error)) { Check(false, error.c_str()); continue; }
+        // === a dry-counter fighter really asks the market for bandages =====
+        //
+        // gate_bandage20_20260907: 16 fighters chose ASK_PLAYERS, 0 ever said
+        // `WTB ... i_bandage`. HandOff's `to` is advice (runner/Core.cpp), and
+        // MAKE_BANDAGES (0.25 + 0.45 x shortfall) out-scores NeedTrade's buy
+        // arm (0.15 + 0.40 x frac) at the same weight 145 past ~2/3 shortfall,
+        // so the very next pick was always the scissors -- Baelos 13:05:15,
+        // 83.2 against 79.8. This pins the fix at the seam it broke at: after
+        // the hand-off tick, the planner's own choice is the trade.
+        if (std::string(family) == "fencer") {
+            life::Runner wtb;
+            life::RunnerConfig wc = rc;
+            wc.dataRoot = root + "/" + family + "_wtb";
+            wc.characterName = "wtb_fencer";
+            std::string werr;
+            if (!wtb.Configure(wc, &werr)) {
+                Check(false, werr.c_str());
+            } else {
+                Check(life::RunnerHarnessAccess::ProfessionOf(wtb) != nullptr,
+                      "the fixture fighter has a profession to buy with");
+                life::Observation atBank;
+                atBank.inWorld = true;
+                atBank.nowMs = 2000000;
+                atBank.x = atBank.y = 40;          // the fixture's guarded town
+                atBank.hp = atBank.hpMax = 50;
+                atBank.gold = 7845;                // Baelos's own purse
+                atBank.bandages = 28;              // 28/100: dry counters
+                atBank.atBank = true;
+
+                // The errand that fails first is the shop run, exactly as in
+                // the gate: REPLACE_EQUIPMENT owns the tick when the town's
+                // counters turn out to be empty.
+                life::Need gear;
+                gear.kind = life::NeedKind::NeedEquipment;
+                gear.what = "bandages";
+                gear.urgency = 0.80;
+                life::Need make;
+                make.kind = life::NeedKind::NeedMakeBandages;
+                make.what = "bandages";
+                make.urgency = 0.57;               // 145 x 0.57 = 83.2
+                life::Need buy;
+                buy.kind = life::NeedKind::NeedTrade;
+                buy.what = "buy from a player";
+                buy.urgency = 0.55;                // 145 x 0.55 = 79.8
+                Check(life::RunnerHarnessAccess::NextPick(
+                          wtb, {gear, make, buy}, atBank) ==
+                          life::GoalKind::ReplaceEquipment,
+                      "the shop run owns the tick before the counters run dry");
+
+                Check(!life::RunnerHarnessAccess::StandDownBandages(wtb, atBank),
+                      "the dry-counter stand-down ends the shop run");
+                Check(life::RunnerHarnessAccess::BandageWtbAskedMs(wtb) == 0,
+                      "deciding to ask is not asking: no WTB clock starts at "
+                      "the hand-off");
+                atBank.nowMs += 2000;              // HandOff's own nextActionMs_
+                Check(life::RunnerHarnessAccess::Cooling(
+                          wtb, life::GoalKind::MakeBandages, atBank.nowMs),
+                      "the WTB window rests MAKE_BANDAGES so the ask can win");
+                Check(life::RunnerHarnessAccess::NextPick(
+                          wtb, {make, buy}, atBank) ==
+                          life::GoalKind::TradeWithPlayer,
+                      "the pick after the hand-off is TRADE_WITH_PLAYER, not "
+                      "MAKE_BANDAGES");
+
+                // ... and it is not vetoed on the way out. 246 s was what
+                // Baelos had left when an 800 s flat charge refused him a walk
+                // he was not making (Baelos.console.txt:1128).
+                const i64 announceCycle = 6 * 8000;          // kMaxAnnounces x
+                const i64 windDown      = 2 * 60 * 1000;     // kWindDownBudgetMs
+                Check(life::MarketTripNeedMs(0, announceCycle, windDown) <=
+                          246000,
+                      "asking at the bank you are standing in fits 246 s of "
+                      "session");
+                Check(life::MarketTripNeedMs(1136, announceCycle, windDown) >
+                          246000,
+                      "and the 1,136 tiles to the rendezvous still do not");
+
+                // The window can only close on evidence about sellers. A
+                // character that never spoke has learned nothing.
+                Check(std::string(life::PlanBandageSupply(
+                          life::RunnerHarnessAccess::ProfessionOf(wtb), 7845,
+                          false, false, /*waitedOut=*/false,
+                          /*couldNotAsk=*/true).why)
+                          .find("no seller came") == std::string::npos,
+                      "'no seller came' cannot be reported before an announce");
+                Check(std::string(life::PlanBandageSupply(
+                          life::RunnerHarnessAccess::ProfessionOf(wtb), 7845,
+                          false, false, /*waitedOut=*/true).why)
+                          .find("no seller came") != std::string::npos,
+                      "a WTB that was spoken and ran out still reports it");
+            }
+        }
+
         Check(client->TravelToPoint(400, 400, 2, "old errand"), "old errand starts");
         life::RunnerHarnessAccess::Retreat(runner, *client);
         Check(client->TravelBusy(), "retreat replaces the old errand with a live journey");

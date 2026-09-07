@@ -740,7 +740,22 @@ private:
     // own listen window quotes), after which the scissors come out whatever
     // the market goal is still doing. Well inside kNoBandageCooldownMs.
     // 0 means never asked. Per-process, like every other ms clock here.
+    //
+    // STAMPED BY THE ANNOUNCE, NOT BY THE HAND-OFF. It used to be set the
+    // instant StandDownBandageShopping chose the AskPlayers route, which made
+    // the 48 s a clock on an intention rather than on a question: ten of
+    // sixteen fighters logged "waited out my own bandage WTB and no seller
+    // came" in a gate containing zero `trade: announcing 'WTB ... i_bandage'`
+    // lines (artifacts/gate_bandage20_20260907/triage.md section 1). Only
+    // runner/Economy.cpp's WTB announce writes it now.
     i64 bandageWtbAskedMs_ = 0;
+    // WHEN THE ASK WAS DECIDED ON, as opposed to made. Two clocks because
+    // they answer two different questions: bandageWtbAskedMs_ bounds "the
+    // market heard me and said nothing" (real evidence about sellers) and
+    // this one bounds "I meant to ask and never got the words out" (no
+    // evidence about anyone). Only the first may ever be reported as a market
+    // result. 0 means no ask is outstanding.
+    i64 bandageWtbHandedOffMs_ = 0;
     // Bandage errands that ended without a purchase since the last one that
     // worked. Bounds the walk from healer to healer: three silent counters
     // is a town without stock, and the cloth route answers that.

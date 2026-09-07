@@ -1448,11 +1448,39 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
             // is exactly the Corwyn death loop recorded above in the WindDown
             // phase: logged out in the wild, killed where it stood, full loot.
             const i64 leftMs = cfg_.sessionLimitMs - (obs.nowMs - sessionStartMs_);
-            if (cfg_.sessionLimitMs > 0 && leftMs < kMarketTripBudgetMs) {
+            // CHARGE THE TRIP THIS CHARACTER IS ACTUALLY MAKING.
+            //
+            // kMarketTripBudgetMs is the price of the WORST trip in the
+            // catalogue -- 250 s out, a three-minute listen, 250 s back -- and
+            // billing it to everyone means a life STANDING AT the rendezvous
+            // is told it cannot afford to open its mouth. Baelos, box open and
+            // 246 s of session in hand, was refused an 800 s journey
+            // (artifacts/gate_bandage20_20260907/Baelos.console.txt:1127-1128).
+            // Distance is the honest term: tiles from here, doubled for the
+            // way home, plus one announce cycle (there is no point arriving
+            // with no time to speak) and the wind-down reserve. At the market
+            // already that is zero travel, and the ask is free.
+            //
+            // Straight-line tiles, not a planned route: no plan exists yet at
+            // this point (TravelLastPlannedTiles is a tick behind the
+            // TravelToXxx call -- Runner.h VetoTripOverSessionBudget), and a
+            // floor can only wave a doubtful trip through, never wrongly kill
+            // a real one. EstimateTripTimeMs's own 50% slack covers the rest.
+            i32 marketTiles = 0;
+            if (const wm::Place* dest =
+                    haveMarket ? client.KnownPlace(market::kMarketBankPlaceId)
+                               : client.NearestServicePlace(wm::Service::Banker))
+                marketTiles = TileDist(obs.x, obs.y, dest->position.x,
+                                       dest->position.y);
+            const i64 tripNeedMs = life::MarketTripNeedMs(
+                marketTiles, kMaxAnnounces * kAnnounceIntervalMs,
+                kWindDownBudgetMs);
+            if (cfg_.sessionLimitMs > 0 && leftMs < tripNeedMs) {
                 LogLine("goal_blocked=TRADE_WITH_PLAYER reason=\"not enough "
-                        "session left for the trip\" left=%llds need=%llds",
+                        "session left for the trip\" tiles=%d left=%llds "
+                        "need=%llds", marketTiles,
                         static_cast<long long>(leftMs / 1000),
-                        static_cast<long long>(kMarketTripBudgetMs / 1000));
+                        static_cast<long long>(tripNeedMs / 1000));
                 planner_.Cooldown(GoalKind::TradeWithPlayer,
                                   obs.nowMs + kMarketQuietMs);
                 planner_.Finish(false, "not enough session left for the trip",
@@ -1739,6 +1767,14 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
             LogLine("trade: announcing '%s'", line.c_str());
             client.ActionSay(line.c_str());
             tradeAnnouncedMs_ = obs.nowMs;
+            // THE BANDAGE WINDOW STARTS HERE, on the wire, and nowhere else.
+            // runner/Gear.cpp's stand-down measures "waited out my own bandage
+            // WTB and no seller came" from this stamp; setting it where the
+            // ask was merely DECIDED let a character that never spoke conclude
+            // the market was empty (artifacts/gate_bandage20_20260907/
+            // triage.md section 1: 30 such lines, 0 announces).
+            if (want.item == "i_bandage" && bandageWtbAskedMs_ == 0)
+                bandageWtbAskedMs_ = obs.nowMs;
             // THE ANNOUNCEMENT IS THE PLAN, and it has to outlive this tick.
             //
             // A seller answers a WTB by walking over and OPENING A WINDOW.

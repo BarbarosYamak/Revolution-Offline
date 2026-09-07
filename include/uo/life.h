@@ -78,6 +78,21 @@ inline constexpr i64 EstimateTripTimeMs(i32 estimatedTiles) {
     return tiles * kTripMsPerTile * 3 / 2;
 }
 
+// WHAT A MARKET ERRAND COSTS FROM WHERE THE CHARACTER IS STANDING: out and
+// back, plus enough time on arrival to get one full announce cycle said, plus
+// the wind-down reserve. Runner.h's kMarketTripBudgetMs is the price of the
+// WORST such trip (250 s + a 3-minute listen + 250 s) and charging it flat
+// told a life already at the rendezvous, with 246 s in hand, that it could
+// not afford an 800 s journey it did not have to make
+// (artifacts/gate_bandage20_20260907/Baelos.console.txt:1127-1128). At zero
+// tiles this is the announce cycle and the reserve and nothing else: asking
+// out loud where you already stand costs no travel at all.
+inline i64 MarketTripNeedMs(i32 tilesToMarket, i64 announceCycleMs,
+                            i64 windDownBudgetMs) {
+    return 2 * EstimateTripTimeMs(tilesToMarket) + announceCycleMs +
+           windDownBudgetMs;
+}
+
 // True when a trip of this many tiles can be walked AND wind-down can still
 // happen afterwards, out of the session time actually left. `remainingMs`
 // is what Observe() already computes per goal (sessionLimitMs minus
@@ -1420,9 +1435,23 @@ struct BandageSupplyPlan {
 // passed (one full announce cycle, kMaxAnnounces x kAnnounceIntervalMs), so a
 // seller who never comes cannot hold the fight up for the market's three
 // minutes. `marketQuiet` is the fleet-wide "just tried, nobody there".
+//
+// `couldNotAsk` IS A DIFFERENT FACT FROM `waitedOut`, AND HAS TO SAY SO.
+// Both send the character to the scissors, but only one of them is evidence
+// about the market. `waitedOut` requires that a WTB was actually spoken; it
+// used to be measured from the advisory hand-off instead, so ten of sixteen
+// fighters reported "waited out my own bandage WTB and no seller came" in a
+// gate where the string `trade: announcing 'WTB ... i_bandage'` appears zero
+// times (artifacts/gate_bandage20_20260907/triage.md section 1). A bot that
+// never opened its mouth must not be allowed to conclude the market is empty
+// -- that is a false observation, and false observations are how a fleet
+// teaches itself not to trade. `couldNotAsk` is the honest form: the ask was
+// planned, the character never reached a place to make it, and nothing at all
+// has been learned about who sells bandages.
 inline BandageSupplyPlan PlanBandageSupply(const prof::Profession* p, i32 gold,
                                            bool sellersDeclined,
-                                           bool marketQuiet, bool waitedOut) {
+                                           bool marketQuiet, bool waitedOut,
+                                           bool couldNotAsk = false) {
     BandageSupplyPlan out;
     if (sellersDeclined) {
         out.why = "asked the player market for bandages and nobody answered";
@@ -1430,6 +1459,11 @@ inline BandageSupplyPlan PlanBandageSupply(const prof::Profession* p, i32 gold,
     }
     if (waitedOut) {
         out.why = "waited out my own bandage WTB and no seller came";
+        return out;
+    }
+    if (couldNotAsk) {
+        out.why = "never got within earshot to ask for bandages, so cutting "
+                  "cloth instead";
         return out;
     }
     if (marketQuiet) {

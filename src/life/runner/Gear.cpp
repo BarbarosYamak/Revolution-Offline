@@ -116,27 +116,62 @@ bool Runner::StandDownBandageShopping(const Observation& obs, const char* why,
     // errand is still the thing this character is doing. Local because the two
     // terms are private members of Runner.
     const i64 bandageWtbWaitMs = kMaxAnnounces * kAnnounceIntervalMs;   // 48s
-    const bool waitedOut = bandageWtbAskedMs_ > 0 &&
+    // THE WINDOW OPENS ON THE WORDS, NOT ON THE INTENTION. bandageWtbAskedMs_
+    // is now stamped by DoTradeWithPlayer at the instant `trade: announcing
+    // 'WTB ... i_bandage'` goes out on the wire (runner/Economy.cpp), so
+    // `waitedOut` can only ever be true of a character that really asked.
+    const bool announced = bandageWtbAskedMs_ > 0;
+    const bool waitedOut = announced &&
                            obs.nowMs - bandageWtbAskedMs_ >= bandageWtbWaitMs;
+    // ... and the ask still needs a deadline of its own, or a character who
+    // can never reach a market waits forever for a window that never opens
+    // and never picks up the scissors. This is that bound, measured from the
+    // hand-off, deliberately longer than the window: one market trip's worth
+    // of session (kMarketTripBudgetMs) is how long "on my way to ask" can
+    // honestly last. It reports a DIFFERENT reason -- see PlanBandageSupply.
+    const bool couldNotAsk = !announced && bandageWtbHandedOffMs_ > 0 &&
+                             obs.nowMs - bandageWtbHandedOffMs_ >=
+                                 kMarketTripBudgetMs;
     const life::BandageSupplyPlan plan = life::PlanBandageSupply(
         needCfg_.profession, obs.gold,
-        SellersDeclined("i_bandage", obs.nowMs), obs.marketQuiet, waitedOut);
+        SellersDeclined("i_bandage", obs.nowMs), obs.marketQuiet, waitedOut,
+        couldNotAsk);
     LogLine("bandages: shop route closed (%s) -- next route %s because %s",
             why ? why : "no reason given", life::BandageSupplyName(plan.route),
             plan.why);
 
     if (plan.route == life::BandageSupply::AskPlayers) {
-        // The clock starts on the ASK, not on the answer. A hand-off is
-        // advice: TRADE_WITH_PLAYER still has to out-score the field and walk
-        // to the bank, and if it never does, this window expiring is what
-        // sends the character to the scissors anyway.
-        if (bandageWtbAskedMs_ == 0) bandageWtbAskedMs_ = obs.nowMs;
+        // ARM THE HAND-OFF, DO NOT MERELY ANNOUNCE IT.
+        //
+        // `to` in HandOff is advisory (runner/Core.cpp): the next goal is
+        // whatever Planner::Select picks out of the unchanged need scores.
+        // Both candidates carry weight 145 (Goals.cpp); NeedMakeBandages tops
+        // out at 0.25 + 0.45 = 0.70 and NeedTrade's buy arm at 0.15 + 0.40 =
+        // 0.55 (Needs.cpp), so past ~2/3 shortfall MAKE_BANDAGES wins the very
+        // next tick and the WTB is never spoken -- Baelos 13:05:15,
+        // MAKE_BANDAGES 83.2 against TRADE_WITH_PLAYER 79.8
+        // (artifacts/gate_bandage20_20260907/triage.md section 1).
+        //
+        // A COOLDOWN, NOT A SCORE BUMP. The cooldown is the mechanism HandOff
+        // already leans on ("the cooldown is load-bearing", Core.cpp); it is
+        // bounded by the same 48 s the WTB window is measured in; it expires
+        // by itself, so the scissors route is deferred and never starved; and
+        // it leaves the need's own urgency arithmetic alone. A bump would have
+        // to live inside Planner::Score, where it would sit in the comparison
+        // for every other goal this character ever weighs -- a far wider blast
+        // radius for the same one-tick effect.
+        planner_.Cooldown(GoalKind::MakeBandages, obs.nowMs + bandageWtbWaitMs);
+        if (bandageWtbHandedOffMs_ == 0) bandageWtbHandedOffMs_ = obs.nowMs;
         return HandOff(planner_.Current().kind, GoalKind::TradeWithPlayer,
                        restMs, plan.why, obs.nowMs);
     }
     // Asked and unanswered, or never askable. The self-supply chain below is
-    // exactly what it was before this route existed.
+    // exactly what it was before this route existed -- and the rest laid on
+    // MAKE_BANDAGES above is lifted here, because the goal being handed to
+    // must never be a goal this handler is still holding down.
     bandageWtbAskedMs_ = 0;
+    bandageWtbHandedOffMs_ = 0;
+    planner_.ClearCooldown(GoalKind::MakeBandages);
     return HandOff(planner_.Current().kind, GoalKind::MakeBandages, restMs,
                    plan.why, obs.nowMs);
 }

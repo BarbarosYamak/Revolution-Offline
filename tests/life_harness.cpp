@@ -154,13 +154,23 @@ struct RunnerHarnessAccess {
                              const Observation& obs) {
         return runner.DoMakeBandages(client, obs);
     }
-    // WHICH ROUTE THE BANDAGE STAND-DOWN TOOK. bandageWtbAskedMs_ is the
+    // WHICH ROUTE THE BANDAGE STAND-DOWN TOOK. bandageWtbHandedOffMs_ is the
     // clock the WTB branch starts and the cut branch clears, so after the call
-    // "non-zero" IS "asked a player" -- no second flag to drift from it.
+    // "non-zero" IS "took the ask route" -- no second flag to drift from it.
+    //
+    // It used to read bandageWtbAskedMs_, which was the same clock until the
+    // two facts were split: "I decided to ask" (this one) and "the words went
+    // out on the wire" (bandageWtbAskedMs_, now stamped only by the WTB
+    // announce in runner/Economy.cpp). Only the second may ever be reported as
+    // a market result -- ten of sixteen fighters concluded "no seller came"
+    // without ever speaking (artifacts/gate_bandage20_20260907/triage.md).
+    // The assertions below are unchanged; this reads the field that now
+    // carries the fact they were always about.
     struct BandageRoute { bool askPlayers = false; std::string why; };
     static BandageRoute BandageStandDown(Runner& runner, const Observation& obs,
                                          i64 askedMs, bool sellersDeclined) {
         runner.bandageWtbAskedMs_ = askedMs;
+        runner.bandageWtbHandedOffMs_ = askedMs;
         runner.bandageCountersDrained_ = 1;
         if (sellersDeclined) {
             runner.state_.memory.NoteEvent("no_player_seller", "i_bandage", "",
@@ -171,7 +181,7 @@ struct RunnerHarnessAccess {
         runner.StandDownBandageShopping(obs, "every counter in town is empty",
                                         1000);
         BandageRoute r;
-        r.askPlayers = runner.bandageWtbAskedMs_ != 0;
+        r.askPlayers = runner.bandageWtbHandedOffMs_ != 0;
         r.why = runner.leavePendingWhy_;
         return r;
     }
