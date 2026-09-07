@@ -1661,7 +1661,7 @@ void Runner::Tick(Client& client, i64 nowMs) {
             const wm::Region* hereRegion = client.CurrentRegion();
             std::vector<Client::HostileHit> logoutThreats;
             client.ScanHostiles(12, logoutThreats);
-            const bool safeHere = logoutThreats.empty() &&
+            bool safeHere = logoutThreats.empty() &&
                                  (client.BankContainer() != 0 ||
                                   (hereRegion && hereRegion->flags.guarded) ||
                                   (bank && TileDist(bank->x, bank->y, client.PlayerX(),
@@ -1683,6 +1683,91 @@ void Runner::Tick(Client& client, i64 nowMs) {
                             client.TravelFailureText());
                 }
                 return;
+            }
+
+            // WIND-DOWN TRAVEL MUST NEVER ROUTE THROUGH HOSTILES (owner
+            // ruling, 2026-09-07).
+            //
+            // Odessa asked to end her session at 00:54:08 on 2026-09-07, had
+            // learned no bank, took the "asking the world for one" leg below,
+            // walked north through the orc camp and was killed at (1448,1375)
+            // by a harpy and three orcs at 00:55:57 (Sphere log). The
+            // engagement layer added at 0f649fd makes her flee -- but no goal
+            // runs in this phase, DoSurvive included, so the only guard on
+            // that walk was the HP watchdog. The destination itself has to be
+            // the safe one.
+            //
+            // A guard line is nearly always far closer than the counter inside
+            // it, and Sphere summons guards on the spoken keyword and nothing
+            // else (Survive.cpp, CallGuardsIfProtected). So: shout if this
+            // ground already answers, else run to the nearest ground that
+            // does, and only then think about a bank.
+            const Observation wdObs = Observe(client, nowMs);
+            const i32 threatCount =
+                std::max(static_cast<i32>(logoutThreats.size()),
+                         wdObs.hostilesNear);
+            if (threatCount > 0 || wdObs.attackersOnMe > 0 || wdObs.underAttack) {
+                if (CallGuardsIfProtected(client, wdObs)) {
+                    // Standing in the protection we need: holding here beats
+                    // any leg at all. The 15 s throttle inside the call keeps
+                    // this to one shout, and safeHere turns true by itself
+                    // once the guards have cleared the street.
+                    //
+                    // Bounded by the ordinary wind-down budget, because a
+                    // hostile merely IN SCAN need never come close enough for
+                    // a guard to answer -- one loitering outside the line
+                    // would otherwise hold the session open for ever. Two
+                    // minutes in, guarded ground with the guards already
+                    // called is the safest logout this session can still
+                    // reach, and taking it beats walking off to look for a
+                    // better one.
+                    if (!outOfTime) return;
+                    LogLine("wind-down: %d hostile(s) still in scan after "
+                            "%llds inside %s -- guarded ground with the "
+                            "guards called is the safest logout left",
+                            threatCount,
+                            static_cast<long long>(windDownMs / 1000),
+                            hereRegion ? hereRegion->name.c_str() : "cover");
+                    safeHere = true;
+                } else {
+                    const wm::Place* guarded =
+                        runner_detail::NearestGuardedPlace(
+                            client.WorldAtlas(), client.PlayerX(),
+                            client.PlayerY());
+                    if (guarded) {
+                        LogLine("wind-down: %d hostile(s) in scan -- running "
+                                "for guarded ground at %s (%d,%d), %d tiles, "
+                                "before any bank trip",
+                                threatCount, guarded->name.c_str(),
+                                guarded->position.x, guarded->position.y,
+                                TileDist(guarded->position.x,
+                                         guarded->position.y, client.PlayerX(),
+                                         client.PlayerY()));
+                        travelInFlight_ = client.TravelToPoint(
+                            guarded->position.x, guarded->position.y, 3,
+                            "logout_guarded");
+                        if (travelInFlight_) return;
+                        LogLine("wind-down: could not start the run to guarded "
+                                "ground (%s)", client.TravelFailureText());
+                    }
+                    // NOT WALKING IS THE DECISION. With something hostile in
+                    // scan and no guard line to reach, a long overland leg is
+                    // the Odessa route again. Standing still leaves the
+                    // survival layer and the HP watchdog the ones that act.
+                    if (!windDownBlockedLogged_) {
+                        windDownBlockedLogged_ = true;
+                        LogLine("goal_failed=WIND_DOWN reason=\"%d hostile(s) "
+                                "in scan at %d,%d and no guarded ground to run "
+                                "to -- standing still rather than walking a "
+                                "hostile route\"",
+                                threatCount, client.PlayerX(), client.PlayerY());
+                        state_.memory.NoteEvent(
+                            "logout_safety_blocked",
+                            "hostile in scan and no guard line reachable", "",
+                            client.PlayerX(), client.PlayerY(), nowMs);
+                    }
+                    return;
+                }
             }
 
             // Bounded, and it has to be: the alternative to "log out here" is

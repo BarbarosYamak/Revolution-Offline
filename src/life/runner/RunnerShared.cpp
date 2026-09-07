@@ -161,5 +161,37 @@ GoalKind ProducingGoalFor(const std::string& item) {
     return GoalKind::Craft;
 }
 
+// --- where a miner is allowed to work, and where a wind-down runs to -------
+
+const wm::Place* PickAllowedMine(const world_atlas::Atlas* atlas,
+                                 const char** outId) {
+    if (outId) *outId = "";
+    if (!atlas || !atlas->Ready()) return nullptr;
+    for (const char* id : kMinocMinePlaceIds) {
+        const wm::Place* p = atlas->PlaceById(id);
+        // Yields(Mining) is not decoration: the allow-list is written by hand
+        // and the atlas is regenerated, so a row that stopped being a mine
+        // must stop being a destination rather than send a miner to stand on
+        // it swinging at nothing.
+        if (!p || !p->Yields(wm::ResourceKind::Mining)) continue;
+        if (outId) *outId = id;
+        return p;
+    }
+    return nullptr;
+}
+
+const wm::Place* NearestGuardedPlace(const world_atlas::Atlas* atlas, i32 x,
+                                     i32 y) {
+    if (!atlas || !atlas->Ready()) return nullptr;
+    const wm::Place* best = nullptr;
+    i32 bestDist = 0;
+    for (const wm::Place& p : atlas->Places()) {
+        if (!atlas->PlaceIsGuarded(p)) continue;
+        const i32 d = TileDist(p.position.x, p.position.y, x, y);
+        if (!best || d < bestDist) { best = &p; bestDist = d; }
+    }
+    return best;
+}
+
 }  // namespace runner_detail
 }  // namespace uo::life

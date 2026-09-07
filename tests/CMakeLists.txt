@@ -722,6 +722,19 @@ target_compile_definitions(life_harness PRIVATE
 
 add_test(NAME life_harness COMMAND life_harness ${CMAKE_CURRENT_BINARY_DIR})
 
+# --- mine_and_winddown: the two owner rulings of 2026-09-07 ----------------
+# A. every MINE trip goes to the Minoc mine, whatever the character's home
+#    city (the allow-list kMinocMinePlaceIds, read straight from the atlas).
+# B. wind-down travel never routes through hostiles: with something in scan
+#    the leg is to the nearest guarded ground, never a bank across country.
+# Its own process, because SharedWorld loads exactly one atlas per process
+# and section B needs a fixture world of its own.
+add_executable(mine_and_winddown mine_and_winddown.cpp)
+target_link_libraries(mine_and_winddown PRIVATE uo_client_core)
+target_include_directories(mine_and_winddown PRIVATE ${CMAKE_SOURCE_DIR}/src)
+add_test(NAME mine_and_winddown COMMAND mine_and_winddown
+         ${CMAKE_SOURCE_DIR}/data ${CMAKE_CURRENT_BINARY_DIR})
+
 # Separate process: SharedWorld deliberately loads exactly one atlas per process.
 add_executable(life_world_harness life_world_harness.cpp)
 target_link_libraries(life_world_harness PRIVATE uo_client_core)

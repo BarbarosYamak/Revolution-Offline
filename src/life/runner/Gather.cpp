@@ -1709,13 +1709,24 @@ bool Runner::DoMine(Client& client, const Observation& obs) {
     // elsewhere" every time. Walk into the area, then swing.
     bool atHomeMineInterior = false;
     {
-        // A fresh miner knows the mine in their home city.  The generic atlas
-        // picker is intentionally nearest-to-current-position, which sent
-        // Draver from his Jhelom spawn to a Britain resource centroid even
-        // though his seeded home knowledge says Minoc.  Use that known lead
-        // first; it is an ordinary journey, never a teleport or global fact.
+        // MINOC, WHATEVER THIS LIFE CALLS HOME. Owner ruling 2026-09-07,
+        // spelled out in kMinocMinePlaceIds (RunnerInternal.h): every MINE
+        // trip goes to the Minoc mine and the Britain-area mines are off the
+        // list. The selection this replaced took the hinted ore lead whose
+        // LABEL carried the home city's name, which is precisely how a
+        // Britain resident was sent to Brit Mine1. A miner living elsewhere
+        // now plans an ordinary journey to Minoc -- moongate included, the
+        // way Kharain already travels -- never a teleport or a global fact.
+        const char* minocMineId = "";
+        const wm::Place* minocMine =
+            runner_detail::PickAllowedMine(client.WorldAtlas(), &minocMineId);
+
+        // The allow-list resolving to nothing means no atlas or a regenerated
+        // one that dropped both rows: a data fault, not licence to mine
+        // anywhere. Refusing outright would strand every miner on it, so the
+        // old hinted home lead remains as the named, logged fallback.
         const KnownResourceSource* homeMine = nullptr;
-        if (!state_.homeCity.empty()) {
+        if (!minocMine && !state_.homeCity.empty()) {
             for (const KnownResourceSource& source : state_.memory.Resources()) {
                 if (source.resource != "ore" || !source.hinted ||
                     source.label.find(state_.homeCity) == std::string::npos)
@@ -1731,13 +1742,27 @@ bool Runner::DoMine(Client& client, const Observation& obs) {
         // against the actual destination we selected, otherwise a miner who
         // successfully reaches the interior will keep trying to return to the
         // entrance and exhaust the trip budget without ever swinging.
+        i32 mineSeedX = 0, mineSeedY = 0;           // the place's own centroid
+        std::string mineLabel;
+        bool haveMineTarget = false;
+        if (minocMine) {
+            mineSeedX = minocMine->position.x;
+            mineSeedY = minocMine->position.y;
+            mineLabel = minocMine->name;
+            haveMineTarget = true;
+        } else if (homeMine) {
+            mineSeedX = homeMine->x;
+            mineSeedY = homeMine->y;
+            mineLabel = homeMine->label;
+            haveMineTarget = true;
+        }
         i32 homeMineX = 0, homeMineY = 0;
         bool homeMineInterior = false;
-        if (homeMine) {
-            homeMineX = homeMine->x;
-            homeMineY = homeMine->y;
+        if (haveMineTarget) {
+            homeMineX = mineSeedX;
+            homeMineY = mineSeedY;
             homeMineInterior = client.MiningInteriorTarget(
-                homeMine->x, homeMine->y, &homeMineX, &homeMineY);
+                mineSeedX, mineSeedY, &homeMineX, &homeMineY);
             // Close to the centroid OR genuinely inside the cave's own RECTs.
             // The centroid-only test flips false the moment a miner walks
             // toward a real rock near the RECT's edge (Minoc Mine 1 is
@@ -1749,7 +1774,7 @@ bool Runner::DoMine(Client& client, const Observation& obs) {
             atHomeMineInterior =
                 homeMineInterior &&
                 (TileDist(homeMineX, homeMineY, hereX, hereY) <= kMineReach ||
-                 client.WithinMiningRegion(homeMine->x, homeMine->y, hereX,
+                 client.WithinMiningRegion(mineSeedX, mineSeedY, hereX,
                                            hereY));
         }
         // ALREADY INSIDE THE CAVE IS ALREADY ARRIVED. atHomeMineInterior above
@@ -1764,7 +1789,7 @@ bool Runner::DoMine(Client& client, const Observation& obs) {
         // (run_gates/g_Draver.console.txt, g_Kharain.console.txt). The 2026-09-02
         // fix added WithinMiningRegion to atHomeMineInterior but left this gate
         // reading the centroid alone, so the ping-pong it describes survived.
-        if (homeMine && !atHomeMineInterior &&
+        if (haveMineTarget && !atHomeMineInterior &&
             TileDist(homeMineX, homeMineY, hereX, hereY) > kMineReach) {
             // A journey, not a sitting: ride it if we got off for one here.
             if (RemountAfterWork(client, obs)) return false;
@@ -1777,16 +1802,27 @@ bool Runner::DoMine(Client& client, const Observation& obs) {
                 return false;
             }
             i32 mineX = homeMineX, mineY = homeMineY;
-            std::string destination = homeMine->label;
+            std::string destination = mineLabel;
+            // Once per trip, so the ruling is visible in the run log next to
+            // the journey it caused rather than inferred from coordinates.
+            if (minocMine) {
+                LogLine("mine: Minoc only (owner 2026-09-07) -> %s",
+                        minocMineId);
+            } else {
+                LogLine("mine: Minoc only (owner 2026-09-07) -> unavailable "
+                        "(no allow-listed mine in this atlas); falling back to "
+                        "the %s lead %s", state_.homeCity.c_str(),
+                        mineLabel.c_str());
+            }
             if (homeMineInterior) {
                 destination += " interior";
                 LogLine("mine: %s resident going directly to the interior of "
                         "%s at %d,%d (trip %d)", state_.homeCity.c_str(),
-                        homeMine->label.c_str(), mineX, mineY, mineTrips_);
+                        mineLabel.c_str(), mineX, mineY, mineTrips_);
             } else {
                 LogLine("mine: %s resident going to known %s at %d,%d "
                         "(interior unavailable; trip %d)",
-                        state_.homeCity.c_str(), homeMine->label.c_str(),
+                        state_.homeCity.c_str(), mineLabel.c_str(),
                         mineX, mineY, mineTrips_);
             }
             travelInFlight_ = client.TravelToPoint(mineX, mineY, 3,
@@ -1794,7 +1830,13 @@ bool Runner::DoMine(Client& client, const Observation& obs) {
             nextActionMs_ = obs.nowMs + 2500;
             return false;
         }
-        const i32 d = client.DistanceToResource(wm::ResourceKind::Mining);
+        // THE GENERIC PICKER IS NEAREST-FIRST, so it is exactly what the
+        // 2026-09-07 ruling forbids: standing anywhere near Britain it walks
+        // to Brit Mine1. It stays only as the no-allow-list path; once the
+        // Minoc target resolved, reaching it above IS arrival and there is
+        // nothing left for a nearest-resource walk to add.
+        const i32 d = minocMine ? 0
+                                : client.DistanceToResource(wm::ResourceKind::Mining);
         if (d > kMineReach) {
             if (RemountAfterWork(client, obs)) return false;
             if (++mineTrips_ > kMaxMineTrips) {

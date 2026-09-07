@@ -821,6 +821,24 @@ constexpr i32 kAtOreDistance = 45;
 // beyond a few means walking in rather than hammering the ground.
 constexpr i32 kMineReach = 6;
 constexpr i32 kMaxMineTrips = 3;
+
+// ONE MINE, AND IT IS MINOC'S. Owner ruling, 2026-09-07: "every MINE trip
+// goes to the Minoc mine regardless of home city; Britain-area mines are off
+// the list for now". It binds every row with a MINE goal -- miner_smith,
+// mage_blacksmith, full_crafter, merchant_tinker and the rest -- so a miner
+// who lives elsewhere plans the journey the same way Kharain already does
+// from his own home (run_gates/g_Kharain.console.txt 00:44-00:55, moongate
+// loop, 34 ingots).
+//
+// Atlas PLACE ids, not coordinates, on purpose: the destination then moves
+// with a regenerated atlas instead of rotting into a literal. Both rows are
+// in data/revolution_atlas.txt and both yield `mining`; Minoc Mine 1 is the
+// owner's anchor (interior near 2566,484, forge inside at 2561,501) and the
+// camp above it is the same region's second face.
+inline constexpr const char* kMinocMinePlaceIds[] = {
+    "minoc_mine_1_resource_area",
+    "minoc_mining_camp_resource_area",
+};
 // How far DoMine scans for genuine rock once travel says it has arrived.
 // TravelToResource is satisfied at the resource area's RADIUS (Minoc's is
 // r=20), so "arrived" can still be a full radius from the rock; the scan must
@@ -1430,6 +1448,21 @@ inline bool HandsBusy(Client& c) {
 inline i32 TileDist(i32 ax, i32 ay, i32 bx, i32 by) {
     return std::max(ax > bx ? ax - bx : bx - ax, ay > by ? ay - by : by - ay);
 }
+
+// The one mine this life may work today (owner ruling 2026-09-07 above).
+// Null when the atlas is missing or carries none of the allow-listed ids --
+// a data fault, not a policy decision, and the caller says so in its log.
+// `outId` receives the id that matched, for the once-a-trip log line.
+const wm::Place* PickAllowedMine(const world_atlas::Atlas* atlas,
+                                 const char** outId);
+
+// Nearest ground a guard will answer on, by Chebyshev tiles. Wind-down needs
+// this because "somewhere safe" and "the bank" are not the same destination
+// when something hostile is already in scan: the guard line is usually much
+// closer than the counter inside it, and the walk to it is the short one.
+// Null when the atlas knows no guarded place at all.
+const wm::Place* NearestGuardedPlace(const world_atlas::Atlas* atlas, i32 x,
+                                     i32 y);
 
 
 }  // namespace runner_detail

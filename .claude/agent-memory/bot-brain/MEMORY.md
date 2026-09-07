@@ -39,3 +39,5 @@
 - [An allowance resets, knowledge does not](an-allowance-resets-knowledge-does-not.md) — trip counters belong to the errand and count arrivals; shops-already-tried lists survive
 - [A self-use skill has no failure message](a-self-use-skill-has-no-failure-message.md) — judge a practice bout by the 0x3A delta; Meditation at full mana cannot even start
 - [A blocked need shadows a ready one](a-blocked-need-shadows-a-ready-one.md) — FindNeed takes the first of a kind and the list is urgency-sorted; blocked entries get 0.0
+- [A phase is not a goal](a-phase-is-not-a-goal.md) — no goal runs in Phase::WindDown, so DoSurvive never guarded the logout walk; safety lives in the destination
+- [A label match is not a place](a-label-match-is-not-a-place.md) — "home city inside the hint's label" sent a Britain tinker to Brit Mine1; owner rules about WHERE need atlas PLACE ids
