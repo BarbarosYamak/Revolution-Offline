@@ -90,32 +90,9 @@ struct TradePolicy {
     i32 minimumSurplusToOffer = 5;
 };
 
-// THE SHARD'S MARKET -- one deterministic point for the whole fleet.
-//
-// data/revolution_atlas.txt:2108
-//   PLACE britain_bank_2 bank a_townBritain 1425 1690 0 5 banker
-// which atlasgen derived from the shard's own save,
-// runtime/save/sphereb01w.scp:498579 and :498592 -- two t_custom_spawner_char
-// worldgems at P=1425,1690, SPAWNID=c_banker and SPAWNID=c_minter. The region
-// a_townBritain carries flag 0x1 (kFlagGuarded, src/world/Atlas.cpp:73,85) and
-// RECT a_townBritain 1410 1517 1690 1777 (atlas:903) contains the tile, so
-// ending a session here satisfies the never-log-out-in-the-open rule.
-//
-// WHY THIS BANK AND NOT britain_bank (atlas:2106, 1650,1608):
-//   * REVOLUTION_ECONOMY_FORUM_EVIDENCE.md:372-374 -- "Britain was
-//     overwhelmingly the trade hub" across ~530 market threads.
-//   * :385 (class S, staff) -- "Britain | Provisioner east of the bank".
-//     britain_provisioner_2 is at 1469,1668 (atlas:2102): 44 tiles EAST of
-//     1425,1690 and 181 tiles WEST of 1650,1608. Only the west bank fits.
-//   * :387 (S) -- coop officers "near the banks" in Britain.
-//   * It is the cheaper arrival from the Britain moongate.
-//
-// AN ID, NEVER COORDINATES. TravelToService(Banker, "Britain") would pick the
-// NEARER of the two Britain banks from the caller's position
-// (Atlas::NearestPlaceWithServiceInRegion), so a smith arriving from Minoc
-// lands at 1650,1608 while a Britain resident stands at 1425,1690 and the
-// rendezvous fails 250 tiles apart. A rendezvous has to be ONE place.
-constexpr const char* kMarketBankPlaceId = "britain_bank_2";
+// One shared rendezvous for inter-crafter trade. Owner requested Minoc first.
+// Resolve the atlas place id so every participant uses the same guarded bank.
+constexpr const char* kMarketBankPlaceId = "minoc_bank";
 
 // THE THRESHOLD BENDS WHEN THE PURSE IS EMPTY. A small lot is not worth a trip
 // when there is money to work with; when there is not, the small lot IS the

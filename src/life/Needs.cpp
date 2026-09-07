@@ -1410,7 +1410,7 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         // trip to the vein.  One twenty-metal batch proves the gather/smelt
         // loop before normal producer-to-producer buying resumes.
         const bool freshOreGatherer = [&] {
-            if (!cfg.profession || cfg.profession->gathers != "ore") return false;
+            if (!cfg.profession || cfg.profession->id != "miner_smith") return false;
             constexpr int kFirstSmithBatch = 20;
             const int metal = QtyIn(obs.pack, "i_ore_iron") +
                               QtyIn(obs.pack, "i_ingot_iron") +
@@ -1425,15 +1425,10 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
             // cannot log. The Runner asks for it, on the tick where it can
             // print it (`market: ... not buying`).
             //
-            // PACK COIN, NOT THE STATUS-BAR FIGURE. obs.gold counts the bank
-            // box, but DriveOpenTrade only ever offers coin found in the
-            // BACKPACK (FindBackpackItemByGraphic(kGoldCoin)) -- it does not
-            // fetch from the bank first. `buyPolicy` above is already keyed
-            // to obs.goldOnHand; the affordability check inside
-            // PlayerMarketWants has to be too, or a life scores a want it
-            // cannot actually pay for at the trade window.
+            // Savings make this errand feasible. The handler withdraws pack
+            // coin before any WTB; the trade window never spends bank gold.
             const std::vector<market::Want> buyable = market::PlayerMarketWants(
-                *cfg.profession, holdings, obs.goldOnHand, buyPolicy, nullptr);
+                *cfg.profession, holdings, obs.gold, buyPolicy, nullptr);
             if (!buyable.empty()) {
                 // SAME SHAPE AS THE SELLER, deliberately, so weight 145 in
                 // kGoals needs no re-tuning: a life 20 short of a 20-restock

@@ -1443,6 +1443,14 @@ void TestDemandSideWtb() {
                   "no profession requests scrolls or yarn from players");
     }
 
+    const auto* tinker = prof::Find("merchant_tinker");
+    Check(tinker && tinker->gathers == "ore", "tinker can mine when suppliers cannot fill its needs");
+    if (tinker) {
+        TradeIntent demand;
+        Check(ChooseBuyWant(*tinker, {}, PriceBook{}, TradePolicy{}, 5000, &demand) &&
+              demand.item == "i_ingot_iron", "a funded short tinker requests iron from producers");
+    }
+
     // --- the wire form, both directions ------------------------------------
     TradeIntent want;
     want.item = "i_log"; want.qty = 20; want.pricePerUnit = 4;

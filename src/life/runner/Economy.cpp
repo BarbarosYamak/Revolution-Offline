@@ -1366,9 +1366,19 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
                                                      tradePolicy_, &offer);
     const char* noBuyWhy = nullptr;
     const std::vector<market::Want> buyable =
-        market::PlayerMarketWants(*me, holdings, obs.goldOnHand, tradePolicy_,
+        market::PlayerMarketWants(*me, holdings, obs.gold, tradePolicy_,
                                   &noBuyWhy);
     const bool wantsToBuy = !buyable.empty();
+    // Plan from available savings, but fetch real pack coin before announcing.
+    // The secure-trade window still accepts only money actually carried.
+    if (!wantsToSell && wantsToBuy) {
+        market::TradeIntent purchase;
+        if (market::ChooseBuyWant(*me, holdings, state_.prices, tradePolicy_,
+                                  obs.gold, &purchase)) {
+            const i32 cash = me->goldReserve + purchase.qty * purchase.pricePerUnit;
+            if (FetchCoinForPurchase(client, obs, cash)) return false;
+        }
+    }
 
     if (!wantsToSell && !wantsToBuy) {
         // Nothing worth announcing -- most often because this character has

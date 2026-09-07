@@ -100,13 +100,10 @@ void TestMarketPlace(const std::string& dataDir) {
     Check(p != nullptr, "the atlas still has the market place id");
     if (!p) return;
 
-    // 1425,1690 is what atlasgen read out of the shard's own save
-    // (runtime/save/sphereb01w.scp:498579, c_banker at P=1425,1690). If the
-    // atlas ever says something else, the bot must follow the atlas -- but
-    // somebody has to be told, and this is the telling.
-    Check(p->position.x == 1425 && p->position.y == 1690,
-          "the market is still at 1425,1690");
-    Check(p->regionId == "a_townBritain", "and still inside a_townBritain");
+    // The owner-selected Minoc rendezvous comes from the generated atlas.
+    Check(p->position.x == 2503 && p->position.y == 552,
+          "the crafter market is at Minoc bank");
+    Check(p->regionId == "a_townMinoc", "inside guarded Minoc");
     Check(p->Offers(wm::Service::Banker),
           "it offers a banker -- the runtime refuses it otherwise");
     Check(atlas.PlaceIsGuarded(*p),
