@@ -36,6 +36,20 @@ ServicePick PickServicePlace(const Atlas& atlas, const route::RoutePlanner& plan
     // before, at the cost of one bad trip rather than every trip.
     opt.allowMoongates = true;
 
+    // Owner ruling 2026-09-07: ignore teleporters when ranking "nearest".
+    // Atlas transit tp_137 (Moonglow (4545,851) -> Papua (5736,3196)) costs
+    // only kTeleporterCost=4 in the planner's own units, so from Moonglow the
+    // "nearest" mage guildmaster/healer/bank came out as Papua -- an
+    // unguarded town (a_papua_4 carries no GUARDED flag) with a
+    // c_swamp_dragon spawner (MAXDIST=100) centred on it. Alder died there
+    // twice, and prior fleets logged 17+ "Papua minter ARRIVED" runs from
+    // this same miscalculation. Unlike a moongate, a teleporter's cheapness
+    // has nothing to do with real travel effort or safety, so it must not
+    // win a ranking a caller reads as "closest, therefore safe to send a bot
+    // to". TravelPlanRoute (the actual travel path) keeps its own
+    // RouteOptions and is unaffected by this.
+    opt.allowTeleporters = false;
+
     // WHY NOTHING WAS PICKED HAS TO BE SAYABLE. An unroutable candidate is not
     // a geography-policy rejection, so it stays out of `rejections` while a
     // winner exists -- but when EVERY candidate is unroutable the caller can

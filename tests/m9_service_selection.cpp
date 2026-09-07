@@ -180,6 +180,155 @@ void TestPolicySynthetic() {
 }
 
 // ---------------------------------------------------------------------------
+// A2. Owner ruling 2026-09-07: "ignore teleporter when calculating nearest."
+// Atlas transit tp_137 (Moonglow (4545,851) -> Papua (5736,3196)) costs only
+// kTeleporterCost=4 in the route planner's own units, so a ranking that still
+// let teleporters count made an unguarded, dragon-spawner town look like the
+// "nearest" mage guildmaster/healer/bank from Moonglow. PickServicePlace must
+// set opt.allowTeleporters = false so a place reachable ONLY by teleporter
+// can never outrank a walkable one, no matter how cheap the raw planner finds
+// the teleporter trip. Home smith sits in an 8x8 connected block that also
+// holds the standing point; the island cell is a single passable cell with
+// zero edges of its own and no passable neighbour, so on foot it is not
+// merely far -- it is provably unreachable. The teleporter's "from" tile is
+// the standing point itself, so WITH teleporters allowed the island trip
+// costs 4 (one hop) against home_smith's 10 tiles walked: the shortest-tiles
+// candidate on offer is exactly the one that must lose once ranking ignores
+// teleporters.
+// ---------------------------------------------------------------------------
+const char* const kTeleporterAtlasText =
+    "# synthetic atlas: nearest-service ranking must ignore teleporter hops\n"
+    "MAP\t0\t2048\t2048\n"
+    "REGION\ta_world\tworld\t0\t1024\t1024\t0\tALLMAP\tBritannia\n"
+    "RECT\ta_world\t0\t0\t2047\t2047\n"
+    "REGION\ta_home\ttown\t1\t60\t60\t0\tHome\tHome\n"
+    "RECT\ta_home\t20\t20\t100\t100\n"
+    "REGION\ta_island\ttown\t1\t1900\t1900\t0\tIsland\tIsland\n"
+    "RECT\ta_island\t1860\t1860\t1940\t1940\n"
+    "PLACE\thome_smith\tshop\ta_home\t40\t40\t0\t5\tblacksmith\t\tHome smith\n"
+    "PLACE\tisland_smith\tshop\ta_island\t1900\t1900\t0\t5\tblacksmith\t\tIsland smith (teleporter-only)\n"
+    "TRANSIT\ttp_home__island\tteleporter\t30\t30\t0\t1900\t1900\t0\t0\tIsland\n";
+
+// An 8x8 block of mutually-connected passable cells (well over the 24-cell
+// connectivity floor RoutePlanner uses, so neither the standing point nor
+// home_smith gets snapped elsewhere) holding the standing point (30,30) and
+// home_smith (40,40); one isolated passable cell far away at (1900,1900)
+// with zero edges to anything, standing in for "the only way there is the
+// transit" -- there is no walk path to it at any cost, not merely a long one.
+void MakeMainlandIslandGrid(navgrid::NavGrid& grid) {
+    constexpr u32 kCX = 128, kCY = 128;   // 2048 / 16
+    std::vector<navgrid::Cell> cells(static_cast<usize>(kCX) * kCY);
+    for (navgrid::Cell& c : cells) {
+        c.anchorOffX = 8;
+        c.anchorOffY = 8;
+        c.anchorZ = 0;
+    }
+    static const i32 kDelta[8][2] = {
+        {0, -1}, {1, -1}, {1, 0}, {1, 1}, {0, 1}, {-1, 1}, {-1, 0}, {-1, -1},
+    };
+    constexpr u32 kMainlandSize = 8;
+    for (u32 cy = 0; cy < kMainlandSize; ++cy) {
+        for (u32 cx = 0; cx < kMainlandSize; ++cx) {
+            navgrid::Cell& c = cells[static_cast<usize>(cy) * kCX + cx];
+            c.flags = navgrid::kCellPassable;
+            for (u8 dir = 0; dir < 8; ++dir) {
+                const i32 nx = static_cast<i32>(cx) + kDelta[dir][0];
+                const i32 ny = static_cast<i32>(cy) + kDelta[dir][1];
+                if (nx < 0 || ny < 0 ||
+                    nx >= static_cast<i32>(kMainlandSize) ||
+                    ny >= static_cast<i32>(kMainlandSize))
+                    continue;
+                c.edges |= static_cast<u8>(1u << dir);
+            }
+        }
+    }
+    // (1900,1900) / 16 = cell (118,118). Passable, zero edges, no passable
+    // neighbour anywhere nearby -- an island by construction.
+    navgrid::Cell& island = cells[static_cast<usize>(118) * kCX + 118];
+    island.flags = navgrid::kCellPassable;
+    grid.Adopt(kCX, kCY, cells.data());
+}
+
+void TestTeleportersIgnoredForRanking() {
+    std::printf("-- ranking a nearest service ignores teleporter hops --\n");
+    world_atlas::Atlas atlas;
+    std::string err;
+    if (!atlas.LoadFromText(kTeleporterAtlasText, &err)) {
+        Check(false, "teleporter-ranking synthetic atlas loads");
+        std::printf("  (%s)\n", err.c_str());
+        return;
+    }
+    navgrid::NavGrid grid;
+    MakeMainlandIslandGrid(grid);
+    route::RoutePlanner planner(atlas, grid);
+    Check(planner.Ready(), "planner ready with the mainland/island grid");
+
+    // Prove the shape of the trap first, against the raw planner (not the
+    // selection policy): WITH teleporters allowed, the island smith is a
+    // one-hop, 4-unit trip -- cheaper than walking to home_smith (10 tiles)
+    // -- because the transit's "from" tile IS the standing point. If
+    // PickServicePlace ever went back to RouteOptions' own default
+    // (allowTeleporters = true), it would pick the island every time.
+    {
+        route::RouteOptions opt;
+        opt.allowTeleporters = true;
+        const route::WorldRoute viaTeleporter =
+            planner.Plan(30, 30, 1900, 1900, opt);
+        Check(viaTeleporter.ok,
+              "the raw planner CAN reach the island via its teleporter");
+        if (viaTeleporter.ok) {
+            Check(viaTeleporter.transitHops == 1, "one teleporter hop");
+            Check(viaTeleporter.estimatedTiles < 10,
+                  "the teleporter route is cheaper than walking to home_smith");
+        }
+    }
+    // Without a teleporter, the island cell has no walk edge to or from
+    // anywhere: this is what "reachable only via a teleporter edge" means
+    // for this test, not merely "far".
+    {
+        route::RouteOptions opt;
+        opt.allowTeleporters = false;
+        const route::WorldRoute walkOnly =
+            planner.Plan(30, 30, 1900, 1900, opt);
+        Check(!walkOnly.ok,
+              "with teleporters off, the planner cannot reach the island at all");
+    }
+
+    // Case 1: both candidates on offer. The walkable home_smith must win even
+    // though the teleporter route proven above is shorter in tiles.
+    {
+        std::vector<world_atlas::ServiceRejection> rej;
+        const world_atlas::ServicePick pick = world_atlas::PickServicePlace(
+            atlas, planner, wm::Service::Blacksmith, 30, 30, {}, false, &rej);
+        Check(pick.place && pick.place->id == "home_smith",
+              "a walkable smith is chosen over a teleporter-only one, even "
+              "though the teleporter trip is the shorter one");
+    }
+
+    // Case 2: the ONLY candidate is teleporter-only. Documented OBSERVED
+    // result -- this brief does not change it either way: because
+    // PickServicePlace's ranking never allows teleporters, the place is
+    // unroutable under that policy and the pick comes back null ("no place
+    // offers X"), it is not picked anyway as a farOk-less fallback the way an
+    // over-cap-but-walkable candidate would be (see Section A's farside_smith
+    // case). The rejection still carries the planner's reason so a caller is
+    // never left with silence.
+    {
+        std::vector<world_atlas::ServiceRejection> rej;
+        const world_atlas::ServicePick pick = world_atlas::PickServicePlace(
+            atlas, planner, wm::Service::Blacksmith, 30, 30, {"home_smith"},
+            false, &rej);
+        Check(pick.place == nullptr,
+              "observed: a teleporter-only place is NOT picked when it is "
+              "the only candidate (unroutable under the no-teleporter policy, "
+              "not offered as a last resort)");
+        Check(!rej.empty(), "the rejection explains why, instead of silence");
+        if (!rej.empty())
+            std::printf("  (reason: %s)\n", rej[0].reason.c_str());
+    }
+}
+
+// ---------------------------------------------------------------------------
 // B. Real atlas + navgrid, from Durnholde's actual position when defect 4
 // fired (run_r4/pair_Durnholde.console.txt 21:20:01: "Sea Market blacksmith
 // -> (4549,2301) r=3 from (2456,502)"). Blacksmith must resolve to Minoc's
@@ -382,6 +531,7 @@ int main(int argc, char** argv) {
         return 2;
     }
     TestPolicySynthetic();
+    TestTeleportersIgnoredForRanking();
     TestRealAtlasFromMinoc(argv[1]);
     TestRealAtlasGhostInPapua(argv[1]);
     TestRealAtlasMinerInMinocMine(argv[1]);
