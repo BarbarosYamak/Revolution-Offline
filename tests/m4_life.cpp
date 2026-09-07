@@ -916,6 +916,11 @@ life::PersistentState SampleState() {
     st.memory.NoteSupplier(s);
     st.memory.NoteDanger(1900, 2800, 12, "grey wolf", 1.0, 5000);
     st.memory.NoteCreatureOutcome("a lich", life::kCreatureEvidenceDeath, 5500);
+    // An equip the server refused on this body. i_armor_female_studded on a
+    // male character: the refusal is a fact about the item TYPE, so it is
+    // stored as a graphic and has to survive the logout that follows it.
+    st.memory.NoteUnwearable(0x1C02, 5600);
+    st.memory.NoteUnwearable(0x1C02, 5700);   // saying it twice is still one fact
     st.memory.NoteEvent("first_logs", "8 logs", "forest", 1776, 2774, 6000);
 
     st.goal.kind = life::GoalKind::GatherLogs;
@@ -988,6 +993,12 @@ void TestStateRoundTrip() {
           "the creature's client-visible name survives");
     Check(loaded.memory.CreatureDanger("a lich", 5500) > 1.99,
           "the learned verdict itself round-trips, not just the record shape");
+    Check(loaded.memory.Unwearable().size() == 1,
+          "the refused-armour set survives, and a repeated refusal is one row");
+    Check(loaded.memory.IsUnwearable(0x1C02),
+          "the graphic the server refused is still refused after a reload");
+    Check(!loaded.memory.IsUnwearable(0x13CC),
+          "nothing else was struck off by accident");
     Check(loaded.memory.Events().size() == 1, "the event history survives");
     Check(loaded.goal.kind == life::GoalKind::GatherLogs, "the current objective survives");
     Check(loaded.goal.progress == 12, "goal progress survives");

@@ -286,7 +286,8 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
     // in her backpack it must participate in the "dress from the pack" need.
     // Otherwise an otherwise clothed character never enters DoReplaceEquipment
     // and WearBasicClothing never gets a chance to equip the skirt layer.
-    if (client.PlayerIsFemale()) {
+    obs.female = client.PlayerIsFemale();
+    if (obs.female) {
         constexpr u16 kSkirts[] = {0x1516, 0x1531, 0x1537}; // long, short, kilt
         for (u16 graphic : kSkirts) {
             const u8 layer = client.ItemEquipLayer(graphic);
@@ -1080,6 +1081,52 @@ void Runner::SeedNewbieKnowledge(Client& client, i64 nowMs) {
 }
 
 void Runner::LearnFromObservation(Client& client, const Observation& obs) {
+    // "NO" IS AN ANSWER, AND IT ONLY HAS TO BE HEARD ONCE.
+    //
+    // The gear chooser asks the server to put a piece on and the server can
+    // refuse -- silently, when the reason is a script rule whose only notice
+    // is a cliloc this client does not resolve. Until now nothing read that
+    // refusal, so the next tick re-derived the same best-piece answer from the
+    // same unchanged pack and asked again: 779 identical equip requests across
+    // 11 characters in five minutes, Wynven alone 169
+    // (artifacts/fleet122c30_20260907, 2026-09-07).
+    //
+    // THE SERIAL IS ALWAYS STRUCK OFF -- that is what ends the retry. Whether
+    // the GRAPHIC is struck off too depends on whether the refusal has any
+    // other explanation, and exactly one is visible from here: something was
+    // already on the layer. Corus asked for leather leggings over the cloth
+    // long pants he was wearing and got "You put the long pants in your pack."
+    // (smoke 2026-09-07 22:04:31) -- true today, false the moment the trousers
+    // come off, so it is not written down as a fact about leather leggings.
+    // A refusal onto an EMPTY layer has no such excuse: nothing transient
+    // stops a tunic reaching a bare torso, so that one is kept. Shields are
+    // excluded outright, because a hand is contended in ways this cannot see.
+    if (pendingWearSerial_ && !client.ActionBusy() &&
+        client.ActionKind() == act::Kind::Equip &&
+        client.CurrentAction().subject == pendingWearSerial_) {
+        if (client.ActionResult() == act::Result::Rejected) {
+            unwearableSerials_.push_back(pendingWearSerial_);
+            const ArmorPiece* a = pendingWearGraphic_ ? ArmorFor(pendingWearGraphic_)
+                                                      : nullptr;
+            const bool durable = a && a->cls != ArmorClass::Shield &&
+                                 pendingWearOverGraphic_ == 0;
+            if (durable) state_.memory.NoteUnwearable(pendingWearGraphic_, obs.nowMs);
+            std::string why = "no reason given";
+            if (a && a->sex == WearerSex::FemaleOnly)
+                why = "it is female-only armour";
+            else if (pendingWearOverGraphic_)
+                why = Fmt2("0x%04X was already on that layer",
+                           pendingWearOverGraphic_);
+            LogLine("gear: the server refused 0x%04X -- %s; %s",
+                    pendingWearGraphic_, why.c_str(),
+                    durable ? "not asking for this kind of piece again"
+                            : "not asking for this one again");
+        }
+        pendingWearSerial_ = 0;
+        pendingWearGraphic_ = 0;
+        pendingWearOverGraphic_ = 0;
+    }
+
     // Keep what the open box said. Observe() is const by design -- it is the
     // ephemeral half of the truth split -- so the remembering happens here,
     // which is the function whose whole job is "what did I learn".

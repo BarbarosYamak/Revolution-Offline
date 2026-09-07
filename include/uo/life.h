@@ -228,11 +228,36 @@ BuildPlan PlanFromProfession(const prof::Profession& p);
 // costing it a little mana.
 enum class ArmorClass : u8 { Cloth, Leather, Metal, Shield };
 
+// WHOSE BODY THE PIECE FITS.
+//
+// Not a preference and not a penalty: on this shard the refusal is total and
+// SILENT. runtime/scripts/items/i_provisions_armor.scp gives the female
+// armour line `CanUse=can_u_human|can_u_elf|can_u_female` together with
+// `TEVENTS=ei_equipitem`; runtime/scripts/types/type_equipitem.scp:298
+// `[TYPEDEF ei_equipitem] ON=@EquipTest` reads that mask and RETURNs 1 when
+// the wearer is not female. Source-X treats a TRIGRET_RET_TRUE from
+// @EquipTest as "not equipped" (server/Source-X/src/game/chars/CCharAct.cpp
+// :3313-3327) and the request path then bounces the item back to the pack
+// (src/network/receive.cpp:573, Event_Item_Drop_Fail). The CORE has no gender
+// rule at all -- CChar::CanEquipLayer (CCharStatus.cpp:314) never looks at
+// sex, and CAN_U_MALE/CAN_U_FEMALE (CBase.h:68) are defined and never read --
+// so the whole rule lives in that one script trigger.
+//
+// The only notice is SYSMESSAGELOC cliloc 1010388 "Only females can wear
+// this.", a localized message this headless client does not resolve, which is
+// why the refusal looked like silence: in the 122x30 wave Wynven re-sent the
+// same equip 169 times in five minutes and never learned anything from it
+// (artifacts/fleet122c30_20260907/Wynven.console.txt, 21:16 onward).
+enum class WearerSex : u8 { Any, FemaleOnly, MaleOnly };
+
 struct ArmorPiece {
     u16        graphic;
     u8         armor;
     u16        reqStr;
     ArmorClass cls;
+    // Defaulted, so a row that says nothing means "anyone". Only the rows
+    // whose ITEMDEF carries a one-sided CanUse mask say otherwise.
+    WearerSex  sex = WearerSex::Any;
 };
 
 struct KnownPlace {
@@ -517,6 +542,18 @@ public:
     // character uses to walk to a DIFFERENT trainer.
     std::vector<u32> TrainersWhoRefused(int skillId, const char* trade) const;
 
+    // WHAT THIS BODY CANNOT WEAR, learned the only way a player learns it:
+    // by trying it on and having the server refuse. Keyed on the GRAPHIC,
+    // because the refusal is a fact about the item TYPE and this body, not
+    // about the one copy in the pack -- a second bustier does not fit any
+    // better than the first. Written only for non-shield armour (a hand layer
+    // can be refused for the transient reason that the hand is full; a torso
+    // layer cannot), and persisted, because it is still true at next login.
+    void NoteUnwearable(u16 graphic, i64 nowMs);
+    bool IsUnwearable(u16 graphic) const;
+    const std::vector<u16>& Unwearable() const { return unwearable_; }
+    std::vector<u16>&       MutableUnwearable() { return unwearable_; }
+
     // Decayed heat at a point. 0 when nothing bad ever happened nearby.
     double DangerHeatAt(i32 x, i32 y, i64 nowMs) const;
     // Drop danger notes whose decayed heat has fallen below the floor.
@@ -570,6 +607,7 @@ private:
     std::vector<LifeEvent>           events_;
     std::vector<TrainerVerdict>      trainers_;
     std::vector<CreatureVerdict>     creatures_;
+    std::vector<u16>                 unwearable_;
 };
 
 // ===========================================================================
@@ -592,6 +630,12 @@ struct Observation {
     // (run_gates/g_Kharain.console.txt 18:55:02-18:55:10, 2026-09-04).
     bool dismountedForWork = false;
     bool warMode = false;
+    // THE BODY THIS CHARACTER IS IN. Read from the player body id the server
+    // sent (Client::PlayerIsFemale), never from the creation roll -- a resumed
+    // session has no creation packet to consult. Armour whose ITEMDEF carries
+    // a one-sided CanUse mask is refused silently on the wrong body, so the
+    // gear chooser has to be able to see this (ArmorPiece::sex above).
+    bool female = false;
 
     i32 x = 0, y = 0;
     i8  z = 0;

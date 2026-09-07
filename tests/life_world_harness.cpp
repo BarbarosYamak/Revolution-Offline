@@ -189,6 +189,34 @@ struct RunnerHarnessAccess {
                                  const Observation& obs) {
         return runner.DoGetTool(client, obs);
     }
+
+    // --- a refused equip is never retried (Gear.cpp/Core.cpp, 2026-09-07) --
+    static bool DoUpgradeGearForTest(Runner& runner, Client& client,
+                                     const Observation& obs) {
+        return runner.DoUpgradeGear(client, obs);
+    }
+    // The per-tick "what did I learn" pass Tick() runs before any goal, which
+    // is where the server's answer to a wear request is read.
+    static void LearnForTest(Runner& runner, Client& client,
+                             const Observation& obs) {
+        runner.LearnFromObservation(client, obs);
+    }
+    static bool MayWearForTest(const Runner& runner, const ArmorPiece& a,
+                               const Observation& obs) {
+        return runner.MayWear(a, obs);
+    }
+    static bool RemembersUnwearable(const Runner& runner, u16 graphic) {
+        return runner.state_.memory.IsUnwearable(graphic);
+    }
+    // What DoUpgradeGear's wear pass records at the moment it asks. Set here
+    // directly because the pass itself needs Client::ItemEquipLayer, and that
+    // reads tiledata this harness deliberately does not load -- see the test.
+    static void NotePendingWearForTest(Runner& runner, u32 serial, u16 graphic,
+                                       u16 overGraphic = 0) {
+        runner.pendingWearSerial_ = serial;
+        runner.pendingWearGraphic_ = graphic;
+        runner.pendingWearOverGraphic_ = overGraphic;
+    }
 };
 }
 
@@ -1432,6 +1460,192 @@ int main(int argc, char** argv) {
         Check(client->EquippedAtLayer(life::runner_detail::kLayerHand1) == hatchet,
               "the hatchet is worn on HAND1 -- the swap completed without "
               "ever hitting the 'hand empty' block");
+    }
+
+    // --- A REFUSED EQUIP IS AN ANSWER, AND FEMALE ARMOUR IS NEVER CHOSEN --
+    //
+    // In the 122x30 wave eleven characters re-sent the same equip every two
+    // seconds for the whole session -- 779 requests, Wynven 169 of them, all
+    // for one i_armor_female_studded (0x1C02) on a male body
+    // (artifacts/fleet122c30_20260907/Wynven.console.txt, 21:16 onward).
+    // The server refuses it in ei_equipitem's @EquipTest with a cliloc this
+    // client cannot read, so the refusal looked like silence and the chooser
+    // re-derived the same answer from the same unchanged pack.
+    {
+        const u32 me = 0x00019201;
+        const u32 myPack = 0x40031001;
+        const u32 bustier = 0x40031002;
+        const u16 kFemaleStudded = 0x1C02;   // i_armor_female_studded
+        const u8  kTorso = 13;               // the layer tiledata gives it
+
+        Client::Config config{};
+        config.loginHost = "127.0.0.1";
+        config.username = config.password = "gear_refusal";
+        config.version = "2.0.7";
+        config.sessionTag = "gear_refusal";
+        auto client = std::make_unique<Client>(config);
+        client->SetOfflineForTest(true);
+        client->SetInWorldForTest();
+        client->SetClockForTest(9000000);
+
+        // MakeLoginConfirm sends body 0x0190 -- the human MALE body.
+        auto login = MakeLoginConfirm(me, 100, 100);
+        client->DispatchPacketForTest(login.data(), login.size());
+        Check(!client->PlayerIsFemale(), "the harness character is on a male body");
+        auto pack = MakeEquip(myPack, 0x0E75, 0x15, me);
+        client->DispatchPacketForTest(pack.data(), pack.size());
+
+        auto piece = MakeAddItem(bustier, kFemaleStudded, 1, myPack);
+        client->DispatchPacketForTest(piece.data(), piece.size());
+        Check(client->FindBackpackItemByGraphic(kFemaleStudded) == bustier,
+              "the female studded armour is in the pack");
+
+        life::Runner runner;
+        life::RunnerConfig rc;
+        rc.dataRoot = root + "/gear_refusal";
+        rc.accountName = "gear_refusal";
+        rc.characterName = "gear_refusal";
+        rc.professionId = "fencer";
+        std::string error;
+        Check(runner.Configure(rc, &error), error.c_str());
+
+        // A life that does not fight, so the goal's own stand-down branch is
+        // the one that runs after the wear pass produces nothing. Leather so
+        // the class rule itself has no opinion about studded armour -- the
+        // only thing that may refuse it here is the BODY.
+        prof::Profession leatherCrafter;
+        leatherCrafter.id = "leather_crafter_test";
+        leatherCrafter.wears = prof::Profession::Wear::Leather;
+        leatherCrafter.goldReserve = 0;
+        life::RunnerHarnessAccess::SetToolProfessionForTest(runner,
+                                                            &leatherCrafter);
+
+        life::Observation obs;
+        obs.inWorld = true;
+        obs.nowMs = 9000000;
+        obs.x = 100; obs.y = 100; obs.z = 0;
+        obs.str = 50;              // well over the piece's ReqStr 35
+        obs.gold = 50000;          // money is not what stops this
+        obs.female = false;
+
+        const life::ArmorPiece* femaleStudded =
+            life::ArmorFor(kFemaleStudded);
+        Check(femaleStudded != nullptr, "0x1C02 is in the armour table");
+        Check(femaleStudded->sex == life::WearerSex::FemaleOnly,
+              "0x1C02 is marked female-only from its ITEMDEF's CanUse mask");
+        Check(!life::RunnerHarnessAccess::MayWearForTest(runner, *femaleStudded,
+                                                         obs),
+              "a male body may not wear female armour, whatever its strength");
+        obs.female = true;
+        Check(life::RunnerHarnessAccess::MayWearForTest(runner, *femaleStudded,
+                                                        obs),
+              "the same piece is fine on a female body -- the gate is the body, "
+              "not the piece");
+        obs.female = false;
+
+        // 1. THE CHOOSER NEVER PICKS IT. One tick of the real goal, and no
+        //    equip request for that item leaves the client at all.
+        life::RunnerHarnessAccess::DoUpgradeGearForTest(runner, *client, obs);
+        auto EquipsSent = [&client](u32 serial) {
+            int n = 0;
+            for (const auto& p : client->SentForTest()) {
+                if (p.opcode != 0x13 || p.bytes.size() < 5) continue;
+                if (LoadBE32(p.bytes.data() + 1) == serial) ++n;
+            }
+            return n;
+        };
+        Check(EquipsSent(bustier) == 0,
+              "the gear chooser never asks to wear female armour on a male body");
+        Check(runner.GetPlanner().Cooling(life::GoalKind::UpgradeGear, obs.nowMs),
+              "and the goal stands down with a cooldown rather than being "
+              "re-picked at tick rate");
+
+        // 2. AND WHEN THE SERVER REFUSES SOMETHING WE DID PICK, ONE REFUSAL IS
+        //    ENOUGH -- whatever the reason was.
+        //
+        // The wear pass cannot be driven the rest of the way here: it resolves
+        // the layer with Client::ItemEquipLayer, which reads tiledata, and this
+        // harness runs without the client MUL files (every armour row is
+        // skipped for want of a layer, which is why part 1 above tests the
+        // chooser's gate itself rather than counting on the loop). So the ask
+        // is made the way the goal makes it -- the same ActionEquip, the same
+        // recorded intent -- and the SERVER'S half is the real thing.
+        obs.female = true;
+        obs.nowMs += 60000;                     // past the cooldown above
+        client->ActionEquip(bustier, kTorso);
+        life::RunnerHarnessAccess::NotePendingWearForTest(runner, bustier,
+                                                          kFemaleStudded);
+        Check(EquipsSent(bustier) == 1, "the wear request went out once");
+
+        // The server's answer: the item reappears in the pack instead of on
+        // layer 13. Client::OnAddItemToContainer reports that as Rejected
+        // (bb3c832) -- the same packet the live shard sent Wynven.
+        auto bounced = MakeAddItem(bustier, kFemaleStudded, 1, myPack);
+        client->DispatchPacketForTest(bounced.data(), bounced.size());
+        Check(client->ActionResult() == act::Result::Rejected,
+              "the bounce is read as a rejection, not a success");
+        Check(client->EquippedGraphicAt(kTorso) == 0,
+              "and nothing is worn on the torso layer");
+
+        obs.nowMs += 2000;
+        life::RunnerHarnessAccess::LearnForTest(runner, *client, obs);
+        Check(life::RunnerHarnessAccess::RemembersUnwearable(runner,
+                                                             kFemaleStudded),
+              "the refusal is remembered against the graphic, not the serial");
+        Check(!life::RunnerHarnessAccess::MayWearForTest(runner, *femaleStudded,
+                                                         obs),
+              "and the chooser will not pick it again EVEN ON A BODY THAT MAY "
+              "wear it -- the remembered refusal is the general backstop, not "
+              "a second reading of the sex table");
+
+        // 3. THE SECOND TICK DOES NOT RE-ISSUE IT. This is the whole defect:
+        //    two seconds later the pack was unchanged and the old code asked
+        //    again, every two seconds, for the rest of the session.
+        life::RunnerHarnessAccess::DoUpgradeGearForTest(runner, *client, obs);
+        Check(EquipsSent(bustier) == 1,
+              "the refused item is struck off -- no second equip, no 2-second "
+              "retry loop");
+        Check(runner.GetPlanner().Cooling(life::GoalKind::UpgradeGear, obs.nowMs),
+              "with nothing left to wear the goal ends on a cooldown");
+
+        // And the lesson is durable: it is the kind of thing that goes in the
+        // state file, not a session-local flag (tests/m4_life.cpp round-trips
+        // it).
+        life::RunnerHarnessAccess::LearnForTest(runner, *client, obs);
+        Check(life::RunnerHarnessAccess::RemembersUnwearable(runner,
+                                                             kFemaleStudded),
+              "a second look at the same finished action does not disturb it");
+
+        // 4. BUT A REFUSAL WITH AN EXCUSE IS NOT A FACT ABOUT THE ITEM.
+        //
+        // Corus asked for leather leggings over the cloth long pants he was
+        // already wearing and the server bounced them -- "You put the long
+        // pants in your pack." (live smoke 2026-09-07 22:04:31). That stops
+        // being true the moment the trousers come off, so the retry ends and
+        // the ITEM TYPE is not written off. Only the piece asked for onto an
+        // EMPTY layer earns a durable entry.
+        const u32 leggings = 0x40031003;
+        const u16 kLeatherLeggings = 0x13CB;
+        const u16 kLongPants = 0x1539;      // ordinary cloth, armor 0
+        auto legs = MakeAddItem(leggings, kLeatherLeggings, 1, myPack);
+        client->DispatchPacketForTest(legs.data(), legs.size());
+        client->ActionEquip(leggings, 23);
+        life::RunnerHarnessAccess::NotePendingWearForTest(
+            runner, leggings, kLeatherLeggings, kLongPants);
+        auto legsBounced = MakeAddItem(leggings, kLeatherLeggings, 1, myPack);
+        client->DispatchPacketForTest(legsBounced.data(), legsBounced.size());
+        Check(client->ActionResult() == act::Result::Rejected,
+              "the leggings bounce is a rejection too");
+        obs.nowMs += 2000;
+        life::RunnerHarnessAccess::LearnForTest(runner, *client, obs);
+        Check(!life::RunnerHarnessAccess::RemembersUnwearable(runner,
+                                                              kLeatherLeggings),
+              "a refusal onto an OCCUPIED layer is not remembered as a fact "
+              "about the piece -- the trousers are the reason, and they come off");
+        const life::ArmorPiece* leatherLegs = life::ArmorFor(kLeatherLeggings);
+        Check(leatherLegs != nullptr &&
+              life::RunnerHarnessAccess::MayWearForTest(runner, *leatherLegs, obs),
+              "so leather leggings are still something this character may wear");
     }
 
     std::printf("%d checks, %d failures\n", checks, failures);

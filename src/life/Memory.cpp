@@ -383,6 +383,27 @@ void Memory::Clear() {
     events_.clear();
     trainers_.clear();
     creatures_.clear();
+    unwearable_.clear();
+}
+
+// ONE REFUSAL IS THE WHOLE ANSWER.
+//
+// Unlike a trainer's "I know nothing about that" -- which is about that one
+// NPC and needs three voices before it can speak for a trade -- an equip
+// refusal is the server applying its own rule to this item type and this
+// body. It cannot come out differently tomorrow, so it is recorded once,
+// kept, and never re-earned.
+void Memory::NoteUnwearable(u16 graphic, i64 /*nowMs*/) {
+    if (!graphic) return;
+    for (u16 g : unwearable_)
+        if (g == graphic) return;
+    unwearable_.push_back(graphic);
+}
+
+bool Memory::IsUnwearable(u16 graphic) const {
+    for (u16 g : unwearable_)
+        if (g == graphic) return true;
+    return false;
 }
 
 usize Memory::ApproximateBytes() const {
@@ -394,6 +415,7 @@ usize Memory::ApproximateBytes() const {
     for (const LifeEvent& e : events_)           n += sizeof(e) + e.kind.size() + e.detail.size() + e.place.size();
     for (const TrainerVerdict& t : trainers_)    n += sizeof(t) + t.trade.size() + t.why.size();
     for (const CreatureVerdict& c : creatures_)  n += sizeof(c) + c.name.size();
+    n += unwearable_.size() * sizeof(u16);
     return n;
 }
 

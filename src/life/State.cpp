@@ -196,6 +196,14 @@ json::Value ToJson(const PersistentState& st) {
         }
         m.Set("creatures", std::move(crt));
 
+        // Armour graphics the server has already refused on this body. Plain
+        // numbers -- an item TYPE, not a serial, so nothing here can go stale
+        // when the world hands out different object ids next session.
+        json::Value unw = json::Value::MakeArray();
+        for (u16 g : st.memory.Unwearable())
+            unw.Push(json::Value(static_cast<i64>(g)));
+        m.Set("unwearable", std::move(unw));
+
         json::Value evs = json::Value::MakeArray();
         for (const LifeEvent& k : st.memory.Events()) {
             json::Value o = json::Value::MakeObject();
@@ -536,6 +544,17 @@ bool FromJson(const json::Value& v, PersistentState* out, std::string* err) {
             k.atMs = e["at_ms"].AsInt(0);
             k.fights = static_cast<i32>(e["fights"].AsInt(0));
             st.memory.MutableCreatures().push_back(std::move(k));
+        }
+    }
+    {
+        // Absent in any file written before this field existed, which reads as
+        // "nothing has been refused yet" -- the same state a new character is
+        // in. The character relearns it on the first try and pays for it once.
+        const json::Value& a = m["unwearable"];
+        for (usize i = 0; i < a.Size(); ++i) {
+            const i64 g = a.At(i).AsInt(0);
+            if (g > 0 && g <= 0xFFFF)
+                st.memory.NoteUnwearable(static_cast<u16>(g), 0);
         }
     }
     {

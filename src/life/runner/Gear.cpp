@@ -2207,7 +2207,23 @@ bool Runner::HasBasicArmor(Client& client, const Observation& obs) const {
 }
 
 bool Runner::MayWear(const ArmorPiece& a, const Observation& obs) const {
-    // THE PROFESSION ANSWERS FIRST, because it knows before login.
+    // THE BODY ANSWERS BEFORE ANYTHING ELSE, because no amount of strength,
+    // profession or gold changes it. Female armour on a male body is refused
+    // by ei_equipitem's @EquipTest with a cliloc this client cannot read, so
+    // asking looks exactly like asking a question nobody answers -- which is
+    // what Wynven did 169 times in five minutes with an i_armor_female_studded
+    // (0x1C02) she was never going to get on. See WearerSex in uo/life.h.
+    if (a.sex == WearerSex::FemaleOnly && !obs.female) return false;
+    if (a.sex == WearerSex::MaleOnly   &&  obs.female) return false;
+
+    // AND A REFUSAL ALREADY EARNED IS NOT EARNED AGAIN. Whatever the server's
+    // reason was -- a rule this table does not model, a script trigger, a
+    // cursed item -- it said no to this graphic on this body, and the answer
+    // is kept (Memory::NoteUnwearable, written by LearnFromObservation). This
+    // is the general backstop; the sex test above is the case we can predict.
+    if (state_.memory.IsUnwearable(a.graphic)) return false;
+
+    // THE PROFESSION ANSWERS NEXT, because it knows before login.
     //
     // "mage wears only mage equipment" (project owner). Read off the
     // catalogue's `wears`/`maysShield` (M5, professions.h) rather than
@@ -2281,6 +2297,12 @@ bool Runner::DoUpgradeGear(Client& client, const Observation& obs) {
         if (!MayWear(a, obs)) continue;
         const u32 have = client.FindBackpackItemByGraphic(a.graphic);
         if (!have) continue;
+        // THIS EXACT OBJECT HAS ALREADY BEEN REFUSED. MayWear's graphic test
+        // normally catches it first; this catches the copy whose graphic the
+        // answer could not be attributed to.
+        if (std::find(unwearableSerials_.begin(), unwearableSerials_.end(),
+                      have) != unwearableSerials_.end())
+            continue;
         const u8 layer = client.ItemEquipLayer(a.graphic);
         if (!layer) continue;
         const u16 wornGfx = client.EquippedGraphicAt(layer);
@@ -2291,6 +2313,13 @@ bool Runner::DoUpgradeGear(Client& client, const Observation& obs) {
                 "0x%04X (armor %d)", a.graphic, a.armor, a.reqStr, obs.str,
                 wornGfx, wornArmor);
         client.ActionEquip(have, layer);
+        // WHAT WAS ASKED, so the answer means something. Without this the
+        // rejection is a bare serial and the lesson cannot be generalised to
+        // the item type -- which is the only form in which it is worth
+        // keeping (LearnFromObservation, runner/Core.cpp).
+        pendingWearSerial_ = have;
+        pendingWearGraphic_ = a.graphic;
+        pendingWearOverGraphic_ = wornGfx;
         planner_.NoteProgress();
         nextActionMs_ = obs.nowMs + 2000;
         return false;
@@ -2341,6 +2370,12 @@ bool Runner::DoUpgradeGear(Client& client, const Observation& obs) {
     if (needCfg_.profession && !WantsToHunt(*needCfg_.profession)) {
         LogLine("gear: nothing carried is an upgrade, and this life does not "
                 "fight -- ordinary clothes will do, so no armour shopping");
+        // WITH A COOLDOWN, for the reason the `!want` branch below already
+        // carries one: a goal that finished having changed nothing is re-picked
+        // immediately and asks the same question of the same pack. This branch
+        // is now reachable the moment an equip is refused and struck off, so it
+        // has to stand down rather than spin.
+        planner_.Cooldown(GoalKind::UpgradeGear, obs.nowMs + kGearCooldownMs);
         planner_.Finish(true, nullptr, obs.nowMs);
         return true;
     }

@@ -459,6 +459,27 @@ private:
     // M7 disposal: the "will not wear" inventory is reported once per
     // session, not on every gear tick.
     bool dispositionLogged_ = false;
+    // THE ARMOUR THIS GOAL JUST ASKED TO PUT ON, so the server's answer can be
+    // attributed to a graphic. The equip action itself carries only a serial,
+    // and the item is in flight between pack and paperdoll while the answer is
+    // outstanding -- recording the graphic at the moment of asking is the one
+    // reading that cannot be wrong. Cleared when the answer arrives.
+    u32 pendingWearSerial_ = 0;
+    u16 pendingWearGraphic_ = 0;
+    // AND WHAT WAS ALREADY ON THAT LAYER when we asked, because it changes
+    // what a refusal MEANS. Corus asked to wear leather leggings over the
+    // cloth long pants he was already in and the server bounced them -- "You
+    // put the long pants in your pack." (smoke 2026-09-07 22:04:31). That is
+    // a fact about the OCCUPANT, not about leather leggings, and writing it
+    // down as "this body cannot wear leather leggings" would be a lie that
+    // outlived the trousers. An empty layer leaves no such excuse.
+    u16 pendingWearOverGraphic_ = 0;
+    // Serials this session's server has refused to put on. Session-scoped on
+    // purpose: PersistentState holds no serials by design, and the durable
+    // half of the lesson is the GRAPHIC, which goes to Memory::NoteUnwearable.
+    // This is the belt to that braces -- it stops the retry even in the case
+    // where the graphic could not be attributed.
+    std::vector<u32> unwearableSerials_;
     i64 windDownStartedMs_ = 0;
     i32 windDownTrips_ = 0;
     bool windDownArrived_ = false;

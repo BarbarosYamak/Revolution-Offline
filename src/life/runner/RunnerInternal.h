@@ -622,6 +622,15 @@ constexpr int kMaxToolWearTries = 3;
 // ReqStr are the shard's numbers, never guessed -- and ReqStr is why this
 // table exists at all: a piece the character is too weak to wear is refused by
 // the server, and asking repeatedly is one of the ways a goal burns a session.
+// GENDER IS THE FIFTH COLUMN, and it is not cosmetic. The seven 0x1C0x
+// pieces, the three amazon harnesses and the spiked shorts carry a one-sided
+// `CanUse=...can_u_female` in runtime/scripts/items/i_provisions_armor.scp,
+// and ei_equipitem's @EquipTest refuses them on a male body with no message
+// this client can read (WearerSex in uo/life.h carries the trigger and the
+// Source-X path). The list was DERIVED, not guessed: every ITEMDEF under
+// runtime/scripts was scanned for a CanUse mask naming exactly one sex -- 80
+// shard-wide -- and intersected with this table, leaving these 13. The rest
+// are hair, beards, dresses and gargish gear, none of which this table ranks.
 constexpr ArmorPiece kArmorPieces[] = {
     {0x13BB, 25,  60, ArmorClass::Metal  },  // i_chainmail_coif
     {0x13BE, 25,  60, ArmorClass::Metal  },  // i_chainmail_leggings
@@ -665,19 +674,19 @@ constexpr ArmorPiece kArmorPieces[] = {
     {0x1BC3, 16,  95, ArmorClass::Shield },  // i_shield_chaos
     {0x1BC4, 16,  95, ArmorClass::Shield },  // i_shield_order
     {0x1BC6, 16,  95, ArmorClass::Shield },  // i_shield_scale
-    {0x1C00, 13,  20, ArmorClass::Leather},  // i_armor_female_shorts
-    {0x1C02, 16,  35, ArmorClass::Leather},  // i_armor_female_studded
-    {0x1C04, 30,  95, ArmorClass::Metal  },  // i_armor_female_plate
-    {0x1C06, 13,  25, ArmorClass::Leather},  // i_armor_female_leather
-    {0x1C08, 13,  25, ArmorClass::Leather},  // i_armor_female_skirt
-    {0x1C0A, 13,  20, ArmorClass::Leather},  // i_armor_female_bustier
-    {0x1C0C, 16,  35, ArmorClass::Leather},  // i_armor_female_bustier_studded
+    {0x1C00, 13,  20, ArmorClass::Leather, WearerSex::FemaleOnly},  // i_armor_female_shorts
+    {0x1C02, 16,  35, ArmorClass::Leather, WearerSex::FemaleOnly},  // i_armor_female_studded
+    {0x1C04, 30,  95, ArmorClass::Metal  , WearerSex::FemaleOnly},  // i_armor_female_plate
+    {0x1C06, 13,  25, ArmorClass::Leather, WearerSex::FemaleOnly},  // i_armor_female_leather
+    {0x1C08, 13,  25, ArmorClass::Leather, WearerSex::FemaleOnly},  // i_armor_female_skirt
+    {0x1C0A, 13,  20, ArmorClass::Leather, WearerSex::FemaleOnly},  // i_armor_female_bustier
+    {0x1C0C, 16,  35, ArmorClass::Leather, WearerSex::FemaleOnly},  // i_armor_female_bustier_studded
     {0x1DB9, 13,  20, ArmorClass::Leather},  // i_leather_cap
     {0x1F0B, 20,  30, ArmorClass::Metal  },  // i_helm_orc
     {0x236C, 25,  80, ArmorClass::Metal  },  // i_helm_kabuto
-    {0x25E4, 15,  20, ArmorClass::Leather},  // i_armor_female_shorts_spiked
-    {0x25E6, 18,  25, ArmorClass::Metal  },  // i_armor_female_harness_amazon
-    {0x25E8, 20,  25, ArmorClass::Metal  },  // i_armor_female_harness_elite
+    {0x25E4, 15,  20, ArmorClass::Leather, WearerSex::FemaleOnly},  // i_armor_female_shorts_spiked
+    {0x25E6, 18,  25, ArmorClass::Metal  , WearerSex::FemaleOnly},  // i_armor_female_harness_amazon
+    {0x25E8, 20,  25, ArmorClass::Metal  , WearerSex::FemaleOnly},  // i_armor_female_harness_elite
     {0x2641, 28,  75, ArmorClass::Metal  },  // i_dragon_chest
     {0x2643, 28,  75, ArmorClass::Metal  },  // i_dragon_gloves
     {0x2645, 28,  75, ArmorClass::Metal  },  // i_dragon_helm
@@ -685,9 +694,9 @@ constexpr ArmorPiece kArmorPieces[] = {
     {0x264B, 30,  45, ArmorClass::Metal  },  // i_platemail_gorget2
     {0x2653, 30,  70, ArmorClass::Metal  },  // i_platemail_waraji_3d
     {0x2657, 28,  75, ArmorClass::Metal  },  // i_dragon_sleeves
-    {0x2659, 30,  60, ArmorClass::Metal  },  // i_amazon_heavy
-    {0x265B, 30,  60, ArmorClass::Metal  },  // i_amazon_medium
-    {0x265D, 20,  60, ArmorClass::Metal  },  // i_amazon_light
+    {0x2659, 30,  60, ArmorClass::Metal  , WearerSex::FemaleOnly},  // i_amazon_heavy
+    {0x265B, 30,  60, ArmorClass::Metal  , WearerSex::FemaleOnly},  // i_amazon_medium
+    {0x265D, 20,  60, ArmorClass::Metal  , WearerSex::FemaleOnly},  // i_amazon_light
     {0x2677, 13,  40, ArmorClass::Leather},  // i_gloves_kote1
     {0x2679, 13,  40, ArmorClass::Leather},  // i_gloves_kote2
     {0x2689, 30,  25, ArmorClass::Metal  },  // i_helm_winged
