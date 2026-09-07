@@ -2,4 +2,5 @@
 - [NPC price floor design](npc-price-floor-design.md) — owner ruling 2026-09-02: material→NPC sale is a switch AND a closed WTS window, never one alone
 - [Vendor payout rules](vendor-payout-rules.md) — VALUE less 15%; `{a b}` is restock; a missing VALUE line means COMPUTED, not zero
 - [Sell goals spin on `return true`](sell-goal-spins-on-return-true.md) — a no-sale path must Cooldown + Finish(false), not report success
+- [Bandage market gap](bandage-market-gap.md) — no WTS/WTB catalog entry for i_bandage exists; fighters self-cut, tailors never list; cutting needs no Tailoring skill
 - [Buyer pays for the window, not the promise](buyer-pays-for-window-not-promise.md) — fixed 2026-09-07: DriveOpenTrade funded off the buyer's own WTB ceiling before a window race; now counts delivered goods + seller's real price; PriceBook poison guard = 3x ceiling

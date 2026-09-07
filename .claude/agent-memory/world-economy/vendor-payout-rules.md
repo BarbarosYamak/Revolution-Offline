@@ -25,4 +25,14 @@ RUNTIME-UNVERIFIED and read it off the 0x9E vendor window at runtime. Never
 predict it. Sphere scripts are case-insensitive — `SELL=i_BOTTLE_EMPTY` and
 `BUY=i_bottle_empty` are the same item, so always grep -i.
 
+**Sell side (NPC to player) is the mirror, not the same number.**
+`docs/.tns_part5.md:604-608,1269` (historical/reference doc, citing
+`CClientMsg.cpp:2423` and `sphere.ini:627 VendorMarkup=15`): NPC **sells** at
+`1.15 x VALUE`, buys at `0.85 x VALUE` — a 30-point spread on the same item,
+by design. Checked 2026-09-07 for `i_bandage` (`VALUE=1`): the healer/vet
+sell price is near 1gp, so player-cut bandages are not a profit play against
+the NPC counter, only a fallback when it is dry. This sell-side number has
+never been confirmed against a live 0x9E purchase in a run log — treat it as
+source/script-derived, not runtime-measured, until one is.
+
 See [[material-buy-rows-commented]].
