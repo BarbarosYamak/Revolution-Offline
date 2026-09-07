@@ -374,10 +374,20 @@ int main(int argc, char** argv) {
     // Observe and DoReturnHome must agree about where home is and how far it
     // is, so both go through ONE resolver and this is the test of it.
     //
+    // AND THE OTHER HALF OF IT (owner ruling the same day, option a): Alder
+    // lives in Trinsic, took an ordinary moongate errand to Skara Brae for
+    // UPGRADE_GEAR, and RETURN_HOME fired on "1207 tiles from Bank of
+    // Britannia - Trinsic Branch banker" and dragged him home mid-errand
+    // (artifacts/alder_home_20260907/Alder.console.txt 12:22). Straight-line
+    // distance is not the way home; ordinary players travel between towns.
+    //
     // The atlas rows below are COPIED from data/revolution_atlas.txt, tabs,
-    // coordinates and all -- a_townBritain's flags (guarded) and first
-    // rectangle, a_papua_4's flags (none) and first rectangle, and the two
-    // bank places. Nothing here is invented.
+    // coordinates and all -- the three town AREADEFs with their real flags
+    // and the rectangles that hold the banks, the Trinsic branch and Papua
+    // bank ROOMDEFs (both REGION_FLAG_GUARDED, flags 5), a_papua_4's flags
+    // (none), the four bank places, and every moongate row that joins the
+    // Moonglow, Britain, Skara Brae and Trinsic pads. Nothing here is
+    // invented.
     {
         uo::world_atlas::Atlas atlas;
         std::string err;
@@ -387,15 +397,38 @@ int main(int argc, char** argv) {
             "RECT\ta_world\t0\t0\t7167\t4095\n"
             "REGION\ta_townBritain\ttown\t1\t1495\t1629\t10\tBritain\tBritain\n"
             "RECT\ta_townBritain\t1410\t1517\t1690\t1777\n"
+            "REGION\ta_townTrinsic\ttown\t1\t1867\t2780\t0\tTrinsic\tTrinsic\n"
+            "RECT\ta_townTrinsic\t1795\t2792\t2069\t2874\n"
+            "REGION\ta_bankritannia_trinsic_branch_1\tbuilding\t5\t1816\t2821\t0\t"
+                "Trinsic\tBank of Britannia - Trinsic Branch\n"
+            "RECT\ta_bankritannia_trinsic_branch_1\t1808\t2818\t1818\t2838\n"
+            "REGION\ta_townSkaraBrae\ttown\t1\t632\t2233\t0\tSkara Brae\tSkara Brae\n"
+            "RECT\ta_townSkaraBrae\t541\t2108\t644\t2226\n"
             "REGION\ta_papua_4\twilderness\t0\t5729\t3209\t-1\tPapua\tPapua\n"
             "RECT\ta_papua_4\t5633\t3088\t5742\t3328\n"
+            "REGION\ta_olde_loan_savings_1\tbuilding\t5\t5675\t3136\t14\tPapua\t"
+                "Ye Olde Loan & Savings\n"
+            "RECT\ta_olde_loan_savings_1\t5658\t3121\t5681\t3140\n"
             "PLACE\tbritain_bank\tbank\ta_townBritain\t1650\t1608\t20\t5\t"
                 "banker\t\tBritain banker\n"
+            "PLACE\tskara_brae_bank\tbank\ta_townSkaraBrae\t587\t2146\t0\t5\t"
+                "banker\t\tSkara Brae banker\n"
+            "PLACE\tbank_of_britannia_trinsic_branch_bank\tbank\t"
+                "a_bankritannia_trinsic_branch_1\t1813\t2825\t0\t5\t"
+                "banker\t\tBank of Britannia - Trinsic Branch banker\n"
             "PLACE\tpapua_bank\tbank\ta_papua_4\t5669\t3131\t14\t5\t"
-                "banker\t\tPapua minter\n";
+                "banker\t\tPapua minter\n"
+            "TRANSIT\tmg_moonglow__britain\tmoongate\t4467\t1283\t5\t1336\t1997\t5\t0\tBritain\n"
+            "TRANSIT\tmg_moonglow__trinsic\tmoongate\t4467\t1283\t5\t1828\t2948\t-20\t0\tTrinsic\n"
+            "TRANSIT\tmg_moonglow__skara_brae\tmoongate\t4467\t1283\t5\t643\t2067\t5\t0\tSkara Brae\n"
+            "TRANSIT\tmg_britain__trinsic\tmoongate\t1336\t1997\t5\t1828\t2948\t-20\t0\tTrinsic\n"
+            "TRANSIT\tmg_britain__skara_brae\tmoongate\t1336\t1997\t5\t643\t2067\t5\t0\tSkara Brae\n"
+            "TRANSIT\tmg_skara_brae__britain\tmoongate\t643\t2067\t5\t1336\t1997\t5\t0\tBritain\n"
+            "TRANSIT\tmg_skara_brae__trinsic\tmoongate\t643\t2067\t5\t1828\t2948\t-20\t0\tTrinsic\n";
         Check(atlas.LoadFromText(rows, &err), "stranded fixture atlas loads");
 
-        // The tile Alder and Kharazar actually log in on.
+        // (1) THE PAPUA BANK -- the tile Alder and Kharazar actually log in
+        // on, and STILL stranded after the errand fix.
         const life::runner_detail::HomeReturn lost =
             life::runner_detail::ResolveHomeReturn(&atlas, "Britain", 5674, 3134);
         Check(lost.resolved && !lost.inHome,
@@ -403,11 +436,48 @@ int main(int argc, char** argv) {
         Check(lost.x == 1650 && lost.y == 1608,
               "and the way home ends at the Britain BANK, not at the AREADEF "
               "centre -- the bank is where a player's life is kept");
-        Check(lost.tiles == 4024,
-              "the distance the need scores on is the distance the errand "
-              "walks: 4,024 tiles, well past the service trip budget");
+        Check(lost.directTiles == 4024,
+              "4,024 tiles from home in a straight line");
+        Check(lost.tiles == 2240,
+              "and 2,240 even taking the nearest moongate (1,851 tiles to the "
+              "Moonglow pad, 389 on from the Britain pad) -- the Lost Lands "
+              "have no public gate of their own");
         Check(lost.tiles > uo::life::kStrandedFromHomeTiles,
               "which is what makes it stranded rather than merely away");
+        Check(!lost.onErrandGround,
+              "and the guarded ROOMDEF it is standing in (a_olde_loan_savings_1, "
+              "flags 5) does not make the Lost Lands an errand: the test is a "
+              "guarded TOWN region, and Papua has none");
+
+        // (2) THE PAPUA STREET -- unguarded wilderness, same verdict. The
+        // per-tile guard flag flaps between (1) and (2); the town test does
+        // not, which is the whole reason it is town-wide.
+        const life::runner_detail::HomeReturn street =
+            life::runner_detail::ResolveHomeReturn(&atlas, "Britain", 5729, 3209);
+        Check(street.resolved && !street.onErrandGround &&
+                  street.directTiles == 4079 && street.tiles == 2315 &&
+                  street.tiles > uo::life::kStrandedFromHomeTiles,
+              "unguarded wilderness four thousand tiles out is stranded too");
+
+        // (3) SKARA BRAE, HOME TRINSIC -- Alder's errand. Guarded town ground
+        // the moongate network reaches, and the way home is one gate.
+        const life::runner_detail::HomeReturn errand =
+            life::runner_detail::ResolveHomeReturn(&atlas, "Trinsic", 587, 2146);
+        Check(errand.resolved && !errand.inHome,
+              "standing at the Skara Brae bank is not standing in Trinsic");
+        Check(errand.x == 1813 && errand.y == 2825,
+              "and home is the Trinsic branch bank");
+        Check(errand.directTiles == 1226,
+              "the straight line is 1,226 tiles -- the figure that called an "
+              "errand a stranding");
+        Check(errand.tiles == 202,
+              "but the way a player travels it is 79 tiles to the Skara pad "
+              "and 123 on from the Trinsic pad: 202");
+        Check(errand.tiles < uo::life::kStrandedFromHomeTiles,
+              "which is an errand, not a stranding");
+        Check(errand.onErrandGround,
+              "and Skara Brae is a guarded town the gate network reaches, so "
+              "the need is suppressed however far home turns out to be");
 
         // Standing on the home bank tile: home, and zero to go.
         const life::runner_detail::HomeReturn athome =

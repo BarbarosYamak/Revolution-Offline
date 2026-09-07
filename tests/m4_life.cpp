@@ -4748,7 +4748,20 @@ void TestContractCorpseGateMatchesTheHandler() {
 //   a_papua_4 (data/revolution_atlas.txt) has flags 0 -- unguarded;
 //   4,024 is the Chebyshev distance from there to britain_bank (1650,1608),
 //   which is the tile runner_detail::ResolveHomeReturn picks for home
-//   "Britain" -- the nearer of the two Britain bankers in the atlas.
+//   "Britain" -- the nearer of the two Britain bankers in the atlas;
+//   2,240 is the same trip taking the nearest public moongate (1,851 tiles
+//   to the Moonglow pad, 389 on from the Britain pad), which is what
+//   Observation::tilesFromHome now carries. The resolver's own arithmetic is
+//   checked in tests/life_world_harness.cpp against the real atlas rows; this
+//   file tests what the NEED does with the answer.
+//
+// ...AND THE OPPOSITE CASE, which the first version of this need got wrong.
+// Alder lives in Trinsic and took an ordinary moongate errand to Skara Brae
+// for UPGRADE_GEAR; RETURN_HOME (weight 600) fired on "1207 tiles" of raw
+// distance and dragged him home mid-errand
+// (artifacts/alder_home_20260907/Alder.console.txt 12:22). Owner ruling
+// 2026-09-07 option a: stranded bots go home, ordinary players travel to
+// other towns on purpose.
 void TestStrandedCharacterGoesHome() {
     Section("stranded: a character on the wrong facet goes home first");
 
@@ -4767,14 +4780,16 @@ void TestStrandedCharacterGoesHome() {
     lost.treeAdjacent = false;
     lost.homeKnown = true;        // the atlas resolved home_city "Britain"
     lost.inHomeRegion = false;    // standing in a_papua_4, not a_townBritain
-    lost.tilesFromHome = 4024;
+    lost.onErrandGround = false;  // the Lost Lands hold no town AREADEF
+    lost.tilesFromHome = 2240;    // 4,024 straight; 2,240 via the Moonglow pad
 
     const std::vector<life::Need> needs = life::AssessNeeds(plan, mem, lost, cfg);
     const life::Need* home = Find(needs, life::NeedKind::NeedHome);
     Check(home != nullptr && !home->blocked && home->urgency > 0.9,
-          "four thousand tiles from home is a need, not a preference");
+          "two thousand tiles from home even by moongate is a need, not a "
+          "preference");
     Check(home != nullptr &&
-              home->evidence.find("tiles_from_home=4024") != std::string::npos,
+              home->evidence.find("tiles_from_home=2240") != std::string::npos,
           "and the need shows the distance it judged on");
 
     life::Planner planner;
@@ -4844,6 +4859,74 @@ void TestStrandedCharacterGoesHome() {
         Check(Find(life::AssessNeeds(plan, mem, visiting, cfg),
                    life::NeedKind::NeedHome) == nullptr,
               "a trip to the next city is an errand, not being stranded");
+    }
+
+    // (1a) ALDER'S ERRAND. Skara Brae, home Trinsic. Two independent reasons
+    // this must stay silent, and the test asserts BOTH -- if either one is
+    // ever loosened the other still has to hold the line.
+    {
+        // Reason one: the distance is now the trip's real cost. 1,226 tiles
+        // straight, 202 with the gate the character actually used.
+        life::Observation errand = HealthyLumberjackAtWork();
+        errand.x = 587; errand.y = 2146;      // the Skara Brae banker's tile
+        errand.homeKnown = true;
+        errand.inHomeRegion = false;
+        errand.onErrandGround = true;         // a_townSkaraBrae, flags 1
+        errand.tilesFromHome = 202;
+        Check(Find(life::AssessNeeds(plan, mem, errand, cfg),
+                   life::NeedKind::NeedHome) == nullptr,
+              "a gear errand in Skara Brae is not a stranding");
+
+        // Reason two: guarded town ground is never a stranding, however far
+        // the number says home is. This is the owner's rule stated directly,
+        // and it is the backstop if a future distance measure regresses.
+        life::Observation stubborn = errand;
+        stubborn.tilesFromHome = 1226;        // the raw figure that broke it
+        Check(Find(life::AssessNeeds(plan, mem, stubborn, cfg),
+                   life::NeedKind::NeedHome) == nullptr,
+              "and it is still not a stranding measured the old way, because "
+              "guarded town ground the gates reach is where errands go");
+    }
+
+    // (1b) UNGUARDED WILDERNESS, far from home and far from any gate. Nothing
+    // suppresses this one: the need is exactly for characters with no way
+    // back to their own life.
+    {
+        life::Observation wild = HealthyLumberjackAtWork();
+        wild.x = 5729; wild.y = 3209;         // a_papua_4, wilderness, flags 0
+        wild.atWorkSite = false;
+        wild.treeAdjacent = false;
+        wild.homeKnown = true;
+        wild.inHomeRegion = false;
+        wild.onErrandGround = false;
+        wild.tilesFromHome = 2315;            // 4,079 straight, 2,315 by gate
+        Check(Find(life::AssessNeeds(plan, mem, wild, cfg),
+                   life::NeedKind::NeedHome) != nullptr,
+              "unguarded ground with no way home is what the need is for");
+    }
+
+    // (1c) SESSION START on guarded town ground far from home. A character
+    // that logs in mid-errand -- everything about its state fresh, nothing
+    // carried over -- must not be walked home by the first tick of the
+    // session either. Nothing here depends on session state, and that is the
+    // point: the rule is a fact about WHERE THE CHARACTER IS STANDING, so
+    // there is no first-tick special case to get wrong.
+    {
+        life::Observation login;
+        login.inWorld = true;
+        login.nowMs = 1000;
+        login.hp = login.hpMax = 70;
+        login.x = 587; login.y = 2146;
+        login.homeKnown = true;
+        login.inHomeRegion = false;
+        login.onErrandGround = true;
+        login.tilesFromHome = 1226;
+        life::NeedConfig fresh;
+        fresh.profession = jack;
+        fresh.sessionIndex = 0;
+        Check(Find(life::AssessNeeds(plan, mem, login, fresh),
+                   life::NeedKind::NeedHome) == nullptr,
+              "logging in on guarded town ground is not being stranded");
     }
 
     // (3) NO HOME CITY. Arm A of the need/handler contract: DoReturnHome has

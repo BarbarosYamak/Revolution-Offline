@@ -685,14 +685,34 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
     // owns that tick, and a cross-facet walk begun under attack is the walk
     // that killed Odessa (Core.cpp wind-down). It is raised again as soon as
     // the fight is over.
-    if (obs.homeKnown && !obs.inHomeRegion &&
+    //
+    // AND NOT RAISED ON AN ERRAND (owner ruling, 2026-09-07, option a).
+    // Alder lives in Trinsic, took a normal moongate errand to Skara Brae for
+    // UPGRADE_GEAR, and at 12:22 this need -- weight 600 against the errand's
+    // own score -- fired on "1207 tiles from Bank of Britannia - Trinsic
+    // Branch banker" and dragged him home mid-errand
+    // (artifacts/alder_home_20260907/Alder.console.txt). Ordinary players
+    // travel to other towns on purpose; only a character that CANNOT get back
+    // to its life from where it stands is stranded. Two things changed, both
+    // in the one resolver the handler shares (runner_detail::
+    // ResolveHomeReturn):
+    //
+    //   * the distance is now what the trip COSTS with the public moongates
+    //     allowed, so Skara Brae reads ~200 tiles from Trinsic, not 1,207;
+    //   * `onErrandGround` -- a guarded TOWN region the gate network reaches
+    //     -- suppresses it outright, however far, because that is by
+    //     definition somewhere this character's errands are sent.
+    //
+    // Papua survives both: 2,240 tiles even via the nearest gate, and the
+    // Lost Lands have no town AREADEF for the second test to match.
+    if (obs.homeKnown && !obs.inHomeRegion && !obs.onErrandGround &&
         obs.tilesFromHome > kStrandedFromHomeTiles && !obs.underAttack &&
         obs.attackersOnMe == 0) {
         add(NeedKind::NeedHome, 0.95, "home city",
             "stranded too far from home for any errand to reach a provider "
             "it knows",
-            Fmt("at=%d,%d tiles_from_home=%d limit=%d", obs.x, obs.y,
-                obs.tilesFromHome, kStrandedFromHomeTiles));
+            Fmt("at=%d,%d tiles_from_home=%d limit=%d errand_ground=no",
+                obs.x, obs.y, obs.tilesFromHome, kStrandedFromHomeTiles));
     }
 
     // --- IS THE SHOP OPEN YET? ---------------------------------------------

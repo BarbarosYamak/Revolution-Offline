@@ -734,21 +734,39 @@ struct Observation {
     //                    this is the arm-A "the handler could act" gate.
     //   inHomeRegion  -- standing inside the home city's own region. TRUE by
     //                    default for the same reason.
-    //   tilesFromHome -- Chebyshev tiles to the exact tile the RETURN_HOME
-    //                    handler would walk to, so the need and the errand
-    //                    measure ONE distance (need/handler contract 2.1).
+    //   tilesFromHome -- tiles to the exact tile the RETURN_HOME handler
+    //                    would walk to, so the need and the errand measure
+    //                    ONE distance (need/handler contract 2.1). Measured
+    //                    THE WAY A PLAYER TRAVELS IT, with the public
+    //                    moongates allowed: walk to a gate, hop, walk on
+    //                    from the far pad.
+    //   onErrandGround -- standing inside a GUARDED TOWN region that the
+    //                    public moongate network reaches, i.e. one of the
+    //                    places an ordinary errand is sent to. Never
+    //                    stranded, however far from home.
     //
-    // Deliberately NOT gated on "the ground here is unguarded". Papua's
+    // BOTH OF THOSE ARE THE 2026-09-07 CORRECTION. Alder lives in Trinsic and
+    // took a normal moongate errand to Skara Brae to upgrade his gear; raw
+    // Chebyshev called that "1207 tiles from the Trinsic banker", NeedHome
+    // (weight 600) outbid UPGRADE_GEAR and dragged him home mid-errand
+    // (artifacts/alder_home_20260907/Alder.console.txt, 12:22). The real way
+    // home from that tile was one moongate and about 200 tiles. Owner ruling
+    // the same day: stranded bots go home, ordinary players travel to other
+    // towns on purpose.
+    //
+    // The guarded test is deliberately TOWN-WIDE, not per-tile. Papua's
     // STREETS are unguarded (a_papua_4 carries no flags) but its shop
     // interiors are REGION_FLAG_GUARDED in the shard's own scripts --
     // runtime/scripts/maps/map0/map0_rooms.scp:1806-1812, [ROOMDEF
-    // a_olde_loan_savings_1], which is the very bank tile these two characters
-    // log in on. A guarded-here gate would therefore flap on and off room by
-    // room. Being a facet away from home is the durable fact; standing on a
-    // guarded tile inside a town nobody can reach from home is not safety.
+    // a_olde_loan_savings_1], which is the very bank tile Alder and Kharazar
+    // logged in on. A guarded-HERE gate would flap on and off room by room
+    // and would call the Papua bank safety; a guarded-TOWN gate does not,
+    // because the Lost Lands have no town AREADEF at all -- Papua is filed as
+    // wilderness (data/revolution_atlas.txt, REGION a_papua_4 wilderness).
     bool homeKnown = false;
     bool inHomeRegion = true;
     i32  tilesFromHome = 0;
+    bool onErrandGround = false;
 
     // What the profession wants bought from a trainer next, or -1. Set by the
     // runner from the build plan; the need model does not know about
@@ -1248,9 +1266,12 @@ const char* NeedKindName(NeedKind k);
 // held together by a static_assert in src/life/runner/RunnerShared.cpp; the
 // life layer keeps its own copy because it links no world code.
 //
-// Measured against the real atlas: Britain -> Trinsic is 1,110 tiles and
-// Vesper -> Minoc 440, so no legitimate same-facet errand trips this; Papua ->
-// Britain bank is 4,024.
+// Measured against the real atlas WITH THE MOONGATES ALLOWED, which is how
+// Observation::tilesFromHome is filled: Skara Brae bank -> Trinsic bank is
+// 202 tiles over one gate where the straight line is 1,226, and Vesper ->
+// Minoc is 440 on foot -- so no legitimate same-facet errand trips this.
+// Papua bank -> Britain bank is still 2,240 using the nearest gate (4,024
+// straight), because the Lost Lands have no public moongate of their own.
 constexpr i32 kStrandedFromHomeTiles = 1200;
 
 // "NeedTool=true" is not a need. A need names the thing and the evidence.

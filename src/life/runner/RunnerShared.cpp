@@ -203,6 +203,71 @@ const wm::Place* NearestGuardedPlace(const world_atlas::Atlas* atlas, i32 x,
     return best;
 }
 
+namespace {
+
+// How near a public moongate a town has to be before it counts as somewhere
+// the errand system would send anyone. MEASURED, not chosen: the shortest
+// distance from each town AREADEF's own rectangles to the nearest moongate
+// entry tile in data/revolution_atlas.txt is Jhelom 33, Skara Brae 41,
+// Trinsic 50, Minoc 74, Magincia 90, Yew 92, Moonglow 100, Vesper 119,
+// Britain 200, Cove 459 -- and then it jumps to Sea Market 805 and The
+// Heartwood 2,440, which are the two towns on this map nothing can walk or
+// gate to. 600 sits in that gap.
+constexpr i32 kErrandTownGateTiles = 600;
+
+i32 RectDist(const wm::Rect& r, i32 x, i32 y) {
+    const i32 dx = std::max({r.x1 - x, 0, x - r.x2});
+    const i32 dy = std::max({r.y1 - y, 0, y - r.y2});
+    return std::max(dx, dy);
+}
+
+// Nearest public moongate ENTRY to any part of `region`, or -1 when the atlas
+// carries no moongate rows at all.
+i32 GateDistanceToRegion(const world_atlas::Atlas& atlas,
+                         const wm::Region& region) {
+    i32 best = -1;
+    for (const wm::TransitNode& t : atlas.Transits()) {
+        if (t.kind != wm::TransitKind::Moongate) continue;
+        for (const wm::Rect& r : region.rects) {
+            const i32 d = RectDist(r, t.from.x, t.from.y);
+            if (best < 0 || d < best) best = d;
+        }
+    }
+    return best;
+}
+
+}  // namespace
+
+i32 TravelTilesWithGates(const world_atlas::Atlas& atlas, i32 fromX, i32 fromY,
+                         i32 toX, i32 toY) {
+    i32 best = TileDist(fromX, fromY, toX, toY);
+    // One hop only, and only over gate pairs the atlas really lists. This
+    // shard's public network is a complete graph over ten pads (every
+    // mg_<city>__<city> row in data/revolution_atlas.txt), so one hop is
+    // every journey the network can shorten; a second hop would only ever
+    // add walking.
+    for (const wm::TransitNode& t : atlas.Transits()) {
+        if (t.kind != wm::TransitKind::Moongate) continue;
+        const i32 walkIn = TileDist(fromX, fromY, t.from.x, t.from.y);
+        if (walkIn >= best) continue;          // already worse than not going
+        const i32 cost = walkIn + TileDist(t.to.x, t.to.y, toX, toY);
+        if (cost < best) best = cost;
+    }
+    return best;
+}
+
+bool OnErrandTownGround(const world_atlas::Atlas& atlas, i32 x, i32 y) {
+    if (!atlas.Ready()) return false;
+    for (const wm::Region& r : atlas.Regions()) {
+        if (r.kind != wm::RegionKind::Town) continue;
+        if (!r.flags.guarded) continue;
+        if (!r.Contains(x, y)) continue;
+        const i32 gate = GateDistanceToRegion(atlas, r);
+        if (gate >= 0 && gate <= kErrandTownGateTiles) return true;
+    }
+    return false;
+}
+
 HomeReturn ResolveHomeReturn(const world_atlas::Atlas* atlas,
                              const std::string& homeCity, i32 x, i32 y) {
     HomeReturn h;
@@ -227,7 +292,9 @@ HomeReturn ResolveHomeReturn(const world_atlas::Atlas* atlas,
         h.arriveRadius = 8;
         h.label = home->name.c_str();
     }
-    h.tiles = TileDist(h.x, h.y, x, y);
+    h.directTiles = TileDist(h.x, h.y, x, y);
+    h.tiles = TravelTilesWithGates(*atlas, x, y, h.x, h.y);
+    h.onErrandGround = OnErrandTownGround(*atlas, x, y);
     h.resolved = true;
     return h;
 }

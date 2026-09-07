@@ -475,6 +475,7 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
         obs.homeKnown = home.resolved;
         obs.inHomeRegion = !home.resolved || home.inHome;
         obs.tilesFromHome = home.tiles;
+        obs.onErrandGround = home.onErrandGround;
     }
     obs.treeAdjacent = client.TreeCount(obs.x, obs.y, 2) > 0;
     // A box opened in Magincia is not a box we are standing at in Ocllo:

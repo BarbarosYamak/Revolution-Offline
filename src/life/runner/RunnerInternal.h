@@ -1492,18 +1492,49 @@ const wm::Place* NearestGuardedPlace(const world_atlas::Atlas* atlas, i32 x,
 // `resolved` is false when there is no home city, no atlas, or the atlas
 // knows no such region -- the arm-A gate that keeps NeedHome silent when
 // DoReturnHome would have nowhere to go.
+//
+// DISTANCE IS TRAVEL COST, NOT A STRAIGHT LINE (2026-09-07). `tiles` is what
+// the journey actually costs with the public moongates allowed: walk to a
+// gate, hop, walk on from the far pad. Measuring it as raw Chebyshev is what
+// called Alder "1207 tiles from home" while he stood in Skara Brae on a
+// perfectly ordinary gear errand from Trinsic, one gate and ~200 tiles away
+// (artifacts/alder_home_20260907/Alder.console.txt 12:22). `directTiles`
+// keeps the straight line for logs and for callers that want the map figure.
 struct HomeReturn {
     const wm::Region* region = nullptr;
     i32  x = 0, y = 0;
     i32  arriveRadius = 5;
     // Points into atlas storage, which outlives every caller here.
     const char* label = "";
-    i32  tiles = 0;         // Chebyshev from the queried (x, y) to (x, y) above
+    i32  tiles = 0;         // travel cost to (x, y) above, moongates allowed
+    i32  directTiles = 0;   // Chebyshev from the queried (x, y), no gates
     bool inHome = false;    // standing inside the home region's rectangles
+    // Standing on ground an ordinary errand would send this character to: a
+    // guarded TOWN region that the public moongate network reaches. A
+    // character here is visiting, never stranded, however far home is.
+    bool onErrandGround = false;
     bool resolved = false;
 };
 HomeReturn ResolveHomeReturn(const world_atlas::Atlas* atlas,
                              const std::string& homeCity, i32 x, i32 y);
+
+// Travel cost in tiles from (fromX, fromY) to (toX, toY) with the shard's
+// PUBLIC MOONGATES allowed and nothing else -- no recall the character has
+// not earned, no teleporter pad it did not choose (Atlas.h warns that the one
+// in the middle of Yew lands you in Heartwood). The straight line, or the
+// cheapest walk-to-a-gate + walk-on-from-its-pad over the gate rows the atlas
+// actually carries, whichever is smaller. Deliberately coarse: it ranks
+// "errand" against "stranded", it does not plan the journey -- the route
+// planner does that, and it needs a navgrid the need model has no business
+// holding.
+i32 TravelTilesWithGates(const world_atlas::Atlas& atlas, i32 fromX, i32 fromY,
+                         i32 toX, i32 toY);
+
+// Is (x, y) inside a guarded TOWN the moongate network reaches?
+//
+// Town-wide on purpose: guardedness per TILE flaps room by room, and the
+// Papua bank room is guarded while Papua itself is not a town at all.
+bool OnErrandTownGround(const world_atlas::Atlas& atlas, i32 x, i32 y);
 
 
 }  // namespace runner_detail
