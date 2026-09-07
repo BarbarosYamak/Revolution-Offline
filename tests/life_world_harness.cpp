@@ -11,6 +11,7 @@
 #include "uo/endian.h"
 
 #include <cstdio>
+#include <cstring>
 #include <filesystem>
 #include <fstream>
 #include <memory>
@@ -126,6 +127,55 @@ struct RunnerHarnessAccess {
     static std::string ResolveMarketPlaceId(Runner& runner, Client& client) {
         return runner.ResolveHomeMarketPlaceId(client);
     }
+
+    // --- "a buyer pays for what is in the window" (Economy.cpp, 2026-09-07) --
+    // What Baelos shouted out loud before the window ever opened: the WTB
+    // ceiling, not an agreement. DriveOpenTrade's own listen loop is what
+    // normally writes this; seeded directly here so the test can drive
+    // straight to the window race the defect lived in.
+    static void SeedTradeWant(Runner& runner, const market::TradeIntent& want,
+                              i64 nowMs) {
+        runner.tradeWant_ = want;
+        runner.tradeWantAskedMs_ = nowMs;
+    }
+    static bool DriveOpenTradeForTest(Runner& runner, Client& client,
+                                      const Observation& obs) {
+        return runner.DriveOpenTrade(client, obs);
+    }
+    static bool DoTradeWithPlayerForTest(Runner& runner, Client& client,
+                                         const Observation& obs) {
+        return runner.DoTradeWithPlayer(client, obs);
+    }
+    static i32 TradeOfferedQty(const Runner& runner) {
+        return runner.tradeOfferedQty_;
+    }
+    static i32 TradeOfferPrice(const Runner& runner) {
+        return runner.tradeOfferPrice_;
+    }
+    // gold this life actually put in the window -- qty x price, the two
+    // numbers the defect kept apart from each other and from the truth.
+    static i32 GoldOwed(const Runner& runner) {
+        return runner.tradeOfferedQty_ * runner.tradeOfferPrice_;
+    }
+    static i32 BelievedSalePrice(const Runner& runner, const char* item) {
+        return runner.state_.prices.BelievedSalePrice(item);
+    }
+    // Seeds a "we already agreed to buy" state directly, bypassing the window
+    // dance -- DoTradeWithPlayer's Completed-phase price observation reads
+    // only these fields plus the CLIENT's own trade phase, so this isolates
+    // the poison guard from the funding machinery already covered by
+    // DriveOpenTradeForTest above.
+    static void SeedCompletedBuy(Runner& runner, const std::string& item,
+                                 const market::TradeIntent& ceilingWant,
+                                 i32 packBefore, i32 goldBefore,
+                                 i32 agreedUnitPrice) {
+        runner.tradeItem_ = item;
+        runner.tradeSellingQty_ = 0;
+        runner.tradeWant_ = ceilingWant;
+        runner.tradePackBefore_ = packBefore;
+        runner.tradeGoldBefore_ = goldBefore;
+        runner.tradeOfferPrice_ = agreedUnitPrice;
+    }
 };
 }
 
@@ -197,6 +247,109 @@ bool LogoutIssued(const Client& client) {
     for (const auto& p : client.SentForTest())
         if (p.opcode == 0xD1) return true;
     return false;
+}
+
+// --- packet builders for the trade-window fix (Economy.cpp, 2026-09-07) ----
+// Layouts mirror tests/trade_verify.cpp's own builders byte-for-byte (cited
+// there against the Client.cpp/ClientTrade.cpp handlers); duplicated locally
+// rather than shared, matching this project's existing per-test-file
+// convention for hand-built packets.
+
+// 0x1B LOGIN_CONFIRM: serial(4) .. x@11(2) y@13(2).
+std::vector<u8> MakeLoginConfirm(u32 serial, u16 x, u16 y) {
+    std::vector<u8> p(37, 0);
+    p[0] = 0x1B;
+    StoreBE32(&p[1], serial);
+    StoreBE16(&p[9], 0x0190);
+    StoreBE16(&p[11], x);
+    StoreBE16(&p[13], y);
+    return p;
+}
+
+// 0x2E EQUIP_ITEM: item(4) graphic(2) pad(1) layer(1) mobile(4) hue(2).
+std::vector<u8> MakeEquip(u32 item, u16 graphic, u8 layer, u32 mobile) {
+    std::vector<u8> p(15, 0);
+    p[0] = 0x2E;
+    StoreBE32(&p[1], item);
+    StoreBE16(&p[5], graphic);
+    p[8] = layer;
+    StoreBE32(&p[9], mobile);
+    return p;
+}
+
+// 0x25 ADD_ITEM_TO_CONTAINER: serial(4) graphic(2) gfxOffset(1) amount(2)
+// x(2) y(2) container(4) hue(2).
+std::vector<u8> MakeAddItem(u32 serial, u16 graphic, u16 amount, u32 container) {
+    std::vector<u8> p(20, 0);
+    p[0] = 0x25;
+    StoreBE32(&p[1], serial);
+    StoreBE16(&p[5], graphic);
+    StoreBE16(&p[8], amount);
+    StoreBE32(&p[14], container);
+    return p;
+}
+
+// 0x1D DELETE_OBJECT: serial(4 BE).
+std::vector<u8> MakeDeleteObject(u32 serial) {
+    std::vector<u8> p(5, 0);
+    p[0] = 0x1D;
+    StoreBE32(&p[1], serial);
+    return p;
+}
+
+// 0x6F SECURE_TRADE_OPEN (action 0): partner(4) myContainer(4)
+// theirContainer(4) flag(1) name[30].
+std::vector<u8> MakeTradeOpen(u32 partner, u32 myContainer, u32 theirContainer,
+                              const char* name) {
+    std::vector<u8> p(47, 0);
+    p[0] = 0x6F;
+    p[3] = 0;
+    StoreBE32(&p[4], partner);
+    StoreBE32(&p[8], myContainer);
+    StoreBE32(&p[12], theirContainer);
+    p[16] = 1;
+    if (name) {
+        const usize n = std::strlen(name);
+        std::memcpy(&p[17], name, n < 30 ? n : 30);
+    }
+    return p;
+}
+
+// 0x6F SECURE_TRADE_CHANGE (action 2): unused(4) mine(4) theirs(4), each a
+// bare 0/nonzero flag (ClientTrade.cpp OnSecureTrade case 2).
+std::vector<u8> MakeTradeChange(bool mine, bool theirs) {
+    std::vector<u8> p(17, 0);
+    p[0] = 0x6F;
+    p[3] = 2;
+    StoreBE32(&p[8], mine ? 1u : 0u);
+    StoreBE32(&p[12], theirs ? 1u : 0u);
+    return p;
+}
+
+// 0x6F SECURE_TRADE_CLOSE (action 1). Whether it reads as completed or
+// cancelled depends only on TradeState::BothAccepted() at the time it
+// arrives (ClientTrade.cpp case 1's own comment), not on anything in this
+// packet.
+std::vector<u8> MakeTradeClose() {
+    std::vector<u8> p(17, 0);
+    p[0] = 0x6F;
+    p[3] = 1;
+    return p;
+}
+
+// 0x1C ASCII_MESSAGE: serial(4)@3 body(2)@7 type(1)@9 name[30]@14 text@44.
+std::vector<u8> MakeAsciiMessage(u32 serial, const char* name,
+                                 const char* text) {
+    const usize textLen = std::strlen(text) + 1;
+    std::vector<u8> p(44 + textLen, 0);
+    p[0] = 0x1C;
+    StoreBE32(&p[3], serial);
+    if (name) {
+        const usize n = std::strlen(name);
+        std::memcpy(&p[14], name, n < 30 ? n : 30);
+    }
+    std::memcpy(&p[44], text, textLen);
+    return p;
 }
 }
 
@@ -972,6 +1125,185 @@ int main(int argc, char** argv) {
         Check(!life::RunnerHarnessAccess::SessionCleanLogout(runner),
               "the session summary must not read this dead end as a clean "
               "logout");
+    }
+
+    // --- "a buyer pays for what is in the window" (Economy.cpp, 2026-09-07) -
+    // Baelos WTB'd "118 i_bandage 4gp"; Aelia's window opened before Baelos's
+    // own listen loop ever parsed her "WTS 10 i_bandage 3gp" reply -- the
+    // race DoTradeWithPlayer's own `if (tr.Active()) return DriveOpenTrade`
+    // short-circuit produces every time a seller answers fast. The old code
+    // funded 118 x 4 = 472 gold before either the true quantity or the true
+    // price had been read anywhere.
+    {
+        const u32 me = 0x00019001;
+        const u32 partner = 0x00019002;
+        const u32 myPack = 0x40020001;
+        const u32 myContainer = 0x40020002;
+        const u32 theirContainer = 0x40020003;
+        const u16 kBandageGfx = 0x0E21;
+
+        Client::Config config{};
+        config.loginHost = "127.0.0.1";
+        config.username = config.password = "trade_fix";
+        config.version = "2.0.7";
+        config.sessionTag = "trade_fix";
+        auto client = std::make_unique<Client>(config);
+        client->SetOfflineForTest(true);
+        client->SetInWorldForTest();
+        client->SetClockForTest(5999000);
+
+        auto login = MakeLoginConfirm(me, 100, 100);
+        client->DispatchPacketForTest(login.data(), login.size());
+        auto pack = MakeEquip(myPack, 0x0E75, 0x15, me);
+        client->DispatchPacketForTest(pack.data(), pack.size());
+        Check(client->BackpackSerial() == myPack, "the backpack serial is known");
+        auto gold = MakeAddItem(0x40020010, 0x0EED, 1000, myPack);
+        client->DispatchPacketForTest(gold.data(), gold.size());
+
+        life::Runner runner;
+        life::RunnerConfig rc;
+        rc.dataRoot = root + "/trade_fix";
+        rc.accountName = "trade_fix";
+        rc.characterName = "trade_fix";
+        rc.professionId = "fencer";
+        std::string error;
+        Check(runner.Configure(rc, &error), error.c_str());
+
+        // Baelos's own broadcast, said and recorded a moment before the
+        // window opens (JournalHeardSince is strictly-after, so the seeded
+        // clock must lead the packets below or Aelia's own reply would be
+        // filtered out as "not newer than when we asked").
+        market::TradeIntent want;
+        want.item = "i_bandage";
+        want.qty = 118;
+        want.pricePerUnit = 4;   // the ceiling shouted in our own WTB
+        life::RunnerHarnessAccess::SeedTradeWant(runner, want, 5999000);
+
+        life::Observation obs;
+        obs.inWorld = true;
+        obs.nowMs = 6000000;
+        obs.goldOnHand = 1000;
+        obs.gold = 1000;
+        client->SetClockForTest(6000000);
+
+        // The window opens -- Aelia dropping her own item, per the
+        // seller-opens convention -- before Baelos has heard anything.
+        auto open = MakeTradeOpen(partner, myContainer, theirContainer, "Aelia");
+        client->DispatchPacketForTest(open.data(), open.size());
+        Check(client->Trade().Active(), "trade window opened");
+
+        // Aelia's real WTS reply, on the wire, at a price and quantity Baelos
+        // never shouted himself.
+        auto said = MakeAsciiMessage(partner, "Aelia", "WTS 10 i_bandage 3gp");
+        client->DispatchPacketForTest(said.data(), said.size());
+
+        // Her 10 bandages land in HER side of the window.
+        auto goods = MakeAddItem(0x40020020, kBandageGfx, 10, theirContainer);
+        client->DispatchPacketForTest(goods.data(), goods.size());
+
+        // FIRST TICK ONLY OBSERVES. A real window opens on a single-item
+        // drop and the seller's true quantity lands a moment later
+        // (DriveOpenTrade's own kTradeSettleMs comment) -- so the buyer must
+        // not price off the very first sighting, and this tick proves it
+        // does not: no gold offered yet.
+        life::RunnerHarnessAccess::DriveOpenTradeForTest(runner, *client, obs);
+        Check(life::RunnerHarnessAccess::TradeOfferedQty(runner) == 0,
+              "the first sighting of the seller's goods is watched, not "
+              "paid for -- it could still be the opening token, not the "
+              "real offer");
+
+        // Past the settle window, with the count unchanged: NOW it prices.
+        life::Observation settled = obs;
+        settled.nowMs = obs.nowMs + 2600;
+        life::RunnerHarnessAccess::DriveOpenTradeForTest(runner, *client, settled);
+        Check(life::RunnerHarnessAccess::TradeOfferedQty(runner) == 10,
+              "counted the 10 Aelia actually delivered, not the 118 asked for");
+        Check(life::RunnerHarnessAccess::TradeOfferPrice(runner) == 3,
+              "priced at Aelia's 3gp ask, never at our own 4gp ceiling");
+        Check(life::RunnerHarnessAccess::GoldOwed(runner) == 30,
+              "30 gold offered for 10 bandages at 3gp each, not 472 for 118 "
+              "at a ceiling nobody agreed to");
+        obs = settled;
+
+        // Accept step: the window still holds exactly what was priced, so
+        // this life accepts.
+        life::RunnerHarnessAccess::DriveOpenTradeForTest(runner, *client, obs);
+
+        // Both sides tick their accept and the server closes the window as
+        // completed.
+        auto change = MakeTradeChange(true, true);
+        client->DispatchPacketForTest(change.data(), change.size());
+        auto close = MakeTradeClose();
+        client->DispatchPacketForTest(close.data(), close.size());
+
+        // The Completed-phase handler reads the OBSERVATION's own pack/gold,
+        // not the live container cache -- 10 bandages arrived, 30 gold left.
+        life::Observation after = obs;
+        after.pack.push_back({"i_bandage", 10});
+        after.gold = 970;
+        life::RunnerHarnessAccess::DoTradeWithPlayerForTest(runner, *client, after);
+        Check(life::RunnerHarnessAccess::BelievedSalePrice(runner, "i_bandage") == 3,
+              "got 10 for 30 gold -- the recorded observation is 3/unit, "
+              "Aelia's real price");
+    }
+
+    // --- the poison guard discards an impossible observation ---------------
+    // Isolated from the funding machinery above: seeds a "trade completed"
+    // state directly and checks only the price-observation arithmetic in
+    // DoTradeWithPlayer's Completed branch.
+    {
+        Client::Config config{};
+        config.loginHost = "127.0.0.1";
+        config.username = config.password = "trade_poison";
+        config.version = "2.0.7";
+        config.sessionTag = "trade_poison";
+        auto client = std::make_unique<Client>(config);
+        client->SetOfflineForTest(true);
+        client->SetInWorldForTest();
+        client->SetClockForTest(7000000);
+
+        const u32 partner = 0x0001A001;
+        auto open = MakeTradeOpen(partner, 0x4003A001, 0x4003A002, "Wren");
+        client->DispatchPacketForTest(open.data(), open.size());
+        auto change = MakeTradeChange(true, true);
+        client->DispatchPacketForTest(change.data(), change.size());
+        auto close = MakeTradeClose();
+        client->DispatchPacketForTest(close.data(), close.size());
+
+        life::Runner runner;
+        life::RunnerConfig rc;
+        rc.dataRoot = root + "/trade_poison";
+        rc.accountName = "trade_poison";
+        rc.characterName = "trade_poison";
+        rc.professionId = "fencer";
+        std::string error;
+        Check(runner.Configure(rc, &error), error.c_str());
+
+        market::TradeIntent ceilingWant;
+        ceilingWant.item = "i_bandage";
+        ceilingWant.qty = 118;
+        ceilingWant.pricePerUnit = 4;   // the ceiling this poisoned trade defied
+        life::RunnerHarnessAccess::SeedCompletedBuy(
+            runner, "i_bandage", ceilingWant, /*packBefore=*/0,
+            /*goldBefore=*/470, /*agreedUnitPrice=*/4);
+
+        // 10 delivered for 470 gold -- a real 47/unit, more than 3x the 4gp
+        // ceiling this deal was supposed to have been bound by.
+        life::Observation after;
+        after.inWorld = true;
+        after.nowMs = 7000000;
+        after.gold = 0;
+        after.pack.push_back({"i_bandage", 10});
+        life::RunnerHarnessAccess::DoTradeWithPlayerForTest(runner, *client, after);
+        // NOT -1: i_bandage carries a shard-value seed (Market.cpp
+        // kShardValueSeeds, 3gp) that BelievedSalePrice falls back to once
+        // there is no PlayerTraded observation to prefer. Seeing that seed
+        // -- rather than 47, PlayerTraded's own top rank -- is exactly the
+        // proof the poisoned observation was never recorded: had it been,
+        // this would read 47.
+        Check(life::RunnerHarnessAccess::BelievedSalePrice(runner, "i_bandage") == 3,
+              "a 47/unit observation against a 4gp ceiling is discarded, "
+              "leaving only the shard seed -- never taught to the fleet");
     }
 
     std::printf("%d checks, %d failures\n", checks, failures);

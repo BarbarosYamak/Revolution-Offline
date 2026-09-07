@@ -1502,6 +1502,30 @@ private:
     market::TradeIntent tradeWant_;
     i64  tradeWantAskedMs_ = 0;
     bool tradeOffered_ = false;
+    // What the BUYER actually offered gold for -- min(delivered, wanted) at
+    // the moment the coin went in, counted from the partner's own side of the
+    // window rather than promised in advance. If the partner's side no longer
+    // matches this by the time both boxes are ready to check, the deal has
+    // changed since it was priced and gets cancelled, not accepted. See
+    // DriveOpenTrade ("a buyer pays for what is in the window", 2026-09-07).
+    i32  tradeOfferedQty_ = 0;
+    // THE WINDOW OPENS IN TWO STEPS, ALWAYS. A 2.0.x trade opens by DROPPING
+    // one item on the partner (trade.h's own header comment) -- Source-X
+    // creates the window on that single-item drop -- and the seller's own
+    // DriveOpenTrade code then adds its REAL offered quantity in a second,
+    // separate move a tick or two later. A buyer that priced off the
+    // opening 1 saw it jump to the seller's true count moments later, read
+    // that as the seller changing the deal, and cancelled a perfectly
+    // ordinary trade (live smoke evidence, run
+    // smoke_Aelia_Wren_Baelos_Calar_20260907_1619: Aelia opened with 1
+    // i_bandage, Baelos priced and paid for 1, Aelia's own 39 landed 2.5s
+    // later, Baelos read 1->39 as a change and cancelled). So the buyer
+    // waits for the delivered count to hold STILL for kTradeSettleMs before
+    // pricing anything off it -- these two track what was last seen and
+    // when, purely for that debounce.
+    i32  tradeSeenQty_ = -1;
+    i64  tradeSeenQtyMs_ = 0;
+    static constexpr i64 kTradeSettleMs = 2500;
     i32  tradePackBefore_ = 0;   // the PACK is the proof, not the packet
     i32  tradeGoldBefore_ = 0;
     i64  tradeHeardMs_ = 0;

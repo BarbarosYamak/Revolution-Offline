@@ -1073,6 +1073,18 @@ void Runner::ForgetBankedStock(const char* item) {
     }
 }
 
+// PRICE-BOOK POISON GUARD. A completed trade's real gold/goods ratio is
+// trusted as a market price only up to this multiple of the ceiling (buyer
+// side) or the asked price (seller side) the deal was actually priced
+// against. Set well above every tolerance this file already applies BEFORE
+// a trade is agreed to -- ConsiderOffer and AnswerBuyWant both cap at 1.5x a
+// known price -- so a completed trade landing beyond triple that could not
+// have been an honest agreement; it is evidence of a delivered/paid
+// mismatch, and recording it would teach the whole fleet a number nobody
+// actually charged. See DoTradeWithPlayer/DriveOpenTrade's PriceObservation
+// sites.
+static constexpr i32 kPoisonPriceFactor = 3;
+
 bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
     const prof::Profession* me = needCfg_.profession;
     if (!me) return true;
@@ -1108,13 +1120,33 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
             LogLine("trade: gave %d %s to %s for %d gold", moved,
                     tradeItem_.c_str(), tradePartnerName_.c_str(), paid);
             if (paid > 0) {
-                market::PriceObservation po;
-                po.item = tradeItem_;
-                po.pricePerUnit = paid / moved;
-                po.source = market::PriceSource::PlayerTraded;
-                po.who = tradePartnerName_;
-                po.x = obs.x; po.y = obs.y; po.whenMs = obs.nowMs;
-                state_.prices.Note(po);
+                const i32 perUnit = paid / moved;
+                // POISON GUARD -- see the buyer-side twin below for the full
+                // reasoning. Here the reference is what this life itself
+                // asked (tradeOffer_.pricePerUnit): a completed sale whose
+                // real gold/goods ratio comes out multiples above that is a
+                // bookkeeping mismatch, not a price this life actually
+                // charged, and must not be taught to the fleet as one.
+                if (tradeOffer_.pricePerUnit > 0 &&
+                    perUnit > tradeOffer_.pricePerUnit * kPoisonPriceFactor) {
+                    LogLine("trade: discarding price observation %d/unit for "
+                            "%s -- more than %dx the %d/unit this life "
+                            "actually asked (poison guard)", perUnit,
+                            tradeItem_.c_str(), kPoisonPriceFactor,
+                            tradeOffer_.pricePerUnit);
+                } else {
+                    market::PriceObservation po;
+                    po.item = tradeItem_;
+                    po.pricePerUnit = perUnit;
+                    po.source = market::PriceSource::PlayerTraded;
+                    po.who = tradePartnerName_;
+                    po.x = obs.x; po.y = obs.y; po.whenMs = obs.nowMs;
+                    state_.prices.Note(po);
+                }
+                // The gold and the goods genuinely moved either way -- the
+                // ledger records the fact of the transfer, never a belief
+                // about its price, so a discarded observation still keeps
+                // an honest conservation record.
                 state_.ledger.Note(market::GoldFlow::TransferPlayerTrade, paid,
                                    tradeItem_.c_str(), obs.nowMs);
             }
@@ -1128,13 +1160,40 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
             LogLine("trade: got %d %s from %s for %d gold", got,
                     tradeItem_.c_str(), tradePartnerName_.c_str(), spent);
             if (spent > 0) {
-                market::PriceObservation po;
-                po.item = tradeItem_;
-                po.pricePerUnit = spent / got;
-                po.source = market::PriceSource::PlayerTraded;
-                po.who = tradePartnerName_;
-                po.x = obs.x; po.y = obs.y; po.whenMs = obs.nowMs;
-                state_.prices.Note(po);
+                const i32 perUnit = spent / got;
+                // POISON GUARD. `ceiling` is the most this life ever said it
+                // would pay for this item: `tradeWant_.pricePerUnit` when the
+                // WTB that started this deal is still on record (the normal
+                // case), or `tradeOfferPrice_` -- the agreed price, itself
+                // already checked against a ceiling before a coin went in --
+                // when it is not. kPoisonPriceFactor is set well above every
+                // real tolerance this file allows a deal (ConsiderOffer and
+                // AnswerBuyWant both cap at 1.5x a known price before a trade
+                // is even agreed to), so a completed trade priced at more
+                // than that multiple of the ceiling did not happen honestly:
+                // it is a delivered/paid mismatch, not a market price. This
+                // is the exact shape of the defect fixed here 2026-09-07:
+                // 118 x 4gp funded against 10 delivered produced a recorded
+                // observation of 47/unit against a 4gp ceiling.
+                const i32 ceiling =
+                    tradeWant_.Valid() ? tradeWant_.pricePerUnit : tradeOfferPrice_;
+                if (ceiling > 0 && perUnit > ceiling * kPoisonPriceFactor) {
+                    LogLine("trade: discarding price observation %d/unit for "
+                            "%s -- more than %dx the %d/unit ceiling this "
+                            "life would pay (poison guard)", perUnit,
+                            tradeItem_.c_str(), kPoisonPriceFactor, ceiling);
+                } else {
+                    market::PriceObservation po;
+                    po.item = tradeItem_;
+                    po.pricePerUnit = perUnit;
+                    po.source = market::PriceSource::PlayerTraded;
+                    po.who = tradePartnerName_;
+                    po.x = obs.x; po.y = obs.y; po.whenMs = obs.nowMs;
+                    state_.prices.Note(po);
+                }
+                // The gold and the goods genuinely moved either way -- see
+                // the seller-side twin above for why the ledger entry is
+                // unconditional on the transfer, not on the price belief.
                 state_.ledger.Note(market::GoldFlow::TransferPlayerTradeOut, spent,
                                    tradeItem_.c_str(), obs.nowMs);
             }
@@ -2030,6 +2089,23 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
     return false;
 }
 
+// How many of `graphic` are sitting in `container`, summed across stacks.
+// Gold cannot go through FindContainerItemByName (RunnerInternal.h's
+// helper keyed on econ's graphic->defname table): kGoldCoin is a bare
+// graphic constant with no defname row (RunnerInternal.h: "0x0EED // i_gold"
+// with no ItemNameForGraphic entry), so this counts by graphic directly.
+static i32 CountGraphicInContainer(const Client& client, u32 container,
+                                   u16 graphic) {
+    i32 total = 0;
+    const usize n = client.ContainerItemCount(container);
+    for (usize i = 0; i < n; ++i) {
+        u32 serial = 0; u16 gfx = 0, amount = 0;
+        if (!client.ContainerItemAt(container, i, &serial, &gfx, &amount)) continue;
+        if (gfx == graphic) total += amount ? amount : 1;
+    }
+    return total;
+}
+
 // Put the goods (or the gold) in the window, then accept. Kept separate
 // because it is the half that runs on BOTH sides of the same deal.
 bool Runner::DriveOpenTrade(Client& client, const Observation& obs) {
@@ -2049,10 +2125,33 @@ bool Runner::DriveOpenTrade(Client& client, const Observation& obs) {
     if (tradePartnerName_.empty() && !tr.PartnerName().empty())
         tradePartnerName_ = tr.PartnerName();
 
+    // THE GIVE-UP CLOCK STARTS AT WINDOW-OPEN, ONCE. A buyer now waits
+    // (below) for the seller's goods and price before it ever offers gold,
+    // which can take several ticks -- so this can no longer be stamped
+    // unconditionally every time the `!tradeOffered_` block runs, or a
+    // buyer that is legitimately still waiting would never time out AND
+    // never be timed correctly. Stamped only while it is still the sentinel
+    // 0 (ResetTradeState zeroes it) so it fires exactly once per trade.
+    if (tradeOpenedMs_ == 0) tradeOpenedMs_ = obs.nowMs;
+
     // A WINDOW THIS SIDE DID NOT PLAN, opened by a seller answering the WTB we
     // broadcast. There is no committed price or quantity because the "heard a
-    // WTS" branch never ran for this deal -- but the want we said out loud a
-    // few seconds ago is a plan, and it is the only honest basis for funding.
+    // WTS" branch never ran for this deal -- DoTradeWithPlayer short-circuits
+    // into DriveOpenTrade the instant tr.Active() is true, which can happen
+    // before this life's own tick ever reads the seller's WTS off the wire.
+    //
+    // THE PRICE IS THE SELLER'S, NEVER OUR OWN CEILING. `tradeWant_.
+    // pricePerUnit` is the most this life said it would pay in its own WTB --
+    // a ceiling, not an agreement -- and funding a window at that ceiling,
+    // for the full quantity asked rather than what the seller actually
+    // offered, is exactly the defect this replaces: Baelos WTB'd "118
+    // i_bandage 4gp", Aelia answered "WTS 10 i_bandage 3gp", and the window
+    // was funded at 118 x 4 = 472 gold before either the true quantity (10)
+    // or the true price (3) had been read anywhere
+    // (artifacts/smoke_trade_close_20260907, 2026-09-07). So this branch now
+    // looks for the seller's own WTS line -- the one the "heard a WTS" loop
+    // above would have parsed had it gotten the tick first -- and funds
+    // THAT, never the ceiling. No WTS heard yet is "wait", not "guess".
     //
     // FRESHNESS IS THE GUARD. `tradeWant_` is not cleared by every stand-down
     // path, so an old announcement must not fund a window opened half an hour
@@ -2061,26 +2160,66 @@ bool Runner::DriveOpenTrade(Client& client, const Observation& obs) {
     if (!tradeOffered_ && tradeSellingQty_ == 0 && tradeWantQty_ <= 0 &&
         tradeWant_.Valid() &&
         obs.nowMs - tradeWantAskedMs_ <= kListenMs + kAnnounceIntervalMs) {
-        const i32 reserve =
-            needCfg_.profession ? needCfg_.profession->goldReserve : 0;
-        const market::FundingDecision fd =
-            market::FundOpenWindow(tradeWant_, obs.goldOnHand, reserve);
-        LogLine("trade: %s opened a window for the %d %s we asked for -- %s",
-                tradePartnerName_.c_str(), tradeWant_.qty,
-                tradeWant_.item.c_str(), fd.reason);
-        if (fd.accept) {
-            tradeItem_ = tradeWant_.item;
-            tradeWantQty_ = fd.qty;
-            tradeOfferPrice_ = tradeWant_.pricePerUnit;
-            // The proof this trade moved anything is the pack and the purse,
-            // and both have to be sampled BEFORE the coin goes in -- the
-            // committed path samples them when it names a partner, and this
-            // path has no such moment.
-            tradePackBefore_ = market::QtyOf(obs.pack, tradeItem_);
-            tradeGoldBefore_ = obs.gold;
+        market::TradeIntent sellerAsk;
+        bool haveSellerAsk = false;
+        if (tradePartner_ != 0) {
+            std::vector<Client::Heard> heardNow;
+            client.JournalHeardSince(tradeWantAskedMs_, heardNow);
+            for (const Client::Heard& h : heardNow) {
+                if (h.speaker != tradePartner_) continue;
+                market::TradeIntent parsed;
+                if (!market::ParseSellOffer(h.text, &parsed)) continue;
+                if (parsed.item != tradeWant_.item) continue;
+                sellerAsk = parsed;   // the most recent one heard wins
+                haveSellerAsk = true;
+            }
         }
-        // A refusal is left to time out on the window's own give-up clock
-        // below rather than retried: there is no second answer to give.
+        if (!haveSellerAsk) {
+            LogLine("trade: %s opened a window for the %d %s we asked for, "
+                    "but never said a WTS we heard -- waiting rather than "
+                    "funding our own ceiling", tradePartnerName_.c_str(),
+                    tradeWant_.qty, tradeWant_.item.c_str());
+        } else if (sellerAsk.pricePerUnit > tradeWant_.pricePerUnit) {
+            LogLine("trade: %s asked %dgp for %s, more than our %dgp "
+                    "ceiling -- no deal", tradePartnerName_.c_str(),
+                    sellerAsk.pricePerUnit, tradeWant_.item.c_str(),
+                    tradeWant_.pricePerUnit);
+            client.ActionTradeCancel();
+            client.TradeForget();
+            ResetTradeState();
+            planner_.NoteAttempt(obs.nowMs);
+            planner_.Cooldown(GoalKind::TradeWithPlayer,
+                              obs.nowMs + kTradeRetryRestMs);
+            planner_.Finish(false, "the seller asked more than our ceiling",
+                            obs.nowMs);
+            return false;
+        } else {
+            const i32 reserve =
+                needCfg_.profession ? needCfg_.profession->goldReserve : 0;
+            market::TradeIntent planned = tradeWant_;
+            planned.pricePerUnit = sellerAsk.pricePerUnit;
+            planned.qty = std::min(tradeWant_.qty, sellerAsk.qty);
+            const market::FundingDecision fd =
+                market::FundOpenWindow(planned, obs.goldOnHand, reserve);
+            LogLine("trade: %s opened a window for the %s we asked for, "
+                    "asking %dgp for %d -- %s", tradePartnerName_.c_str(),
+                    tradeWant_.item.c_str(), sellerAsk.pricePerUnit,
+                    sellerAsk.qty, fd.reason);
+            if (fd.accept) {
+                tradeItem_ = tradeWant_.item;
+                tradeWantQty_ = fd.qty;
+                tradeOfferPrice_ = sellerAsk.pricePerUnit;
+                // The proof this trade moved anything is the pack and the
+                // purse, and both have to be sampled BEFORE the coin goes
+                // in -- the committed path samples them when it names a
+                // partner, and this path has no such moment.
+                tradePackBefore_ = market::QtyOf(obs.pack, tradeItem_);
+                tradeGoldBefore_ = obs.gold;
+            }
+            // A refusal is left to time out on the window's own give-up
+            // clock below rather than retried: there is no second answer to
+            // give.
+        }
     }
 
     if (!tradeOffered_) {
@@ -2093,25 +2232,107 @@ bool Runner::DriveOpenTrade(Client& client, const Observation& obs) {
                                         static_cast<u16>(tradeSellingQty_));
                 break;
             }
-        } else {
-            const i32 owed = tradeWantQty_ * tradeOfferPrice_;
-            const u32 gold = client.FindBackpackItemByGraphic(kGoldCoin);
-            if (gold && owed > 0) {
-                client.ActionTradeOffer(gold, static_cast<u16>(owed));
-                LogLine("trade: offering %d gold for %d %s", owed,
-                        tradeWantQty_, tradeItem_.c_str());
-            }
+            tradeOffered_ = true;
+            nextActionMs_ = obs.nowMs + 2000;
+            return false;
         }
+
+        // THE BUYER PAYS FOR WHAT IS IN THE WINDOW -- delivered quantity
+        // times the agreed unit price, never a promise made before either
+        // was seen. Wait for the seller's side to actually hold something,
+        // count it, and only then put gold in. A partner who has put
+        // nothing in yet, or a deal with no honestly-agreed price at all
+        // (the "no WTS heard" case above), gets waited on rather than paid.
+        if (tr.TheirOffer().empty() || tradeWantQty_ <= 0 ||
+            tradeOfferPrice_ <= 0) {
+            nextActionMs_ = obs.nowMs + 1000;
+            return false;
+        }
+        i32 delivered = 0;
+        if (!tradeItem_.empty())
+            FindContainerItemByName(client, tr.TheirContainer(),
+                                    tradeItem_.c_str(), &delivered);
+        // SETTLE BEFORE PRICING. The window opens on a single-item drop
+        // (trade.h's own header comment) and the seller's own DriveOpenTrade
+        // code adds its real quantity in a SEPARATE move a tick or two
+        // later -- pricing off whatever is visible the instant the window
+        // opens prices the opening token, not the offer. Live evidence:
+        // Aelia opened with 1 i_bandage, Baelos priced and paid for that 1,
+        // Aelia's real 39 landed 2.5s later, and Baelos read 1->39 as the
+        // seller changing the deal and cancelled an ordinary trade
+        // (artifacts/smoke_Aelia_Wren_Baelos_Calar_20260907_1619). So the
+        // count has to hold still for kTradeSettleMs before anything is
+        // priced off it; the clock restarts every time it changes.
+        if (delivered != tradeSeenQty_) {
+            tradeSeenQty_ = delivered;
+            tradeSeenQtyMs_ = obs.nowMs;
+            nextActionMs_ = obs.nowMs + 1000;
+            return false;
+        }
+        if (obs.nowMs - tradeSeenQtyMs_ < kTradeSettleMs) {
+            nextActionMs_ = obs.nowMs + 1000;
+            return false;
+        }
+        const i32 pay = std::min(delivered, tradeWantQty_);
+        const i32 owed = pay * tradeOfferPrice_;
+        const u32 gold = client.FindBackpackItemByGraphic(kGoldCoin);
+        if (!gold || owed <= 0) {
+            nextActionMs_ = obs.nowMs + 1000;
+            return false;
+        }
+        client.ActionTradeOffer(gold, static_cast<u16>(owed));
+        LogLine("trade: %s put %d %s in the window -- offering %d gold "
+                "for %d", tradePartnerName_.c_str(), delivered,
+                tradeItem_.c_str(), owed, pay);
+        tradeOfferedQty_ = pay;
         tradeOffered_ = true;
-        tradeOpenedMs_ = obs.nowMs;
         nextActionMs_ = obs.nowMs + 2000;
         return false;
     }
 
-    // Accept once the partner has put something in. Accepting an EMPTY window
-    // is how a character gives its goods away for nothing.
+    // Accept once the partner has put something in -- and, for a buyer, only
+    // once it still matches what was actually priced when the gold went in;
+    // for a seller, only once the gold on the table actually covers what was
+    // asked. Accepting an EMPTY window is how a character gives its goods
+    // away for nothing; accepting a window that changed AFTER the price was
+    // set is how it pays for one thing and receives another.
     if (tr.CurrentPhase() == trade::Phase::Open && !tr.TheirOffer().empty() &&
         !tr.CheckSent()) {
+        if (tradeSellingQty_ == 0) {
+            i32 nowDelivered = 0;
+            if (!tradeItem_.empty())
+                FindContainerItemByName(client, tr.TheirContainer(),
+                                        tradeItem_.c_str(), &nowDelivered);
+            const i32 nowPay = std::min(nowDelivered, tradeWantQty_);
+            if (nowPay != tradeOfferedQty_) {
+                LogLine("trade: %s changed the window after the gold went "
+                        "in (%d -> %d %s) -- cancelling, not accepting",
+                        tradePartnerName_.c_str(), tradeOfferedQty_, nowPay,
+                        tradeItem_.c_str());
+                client.ActionTradeCancel();
+                client.TradeForget();
+                ResetTradeState();
+                planner_.NoteAttempt(obs.nowMs);
+                planner_.Cooldown(GoalKind::TradeWithPlayer,
+                                  obs.nowMs + kTradeRetryRestMs);
+                planner_.Finish(false, "the partner changed the window "
+                                "after the gold was offered", obs.nowMs);
+                return false;
+            }
+        } else {
+            const i32 goldOffered =
+                CountGraphicInContainer(client, tr.TheirContainer(), kGoldCoin);
+            const i32 need = tradeSellingQty_ * tradeOffer_.pricePerUnit;
+            if (need > 0 && goldOffered < need) {
+                LogLine("trade: %s put %d gold in for %d %s at %dgp each -- "
+                        "needs %d, not accepting yet",
+                        tradePartnerName_.c_str(), goldOffered,
+                        tradeSellingQty_, tradeItem_.c_str(),
+                        tradeOffer_.pricePerUnit, need);
+                nextActionMs_ = obs.nowMs + 1000;
+                return false;
+            }
+        }
         LogLine("trade: partner offered %zu line(s); accepting",
                 tr.TheirOffer().size());
         client.ActionTradeAccept(true);
@@ -2152,6 +2373,9 @@ void Runner::ResetTradeState() {
     tradeSellingQty_ = 0;
     tradeWantQty_ = 0;
     tradeOfferPrice_ = 0;
+    tradeOfferedQty_ = 0;
+    tradeSeenQty_ = -1;
+    tradeSeenQtyMs_ = 0;
     // The broadcast want dies with the errand too -- a plan is only a plan
     // while the goal that made it is running. DriveOpenTrade additionally
     // bounds it by age, because not every stand-down reaches here.
@@ -2160,6 +2384,12 @@ void Runner::ResetTradeState() {
     tradeOffered_ = false;
     tradePackBefore_ = 0;
     tradeGoldBefore_ = 0;
+    // ZEROED, not merely left to be overwritten: DriveOpenTrade now stamps
+    // this only ONCE per trade (a buyer may loop through several ticks
+    // waiting for the seller's goods and price before it ever offers gold),
+    // so a stale nonzero value surviving from a PRIOR trade would look like
+    // "opened 20 minutes ago" and time out the next one instantly.
+    tradeOpenedMs_ = 0;
     tradeAnnounceCount_ = 0;
     tradeDeclined_.clear();
     travelInFlight_ = false;
