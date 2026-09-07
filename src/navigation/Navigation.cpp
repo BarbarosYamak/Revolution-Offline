@@ -623,8 +623,13 @@ bool Client::BotFindWalkableNearGoal(i32 goalX, i32 goalY, i8 nearZ,
         [this](i32 x, i32 y, i8 fromZ, i8* standZ) {
             const world::WalkQuery q = MakeWalkQuery(x, y, fromZ);
             const world::WalkResult wr = world_->QueryCell(q);
-            if (wr.walkable && standZ) *standZ = wr.standZ;
-            return wr.walkable;
+            if (!wr.walkable) return false;
+            // A candidate must be free of live overlay clutter too, or the
+            // salvage snap just trades one occupied tile (the original goal)
+            // for another (a decorator item the offline MULs never modeled).
+            if (BotIsRuntimeBlocked(x, y, wr.standZ)) return false;
+            if (standZ) *standZ = wr.standZ;
+            return true;
         },
         outX, outY, outZ);
 }
