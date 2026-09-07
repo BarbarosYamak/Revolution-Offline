@@ -8,6 +8,7 @@
 #include "uo/activities/acquire.h"
 
 #include <algorithm>
+#include <cstddef>
 #include <cstring>
 
 namespace uo::market {
@@ -161,7 +162,24 @@ std::vector<Offer> Surplus(const prof::Profession& p,
         // someone else", so a smith's own ingots are correctly absent from it
         // even though every weapon it makes eats six of them.
         const bool selfConsumed = IsOwnInput(p, item);
-        const i32 reserve = selfConsumed ? policy.keepOfOwnOutput : 0;
+        i32 reserve = selfConsumed ? policy.keepOfOwnOutput : 0;
+
+        // AND WHAT THIS LIFE CARRIES OF IT FOR ITSELF. `produces` and
+        // `consumables` can name the same thing -- a tailor makes bandages to
+        // sell (cutting cloth needs no skill) and a fighter who also cuts
+        // cloth still has to walk home alive. The catalogue already states
+        // that number per profession (ConsumableNeed::restockTo), so the keep
+        // is read off it rather than invented here: a life with no bandage
+        // entry keeps none, which is the tailor's own case and correct --
+        // "so crafter do not buy bandages" (project owner, 2026-08-30).
+        for (const prof::ConsumableNeed& c : p.consumables) {
+            bool sameThing = false;
+            for (u16 g : c.graphics) {
+                const char* def = uo::econ::ItemNameForGraphic(g);
+                if (def && item == def) { sameThing = true; break; }
+            }
+            if (sameThing && c.restockTo > reserve) reserve = c.restockTo;
+        }
 
         const i32 spare = have - reserve;
         if (spare < policy.minimumSurplusToOffer) continue;
@@ -280,6 +298,23 @@ bool CanAffordToShop(const prof::Profession& p, i32 gold,
     return gold - policy.blindPriceCeiling >= p.goldReserve;
 }
 
+// SAME TEST AS `life::WantsToHunt` (life/Identity.cpp:286), duplicated for the
+// same reason IsWoolChainWant above duplicates life::IsWoolChainMaterial:
+// `market` sits below `life` in the include graph, so this file cannot call
+// it. A weapon school past 50.0 in the build plan is what makes a life a
+// fighter -- the plan, not the current sheet, because a green swordsman is
+// still a swordsman.
+static bool FightsForALiving(const prof::Profession& p) {
+    for (const prof::SkillTargetSpec& t : p.targets) {
+        const bool weapon = t.skillId == rules::kSwordsmanship ||
+                            t.skillId == rules::kMaceFighting ||
+                            t.skillId == rules::kFencing ||
+                            t.skillId == rules::kArchery;
+        if (weapon && t.tenths > 500) return true;
+    }
+    return false;
+}
+
 // Owner market rule: scrolls come from NPCs; yarn is processed into cloth.
 static bool NpcOnlyOrIntermediate(const std::string& item) {
     return item.compare(0, 9, "i_scroll_") == 0 || item == "i_yarn_ball";
@@ -310,6 +345,50 @@ std::vector<Want> PlayerMarketWants(const prof::Profession& p,
         if (w.rawResource || NpcOnlyOrIntermediate(w.item)) continue;
         out.push_back(w);
     }
+
+    // --- a fighter's bandages ----------------------------------------------
+    //
+    // WHY THIS ONE WANT IS SIZED HERE AND NOT BY Shortfall(). Shortfall reads
+    // `consumes` against one flat number, TradePolicy::restockConsumablesTo
+    // (20). A fighting life's bandage line is not that number: it is the
+    // owner's floor of a hundred plus what its own purse can afford above it,
+    // resolved per character every planning tick
+    // (life::ResolveConsumableThresholds). Sized at 20 the want would vanish
+    // the moment a fighter held twenty-one, which is a fifth of what it needs
+    // to leave town, so the WTB would never form when it mattered.
+    //
+    // THE NPC COUNTER STILL COMES FIRST. i_bandage is RevolutionNpcVerified
+    // (progression/VendorPolicy.cpp:298) and market::RouteForInput answers
+    // NpcVendor for it whenever the shop route is known, so this want is what
+    // the character asks a PLAYER for -- the fallback runner/Gear.cpp takes
+    // once every healer and vet counter it knows of is dry. Naming the want
+    // here does not skip the shop; it gives the shop somewhere to fall to.
+    //
+    // 84 fighters filling to the floor need ~420 twenty-at-a-time counter
+    // trades against a town that restocks a few dozen per ten minutes
+    // (docs/BANDAGE_SUPPLY_SPEC.md section 1) -- the shortfall is structural,
+    // and a tailor with scissors is the only other source on the shard.
+    if (FightsForALiving(p)) {
+        for (usize i = 0; i < out.size(); ++i) {
+            if (out[i].item != "i_bandage") continue;
+            out.erase(out.begin() + static_cast<std::ptrdiff_t>(i));
+            break;
+        }
+        const i32 have   = QtyOf(holdings, "i_bandage");
+        const i32 target = StockAboveFloor(kFighterBandageFloor,
+                                           gold - p.goldReserve);
+        if (target > have) {
+            Want w;
+            w.item = "i_bandage";
+            w.qty = target - have;
+            w.rawResource = false;   // a tailor cuts them; see prof::All()
+            w.reason = "a fighting life's own bandage line, less what it "
+                       "carries -- the healer's counter first, a player with "
+                       "scissors once the counters are dry";
+            out.push_back(std::move(w));
+        }
+    }
+
     if (out.empty() && whyNotOut) {
         *whyNotOut = shortOf.empty()
             ? "stocked on everything this life buys"
@@ -1205,6 +1284,53 @@ i32 ForumSeedSalePrice(const char* item) {
     return -1;
 }
 
+// ---------------------------------------------------------------------------
+// A SECOND SEED, FOR A GOOD NO FORUM POST EVER PRICED.
+//
+// kForumPriceSeeds above is verbatim player evidence and stays that way; a
+// number nobody posted must not be smuggled into it. But an item can still
+// have a price a Revolution player would have worked out on the spot, from
+// the shard's own itemdefs, and a bandage is exactly that case: the forum
+// sweep has no bandage row at all (docs/BANDAGE_SUPPLY_SPEC.md section 5,
+// UNKNOWN) and without SOME number a player-cut bandage can only be offered
+// at TradePolicy::openingAsk -- 2gp with no reasoning behind it -- or bought
+// at blindPriceCeiling, 12gp for a thing an NPC sells for about one.
+//
+// Ranked BELOW every forum seed and below every observation of this
+// character's own, for the same reason the forum seeds rank below
+// observations: it is arithmetic, not evidence of a trade.
+struct ShardValueSeed { const char* item; i32 price; const char* basis; };
+const ShardValueSeed kShardValueSeeds[] = {
+    // A bandage costs one cloth and no skill: i_bandage has RESOURCES=1
+    // i_cloth and NO SKILLMAKE= line (i_profession.scp:174-183), and
+    // type_scissors.scp:8-49 hands the cut to Source-X with no skill check.
+    // So the honest floor for a PLAYER-supplied bandage is what the cloth in
+    // it is worth -- i_cloth VALUE=3 (i_profession_tailor_tanner.scp:471).
+    //
+    // The NPC price is NOT the competing number. i_bandage VALUE=1, and
+    // Sphere sells at 1.15x VALUE / buys at 0.85x (sphere.ini VendorMarkup=15,
+    // CClientMsg.cpp:2423 per docs/.tns_part5.md:604-608), so a healer's
+    // counter undercuts any player -- which is why the whole player route only
+    // opens once the counters are DRY (runner/Gear.cpp
+    // BandageCountersAllDrained). Against an empty shelf the seller's cost is
+    // the price, and 3 sits inside the 2-4gp band the supply spec proposed
+    // (BANDAGE_SUPPLY_SPEC.md section 2). CeilingPerUnit's half-again puts a
+    // buyer's top offer at 4 -- the band's other end -- and the first real
+    // trade replaces this with PriceSource::PlayerTraded.
+    {"i_bandage", 3, "i_cloth VALUE=3, one cloth per bandage, no skill"},
+};
+
+// The seed ladder: player evidence first, the shard's own arithmetic second.
+i32 SeedSalePrice(const char* item) {
+    const i32 forum = ForumSeedSalePrice(item);
+    if (forum >= 0) return forum;
+    if (!item) return -1;
+    for (const ShardValueSeed& s : kShardValueSeeds) {
+        if (std::strcmp(s.item, item) == 0) return s.price;
+    }
+    return -1;
+}
+
 }  // namespace
 
 // ---------------------------------------------------------------------------
@@ -1251,7 +1377,7 @@ i32 PriceBook::BelievedSalePrice(const char* item) const {
     // every unobserved sale out at TradePolicy::openingAsk == 2gp regardless
     // of what the thing was actually worth (flagged 2026-08-30, i_log sold at
     // 2 against a forum price of 17).
-    const i32 seed = ForumSeedSalePrice(item);
+    const i32 seed = SeedSalePrice(item);
     if (seed >= 0) return seed;
     return -1;   // never seen one and no seed either. Not zero, not a guess.
 }
@@ -1484,7 +1610,7 @@ bool ChooseSellOffer(const prof::Profession& p,
 // ceiling ConsiderOffer applies, factored out so the two can never drift: a
 // shouted ceiling the buyer then refuses at the window is worse than silence.
 static i32 CeilingPerUnit(const TradePolicy& policy, const char* item) {
-    const i32 seed = ForumSeedSalePrice(item);
+    const i32 seed = SeedSalePrice(item);
     return seed >= 0 ? seed + seed / 2 : policy.blindPriceCeiling;
 }
 

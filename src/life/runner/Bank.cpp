@@ -487,6 +487,27 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
                 const u32 serial =
                     FindBackpackItemByName(client, input.c_str(), &amount);
                 if (!serial || amount <= keep) continue;
+                // WHAT THIS LIFE ALSO CARRIES AS MEDICINE IS NOT STOCK.
+                //
+                // `consumes` now names i_bandage for every fighting life, so
+                // the pack can COUNT bandages and the player market can be
+                // asked for them (life/Professions.cpp). This loop would
+                // otherwise read that entry as a craft input and box a
+                // hundred bandages down to craftBatch*2 -- boxing the field
+                // medicine of the character that is about to walk to a
+                // graveyard. RoleOfGraphic already ranks a declared
+                // consumable above a declared input; this is the same
+                // ordering, in the branch that moves the item.
+                bool isMedicine = false;
+                for (const prof::ConsumableNeed& c :
+                         needCfg_.profession->consumables) {
+                    for (u16 g : c.graphics) {
+                        const char* def = econ::ItemNameForGraphic(g);
+                        if (def && input == def) { isMedicine = true; break; }
+                    }
+                    if (isMedicine) break;
+                }
+                if (isMedicine) continue;
                 // Wool and yarn reach this loop as declared inputs. Same
                 // ruling as the produces branch: a step on the way to cloth is
                 // finished, not stored.

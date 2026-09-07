@@ -437,11 +437,14 @@ void ResolveConsumableThresholds(NeedConfig& cfg, i32 gold) {
 
     if (WantsToHunt(*cfg.profession)) {
         if (low < kFighterBandageFloor) low = kFighterBandageFloor;
+        // ONE COPY OF THE PURSE RULE. market::StockAboveFloor holds the
+        // arithmetic now, because market::PlayerMarketWants sizes the bandage
+        // WTB from the same number -- a need that asks for a different count
+        // than the errand announces is the contract violation in
+        // docs/NEED_HANDLER_CONTRACT.md.
         const i32 spare = gold > cfg.goldFloor ? gold - cfg.goldFloor : 0;
-        i32 extra = spare / 10;
-        if (extra < 20)  extra = 20;
-        if (extra > 100) extra = 100;   // a town supplies ~20 per healer per 10 min
-        if (full < low + extra) full = low + extra;
+        const i32 stocked = market::StockAboveFloor(low, spare);
+        if (full < stocked) full = stocked;
     }
 
     cfg.bandageLow  = low;

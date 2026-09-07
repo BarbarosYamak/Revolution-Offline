@@ -1352,7 +1352,11 @@ struct NeedConfig {
 // this many bandages before it goes looking for something to fight
 // (project owner, 2026-09-05). It is a floor, not the target: the target is
 // derived from the purse, see ResolveConsumableThresholds.
-constexpr i32 kFighterBandageFloor = 100;
+// ONE NUMBER, TWO LAYERS. The definition moved to market.h so
+// market::PlayerMarketWants can size a fighter's bandage WTB from the same
+// floor the need model uses; this alias keeps every existing life:: caller
+// unchanged. Do not give it a second value here.
+constexpr i32 kFighterBandageFloor = market::kFighterBandageFloor;
 
 // REWRITE cfg.bandageLow / cfg.bandageFull FOR THIS CHARACTER, THIS TICK.
 //
@@ -1363,6 +1367,73 @@ constexpr i32 kFighterBandageFloor = 100;
 // a fighter with 9,000 gold can afford to walk out with hundreds, one with
 // 200 cannot, and neither number belongs in a constant.
 void ResolveConsumableThresholds(NeedConfig& cfg, i32 gold);
+
+// --- where the next bandage comes from --------------------------------------
+//
+// THE PLAYER MARKET IS TRIED BEFORE THE SCISSORS. Owner rule: materials trade
+// player-to-player by default, and a bot buys from PLAYERS first and only
+// makes the thing itself after a WTB window expired unanswered. Until now
+// runner/Gear.cpp's bandage stand-down went straight to MAKE_BANDAGES: no WTB
+// for "i_bandage" was ever announced by anyone, so the fleet's only bandage
+// producer -- a tailor with scissors and surplus cloth -- had no customer and
+// no reason to cut (docs/BANDAGE_SUPPLY_SPEC.md sections 2 and 3).
+//
+// AND EVERY WAITING GATE NEEDS AN "IF I CAN NEVER ASK" BRANCH. A life that
+// cannot afford one bandage at the price it would accept must not stand and
+// wait for a seller it could never pay; it goes and cuts cloth, which costs
+// nothing. That refusal is computed here rather than being discovered at the
+// market, because a rule kept in one place cannot disagree with itself
+// (docs/NEED_HANDLER_CONTRACT.md, arm A).
+enum class BandageSupply : u8 { AskPlayers = 0, CutCloth };
+
+struct BandageSupplyPlan {
+    BandageSupply route = BandageSupply::CutCloth;
+    // The handler's own sentence, carried into the hand-off log and, for the
+    // cut branch, into the need block. Never null.
+    const char*   why   = "";
+};
+
+// `sellersDeclined` is Runner::SellersDeclined("i_bandage") -- the
+// `no_player_seller` event a WTB window writes when nobody answered.
+// `waitedOut` is this character's own 48-second bound on that window having
+// passed (one full announce cycle, kMaxAnnounces x kAnnounceIntervalMs), so a
+// seller who never comes cannot hold the fight up for the market's three
+// minutes. `marketQuiet` is the fleet-wide "just tried, nobody there".
+inline BandageSupplyPlan PlanBandageSupply(const prof::Profession* p, i32 gold,
+                                           bool sellersDeclined,
+                                           bool marketQuiet, bool waitedOut) {
+    BandageSupplyPlan out;
+    if (sellersDeclined) {
+        out.why = "asked the player market for bandages and nobody answered";
+        return out;
+    }
+    if (waitedOut) {
+        out.why = "waited out my own bandage WTB and no seller came";
+        return out;
+    }
+    if (marketQuiet) {
+        out.why = "the market was just tried and found empty";
+        return out;
+    }
+    if (!p) {
+        out.why = "no profession, so no purse rule to ask the market with";
+        return out;
+    }
+    const market::TradePolicy policy = market::PolicyForPurse(gold);
+    if (!market::CanAffordToShop(*p, gold, policy)) {
+        out.why = "could not pay a player for one, so cutting cloth is the "
+                  "only route left";
+        return out;
+    }
+    out.route = BandageSupply::AskPlayers;
+    out.why = "the town's counters are dry -- ask a player before cutting "
+              "cloth";
+    return out;
+}
+
+inline const char* BandageSupplyName(BandageSupply r) {
+    return r == BandageSupply::AskPlayers ? "ASK_PLAYERS" : "CUT_CLOTH";
+}
 
 // WHERE "TOO HEAVY" STARTS for this life. A fighter's line is the hunt gate
 // (huntWeightFrac): once the pack is too full to hunt, the load goes in the

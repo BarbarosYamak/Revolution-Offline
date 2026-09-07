@@ -154,6 +154,40 @@ struct RunnerHarnessAccess {
                              const Observation& obs) {
         return runner.DoMakeBandages(client, obs);
     }
+    // WHICH ROUTE THE BANDAGE STAND-DOWN TOOK. bandageWtbAskedMs_ is the
+    // clock the WTB branch starts and the cut branch clears, so after the call
+    // "non-zero" IS "asked a player" -- no second flag to drift from it.
+    struct BandageRoute { bool askPlayers = false; std::string why; };
+    static BandageRoute BandageStandDown(Runner& runner, const Observation& obs,
+                                         i64 askedMs, bool sellersDeclined) {
+        runner.bandageWtbAskedMs_ = askedMs;
+        runner.bandageCountersDrained_ = 1;
+        if (sellersDeclined) {
+            runner.state_.memory.NoteEvent("no_player_seller", "i_bandage", "",
+                                           obs.x, obs.y, obs.nowMs);
+        }
+        runner.leavePending_ = false;
+        runner.leavePendingWhy_.clear();
+        runner.StandDownBandageShopping(obs, "every counter in town is empty",
+                                        1000);
+        BandageRoute r;
+        r.askPlayers = runner.bandageWtbAskedMs_ != 0;
+        r.why = runner.leavePendingWhy_;
+        return r;
+    }
+    // The tailor's cut-for-sale step, driven directly. Returns true when it
+    // spent the tick's gesture on a cut.
+    static bool CutClothForSale(Runner& runner, Client& client,
+                                const Observation& obs, i32 cloth) {
+        return runner.CutClothForSale(client, obs, cloth);
+    }
+    static i32 BandageSaleTarget(const Runner& runner) {
+        return runner.BandageSaleTarget();
+    }
+    static void NoteBandageSale(Runner& runner, const Observation& obs) {
+        runner.state_.memory.NoteEvent("traded_with_player", "i_bandage",
+                                       "a fencer", obs.x, obs.y, obs.nowMs);
+    }
     // Trips to a flock this chain has actually STARTED. Zero after a tick
     // that bought cloth or stood down; one after a tick that set off.
     static i32 BandageFlockTrips(const Runner& runner) {
@@ -1051,6 +1085,195 @@ void ScenarioBandagesAreBoughtBeforeTheyAreSheared(const std::string& tmpDir,
     }
 }
 
+// --- S6 -------------------------------------------------------------------
+// BANDAGES TRADE PLAYER-FIRST.
+//
+// The shard's own numbers make this structural rather than a nicety: filling
+// 84 fighters to the owner's floor of a hundred needs ~420 twenty-at-a-time
+// counter purchases, against seventeen healers and two vets restocking a few
+// dozen between them every ten minutes (docs/BANDAGE_SUPPLY_SPEC.md section
+// 1). The town cannot supply the fleet, and the only other source on the shard
+// is a pair of scissors -- which needs NO Tailoring skill at all
+// (type_scissors.scp:8-49 hands t_cloth to Source-X's hardcoded cut).
+//
+// Before this slice the drained-counter stand-down went straight to
+// MAKE_BANDAGES, so no character ever said "WTB i_bandage" and the tailor who
+// could have cut them had no customer. Owner rule: materials trade
+// player-to-player by default.
+void ScenarioBandagesTradePlayerFirst(const std::string& tmpDir,
+                                      const char* dataDir) {
+    Section("S6 bandages trade player-first: fighters ask, tailors cut");
+
+    // 0x25 into the pack, the same packets S5 uses.
+    auto arm = [](Client& c, u16 graphic, u16 amount, u32 serial) {
+        auto add = MakeAddItem(serial, graphic, amount, 0x4000ED02);
+        c.DispatchPacketForTest(add.data(), add.size());
+    };
+    auto boot = [](Client& c) {
+        const u32 me = 0x0000ED04, pack = 0x4000ED02;
+        auto login = MakeLoginConfirm(me, 1421, 1690);
+        c.DispatchPacketForTest(login.data(), login.size());
+        auto worn = MakeEquip(pack, 0x0E75, 0x15, me);      // layer 21
+        c.DispatchPacketForTest(worn.data(), worn.size());
+    };
+
+    // (a) COUNTERS DRY, PURSE FULL -> ask a player before cutting cloth.
+    {
+        Harness h;
+        h.atlasPathForDataDir = dataDir;
+        h.obs = BaselineFencer(h.nowMs);
+        h.obs.bandages = 0;
+        h.obs.gold = 5550;
+        h.obs.goldOnHand = 5550;
+        h.obs.nowMs = h.nowMs;
+        h.obs.marketQuiet = false;   // the baseline mutes the market; this
+                             // case is about reaching it
+        if (!h.Boot(tmpDir + "/s6a", "fencer")) return;
+        const auto r = life::RunnerHarnessAccess::BandageStandDown(
+            h.runner, h.obs, /*askedMs=*/0, /*sellersDeclined=*/false);
+        std::printf("  route=%s why=\"%s\"\n",
+                    r.askPlayers ? "ASK_PLAYERS" : "CUT_CLOTH", r.why.c_str());
+        Check(r.askPlayers,
+              "a fighter with money asks the player market for bandages "
+              "before it reaches for the scissors");
+    }
+
+    // (b) ASKED AND NOBODY ANSWERED -> the self-cut chain, unchanged.
+    {
+        Harness h;
+        h.atlasPathForDataDir = dataDir;
+        h.obs = BaselineFencer(h.nowMs);
+        h.obs.bandages = 0;
+        h.obs.gold = 5550;
+        h.obs.goldOnHand = 5550;
+        h.obs.nowMs = h.nowMs;
+        if (!h.Boot(tmpDir + "/s6b", "fencer")) return;
+        const auto r = life::RunnerHarnessAccess::BandageStandDown(
+            h.runner, h.obs, /*askedMs=*/0, /*sellersDeclined=*/true);
+        std::printf("  route=%s why=\"%s\"\n",
+                    r.askPlayers ? "ASK_PLAYERS" : "CUT_CLOTH", r.why.c_str());
+        Check(!r.askPlayers,
+              "a `no_player_seller` for i_bandage falls the fighter through "
+              "to the scissors");
+        Check(h.runner.GetPlanner().Cooling(h.Goal(), h.nowMs),
+              "and the exit carries a planner cooldown, so the goal cannot "
+              "be re-picked on the next tick");
+    }
+
+    // (c) THE WTB WINDOW RUNS OUT ON ITS OWN. A hand-off is advice: if
+    //     TRADE_WITH_PLAYER never out-scores the field, nothing else would
+    //     ever release the fighter, so the bandage route keeps its own
+    //     48-second clock (kMaxAnnounces x kAnnounceIntervalMs).
+    {
+        Harness h;
+        h.atlasPathForDataDir = dataDir;
+        h.obs = BaselineFencer(h.nowMs);
+        h.obs.bandages = 0;
+        h.obs.gold = 5550;
+        h.obs.goldOnHand = 5550;
+        h.obs.nowMs = h.nowMs;
+        h.obs.marketQuiet = false;   // the baseline mutes the market; this
+                             // case is about reaching it
+        if (!h.Boot(tmpDir + "/s6c", "fencer")) return;
+        const auto still = life::RunnerHarnessAccess::BandageStandDown(
+            h.runner, h.obs, /*askedMs=*/h.nowMs - 20000, false);
+        Check(still.askPlayers, "20s into the window it is still waiting");
+        const auto out = life::RunnerHarnessAccess::BandageStandDown(
+            h.runner, h.obs, /*askedMs=*/h.nowMs - 60000, false);
+        std::printf("  after 60s route=%s why=\"%s\"\n",
+                    out.askPlayers ? "ASK_PLAYERS" : "CUT_CLOTH",
+                    out.why.c_str());
+        Check(!out.askPlayers,
+              "60s later the window is spent and the scissors come out");
+    }
+
+    // (d) AND IF IT COULD NEVER ASK. A purse that cannot pay for one bandage
+    //     at the price this life would accept must not wait for a seller --
+    //     "every waiting gate needs an 'and if I can never ask' branch".
+    {
+        Harness h;
+        h.atlasPathForDataDir = dataDir;
+        h.obs = BaselineFencer(h.nowMs);
+        h.obs.bandages = 0;
+        h.obs.gold = 0;
+        h.obs.goldOnHand = 0;
+        h.obs.nowMs = h.nowMs;
+        h.obs.marketQuiet = false;   // the baseline mutes the market; this
+                             // case is about reaching it
+        if (!h.Boot(tmpDir + "/s6d", "fencer")) return;
+        const auto r = life::RunnerHarnessAccess::BandageStandDown(
+            h.runner, h.obs, 0, false);
+        std::printf("  broke route=%s why=\"%s\"\n",
+                    r.askPlayers ? "ASK_PLAYERS" : "CUT_CLOTH", r.why.c_str());
+        Check(!r.askPlayers,
+              "a fighter who cannot pay a player cuts cloth instead of "
+              "standing at a bank waiting for one");
+        Check(r.why.find("pay") != std::string::npos,
+              "and the reason is the purse, not the market being quiet");
+    }
+
+    // (e) THE TAILOR'S SIDE: spare cloth becomes stock, and the bench keeps
+    //     its own. Bounded at both ends -- the sale target above, the batch's
+    //     cloth below.
+    {
+        Harness h;
+        h.atlasPathForDataDir = dataDir;
+        h.obs = BaselineFencer(h.nowMs);
+        h.obs.gold = 500;
+        h.obs.goldOnHand = 500;
+        h.obs.nowMs = h.nowMs;
+        if (!h.Boot(tmpDir + "/s6e", "tailor")) return;
+        boot(*h.client);
+        arm(*h.client, 0x0F9E, 1, 0x4001A7D0);       // scissors
+        arm(*h.client, 0x175D, 40, 0x4001A7D1);      // 40 loose cloth
+
+        const i32 target = life::RunnerHarnessAccess::BandageSaleTarget(h.runner);
+        const i32 keep = life::RunnerHarnessAccess::Needs(h.runner).craftBatch;
+        std::printf("  tailor sale target=%d bench keep=%d\n", target, keep);
+        Check(target > 0, "a tailor has a bandage stock target at all");
+
+        Check(life::RunnerHarnessAccess::CutClothForSale(h.runner, *h.client,
+                                                         h.obs, 40),
+              "spare cloth above the bench's own batch is cut for sale");
+        Check(!life::RunnerHarnessAccess::CutClothForSale(h.runner, *h.client,
+                                                          h.obs, keep),
+              "and the batch's own cloth is never touched");
+
+        // Stock the target, and the step stands down rather than cutting the
+        // rest of the shelf into bandages nobody asked for.
+        arm(*h.client, 0x0E21, static_cast<u16>(target), 0x4001A7D2);
+        Check(!life::RunnerHarnessAccess::CutClothForSale(h.runner, *h.client,
+                                                          h.obs, 40),
+              "cutting stops at the sale target -- it is bounded");
+
+        // DEMAND MOVES THE TARGET, and it is this character's own observed
+        // demand: one completed bandage trade, one more batch worth cutting.
+        const i32 before = life::RunnerHarnessAccess::BandageSaleTarget(h.runner);
+        life::RunnerHarnessAccess::NoteBandageSale(h.runner, h.obs);
+        const i32 after = life::RunnerHarnessAccess::BandageSaleTarget(h.runner);
+        std::printf("  target before a sale=%d after=%d\n", before, after);
+        Check(after > before,
+              "a completed bandage sale raises this tailor's stock target");
+    }
+
+    // (f) A FIGHTER RUNNING THE SAME CHAIN FOR WOOL INCOME DOES NOT CUT. Its
+    //     cloth is the tailor's material and is already spoken for.
+    {
+        Harness h;
+        h.atlasPathForDataDir = dataDir;
+        h.obs = BaselineFencer(h.nowMs);
+        h.obs.nowMs = h.nowMs;
+        if (!h.Boot(tmpDir + "/s6f", "fencer")) return;
+        boot(*h.client);
+        arm(*h.client, 0x0F9E, 1, 0x4001A7D0);       // scissors
+        arm(*h.client, 0x175D, 40, 0x4001A7D1);      // 40 loose cloth
+        Check(!life::RunnerHarnessAccess::CutClothForSale(h.runner, *h.client,
+                                                          h.obs, 40),
+              "a fighter's wool-income cloth is not cut into bandages -- it "
+              "is what the tailor buys");
+    }
+}
+
 int main(int argc, char** argv) {
     const std::string tmpDir = (argc > 1) ? argv[1] : ".";
     // Where Client::DataDir() resolves to for the scenarios that read a
@@ -1075,6 +1298,7 @@ int main(int argc, char** argv) {
     ScenarioTrainTripsAreHandedBackOnAGoalChange(tmpDir);
     ScenarioDeathIsCountedOnTheResurrectMenuPacket(tmpDir);
     ScenarioBandagesAreBoughtBeforeTheyAreSheared(tmpDir, kDataDir);
+    ScenarioBandagesTradePlayerFirst(tmpDir, kDataDir);
 
     std::printf("%s: %d checks, %d failures\n",
                 g_failures ? "FAILED" : "PASSED", g_checks, g_failures);

@@ -655,6 +655,23 @@ private:
     // is not yet in item range would read "not full, keep shearing" and walk
     // straight back to the pasture. Cleared when the wool is all spun.
     bool clothHeadingToWheel_ = false;
+    // --- cutting cloth into bandages TO SELL ---------------------------------
+    //
+    // A tailor's own bandages are stock, not kit. The shard makes this the one
+    // good she can make with no skill and no menu -- type_scissors.scp hands
+    // t_cloth straight to Source-X's hardcoded cut -- and the whole fleet's
+    // fighting half is structurally short of them
+    // (docs/BANDAGE_SUPPLY_SPEC.md section 1). Runs at the END of MAKE_CLOTH,
+    // when the batch already has the cloth it came for, so it can never take
+    // cloth the bench is waiting on.
+    //
+    // Returns true when it spent this tick's gesture.
+    bool CutClothForSale(Client& client, const Observation& obs, i32 cloth);
+    // HOW MANY BANDAGES ARE WORTH CUTTING FOR SALE, for THIS character.
+    // Plan-derived (the life's own craft batch) and grown by what this tailor
+    // has actually sold, so two tailors get two numbers and a tailor nobody
+    // buys from stops at one batch ("thresholds must be dynamic", owner rule).
+    i32  BandageSaleTarget() const;
     // How many times the bandage errand has asked who is standing in the
     // healer's shop. Reset on success; three unanswered scans stand the
     // goal down instead of re-walking to the same tile.
@@ -711,6 +728,19 @@ private:
     // The single exit from the bandage shop route (see Gear.cpp).
     bool StandDownBandageShopping(const Observation& obs, const char* why,
                                   i64 restMs);
+    // WHEN THIS CHARACTER LAST SENT ITS OWN BANDAGE WTB OUT.
+    //
+    // The exit above now has TWO routes -- ask a player, or cut cloth -- and
+    // the first one has to be bounded by something this life can see. It is
+    // not bounded by the market goal: DoTradeWithPlayer listens for kListenMs
+    // (three minutes) and writes `no_player_seller` for whatever want happened
+    // to be FIRST in its list, which need not be the bandage. So the bandage
+    // route keeps its own clock: one full announce cycle
+    // (kMaxAnnounces x kAnnounceIntervalMs = 48 s, the same bound the buyer's
+    // own listen window quotes), after which the scissors come out whatever
+    // the market goal is still doing. Well inside kNoBandageCooldownMs.
+    // 0 means never asked. Per-process, like every other ms clock here.
+    i64 bandageWtbAskedMs_ = 0;
     // Bandage errands that ended without a purchase since the last one that
     // worked. Bounds the walk from healer to healer: three silent counters
     // is a town without stock, and the cloth route answers that.

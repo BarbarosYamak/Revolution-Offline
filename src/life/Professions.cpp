@@ -1397,8 +1397,17 @@ const std::vector<Profession>& All() {
             // and robes are player-market goods on Revolution, full stop.
             p.income = {Income::Craft};
             p.gathers = "wool";
+            // BANDAGES ARE A TAILOR'S PRODUCT, not just a fighter's kit.
+            // Cutting cloth needs NO Tailoring skill -- type_scissors.scp:8-49
+            // returns 0 for t_cloth/t_clothing and hands the cut to Source-X's
+            // hardcoded IT_CLOTHING case -- so this is the one good in the
+            // catalogue a tailor can make from her own surplus with no recipe
+            // row at all (i_bandage has no SKILLMAKE=, i_profession.scp:174-183).
+            // Listed so Surplus() can offer it and WhoProduces("i_bandage") is
+            // non-empty, which is what lets a fighter's want reach the player
+            // market instead of being filtered as rawResource.
             p.produces = {"i_cloth_bolt", "i_sash", "i_robe",
-                          "i_leather_tunic"};
+                          "i_leather_tunic", "i_bandage"};
             // Hides are a hunter's product, not something this life gathers
             // itself -- the leather-tunic half of its output depends on
             // someone else's kill.
@@ -1593,6 +1602,37 @@ const std::vector<Profession>& All() {
             p.goldReserve = 5000;
             p.homeCities = {"Moonglow", "Britain"};
             v.push_back(std::move(p));
+        }
+
+        // A BANDAGE IS A MATERIAL SOMEBODY ELSE MAKES, so a life that carries
+        // bandages must be able to COUNT them and to ask a player for them.
+        //
+        // Two mechanisms hang off `consumes` and neither could see a bandage
+        // before this pass. Runner::Observe builds obs.pack from `produces` +
+        // `consumes` alone (runner/Core.cpp), so QtyOf(pack, "i_bandage") was
+        // permanently 0 for every fighter -- a want sized "floor minus held"
+        // would have asked for the whole floor with a hundred in the pack. And
+        // market::Shortfall's consumables arm names the HUMAN LABEL "bandage"
+        // (prof::ConsumableNeed::name), which no producer's `produces` list can
+        // ever match, so WhoProduces() was empty, the want was rawResource, and
+        // PlayerMarketWants dropped it before any WTB could form
+        // (docs/BANDAGE_SUPPLY_SPEC.md section 3).
+        //
+        // Listing the DEFNAME here fixes both without touching either
+        // mechanism: the pack counts it, Shortfall's `consumes` arm names it,
+        // and market::RouteForInput still answers NpcVendor for it while the
+        // healer's counter has stock (i_bandage is RevolutionNpcVerified,
+        // progression/VendorPolicy.cpp:298), so the NPC shop route is
+        // unchanged and the player market is the FALLBACK the spec asked for.
+        for (Profession& p : v) {
+            bool carries = false;
+            for (const ConsumableNeed& c : p.consumables)
+                if (c.name == "bandage") { carries = true; break; }
+            if (!carries) continue;
+            bool listed = false;
+            for (const std::string& it : p.consumes)
+                if (it == "i_bandage") { listed = true; break; }
+            if (!listed) p.consumes.push_back("i_bandage");
         }
 
         return v;

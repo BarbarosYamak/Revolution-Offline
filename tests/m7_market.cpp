@@ -68,9 +68,18 @@ void TestInterdependence() {
           "the link runs one way -- a swordsman buys its gear, it does not "
           "feed the forge");
 
-    // The lumberjack is deliberately self-sufficient -- it is the control.
-    Check(lj->consumes.empty(),
-          "the lumberjack needs nothing from another character");
+    // THE LUMBERJACK'S ONLY CROSS-CHARACTER NEED IS BANDAGES, and that is a
+    // deliberate change, not a regression. It gathers its own wood and buys
+    // its gear, so `consumes` was empty and this check called it "the
+    // control". A fighting life's bandages are now listed there by defname
+    // (life/Professions.cpp), because the pack cannot COUNT an item that is on
+    // neither list and market::Shortfall cannot name one -- which is what kept
+    // every fighter's bandage want out of the player market
+    // (docs/BANDAGE_SUPPLY_SPEC.md section 3). The control it still is: one
+    // entry, and nothing it can make itself.
+    Check(lj->consumes.size() == 1 && lj->consumes.front() == "i_bandage",
+          "the lumberjack needs exactly one thing from another character, "
+          "and it is bandages");
 }
 
 // --------------------------------------------------------------------------
@@ -1681,6 +1690,124 @@ void TestBuyerFundsTheWindowItAskedFor() {
           "a holder answers the announcement with a WTS the buyer can hear");
 }
 
+// --------------------------------------------------------------------------
+// THE BANDAGE MARKET. A fighter's floor is a hundred and a town restocks a few
+// dozen every ten minutes across the whole shard
+// (docs/BANDAGE_SUPPLY_SPEC.md section 1), so the catalogue has to make
+// bandages a thing one character can sell another. Three halves of that:
+// the fighter's want, the tailor's offer, and a price both would agree on.
+void TestBandagesAreAPlayerMarketGood() {
+    Section("bandages: a fighter's floor, a tailor's surplus, one price");
+
+    const prof::Profession* fen = prof::Find("fencer");
+    const prof::Profession* tai = prof::Find("tailor");
+    Check(fen && tai, "the fencer and the tailor exist");
+    if (!fen || !tai) return;
+
+    TradePolicy pol;
+
+    // --- the want ----------------------------------------------------------
+    // SIZED FROM THE FLOOR, NOT FROM restockConsumablesTo. At the policy's
+    // flat 20 the want would vanish the moment a fighter held twenty-one --
+    // a fifth of what it needs to leave town.
+    const std::vector<Stock> empty = {{"i_bandage", 0}};
+    const std::vector<Want> broke = PlayerMarketWants(*fen, empty, 5000, pol);
+    bool named = false;
+    i32 wantQty = 0;
+    for (const Want& w : broke) {
+        if (w.item != "i_bandage") continue;
+        named = true;
+        wantQty = w.qty;
+        Check(!w.rawResource,
+              "a bandage is not a raw resource -- a tailor with scissors "
+              "makes them, so a player CAN supply one");
+        Check(!w.reason.empty(), "and the want says why");
+    }
+    Check(named, "a fighter's player-market wants name i_bandage");
+    Check(wantQty > kFighterBandageFloor,
+          "and ask for more than the owner's floor of a hundred, because the "
+          "purse pays for a margin above it");
+
+    // TWO PURSES, TWO NUMBERS. The owner's rule: keep/bank/surplus counts
+    // derive from wealth and plans per character, never a global constant.
+    i32 richQty = 0, poorQty = 0;
+    for (const Want& w : PlayerMarketWants(*fen, empty, 20000, pol))
+        if (w.item == "i_bandage") richQty = w.qty;
+    for (const Want& w : PlayerMarketWants(*fen, empty, 900, pol))
+        if (w.item == "i_bandage") poorQty = w.qty;
+    std::printf("  fencer bandage want: 900gp=%d 5000gp=%d 20000gp=%d\n",
+                poorQty, wantQty, richQty);
+    Check(richQty > poorQty,
+          "a fat purse walks out with more bandages than a thin one");
+
+    // WHAT IT ALREADY CARRIES COMES OFF THE TOP.
+    const std::vector<Stock> stocked = {{"i_bandage", 60}};
+    i32 toppedUp = 0;
+    for (const Want& w : PlayerMarketWants(*fen, stocked, 5000, pol))
+        if (w.item == "i_bandage") toppedUp = w.qty;
+    Check(toppedUp == wantQty - 60,
+          "the want is the target LESS what is in the pack");
+
+    // AND A FULL PACK ASKS FOR NOTHING.
+    const std::vector<Stock> full = {{"i_bandage", 5000}};
+    for (const Want& w : PlayerMarketWants(*fen, full, 5000, pol))
+        Check(w.item != "i_bandage", "a fighter at its target asks for none");
+
+    // A CRAFTER IS NOT A FIGHTER. "so crafter do not buy bandages" (owner).
+    for (const Want& w : PlayerMarketWants(*tai, empty, 5000, pol))
+        Check(w.item != "i_bandage",
+              "a tailor does not shop for the thing it makes");
+
+    // --- the offer ---------------------------------------------------------
+    const std::vector<Stock> cut = {{"i_bandage", 80}};
+    bool offered = false;
+    for (const Offer& o : Surplus(*tai, cut, pol)) {
+        if (o.item != "i_bandage") continue;
+        offered = true;
+        Check(o.qty == 80,
+              "a tailor keeps back none of them -- its own catalogue declares "
+              "no bandage consumable, because it cannot use one");
+    }
+    Check(offered, "a tailor's surplus lists the bandages it holds");
+
+    // A FIGHTER'S OWN BANDAGES ARE NOT STOCK. It declares them as a
+    // consumable, so the keep-back is its own restock line.
+    for (const Offer& o : Surplus(*fen, cut, pol))
+        Check(o.item != "i_bandage",
+              "a fighter never offers its own medicine for sale");
+
+    // --- the price ---------------------------------------------------------
+    // No forum post ever priced a bandage (BANDAGE_SUPPLY_SPEC section 5), so
+    // the seed is the shard's own arithmetic: one cloth per bandage, i_cloth
+    // VALUE=3. That lands inside the 2-4gp band the spec proposed, and the
+    // NPC's ~1gp is not a competing offer once the counters are dry.
+    PriceBook blind;
+    Check(blind.BelievedSalePrice("i_bandage") == 3,
+          "an unobserved bandage is believed to be worth its cloth");
+
+    TradeIntent ask;
+    Check(ChooseBuyWant(*fen, empty, blind, pol, 5000, &ask),
+          "the fighter forms a WTB it can afford");
+    if (ask.item == "i_bandage") {
+        std::printf("  fighter WTB %d i_bandage at %d gp\n", ask.qty,
+                    ask.pricePerUnit);
+        Check(ask.pricePerUnit >= 2 && ask.pricePerUnit <= 4,
+              "and offers inside the 2-4gp band, not the 12gp blind ceiling");
+        TradeIntent answer;
+        Check(AnswerBuyWant(*tai, cut, blind, pol, ask, &answer),
+              "and a tailor holding bandages answers it");
+        Check(answer.pricePerUnit <= ask.pricePerUnit,
+              "at a price the buyer already said it would pay");
+    }
+
+    // THE SELLER'S OWN ANNOUNCEMENT, from the other end.
+    TradeIntent wts;
+    Check(ChooseSellOffer(*tai, cut, blind, pol, &wts),
+          "a tailor with bandages has something to announce");
+    std::printf("  tailor WTS %s x%d at %d gp\n", wts.item.c_str(), wts.qty,
+                wts.pricePerUnit);
+}
+
 int main() {
     std::printf("m7_market\n");
     TestInterdependence();
@@ -1708,6 +1835,7 @@ int main() {
     TestMaterialSurplusCapIsPerCharacter();
     TestDemandSideWtb();
     TestBuyerFundsTheWindowItAskedFor();
+    TestBandagesAreAPlayerMarketGood();
     std::printf("%d checks, %d failures\n", g_checks, g_failures);
     return g_failures == 0 ? 0 : 1;
 }

@@ -5029,6 +5029,51 @@ void TestContractArmAMatchesTheErrand() {
     }
 }
 
+// --------------------------------------------------------------------------
+// WHERE THE NEXT BANDAGE COMES FROM. One resolver, called by the handler
+// (runner/Gear.cpp StandDownBandageShopping) and testable without a Client --
+// the arm-A shape docs/NEED_HANDLER_CONTRACT.md asks for.
+void TestBandageSupplyRoutePrefersPlayers() {
+    Section("bandages: ask a player before cutting cloth, but only if I can");
+
+    const prof::Profession* fen = prof::Find("fencer");
+    Check(fen != nullptr, "the fencer exists");
+    if (!fen) return;
+
+    // Money, nobody asked yet, the market is not known to be empty.
+    auto plan = life::PlanBandageSupply(fen, 5000, /*sellersDeclined=*/false,
+                                        /*marketQuiet=*/false,
+                                        /*waitedOut=*/false);
+    Check(plan.route == life::BandageSupply::AskPlayers,
+          "the counters are dry and the purse is full -- ask a player first");
+    Check(plan.why && *plan.why, "and say why");
+
+    // The decline event the WTB window writes.
+    plan = life::PlanBandageSupply(fen, 5000, true, false, false);
+    Check(plan.route == life::BandageSupply::CutCloth,
+          "asked and unanswered falls through to the scissors");
+
+    // This character's own 48-second bound on that window.
+    plan = life::PlanBandageSupply(fen, 5000, false, false, true);
+    Check(plan.route == life::BandageSupply::CutCloth,
+          "a window that ran out falls through too");
+
+    // The fleet-wide "just tried, nobody there".
+    plan = life::PlanBandageSupply(fen, 5000, false, true, false);
+    Check(plan.route == life::BandageSupply::CutCloth,
+          "a quiet market is not worth walking to");
+
+    // AND IF IT COULD NEVER ASK. Waiting for a seller it cannot pay is the
+    // trap that dead-ended two tailors for whole gates: every waiting gate
+    // needs an "and if I can never ask" branch.
+    plan = life::PlanBandageSupply(fen, 0, false, false, false);
+    Check(plan.route == life::BandageSupply::CutCloth,
+          "a purse that cannot cover one bandage cuts cloth instead");
+    plan = life::PlanBandageSupply(nullptr, 5000, false, false, false);
+    Check(plan.route == life::BandageSupply::CutCloth,
+          "and so does a life with no profession to price the ask with");
+}
+
 int main(int argc, char** argv) {
     for (int gold : {0, 4486, 10000, 30000}) {
         for (const char* reagent : {"i_reag_mandrake_root", "i_reag_black_pearl", "i_reag_nightshade"}) {
@@ -5109,6 +5154,7 @@ int main(int argc, char** argv) {
     TestAFundedFighterDoesNotGoShearing();
     TestContractCorpseGateMatchesTheHandler();
     TestContractArmBSilencesTheNeed();
+    TestBandageSupplyRoutePrefersPlayers();
     TestContractArmAMatchesTheErrand();
     TestStrandedCharacterGoesHome();
 

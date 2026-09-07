@@ -90,6 +90,37 @@ struct TradePolicy {
     i32 minimumSurplusToOffer = 5;
 };
 
+// THE OWNER'S FLOOR FOR A FIGHTING LIFE, and the purse rule that sits on top
+// of it. Both live HERE rather than in life.h because two layers need them and
+// only one direction of the include graph exists: life.h includes market.h, so
+// market cannot reach back. life::kFighterBandageFloor is an alias of this
+// constant, not a second copy -- one number, no drift.
+//
+// "A bot that hunts carries at least this many bandages before it goes looking
+// for something to fight" (project owner, 2026-09-05).
+inline constexpr i32 kFighterBandageFloor = 100;
+
+// HOW FAR ABOVE A FLOOR THIS PURSE CAN AFFORD TO STOCK.
+//
+// The floor is what the owner ruled; the top-up is what the character can pay
+// for, so two fighters with different purses walk out with different numbers
+// ("thresholds must be dynamic" -- owner rule). Twenty is one healer's shelf
+// (tm_vend.scp:1110, i_bandage {5 20}); a hundred is about what a town
+// restocks in a ten-minute window, so asking for more than that is asking the
+// town for something it does not have.
+//
+// life::ResolveConsumableThresholds (life/Needs.cpp) and
+// market::PlayerMarketWants both call this rather than each keeping the
+// arithmetic, because a need that sizes a want differently from the errand
+// that fills it is the need/handler contract violation this project keeps
+// paying for (docs/NEED_HANDLER_CONTRACT.md).
+inline i32 StockAboveFloor(i32 floor, i32 spareGold) {
+    i32 extra = spareGold > 0 ? spareGold / 10 : 0;
+    if (extra < 20)  extra = 20;
+    if (extra > 100) extra = 100;
+    return floor + extra;
+}
+
 // One shared rendezvous for inter-crafter trade. Owner requested Minoc first.
 // Resolve the atlas place id so every participant uses the same guarded bank.
 constexpr const char* kMarketBankPlaceId = "minoc_bank";

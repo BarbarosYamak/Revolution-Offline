@@ -582,6 +582,65 @@ bool Runner::ReachStation(Client& client, const Observation& obs, u32 station,
     return false;
 }
 
+// See the declaration in Runner.h.
+i32 Runner::BandageSaleTarget() const {
+    // ONE SITTING'S WORTH TO START WITH. needCfg_.craftBatch is what this
+    // life's plan calls a unit of work; it is resolved per character, so this
+    // is not a fleet constant dressed up as a target.
+    const i32 batch = std::max<i32>(1, needCfg_.craftBatch);
+
+    // AND WHAT THE MARKET HAS ACTUALLY TAKEN. Every completed bandage trade is
+    // one more batch worth cutting -- demand this character OBSERVED, not
+    // demand it was told about. A tailor nobody buys from stays at one batch
+    // and goes back to sewing, which is the honest answer to no orders.
+    // Bounded by Memory's own event cap (kMaxEvents) and by the window
+    // SellersDeclined uses, so it cannot grow without limit.
+    i32 sold = 0;
+    for (const LifeEvent& e : state_.memory.Events()) {
+        if (e.kind != "traded_with_player") continue;
+        if (e.detail != "i_bandage") continue;
+        ++sold;
+    }
+    return batch * (1 + sold);
+}
+
+// See the declaration in Runner.h.
+bool Runner::CutClothForSale(Client& client, const Observation& obs,
+                             i32 cloth) {
+    const prof::Profession* me = needCfg_.profession;
+    if (!me) return false;
+    // ONLY A LIFE WHOSE CATALOGUE SAYS BANDAGES ARE ITS PRODUCT. The fighters
+    // run this same chain for wool income (HARVEST_WOOL) and their cloth is
+    // already spoken for -- it goes to a tailor.
+    bool sells = false;
+    for (const std::string& made : me->produces)
+        if (made == "i_bandage") { sells = true; break; }
+    if (!sells) return false;
+
+    const i32 target = BandageSaleTarget();
+    const i32 held = static_cast<i32>(client.BackpackItemCount(kBandage));
+    if (held >= target) return false;
+
+    // NEVER THE BATCH'S OWN CLOTH. The bench comes first: this runs only on
+    // what is left above the sitting this life is funded for, so a tailor can
+    // still sew the robe she gathered the wool for. Two bounds, and the goal
+    // finishes normally the moment either bites.
+    const i32 keep = std::max<i32>(1, needCfg_.craftBatch);
+    if (cloth <= keep) return false;
+
+    const u32 scissors = client.FindBackpackItemByGraphic(kScissorsGraphic);
+    if (!scissors) return false;      // step 1 below buys a pair; not here.
+    const u32 piece = client.FindBackpackItemByGraphic(kClothGraphic);
+    if (!piece) return false;
+
+    LogLine("bandages_for_sale: cutting cloth (%d bandages held, target %d, "
+            "%d cloth with %d kept for the bench)", held, target, cloth, keep);
+    client.ActionUseItemOn(scissors, piece);
+    planner_.NoteProgress();
+    nextActionMs_ = obs.nowMs + 2500;
+    return true;
+}
+
 bool Runner::DoMakeCloth(Client& client, const Observation& obs) {
     if (client.ActionBusy()) return false;
     LoadPastures(client.DataDir());
@@ -697,6 +756,17 @@ bool Runner::DoMakeCloth(Client& client, const Observation& obs) {
             woolTarget = std::max<i32>(woolTarget, 20);
         }
         if (!stillShort) {
+            // THE BATCH IS COVERED -- SO THE SPARE CLOTH CAN BECOME STOCK.
+            // A tailor's surplus cloth is worth more as bandages than as
+            // cloth right now: the fleet's fighters empty every healer and vet
+            // counter in town and have nowhere else to go
+            // (docs/BANDAGE_SUPPLY_SPEC.md section 1), and cutting needs no
+            // Tailoring at all. Runs before the goal closes, one gesture per
+            // tick, and stops at the sale target or at the bench's own keep --
+            // whichever comes first -- so it cannot spin. What it makes is
+            // `produces`, so the ordinary bank and WTS machinery carries it
+            // from here.
+            if (!fighter && CutClothForSale(client, obs, cloth)) return false;
             if (fighter)
                 LogLine("wool_income: %d cloth cut and nothing left on the "
                         "chain -- the load is ready to sell (%d sheep carved "

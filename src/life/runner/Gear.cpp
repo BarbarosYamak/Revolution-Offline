@@ -80,10 +80,24 @@ bool Runner::PotionCountersAllDrained(Client& client,
 
 
 // THE ONE WAY OUT OF THE BANDAGE SHOP ROUTE. Both callers -- every counter
-// empty, and every counter tried -- must leave the same way: tell the need
-// model what the town is out of (NeedMakeBandages is deliberately blocked
-// while there is money to shop with, and money is not a source once every
-// shelf is empty), rest this goal, and go and MAKE them instead.
+// empty, and every counter tried -- leave the same way: tell the need model
+// what the town is out of (NeedMakeBandages is deliberately blocked while
+// there is money to shop with, and money is not a source once every shelf is
+// empty), rest this goal, and go and get bandages the other way.
+//
+// THE OTHER WAY IS NOT AUTOMATICALLY THE SCISSORS ANY MORE. Owner rule:
+// materials trade player-to-player by default, and a bot asks PLAYERS before
+// it makes a thing itself. Nobody in the fleet had ever announced "WTB
+// i_bandage", so the one profession that can cut bandages without any skill
+// -- a tailor with scissors and spare cloth -- had no customer and never cut
+// any (docs/BANDAGE_SUPPLY_SPEC.md sections 2 and 3). life::PlanBandageSupply
+// owns the choice, so the rule is stated once and the fall-through to the
+// existing self-cut chain is unchanged in every branch that reaches it.
+//
+// Both routes clear bandageCountersDrained_, and that is safe for the same
+// reason it always was: each hands the work to a DIFFERENT route, and the
+// town's emptiness is carried by the `bandage_counters_empty` event rather
+// than by the counter (bot-brain memory `a-standdown-that-forgets-reopens`).
 bool Runner::StandDownBandageShopping(const Observation& obs, const char* why,
                                       i64 restMs) {
     char detail[32];
@@ -93,8 +107,38 @@ bool Runner::StandDownBandageShopping(const Observation& obs, const char* why,
     bandageShopFails_ = 0;
     bandageTopUp_ = false;
     bandageCountersDrained_ = 0;
-    return HandOff(planner_.Current().kind, GoalKind::MakeBandages, restMs, why,
-                   obs.nowMs);
+
+    // ONE FULL ANNOUNCE CYCLE. kMaxAnnounces x kAnnounceIntervalMs (Runner.h)
+    // is the bound the buyer's own listen window is measured against, and 48 s
+    // is what a seller standing at the same bank needs to hear the ask and
+    // answer it. Deliberately far inside kNoBandageCooldownMs (180 s): the WTB
+    // must be able to fail and hand over to the scissors while the bandage
+    // errand is still the thing this character is doing. Local because the two
+    // terms are private members of Runner.
+    const i64 bandageWtbWaitMs = kMaxAnnounces * kAnnounceIntervalMs;   // 48s
+    const bool waitedOut = bandageWtbAskedMs_ > 0 &&
+                           obs.nowMs - bandageWtbAskedMs_ >= bandageWtbWaitMs;
+    const life::BandageSupplyPlan plan = life::PlanBandageSupply(
+        needCfg_.profession, obs.gold,
+        SellersDeclined("i_bandage", obs.nowMs), obs.marketQuiet, waitedOut);
+    LogLine("bandages: shop route closed (%s) -- next route %s because %s",
+            why ? why : "no reason given", life::BandageSupplyName(plan.route),
+            plan.why);
+
+    if (plan.route == life::BandageSupply::AskPlayers) {
+        // The clock starts on the ASK, not on the answer. A hand-off is
+        // advice: TRADE_WITH_PLAYER still has to out-score the field and walk
+        // to the bank, and if it never does, this window expiring is what
+        // sends the character to the scissors anyway.
+        if (bandageWtbAskedMs_ == 0) bandageWtbAskedMs_ = obs.nowMs;
+        return HandOff(planner_.Current().kind, GoalKind::TradeWithPlayer,
+                       restMs, plan.why, obs.nowMs);
+    }
+    // Asked and unanswered, or never askable. The self-supply chain below is
+    // exactly what it was before this route existed.
+    bandageWtbAskedMs_ = 0;
+    return HandOff(planner_.Current().kind, GoalKind::MakeBandages, restMs,
+                   plan.why, obs.nowMs);
 }
 
 

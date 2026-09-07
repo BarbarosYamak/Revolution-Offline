@@ -249,8 +249,18 @@ void TestArchetypesDiffer() {
     Check(!mg->consumes.empty(),
           "the mage must BUY reagents -- its newbie kit contains none, which "
           "is what makes it the archetype that proves the supplier path");
-    Check(lj->consumes.empty(),
-          "the lumberjack needs nothing from another character");
+    // THE LUMBERJACK'S ONLY CROSS-CHARACTER NEED IS BANDAGES, and that is a
+    // deliberate change, not a regression. It gathers its own wood and buys
+    // its gear, so `consumes` was empty and this check called it "the
+    // control". A fighting life's bandages are now listed there by defname
+    // (life/Professions.cpp), because the pack cannot COUNT an item that is on
+    // neither list and market::Shortfall cannot name one -- which is what kept
+    // every fighter's bandage want out of the player market
+    // (docs/BANDAGE_SUPPLY_SPEC.md section 3). The control it still is: one
+    // entry, and nothing it can make itself.
+    Check(lj->consumes.size() == 1 && lj->consumes.front() == "i_bandage",
+          "the lumberjack needs exactly one thing from another character, "
+          "and it is bandages");
     Check(!ms->consumes.empty() && !ms->produces.empty(),
           "the smith both consumes and produces -- the M7 interdependence link");
 }
