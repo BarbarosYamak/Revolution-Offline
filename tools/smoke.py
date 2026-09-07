@@ -37,11 +37,22 @@ def main():
         sys.exit(f'not in roster100/roster30: {missing}')
     if live_clients():
         sys.exit('another uo_client.exe is running -- one live smoke at a time')
+    # Exe from THIS tree (a worktree's own build, any config); character
+    # state and data always from the main tree so a smoke plays the same
+    # persistent character the fleet does.
+    here = pathlib.Path(__file__).resolve().parents[1]
+    main = pathlib.Path('C:/Projects/RevolutionOffline/bot/uo-client')
+    exe = next((c for c in (here / 'build-m1/uo_client.exe', here / 'build-m1/Release/uo_client.exe',
+                            here / 'build-m1/Debug/uo_client.exe') if c.exists()), None)
+    if exe is None:
+        sys.exit(f'no uo_client.exe under {here / "build-m1"} -- build first')
+    print(f'smoke: exe {exe} (state from {main / "bot_data"})', flush=True)
     directory = args.directory or (fr.BOT / 'artifacts' /
                                    f'smoke_{"_".join(names)}_{time.strftime("%Y%m%d_%H%M")}')
     directory = directory.resolve()
     print(f'smoke: {len(roster)} character(s), {args.minutes} min -> {directory}', flush=True)
-    fr.admit(roster, directory, len(roster), args.minutes)
+    fr.admit(roster, directory, len(roster), args.minutes, exe=exe,
+             bot_data=main / 'bot_data', data_dir=main / 'data')
     fr.watch(directory)
     print(f'smoke: done -> {directory / "results.md"}', flush=True)
 

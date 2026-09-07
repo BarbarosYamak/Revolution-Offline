@@ -226,7 +226,12 @@ def watch(directory):
     print('Wrote results.md and per-character grades.', flush=True)
 
 
-def admit(roster, directory, target, minutes):
+def admit(roster, directory, target, minutes, exe=None, bot_data=None, data_dir=None):
+    """exe/bot_data/data_dir default to this tree's build-m1 exe and state;
+    tools/smoke.py passes a worktree exe with the main tree's state."""
+    exe = Path(exe) if exe else BOT / 'build-m1/uo_client.exe'
+    bot_data = Path(bot_data) if bot_data else BOT / 'bot_data'
+    data_dir = Path(data_dir) if data_dir else BOT / 'data'
     directory.mkdir(parents=True, exist_ok=True)
     record = directory / 'admitted.json'
     admitted = json.loads(record.read_text()) if record.exists() else {}
@@ -242,7 +247,7 @@ def admit(roster, directory, target, minutes):
         if old.exists() and time.time() - old.stat().st_mtime < 120:
             if 'event logout_complete: acked' not in old.read_text(errors='replace'):
                 raise RuntimeError('admission paused: existing live gate for ' + name)
-        state = BOT / 'bot_data' / (account + '.' + name) / 'state.json'
+        state = bot_data / (account + '.' + name) / 'state.json'
         before = directory / (name + '.state_before.json')
         if state.exists():
             shutil.copy2(state, before)
@@ -250,12 +255,12 @@ def admit(roster, directory, target, minutes):
             before.write_text('{"bank":[]}')
         env = dict(os.environ)
         env['UO_BOT_PASS_' + name.upper()] = passwords[account.lower()]
-        command = [str(BOT / 'build-m1/uo_client.exe'), '--headless',
+        command = [str(exe), '--headless',
                    '--host', '127.0.0.1', '--port', '2593',
                    '--session', f'{account}::{name}::{name}:{family}',
-                   '--create-char', '--autonomous', '--bot-data', str(BOT / 'bot_data'),
+                   '--create-char', '--autonomous', '--bot-data', str(bot_data),
                    '--life-minutes', str(minutes), '--mul-dir', str(ROOT / 'runtime/mul'),
-                   '--data-dir', str(BOT / 'data'), '--log', str(directory / (name + '.log'))]
+                   '--data-dir', str(data_dir), '--log', str(directory / (name + '.log'))]
         with (directory / (name + '.console.txt')).open('wb') as con, \
              (directory / (name + '.err.txt')).open('wb') as err:
             process = subprocess.Popen(command, cwd=BOT, env=env, stdout=con, stderr=err,
