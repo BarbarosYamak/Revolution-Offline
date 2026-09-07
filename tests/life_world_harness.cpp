@@ -52,6 +52,29 @@ struct RunnerHarnessAccess {
         runner.cfg_.sessionLimitMs = 1000;
         runner.sessionStartMs_ = nowMs - 1000;
     }
+    // Drops straight into Phase::WindDown the way EndSession() would, without
+    // needing a live Phase::Live tick (goal picking, needs, planner) first --
+    // the defect and its fix are entirely inside the WindDown case, so the
+    // regression for it has no business depending on any of that machinery.
+    static void EnterWindDown(Runner& runner, i64 nowMs) {
+        runner.phase_ = Runner::Phase::WindDown;
+        runner.windDownStartedMs_ = nowMs;
+        runner.windDownTrips_ = 0;
+        runner.windDownArrived_ = false;
+        runner.windDownBlockedLogged_ = false;
+        runner.travelInFlight_ = false;
+        runner.windDownLastX_ = -1;
+        runner.windDownLastY_ = -1;
+        runner.windDownMovedMs_ = 0;
+        runner.lastTickMs_ = nowMs;
+        if (runner.sessionStartMs_ == 0) runner.sessionStartMs_ = nowMs;
+    }
+    static void SetWindDownArrivedForTest(Runner& runner, bool v) {
+        runner.windDownArrived_ = v;
+    }
+    static bool IsLoggingOut(const Runner& runner) {
+        return runner.phase_ == Runner::Phase::LoggingOut;
+    }
 };
 }
 
@@ -94,6 +117,36 @@ int GuardShouts(const Client& client) {
     }
     return n;
 }
+
+// A 0x78 Mobile Incoming with an empty equipment list -- enough to register a
+// hostile in Client::ScanHostiles (mobileCache_), which the wind-down handler
+// reads directly and independently of Runner::Observe's override seam.
+void SpawnHostile(Client& client, u32 serial, u16 x, u16 y, u8 noto) {
+    u8 packet[23]{};
+    packet[0] = 0x78;
+    StoreBE16(packet + 1, sizeof(packet));
+    StoreBE32(packet + 3, serial);
+    StoreBE16(packet + 7, 0x0190);  // body: any nonzero graphic
+    StoreBE16(packet + 9, x);
+    StoreBE16(packet + 11, y);
+    packet[13] = 0;                 // z
+    packet[14] = 0;                 // dir
+    StoreBE16(packet + 15, 0);      // hue
+    packet[17] = 0;                 // status flags
+    packet[18] = noto;              // notoriety: 3 = gray, hostile-eligible
+    // bytes 19..22 are the zero-serial equipment-list terminator
+    client.DispatchPacketForTest(packet, sizeof(packet));
+}
+
+// 0xD1 is the only thing Sphere's CClient::CharDisconnect ever sees as "this
+// session asked to end" (Client::ActionLogout's own comment). Asserting on
+// the wire, not on phase_, because phase_ alone cannot tell "logged out" from
+// "about to log out and then loop back".
+bool LogoutIssued(const Client& client) {
+    for (const auto& p : client.SentForTest())
+        if (p.opcode == 0xD1) return true;
+    return false;
+}
 }
 
 int main(int argc, char** argv) {
@@ -112,7 +165,16 @@ int main(int argc, char** argv) {
                  "REGION\tpit\tdungeon\t8C\t400\t400\t0\tPit\tPit\n"
                  "RECT\tpit\t380\t380\t420\t420\n"
                  "PLACE\tbank\tbank\ttown\t40\t40\t0\t5\tbanker\t\tTown Bank\n"
-                 "PLACE\thealer\thealer\ttown\t50\t50\t0\t3\thealer\t\tTown Healer\n";
+                 "PLACE\thealer\thealer\ttown\t50\t50\t0\t3\thealer\t\tTown Healer\n"
+                 // A guarded PLACE with no matching RECT: PlaceIsGuarded says
+                 // yes (it is filed under a guarded region by id), but
+                 // CurrentRegion() at a tile a few steps away resolves to the
+                 // unguarded "world" catch-all -- exactly the Minoc Mine 1
+                 // mismatch that looped Morven, Rhaler and Kharain
+                 // (fleet122_20260907): the atlas calls the landmark guarded,
+                 // the ground under a bot standing next to it is not.
+                 "REGION\tminocgate\tdungeon\t1\t450\t450\t0\tMinocGate\tMinocGate\n"
+                 "PLACE\tminocmine\tlandmark\tminocgate\t450\t450\t0\t5\t\t\tMinoc Mine 1\n";
     }
     std::vector<navgrid::Cell> cells(32 * 32);
     const int delta[8][2] = {{0,-1},{1,-1},{1,0},{1,1},{0,1},{-1,1},{-1,0},{-1,-1}};
@@ -347,6 +409,114 @@ int main(int argc, char** argv) {
                                                       5674, 3134)
                    .resolved,
               "nor a character whose world knowledge has not loaded");
+    }
+    // --- wind-down regression: guarded ground, hostile merely in scan ------
+    // fleet122_20260907: Morven, Rhaler and Kharain looped ~9,300 times each
+    // between "running for guarded ground at Minoc Mine 1" and "arrived
+    // somewhere safe" without ever logging out, because a hostile still in
+    // scan (never attacking, full HP) kept safeHere false and CallGuards-
+    // IfProtected kept failing (the guard polygon does not reach two tiles
+    // out), so the same zero-distance travel restarted every tick.
+    {
+        Client::Config config{};
+        config.loginHost = "127.0.0.1";
+        config.username = config.password = "offline_world";
+        config.version = "2.0.7";
+        config.sessionTag = "winddown_guard";
+        config.atlasPath = atlasPath.c_str();
+        config.navgridPath = gridPath.c_str();
+        auto client = std::make_unique<Client>(config);
+        client->SetOfflineForTest(true);
+        client->SetInWorldForTest();
+        client->SetClockForTest(1000000);
+
+        life::Runner runner;
+        life::RunnerConfig rc;
+        rc.dataRoot = root + "/winddown_guard";
+        rc.accountName = "offline_world";
+        rc.characterName = "winddown_guard";
+        rc.professionId = "fencer";
+        std::string error;
+        Check(runner.Configure(rc, &error), error.c_str());
+
+        // Two tiles from the "Minoc Mine 1" landmark -- inside the travel
+        // radius used to reach it, but not inside its own guard polygon.
+        Check(client->WorldKnowledgeReady(), "real Client loads atlas and grid");
+        Position(*client, 452, 450);
+        Check(client->CurrentRegion() && !client->CurrentRegion()->flags.guarded,
+              "standing near the guarded landmark, not inside its own polygon");
+
+        SpawnHostile(*client, 0x40100001u, 453, 450, 3);
+        std::vector<Client::HostileHit> seen;
+        Check(client->ScanHostiles(12, seen) == 1 && !seen[0].warMode,
+              "the hostile is merely in scan, not flagged for war");
+
+        life::RunnerHarnessAccess::EnterWindDown(runner, 1000000);
+        int ticks = 0;
+        for (; ticks < 10 && !life::RunnerHarnessAccess::IsLoggingOut(runner);
+             ++ticks) {
+            runner.Tick(*client, 1000000 + ticks * 100);
+        }
+        Check(life::RunnerHarnessAccess::IsLoggingOut(runner),
+              "wind-down logs out from guarded ground with a hostile merely "
+              "in scan, rather than looping forever");
+        Check(ticks <= 1,
+              "already inside the guarded landmark's radius resolves in one "
+              "tick -- no re-run of the same zero-distance travel");
+        Check(LogoutIssued(*client), "an 0xD1 logout request reached the wire");
+    }
+
+    // --- wind-down regression: "arrived somewhere safe" must not repeat ----
+    // fleet122_20260907: Dorvar's wind-down reached its chosen destination
+    // (a banker at Buccaneer's Den, unguarded and never personally learned
+    // as a bank) and printed "arrived somewhere safe" every ~30s for the
+    // rest of the session because safeHere's own region/bank-memory/bank-box
+    // checks all failed there on re-evaluation. Arriving must be trusted.
+    {
+        Client::Config config{};
+        config.loginHost = "127.0.0.1";
+        config.username = config.password = "offline_world";
+        config.version = "2.0.7";
+        config.sessionTag = "winddown_arrived";
+        config.atlasPath = atlasPath.c_str();
+        config.navgridPath = gridPath.c_str();
+        auto client = std::make_unique<Client>(config);
+        client->SetOfflineForTest(true);
+        client->SetInWorldForTest();
+        client->SetClockForTest(1000000);
+
+        life::Runner runner;
+        life::RunnerConfig rc;
+        rc.dataRoot = root + "/winddown_arrived";
+        rc.accountName = "offline_world";
+        rc.characterName = "winddown_arrived";
+        rc.professionId = "fencer";
+        std::string error;
+        Check(runner.Configure(rc, &error), error.c_str());
+
+        // Unguarded wilderness, far from the fixture's only (guarded) bank
+        // and from the Minoc Mine 1 landmark, with nothing hostile in sight --
+        // exactly what safeHere's region/bank-memory/bank-box checks see at
+        // Dorvar's Buccaneer's Den banker: none of them true.
+        Check(client->WorldKnowledgeReady(), "real Client loads atlas and grid");
+        Position(*client, 200, 450);
+        Check(client->CurrentRegion() && !client->CurrentRegion()->flags.guarded,
+              "the Dorvar-shaped tile is not itself guarded ground");
+
+        // The wind-down's own arrival bookkeeping already ran once (its
+        // travelInFlight_ resolution is unchanged by this fix and is not
+        // under test here) and set windDownArrived_ -- the fact this
+        // regression is about is what the NEXT tick does with that fact.
+        life::RunnerHarnessAccess::EnterWindDown(runner, 1000000);
+        life::RunnerHarnessAccess::SetWindDownArrivedForTest(runner, true);
+        Check(!LogoutIssued(*client),
+              "logout has not been requested before the wind-down even ticks");
+
+        runner.Tick(*client, 1000000);
+        Check(life::RunnerHarnessAccess::IsLoggingOut(runner),
+              "the tick after arrival trusts it and logs out -- no repeat "
+              "'arrived somewhere safe' loop");
+        Check(LogoutIssued(*client), "an 0xD1 logout request reached the wire");
     }
 
     std::printf("%d checks, %d failures\n", checks, failures);

@@ -1675,12 +1675,22 @@ void Runner::Tick(Client& client, i64 nowMs) {
             const wm::Region* hereRegion = client.CurrentRegion();
             std::vector<Client::HostileHit> logoutThreats;
             client.ScanHostiles(12, logoutThreats);
+            // windDownArrived_ covers Dorvar's failure mode: a wind-down trip
+            // that reaches its chosen destination (a banker offered by the
+            // world atlas, not necessarily one this life has personally
+            // learned) satisfies none of the three memory/box/region checks
+            // below on its own -- Buccaneer's Den has no guard flag and the
+            // trip never opens a bank box, so "arrived somewhere safe" kept
+            // repeating every ~30s for the rest of the session
+            // (fleet122_20260907). Arriving IS the safe state; trust it once
+            // nothing is hostile.
             bool safeHere = logoutThreats.empty() &&
                                  ((client.BankContainer() != 0 &&
                                    client.BankOpenTileHeld()) ||
                                   (hereRegion && hereRegion->flags.guarded) ||
                                   (bank && TileDist(bank->x, bank->y, client.PlayerX(),
-                                                    client.PlayerY()) <= 6));
+                                                    client.PlayerY()) <= 6) ||
+                                  windDownArrived_);
 
             if (travelInFlight_) {
                 travelInFlight_ = false;
@@ -1749,18 +1759,37 @@ void Runner::Tick(Client& client, i64 nowMs) {
                         runner_detail::NearestGuardedPlace(
                             client.WorldAtlas(), client.PlayerX(),
                             client.PlayerY());
-                    if (guarded) {
+                    const bool activelyThreatened =
+                        wdObs.attackersOnMe > 0 || wdObs.underAttack;
+                    const i32 distToGuarded = guarded
+                        ? TileDist(guarded->position.x, guarded->position.y,
+                                   client.PlayerX(), client.PlayerY())
+                        : -1;
+                    if (guarded && distToGuarded <= kWindDownGuardedArrivalRadius &&
+                        !activelyThreatened) {
+                        // ALREADY THERE. TravelToPoint would complete in the
+                        // same tick (0 legs) because the target radius already
+                        // covers this tile, and the next tick would see the
+                        // same hostile still merely in scan and repeat --
+                        // Morven, Rhaler and Kharain ping-ponged this way
+                        // about 9,300 times each at Minoc Mine 1 before being
+                        // killed at the session's 10-minute mark
+                        // (fleet122_20260907). A hostile in scan, not
+                        // attacking, does not need CallGuardsIfProtected's
+                        // literal guard polygon to say so: standing this close
+                        // to guarded ground is the safest logout left.
+                        windDownArrived_ = true;
+                        safeHere = true;
+                    } else if (guarded) {
                         LogLine("wind-down: %d hostile(s) in scan -- running "
                                 "for guarded ground at %s (%d,%d), %d tiles, "
                                 "before any bank trip",
                                 threatCount, guarded->name.c_str(),
                                 guarded->position.x, guarded->position.y,
-                                TileDist(guarded->position.x,
-                                         guarded->position.y, client.PlayerX(),
-                                         client.PlayerY()));
+                                distToGuarded);
                         travelInFlight_ = client.TravelToPoint(
-                            guarded->position.x, guarded->position.y, 3,
-                            "logout_guarded");
+                            guarded->position.x, guarded->position.y,
+                            kWindDownGuardedArrivalRadius, "logout_guarded");
                         if (travelInFlight_) return;
                         LogLine("wind-down: could not start the run to guarded "
                                 "ground (%s)", client.TravelFailureText());
@@ -1769,7 +1798,7 @@ void Runner::Tick(Client& client, i64 nowMs) {
                     // scan and no guard line to reach, a long overland leg is
                     // the Odessa route again. Standing still leaves the
                     // survival layer and the HP watchdog the ones that act.
-                    if (!windDownBlockedLogged_) {
+                    if (!safeHere && !windDownBlockedLogged_) {
                         windDownBlockedLogged_ = true;
                         LogLine("goal_failed=WIND_DOWN reason=\"%d hostile(s) "
                                 "in scan at %d,%d and no guarded ground to run "
@@ -1781,7 +1810,11 @@ void Runner::Tick(Client& client, i64 nowMs) {
                             "hostile in scan and no guard line reachable", "",
                             client.PlayerX(), client.PlayerY(), nowMs);
                     }
-                    return;
+                    // safeHere: already standing at/near guarded ground with
+                    // nothing actively attacking -- fall through to the
+                    // logout below instead of returning, same as the
+                    // CallGuardsIfProtected+outOfTime arm above.
+                    if (!safeHere) return;
                 }
             }
 

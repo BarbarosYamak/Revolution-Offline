@@ -1300,6 +1300,16 @@ private:
     static constexpr i64 kWindDownGraceMs  = 5 * 60 * 1000;
     // No step in this long means stuck, not slow.
     static constexpr i64 kWindDownStalledMs = 12 * 1000;
+    // Must match the radius passed to the logout_guarded TravelToPoint call.
+    // A character already inside this radius of the guarded PLACE is already
+    // there -- re-issuing that travel completes in the same tick (0 legs) and,
+    // with a hostile still merely IN SCAN, looked identical to the tick
+    // before it. Morven, Rhaler and Kharain ping-ponged between "running for
+    // guarded ground" and "arrived somewhere safe" about 9,300 times each at
+    // Minoc Mine 1 before being killed at the 10-minute mark
+    // (fleet122_20260907). Being this close to guarded ground, with nothing
+    // actually attacking, is the safest logout this session is going to get.
+    static constexpr i32 kWindDownGuardedArrivalRadius = 3;
     // How long past the session deadline a corpse run (or a ghost) may hold
     // the session open before the clock wins outright. A deferral with no
     // bound is not a deadline -- that is how a stuck RECOVER_CORPSE kept
