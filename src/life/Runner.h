@@ -545,6 +545,22 @@ private:
     u32  currentFoe_ = 0;
     int PickPoisonOpener(Client& client, const Observation& obs) const;
     u32 poisonOpenedTarget_ = 0;
+    // A TARGET THAT NEVER RETALIATES MUST NOT BE RE-PICKED FOREVER (audit
+    // section 3.8). ScanHostiles has no reachability filter and ChoosePrey
+    // returns the same best candidate every tick, so a foe that cannot be
+    // hit or will not fight back was attacked and re-attacked with no
+    // exchange (fleet122c30_20260907: "hunt: picked 'Spectre'" x28, zero
+    // swings). Counted per serial and cleared at kill-success and at
+    // travel-arrival (Train.cpp) -- NOT time-boxed like unreachable_ below,
+    // because one hunting trip can easily outlast that 30 s window.
+    static constexpr int kMaxHuntEngageTries = 3;
+    std::vector<std::pair<u32, int>> huntEngageTries_;
+    std::vector<u32> huntExcludedThisTrip_;
+    i32  HuntEngageTries(u32 serial) const;
+    void BumpHuntEngageTries(u32 serial);
+    bool IsHuntExcluded(u32 serial) const;
+    void MarkHuntExcluded(u32 serial);
+    void ClearHuntEngageState();
     // Chase bound: how long without getting closer before a foe is written off.
     static constexpr i64 kChaseGiveUpMs = 8000;
     i32  chaseBestDist_ = 0;

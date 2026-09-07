@@ -217,6 +217,29 @@ struct RunnerHarnessAccess {
         runner.pendingWearGraphic_ = graphic;
         runner.pendingWearOverGraphic_ = overGraphic;
     }
+
+    // --- a target that never retaliates is dropped, not re-picked forever
+    // (Train.cpp, fleet122c30_20260907) --------------------------------------
+    static bool DoTrainCombatForTest(Runner& runner, Client& client,
+                                     const Observation& obs) {
+        return runner.DoTrainCombat(client, obs);
+    }
+    // Skips DoUpgradeGear's own hand-off (Train.cpp: "no gear yet -- shopping
+    // before the graveyard"), which needs real equipped-item packets this
+    // harness has no reason to build for a test about the engage loop, not
+    // about armour.
+    static void CoolGearErrandForTest(Runner& runner, i64 nowMs) {
+        runner.planner_.Cooldown(GoalKind::UpgradeGear, nowMs + 999999);
+    }
+    static i32 HuntEngageTriesForTest(const Runner& runner, u32 serial) {
+        return runner.HuntEngageTries(serial);
+    }
+    static bool IsHuntExcludedForTest(const Runner& runner, u32 serial) {
+        return runner.IsHuntExcluded(serial);
+    }
+    static u32 CurrentFoeForTest(const Runner& runner) {
+        return runner.currentFoe_;
+    }
 };
 }
 
@@ -335,6 +358,21 @@ std::vector<u8> MakeDeleteObject(u32 serial) {
     std::vector<u8> p(5, 0);
     p[0] = 0x1D;
     StoreBE32(&p[1], serial);
+    return p;
+}
+
+// 0x98 AllNames / MobName reply: cmd(1) len(2) serial(4) name[30] (Client.cpp
+// OnMobName). ScanHostiles only fills HostileHit::name from this cache -- a
+// spawned mobile with no name reply is skipped by DoTrainCombat's candidate
+// loop entirely (h.name.empty() -> RequestMobileStatus, continue), so a
+// combat-picking test needs this every bit as much as SpawnHostile itself.
+std::vector<u8> MakeMobName(u32 serial, const char* name) {
+    std::vector<u8> p(37, 0);
+    p[0] = 0x98;
+    StoreBE16(&p[1], static_cast<u16>(p.size()));
+    StoreBE32(&p[3], serial);
+    const usize n = std::strlen(name);
+    std::memcpy(&p[7], name, n < 30 ? n : 30);
     return p;
 }
 
@@ -1646,6 +1684,189 @@ int main(int argc, char** argv) {
         Check(leatherLegs != nullptr &&
               life::RunnerHarnessAccess::MayWearForTest(runner, *leatherLegs, obs),
               "so leather leggings are still something this character may wear");
+    }
+
+    // --- a hunt target that never retaliates is dropped, not re-picked
+    // forever (Train.cpp, fleet122c30_20260907: "hunt: picked 'Spectre'" x28
+    // with no swing on one character; target never retaliates, no exchange,
+    // re-picked every ~2.5 s) -------------------------------------------
+    {
+        Client::Config config{};
+        config.loginHost = "127.0.0.1";
+        config.username = config.password = "offline_world";
+        config.version = "2.0.7";
+        config.sessionTag = "hunt_engage_giveup";
+        config.atlasPath = atlasPath.c_str();
+        config.navgridPath = gridPath.c_str();
+        auto client = std::make_unique<Client>(config);
+        client->SetOfflineForTest(true);
+        client->SetInWorldForTest();
+        client->SetClockForTest(1000000);
+
+        life::Runner runner;
+        life::RunnerConfig rc;
+        rc.dataRoot = root + "/hunt_engage_giveup";
+        rc.accountName = "offline_world";
+        rc.characterName = "hunt_engage_giveup";
+        rc.professionId = "fencer";
+        std::string error;
+        Check(runner.Configure(rc, &error), error.c_str());
+
+        // Same unreachable-landmark spot the wind-down regression above
+        // already proved is unguarded in this atlas. CurrentRegion() reads
+        // world_knowledge_ directly and does not lazily load it itself --
+        // WorldKnowledgeReady() (EnsureWorldKnowledge) has to run first.
+        Check(client->WorldKnowledgeReady(), "real Client loads atlas and grid");
+        Position(*client, 452, 450);
+        Check(client->CurrentRegion() && !client->CurrentRegion()->flags.guarded,
+              "hunting ground for this fixture is unguarded");
+        // Sidesteps DoUpgradeGear's own "no gear yet" hand-off, which needs
+        // real equipped-item packets this fixture has no reason to build --
+        // the defect under test is the engage loop, not armour.
+        life::RunnerHarnessAccess::CoolGearErrandForTest(runner, 1000000);
+
+        const u32 foe = 0x40200001u;
+        SpawnHostile(*client, foe, 453, 450, 3);
+        auto nm = MakeMobName(foe, "Harness Ghoul");
+        client->DispatchPacketForTest(nm.data(), nm.size());
+        std::vector<Client::HostileHit> seen;
+        Check(client->ScanHostiles(12, seen) == 1 && seen[0].name == "Harness Ghoul",
+              "the hostile is scannable and named before the fixture starts");
+
+        life::Observation obs;
+        obs.inWorld = true;
+        obs.x = 452; obs.y = 450;
+        obs.hp = obs.hpMax = 100;
+        obs.hostilesNear = 1;
+        obs.underAttack = false;
+        obs.attackersOnMe = 0;
+        // Otherwise DoTrainCombat hands off to ReplaceEquipment ("restock
+        // healing supplies before the next fight", Train.cpp) before ever
+        // reaching the candidate-picking loop this fixture is testing.
+        // Above kFighterBandageFloor (100, market.h) less one fight's worth,
+        // so the bandage-floor gate (Train.cpp, above the engage loop this
+        // fixture targets) does not hand off before ever reaching it.
+        obs.bandages = 200;
+        // Otherwise the FIRST gear gate (Train.cpp: "!obs.weaponEquipped")
+        // hands off to ReplaceEquipment before the UpgradeGear cooldown
+        // above (the SECOND gate, HasBasicArmor) is ever reached.
+        obs.weaponEquipped = true;
+        obs.nowMs = 1000000;
+
+        // (a) Three opening attacks, none of them retaliated against -- the
+        // exact evidence shape (obs.underAttack/attackersOnMe stay zero, so
+        // DoTrainCombat keeps re-entering its own candidate-picking loop
+        // instead of handing off to DoSurvive).
+        for (int i = 0; i < 3; ++i) {
+            obs.nowMs += 2500;
+            client->SetClockForTest(obs.nowMs);
+            life::RunnerHarnessAccess::DoTrainCombatForTest(runner, *client, obs);
+            client->CompleteActionForTest(act::Result::Timeout,
+                                          "no swing landed -- test");
+        }
+        Check(life::RunnerHarnessAccess::HuntEngageTriesForTest(runner, foe) == 3,
+              "three engage attempts were counted against the never-"
+              "retaliating target");
+        Check(!life::RunnerHarnessAccess::IsHuntExcludedForTest(runner, foe),
+              "not excluded yet -- the budget is 3 tries, not fewer");
+
+        obs.nowMs += 2500;
+        client->SetClockForTest(obs.nowMs);
+        life::RunnerHarnessAccess::DoTrainCombatForTest(runner, *client, obs);
+        Check(life::RunnerHarnessAccess::IsHuntExcludedForTest(runner, foe),
+              "the 4th tick gives up instead of re-attacking, and excludes "
+              "the target for the rest of this trip");
+        Check(life::RunnerHarnessAccess::CurrentFoeForTest(runner) == 0,
+              "giving up clears currentFoe_ so nothing keeps chasing it");
+
+        // (b) The only candidate in sight is now excluded: the goal must end
+        // with a cooldown, not spin re-scanning the same excluded serial
+        // every few seconds forever (the exclusion is trip-scoped, not the
+        // 30 s unreachable_ window, so it would never clear on its own).
+        obs.nowMs += 2500;
+        client->SetClockForTest(obs.nowMs);
+        Check(!runner.GetPlanner().Cooling(life::GoalKind::TrainCombat, obs.nowMs),
+              "no cooldown yet, before the goal has had a chance to end");
+        life::RunnerHarnessAccess::DoTrainCombatForTest(runner, *client, obs);
+        Check(runner.GetPlanner().Cooling(life::GoalKind::TrainCombat, obs.nowMs),
+              "with every visible hostile given up on, the goal ends on a "
+              "cooldown instead of looping");
+    }
+
+    // --- a retaliating target is engaged normally and never excluded -------
+    {
+        Client::Config config{};
+        config.loginHost = "127.0.0.1";
+        config.username = config.password = "offline_world";
+        config.version = "2.0.7";
+        config.sessionTag = "hunt_engage_retaliates";
+        config.atlasPath = atlasPath.c_str();
+        config.navgridPath = gridPath.c_str();
+        auto client = std::make_unique<Client>(config);
+        client->SetOfflineForTest(true);
+        client->SetInWorldForTest();
+        client->SetClockForTest(1000000);
+
+        life::Runner runner;
+        life::RunnerConfig rc;
+        rc.dataRoot = root + "/hunt_engage_retaliates";
+        rc.accountName = "offline_world";
+        rc.characterName = "hunt_engage_retaliates";
+        rc.professionId = "fencer";
+        std::string error;
+        Check(runner.Configure(rc, &error), error.c_str());
+
+        Check(client->WorldKnowledgeReady(), "real Client loads atlas and grid");
+        Position(*client, 452, 450);
+        life::RunnerHarnessAccess::CoolGearErrandForTest(runner, 1000000);
+
+        const u32 foe = 0x40200002u;
+        SpawnHostile(*client, foe, 453, 450, 3);
+        auto nm = MakeMobName(foe, "Harness Skeleton");
+        client->DispatchPacketForTest(nm.data(), nm.size());
+
+        life::Observation obs;
+        obs.inWorld = true;
+        obs.x = 452; obs.y = 450;
+        obs.hp = obs.hpMax = 100;
+        obs.hostilesNear = 1;
+        obs.underAttack = false;
+        obs.attackersOnMe = 0;
+        // Otherwise DoTrainCombat hands off to ReplaceEquipment ("restock
+        // healing supplies before the next fight", Train.cpp) before ever
+        // reaching the candidate-picking loop this fixture is testing.
+        // Above kFighterBandageFloor (100, market.h) less one fight's worth,
+        // so the bandage-floor gate (Train.cpp, above the engage loop this
+        // fixture targets) does not hand off before ever reaching it.
+        obs.bandages = 200;
+        // Otherwise the FIRST gear gate (Train.cpp: "!obs.weaponEquipped")
+        // hands off to ReplaceEquipment before the UpgradeGear cooldown
+        // above (the SECOND gate, HasBasicArmor) is ever reached.
+        obs.weaponEquipped = true;
+        obs.nowMs = 1000000;
+
+        // The opening attack: one engage attempt, exactly like the other
+        // fixture's first tick.
+        life::RunnerHarnessAccess::DoTrainCombatForTest(runner, *client, obs);
+        Check(life::RunnerHarnessAccess::HuntEngageTriesForTest(runner, foe) == 1,
+              "the opening attack counts as one engage attempt");
+
+        // Now it retaliates. DoTrainCombat's own first line hands every
+        // later tick to DoSurvive while underAttack/attackersOnMe hold, and
+        // nothing on that path touches the engage-attempt budget -- a
+        // fight that is actually happening must never be written off.
+        obs.underAttack = true;
+        obs.attackersOnMe = 1;
+        for (int i = 0; i < 3; ++i) {
+            obs.nowMs += 2500;
+            client->SetClockForTest(obs.nowMs);
+            life::RunnerHarnessAccess::DoTrainCombatForTest(runner, *client, obs);
+        }
+        Check(life::RunnerHarnessAccess::HuntEngageTriesForTest(runner, foe) == 1,
+              "a retaliating target's try count never advances past the "
+              "opening attack -- DoSurvive owns it now, not the picker");
+        Check(!life::RunnerHarnessAccess::IsHuntExcludedForTest(runner, foe),
+              "a retaliating target is never excluded");
     }
 
     std::printf("%d checks, %d failures\n", checks, failures);

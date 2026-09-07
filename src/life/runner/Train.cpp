@@ -239,6 +239,7 @@ bool Runner::NotePracticeGain(int skillId, i32 have) {
 bool Runner::HandOffFromHunt(GoalKind to, i64 forMs, const char* why, i64 nowMs) {
     huntTrips_ = 0;
     huntEmptyArrivals_ = 0;
+    ClearHuntEngageState();
     return HandOff(GoalKind::TrainCombat, to, forMs, why, nowMs);
 }
 
@@ -272,6 +273,7 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
         const i32 killed = huntKillsPending_;
         huntKillsPending_ = 0;
         huntEmptyArrivals_ = 0;
+        ClearHuntEngageState();
         for (i32 i = 0; i < killed; ++i) planner_.NoteProgress();
         LogLine("hunt: %d confirmed kill(s) this trip -- combat training done "
                 "for now", killed);
@@ -488,6 +490,7 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
             cands.reserve(seen.size());
             for (const Client::HostileHit& h : seen) {
                 if (IsUnreachable(h.serial, obs.nowMs)) continue;
+                if (IsHuntExcluded(h.serial)) continue;
                 if (h.name.empty()) {
                     client.RequestMobileStatus(h.serial);
                     continue; // Identify prey before applying creature danger.
@@ -508,6 +511,29 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
                 cands.push_back(std::move(c));
             }
             if (cands.empty()) {
+                // ALL EXCLUDED, NOT MERELY UNREACHABLE. If every mobile
+                // ScanHostiles saw is on huntExcludedThisTrip_ (each already
+                // given up on after kMaxHuntEngageTries), waiting 4 s and
+                // re-scanning only repeats the same exclusion forever --
+                // that exclusion is trip-scoped, not the 30 s unreachable_
+                // window below, so it will not clear on its own. The goal
+                // must end instead of spinning.
+                bool allGivenUp = !seen.empty();
+                for (const Client::HostileHit& h : seen) {
+                    if (!IsHuntExcluded(h.serial)) { allGivenUp = false; break; }
+                }
+                if (allGivenUp) {
+                    LogLine("goal_failed=TRAIN_COMBAT reason=\"every visible "
+                            "hostile was given up on after %d tries each\"",
+                            kMaxHuntEngageTries);
+                    client.EnsurePeaceMode();
+                    planner_.Cooldown(GoalKind::TrainCombat,
+                                      obs.nowMs + kHuntStandDownMs);
+                    planner_.Finish(false, "no huntable target left this trip",
+                                    obs.nowMs);
+                    nextActionMs_ = obs.nowMs + 4000;
+                    return false;
+                }
                 LogLine("hunt: every visible hostile is on the recent retreat "
                         "list -- not re-engaging");
                 client.EnsurePeaceMode();
@@ -636,6 +662,23 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
                                                 policy, obs.HpFraction(), danger);
             if (prey >= 0) {
                 const combat::Candidate& c = cands[static_cast<usize>(prey)];
+                // GIVE UP BEFORE RE-ATTACKING, NOT AFTER. ChoosePrey returns
+                // the same best candidate every tick this section runs
+                // (i.e. whenever underAttack/attackersOnMe are both zero --
+                // see the DoSurvive hand-off at the top of this function), so
+                // a target that is unreachable or simply never fights back
+                // was attacked and re-attacked with nothing to show for it
+                // (fleet122c30_20260907, "hunt: picked 'Spectre'" x28, zero
+                // swings). Checked here, before ActionAttack, not after.
+                if (HuntEngageTries(c.serial) >= kMaxHuntEngageTries) {
+                    LogLine("hunt: giving up on '%s' 0x%08X after %d tries -- "
+                            "next target", c.name.c_str(), c.serial,
+                            HuntEngageTries(c.serial));
+                    MarkHuntExcluded(c.serial);
+                    if (currentFoe_ == c.serial) currentFoe_ = 0;
+                    nextActionMs_ = obs.nowMs + 500;
+                    return false;
+                }
                 const combat::Classification v =
                     combat::Classify(c, me, combat::RevolutionCrimeRules(), policy,
                                      obs.HpFraction());
@@ -658,6 +701,7 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
                     if (poison >= 0) poisonOpenedTarget_ = c.serial;
                 }
                 else client.ActionAttack(c.serial);
+                BumpHuntEngageTries(c.serial);
                 currentFoe_ = c.serial;
                 currentFoeName_ = c.name;
                 // TRAIN_COMBAT opens the fight, but SURVIVE owns it as soon
@@ -873,6 +917,7 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
     }
     travelInFlight_ = false;
     huntTrips_ = 0;
+    ClearHuntEngageState();
     // ARRIVING IS NOT TRAINING, AND AN EMPTY YARD MUST END SOMEWHERE.
     //
     // huntTrips_ is cleared by arriving, so the "no hunting ground reachable"

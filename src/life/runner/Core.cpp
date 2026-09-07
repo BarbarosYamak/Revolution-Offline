@@ -1211,6 +1211,42 @@ void Runner::MarkUnreachable(u32 serial, i64 nowMs) {
 }
 
 // ---------------------------------------------------------------------------
+// Hunt engage-attempt budget (audit section 3.8). Trip-scoped, not
+// time-boxed -- see Runner.h kMaxHuntEngageTries.
+// ---------------------------------------------------------------------------
+
+i32 Runner::HuntEngageTries(u32 serial) const {
+    for (const auto& e : huntEngageTries_)
+        if (e.first == serial) return e.second;
+    return 0;
+}
+
+void Runner::BumpHuntEngageTries(u32 serial) {
+    for (auto& e : huntEngageTries_) {
+        if (e.first == serial) { ++e.second; return; }
+    }
+    huntEngageTries_.emplace_back(serial, 1);
+}
+
+bool Runner::IsHuntExcluded(u32 serial) const {
+    for (u32 s : huntExcludedThisTrip_)
+        if (s == serial) return true;
+    return false;
+}
+
+void Runner::MarkHuntExcluded(u32 serial) {
+    if (!IsHuntExcluded(serial)) huntExcludedThisTrip_.push_back(serial);
+    for (auto it = huntEngageTries_.begin(); it != huntEngageTries_.end(); ++it) {
+        if (it->first == serial) { huntEngageTries_.erase(it); break; }
+    }
+}
+
+void Runner::ClearHuntEngageState() {
+    huntEngageTries_.clear();
+    huntExcludedThisTrip_.clear();
+}
+
+// ---------------------------------------------------------------------------
 // Checkpoint
 // ---------------------------------------------------------------------------
 
