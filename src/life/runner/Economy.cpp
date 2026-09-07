@@ -1043,12 +1043,29 @@ std::string Runner::ResolveHomeMarketPlaceId(Client& client) const {
         std::snprintf(why, sizeof(why), "nearer than %s by %d tiles",
                       pick.otherLabel.c_str(), pick.otherTiles - pick.tiles);
         marketPlaceWhy_ = why;
+        // S7 SEQUENTIAL HUBS: cache the second hub alongside the first, and
+        // both permanently as the primary pairing, so TryOtherMarketHub can
+        // fall back to it later without re-running the comparison (and
+        // without a live position to re-run it from, once this character
+        // has walked away from where it was measured) and ResetTradeState
+        // can put the ACTIVE hub back to the primary one once an errand
+        // that switched hubs has ended.
+        marketOtherPlaceId_ = pick.otherPlaceId;
+        marketOtherLabel_ = pick.otherLabel;
+        marketPlaceLabel_ = pick.place ? pick.place->name : pick.placeId;
+        marketPrimaryPlaceId_ = pick.placeId;
+        marketPrimaryLabel_ = marketPlaceLabel_;
         return pick.placeId;
     }
 
     // THE ATLAS KNOWS NEITHER HUB AT ALL. Keep the old single rendezvous
     // rather than hand back an empty id.
     marketPlaceWhy_ = "no britain or minoc bank in the atlas";
+    marketOtherPlaceId_.clear();
+    marketOtherLabel_.clear();
+    marketPlaceLabel_ = market::kMarketBankPlaceId;
+    marketPrimaryPlaceId_ = market::kMarketBankPlaceId;
+    marketPrimaryLabel_ = marketPlaceLabel_;
     return market::kMarketBankPlaceId;
 }
 
@@ -1091,6 +1108,61 @@ bool Runner::AtMarketBank(const Client& client) const {
     // twenty bots converging on one bank cannot all stand on the same one.
     return TileDist(client.PlayerX(), client.PlayerY(), p->position.x,
                     p->position.y) <= p->radius + 2;
+}
+
+// S7 SEQUENTIAL HUBS (owner ruling 2026-09-07): "it can check minoc first
+// britain after, same for buyers as well". A character always tries its
+// cheaper hub (marketPlaceId_, from ResolveHomeMarketPlaceId) first; only
+// when that hub's whole announce/listen window closes with no trade does it
+// go try the other one. Called from exactly the two places that used to go
+// straight to "nobody was selling"/"nobody wanted it": DoTradeWithPlayer's
+// buyer listen-timeout and its seller announce-exhausted branch.
+bool Runner::TryOtherMarketHub(Client& client, const Observation& obs) {
+    if (marketHubTried_) return false;             // one switch per errand
+    if (marketOtherPlaceId_.empty()) return false;  // no second hub to try
+
+    const wm::Place* other = client.KnownPlace(marketOtherPlaceId_.c_str());
+    if (!other) return false;
+
+    // SAME VETO SHAPE AS THE FIRST HOP (the "not enough session left for the
+    // trip" block above): straight-line tiles (no plan exists yet), doubled
+    // for the way home, plus one announce cycle and the wind-down reserve.
+    // The trip-budget veto is skipped here too, not forced -- a session that
+    // cannot afford the second hop falls straight through to the caller's
+    // own "no seller/buyer came" failure instead of being sent walking into
+    // its own wind-down.
+    const i32 tiles = TileDist(obs.x, obs.y, other->position.x, other->position.y);
+    const i64 leftMs = cfg_.sessionLimitMs - (obs.nowMs - sessionStartMs_);
+    const i64 tripNeedMs = life::MarketTripNeedMs(
+        tiles, kMaxAnnounces * kAnnounceIntervalMs, kWindDownBudgetMs);
+    if (cfg_.sessionLimitMs > 0 && leftMs < tripNeedMs) {
+        LogLine("market: second hub %s unaffordable (cost %llds, left %llds)",
+                marketOtherLabel_.c_str(),
+                static_cast<long long>(tripNeedMs / 1000),
+                static_cast<long long>(leftMs / 1000));
+        marketHubTried_ = true;  // the answer will not change within this errand
+        return false;
+    }
+
+    LogLine("market: no trade at %s, trying %s",
+            marketPlaceLabel_.c_str(), marketOtherLabel_.c_str());
+    // marketOtherPlaceId_/marketOtherLabel_ are the PERMANENT pairing (see
+    // Runner.h) -- left untouched here. marketHubTried_ alone stops a second
+    // switch this errand; ResetTradeState puts marketPlaceId_ back to the
+    // primary hub for the next one.
+    marketPlaceId_ = marketOtherPlaceId_;
+    marketPlaceLabel_ = other->name;
+    marketHubTried_ = true;
+    // Fresh attempt at the new hub: this hub's own announce/listen/audience
+    // history means nothing at the other one, and the trip allowance is per
+    // errand-leg the same way tradeTrips_ already is for the walk itself.
+    tradeAnnounceCount_ = 0;
+    tradeAnnouncedMs_ = 0;
+    marketListenFromMs_ = 0;
+    tradeAudienceIgnored_ = 0;
+    tradeTrips_ = 0;
+    travelInFlight_ = false;
+    return true;
 }
 
 // A DIFFERENT QUESTION FROM AtMarketBank: that one asks "am I at MY market
@@ -1965,10 +2037,16 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
             tradeWantAskedMs_ = obs.nowMs;
         }
         if (obs.nowMs - marketListenFromMs_ >= kListenMs) {
+            marketListenFromMs_ = 0;
+            // S7 SEQUENTIAL HUBS: this hub's window is over with nobody
+            // selling -- try the other one before giving up. On success the
+            // goal keeps running (next tick's "arrived" check walks there);
+            // on failure (already tried, no second hub, or unaffordable)
+            // fall through to the ordinary "nobody was selling" handling.
+            if (TryOtherMarketHub(client, obs)) return false;
             LogLine("market: nobody answered %s in %llds -- back to work",
                     buyable.front().item.c_str(),
                     static_cast<long long>(kListenMs / 1000));
-            marketListenFromMs_ = 0;
             state_.memory.NoteEvent("no_player_seller",
                                     buyable.front().item.c_str(), "", obs.x,
                                     obs.y, obs.nowMs);
@@ -2099,6 +2177,10 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
     // scanned by something else. Only suppress when the SAME KNOWN audience
     // declined -- an unknown audience is not evidence of anything.
     if (audience != 0 && audience == tradeAudienceIgnored_) {
+        // S7 SEQUENTIAL HUBS: the same room already declined this offer --
+        // that is "no trade here" just as much as an exhausted announce
+        // count, so try the other hub before standing the whole errand down.
+        if (TryOtherMarketHub(client, obs)) return false;
         LogLine("trade: the same people who ignored the last offer are still "
                 "here -- not repeating it");
         planner_.Cooldown(GoalKind::TradeWithPlayer, obs.nowMs + kMarketQuietMs);
@@ -2127,6 +2209,12 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
         ++tradeAnnounceCount_;
     }
     if (tradeAnnounceCount_ >= kMaxAnnounces) {
+        // S7 SEQUENTIAL HUBS: this hub's whole announce cycle closed with
+        // nobody buying -- try the other one before standing the errand
+        // down. TryOtherMarketHub already zeroed tradeAnnounceCount_'s peers
+        // (tradeAnnouncedMs_, marketListenFromMs_) for the fresh hub, so a
+        // successful switch skips straight past this errand's own reset.
+        if (TryOtherMarketHub(client, obs)) return false;
         LogLine("trade: nobody answered %d offers of %s -- back to work",
                 tradeAnnounceCount_, announce.item.c_str());
         tradeAudienceIgnored_ = client.AudienceFingerprint(kTradeEarshot);
@@ -2473,6 +2561,17 @@ void Runner::ResetTradeState() {
     marketLiftPack_ = -1;
     marketLiftItem_.clear();
     marketBoxReopens_ = 0;
+    // S7 SEQUENTIAL HUBS: put the ACTIVE hub back to the primary (cheaper)
+    // one and clear the per-errand switch flag, so the NEXT independent
+    // TRADE_WITH_PLAYER errand tries the nearer hub first again rather than
+    // starting wherever this one ended up. Only when the pairing has ever
+    // actually been resolved (marketPrimaryPlaceId_ non-empty) -- a life
+    // that has never reached MarketPlaceUsable yet has nothing to restore.
+    if (!marketPrimaryPlaceId_.empty()) {
+        marketPlaceId_ = marketPrimaryPlaceId_;
+        marketPlaceLabel_ = marketPrimaryLabel_;
+    }
+    marketHubTried_ = false;
     // `bankErrand_` is deliberately NOT cancelled here: it is shared with the
     // bank and earn-gold errands, and an open box is useful to whatever runs
     // next. Only the market's own failure path cancels it.

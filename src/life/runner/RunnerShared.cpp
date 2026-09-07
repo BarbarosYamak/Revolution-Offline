@@ -334,6 +334,7 @@ MarketHubPick ResolveMarketHub(const world_atlas::Atlas* atlas, i32 x, i32 y) {
                                                only->position.y);
         pick.otherTiles = pick.tiles;
         pick.otherLabel = "the only hub the atlas knows";
+        pick.otherPlaceId.clear();  // nothing to fall back to
         pick.resolved   = true;
         return pick;
     }
@@ -350,7 +351,9 @@ MarketHubPick ResolveMarketHub(const world_atlas::Atlas* atlas, i32 x, i32 y) {
     pick.placeId    = pick.place->id;
     pick.tiles      = britainWins ? tilesBritain : tilesMinoc;
     pick.otherTiles = britainWins ? tilesMinoc : tilesBritain;
-    pick.otherLabel = (britainWins ? minoc : britain)->name;
+    const wm::Place* other = britainWins ? minoc : britain;
+    pick.otherLabel = other->name;
+    pick.otherPlaceId = other->id;
     pick.resolved   = true;
     return pick;
 }

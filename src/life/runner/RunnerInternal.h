@@ -1582,6 +1582,11 @@ struct MarketHubPick {
     i32              tiles = 0;        // the winning hub's travel cost
     i32              otherTiles = 0;   // the losing hub's travel cost
     std::string      otherLabel;       // the losing hub's display name
+    // S7 SEQUENTIAL HUBS: the losing hub's place id, so a caller whose first
+    // hub's whole announce/listen window closes with no trade can go try the
+    // other one. Empty when there IS no other hub (the atlas only carries
+    // one of Britain/Minoc) -- nothing to fall back to in that case.
+    std::string      otherPlaceId;
     bool             resolved = false; // false only when the atlas has
                                        // neither Britain's nor Minoc's bank
 };

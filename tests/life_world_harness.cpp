@@ -127,6 +127,35 @@ struct RunnerHarnessAccess {
     static std::string ResolveMarketPlaceId(Runner& runner, Client& client) {
         return runner.ResolveHomeMarketPlaceId(client);
     }
+    // --- S7: sequential hubs (Economy.cpp, 2026-09-07) ----------------------
+    static bool MarketPlaceUsableForTest(Runner& runner, Client& client) {
+        return runner.MarketPlaceUsable(client);
+    }
+    static std::string ActiveMarketPlaceId(const Runner& runner) {
+        return runner.marketPlaceId_;
+    }
+    static std::string OtherMarketPlaceId(const Runner& runner) {
+        return runner.marketOtherPlaceId_;
+    }
+    static std::string PrimaryMarketPlaceId(const Runner& runner) {
+        return runner.marketPrimaryPlaceId_;
+    }
+    static bool MarketHubTried(const Runner& runner) {
+        return runner.marketHubTried_;
+    }
+    static bool TryOtherMarketHubForTest(Runner& runner, Client& client,
+                                         const Observation& obs) {
+        return runner.TryOtherMarketHub(client, obs);
+    }
+    static void ResetTradeStateForTest(Runner& runner) {
+        runner.ResetTradeState();
+    }
+    // Session clock start, so TryOtherMarketHub's own trip-budget veto has a
+    // real "how long is left" to measure against instead of the default 0
+    // (which reads as a session already 100% spent against obs.nowMs).
+    static void SetSessionStart(Runner& runner, i64 nowMs) {
+        runner.sessionStartMs_ = nowMs;
+    }
 
     // --- "a buyer pays for what is in the window" (Economy.cpp, 2026-09-07) --
     // What Baelos shouted out loud before the window ever opened: the WTB
@@ -784,6 +813,89 @@ int main(int argc, char** argv) {
         Check(life::RunnerHarnessAccess::RestStepForTest(runner, *client, logout) ==
                   life::RestStep::Settle,
               "rest does not treat an off-tile bank container as logout safety");
+    }
+    // --- S7 SEQUENTIAL HUBS (owner ruling 2026-09-07): "it can check minoc
+    // first britain after, same for buyers as well". A character tries its
+    // cheaper hub first, then the other one when the first hub's whole
+    // announce/listen window closes with no trade -- and the trip-budget
+    // veto still applies to that second hop, skipped rather than forced.
+    // Reuses the same two-hub fixture atlas (bank=Britain, minoc_bank=Minoc)
+    // set up above for the S6/S7 home-market tests.
+    {
+        Client::Config config{};
+        config.loginHost = "127.0.0.1";
+        config.username = config.password = "offline_world";
+        config.version = "2.0.7";
+        config.sessionTag = "hub_seq";
+        config.atlasPath = atlasPath.c_str();
+        config.navgridPath = gridPath.c_str();
+        auto client = std::make_unique<Client>(config);
+        client->SetOfflineForTest(true);
+        client->SetInWorldForTest();
+        client->SetClockForTest(1000000);
+        Position(*client, 35, 35);   // near the Britain-town bank
+
+        life::Runner runner;
+        life::RunnerConfig rc;
+        rc.dataRoot = root + "/hub_seq";
+        rc.accountName = "offline_world";
+        rc.characterName = "hub_seq";
+        rc.professionId = "merchant_tinker";
+        std::string error;
+        Check(runner.Configure(rc, &error), error.c_str());
+
+        // Resolving the home market picks the nearer hub (Britain's "bank")
+        // and caches the other one (Minoc's "minoc_bank") for later.
+        Check(life::RunnerHarnessAccess::MarketPlaceUsableForTest(runner, *client),
+              "the fixture's Britain bank is a usable market place");
+        Check(life::RunnerHarnessAccess::ActiveMarketPlaceId(runner) == "bank",
+              "the cheaper hub (Britain) is tried first");
+        Check(life::RunnerHarnessAccess::PrimaryMarketPlaceId(runner) == "bank",
+              "and is cached as the permanent primary hub");
+        Check(life::RunnerHarnessAccess::OtherMarketPlaceId(runner) == "minoc_bank",
+              "with Minoc cached as the fallback hub");
+        Check(!life::RunnerHarnessAccess::MarketHubTried(runner),
+              "no hub switch has happened yet");
+
+        life::Observation obs;
+        obs.inWorld = true;
+        obs.x = 35; obs.y = 35;
+        obs.nowMs = 2000000;
+        obs.hp = obs.hpMax = 50;
+        life::RunnerHarnessAccess::SetSessionStart(runner, obs.nowMs);
+
+        // No trade at Britain: with a full 30-minute session (the default)
+        // the second hop is affordable, so the switch is made.
+        Check(life::RunnerHarnessAccess::TryOtherMarketHubForTest(runner, *client, obs),
+              "no trade at the first hub switches to the second");
+        Check(life::RunnerHarnessAccess::ActiveMarketPlaceId(runner) == "minoc_bank",
+              "the active hub is now Minoc");
+        Check(life::RunnerHarnessAccess::MarketHubTried(runner),
+              "the switch is recorded");
+
+        // ONE SWITCH PER ERRAND: a second no-trade at Minoc must not bounce
+        // back to Britain.
+        Check(!life::RunnerHarnessAccess::TryOtherMarketHubForTest(runner, *client, obs),
+              "a second attempt this errand does not switch again");
+        Check(life::RunnerHarnessAccess::ActiveMarketPlaceId(runner) == "minoc_bank",
+              "so the active hub does not bounce back to Britain");
+
+        // The errand ends (success or failure both call ResetTradeState):
+        // the NEXT independent errand starts at the cheaper hub again.
+        life::RunnerHarnessAccess::ResetTradeStateForTest(runner);
+        Check(life::RunnerHarnessAccess::ActiveMarketPlaceId(runner) == "bank",
+              "the next errand tries the primary (Britain) hub again");
+        Check(!life::RunnerHarnessAccess::MarketHubTried(runner),
+              "and the switch flag is clear for it");
+
+        // VETO BRANCH: with no session time left, the second hop is skipped
+        // -- not forced -- and the errand's own "no seller/buyer came"
+        // failure fires instead of a walk that cannot finish.
+        life::RunnerHarnessAccess::MakeSessionEnding(runner, obs.nowMs);
+        Check(!life::RunnerHarnessAccess::TryOtherMarketHubForTest(runner, *client, obs),
+              "an unaffordable second hop is vetoed, not forced");
+        Check(life::RunnerHarnessAccess::ActiveMarketPlaceId(runner) == "bank",
+              "the active hub stays put when the trip is vetoed");
     }
     // --- STRANDED ON THE WRONG FACET (owner ruling 2026-09-07) -------------
     //

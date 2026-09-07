@@ -1632,6 +1632,43 @@ private:
     // stays const) and read once by MarketPlaceUsable for the session's one
     // `market: the market is ...` log line.
     mutable std::string marketPlaceWhy_;
+    // S7 SEQUENTIAL HUBS (owner ruling 2026-09-07): "it can check minoc first
+    // britain after, same for buyers as well". ResolveMarketHub's comparison
+    // (which of Britain/Minoc is cheaper) depends on where the character was
+    // standing the ONE time it was ever run (marketPlaceOk_'s life-long
+    // latch), so the pairing itself -- which hub is "primary" and which is
+    // "other" -- never changes for this life. marketPrimaryPlaceId_/
+    // marketPrimaryLabel_ hold that permanent pairing; marketOtherPlaceId_/
+    // marketOtherLabel_ hold the permanent OTHER side of it (empty when the
+    // atlas only knows one hub at all -- nothing to fall back to). Neither
+    // is ever mutated outside ResolveHomeMarketPlaceId.
+    //
+    // marketPlaceId_/marketPlaceLabel_ ABOVE, by contrast, are the ACTIVE
+    // hub for the errand in progress -- normally equal to the primary pair,
+    // but swapped to the other one by TryOtherMarketHub mid-errand, and put
+    // back by ResetTradeState so the NEXT independent errand starts at the
+    // primary (cheaper) hub again rather than staying wherever the last one
+    // left off.
+    mutable std::string marketPrimaryPlaceId_;
+    mutable std::string marketPrimaryLabel_;
+    mutable std::string marketOtherPlaceId_;
+    mutable std::string marketOtherLabel_;
+    mutable std::string marketPlaceLabel_;
+    // Has this errand already tried the second hub? Set the moment
+    // TryOtherMarketHub switches marketPlaceId_ over (or vetoes the trip),
+    // so a bounced goal re-entry cannot switch back and forth between the
+    // two hubs -- one switch per errand, same as tradeTrips_ is one trip
+    // allowance per errand. Reset in ResetTradeState.
+    bool marketHubTried_ = false;
+    // Attempt the OTHER hub after the current one's announce/listen window
+    // closed with nobody trading. Returns true when the switch is made (the
+    // caller must return false and let the goal keep running -- the normal
+    // "arrived" check next tick will see marketPlaceId_ point somewhere new
+    // and start the walk) or when the trip was vetoed as unaffordable (the
+    // caller falls through to its own "no seller/buyer came" failure).
+    // Returns false, and leaves marketPlaceId_ untouched, when there is no
+    // second hub to try at all or this errand already tried it.
+    bool TryOtherMarketHub(Client& client, const Observation& obs);
     // A BUYER HAS NOTHING TO SAY. It answers what it hears, so its whole
     // errand at the market is to be present while somebody else announces.
     // Bounded: one full announce cycle is kMaxAnnounces x kAnnounceIntervalMs
