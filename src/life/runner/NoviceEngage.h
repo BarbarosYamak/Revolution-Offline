@@ -26,6 +26,8 @@
 // Sphere damage formula; the shard's damage-after-armour rule and this
 // character's AR are both still UNKNOWN (artifacts/hunt_tier_gate_2026-09-06.md
 // section 3), so the policy is stated in observed hp lost per exchange.
+#include "uo/strategies/combat_strategy.h"
+
 namespace uo::life::novice {
 
 // HP TAKEN PER LANDED BLOW, weak band vs starter leather.
@@ -153,6 +155,54 @@ inline constexpr bool NoviceMustDisengage(int attackersOnMe, int /*inReach*/) {
 inline constexpr int RetreatBoard(int attackersOnMe, int inReach) {
     const int atk = attackersOnMe < 1 ? 1 : attackersOnMe;
     return inReach > attackersOnMe ? atk + 1 : atk;
+}
+
+// WHO BREAKS OFF A FIGHT IT IS NOT LOSING.
+//
+// "This life avoids combat" is a property of the BUILD -- a crafter's answer
+// to a fight is to leave it (CombatStrategyId::AvoidCombat), a tamer has no
+// pet transport to fight through, a build with no combat skill in its 700
+// points has nothing to win with. It is NOT a property of the mana bar.
+//
+// Survive.cpp used to fold "no attack spell castable right now" into that same
+// flag, and right now includes mana and reagents. So a pure mage who opened a
+// TRAIN_COMBAT fight, cast one Harm and spent his pool read as a pacifist on
+// the very next tick and ran, at full health, from one attacker he had chosen:
+// Aurelius 2026-09-07 23:17:22 (fleet122d30_20260907), `cast_spell id=12` then
+// one second later `disengage=yes attackers=1 in_reach=0 hp=100%
+// reason="this life avoids combat"`, then `BLOCKED_NEED TRAIN_COMBAT: mana
+// 2/25 will not pay for an opening cast`. Seven mages/warlocks in that wave,
+// 62 such lines, no completed fights. The owner watching the client: "they
+// don't fully fight -- they use one spell and go somewhere else."
+//
+// So the question this asks is "can this life EVER hurt what is hitting it",
+// not "can it hurt it this second": knowsAnAttackSpell is the book and the
+// Magery skill, ignoring mana and reagents. An empty pool is a pause in the
+// fight (wait, the ladder walks back down as mana returns); an empty book is
+// a life that avoids combat. Callers pass `true` for the flags that do not
+// belong to their strategy.
+inline bool LifeAvoidsCombat(bool buildFightsAtAll, CombatStrategyId strategy,
+                             bool knowsAnAttackSpell, bool hasAmmo) {
+    if (!buildFightsAtAll) return true;
+    switch (strategy) {
+        case CombatStrategyId::AvoidCombat: return true;
+        case CombatStrategyId::Tamer:       return true;
+        case CombatStrategyId::Mage:        return !knowsAnAttackSpell;
+        case CombatStrategyId::Ranged:      return !hasAmmo;
+        case CombatStrategyId::Melee:       break;
+    }
+    return false;
+}
+
+// The whole break-contact question in one place, in the order Survive.cpp
+// asks it: a life that cannot fight this thing at all, then a crowd past this
+// nerve's tolerance, then health under the bail line (which already carries
+// the retreat floor from RetreatFloorFraction).
+inline bool ShouldBreakContact(bool avoidsCombat, int attackersOnMe,
+                               int crowdTolerated, double hpFraction,
+                               double bailAt) {
+    return avoidsCombat || attackersOnMe > crowdTolerated ||
+           hpFraction < bailAt;
 }
 
 }  // namespace uo::life::novice

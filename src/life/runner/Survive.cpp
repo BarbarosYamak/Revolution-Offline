@@ -412,11 +412,22 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
     // zero weapon/Magery targets) was killed by a Harpy and three orcs north
     // of Britain on 2026-09-07 (g_Odessa.console.txt:1161-1361).
     const bool noCombatBuild = !BuildFightsAtAll(needCfg_.profession);
-    const bool avoidCombatDisengage = noCombatBuild ||
-        strategy == CombatStrategyId::AvoidCombat ||
-        strategy == CombatStrategyId::Tamer ||
-        (strategy == CombatStrategyId::Mage && attackSpell < 0) ||
-        (strategy == CombatStrategyId::Ranged && market::QtyOf(obs.pack, "i_arrow") == 0);
+    // AN EMPTY MANA BAR IS NOT A PACIFIST. attackSpell is what is castable
+    // RIGHT NOW -- book, skill, mana and reagents -- and folding it into the
+    // avoid-combat flag made every mage a crafter one cast into his own fight:
+    // Aurelius 2026-09-07 23:17:22 cast Harm at a foe he had picked under
+    // TRAIN_COMBAT and disengaged one second later at hp=100%, attackers=1,
+    // reason "this life avoids combat", with `mana 2/25` the real story
+    // (fleet122d30_20260907; seven mages, 62 lines). What decides whether this
+    // life avoids combat is the book and the skill -- requireSupplies=false --
+    // and the empty pool is handled in the fight arm below as a pause.
+    const bool mageKnowsAnAttackSpell =
+        strategy != CombatStrategyId::Mage ||
+        PickSurvivalSpell(client, obs, false, /*requireSupplies=*/false) >= 0;
+    const bool rangedHasAmmo = strategy != CombatStrategyId::Ranged ||
+        market::QtyOf(obs.pack, "i_arrow") > 0;
+    const bool avoidCombatDisengage = novice::LifeAvoidsCombat(
+        !noCombatBuild, strategy, mageKnowsAnAttackSpell, rangedHasAmmo);
 
     // Same nerve-adjusted threshold Needs.cpp uses for the StayAlive need, so
     // the need model and the flee interrupt agree on when a fight is lost.
@@ -498,8 +509,9 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
     // 100% health with the target still alive, and the session killed nothing
     // (g_Hector.console.txt:518,539,946,967). in_reach is still counted, still
     // logged, and still buys a blow of retreat margin through RetreatBoard.
-    if (avoidCombatDisengage || obs.attackersOnMe > crowdTolerated ||
-        obs.HpFraction() < bailAt) {
+    if (novice::ShouldBreakContact(avoidCombatDisengage, obs.attackersOnMe,
+                                   static_cast<int>(crowdTolerated),
+                                   obs.HpFraction(), bailAt)) {
         LogLine("interrupt=FLEE reason=\"HP %.0f%%; %d attacker(s); bail at %.0f%% "
                 "(retreat floor %.0f%% for %d on the board%s)\"",
                 obs.HpFraction() * 100.0, obs.attackersOnMe, bailAt * 100.0,
@@ -509,6 +521,9 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
                 obs.attackersOnMe, inReach, crowdTolerated, novicePolicy ? 1 : 0,
                 obs.HpFraction() * 100.0, obs.bandages,
                 noCombatBuild             ? "this build plans no combat skill"
+                : !mageKnowsAnAttackSpell ? "no attack spell this book and this "
+                                            "Magery can cast"
+                : !rangedHasAmmo          ? "no arrows left to shoot with"
                 : avoidCombatDisengage    ? "this life avoids combat"
                 : obs.attackersOnMe > crowdTolerated ? "more attackers than "
                                                        "this nerve stands in"
@@ -592,6 +607,27 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
         // two minutes, zero casts). Retreat when hurt or when there is
         // nothing to cast; otherwise cast at it from where we stand.
         if (attackSpell < 0) {
+            // NOTHING CASTABLE THIS SECOND. If the pool is the only thing
+            // missing -- the reagents for a rung are in the pack -- this is a
+            // pause in the fight, not the end of it: mana returns in seconds,
+            // the ladder walks back down to whatever rung it will pay for, and
+            // the foe stays selected. Walking away here is what turned "cast
+            // one spell and go somewhere else" into the whole mage session.
+            // Health is not at issue: the bail line above already ran, so we
+            // are above it, and it runs again on every tick of this wait.
+            Observation full = obs;
+            full.mana = full.manaMax > 0 ? full.manaMax : full.mana + 100;
+            const bool manaOnly = PickSurvivalSpell(client, full, false) >= 0;
+            if (manaOnly) {
+                currentFoe_ = target->serial;
+                currentFoeName_ = target->name;
+                LogLine("hold=wait_for_mana foe=%s mana=%d/%d hp=%.0f%%",
+                        target->name.empty() ? "a hostile" : target->name.c_str(),
+                        obs.mana, obs.manaMax, obs.HpFraction() * 100.0);
+                nextActionMs_ = obs.nowMs + 3000;
+                return false;
+            }
+            // Out of reagents: this fight cannot be paid for at all.
             RetreatToSafety(client);
         } else if (!client.ActionBusy()) {
             currentFoe_ = target->serial;

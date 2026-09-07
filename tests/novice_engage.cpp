@@ -242,6 +242,57 @@ void TestWatchdogNeverRestsUnderAttack() {
           "the default board is clear, so the pre-existing answer stands");
 }
 
+// A MAGE OUT OF MANA IS NOT A CRAFTER.
+//
+// Aurelius (pure mage, TRAIN_COMBAT, fleet122d30_20260907 23:17:22) picked a
+// foe, cast Harm, and one second later disengaged at hp=100% attackers=1 with
+// reason "this life avoids combat" -- because the old flag folded "no attack
+// spell castable right now" (which includes mana) into a build property.
+// Seven mages/warlocks did the same 62 times in that wave.
+void TestManaIsNotPacifism() {
+    std::printf("- an empty mana bar is not a build that avoids combat\n");
+    using S = uo::life::CombatStrategyId;
+
+    // Pure mage, TRAIN_COMBAT, 100% hp, one attacker in reach, book and
+    // Magery hold Harm -- the pool is empty and nothing else is wrong.
+    const bool mageAvoids =
+        novice::LifeAvoidsCombat(true, S::Mage, /*knowsAnAttackSpell=*/true,
+                                 /*hasAmmo=*/true);
+    Check(!mageAvoids, "a mage who knows an attack spell never 'avoids combat'");
+    Check(!novice::ShouldBreakContact(mageAvoids, /*attackers=*/1,
+                                      /*crowdTolerated=*/1, /*hp=*/1.0,
+                                      /*bailAt=*/0.36),
+          "mage, 100% hp, one attacker, no mana: finish the fight");
+
+    // Alchemist in the same spot: no combat skill in the 700 points, and the
+    // crafter strategy on top of it. This one leaves, and must keep leaving.
+    const bool alchemistAvoids =
+        novice::LifeAvoidsCombat(/*buildFightsAtAll=*/false, S::AvoidCombat,
+                                 true, true);
+    Check(alchemistAvoids, "a build with no combat skill still avoids combat");
+    Check(novice::ShouldBreakContact(alchemistAvoids, 1, 1, 1.0, 0.36),
+          "alchemist, 100% hp, one attacker: break contact");
+
+    // The same mage at 30% of a 45-hp bar. One attacker on the board needs
+    // 16 hp of margin (RetreatFloorHp), i.e. 35.6% of that bar, so health --
+    // not the mana bar -- ends this fight.
+    const double bail = novice::RetreatFloorFraction(1, 45);
+    CheckPct(bail, 0.35, 0.36, "45-hp bar, one attacker: retreat floor");
+    Check(novice::ShouldBreakContact(mageAvoids, 1, 1, 0.30, bail),
+          "mage at 30% hp: real danger still ends the fight");
+
+    // Genuine inability keeps the old answer.
+    Check(novice::LifeAvoidsCombat(true, S::Mage, /*knowsAnAttackSpell=*/false,
+                                   true),
+          "a mage with no attack spell in the book avoids combat");
+    Check(novice::LifeAvoidsCombat(true, S::Ranged, true, /*hasAmmo=*/false),
+          "an archer with no arrows avoids combat");
+    Check(novice::LifeAvoidsCombat(true, S::Tamer, true, true),
+          "a tamer has no pet transport to fight through");
+    Check(!novice::LifeAvoidsCombat(true, S::Melee, false, false),
+          "a melee build fights with what is in its hand");
+}
+
 }  // namespace
 
 int main() {
@@ -253,6 +304,7 @@ int main() {
     TestRetreatBoard();
     TestCrafterNeverEngages();
     TestWatchdogNeverRestsUnderAttack();
+    TestManaIsNotPacifism();
     std::printf("%s: %d checks, %d failures\n",
                 g_failures ? "FAIL" : "PASS", g_checks, g_failures);
     return g_failures ? 1 : 0;
