@@ -1205,7 +1205,6 @@ bool Runner::DoFish(Client& client, const Observation& obs) {
             "try fishing elsewhere",            // FISHING_1, same verdict
             "try fishing in water",             // not water at all
             "can't fish from where you are standing",
-            "you can't fish while riding",      // @PreStart refusal
             "cannot fish so close to yourself", // adjacent water is refused
             "target cannot be seen",
             "that is too far away",
@@ -1216,6 +1215,24 @@ bool Runner::DoFish(Client& client, const Observation& obs) {
                 done = true;
                 break;
             }
+        }
+        // "You can't fish while riding." is skill18_fishing.scp's @PreStart
+        // refusing the CHARACTER, not the water -- it fires on a tile that
+        // will fish fine the moment the rider is on foot. Folding it into
+        // kRefusedHere is what turned four mounted fishers' whole 30-minute
+        // runs into ~1,000 shore hops and 0 casts (fleet122d30_20260907,
+        // Cyreth.console.txt:142-176): every refused tile went on the dead
+        // list, the sweep moved to the next one, and the new one refused the
+        // same way because nobody ever got off the horse. DismountToWork
+        // below now runs before every cast, so this should be rare after the
+        // first one -- but if a dismount is ever refused (war mode) this is
+        // the fallback that keeps retrying instead of blacklisting the shore.
+        if (!done && client.JournalSaidSince("you can't fish while riding",
+                                             fishCastJournalMs_)) {
+            LogLine("fish: refused at %d,%d (\"you can't fish while riding\") "
+                    "-- not the tile's fault, staying on the list",
+                    fishX_, fishY_);
+            done = true;
         }
         if (!done) {
             for (const char* line : kRefusedHere) {
@@ -1511,6 +1528,19 @@ bool Runner::DoFish(Client& client, const Observation& obs) {
         }
         return false;
     }
+
+    // ON FOOT TO CAST. skill18_fishing.scp's @PreStart refuses a mounted
+    // caster outright ("you can't fish while riding") -- the target answer
+    // still lands, so the refusal reads as if it were about the water (see
+    // the kRefusedHere handling above) when it is really about the rider.
+    // DismountToWork is the same mechanic GatherLogs/mine already use; unlike
+    // theirs there is no matching RemountAfterWork call here on purpose --
+    // "Fishing is deliberately left alone" (top of this file) still holds for
+    // the SITTING, this only gets the character off the horse before the
+    // first line goes in the water. Whatever pet-follow logic already keeps
+    // the horse near its owner is what happens to it meanwhile; this code
+    // does not chase or stable it.
+    if (DismountToWork(client, obs)) return false;
 
     client.ActionUseObject(pole);
     fishCursorPending_ = true;

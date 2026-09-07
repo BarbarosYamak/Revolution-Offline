@@ -702,6 +702,13 @@ target_link_libraries(trade_verify PRIVATE uo_client_core)
 
 add_test(NAME trade_verify COMMAND trade_verify)
 
+# --- fish_mount_refusal: a mounted fisher's cast refusal must not blacklist
+# the water tile it was aimed at (Gather.cpp DoFish, 2026-09-07) -----------
+add_executable(fish_mount_refusal fish_mount_refusal.cpp)
+target_link_libraries(fish_mount_refusal PRIVATE uo_client_core)
+
+add_test(NAME fish_mount_refusal COMMAND fish_mount_refusal)
+
 # --- Creation-time appearance roll (docs/APPEARANCE_DESIGN.md layer 1) -----
 # Pure function over an identity string: determinism (same id -> identical
 # appearance), diversity (20 different ids differ in at least one field),
