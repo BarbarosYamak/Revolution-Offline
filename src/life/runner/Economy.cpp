@@ -40,6 +40,18 @@ bool Runner::PlayersDeclined(const std::string& item, i64 nowMs) const {
     return false;
 }
 
+// The counting form of PlayersDeclined. See the declaration in Runner.h.
+i32 Runner::UnsoldWindowsFor(const std::string& item, i64 nowMs) const {
+    if (item.empty()) return 0;
+    i32 n = 0;
+    for (const LifeEvent& e : state_.memory.Events()) {
+        if (e.kind != "no_player_buyer") continue;
+        if (e.detail != item) continue;
+        if (nowMs - e.atMs <= kPlayerWindowMemoryMs) ++n;
+    }
+    return n;
+}
+
 // The buy half of the same reader. See the declaration in Runner.h.
 bool Runner::SellersDeclined(const std::string& item, i64 nowMs) const {
     if (item.empty()) return false;
@@ -2022,8 +2034,15 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
     // the trade window. If the withdrawal above did not move the goods, say so
     // and stand down rather than shouting a number that is not true.
     market::TradeIntent announce;
+    // HOW MANY WINDOWS ALREADY CLOSED UNSOLD. `offer.item` is the item this
+    // trip is for, chosen above before anything moved; the count is this
+    // life's own `no_player_buyer` history for it, same one-hour horizon
+    // PlayersDeclined already reads. See ComputeCraftedGoodAsk (market.h):
+    // a finished crafted good opens near the NPC counter and steps down one
+    // increment per window in this count, never past its own floor.
+    const i32 unsoldWindows = UnsoldWindowsFor(offer.item, obs.nowMs);
     if (!market::ChooseSellOffer(*me, obs.pack, state_.prices, tradePolicy_,
-                                 &announce)) {
+                                 &announce, unsoldWindows)) {
         LogLine("goal_blocked=TRADE_WITH_PLAYER reason=\"the stock is still in "
                 "the bank (%d %s) and the box did not give it up\"",
                 market::QtyOf(obs.bank, offer.item), offer.item.c_str());
@@ -2089,6 +2108,18 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
 
     if (obs.nowMs - tradeAnnouncedMs_ >= kAnnounceIntervalMs) {
         NoteCraftedGoodFloorOnce(announce.item);
+        // LOGGED EVERY ANNOUNCE, not once per session like the floor above:
+        // the whole point of this number is that it MOVES as unsoldWindows
+        // grows, and a grader reading only the first line would never see
+        // the markdown happen.
+        const market::CraftedGoodAsk crafted =
+            market::ComputeCraftedGoodAsk(announce.item.c_str(), state_.prices,
+                                          unsoldWindows);
+        if (crafted.applies) {
+            LogLine("price: %s ask %d (npc %d, floor %d, discount step %d)",
+                    announce.item.c_str(), crafted.ask, crafted.npc,
+                    crafted.floor, crafted.step);
+        }
         const std::string line = market::FormatSellOffer(announce);
         LogLine("trade: announcing '%s'", line.c_str());
         client.ActionSay(line.c_str());

@@ -645,6 +645,50 @@ struct CraftedGoodFloor {
 CraftedGoodFloor ComputeCraftedGoodFloor(const char* item, const PriceBook& book);
 
 // ---------------------------------------------------------------------------
+// THE OPENING ASK AND ITS MARKDOWN (owner ruling, 2026-09-07).
+//
+//   "crafted good margin can be high since we will try to sell under price of
+//    npc but we also want to make discount if necessary"
+//
+// ComputeCraftedGoodFloor answers "what can this ask never fall below". This
+// answers the other half: what does a crafter actually SAY first, and how
+// does that number move if nobody buys.
+//
+//   - HIGH: just under PriceSource::NpcVendorSells for the item -- what an
+//     NPC shopkeeper would charge a player walking up to the same counter.
+//     Undercutting the shop by a hair is the whole strategy: cheaper than
+//     the NPC, but never cheaper than it has to be.
+//   - When that NPC number is AT OR BELOW the floor (i_bandage: the shop's
+//     own 1.15x-VALUE markup on a 1gp itemdef is less than the one cloth
+//     that makes one -- VALUE=1, sphere.ini VendorMarkup=15, see
+//     kShardValueSeeds' i_bandage comment above for the VALUE citation) or
+//     ABSENT entirely (no PriceSource::NpcVendorSells observation and no
+//     documented shard number either), there is no "just under the shop"
+//     number worth opening at, so the open is the floor plus the same
+//     "half again" margin CeilingPerUnit already grants a believed price
+//     (documented precedent, not a new number).
+//   - The open then steps DOWN toward the floor, evenly, over
+//     kMaxAskDiscountSteps unsold announce windows -- never past it. A
+//     "window" is the caller's unit (Runner counts one full
+//     kMaxAnnounces cycle that closed with no buyer); this function only
+//     does the arithmetic.
+struct CraftedGoodAsk {
+    bool applies = false;  // false for raw/intermediate/unpriced goods
+    i32  ask     = 0;      // gp per unit to announce right now
+    i32  high    = 0;      // gp per unit at zero unsold windows (the open)
+    i32  floor   = 0;      // gp per unit; the ask never falls below this
+    i32  npc     = -1;     // the NpcVendorSells reference used, or -1 if none
+    i32  step    = 0;      // unsold windows actually applied (capped)
+};
+
+// unsoldWindows < 0 is treated as 0 (fresh, never announced). Pure function:
+// same inputs, same answer, every time -- no clock, no RNG.
+inline constexpr i32 kMaxAskDiscountSteps = 5;
+
+CraftedGoodAsk ComputeCraftedGoodAsk(const char* item, const PriceBook& book,
+                                     i32 unsoldWindows);
+
+// ---------------------------------------------------------------------------
 // Player-to-player trade.
 //
 // This is what the milestone is actually for. Once materials stopped being
@@ -758,11 +802,17 @@ BuyLineKind ClassifyBuyLine(const std::string& said, TradeIntent* out = nullptr)
 // `book` supplies the asking price. With no observation the character has no
 // basis for a number and announces nothing rather than inventing one; that is
 // the same rule BelievedSalePrice follows.
+// `unsoldWindows` is how many consecutive announce windows have already
+// closed with nobody buying THIS item -- 0 for a fresh offer nobody has
+// heard yet. Only a finished crafted good (ComputeCraftedGoodAsk) reads it;
+// everything else prices exactly as before. Defaulted so every existing
+// caller and test keeps announcing at the open, unchanged.
 bool ChooseSellOffer(const prof::Profession& p,
                      const std::vector<Stock>& pack,
                      const PriceBook& book,
                      const TradePolicy& policy,
-                     TradeIntent* out);
+                     TradeIntent* out,
+                     i32 unsoldWindows = 0);
 
 // WHAT THIS LIFE SHOULD SHOUT THAT IT WANTS. The mirror of ChooseSellOffer.
 //

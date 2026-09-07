@@ -1486,6 +1486,13 @@ private:
     // would quietly convert the floor into the market.
     static constexpr i64 kPlayerWindowMemoryMs = 60 * 60 * 1000;   // one hour
     bool PlayersDeclined(const std::string& item, i64 nowMs) const;
+    // THE COUNTING FORM OF THE SAME READER, for market::ChooseSellOffer's
+    // `unsoldWindows` -- how many separate `no_player_buyer` events for this
+    // item fall inside the same one-hour horizon PlayersDeclined already
+    // uses. Each one IS a closed announce window (DoTradeWithPlayer writes
+    // one when kMaxAnnounces offers went unanswered), so this is not a new
+    // clock, only a count instead of a bool.
+    i32  UnsoldWindowsFor(const std::string& item, i64 nowMs) const;
     // THE BUY SIDE OF THE SAME READER. `no_player_seller` is written by
     // DoTradeWithPlayer when a WTB window expires with nobody answering, and
     // it is what licenses a life to go and make the thing itself rather than

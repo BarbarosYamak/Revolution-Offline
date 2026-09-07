@@ -1927,6 +1927,102 @@ void TestCraftedGoodFloor() {
     }
 }
 
+// --------------------------------------------------------------------------
+// The opening ask and its markdown (owner ruling, 2026-09-07): a crafter's
+// WTS opens just under the NPC counter and steps down toward its own floor,
+// never crossing it, as announce windows close unsold. Buyers must be able
+// to meet that opening number.
+void TestCraftedGoodAsk() {
+    Section("a crafter's opening ask: just under NPC, marked down toward the "
+            "floor, never past it");
+
+    const prof::Profession* tai = prof::Find("tailor");
+    const prof::Profession* fen = prof::Find("fencer");
+    Check(tai && fen, "the tailor and fencer exist");
+    if (!tai || !fen) return;
+
+    TradePolicy pol;
+
+    // --- i_bandage: the NPC's own sell price (VALUE=1 x 1.15 markup ~= 1gp)
+    // sits AT the material floor (3gp), so there is no "just under the shop"
+    // number above the floor -- the open falls back to the floor's own
+    // half-again margin. ------------------------------------------------
+    PriceBook blind;
+    const CraftedGoodAsk bandageOpen =
+        ComputeCraftedGoodAsk("i_bandage", blind, /*unsoldWindows=*/0);
+    Check(bandageOpen.applies, "a bandage is a good this ask covers");
+    Check(bandageOpen.npc >= 0 && bandageOpen.npc <= bandageOpen.floor,
+          "the NPC's own bandage price does not clear the material floor");
+    Check(bandageOpen.high == bandageOpen.floor + bandageOpen.floor / 2,
+          "so the open falls back to the floor's half-again margin");
+    Check(bandageOpen.ask == bandageOpen.high,
+          "and at zero unsold windows the ask IS the open");
+    Check(bandageOpen.ask >= bandageOpen.floor,
+          "the open never sits below the floor");
+
+    // --- an item WITH a real NpcVendorSells observation above its floor:
+    // the open must land just under it. -----------------------------------
+    PriceBook withNpcSell;
+    PriceObservation npcSell;
+    npcSell.item = "i_bandage";
+    npcSell.pricePerUnit = 20;   // well above the 3gp material floor
+    npcSell.source = PriceSource::NpcVendorSells;
+    npcSell.who = "a healer";
+    npcSell.whenMs = 1000;
+    withNpcSell.Note(npcSell);
+    const CraftedGoodAsk highNpcOpen =
+        ComputeCraftedGoodAsk("i_bandage", withNpcSell, 0);
+    Check(highNpcOpen.npc == 20, "the observed NPC sell price is read back");
+    Check(highNpcOpen.high == 19, "the open sits just under the NPC's price");
+    Check(highNpcOpen.ask == 19, "and the ask matches the open at zero windows");
+
+    // --- STEP DOWN across unsold windows, never crossing the floor. -------
+    i32 prevAsk = highNpcOpen.high + 1;
+    for (i32 windows = 0; windows <= kMaxAskDiscountSteps + 2; ++windows) {
+        const CraftedGoodAsk a =
+            ComputeCraftedGoodAsk("i_bandage", withNpcSell, windows);
+        Check(a.ask >= a.floor, "the ask never crosses the floor");
+        Check(a.ask <= prevAsk,
+              "each additional unsold window never raises the ask");
+        prevAsk = a.ask;
+        if (windows >= kMaxAskDiscountSteps) {
+            Check(a.ask == a.floor,
+                  "by the discount cap the ask has fully reached the floor");
+        }
+    }
+
+    // --- THE BUYER'S OWN CEILING MUST ACCEPT THE OPEN, not just the floor,
+    // so a first trade can actually close at the seller's high opening ask
+    // rather than stall forever waiting for a markdown nobody offered yet.
+    const std::vector<Stock> none = {{"i_bandage", 0}};
+    TradeIntent wtb;
+    Check(ChooseBuyWant(*fen, none, withNpcSell, pol, 5000, &wtb),
+          "a fencer with gold forms a WTB for bandages");
+    if (wtb.item == "i_bandage") {
+        Check(wtb.pricePerUnit >= highNpcOpen.high,
+              "the buyer's ceiling reaches the seller's opening ask, not "
+              "just the bare floor");
+    }
+
+    // --- AND THE SELLER'S ANNOUNCE ITSELF TRACKS THE SAME MARKDOWN. -------
+    const std::vector<Stock> stock = {{"i_bandage", 80}};
+    TradeIntent freshWts;
+    Check(ChooseSellOffer(*tai, stock, withNpcSell, pol, &freshWts,
+                          /*unsoldWindows=*/0),
+          "a tailor announces a fresh offer");
+    Check(freshWts.pricePerUnit == highNpcOpen.high,
+          "unannounced yet, so it opens at the top of the band");
+
+    TradeIntent staleWts;
+    Check(ChooseSellOffer(*tai, stock, withNpcSell, pol, &staleWts,
+                          kMaxAskDiscountSteps),
+          "the same tailor, after the discount cap's worth of unsold windows");
+    Check(staleWts.pricePerUnit == highNpcOpen.floor,
+          "has marked all the way down to its own floor");
+    Check(staleWts.pricePerUnit < freshWts.pricePerUnit,
+          "and that is strictly cheaper than the fresh open");
+}
+
 int main() {
     std::printf("m7_market\n");
     TestInterdependence();
@@ -1956,6 +2052,7 @@ int main() {
     TestBuyerFundsTheWindowItAskedFor();
     TestBandagesAreAPlayerMarketGood();
     TestCraftedGoodFloor();
+    TestCraftedGoodAsk();
     std::printf("%d checks, %d failures\n", g_checks, g_failures);
     return g_failures == 0 ? 0 : 1;
 }
