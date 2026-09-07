@@ -1244,6 +1244,7 @@ void Runner::TrackDeathEdge(Client& client, i64 nowMs) {
         // might be anyone's.
         resurrectedAtMs_ = nowMs;
         deathBlamed_ = false;
+        deathKillerName_.clear();
         survivalRetreat_ = false;
     }
     if (!dead) sawAliveOnce_ = true;
@@ -1254,9 +1255,29 @@ void Runner::TrackDeathEdge(Client& client, i64 nowMs) {
         ++session_.deaths;
         state_.lastDeathMs = nowMs;
         const i32 x = client.PlayerX(), y = client.PlayerY();
-        state_.memory.NoteDanger(x, y, 20, "death", 2.0, nowMs);
-        LogLine("disengage=died at=%d,%d reason=\"died here -- this "
-                "ground is now remembered as lethal\"", x, y);
+        // NAME THE KILLER, NOT JUST THE TILE. This used to tag the danger
+        // record with the literal string "death", so a character that died to
+        // a skeletal knight learned "this ground is lethal" and nothing about
+        // knights -- and walked back next session with learned_danger=0.00 for
+        // the species that had killed it (four times over on 2026-09-07,
+        // artifacts/fleet122c30_20260907/triage_deaths.md). The killer is the
+        // last thing that swung at us, which is also the only witness a real
+        // client has: see Client::LastAttackerName.
+        //
+        // Recorded HERE rather than in DoSurvive's dead branch because this
+        // runs in every phase. Odessa died during wind-down on 2026-09-07 and
+        // the survival path never ran at all, so nothing was ever blamed.
+        deathKillerName_ = client.LastAttackerName();
+        const char* killer = deathKillerName_.empty() ? "death"
+                                                      : deathKillerName_.c_str();
+        state_.memory.NoteDanger(x, y, 20, killer, 2.0, nowMs);
+        if (!deathKillerName_.empty()) {
+            state_.memory.NoteCreatureOutcome(deathKillerName_.c_str(),
+                                              kCreatureEvidenceDeath, nowMs);
+        }
+        LogLine("disengage=died at=%d,%d killer=\"%s\" reason=\"died here -- "
+                "this ground and this kind of creature are now remembered as "
+                "lethal\"", x, y, killer);
     }
     wasDead_ = dead;
 }

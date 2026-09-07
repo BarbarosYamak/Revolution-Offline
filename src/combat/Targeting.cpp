@@ -30,6 +30,29 @@ const char* LegalityName(Legality l) {
     return "?";
 }
 
+const char* VerdictName(const Classification& v) {
+    // A lawful fight this character decided not to take is "avoid": the word
+    // the trace needs is the DECISION, not the crime status of a swing that
+    // never happened. Forbidden / guard_kill / flags_criminal keep their own
+    // names, because there the legality IS the reason.
+    if (!v.engage && v.legality == Legality::Lawful) return "avoid";
+    return LegalityName(v.legality);
+}
+
+// See the comment on the declaration (combat.h) for where 0.12 and 0.20 come
+// from and which half of this is data and which half is policy.
+double SpeciesCeiling(i32 bestFightSkillTenths) {
+    constexpr i32 kNoviceTenths  = 600;   // 60.0 -- the existing novice line
+    constexpr i32 kTrainedTenths = 800;   // 80.0 -- called trained
+    constexpr double kNoviceCeiling  = 0.12;
+    constexpr double kTrainedCeiling = 0.20;
+    if (bestFightSkillTenths <= kNoviceTenths)  return kNoviceCeiling;
+    if (bestFightSkillTenths >= kTrainedTenths) return kTrainedCeiling;
+    const double t = static_cast<double>(bestFightSkillTenths - kNoviceTenths) /
+                     static_cast<double>(kTrainedTenths - kNoviceTenths);
+    return kNoviceCeiling + (kTrainedCeiling - kNoviceCeiling) * t;
+}
+
 const CrimeRules& RevolutionCrimeRules() {
     static const CrimeRules r{};   // defaults ARE the read values; see the header
     return r;
@@ -145,6 +168,19 @@ Classification Classify(const Candidate& c, const Stance& me,
     if (me.attackersOnMe > 1) {
         threat += 0.05 * std::min(3, me.attackersOnMe - 1);
     }
+
+    // WHAT IT IS, not only where it is standing. Recognising the shape in
+    // front of you is not hidden state -- the name is on the screen -- and
+    // without this term a skeletal knight idling at nine tiles scored
+    // identically to a zombie idling at nine tiles, which is the line that
+    // preceded four deaths on 2026-09-07. Weighted deliberately small (a
+    // knight adds ~0.11, a zombie ~0.02) and capped: this term exists to make
+    // the number HONEST, not to be the gate. The gate is maxSpeciesDanger
+    // below, because a species a character cannot beat is a refusal whatever
+    // the rest of the board looks like.
+    if (c.speciesDanger > 0.0)
+        threat += std::min(0.20, 0.6 * c.speciesDanger);
+
     out.threat = std::min(1.0, threat);
 
     // --- may we, and should we, swing? ------------------------------------
@@ -167,6 +203,19 @@ Classification Classify(const Candidate& c, const Stance& me,
     if (c.attackingMe && policy.defendSelf) {
         out.engage = true;
         out.reason += "; already under attack, so defending";
+        return out;
+    }
+
+    // OUT OF OUR LEAGUE. Placed AFTER the self-defence branch on purpose: a
+    // character that is already being hit by a lich lord has no better option
+    // than hitting back, and refusing there would only make it die standing
+    // still. This gate is about fights we would be CHOOSING.
+    if (c.speciesDanger > policy.maxSpeciesDanger) {
+        out.engage = false;
+        out.reason += Fmt("; a %s is beyond this character (species danger "
+                          "%.2f above the %.2f it can take on)",
+                          c.name.empty() ? "creature like this" : c.name.c_str(),
+                          c.speciesDanger, policy.maxSpeciesDanger);
         return out;
     }
 

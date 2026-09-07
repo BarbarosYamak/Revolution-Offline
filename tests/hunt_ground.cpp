@@ -15,9 +15,16 @@
 // graveyard fails this suite rather than going unnoticed.
 
 #include "world/Atlas.h"
+#include "uo/combat.h"
+#include "uo/life.h"
 
+#include <algorithm>
+#include <cctype>
 #include <cstdio>
+#include <cstdlib>
+#include <cstring>
 #include <string>
+#include <unordered_map>
 
 using namespace uo;
 
@@ -25,6 +32,39 @@ namespace {
 
 int g_checks = 0;
 int g_failures = 0;
+
+// The shard-derived species table, read the same way the runner reads it
+// (RunnerShared.cpp LoadSeededCreatureDanger): defname, name, danger, maxdam,
+// armor, str, magery, taming -- tab separated, keyed by the lowercased
+// client-visible NAME because the name is all a client is ever sent. Parsed
+// here rather than linked, so this suite stays free of the runner, but it
+// reads the SAME generated file: a regenerated table that reorders the
+// graveyard fails this suite instead of going unnoticed.
+std::unordered_map<std::string, double> LoadSpeciesDanger(const std::string& dataDir) {
+    std::unordered_map<std::string, double> t;
+    std::FILE* f = std::fopen((dataDir + "/revolution_creatures.tsv").c_str(), "rb");
+    if (!f) return t;
+    char line[512];
+    bool first = true;
+    while (std::fgets(line, sizeof(line), f)) {
+        if (first) { first = false; continue; }          // header
+        std::string row(line);
+        const std::string::size_type t1 = row.find('\t');
+        if (t1 == std::string::npos) continue;
+        const std::string::size_type t2 = row.find('\t', t1 + 1);
+        if (t2 == std::string::npos) continue;
+        const std::string::size_type t3 = row.find('\t', t2 + 1);
+        std::string key = row.substr(t1 + 1, t2 - t1 - 1);
+        for (char& ch : key)
+            ch = static_cast<char>(std::tolower(static_cast<unsigned char>(ch)));
+        if (key.empty()) continue;
+        const std::string dg =
+            row.substr(t2 + 1, (t3 == std::string::npos ? row.size() : t3) - t2 - 1);
+        t[key] = std::atof(dg.c_str());
+    }
+    std::fclose(f);
+    return t;
+}
 
 void Check(bool ok, const char* what) {
     ++g_checks;
@@ -286,6 +326,169 @@ int main(int argc, char** argv) {
         Check(p == nullptr,
               "no hunting ground within 10 tiles of Yew -- refused, not a "
               "far-away graveyard reported as reachable");
+    }
+
+    // -----------------------------------------------------------------------
+    // A NOVICE DOES NOT PICK A FIGHT WITH A SKELETAL KNIGHT.
+    //
+    // Regression for artifacts/fleet122c30_20260907/triage_deaths.md: Eldian,
+    // Zaran, Leander and Rhalan -- all four under 60.0 weapon skill -- each
+    // logged `hunt: picked 'skeletal knight' ... verdict=lawful threat=0.35
+    // -0.67 learned_danger=0.00`, and all four died. The threat model scored
+    // the SITUATION only, so a knight idling at nine tiles read exactly like a
+    // zombie idling at nine tiles.
+    // -----------------------------------------------------------------------
+    Section("novices recognise strong undead");
+    {
+        const std::unordered_map<std::string, double> species =
+            LoadSpeciesDanger(argv[1]);
+        Check(!species.empty(),
+              "the shard-derived creature table loads "
+              "(data/revolution_creatures.tsv)");
+
+        auto Look = [&](const char* n) {
+            std::string k(n);
+            for (char& ch : k)
+                ch = static_cast<char>(std::tolower(static_cast<unsigned char>(ch)));
+            const auto it = species.find(k);
+            return it == species.end() ? -1.0 : it->second;
+        };
+
+        // The ranking this whole rule rests on is DATA, so assert the data.
+        const double zombie   = Look("zombie");
+        const double knight   = Look("skeletal knight");
+        const double lich     = Look("lich");
+        const double lichLord = Look("lich lord");
+        Check(zombie >= 0.0 && knight >= 0.0 && lich >= 0.0 && lichLord >= 0.0,
+              "zombie, skeletal knight, lich and lich lord are all in the table");
+        Check(zombie < knight && zombie < lich && zombie < lichLord,
+              "the generated ranking still puts a zombie below all three "
+              "strong undead");
+
+        auto Sighting = [&](const char* name, i32 dist, double learned) {
+            combat::Candidate c;
+            c.serial = 0x1000;
+            c.name = name;
+            c.noto = combat::Noto::Murderer;   // undead read red: lawful prey
+            c.dist = dist;
+            c.hpCur = 100; c.hpMax = 100;      // a full bar, the worst reading
+            const double seeded = Look(name);
+            c.speciesDanger = std::max(seeded < 0.0 ? 0.0 : seeded, learned);
+            return c;
+        };
+
+        combat::Stance me;                     // open ground, nothing on us
+        const combat::CrimeRules& rules = combat::RevolutionCrimeRules();
+
+        // A fencer at 50.0 -- Eldian's and Hector's profile.
+        combat::EngagePolicy novice;
+        novice.riskTolerance = 0.70;           // a fencer's nerve (Professions.cpp)
+        novice.maxSpeciesDanger = combat::SpeciesCeiling(500);
+
+        {
+            const combat::Candidate c = Sighting("skeletal knight", 8, 0.0);
+            const combat::Classification v =
+                combat::Classify(c, me, rules, novice, 1.0);
+            Check(!v.engage,
+                  "a 50.0 fencer does NOT open on a skeletal knight at 8 tiles");
+            Check(std::strcmp(combat::VerdictName(v), "avoid") == 0,
+                  "and the verdict prints 'avoid', not 'lawful'");
+            Check(v.legality == combat::Legality::Lawful,
+                  "the refusal is about risk, not legality -- the swing would "
+                  "still have been lawful");
+        }
+        for (const char* strong : {"lich", "lich lord"}) {
+            const combat::Candidate c = Sighting(strong, 8, 0.0);
+            const combat::Classification v =
+                combat::Classify(c, me, rules, novice, 1.0);
+            Check(!v.engage && std::strcmp(combat::VerdictName(v), "avoid") == 0,
+                  "a novice avoids the rest of the strong ring too");
+        }
+        {
+            const combat::Candidate c = Sighting("Zombie", 8, 0.0);
+            const combat::Classification v =
+                combat::Classify(c, me, rules, novice, 1.0);
+            Check(v.engage, "the same novice DOES open on a Zombie at 8 tiles");
+            Check(std::strcmp(combat::VerdictName(v), "lawful") == 0,
+                  "and that verdict still prints 'lawful'");
+        }
+        {
+            // The weak band has to stay farmable, or this has only traded four
+            // deaths for zero training (Hector, 2026-09-07: five refusals,
+            // zero fights, ten minutes).
+            for (const char* weak : {"Skeleton", "Ghoul", "Spectre"}) {
+                const combat::Candidate c = Sighting(weak, 6, 0.0);
+                const combat::Classification v =
+                    combat::Classify(c, me, rules, novice, 1.0);
+                Check(v.engage, "the weak band is still engageable by a novice");
+            }
+        }
+
+        // A trained fighter is a different character, and the gate says so.
+        combat::EngagePolicy trained = novice;
+        trained.maxSpeciesDanger = combat::SpeciesCeiling(850);
+        {
+            const combat::Candidate c = Sighting("skeletal knight", 8, 0.0);
+            const combat::Classification v =
+                combat::Classify(c, me, rules, trained, 1.0);
+            Check(v.engage, "a fighter at 85.0 DOES open on a skeletal knight");
+        }
+        Check(combat::SpeciesCeiling(500) < combat::SpeciesCeiling(700) &&
+                  combat::SpeciesCeiling(700) < combat::SpeciesCeiling(850),
+              "the ceiling rises with skill instead of flipping on one gain");
+
+        // The threat NUMBER carries the term too, not just the gate.
+        {
+            const combat::Classification kn = combat::Classify(
+                Sighting("skeletal knight", 8, 0.0), me, rules, trained, 1.0);
+            const combat::Classification zo = combat::Classify(
+                Sighting("Zombie", 8, 0.0), me, rules, trained, 1.0);
+            Check(kn.threat > zo.threat,
+                  "a knight scores a higher threat than a zombie on the same "
+                  "board -- the situational-only score is gone");
+        }
+
+        // -------------------------------------------------------------------
+        // AND A DEATH IS REMEMBERED BY SPECIES, ACROSS SESSIONS.
+        //
+        // Core.cpp's death edge used to tag the danger record with the literal
+        // string "death", so a character learned "this ground is lethal" and
+        // nothing at all about knights. It now names the killer -- the last
+        // thing that swung at us (Client::LastAttackerName) -- and files a
+        // creature verdict, so next session's pick reads learned_danger > 0.
+        // -------------------------------------------------------------------
+        const i64 died = 1000000;
+        life::Memory mem;
+        Check(mem.CreatureDanger("skeletal knight", died) == 0.0,
+              "a fresh character has learned nothing about knights");
+        mem.NoteDanger(1385, 1484, 20, "skeletal knight", 2.0, died);
+        mem.NoteCreatureOutcome("skeletal knight", life::kCreatureEvidenceDeath,
+                                died);
+
+        // Next session: the same saved memory, an hour later.
+        const i64 next = died + 60 * 60 * 1000;
+        const double learned = mem.CreatureDanger("skeletal knight", next);
+        Check(learned > 0.0,
+              "next session's pick shows learned_danger > 0 for the killer "
+              "species, not 0.00");
+        Check(mem.CreatureDanger("Zombie", next) == 0.0,
+              "and nothing was learned about the species that did NOT kill us");
+        bool placeNamesKiller = false;
+        for (const life::DangerMemory& d : mem.Dangers())
+            if (d.threat == "skeletal knight") placeNamesKiller = true;
+        Check(placeNamesKiller,
+              "the place record names the killer, not the generic \"death\"");
+
+        // With that on the sheet, even a TRAINED fighter reconsiders: the
+        // learned verdict pushes the species past its ceiling.
+        {
+            const combat::Candidate c = Sighting("skeletal knight", 8, learned);
+            const combat::Classification v =
+                combat::Classify(c, me, rules, trained, 1.0);
+            Check(!v.engage,
+                  "a species that has actually killed this character is avoided "
+                  "even above the skill gate");
+        }
     }
 
     std::printf("%d checks, %d failed\n", g_checks, g_failures);

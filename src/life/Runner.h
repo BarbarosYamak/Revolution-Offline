@@ -560,6 +560,11 @@ private:
     // already been credited to it. Latched so one death is one verdict.
     std::string currentFoeName_;
     bool deathBlamed_ = false;
+    // WHO KILLED US, by client-visible name, resolved at the alive->dead edge
+    // from Client::LastAttackerName. Empty when nothing had swung at us inside
+    // the window (or its name never arrived), which is when the older
+    // "blame whatever we were fighting" fallback in DoSurvive still applies.
+    std::string deathKillerName_;
     i32  ghostTrips_ = 0;
     static constexpr i32 kMaxGhostTrips = 4;
     // A SPELL YOU DO NOT HAVE STAYS UNCAST, however much Magery you own.

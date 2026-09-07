@@ -280,7 +280,15 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
             state_.memory.NoteEvent("corpse_pending", "recover after resurrection", "",
                                     obs.x, obs.y, obs.nowMs);
             Checkpoint(client, obs.nowMs, "death location recorded");
-            if (!currentFoeName_.empty()) {
+            // TrackDeathEdge already blamed the last thing that SWUNG at us
+            // when it could name one, and that is the better witness: Caelos
+            // and Lorys both died on 2026-09-07 while fighting a Zombie, to a
+            // lich lord that joined in. Only fall back to "what we were
+            // fighting" when nothing swung inside the window.
+            if (!deathKillerName_.empty()) {
+                LogLine("dead: blaming '%s' -- it is the last thing that swung "
+                        "at us", deathKillerName_.c_str());
+            } else if (!currentFoeName_.empty()) {
                 LogLine("dead: blaming '%s' -- it is what we were fighting",
                         currentFoeName_.c_str());
                 state_.memory.NoteCreatureOutcome(currentFoeName_.c_str(),
@@ -337,6 +345,7 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
 
     // Alive again: the next death is a new death, and a new verdict.
     deathBlamed_ = false;
+    deathKillerName_.clear();
 
     std::vector<Client::HostileHit> hostiles;
     client.ScanHostiles(12, hostiles);

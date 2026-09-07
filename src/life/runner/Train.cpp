@@ -605,6 +605,20 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
                     return seeded >= 0.0 ? seeded : 0.0;
                 };
 
+            // WHAT KIND OF THING EACH ONE IS. The learned verdict and the
+            // shard-derived prior are combined with max(), NOT learned-first:
+            // a knight this character has not yet died to is still a knight,
+            // and a small learned number must never talk it down below its
+            // stat-block prior. (The `danger` lambda above keeps its own
+            // learned-first shape because ChoosePrey's RANKING is a different
+            // question from "may I open on this at all".)
+            for (combat::Candidate& cc : cands) {
+                const double seeded = SeededDangerFor(cc.name);
+                cc.speciesDanger =
+                    std::max(mem.CreatureDanger(cc.name.c_str(), now),
+                             seeded >= 0.0 ? seeded : 0.0);
+            }
+
             // The profession's nerve is the tolerance the legality layer
             // gates on. Left at the struct default (0.50) every fencer and
             // macer refused a skeleton that had turned to face it: warMode
@@ -613,6 +627,11 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
             combat::EngagePolicy policy;
             if (needCfg_.profession)
                 policy.riskTolerance = needCfg_.profession->riskTolerance;
+            // AND WHAT KIND OF THING THIS CHARACTER MAY OPEN ON. Under 60.0
+            // that is the weak band and nothing else -- the rule the four
+            // 2026-09-07 knight deaths cost (combat.h, SpeciesCeiling).
+            policy.maxSpeciesDanger =
+                combat::SpeciesCeiling(BestFightSkillTenths(obs));
             const int prey = combat::ChoosePrey(cands, me, combat::RevolutionCrimeRules(),
                                                 policy, obs.HpFraction(), danger);
             if (prey >= 0) {
@@ -624,9 +643,10 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
                 // exercised THROUGH the legality layer, not around it, and a
                 // verdict nobody logs is a verdict nobody can check.
                 LogLine("hunt: picked '%s' at %d tiles -- verdict=%s threat=%.2f "
-                        "learned_danger=%.2f (%s)",
-                        c.name.c_str(), c.dist, combat::LegalityName(v.legality),
-                        v.threat, mem.CreatureDanger(c.name.c_str(), obs.nowMs),
+                        "species=%.2f ceiling=%.2f learned_danger=%.2f (%s)",
+                        c.name.c_str(), c.dist, combat::VerdictName(v),
+                        v.threat, c.speciesDanger, policy.maxSpeciesDanger,
+                        mem.CreatureDanger(c.name.c_str(), obs.nowMs),
                         v.reason.c_str());
                 LogLine("engage=yes target='%s' dist=%d hp=%.0f%% bandages=%d "
                         "reason=\"one target, board is not crowded\"",
@@ -669,9 +689,10 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
                     combat::Classify(cands[closest], me, combat::RevolutionCrimeRules(),
                                      policy, obs.HpFraction());
                 LogLine("hunt:   nearest '%s' at %d tiles -- verdict=%s threat=%.2f "
-                        "tolerance=%.2f (%s)",
+                        "species=%.2f ceiling=%.2f tolerance=%.2f (%s)",
                         cands[closest].name.c_str(), cands[closest].dist,
-                        combat::LegalityName(v.legality), v.threat,
+                        combat::VerdictName(v), v.threat,
+                        cands[closest].speciesDanger, policy.maxSpeciesDanger,
                         policy.riskTolerance, v.reason.c_str());
             }
         }
@@ -1150,9 +1171,26 @@ bool Runner::DoStatFarm(Client& client, const Observation& obs) {
                     const double seeded = SeededDangerFor(n);
                     return seeded >= 0.0 ? seeded : 0.0;
                 };
+
+            // WHAT KIND OF THING EACH ONE IS. The learned verdict and the
+            // shard-derived prior are combined with max(), NOT learned-first:
+            // a knight this character has not yet died to is still a knight,
+            // and a small learned number must never talk it down below its
+            // stat-block prior. (The `danger` lambda above keeps its own
+            // learned-first shape because ChoosePrey's RANKING is a different
+            // question from "may I open on this at all".)
+            for (combat::Candidate& cc : cands) {
+                const double seeded = SeededDangerFor(cc.name);
+                cc.speciesDanger =
+                    std::max(mem.CreatureDanger(cc.name.c_str(), now),
+                             seeded >= 0.0 ? seeded : 0.0);
+            }
+
             combat::EngagePolicy policy;
             if (needCfg_.profession)
                 policy.riskTolerance = needCfg_.profession->riskTolerance;
+            policy.maxSpeciesDanger =
+                combat::SpeciesCeiling(BestFightSkillTenths(obs));
             // HALVED on purpose. Bare-handed at Wrestling 0.0 is not the same
             // character that picked this fight with a sword, and the errand is
             // worth exactly nothing if it gets the caster killed.

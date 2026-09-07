@@ -1125,6 +1125,17 @@ public:
     // that says so, within a short window (a swing every few seconds).
     bool IsAttackingMe(u32 serial, i64 windowMs = 8000) const;
     i32  RecentAttackerCount(i64 windowMs = 8000) const;
+
+    // WHO KILLED US. Sphere writes "P'Eldian' was killed by N'skeletal
+    // knight'" to its OWN log; no packet carries that text to a client (0xAF
+    // goes to bystanders, the ghost-body switch emits nothing -- see
+    // OnResurrectionMenu). So the only witness a real client has is the same
+    // one a human has: the last thing that swung at it. This returns the
+    // client-visible NAME of the most recent attacker inside `windowMs`, or ""
+    // when nothing has swung lately or its name never arrived. The name is
+    // read from mobileNames_, which outlives the mobile cache entry, so a
+    // killer that has already wandered off the screen is still nameable.
+    std::string LastAttackerName(i64 windowMs = 30000) const;
     void NoteAttackEmote(u32 sourceSerial, const char* text);
 
     // Answer a generic gump (0xB0) the server opened -- the public moongate's
