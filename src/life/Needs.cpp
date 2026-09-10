@@ -42,6 +42,7 @@ const char* NeedKindName(NeedKind k) {
         case NeedKind::NeedMount:     return "NeedMount";
         case NeedKind::NeedWoolIncome: return "NeedWoolIncome";
         case NeedKind::NeedStrength:  return "NeedStrength";
+        case NeedKind::NeedSocial:    return "NeedSocial";
         case NeedKind::NeedHome:      return "NeedHome";
         case NeedKind::Count:         break;
     }
@@ -145,6 +146,12 @@ bool WoolChainWorkInProgress(const prof::Profession& p,
     if (item == nullptr || !IsWoolChainMaterial(item)) return false;
     // Cut cloth is the finished material of the chain, not a step in it.
     if (std::strcmp(item, "i_cloth") == 0) return false;
+    // A supplied hunter can bank the rest of its wool-chain load. Protecting
+    // it forever leaves a fighter with enough bandages at the carry limit:
+    // making bandages is done, banking is vetoed, and hunting needs loot room.
+    if (WantsToHunt(p) &&
+        market::QtyOf(holdings, "i_bandage") >= market::kFighterBandageFloor)
+        return false;
 
     // A LIFE THAT SELLS CLOTH IS MID-CHAIN UNTIL IT IS CLOTH. The fighters
     // list i_cloth in `produces` (owner ruling 2026-09-02: they shear, kill,
@@ -183,6 +190,9 @@ bool WoolChainWorkInProgress(const prof::Profession& p,
 i32 CraftInputReserve(const prof::Profession& p, const char* item,
                       i32 craftBatch) {
     if (item == nullptr) return 0;
+    // Hunters process this chain for medicine/income, not a sewing batch.
+    // WoolChainWorkInProgress separately protects an undersupplied hunter.
+    if (WantsToHunt(p) && IsWoolChainMaterial(item)) return 0;
     bool isInput = false;
     for (const std::string& c : p.consumes) {
         if (c == item) { isInput = true; break; }
@@ -361,6 +371,44 @@ PracticeBy HowToPractise(int skillId) {
     }
 }
 
+// WHETHER THIS LIFE CAN AFFORD TO SPEND A TURN ON ITS BUILD.
+//
+// `gold` is the status-bar total on this shard: it includes both the pack and
+// the bank. That is deliberately the number here. A sensible character banks
+// its savings and withdraws only what an errand costs; making training depend
+// on coins physically carried would turn safe banking into a reason to stop
+// progressing.
+//
+// A profession's reserve is its own running-cost estimate: 10,000 for the
+// lumberjack-swordsman, 5,000 for a scribe, and smaller amounts for simpler
+// lives. It is therefore the right dynamic line between "make money through
+// your trade" and "put time into the build", rather than one fleet-wide 10K
+// rule. Lives without a profession retain three plausible early lessons before
+// they start treating training as their main job.
+struct ProgressionFunding {
+    i32 line = 0;
+    double focus = 0.0;
+    bool funded = false;
+};
+
+ProgressionFunding AssessProgressionFunding(const Observation& obs,
+                                            const NeedConfig& cfg) {
+    const i32 reserve = cfg.profession ? cfg.profession->goldReserve : 0;
+    const i32 lessonBuffer = std::max<i32>(0, cfg.trainerFeeGuess) * 3;
+    const i32 line = std::max({cfg.goldFloor, reserve, lessonBuffer, 1});
+    const double focus = std::min(
+        1.0, static_cast<double>(std::max<i32>(0, obs.gold)) / line);
+    return {line, focus, obs.gold >= line};
+}
+
+// Below the line, a character still does real income-producing training
+// (mining, lumbering, crafting, or a hunt for loot), but discretionary
+// practice should give those jobs room to win. At the line it rises above its
+// old score -- the build is now the sensible use of the saved capital.
+double FundedProgressionUrgency(double base, const ProgressionFunding& fund) {
+    return base * (0.25 + 0.95 * fund.focus);
+}
+
 
 }  // namespace
 
@@ -474,12 +522,13 @@ void ResolveConsumableThresholds(NeedConfig& cfg, i32 gold) {
     cfg.bandageLow  = low;
     cfg.bandageFull = full;
     // THE FIELD LINE. A hunter standing in a graveyard does not walk 196 tiles
-    // back to a healer because it is ONE bandage under the departure floor;
-    // it finishes the trip and tops up on the next town errand. The line is
-    // the floor less one fight's worth, never below the life's own declared
-    // low -- and identical to the floor for a life that does not hunt.
+    // back to a healer for a minor top-up. One fight's worth was too narrow:
+    // Hector carried 85, a healthy three-fight reserve, but the dynamically
+    // resolved 92 line still bounced every hunt into the market. Keep three
+    // fights of room below the desired departure stock, never below the
+    // life's own declared per-fight low. Non-hunters retain one line.
     cfg.bandageFieldLow = WantsToHunt(*cfg.profession)
-                              ? std::max(perFight, low - perFight)
+                              ? std::max(perFight, low - 3 * perFight)
                               : low;
 }
 
@@ -498,6 +547,25 @@ static bool BandageCountersEmpty(const Memory& mem, const NeedConfig& cfg,
         if (e.atMs > obs.nowMs) continue;
         if (obs.nowMs - e.atMs >= kShelfRestockMs) continue;
         return true;
+    }
+    return false;
+}
+
+// The player-market equivalent of BandageCountersEmpty. A fighter that has
+// actually announced a WTB and heard no seller must be allowed to make its own
+// supplies even when it still has gold. Otherwise the market hand-off returns
+// to REPLACE_EQUIPMENT, which sends it straight back to the shared healer
+// shelf and turns a town-wide shortage into a queue.
+static bool BandagePlayerMarketEmpty(const Memory& mem,
+                                     const Observation& obs) {
+    // Keep this in lockstep with Runner::kPlayerWindowMemoryMs. Needs.cpp is
+    // deliberately independent of Runner, so it cannot name that private
+    // member directly.
+    constexpr i64 kPlayerMarketMemoryMs = 60 * 60 * 1000;
+    for (const LifeEvent& e : mem.Events()) {
+        if (e.kind != "no_player_seller" || e.detail != "i_bandage") continue;
+        if (e.atMs > obs.nowMs) continue;
+        if (obs.nowMs - e.atMs <= kPlayerMarketMemoryMs) return true;
     }
     return false;
 }
@@ -631,10 +699,43 @@ static bool BrewsOwnHealPotion(const prof::Profession& p,
     return false;
 }
 
+i32 IronTrainingStock(const Observation& obs) {
+    return QtyIn(obs.pack, "i_ore_iron") + QtyIn(obs.pack, "i_ingot_iron") +
+           QtyIn(obs.bank, "i_ore_iron") + QtyIn(obs.bank, "i_ingot_iron");
+}
+
+bool NeedsSmithTrainingStock(const BuildPlan& plan, const prof::Profession* p,
+                             const Observation& obs) {
+    if (!p || p->gathers != "ore") return false;
+    for (const SkillTarget& target : plan.skills) {
+        if (target.skillId == rules::kBlacksmithing)
+            return obs.SkillTenths(target.skillId) < target.tenths;
+    }
+    return false;
+}
+
 std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
                               const Observation& obs, const NeedConfig& cfg) {
     std::vector<Need> needs;
     if (!obs.inWorld) return needs;
+
+    const ProductionBatch* batch = cfg.productionBatch && !cfg.productionBatch->item.empty()
+        ? cfg.productionBatch : nullptr;
+    const char* preferred = batch ? batch->item.c_str() : nullptr;
+    const bool bulkSmith = !batch && NeedsSmithTrainingStock(plan, cfg.profession, obs);
+    const i32 ironStock = IronTrainingStock(obs);
+    const bool smithWorking = bulkSmith &&
+        SmithTrainingBatchActive(cfg.smithTrainingBatchActive, ironStock);
+    bool smithOutputToSell = false;
+    if (bulkSmith && ironStock < kSmithTrainingRefill) {
+        const i32 minimum = ProductionTradePolicy(cfg.productionBatch, obs.gold).minimumSurplusToOffer;
+        for (const std::string& item : cfg.profession->produces) {
+            const prod::Recipe* recipe = prod::FindRecipe(item.c_str());
+            if (recipe && recipe->skillId == rules::kBlacksmithing &&
+                QtyIn(obs.pack, item.c_str()) + QtyIn(obs.bank, item.c_str()) >= minimum)
+                smithOutputToSell = true;
+        }
+    }
 
     auto add = [&needs, &mem, &obs, &cfg](NeedKind kind, double urgency,
                                           std::string what, std::string reason,
@@ -667,6 +768,8 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         n.blocked = blocked;
         needs.push_back(std::move(n));
     };
+
+    const ProgressionFunding progression = AssessProgressionFunding(obs, cfg);
 
     // --- death first: nothing else matters while dead ----------------------
     if (obs.dead) {
@@ -908,22 +1011,17 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
             Fmt("axe_pack=%d axe_worn=%d", obs.axeInPack ? 1 : 0,
                 obs.axeEquipped ? 1 : 0));
     } else if (cfg.profession && WantsToHunt(*cfg.profession) &&
-               !WantsSpellCombat(*cfg.profession) &&
-               (!obs.weaponEquipped ||
-                (!obs.schoolWeaponEquipped && !WantsTool(cfg, "hatchet")))) {
-        // A FIGHTER WITH EMPTY HANDS. The buy side has existed since the
-        // school-weapon table (Identity.cpp kSchoolWeapons, Gear.cpp
-        // DoReplaceEquipment), but nothing ever ASKED for it: only hatchet
-        // users got a weapon need. Titus, an archer stripped of his bow by a
-        // death, had TRAIN_COMBAT hand off to REPLACE_EQUIPMENT with "no gear
-        // yet -- shopping before the graveyard" and the planner then picked
-        // TRADE_WITH_PLAYER, because no need said "weapon" (g_Titus
-        // 2026-09-05 01:41). Ten minutes of IDLE_BRIEFLY followed.
+               !WantsSpellCombat(*cfg.profession) && !obs.weaponEquipped) {
+        // A FIGHTER WITH EMPTY HANDS. A school weapon is the preferred later
+        // upgrade, but not a prerequisite for a fresh character to begin
+        // fighting. The certification cohort showed the old school-only test
+        // repeatedly selecting REPLACE_EQUIPMENT for a fighter already
+        // holding a usable newbie weapon; DoReplaceEquipment had no action to
+        // take, and the resulting zero-progress loop consumed the session
+        // before TRAIN_COMBAT could hold a fight. Only an actually empty hand
+        // belongs to this blocking acquisition need.
         add(NeedKind::NeedEquipment, 0.7, "weapon",
-            obs.weaponEquipped
-                ? "armed with something outside this build's weapon school -- "
-                  "the skill being trained is not the one swinging"
-                : "a fighter with nothing in hand cannot hunt or defend itself",
+            "a fighter with nothing in hand cannot hunt or defend itself",
             Fmt("weapon_worn=%d school_weapon=%d", obs.weaponEquipped ? 1 : 0,
                 obs.schoolWeaponEquipped ? 1 : 0));
     }
@@ -1046,7 +1144,7 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         // restock window passes.
         if (BandageCountersEmpty(mem, cfg, obs) && hpFrac >= cfg.healHpFraction)
             bandageUrgency = 0.10;
-        // A SHORTFALL SMALLER THAN ONE FIGHT IS NOT A TRIP.
+        // A SHORTFALL COVERED BY THREE FIGHTS IS NOT A TRIP.
         //
         // The floor is what a hunter LEAVES TOWN with; between the field line
         // and the floor it is still short, but not short enough to be worth
@@ -1064,7 +1162,7 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         if (smallShortfall && bandageUrgency > 0.10) bandageUrgency = 0.10;
         add(NeedKind::NeedEquipment, bandageUrgency, "bandages",
             smallShortfall
-                ? "under the floor by less than one fight's worth -- top up on "
+                ? "under the departure stock but carrying three fights -- top up on "
                   "the next trip to town, not by leaving the field for it"
             : (hpFrac < cfg.healHpFraction)
                 ? "wounded with nothing to heal with -- bandages before "
@@ -1169,7 +1267,7 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
     if (cfg.profession) {
         const std::vector<market::Offer> onHand =
             market::Surplus(*cfg.profession, obs.pack,
-                            market::PolicyForPurse(obs.gold));
+                            ProductionTradePolicy(cfg.productionBatch, obs.gold));
         for (const market::Offer& o : onHand) {
             // A BOLT ON THE WAY TO CLOTH IS NOT STOCK. See
             // WoolChainWorkInProgress in life.h -- without this the tailor's
@@ -1212,6 +1310,10 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         }
     }
 
+    // Bulk training postpones the sale trip, so carried finished goods must
+    // still be bankable when they fill the pack.
+    if (bulkSmith && ironStock >= kSmithTrainingRefill) loadIsSellable = false;
+    if (batch && batch->phase != ProductionPhase::Sell) loadIsSellable = false;
     if (obs.huntReturnPending) {
         add(NeedKind::NeedBank, 1.0, "secure hunt loot",
             "finish the hunt by putting surplus in the bank", "loot received from confirmed corpse");
@@ -1309,7 +1411,7 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
     // What a life legitimately carries is its own goldReserve -- the sum it
     // holds back for tools, reagents and lessons -- plus a little working
     // change; anything above that belongs in the box.
-    if (cfg.profession && !obs.atBank) {
+    if (cfg.profession) {
         // WHAT IS CARRIED, NOT WHAT IS OWNED. obs.gold is the status-bar
         // total and includes the bank box on this shard, so this used to
         // announce "spare=8785" and walk to the bank to deposit coins that
@@ -1366,7 +1468,7 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         }
         std::vector<market::Offer> spare =
             market::Surplus(*cfg.profession, holdings,
-                            market::PolicyForPurse(obs.gold));
+                            ProductionTradePolicy(cfg.productionBatch, obs.gold));
         // NOT THE HALF-MADE CLOTH. Same ruling as the bank side above: while
         // this life still owes itself cloth, the bolt it just wove is the next
         // gesture's input, not a thing to carry to a buyer.
@@ -1496,6 +1598,44 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         for (const Need& n : needs) {
             if (n.kind == NeedKind::NeedTrade) { alreadyTrading = true; break; }
         }
+
+        // A FIGHTER'S BANDAGE REQUEST OVERRIDES ITS ROUTINE SALE.
+        //
+        // An archer carrying spare arrows already has a NeedTrade row for
+        // selling.  That used to suppress the buyer row below, so the bandage
+        // hand-off selected BANK instead of TRADE_WITH_PLAYER; even if it did
+        // reach the market, DoTradeWithPlayer chose the sale first.  A fighter
+        // below its healing floor needs the player request before it can safely
+        // return to normal production, so rewrite the existing row (rather
+        // than adding a second NeedTrade row that Planner::Score cannot see).
+        const market::TradePolicy bandagePolicy =
+            ProductionTradePolicy(cfg.productionBatch, obs.gold);
+        const std::vector<market::Want> bandageWants =
+            market::PlayerMarketWants(*cfg.profession, holdings, obs.gold,
+                                      bandagePolicy, nullptr);
+        bool bandagesBuyable = false;
+        for (const market::Want& w : bandageWants)
+            if (w.item == "i_bandage") { bandagesBuyable = true; break; }
+        const bool bandageMarketOpen =
+            bandagesBuyable && obs.bandages < cfg.bandageLow &&
+            !BandagePlayerMarketEmpty(mem, obs) && !obs.marketQuiet;
+        if (bandageMarketOpen) {
+            Need* trade = nullptr;
+            for (Need& n : needs)
+                if (n.kind == NeedKind::NeedTrade) { trade = &n; break; }
+            if (!trade) {
+                needs.push_back({});
+                trade = &needs.back();
+                trade->kind = NeedKind::NeedTrade;
+            }
+            trade->urgency = 0.75;
+            trade->what = "buy bandages from a player";
+            trade->reason = "below the healing floor: ask players for bandages "
+                            "before making them or buying from a healer";
+            trade->evidence = Fmt("bandages %d/%d", obs.bandages, cfg.bandageLow);
+            trade->blocked = false;
+            alreadyTrading = true;
+        }
         // A miner-smith's first meaningful errand is to mine, not to stand at
         // the player market waiting for a secondary crafting input.  Without
         // this gate, a fresh miner with no ore could score a 0.55 player-buy
@@ -1513,7 +1653,7 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         }();
         if (!alreadyTrading && !freshOreGatherer) {
             const market::TradePolicy buyPolicy =
-                market::PolicyForPurse(obs.gold);
+                ProductionTradePolicy(cfg.productionBatch, obs.gold);
             // No refusal string is asked for here: AssessNeeds is pure and
             // cannot log. The Runner asks for it, on the tick where it can
             // print it (`market: ... not buying`).
@@ -1561,14 +1701,18 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
     // Wave 2026-09-02: four mages cast at an empty pouch for a whole session
     // because nothing in the needs list ever said "go and buy reagents".
     if (!obs.practiceReagentsShort.empty()) {
-        // Same working-capital rule the craft clause states below: BUY_SUPPLIES
-        // spends only what is above its hard floor of 100, so under that there
-        // is nothing to spend and selling is the way out, not shopping.
-        const bool noCapital = (obs.gold - 100) <= 0;
+        // An empty caster pouch may spend the emergency reserve to restore
+        // a usable spell. The shop still caps each purchase at its quote.
+        const bool noCapital = obs.gold <= 0;
         std::string list;
         for (const std::string& r : obs.practiceReagentsShort)
             list += (list.empty() ? "" : ",") + r;
-        add(NeedKind::NeedSupplies, noCapital ? 0.0 : 0.46,
+        // An actually unusable spell pouch is a combat-readiness blocker, not
+        // an ordinary craft-input shortfall.  At 0.46 BUY_SUPPLIES scored
+        // 64.4, so TRAIN_COMBAT (85) repeatedly took Aurelius away from the
+        // mage-shop trip as soon as its hand-off cooldown ended.  A mage
+        // cannot train safely until it can cast at least one known spell.
+        add(NeedKind::NeedSupplies, noCapital ? 0.0 : 0.80,
             "buy spell reagents",
             noCapital ? "out of reagents AND of the gold to buy them -- "
                         "something has to be sold first"
@@ -1617,10 +1761,11 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
                 low > 0 ? std::min(1.0, std::max(0.0,
                               static_cast<double>(low - have) / low))
                         : 0.0;
-            // Below the reactive clause's 0.46 while the pouch merely thins,
-            // above it when a reagent is at zero -- at zero the character has
-            // lost a rung it owns the spell for.
-            const double urgency = 0.20 + 0.30 * frac;
+            // A depleted band has the same consequence as a refused cast:
+            // one missing reagent removes a spell rung.  Keep a merely thin
+            // pouch behind routine training, but make a zero entry finish its
+            // mage-shop trip before combat can reclaim the turn.
+            const double urgency = 0.25 + 0.50 * frac;
 
             // WHERE IT COULD COME FROM. Two answers, and the need stands down
             // only when BOTH say no: the shop (which needs working capital
@@ -1670,12 +1815,12 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         // until the purse fell from 781 gold to 92 without inscribing a
         // single scroll. Working stock is for working with.
         const CraftIntent now = ChooseCraft(*cfg.profession, obs, 1,
-                                            cfg.craftFocus);
+                                            cfg.craftFocus, preferred);
         const CraftIntent craft =
             now.item && now.missing.empty()
                 ? now
                 : ChooseCraft(*cfg.profession, obs, cfg.craftBatch,
-                              cfg.craftFocus);
+                              cfg.craftFocus, preferred);
         // ...AND A THIRD, WHICH IS THE SHOPPING QUESTION ON ITS OWN.
         //
         //   "is the pack BALANCED for the sitting it has already paid for?"
@@ -1693,7 +1838,7 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
                                                    cfg.craftBatch,
                                                    cfg.craftFocus);
         const CraftIntent stocked =
-            stockBatch > cfg.craftBatch
+            batch ? ProductionShopping(*batch, obs) : stockBatch > cfg.craftBatch
                 ? ChooseCraft(*cfg.profession, obs, stockBatch, cfg.craftFocus)
                 : craft;
         // WHAT THE BATCH IS SHORT OF THAT ONLY A LOOM CAN MAKE.
@@ -1710,7 +1855,7 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         // fraction below means the same thing whichever of the two shapes
         // filled the shortfall in.
         i32 clothWantQty = 0;
-        for (const prod::Ingredient& ing : craft.missing) {
+        for (const prod::Ingredient& ing : (batch ? stocked.missing : craft.missing)) {
             if (!IsWoolChainMaterial(ing.item)) continue;
             clothShort = ing.item;
             clothShortQty = ing.qty;
@@ -1752,10 +1897,17 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
 
         if (craft.item && craft.skillsMet) {
             if (craft.missing.empty()) {
-                add(NeedKind::NeedCraft, NeedsArrowStock(*cfg.profession, obs) ? 0.95 : 0.50, "make goods to sell",
+                const prod::Recipe* recipe = prod::FindRecipe(craft.item);
+                const bool stockFirst = bulkSmith && !smithWorking && recipe &&
+                    recipe->skillId == rules::kBlacksmithing;
+                add(NeedKind::NeedCraft, stockFirst ? 0.0 :
+                    NeedsArrowStock(*cfg.profession, obs) ? 0.95 :
+                    smithWorking ? 0.80 : 0.50, "make goods to sell",
                     "holds every input for something this life can legitimately "
                     "sell -- to an NPC or, for a player-market good, to a player",
-                    Fmt("%s: %s", craft.item, craft.why));
+                    stockFirst ? Fmt("stocking iron for training: %d/%d across pack and bank",
+                                           ironStock, kSmithTrainingStock)
+                               : Fmt("%s: %s", craft.item, craft.why), stockFirst);
             }
             // THE SHOPPING ROW ANSWERS THE `stocked` QUESTION, not `craft`'s.
             //
@@ -1767,7 +1919,7 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
             // and stays silent when the pack is balanced. NeedCraft above is
             // untouched and still outranks it (65 against 61.6): a crafter that
             // can work, works, and shops afterwards.
-            const CraftIntent& shop = craft.missing.empty() ? stocked : craft;
+            const CraftIntent& shop = batch || craft.missing.empty() ? stocked : craft;
             if (shop.item && shop.skillsMet && !shop.missing.empty()) {
                 // Can the shortfall actually be bought? A missing input with
                 // no seller is a blocked state, not an errand -- and saying
@@ -1938,7 +2090,7 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         if (!clothShort.empty()) {
             const bool asked = obs.NoSellerFor(clothShort);
             const market::TradePolicy buyPolicy =
-                market::PolicyForPurse(obs.gold);
+                ProductionTradePolicy(cfg.productionBatch, obs.gold);
             const bool broke = !market::CanAffordToShop(
                 *cfg.profession, obs.goldOnHand, buyPolicy);
             const bool noTime = !obs.marketTripFitsSession;
@@ -2058,7 +2210,7 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         // constant invented here: at twice the keep the need has tapered to
         // its floor and TRADE/EARN_GOLD carry the pile instead.
         const i32 logsHeld = QtyIn(obs.pack, "i_log") + QtyIn(obs.bank, "i_log");
-        const i32 logsKeep = market::PolicyForPurse(obs.gold).keepOfOwnOutput;
+        const i32 logsKeep = ProductionTradePolicy(cfg.productionBatch, obs.gold).keepOfOwnOutput;
         const i32 logsWant = logsKeep > 0 ? 2 * logsKeep : 0;
         constexpr double kLoggingFloor = 0.15;
         const double logGlut =
@@ -2134,17 +2286,14 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
 
         // TWENTY INGOTS IS A BATCH. IT IS NOT A TRAINING STOCK.
         //
-        // "you cant train with only 15-20 iron first you need to stock some
-        // maybe 500-600 then you start train blacksmith" (project owner,
-        // 2026-08-30). Raising Blacksmithing means making and unmaking
-        // hundreds of items; twenty ingots is five daggers, an afternoon's
-        // pocket money and about 1% of what the skill costs.
+        // Owner 2026-09-08: collect at least 1000 iron before a training run.
+        // Pack and bank together fund the run; the persisted phase lets it
+        // consume that stock instead of restarting gathering below 1000.
         //
         // So a smith who has not finished training keeps digging against the
         // bigger number. Once the skill is where the build wants it, twenty is
         // the right threshold again -- at that point metal is stock to sell,
         // not fuel for a skill, and a full pack is a reason to go and smith.
-        constexpr int kSmithTrainingStock = 550;   // the owner's 500-600
         int wantStock = kEnoughToSmith;
         const i32 smithNow = obs.SkillTenths(rules::kBlacksmithing);
         for (const SkillTarget& t : plan.skills) {
@@ -2157,7 +2306,8 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         const double glut = stock >= wantStock
                                 ? 1.0
                                 : static_cast<double>(stock) / wantStock;
-        const double here = base - (base - kMiningFloor) * glut;
+        const double here = bulkSmith ? (smithWorking ? 0.05 : smithOutputToSell ? 0.15 : 0.70)
+                                     : base - (base - kMiningFloor) * glut;
         add(NeedKind::NeedOre, here, "ore",
             obs.atWorkSite
                 ? "standing at the rock with a pickaxe -- this is the job"
@@ -2191,17 +2341,38 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
                 ore >= kEnoughToSmith
                     ? 1.0
                     : static_cast<double>(ore) / kEnoughToSmith;
-            add(NeedKind::NeedSmelt, 0.25 + 0.50 * ready, "ingots",
+            const bool bulkLoad = bulkSmith && !smithWorking;
+            add(NeedKind::NeedSmelt, bulkLoad
+                    ? (obs.WeightFraction() >= 0.65 ? 0.90 : 0.10)
+                    : 0.25 + 0.50 * ready, "ingots",
                 "ore is dead weight until a forge turns it into metal",
                 Fmt("carrying %d ore", ore), false);
         }
     }
-    // A PET. A tamer without one is a tamer in name only, and Cassia spent a
-    // session exploring because nothing else in her life was actionable.
-    if (cfg.profession && cfg.profession->id == "tamer" && !obs.hasPet) {
-        add(NeedKind::NeedPet, 0.42, "a pet",
-            "a tamer with no animal has no trade to practise",
-            Fmt("taming %.1f", obs.SkillTenths(rules::kTaming) / 10.0), false);
+    // A PET, OR A GAINFUL ANIMAL. Owning one animal ends the acquisition
+    // emergency, but not the tamer's training. Rhea owned a pet at 50.0,
+    // exhausted the veterinarian route, then had no actionable work and spent
+    // 88% of the session exploring. Taming rises by taming animals, so while
+    // it remains below this build's target a suitable herd is productive work.
+    if (cfg.profession && cfg.profession->id == "tamer") {
+        i32 tamingTarget = 0;
+        for (const SkillTarget& t : plan.skills) {
+            if (t.skillId == rules::kTaming) {
+                tamingTarget = t.tenths;
+                break;
+            }
+        }
+        const i32 tamingNow = obs.SkillTenths(rules::kTaming);
+        if (!obs.hasPet || (tamingTarget > 0 && tamingNow < tamingTarget)) {
+            const bool training = obs.hasPet;
+            add(NeedKind::NeedPet, training ? 0.38 : 0.42,
+                training ? "a gainful animal" : "a pet",
+                training
+                    ? "below the Taming target; practising on a suitable herd"
+                    : "a tamer with no animal has no trade to practise",
+                Fmt("taming %.1f -> %.1f pet=%d", tamingNow / 10.0,
+                    tamingTarget / 10.0, obs.hasPet ? 1 : 0), false);
+        }
     }
     if (cfg.profession && cfg.profession->gathers == "fish") {
         bool havePole = false;
@@ -2242,7 +2413,10 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         // A skill raised by the profession's own work needs no errand of its
         // own -- Inscription rises from writing scrolls to sell, which is
         // already the money-making goal.
-        const PracticeBy how = HowToPractise(t.skillId);
+        const PracticeBy how = t.skillId == rules::kPoisoning && cfg.profession &&
+            WantsSpellCombat(*cfg.profession) &&
+            (market::QtyOf(obs.pack, "i_potion_poison") <= 0 || market::QtyOf(obs.pack, "i_dagger") <= 0)
+                ? PracticeBy::Fighting : HowToPractise(t.skillId);
         if (how == PracticeBy::Working) continue;
 
         if (how != PracticeBy::Fighting) {
@@ -2276,7 +2450,9 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
             // NeedBlockActive already gives an observed refusal, so a blocked
             // entry sorts below every practicable one and still gets printed
             // with its reason.
-            add(NeedKind::NeedPractice, ready ? 0.20 + 0.25 * gap : 0.0,
+            const double baseUrgency = 0.20 + 0.25 * gap;
+            add(NeedKind::NeedPractice,
+                ready ? FundedProgressionUrgency(baseUrgency, progression) : 0.0,
                 SkillName(t.skillId),
                 ready ? "below target, and this skill is raised by using it"
                       : !canGain ? "no skill advances in this region"
@@ -2284,9 +2460,11 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
                                      "mana has to be spent before resting "
                                      "teaches anything"
                                  : "Poisoning practice needs a dagger and a poison potion",
-                Fmt("%s %.1f -> %.1f mana=%d/%d no_gain_region=%d",
+                Fmt("%s %.1f -> %.1f mana=%d/%d no_gain_region=%d "
+                    "progression_fund=%d/%d focus=%.2f",
                     SkillName(t.skillId), have / 10.0, t.tenths / 10.0,
-                    obs.mana, obs.manaMax, obs.inNoGainRegion ? 1 : 0),
+                    obs.mana, obs.manaMax, obs.inNoGainRegion ? 1 : 0,
+                    obs.gold, progression.line, progression.focus),
                 !ready);
             continue;
         }
@@ -2320,6 +2498,13 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         // fight with and meditates there instead -- or, as happened, is taken
         // off the trance it had just started. See CasterOpeningMana.
         const bool caster = cfg.profession && WantsSpellCombat(*cfg.profession);
+        // A spell-combat life carrying an observed empty book has no attack
+        // at all. Mana alone is not readiness: sending it to a graveyard first
+        // produced a no-op combat hand-off and, in Rhunyn's first fresh run,
+        // a death. A zero serial is deliberately left to the spellbook errand:
+        // the pure model cannot claim whether a physical book has been read.
+        const bool emptyCasterBook = caster && obs.spellbookSerial != 0 &&
+                                     obs.spellsKnown == 0;
         i32 openingMana = 0, manaPool = 0;
         const bool manaReady =
             !caster || CasterOpeningMana(cfg, obs, &openingMana, &manaPool);
@@ -2327,7 +2512,8 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
             nothingHere && cfg.profession &&
             (WantsToHunt(*cfg.profession) || WantsSpellCombat(*cfg.profession)) &&
             obs.hp * 100 >= obs.hpMax * huntHpPct &&
-            obs.WeightFraction() < cfg.huntWeightFrac && manaReady;
+            obs.WeightFraction() < cfg.huntWeightFrac && manaReady &&
+            !emptyCasterBook;
         // THE CONTRACT (docs/NEED_HANDLER_CONTRACT.md). DoTrainCombat's own
         // readiness gates -- the loot still to bank, the ammunition line, the
         // health line and the carry line -- used to be discovered a tick AFTER
@@ -2349,10 +2535,15 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         //
         // Only for a life that CAN go: a blocked one keeps the old figure,
         // because wanting something impossible harder helps nobody.
-        double urgency = 0.15 + 0.25 * gap;
+        const double baseUrgency = 0.15 + 0.25 * gap;
+        double urgency = FundedProgressionUrgency(baseUrgency, progression);
         if (couldGoHunting) {
+            // Hunting is both practice and a money-making method. Never
+            // suppress its income floor for a broke character, then let a
+            // funded build prefer the same real activity as training.
             const double base = (obs.hostilesNear > 0) ? 0.65 : 0.45;
             if (base > urgency) urgency = base;
+            urgency = std::min(1.0, urgency + 0.20 * progression.focus);
         }
         add(NeedKind::NeedTraining, urgency, SkillName(t.skillId),
             !huntGate.ok
@@ -2365,7 +2556,10 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
                              "out, so go at whatever health there is")
                        : std::string("below target, and there is a graveyard "
                                      "to go and practise in"))
-                : (!manaReady
+            : (emptyCasterBook
+                   ? std::string("below target, but this caster has no spell "
+                                 "in its book -- fill the spellbook first")
+            : !manaReady
                        ? Fmt("below target, but mana %d/%d will not pay for an "
                              "opening cast of %d -- meditate first", obs.mana,
                              manaPool, openingMana)
@@ -2374,11 +2568,14 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
                                      "practise combat on")
                        : std::string("below the target build value for this "
                                      "skill")),
-            caster ? Fmt("%s %.1f -> %.1f mana=%d/%d opening=%d",
+            caster ? Fmt("%s %.1f -> %.1f mana=%d/%d opening=%d fund=%d/%d "
+                         "focus=%.2f",
                          SkillName(t.skillId), have / 10.0, t.tenths / 10.0,
-                         obs.mana, manaPool, openingMana)
-                   : Fmt("%s %.1f -> %.1f", SkillName(t.skillId), have / 10.0,
-                         t.tenths / 10.0),
+                         obs.mana, manaPool, openingMana, obs.gold,
+                         progression.line, progression.focus)
+                   : Fmt("%s %.1f -> %.1f fund=%d/%d focus=%.2f",
+                         SkillName(t.skillId), have / 10.0, t.tenths / 10.0,
+                         obs.gold, progression.line, progression.focus),
             blocked);
     }
 
@@ -2445,18 +2642,23 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         // reads it back, within the restock window and within the SAME
         // session (atMs is a per-process clock).
         const bool countersEmpty = BandageCountersEmpty(mem, cfg, obs);
+        const bool playerMarketEmpty = BandagePlayerMarketEmpty(mem, obs) ||
+                                       obs.marketQuiet;
         const bool canAffordToBuy = obs.gold >= kBandagesBuyable &&
-                                    !countersEmpty;
+                                    !countersEmpty && !playerMarketEmpty;
         const double shortfall =
             1.0 - static_cast<double>(obs.bandages) /
                       static_cast<double>(cfg.bandageLow > 0 ? cfg.bandageLow : 1);
         add(NeedKind::NeedMakeBandages, 0.25 + 0.45 * shortfall, "bandages",
             canAffordToBuy
-                ? "short of bandages, but there is money to buy them -- a shop "
-                  "is faster than a sheep"
+                ? "short of bandages; ask players first, then make them, and "
+                  "only use a shop if self-supply fails"
                 : countersEmpty
                 ? "short of bandages and every counter in town is empty: buy "
                   "cloth and cut it, or shear"
+                : playerMarketEmpty
+                ? "asked the player market for bandages and nobody answered: "
+                  "buy cloth and cut them, or shear"
                 : "no bandages and no money for any: shear, spin, weave, cut",
             Fmt("bandages %d/%d gold %d (buyable at %d)", obs.bandages,
                 cfg.bandageLow, obs.gold, kBandagesBuyable),
@@ -2555,7 +2757,7 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         // character who needs to buy one, and treating him as one made
         // BUY_MOUNT supersede MINE every few seconds (see Observation::
         // dismountedForWork).
-        if (!obs.mounted && !obs.dead && !obs.dismountedForWork) {
+        if (!obs.mounted && !obs.hasPet && !obs.dead && !obs.dismountedForWork) {
             // A HORSE IS A CONVENIENCE. THE GRAVEYARD IS THE JOB.
             //
             // 0.80 x 255 = 204 put BUY_MOUNT above everything a fighter does
@@ -2792,6 +2994,13 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
                                                static_cast<double>(kSpellShoppingSpare));
             double urgency = 0.10 + 0.25 * shortfall + 0.35 * wealth;
 
+            // An empty combat caster is missing its basic weapon. This is a
+            // readiness errand, not the normal patient book-completion side
+            // goal, so it must outrank an otherwise-ready combat picker.
+            if (WantsSpellCombat(*cfg.profession) && obs.spellbookSerial != 0 &&
+                obs.spellsKnown == 0)
+                urgency = std::max(urgency, 0.95);
+
             // WHERE THE SIDE GOAL SITS RELATIVE TO THE TRADE.
             //
             // These two numbers are expressed against the SCORES, not against
@@ -2860,7 +3069,13 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
             // The fee is not known until an NPC quotes it. `trainerFeeGuess`
             // is only used to decide whether it is worth WALKING there --
             // never to decide what to pay.
-            const bool canAfford = obs.gold >= cfg.trainerFeeGuess;
+            const bool canPayLesson = obs.gold >= cfg.trainerFeeGuess;
+            // A missing foundation is an exception: a completely absent
+            // required skill can prevent the life from earning at all. Once it
+            // exists, paid training waits for the build's own savings line;
+            // actual work/practice remains available in the meantime.
+            const bool canAfford = canPayLesson &&
+                (progression.funded || have <= 0);
             // ONCE IT IS AFFORDABLE, GO AND BUY IT.
             //
             // At a flat 0.30 this scored 60 against NeedSupplies' 61.6 and
@@ -2877,16 +3092,25 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
             // saved by the time the need fires"); the urgency simply never
             // reflected it. Below the fee it stays low -- saving is not
             // urgent, it is just saving.
-            const double urgency = have <= 0 ? 0.55 : (canAfford ? 0.45 : 0.30);
+            const double urgency = have <= 0
+                ? 0.55
+                : (canAfford ? 0.45 + 0.20 * progression.focus
+                             : 0.10 + 0.20 * progression.focus);
             add(NeedKind::NeedSkillTraining,
                 urgency,
                 SkillName(obs.wantTrainSkill),
                 have <= 0
                     ? "this life needs a skill the character does not have at all"
-                    : "an NPC can teach this faster than grinding it from here",
-                Fmt("%s %.1f -> %.1f, gold %d (fee is quoted on arrival, "
-                    "roughly %d)", SkillName(obs.wantTrainSkill), have / 10.0,
-                    obs.wantTrainTarget / 10.0, obs.gold, cfg.trainerFeeGuess),
+                    : (progression.funded
+                        ? "this funded life can use a short NPC lesson before "
+                          "returning to real practice"
+                        : "the lesson can wait while this life earns its own "
+                          "progression reserve"),
+                Fmt("%s %.1f -> %.1f, total_gold %d progression_fund=%d "
+                    "focus=%.2f (fee is quoted on arrival, roughly %d)",
+                    SkillName(obs.wantTrainSkill), have / 10.0,
+                    obs.wantTrainTarget / 10.0, obs.gold, progression.line,
+                    progression.focus, cfg.trainerFeeGuess),
                 !canAfford);
         }
     }
@@ -2934,6 +3158,89 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         add(NeedKind::NeedTravel, 0.2, "a place where work is possible",
             "standing somewhere that is neither the work site nor the bank",
             Fmt("at=%d,%d work_site=0 bank=0", obs.x, obs.y));
+    }
+
+    if (bulkSmith) {
+        for (Need& n : needs) {
+            // Materials belong to the training campaign. Finished goods are
+            // sold after the campaign, with banking still available for load.
+            const bool selling = n.kind == NeedKind::NeedGold && n.what == "sell surplus";
+            const bool playerSale = n.kind == NeedKind::NeedTrade && n.what == "sell to a player";
+            const bool boxingWork = smithWorking &&
+                n.kind == NeedKind::NeedBank && n.what == "put unsold stock away";
+            if ((ironStock >= kSmithTrainingRefill && (selling || playerSale)) || boxingWork) {
+                n.blocked = true;
+                n.urgency = 0.0;
+                n.reason = "finish the bulk smith training stock before selling; bank only for carry weight";
+            }
+        }
+        const i32 carried = QtyIn(obs.pack, "i_ingot_iron") + QtyIn(obs.pack, "i_ore_iron");
+        if (smithWorking && carried < kSmithTrainingRefill && ironStock > carried &&
+            obs.WeightFraction() < 0.65) {
+            // Place this before other banking reasons: FirstNeed reads the
+            // first occurrence, and this is an actionable withdrawal.
+            Need fetch;
+            fetch.kind = NeedKind::NeedBank;
+            fetch.urgency = 0.80;
+            fetch.what = "withdraw bulk smith stock";
+            fetch.reason = "the training batch is funded in the bank; bring a carry-sized load to the forge";
+            needs.insert(needs.begin(), fetch);
+        }
+    }
+
+    if (batch) {
+        const bool stocking = batch->phase == ProductionPhase::Stock;
+        const bool working = batch->phase == ProductionPhase::Work;
+        const prod::Recipe* batchRecipe = prod::FindRecipe(batch->item.c_str());
+        const bool cookFood = batchRecipe && batchRecipe->skillId == rules::kCooking && obs.food <= 0;
+        const auto inputs = ProductionInputs(*batch);
+        const CraftIntent shopping = ProductionShopping(*batch, obs);
+        for (Need& n : needs) {
+            const bool sale = (n.kind == NeedKind::NeedGold && n.what == "sell surplus") ||
+                (n.kind == NeedKind::NeedTrade && n.what == "sell to a player");
+            const bool craft = n.kind == NeedKind::NeedCraft;
+            if ((craft && !working && !cookFood) || (sale && batch->phase != ProductionPhase::Sell && obs.gold > 100) ||
+                (batch->phase == ProductionPhase::Sell &&
+                 ((n.kind == NeedKind::NeedSupplies && n.what == "buy craft inputs") ||
+                  (n.kind == NeedKind::NeedTrade && n.what == "buy from a player"))) ||
+                (working && n.kind == NeedKind::NeedBank && n.what == "put unsold stock away")) {
+                n.blocked = true;
+                n.urgency = 0;
+                n.reason = "finish the current production phase: stock, work, then sell";
+            }
+            if (n.blocked) continue; // preserve observed refusals and capability gates
+            if (craft && working) n.urgency = std::max(n.urgency, 0.80);
+            if (craft && cookFood) n.urgency = std::max(n.urgency, 0.90);
+            if (n.kind == NeedKind::NeedSupplies && n.what == "buy craft inputs" && stocking)
+                n.urgency = std::max(n.urgency, 0.70);
+            const char* material = n.kind == NeedKind::NeedLogs ? "i_log" :
+                n.kind == NeedKind::NeedOre ? "i_ingot_iron" :
+                n.kind == NeedKind::NeedCatch ? "i_fish_cut_raw" : nullptr;
+            if (material && market::QtyOf(inputs, material) > 0) {
+                bool shortfall = false;
+                for (const prod::Ingredient& missing : shopping.missing)
+                    if (std::string(missing.item) == material) shortfall = true;
+                n.urgency = stocking && shortfall ? 0.75 : 0.05;
+                n.evidence = Fmt("production batch %s: target %d %s across pack and bank",
+                                batch->item.c_str(), market::QtyOf(inputs, material), material);
+            }
+        }
+        if (working && obs.WeightFraction() < 0.65) {
+            const prod::Recipe* recipe = prod::FindRecipe(batch->item.c_str());
+            for (const prod::Ingredient& input : recipe->inputs) {
+                if (!input.item || input.qty <= 0) continue;
+                const i32 carried = QtyIn(obs.pack, input.item) +
+                    (std::string(input.item) == "i_ingot_iron" ? QtyIn(obs.pack, "i_ore_iron") : 0);
+                if (carried >= input.qty) continue;
+                i32 banked = QtyIn(obs.bank, input.item);
+                if (std::string(input.item) == "i_ingot_iron") banked += QtyIn(obs.bank, "i_ore_iron");
+                if (banked <= 0) continue;
+                add(NeedKind::NeedBank, 0.85, "withdraw production stock",
+                    "the batch is funded in the bank; fetch a working load",
+                    Fmt("%s: %d banked", input.item, banked));
+                break;
+            }
+        }
     }
 
     // Highest urgency first, so a caller that only wants the top need gets

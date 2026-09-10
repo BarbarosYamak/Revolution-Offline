@@ -96,6 +96,44 @@ int main(int argc, char** argv) {
 
     Section("nearest graveyard, from Yew");
     {
+        std::vector<std::string> assigned;
+        for (u32 serial = 100; serial < 124; serial += 2) {
+            const auto* p = atlas.GroupHuntingGround(serial, 0);
+            Check(p && world_atlas::HuntTierOf(*p) == world_atlas::HuntTier::Weak,
+                  "groups are assigned weak graveyards");
+            if (!p) continue;
+            assigned.push_back(p->id);
+            Check(atlas.GroupHuntingGround(serial + 1, 0) == p,
+                  "paired hunters share an initial yard");
+            Check(atlas.GroupHuntingGround(serial, 1) != p,
+                  "a crowded or empty yard rotates to a different yard");
+            Check(p->position.x < 5120 && p->id.find("passage") == std::string::npos,
+                  "assignments exclude Lost Lands and transit landmarks");
+            const auto* region = atlas.RegionById(p->regionId.c_str());
+            Check(region && region->kind == wm::RegionKind::Graveyard,
+                  "assignments use an actual graveyard region, never a territory alias");
+            for (const auto& ring : atlas.Places()) {
+                if (ring.category != wm::PlaceCategory::Graveyard ||
+                    ring.regionId != p->regionId ||
+                    world_atlas::HuntTierOf(ring) != world_atlas::HuntTier::Strong)
+                    continue;
+                const int edge = std::max(std::abs(ring.position.x - p->position.x),
+                                          std::abs(ring.position.y - p->position.y)) - ring.radius;
+                Check(edge > p->radius + 2,
+                      "assignments keep a whole weak patrol clear of strong rings");
+            }
+            for (const auto& pt : atlas.HuntingPatrol(*p))
+                for (const auto& ring : atlas.Places())
+                    if (ring.category == wm::PlaceCategory::Graveyard && ring.regionId == p->regionId &&
+                        world_atlas::HuntTierOf(ring) == world_atlas::HuntTier::Strong)
+                        Check(std::max(std::abs(pt.x - ring.position.x), std::abs(pt.y - ring.position.y)) > ring.radius + 2,
+                              "group patrol avoids strong undead rings");
+        }
+        std::sort(assigned.begin(), assigned.end());
+        assigned.erase(std::unique(assigned.begin(), assigned.end()), assigned.end());
+        Check(assigned.size() >= 2, "fleet assignments rotate between vetted graveyards");
+    }
+    {
         // Yew town centre (a_townYew, data/revolution_atlas.txt:757).
         const wm::Place* p = atlas.NearestHuntingGround(546, 992);
         Check(p != nullptr, "a hunting ground is found near Yew");

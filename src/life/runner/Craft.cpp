@@ -51,7 +51,15 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
         return false;
     }
 
-    const CraftIntent intent = ChooseCraft(*me, obs, 1, &craftFocus_);
+    const CraftIntent intent = ChooseCraft(*me, obs, 1, &craftFocus_,
+                                           state_.productionBatch.item.c_str());
+    if (intent.item && craftItem_ != intent.item && makeLastIssued_) {
+        LogLine("craft: cancelling server repeat before changing recipe");
+        const bool wasWar = client.WarModeOn();
+        client.ActionWarMode(!wasWar);
+        client.ActionWarMode(wasWar);
+        makeLastIssued_ = false;
+    }
     if (!intent.item) {
         LogLine("goal_failed=CRAFT status=no_progress reason=\"nothing this "
                 "life can make and sell (%s)\"", intent.why);
@@ -70,10 +78,11 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
             intent.missing.size() == 1 &&
             std::strcmp(intent.missing.front().item, "i_kindling") == 0;
         const prod::Recipe* fireCheck = prod::FindRecipe(intent.item);
-        const bool fireBurning =
+        const bool fireAvailable =
             fireCheck && fireCheck->station == prod::Station::Fire &&
-            client.FindWorldItemByGraphic(kCampfireGraphic, 3) != 0;
-        if (!(onlyKindling && fireBurning)) {
+            (client.FindWorldItemByGraphic(kCampfireGraphic, 3) != 0 ||
+             client.FindWorldItemByGraphic(kKindlingGraphic, 3) != 0);
+        if (!(onlyKindling && fireAvailable)) {
             LogLine("goal_blocked=CRAFT reason=\"%s\" %s short of %d x %s",
                     faucet::RefusalName(faucet::Refusal::RequiredForProduction),
                     intent.item, intent.missing.front().qty,
@@ -337,7 +346,18 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
         }
         if (!state_.memory.HasEvent("first_craft")) {
             state_.memory.NoteEvent("first_craft", craftItem_.c_str(), "",
-                                    obs.x, obs.y, obs.nowMs);
+                                        obs.x, obs.y, obs.nowMs);
+        }
+        // During stocking, Needs permits cooking only to replace missing
+        // food. Finish that small interruption after a verified item; do not
+        // launch a bulk repeat which would fight the resumed fishing skill.
+        const prod::Recipe* madeRecipe = prod::FindRecipe(craftItem_.c_str());
+        if (madeRecipe && madeRecipe->skillId == rules::kCooking &&
+            !state_.productionBatch.item.empty() &&
+            state_.productionBatch.phase != ProductionPhase::Work) {
+            LogLine("craft: food prepared -- returning to the production batch");
+            craftItem_.clear();
+            return true;
         }
         // KEEP GOING WHILE THE MATERIAL LASTS, for ANY trade -- the stock in
         // the pack is the honest limit, and kindling is the one carve-out
@@ -398,6 +418,13 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
         // 2026-09-04: every crafter stocks in bulk, then sits a long time.
         if (craftSittingTarget_ <= 0) {
             craftSittingTarget_ = std::max(needCfg_.craftBatch, inputsAvailable);
+            if (auto* order = ActiveCraftOrder(false, obs.nowMs)) {
+                if (order->terms.item == craftItem_)
+                    craftSittingTarget_ = std::max(1, order->terms.qty - order->delivered -
+                        (now - craftMade_) +
+                        (std::find(me->consumes.begin(), me->consumes.end(), craftItem_) !=
+                         me->consumes.end() ? 20 : 0));
+            }
             if (craftSittingTarget_ > needCfg_.craftBatch) {
                 LogLine("craft: the pack funds %d %s -- one sitting of %d, "
                         "not %d", inputsAvailable, craftItem_.c_str(),
@@ -555,6 +582,19 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
 
     if (client.ActionBusy()) return false;
 
+    // A menu reply is a navigation transition, not the craft attempt.  Sphere
+    // sends the next submenu immediately, but the old handshake kept waiting
+    // eight seconds for a pack change after choosing "fourth circle".  That
+    // delayed the actual Recall click until the server had discarded the
+    // menu, producing "Unexpected menu info".  Once a new live menu is here,
+    // its preceding choice has been acknowledged; reserve the handshake only
+    // for the final recipe selection, whose result changes the pack.
+    if (client.CraftMenuOpen() &&
+        (craftWait_.State() == life::HandshakeState::ActionIssued ||
+         craftWait_.State() == life::HandshakeState::WaitingForServer)) {
+        craftWait_.Reset();
+    }
+
     // WAITING ON THE LAST ONE -- enter ONLY while an attempt is outstanding.
     // Not `State() != Idle`: NoteExpiry leaves the handshake in Backoff, which
     // means "the last swing is closed out, take another" and is the
@@ -586,6 +626,15 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
     }
 
     // --- walk the menu -----------------------------------------------------
+    const auto* writtenSpell = spell::DefForSpell(SpellTaughtByScroll(craftItem_));
+    if (writtenSpell && obs.mana < writtenSpell->mana) {
+        // A filtered submenu is not evidence that the recipe is unknown.
+        client.ForgetCraftMenu();
+        LogLine("craft: %s needs %d mana; have %d -- waiting for mana recovery",
+                craftItem_.c_str(), writtenSpell->mana, obs.mana);
+        nextActionMs_ = obs.nowMs + 2000;
+        return false;
+    }
     if (client.CraftMenuOpen()) {
         // READ THE MENU, DO NOT COUNT STEPS.
         //

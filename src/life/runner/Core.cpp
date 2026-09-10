@@ -126,9 +126,13 @@ bool Runner::Configure(const RunnerConfig& cfg, std::string* err) {
                 "original lumberjack needs", state_.plan.family.c_str());
     }
 
-    if (needCfg_.profession && needCfg_.profession->id == "miner_smith" && state_.homeCity != "Minoc") {
+    if (needCfg_.profession &&
+        (needCfg_.profession->id == "miner_smith" ||
+         needCfg_.profession->id == "lumberjack_swordsman") &&
+        state_.homeCity != "Minoc") {
         state_.homeCity = "Minoc";
-        LogLine("home: miner uses Minoc for mine, forge and banking");
+        LogLine("home: %s uses Minoc for the wood/ore production chain, "
+                "forge and banking", needCfg_.profession->id.c_str());
     }
 
     // Pick a home, once. Deterministic from the identity id rather than random,
@@ -159,10 +163,14 @@ bool Runner::Configure(const RunnerConfig& cfg, std::string* err) {
         // miner's list precisely because that is where the ore is, and Corwyn
         // still rolled Vesper and spent his sessions walking back to it.
         //
-        // So a profession that GATHERS something takes the first entry, which
-        // the catalogue already orders by where that work actually happens.
-        // Everyone else still spreads out.
-        const bool workIsPlaceBound = !needCfg_.profession->gathers.empty();
+        // Ore and wood are inland production chains: their first entry is the
+        // required work town.  Fishing is different: every listed home has a
+        // dock and its resource resolver picks the local water, so pinning
+        // every fisher to the first entry packed the whole fleet into Skara
+        // Brae.  Fishers use the same stable identity spread as other lives.
+        const bool workIsPlaceBound =
+            !needCfg_.profession->gathers.empty() &&
+            needCfg_.profession->gathers != "fish";
         state_.homeCity = workIsPlaceBound ? homes.front()
                                            : homes[h % homes.size()];
         LogLine("home: %s lives in %s", state_.identity.characterName.c_str(),
@@ -223,6 +231,12 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
 
     obs.dead    = client.IsDead();
     obs.mounted = client.PlayerIsMounted();
+    // A mounted animal is not in the mobile cache, but it is still our pet.
+    // The mount item and mobile serial change across logout/dismount, so the
+    // durable purchase/mount evidence is also part of ownership.  Otherwise
+    // every resumed crafter appears on foot with no horse and buys another.
+    obs.hasPet = obs.mounted || ownedPetSerial_ != 0 ||
+        state_.memory.HasEvent("mount_owned") || state_.memory.HasEvent("mounted");
     obs.warMode = client.WarModeOn();
 
     obs.x = client.PlayerX();
@@ -250,6 +264,8 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
     // say so: nothing downstream should mistake a working miner for a
     // horseless one.
     obs.dismountedForWork = gatherOnFoot_;
+    obs.cookingFuelNearby = client.FindWorldItemByGraphic(kCampfireGraphic, 3) != 0 ||
+                            client.FindWorldItemByGraphic(kKindlingGraphic, 3) != 0;
     obs.weight    = client.PlayerWeight();
     obs.maxWeight = client.PlayerMaxWeight();
     if (obs.maxWeight <= 0) {
@@ -498,6 +514,19 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
     // shopping for a starter set, which is a different errand from the
     // standing "is anything looted better than what I am wearing" browse.
     obs.hasBasicArmor = HasBasicArmor(client, obs);
+    if (!obs.hasBasicArmor && needCfg_.profession && WantsToHunt(*needCfg_.profession)) {
+        for (const auto& armor : kArmorPieces) {
+            if (!MayWear(armor, obs)) continue;
+            const u8 layer = client.ItemEquipLayer(armor.graphic);
+            if (!layer || ArmorFor(client.EquippedGraphicAt(layer))) continue;
+            const char* item = econ::ItemNameForGraphic(armor.graphic);
+            const auto* recipe = item ? prod::FindRecipe(item) : nullptr;
+            if (!recipe || recipe->provenance != prod::Provenance::PlayerCrafted ||
+                market::QtyOf(obs.pack, item) + market::QtyOf(obs.bank, item) > 0) continue;
+            obs.armorOrderItem = item;
+            break;
+        }
+    }
 
     // READ THE BOX while it is open, and KEEP what it said.
     //
@@ -568,6 +597,11 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
         };
         for (const std::string& it : needCfg_.profession->produces) countInto(it);
         for (const std::string& it : needCfg_.profession->consumes) countInto(it);
+        // Optional Poisoning tools still count when they are not mandatory
+        // profession purchases. A mage may practise with either route.
+        for (const auto& target : state_.plan.skills) if (target.skillId == rules::kPoisoning) {
+            countInto("i_dagger"); countInto("i_potion_poison"); break;
+        }
 
         // AND EVERY METAL THE PACK ACTUALLY HOLDS, listed or not.
         //
@@ -649,10 +683,18 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
     // Distinct from wantTrainSkill, which is a skill to BUY from a guildmaster
     // and stops at 30.0. Practice is how a skill reaches 100.
     obs.wantPracticeSkill = -1;
+    double largestPracticeGap = -1.0;
     for (const SkillTarget& t : state_.plan.skills) {
         if (obs.SkillTenths(t.skillId) >= t.tenths) continue;
+        // A spell cast trains its casting disciplines together on this shard.
+        // Keeping Evaluating Intelligence out of this selection made a pure
+        // mage behave as if its build had only Magery and Meditation, even
+        // though Eval is a planned secondary skill that starts at 0.0.
+        // DoPracticeSkill uses the same safe spell picker for Magery and Eval;
+        // the selected skill is the one whose server-reported gain is judged.
         if (t.skillId != rules::kMeditation &&
-            t.skillId != rules::kMagery) continue;   // see DoPracticeSkill
+            t.skillId != rules::kMagery &&
+            t.skillId != rules::kEvaluatingIntel) continue; // DoPracticeSkill
         // A FULL MANA POOL IS NOT A MEDITATION LESSON. Sphere refuses to start
         // the skill at all while mana is capped (CCharSkill.cpp
         // Skill_Meditation, SKTRIG_START -> -SKTRIG_QTY), so pointing the goal
@@ -661,8 +703,17 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
         if (t.skillId == rules::kMeditation && obs.manaMax > 0 &&
             obs.mana >= obs.manaMax)
             continue;
-        obs.wantPracticeSkill = t.skillId;
-        break;
+        // Do not let the first skill in the profession table consume an
+        // entire life. Select the furthest-behind directly-practisable skill
+        // relative to its own target, so a mage with Magery, Meditation and
+        // Evaluating Intelligence develops the build rather than one row.
+        const double gap = static_cast<double>(t.tenths -
+                                               obs.SkillTenths(t.skillId)) /
+                           static_cast<double>(t.tenths);
+        if (gap > largestPracticeGap) {
+            largestPracticeGap = gap;
+            obs.wantPracticeSkill = t.skillId;
+        }
     }
 
     // Poisoning practice uses supplies, never food or a combat detour.
@@ -1272,6 +1323,8 @@ void Runner::ClearHuntEngageState() {
     huntEngageTries_.clear();
     huntEngageStartHp_.clear();
     huntExcludedThisTrip_.clear();
+    huntApproachTarget_ = 0;
+    casterReachRefusedTarget_ = 0;
 }
 
 // ---------------------------------------------------------------------------
@@ -1325,6 +1378,7 @@ void Runner::EndSession(const char* why) {
     LogLine("session_end_requested reason=\"%s\"", why ? why : "");
     phase_ = Phase::WindDown;
     windDownStartedMs_ = lastTickMs_;
+    windDownCleanupPending_ = true;
 }
 
 // ---------------------------------------------------------------------------
@@ -1530,6 +1584,29 @@ void Runner::Tick(Client& client, i64 nowMs) {
                           leavePendingWhy_.c_str());
             }
             const Observation obs = Observe(client, nowMs);
+            if (TickPoisonPractice(client, obs)) return;
+            if (TickSparring(client, obs)) return;
+            TickCraftOrders(client, obs);
+            if (needCfg_.profession && !ActiveCraftOrder(false, obs.nowMs)) {
+                const std::string beforeItem = state_.productionBatch.item;
+                const ProductionPhase beforePhase = state_.productionBatch.phase;
+                UpdateProductionBatch(state_.productionBatch, *needCfg_.profession, obs, &craftFocus_);
+                if (beforeItem != state_.productionBatch.item || beforePhase != state_.productionBatch.phase)
+                    LogLine("production_batch: item=%s phase=%d attempts=%d",
+                            state_.productionBatch.item.c_str(),
+                            static_cast<int>(state_.productionBatch.phase), state_.productionBatch.attempts);
+            }
+            needCfg_.productionBatch = &state_.productionBatch;
+            tradePolicy_ = ProductionTradePolicy(needCfg_.productionBatch, obs.gold);
+            const bool smithBatch = NeedsSmithTrainingStock(state_.plan, needCfg_.profession, obs) &&
+                SmithTrainingBatchActive(state_.smithTrainingBatchActive, IronTrainingStock(obs));
+            if (smithBatch != state_.smithTrainingBatchActive) {
+                state_.smithTrainingBatchActive = smithBatch;
+                LogLine("smith_batch: %s stock=%d target=%d refill=%d",
+                        smithBatch ? "training" : "stocking", IronTrainingStock(obs),
+                        kSmithTrainingStock, kSmithTrainingRefill);
+            }
+            needCfg_.smithTrainingBatchActive = smithBatch;
             client.SetSurvivalBandagesAllowed(
                 WantsConsumable(needCfg_, "bandage") &&
                 obs.SkillTenths(rules::kHealing) > 0);
@@ -1562,6 +1639,12 @@ void Runner::Tick(Client& client, i64 nowMs) {
 
             LearnFromObservation(client, obs);
             MaintainBuildLocks(client, obs);
+
+            // A horse that says it is ravenously hungry is a real emergency,
+            // not an optional task to be left behind whichever goal happens
+            // to score highest.  The care routine owns its own small bound
+            // and does no work while combat/death makes dismounting unsafe.
+            if (PetCareTick(client, obs)) return;
 
             // THE ZONE IS ONLY A WEAPON IF YOU USE IT. Runs here, before any
             // goal, because the tick that matters is the one where a retreat
@@ -1631,6 +1714,23 @@ void Runner::Tick(Client& client, i64 nowMs) {
             }
 
             // --- decide ----------------------------------------------------
+            // Item removal arrives before the sale's gold/status update.
+            // Let the existing bounded verifier settle the transaction before
+            // the new stocking need cancels it. Danger still preempts it.
+            const bool npcTransactionPending =
+                (planner_.Current().kind == GoalKind::EarnGold && sellSent_) ||
+                (planner_.Current().kind == GoalKind::BuySupplies && !pendingBuyItem_.empty());
+            if (planner_.Current().active && npcTransactionPending &&
+                !obs.dead && !obs.underAttack && obs.attackersOnMe == 0 &&
+                obs.HpFraction() >= 0.75) {
+                RunGoal(client, obs);
+                return;
+            }
+            // Consuming the last ore removes the smelting need immediately.
+            // Credit the resulting ingots before Select can replace that goal.
+            if (planner_.Current().active &&
+                planner_.Current().kind == GoalKind::Smelt)
+                NoteSmeltProgress(obs);
             // WHAT THE FIGHT TAUGHT, WHERE IT WAS TAUGHT. The 0x3A skill
             // values arrive in the Observation; comparing two ticks of them
             // is the only way a log can show combat training happening at
@@ -1641,6 +1741,8 @@ void Runner::Tick(Client& client, i64 nowMs) {
                                       currentFoe_ != 0 || huntKillsPending_ > 0 ||
                                       planner_.Current().kind == GoalKind::TrainCombat);
             if (ProcessHuntAftermath(client, obs)) return;
+            if (RefillManaWhenSafe(client, obs)) return;
+            if (MaintainCasterBuffs(client, obs)) return;
             // Aftermath may have just received the last item from a corpse.
             Observation planningObs = obs;
             planningObs.huntReturnPending = state_.huntReturnPending;
@@ -1650,8 +1752,11 @@ void Runner::Tick(Client& client, i64 nowMs) {
             // owner's 100) and on the purse, and both the need model below
             // and DoReplaceEquipment read them this tick.
             ResolveConsumableThresholds(needCfg_, planningObs.gold);
-            const std::vector<Need> needs =
+            ObserveSocial(client, planningObs);
+            std::vector<Need> needs =
                 AssessNeeds(state_.plan, state_.memory, planningObs, needCfg_);
+            AddSocialNeeds(client, planningObs, needs);
+            AddCraftOrderNeeds(planningObs, needs);
             std::string why;
             const GoalKind previous = planner_.Current().kind;
             const bool wasActive = planner_.Current().active;
@@ -1733,12 +1838,21 @@ void Runner::Tick(Client& client, i64 nowMs) {
 
         case Phase::WindDown: {
             if (!client.IsInWorld()) { phase_ = Phase::Done; finished_ = true; return; }
+            if (windDownCleanupPending_) {
+                windDownCleanupPending_ = false;
+                client.TravelAbort("session ending");
+                LeaveGoal(client, planner_.Current().kind, planner_.Current().kind,
+                          false, "session ending");
+                travelInFlight_ = false;
+                nextActionMs_ = nowMs;
+            }
             if (nowMs < windDownStartedMs_) return;
             // Logging out somewhere hostile is how this project lost three
             // characters -- Source-X does not drop a combat-flagged connection
             // immediately, and one died in the gap AFTER logout_ack. So the
             // wind-down walks to a known bank first and only then logs out.
             client.EnsurePeaceMode();
+            EndSocialGroup(client, "session ending");
 
             // The deadline is checked BEFORE the travel guard, and it ABORTS
             // the trip. Session B put this the other way round and a trip that
@@ -2263,15 +2377,44 @@ void Runner::LeaveGoal(Client& client, GoalKind from, GoalKind to,
     // every purchase made after it. Unconditional, as before.
     vendorChases_ = 0;
     if (sameKind) return;   // Corran rule: a re-pick keeps its journey.
+    if (from == GoalKind::Fish) {
+        // An interrupted fishing trip is not a failed dock search. The new
+        // errand must verify its own location and receive its own allowance.
+        fishTrips_ = 0;
+        fishAtDock_ = false;
+    }
+    if (from == GoalKind::Craft) {
+        // Abandoning a client action does not stop Sphere's .makelast timer.
+        // Its @UserWarmode handler cancels the repeat before the new goal
+        // can start another skill. Restore the character's previous stance.
+        if (makeLastIssued_) {
+            LogLine("craft: cancelling server repeat before leaving the goal");
+            const bool wasWar = client.WarModeOn();
+            client.ActionWarMode(!wasWar);
+            client.ActionWarMode(wasWar);
+        }
+        makeLastIssued_ = false;
+        makeLastRemaining_ = 0;
+        makeLastDeadlineMs_ = 0;
+        craftItem_.clear();
+        craftMade_ = 0;
+        craftSittingTarget_ = 0;
+        craftCursorPending_ = false;
+        craftWait_.Reset();
+    }
+    if (from == GoalKind::Socialize && to != GoalKind::Socialize &&
+        !((to == GoalKind::TrainCombat || to == GoalKind::Craft) && socialGroupUntilMs_)) {
+        EndSocialGroup(client, why);
+        socialRestUntilMs_ = std::max(socialRestUntilMs_, lastTickMs_ + 120000);
+    }
+    productionWithdrawalPending_ = false;
 
-    // NOT WIDENED. Only TrainCombat aborts the previous goal's trip; every
-    // other goal change still lets the walk finish, because a shopping trip
-    // that is nearly there is usually still worth arriving at. Changing that
-    // is a policy decision, not this hook's business.
-    if (to == GoalKind::TrainCombat && to != from && !survivalRetreat_ &&
+    // A new work site cannot inherit an unrelated shopping or food trip.
+    if ((to == GoalKind::Socialize || to == GoalKind::TradeWithPlayer ||
+         to == GoalKind::TrainCombat || to == GoalKind::Craft || to == GoalKind::Mine ||
+         to == GoalKind::GatherLogs || to == GoalKind::Fish) && to != from && !survivalRetreat_ &&
         (client.TravelBusy() || client.GotoBusy()))
-        client.TravelAbort("training supersedes the previous shopping or "
-                           "exploration trip");
+        client.TravelAbort("work supersedes the previous trip");
 
     // AND THE WALK TO A FIGHT IS NEVER "NEARLY THERE AND WORTH FINISHING".
     //
@@ -2529,6 +2672,16 @@ void Runner::LogGoalChange(const Observation& obs, const std::string& why) {
 void Runner::RunGoal(Client& client, const Observation& obs) {
     if (obs.nowMs < nextActionMs_) return;
 
+    // Do not let an already-selected errand act between an attack packet and
+    // the planner's next successful SURVIVE pre-emption. In the fleet run,
+    // Ghalys received attack emotes and then BANK started a route through the
+    // graveyard; that stale route kept moving until health had already fallen.
+    if (!obs.dead && planner_.Current().kind != GoalKind::Survive &&
+        (obs.underAttack || obs.attackersOnMe > 0)) {
+        DoSurvive(client, obs);
+        return;
+    }
+
     // Bounded failure, checked before the body runs so a wedged goal cannot
     // keep acting after it has been abandoned.
     std::string exhaustedWhy;
@@ -2582,8 +2735,11 @@ void Runner::RunGoal(Client& client, const Observation& obs) {
     // handler, and this is the one place that sees every one of them: whatever
     // runs next, it rides. RemountAfterWork is a no-op unless we are the reason
     // this character is on foot, and it gives up on its own budget.
+    // Fishing also needs to stay on foot throughout its casts and shore hops.
+    // Remounting between fishing ticks prevents the next cast from starting.
     const GoalKind activeKind = planner_.Current().kind;
     if (activeKind != GoalKind::Mine && activeKind != GoalKind::GatherLogs &&
+        activeKind != GoalKind::Fish &&
         RemountAfterWork(client, obs))
         return;
 
@@ -2620,6 +2776,7 @@ void Runner::RunGoal(Client& client, const Observation& obs) {
         case GoalKind::UpgradeGear:          done = DoUpgradeGear(client, obs); break;
         case GoalKind::StatFarm:             done = DoStatFarm(client, obs); break;
         case GoalKind::IdleBriefly:           done = DoIdle(client, obs); break;
+        case GoalKind::Socialize:             done = DoSocialize(client, obs); break;
         case GoalKind::Count:                 break;
     }
 
@@ -2806,8 +2963,13 @@ bool Runner::DoReturnHome(Client& client, const Observation& obs) {
 // and the supplier memory get anything to work with.
 bool Runner::RestTick(Client& client, const Observation& obs, GoalKind owner) {
     RestSight see;
+    // A short validation session used the normal three-minute wind-down lead,
+    // making its idle/rest path decide to settle at login. Reserve time for
+    // safety, but never reserve the whole session: a three-minute smoke needs
+    // time to prove its work before it can wind down.
+    const i64 settleLeadMs = std::min(kRestSettleLeadMs, cfg_.sessionLimitMs / 2);
     see.sessionEnding = cfg_.sessionLimitMs > 0 &&
-        (obs.nowMs - sessionStartMs_) >= cfg_.sessionLimitMs - kRestSettleLeadMs;
+        (obs.nowMs - sessionStartMs_) >= cfg_.sessionLimitMs - settleLeadMs;
     // The same guarded-region read as MayWear's caller (Runner.cpp, around
     // inGuardedRegion) -- NOT flags.safe, which is the no-skill-gain flag, a
     // different fact. A bank box counts only on the tile where it was opened,

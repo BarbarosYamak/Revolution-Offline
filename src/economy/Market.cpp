@@ -163,6 +163,7 @@ std::vector<Offer> Surplus(const prof::Profession& p,
         // even though every weapon it makes eats six of them.
         const bool selfConsumed = IsOwnInput(p, item);
         i32 reserve = selfConsumed ? policy.keepOfOwnOutput : 0;
+        reserve = std::max(reserve, QtyOf(policy.productionInputs, item));
 
         // AND WHAT THIS LIFE CARRIES OF IT FOR ITSELF. `produces` and
         // `consumables` can name the same thing -- a tailor makes bandages to
@@ -237,7 +238,12 @@ std::vector<Want> Shortfall(const prof::Profession& p,
     std::vector<Want> out;
 
     // Inputs the profession's own recipes eat.
-    for (const std::string& item : p.consumes) {
+    std::vector<std::string> inputs = policy.productionInputs.empty()
+        ? p.consumes : std::vector<std::string>{};
+    for (const Stock& input : policy.productionInputs)
+        if (std::find(inputs.begin(), inputs.end(), input.item) == inputs.end())
+            inputs.push_back(input.item);
+    for (const std::string& item : inputs) {
         // AN ITEM THE PACK CANNOT COUNT IS AN ITEM THIS LIST MUST NOT NAME.
         //
         // obs.pack is keyed by defname, resolved from graphic+hue through
@@ -267,10 +273,13 @@ std::vector<Want> Shortfall(const prof::Profession& p,
         // no logger and the skipped want has no Want to carry a reason on.
         if (uo::econ::GraphicsForItem(item.c_str()).empty()) continue;
         const i32 have = QtyOf(pack, item);
-        if (have >= policy.restockConsumablesTo) continue;
+        const i32 productionTarget = QtyOf(policy.productionInputs, item);
+        const i32 target = productionTarget > 0
+            ? (policy.productionRestock ? productionTarget : 0) : policy.restockConsumablesTo;
+        if (have >= target) continue;
         Want w;
         w.item = item;
-        w.qty = policy.restockConsumablesTo - have;
+        w.qty = target - have;
         w.rawResource = !IsWoolChainWant(item) && WhoProduces(item.c_str()).empty();
         w.reason = w.rawResource
             ? "an input no profession makes -- the world does, so this is a "
@@ -357,12 +366,11 @@ std::vector<Want> PlayerMarketWants(const prof::Profession& p,
     // the moment a fighter held twenty-one, which is a fifth of what it needs
     // to leave town, so the WTB would never form when it mattered.
     //
-    // THE NPC COUNTER STILL COMES FIRST. i_bandage is RevolutionNpcVerified
-    // (progression/VendorPolicy.cpp:298) and market::RouteForInput answers
-    // NpcVendor for it whenever the shop route is known, so this want is what
-    // the character asks a PLAYER for -- the fallback runner/Gear.cpp takes
-    // once every healer and vet counter it knows of is dry. Naming the want
-    // here does not skip the shop; it gives the shop somewhere to fall to.
+    // PLAYER PRODUCTION COMES FIRST. A healer shelf is a small, shared
+    // emergency resource, not a fleet supply chain. The runner asks a player
+    // before it queues at a healer; an unanswered WTB falls through to the
+    // character's own cloth-cutting route. Naming the want here gives the
+    // market a concrete demand for the tailor to answer.
     //
     // 84 fighters filling to the floor need ~420 twenty-at-a-time counter
     // trades against a town that restocks a few dozen per ten minutes
@@ -383,9 +391,13 @@ std::vector<Want> PlayerMarketWants(const prof::Profession& p,
             w.qty = target - have;
             w.rawResource = false;   // a tailor cuts them; see prof::All()
             w.reason = "a fighting life's own bandage line, less what it "
-                       "carries -- the healer's counter first, a player with "
-                       "scissors once the counters are dry";
-            out.push_back(std::move(w));
+                       "carries -- ask a player with scissors before using "
+                       "a shared healer shelf";
+            // A fighter cannot safely continue its ordinary work while this
+            // line is short.  Make the emergency stock request the first buy
+            // intent, ahead of routine craft inputs, so a WTB is for bandages
+            // rather than an unrelated material.
+            out.insert(out.begin(), std::move(w));
         }
     }
 

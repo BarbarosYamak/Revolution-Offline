@@ -144,6 +144,17 @@ void TestBreakingContact() {
     // The board is still refused before the fight starts.
     Check(!novice::NoviceMayOpen(1, 3),
           "the ceiling survives where it belongs: nobody OPENS on three");
+
+    // A two-on-one never becomes a fight.  A fully healthy combat trainee may
+    // change to another vetted lane; everybody else keeps the full retreat.
+    Check(novice::MayRepositionWithinHunt(true, true, 2, 1, 1.0),
+          "a healthy trainee changes lanes after a two-on-one");
+    Check(!novice::MayRepositionWithinHunt(true, true, 2, 1, 0.84),
+          "an injured novice takes the full safety retreat");
+    Check(!novice::MayRepositionWithinHunt(true, false, 2, 1, 1.0),
+          "only an active combat trainee may change hunt lanes");
+    Check(!novice::MayRepositionWithinHunt(false, true, 2, 1, 1.0),
+          "seasoned crowd handling does not borrow the novice lane rule");
 }
 
 // COMPANY COSTS A BLOW OF MARGIN, NOT THE WHOLE YARD.
@@ -296,6 +307,10 @@ void TestManaIsNotPacifism() {
 }  // namespace
 
 int main() {
+    Check(!novice::GroupMayOpen(1, 3, 0), "solo novice refuses a crowded opening");
+    Check(novice::GroupMayOpen(1, 3, 1), "nearby friendly support permits a shared fight");
+    Check(novice::GroupAttackerLimit(3) == 2, "support never permits tanking three attackers");
+    Check(!novice::GroupMayOpen(3, 3, 3), "three personal attackers still force retreat");
     std::printf("novice engagement policy\n");
     TestWhoIsANovice();
     TestRetreatFloor();

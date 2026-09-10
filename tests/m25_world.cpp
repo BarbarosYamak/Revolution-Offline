@@ -62,6 +62,7 @@ const char* const kAtlasText =
     "PLACE\talpha_healer\thealer\ta_alpha\t50\t30\t0\t4\thealer\t\tAlpha Healer\n"
     "PLACE\tbeta_bank\tbank\ta_beta\t402\t402\t0\t5\tbanker\t\tBeta Bank\n"
     "PLACE\tmoor_mine\tresource_area\ta_moor\t200\t210\t0\t12\t\tmining\tMoor Mine\n"
+    "PLACE\talpha_fields\tresource_area\ta_alpha\t24\t34\t0\t12\t\tfood\tAlpha Fields\n"
     "PLACE\tmoongate_alpha\tmoongate\ta_alpha\t56\t56\t0\t2\t\t\tAlpha Moongate\n"
     "PLACE\tmoongate_beta\tmoongate\ta_beta\t392\t392\t0\t2\t\t\tBeta Moongate\n"
     "TRANSIT\ttp_0\tteleporter\t120\t120\t0\t180\t180\t0\t0\ttp_moor_shortcut\n"
@@ -127,7 +128,7 @@ void TestAtlasParsing() {
 
     Check(a.Ready(), "atlas loaded");
     Check(a.Regions().size() == 6, "six regions parsed");
-    Check(a.Places().size() == 6, "six places parsed");
+    Check(a.Places().size() == 7, "seven places parsed");
     Check(a.Transits().size() == 3, "three transits parsed");
     Check(a.MapWidth() == 512 && a.MapHeight() == 512, "map extent parsed");
 
@@ -171,6 +172,8 @@ void TestAtlasQueries() {
 
     p = a.NearestPlaceWithResource(wm::ResourceKind::Mining, 40, 40);
     Check(p && p->id == "moor_mine", "nearest mining area");
+    p = a.NearestPlaceWithResource(wm::ResourceKind::Food, 40, 40);
+    Check(p && p->id == "alpha_fields", "nearest crop field");
     Check(a.NearestPlaceWithResource(wm::ResourceKind::Fishing, 40, 40) == nullptr,
           "a resource nobody has is not invented");
 

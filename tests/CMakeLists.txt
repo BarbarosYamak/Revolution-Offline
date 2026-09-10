@@ -173,6 +173,7 @@ add_executable(m4_life m4_life.cpp
     ${CMAKE_SOURCE_DIR}/src/life/activities/RecoveryPlan.cpp
     ${CMAKE_SOURCE_DIR}/src/life/Goals.cpp
     ${CMAKE_SOURCE_DIR}/src/life/State.cpp
+    ${CMAKE_SOURCE_DIR}/src/life/Orders.cpp
     ${CMAKE_SOURCE_DIR}/src/progression/Rules.cpp)
 target_include_directories(m4_life PRIVATE
     ${CMAKE_SOURCE_DIR}/include
@@ -708,6 +709,13 @@ add_executable(fish_mount_refusal fish_mount_refusal.cpp)
 target_link_libraries(fish_mount_refusal PRIVATE uo_client_core)
 
 add_test(NAME fish_mount_refusal COMMAND fish_mount_refusal)
+add_executable(craft_orders craft_orders.cpp)
+target_link_libraries(craft_orders PRIVATE uo_client_core)
+add_test(NAME craft_orders COMMAND craft_orders)
+
+add_executable(vendor_inventory vendor_inventory.cpp)
+target_link_libraries(vendor_inventory PRIVATE uo_client_core)
+add_test(NAME vendor_inventory COMMAND vendor_inventory)
 
 # --- Creation-time appearance roll (docs/APPEARANCE_DESIGN.md layer 1) -----
 # Pure function over an identity string: determinism (same id -> identical

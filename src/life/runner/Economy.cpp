@@ -107,6 +107,31 @@ market::MaterialSaleGate Runner::MaterialSaleGateFor(
         market::PolicyForPurse(obs.gold));
 }
 
+void Runner::FinishNpcSaleVisit(i64 nowMs) {
+    // Draver reused a completed counter visit on the next EARN_GOLD pick,
+    // claiming the same sale five more times and interrupting Minoc mining.
+    // Keep learned prices and suppliers, but consume this visit's credit.
+    sellItem_.clear();
+    sellTrade_.clear();
+    sellService_ = wm::Service::None;
+    sellBuyerIndex_ = 0;
+    sellTrips_ = 0;
+    sellWanted_ = 0;
+    sellSweeps_ = 0;
+    sellSweepGold_ = 0;
+    sellLotCap_ = 0;
+    sellVerifyItem_.clear();
+    sellGoldBefore_ = -1;
+    sellItemBefore_ = -1;
+    sellAsked_ = false;
+    sellAskedMs_ = 0;
+    sellSent_ = false;
+    sellVendorSerial_ = 0;
+    sellApproached_ = false;
+    sellReachChecked_ = false;
+    planner_.Cooldown(GoalKind::EarnGold, nowMs + kNothingToSellCooldownMs);
+}
+
 bool Runner::DoEarnGold(Client& client, const Observation& obs) {
     const prof::Profession* me = needCfg_.profession;
     if (!me) {
@@ -214,6 +239,7 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
             }
             LogLine("earn_gold: %d gold at this counter over %d sales -- "
                     "enough for one visit", sellSweepGold_, sellSweeps_);
+            FinishNpcSaleVisit(obs.nowMs);
             return true;
         }
         if (obs.nowMs - sellAskedMs_ > 12000) {
@@ -273,9 +299,18 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
                           sellSweepGold_ > 0 && sellVendorSerial_ != 0;
 
     // Bank gold funds supplies here; an empty pack purse is not poverty.
-    const market::TradePolicy tp = market::PolicyForPurse(obs.gold);
-    const std::vector<market::Offer> offers =
+    const market::TradePolicy tp = ProductionTradePolicy(needCfg_.productionBatch, obs.gold);
+    std::vector<market::Offer> offers =
         market::Surplus(*me, obs.pack, tp);
+    if (auto* order = ActiveCraftOrder(false, obs.nowMs)) {
+        for (auto& offer : offers) {
+            if (offer.item == order->terms.item)
+                offer.qty = std::min(offer.qty, std::max(0,
+                    market::QtyOf(obs.pack, offer.item) - (order->terms.qty - order->delivered)));
+        }
+        offers.erase(std::remove_if(offers.begin(), offers.end(),
+            [](const auto& offer) { return offer.qty <= 0; }), offers.end());
+    }
     if (offers.empty() && !sweeping) {
         // THE STOCK MAY BE IN THE BOX. The need layer scores this errand from
         // pack AND bank on purpose -- goods in the bank are still this
@@ -372,7 +407,26 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
             return false;
         }
 
+        if (client.BankContainer() && !client.BankOpenTileHeld())
+            client.ForgetBankContainer();
         if (client.BankContainer() == 0) {
+            if (!bankErrand_.Running() && !NearAnyBank(client, obs)) {
+                if (client.TravelBusy()) return false;
+                if (travelInFlight_) {
+                    travelInFlight_ = false;
+                    planner_.Cooldown(GoalKind::EarnGold, obs.nowMs + kShortRestMs);
+                    planner_.Finish(false, "bank retrieval route did not reach a bank", obs.nowMs);
+                    return false;
+                }
+                travelInFlight_ = client.TravelToService(wm::Service::Banker);
+                if (!travelInFlight_) {
+                    planner_.Cooldown(GoalKind::EarnGold, obs.nowMs + kShortRestMs);
+                    planner_.Finish(false, "no route to retrieve bank stock", obs.nowMs);
+                }
+                nextActionMs_ = obs.nowMs + 2000;
+                return false;
+            }
+            travelInFlight_ = false;
             // ARRIVING IS NOT ENOUGH -- the box has to be OPENED, by asking a
             // banker for it. Travelling and then re-testing "am I at the bank"
             // loops forever the moment the trip completes instantly because
@@ -391,6 +445,7 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
             // and no check that a box ever opened" -- which is an argument
             // for porting a known defect rather than annotating it.
             if (!bankErrand_.Running()) bankErrand_.Begin();
+            bankErrand_.SetAtKnownBank(NearAnyBank(client, obs));
             const life::BankErrandResult br = bankErrand_.Tick(client, obs);
             if (!br.why.empty())
                 LogLine("earn_gold: fetching %s -- %s", fetch->item.c_str(),
@@ -412,7 +467,7 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
                 planner_.Finish(false, "no banker opened a box", obs.nowMs);
                 return false;
             }
-            planner_.NoteAttempt(obs.nowMs);
+            if (br.acted) planner_.NoteAttempt(obs.nowMs);
             return false;
         }
 
@@ -827,6 +882,17 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
         // single transaction.
         i32 remaining = sellWanted_;
         if (sellLotCap_ > 0) remaining = std::min<i32>(remaining, sellLotCap_);
+        if (auto* order = ActiveCraftOrder(false, obs.nowMs)) {
+            if (order->terms.item == sellItem_) {
+                remaining = std::min(remaining, std::max(0, market::QtyOf(obs.pack, sellItem_) -
+                    (order->terms.qty - order->delivered)));
+                if (remaining == 0) {
+                    HandOff(GoalKind::EarnGold, GoalKind::TradeWithPlayer, 1000,
+                            "remaining stock belongs to a customer", obs.nowMs);
+                    return false;
+                }
+            }
+        }
         if (remaining <= 0) continue;
 
         std::vector<std::pair<u32, u16>> lot;
@@ -947,6 +1013,7 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
         LogLine("earn_gold: %d gold from this '%s' over %d sale(s), and it "
                 "will take nothing else we carry -- done here",
                 sellSweepGold_, sellTrade_.c_str(), sellSweeps_);
+        FinishNpcSaleVisit(obs.nowMs);
         return true;
     }
 
@@ -1159,6 +1226,7 @@ bool Runner::TryOtherMarketHub(Client& client, const Observation& obs) {
     tradeAnnounceCount_ = 0;
     tradeAnnouncedMs_ = 0;
     marketListenFromMs_ = 0;
+    marketAudienceScanMs_ = 0;
     tradeAudienceIgnored_ = 0;
     tradeTrips_ = 0;
     travelInFlight_ = false;
@@ -1228,6 +1296,26 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
         return DriveOpenTrade(client, obs);
     }
     if (tr.CurrentPhase() == trade::Phase::Completed) {
+        // Secure-trade CLOSE says the server has committed the exchange, but
+        // on the live shard it can precede the 0x3C/0x25 packet that updates
+        // our backpack. Reading `obs.pack` in that same tick made real,
+        // accepted fish-for-gold trades look empty. Reopen the backpack once
+        // and let its normal contents packet become the evidence we compare.
+        if (!tradePackRefreshPending_) {
+            if (client.ActionBusy()) return false;
+            const u32 pack = client.BackpackSerial();
+            if (pack) {
+                tradePackRefreshPending_ = true;
+                LogLine("trade: window completed; refreshing pack before recording transfer");
+                client.ActionOpenContainer(pack);
+                nextActionMs_ = obs.nowMs + 1000;
+                return false;
+            }
+            // A missing backpack is itself a usable observation -- do not
+            // strand an already-completed trade waiting for a refresh that
+            // cannot be requested.
+            tradePackRefreshPending_ = true;
+        }
         LogLine("trade: window closed complete with %s", TradeLabel(tradePartner_, tradePartnerName_).c_str());
         // The PACK is the proof. A completed window means the server moved
         // the goods; believing the packet without checking is how a "sale"
@@ -1235,7 +1323,10 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
         const i32 now = market::QtyOf(obs.pack, tradeItem_);
         if (tradeSellingQty_ > 0 && now < tradePackBefore_) {
             const i32 moved = tradePackBefore_ - now;
-            const i32 paid = obs.gold - tradeGoldBefore_;
+            // Player trade coin comes only from the backpack.  `obs.gold`
+            // includes banked coin for ordinary vendor purchasing, which made
+            // a 153gp log sale appear as a multi-thousand-gold transfer.
+            const i32 paid = obs.goldOnHand - tradeGoldBefore_;
             LogLine("trade: gave %d %s to %s for %d gold", moved,
                     tradeItem_.c_str(), TradeLabel(tradePartner_, tradePartnerName_).c_str(), paid);
             if (paid > 0) {
@@ -1275,7 +1366,7 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
             planner_.NoteProgress();
         } else if (tradeSellingQty_ == 0 && now > tradePackBefore_) {
             const i32 got = now - tradePackBefore_;
-            const i32 spent = tradeGoldBefore_ - obs.gold;
+            const i32 spent = tradeGoldBefore_ - obs.goldOnHand;
             LogLine("trade: got %d %s from %s for %d gold", got,
                     tradeItem_.c_str(), TradeLabel(tradePartner_, tradePartnerName_).c_str(), spent);
             if (spent > 0) {
@@ -1320,7 +1411,13 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
         } else {
             LogLine("trade: window completed but nothing moved");
         }
+        if ((tradeSellingQty_ > 0 && now < tradePackBefore_ && obs.goldOnHand > tradeGoldBefore_) ||
+            (tradeSellingQty_ == 0 && now > tradePackBefore_ && obs.goldOnHand < tradeGoldBefore_)) {
+            social::Remember(state_.memory.relationships, tradePartnerName_, social::Encounter::Trade, obs.nowMs);
+            state_.memory.NoteEvent("reliable_trade_partner", tradePartnerName_.c_str(), tradeItem_.c_str(), obs.x, obs.y, obs.nowMs);
+        }
         client.TradeForget();
+        SettleCraftOrder(obs);
         ResetTradeState();
         Checkpoint(client, obs.nowMs, "traded with a player");
         return true;
@@ -1349,6 +1446,8 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
         return false;
     }
 
+    if (DriveCraftOrder(client, obs)) return false;
+
     // --- listen ------------------------------------------------------------
     //
     // Done BEFORE announcing, so a character that can answer somebody else's
@@ -1376,6 +1475,7 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
     const std::string& myName = state_.identity.characterName;
 
     for (const Client::Heard& h : heard) {
+        if (SocialFoe(h.name)) continue;
         // THE BUYER SORTED IT WITH SOMEBODY ELSE. Losing the race is a normal
         // outcome of a room where two sellers hold the same goods; hearing so
         // is much cheaper than waiting out the 25s give-up at the bank.
@@ -1555,7 +1655,7 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
                 return false;
             }
             tradePackBefore_ = market::QtyOf(obs.pack, tradeItem_);
-            tradeGoldBefore_ = obs.gold;
+            tradeGoldBefore_ = obs.goldOnHand;
             LogLine("trade: opening a window with %s for %d %s",
                     TradeLabel(tradePartner_, tradePartnerName_).c_str(), tradeSellingQty_,
                     tradeItem_.c_str());
@@ -1565,7 +1665,7 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
         }
         // Buyer: stand there and wait for the seller to open it.
         tradePackBefore_ = market::QtyOf(obs.pack, tradeItem_);
-        tradeGoldBefore_ = obs.gold;
+        tradeGoldBefore_ = obs.goldOnHand;
         if (obs.nowMs - tradeAnnouncedMs_ > 20000) {
             LogLine("trade: %s never opened a window", TradeLabel(tradePartner_, tradePartnerName_).c_str());
             // AND END THE ERRAND. Resetting alone left the goal live with no
@@ -1606,13 +1706,23 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
     }
 
     market::TradeIntent offer;
-    const bool wantsToSell = market::ChooseSellOffer(*me, holdings, state_.prices,
-                                                     tradePolicy_, &offer);
+    const bool hasSellOffer = market::ChooseSellOffer(*me, holdings, state_.prices,
+                                                      tradePolicy_, &offer);
     const char* noBuyWhy = nullptr;
     const std::vector<market::Want> buyable =
         market::PlayerMarketWants(*me, holdings, obs.gold, tradePolicy_,
                                   &noBuyWhy);
+    bool bandageBuyFirst = obs.bandages < needCfg_.bandageLow;
+    if (bandageBuyFirst) {
+        bool found = false;
+        for (const market::Want& w : buyable)
+            if (w.item == "i_bandage") { found = true; break; }
+        bandageBuyFirst = found;
+    }
     const bool wantsToBuy = !buyable.empty();
+    // An ordinary sale can wait.  The buyer's bandage request is the
+    // precondition for a physical fighter to return to work or combat.
+    const bool wantsToSell = hasSellOffer && !bandageBuyFirst;
     // Plan from available savings, but fetch real pack coin before announcing.
     // The secure-trade window still accepts only money actually carried.
     if (!wantsToSell && wantsToBuy) {
@@ -1986,6 +2096,52 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
         marketBoxReopens_ = 0;
     }
 
+    // --- is there a market before either side occupies it? -----------------
+    //
+    // A seller already checks this below, but buyers used to skip the check
+    // entirely.  A buyer with no possible seller then held the bank for its
+    // whole three-minute listen window.  Across a fleet that turns a few
+    // missing reagents or bandages into a visible queue of idle characters at
+    // Britain bank -- precisely the opposite of a player who asks nearby
+    // crafters, tries the other hub, then goes back to earning or making the
+    // item.  The scan is deliberately one per visit, with the existing
+    // 2.5-second settle, rather than a polling storm against every mobile.
+    //
+    // Do this before a buyer's first WTB as well as before a seller's first
+    // WTS.  An empty room is not evidence that an item has no sellers, so it
+    // must not write no_player_seller or unlock self-production; it only says
+    // this hub is currently a poor place to wait.
+    if (!wantsToSell) {
+        if (marketAudienceScanMs_ == 0 ||
+            obs.nowMs - marketAudienceScanMs_ >= kAudienceRescanMs) {
+            client.ActionScanMobiles();
+            marketAudienceScanMs_ = obs.nowMs;
+            nextActionMs_ = obs.nowMs + 2500;
+            return false;
+        }
+        if (obs.nowMs - marketAudienceScanMs_ < 2500) {
+            nextActionMs_ = marketAudienceScanMs_ + 2500;
+            return false;
+        }
+        if (client.MobileNamesPending()) {
+            nextActionMs_ = obs.nowMs + 1000;
+            return false;
+        }
+        if (client.PlayersNearby(kTradeEarshot) == 0) {
+            LogLine("market: no player audience after a local scan -- "
+                    "trying another hub or leaving the empty room for %llds "
+                    "of ordinary work",
+                    static_cast<long long>(kNoAudienceMs / 1000));
+            marketAudienceScanMs_ = 0;
+            if (TryOtherMarketHub(client, obs)) return false;
+            marketQuietUntilMs_ = obs.nowMs + kNoAudienceMs;
+            planner_.Cooldown(GoalKind::TradeWithPlayer,
+                              obs.nowMs + kNoAudienceMs);
+            planner_.Finish(false, "no player audience at the market", obs.nowMs);
+            return false;
+        }
+    }
+
     // --- the buyer ASKS -----------------------------------------------------
     //
     // It used to only listen. Its whole errand at the market was to BE PRESENT
@@ -2002,11 +2158,20 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
         market::TradeIntent want;
         const bool haveWant = market::ChooseBuyWant(
             *me, holdings, state_.prices, tradePolicy_, obs.goldOnHand, &want);
+        // A general market visit gets the ordinary listening window. Bandages
+        // do not: this is an emergency stock line with a self-production
+        // fallback, and holding a crowd at Britain bank for three minutes
+        // merely recreates the healer queue in a different building. One full
+        // announce cycle is enough for a nearby tailor to hear and answer;
+        // after that the buyer tries the second hub, then cuts cloth itself.
+        const i64 listenMs = haveWant && want.item == "i_bandage"
+            ? kMaxAnnounces * kAnnounceIntervalMs
+            : kListenMs;
         if (marketListenFromMs_ == 0) {
             marketListenFromMs_ = obs.nowMs;
             LogLine("market: at the market to buy %d %s -- asking for %llds",
                     buyable.front().qty, buyable.front().item.c_str(),
-                    static_cast<long long>(kListenMs / 1000));
+                    static_cast<long long>(listenMs / 1000));
         }
         if (haveWant && obs.nowMs - tradeAnnouncedMs_ >= kAnnounceIntervalMs) {
             NoteCraftedGoodFloorOnce(want.item);
@@ -2036,7 +2201,7 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
             tradeWant_ = want;
             tradeWantAskedMs_ = obs.nowMs;
         }
-        if (obs.nowMs - marketListenFromMs_ >= kListenMs) {
+        if (obs.nowMs - marketListenFromMs_ >= listenMs) {
             marketListenFromMs_ = 0;
             // S7 SEQUENTIAL HUBS: this hub's window is over with nobody
             // selling -- try the other one before giving up. On success the
@@ -2050,6 +2215,11 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
             state_.memory.NoteEvent("no_player_seller",
                                     buyable.front().item.c_str(), "", obs.x,
                                     obs.y, obs.nowMs);
+            // A full announced/listened market window establishes a real fact:
+            // nobody was selling this item at either hub. It did not move an
+            // item, but the fact below unlocks the self-production fallback on
+            // the next decision, so it is not a no-op loop.
+            planner_.NoteProgress();
             marketQuietUntilMs_ = obs.nowMs + kMarketQuietMs;
             // GO AND MAKE IT YOURSELF, if this life can. RouteForInput is
             // catalogue reasoning -- "is this something my own profession
@@ -2079,6 +2249,18 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
                                kMarketQuietMs,
                                "nobody was selling it, and this life can "
                                "gather it itself",
+                               obs.nowMs);
+            }
+            // Bandages are deliberately different from ordinary inputs: any
+            // fighter may buy cloth and cut them, even when its profession
+            // does not list bandages as an output. This is the bounded
+            // fallback for a WTB a tailor did not answer; returning to the
+            // healer would recreate the shared-counter queue this market path
+            // exists to remove.
+            if (shortOf == "i_bandage") {
+                return HandOff(GoalKind::TradeWithPlayer,
+                               GoalKind::MakeBandages, kMarketQuietMs,
+                               "nobody was selling bandages, so make them",
                                obs.nowMs);
             }
             planner_.Cooldown(GoalKind::TradeWithPlayer,
@@ -2130,6 +2312,39 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
         return false;
     }
     tradeOffer_ = announce;
+
+    // ASK WHO IS HERE BEFORE TALKING TO THE ROOM. An unscanned cache cannot
+    // prove an empty market: paperdoll titles are what distinguish players
+    // from the bank staff. Once the scan has had a moment to answer, though,
+    // a zero audience is an honest reason to leave. This keeps a persisted WTS
+    // objective from making a fighter withdraw stock and occupy an otherwise
+    // empty Britain bank instead of doing normal work.
+    if (marketAudienceScanMs_ == 0 ||
+        obs.nowMs - marketAudienceScanMs_ >= kAudienceRescanMs) {
+        client.ActionScanMobiles();
+        marketAudienceScanMs_ = obs.nowMs;
+        nextActionMs_ = obs.nowMs + 2500;
+        return false;
+    }
+    if (obs.nowMs - marketAudienceScanMs_ < 2500) {
+        nextActionMs_ = marketAudienceScanMs_ + 2500;
+        return false;
+    }
+    if (client.MobileNamesPending()) {
+        nextActionMs_ = obs.nowMs + 1000;
+        return false;
+    }
+    if (client.PlayersNearby(kTradeEarshot) == 0) {
+        LogLine("market: no player audience after a local scan -- leaving the "
+                "empty room for %llds of ordinary work",
+                static_cast<long long>(kNoAudienceMs / 1000));
+        marketQuietUntilMs_ = obs.nowMs + kNoAudienceMs;
+        marketAudienceScanMs_ = 0;
+        planner_.Cooldown(GoalKind::TradeWithPlayer,
+                          obs.nowMs + kNoAudienceMs);
+        planner_.Finish(false, "no player audience at the market", obs.nowMs);
+        return false;
+    }
 
     // ANNOUNCE ON SCHEDULE, NOT ON A HEADCOUNT (design change, 2026-08-30).
     //
@@ -2220,6 +2435,10 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
         tradeAudienceIgnored_ = client.AudienceFingerprint(kTradeEarshot);
         state_.memory.NoteEvent("no_player_buyer", announce.item.c_str(), "",
                                 obs.x, obs.y, obs.nowMs);
+        // A completed WTS cycle is market research, not a repeated no-op. The
+        // remembered fact opens the NPC/material and bank paths, while the
+        // generic spin guard remains reserved for broken instantaneous loops.
+        planner_.NoteProgress();
         tradeAnnounceCount_ = 0;
         marketListenFromMs_ = 0;   // the wait is over; do not inherit it
         // AND STOP SCHEDULING IT for a while. Finishing the goal was not
@@ -2290,6 +2509,29 @@ bool Runner::DriveOpenTrade(Client& client, const Observation& obs) {
     // never be timed correctly. Stamped only while it is still the sentinel
     // 0 (ResetTradeState zeroes it) so it fires exactly once per trade.
     if (tradeOpenedMs_ == 0) tradeOpenedMs_ = obs.nowMs;
+
+    // A commissioned seller may open before the buyer processes READY.
+    // The accepted order already records this partner's exact agreed terms.
+    if (!tradeOffered_ && tradeSellingQty_ == 0 && tradeWantQty_ <= 0) {
+        if (auto* order = ActiveCraftOrder(true, obs.nowMs)) {
+            if (order->phase >= OrderPhase::Accepted &&
+                order->partnerSerial == tr.PartnerSerial()) {
+                const i32 reserve = needCfg_.profession ? needCfg_.profession->goldReserve : 0;
+                const i64 bill = static_cast<i64>(order->terms.qty - order->delivered) * order->terms.pricePerUnit;
+                if (bill > obs.goldOnHand - reserve) {
+                    client.ActionTradeCancel();
+                    return false;
+                }
+                tradeItem_ = order->terms.item;
+                tradeWant_ = order->terms;
+                tradeOrderId_ = order->id;
+                tradeWantQty_ = order->terms.qty - order->delivered;
+                tradeOfferPrice_ = order->terms.pricePerUnit;
+                tradePackBefore_ = market::QtyOf(obs.pack, tradeItem_);
+                tradeGoldBefore_ = obs.goldOnHand;
+            }
+        }
+    }
 
     // A WINDOW THIS SIDE DID NOT PLAN, opened by a seller answering the WTB we
     // broadcast. There is no committed price or quantity because the "heard a
@@ -2371,7 +2613,7 @@ bool Runner::DriveOpenTrade(Client& client, const Observation& obs) {
                 // in -- the committed path samples them when it names a
                 // partner, and this path has no such moment.
                 tradePackBefore_ = market::QtyOf(obs.pack, tradeItem_);
-                tradeGoldBefore_ = obs.gold;
+                tradeGoldBefore_ = obs.goldOnHand;
             }
             // A refusal is left to time out on the window's own give-up
             // clock below rather than retried: there is no second answer to
@@ -2525,6 +2767,7 @@ bool Runner::DriveOpenTrade(Client& client, const Observation& obs) {
 void Runner::ResetTradeState() {
     tradePartner_ = 0;
     tradePartnerName_.clear();
+    tradeOrderId_.clear();
     tradeItem_.clear();
     tradeOffer_ = market::TradeIntent{};
     tradeSellingQty_ = 0;
@@ -2533,6 +2776,7 @@ void Runner::ResetTradeState() {
     tradeOfferedQty_ = 0;
     tradeSeenQty_ = -1;
     tradeSeenQtyMs_ = 0;
+    tradePackRefreshPending_ = false;
     // The broadcast want dies with the errand too -- a plan is only a plan
     // while the goal that made it is running. DriveOpenTrade additionally
     // bounds it by age, because not every stand-down reaches here.
@@ -2548,6 +2792,7 @@ void Runner::ResetTradeState() {
     // "opened 20 minutes ago" and time out the next one instantly.
     tradeOpenedMs_ = 0;
     tradeAnnounceCount_ = 0;
+    marketAudienceScanMs_ = 0;
     tradeDeclined_.clear();
     travelInFlight_ = false;
     // THE TRIP ALLOWANCE IS PER ERRAND, NOT PER LIFE. It was reset only in the
@@ -2722,8 +2967,9 @@ bool Runner::DoBuySupplies(Client& client, const Observation& obs) {
     // band itself uses, spell::ReagentRestockFloor.
     for (usize i = 0; i < reagentWants_.size();) {
         const i32 have = market::QtyOf(obs.pack, reagentWants_[i]);
-        if (have >= spell::ReagentRestockFloor(reagentWants_[i].c_str(),
-                                               obs.gold)) {
+        const i32 floor = obs.gold <= 100 ? 1 :
+            spell::ReagentRestockFloor(reagentWants_[i].c_str(), obs.gold);
+        if (have >= floor) {
             LogLine("supplies: %s is at %d, at or above its low-water mark -- "
                     "off the reagent list", reagentWants_[i].c_str(), have);
             reagentWants_.erase(reagentWants_.begin() +
@@ -2785,7 +3031,9 @@ bool Runner::DoBuySupplies(Client& client, const Observation& obs) {
         // report "nothing short after all" for the very shortfall that
         // selected it. See CraftBatchFromStock (uo/life.h).
         const CraftIntent intent =
-            ChooseCraft(*me, obs,
+            !state_.productionBatch.item.empty()
+                ? ProductionShopping(state_.productionBatch, obs)
+                : ChooseCraft(*me, obs,
                         CraftBatchFromStock(*me, obs, needCfg_.craftBatch,
                                             &craftFocus_),
                         &craftFocus_);
@@ -3039,6 +3287,18 @@ bool Runner::DoBuySupplies(Client& client, const Observation& obs) {
                                                      : craftOutput.c_str(),
                                  supplyItem_, unit, obs.gold, me->goldReserve,
                                  obs.weight, obs.maxWeight, want.qty);
+        if (!state_.productionBatch.item.empty() && !craftOutput.empty()) {
+            const i32 room = std::max(0, static_cast<i32>(obs.maxWeight * 0.8) - obs.weight);
+            if (room < ProductionUnitWeight(supplyItem_)) {
+                LogLine("supplies: no safe carry room for %s -- unloading the production stock", supplyItem_.c_str());
+                return HandOff(GoalKind::BuySupplies, GoalKind::Bank, 15000,
+                               "make room for production inputs", obs.nowMs);
+            }
+            take = std::min({take, want.qty, room / ProductionUnitWeight(supplyItem_)});
+            const auto missing = ProductionShopping(state_.productionBatch, obs).missing;
+            const i32 share = std::max(0, obs.gold - 100) / std::max(1, static_cast<i32>(missing.size()));
+            if (unit > 0) take = std::min(take, share / unit);
+        }
         // AND NEVER MORE THAN THE SHELF HOLDS. Sphere refuses the WHOLE order
         // when the quantity exceeds stock, so one over-ask buys nothing at
         // all rather than buying what is there -- the defect that stalled the
@@ -3060,7 +3320,11 @@ bool Runner::DoBuySupplies(Client& client, const Observation& obs) {
         // small hard floor, and never more than a quarter of the purse in one
         // trip, so a bad price cannot empty a character either.
         constexpr i32 kHardFloor = 100;      // never end a trip broke
-        const i32 above = obs.gold - kHardFloor;
+        // An empty caster pouch must be allowed to spend its emergency
+        // reserve on the reagents that make earning possible again.
+        const bool emergencyReagents = !reagentPick.empty() && obs.gold <= kHardFloor;
+        const i32 above = emergencyReagents ? obs.gold : obs.gold - kHardFloor;
+        if (emergencyReagents) take = std::min(take, 1);
 
         // BUY THE BATCH IN ONE GO. The quarter-purse cap was applied on every
         // pass, so a life bought three bottles, then two, then one, shrinking

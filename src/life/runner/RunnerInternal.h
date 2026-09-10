@@ -24,6 +24,7 @@
 #include "uo/interaction/progress.h"
 #include "uo/market.h"
 #include "uo/newbie_knowledge.h"
+#include "uo/pet.h"
 #include "uo/trade.h"
 #include "uo/combat.h"
 #include "life/runner/NoviceEngage.h"
@@ -184,7 +185,14 @@ constexpr u16 kKatana[]   = {0x13FE, 0x13FF};
 // (runtime/scripts/items/i_profession_cook_barkeep_baker.scp:113-115).
 constexpr u16 kFood[]     = {0x103B, 0x1041, 0x09E9, 0x09EA, 0x098C, 0x160B,
                              0x1040, 0x160A, 0x1608, 0x09B7, 0x09C9,
-                             0x09EB, 0x09F2, 0x097B};
+                             0x09EB, 0x09F2, 0x097B,
+                             // Fruit from the shard's public crop fields.
+                             // All are TYPE=t_fruit (and therefore edible):
+                             // i_fruit_carrot/onion/corn/turnip/grapes.
+                             0x0C77, 0x0C6D, 0x0C7F, 0x0D39, 0x09D1};
+// Ripe, useable crops.  Their TDATA3 fruit goes straight into the backpack
+// when double-clicked; young plants use a different graphic and are ignored.
+constexpr u16 kFoodCrop[] = {0x0C76, 0x0C6F, 0x0C7D, 0x0C62};
 constexpr u16 kGoldCoin   = 0x0EED;             // i_gold
 // i_tongs (0FBB/0FBC) and i_hammer_smith (013E3, dupe 013E4) are both
 // TYPE=t_weapon_mace_smith, which is what the engine gates the menu on.
@@ -882,6 +890,20 @@ inline constexpr const char* kMinocMinePlaceIds[] = {
     "minoc_mine_1_resource_area",
     "minoc_mining_camp_resource_area",
 };
+// Lumberjacks are the other half of Minoc's production chain.  Do not let a
+// remembered Britain stand override their current assignment: the Minoc woods
+// are named atlas resources, so they remain valid when the atlas is rebuilt.
+inline constexpr const char* kMinocLumberPlaceIds[] = {
+    "minoc_territory_woods",
+    "minoc_territory_woods_2",
+    "minoc_territory_woods_3",
+    "minoc_territory_woods_4",
+    "minoc_territory_woods_5",
+    "minoc_territory_woods_6",
+    "minoc_territory_woods_7",
+    "minoc_territory_woods_8",
+    "minoc_territory_woods_9",
+};
 // How far DoMine scans for genuine rock once travel says it has arrived.
 // TravelToResource is satisfied at the resource area's RADIUS (Minoc's is
 // r=20), so "arrived" can still be a full radius from the rock; the scan must
@@ -973,6 +995,10 @@ constexpr u16 kLoomGraphics[] = {
 
 inline u32 FindStation(const Client& client, const u16* graphics, usize n,
                 i32 maxDist, const std::vector<u32>& skip) {
+    // Item lookup ranks by Manhattan distance. The visible square extends
+    // maxDist on BOTH axes (the Britain wheel is 11 east, 8 south from
+    // the workshop arrival tile), so its corners need twice that budget.
+    const i32 searchDistance = maxDist * 2;
     // NEAREST PIECE ACROSS ALL FACINGS, NOT THE FIRST FACING THAT HAS ONE.
     //
     // A loom is two pieces with two graphics. Standing at (1472,1685) with
@@ -985,10 +1011,10 @@ inline u32 FindStation(const Client& client, const u16* graphics, usize n,
     // click loom, then it gives cloth" -- the gesture was right, the piece
     // was wrong.
     u32 best = 0;
-    i32 bestD = maxDist + 1;
+    i32 bestD = searchDistance + 1;
     for (usize i = 0; i < n; ++i) {
         const u32 found =
-            client.FindWorldItemByGraphic(graphics[i], maxDist, skip);
+            client.FindWorldItemByGraphic(graphics[i], searchDistance, skip);
         if (!found) continue;
         i32 x = 0, y = 0; i8 z = 0;
         if (!client.WorldItemPosition(found, &x, &y, &z)) continue;
@@ -1498,6 +1524,14 @@ inline i32 TileDist(i32 ax, i32 ay, i32 bx, i32 by) {
 // `outId` receives the id that matched, for the once-a-trip log line.
 const wm::Place* PickAllowedMine(const world_atlas::Atlas* atlas,
                                  const char** outId);
+
+// Returns the nearest real, untried Minoc lumber resource area.  The caller
+// retains the tried ids for one work session, so a lumberjack starts close to
+// Minoc and only expands its route after exhausting a stand.
+const wm::Place* PickAllowedMinocLumber(const world_atlas::Atlas* atlas,
+                                        i32 x, i32 y,
+                                        const std::vector<std::string>& tried,
+                                        const char** outId);
 
 // Nearest ground a guard will answer on, by Chebyshev tiles. Wind-down needs
 // this because "somewhere safe" and "the bank" are not the same destination

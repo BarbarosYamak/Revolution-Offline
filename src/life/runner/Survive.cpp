@@ -8,6 +8,129 @@ namespace uo::life {
 // to what the old anonymous namespace gave them.
 using namespace runner_detail;
 
+bool Runner::RefillManaWhenSafe(Client& client, const Observation& obs) {
+    const auto* region = client.CurrentRegion();
+    const bool fighting = currentFoe_ != 0 || obs.underAttack || obs.attackersOnMe > 0;
+    const bool safe = !obs.dead && !fighting &&
+        obs.HpFraction() >= needCfg_.healHpFraction &&
+        (obs.hostilesNear == 0 || (region && region->flags.guarded));
+    const bool needsMana = BuildCastsSpells(needCfg_.profession) &&
+        obs.manaMax > 0 && obs.mana < obs.manaMax;
+    // Between casts, repeatedly try Meditation when there is room to stand.
+    // Never replace a cast, movement, healing, or a ready attack with it.
+    if (fighting && needsMana && !obs.dead &&
+        obs.HpFraction() >= needCfg_.healHpFraction &&
+        !client.ActionBusy() && !client.TravelBusy() && !client.Trade().Active() &&
+        obs.nowMs < nextActionMs_ && obs.nowMs >= combatMeditationRetryMs_) {
+        std::vector<Client::HostileHit> close;
+        client.ScanHostiles(2, close);
+        if (close.empty()) {
+            client.ActionUseSkill(rules::kMeditation);
+            combatMeditationRetryMs_ = obs.nowMs + 2000;
+            LogLine("mana: combat opening -- retrying Meditation at %d/%d", obs.mana, obs.manaMax);
+            return true;
+        }
+    }
+    if (!safe || !needsMana) {
+        if (refillingMana_) {
+            LogLine("mana: refill %s at %d/%d", safe ? "complete" : "interrupted by danger",
+                    obs.mana, obs.manaMax);
+            refillingMana_ = false;
+            nextActionMs_ = obs.nowMs;
+        }
+        return false;
+    }
+    // Finish bounded transfers first; do not strand a customer's trade.
+    if (client.Trade().Active()) return false;
+    if (client.ActionBusy()) return true;
+    if (!refillingMana_) {
+        const auto goal = planner_.Current().kind;
+        LeaveGoal(client, goal, GoalKind::IdleBriefly, false, "refill mana while safe");
+        client.ForgetCraftMenu(); // reopen after mana changes the server's filtered recipes
+        if (planner_.Current().active)
+            planner_.Finish(false, "refill mana while safe", obs.nowMs);
+        if (client.TravelBusy()) client.TravelAbort("refill mana while safe");
+        travelInFlight_ = false;
+        refillingMana_ = true;
+        manaLastSeen_ = obs.mana;
+        manaRetryMs_ = obs.nowMs;
+        LogLine("mana: safe at %d/%d -- meditating until full", obs.mana, obs.manaMax);
+    }
+    // Do not restart a successful meditation as each mana point arrives.
+    if (obs.mana > manaLastSeen_) manaRetryMs_ = obs.nowMs + 12000;
+    manaLastSeen_ = obs.mana;
+    if (obs.nowMs >= manaRetryMs_) {
+        client.ActionUseSkill(rules::kMeditation);
+        manaRetryMs_ = obs.nowMs + 12000;
+    }
+    return true;
+}
+
+// CASTER PRESENCE, WITHOUT A BUFF-ICON PROTOCOL.
+//
+// Sphere puts Night Sight, Reactive Armor, Protection, Bless and Magic
+// Reflection on effect layers, but this client has no packet that reports the
+// remaining time on those layers.  Recasting every tick would waste reagents;
+// waiting for an unknown expiry would leave the character bare.  Their shard
+// durations are at least two minutes (and three for all but Bless), so one
+// legal, affordable spell every 75 seconds keeps a rolling set of effects
+// while leaving mana to react to an actual fight.
+bool Runner::MaintainCasterBuffs(Client& client, const Observation& obs) {
+    const prof::Profession* p = needCfg_.profession;
+    if (!p || (p->id != "mage" && p->id != "warlock")) return false;
+    if (obs.dead || obs.underAttack || obs.attackersOnMe > 0 ||
+        obs.hostilesNear > 0 || obs.HpFraction() < needCfg_.healHpFraction ||
+        obs.manaMax <= 0 || client.ActionBusy() || client.TravelBusy() ||
+        client.Trade().Active() || obs.nowMs < casterBuffRetryMs_ ||
+        obs.spellbookSerial == 0)
+        return false;
+
+    spell::LoadSpellTable(client.DataDir());
+    static constexpr const char* kBuffs[] = {
+        "s_night_sight", "s_reactive_armor", "s_protection", "s_bless",
+        "s_magic_reflection"
+    };
+    constexpr usize kBuffCount = sizeof(kBuffs) / sizeof(kBuffs[0]);
+    // Leave enough mana for a Heal/Cure response or a retreat spell after a
+    // cosmetic or defensive refresh; no buff is worth entering a fight empty.
+    const i32 manaReserve = std::max<i32>(8, obs.manaMax / 4);
+    for (usize offset = 0; offset < kBuffCount; ++offset) {
+        const usize index = (casterBuffCursor_ + offset) % kBuffCount;
+        const spell::SpellDef* pick = nullptr;
+        for (const spell::SpellDef& d : spell::SpellTable()) {
+            if (std::strcmp(d.defname, kBuffs[index]) == 0) {
+                pick = &d;
+                break;
+            }
+        }
+        if (!pick || pick->unknownFlags ||
+            obs.SkillTenths(rules::kMagery) < pick->minSkillTenths ||
+            obs.mana < pick->mana || obs.mana - pick->mana < manaReserve ||
+            !BookHasSpell(client, obs.spellbookSerial, pick->spell))
+            continue;
+        bool supplied = true;
+        for (const char* reagent : pick->reagents) {
+            if (!reagent) break;
+            if (market::QtyOf(obs.pack, reagent) < 1) {
+                supplied = false;
+                break;
+            }
+        }
+        if (!supplied) continue;
+
+        casterBuffCursor_ = (index + 1) % kBuffCount;
+        constexpr i64 kCasterBuffRefreshMs = 75 * 1000;
+        casterBuffRetryMs_ = obs.nowMs + kCasterBuffRefreshMs;
+        LogLine("caster_buff: cast=%s mana=%d/%d", pick->name, obs.mana,
+                obs.manaMax);
+        client.ActionCastSpell(pick->spell, client.PlayerSerial());
+        return true;
+    }
+    // The book, skill, mana or reagent state can change on the next tick;
+    // only throttle a successful attempt, never a temporarily unavailable one.
+    return false;
+}
+
 
 // --- survival --------------------------------------------------------------
 //
@@ -143,9 +266,10 @@ bool Runner::CallGuardsIfProtected(Client& client, const Observation& obs) {
     if (lastGuardCallMs_ != 0 &&
         obs.nowMs - lastGuardCallMs_ < kGuardCallIntervalMs) return true;
     lastGuardCallMs_ = obs.nowMs;
-    // The wording is deliberately about what is TRUE at the call: the keeper
-    // (KeepCallingGuards) shouts for a hostile merely in sight as well as one
-    // already swinging, so "on me" was a claim this line could not make.
+    // The keeper only reaches this call for an active attack, or for a badly
+    // hurt retreat that still has a hostile in sight.  A stranger who merely
+    // enters the scan is not an emergency and must not create town-wide guard
+    // spam.
     LogLine("interrupt=GUARDS reason=\"at %.0f%% HP inside %s with %d "
             "hostile(s) in sight (%d on me) -- calling the guards\"",
             obs.HpFraction() * 100.0, here->name.c_str(), obs.hostilesNear,
@@ -171,19 +295,19 @@ bool Runner::CallGuardsIfProtected(Client& client, const Observation& obs) {
 // worth exactly what he asked of it.
 //
 // So the shout is a per-tick keeper, not a branch: every tick, under whatever
-// goal, while something hostile is in sight or on us -- or while a survival
-// retreat is still in flight and this life is still hurt -- if this tile is
-// guarded, call. The 15 s throttle inside CallGuardsIfProtected is what keeps
-// one answer from becoming a packet storm; nothing here bypasses it.
+// goal, while the character is actively attacked -- or while a badly hurt
+// survival retreat still has a hostile in sight -- if this tile is guarded,
+// call. The 15 s throttle inside CallGuardsIfProtected bounds legitimate
+// retries; a visible-but-peaceful character never enters this path.
 void Runner::KeepCallingGuards(Client& client, const Observation& obs) {
     if (!obs.inWorld || obs.dead) return;
-    const bool threatened =
-        obs.underAttack || obs.attackersOnMe > 0 || obs.hostilesNear > 0;
-    // A retreat flag left set after the danger passed is not a reason to
-    // shout at an empty street: full health and nothing in sight means there
-    // is nothing to call the guards about.
-    const bool retreatingHurt = survivalRetreat_ && obs.HpFraction() < 1.0;
-    if (!threatened && !retreatingHurt) return;
+    const bool underActiveAttack = obs.underAttack || obs.attackersOnMe > 0;
+    // Retain the town-line rescue case without letting a stale retreat flag
+    // repeatedly summon guards.  The character must be substantially hurt
+    // and the pursuer must still be observable.
+    const bool woundedRetreatWithPursuer =
+        survivalRetreat_ && obs.HpFraction() <= 0.50 && obs.hostilesNear > 0;
+    if (!underActiveAttack && !woundedRetreatWithPursuer) return;
     CallGuardsIfProtected(client, obs);
 }
 
@@ -274,6 +398,12 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
         // that the graveyard is dangerous -- which it already knew.
         if (!deathBlamed_) {
             deathBlamed_ = true;
+            ghostTrips_ = 0;
+            ghostHealerAvoid_.clear();
+            ghostHealerTarget_ = 0;
+            ghostHealerAsked_ = 0;
+            ghostHealerAskMs_ = 0;
+            ghostHealerScanAtMs_ = 0;
             // A live corpse serial cannot survive a reconnect, but this
             // location can.  Save it immediately: dying must not make loot
             // recovery depend on keeping the original client process alive.
@@ -302,6 +432,19 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
         // travelling creates a busy action and strands the ghost in place.
         if (travelInFlight_ && !client.TravelBusy()) {
             travelInFlight_ = false;
+            if (!client.TravelSucceeded() && ghostHealerTarget_) {
+                const u32 failedHealer = ghostHealerTarget_;
+                ghostHealerTarget_ = 0;
+                if (std::find(ghostHealerAvoid_.begin(), ghostHealerAvoid_.end(),
+                              failedHealer) == ghostHealerAvoid_.end()) {
+                    ghostHealerAvoid_.push_back(failedHealer);
+                }
+                LogLine("dead: healer 0x%08X could not be reached (%s); trying another",
+                        failedHealer, client.TravelFailureText());
+                nextActionMs_ = obs.nowMs + 2000;
+                return false;
+            }
+            ghostHealerTarget_ = 0;
             LogLine("dead: arrived at healer destination -- scanning nearby healers");
             client.ActionScanMobiles();
             nextActionMs_ = obs.nowMs + 2000;
@@ -309,7 +452,17 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
         }
         if (client.ActionBusy()) return false;
 
-        const u32 healer = client.NearestMobileWithTrade("healer");
+        // The atlas records where a healer normally belongs, but a ghost can
+        // meet a wandering healer on the road. Keep requesting paperdolls
+        // while travelling, not only after arriving at a fixed landmark. The
+        // scan is human-only inside Client, so it cannot mount passing pets.
+        constexpr i64 kGhostHealerScanMs = 2500;
+        if (obs.nowMs >= ghostHealerScanAtMs_) {
+            client.ActionScanMobiles();
+            ghostHealerScanAtMs_ = obs.nowMs + kGhostHealerScanMs;
+        }
+
+        const u32 healer = client.NearestMobileWithTrade("healer", ghostHealerAvoid_);
         if (healer) {
             i32 hx = 0, hy = 0; i8 hz = 0;
             // Healers commonly stand behind a counter or in a small room.
@@ -318,11 +471,44 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
             // the NPC's sealed tile through the wall.
             // Sphere's NPC_LookAtCharHealer requires distance <= 3.
             constexpr i32 kHealerReach = 2;
+            if (client.MobilePosition(healer, &hx, &hy, &hz)) {
+                // A visible healer is better evidence than an atlas point.
+                // Replace a fixed-service trip (or a trip toward another
+                // healer) immediately; the Client journey keeps the chosen
+                // healer's stand tile current when it wanders.
+                if (client.TravelBusy() && ghostHealerTarget_ != healer) {
+                    client.TravelAbort("visible wandering healer supersedes route");
+                    travelInFlight_ = false;
+                    ghostHealerTarget_ = 0;
+                }
+            }
             if (client.MobilePosition(healer, &hx, &hy, &hz) &&
-                TileDist(obs.x, obs.y, hx, hy) > kHealerReach && !client.TravelBusy()) {
-                LogLine("dead: a healer is here -- getting close enough to be "
-                        "raised");
-                travelInFlight_ = client.TravelToEntity(healer, kHealerReach);
+                TileDist(obs.x, obs.y, hx, hy) > kHealerReach) {
+                // Keep walking.  The old `&& !TravelBusy()` condition fell
+                // through to the speech arm while the ghost was still across
+                // the room, so Ayuna quite correctly answered "What?" and
+                // the incomplete trip looked like a failed resurrection.
+                if (!client.TravelBusy()) {
+                    LogLine("dead: a healer is here -- getting close enough to be "
+                            "raised");
+                    travelInFlight_ = client.TravelToEntity(healer, kHealerReach);
+                    if (travelInFlight_) ghostHealerTarget_ = healer;
+                }
+            } else if (client.MobilePosition(healer, &hx, &hy, &hz)) {
+                // A healer normally notices a nearby ghost on its own tick,
+                // but that is not dependable after reconnecting into a busy
+                // room. Ask it as a player would. Sphere's healer verb is the
+                // bare "resurrect" command; a paperdoll-addressed sentence
+                // reaches the NPC as ordinary speech and receives "What?".
+                // The throttle leaves time for the server's reply.
+                constexpr i64 kGhostHealerAskMs = 8000;
+                if (ghostHealerAsked_ != healer ||
+                    obs.nowMs - ghostHealerAskMs_ >= kGhostHealerAskMs) {
+                    LogLine("dead: asking healer 0x%08X to resurrect us", healer);
+                    client.ActionSay("resurrect");
+                    ghostHealerAsked_ = healer;
+                    ghostHealerAskMs_ = obs.nowMs;
+                }
             }
             nextActionMs_ = obs.nowMs + 4000;
             return false;
@@ -346,6 +532,12 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
     // Alive again: the next death is a new death, and a new verdict.
     deathBlamed_ = false;
     deathKillerName_.clear();
+    ghostTrips_ = 0;
+    ghostHealerAvoid_.clear();
+    ghostHealerTarget_ = 0;
+    ghostHealerAsked_ = 0;
+    ghostHealerAskMs_ = 0;
+    ghostHealerScanAtMs_ = 0;
 
     std::vector<Client::HostileHit> hostiles;
     client.ScanHostiles(12, hostiles);
@@ -394,6 +586,30 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
         ? needCfg_.profession->combatStrategy : CombatStrategyId::Melee;
     const int attackSpell = strategy == CombatStrategyId::Mage
         ? PickSurvivalSpell(client, obs, false) : -1;
+    // A defensive spell can race the target's movement just like an opening
+    // hunt cast.  Treat the server rejection as authoritative and remove that
+    // foe from this short fight window, so the next decision selects another
+    // attacker or retreats instead of casting through the same wall again.
+    if (strategy == CombatStrategyId::Mage) {
+        // A later action may have replaced the rejected cast before this
+        // survival tick.  Consume the packet-time target first so a hostile
+        // behind cover cannot monopolize a defensive fight.
+        u32 refused = client.TakeSpellReachRefusalTarget();
+        if (refused == 0 && !client.ActionBusy() &&
+            client.ActionKind() == act::Kind::CastSpell &&
+            client.ActionResult() == act::Result::Rejected)
+            refused = client.CurrentAction().destination;
+        if (refused != 0 && refused != client.PlayerSerial()) {
+            if (casterReachRefusedTarget_ != refused) {
+                LogLine("combat: server refused line of sight to 0x%08X -- "
+                        "changing target or retreating", refused);
+                casterReachRefusedTarget_ = refused;
+            }
+            MarkUnreachable(refused, obs.nowMs);
+            if (huntApproachTarget_ == refused) huntApproachTarget_ = 0;
+            if (currentFoe_ == refused) currentFoe_ = 0;
+        }
+    }
     if (strategy == CombatStrategyId::Mage && attackSpell < 0 && needCfg_.profession) {
         const SchoolWeapon* fallback = SchoolWeaponFor(*needCfg_.profession);
         if (fallback && obs.SkillTenths(fallback->skill) > 0)
@@ -468,9 +684,21 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
     // Company raises the margin by one blow, not by the whole yard --
     // NoviceEngage.h RetreatBoard explains why max(attackers, inReach) was
     // the in-reach veto wearing a health bar.
+    i32 support = 0;
+    for (const auto& h : hostiles) {
+        support = std::max(support, HuntSupport(client, obs, h.serial));
+        if (client.IsAttackingMe(h.serial) && client.KnownPlayer(h.serial) && !h.name.empty()) {
+            bool recorded = false;
+            for (const auto& event : state_.memory.Events())
+                if (event.kind == "attacked_by_player" && event.detail == h.name) recorded = true;
+            if (!recorded)
+                state_.memory.NoteEvent("attacked_by_player", h.name.c_str(), "combat",
+                                       obs.x, obs.y, obs.nowMs);
+        }
+    }
     const i32 board = static_cast<i32>(
         novice::RetreatBoard(static_cast<int>(obs.attackersOnMe),
-                             static_cast<int>(inReach)));
+                             std::max(obs.attackersOnMe, inReach - support)));
     const double retreatFloor =
         novice::RetreatFloorFraction(static_cast<int>(board), obs.hpMax);
     const bool floorBinds = retreatFloor > bailAt;
@@ -498,7 +726,19 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
     const bool novicePolicy =
         novice::IsNovice(static_cast<int>(BestWeaponSkillTenths(obs)), obs.hpMax);
     const i32 crowdTolerated =
-        novicePolicy ? 1 : std::min(2, 1 + static_cast<i32>(nerve * 4.0));
+        novicePolicy ? novice::GroupAttackerLimit(support) : std::min(2, 1 + static_cast<i32>(nerve * 4.0));
+    // Hostile attribution can lag the visible world by a tick.  A damaged
+    // character boxed in by a graveyard pack must leave on that evidence;
+    // waiting for all of them to become named attackers was the last two
+    // seconds of several fleet deaths.
+    const bool woundedCrowd = obs.HpFraction() <= std::max(bailAt, 0.70) &&
+        inReach >= 2 && obs.hostilesNear >= 3;
+    // A normal bank errand has no claim on a character who is already hurt
+    // and under attack.  Convert it to the owned survival retreat before the
+    // fight path can cancel the journey to cast or swing.
+    const bool bankRunInterrupted = !survivalRetreat_ && client.TravelBusy() &&
+        (obs.underAttack || obs.attackersOnMe > 0) &&
+        (obs.HpFraction() <= 0.75 || inReach >= 2);
     // A FIGHT ENDS ON ATTACKERS OR ON HEALTH, NOT ON BYSTANDERS (owner ruling,
     // 2026-09-07, "novice rule too strict"). The 3+ ceiling
     // (novice::kNoviceCrowdCeiling) still refuses to OPEN on that board -- it
@@ -509,11 +749,14 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
     // 100% health with the target still alive, and the session killed nothing
     // (g_Hector.console.txt:518,539,946,967). in_reach is still counted, still
     // logged, and still buys a blow of retreat margin through RetreatBoard.
-    if (novice::ShouldBreakContact(avoidCombatDisengage, obs.attackersOnMe,
+    if (bankRunInterrupted || woundedCrowd ||
+        novice::ShouldBreakContact(avoidCombatDisengage, obs.attackersOnMe,
                                    static_cast<int>(crowdTolerated),
                                    obs.HpFraction(), bailAt)) {
-        LogLine("interrupt=FLEE reason=\"HP %.0f%%; %d attacker(s); bail at %.0f%% "
+        LogLine("interrupt=FLEE reason=\"%sHP %.0f%%; %d attacker(s); bail at %.0f%% "
                 "(retreat floor %.0f%% for %d on the board%s)\"",
+                bankRunInterrupted ? "bank trip interrupted: " :
+                woundedCrowd ? "wounded hostile crowd: " : "",
                 obs.HpFraction() * 100.0, obs.attackersOnMe, bailAt * 100.0,
                 retreatFloor * 100.0, board, floorBinds ? ", binding" : "");
         LogLine("disengage=yes attackers=%d in_reach=%d tolerate=%d novice=%d "
@@ -525,6 +768,8 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
                                             "Magery can cast"
                 : !rangedHasAmmo          ? "no arrows left to shoot with"
                 : avoidCombatDisengage    ? "this life avoids combat"
+                : bankRunInterrupted        ? "bank journey crossed an active attacker"
+                : woundedCrowd              ? "hurt among several nearby hostiles"
                 : obs.attackersOnMe > crowdTolerated ? "more attackers than "
                                                        "this nerve stands in"
                 : floorBinds              ? "not enough health left to walk out "
@@ -560,6 +805,76 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
                                     "", obs.x, obs.y, obs.nowMs);
         }
         CallGuardsIfProtected(client, obs);
+
+        // Two attackers remain a hard novice stop.  A healthy trainee should
+        // not, however, cross the whole world to a bank just to resume the
+        // same weak hunting ground thirty seconds later.  Move it to the
+        // patrol lane furthest from the present attackers, and let the normal
+        // survival-retreat keeper own that journey.  If the move cannot be
+        // started (or danger persists after it arrives), the existing banker
+        // retreat takes over unchanged.
+        // SURVIVE preempts TRAIN_COMBAT the instant a hostile answers, so the
+        // planner's current slot is usually Survive precisely when this code
+        // needs to preserve the hunt. `currentFoe_` is the fight ownership
+        // TrainCombat recorded when it opened the target; keep that evidence
+        // alongside the direct goal check instead of sending a healthy novice
+        // to the bank merely because survival correctly preempted it.
+        const bool combatTraining =
+            planner_.Current().kind == GoalKind::TrainCombat || currentFoe_ != 0;
+        if (combatTraining && huntCrowdMoves_ >= 2) {
+            ++huntGroundRotation_;
+            huntCrowdMoves_ = 0;
+            LogLine("hunt: repeated crowded pulls -- next outing uses another graveyard");
+            RetreatToSafety(client);
+            nextActionMs_ = obs.nowMs + 2000;
+            return false;
+        }
+        if (novice::MayRepositionWithinHunt(novicePolicy, combatTraining,
+                                            obs.attackersOnMe, crowdTolerated,
+                                            obs.HpFraction())) {
+            const auto* atlas = client.WorldAtlas();
+            const auto* ground = atlas
+                ? atlas->NearestHuntingGroundOfTier(world_atlas::HuntTier::Weak,
+                                                     obs.x, obs.y, 64)
+                : nullptr;
+            if (ground) {
+                const auto points = atlas->HuntingPatrol(*ground);
+                const wm::Point* safest = nullptr;
+                i32 bestFoeDistance = -1;
+                i32 bestTravelDistance = -1;
+                for (const wm::Point& point : points) {
+                    const i32 travelDistance = TileDist(obs.x, obs.y, point.x, point.y);
+                    if (travelDistance < 5) continue;
+                    i32 nearestFoe = 0;
+                    for (const Client::HostileHit& h : hostiles) {
+                        const i32 d = TileDist(point.x, point.y, h.x, h.y);
+                        if (nearestFoe == 0 || d < nearestFoe) nearestFoe = d;
+                    }
+                    if (!safest || nearestFoe > bestFoeDistance ||
+                        (nearestFoe == bestFoeDistance &&
+                         travelDistance > bestTravelDistance)) {
+                        safest = &point;
+                        bestFoeDistance = nearestFoe;
+                        bestTravelDistance = travelDistance;
+                    }
+                }
+                if (safest) {
+                    client.TravelAbort("healthy novice changing crowded hunt lane");
+                    travelInFlight_ = client.TravelToPoint(
+                        safest->x, safest->y, 2, "safe novice hunt lane");
+                    if (travelInFlight_) {
+                        ++huntCrowdMoves_;
+                        survivalRetreat_ = true;
+                        LogLine("hunt: novice crowd at %d,%d; changing to safe lane %d,%d "
+                                "(nearest attacker %d tiles from destination)",
+                                obs.x, obs.y, safest->x, safest->y, bestFoeDistance);
+                        nextActionMs_ = obs.nowMs + 2000;
+                        planner_.NoteProgress();
+                        return false;
+                    }
+                }
+            }
+        }
         RetreatToSafety(client);
         nextActionMs_ = obs.nowMs + 2000;
         // A RETREAT THAT IS MOVING IS NOT A FAILED ATTEMPT.
@@ -579,15 +894,41 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
         return false;
     }
 
+    // Once an escape owns the journey, survival never abandons it just to
+    // exchange another spell or swing.  This is especially important for
+    // mages: the old defensive branch cancelled a banker retreat and stood in
+    // the cemetery again whenever one attacker remained visible.
+    if (survivalRetreat_) {
+        client.EnsurePeaceMode();
+        for (const Client::HostileHit& h : hostiles)
+            MarkUnreachable(h.serial, obs.nowMs);
+        nextActionMs_ = obs.nowMs + 2000;
+        return false;
+    }
+
     // Fight back at whatever is actually on us. Never pick a NEW fight here:
     // this goal exists because something already started one.
     const Client::HostileHit* target = nullptr;
+    // The attacker named by the shard wins over the foe we happened to be
+    // hunting.  In a graveyard a stale hunt target can be behind a wall or
+    // across the pack; casting at it produced an immediate line-of-sight
+    // refusal while the Zombie already hitting us went unanswered.
     for (const Client::HostileHit& h : hostiles) {
         if (IsUnreachable(h.serial, obs.nowMs)) continue;
-        if (h.serial == currentFoe_) { target = &h; break; }
+        if (!client.IsAttackingMe(h.serial)) continue;
         if (!target || TileDist(h.x, h.y, obs.x, obs.y) <
                            TileDist(target->x, target->y, obs.x, obs.y)) {
             target = &h;
+        }
+    }
+    if (!target) {
+        for (const Client::HostileHit& h : hostiles) {
+            if (IsUnreachable(h.serial, obs.nowMs)) continue;
+            if (h.serial == currentFoe_) { target = &h; break; }
+            if (!target || TileDist(h.x, h.y, obs.x, obs.y) <
+                               TileDist(target->x, target->y, obs.x, obs.y)) {
+                target = &h;
+            }
         }
     }
     if (!target) {
@@ -597,6 +938,7 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
     }
 
     const i32 dist = TileDist(target->x, target->y, obs.x, obs.y);
+    HuntSupport(client, obs, target->serial, true);
 
     if (strategy == CombatStrategyId::Mage) {
         // Defensive casts at a lawful hostile, from actual book/reagents.
@@ -641,6 +983,7 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
                 ? PickSurvivalSpell(client, obs, true) : -1;
             const int poison = heal < 0 && poisonOpenedTarget_ != target->serial
                 ? PickPoisonOpener(client, obs) : -1;
+            casterReachRefusedTarget_ = 0;
             client.ActionCastSpell(heal >= 0 ? heal : poison >= 0 ? poison : attackSpell,
                                   heal >= 0 ? client.PlayerSerial() : target->serial);
             if (poison >= 0) poisonOpenedTarget_ = target->serial;
@@ -1071,9 +1414,13 @@ bool Runner::DoHeal(Client& client, const Observation& obs) {
                 obs.hpMax > 0 && (obs.hp * 100) / obs.hpMax > 60;
             const u32 potion = client.FindBackpackItemByGraphic(kHealPotion);
             if (aboveSurvivalLine && !client.ActionBusy() && potion != 0) {
-                client.ActionUseObject(potion);
-                nextActionMs_ = obs.nowMs + 2500;
-                planner_.NoteProgress();
+                if (client.ActionDrinkPotion(potion)) {
+                    nextActionMs_ = obs.nowMs + 2500;
+                    planner_.NoteProgress();
+                } else {
+                    nextActionMs_ = obs.nowMs + 1000;
+                    planner_.NoteAttempt(obs.nowMs);
+                }
             } else {
                 nextActionMs_ = obs.nowMs + 2000;
                 planner_.NoteAttempt(obs.nowMs);

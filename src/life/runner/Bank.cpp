@@ -11,6 +11,10 @@ using namespace runner_detail;
 
 void Runner::IssueBankItemMove(Client& client, const Observation& obs,
                                u32 serial, u16 amount, u32 box) {
+    bankItemMoveJournalMs_ = client.JournalNowMs();
+    bankItemMoveSerial_ = serial;
+    bankItemMoveDestination_ = box;
+    bankItemMoveAmount_ = amount;
     client.ActionMoveItem(serial, amount, box);
     bankItemMovePending_ = true;
     nextActionMs_ = obs.nowMs + 1500;
@@ -19,6 +23,26 @@ void Runner::IssueBankItemMove(Client& client, const Observation& obs,
 bool Runner::SettleBankItemMove(Client& client, const Observation& obs) {
     if (!bankItemMovePending_ || client.ActionBusy()) return false;
     bankItemMovePending_ = false;
+
+    // Sphere may remove the dragged item before reporting a full bank and
+    // bouncing it back. That early removal is not a successful deposit.
+    if (client.JournalSaidSince("bankbox can't hold more weight", bankItemMoveJournalMs_)) {
+        if (bankItemMoveAmount_ > 1 && client.BankOpenTileHeld()) {
+            const u16 smaller = bankItemMoveAmount_ / 2;
+            LogLine("bank: %u units exceed remaining capacity -- retrying %u",
+                    bankItemMoveAmount_, smaller);
+            IssueBankItemMove(client, obs, bankItemMoveSerial_, smaller, bankItemMoveDestination_);
+            return true;
+        }
+        LogLine("bank: this item cannot fit -- reopening the player-market option for surplus stock");
+        state_.memory.NoteEvent("bank_capacity_exhausted", "deposit refused; seek a buyer",
+                                "", obs.x, obs.y, obs.nowMs);
+        marketQuietUntilMs_ = 0;
+        planner_.ClearCooldown(GoalKind::TradeWithPlayer);
+        HandOff(GoalKind::Bank, GoalKind::TradeWithPlayer, 300000,
+                "bank full; offer surplus to players before retrying storage", obs.nowMs);
+        return true;
+    }
 
     const act::Result r = client.ActionResult();
     if (r == act::Result::Success) {
@@ -78,6 +102,10 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
 
         // Read the LAST deposit before asking for another one.
         if (SettleBankItemMove(client, obs)) return false;
+        if (productionWithdrawalPending_) {
+            productionWithdrawalPending_ = false;
+            if (client.ActionResult() == act::Result::Success) return true;
+        }
 
         // STAND STILL TO USE THE BOX. The bank box only answers from the tile
         // it was opened on (Source-X CClientEvent.cpp:448-467 for drops,
@@ -93,6 +121,67 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
             planner_.NoteAttempt(obs.nowMs);
             nextActionMs_ = obs.nowMs + 1000;
             return false;
+        }
+
+        if (auto* order = ActiveCraftOrder(false, obs.nowMs)) {
+            const auto* profession = needCfg_.profession;
+            const bool ownSupply = profession && std::find(profession->consumes.begin(),
+                profession->consumes.end(), order->terms.item) != profession->consumes.end();
+            const i32 missing = order->terms.qty - order->delivered + (ownSupply ? 20 : 0) -
+                                market::QtyOf(obs.pack, order->terms.item);
+            if (missing > 0 && obs.WeightFraction() < 0.80) {
+                i32 available = 0;
+                const u32 stack = FindContainerItemByName(client, box, order->terms.item.c_str(), &available);
+                const i32 room = std::max(0, static_cast<i32>(obs.maxWeight * 0.85) - obs.weight);
+                const i32 unitWeight = order->terms.item == "i_bandage" ? 1 : ProductionUnitWeight(order->terms.item);
+                const i32 take = std::min({missing, available, room / unitWeight});
+                if (stack && take > 0) {
+                    LogLine("order: withdrawing %d %s for customer delivery", take, order->terms.item.c_str());
+                    IssueBankItemMove(client, obs, stack, static_cast<u16>(take), client.BackpackSerial());
+                    productionWithdrawalPending_ = true;
+                    return false;
+                }
+            }
+        }
+
+        const i32 smithCarried = market::QtyOf(obs.pack, "i_ingot_iron") +
+                                 market::QtyOf(obs.pack, "i_ore_iron");
+        if (state_.productionBatch.item.empty() && state_.smithTrainingBatchActive && smithCarried < kSmithTrainingRefill &&
+            obs.maxWeight > 0 && obs.WeightFraction() < 0.65) {
+            for (const char* item : {"i_ingot_iron", "i_ore_iron"}) {
+                i32 available = 0;
+                const u32 stack = FindContainerItemByName(client, box, item, &available);
+                // i_provisions_ore.scp: both iron ore and ingots weigh 2 stones.
+                const i32 unitWeight = 2;
+                const i32 room = (static_cast<i32>(obs.maxWeight * 0.65) - obs.weight) / unitWeight;
+                const i32 take = std::min(available, room);
+                if (!stack || take <= 0) continue;
+                LogLine("smith_batch: withdrawing %d %s for bulk training", take, item);
+                IssueBankItemMove(client, obs, stack, static_cast<u16>(take), client.BackpackSerial());
+                productionWithdrawalPending_ = true;
+                return false;
+            }
+        }
+
+        if (state_.productionBatch.phase == ProductionPhase::Work && obs.WeightFraction() < 0.65) {
+            const prod::Recipe* recipe = prod::FindRecipe(state_.productionBatch.item.c_str());
+            if (recipe) for (const prod::Ingredient& input : recipe->inputs) {
+                if (!input.item || input.qty <= 0) continue;
+                const i32 carried = market::QtyOf(obs.pack, input.item) +
+                    (std::string(input.item) == "i_ingot_iron" ? market::QtyOf(obs.pack, "i_ore_iron") : 0);
+                if (carried >= input.qty) continue;
+                const char* item = input.item;
+                if (std::string(item) == "i_ingot_iron" && market::QtyOf(obs.bank, item) == 0)
+                    item = "i_ore_iron";
+                i32 available = 0;
+                const u32 stack = FindContainerItemByName(client, box, item, &available);
+                const i32 take = ProductionWithdrawalQty(state_.productionBatch, obs, input, available);
+                if (!stack || take <= 0) continue;
+                LogLine("production_batch: withdrawing %d %s for %s", take, item, recipe->output);
+                IssueBankItemMove(client, obs, stack, static_cast<u16>(take), client.BackpackSerial());
+                productionWithdrawalPending_ = true;
+                return false;
+            }
         }
 
         if (needCfg_.profession && needCfg_.profession->combatStrategy == CombatStrategyId::Ranged) {
@@ -296,11 +385,15 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
         // working change; the rest goes in before anything else is considered.
         {
             const u32 coin = client.FindBackpackItemByGraphic(kGoldCoin);
-            const i32 keep =
+            const i32 routineKeep =
                 std::min(needCfg_.profession ? needCfg_.profession->goldReserve
                                              : 0,
                          kMaxGoldCarriedRt) +
                 kGoldWorthCarryingRt;
+            // A purchase just withdrew its quoted amount from this very box.
+            // Do not let the routine full-loot deposit undo that withdrawal
+            // before the market or vendor errand receives its next tick.
+            const i32 keep = std::max(routineKeep, coinWanted_);
             // WHAT IS CARRIED, NOT WHAT IS OWNED. obs.gold is the status-bar
             // figure and counts the bank box, so this asked to deposit 8,785
             // coins one second after withdrawing 700 -- undoing the errand
@@ -308,7 +401,7 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
             const i32 spare = obs.goldOnHand - keep;
             if (coin && spare > 0 && !client.ActionBusy()) {
                 LogLine("bank: depositing %d gold, keeping %d for this life's "
-                        "own errands", spare, keep);
+                        "own errands or a pending purchase", spare, keep);
                 client.ActionMoveItem(coin, static_cast<u16>(spare), box);
                 // An ASK, not yet progress -- settled at the top of this
                 // block on the tick after it lands (or does not).
@@ -338,6 +431,13 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
                 const u32 serial =
                     FindBackpackItemByName(client, made.c_str(), &amount);
                 if (!serial || amount <= 0) continue;
+                if (auto* order = ActiveCraftOrder(false, obs.nowMs)) {
+                    if (order->terms.item == made) {
+                        amount = std::min(amount, std::max(0, market::QtyOf(obs.pack, made) -
+                            (order->terms.qty - order->delivered)));
+                        if (amount == 0) continue;
+                    }
+                }
                 // HALF-MADE WORK IS NOT A DEPOSIT. The tailor's `produces`
                 // opens with i_cloth_bolt, so this branch banked the very bolt
                 // MAKE_CLOTH was about to cut. See WoolChainWorkInProgress.
@@ -424,6 +524,8 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
         if (needCfg_.profession) {
             const i32 keepToWorkWith = needCfg_.craftBatch * 2;
             for (const std::string& made : needCfg_.profession->produces) {
+                if (!loadDemandsIt && state_.productionBatch.phase == ProductionPhase::Work &&
+                    market::QtyOf(ProductionInputs(state_.productionBatch), made) > 0) continue;
                 if (made == "i_arrow" && needCfg_.profession->combatStrategy == CombatStrategyId::Ranged) continue;
                 if (market::MaySellToNpc(*needCfg_.profession, made.c_str(),
                                          state_.ledger).allowed)
@@ -438,7 +540,13 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
                     FindBackpackItemByName(client, made.c_str(), &amount);
                 if (!serial || amount <= keepToWorkWith) continue;
 
-                const i32 put = amount - keepToWorkWith;
+                i32 put = amount - keepToWorkWith;
+                if (auto* order = ActiveCraftOrder(false, obs.nowMs)) {
+                    if (order->terms.item == made)
+                        put = std::min(put, std::max(0, market::QtyOf(obs.pack, made) -
+                            (order->terms.qty - order->delivered)));
+                }
+                if (put == 0) continue;
                 LogLine("bank: storing %d %s until there is an order for it "
                         "(keeping %d to work with; no NPC buys it and the "
                         "player market was quiet)",
@@ -479,6 +587,8 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
                 }
             }
             for (const std::string& input : inputs) {
+                if (auto* order = ActiveCraftOrder(false, obs.nowMs))
+                    if (order->terms.item == input) continue;
                 const i32 keep = BankInputReserve(
                     needCfg_.profession->combatStrategy == CombatStrategyId::Mage,
                     input, needCfg_.craftBatch, obs.gold);

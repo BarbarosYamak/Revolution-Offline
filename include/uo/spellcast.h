@@ -450,8 +450,10 @@ inline i32 CastsOf(const PracticeSight& see, int spell) {
 //
 // `SKILLREQ=MAGERY <n>` is a HARD gate: below it the server refuses the cast,
 // so a spell is only a candidate at all when this character's Magery has
-// reached its circle. Above that, harder is better -- which is why the choice
-// walks circles DOWNWARD and stops at the first one it can pay for.
+// reached its circle.  It is not a success guarantee, though.  Delys at
+// Magery 50.0 repeatedly fizzled Greater Heal (SKILLREQ 40.0), while lower
+// circles succeeded; practice therefore keeps a margin where the book offers
+// one instead of treating the hard gate as a reliable cast threshold.
 //
 // How far below the character's skill a spell stops teaching anything is
 // UNKNOWN on this shard: `[SKILL 25] ADV_RATE=10.0,200.0,800.0`
@@ -474,6 +476,14 @@ inline i32 CircleSpacingTenths() {
     return (hi > lo) ? (hi - lo) : 100;
 }
 
+// Fifteen points is a success-oriented gap without making early practice
+// impossible: at 50.0 it selects the 30.0 third circle, at 40.0 the 20.0
+// second circle, and a fresh 10.0 mage still falls back to its only first
+// circle spell.  It also matches the evenly spaced ladder exported from this
+// shard: new spells become the reliable practice rung one-and-a-half circles
+// after their hard requirement, then stay useful while they gain skill.
+inline constexpr i32 kPracticeReliabilityMarginTenths = 150;
+
 // The best spell this character holds, may safely cast at itself, has the
 // skill and mana for, has not been refused, and can pay for in reagents --
 // preferring the highest circle in the gain window and rotating within it so
@@ -490,6 +500,7 @@ inline PracticeChoice ChoosePracticeSpell(const PracticeSight& see) {
     // Candidates: in the book, safe on oneself, skill and mana affordable,
     // not refused by the server this session.
     std::vector<const SpellDef*> cand;
+    std::vector<const SpellDef*> reliable;
     bool anyInBook = false;
     i32 manaNeeded = 0;
     for (int s : see.inBook) {
@@ -509,10 +520,18 @@ inline PracticeChoice ChoosePracticeSpell(const PracticeSight& see) {
                 manaNeeded = d->mana;
             // If both inputs are missing, retain the reagent shopping list.
             // Low mana must not disguise a usable book as an empty one.
-            if (!stocked) cand.push_back(d);
+            if (!stocked) {
+                cand.push_back(d);
+                if (see.magery >= d->minSkillTenths +
+                                      kPracticeReliabilityMarginTenths)
+                    reliable.push_back(d);
+            }
             continue;
         }
         cand.push_back(d);
+        if (see.magery >= d->minSkillTenths +
+                              kPracticeReliabilityMarginTenths)
+            reliable.push_back(d);
     }
     if (cand.empty()) {
         if (manaNeeded > 0) {
@@ -527,8 +546,15 @@ inline PracticeChoice ChoosePracticeSpell(const PracticeSight& see) {
         return out;
     }
 
+    // Use a spell with a demonstrated skill margin whenever the book has one.
+    // `cand` remains the fallback for new mages whose first circle is their
+    // only legal spell; standing idle would be worse than an occasional early
+    // fizzle, but an experienced caster must not keep repeating one.
+    const std::vector<const SpellDef*>& preferred =
+        reliable.empty() ? cand : reliable;
     int topCircle = 0;
-    for (const SpellDef* d : cand) if (d->circle > topCircle) topCircle = d->circle;
+    for (const SpellDef* d : preferred)
+        if (d->circle > topCircle) topCircle = d->circle;
     const i32 window = CircleSpacingTenths();
     // The floor of the gain window, never above the top circle actually held.
     const i32 floorSkill = see.magery > window ? see.magery - window : 0;
@@ -537,7 +563,7 @@ inline PracticeChoice ChoosePracticeSpell(const PracticeSight& see) {
     for (int pass = 0; pass < 2; ++pass) {
         for (int circle = topCircle; circle >= 1; --circle) {
             std::vector<const SpellDef*> ring;
-            for (const SpellDef* d : cand) {
+            for (const SpellDef* d : preferred) {
                 if (d->circle != circle) continue;
                 if (pass == 0 && d->minSkillTenths < floorSkill) continue;
                 ring.push_back(d);

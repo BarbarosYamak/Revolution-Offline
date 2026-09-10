@@ -39,9 +39,93 @@ using namespace uo;
 
 namespace uo::life {
 struct RunnerHarnessAccess {
+    static bool ClothAfterCompletedJourney(Runner& runner, Client& client,
+                                           const Observation& obs) {
+        runner.travelInFlight_ = true;
+        runner.DoMakeCloth(client, obs);
+        return runner.travelInFlight_;
+    }
+    static bool ClothLoadAfterRestart(Runner& runner, Client& client,
+                                     const Observation& obs) {
+        runner.needCfg_.profession = nullptr;
+        runner.planner_.Mutable().kind = GoalKind::MakeCloth;
+        runner.DoMakeCloth(client, obs);
+        return runner.clothHeadingToWheel_;
+    }
+    static void SeedLiveFinalSale(Runner& runner, const Observation& obs) {
+        SeedFinalNpcSale(runner, obs);
+        runner.phase_ = Runner::Phase::Live;
+        runner.nextActionMs_ = 0;
+        auto& goal = runner.planner_.Mutable();
+        goal.kind = GoalKind::EarnGold;
+        goal.active = true;
+        goal.startedAtMs = obs.nowMs;
+        goal.attempts = 0;
+        runner.state_.productionBatch.item = "i_dagger";
+        runner.state_.productionBatch.phase = ProductionPhase::Sell;
+    }
+    static bool SaleRecorded(const Runner& runner) {
+        return runner.state_.memory.HasEvent("sold_to_vendor");
+    }
+    static void SeedLivePurchase(Runner& runner, const Observation& obs) {
+        runner.phase_ = Runner::Phase::Live;
+        runner.nextActionMs_ = 0;
+        auto& goal = runner.planner_.Mutable();
+        goal = {};
+        goal.kind = GoalKind::BuySupplies;
+        goal.active = true;
+        goal.startedAtMs = obs.nowMs;
+        runner.pendingBuyItem_ = "i_bottle_empty";
+        runner.pendingBuyGoldBefore_ = obs.gold + 12;
+    }
+    static i32 PurchasesRecorded(const Runner& runner) {
+        return runner.state_.ledger.TotalFor(market::GoldFlow::DestroyedVendorPurchase);
+    }
+    static void SeedSmelt(Runner& runner, const Observation& obs) {
+        runner.smeltStartedMs_ = obs.nowMs - 1000;
+        runner.smeltIngotName_ = "i_ingot_iron";
+        runner.smeltIngotsBefore_ = 2;
+    }
+    static bool Smelt(Runner& runner, Client& client, const Observation& obs) {
+        return runner.DoSmelt(client, obs);
+    }
+    static void SettleSmeltBeforePlanning(Runner& runner, const Observation& obs) {
+        runner.NoteSmeltProgress(obs);
+    }
+    static bool HasFirstSmelt(const Runner& runner) {
+        return runner.state_.memory.HasEvent("first_smelt");
+    }
+    static void SeedFinalNpcSale(Runner& runner, const Observation& obs) {
+        runner.sellItem_ = "i_dagger";
+        runner.sellVerifyItem_ = "i_dagger";
+        runner.sellTrade_ = "blacksmith";
+        runner.sellVendorSerial_ = 0x9693;
+        runner.sellSent_ = true;
+        runner.sellAsked_ = true;
+        runner.sellAskedMs_ = obs.nowMs;
+        runner.sellWanted_ = 1;
+        runner.sellItemBefore_ = 1;
+        runner.sellGoldBefore_ = obs.gold - 24;
+        runner.sellSweeps_ = Runner::kMaxSellSweeps - 1;
+        runner.sellSweepGold_ = 168;
+    }
+    static bool EarnGold(Runner& runner, Client& client, const Observation& obs) {
+        return runner.DoEarnGold(client, obs);
+    }
     static bool Survive(Runner& runner, Client& client, const Observation& obs) {
         return runner.DoSurvive(client, obs);
     }
+    static void Dispatch(Runner& runner, Client& client, const Observation& obs) {
+        runner.RunGoal(client, obs);
+    }
+    static void SetActiveGoal(Runner& runner, GoalKind kind, i64 nowMs) {
+        auto& goal = runner.planner_.Mutable();
+        goal = {};
+        goal.kind = kind;
+        goal.active = true;
+        goal.startedAtMs = nowMs;
+    }
+    static bool Retreating(const Runner& runner) { return runner.survivalRetreat_; }
     static bool HealDone(Runner& runner, Client& client, const Observation& obs) {
         return runner.DoHeal(client, obs);
     }
@@ -69,6 +153,9 @@ struct RunnerHarnessAccess {
         runner.leavePendingWhy_.clear();
         runner.DoTrainCombat(client, obs);
         return runner.leavePending_ ? runner.leavePendingWhy_ : std::string();
+    }
+    static void AuthorizeUnderstockHuntForTest(Runner& runner) {
+        runner.huntUnderstockAuthorized_ = true;
     }
     // D10: drive the equipment errand once, as the planner would.
     static void ReplaceEquipment(Runner& runner, Client& client,
@@ -328,52 +415,29 @@ life::Observation BaselineFencer(i64 nowMs) {
 }
 
 // --- S1 -------------------------------------------------------------------
-// An errand does not survive a genuine goal change.
+// An in-flight activity does not survive a genuine goal change. The old probe
+// was the NPC bandage errand, but ordinary bandages are now player-market then
+// self-supply work; lifecycle correctness belongs to the goal boundary, not
+// to that retired NPC-first route.
 void ScenarioErrandDoesNotSurviveGoalChange(const std::string& tmpDir) {
     Section("S1 errand does not survive a genuine goal change");
     Harness h;
     h.obs = BaselineFencer(h.nowMs);
     if (!h.Boot(tmpDir + "/s1", "fencer")) return;
+
+    // An action issued by whichever ordinary goal won is enough to exercise
+    // the invariant. No client tick runs in this harness, so only the goal
+    // transition below can settle it.
     h.EnterLive();
-
-    // Let the bandage errand start. No mobiles are cached (the Client has
-    // never seen a 0x78), so the VendorErrand runs its find/scan legs -- the
-    // shape that is mid-errand when something interrupts it.
-    for (int i = 0; i < 40 && !h.runner.ErrandRunningForTest("bandage"); ++i)
-        h.Step(1000);
-    const bool started = h.runner.ErrandRunningForTest("bandage");
-    std::printf("  goal after startup: %s, bandage errand running=%d\n",
-                h.GoalName(), started ? 1 : 0);
-    Check(started, "the bandage errand is running before the interruption");
-    if (!started) return;
+    h.Steps(6, 1000);
     const life::GoalKind before = h.Goal();
+    h.client->ActionOpenContainer(0x40001234u);
+    Check(h.client->ActionBusy(), "an ordinary goal has work in flight");
 
-    // The interruption: hp critical, hostiles on us. StayAlive scores at or
-    // above the preempt floor, so it takes the goal away mid-errand.
-    h.obs.hp = 8;
-    h.obs.underAttack = true;
-    h.obs.hostilesNear = 2;
-    h.obs.attackersOnMe = 1;
-    for (int i = 0; i < 20 && h.Goal() == before; ++i) h.Step(1000);
-    std::printf("  goal after the emergency: %s\n", h.GoalName());
-    Check(h.Goal() != before, "a higher-priority goal preempted the errand");
-    Check(!h.runner.ErrandRunningForTest("bandage"),
-          "the bandage errand was cancelled, not left mid-Verify");
-
-    // ... and when the emergency passes it starts a FRESH visit rather than
-    // resuming the interrupted one.
-    h.obs.hp = 60;
-    h.obs.underAttack = false;
-    h.obs.hostilesNear = 0;
-    h.obs.attackersOnMe = 0;
-    bool restarted = false;
-    for (int i = 0; i < 60 && !restarted; ++i) {
-        h.Step(1000);
-        restarted = h.runner.ErrandRunningForTest("bandage");
-    }
-    std::printf("  goal after recovery: %s, bandage errand running=%d\n",
-                h.GoalName(), restarted ? 1 : 0);
-    Check(restarted, "the errand is begun afresh once the emergency is over");
+    life::RunnerHarnessAccess::LeaveGoalForTest(
+        h.runner, *h.client, before, life::GoalKind::Survive);
+    Check(!h.client->ActionBusy(),
+          "a different goal cancels the departing activity, not its successor's");
 }
 
 // --- S2 -------------------------------------------------------------------
@@ -387,39 +451,14 @@ void ScenarioSameKindRepickKeepsItsJourney(const std::string& tmpDir) {
     h.EnterLive();
     h.Steps(6, 1000);
 
-    // A SELF-SUPERSESSION IS NOT A GOAL CHANGE. "goal_changed=X from=X" is the
-    // planner clearing an exhausted goal and picking the identical kind again;
-    // Corran lost a whole errand to a reset on that path (see the comment in
-    // Runner::Tick). What is in flight when it happens must still be in flight
-    // afterwards -- so an action issued just before the re-pick is the probe.
-    // No Client::Tick runs in the harness, so nothing expires it behind our
-    // back: only the goal machinery can end it.
-    bool sawSelfSupersession = false;
-    bool actionSurvived = false;
-    life::GoalKind kind = h.Goal();
-    i64 startedAt = h.runner.GetPlanner().Current().startedAtMs;
-    for (int i = 0; i < 600 && !sawSelfSupersession; ++i) {
-        if (!h.client->ActionBusy())
-            h.client->ActionOpenContainer(0x40001234u);
-        const bool busyBefore = h.client->ActionBusy();
-        const life::GoalKind kindBefore = h.Goal();
-        h.Step(1000);
-        const life::GoalState& g = h.runner.GetPlanner().Current();
-        const bool repick = (g.kind == kindBefore && g.startedAtMs != startedAt);
-        startedAt = g.startedAtMs;
-        kind = g.kind;
-        if (repick && busyBefore) {
-            sawSelfSupersession = true;
-            actionSurvived = h.client->ActionBusy();
-        }
-    }
-    std::printf("  self-supersession of %s observed=%d, in-flight action "
-                "survived=%d\n", life::GoalKindName(kind),
-                sawSelfSupersession ? 1 : 0, actionSurvived ? 1 : 0);
-    Check(sawSelfSupersession,
-          "a same-kind re-pick (goal_changed=X from=X) happened with an "
-          "action in flight");
-    Check(actionSurvived,
+    // A SELF-SUPERSESSION IS NOT A GOAL CHANGE. Use the same LeaveGoal path
+    // directly so the assertion does not depend on a particular bandage
+    // supply route winning the planner on this simulated empty world.
+    const life::GoalKind kind = h.Goal();
+    h.client->ActionOpenContainer(0x40001234u);
+    Check(h.client->ActionBusy(), "a same-kind re-pick begins with work in flight");
+    life::RunnerHarnessAccess::LeaveGoalForTest(h.runner, *h.client, kind, kind);
+    Check(h.client->ActionBusy(),
           "the re-pick reset nothing -- the Corran rule still holds");
 }
 
@@ -485,19 +524,11 @@ void ScenarioDrainedCountersEndTheShopRoute(const std::string& tmpDir) {
     // vet's trade, so "no undrained counter left" is true once one is dry.
     h.runner.NoteBandageCounterDrainedForTest(0x4000AAAAu, h.nowMs);
 
-    // Without the rule this fencer opens a bandage errand on its first Live
-    // tick and walks the town (S1 shows exactly that shape).
-    bool errandStarted = false;
-    h.EnterLive();
-    for (int i = 0; i < 20; ++i) {
-        h.Step(1000);
-        if (h.runner.ErrandRunningForTest("bandage")) errandStarted = true;
-    }
-    std::printf("  goal: %s, a bandage visit was begun=%d\n", h.GoalName(),
-                errandStarted ? 1 : 0);
-    Check(!errandStarted,
-          "no fresh visit was begun -- every counter this life knows of is "
-          "empty");
+    // Exercise the decision directly. Ordinary restocks now hand to the
+    // player market or self-supply before a healer; the invariant is that a
+    // confirmed exhausted shelf is recorded and the NPC route is not retried.
+    life::RunnerHarnessAccess::BandageStandDown(
+        h.runner, h.obs, /*askedMs=*/0, /*sellersDeclined=*/true);
 
     // And the need model was told, so MAKE_BANDAGES is no longer blocked on
     // "there is money to buy them".
@@ -681,7 +712,7 @@ void ScenarioADrainedPotionShelfIsSkipped(const std::string& tmpDir) {
 // Live shape (Hector, 2026-09-06 00:29:47): REPLACE_EQUIPMENT superseded
 // SURVIVE one second after a kill for "bandages=99 low=100" -- a walk back to
 // Britain for a single bandage. ResolveConsumableThresholds resolves the
-// field line to the floor less one fight's worth (100 - 8 = 92); the harness
+// field line to a three-fight reserve (100 - 24 = 76); the harness
 // has no atlas, so CurrentRegion() is null and this is the FIELD case.
 void ScenarioTheFieldLineIsNotTheTownFloor(const std::string& tmpDir) {
     Section("D12 the hunt gate uses the field line outside town");
@@ -709,6 +740,37 @@ void ScenarioTheFieldLineIsNotTheTownFloor(const std::string& tmpDir) {
     std::printf("  at %d bandages: \"%s\"\n", h.obs.bandages, below.c_str());
     Check(below.find("bandage floor") != std::string::npos,
           "under the field line the hunt still stops to restock");
+
+    // Once both stock routes have already stood down, the current trip has
+    // been deliberately allowed to continue.  Its approval must survive a
+    // shop cooldown expiring while the character walks; otherwise the bot
+    // walks most of the way to the graveyard, turns around without spending a
+    // bandage, and repeats the market loop instead of ever fighting.
+    life::RunnerHarnessAccess::AuthorizeUnderstockHuntForTest(h.runner);
+    const std::string authorised =
+        life::RunnerHarnessAccess::HuntGateReason(h.runner, *h.client, h.obs);
+    Check(authorised.find("bandage floor") == std::string::npos,
+          "an authorised understock hunt is not pulled back into restocking "
+          "mid-trip");
+}
+
+// An attack packet can arrive after BANK (or any other ordinary goal) was
+// selected but before the planner has made its next pass.  The dispatcher must
+// give that packet to survival immediately; otherwise the stale goal starts a
+// route through the combat board, which is exactly how Ghalys died in the
+// fleet122g30 run.
+void ScenarioAttackPreemptsAnAlreadySelectedErrand(const std::string& tmpDir) {
+    Section("attack packets interrupt an already-selected errand");
+    Harness h;
+    h.obs = BaselineFencer(h.nowMs);
+    h.obs.underAttack = true;
+    h.obs.attackersOnMe = 1;
+    if (!h.Boot(tmpDir + "/attack_preempt", "fencer")) return;
+    life::RunnerHarnessAccess::SetActiveGoal(h.runner, life::GoalKind::Bank,
+                                             h.obs.nowMs);
+    life::RunnerHarnessAccess::Dispatch(h.runner, *h.client, h.obs);
+    Check(life::RunnerHarnessAccess::Retreating(h.runner),
+          "a live attack takes the tick away from BANK and starts survival retreat");
 }
 
 // --- Cause A --------------------------------------------------------------
@@ -965,18 +1027,17 @@ std::vector<u8> MakeAddItem(u32 serial, u16 graphic, u16 amount, u32 container) 
 //   HEAL -> REPLACE_EQUIPMENT -> GET_FOOD without ever reaching the cloth
 //   route. (run_gates/g_Hector.console.txt:95-421.)
 //
-// What a Revolution player does with a purse is buy the input at a tailor
-// and cut it; shearing is for the poor, and only at a flock near home. So:
-// a shop first, a NEARBY flock second, and a stand-down third -- never a
-// cross-map hike, and never a silent nothing.
+// The current owner rule is player request, then self-supply, then an NPC
+// fallback. This scenario begins after the player request failed, so it must
+// try a nearby flock before spending at a tailor.
 //
 // The flock table is the shard's own (data/revolution_pastures.tsv) and the
 // radius is kMaxPastureTilesFromHome: the Britain farmland flock at
 // 1321,1817 is ~130 tiles from the Britain bank, the next rows are Yew at
 // ~750 and Jhelom at ~1900.
-void ScenarioBandagesAreBoughtBeforeTheyAreSheared(const std::string& tmpDir,
-                                                   const char* dataDir) {
-    Section("S5 the bandage chain buys cloth before it walks to a flock");
+void ScenarioBandagesSelfSupplyBeforeNpcFallback(const std::string& tmpDir,
+                                                 const char* dataDir) {
+    Section("S5 the bandage chain shears before it buys NPC cloth");
 
     // A pair of scissors in the pack, because without them the chain has no
     // first gesture and the goal goes shopping for shears instead. Three
@@ -1010,11 +1071,20 @@ void ScenarioBandagesAreBoughtBeforeTheyAreSheared(const std::string& tmpDir,
                     h.runner.ErrandRunningForTest("bandageBolt") ? 1 : 0,
                     h.runner.ErrandRunningForTest("bandageCloth") ? 1 : 0,
                     life::RunnerHarnessAccess::BandageFlockTrips(h.runner));
-        Check(h.runner.ErrandRunningForTest("bandageBolt"),
-              "a shortfall of a bolt's worth is bought as a BOLT -- fifty "
-              "cloth in one purchase, the row that does not run out");
-        Check(life::RunnerHarnessAccess::BandageFlockTrips(h.runner) == 0,
-              "no walk to a flock while a counter still sells the input");
+        Check(!h.runner.ErrandRunningForTest("bandageBolt") &&
+                  !h.runner.ErrandRunningForTest("bandageCloth"),
+              "a funded fighter does not buy NPC cloth before trying its flock");
+        Check(life::RunnerHarnessAccess::BandageFlockTrips(h.runner) == 1,
+              "the first self-supply step is the nearby flock");
+        auto bolts = MakeAddItem(0x4001A7E1, 0x0F95, 4, 0x4000ED02);
+        h.client->DispatchPacketForTest(bolts.data(), bolts.size());
+        h.obs.nowMs += 3000;
+        h.client->SetClockForTest(h.obs.nowMs);
+        life::RunnerHarnessAccess::MakeBandages(h.runner, *h.client, h.obs);
+        Check(!h.runner.ErrandRunningForTest("bandageBolt"),
+              "delivered bolts settle the active purchase even with zero shortfall");
+        Check(life::RunnerHarnessAccess::BandageFlockTrips(h.runner) == 1,
+              "delivered bandage inputs do not add another pasture trip");
     }
 
     // (b) A SMALL TOP-UP is loose cloth, not a fifty-stone bolt.
@@ -1034,8 +1104,8 @@ void ScenarioBandagesAreBoughtBeforeTheyAreSheared(const std::string& tmpDir,
         h.obs.bandages = (want > 0 ? want : 60) - 5;
         h.obs.nowMs = h.nowMs;
         life::RunnerHarnessAccess::MakeBandages(h.runner, *h.client, h.obs);
-        Check(h.runner.ErrandRunningForTest("bandageCloth"),
-              "a five-bandage shortfall buys loose cloth, not a bolt");
+        Check(!h.runner.ErrandRunningForTest("bandageCloth"),
+              "a five-bandage shortfall still tries self-supply before NPC cloth");
         Check(!h.runner.ErrandRunningForTest("bandageBolt"),
               "no bolt for a top-up");
     }
@@ -1284,6 +1354,58 @@ void ScenarioBandagesTradePlayerFirst(const std::string& tmpDir,
     }
 }
 
+void ScenarioNpcSaleCreditIsConsumed(const std::string& tmpDir) {
+    Section("completed NPC sale gives production a turn and cannot be credited twice");
+    Harness h;
+    h.obs = BaselineFencer(h.nowMs);
+    if (!h.Boot(tmpDir + "/sale_credit", "miner_smith")) return;
+    life::RunnerHarnessAccess::SeedFinalNpcSale(h.runner, h.obs);
+    Check(life::RunnerHarnessAccess::EarnGold(h.runner, *h.client, h.obs),
+          "item loss and gold gain finish the last sale in a visit");
+    Check(h.runner.GetPlanner().Cooling(life::GoalKind::EarnGold, h.obs.nowMs),
+          "a finished counter visit lets mining and crafting run before selling again");
+    h.obs.nowMs += 180001;
+    Check(!life::RunnerHarnessAccess::EarnGold(h.runner, *h.client, h.obs),
+          "after the cooldown, an empty pack cannot reuse the previous sale's credit");
+
+    Harness live;
+    live.obs = BaselineFencer(live.nowMs);
+    if (!live.Boot(tmpDir + "/sale_before_stock", "miner_smith")) return;
+    live.EnterLive();
+    live.Steps(2, 1000);
+    life::RunnerHarnessAccess::SeedLiveFinalSale(live.runner, live.obs);
+    live.Step();
+    Check(life::RunnerHarnessAccess::SaleRecorded(live.runner),
+          "a completed sale is credited before the new stock phase can replace its goal");
+    const i32 spent = life::RunnerHarnessAccess::PurchasesRecorded(live.runner);
+    life::RunnerHarnessAccess::SeedLivePurchase(live.runner, live.obs);
+    live.Step();
+    Check(life::RunnerHarnessAccess::PurchasesRecorded(live.runner) == spent + 12,
+          "the purchase that funds a new crafting phase is recorded before switching work");
+}
+
+void ScenarioLastOreStillCreditsSmelting(const std::string& tmpDir) {
+    Section("last ore stack credits its ingots before reporting completion");
+    Harness h;
+    h.obs = BaselineFencer(h.nowMs);
+    h.obs.pack.push_back({"i_ingot_iron", 17});
+    if (!h.Boot(tmpDir + "/last_smelt", "miner_smith")) return;
+    life::RunnerHarnessAccess::SeedSmelt(h.runner, h.obs);
+    const int before = h.runner.GetPlanner().Current().progress;
+    life::RunnerHarnessAccess::SettleSmeltBeforePlanning(h.runner, h.obs);
+    Check(h.runner.GetPlanner().Current().progress == before + 1,
+          "production is credited before another need can supersede smelting");
+    Check(life::RunnerHarnessAccess::Smelt(h.runner, *h.client, h.obs),
+          "a consumed last ore stack ends smelting");
+    Check(h.runner.GetPlanner().Current().progress == before + 1,
+          "ingot gain from the final stack counts as production progress");
+    Check(life::RunnerHarnessAccess::HasFirstSmelt(h.runner),
+          "the first-smelt milestone is recorded even with no ore left");
+    life::RunnerHarnessAccess::Smelt(h.runner, *h.client, h.obs);
+    Check(h.runner.GetPlanner().Current().progress == before + 1,
+          "unchanged ingots cannot credit the same smelt twice");
+}
+
 int main(int argc, char** argv) {
     const std::string tmpDir = (argc > 1) ? argv[1] : ".";
     // Where Client::DataDir() resolves to for the scenarios that read a
@@ -1292,6 +1414,40 @@ int main(int argc, char** argv) {
     static const char* kDataDir = LIFE_HARNESS_ATLAS_PATH;
     std::printf("life_harness: deterministic offline life harness\n");
 
+    ScenarioNpcSaleCreditIsConsumed(tmpDir);
+    {
+        Harness h;
+        h.obs = BaselineFencer(h.nowMs);
+        if (h.Boot(tmpDir + "/cloth_restarted_load", "tailor")) {
+            auto login = MakeLoginConfirm(0xED04, 1317, 1819);
+            h.client->DispatchPacketForTest(login.data(), login.size());
+            auto pack = MakeEquip(0x4000ED02, 0x0E75, 0x15, 0xED04);
+            h.client->DispatchPacketForTest(pack.data(), pack.size());
+            auto wool = MakeAddItem(0x4001A7D1, 0x0DF8, 11, 0x4000ED02);
+            h.client->DispatchPacketForTest(wool.data(), wool.size());
+            auto blade = MakeAddItem(0x4001A7D2, 0x0F51, 1, 0x4000ED02);
+            h.client->DispatchPacketForTest(blade.data(), blade.size());
+            Check(!life::RunnerHarnessAccess::ClothLoadAfterRestart(
+                      h.runner, *h.client, h.obs),
+                  "a restarted wool load allows a bounded wait for nearby sheep");
+            h.obs.nowMs += 61000;
+            h.client->SetClockForTest(h.obs.nowMs);
+            Check(life::RunnerHarnessAccess::ClothLoadAfterRestart(
+                      h.runner, *h.client, h.obs),
+                  "an empty flock sends carried wool to the wheel after the wait");
+        }
+    }
+    {
+        Harness h;
+        h.obs = BaselineFencer(h.nowMs);
+        if (h.Boot(tmpDir + "/cloth_completed_journey", "tailor")) {
+            Check(!h.client->TravelBusy(), "the sheep approach has ended");
+            Check(!life::RunnerHarnessAccess::ClothAfterCompletedJourney(
+                      h.runner, *h.client, h.obs),
+                  "cloth work releases a completed journey before its next errand");
+        }
+    }
+    ScenarioLastOreStillCreditsSmelting(tmpDir);
     ScenarioErrandDoesNotSurviveGoalChange(tmpDir);
     ScenarioSameKindRepickKeepsItsJourney(tmpDir);
     ScenarioInFlightActionIsFinishedOnGoalChange(tmpDir);
@@ -1299,6 +1455,7 @@ int main(int argc, char** argv) {
     ScenarioRecoveryPreservesMedicalJourneys(tmpDir);
     ScenarioMedicalSuppliesAndDepositBudget(tmpDir);
     ScenarioAttackerLeavingSightIsNotRecovery(tmpDir);
+    ScenarioAttackPreemptsAnAlreadySelectedErrand(tmpDir);
     ScenarioAnEmptyPotionShelfIsNotAnEmptyHealer(tmpDir);
     ScenarioAHurtCharacterDoesNotRestBesideAHostile(tmpDir);
     ScenarioADrainedPotionShelfIsSkipped(tmpDir);
@@ -1307,7 +1464,7 @@ int main(int argc, char** argv) {
     ScenarioPracticeSucceedsOnlyOnASkillGain(tmpDir);
     ScenarioTrainTripsAreHandedBackOnAGoalChange(tmpDir);
     ScenarioDeathIsCountedOnTheResurrectMenuPacket(tmpDir);
-    ScenarioBandagesAreBoughtBeforeTheyAreSheared(tmpDir, kDataDir);
+    ScenarioBandagesSelfSupplyBeforeNpcFallback(tmpDir, kDataDir);
     ScenarioBandagesTradePlayerFirst(tmpDir, kDataDir);
 
     std::printf("%s: %d checks, %d failures\n",

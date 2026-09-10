@@ -140,6 +140,9 @@ public:
     const wm::Place* NearestHuntingGroundOfTier(HuntTier tier, i32 x, i32 y,
                                                 i32 maxDist = 0) const;
     std::vector<wm::Point> HuntingPatrol(const wm::Place& place) const;
+    // Stable weak-yard assignments; adjacent character pairs share a yard.
+    // Rotation moves an exhausted/crowded group to another suitable yard.
+    const wm::Place* GroupHuntingGround(u32 character, usize rotation) const;
     // Nearest place inside a named region, so "the bank in Yew" is expressible
     // without hard-coding which bank that is.
     const wm::Place* NearestPlaceWithServiceInRegion(wm::Service s,

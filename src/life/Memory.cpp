@@ -376,6 +376,7 @@ bool Memory::HasEvent(const char* kind) const {
 }
 
 void Memory::Clear() {
+    relationships.clear();
     places_.clear();
     resources_.clear();
     suppliers_.clear();
@@ -408,6 +409,7 @@ bool Memory::IsUnwearable(u16 graphic) const {
 
 usize Memory::ApproximateBytes() const {
     usize n = 0;
+    for (const auto& person : relationships) n += sizeof(person) + person.name.size();
     for (const KnownPlace& p : places_)          n += sizeof(p) + p.kind.size() + p.name.size();
     for (const KnownResourceSource& r : resources_) n += sizeof(r) + r.resource.size();
     for (const KnownSupplier& s : suppliers_)    n += sizeof(s) + s.need.size() + s.name.size() + s.sourceType.size();

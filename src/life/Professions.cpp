@@ -279,14 +279,13 @@ const std::vector<Profession>& All() {
             // the fights that pay for everything. A fighter's reserve is its
             // ability to walk back into a graveyard.
             p.goldReserve = 10000;
-            // NOT YEW. "we dont use yew as starting or hometown" (project
-            // owner, 2026-08-30). Yew is the obvious forest, but the shard's
-            // Yew bank at 652,820 is not reachable to the pathfinder, so a
-            // life based there loses whole errands to "no path" -- and a
-            // gatherer takes homeCities.front() as its home, so Yew first
-            // meant Yew always. Britain and Skara Brae both have woods within
-            // reach and banks that work.
-            p.homeCities = {"Britain", "Skara Brae"};
+            // A production town needs both halves of the chain. Fleet 122
+            // placed all five lumberjack/carpenters in Britain and all four
+            // full crafters in Minoc, leaving Minoc with no local log supply.
+            // The generated atlas has nine reachable Minoc Territory woods,
+            // beside the mine, forge and market, so lumberjacks live there.
+            // Yew remains excluded: its bank route is not reliable here.
+            p.homeCities = {"Minoc", "Britain", "Skara Brae"};
             v.push_back(std::move(p));
         }
 
@@ -469,10 +468,10 @@ const std::vector<Profession>& All() {
             // went into her bank box as "this life has no use for it"
             // (artifacts/mage_bank_followup_20260906/Aurelius.console.txt:81)
             // and she then bought the empty replacement she could not cast
-            // from. The dagger is Poisoning's; both belong here.
-            p.tools = {{"spellbook", {kSpellbook}, false},
-                       {"dagger", {0x0F51, 0x0F52}, false}};
-            p.consumes.push_back("i_potion_poison");
+            // from. Keep the book declared as a tool.
+            // Poison spells need nightshade. Potion-and-dagger practice is
+            // also supported when carried, without mandatory bottle shopping.
+            p.tools = {{"spellbook", {kSpellbook}, false}};
             p.consumables = {HealPotions(), Food()};
             // 0.50, NOT 0.30. combat::Classify scores an unhurt red monster in
             // view at 0.35 before it does anything (full bar 0.20, murderer
@@ -686,7 +685,9 @@ const std::vector<Profession>& All() {
             // docks at Vesper and Nujel'm. All four are start cities the shard
             // offers (map0_starts.scp), so a fisher is now born on the coast.
             //
-            // It gathers, so it takes the FIRST of these rather than hashing.
+            // Fishing grounds surround each of these towns, so fishers are
+            // assigned across this list by their stable identity rather than
+            // all being pinned to Skara Brae.
             p.homeCities = {"Skara Brae", "Jhelom", "Vesper", "Britain"};
 
             p.riskTolerance = 0.20;      // stands on a dock; avoids everything

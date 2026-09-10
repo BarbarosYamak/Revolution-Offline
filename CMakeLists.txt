@@ -101,6 +101,7 @@ set(UO_CLIENT_SOURCES
     src/life/NeedGate.cpp
     src/life/Goals.cpp
     src/life/State.cpp
+    src/life/Orders.cpp
     src/life/Professions.cpp
     # The goal loop, one translation unit per goal family (split from the old
     # 14.5k-line src/life/Runner.cpp by tools/split_runner.py -- pure text
@@ -114,9 +115,12 @@ set(UO_CLIENT_SOURCES
     src/life/runner/Gear.cpp
     src/life/runner/Bank.cpp
     src/life/runner/Economy.cpp
+    src/life/runner/Orders.cpp
     src/life/runner/Gather.cpp
     src/life/runner/Cloth.cpp
     src/life/runner/Craft.cpp
+    src/life/runner/Social.cpp
+    src/progression/ClientSocial.cpp
     src/life/runner/Train.cpp
     src/life/runner/Tame.cpp
     # M13/R1 -- the interaction layer. UNLIKE the files above this one

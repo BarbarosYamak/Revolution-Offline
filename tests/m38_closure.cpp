@@ -444,6 +444,8 @@ void TestPetSemantics() {
     // Exact vocabulary from CCharNPCPet.cpp:88-115. Asserted so nobody
     // "improves" them into something the server does not parse.
     Check(std::strcmp(CommandWords(Command::Come), "come") == 0, "come");
+    Check(std::strcmp(CommandWords(Command::FollowMe), "follow me") == 0,
+          "follow me");
     Check(std::strcmp(CommandWords(Command::Stay), "stay") == 0, "stay");
     Check(std::strcmp(CommandWords(Command::Stop), "stop") == 0, "stop");
     Check(std::strcmp(CommandWords(Command::Kill), "kill") == 0, "kill");
@@ -461,6 +463,7 @@ void TestPetSemantics() {
     Check(NeedsTarget(Command::Attack), "attack is spoken-then-targeted");
     Check(NeedsTarget(Command::FollowTarget), "follow takes a target");
     Check(!NeedsTarget(Command::Come), "come acts immediately");
+    Check(!NeedsTarget(Command::FollowMe), "follow me acts immediately");
     Check(!NeedsTarget(Command::Stay), "stay acts immediately");
     Check(!NeedsTarget(Command::Stop), "stop acts immediately");
     Check(!NeedsTarget(Command::GuardMe), "guard me acts immediately");

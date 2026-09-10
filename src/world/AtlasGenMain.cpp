@@ -780,6 +780,16 @@ void DerivePlacesFromRegions(Atlas& atlas) {
             p.category = wm::PlaceCategory::ResourceArea;
             p.resources.push_back(wm::ResourceKind::Mining);
             p.radius = 20;
+        } else if (r.id.find("farmland") != std::string::npos ||
+                   r.id.find("_field_") != std::string::npos ||
+                   r.id.find("_fields") != std::string::npos) {
+            // The shard's AREADEFs name the crop grounds themselves
+            // (a_farmland*, a_field*, a_Britain_Fields).  Crops are a real,
+            // renewable food source: model the field rather than forcing a
+            // hungry character to treat a baker as the only option.
+            p.category = wm::PlaceCategory::ResourceArea;
+            p.resources.push_back(wm::ResourceKind::Food);
+            p.radius = 12;
         } else if (n.find("dock") != std::string::npos) {
             p.category = wm::PlaceCategory::Dock;
             p.resources.push_back(wm::ResourceKind::Fishing);

@@ -190,6 +190,36 @@ const wm::Place* PickAllowedMine(const world_atlas::Atlas* atlas,
     return nullptr;
 }
 
+const wm::Place* PickAllowedMinocLumber(const world_atlas::Atlas* atlas,
+                                        i32 x, i32 y,
+                                        const std::vector<std::string>& tried,
+                                        const char** outId) {
+    if (outId) *outId = "";
+    if (!atlas || !atlas->Ready()) return nullptr;
+    constexpr i32 count = static_cast<i32>(
+        sizeof(kMinocLumberPlaceIds) / sizeof(kMinocLumberPlaceIds[0]));
+    const wm::Place* best = nullptr;
+    const char* bestId = "";
+    i32 bestDistance = 0;
+    for (i32 at = 0; at < count; ++at) {
+        const char* id = kMinocLumberPlaceIds[at];
+        bool alreadyTried = false;
+        for (const std::string& prior : tried)
+            if (prior == id) { alreadyTried = true; break; }
+        if (alreadyTried) continue;
+        const wm::Place* p = atlas->PlaceById(id);
+        if (!p || !p->Yields(wm::ResourceKind::Lumber)) continue;
+        const i32 d = TileDist(x, y, p->position.x, p->position.y);
+        if (!best || d < bestDistance) {
+            best = p;
+            bestId = id;
+            bestDistance = d;
+        }
+    }
+    if (best && outId) *outId = bestId;
+    return best;
+}
+
 const wm::Place* NearestGuardedPlace(const world_atlas::Atlas* atlas, i32 x,
                                      i32 y) {
     if (!atlas || !atlas->Ready()) return nullptr;

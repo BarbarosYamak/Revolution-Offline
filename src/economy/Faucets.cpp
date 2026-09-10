@@ -215,8 +215,12 @@ const GoldFaucet kFaucets[] = {
 
 {"scroll_recall_to_mage_shop", SourceType::VendorSale, "mage",
  "i_scroll_recall", "mage",
- HistoryEvidence::NotFullyConfirmed, RuntimeEvidence::LiveProven, Policy::Allow,
- "as scroll_to_mage_shop; tm_vend.scp:1881 VENDOR_B_MAGE_4TH {10 15}"},
+ HistoryEvidence::OwnerDecision, RuntimeEvidence::LiveProven, Policy::Allow,
+ "Owner, 2026-08-28: people were scribing scroll and selling scrolls to vendor make money "
+ "(docs/REVOLUTION_ECONOMY_FORUM_EVIDENCE.md). This permission covers the scribing "
+ "channel, including recall, not just poison scrolls. The old NotFullyConfirmed "
+ "flag incorrectly made bought blanks/reagents prohibit this allowed sale. "
+ "Runtime buyer: tm_vend.scp:1881 VENDOR_B_MAGE_4TH {10 15}"},
 
 {"bow_to_bowyer", SourceType::VendorSale, "bowyer",
  "i_bow", "bowyer",

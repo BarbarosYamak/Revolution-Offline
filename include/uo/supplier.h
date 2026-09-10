@@ -125,6 +125,8 @@ struct Candidate {
 // type with no I/O, so it can be unit-tested without a server.
 class Registry {
 public:
+    // A newly opened list replaces the old snapshot, including missing rows.
+    void BeginVendorSnapshot(u32 serial, i64 nowMs);
     // Record a VERIFIED observation: we opened this vendor's list and saw the
     // item in it. This is the only way a supplier enters the registry.
     void RecordVendorStock(u32 serial, const char* name, i32 x, i32 y, i8 z,

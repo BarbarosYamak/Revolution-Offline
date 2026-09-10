@@ -491,8 +491,46 @@ void TestChoosePreyDeprioritisesALearnedDangerousType() {
     }
 }
 
+void TestLearnedDangerDoesNotReplaceAShardCalibratedTier() {
+    Section("prey: learned danger ranks a known species without changing its tier");
+
+    // The creature table says Skeleton is weak-band (.038).  A past death can
+    // leave a much larger, decaying learned value.  These are different
+    // scales: a novice must retain the real weak-band gate while ChoosePrey
+    // separately gets the learned value to prefer another legal creature.
+    const double skeletonTier = combat::EligibilitySpeciesDanger(0.038, 4.0);
+    Check(skeletonTier == 0.038,
+          "a learned costly Skeleton encounter does not overwrite its seeded tier");
+
+    combat::Candidate skeleton = Mob(combat::Noto::Criminal, 5);
+    skeleton.name = "Skeleton";
+    skeleton.speciesDanger = skeletonTier;
+    combat::EngagePolicy novice;
+    novice.maxSpeciesDanger = combat::SpeciesCeiling(510);
+    Check(combat::Classify(skeleton, combat::Stance{},
+                           combat::RevolutionCrimeRules(), novice, 1.0).engage,
+          "a known weak-band Skeleton remains a legal novice prey candidate");
+
+    // For an unknown name there is no shard tier to protect us.  Its learned
+    // dangerous outcome remains a hard conservative fallback.
+    Check(combat::EligibilitySpeciesDanger(-1.0, 4.0) == 4.0,
+          "an unknown creature keeps its learned-danger fallback");
+}
+
 
 int main() {
+    {
+        combat::Candidate solo, shared;
+        solo.serial = 1; solo.name = "Skeleton"; solo.noto = combat::Noto::Murderer;
+        solo.dist = 4;
+        shared = solo; shared.serial = 2; shared.dist = 6; shared.friendlySupport = 1;
+        std::vector<combat::Candidate> candidates = {solo, shared};
+        Check(combat::ChoosePrey(candidates, {}, combat::RevolutionCrimeRules(), {}, 1.0) == 1,
+              "a lawful shared target is preferred over a fresh pull");
+        candidates[1].isMyPet = true;
+        Check(combat::ChoosePrey(candidates, {}, combat::RevolutionCrimeRules(), {}, 1.0) == 0,
+              "support does not override target legality");
+    }
     std::printf("m6_targeting\n");
     TestShardRulesAreTheReadValues();
     TestNotoValuesMatchTheWire();
@@ -507,6 +545,7 @@ int main() {
     TestHurtCharacterDoesNotOpenFights();
     TestChoosePreyPicksTheWeakestLoner();
     TestChoosePreyDeprioritisesALearnedDangerousType();
+    TestLearnedDangerDoesNotReplaceAShardCalibratedTier();
     std::printf("%d checks, %d failures\n", g_checks, g_failures);
     return g_failures == 0 ? 0 : 1;
 }

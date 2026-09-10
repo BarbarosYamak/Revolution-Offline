@@ -125,6 +125,14 @@ inline constexpr bool NoviceMayOpen(int attackersOnMe, int inReach) {
     return attackersOnMe <= 1 && inReach < kNoviceCrowdCeiling;
 }
 
+inline constexpr int GroupAttackerLimit(int support) {
+    return support > 0 ? 2 : 1;
+}
+inline constexpr bool GroupMayOpen(int attackersOnMe, int inReach, int support) {
+    return attackersOnMe <= GroupAttackerLimit(support) &&
+           inReach < kNoviceCrowdCeiling + (support > 2 ? 2 : support);
+}
+
 // BREAK CONTACT WHEN A SECOND ONE ATTACKS -- at whatever health, not at 25%.
 // Trace A's flee fired at 25% with two attackers and was one second too late;
 // by RetreatFloorFraction a novice with two attackers is already under the
@@ -203,6 +211,19 @@ inline bool ShouldBreakContact(bool avoidsCombat, int attackersOnMe,
                                double bailAt) {
     return avoidsCombat || attackersOnMe > crowdTolerated ||
            hpFraction < bailAt;
+}
+
+// A fresh trainee who has just met a second attacker does not become brave;
+// it changes lanes.  The alternative to this narrow exception is a full bank
+// retreat on every crowded pull, which made a healthy novice spend a whole
+// session commuting instead of looking for a lawful one-on-one.  Damage, a
+// non-combat job, or any reason other than crowding still takes the normal
+// safety route.
+inline bool MayRepositionWithinHunt(bool novicePolicy, bool combatTraining,
+                                    int attackersOnMe, int crowdTolerated,
+                                    double hpFraction) {
+    return novicePolicy && combatTraining && attackersOnMe > crowdTolerated &&
+           hpFraction >= 0.90;
 }
 
 }  // namespace uo::life::novice

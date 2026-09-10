@@ -10,8 +10,8 @@ using namespace runner_detail;
 // --- working on foot --------------------------------------------------------
 //
 // "bots dismount before a mining or lumberjacking sitting and remount when the
-// sitting ends" (project owner, 2026-09-04). Fishing is deliberately left
-// alone.
+// sitting ends" (project owner, 2026-09-04). Fishing also dismounts because
+// the shard refuses mounted casts; it remounts when the fishing goal ends.
 //
 // The mechanics are the ones M3.7.1 already proved and Gear.cpp's DoBuyMount
 // uses: a dismount is a double-click on YOURSELF (Client::ActionDismount ->
@@ -26,18 +26,58 @@ namespace {
 // four DoBuyMount buys (Gear.cpp kHorseBodies, from c_monster_classic.scp).
 // A dismounted mount is one of these standing next to us.
 const u16 kRideableBodies[] = {0x00C8, 0x00CC, 0x00E2, 0x00E4};
-// Sphere puts the animal down beside its rider, and a pet that has wandered
-// further than this is not worth chasing on the way to the bank.
-constexpr int kRemountRadius = 3;
+// Sphere puts the animal down beside its rider. A just-dismounted horse has
+// the shard's pet-hearing radius to answer "all come" and catch up before we
+// expect to remount. Three tiles was only the click radius: treating it as a
+// recovery radius left horses behind in Minoc Mine.
+constexpr int kRemountRadius = pet::kHearingTiles;
 constexpr i32 kMaxDismountClicks = 3;
 constexpr i32 kMaxRemountClicks  = 3;
-// How long the animal is given to appear as a mobile after the dismount before
-// we accept that it is not coming back to us.
-constexpr i64 kMountAppearMs = 4000;
+// A pet command and its walk are asynchronous. Give the horse time to emerge
+// from the mount layer and close the gap before judging it missing.
+constexpr i64 kMountAppearMs = 15000;
+
+// A mine target must be repeatable across ticks and sessions: re-rolling it
+// while a journey is in flight would look like a moving goal.  FNV-1a makes
+// every character choose one stable lane without central fleet coordination.
+u32 StableMineLane(const std::string& identity) {
+    u32 h = 2166136261u;
+    for (unsigned char c : identity) {
+        h ^= c;
+        h *= 16777619u;
+    }
+    return h;
+}
 }  // namespace
 
 bool Runner::DismountToWork(Client& client, const Observation& obs) {
-    if (!obs.mounted) return false;
+    if (!obs.mounted) {
+        // `come` immediately makes a pet follow its speaker. Send it after
+        // the layer-25 mount item has become a mobile, not in the same packet
+        // turn as the dismount. The exact `all ` prefix is the server's form.
+        if (gatherOnFoot_ && !gatherComeCalled_) {
+            if (client.ActionBusy()) return true;
+            client.ActionSay((std::string(pet::kAllPrefix) +
+                              pet::CommandWords(pet::Command::Come)).c_str());
+            gatherComeCalled_ = true;
+            LogLine("gather: on foot to work -- told the owned horse to come");
+            nextActionMs_ = obs.nowMs + 1000;
+            return true;
+        }
+        // Follow me is the server's explicit, non-targeted form of the same
+        // ownership command.  Send it on the next turn so the horse first
+        // appears and hears `all come`, then remains assigned to its rider.
+        if (gatherOnFoot_ && !gatherFollowCalled_) {
+            if (client.ActionBusy()) return true;
+            client.ActionSay((std::string(pet::kAllPrefix) +
+                              pet::CommandWords(pet::Command::FollowMe)).c_str());
+            gatherFollowCalled_ = true;
+            LogLine("gather: on foot to work -- told the owned horse to follow me");
+            nextActionMs_ = obs.nowMs + 750;
+            return true;
+        }
+        return false;
+    }
     if (client.ActionBusy()) return true;   // a click is already in flight
     if (gatherDismountClicks_ >= kMaxDismountClicks) {
         // Said once, then we stop asking. War mode refuses this gesture
@@ -57,6 +97,8 @@ bool Runner::DismountToWork(Client& client, const Observation& obs) {
             gatherDismountClicks_, kMaxDismountClicks);
     client.ActionDismount();
     gatherOnFoot_ = true;
+    gatherComeCalled_ = false;
+    gatherFollowCalled_ = false;
     gatherRemountClicks_ = 0;
     gatherMountLostMs_ = 0;
     nextActionMs_ = obs.nowMs + 1500;
@@ -68,6 +110,8 @@ bool Runner::RemountAfterWork(Client& client, const Observation& obs) {
     if (obs.mounted) {           // back up: the sitting is properly closed
         LogLine("gather: back in the saddle");
         gatherOnFoot_ = false;
+        gatherComeCalled_ = false;
+        gatherFollowCalled_ = false;
         gatherRemountClicks_ = 0;
         gatherDismountClicks_ = 0;
         gatherMountLostMs_ = 0;
@@ -88,9 +132,12 @@ bool Runner::RemountAfterWork(Client& client, const Observation& obs) {
             nextActionMs_ = obs.nowMs + 1000;   // let the pet packet land
             return true;
         }
-        LogLine("gather: the horse is not within %d tiles any more -- "
-                "continuing on foot", kRemountRadius);
+        LogLine("gather: horse did not answer within %d tiles after %llds -- "
+                "leaving this work sit on foot", kRemountRadius,
+                static_cast<long long>(kMountAppearMs / 1000));
         gatherOnFoot_ = false;
+        gatherComeCalled_ = false;
+        gatherFollowCalled_ = false;
         gatherMountLostMs_ = 0;
         return false;
     }
@@ -99,10 +146,15 @@ bool Runner::RemountAfterWork(Client& client, const Observation& obs) {
                 "still shows on foot -- continuing on foot",
                 gatherRemountClicks_, horse);
         gatherOnFoot_ = false;
+        gatherComeCalled_ = false;
+        gatherFollowCalled_ = false;
         gatherRemountClicks_ = 0;
         return false;
     }
     ++gatherRemountClicks_;
+    // We deliberately dismounted this horse and are now mounting this exact
+    // mobile again, which is sufficient ownership evidence for pet care.
+    ownedPetSerial_ = horse;
     LogLine("gather: work done -- climbing back on the horse 0x%08X "
             "(attempt %d of %d)", horse, gatherRemountClicks_,
             kMaxRemountClicks);
@@ -180,6 +232,52 @@ bool Runner::DoGatherLogs(Client& client, const Observation& obs) {
             // on before the journey is the whole point of dismounting only at
             // the work site (owner rule, 2026-09-04).
             if (RemountAfterWork(client, obs)) return false;
+            // Minoc lumberjacks are a local production chain, not itinerant
+            // Britain gatherers. Their persistent memory can contain an old
+            // productive stand from before the Minoc assignment; using it
+            // silently undoes the assignment. Start at the nearest local
+            // woods, expanding only after a distinct stand has been worked
+            // out, instead of sending every new worker to the first atlas row.
+            const bool minocLumberjack = needCfg_.profession &&
+                needCfg_.profession->id == "lumberjack_swordsman";
+            if (minocLumberjack) {
+                const char* minocWoodId = "";
+                const wm::Place* minocWood = PickAllowedMinocLumber(
+                    client.WorldAtlas(), obs.x, obs.y, minocLumberTried_,
+                    &minocWoodId);
+                if (!minocWood && !minocLumberTried_.empty()) {
+                    // Every known Minoc stand had a turn. A later visit may
+                    // find regenerated trees, so begin a fresh local sweep.
+                    minocLumberTried_.clear();
+                    minocWood = PickAllowedMinocLumber(
+                        client.WorldAtlas(), obs.x, obs.y, minocLumberTried_,
+                        &minocWoodId);
+                }
+                if (!minocWood) {
+                    LogLine("goal_failed=GATHER_LOGS reason=\"Minoc lumber "
+                            "allow-list is unavailable\"");
+                    planner_.Cooldown(GoalKind::GatherLogs,
+                                      obs.nowMs + kNoOreCooldownMs);
+                    planner_.Finish(false, "no Minoc lumber area", obs.nowMs);
+                    return false;
+                }
+                minocLumberTried_.emplace_back(minocWoodId);
+                lastHintX_ = minocWood->position.x;
+                lastHintY_ = minocWood->position.y;
+                LogLine("gather: Minoc lumber only -> %s at %d,%d",
+                        minocWoodId, lastHintX_, lastHintY_);
+                // A resource area's radius is broad, but a lumberjack needs
+                // to arrive close enough for the ordinary tree scan.
+                travelInFlight_ = client.TravelToPoint(lastHintX_, lastHintY_,
+                                                       4, "minoc_woods");
+                if (!travelInFlight_) {
+                    LogLine("goal_blocked=GATHER_LOGS reason=\"%s\"",
+                            client.TravelFailureText());
+                    planner_.NoteAttempt(obs.nowMs);
+                }
+                return false;
+            }
+
             // Earned knowledge first, then common knowledge, then go looking.
             // The order matters: preferring a merely-remembered spot over a
             // named forest is what kept this character in the scrub.
@@ -588,8 +686,28 @@ static bool PickForgeStandTile(Client& client, i32 forgeX, i32 forgeY,
     return have;
 }
 
+void Runner::NoteSmeltProgress(const Observation& obs) {
+    // Verify the metal targeted on the previous tick before choosing another
+    // ore. The last stack may have disappeared, or the next stack may have a
+    // different hue; neither should erase a successful batch's progress.
+    if (smeltStartedMs_ != 0 && !smeltIngotName_.empty()) {
+        const i32 made = market::QtyOf(obs.pack, smeltIngotName_);
+        if (made > smeltIngotsBefore_) {
+            LogLine("smelt: +%d %s (%d in the pack)", made - smeltIngotsBefore_,
+                    smeltIngotName_.c_str(), made);
+            planner_.NoteProgress();
+            if (!state_.memory.HasEvent("first_smelt")) {
+                state_.memory.NoteEvent("first_smelt", smeltIngotName_.c_str(),
+                                        "", obs.x, obs.y, obs.nowMs);
+            }
+        }
+        smeltIngotsBefore_ = made;
+    }
+}
+
 bool Runner::DoSmelt(Client& client, const Observation& obs) {
     if (client.ActionBusy()) return false;
+    NoteSmeltProgress(obs);
 
     // Prefer plain iron (hue 0) over a coloured vein when both are in the
     // pack -- see FindIronOrePreferPlain's comment. oreHue is what actually
@@ -599,7 +717,6 @@ bool Runner::DoSmelt(Client& client, const Observation& obs) {
     if (!ore) {
         LogLine("smelt: no ore in the pack to melt");
         smeltStartedMs_ = 0;
-        planner_.Finish(true, nullptr, obs.nowMs);
         return true;
     }
 
@@ -629,15 +746,6 @@ bool Runner::DoSmelt(Client& client, const Observation& obs) {
         // ingot entirely, so retake it rather than compare across metals.
         smeltIngotName_ = pickedIngot;
         smeltIngotsBefore_ = metal;
-    }
-    if (smeltStartedMs_ != 0 && metal > smeltIngotsBefore_) {
-        LogLine("smelt: +%d %s (%d in the pack)", metal - smeltIngotsBefore_,
-                pickedIngot, metal);
-        planner_.NoteProgress();
-        if (!state_.memory.HasEvent("first_smelt")) {
-            state_.memory.NoteEvent("first_smelt", pickedIngot, "", obs.x,
-                                    obs.y, obs.nowMs);
-        }
     }
     smeltIngotsBefore_ = metal;
 
@@ -1234,7 +1342,9 @@ bool Runner::DoFish(Client& client, const Observation& obs) {
                     fishX_, fishY_);
             done = true;
         }
-        if (!done) {
+        // A depleted-tile refusal can accompany the generic failed roll.
+        // Keep that stronger evidence even when the roll already resolved.
+        {
             for (const char* line : kRefusedHere) {
                 if (!client.JournalSaidSince(line, fishCastJournalMs_))
                     continue;
@@ -1535,9 +1645,9 @@ bool Runner::DoFish(Client& client, const Observation& obs) {
     // the kRefusedHere handling above) when it is really about the rider.
     // DismountToWork is the same mechanic GatherLogs/mine already use; unlike
     // theirs there is no matching RemountAfterWork call here on purpose --
-    // "Fishing is deliberately left alone" (top of this file) still holds for
-    // the SITTING, this only gets the character off the horse before the
-    // first line goes in the water. Whatever pet-follow logic already keeps
+    // RunGoal keeps us on foot until the fishing goal ends. This gets the
+    // character off the horse before the first line goes in the water.
+    // Whatever pet-follow logic already keeps
     // the horse near its owner is what happens to it meanwhile; this code
     // does not chase or stable it.
     if (DismountToWork(client, obs)) return false;
@@ -1738,6 +1848,11 @@ bool Runner::DoMine(Client& client, const Observation& obs) {
     // Corwyn stood in Minoc hitting ordinary ground and was told "Try mining
     // elsewhere" every time. Walk into the area, then swing.
     bool atHomeMineInterior = false;
+    // Kept beyond the arrival branch: local rock scans near a cave edge can
+    // see decorative wall rock outside the resource region, and that is not
+    // a valid mine target merely because it has a rock graphic.
+    bool mineFloorKnown = false;
+    i32 mineFloorSeedX = 0, mineFloorSeedY = 0;
     {
         // MINOC, WHATEVER THIS LIFE CALLS HOME. Owner ruling 2026-09-07,
         // spelled out in kMinocMinePlaceIds (RunnerInternal.h): every MINE
@@ -1792,7 +1907,12 @@ bool Runner::DoMine(Client& client, const Observation& obs) {
             homeMineX = mineSeedX;
             homeMineY = mineSeedY;
             homeMineInterior = client.MiningInteriorTarget(
-                mineSeedX, mineSeedY, &homeMineX, &homeMineY);
+                mineSeedX, mineSeedY,
+                StableMineLane(state_.identity.identityId),
+                &homeMineX, &homeMineY);
+            mineFloorKnown = homeMineInterior;
+            mineFloorSeedX = mineSeedX;
+            mineFloorSeedY = mineSeedY;
             // Close to the centroid OR genuinely inside the cave's own RECTs.
             // The centroid-only test flips false the moment a miner walks
             // toward a real rock near the RECT's edge (Minoc Mine 1 is
@@ -1846,7 +1966,7 @@ bool Runner::DoMine(Client& client, const Observation& obs) {
             }
             if (homeMineInterior) {
                 destination += " interior";
-                LogLine("mine: %s resident going directly to the interior of "
+                LogLine("mine: %s resident taking a distinct interior lane in "
                         "%s at %d,%d (trip %d)", state_.homeCity.c_str(),
                         mineLabel.c_str(), mineX, mineY, mineTrips_);
             } else {
@@ -1973,10 +2093,36 @@ bool Runner::DoMine(Client& client, const Observation& obs) {
     }
     Client::MiningSpot spot;
     bool allGuarded1 = false, allGuarded2 = false;
-    if (!client.NearestMiningSpot(scanX, scanY, hereZ, kMineScanRadius, &spot,
-                                  &deadTargets_, &allGuarded1) &&
-        !client.NearestMiningSpot(hereX, hereY, hereZ, kMineScanRadius, &spot,
-                                  &deadTargets_, &allGuarded2)) {
+    bool haveSpot = false;
+    int rejectedOffFloor = 0;
+    // The ordinary spot finder correctly identifies *rock graphics*, but its
+    // radius can cross a cave mouth.  At Minoc it repeatedly chose the cliff
+    // at (2551,472), outside a miner already standing on the floor at
+    // (2568,485), then ActionGoto stopped short and chose the same cliff
+    // again.  Retire off-floor graphics here and keep searching for a rock in
+    // the actual cave region the miner came to work in.
+    for (int tries = 0; tries < 32; ++tries) {
+        allGuarded1 = allGuarded2 = false;
+        const bool found =
+            client.NearestMiningSpot(scanX, scanY, hereZ, kMineScanRadius,
+                                     &spot, &deadTargets_, &allGuarded1) ||
+            client.NearestMiningSpot(hereX, hereY, hereZ, kMineScanRadius,
+                                     &spot, &deadTargets_, &allGuarded2);
+        if (!found) break;
+        if (!mineFloorKnown ||
+            client.WithinMiningRegion(mineFloorSeedX, mineFloorSeedY,
+                                      spot.rockX, spot.rockY)) {
+            haveSpot = true;
+            break;
+        }
+        deadTargets_.emplace_back(spot.rockX, spot.rockY);
+        ++rejectedOffFloor;
+    }
+    if (rejectedOffFloor) {
+        LogLine("mine: ignored %d rock graphic(s) outside this cave floor",
+                rejectedOffFloor);
+    }
+    if (!haveSpot) {
         // OWNER RULE: no gathering inside guarded zones. Both scans saw rock
         // and rejected every candidate for standing inside the guard line --
         // this is a walled-off cave mouth in town, not an empty vein, so do

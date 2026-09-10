@@ -7,6 +7,7 @@ const char* CommandWords(Command c) {
     // not translated, not "improved".
     switch (c) {
         case Command::Come:         return "come";
+        case Command::FollowMe:     return "follow me";
         case Command::FollowTarget: return "follow";
         case Command::Stay:         return "stay";
         case Command::Stop:         return "stop";
@@ -30,6 +31,7 @@ bool NeedsTarget(Command c) {
             return true;
         // Immediate. Waiting for a cursor here would hang forever.
         case Command::Come:
+        case Command::FollowMe:
         case Command::Stay:
         case Command::Stop:
         case Command::GuardMe:

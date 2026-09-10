@@ -233,8 +233,12 @@ void TestArchetypesDiffer() {
     for (const auto& t : mg->targets)
         poisoning |= t.skillId == rules::kPoisoning && t.tenths == 1000;
     Check(poisoning, "pure mage plans Poisoning to 100.0");
+    Check(std::find(mg->consumes.begin(), mg->consumes.end(), "i_potion_poison") == mg->consumes.end(),
+          "mage Poisoning uses spells rather than ordering poison bottles");
     Check(ms->homeCities.size() == 1 && ms->homeCities.front() == "Minoc",
           "miners base their mine/forge/bank loop in Minoc");
+    Check(!lj->homeCities.empty() && lj->homeCities.front() == "Minoc",
+          "lumberjack/carpenters base their log-to-craft loop in Minoc");
 
     // The M5 gate asks for "meaningfully different behaviour". These are the
     // fields the behaviour layers actually branch on, so if they were equal
@@ -354,6 +358,18 @@ void TestPlanFromProfession() {
         Check(plan.viaTrainer.size() == plan.skills.size() &&
               plan.priority.size() == plan.skills.size(),
               "viaTrainer/priority stay in step with skills");
+
+        int trainerSlots = 0;
+        for (usize i = 0; i < p.targets.size(); ++i) {
+            const prof::SkillTargetSpec& target = p.targets[i];
+            const bool isStart = target.skillId == p.startSkillA ||
+                                 target.skillId == p.startSkillB;
+            const bool expected = !isStart &&
+                trainerSlots < prof::kRevolutionTrainerSkillCount;
+            Check(plan.viaTrainer[i] == expected,
+                  "the five non-creation skills use the paid trainer phase");
+            if (expected) ++trainerSlots;
+        }
     }
 }
 
@@ -442,16 +458,15 @@ void TestARefusalIsRemembered() {
     const int second = life::NextSkillToBuy(plan, obs, 300);
     Check(second != rules::kEvaluatingIntel,
           "after the refusal the character stops choosing that skill");
-    // The pure mage has exactly ONE skill an NPC will teach -- Evaluating
-    // Intelligence. Magery and Meditation are viaTrainer=false because they
-    // are practised, not bought, and Inscription left the build in 2026-08-29
-    // when scroll-writing went back to being the scribe's identity. So the
-    // honest answer after a refusal is "nothing", not a fallback.
-    Check(second == -1,
-          "a pure mage whose one buyable skill is refused wants nothing else");
+    // A creation pair begins at 50.0, but every planned skill after it takes
+    // the paid guildmaster phase.  A refusal moves to the next planned skill;
+    // it never resubmits the rejected one.
+    Check(second == rules::kPoisoning,
+          "a refusal advances to the next planned trainer skill");
 
-    // Refuse everything: no target at all, rather than looping on the last one.
-    obs.trainerRefusedSkills.push_back(rules::kInscription);
+    // Refuse every planned secondary: no target at all, rather than looping on
+    // the last one.
+    obs.trainerRefusedSkills.push_back(rules::kPoisoning);
     Check(life::NextSkillToBuy(plan, obs, 300) == -1,
           "a life whose every trainable skill was refused buys nothing");
 }

@@ -60,6 +60,14 @@ Freshness Registry::FreshnessOf(const Supplier& s, i64 nowMs) {
     return Freshness::Stale;
 }
 
+void Registry::BeginVendorSnapshot(u32 serial, i64 nowMs) {
+    for (auto& supplier : suppliers_) {
+        if (supplier.serial != serial) continue;
+        supplier.observedQuantity = 0;
+        supplier.lastVerifiedMs = nowMs;
+    }
+}
+
 void Registry::RecordVendorStock(u32 serial, const char* name, i32 x, i32 y, i8 z,
                                  const char* item, i32 quantity,
                                  i32 pricePerUnit, i64 nowMs) {

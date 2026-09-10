@@ -469,17 +469,11 @@ void TestNoClosedVendorLoop() {
     Check(documented.allowed,
           "a documented faucet survives NPC-bought inputs");
 
-    // THE GUARD STILL HAS TO BITE where the archive is silent, or scoping it
-    // would just have disabled it. The recall scroll is the case: allowed as a
-    // faucet, but its history is only NOT_FULLY_CONFIRMED, so buying the blank
-    // from a vendor and selling the written scroll back to one is exactly the
-    // loop this test exists to catch. Same character, same shop, same bought
-    // input as the poison scroll above -- only the strength of the evidence
-    // differs, which is the whole point.
-    const SellRuling undocumented = MaySellToNpc(*mage, "i_scroll_recall", dirty);
-    Check(!undocumented.allowed,
-          "an UNdocumented route from NPC-bought inputs is still refused");
-    Check(undocumented.reason != nullptr, "and the refusal says why");
+    // The owner described scribing as a channel, not one poison-scroll recipe.
+    // Recall has a live-proven buyer and the same explicit permission.
+    const SellRuling recall = MaySellToNpc(*mage, "i_scroll_recall", dirty);
+    Check(recall.allowed, "recall shares the documented scribing income route");
+    Check(recall.reason != nullptr, "the allowed route still explains its ruling");
 
     // Buying something UNRELATED does not poison the sale.
     Ledger unrelated = clean;
@@ -674,6 +668,10 @@ void TestArbitrageGuardStillApplies() {
     // refutes.
     const SellRuling r = MaySellToNpc(*mg, "i_scroll_poison", dirty);
     Check(r.allowed, "a scribed scroll is one of the three gold taps");
+    dirty.Note(GoldFlow::DestroyedVendorPurchase, 300, "i_scroll_blank", 1001);
+    dirty.Note(GoldFlow::DestroyedVendorPurchase, 200, "i_reag_black_pearl", 1002);
+    Check(MaySellToNpc(*mg, "i_scroll_recall", dirty).allowed,
+          "the scribing permission also covers recall scrolls made from bought inputs");
 
     Check(!MaySellToNpc(*mg, "i_log", dirty).allowed,
           "and a life still may not sell what it does not produce");

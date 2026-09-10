@@ -216,6 +216,17 @@ json::Value ToJson(const PersistentState& st) {
             evs.Push(std::move(o));
         }
         m.Set("events", std::move(evs));
+        json::Value people = json::Value::MakeArray();
+        for (const auto& person : st.memory.relationships) {
+            json::Value o = json::Value::MakeObject();
+            o.Set("name", person.name);
+            o.Set("trust", static_cast<i64>(person.trust));
+            o.Set("encounters", static_cast<i64>(person.encounters));
+            o.Set("foe", person.foe);
+            o.Set("last_goodwill_ms", person.lastGoodwillMs);
+            people.Push(std::move(o));
+        }
+        m.Set("relationships", std::move(people));
 
         json::Value bank = json::Value::MakeArray();
         for (const market::Stock& k : st.bank) {
@@ -297,6 +308,24 @@ json::Value ToJson(const PersistentState& st) {
     root.Set("checkpoint_ms", st.checkpointMs);
     root.Set("death_count", static_cast<i64>(st.deathCount));
     root.Set("hunt_return_pending", st.huntReturnPending);
+    root.Set("smith_training_batch_active", st.smithTrainingBatchActive);
+    json::Value orders = json::Value::MakeArray();
+    for (const auto& o : st.craftOrders) {
+        json::Value e = json::Value::MakeObject();
+        e.Set("id", o.id); e.Set("partner", o.partner);
+        e.Set("serial", static_cast<i64>(o.partnerSerial));
+        e.Set("terms", FormatCraftOrder(o, "REQUEST"));
+        e.Set("buying", o.buying); e.Set("phase", static_cast<i64>(o.phase));
+        e.Set("x", static_cast<i64>(o.x)); e.Set("y", static_cast<i64>(o.y));
+        e.Set("delivered", static_cast<i64>(o.delivered));
+        e.Set("target_stock", static_cast<i64>(o.targetStock));
+        e.Set("created", o.createdMs); e.Set("expires", o.expiresMs);
+        orders.Push(std::move(e));
+    }
+    root.Set("craft_orders", std::move(orders));
+    root.Set("production_item", st.productionBatch.item);
+    root.Set("production_phase", static_cast<i64>(st.productionBatch.phase));
+    root.Set("production_attempts", static_cast<i64>(st.productionBatch.attempts));
     root.Set("recent_deaths", static_cast<i64>(st.recentDeaths));
     root.Set("last_death_ms", st.lastDeathMs);
 
@@ -572,6 +601,20 @@ bool FromJson(const json::Value& v, PersistentState* out, std::string* err) {
         }
     }
 
+    {
+        const json::Value& people = m["relationships"];
+        for (usize i = 0; i < people.Size() && i < 128; ++i) {
+            const auto& o = people.At(i);
+            social::Relationship p;
+            p.name = o["name"].AsString();
+            p.trust = static_cast<i32>(std::max<i64>(-100, std::min<i64>(100, o["trust"].AsInt(0))));
+            p.encounters = static_cast<i32>(std::max<i64>(0, std::min<i64>(100000, o["encounters"].AsInt(0))));
+            p.foe = o["foe"].AsBool(false);
+            p.lastGoodwillMs = o["last_goodwill_ms"].AsInt(0);
+            if (!p.name.empty()) st.memory.relationships.push_back(std::move(p));
+        }
+    }
+
     // --- v1 -> v2 migration ------------------------------------------------
     //
     // v1 wrote a "resource source" for any tick with trees in view, so a v1
@@ -630,6 +673,34 @@ bool FromJson(const json::Value& v, PersistentState* out, std::string* err) {
     st.checkpointMs = v["checkpoint_ms"].AsInt(0);
     st.deathCount   = static_cast<i32>(v["death_count"].AsInt(0));
     st.huntReturnPending = v["hunt_return_pending"].AsBool(false);
+    st.smithTrainingBatchActive = v["smith_training_batch_active"].AsBool(false);
+    st.productionBatch.item = v["production_item"].AsString();
+    const auto& orders = v["craft_orders"];
+    for (usize i = 0; i < orders.Size() && i < 18; ++i) {
+        const auto& e = orders.At(i);
+        CraftOrder o;
+        std::string verb;
+        if (!ParseCraftOrder(e["terms"].AsString(), verb, o) || o.id != e["id"].AsString()) continue;
+        const i64 phase = e["phase"].AsInt(-1);
+        const i64 serial = e["serial"].AsInt(0);
+        const i64 delivered = e["delivered"].AsInt(0);
+        const i64 x = e["x"].AsInt(-1), y = e["y"].AsInt(-1);
+        if (phase < 0 || phase > 5 || serial < 0 || serial > 0xFFFFFFFFLL ||
+            delivered < 0 || delivered > o.terms.qty || x < 0 || x > 65535 || y < 0 || y > 65535) continue;
+        o.partner = e["partner"].AsString(); o.partnerSerial = static_cast<u32>(serial);
+        o.buying = e["buying"].AsBool(false); o.phase = static_cast<OrderPhase>(phase);
+        o.x = static_cast<i32>(x); o.y = static_cast<i32>(y); o.delivered = static_cast<i32>(delivered);
+        o.targetStock = static_cast<i32>(std::max<i64>(0, std::min<i64>(100000, e["target_stock"].AsInt(0))));
+        o.createdMs = e["created"].AsInt(0); o.expiresMs = e["expires"].AsInt(0);
+        if (o.createdMs < 0 || o.expiresMs <= o.createdMs ||
+            o.expiresMs - o.createdMs > 15 * 60 * 1000) continue;
+        st.craftOrders.push_back(std::move(o));
+    }
+    const i64 productionPhase = v["production_phase"].AsInt(0);
+    st.productionBatch.phase = productionPhase >= 0 && productionPhase <= 2
+        ? static_cast<ProductionPhase>(productionPhase) : ProductionPhase::Stock;
+    st.productionBatch.attempts = static_cast<i32>(std::max<i64>(1,
+        std::min<i64>(1000, v["production_attempts"].AsInt(100))));
     st.recentDeaths = static_cast<i32>(v["recent_deaths"].AsInt(0));
     st.lastDeathMs  = v["last_death_ms"].AsInt(0);
 

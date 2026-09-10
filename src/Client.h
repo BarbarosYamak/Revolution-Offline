@@ -15,6 +15,7 @@
 #include "uo/trade.h"
 #include "uo/types.h"
 #include "uo/world_model.h"
+#include "uo/supplier.h"
 #include "world/SharedWorld.h"
 
 #include <atomic>
@@ -269,6 +270,15 @@ public:
     act::Result  ActionResult() const { return action_.result; }
     act::Kind    ActionKind() const { return action_.kind; }
     const act::Action& CurrentAction() const { return action_; }
+    // A system-message refusal can arrive just before another part of the
+    // runner starts an action.  Keep the rejected spell target separately
+    // from action_ so combat can consume the authoritative LOS verdict even
+    // after that later action has replaced the completed cast.
+    u32 TakeSpellReachRefusalTarget() {
+        const u32 target = spellReachRefusalTarget_;
+        spellReachRefusalTarget_ = 0;
+        return target;
+    }
     // GOAL EXIT (Runner::LeaveGoal). Whatever the departing goal started is
     // the departing goal's: an action still Pending, a target cursor the
     // server armed for it, and a lift it never dropped all belong to a goal
@@ -315,6 +325,9 @@ public:
     void ClearSentForTest() { sentForTest_.clear(); }
     // The world state a Runner needs before it will leave Phase::AwaitWorld.
     void SetInWorldForTest() { state_ = State::InWorld; }
+    bool GotoTargetsForTest(i32 x, i32 y) const {
+        return gotoTargetX_ == x && gotoTargetY_ == y;
+    }
     // "The server answered." Drives the real FinishAction, so the action_
     // lifecycle, the [ACTION_RESULT] line and the action_result event are the
     // live ones.
@@ -324,6 +337,10 @@ public:
 
     // Objects and containers
     void ActionUseObject(u32 serial);           // double-click anything
+    // Source-X applies one shared 15-second cooldown to all potions.  Reserve
+    // it when we click a potion so combat recovery cannot waste packets on
+    // clicks the shard will refuse.
+    bool ActionDrinkPotion(u32 serial);
     void ActionOpenContainer(u32 serial);       // double-click, expect contents
 
     // Inventory
@@ -401,6 +418,7 @@ public:
                               const std::vector<std::pair<u32, u16>>& items);
     const std::vector<VendorItem>& VendorSellOffer() const { return vendorSellOffer_; }
     const std::vector<VendorItem>& VendorOffer() const { return vendorOffer_; }
+    const supply::Registry& ObservedSuppliers() const { return observedSuppliers_; }
     // Player vitals, read straight from the server's own status packets.
     i32  PlayerHp() const;
     i32  PlayerHpMax() const;
@@ -480,6 +498,9 @@ public:
     u32  NearestMobileWithBody(u16 body, int maxDist,
                                const std::vector<u32>& exclude) const;
     u32  FindBackpackItemByGraphic(u16 graphic) const;
+    // A trainer pays according to the stack it is handed, not the total gold
+    // somewhere in the pack. Choose a stack that can cover this one payment.
+    u32  FindBackpackItemByGraphicAtLeast(u16 graphic, u16 amount) const;
 
     // The same lookup for ANY open container, which is what looting a corpse
     // needs. FindBackpackItemByGraphic hard-codes the player's own pack, so
@@ -744,11 +765,13 @@ public:
     // is not, and nothing could previously tell the two apart.
     i32  DistanceToResource(wm::ResourceKind r) const;
 
-    // The centre of the largest cave RECT backing the mining resource nearest
-    // to `near{X,Y}`.  This is a first work-site, not a destination guessed
+    // A stable interior work stand in the largest cave RECT backing the
+    // mining resource nearest to `near{X,Y}`.  `lane` lets miners headed to
+    // the same cave fan out across its deep floor instead of all routing to
+    // its one centroid.  This is a first work-site, not a destination guessed
     // from a cave mouth: Minoc's public resource marker is at its south
     // entrance, while its productive floor is in the interior.
-    bool MiningInteriorTarget(i32 nearX, i32 nearY, i32* outX,
+    bool MiningInteriorTarget(i32 nearX, i32 nearY, u32 lane, i32* outX,
                               i32* outY) const;
 
     // Is (x,y) inside the SAME cave region MiningInteriorTarget(nearX,nearY)
@@ -1037,6 +1060,28 @@ public:
     // player whose title has not arrived yet is counted as a player, which is
     // the harmless direction to be wrong in.
     int PlayersNearby(int maxDist) const;
+    bool KnownPlayer(u32 serial) const;
+    void NearbyPlayers(i32 radius, std::vector<HostileHit>& out) const;
+    void ActionIdentifyNearbyPerson();
+    bool SparringKit(u32 serial) const;
+    bool MobilePoisoned(u32 serial) const;
+    bool PoisonPracticeReady(u32 peer) const;
+    bool SparringReady(u32 peer) const;
+    bool PrepareSparringRound(u32 peer);
+    bool BeginSparringRound(u32 peer);
+    void StopSparring(const char* reason);
+    void SparringSafetyTick();
+    u32 SparringPeer() const { return sparringPeer_; }
+    bool SparringExternalThreat(u32 peer) const;
+    void OnPartyPacket(const u8* data, usize size);
+    bool PartyContains(u32 serial) const;
+    u32 PartyLeader() const { return partyMembers_.empty() ? 0 : partyMembers_.front(); }
+    u32 PartyInviter() const { return partyInviter_; }
+    usize PartySize() const { return partyMembers_.size(); }
+    void ActionPartyInvite();
+    void ActionPartyAccept(u32 leader);
+    void ActionPartyLeave();
+    int CombatSupportNear(u32 target, std::vector<HostileHit>& out) const;
     // A cheap identity for "who is close enough to hear me", so a speaker can
     // tell whether the room has changed since its last unanswered offer.
     // Order-independent, and 0 when nobody is there.
@@ -1218,6 +1263,7 @@ public:
     // menu answering "no" is different from an open menu answering "no", and a
     // caller that cannot tell them apart will retry forever.
     bool CraftMenuOpen() const { return activeDialog_.active; }
+    void ForgetCraftMenu() { activeDialog_.active = false; }
 
     void ActionSay(const char* text);    // 0x03 ascii speech
     void ActionOpenBackpack();           // 0x06 double-click the worn backpack
@@ -1323,6 +1369,10 @@ private:
     void OnOpenDialog         (const u8* data, usize size);  // 0x7C menu/dialog
     void OnDeathAnimation     (const u8* data, usize size);  // 0xAF
     void OnMobName            (const u8* data, usize size);  // 0x98
+    std::vector<u32> partyMembers_;
+    u32 partyInviter_ = 0;
+    u32 sparringPeer_ = 0;
+    i64 sparringUntilMs_ = 0, selfHealthSeenMs_ = 0;
     void OnTargetCursor       (const u8* data, usize size);  // 0x6C
     void OnAsciiMessage       (const u8* data, usize size);
     void OnUnicodeMessage     (const u8* data, usize size);
@@ -1588,6 +1638,7 @@ private:
         u8 facing = 0;
         bool running = false;
         i32 hpCur = -1, hpMax = -1;
+        bool poisoned = false;
         i32 manaCur = -1, manaMax = -1;
         i32 stamCur = -1, stamMax = -1;
         i32 strength = -1, dexterity = -1, intelligence = -1;
@@ -1800,8 +1851,10 @@ private:
         i32 prevX = 0; i32 prevY = 0;  // cell before the current step (slide interp)
         bool running = false; // high bit of the server direction byte
         bool warMode = false; // 0x77/0x78 status flag bit 0x40
+        bool poisoned = false; // legacy 2.0.7 status flag bit 0x04
         u8 noto = 0;          // 0x78 notoriety: 1 blue,2 green,3/4 gray,5 orange,6 red,7 yellow
         i32 hpCur = -1, hpMax = -1;  // 0xA1/0x2D health (often a 0..max ratio for foreign mobs)
+        i64 healthSeenMs = 0;
         i64 lastAnimMs = 0;   // 0x6E: when it last played an action animation (0 = never)
         u8 lastAnimAction = 0;// 0x6E action code of that animation (swing/cast/get-hit/...)
         i64 deadRemoveMs = 0;  // 0xAF keeps the mobile until death anim ends
@@ -1934,6 +1987,7 @@ private:
 
     // --- M2 action state (all session-owned) -------------------------------
     act::Action    action_;
+    u32 spellReachRefusalTarget_ = 0; // consumed by life combat target picker
     act::DragState drag_;
     act::LifeState life_ = act::LifeState::Alive;
     u32 bankContainer_ = 0;         // container the server opened as our bank
@@ -1979,6 +2033,7 @@ private:
     // autonomous characters will turn it on and leave it on.
     bool survivalEnabled_ = false;
     bool survivalBandagesAllowed_ = true;
+    i64  potionCooldownUntilMs_ = 0;
     i64  survivalNextActionMs_ = 0;   // don't re-decide every single tick
     i64  survivalLastLogMs_ = 0;
     // When a hostile was last inside the watchdog's scan radius. The tactic
@@ -1999,6 +2054,11 @@ private:
     void TravelDriveLeg();
     void TravelUseTransit();
     void TravelFinish(bool ok, const char* why);
+    // Find a walkable customer-side tile near a mobile.  Keeping this as the
+    // entity journey's goal lets a route follow an NPC that wanders without
+    // ever trying to occupy the NPC's own tile.
+    bool TravelEntityStand(u32 serial, i32 within, bool rotateChoice,
+                           i32* outX, i32* outY, i8* outZ);
     // Keep an entity-chasing journey aimed at where the mobile actually is.
     void TravelRetargetEntity();
     // Note the place we just reached, so the character remembers being there.
@@ -2009,6 +2069,7 @@ private:
     const world_atlas::SharedWorld* world_knowledge_ = nullptr;
     travel::Journey             journey_;
     travel::PersonalKnowledge   knowledge_;
+    supply::Registry observedSuppliers_;
     travel::WarModeWatchdog     war_;
     std::unordered_map<u32, i64> attackersOnMe_;   // serial -> last 0x2F ms
     std::string travelFailure_;

@@ -100,7 +100,7 @@ COMBAT_TRAIN = ("archer", "fencer", "macer", "mage", "warlock", "pk",
                 "lumberjack_swordsman", "tamer", "treasure_hunter")
 TRAIN_GOALS = ("TRAIN_AT_NPC", "TRAIN_COMBAT", "PRACTICE_SKILL")
 # STOCK-4 exemptions: a consumable may be bought as often as it is used up.
-CONSUMABLE = re.compile(r"^i_(bandage|potion_|reag_|bread_|food_|kindling|bottle_empty|cloth|thread)")
+CONSUMABLE = re.compile(r"^i_(bandage|potion_|reag_|bread_|food_|kindling|bottle_empty|cloth|thread|scroll_blank)")
 LOST_LANDS_X = 5120   # include/uo/map.h:12-16
 
 
@@ -108,6 +108,32 @@ def find(lines, pattern):
     """[(1-based line number, line)] for every line matching `pattern`."""
     rx = re.compile(pattern)
     return [(i + 1, l) for i, l in enumerate(lines) if rx.search(l)]
+
+
+def fleet_metrics(lines):
+    """Observed session outcomes; these do not change the generic gate rules."""
+    text = "\n".join(lines)
+    initial = re.search(r"\balive\s+persisted=\w+\s+server=(alive|dead)", text)
+    corpses = {int(value, 16) for value in re.findall(
+        r"hunt: confirmed kill[^\n]*corpse=0x([0-9a-fA-F]+)", text)} - {0}
+    def count(pattern):
+        return len(re.findall(pattern, text))
+    def orders(pattern):
+        return len(set(re.findall(pattern, text)))
+    return {
+        "initial_dead": initial.group(1) == "dead" if initial else None,
+        "new_deaths": count(r"\[life\] disengage=died\b"),
+        "death_location_events": count(r"event death_location\b"),
+        "unique_kill_corpses": len(corpses),
+        "raw_kill_entries": count(r"hunt: confirmed kill\b"),
+        "sparring_rounds_started": count(r"sparring: round \d+ started\b"),
+        "sparring_rounds_stopped": count(r"sparring: round \d+ stopped\b"),
+        "orders_committed": orders(r"order_committed id=(\S+)"),
+        "orders_completed": orders(r"order_delivered id=(\S+)[^\n]*complete=1\b"),
+        "order_delivery_events": count(r"order_delivered id="),
+        "mount_purchase_attempts": count(r"mount: buying a\b"),
+        "mount_purchases_mounted": count(r"mount: in the saddle -- paperdoll shows mounted"),
+    }
 
 
 class Report:
@@ -334,8 +360,24 @@ def main():
           nocoin or summ)
 
     buys = {}
-    for n, l in find(lines, r"allowed NPC purchase of (\w+)"):
-        d = re.search(r"allowed NPC purchase of (\w+)", l).group(1)
+    purchase_lines = find(lines, r"allowed NPC purchase of (\w+)")
+    for i, (n, l) in enumerate(purchase_lines):
+        # Policy logs permission before the packet is sent. Count a re-buy
+        # only after the server has actually delivered the item; rejected and
+        # timed-out requests are retries, not additional stock.
+        end = purchase_lines[i + 1][0] - 1 if i + 1 < len(purchase_lines) else len(lines)
+        outcome = lines[n:end]
+        if not any(re.search(r"ACTION_RESULT.*vendor_buy success.*purchased item delivered", row)
+                   for row in outcome):
+            continue
+        purchase = re.search(r"allowed NPC purchase of (\w+)(?: \((0x[0-9A-Fa-f]+)\))?", l)
+        d = purchase.group(1)
+        # Vendor policy has no catalog name for some scrolls and gear, and
+        # logs those as literal `item`. Do not collapse every distinct object
+        # bought in a session into one fake durable re-buy; retain its graphic
+        # so repeated purchases of the same unknown object still fail.
+        if d == "item" and purchase.group(2):
+            d += "_" + purchase.group(2).lower()
         if not CONSUMABLE.match(d):
             buys.setdefault(d, []).append((n, l))
     rebuys = {d: v for d, v in buys.items() if len(v) > 2}
@@ -374,6 +416,7 @@ def main():
     wn = int(wander.group(1)) if wander else 0
     r.add("LIVE-5", wn > 0, "wander picks %d" % wn, goals)
 
+    print("FLEET-METRICS " + json.dumps(fleet_metrics(lines), sort_keys=True))
     sys.exit(r.emit(a.family, a.console))
 
 

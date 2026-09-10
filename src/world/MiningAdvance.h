@@ -24,6 +24,15 @@
 
 namespace uo::world_atlas {
 
+// Returns a stable work stand in the largest interior RECT of a cave.  `lane`
+// selects one of a small grid of deep-floor positions, so a population headed
+// for the same cave crosses its narrow mouth and fans out rather than every
+// miner trying to occupy the region centroid.  The points stay inset from the
+// RECT edges where there is room, which keeps them away from cave walls and
+// doorway connector RECTs.  Returns false only when the region has no RECT.
+bool MiningInteriorPoint(const wm::Region& region, u32 lane, i32* outX,
+                        i32* outY);
+
 // Steps (curX, curY) toward the region's own DEEP POINT by at most
 // `stepLimit` tiles, and reports the stepped position.
 //

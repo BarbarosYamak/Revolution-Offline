@@ -53,6 +53,11 @@ double SpeciesCeiling(i32 bestFightSkillTenths) {
     return kNoviceCeiling + (kTrainedCeiling - kNoviceCeiling) * t;
 }
 
+double EligibilitySpeciesDanger(double seededDanger, double learnedDanger) {
+    if (seededDanger >= 0.0) return seededDanger;
+    return std::max(0.0, learnedDanger);
+}
+
 const CrimeRules& RevolutionCrimeRules() {
     static const CrimeRules r{};   // defaults ARE the read values; see the header
     return r;
@@ -309,6 +314,8 @@ int ChoosePrey(const std::vector<Candidate>& candidates, const Stance& me,
             if (dx > -kCrowdRadius && dx < kCrowdRadius) ++company;
         }
         score -= 0.35 * company;
+        // Finish a lawful shared fight instead of pulling a fresh creature.
+        score += 0.6 * std::min(2, c.friendlySupport);
 
         // LEARNED VERDICT -- the third term, and the reason this function
         // exists in the M4+ sense of "learn which graveyard mobs are safe

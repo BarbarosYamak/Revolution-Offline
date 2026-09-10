@@ -121,6 +121,19 @@ std::vector<u8> MakeTradeClose(u32 container) {
     return p;
 }
 
+// 0x6F SECURE_TRADE_CHANGE: [3]=2, [4..7] window container, and the two
+// check boxes at [8..11] and [12..15].  The server sends the local side's
+// container, just like CLOSE.
+std::vector<u8> MakeTradeChange(u32 container, bool mine, bool theirs) {
+    std::vector<u8> p(17, 0);
+    p[0] = 0x6F;
+    p[3] = 0x02;
+    StoreBE32(&p[4], container);
+    StoreBE32(&p[8], mine ? 1u : 0u);
+    StoreBE32(&p[12], theirs ? 1u : 0u);
+    return p;
+}
+
 // 0x25 ADD_ITEM_TO_CONTAINER (Client.cpp OnAddItemToContainer), 20 bytes:
 // serial(4) graphic(2) gfxOffset(1) amount(2) x(2) y(2) container(4) hue(2).
 std::vector<u8> MakeAddItem(u32 serial, u16 graphic, u16 amount, u32 container) {
@@ -417,6 +430,29 @@ void TestSecondWindowDeclineClosesOnlyTheSecondWindow() {
     Check(c->TakeDeclinedTrade(&declinedSerial, &declinedName) &&
               declinedSerial == wren && declinedName == "Wren",
           "the declined partner is still reported to the life layer");
+}
+
+// A CHANGE belongs to a particular secure-trade window just as much as CLOSE
+// does.  A late echo from a declined second seller must never tick the active
+// buyer/seller window's acceptance boxes.
+void TestChangeForAnotherWindowLeavesAcceptanceUntouched() {
+    Section("trade: a change for another window leaves acceptance untouched");
+
+    auto c = MakeOfflineClient();
+    const u32 mine = 0x4001C001, theirs = 0x4001C002;
+    auto open = MakeTradeOpen(0x0000FD27, mine, theirs, "Aelia");
+    c->DispatchPacketForTest(open.data(), open.size());
+
+    auto foreign = MakeTradeChange(0x4001D001, true, true);
+    c->DispatchPacketForTest(foreign.data(), foreign.size());
+    Check(c->Trade().Active(), "a foreign change leaves the live trade open");
+    Check(!c->Trade().BothAccepted(),
+          "a foreign change cannot accept the live trade's boxes");
+
+    auto own = MakeTradeChange(mine, true, true);
+    c->DispatchPacketForTest(own.data(), own.size());
+    Check(c->Trade().BothAccepted(),
+          "the live window's own change still updates acceptance");
 }
 
 // ---------------------------------------------------------------------------
@@ -1120,6 +1156,7 @@ int main() {
     TestCloseForAnotherWindowLeavesTheLiveTradeOpen();
     TestCloseNamingThePartnerContainerStillCloses();
     TestSecondWindowDeclineClosesOnlyTheSecondWindow();
+    TestChangeForAnotherWindowLeavesAcceptanceUntouched();
     TestSplitEchoWaitsForTheDestination();
     TestSplitEchoThenBounceIsAFailure();
     TestFullBounceBackIsStillAFailure();

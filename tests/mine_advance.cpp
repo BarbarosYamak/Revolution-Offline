@@ -278,6 +278,48 @@ void TestInteriorIsARegionNotAPoint(const std::string& dataDir) {
           "distance (the bug) did not");
 }
 
+// ---------------------------------------------------------------------------
+// D. A cohort receives distinct deep-floor lanes, never the narrow mouth.
+// ---------------------------------------------------------------------------
+void TestInteriorLanes(const std::string& dataDir) {
+    Section("D: interior lanes fan miners out past Minoc's mouth");
+
+    world_atlas::Atlas atlas;
+    std::string err;
+    const std::string atlasPath = dataDir + "/revolution_atlas.txt";
+    if (!atlas.Load(atlasPath.c_str(), &err)) {
+        Check(false, "the generated atlas loads for interior lanes");
+        return;
+    }
+    const wm::Region* mine = atlas.RegionById("a_minoc_mine_1_1");
+    Check(mine != nullptr, "Minoc Mine 1 exists for interior lanes");
+    if (!mine) return;
+
+    // Twenty lanes is Minoc's 5x4 working grid.  Each remains in the large
+    // floor RECT (y=474..500), not the mouth connector at y=501..503.
+    bool distinct[20] = {};
+    int unique = 0;
+    for (u32 lane = 0; lane < 20; ++lane) {
+        i32 x = 0, y = 0;
+        const bool ok = world_atlas::MiningInteriorPoint(*mine, lane, &x, &y);
+        Check(ok, "each Minoc interior lane resolves");
+        Check(mine->Contains(x, y), "each lane stays inside Minoc Mine 1");
+        Check(y <= 498, "each lane stays north of the mouth connector");
+        // The known grid has five columns and four rows; map it back to a
+        // compact slot only to prove no two lanes collapse to one centroid.
+        const i32 col = (x == 2561 ? 0 : x == 2565 ? 1 : x == 2568 ? 2 :
+                         x == 2572 ? 3 : x == 2575 ? 4 : -1);
+        const i32 row = (y == 480 ? 0 : y == 484 ? 1 : y == 489 ? 2 :
+                         y == 493 ? 3 : -1);
+        Check(col >= 0 && row >= 0, "lane uses Minoc's inset work grid");
+        if (col >= 0 && row >= 0 && !distinct[row * 5 + col]) {
+            distinct[row * 5 + col] = true;
+            ++unique;
+        }
+    }
+    Check(unique == 20, "twenty lane ids produce twenty distinct Minoc stands");
+}
+
 }  // namespace
 
 int main(int argc, char** argv) {
@@ -288,6 +330,7 @@ int main(int argc, char** argv) {
     TestSyntheticGeometry();
     TestRealMinocMine(argv[1]);
     TestInteriorIsARegionNotAPoint(argv[1]);
+    TestInteriorLanes(argv[1]);
 
     std::printf("%d checks, %d failed\n", g_checks, g_failures);
     return g_failures == 0 ? 0 : 1;

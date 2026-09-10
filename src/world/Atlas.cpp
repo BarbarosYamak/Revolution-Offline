@@ -484,6 +484,43 @@ const Place* Atlas::NearestHuntingGroundOfTier(HuntTier tier, i32 x, i32 y,
     return best;
 }
 
+const Place* Atlas::GroupHuntingGround(u32 character, usize rotation) const {
+    std::vector<const Place*> grounds;
+    for (const Place& p : places_) {
+        if (p.category != wm::PlaceCategory::Graveyard || HuntTierOf(p) != HuntTier::Weak)
+            continue;
+        // Transit landmarks inherit the graveyard category but are not yards.
+        if (p.position.map != 0 || p.position.x >= 5120 ||
+            p.id.find("entrance") != std::string::npos ||
+            p.id.find("exit") != std::string::npos ||
+            p.id.find("passage") != std::string::npos) continue;
+        // A weak row means only that it is the whole-yard row; it does not
+        // prove the row is actually separated from hard spawns.  The live
+        // fleet found Moonglow's "weak" patrol standing beside liches and
+        // skeletal knights, while Jhelom's generated row was attached to a
+        // territory region rather than its cemetery.  A shared novice pool
+        // must be stricter: a genuine graveyard region and enough clear space
+        // to patrol its whole weak radius without entering any strong ring.
+        const Region* region = RegionById(p.regionId.c_str());
+        if (!region || region->kind != wm::RegionKind::Graveyard) continue;
+        bool separated = true;
+        for (const Place& ring : places_) {
+            if (ring.category != wm::PlaceCategory::Graveyard ||
+                HuntTierOf(ring) != HuntTier::Strong ||
+                ring.regionId != p.regionId) continue;
+            const i32 edge = Chebyshev(p.position.x, p.position.y,
+                                       ring.position.x, ring.position.y) - ring.radius;
+            if (edge <= p.radius + 2) { separated = false; break; }
+        }
+        if (!separated) continue;
+        if (!HuntingPatrol(p).empty()) grounds.push_back(&p);
+    }
+    std::sort(grounds.begin(), grounds.end(), [](const Place* a, const Place* b) {
+        return a->id < b->id;
+    });
+    return grounds.empty() ? nullptr : grounds[(character / 2 + rotation) % grounds.size()];
+}
+
 std::vector<wm::Point> Atlas::HuntingPatrol(const wm::Place& place) const {
     std::vector<wm::Point> points;
     const Region* region = RegionById(place.regionId.c_str());
@@ -544,6 +581,16 @@ std::vector<wm::Point> Atlas::HuntingPatrol(const wm::Place& place) const {
         points.insert(points.end(), lane.begin(), lane.end());
     }
     if (points.empty()) points.push_back(place.position);
+    if (HuntTierOf(place) == HuntTier::Weak) {
+        points.erase(std::remove_if(points.begin(), points.end(), [&](const wm::Point& pt) {
+            for (const Place& ring : places_)
+                if (ring.category == wm::PlaceCategory::Graveyard &&
+                    ring.regionId == place.regionId && HuntTierOf(ring) == HuntTier::Strong &&
+                    Chebyshev(pt.x, pt.y, ring.position.x, ring.position.y) <= ring.radius + 2)
+                    return true;
+            return false;
+        }), points.end());
+    }
     return points;
 }
 

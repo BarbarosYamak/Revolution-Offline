@@ -171,6 +171,23 @@ GateVerdict CanAct(NeedKind kind, const GateSubject& subject, const Memory& mem,
             // escape actually opens.
             const bool outOfOptions =
                 obs.bandages <= 0 && obs.gold < cfg.goldFloor && obs.hungry;
+            // A physical hunter with neither a bandage nor a healing potion
+            // has no recovery action once a first hit lands.  Leaving this to
+            // DoTrainCombat made the high-scoring training need win, hand
+            // straight to REPLACE_EQUIPMENT, then win again while that errand
+            // cooled (the fresh archers' 13--14 TRAIN_COMBAT spins).  The
+            // Kaelen escape remains deliberately open: a broke, hungry life
+            // with no way to recover or buy medicine may still hunt to earn
+            // its way out.
+            const bool physicalHunter = cfg.profession &&
+                WantsToHunt(*cfg.profession) &&
+                !WantsSpellCombat(*cfg.profession);
+            if (physicalHunter && !outOfOptions && obs.bandages <= 0 &&
+                obs.healPotions <= 0) {
+                v.ok = false;
+                v.why = "no healing supplies -- restock before hunting";
+                break;
+            }
             if (!outOfOptions && obs.HpFraction() < cfg.healHpFraction) {
                 v.ok = false;
                 v.why = "recover before opening another fight";

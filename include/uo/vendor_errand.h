@@ -43,6 +43,8 @@
 #include "uo/types.h"
 #include "uo/world_model.h"
 
+#include <vector>
+
 #include <cstring>
 #include <string>
 
@@ -204,6 +206,12 @@ private:
     i32  chases_ = 0;
     i32  scans_ = 0;
     bool travelInFlight_ = false;
+
+    // A vendor that opened but did not list this item is a fact about that
+    // NPC. Keep it out of this errand's next scan so another merchant can be
+    // tried before the caller cools the whole need down.
+    std::vector<u32> noStockKeepers_;
+    std::vector<std::string> triedPlaceIds_;
 
     // WHAT THE WORLD SHOULD LOOK LIKE IF THE PURCHASE WORKED, recorded
     // BEFORE it is attempted -- section 18. Without these the errand could

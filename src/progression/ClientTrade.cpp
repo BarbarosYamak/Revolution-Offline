@@ -153,6 +153,23 @@ void Client::OnSecureTrade(const u8* data, usize size) {
             break;
         }
         case 2: {   // CHANGE
+            // CHANGE has the same container identity as CLOSE.  A competing
+            // window may still produce its accept-state echo after we have
+            // declined it; applying that echo to the live deal can mark both
+            // boxes accepted before either trader approved the actual window.
+            // Source-X sends our container at [4..7], so accept state is
+            // meaningful only when it names this trade's two containers.
+            if (!trade_.Active() ||
+                (a != trade_.MyContainer() && a != trade_.TheirContainer())) {
+                const u32 active = trade_.Active() ? trade_.MyContainer() : 0;
+                LogWarn("[trade] ignoring accept state for window 0x%08X "
+                        "(active is 0x%08X)\n", a, active);
+                char dev[80];
+                std::snprintf(dev, sizeof(dev), "window=0x%08X active=0x%08X",
+                              a, active);
+                LogEvent("trade_change_ignored", dev);
+                break;
+            }
             const bool mine = b != 0;
             const bool theirs = c != 0;
             trade_.OnCheckChanged(mine, theirs, NowMs());

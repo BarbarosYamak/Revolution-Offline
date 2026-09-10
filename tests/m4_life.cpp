@@ -954,6 +954,8 @@ void TestStateRoundTrip() {
 
     life::PersistentState st = SampleState();
     st.huntReturnPending = true;
+    social::Remember(st.memory.relationships, "Reliable Smith", social::Encounter::Trade, 100000);
+    social::Remember(st.memory.relationships, "Aggressor", social::Encounter::Attack, 100000);
     const json::Value doc = life::ToJson(st);
     const std::string text = doc.Serialize(2);
 
@@ -969,6 +971,30 @@ void TestStateRoundTrip() {
     life::PersistentState loaded;
     std::string err;
     Check(life::FromJson(back, &loaded, &err), "the written state loads");
+    const auto* friendBack = social::Find(loaded.memory.relationships, "Reliable Smith");
+    const auto* foeBack = social::Find(loaded.memory.relationships, "Aggressor");
+    Check(friendBack && friendBack->trust == 15 && friendBack->encounters == 1,
+          "confirmed trading relationship survives state round trip");
+    Check(foeBack && foeBack->foe && foeBack->trust == -100,
+          "aggression survives state round trip independently of event history");
+    social::Remember(loaded.memory.relationships, "Aggressor", social::Encounter::Greeting, 200000);
+    Check(social::Find(loaded.memory.relationships, "Aggressor")->foe,
+          "a greeting cannot erase a grudge");
+    social::Remember(loaded.memory.relationships, "Reliable Smith", social::Encounter::Help, 100001);
+    Check(social::Find(loaded.memory.relationships, "Reliable Smith")->trust == 15,
+          "repeated observations cannot farm trust each tick");
+    social::Remember(loaded.memory.relationships, "Reliable Smith", social::Encounter::Help, 160001);
+    Check(social::Find(loaded.memory.relationships, "Reliable Smith")->trust == 25,
+          "later helpful encounters strengthen a relationship");
+    social::Activity invitation = social::Activity::None;
+    Check(!social::IsInvitation("He said: Anyone for a graveyard hunt? Meet here.", &invitation),
+          "quoted invitation text is not consent");
+    Check(!social::SafeToSocialize(false, true, 0, 1.0, 0.1),
+          "an actual attacker preempts socializing even at full health");
+    const std::vector<life::SkillTarget> beforeSkills = {{1, 500}, {40, 500}};
+    const std::vector<life::SkillTarget> afterSkills = {{1, 501}, {40, 499}};
+    Check(social::TrainingGains(beforeSkills, afterSkills) == 1,
+          "group training credits an individual gain despite an offsetting skill decrease");
 
     Check(loaded.huntReturnPending, "unfinished hunt bank return survives a reconnect");
     Check(loaded.identity.identityId == st.identity.identityId, "identity survives");
@@ -1734,6 +1760,105 @@ void TestOneTrainerIsNotTheTrade() {
           "and a skill the whole trade has refused is correctly dropped");
 }
 
+void TestUnreadyGearOutranksCombatUntilItStandsDown() {
+    Section("planner: an unfinished armour errand is not preempted by combat");
+    life::Planner planner;
+    life::Memory memory;
+    auto obs = HealthyLumberjackAtWork();
+    obs.hp = obs.hpMax;
+    life::Need gear;
+    gear.kind = life::NeedKind::NeedGear;
+    gear.urgency = 0.75;  // the no-basic-armour readiness need
+    life::Need combat;
+    combat.kind = life::NeedKind::NeedTraining;
+    combat.urgency = 0.68;  // fresh fighter's funded combat score
+    std::string why;
+    planner.Select({gear, combat}, obs, memory, obs.nowMs, &why);
+    Check(planner.Current().kind == life::GoalKind::UpgradeGear,
+          "the armour errand gets to finish or cool before combat can hand off to it");
+
+    // A bandage WTB begins under REPLACE_EQUIPMENT, but a fresh fighter also
+    // has the distinct, higher-scored UPGRADE_GEAR goal.  The hand-off must
+    // cool both or the latter replaces TRADE_WITH_PLAYER before it can speak.
+    life::Need trade;
+    trade.kind = life::NeedKind::NeedTrade;
+    trade.urgency = 0.55;
+    planner.Cooldown(life::GoalKind::ReplaceEquipment, obs.nowMs + 60000);
+    planner.Cooldown(life::GoalKind::UpgradeGear, obs.nowMs + 60000);
+    planner.Finish(false, "asking players for bandages", obs.nowMs);
+    planner.Select({gear, trade}, obs, memory, obs.nowMs + 1, &why);
+    Check(planner.Current().kind == life::GoalKind::TradeWithPlayer,
+          "a bandage WTB is selected before the independent armour-upgrade goal");
+}
+
+void TestTamerKeepsWorkingAfterFirstPet() {
+    Section("needs: a tamer continues training after owning a pet");
+    const prof::Profession* tamer = prof::Find("tamer");
+    Check(tamer != nullptr, "the tamer profession is available");
+    if (!tamer) return;
+
+    const life::BuildPlan plan = life::PlanFromProfession(*tamer);
+    life::NeedConfig cfg;
+    cfg.profession = tamer;
+    life::Observation obs = HealthyLumberjackAtWork();
+    obs.hasPet = true;
+    obs.skills.clear();
+    obs.skills.push_back({rules::kTaming, 500});
+
+    const std::vector<life::Need> needs =
+        life::AssessNeeds(plan, life::Memory{}, obs, cfg);
+    const life::Need* tame = Find(needs, life::NeedKind::NeedPet);
+    Check(tame != nullptr && !tame->blocked,
+          "a tamer at 50.0 with a pet still seeks a gainful animal");
+    Check(tame != nullptr && tame->what == "a gainful animal",
+          "the need distinguishes training from acquiring the first pet");
+}
+
+// --------------------------------------------------------------------------
+// TRAINING IS A USE OF SAVINGS, NOT SYNONYMOUS WITH AN NPC LESSON.
+void TestProgressionUsesProfessionFunding() {
+    Section("progression: savings choose build work, not a fixed 10K rule");
+
+    const prof::Profession* scribe = prof::Find("scribe");
+    Check(scribe != nullptr, "the scribe profession exists");
+    if (!scribe) return;
+
+    life::NeedConfig cfg;
+    cfg.profession = scribe;
+    const life::BuildPlan plan = life::PlanFromProfession(*scribe);
+    life::Memory mem;
+    life::Observation obs;
+    obs.inWorld = true;
+    obs.hp = obs.hpMax = 50;
+    obs.mana = 25; obs.manaMax = 50;
+    obs.weight = 10; obs.maxWeight = 200;
+    obs.skills = {{rules::kMagery, 200}, {rules::kMeditation, 200}};
+    obs.wantTrainSkill = rules::kMeditation;
+    obs.wantTrainTarget = 300;
+
+    // The bank is part of `gold`, so this is safe saved wealth, not pocket
+    // coin. A scribe's dynamic line is its 5K operating reserve.
+    obs.gold = scribe->goldReserve - 1;
+    const auto poor = life::AssessNeeds(plan, mem, obs, cfg);
+    const life::Need* poorLesson = Find(poor, life::NeedKind::NeedSkillTraining);
+    const life::Need* poorPractice = Find(poor, life::NeedKind::NeedPractice);
+    Check(poorLesson && poorLesson->blocked,
+          "below its own reserve, an optional NPC lesson yields to earning");
+    Check(poorPractice && poorPractice->evidence.find("progression_fund=") !=
+              std::string::npos,
+          "real practice records the dynamic funding decision");
+
+    obs.gold = scribe->goldReserve;
+    const auto funded = life::AssessNeeds(plan, mem, obs, cfg);
+    const life::Need* fundedLesson = Find(funded, life::NeedKind::NeedSkillTraining);
+    const life::Need* fundedPractice = Find(funded, life::NeedKind::NeedPractice);
+    Check(fundedLesson && !fundedLesson->blocked,
+          "at its own reserve, the life may take the short early lesson");
+    Check(fundedPractice && poorPractice &&
+              fundedPractice->urgency > poorPractice->urgency,
+          "savings also raise real practice; training is not NPC-only");
+}
+
 
 // --------------------------------------------------------------------------
 // A LIFE IS NOT ONE ERRAND REPEATED.
@@ -2002,6 +2127,11 @@ void TestAMageWantsItsBookFilled() {
             if (n.kind == life::NeedKind::NeedSpells) return &n;
         return nullptr;
     };
+    auto combatNeed = [](const std::vector<life::Need>& ns) -> const life::Need* {
+        for (const life::Need& n : ns)
+            if (n.kind == life::NeedKind::NeedTraining) return &n;
+        return nullptr;
+    };
 
     // No book at all: the need must say so, because buying a book and buying
     // a scroll are different errands.
@@ -2017,6 +2147,20 @@ void TestAMageWantsItsBookFilled() {
         Check(none->evidence.find("book=none") != std::string::npos,
               "and the evidence is greppable");
     }
+
+    // A book that has been opened and observed empty is an explicit combat
+    // prerequisite. (A zero serial above is the separate “buy a book” case.)
+    obs.spellbookSerial = 0x4001;
+    const std::vector<life::Need> nsEmpty = life::AssessNeeds(plan, mem, obs, cfg);
+    const life::Need* emptyBook = spellNeed(nsEmpty);
+    Check(emptyBook && emptyBook->urgency >= 0.95,
+          "an empty combat caster treats its first spell as readiness, not a side goal");
+    const life::Need* emptyCombat = combatNeed(nsEmpty);
+    Check(emptyCombat && emptyCombat->blocked,
+          "an empty-book caster is not sent to combat before it can attack");
+    if (emptyCombat)
+        Check(emptyCombat->reason.find("no spell in its book") != std::string::npos,
+              "the blocked combat need explains that its spellbook is the prerequisite");
 
     // A part-filled book still wants more, but less badly than an empty one.
     obs.spellbookSerial = 0x4001;
@@ -2307,6 +2451,22 @@ void TestAGoalThatSucceedsAtNothingIsStopped() {
     Check(f.Cooling(life::GoalKind::BuySupplies, t),
           "and that goal is cooled off as well");
 
+    // A bounded market or trainer investigation changes knowledge even when
+    // it changes no inventory. That result must not be reported as the same
+    // no-op loop as a broken one-tick handler.
+    life::Planner research;
+    t = 3500000;
+    for (int i = 0; i < 10; ++i) {
+        start(research, life::GoalKind::TradeWithPlayer, t);
+        research.NoteProgress();
+        research.Finish(false, "nobody wanted it", t);
+        Check(research.TakeSpinDetected() == life::GoalKind::Count,
+              "completed market research is not flagged as goal spinning");
+        t += 60;
+    }
+    Check(!research.Cooling(life::GoalKind::TradeWithPlayer, t),
+          "a market cooldown remains policy, not an anti-spin false positive");
+
     // IDLING IS EXEMPT. Its whole purpose is to achieve nothing, so counting
     // it would flag the one goal that is working as designed -- which it did,
     // three times in one session, before this exemption existed.
@@ -2417,6 +2577,27 @@ void TestACorneredFighterMayHunt() {
     const life::Need* fit = combatNeed(nsFit);
     if (fit)
         Check(!fit->blocked, "a fighter at full health hunts either way");
+
+    // A funded fighter starts with the means to restock, so it must take that
+    // errand before it can score a trip to a graveyard.  This is the planner
+    // half of the no-healing handler gate; without it fresh archers repeatedly
+    // selected TRAIN_COMBAT and immediately handed it off again.
+    obs.gold = 500;
+    obs.hungry = false;
+    obs.bandages = 0;
+    obs.healPotions = 0;
+    const std::vector<life::Need> nsNoHealing = life::AssessNeeds(plan, mem, obs, cfg);
+    const life::Need* noHealing = combatNeed(nsNoHealing);
+    Check(noHealing && noHealing->blocked &&
+              noHealing->reason.find("no healing supplies") != std::string::npos,
+          "a funded physical fighter restocks healing before selecting a hunt");
+
+    const life::GateVerdict noHealingGate =
+        life::CanAct(life::NeedKind::NeedTraining,
+                     life::GateSubject{nullptr, true}, mem, obs, cfg);
+    Check(!noHealingGate.ok &&
+              noHealingGate.why.find("no healing supplies") != std::string::npos,
+          "the combat handler and need model share the zero-healing refusal");
 }
 
 // "if warrior economy is good then he can buy bandage and potion, otherwise go
@@ -2504,14 +2685,21 @@ void TestAPoorFighterMakesItsOwnBandages() {
               "the reason names poverty, not a missing shop");
     }
 
-    // Money in the purse: buying is faster, so this branch stands aside.
-    obs.gold = 500;
+    // Money in the purse: a player request comes before self-supply and a
+    // healer purchase.  Give the fencer enough to clear its tool reserve.
+    obs.gold = 15000;
+    life::ResolveConsumableThresholds(cfg, obs.gold);
     const std::vector<life::Need> nsRich = life::AssessNeeds(plan, mem, obs, cfg);
     const life::Need* rich = makeNeed(nsRich);
     if (rich)
         Check(rich->blocked,
-              "with money it is BLOCKED -- shearing, spinning, weaving and "
-              "cutting is a poor character's errand, not a rich one's");
+              "with money self-supply waits for the player-market request");
+    const life::Need* bandageTrade = nullptr;
+    for (const life::Need& n : nsRich)
+        if (n.kind == life::NeedKind::NeedTrade &&
+            n.what == "buy bandages from a player") { bandageTrade = &n; break; }
+    Check(bandageTrade != nullptr && !bandageTrade->blocked,
+          "a funded fighter raises an actionable bandage WTB before making or buying");
 
     // A life that does not fight is never sent to a pasture for bandages.
     const prof::Profession* scribe = prof::Find("scribe");
@@ -2533,7 +2721,7 @@ void TestAPoorFighterMakesItsOwnBandages() {
 
     // Stocked up: nothing to do.
     obs.gold = 0;
-    obs.bandages = 30;
+    obs.bandages = cfg.bandageFull;
     const std::vector<life::Need> nsFull = life::AssessNeeds(plan, mem, obs, cfg);
     Check(makeNeed(nsFull) == nullptr,
           "a fighter already carrying bandages does not go looking for sheep");
@@ -3060,6 +3248,16 @@ void TestClothIsBoughtFromPlayersBeforeItIsSheared() {
 //     on its own to cross bankWeightFrac and raise "deposit carried load".
 void TestABoltIsCutNotBanked() {
     Section("needs: half-made cloth is finished, not stored");
+    if (const auto* fighter = prof::Find("fencer")) {
+        std::vector<market::Stock> load = {{"i_cloth_bolt", 2}, {"i_bandage", 99}};
+        Check(life::WoolChainWorkInProgress(*fighter, load, 5, "i_cloth_bolt"),
+              "an undersupplied hunter keeps bolts available for bandages");
+        load[1].qty = 100;
+        Check(!life::WoolChainWorkInProgress(*fighter, load, 5, "i_cloth_bolt"),
+              "a supplied hunter can bank spare bolts and make room for loot");
+        Check(life::CraftInputReserve(*fighter, "i_cloth_bolt", 5) == 0,
+              "a second crafting reserve does not pin a hunter's spare bolts");
+    }
 
     const prof::Profession* t = prof::Find("tailor");
     Check(t != nullptr, "the tailor exists");
@@ -3613,8 +3811,11 @@ void TestPracticeChecksTheReagentPouch() {
     see.magery = 400;
     see.pack.push_back({"i_reag_garlic", 40});
     see.pack.push_back({"i_reag_ginseng", 40});
+    Check(spell::ChoosePracticeSpell(see).spell != 29,
+          "at its hard threshold, Greater Heal yields to a reliable lower circle");
+    see.magery = 550;
     Check(spell::ChoosePracticeSpell(see).spell == 29,
-          "and at 40.0 Magery it becomes the thing to practise with");
+          "once 15.0 points above its requirement, Greater Heal becomes reliable practice");
     // MANA is the other hard gate, and it does not strike the spell off -- it
     // just takes this cast.
     see.mana = 8;
@@ -3718,17 +3919,49 @@ void TestAnEmptyPouchIsAShoppingErrand() {
               "and it says what it is shopping for");
         Check(sup->evidence.find("i_reag_sulfur_ash") != std::string::npos,
               "the evidence names the reagent");
+
+        // A fully empty pouch must finish its mage-shop errand before a
+        // healthy training score can take the bot back out to a hunting
+        // ground.  This is the exact supersession Aurelius hit live.
+        life::Planner planner;
+        const std::vector<life::ScoredGoal> scored = planner.Score(ns, obs, mem);
+        double suppliesScore = 0.0;
+        double combatScore = 0.0;
+        for (const life::ScoredGoal& g : scored) {
+            if (g.kind == life::GoalKind::BuySupplies) suppliesScore = g.score;
+            if (g.kind == life::GoalKind::TrainCombat) combatScore = g.score;
+        }
+        Check(suppliesScore > combatScore,
+              "an empty spell pouch outranks combat training until restocked");
     }
 
-    // Broke: still reported, but blocked -- selling is the way out, not a walk
-    // to a shop that will refuse the sale. Same rule the craft clause states.
-    obs.gold = 40;
+    // Emergency stock may use the reserve when casting is the way to earn.
+    obs.gold = 18;
     const std::vector<life::Need> broke = life::AssessNeeds(plan, mem, obs, cfg);
     const life::Need* poor = nullptr;
     for (const life::Need& n : broke)
         if (n.kind == life::NeedKind::NeedSupplies) { poor = &n; break; }
-    Check(poor != nullptr && poor->blocked,
-          "with no working capital the trip is blocked, not hidden");
+    Check(poor != nullptr && !poor->blocked,
+          "eighteen gold may fund emergency attack reagents");
+    obs.gold = 0;
+    const auto penniless = life::AssessNeeds(plan, mem, obs, cfg);
+    const auto* unavailable = Find(penniless, life::NeedKind::NeedSupplies);
+    Check(unavailable && unavailable->blocked, "zero gold cannot buy reagents");
+
+    obs.atBank = true;
+    obs.gold = obs.goldOnHand = 10000;
+    const auto atCounter = life::AssessNeeds(plan, mem, obs, cfg);
+    bool deposit = false;
+    for (const auto& n : atCounter)
+        if (n.kind == life::NeedKind::NeedBank && n.what == "deposit surplus gold")
+            deposit = !n.blocked && n.urgency > 0;
+    Check(deposit, "opening a bank box does not finish depositing carried gold");
+    obs.goldOnHand = 0;
+    const auto deposited = life::AssessNeeds(plan, mem, obs, cfg);
+    deposit = false;
+    for (const auto& n : deposited)
+        if (n.what == "deposit surplus gold") deposit = true;
+    Check(!deposit, "the deposit need clears after coins leave the pack");
 }
 
 // A SMITH'S INGOTS ARE ALSO ITS RAW MATERIAL.
@@ -4376,6 +4609,18 @@ void TestReagentBandTopUpNeed() {
     Check(atZero != nullptr && want != nullptr &&
               atZero->urgency > want->urgency,
           "an empty pouch outranks a thin one");
+    if (atZero) {
+        life::Planner zeroPlanner;
+        const auto zeroScored = zeroPlanner.Score(emptyNeeds, empty, mem);
+        double suppliesScore = 0.0;
+        double combatScore = 0.0;
+        for (const life::ScoredGoal& g : zeroScored) {
+            if (g.kind == life::GoalKind::BuySupplies) suppliesScore = g.score;
+            if (g.kind == life::GoalKind::TrainCombat) combatScore = g.score;
+        }
+        Check(suppliesScore > combatScore,
+              "a depleted reagent band is restored before more combat training");
+    }
 
     // Bought up to the band: the need is gone, not merely quieter.
     stockPouch(spell::ReagentBandFor("i_reag_nightshade", obs.gold));
@@ -4506,8 +4751,9 @@ void TestAMageMeditatesBeforeItHunts() {
 
     auto huntNeed = [](const std::vector<life::Need>& ns) -> const life::Need* {
         for (const life::Need& n : ns)
-            if (n.kind == life::NeedKind::NeedTraining &&
-                n.what == "hunt for income") return &n;
+            // Poisoning now shares the mage's spell-combat route; either
+            // practice or income hunting must obey the same mana gate.
+            if (n.kind == life::NeedKind::NeedTraining) return &n;
         return nullptr;
     };
 
@@ -4596,8 +4842,9 @@ void TestOneBandageIsNotATripToTown() {
     life::ResolveConsumableThresholds(cfg, 5000);
     Check(cfg.bandageFieldLow < cfg.bandageLow,
           "a hunter's field line sits below its departure floor");
-    Check(cfg.bandageFieldLow >= cfg.bandageLow - cfg.bandageFieldLow,
-          "and it is the floor less ONE fight's worth, not half a pack");
+    Check(cfg.bandageFieldLow <= cfg.bandageLow - 20,
+          "and it leaves a meaningful three-fight field buffer below the "
+          "desired departure stock");
 
     life::BuildPlan plan = life::PlanFromProfession(*fencer);
     life::Memory mem;
@@ -4625,11 +4872,11 @@ void TestOneBandageIsNotATripToTown() {
         Check(one->urgency <= 0.10,
               "but at 0.10 x 260 = 26 it cannot outbid a hunt (58.5) or a "
               "fight in progress -- the top-up waits for the next town trip");
-        Check(one->reason.find("one fight") != std::string::npos,
-              "and the reason says what the line means");
+        Check(one->reason.find("three fights") != std::string::npos,
+          "and the reason says what the line means");
     }
 
-    obs.bandages = cfg.bandageFieldLow - 1;     // a fight's worth gone
+    obs.bandages = cfg.bandageFieldLow - 1;     // below the three-fight reserve
     const std::vector<life::Need> nsGone =
         life::AssessNeeds(plan, mem, obs, cfg);
     const life::Need* gone = bandageNeed(nsGone);
@@ -4674,6 +4921,8 @@ void TestAQuietMarketOpensTheNpcFloor() {
     obs.gold = 1000;
     obs.weight = 100; obs.maxWeight = 600;
     obs.pack.push_back({"i_ingot_iron", 600});
+    // This test covers sale routing after training, when iron is surplus.
+    obs.skills.push_back({rules::kBlacksmithing, 1000});
 
     auto sellNeed = [](const std::vector<life::Need>& ns) -> const life::Need* {
         for (const life::Need& n : ns)
@@ -5301,7 +5550,7 @@ void TestBandageSupplyRoutePrefersPlayers() {
                                         /*marketQuiet=*/false,
                                         /*waitedOut=*/false);
     Check(plan.route == life::BandageSupply::AskPlayers,
-          "the counters are dry and the purse is full -- ask a player first");
+          "the purse is full -- ask a player before a shared healer shelf");
     Check(plan.why && *plan.why, "and say why");
 
     // The decline event the WTB window writes.
@@ -5328,9 +5577,236 @@ void TestBandageSupplyRoutePrefersPlayers() {
     plan = life::PlanBandageSupply(nullptr, 5000, false, false, false);
     Check(plan.route == life::BandageSupply::CutCloth,
           "and so does a life with no profession to price the ask with");
+
+    // The fallback must be actionable, not merely logged. A fencer who has
+    // honestly waited out a WTB must be allowed to cut cloth despite still
+    // having gold; otherwise the planner sends it back to the healer queue.
+    life::NeedConfig cfg;
+    cfg.profession = fen;
+    life::BuildPlan build = life::PlanFromProfession(*fen);
+    life::Memory mem;
+    life::Observation obs;
+    obs.inWorld = true;
+    obs.hp = obs.hpMax = 100;
+    obs.gold = 5000;
+    obs.bandages = 0;
+    obs.nowMs = 2000;
+    life::ResolveConsumableThresholds(cfg, obs.gold);
+    mem.NoteEvent("no_player_seller", "i_bandage", "", 0, 0, 1000);
+    const std::vector<life::Need> needs =
+        life::AssessNeeds(build, mem, obs, cfg);
+    const life::Need* make = Find(needs, life::NeedKind::NeedMakeBandages);
+    Check(make && !make->blocked,
+          "an unanswered bandage WTB makes self-supply actionable even with gold");
+}
+
+void TestBulkSmithTrainingCycle() {
+    Section("bulk smith training stocks 1000, then consumes the funded campaign");
+    const prof::Profession* smith = prof::Find("miner_smith");
+    Check(smith != nullptr, "miner smith exists");
+    if (!smith) return;
+    life::BuildPlan plan = life::PlanFromProfession(*smith);
+    life::NeedConfig cfg;
+    cfg.profession = smith;
+    life::Observation obs = HealthyLumberjackAtWork();
+    obs.skills.push_back({rules::kBlacksmithing, 500});
+    obs.pack = {{"i_ingot_iron", 20}};
+    obs.bank = {{"i_ingot_iron", 979}};
+    obs.gold = 8000;
+    life::Memory mem;
+    auto needs = life::AssessNeeds(plan, mem, obs, cfg);
+    const life::Need* craft = Find(needs, life::NeedKind::NeedCraft);
+    Check(craft && craft->blocked, "999 iron does not start a tiny training sitting");
+    Check(!life::SmithTrainingBatchActive(false, 999), "stocking continues below 1000");
+    obs.bank[0].qty = 980;
+    needs = life::AssessNeeds(plan, mem, obs, cfg);
+    craft = Find(needs, life::NeedKind::NeedCraft);
+    Check(craft && !craft->blocked, "pack plus bank reaching 1000 releases crafting");
+    cfg.smithTrainingBatchActive = true;
+    obs.bank[0].qty = 300;
+    needs = life::AssessNeeds(plan, mem, obs, cfg);
+    craft = Find(needs, life::NeedKind::NeedCraft);
+    const life::Need* mine = Find(needs, life::NeedKind::NeedOre);
+    Check(craft && mine && !craft->blocked && craft->urgency > mine->urgency,
+          "a funded campaign keeps crafting after consumption falls below 1000");
+    obs.pack.clear();
+    needs = life::AssessNeeds(plan, mem, obs, cfg);
+    const life::Need* bank = Find(needs, life::NeedKind::NeedBank);
+    Check(bank && !bank->blocked && bank->what == "withdraw bulk smith stock",
+          "banked campaign material is fetched when the working pack runs low");
+    Check(!life::SmithTrainingBatchActive(true, 19), "spent campaign returns to bulk stocking");
+    obs.pack = {{"i_dagger", 100}};
+    obs.bank.clear();
+    cfg.smithTrainingBatchActive = false;
+    needs = life::AssessNeeds(plan, mem, obs, cfg);
+    mine = Find(needs, life::NeedKind::NeedOre);
+    const life::Need* sell = Find(needs, life::NeedKind::NeedGold);
+    Check(mine && sell && !sell->blocked && sell->urgency > mine->urgency,
+          "finished goods get their sale trip before a new gathering campaign");
+    cfg.smithTrainingBatchActive = true;
+    obs.pack = {{"i_ingot_iron", 20}, {"i_dagger", 100}};
+    obs.weight = obs.maxWeight - 1;
+    needs = life::AssessNeeds(plan, mem, obs, cfg);
+    bank = Find(needs, life::NeedKind::NeedBank);
+    Check(bank && !bank->blocked && bank->urgency > 0,
+          "postponing sales never prevents unloading a full training pack");
+    for (const life::Need& n : needs) {
+        if (n.kind == life::NeedKind::NeedGold && n.what == "sell surplus")
+            Check(n.blocked, "the training campaign keeps its stock away from NPC sales");
+    }
+    life::PersistentState saved, loaded;
+    saved.smithTrainingBatchActive = true;
+    std::string error;
+    Check(life::FromJson(life::ToJson(saved), &loaded, &error) && loaded.smithTrainingBatchActive,
+          "the training phase survives a save and reload");
+    saved.smithTrainingBatchActive = false;
+    Check(life::FromJson(life::ToJson(saved), &loaded, &error) && !loaded.smithTrainingBatchActive,
+          "the stocking phase survives a save and reload");
+}
+
+void TestProfessionProductionBatches() {
+    Check(life::FoodFarmWorthTrip(64, true), "a funded worker can gather food at a nearby farm");
+    Check(!life::FoodFarmWorthTrip(65, true), "a funded worker buys food instead of taking a long farm trip");
+    Check(life::FoodFarmWorthTrip(1000, false), "a broke worker retains the free-food fallback");
+    Section("production campaigns span professions, bank loads, and sessions");
+    for (const char* id : {"miner_smith", "lumberjack_swordsman", "scribe", "tailor",
+                           "fisher", "alchemist", "merchant_tinker", "full_crafter"}) {
+        const prof::Profession* p = prof::Find(id);
+        Check(p != nullptr, id);
+        if (!p) continue;
+        auto obs = HealthyLumberjackAtWork();
+        obs.gold = 10000;
+        obs.mana = obs.manaMax = 100;
+        obs.skills.clear();
+        for (i32 skill = 0; skill < 50; ++skill) obs.skills.push_back({skill, 1000});
+        obs.pack.clear();
+        obs.bank.clear();
+        life::ProductionBatch batch;
+        life::UpdateProductionBatch(batch, *p, obs);
+        Check(!batch.item.empty(), "profession chooses an eligible bulk recipe");
+        if (batch.item.empty()) continue;
+        const std::string pinned = batch.item;
+        const auto targets = life::ProductionInputs(batch);
+        Check(!targets.empty(), "batch names recipe inputs");
+        Check(batch.phase == life::ProductionPhase::Stock, "empty inventory starts stocking");
+        const auto* recipe = prod::FindRecipe(batch.item.c_str());
+        for (const auto& input : targets) {
+            if (input.item == "i_log" || input.item == "i_ingot_iron")
+                Check(input.qty >= 1000, "wood and iron campaign stocks at least 1000");
+            if (input.item == "i_kindling") Check(input.qty == 1, "fire fuel is not multiplied per steak");
+        }
+        obs.bank = targets;
+        obs.bank[0].qty -= 1;
+        life::UpdateProductionBatch(batch, *p, obs);
+        Check(batch.item == pinned && batch.phase == life::ProductionPhase::Stock,
+              "one missing unit neither starts work nor switches recipes");
+        const auto shopping = life::ProductionShopping(batch, obs);
+        Check(shopping.missing.size() == 1 && shopping.missing[0].qty == 1,
+              "shopping subtracts banked stock and requests only the remaining unit");
+        obs.pack = {{targets[0].item, 1}};
+        life::UpdateProductionBatch(batch, *p, obs);
+        Check(batch.phase == life::ProductionPhase::Work, "balanced pack plus bank starts work");
+        obs.pack.clear();
+        obs.bank.clear();
+        for (const auto& input : recipe->inputs)
+            if (input.item && input.qty > 0) obs.bank.push_back({input.item, input.qty * 2});
+        life::UpdateProductionBatch(batch, *p, obs);
+        Check(batch.phase == life::ProductionPhase::Work, "working below original target does not restart stocking");
+        life::NeedConfig cfg;
+        cfg.profession = p;
+        cfg.productionBatch = &batch;
+        const auto needs = life::AssessNeeds(life::PlanFromProfession(*p), {}, obs, cfg);
+        bool fetch = false;
+        for (const auto& need : needs)
+            if (need.kind == life::NeedKind::NeedBank && need.what == "withdraw production stock" && !need.blocked)
+                fetch = true;
+        Check(fetch, "every profession can retrieve its funded bank inputs");
+        life::PersistentState saved, loaded;
+        saved.productionBatch = batch;
+        std::string error;
+        Check(life::FromJson(life::ToJson(saved), &loaded, &error) &&
+              loaded.productionBatch.item == pinned && loaded.productionBatch.phase == life::ProductionPhase::Work &&
+              loaded.productionBatch.attempts == batch.attempts, "recipe, phase, and target survive restart");
+        obs.bank.clear();
+        obs.pack = {{pinned, 200}};
+        life::UpdateProductionBatch(batch, *p, obs);
+        Check(batch.phase == life::ProductionPhase::Sell, "exhausted inputs release finished goods for sale");
+        life::UpdateProductionBatch(batch, *p, obs);
+        Check(batch.phase == life::ProductionPhase::Sell, "unsold goods keep the selling phase open");
+        obs.pack.clear();
+        life::UpdateProductionBatch(batch, *p, obs);
+        Check(batch.phase == life::ProductionPhase::Stock, "sold batch starts the next stocking cycle");
+    }
+
+    const auto* smith = prof::Find("miner_smith");
+    auto obs = HealthyLumberjackAtWork();
+    obs.gold = 10000;
+    life::ProductionBatch batch;
+    batch.item = "i_dagger";
+    batch.attempts = 250;
+    obs.bank = {{"i_ore_iron", 1000}};
+    life::UpdateProductionBatch(batch, *smith, obs);
+    Check(batch.phase == life::ProductionPhase::Work, "banked ore funds dagger training before smelting");
+    obs.weight = 100;
+    obs.maxWeight = 400;
+    Check(life::ProductionWithdrawalQty(batch, obs, prod::FindRecipe("i_dagger")->inputs[0], 1000) == 80,
+          "smith withdraws a carry-sized 80-ingot load rather than a fixed five crafts");
+    obs.bank.clear();
+    obs.pack = {{"i_ingot_iron", 6}};
+    obs.gold = 100;
+    batch.phase = life::ProductionPhase::Stock;
+    life::UpdateProductionBatch(batch, *smith, obs);
+    Check(batch.phase == life::ProductionPhase::Work, "a broke smith works the stock it can already fund");
+    batch.phase = life::ProductionPhase::Stock;
+    obs.gold = 10000;
+    obs.pack = {{"i_dagger", 100}};
+    life::UpdateProductionBatch(batch, *smith, obs);
+    Check(batch.phase == life::ProductionPhase::Sell, "resuming with a finished batch sells it before buying more inputs");
+
+    const auto* fisher = prof::Find("fisher");
+    batch = {};
+    batch.item = "i_fish_cut_cooked";
+    obs.pack = {{"i_fish_cut_raw", 2}, {"i_kindling", 1}};
+    obs.food = 0;
+    life::NeedConfig foodCfg;
+    foodCfg.profession = fisher;
+    foodCfg.productionBatch = &batch;
+    const auto hungry = life::AssessNeeds(life::PlanFromProfession(*fisher), {}, obs, foodCfg);
+    const auto* cook = Find(hungry, life::NeedKind::NeedCraft);
+    Check(cook && !cook->blocked, "a hungry fisher cooks food without waiting for 100 raw steaks");
+    Check(life::BankWeightLine(foodCfg) <= 0.80,
+          "bulk shopping and depositing share the same carry boundary");
+    Check(life::ProductionUnitWeight("i_cloth_bolt") == 50 &&
+          life::ProductionUnitWeight("i_log") == 2 &&
+          life::ProductionUnitWeight("i_hides_cut") == 1,
+          "bank and shopping loads account for heavy bolts, logs, and leather separately");
+
+    const auto* scribe = prof::Find("scribe");
+    batch = {};
+    batch.item = "i_scroll_poison";
+    auto policy = life::ProductionTradePolicy(&batch, 10000);
+    const auto targets = life::ProductionInputs(batch);
+    const auto wants = market::Shortfall(*scribe, {}, policy);
+    obs.gold = 10000;
+    obs.pack = {{targets.front().item, targets.front().qty / 2}};
+    obs.bank.clear();
+    const auto balanced = life::ProductionShopping(batch, obs);
+    Check(!balanced.missing.empty() && std::string(balanced.missing.front().item) != targets.front().item,
+          "a partial purchase switches to the weaker ingredient before spending more on the first");
+    for (const auto& target : targets) {
+        bool found = false;
+        for (const auto& want : wants) if (want.item == target.item && want.qty == target.qty) found = true;
+        Check(found, "player market uses the same per-ingredient bulk target");
+    }
+    batch.phase = life::ProductionPhase::Work;
+    policy = life::ProductionTradePolicy(&batch, 10000);
+    for (const auto& want : market::Shortfall(*scribe, {}, policy))
+        Check(market::QtyOf(targets, want.item) == 0, "work phase does not refill a spent production ingredient");
 }
 
 int main(int argc, char** argv) {
+    TestProfessionProductionBatches();
+    TestBulkSmithTrainingCycle();
     for (int gold : {0, 4486, 10000, 30000}) {
         for (const char* reagent : {"i_reag_mandrake_root", "i_reag_black_pearl", "i_reag_nightshade"}) {
             const int withdrawn = uo::spell::ReagentBandFor(reagent, gold);
@@ -5357,6 +5833,8 @@ int main(int argc, char** argv) {
     TestNeeds();
     TestPlanner();
     TestCombatWaitsForBandages();
+    TestUnreadyGearOutranksCombatUntilItStandsDown();
+    TestTamerKeepsWorkingAfterFirstPet();
     TestGatherLogsSurplusYieldsToTrade();
     TestStandingInTheWoodsOutscoresAComfortErrand();
     TestStateRoundTrip();
@@ -5383,6 +5861,7 @@ int main(int argc, char** argv) {
     TestFamilySatiationBreaksAMonotonousDay();
     TestSatiationLetsSomethingElseHaveATurn();
     TestOneTrainerIsNotTheTrade();
+    TestProgressionUsesProfessionFunding();
     TestGoalCooldownStopsChurn();
     TestGoalHistogramArithmetic();
     TestACooledExploreYieldsToIdleBriefly();

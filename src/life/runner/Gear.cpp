@@ -140,6 +140,10 @@ bool Runner::StandDownBandageShopping(const Observation& obs, const char* why,
             why ? why : "no reason given", life::BandageSupplyName(plan.route),
             plan.why);
 
+    // A shelf that is actually empty is different from a normal top-up.  If
+    // the first-hunt floor is still unmet, another market wait only preserves
+    // the hard combat block; cut cloth now.  Above that floor the ordinary
+    // player-first route remains the way stock is replenished.
     if (plan.route == life::BandageSupply::AskPlayers) {
         // ARM THE HAND-OFF, DO NOT MERELY ANNOUNCE IT.
         //
@@ -331,7 +335,16 @@ bool Runner::DoGetTool(Client& client, const Observation& obs) {
             req.item = t.name.c_str();
             req.desiredTotal = 1;
             req.layer = layer;
-            req.mustWear = t.mustBeWielded;
+            // GET_TOOL is an acquisition goal, not a work action.  A full
+            // profession can own two SRC.WEAPON tools (the woodsman has a
+            // pickaxe and a hatchet) but can only hold one.  Requiring every
+            // declared work tool to be wielded here made the inventory goal
+            // evict one tool for the next forever.  The individual work
+            // goals arm their own required tool immediately before use:
+            // DoGatherLogs, DoMine and DoFish; smithing does the same in
+            // Craft.  Possession is therefore the only valid completion
+            // condition for this cross-profession errand.
+            req.mustWear = false;
             // A profession that names a tool can use it -- unlike armour,
             // nothing here gates which tools this life may wield.
             req.wearable = true;
@@ -769,6 +782,12 @@ bool Runner::DoBuyMount(Client& client, const Observation& obs) {
 
     if (obs.dead) return false;
     if (obs.mounted) {
+        // This survives the session that made the purchase.  Layer-25 mount
+        // serials are session/world objects, so they cannot be used as a
+        // durable identity; ownership proof can.
+        if (!state_.memory.HasEvent("mount_owned"))
+            state_.memory.NoteEvent("mount_owned", "riding horse", "", obs.x, obs.y,
+                                    obs.nowMs);
         if (mountBoughtMs_) {
             LogLine("mount: in the saddle -- paperdoll shows mounted");
             state_.memory.NoteEvent("mounted", "riding horse", "", obs.x, obs.y,
@@ -812,6 +831,10 @@ bool Runner::DoBuyMount(Client& client, const Observation& obs) {
             return false;
         }
         ++mountClicks_;
+        // This is the animal released by OUR completed purchase.  Recording
+        // it before the click gives the pet-care loop an ownership proof even
+        // after Sphere removes the mobile to put the mount item on layer 25.
+        ownedPetSerial_ = horse;
         LogLine("mount: double-clicking the horse 0x%08X to mount (attempt %d of %d)",
                 horse, mountClicks_, kMaxMountClicks);
         client.ActionUseObject(horse);
@@ -1310,6 +1333,94 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs, bool med
         lastBandageAcquirePlan_ = bandagePlan.step;
     }
 
+    // A HEALER IS FOR AN EMERGENCY, NOT A FLEET RESTOCK LINE.
+    //
+    // The old path sent every fighter below its hundred-bandage floor to the
+    // Britain healer first. In the 122-character wave that meant dozens of
+    // bodies waiting at the same counter for a shelf of twenty, while tailors
+    // with cloth and alchemists with medicine had no demand to answer. Normal
+    // town life is the opposite: advertise the need at the market, let a
+    // producer fulfil it, and make it yourself only after that bounded window
+    // is honestly unanswered. A character at emergency health still keeps the
+    // direct NPC path below; it cannot wait forty-eight seconds for a trade.
+    // The same is true before a first hunt while the pack is below its own
+    // survival floor.  That case is a hard TRAIN_COMBAT readiness gate, so a
+    // market-first detour left new fencers and archers unable to progress for
+    // the whole 13-minute market-trip cooldown.  A single shelf may contain
+    // nine bandages; that makes the old zero-item check false, but does not
+    // make a 100-bandage novice safe.  Keep the direct route until the
+    // configured first-hunt floor is reached, then let later top-ups use the
+    // player market as intended.
+    // Supply order is player market, then gathering/cutting.  Only a recorded
+    // failure of that self-supply route opens the NPC healer fallback, and the
+    // record is session-scoped so yesterday's shortage cannot change today.
+    char selfSupplySession[32];
+    std::snprintf(selfSupplySession, sizeof(selfSupplySession), "session=%d",
+                  needCfg_.sessionIndex);
+    bool selfSupplyFailed = false;
+    for (const LifeEvent& e : state_.memory.Events())
+        if (e.kind == "bandage_self_supply_failed" &&
+            e.detail == selfSupplySession) { selfSupplyFailed = true; break; }
+    if (wantsBandages && bandageTopUp_ && !emergency && !selfSupplyFailed &&
+        !bandageBuy_.Running()) {
+        const i64 bandageWtbWaitMs = kMaxAnnounces * kAnnounceIntervalMs;
+        const bool announced = bandageWtbAskedMs_ > 0;
+        const bool waitedOut = announced &&
+            obs.nowMs - bandageWtbAskedMs_ >= bandageWtbWaitMs;
+        const bool couldNotAsk = !announced && bandageWtbHandedOffMs_ > 0 &&
+            obs.nowMs - bandageWtbHandedOffMs_ >= kMarketTripBudgetMs;
+        const life::BandageSupplyPlan source = life::PlanBandageSupply(
+            needCfg_.profession, obs.gold,
+            SellersDeclined("i_bandage", obs.nowMs), obs.marketQuiet,
+            waitedOut, couldNotAsk);
+
+        LogLine("bandages: supply route %s because %s",
+                life::BandageSupplyName(source.route), source.why);
+        if (source.route == life::BandageSupply::AskPlayers) {
+            // The market hand-off is advisory, so hold the self-cut goal for
+            // exactly one announce cycle; otherwise its higher score wins the
+            // following tick and the WTB is never spoken.
+            planner_.Cooldown(GoalKind::MakeBandages,
+                              obs.nowMs + bandageWtbWaitMs);
+            // The buyer may need to cross town before it can make the first
+            // announcement.  A short (30 s) cooldown on this higher-scored
+            // goal let REPLACE_EQUIPMENT pre-empt TRADE_WITH_PLAYER halfway
+            // through that journey, then hand it off again forever.  Keep
+            // the restock goal out of selection for the same bounded market
+            // trip that defines "could not ask" above; the trade goal either
+            // completes the purchase or records the failed market and hands
+            // the next pass to the self-supply route.
+            planner_.Cooldown(GoalKind::ReplaceEquipment,
+                              obs.nowMs + kMarketTripBudgetMs);
+            // UPGRADE_GEAR is a separate goal from REPLACE_EQUIPMENT.  Fresh
+            // fighters score it even higher while they have no armour, so
+            // cooling only the restock owner abandons this hand-off on the
+            // next tick before the WTB can be spoken.
+            planner_.Cooldown(GoalKind::UpgradeGear,
+                              obs.nowMs + kMarketTripBudgetMs);
+            if (bandageWtbHandedOffMs_ == 0)
+                bandageWtbHandedOffMs_ = obs.nowMs;
+            return HandOff(GoalKind::ReplaceEquipment,
+                           GoalKind::TradeWithPlayer, kShortRestMs,
+                           source.why, obs.nowMs);
+        }
+
+        // A real no-seller observation (or an unaskable market trip) is the
+        // point at which self-supply becomes the right work. Do not reset the
+        // WTB stamp until the next restock cycle has selected another route.
+        // This has the same pre-emption hazard as the market journey above:
+        // MAKE_BANDAGES scores below REPLACE_EQUIPMENT, so without explicitly
+        // holding the latter down the planner reopens the identical restock
+        // decision before the tailor/cloth errand can make one move.
+        planner_.Cooldown(GoalKind::ReplaceEquipment,
+                          obs.nowMs + kNoBandageCooldownMs);
+        planner_.Cooldown(GoalKind::UpgradeGear,
+                          obs.nowMs + kNoBandageCooldownMs);
+        planner_.ClearCooldown(GoalKind::MakeBandages);
+        return HandOff(GoalKind::ReplaceEquipment, GoalKind::MakeBandages,
+                       kShortRestMs, source.why, obs.nowMs);
+    }
+
     // 2. The missing garment. Only what the pack could not supply, one piece
     // per visit: the errand re-runs, and a shirt bought this trip is worn by
     // WearBasicClothing at the top of the next one before anything else is
@@ -1347,10 +1458,11 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs, bool med
     // 3. Heal potions. HealPotions() has sat in the profession catalogue
     // since M5 and no code path ever filled it: warriors declared a need for
     // eight and carried none. "you are crafter you dont have heal skill so
-    // buy healing potion 3-4" and "you can buy from same place you buy
-    // healer" (project owner, 2026-08-30). The healer sells them -- the same
-    // counter the bandage errand above already walks to; the alchemist is
-    // the fallback (tm_vend's ALCHEMIST list carries i_potion_heal at {3 18}).
+    // buy healing potion 3-4".  The alchemist is the normal source: it has
+    // the larger potion shelf and spreads demand to the profession that makes
+    // them.  A healer remains an emergency fallback, never the first choice;
+    // otherwise a fleet that already buys bandages elsewhere still reforms at
+    // the same Britain healer queue for every three-pot top-up.
     const prof::ConsumableNeed* potions = nullptr;
     if (needCfg_.profession) {
         for (const prof::ConsumableNeed& c : needCfg_.profession->consumables) {
@@ -1375,8 +1487,8 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs, bool med
             // that spends its final gold on potions cannot buy the ore that
             // earns the next lot.
             req.minimumGoldReserve = medicineOnly ? 0 : 50;
-            req.Sell("healer", wm::Service::Healer);
             req.Sell("alchemist", wm::Service::Alchemist);
+            req.Sell("healer", wm::Service::Healer);
             potionPlan = life::DecideAcquire(req, held, 0);
         }
     }
@@ -1824,6 +1936,10 @@ bool Runner::LifeNeedsGraphic(u16 gfx) const {
 // item on the bench outranks being stock to sell.
 ItemRole Runner::RoleOfGraphic(u16 gfx) const {
     if (gfx == kGoldCoin) return ItemRole::Money;
+    for (const auto& target : state_.plan.skills) if (target.skillId == rules::kPoisoning) {
+        if (gfx == 0x0F51 || gfx == 0x0F52) return ItemRole::Tool;
+        if (gfx == 0x0F0A) return ItemRole::Consumable;
+    }
 
     const prof::Profession* me = needCfg_.profession;
     if (!me) return ItemRole::Unknown;
@@ -1871,6 +1987,27 @@ static const char* CreateFoodReagentShort(const Observation& obs) {
     for (const char* const* r = d->reagents; *r; ++r)
         if (market::QtyOf(obs.pack, *r) <= 0) return *r;
     return nullptr;
+}
+
+// The atlas obtains Food grounds from the shard's own a_farmland/a_field
+// AREADEFs.  It has a one-result resource query, while this errand must move
+// on after a field is unripe or picked clean; choose the nearest untried one.
+static const wm::Place* NextFoodFarm(const world_atlas::Atlas* atlas,
+                                     i32 x, i32 y,
+                                     const std::vector<std::string>& tried) {
+    if (!atlas) return nullptr;
+    const wm::Place* best = nullptr;
+    i32 bestDist = 0;
+    for (const wm::Place& p : atlas->Places()) {
+        if (!p.Yields(wm::ResourceKind::Food)) continue;
+        if (std::find(tried.begin(), tried.end(), p.id) != tried.end()) continue;
+        const i32 d = TileDist(x, y, p.position.x, p.position.y);
+        if (!best || d < bestDist) {
+            best = &p;
+            bestDist = d;
+        }
+    }
+    return best;
 }
 
 bool Runner::DoGetFood(Client& client, const Observation& obs) {
@@ -1992,8 +2129,8 @@ bool Runner::DoGetFood(Client& client, const Observation& obs) {
             // (2026-09-02). No reagents means shop for bread like anyone else;
             // the practice loop's restock errand refills the pouch on its own
             // schedule.
-            LogLine("food: Create Food is short of %s -- buying food instead "
-                    "this time", CreateFoodReagentShort(obs));
+            LogErrandReason("food_reagents", Fmt2("Create Food is short of %s -- seeking food",
+                            CreateFoodReagentShort(obs)).c_str(), obs.nowMs);
             // fall through to buying
         } else if (obs.mana >= kCreateFoodMana) {
             LogLine("food: casting Create Food rather than shopping "
@@ -2016,11 +2153,76 @@ bool Runner::DoGetFood(Client& client, const Observation& obs) {
         }
     }
 
-    // STILL TO DO, and deliberately not faked here: crops on the world's farms
-    // are a second free source, and fish steaks bought from a FISHER are the
-    // third -- which is the same errand as R4's first player-to-player trade,
-    // since the fisher selling them will be another bot. Both belong with the
-    // market layer rather than bolted into this goal.
+    // FARMS ARE FOOD, NOT SCENERY.
+    //
+    // A ripe carrot/onion/corn/turnip crop's TDATA3 fruit is bounced into the
+    // user's pack by CItemPlant::Plant_Use.  Walk up and double-click it just
+    // as a player does.  Its serial is retired after one use so an unripe crop
+    // cannot absorb the goal in an action/retry loop.
+    if (client.TravelBusy()) return false;
+    u32 crop = 0;
+    for (u16 graphic : kFoodCrop) {
+        crop = client.FindWorldItemByGraphic(graphic, 18, foodCropsTried_);
+        if (crop) break;
+    }
+    if (crop) {
+        i32 cropX = 0, cropY = 0;
+        if (!client.WorldItemPosition(crop, &cropX, &cropY)) {
+            foodCropsTried_.push_back(crop);
+        } else if (TileDist(obs.x, obs.y, cropX, cropY) > 2) {
+            LogLine("food: ripe crop at %d,%d is %d tiles away -- walking up",
+                    cropX, cropY, TileDist(obs.x, obs.y, cropX, cropY));
+            // Crops are world items, not mobiles.  TravelToEntity rightly
+            // only accepts a mobile and returned "not in view" for every
+            // ripe carrot we had just seen.  Travel to the observed crop tile
+            // instead; after arrival this loop re-discovers the current crop
+            // serial before using it.
+            travelInFlight_ = client.TravelToPoint(cropX, cropY, 2,
+                                                   "ripe_crop");
+            if (!travelInFlight_) {
+                foodCropsTried_.push_back(crop);
+                planner_.NoteAttempt(obs.nowMs);
+                LogLine("food: cannot reach crop -- \"%s\"",
+                        client.TravelFailureText());
+            }
+            nextActionMs_ = obs.nowMs + 2000;
+            return false;
+        } else {
+            LogLine("food: harvesting a crop at %d,%d instead of buying food",
+                    cropX, cropY);
+            foodCropsTried_.push_back(crop);
+            client.ActionUseObject(crop);
+            planner_.NoteProgress();
+            nextActionMs_ = obs.nowMs + 2500;
+            return false;
+        }
+    }
+
+    // No visible crop means go to a distinct, known field before paying a
+    // vendor. The atlas covers fields across the whole shard, while the cap
+    // keeps a barren growing cycle from turning one meal into a world tour.
+    if (foodFarmTrips_ < kMaxFarmFoodTrips) {
+        const wm::Place* farm = NextFoodFarm(client.WorldAtlas(), obs.x, obs.y,
+                                             foodFarmTried_);
+        if (farm && FoodFarmWorthTrip(TileDist(obs.x, obs.y, farm->position.x,
+                                              farm->position.y), obs.gold >= kFoodMoney)) {
+            foodFarmTried_.push_back(farm->id);
+            ++foodFarmTrips_;
+            LogLine("food: no ripe crop in sight -- heading to %s at %d,%d "
+                    "(farm %d of %d)", farm->name.c_str(), farm->position.x,
+                    farm->position.y, foodFarmTrips_, kMaxFarmFoodTrips);
+            travelInFlight_ = client.TravelToPoint(farm->position.x,
+                                                   farm->position.y,
+                                                   farm->radius, "crop_field");
+            if (!travelInFlight_) {
+                planner_.NoteAttempt(obs.nowMs);
+                LogLine("food: cannot reach %s -- \"%s\"", farm->name.c_str(),
+                        client.TravelFailureText());
+            }
+            nextActionMs_ = obs.nowMs + 2500;
+            return false;
+        }
+    }
 
     // NOTHING TO EAT AND NOTHING TO BUY WITH.
     //
@@ -2309,6 +2511,19 @@ bool Runner::DoUpgradeGear(Client& client, const Observation& obs) {
         const ArmorPiece* worn = wornGfx ? ArmorFor(wornGfx) : nullptr;
         const int wornArmor = worn ? worn->armor : 0;
         if (wornGfx && wornArmor >= a.armor) continue;   // no better
+        // A layer is not a stack.  In particular, leggings cannot be worn
+        // over ordinary pants: Sphere returns the candidate to the pack, and
+        // treating the sent equip packet as progress retries that same
+        // impossible overlay.  Let the paperdoll confirm the old item is off
+        // before asking for the upgrade on the following tick.
+        const u32 wornSerial = wornGfx ? client.EquippedAtLayer(layer) : 0;
+        if (wornSerial && wornSerial != have) {
+            LogLine("gear: taking off 0x%04X before wearing 0x%04X in layer %u",
+                    wornGfx, a.graphic, static_cast<unsigned>(layer));
+            client.ActionUnequip(wornSerial);
+            nextActionMs_ = obs.nowMs + 1200;
+            return false;
+        }
         LogLine("gear: wearing 0x%04X (armor %d, needs str %d, have %d) over "
                 "0x%04X (armor %d)", a.graphic, a.armor, a.reqStr, obs.str,
                 wornGfx, wornArmor);
@@ -2375,6 +2590,10 @@ bool Runner::DoUpgradeGear(Client& client, const Observation& obs) {
         // immediately and asks the same question of the same pack. This branch
         // is now reachable the moment an equip is refused and struck off, so it
         // has to stand down rather than spin.
+        // Confirming that this non-combat life has no useful upgrade is a
+        // completed investigation, not a no-op. Counting it as progress keeps
+        // five harmless checks from becoming a false defect report.
+        planner_.NoteProgress();
         planner_.Cooldown(GoalKind::UpgradeGear, obs.nowMs + kGearCooldownMs);
         planner_.Finish(true, nullptr, obs.nowMs);
         return true;
@@ -2460,6 +2679,10 @@ bool Runner::DoUpgradeGear(Client& client, const Observation& obs) {
         // progress=0 and was re-picked 60 ms later in run_m7/v_Corwyn; the
         // cooldown is what makes the answer stick until something moves.
         LogLine("gear: every slot this class may fill is filled");
+        // The complete legal/affordable catalogue and the paperdoll were
+        // checked above. That new knowledge is this errand's result; do not
+        // manufacture a goal-spin report merely because no purchase was needed.
+        planner_.NoteProgress();
         planner_.Cooldown(GoalKind::UpgradeGear, obs.nowMs + kGearCooldownMs);
         planner_.Finish(true, nullptr, obs.nowMs);
         return true;

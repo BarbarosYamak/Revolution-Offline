@@ -30,72 +30,9 @@ void ReagentBandShortfall(const Observation& obs,
     spell::ReagentBandShortfall(obs.pack, obs.gold, &missing, qtyOut);
 }
 
-// WHICH HUNTING GROUND, BY TIER (project owner, 2026-09-04).
-//
-// "New fighters (weapon skill <~50) go to Britain graveyard / Brit sewers,
-// NOT Jhelom, dungeons, or Trinsic-side dungeon terrain."
-//
-// The measured reason this rule exists: Client::TravelToHuntingGround resolves
-// the NEAREST place of category graveyard (Atlas.cpp:458), and Hector/Castor
-// were standing on Jhelom island, so "nearest" was a_jhelom_cemetary_1. A lich,
-// a skeletal knight, a zombie and a skeleton opened on a fencer inside eighteen
-// seconds (run_gates/g_Hector.console.txt:984-1017, death at :1017), and the
-// corpse run walked straight back into the same yard.
-//
-// The novice ground is addressed BY ATLAS ID so the lookup cannot drift onto
-// some other cemetery through FindPlace's substring fallback.
-constexpr const char* kNoviceHuntGroundId = "britain_graveyard_graveyard";
-// Tenths. "<~50" in the owner's rule; the highest weapon skill the character
-// actually has, not the one its build plans to have.
-//
-// SIXTY, NOT FIFTY, and the shard is the reason: sphere.ini MaxBaseSkill=0
-// means a new character is created with exactly 50.0 in two skills and 0.0 in
-// everything else, so a fresh fencer reads 50.0 on the day it is rolled. At a
-// 500 boundary every brand-new fighter classified as SEASONED and was sent to
-// the nearest graveyard -- measured, g_Castor.console.txt:936 on 2026-09-04,
-// "hunt_ground=Vesper Cemetary tier=seasoned weapon=50.0". The boundary has to
-// sit above the creation value or the rule cannot see a beginner at all.
-constexpr i32 kSeasonedWeaponTenths = 600;
-// How much of this character's OWN remembered danger a hunting ground may
-// carry before it stops being a place to go and train. Sized against the two
-// notes that actually reach it: a death writes 2.0 (Core.cpp, alive->dead
-// edge) and a low-health retreat writes 1.5 (Survive.cpp), both decaying on a
-// 45-minute half-life (life.h:334). So one death is a lesson and a second
-// death inside the hour is a verdict -- "don't return to a spot that killed
-// the bot twice", the owner's rule of 2026-09-04, expressed in the memory the
-// character already keeps rather than in a counter invented for it.
+// Shared weak-yard assignments replace the old Britain-only novice rule
+// (owner, 2026-09-09). Personal death/retreat memory still excludes hot yards.
 constexpr double kHuntGroundHeatLimit = 3.0;
-
-// MAY THIS CHARACTER ENTER A STRONG RING? Today: nobody may, and that is a
-// stated UNKNOWN rather than a threshold nobody could back.
-//
-// Derivation and the numbers behind it: artifacts/hunt_tier_gate_2026-09-06.md.
-// In short, from runtime/scripts (Graveyards_spawns_felucca.scp for the mix,
-// npcs/c_monster_classic.scp for the chardefs):
-//
-//   weak band   c_skeleton      DAM 3,7   MAXHITS 34-48   Wrestling 45-55
-//   strong ring c_skeleton_knight DAM 18,43 MAXHITS 118-150 Swords/Tactics 85-100
-//   strong ring c_lich          DAM 24,26  MAXHITS 103-120 Magery 70-80
-//   strong ring c_lich_lord     DAM 30,38  MAXHITS 250-303 Magery 90-100
-//
-// Turning that into "strong needs skill >= N, hp >= M" needs this shard's
-// damage-after-armour rule (unverified here) and the character's own AR, which
-// Observation does not carry at all -- it has hp/hpMax, skills and a boolean
-// hasBasicArmor. Measured behaviour points the same way: on 2026-09-06 two
-// plain c_skeleton killed Hector at 51 hp and ~50 weapon skill
-// (sphere2026-09-06.log 02:16), and every recorded contact with a strong
-// undead -- Aurir 03:28, Aurelius 17:57, Vorar 18:40 and 19:07 -- ended in a
-// bot corpse, with no bot ever observed killing one.
-//
-// So the gate is shut. Weak tier is the only tier anything resolves, exactly
-// as before the split, until a measured survival or a verified damage formula
-// says otherwise. The parameters stay in the signature because they are what a
-// real gate will read.
-bool ClearsStrongHuntTier(const Observation& obs, i32 weaponTenths) {
-    (void)obs;
-    (void)weaponTenths;
-    return false;
-}
 
 // BestWeaponSkillTenths moved to RunnerInternal.h (runner_detail): the
 // novice engagement policy in Survive.cpp needs the same number.
@@ -239,8 +176,38 @@ bool Runner::NotePracticeGain(int skillId, i32 have) {
 bool Runner::HandOffFromHunt(GoalKind to, i64 forMs, const char* why, i64 nowMs) {
     huntTrips_ = 0;
     huntEmptyArrivals_ = 0;
+    huntUnderstockAuthorized_ = false;
     ClearHuntEngageState();
     return HandOff(GoalKind::TrainCombat, to, forMs, why, nowMs);
+}
+
+i32 Runner::HuntSupport(Client& client, const Observation& obs, u32 target, bool announce) {
+    std::vector<Client::HostileHit> allies;
+    client.CombatSupportNear(target, allies);
+    i32 count = 0;
+    for (const auto& ally : allies) {
+        bool foe = SocialFoe(ally.name);
+        bool met = false;
+        for (const auto& event : state_.memory.Events()) {
+            if (event.detail != ally.name) continue;
+            if (event.kind == "attacked_by_player") foe = true;
+            if (event.kind == "hunt_companion") met = true;
+        }
+        if (foe) continue;
+        ++count;
+        if (!announce || ally.name.empty()) continue;
+        social::Remember(state_.memory.relationships, ally.name, social::Encounter::Help, obs.nowMs);
+        if (!met)
+            state_.memory.NoteEvent("hunt_companion", ally.name.c_str(), "shared hunt",
+                                    obs.x, obs.y, obs.nowMs);
+        if (obs.nowMs - huntSocialMs_ >= 120000) {
+            huntSocialMs_ = obs.nowMs;
+            LogLine("hunt: assisting %s against target 0x%08X", ally.name.c_str(), target);
+            client.ActionSay(met ? "Good to hunt with you again. I'll help with this one."
+                                 : "I'll help with this one. Let's hunt together.");
+        }
+    }
+    return count;
 }
 
 bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
@@ -273,6 +240,7 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
         const i32 killed = huntKillsPending_;
         huntKillsPending_ = 0;
         huntEmptyArrivals_ = 0;
+        huntUnderstockAuthorized_ = false;
         ClearHuntEngageState();
         for (i32 i = 0; i < killed; ++i) planner_.NoteProgress();
         LogLine("hunt: %d confirmed kill(s) this trip -- combat training done "
@@ -287,6 +255,31 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
                                       : "fletch ammunition before hunting", obs.nowMs);
     }
     const bool caster = needCfg_.profession && WantsSpellCombat(*needCfg_.profession);
+    // Local line-of-sight is an optimistic preflight: the server can still
+    // reject a moving target after we have reached what looked like a firing
+    // tile.  Client classifies Source-X reach/LOS text as Rejected; reagent,
+    // mana, and spell failures are ServerFailure, so this is specifically a
+    // target-position verdict.  Consume the result before candidate selection
+    // so the same target cannot receive another cast on the next tick.
+    if (caster) {
+        // Prefer the refusal captured at packet time.  The completed-action
+        // fallback keeps synthetic and older action paths working.
+        u32 refused = client.TakeSpellReachRefusalTarget();
+        if (refused == 0 && !client.ActionBusy() &&
+            client.ActionKind() == act::Kind::CastSpell &&
+            client.ActionResult() == act::Result::Rejected)
+            refused = client.CurrentAction().destination;
+        if (refused != 0 && refused != client.PlayerSerial()) {
+            if (casterReachRefusedTarget_ != refused) {
+                LogLine("hunt: server refused line of sight to 0x%08X -- "
+                        "trying another target", refused);
+                casterReachRefusedTarget_ = refused;
+            }
+            MarkUnreachable(refused, obs.nowMs);
+            if (huntApproachTarget_ == refused) huntApproachTarget_ = 0;
+            if (currentFoe_ == refused) currentFoe_ = 0;
+        }
+    }
     int attackSpell = -1;
     if (caster) {
         if (obs.spellbookSerial && !client.ContainerKnown(obs.spellbookSerial)) {
@@ -317,6 +310,16 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
                 std::vector<std::string> missing;
                 i32 bandGap = 0;
                 ReagentBandShortfall(obs, missing, &bandGap);
+                if (obs.gold <= 100) {
+                    // Restore one usable attack before trying to fund the
+                    // standing eight-reagent band with a nearly empty purse.
+                    missing.clear();
+                    for (const char* reagent : spell->reagents) {
+                        if (reagent && reagent[0] && market::QtyOf(obs.pack, reagent) == 0)
+                            missing.emplace_back(reagent);
+                    }
+                    bandGap = 1;
+                }
                 if (!missing.empty()) {
                     // THE BANK BEFORE THE SHOP. Aurelius had 138-146 of every
                     // reagent in the box and none in the pack; buying more is
@@ -356,8 +359,8 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
                     return false;
                 }
             }
-            return HandOffFromHunt(GoalKind::PracticeSkill, 60000,
-                           "no castable attack spell: train or improve the spellbook first",
+            return HandOffFromHunt(GoalKind::FillSpellbook, 60000,
+                           "no castable attack spell: fill the spellbook before hunting",
                            obs.nowMs);
         }
     }
@@ -382,40 +385,38 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
     }
     // THE OWNER'S FLOOR: a fighting life carries at least bandageLow (100 for
     // a hunter, ResolveConsumableThresholds) before it goes looking for a
-    // fight (2026-09-05). Both restock routes cooling -- shops drained AND the
-    // cloth route rested -- is the one case it goes as it is, the same rule
-    // the armour errand already follows.
+    // fight (2026-09-05). A market trip that cannot fit the session is not
+    // evidence that three bandages are safe; it is the signal to start the
+    // self-supply branch before fighting.
     //
-    // TWO LINES, BECAUSE THE TRIP IS NOT THE SAME TRIP. This gate runs on
-    // every tick of TRAIN_COMBAT, not only at hunt start, so at the graveyard
-    // it is asking "is one bandage worth a walk back to Britain?" -- and at
-    // needCfg_.bandageLow the answer was yes: Hector left the yard one second
-    // after a kill on 99 against a floor of 100 (D12,
-    // artifacts/validation_wave_2026-09-06.md). In town, before the walk, the
-    // full floor is right and cheap. In the field the line is
-    // needCfg_.bandageFieldLow -- the floor less one fight's worth, resolved
-    // beside it in ResolveConsumableThresholds -- so the restock waits for a
-    // trip that was going to happen anyway. "In the field" is read from the
-    // region: a hunting ground is unguarded, a bandage counter is in a town.
-    const wm::Region* bandageRegion = client.CurrentRegion();
-    const bool inTownForSupplies = bandageRegion && bandageRegion->flags.guarded;
-    const i32 bandageGateLow =
-        inTownForSupplies ? needCfg_.bandageLow : needCfg_.bandageFieldLow;
-    if (needCfg_.profession && WantsToHunt(*needCfg_.profession) &&
+    // ONE DEPARTURE LINE, WHEREVER THE BOT IS STANDING.  The need model
+    // already classifies stock between the field line and desired full stock
+    // as a small top-up and lets work outrank it. This handler used a second,
+    // town-only rule of `bandageLow`, so Hector held 75 bandages (the field
+    // line for a 100 desired stock), selected TRAIN_COMBAT, then immediately
+    // abandoned it just because he was in Britain. The bank/market/gear
+    // detour repeated until combat spun and yielded no kills. A real player
+    // does not queue for another 25 bandages before a safe hunt; the ordinary
+    // restock need can top up on the next town errand.
+    const i32 bandageGateLow = needCfg_.bandageFieldLow;
+    if (!huntUnderstockAuthorized_ &&
+        needCfg_.profession && WantsToHunt(*needCfg_.profession) &&
         obs.bandages < bandageGateLow &&
         life::WantsConsumable(needCfg_, "bandage")) {
-        const bool bothResting =
-            planner_.Cooling(GoalKind::ReplaceEquipment, obs.nowMs) &&
-            planner_.Cooling(GoalKind::MakeBandages, obs.nowMs);
-        if (!bothResting) {
+        const bool replacementResting =
+            planner_.Cooling(GoalKind::ReplaceEquipment, obs.nowMs);
+        if (!replacementResting) {
             return HandOffFromHunt(GoalKind::ReplaceEquipment, 30000,
                            "below the bandage floor -- restock before the next fight",
                            obs.nowMs);
         }
-        LogLine("hunt: %d bandages against a floor of %d, and both restock "
-                "errands are resting -- going as I am", obs.bandages,
-                bandageGateLow);
+        return HandOffFromHunt(GoalKind::MakeBandages, 30000,
+                       "the replacement errand is resting -- self-supply before "
+                       "the next fight",
+                       obs.nowMs);
     }
+
+    if (FollowHuntingParty(client, obs)) return false;
 
     // Do not open a fight while an earlier errand is still walking us toward
     // its destination.  The food run proved why: the planner selected combat
@@ -479,6 +480,33 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
     if (obs.hostilesNear > 0 && !inGuardedRegion && !client.ActionBusy()) {
         std::vector<Client::HostileHit> seen;
         client.ScanHostiles(12, seen);
+        // The weak Britain graveyard band and the knight/lich rings share a
+        // region and can sit inside one hostile scan.  A novice who merely
+        // filters by creature danger can still chase a nominally weak target
+        // north through the ring, where the strong creatures aggro on the
+        // way.  Keep both the board count and the prey list inside the
+        // atlas-provided weak band while this life is training there.
+        const bool novicePolicy =
+            novice::IsNovice(BestWeaponSkillTenths(obs), obs.hpMax);
+        const auto* atlas = client.WorldAtlas();
+        const wm::Place* weakBand = novicePolicy && atlas
+            ? atlas->NearestHuntingGroundOfTier(world_atlas::HuntTier::Weak, obs.x, obs.y, 64) : nullptr;
+        if (weakBand && TileDist(obs.x, obs.y, weakBand->position.x,
+                                 weakBand->position.y) <= weakBand->radius + 2) {
+            std::vector<Client::HostileHit> withinWeakBand;
+            withinWeakBand.reserve(seen.size());
+            for (const Client::HostileHit& h : seen) {
+                if (TileDist(h.x, h.y, weakBand->position.x,
+                             weakBand->position.y) <= weakBand->radius)
+                    withinWeakBand.push_back(h);
+            }
+            const usize outside = seen.size() - withinWeakBand.size();
+            if (outside) {
+                LogLine("hunt: ignoring %zu hostile(s) outside the novice weak "
+                        "band while at %s", outside, weakBand->name.c_str());
+                seen.swap(withinWeakBand);
+            }
+        }
         if (!seen.empty()) {
             // Seeing several creatures is normal at a graveyard.  ChoosePrey
             // scores the weakest and least-grouped one; "one at a time" means
@@ -508,6 +536,7 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
                 c.hpMax  = h.hpMax;
                 c.warMode = h.warMode;
                 c.attackingMe = client.IsAttackingMe(h.serial);
+                c.friendlySupport = HuntSupport(client, obs, h.serial);
                 cands.push_back(std::move(c));
             }
             if (cands.empty()) {
@@ -562,8 +591,6 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
                 // hostile and nothing within joining distance of it. See
                 // NoviceEngage.h and artifacts/novice_engagement_2026-09-06.md
                 // for the hp-per-exchange rows this comes from.
-                const bool novicePolicy =
-                    novice::IsNovice(BestWeaponSkillTenths(obs), obs.hpMax);
                 // WHO IS SWINGING, NOT WHO IS STANDING NEAR. Counting reach
                 // refused a duel next to a bystander: Hector picked a Cougar
                 // at 9 tiles and a Spectre at 10, a second skeleton drifted
@@ -573,9 +600,9 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
                 // `nearby` is still counted and logged, because a pack at
                 // joining distance is worth seeing in the trace, but the veto
                 // is the owner's 3+ within reach and the attacker count.
-                const bool crowded =
-                    novicePolicy ? !novice::NoviceMayOpen(obs.attackersOnMe, inReach)
-                                 : inReach >= 3;
+                i32 support = 0;
+                for (const auto& c : cands) support = std::max(support, c.friendlySupport);
+                const bool crowded = !novice::GroupMayOpen(obs.attackersOnMe, inReach, support);
                 // AND A BUILD THAT PLANS NO COMBAT SKILL NEVER OPENS AT ALL.
                 if (!BuildFightsAtAll(needCfg_.profession)) {
                     LogLine("engage=no in_reach=%d near=%d hp=%.0f%% "
@@ -589,6 +616,8 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
                     return false;
                 }
                 if (crowded) {
+                    ++huntGroundRotation_;
+                    huntCrowdMoves_ = 0;
                     LogLine("engage=no in_reach=%d near=%d novice=%d hp=%.0f%% "
                             "reason=\"%d hostile(s) within %d tiles, %d within "
                             "%d -- cannot take them one at a time\"",
@@ -631,18 +660,18 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
                     return seeded >= 0.0 ? seeded : 0.0;
                 };
 
-            // WHAT KIND OF THING EACH ONE IS. The learned verdict and the
-            // shard-derived prior are combined with max(), NOT learned-first:
-            // a knight this character has not yet died to is still a knight,
-            // and a small learned number must never talk it down below its
-            // stat-block prior. (The `danger` lambda above keeps its own
-            // learned-first shape because ChoosePrey's RANKING is a different
-            // question from "may I open on this at all".)
+            // WHAT KIND OF THING EACH ONE IS.  The shard-derived prior owns
+            // the hard tier: it keeps a knight out of a novice hunt even when
+            // the character has no history with one.  Learned creature heat
+            // is deliberately NOT maxed into that number: it is a signed,
+            // unbounded-confidence scale, and doing so made an old costly
+            // Skeleton encounter turn a .038 weak-band creature into 2.08,
+            // permanently refusing every legal target.  `danger` above still
+            // uses that history to rank legal prey away from costly types.
             for (combat::Candidate& cc : cands) {
                 const double seeded = SeededDangerFor(cc.name);
-                cc.speciesDanger =
-                    std::max(mem.CreatureDanger(cc.name.c_str(), now),
-                             seeded >= 0.0 ? seeded : 0.0);
+                cc.speciesDanger = combat::EligibilitySpeciesDanger(
+                    seeded, mem.CreatureDanger(cc.name.c_str(), now));
             }
 
             // The profession's nerve is the tolerance the legality layer
@@ -723,11 +752,57 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
                         c.name.c_str(), c.dist, obs.HpFraction() * 100.0,
                         obs.bandages);
                 if (caster) {
+                    // Source-X rejects a spell target behind a wall, but the
+                    // old hunter kept retrying that same cast every 2.5 s.
+                    // A player closes to a firing position first.  Give one
+                    // route a chance, then suppress this target briefly if
+                    // that route cannot make it visible; this leaves the
+                    // picker free to choose another reachable hostile.
+                    if (huntApproachTarget_ == c.serial) {
+                        if (client.GotoBusy()) {
+                            nextActionMs_ = obs.nowMs + 1000;
+                            return false;
+                        }
+                        huntApproachTarget_ = 0;
+                        if (!client.MobileInLineOfSight(c.serial)) {
+                            LogLine("hunt: cannot get line of sight to '%s' "
+                                    "after approach -- trying another target",
+                                    c.name.c_str());
+                            MarkUnreachable(c.serial, obs.nowMs);
+                            nextActionMs_ = obs.nowMs + 500;
+                            return false;
+                        }
+                    }
+                    if (!client.MobileInLineOfSight(c.serial)) {
+                        constexpr i32 kCasterFiringDistance = 3;
+                        LogLine("hunt: no line of sight to '%s' -- moving "
+                                "into a firing position", c.name.c_str());
+                        if (!client.ActionGotoMobile(c.serial, kCasterFiringDistance)) {
+                            LogLine("hunt: cannot route to '%s' for line of "
+                                    "sight -- trying another target", c.name.c_str());
+                            MarkUnreachable(c.serial, obs.nowMs);
+                            nextActionMs_ = obs.nowMs + 500;
+                            return false;
+                        }
+                        huntApproachTarget_ = c.serial;
+                        nextActionMs_ = obs.nowMs + 1000;
+                        return false;
+                    }
                     const int poison = PickPoisonOpener(client, obs);
+                    casterReachRefusedTarget_ = 0;
                     client.ActionCastSpell(poison >= 0 ? poison : attackSpell, c.serial);
                     if (poison >= 0) poisonOpenedTarget_ = c.serial;
                 }
-                else client.ActionAttack(c.serial);
+                else {
+                    client.ActionAttack(c.serial);
+                    const i32 range = needCfg_.profession &&
+                        needCfg_.profession->combatStrategy == CombatStrategyId::Ranged
+                            ? 6 : 1;
+                    // Attack sends intent, not movement. A target that does
+                    // not retaliate never reaches DoSurvive's chase branch.
+                    if (c.dist > range && !client.GotoBusy())
+                        client.ActionGotoMobile(c.serial, range);
+                }
                 // First write wins (SetHuntEngageStartHp): this anchors the
                 // exchange check above to the hp reading at the START of the
                 // current try budget, not whatever the bar reads on a later
@@ -735,6 +810,7 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
                 SetHuntEngageStartHp(c.serial, c.hpCur >= 0 && c.hpMax > 0
                     ? static_cast<double>(c.hpCur) / c.hpMax : -1.0);
                 BumpHuntEngageTries(c.serial);
+                HuntSupport(client, obs, c.serial, true);
                 currentFoe_ = c.serial;
                 currentFoeName_ = c.name;
                 // TRAIN_COMBAT opens the fight, but SURVIVE owns it as soon
@@ -855,87 +931,46 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
             return false;
         }
         // WHICH GROUND, AND WHY. Nearest is not the same question as
-        // survivable: see kNoviceHuntGroundId above for the Jhelom evidence.
-        const SchoolWeapon* school = SchoolWeaponFor(*needCfg_.profession);
-        const i32 weaponTenths = caster ? obs.SkillTenths(rules::kMagery)
-            : school ? obs.SkillTenths(school->skill) : BestWeaponSkillTenths(obs);
-        const bool novice = weaponTenths < kSeasonedWeaponTenths;
+        // survivable: only weak patrol areas outside strong-ring buffers.
+        const i32 weaponTenths = BestFightSkillTenths(obs);
+        const auto* atlas = client.WorldAtlas();
+        const wm::Place* ground = nullptr;
+        if (socialGroupUntilMs_ && socialPeer_ && client.PartyContains(socialPeer_) &&
+            client.PartyLeader() != client.PlayerSerial()) {
+            // The follower fights locally but never chooses a competing destination.
+            nextActionMs_ = obs.nowMs + 1000;
+            return false;
+        }
+        if (atlas) {
+            // Try each yard at most once; personal danger still rules it out.
+            const wm::Place* first = nullptr;
+            for (usize tries = 0; tries < atlas->Places().size(); ++tries) {
+                ground = atlas->GroupHuntingGround(client.PlayerSerial(), huntGroundRotation_);
+                if (ground && ground == first) { ground = nullptr; break; }
+                if (!first) first = ground;
+                if (!ground || state_.memory.DangerHeatAt(ground->position.x,
+                        ground->position.y, obs.nowMs) <= kHuntGroundHeatLimit) break;
+                ++huntGroundRotation_;
+                ground = nullptr;
+            }
+        }
         std::string huntPlace;
-        if (novice) {
-            const wm::Place* early = client.KnownPlace(kNoviceHuntGroundId);
-            // The named id is the weak band; assert it rather than trust it.
-            // If a regenerated atlas ever renames that row into a strong ring
-            // the novice refuses instead of walking into the lich.
-            if (early && world_atlas::HuntTierOf(*early) !=
-                             world_atlas::HuntTier::Weak) {
-                LogLine("hunt_ground=none tier=novice weapon=%.1f "
-                        "reason=\"%s is no longer the weak band of the yard\"",
-                        weaponTenths / 10.0, kNoviceHuntGroundId);
-                early = nullptr;
+        if (ground) {
+            const auto points = atlas->HuntingPatrol(*ground);
+            if (!points.empty()) {
+                const auto& point = points[(client.PlayerSerial() / 2 + huntPatrolStep_++) % points.size()];
+                LogLine("hunt_ground=%s band=weak weapon=%.1f rotation=%zu reason=\"distributed group hunting\"",
+                        ground->name.c_str(), weaponTenths / 10.0, huntGroundRotation_);
+                travelInFlight_ = client.TravelToPoint(point.x, point.y, 2, "group graveyard patrol");
+                if (travelInFlight_) huntPlace = ground->name;
+                else ++huntGroundRotation_;
             }
-            const double heat =
-                early ? state_.memory.DangerHeatAt(early->position.x,
-                                                   early->position.y, obs.nowMs)
-                      : 0.0;
-            if (early && heat <= kHuntGroundHeatLimit) {
-                LogLine("hunt_ground=%s tier=novice weapon=%.1f heat=%.2f "
-                        "reason=\"best weapon skill under %.0f -- the early "
-                        "ground, not the nearest one\"",
-                        early->name.c_str(), weaponTenths / 10.0, heat,
-                        kSeasonedWeaponTenths / 10.0);
-                const auto* atlas = client.WorldAtlas();
-                const auto points = atlas ? atlas->HuntingPatrol(*early)
-                                          : std::vector<wm::Point>{early->position};
-                // Per-character phase spreads the fleet; progress does not depend on wall time.
-                const auto& point = points[(client.PlayerSerial() + huntPatrolStep_++) % points.size()];
-                LogLine("hunt: searching Britain Graveyard at %d,%d", point.x, point.y);
-                travelInFlight_ = client.TravelToPoint(point.x, point.y, 2, "Britain Graveyard patrol");
-                if (travelInFlight_) huntPlace = early->name;
-            } else {
-                // NOT a failure of the atlas and not something a retry fixes:
-                // this character has no ground it is ready for today.
-                LogLine("hunt_ground=none tier=novice weapon=%.1f heat=%.2f "
-                        "reason=\"%s\"", weaponTenths / 10.0, heat,
-                        early ? "the early ground has killed this character "
-                                "often enough to stay away from today"
-                              : "no early hunting ground in the atlas");
-                planner_.Cooldown(GoalKind::TrainCombat,
-                                  obs.nowMs + kNoHuntingGroundCooldownMs);
-                planner_.Finish(false, "no hunting ground this tier is ready for",
-                                obs.nowMs);
-                huntTrips_ = 0;
-                nextActionMs_ = obs.nowMs + 30000;
-                return false;
-            }
-        } else {
-            // WHICH PART OF THE YARD. Since the 2026-09-06 tier split a
-            // graveyard is a weak band PLUS separate strong rings (skeleton
-            // knights, lich, lich lord), all category Graveyard, so the old
-            // "nearest graveyard-category place" could hand a seasoned-but-
-            // ordinary fighter a lich ring. The tier is asked for explicitly.
-            const bool strongOk = ClearsStrongHuntTier(obs, weaponTenths);
-            const auto tier = strongOk ? world_atlas::HuntTier::Strong
-                                       : world_atlas::HuntTier::Weak;
-            const auto* atlas = client.WorldAtlas();
-            const auto* ground =
-                atlas ? atlas->NearestHuntingGroundOfTier(tier, obs.x, obs.y)
-                      : nullptr;
-            if (ground) {
-                const auto points = atlas->HuntingPatrol(*ground);
-                const auto& point = points[(client.PlayerSerial() + huntPatrolStep_++) % points.size()];
-                travelInFlight_ = client.TravelToPoint(point.x, point.y, 2, "graveyard patrol");
-                huntPlace = ground->name;
-            }
-            if (travelInFlight_) {
-                LogLine("hunt_ground=%s tier=seasoned band=%s weapon=%.1f "
-                        "hp=%d/%d reason=\"%s\"",
-                        huntPlace.c_str(), strongOk ? "strong" : "weak",
-                        weaponTenths / 10.0, obs.hp, obs.hpMax,
-                        strongOk ? "cleared the strong-undead gate"
-                                 : "nearest weak band -- the strong rings are "
-                                   "gated shut, see "
-                                   "artifacts/hunt_tier_gate_2026-09-06.md");
-            }
+        }
+        if (!ground) {
+            planner_.Cooldown(GoalKind::TrainCombat, obs.nowMs + kNoHuntingGroundCooldownMs);
+            planner_.Finish(false, "no suitable weak graveyard", obs.nowMs);
+            nextActionMs_ = obs.nowMs + 30000;
+            return false;
         }
         if (travelInFlight_) {
             LogLine("hunt: heading to %s to train (trip %d)",
@@ -949,6 +984,13 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
         return false;
     }
     travelInFlight_ = false;
+    if (*client.TravelFailureText()) {
+        ++huntGroundRotation_;
+        huntCrowdMoves_ = 0;
+        LogLine("hunt: rotating after failed journey: %s", client.TravelFailureText());
+        nextActionMs_ = obs.nowMs + 1000;
+        return false;
+    }
     huntTrips_ = 0;
     ClearHuntEngageState();
     // ARRIVING IS NOT TRAINING, AND AN EMPTY YARD MUST END SOMEWHERE.
@@ -961,7 +1003,9 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
     // completing with nothing (Faustus, x11 "nothing is here", fleet-100).
     // The allowance is the same kMaxHuntTrips journeys the travel side gets,
     // and it is cleared the moment a fight is opened or a kill is credited.
+    ++huntGroundRotation_;
     if (++huntEmptyArrivals_ >= kMaxHuntTrips) {
+        huntCrowdMoves_ = 0;
         LogLine("goal_failed=TRAIN_COMBAT reason=\"nothing to fight after %d "
                 "arrivals at a hunting ground\"", huntEmptyArrivals_);
         // Transient, not structural: the yard repopulates, so this is the
@@ -971,6 +1015,7 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
         planner_.Finish(false, "nothing to fight at the hunting ground",
                         obs.nowMs);
         huntEmptyArrivals_ = 0;
+        huntUnderstockAuthorized_ = false;
         nextActionMs_ = obs.nowMs + 3000;
         return false;
     }
@@ -1250,18 +1295,14 @@ bool Runner::DoStatFarm(Client& client, const Observation& obs) {
                     return seeded >= 0.0 ? seeded : 0.0;
                 };
 
-            // WHAT KIND OF THING EACH ONE IS. The learned verdict and the
-            // shard-derived prior are combined with max(), NOT learned-first:
-            // a knight this character has not yet died to is still a knight,
-            // and a small learned number must never talk it down below its
-            // stat-block prior. (The `danger` lambda above keeps its own
-            // learned-first shape because ChoosePrey's RANKING is a different
-            // question from "may I open on this at all".)
+            // Use the calibrated species tier for this hard gate; a learned
+            // outcome remains a ranking signal through `danger` above.  The
+            // two values have different scales, so maxing them would let an
+            // old costly encounter make every familiar weak creature illegal.
             for (combat::Candidate& cc : cands) {
                 const double seeded = SeededDangerFor(cc.name);
-                cc.speciesDanger =
-                    std::max(mem.CreatureDanger(cc.name.c_str(), now),
-                             seeded >= 0.0 ? seeded : 0.0);
+                cc.speciesDanger = combat::EligibilitySpeciesDanger(
+                    seeded, mem.CreatureDanger(cc.name.c_str(), now));
             }
 
             combat::EngagePolicy policy;
@@ -1286,6 +1327,7 @@ bool Runner::DoStatFarm(Client& client, const Observation& obs) {
                 statFarmStrAtSwing_ = obs.str;
                 ++statFarmSwings_;
                 client.ActionAttack(c.serial);
+                HuntSupport(client, obs, c.serial, true);
                 currentFoe_ = c.serial;
                 currentFoeName_ = c.name;
                 fightStartedMs_ = obs.nowMs;
@@ -1559,6 +1601,10 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
             // three times, then goal_failed, then immediately goal=TRAIN_AT_NPC
             // again. Nothing about the world changes in two seconds.
             trainTrips_ = 0;
+            // Three real trips and an explicit memory update changed what
+            // this life knows. It is not a zero-work spin even though no
+            // lesson was bought; the cooldown lets normal work take over.
+            planner_.NoteProgress();
             return HandOff(GoalKind::TrainAtNpc, GoalKind::IdleBriefly,
                            kNoTrainerCooldownMs, "no trainer reachable",
                            obs.nowMs);
@@ -1812,6 +1858,10 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
                 trainSilentAsks_ = 0;
                 trainerSerial_ = 0;
                 trainerApproached_ = false;
+                // The silent NPC is now excluded for this session. That is a
+                // useful result of the bounded investigation, not five
+                // identical no-op training goals.
+                planner_.NoteProgress();
                 return HandOff(GoalKind::TrainAtNpc, GoalKind::IdleBriefly,
                                kNoTrainerCooldownMs, "the trainer never answered",
                                obs.nowMs);
@@ -1878,9 +1928,14 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
     // The fee has to be IN THE PACK. obs.gold counts the bank box on this
     // shard, so "can afford" and "can hand over" are different questions.
     if (FetchCoinForPurchase(client, obs, quoted)) return false;
-    const u32 gold = client.FindBackpackItemByGraphic(kGoldCoin);
+    // Sphere trains only in proportion to the stack it receives.  A pack can
+    // contain several coin stacks after banking or receiving change; choosing
+    // the first one made Delys hand Caedmon five coins from a 495-gold purse
+    // and receive only 0.5 skill from a quoted 29.5-point lesson.
+    const u32 gold = client.FindBackpackItemByGraphicAtLeast(
+        kGoldCoin, static_cast<u16>(quoted));
     if (!gold) {
-        LogLine("training: quoted %d but no gold stack found in the pack", quoted);
+        LogLine("training: quoted %d but no single gold stack can cover it", quoted);
         planner_.NoteAttempt(obs.nowMs);
         nextActionMs_ = obs.nowMs + 2000;
         return false;
@@ -2702,6 +2757,9 @@ bool Runner::DoPracticeSkill(Client& client, const Observation& obs) {
             ? client.FindBackpackItemByGraphic(0x0F51) : client.FindBackpackItemByGraphic(0x0F52);
         const u32 poison = client.FindBackpackItemByGraphic(0x0F0A);
         if (!dagger || !poison) {
+            if (needCfg_.profession && WantsSpellCombat(*needCfg_.profession))
+                return HandOff(GoalKind::PracticeSkill, GoalKind::TrainCombat, 30000,
+                               "no coating supplies; use Poison spells with legal targets", obs.nowMs);
             planner_.Cooldown(GoalKind::PracticeSkill, obs.nowMs + 30000);
             planner_.Finish(false, "poisoning supplies no longer available", obs.nowMs);
             return false;
@@ -2715,7 +2773,10 @@ bool Runner::DoPracticeSkill(Client& client, const Observation& obs) {
         return false;
     }
 
-    // MAGERY IS RAISED BY CASTING, WITH OR WITHOUT A FOE.
+    // MAGERY AND EVALUATING INTELLIGENCE ARE RAISED BY CASTING, WITH OR
+    // WITHOUT A FOE. The spell picker always uses current Magery for its
+    // skill requirement; `skillId` remains the discipline whose observed gain
+    // closes this practice bout.
     //
     // WHICH spell is not decided here and is not written down anywhere in this
     // client. Owner ruling 2026-09-02: "for mage to cast there are lots of
@@ -2730,7 +2791,7 @@ bool Runner::DoPracticeSkill(Client& client, const Observation& obs) {
     // Deliberately not a combat spell. Practising Magery must not be a way to
     // start fights the life did not choose. Create Food stays in DoGetFood,
     // where it is an errand rather than an exercise.
-    if (skillId == rules::kMagery) {
+    if (skillId == rules::kMagery || skillId == rules::kEvaluatingIntel) {
         // Create Food belongs to the FOOD goal. It is absent from this shard's
         // starter book, but that must not veto Magery practice when the book
         // holds another safe spell. Read this character's book and choose from
@@ -2940,11 +3001,12 @@ bool Runner::DoPracticeSkill(Client& client, const Observation& obs) {
                     cost += buf;
                 }
             }
-            LogLine("practice: casting %s (spell %d, circle %d, needs Magery "
-                    "%.1f) at myself to raise Magery (%.1f, mana %d, pack "
+        LogLine("practice: casting %s (spell %d, circle %d, needs Magery "
+                    "%.1f) at myself to raise %s (%.1f, mana %d, pack "
                     "holds %s)",
                     d ? d->name : "?", spell, d ? d->circle : 0,
-                    d ? d->minSkillTenths / 10.0 : 0.0, have / 10.0, obs.mana,
+                    d ? d->minSkillTenths / 10.0 : 0.0,
+                    rules::SkillName(skillId), have / 10.0, obs.mana,
                     cost.empty() ? "no reagent cost" : cost.c_str());
         }
         practiceCastMark_ = client.JournalNowMs();

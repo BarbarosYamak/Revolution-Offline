@@ -39,6 +39,30 @@ def grade(family, lines, before=None, after=None):
 
 
 class GradeLifeRegressionTests(unittest.TestCase):
+    def test_fleet_metrics_separate_attempts_and_outcomes(self):
+        result = grade("mage", base_console(
+            "INFO [life] alive persisted=alive server=dead -> server value accepted",
+            "LOG event death_location: login",
+            "INFO [life] disengage=died at=100,100",
+            "LOG event death_location: new",
+            "INFO [life] hunt: confirmed kill target='Skeleton' corpse=0x1234",
+            "INFO [life] hunt: confirmed kill target='Skeleton' corpse=0x1234",
+            "INFO [life] order_committed id=one crafter=Bob",
+            "INFO [life] order_delivered id=one qty=1 total=1/2 gold=10 complete=0",
+            "INFO [life] order_delivered id=one qty=1 total=2/2 gold=10 complete=1",
+            "INFO [life] mount: buying a horse for 500 gold"))
+        line = next(line for line in result.stdout.splitlines() if line.startswith("FLEET-METRICS "))
+        metrics = json.loads(line.removeprefix("FLEET-METRICS "))
+        self.assertTrue(metrics["initial_dead"])
+        self.assertEqual(metrics["new_deaths"], 1)
+        self.assertEqual(metrics["death_location_events"], 2)
+        self.assertEqual(metrics["unique_kill_corpses"], 1)
+        self.assertEqual(metrics["raw_kill_entries"], 2)
+        self.assertEqual(metrics["orders_completed"], 1)
+        self.assertEqual(metrics["order_delivery_events"], 2)
+        self.assertEqual(metrics["mount_purchase_attempts"], 1)
+        self.assertEqual(metrics["mount_purchases_mounted"], 0)
+
     def test_mage_hunt_and_hunt_return_are_the_family_faucet(self):
         result = grade("mage", base_console(
             "INFO [life] hunt: confirmed kill target='Skeleton' corpse=0x1234",
@@ -64,6 +88,40 @@ class GradeLifeRegressionTests(unittest.TestCase):
             "INFO [life] goal_completed=CRAFT progress=1"), state, state)
         self.assertNotEqual(result.returncode, 0)
         self.assertIn("FAILING RULES: STOCK-1", result.stdout)
+
+    def test_unknown_vendor_items_keep_their_graphic_for_rebuy_checks(self):
+        # Scroll purchases were logged as generic `item`, which made four
+        # distinct scrolls look like one durable item bought four times.
+        result = grade("mage", base_console(
+            "INFO [policy] allowed NPC purchase of item (0x1F2D)",
+            "INFO [policy] allowed NPC purchase of item (0x1F2E)",
+            "INFO [policy] allowed NPC purchase of item (0x1F2F)",
+            "INFO [policy] allowed NPC purchase of item (0x1F30)"))
+        failing = (result.stdout.split("FAILING RULES:")[1]
+                   if "FAILING RULES:" in result.stdout else "")
+        self.assertNotIn("STOCK-4", failing, result.stdout)
+
+    def test_failed_vendor_requests_are_not_counted_as_durable_rebuys(self):
+        lines = base_console()
+        for outcome in ("rejected", "timeout", "success purchased item delivered"):
+            lines += [
+                "INFO [policy] allowed NPC purchase of item (0x13EC)",
+                "INFO [ACTION_RESULT] vendor_buy %s" % outcome,
+            ]
+        report = grade("mage", lines)
+        failing = (report.stdout.split("FAILING RULES:")[1]
+                   if "FAILING RULES:" in report.stdout else "")
+        self.assertNotIn("STOCK-4", failing, report.stdout)
+
+    def test_three_delivered_unknown_items_still_fail_rebuy_rule(self):
+        lines = base_console()
+        for _ in range(3):
+            lines += [
+                "INFO [policy] allowed NPC purchase of item (0x13EC)",
+                "INFO [ACTION_RESULT] vendor_buy success purchased item delivered",
+            ]
+        report = grade("mage", lines)
+        self.assertIn("STOCK-4", report.stdout.split("FAILING RULES:")[1])
 
     def test_realized_family_product_sale_preserves_stock_credit(self):
         state = {"bank": [{"item": "i_scroll_recall", "qty": 1}]}

@@ -84,6 +84,7 @@ struct Candidate {
     bool attackingMe = false;   // currently swinging at us
     bool aggressedMe = false;   // IT started it (Source-X MEMORY_AGGREIVED)
     bool isMyPet     = false;   // our own follower
+    i32 friendlySupport = 0;    // visible friendly fighters near this prey
 
     // WHAT KIND OF THING THIS IS, as a player recognises it by sight.
     //
@@ -91,10 +92,11 @@ struct Candidate {
     // roll reaches this struct. It is one number for "how bad is a thing of
     // this NAME", which is precisely the knowledge a human has when a skeletal
     // knight walks into view and a zombie does not scare them. The caller
-    // supplies it -- from this character's own learned verdicts and, failing
-    // those, from the shard-derived prior in data/revolution_creatures.tsv --
-    // so combat.h still owns no creature table. 0.0 = never heard of it, which
-    // is the same answer a first-time player gives.
+    // supplies it from the shard-derived prior in
+    // data/revolution_creatures.tsv, so combat.h still owns no creature
+    // table.  Learned outcomes rank otherwise-legal prey separately; they
+    // must not replace this calibrated species tier. 0.0 = never heard of it,
+    // which is the same answer a first-time player gives.
     double speciesDanger = 0.0;
 };
 
@@ -193,6 +195,13 @@ struct EngagePolicy {
 // character is called trained, and the ramp between them is linear so nothing
 // flips on a single skill gain.
 double SpeciesCeiling(i32 bestFightSkillTenths);
+
+// Pick the number used by the hard species-tier gate.  A seeded row is the
+// shard-calibrated tier and therefore remains authoritative even when one
+// character's history is costly: that history is a prey-ranking signal, not
+// the same 0..1 scale.  An unknown name has no calibrated tier, so only then
+// may a positive learned danger keep it out of an unready character's hunt.
+double EligibilitySpeciesDanger(double seededDanger, double learnedDanger);
 
 // The whole M6 legality question for one candidate. Pure: no clock, no I/O.
 Classification Classify(const Candidate& c, const Stance& me,

@@ -56,6 +56,10 @@ struct RunnerHarnessAccess {
     // "a journey is in flight and this is still zero" is exactly "a leg was
     // started, and it was not the bank leg".
     static i32 WindDownTrips(const Runner& runner) { return runner.windDownTrips_; }
+    static void RequestEnd(Runner& runner) {
+        runner.phase_ = Runner::Phase::Live;
+        runner.EndSession("external end request");
+    }
 };
 }  // namespace uo::life
 
@@ -78,6 +82,12 @@ void Position(Client& client, u16 x, u16 y) {
 
 bool IsAllowedMineId(const char* id) {
     for (const char* allowed : life::runner_detail::kMinocMinePlaceIds)
+        if (std::string(allowed) == id) return true;
+    return false;
+}
+
+bool IsAllowedLumberId(const char* id) {
+    for (const char* allowed : life::runner_detail::kMinocLumberPlaceIds)
         if (std::string(allowed) == id) return true;
     return false;
 }
@@ -154,6 +164,24 @@ int main(int argc, char** argv) {
               "an atlas without a Minoc mine resolves to nothing, not to Britain");
         Check(life::runner_detail::PickAllowedMine(nullptr, &noneId) == nullptr,
               "no atlas resolves to nothing");
+
+        const char* woodId = nullptr;
+        const wm::Place* wood = life::runner_detail::PickAllowedMinocLumber(
+            &real, 2503, 557, {}, &woodId);
+        Check(wood != nullptr, "the Minoc lumber allow-list resolves against the real atlas");
+        Check(wood && IsAllowedLumberId(woodId),
+              "the lumber target is a Minoc allow-listed resource row");
+        Check(wood && wood->Yields(wm::ResourceKind::Lumber),
+              "the chosen Minoc wood target actually yields lumber");
+        Check(wood && wood->position.x > 2400 && wood->position.y < 700,
+              "the lumber target sits in Minoc, not in the Britain basin");
+        Check(wood && std::string(woodId) == "minoc_territory_woods_4",
+              "a Minoc lumberjack starts at the nearest local woods, not the first atlas row");
+
+        const wm::Place* nextWood = life::runner_detail::PickAllowedMinocLumber(
+            &real, 2503, 557, {woodId}, &woodId);
+        Check(nextWood && std::string(woodId) == "minoc_territory_woods_3",
+              "an exhausted stand advances to the next-nearest local woods");
     }
 
     // --- B. wind-down with a hostile in scan --------------------------------
@@ -271,6 +299,17 @@ int main(int argc, char** argv) {
     Check(client->TravelBusy(), "an unthreatened wind-down still heads for safety");
     Check(life::RunnerHarnessAccess::WindDownTrips(runner) == 1,
           "with nothing in sight it is the ordinary bank trip again");
+    client->TravelAbort("fixture");
+
+    life::RunnerHarnessAccess::EnterWindDown(runner, nowMs);
+    Check(client->TravelToPoint(210, 210, 1, "unfinished work"), "work journey starts");
+    life::RunnerHarnessAccess::RequestEnd(runner);
+    nowMs += 500;
+    client->SetClockForTest(nowMs);
+    obs.nowMs = nowMs;
+    runner.Tick(*client, nowMs);
+    Check(life::RunnerHarnessAccess::WindDownTrips(runner) == 1,
+          "external end request replaces work journey with safe wind-down travel");
     client->TravelAbort("fixture");
 
     std::printf("%d checks, %d failures\n", checks, failures);

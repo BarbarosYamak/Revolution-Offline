@@ -540,7 +540,7 @@ i32 Client::DistanceToResource(wm::ResourceKind r) const {
     return edge < 0 ? 0 : edge;
 }
 
-bool Client::MiningInteriorTarget(i32 nearX, i32 nearY, i32* outX,
+bool Client::MiningInteriorTarget(i32 nearX, i32 nearY, u32 lane, i32* outX,
                                   i32* outY) const {
     if (!outX || !outY || !(world_knowledge_ && world_knowledge_->ok))
         return false;
@@ -551,24 +551,7 @@ bool Client::MiningInteriorTarget(i32 nearX, i32 nearY, i32* outX,
         p->regionId.c_str());
     if (!r || r->kind != wm::RegionKind::Cave || r->rects.empty()) return false;
 
-    // A cave AREADEF's P commonly marks its entrance.  Choose the centre of
-    // its largest declared interior instead of that edge point.  It keeps the
-    // target away from doors and cliff faces, while remaining wholly within a
-    // real cave RECT rather than inventing a coordinate.
-    const wm::Rect* largest = &r->rects[0];
-    i64 largestArea = -1;
-    for (const wm::Rect& rect : r->rects) {
-        const i64 w = static_cast<i64>(rect.x2) - rect.x1 + 1;
-        const i64 h = static_cast<i64>(rect.y2) - rect.y1 + 1;
-        const i64 area = w * h;
-        if (area > largestArea) {
-            largestArea = area;
-            largest = &rect;
-        }
-    }
-    *outX = (largest->x1 + largest->x2) / 2;
-    *outY = (largest->y1 + largest->y2) / 2;
-    return true;
+    return world_atlas::MiningInteriorPoint(*r, lane, outX, outY);
 }
 
 bool Client::WithinMiningRegion(i32 nearX, i32 nearY, i32 x, i32 y) const {
@@ -859,7 +842,9 @@ bool Client::TravelToResource(wm::ResourceKind r) {
     return TravelBegin(p->name.c_str(), p->position.x, p->position.y, radius);
 }
 
-bool Client::TravelToEntity(u32 serial, i32 within) {
+bool Client::TravelEntityStand(u32 serial, i32 within, bool rotateChoice,
+                               i32* outX, i32* outY, i8* outZ) {
+    if (!outX || !outY || !outZ) return false;
     i32 mx = 0, my = 0;
     i8 mz = 0;
     if (!MobilePosition(serial, &mx, &my, &mz)) {
@@ -895,18 +880,29 @@ bool Client::TravelToEntity(u32 serial, i32 within) {
               });
     u32& nextChoice = travelEntityApproachChoice_[serial];
     const StandCandidate& stand = candidates[nextChoice % candidates.size()];
-    ++nextChoice;
+    if (rotateChoice) ++nextChoice;
+    *outX = stand.x;
+    *outY = stand.y;
+    *outZ = mz;
+    return true;
+}
 
-    // This journey targets the chosen stand tile. Callers re-evaluate the
-    // mobile after arrival, so a wandering NPC naturally causes a fresh trip
-    // rather than retargeting this journey back onto the occupied tile.
-    travelEntitySerial_ = 0;
+bool Client::TravelToEntity(u32 serial, i32 within) {
+    const i32 reach = within > 0 ? within : 1;
+    i32 sx = 0, sy = 0;
+    i8 sz = 0;
+    if (!TravelEntityStand(serial, reach, /*rotateChoice=*/true,
+                           &sx, &sy, &sz))
+        return false;
+
+    // Retain the serial as well as the stand tile. TravelRetargetEntity
+    // rebuilds the stand tile if this NPC wanders while we are on the way.
+    travelEntitySerial_ = serial;
     travelEntityWithin_ = reach;
     char label[64];
     std::snprintf(label, sizeof(label), "mobile 0x%08X", serial);
-    LogInfo("[travel] entity stand candidate %u/%zu at (%d,%d)\n",
-            nextChoice, candidates.size(), stand.x, stand.y);
-    return TravelBegin(label, stand.x, stand.y, 0, /*hasZ=*/true, mz);
+    LogInfo("[travel] entity stand at (%d,%d)\n", sx, sy);
+    return TravelBegin(label, sx, sy, 0, /*hasZ=*/true, sz);
 }
 
 bool Client::TravelToLastCorpse() {
@@ -1012,19 +1008,31 @@ void Client::TravelNotePlaceReached(i32 x, i32 y) {
 
 void Client::TravelRetargetEntity() {
     if (!travelEntitySerial_ || !journey_.Active()) return;
-    i32 mx = 0, my = 0;
-    i8 mz = 0;
-    if (!MobilePosition(travelEntitySerial_, &mx, &my, &mz)) {
+    i32 sx = 0, sy = 0;
+    i8 sz = 0;
+    // A stationary NPC can still have several customer-side tiles.  Once a
+    // route to one of them has failed and recovery has put us back into route
+    // planning, rotate the stand choice instead of retrying the same sealed
+    // counter corner.  This is particularly important for ghosts: a healer
+    // may be visible from another room, while one blocked doorway otherwise
+    // holds the resurrection journey for its whole retry budget.
+    const bool rotateAfterFailedApproach =
+        journey_.CurrentPhase() == travel::Phase::NeedRoute &&
+        journey_.RoutePlans() > 0;
+    if (!TravelEntityStand(travelEntitySerial_, travelEntityWithin_,
+                           rotateAfterFailedApproach, &sx, &sy, &sz)) {
         // Out of view. The last known position still stands as a destination:
         // the server will show us the mobile again when we get near it.
         return;
     }
-    if (Chebyshev(mx, my, journey_.GoalX(), journey_.GoalY()) <= 2) return;
-    // The mobile wandered. Re-aim rather than walk to where it used to be --
-    // and pin its floor, so an NPC on a shop's upper storey is chased to the
-    // storey, not to the ground under it.
-    journey_.Begin(travelLabel_.c_str(), mx, my, travelEntityWithin_, NowMs(),
-                   /*hasGoalZ=*/true, mz);
+    if (sx == journey_.GoalX() && sy == journey_.GoalY() &&
+        (!travelHasGoalZ_ || sz == travelGoalZ_))
+        return;
+    // The mobile wandered. Re-aim at a customer-side stand tile rather than
+    // at its occupied tile, and pin its floor so an NPC upstairs is not
+    // chased to the ground under it.
+    journey_.Begin(travelLabel_.c_str(), sx, sy, 0, NowMs(),
+                   /*hasGoalZ=*/true, sz);
     travelWalkOutstanding_ = false;
     if (nav_.bot.active || nav_.bot.planning)
         BotAbortPath("travel target moved");
@@ -1814,6 +1822,8 @@ void Client::SetSurvivalEnabled(bool on) {
 // potion, leave war mode, walk away, bandage yourself. Nothing reaches past the
 // protocol.
 void Client::SurvivalTick() {
+    SparringSafetyTick();
+    if (sparringPeer_) return; // bounded five-second lease; packet watchdog owns the early stop
     if (!survivalEnabled_ || !IsInWorld() || IsDead()) return;
     const i64 now = NowMs();
     if (now < survivalNextActionMs_) return;
@@ -1881,9 +1891,12 @@ void Client::SurvivalTick() {
 
         case combat::Tactic::DrinkPotion: {
             if (potion && !action_.Active()) {
-                LogEvent("survival_potion", "");
-                ActionUseObject(potion);
-                survivalNextActionMs_ = now + 2000;
+                if (ActionDrinkPotion(potion)) {
+                    LogEvent("survival_potion", "");
+                    survivalNextActionMs_ = now + 2000;
+                } else {
+                    survivalNextActionMs_ = now + 1000;
+                }
             }
             break;
         }
@@ -2620,6 +2633,37 @@ int Client::PlayersNearby(int maxDist) const {
         ++n;
     }
     return n;
+}
+
+bool Client::KnownPlayer(u32 serial) const {
+    for (const MobileObj& m : mobileCache_) {
+        if (m.serial != serial || (m.body != 0x0190 && m.body != 0x0191)) continue;
+        const char* title = PaperdollTitle(serial);
+        return title && *title && !std::strstr(title, " the ");
+    }
+    return false;
+}
+
+int Client::CombatSupportNear(u32 target, std::vector<HostileHit>& out) const {
+    out.clear();
+    i32 tx = 0, ty = 0;
+    if (!MobilePosition(target, &tx, &ty)) return 0;
+    for (const MobileObj& m : mobileCache_) {
+        if (m.serial == playerSerial_ || m.serial == target || !KnownPlayer(m.serial) ||
+            (m.noto != 1 && m.noto != 2) || !m.warMode || m.deadRemoveMs ||
+            IsAttackingMe(m.serial)) continue;
+        if (m.hpMax > 0 && m.hpCur * 2 < m.hpMax) continue;
+        if (std::max(std::abs(m.x - playerX_), std::abs(m.y - playerY_)) > 8 ||
+            std::max(std::abs(m.x - tx), std::abs(m.y - ty)) > 6) continue;
+        HostileHit h;
+        h.serial = m.serial;
+        const char* name = MobileName(m.serial);
+        h.name = name ? name : "";
+        h.x = m.x; h.y = m.y; h.z = m.z; h.noto = m.noto;
+        h.warMode = true; h.hpCur = m.hpCur; h.hpMax = m.hpMax;
+        out.push_back(h);
+    }
+    return static_cast<int>(out.size());
 }
 
 u32 Client::AudienceFingerprint(int maxDist) const {

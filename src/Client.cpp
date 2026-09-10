@@ -507,6 +507,7 @@ void Client::Tick(int waitMs) {
                 }
             }
             TravelTick();
+            SparringSafetyTick();
             WarModeTick();
             SurvivalTick();
             BotTick();
@@ -611,9 +612,10 @@ void Client::Dispatch(const u8* data, usize size) {
 
         case 0xB0: OnGenericGump(data, size); break;
         case 0x6F: OnSecureTrade(data, size); break;
+        case 0xBF: OnPartyPacket(data, size); break;
 
         // Common in-world packets we just log + ignore for M1.
-        case 0xBA: case 0xBC: case 0xBF: case 0xC0:
+        case 0xBA: case 0xBC: case 0xC0:
         case 0xCB:
             // Logged above; behavior is no-op until later milestones.
             break;
@@ -622,6 +624,7 @@ void Client::Dispatch(const u8* data, usize size) {
             OnUnknown(data, size);
             break;
     }
+    SparringSafetyTick();
 }
 
 // ---------------------------------------------------------------------------
@@ -974,6 +977,9 @@ void Client::OnCharacterList(const u8* data, usize size) {
 //   ...
 // ---------------------------------------------------------------------------
 void Client::OnLoginConfirm(const u8* data, usize size) {
+    sparringPeer_ = 0; sparringUntilMs_ = selfHealthSeenMs_ = 0;
+    partyMembers_.clear();
+    partyInviter_ = 0;
     if (size < 18) return;
     playerSerial_ = LoadBE32(data + 1) & 0x7FFFFFFFu;
     u16 body = LoadBE16(data + 9);
@@ -1128,6 +1134,7 @@ void Client::OnMobileHp(const u8* data, usize size) {
                 const i32 oldCur = m.hpCur;
                 m.hpMax = static_cast<i32>(LoadBE16(data + 5));
                 m.hpCur = static_cast<i32>(LoadBE16(data + 7));
+                m.healthSeenMs = NowMs();
                 // Source-X sends NO per-swing packet during a fight (0x2F is
                 // emitted once, when the fight memory is created -- see
                 // CCharMemory.cpp Memory_Fight_Start), so a watchdog fed only
@@ -1165,6 +1172,7 @@ void Client::OnMobileHp(const u8* data, usize size) {
         }
     }
     player_.serial = serial;
+    selfHealthSeenMs_ = NowMs();
     player_.hpCur = curHp;
     player_.hpMax = static_cast<i32>(LoadBE16(data + 5));
 }
@@ -1199,6 +1207,7 @@ void Client::OnMobileAttributes(const u8* data, usize size) {
                 const i32 oldCur = m.hpCur;
                 m.hpMax = static_cast<i32>(LoadBE16(data + 5));
                 m.hpCur = static_cast<i32>(LoadBE16(data + 7));
+                m.healthSeenMs = NowMs();
                 // Same rule as OnMobileHp: our target's health moving is the
                 // fight still happening (Source-X sends no per-swing packet).
                 if (serial == war_.TargetSerial() && oldCur >= 0 && m.hpCur != oldCur)
@@ -1214,6 +1223,7 @@ void Client::OnMobileAttributes(const u8* data, usize size) {
     }
     player_.serial = serial;
     player_.hpMax = static_cast<i32>(LoadBE16(data + 5));
+    selfHealthSeenMs_ = NowMs();
     player_.hpCur = static_cast<i32>(LoadBE16(data + 7));
     player_.manaMax = static_cast<i32>(LoadBE16(data + 9));
     player_.manaCur = static_cast<i32>(LoadBE16(data + 11));
@@ -1904,7 +1914,7 @@ void Client::UpdateMobile(u32 serial, i32 x, i32 y, i8 z, u8 dir, u16 body,
         // the renderer can draw the local player (and facing for arrow walk).
         if (body) playerBody_ = body;
         if (hasHue) playerHue_ = hue;
-        if (hasStatusFlags) playerWarMode_ = warMode;
+        if (hasStatusFlags) { playerWarMode_ = warMode; player_.poisoned = (statusFlags & 0x04u) != 0; }
         playerFacing_ = static_cast<u8>(dir & 0x07);
         player_.serial = serial;
         if (body) player_.body = body;
@@ -1932,7 +1942,7 @@ void Client::UpdateMobile(u32 serial, i32 x, i32 y, i8 z, u8 dir, u16 body,
             m.z = z;
             m.dir = static_cast<u8>(dir & 0x07);
             m.running = running;
-            if (hasStatusFlags) m.warMode = warMode;
+            if (hasStatusFlags) { m.warMode = warMode; m.poisoned = (statusFlags & 0x04u) != 0; }
             if (body) m.body = body;
             if (hasHue) m.hue = hue;
             m.deadRemoveMs = 0;
@@ -1946,6 +1956,7 @@ void Client::UpdateMobile(u32 serial, i32 x, i32 y, i8 z, u8 dir, u16 body,
                             body, hasHue ? hue : 0u, now});
     mobileCache_.back().running = running;
     mobileCache_.back().warMode = hasStatusFlags ? warMode : false;
+    mobileCache_.back().poisoned = hasStatusFlags && (statusFlags & 0x04u) != 0;
     if (notoriety >= 0) mobileCache_.back().noto = static_cast<u8>(notoriety);
 }
 
@@ -3254,6 +3265,16 @@ u32 Client::FindBackpackItemByGraphic(u16 graphic) const {
     return 0;
 }
 
+u32 Client::FindBackpackItemByGraphicAtLeast(u16 graphic, u16 amount) const {
+    const u32 pack = PlayerEquipSerialAt(kLayerBackpack);
+    if (!pack) return 0;
+    const auto it = containerItems_.find(pack);
+    if (it == containerItems_.end()) return 0;
+    for (const ContainerItem& ci : it->second)
+        if (ci.graphic == graphic && ci.amount >= amount) return ci.serial;
+    return 0;
+}
+
 // The same lookup for any open container. Looting a corpse needs this: until
 // M3.9.1 the container cache was private to the JS bindings, so a scenario could
 // kill a creature and then not touch a thing it dropped.
@@ -3361,6 +3382,17 @@ void Client::ActionUseObject(u32 serial) {
     action_.subject = serial;
     LogInfo("[ACTION] use_object serial=0x%08X\n", serial);
     SendDoubleClick(serial);
+}
+
+bool Client::ActionDrinkPotion(u32 serial) {
+    const i64 now = NowMs();
+    if (!serial || now < potionCooldownUntilMs_) return false;
+    // Source-X's default drink delay is 15 seconds (CCharUse.cpp). The
+    // effect has no dedicated acknowledgement packet, so reserve the full
+    // window on send rather than retrying while the server marker is active.
+    potionCooldownUntilMs_ = now + 15000;
+    ActionUseObject(serial);
+    return action_.Active();
 }
 
 void Client::ActionOpenContainer(u32 serial) {
@@ -3678,6 +3710,7 @@ void Client::ActionCastScroll(u32 scrollSerial, u32 targetSerial) {
 }
 
 void Client::ActionAttack(u32 serial) {
+    if (sparringPeer_ && serial != sparringPeer_) StopSparring("different combat target");
     BeginAction(act::Kind::Attack, kAttackTimeoutMs);
     action_.subject = serial;
     if (!serial) { FinishAction(act::Result::InvalidState, "null serial"); return; }
@@ -4308,6 +4341,17 @@ void Client::ActionOnBodyChange(u16 body) {
 void Client::ActionOnVendorOffer(u32 vendorSerial) {
     vendorOfferVendor_ = vendorSerial;
     vendorOffer_ = pendingVendor_;
+    observedSuppliers_.BeginVendorSnapshot(vendorSerial, NowMs());
+    i32 vendorX = 0, vendorY = 0; i8 vendorZ = 0;
+    if (MobilePosition(vendorSerial, &vendorX, &vendorY, &vendorZ)) {
+        for (const auto& item : vendorOffer_) {
+            const char* name = econ::ItemNameForGraphic(item.graphic);
+            if (!name || !*name) continue;
+            observedSuppliers_.RecordVendorStock(vendorSerial, PaperdollTitle(vendorSerial),
+                vendorX, vendorY, vendorZ, name, item.amount,
+                static_cast<i32>(item.price), NowMs());
+        }
+    }
     LogInfo("[VENDOR] offer from 0x%08X: %zu item(s)\n",
             vendorSerial, vendorOffer_.size());
     for (usize i = 0; i < vendorOffer_.size() && i < 8; ++i) {
@@ -4373,6 +4417,13 @@ void Client::ActionOnSysMessage(const char* text, u32 sourceSerial, u8 type) {
     // recorded a purchase each time (run_m5/p0gate1). A definitive refusal
     // that is not read is worse than no message at all.
     if (act::IsReachRefusal(text)) {
+        // The runner may start a defensive action between this message and
+        // its next decision tick. `action_` then no longer identifies the
+        // rejected cast, so retain its target for exactly one consumer.
+        if (action_.kind == act::Kind::CastSpell && action_.destination != 0 &&
+            action_.destination != playerSerial_) {
+            spellReachRefusalTarget_ = action_.destination;
+        }
         FinishAction(act::Result::Rejected, text);
         return;
     }
@@ -5678,6 +5729,7 @@ void Client::OnStats(const u8* data, usize size) {
             if (m.serial == serial) {
                 m.hpCur = static_cast<i32>(LoadBE16(data + 37));
                 m.hpMax = static_cast<i32>(LoadBE16(data + 39));
+                m.healthSeenMs = NowMs();
                 break;
             }
         }
@@ -5686,6 +5738,7 @@ void Client::OnStats(const u8* data, usize size) {
     player_.serial = serial;
     playerSerial_ = serial;
     player_.name = PacketString(data + 7, 30);
+    selfHealthSeenMs_ = NowMs();
     player_.hpCur = static_cast<i32>(LoadBE16(data + 37));
     player_.hpMax = static_cast<i32>(LoadBE16(data + 39));
 
@@ -5963,6 +6016,7 @@ void Client::OnDrawGamePlayer(const u8* data, usize size) {
         playerFacing_  = dir & 0x07;
         playerRunning_ = false;
         playerWarMode_ = (flags & 0x40u) != 0;
+        player_.poisoned = (flags & 0x04u) != 0;
         playerBody_ = body;
         ActionOnBodyChange(body);
         player_.serial = serial;

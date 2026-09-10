@@ -605,6 +605,9 @@ Several in-repo docs go deeper than this README:
 - **[`bot-client.md`](bot-client.md)** — the design & state notes: protocol flow,
   movement model, pathfinding internals, obstacle/door/mobile/fatigue handling, the
   full tunables table, and the known-limitations list.
+- **[`docs/LIVING_FLEET_ROADMAP.md`](docs/LIVING_FLEET_ROADMAP.md)** — staged
+  roadmap for persistent character aspirations, population balance, shared
+  economy, social rhythms, and fleet coordination.
 - **[`BT.md`](BT.md)** — the bot-scripting guide: the priority behaviour runner,
   cancellation tokens, the `BehaviorScript` base class and skill mixins, with a full
   worked example. `scripts/js/globals.d.ts` carries the matching TypeScript types

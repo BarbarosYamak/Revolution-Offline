@@ -4,6 +4,52 @@
 
 namespace uo::world_atlas {
 
+bool MiningInteriorPoint(const wm::Region& region, u32 lane, i32* outX,
+                        i32* outY) {
+    if (!outX || !outY || region.rects.empty()) return false;
+
+    // The largest RECT is the actual working floor.  Small companion RECTs
+    // in a cave AREADEF are normally doors or the narrow mouth connecting it
+    // to the world, so never nominate one as a worker's destination.
+    const wm::Rect* floor = &region.rects[0];
+    i64 largestArea = -1;
+    for (const wm::Rect& rect : region.rects) {
+        const i64 width = static_cast<i64>(rect.x2) - rect.x1 + 1;
+        const i64 height = static_cast<i64>(rect.y2) - rect.y1 + 1;
+        const i64 area = width * height;
+        if (area > largestArea) {
+            largestArea = area;
+            floor = &rect;
+        }
+    }
+
+    const i32 width = floor->x2 - floor->x1 + 1;
+    const i32 height = floor->y2 - floor->y1 + 1;
+    // Preserve a two-tile wall buffer on normal-size cave floors.  Tiny
+    // caves retain their centre point instead of being made impossible by an
+    // over-eager inset.
+    const i32 insetX = width >= 7 ? 2 : 0;
+    const i32 insetY = height >= 7 ? 2 : 0;
+    const i32 minX = floor->x1 + insetX, maxX = floor->x2 - insetX;
+    const i32 minY = floor->y1 + insetY, maxY = floor->y2 - insetY;
+    const i32 usableWidth = maxX - minX + 1;
+    const i32 usableHeight = maxY - minY + 1;
+    const i32 columns = usableWidth < 5 ? usableWidth : 5;
+    const i32 rows = usableHeight < 4 ? usableHeight : 4;
+    if (columns < 1 || rows < 1) return false;
+
+    const u32 slot = lane % static_cast<u32>(columns * rows);
+    const i32 col = static_cast<i32>(slot % static_cast<u32>(columns));
+    const i32 row = static_cast<i32>(slot / static_cast<u32>(columns));
+    // Divide the usable span into equal, interior gaps.  With Minoc Mine 1
+    // this produces five columns by four rows (twenty stands) well north of
+    // the south-mouth connector, enough to keep the current miner cohort
+    // from converging on one target.
+    *outX = minX + ((maxX - minX) * (col + 1)) / (columns + 1);
+    *outY = minY + ((maxY - minY) * (row + 1)) / (rows + 1);
+    return true;
+}
+
 bool DeeperMiningPoint(const wm::Region& region, i32 curX, i32 curY,
                        i32 stepLimit, i32* outX, i32* outY) {
     if (!outX || !outY) return false;

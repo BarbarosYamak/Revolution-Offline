@@ -2657,6 +2657,7 @@ PLACE	exit_from_w_of_city_of_the_dead_graveyard	graveyard	a_exit_from_wityhe_dea
 PLACE	entrance_from_serpent_s_hold_dungeon_entrance	dungeon_entrance	a_entrance_from_serpents_hold_1	2923	3406	8	8			Entrance from Serpent's Hold
 PLACE	entrance_from_s_sw_of_trinsic_dungeon_entrance	dungeon_entrance	a_trinsic_territory_1	1628	3321	0	8			Entrance from S-SW of Trinsic
 PLACE	entrance_serpent_s_pillar_w_dungeon_entrance	dungeon_entrance	a_entrance_serpents_pillar_w_1	424	3286	-5	8			Entrance - Serpent's Pillar W
+PLACE	field_resource_area	resource_area	a_field_1	814	2164	0	12		food	Field
 PLACE	brit_mine2_resource_area	resource_area	a_brit_mine2_1	1629	1189	0	20		mining	Brit Mine2
 PLACE	entrance_from_vesper_cemetary_graveyard	graveyard	a_entrance_from_vesper_cemetary_1	2777	894	-23	12			Entrance from Vesper Cemetary
 PLACE	entrance_from_yew_dungeon_entrance	dungeon_entrance	a_entrance_from_yew_1	309	785	0	8			Entrance from Yew
@@ -2673,6 +2674,7 @@ PLACE	vesper_docks_dock	dock	a_vesper_docks_1	3009	828	-3	12		fishing	Vesper Doc
 PLACE	skara_brae_ferry_dock_dock	dock	a_skara_brae_ferry_dock_1	726	2236	-3	12		fishing	Skara Brae Ferry Dock
 PLACE	serpent_s_hold_docks_s_dock	dock	a_serpents_hold_tavern_1	3012	3461	15	12		fishing	Serpent's Hold Docks S
 PLACE	serpent_s_hold_docks_w_dock	dock	a_townSerphold	2944	3394	15	12		fishing	Serpent's Hold Docks W
+PLACE	farmland_w_resource_area	resource_area	a_farmland_w_1	3711	2616	20	12		food	Farmland W
 PLACE	nujel_m_docks_dock	dock	a_nujelm_docks_1	3803	1279	5	12		fishing	Nujel'm Docks
 PLACE	minoc_mine_1_resource_area	resource_area	a_minoc_mine_1_1	2558	499	0	20		mining	Minoc Mine 1
 PLACE	entrance_from_n_of_trinsic_dungeon_entrance	dungeon_entrance	a_entrance_from_nrinsic_1	1988	2064	-40	8			Entrance from N of Trinsic
@@ -2727,15 +2729,29 @@ PLACE	jhelom_docks_se_dock	dock	a_south_jhelom_1	1502	3989	-3	12		fishing	Jhelom
 PLACE	jhelom_docks_nw_dock	dock	a_jhelom_territory_1	1127	3681	-2	12		fishing	Jhelom Docks NW
 PLACE	magincia_docks_dock	dock	a_townMagincia	3675	2263	21	12		fishing	Magincia Docks
 PLACE	skara_brae_docks_s_dock	dock	a_townSkaraBrae	617	2276	-3	12		fishing	Skara Brae Docks S
+PLACE	farmland1_w_resource_area	resource_area	a_britain_territory_1	1232	1888	0	12		food	Farmland1 W
+PLACE	farmland4_sw_resource_area	resource_area	a_britain_territory_1	1320	1815	0	12		food	Farmland4 SW
+PLACE	farmland2_sw_resource_area	resource_area	a_britain_territory_1	1200	1824	0	12		food	Farmland2 SW
+PLACE	farmland2_w_resource_area	resource_area	a_britain_territory_1	1192	1684	0	12		food	Farmland2 W
+PLACE	farmland5_w_resource_area	resource_area	a_britain_territory_1	1120	1624	0	12		food	Farmland5 W
 PLACE	cove_docks_dock	dock	a_townCove	2255	1191	-2	12		fishing	Cove Docks
 PLACE	docks_dock	dock	a_townBritain	1479	1757	0	12		fishing	Docks
 PLACE	papua_docks_dock	dock	a_papua_4	5738	3268	14	12		fishing	Papua Docks
 PLACE	skara_brae_docks_e_dock	dock	a_townSkaraBrae	638	2227	-3	12		fishing	Skara Brae Docks E
+PLACE	farmland_sw_resource_area	resource_area	a_Ocllo_7	3738	2693	40	12		food	Farmland SW
+PLACE	farmland_nw_resource_area	resource_area	a_Ocllo_7	3739	2599	40	12		food	Farmland NW
+PLACE	melon_field_w_resource_area	resource_area	a_farmland_w_1	3717	2627	20	12		food	Melon Field W
 PLACE	ocllo_docks_dock	dock	a_Ocllo_7	3646	2650	-2	12		fishing	Ocllo Docks
 PLACE	jhelom_docks_s_dock	dock	a_townJhelom	1372	3900	-3	12		fishing	Jhelom Docks S
 PLACE	jhelom_docks_ne_dock	dock	a_townJhelom	1502	3695	-3	12		fishing	Jhelom Docks NE
+PLACE	farmland_resource_area	resource_area	a_townCove	2224	1152	0	12		food	Farmland
 PLACE	buccaneer_s_den_docks_dock	dock	a_townBucsden	2750	2166	-2	12		fishing	Buccaneer's Den Docks
+PLACE	farmland3_w_resource_area	resource_area	a_britain_territory_1	1152	1576	0	12		food	Farmland3 W
+PLACE	farmland4_w_resource_area	resource_area	a_britain_territory_1	1224	1604	0	12		food	Farmland4 W
+PLACE	farmland3_sw_resource_area	resource_area	a_britain_territory_1	1136	1792	0	12		food	Farmland3 SW
+PLACE	farmland1_sw_resource_area	resource_area	a_britain_territory_1	1224	1724	0	12		food	Farmland1 SW
 PLACE	jhelom_cemetary_graveyard	graveyard	a_jhelom_territory_1	1291	3719	0	12			Jhelom Cemetary
+PLACE	field_resource_area_2	resource_area	a_townYew	375	1191	0	12		food	Field
 PLACE	secret_cave_resource_area	resource_area	a_trinsic_territory_1	1653	2967	0	12		mining	Secret Cave
 PLACE	cave_resource_area_4	resource_area	a_cove_territory_1	2345	830	0	12		mining	Cave
 PLACE	wilds_woods	resource_area		2440	3912	0	16		lumber	wilds woods

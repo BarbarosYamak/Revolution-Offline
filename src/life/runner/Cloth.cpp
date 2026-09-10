@@ -211,8 +211,7 @@ bool Runner::DoMakeBandages(Client& client, const Observation& obs) {
         return false;
     }
 
-    // 4b/4c. NOTHING IN THE PACK TO WORK WITH, BUT THERE IS A PURSE: BUY
-    // THE INPUT AT A TAILOR RATHER THAN WALKING TO A FLOCK.
+    // 4b/4c. NPC CLOTH IS THE FINAL BANDAGE FALLBACK.
     //
     // Scissors on loose cloth give one bandage per cloth, engine-hardcoded and
     // with no skill check (Source-X CClientTarg.cpp:2135-2184), and loose
@@ -230,14 +229,19 @@ bool Runner::DoMakeBandages(Client& client, const Observation& obs) {
     // purchases, not a cross-map hike. The bigger row goes first when the
     // shortfall is a bolt's worth; loose cloth is the top-up and the fallback.
     //
-    // NARROW ON PURPOSE. The standing ruling "never buy cloth/thread/yarn
-    // from NPCs" (owner, 2026-09-02) is about a TAILOR's supply -- a crafter
-    // must not buy the thing she makes, and DoMakeCloth below still obeys it
-    // by gathering. This branch is a fighter buying a consumable input for
-    // bandages when every counter in town is empty, which is why it is gated
-    // on WantsToHunt and on being short of the fighting floor.
+    // The player-market request gets the first chance, then the fighter tries
+    // its own wool chain.  Only the recorded failure of that chain permits an
+    // NPC cloth input; otherwise a full purse would turn this branch into the
+    // first response and skip the player-directed self-supply rule.
     const bool hunts =
         needCfg_.profession && WantsToHunt(*needCfg_.profession);
+    char selfSupplySession[32];
+    std::snprintf(selfSupplySession, sizeof(selfSupplySession), "session=%d",
+                  needCfg_.sessionIndex);
+    bool selfSupplyFailed = false;
+    for (const LifeEvent& e : state_.memory.Events())
+        if (e.kind == "bandage_self_supply_failed" &&
+            e.detail == selfSupplySession) { selfSupplyFailed = true; break; }
     // WHAT IS STILL SHORT AFTER THE PACK IS COUNTED. Cloth and bolts already
     // carried are bandages that have not been cut yet, and the order must not
     // count them twice: Hector bought two bolts, cut one, and bought two more
@@ -251,7 +255,11 @@ bool Runner::DoMakeBandages(Client& client, const Observation& obs) {
         static_cast<i32>(client.BackpackItemCount(kClothBoltGraphic)) *
             kClothPerBolt;
     const i32 shortfall = want - obs.bandages - convertible;
-    if (hunts && shortfall > 0) {
+    // Delivery may cover the shortfall before its verifier runs. Keep the
+    // active purchase moving instead of falling through to a false shortage.
+    if (hunts && selfSupplyFailed &&
+        (shortfall > 0 || bandageBoltBuy_.Running() ||
+                  bandageClothBuy_.Running())) {
         bool bought = false;
         // 4b. A BOLT, when the shortfall is worth one and the purse can pay
         //     the quote. Never more than kMaxBoltsPerTrip: WEIGHT=50.0 each.
@@ -292,7 +300,8 @@ bool Runner::DoMakeBandages(Client& client, const Observation& obs) {
         // 4c. LOOSE CLOTH. One cloth is one bandage, so the shortfall IS the
         //     order, and a whole stack cuts in a single gesture (measured:
         //     18 cloth took Ravan from 17 bandages to 35).
-        if (bandageClothBuy_.Running() || obs.gold >= kClothMaxPrice) {
+        if (bandageClothBuy_.Running() ||
+            (shortfall > 0 && obs.gold >= kClothMaxPrice)) {
             if (!bandageClothBuy_.Running()) {
                 life::BuyRequest req;
                 req.graphic = kClothGraphic;
@@ -406,6 +415,10 @@ bool Runner::DoMakeBandages(Client& client, const Observation& obs) {
         // Hector did at 00:00:47-00:01:07 (2026-09-07).
         bandageTrips_ = 0;
         bandageBoltsOut_ = false;
+        char detail[32];
+        std::snprintf(detail, sizeof(detail), "session=%d", needCfg_.sessionIndex);
+        state_.memory.NoteEvent("bandage_self_supply_failed", detail, "",
+                                obs.x, obs.y, obs.nowMs);
         return BlockNeed(GoalKind::MakeBandages, life::NeedKind::NeedMakeBandages,
                          life::BlockScope::Session,
                          Fmt2("no bandages to buy, no cloth or bolt on any "
@@ -420,6 +433,10 @@ bool Runner::DoMakeBandages(Client& client, const Observation& obs) {
                  bandageTrips_ - 1);
         bandageTrips_ = 0;
         bandageBoltsOut_ = false;
+        char detail[32];
+        std::snprintf(detail, sizeof(detail), "session=%d", needCfg_.sessionIndex);
+        state_.memory.NoteEvent("bandage_self_supply_failed", detail, "",
+                                obs.x, obs.y, obs.nowMs);
         // Window, not Session: a flock walks back, and so does a shelf.
         return BlockNeed(GoalKind::MakeBandages, life::NeedKind::NeedMakeBandages,
                          life::BlockScope::Window, why.c_str(),
@@ -586,7 +603,13 @@ bool Runner::ReachStation(Client& client, const Observation& obs, u32 station,
 // life::BandageSaleTarget (life/Needs.cpp) so the need that raises
 // BANDAGES_FOR_SALE and the handler that ends it stop on the same number.
 i32 Runner::BandageSaleTarget() const {
-    return life::BandageSaleTarget(state_.memory, needCfg_.craftBatch);
+    i32 target = life::BandageSaleTarget(state_.memory, needCfg_.craftBatch);
+    for (const auto& order : state_.craftOrders)
+          if (!order.buying && order.Active(lastTickMs_) && order.terms.item == "i_bandage")
+              target = std::max(target, order.terms.qty - order.delivered +
+                  (needCfg_.profession && std::find(needCfg_.profession->consumes.begin(),
+                   needCfg_.profession->consumes.end(), "i_bandage") != needCfg_.profession->consumes.end() ? 20 : 0));
+    return target;
 }
 
 // See the declaration in Runner.h.
@@ -854,6 +877,11 @@ bool Runner::BankSaleBandages(Client& client, const Observation& obs, i32 held,
 }
 
 bool Runner::DoMakeCloth(Client& client, const Observation& obs) {
+    // A sheep approach and the workshop trip share this latch. Consume the
+    // completed approach before selecting the next destination, or a shorn
+    // flock leaves the wheel/loom branches waiting on a trip that ended.
+    if (client.TravelBusy()) return false;
+    travelInFlight_ = false;
     if (client.ActionBusy()) return false;
     LoadPastures(client.DataDir());
 
@@ -922,7 +950,9 @@ bool Runner::DoMakeCloth(Client& client, const Observation& obs) {
     const prof::Profession* me = needCfg_.profession;
     if (me) {
         const CraftIntent intent =
-            ChooseCraft(*me, obs, needCfg_.craftBatch, &craftFocus_);
+            !fighter && !state_.productionBatch.item.empty()
+                ? ProductionShopping(state_.productionBatch, obs)
+                : ChooseCraft(*me, obs, needCfg_.craftBatch, &craftFocus_);
         bool stillShort = false;
         for (const prod::Ingredient& ing : intent.missing) {
             if (!IsWoolChainMaterial(ing.item)) continue;
@@ -1315,7 +1345,9 @@ bool Runner::DoMakeCloth(Client& client, const Observation& obs) {
     // bounded minute of standing still often produces another animal. When the
     // bound is spent the character leaves with what it has rather than starting
     // a second cross-map trip for the balance.
-    if (!clothShornSheep_.empty() && !client.TravelBusy()) {
+    // After a restart the wool survives, but the per-session sheared list
+    // does not. A carried load at an empty flock still belongs at the wheel.
+    if ((!clothShornSheep_.empty() || wool > 0) && !client.TravelBusy()) {
         if (clothFlockBareMs_ == 0) {
             clothFlockBareMs_ = obs.nowMs;
             LogLine("cloth: every sheep in reach is shorn (%d wool of %d) -- "

@@ -5,6 +5,7 @@
 #include "uo/interaction/progress.h"
 
 #include <cstdio>
+#include <algorithm>
 #include <vector>
 
 namespace uo::life {
@@ -96,6 +97,8 @@ void VendorErrand::Begin(const VendorErrandSpec& spec) {
     scans_ = 0;
     seller_ = 0;
     travelInFlight_ = false;
+    noStockKeepers_.clear();
+    triedPlaceIds_.clear();
 
     // The deadline is the CLIENT's, not a guess: kVendorTimeoutMs is what
     // Client applies to a vendor action, and the retry gap is derived from
@@ -135,11 +138,63 @@ VendorErrandResult VendorErrand::Tick(Client& client, const Observation& obs) {
             // distance -- and a guildmaster keeps no shop. Corwyn asked
             // Riley to open a bandage list eight seconds at a time, twice,
             // and got silence, while the real healer stood four tiles on.
-            const std::vector<u32> drained(spec_.avoid,
-                                          spec_.avoid + spec_.avoidCount);
-            keeper_ = client.NearestMobileWithTrade(who.trade, drained);
+            std::vector<u32> avoided(spec_.avoid,
+                                     spec_.avoid + spec_.avoidCount);
+            for (u32 serial : noStockKeepers_) {
+                if (std::find(avoided.begin(), avoided.end(), serial) ==
+                    avoided.end()) {
+                    avoided.push_back(serial);
+                }
+            }
+            keeper_ = 0;
+            // An opened shelf is stronger evidence than a profession title.
+            // A quantity of one permits partial restocking; the actual offer
+            // is reopened and checked before any purchase.
+            const char* item = econ::ItemNameForGraphic(spec_.graphic);
+            if (item && *item) {
+                const supply::Need need{supply::NeedKind::Item, item, 1};
+                const auto candidates = client.ObservedSuppliers().Resolve(need, obs.x, obs.y, obs.nowMs);
+                for (const auto& candidate : candidates) {
+                    const auto& supplier = candidate.supplier;
+                    if (candidate.freshness == supply::Freshness::VerifiedCurrent &&
+                        (supplier.observedQuantity <= 0 || (spec_.maxPricePerUnit > 0 &&
+                         supplier.observedPricePerUnit > spec_.maxPricePerUnit)))
+                        avoided.push_back(supplier.serial);
+                }
+                for (const auto& candidate : candidates) {
+                    const auto& supplier = candidate.supplier;
+                    if (!candidate.usable || candidate.freshness == supply::Freshness::Stale ||
+                        std::find(avoided.begin(), avoided.end(), supplier.serial) != avoided.end() ||
+                        (spec_.maxPricePerUnit > 0 && supplier.observedPricePerUnit > spec_.maxPricePerUnit)) continue;
+                    i32 x = 0, y = 0; i8 z = 0;
+                    if (client.MobilePosition(supplier.serial, &x, &y, &z)) {
+                        keeper_ = supplier.serial;
+                        break;
+                    }
+                    if (trips_ >= spec_.maxTrips) continue;
+                    ++trips_;
+                    keeper_ = supplier.serial;
+                    chases_ = 0;
+                    open_.Reset();
+                    client.ForgetVendorOffer();
+                    travelInFlight_ = client.TravelToPoint(supplier.x, supplier.y, 2, "observed item supplier");
+                    if (!travelInFlight_) {
+                        noStockKeepers_.push_back(keeper_);
+                        avoided.push_back(keeper_);
+                        keeper_ = 0;
+                        continue;
+                    }
+                    step_ = Step::Approach;
+                    return Working(Wake::TravelArrives, 0, "returning to an observed item supplier");
+                }
+            }
+            if (!keeper_)
+                keeper_ = client.NearestShopkeeperWithTrade(who.trade, who.service, &avoided);
             if (keeper_) {
                 scans_ = 0;
+                chases_ = 0;
+                open_.Reset();
+                client.ForgetVendorOffer();
                 step_ = Step::Approach;
                 return Working(Wake::Now, 0, Fmt("found a '%s'", who.trade));
             }
@@ -163,6 +218,7 @@ VendorErrandResult VendorErrand::Tick(Client& client, const Observation& obs) {
                     trips_ = 0;
                     scans_ = 0;
                     travelInFlight_ = false;
+                    triedPlaceIds_.clear();
                     return Working(Wake::Now, 0,
                                    Fmt("no '%s' answered -- trying a '%s'",
                                        who.trade,
@@ -173,7 +229,8 @@ VendorErrandResult VendorErrand::Tick(Client& client, const Observation& obs) {
                                   who.trade, trips_ - 1));
             }
             scans_ = 0;
-            travelInFlight_ = client.TravelToService(who.service, nullptr);
+            travelInFlight_ = client.TravelToServiceSkipping(who.service, nullptr,
+                                                            avoided, &triedPlaceIds_);
             if (!travelInFlight_) {
                 return Working(Wake::AfterDelay, kShortMs,
                                Fmt("no route to a '%s': %s", who.trade,
@@ -190,7 +247,9 @@ VendorErrandResult VendorErrand::Tick(Client& client, const Observation& obs) {
             if (!client.MobilePosition(keeper_, &vx, &vy, &vz)) {
                 // It was in the cache a moment ago and is not now. Ask again
                 // rather than assuming it died or that we imagined it.
+                noStockKeepers_.push_back(keeper_);
                 keeper_ = 0;
+                open_.Reset();
                 step_ = Step::Find;
                 return Working(Wake::Now, 0, "lost sight of the shopkeeper");
             }
@@ -233,7 +292,7 @@ VendorErrandResult VendorErrand::Tick(Client& client, const Observation& obs) {
             // THE SERVER'S ANSWER, READ RATHER THAN DISCARDED. A rejection is
             // definitive and ends this door now; a timeout says nothing about
             // the world and only backs off.
-            if (!client.ActionBusy() &&
+            if (open_.Attempts() > 0 && !client.ActionBusy() &&
                 client.ActionKind() == act::Kind::VendorBuy) {
                 const act::Result res = client.ActionResult();
                 if (res == act::Result::Rejected ||
@@ -263,7 +322,15 @@ VendorErrandResult VendorErrand::Tick(Client& client, const Observation& obs) {
                                 spec_.sellers[seller_].trade,
                                 (said && said[0]) ? ": " : "",
                                 (said && said[0]) ? said : "");
-                    running_ = false;
+                    noStockKeepers_.push_back(keeper_);
+                    keeper_ = 0;
+                    step_ = Step::Find;
+                    travelInFlight_ = false;
+                    scans_ = chases_ = 0;
+                    open_.Reset();
+                    client.ForgetVendorOffer();
+                    r.status = ActivityStatus::Waiting;
+                    r.why += "; trying another shop";
                     return r;
                 }
                 return Working(Wake::ActionResolves, kShortMs, whyNot);
@@ -364,10 +431,31 @@ VendorErrandResult VendorErrand::Tick(Client& client, const Observation& obs) {
             }
 
             // A shop that does not stock it is a definitive answer about THIS
-            // shop, not about the trade -- so the caller may try another town.
-            running_ = false;
-            return Failed(Fmt("this '%s' does not stock %s", spec_.sellers[seller_].trade,
-                              spec_.what));
+            // shop, not about the trade. Do not return a terminal result that
+            // makes the caller rebuild this errand and select the exact same
+            // NPC. Exclude this keeper, then try another seller type.
+            if (keeper_ && std::find(noStockKeepers_.begin(),
+                                     noStockKeepers_.end(), keeper_) ==
+                               noStockKeepers_.end()) {
+                noStockKeepers_.push_back(keeper_);
+            }
+            const char* exhaustedTrade = spec_.sellers[seller_].trade;
+            keeper_ = 0;
+            step_ = Step::Find;
+            scans_ = 0;
+            travelInFlight_ = false;
+            if (seller_ + 1 < spec_.sellerCount) {
+                ++seller_;
+                trips_ = 0;
+                triedPlaceIds_.clear();
+                return Working(Wake::Now, 0,
+                               Fmt("this '%s' does not stock %s; trying a '%s'",
+                                   exhaustedTrade, spec_.what,
+                                   spec_.sellers[seller_].trade));
+            }
+            return Working(Wake::Now, 0,
+                           Fmt("this '%s' does not stock %s; looking for another",
+                               exhaustedTrade, spec_.what));
         }
 
         // ---------------------------------------------------------------

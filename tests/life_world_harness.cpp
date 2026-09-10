@@ -9,6 +9,7 @@
 #include "world/Atlas.h"
 #include "world/NavGrid.h"
 #include "uo/endian.h"
+#include "uo/sparring.h"
 
 #include <cstdio>
 #include <cstring>
@@ -22,6 +23,57 @@ using namespace uo;
 
 namespace uo::life {
 struct RunnerHarnessAccess {
+    static void SocialObserve(Runner& r, Client& c, const Observation& o) { r.ObserveSocial(c, o); }
+    static void SeedSparring(Runner& r, i64 now) {
+        r.state_.identity.characterName = "Student";
+        r.socialPeer_ = 0x1002; r.socialPeerName_ = "Teacher";
+        r.socialActivity_ = social::Activity::Spar;
+        r.socialConsented_ = r.sparActive_ = true;
+        r.socialStartedMs_ = now; r.sessionStartMs_ = now;
+    }
+    static bool SparTick(Runner& r, Client& c, const Observation& o) { return r.TickSparring(c,o); }
+    static void SeedPoison(Runner& r, Client& c, i64 now) {
+        SeedSparring(r, now); r.sparActive_ = false;
+        r.socialActivity_ = social::Activity::Poison; r.poisonStudent_ = true;
+        r.socialGroupUntilMs_ = now + 120000;
+        r.socialHeardMs_ = c.JournalNowMs();
+        r.needCfg_.profession = prof::Find("mage");
+        r.state_.plan.skills = {{rules::kPoisoning, 1000}};
+    }
+    static bool PoisonTick(Runner& r, Client& c, const Observation& o) { return r.TickPoisonPractice(c,o); }
+
+    static bool SocialRun(Runner& r, Client& c, const Observation& o) { return r.DoSocialize(c, o); }
+    static u32 SocialPeer(const Runner& r) { return r.socialPeer_; }
+    static void SocialIdentity(Runner& r) {
+        r.state_.identity.characterName = "Student";
+        r.state_.plan.skills.push_back({rules::kAnatomy, 1000});
+    }
+    static void SocialEnd(Runner& r, Client& c) { r.EndSocialGroup(c, "test finished"); }
+    static void SocialPendingAcceptance(Runner& r) { r.socialOwnParty_ = true; }
+    static void SocialJustSpoke(Runner& r, i64 nowMs) { r.socialChatMs_ = nowMs; }
+    static void SocialNeeds(Runner& r, Client& c, const Observation& o, std::vector<Need>& needs) {
+        r.AddSocialNeeds(c, o, needs);
+    }
+    static i32 GroupSupport(Runner& runner, Client& client, const Observation& obs,
+                            u32 target, bool announce) {
+        return runner.HuntSupport(client, obs, target, announce);
+    }
+    static void RememberPlayerAttack(Runner& runner, const char* name) {
+        runner.state_.memory.NoteEvent("attacked_by_player", name, "test", 0, 0, 1);
+    }
+    static bool KnowsCompanion(const Runner& runner) {
+        return runner.state_.memory.HasEvent("hunt_companion");
+    }
+    static void SeedPendingBankDeposit(Runner& runner) {
+        runner.bankItemMovePending_ = true;
+        runner.bankItemMoveJournalMs_ = 0;
+        runner.marketQuietUntilMs_ = 100000;
+        runner.planner_.Cooldown(GoalKind::TradeWithPlayer, 100000);
+    }
+    static bool SettleBankDeposit(Runner& runner, Client& client,
+                                  const Observation& obs) {
+        return runner.SettleBankItemMove(client, obs);
+    }
     static void Retreat(Runner& runner, Client& client) {
         runner.RetreatToSafety(client);
     }
@@ -39,6 +91,23 @@ struct RunnerHarnessAccess {
     static bool Retreating(const Runner& runner) { return runner.survivalRetreat_; }
     static bool Heal(Runner& runner, Client& client, const Observation& obs) {
         return runner.DoHeal(client, obs);
+    }
+    static bool RefillMana(Runner& runner, Client& client, const Observation& obs) {
+        return runner.RefillManaWhenSafe(client, obs);
+    }
+    static bool MaintainCasterBuffs(Runner& runner, Client& client,
+                                    const Observation& obs) {
+        return runner.MaintainCasterBuffs(client, obs);
+    }
+    static void CombatGap(Runner& runner, i64 until) { runner.nextActionMs_ = until; }
+    static void BankLot(Runner& runner, u16 amount) {
+        runner.bankItemMoveAmount_ = amount;
+        runner.bankItemMoveSerial_ = 0x4000BBBB;
+        runner.bankItemMoveDestination_ = 0x4000AAAA;
+    }
+    static u16 BankLot(const Runner& runner) { return runner.bankItemMoveAmount_; }
+    static bool Survive(Runner& runner, Client& client, const Observation& obs) {
+        return runner.DoSurvive(client, obs);
     }
     static void LeaveGoal(Runner& runner, Client& client, GoalKind from,
                           GoalKind to) {
@@ -72,6 +141,9 @@ struct RunnerHarnessAccess {
     }
     static const prof::Profession* ProfessionOf(const Runner& runner) {
         return runner.needCfg_.profession;
+    }
+    static const std::string& HomeCity(const Runner& runner) {
+        return runner.state_.homeCity;
     }
     static void MakeSessionEnding(Runner& runner, i64 nowMs) {
         runner.cfg_.sessionLimitMs = 1000;
@@ -260,11 +332,17 @@ struct RunnerHarnessAccess {
     static void CoolGearErrandForTest(Runner& runner, i64 nowMs) {
         runner.planner_.Cooldown(GoalKind::UpgradeGear, nowMs + 999999);
     }
+    static void SetProfessionForTest(Runner& runner, const prof::Profession* p) {
+        runner.needCfg_.profession = p;
+    }
     static i32 HuntEngageTriesForTest(const Runner& runner, u32 serial) {
         return runner.HuntEngageTries(serial);
     }
     static bool IsHuntExcludedForTest(const Runner& runner, u32 serial) {
         return runner.IsHuntExcluded(serial);
+    }
+    static bool IsUnreachableForTest(const Runner& runner, u32 serial, i64 nowMs) {
+        return runner.IsUnreachable(serial, nowMs);
     }
     static u32 CurrentFoeForTest(const Runner& runner) {
         return runner.currentFoe_;
@@ -315,7 +393,7 @@ int GuardShouts(const Client& client) {
 // A 0x78 Mobile Incoming with an empty equipment list -- enough to register a
 // hostile in Client::ScanHostiles (mobileCache_), which the wind-down handler
 // reads directly and independently of Runner::Observe's override seam.
-void SpawnHostile(Client& client, u32 serial, u16 x, u16 y, u8 noto) {
+void SpawnHostile(Client& client, u32 serial, u16 x, u16 y, u8 noto, bool war = false) {
     u8 packet[23]{};
     packet[0] = 0x78;
     StoreBE16(packet + 1, sizeof(packet));
@@ -326,10 +404,19 @@ void SpawnHostile(Client& client, u32 serial, u16 x, u16 y, u8 noto) {
     packet[13] = 0;                 // z
     packet[14] = 0;                 // dir
     StoreBE16(packet + 15, 0);      // hue
-    packet[17] = 0;                 // status flags
+    packet[17] = war ? 0x40 : 0;    // status flags
     packet[18] = noto;              // notoriety: 3 = gray, hostile-eligible
     // bytes 19..22 are the zero-serial equipment-list terminator
     client.DispatchPacketForTest(packet, sizeof(packet));
+}
+
+std::vector<u8> MakePaperdoll(u32 serial, const char* title) {
+    std::vector<u8> p(66, 0);
+    p[0] = 0x88;
+    StoreBE32(&p[1], serial);
+    const usize n = std::strlen(title);
+    std::memcpy(&p[5], title, n < 60 ? n : 60);
+    return p;
 }
 
 // 0xD1 is the only thing Sphere's CClient::CharDisconnect ever sees as "this
@@ -436,12 +523,13 @@ std::vector<u8> MakeTradeOpen(u32 partner, u32 myContainer, u32 theirContainer,
     return p;
 }
 
-// 0x6F SECURE_TRADE_CHANGE (action 2): unused(4) mine(4) theirs(4), each a
-// bare 0/nonzero flag (ClientTrade.cpp OnSecureTrade case 2).
-std::vector<u8> MakeTradeChange(bool mine, bool theirs) {
+// 0x6F SECURE_TRADE_CHANGE (action 2): window(4) mine(4) theirs(4), each
+// check a bare 0/nonzero flag (ClientTrade.cpp OnSecureTrade case 2).
+std::vector<u8> MakeTradeChange(u32 window, bool mine, bool theirs) {
     std::vector<u8> p(17, 0);
     p[0] = 0x6F;
     p[3] = 2;
+    StoreBE32(&p[4], window);
     StoreBE32(&p[8], mine ? 1u : 0u);
     StoreBE32(&p[12], theirs ? 1u : 0u);
     return p;
@@ -481,6 +569,378 @@ std::vector<u8> MakeAsciiMessage(u32 serial, const char* name,
 int main(int argc, char** argv) {
     if (argc != 2) return 2;
     const std::string root = std::string(argv[1]) + "/life_world";
+    {
+        Client::Config config{};
+        auto client = std::make_unique<Client>(config);
+        client->SetOfflineForTest(true);
+        client->SetClockForTest(200000);
+        auto login = MakeLoginConfirm(0x2002, 100, 100);
+        client->DispatchPacketForTest(login.data(), login.size());
+        SpawnHostile(*client, 0x1002, 102, 100, 1);
+        client->ClearSentForTest();
+        client->ActionIdentifyNearbyPerson();
+        Check(client->SentForTest().size() == 2 && client->SentForTest()[0].opcode == 0x98 &&
+              client->SentForTest()[1].opcode == 0x06,
+              "social discovery identifies one nearby human with ordinary client packets");
+        u8 doll[66]{}; doll[0] = 0x88;
+        StoreBE32(doll + 1, 0x1002);
+        std::memcpy(doll + 5, "Teacher", 7);
+        client->DispatchPacketForTest(doll, sizeof(doll));
+        auto name = MakeMobName(0x1002, "Teacher");
+        client->DispatchPacketForTest(name.data(), name.size());
+        life::Runner runner;
+        life::RunnerHarnessAccess::SocialIdentity(runner);
+        life::Observation obs; obs.nowMs = 200000; obs.x = obs.y = 100;
+        obs.hp = obs.hpMax = 50;
+        client->ClearSentForTest();
+        u8 invite[] = {0xBF, 0, 10, 0, 6, 7, 0, 0, 0x10, 2};
+        client->DispatchPacketForTest(invite, sizeof(invite));
+        life::RunnerHarnessAccess::SocialObserve(runner, *client, obs);
+        bool unsolicitedAccept = false, greeted = false;
+        for (const auto& packet : client->SentForTest()) {
+            if (packet.opcode == 0xBF) unsolicitedAccept = true;
+            if (packet.opcode == 0x03) greeted = true;
+        }
+        Check(life::RunnerHarnessAccess::SocialPeer(runner) == 0 && !unsolicitedAccept,
+              "unsolicited party invitation is never auto-accepted");
+        Check(greeted, "first friendly encounter can produce a greeting without a social goal");
+        auto speech = MakeAsciiMessage(0x1002, "Teacher", "Anyone for training and healing practice? Meet here.");
+        life::RunnerHarnessAccess::SocialJustSpoke(runner, obs.nowMs);
+        client->DispatchPacketForTest(speech.data(), speech.size());
+        life::RunnerHarnessAccess::SocialObserve(runner, *client, obs);
+        Check(life::RunnerHarnessAccess::SocialPeer(runner) == 0x1002,
+              "nearby invitation is answered even immediately after our own chat");
+        life::RunnerHarnessAccess::SocialRun(runner, *client, obs);
+        Check(!client->PartyContains(0x1002), "sending acceptance does not fabricate membership");
+        u8 members[] = {0xBF, 0, 15, 0, 6, 1, 2, 0, 0, 0x10, 2, 0, 0, 0x20, 2};
+        client->DispatchPacketForTest(members, sizeof(members) - 1);
+        Check(client->PartySize() == 0, "truncated party roster grants no membership");
+        client->DispatchPacketForTest(members, sizeof(members));
+        Check(client->PartyContains(0x1002) && client->PartyLeader() == 0x1002,
+              "server roster establishes party membership and leader");
+        client->ClearSentForTest();
+        obs.nowMs += 1000;
+        life::RunnerHarnessAccess::SocialRun(runner, *client, obs);
+        Check(client->CurrentAction().kind == act::Kind::UseSkill &&
+              client->CurrentAction().id == rules::kAnatomy && client->CurrentAction().destination == 0x1002,
+              "confirmed training party practices Anatomy on its consenting companion");
+        bool attacked = false;
+        for (const auto& packet : client->SentForTest()) if (packet.opcode == 0x05) attacked = true;
+        Check(!attacked, "training consent never authorizes an attack packet");
+        std::vector<life::Need> needs;
+        obs.underAttack = true;
+        life::RunnerHarnessAccess::SocialNeeds(runner, *client, obs, needs);
+        Check(needs.empty(), "combat suppresses social and market opportunities");
+        life::RunnerHarnessAccess::SocialEnd(runner, *client);
+        u8 removed[] = {0xBF, 0, 11, 0, 6, 2, 0, 0, 0, 0x20, 2};
+        client->DispatchPacketForTest(removed, sizeof(removed));
+        Check(client->PartySize() == 0, "server removal clears party membership");
+        client->ClearSentForTest();
+        life::RunnerHarnessAccess::SocialPendingAcceptance(runner);
+        life::RunnerHarnessAccess::SocialEnd(runner, *client);
+        client->DispatchPacketForTest(members, sizeof(members));
+        life::RunnerHarnessAccess::SocialObserve(runner, *client, obs);
+        bool leftLateParty = false;
+        for (const auto& packet : client->SentForTest())
+            if (packet.opcode == 0xBF && packet.bytes.size() == 10 && packet.bytes[5] == 2)
+                leftLateParty = true;
+        Check(leftLateParty, "late membership after cancellation sends an explicit party leave");
+        client->CompleteActionForTest(act::Result::Success, "fixture ready");
+        Check(!client->BeginSparringRound(0x1002), "party membership without training kit cannot spar");
+        const u8 layers[] = {4, 6, 7, 10, 13, 19};
+        const u16 graphics[] = {0x1411, 0x1412, 0x1414, 0x1413, 0x1415, 0x1410};
+        for (u32 who : {0x2002u, 0x1002u}) for (int i=0; i<6; ++i) {
+            auto equip = MakeEquip(0x40000000 + who*16+i, graphics[i], layers[i], who);
+            client->DispatchPacketForTest(equip.data(), equip.size());
+        }
+        auto health = [&](u32 who, u16 hp) {
+            u8 packet[9] = {0xA1}; StoreBE32(packet+1, who);
+            StoreBE16(packet+5, 100); StoreBE16(packet+7, hp);
+            client->DispatchPacketForTest(packet, sizeof(packet));
+        };
+        Check(!client->BeginSparringRound(0x1002), "unknown health blocks sparring despite iron armour");
+        health(0x2002,100); health(0x1002,100);
+        Check(client->SparringReady(0x1002), "fresh healthy iron-armoured party pair can prepare");
+        Check(sparring::PoisonReceiver(601, 601, 10), "Poison receiver has both skills above sixty and bandages");
+        Check(!sparring::PoisonReceiver(600, 1000, 10) && !sparring::PoisonReceiver(1000, 600, 10),
+              "both Healing and Anatomy must exceed sixty, not merely one of them");
+        Check(!sparring::PoisonReceiver(1000, 1000, 0), "Poison practice requires curing supplies");
+        Check(client->PoisonPracticeReady(0x1002), "fresh healthy consenting party can prepare Poison practice");
+        u8 poisoned[17] = {0x77}; StoreBE32(poisoned+1, 0x1002); StoreBE16(poisoned+5, 0x190);
+        StoreBE16(poisoned+7, 102); StoreBE16(poisoned+9, 100); poisoned[15] = 0x04;
+        client->DispatchPacketForTest(poisoned, sizeof(poisoned));
+        Check(client->MobilePoisoned(0x1002) && !client->PoisonPracticeReady(0x1002),
+              "server poison flag prevents another training cast before cure");
+        poisoned[15] = 0;
+        client->DispatchPacketForTest(poisoned, sizeof(poisoned));
+        Check(!client->MobilePoisoned(0x1002) && client->PoisonPracticeReady(0x1002),
+              "server cure update restores practice eligibility");
+        client->ClearSentForTest();
+        Check(client->BeginSparringRound(0x1002), "prepared pair starts a real attack round");
+        Check(!client->SentForTest().empty() && client->SentForTest().back().opcode == 0x05,
+              "sparring uses real server attack packet");
+        health(0x1002,59);
+        Check(client->SparringPeer() == 0 && client->SentForTest().back().opcode == 0x72 &&
+              client->SentForTest().back().bytes[1] == 0,
+              "peer low HP immediately sends war off even before war acknowledgement");
+        Check(!client->BeginSparringRound(0x1002), "injured peer cannot immediately restart");
+        health(0x1002,100);
+        Check(client->BeginSparringRound(0x1002), "recovered peer can start a fresh round");
+        client->SetClockForTest(206000); client->SparringSafetyTick();
+        Check(client->SparringPeer() == 0, "watchdog ends stalled round without a planner tick");
+        Check(!client->BeginSparringRound(0x1002), "stale health prevents a new round");
+        Check(!client->PoisonPracticeReady(0x1002), "stale health also prevents Poison practice");
+        health(0x2002,100); health(0x1002,100);
+        Check(client->BeginSparringRound(0x1002), "fresh status restores eligibility");
+        auto weapon = MakeEquip(0x40009999, 0x13B9, 1, 0x1002);
+        client->DispatchPacketForTest(weapon.data(), weapon.size());
+        Check(client->SparringPeer() == 0 && !client->SparringReady(0x1002),
+              "partner switching to a sword immediately stops sparring");
+        weapon = MakeEquip(0x40009999, 0x0F51, 1, 0x1002);
+        client->DispatchPacketForTest(weapon.data(), weapon.size());
+        Check(client->BeginSparringRound(0x1002), "dagger is a permitted training weapon");
+        client->DispatchPacketForTest(removed, sizeof(removed));
+        Check(client->SparringPeer() == 0 && !client->BeginSparringRound(0x1002),
+              "party removal immediately stops and blocks further attacks");
+        client->DispatchPacketForTest(members, sizeof(members));
+        life::Runner sparRunner;
+        obs.nowMs = 206000; obs.bandages = 20; obs.underAttack = false;
+        life::RunnerHarnessAccess::SeedSparring(sparRunner, obs.nowMs);
+        client->ClearSentForTest();
+        life::RunnerHarnessAccess::SparTick(sparRunner, *client, obs);
+        attacked = false;
+        for (const auto& p : client->SentForTest()) if (p.opcode == 0x05) attacked = true;
+        Check(!attacked, "consenting party still requires partner readiness before attacking");
+        auto ready = MakeAsciiMessage(0x1002, "Teacher", "Student: Ready for sparring round 1.");
+        client->DispatchPacketForTest(ready.data(), ready.size());
+        life::RunnerHarnessAccess::SparTick(sparRunner, *client, obs);
+        attacked = false;
+        for (const auto& p : client->SentForTest()) if (p.opcode == 0x05) attacked = true;
+        Check(attacked, "addressed numbered readiness authorizes the agreed sparring round");
+        client->SetClockForTest(206001); obs.nowMs = 206001;
+        auto stop = MakeAsciiMessage(0x1002, "Teacher", "Student: Let's stop and regroup.");
+        client->DispatchPacketForTest(stop.data(), stop.size());
+        life::RunnerHarnessAccess::SparTick(sparRunner, *client, obs);
+        Check(client->SparringPeer() == 0 && life::RunnerHarnessAccess::SocialPeer(sparRunner) == 0,
+              "withdrawn consent immediately stops the attack and ends the group");
+
+        const auto savedSpells = spell::SpellTable();
+        spell::LoadSpellTableFromText("spell\tdefname\tname\tcircle\tminskill\tmana\tflags\treagents\n"
+            "20\ts_poison\tPoison\t3\t300\t9\tspellflag_targ_obj|spellflag_harm|spellflag_tick\ti_reag_nightshade\n");
+        life::Runner poisonRunner;
+        obs.nowMs = 207000; client->SetClockForTest(obs.nowMs);
+        life::RunnerHarnessAccess::SeedPoison(poisonRunner, *client, obs.nowMs);
+        obs.skills = {{rules::kMagery,500}, {rules::kPoisoning,0}};
+        obs.mana = 50; obs.spellbookSerial = 0x40005555;
+        obs.pack = {{"i_reag_nightshade", 10}};
+        auto page = MakeAddItem(0x40005556, 0x1F2E, 20, obs.spellbookSerial);
+        client->DispatchPacketForTest(page.data(), page.size());
+        health(0x2002,100); health(0x1002,100);
+        client->CompleteActionForTest(act::Result::Success, "previous round ended");
+        client->ClearSentForTest();
+        auto casts = [&]() { int n=0; for (const auto& p : client->SentForTest())
+            if (p.opcode == 0x12) ++n; return n; };
+        life::RunnerHarnessAccess::PoisonTick(poisonRunner, *client, obs);
+        Check(casts() == 0, "Poison consent still requires a fresh numbered healer-ready message");
+        obs.nowMs++; client->SetClockForTest(obs.nowMs);
+        ready = MakeAsciiMessage(0x1002, "Teacher", "Student: Ready to receive Poison round 1.");
+        client->DispatchPacketForTest(ready.data(), ready.size());
+        life::RunnerHarnessAccess::PoisonTick(poisonRunner, *client, obs);
+        Check(casts() == 1, "Poison practice casts a real spell on the ready consenting healer");
+        client->CompleteActionForTest(act::Result::Success, "cast completed");
+        obs.nowMs++; client->SetClockForTest(obs.nowMs);
+        client->DispatchPacketForTest(ready.data(), ready.size());
+        life::RunnerHarnessAccess::PoisonTick(poisonRunner, *client, obs);
+        Check(casts() == 1, "replayed readiness cannot authorize a second Poison cast");
+        obs.nowMs++; client->SetClockForTest(obs.nowMs);
+        client->DispatchPacketForTest(stop.data(), stop.size());
+        life::RunnerHarnessAccess::PoisonTick(poisonRunner, *client, obs);
+        Check(life::RunnerHarnessAccess::SocialPeer(poisonRunner) == 0,
+              "withdrawing Poison consent ends the meeting");
+        spell::SpellTable() = savedSpells;
+
+
+    }
+    {
+        Client::Config config{};
+        auto client = std::make_unique<Client>(config);
+        client->SetOfflineForTest(true);
+        client->SetClockForTest(200000);
+        auto login = MakeLoginConfirm(0xED04, 100, 100);
+        client->DispatchPacketForTest(login.data(), login.size());
+        SpawnHostile(*client, 0x1001, 104, 100, 6);
+        SpawnHostile(*client, 0x1002, 103, 100, 1, true);
+        std::vector<Client::HostileHit> support;
+        Check(client->CombatSupportNear(0x1001, support) == 0,
+              "an unknown human-shaped mobile is not assumed to be an ally");
+        u8 doll[66]{}; doll[0] = 0x88;
+        StoreBE32(doll + 1, 0x1002);
+        std::memcpy(doll + 5, "Companion", 9);
+        client->DispatchPacketForTest(doll, sizeof(doll));
+        auto name = MakeMobName(0x1002, "Companion");
+        client->DispatchPacketForTest(name.data(), name.size());
+        Check(client->CombatSupportNear(0x1001, support) == 1,
+              "a known friendly fighter near prey provides support");
+        life::Runner runner;
+        life::Observation obs; obs.nowMs = 200000;
+        client->ClearSentForTest();
+        Check(life::RunnerHarnessAccess::GroupSupport(runner, *client, obs, 0x1001, true) == 1,
+              "group handler recognizes a visible companion");
+        Check(life::RunnerHarnessAccess::KnowsCompanion(runner),
+              "cooperative encounter enters persistent life memory");
+        const auto sent = client->SentForTest().size();
+        life::RunnerHarnessAccess::GroupSupport(runner, *client, obs, 0x1001, true);
+        Check(sent > 0 && client->SentForTest().size() == sent,
+              "help chat is sent once and throttled on repeated ticks");
+        life::RunnerHarnessAccess::RememberPlayerAttack(runner, "Companion");
+        Check(life::RunnerHarnessAccess::GroupSupport(runner, *client, obs, 0x1001, false) == 0,
+              "a remembered player attacker is not trusted as hunting support");
+        SpawnHostile(*client, 0x1002, 103, 100, 6, true);
+        Check(client->CombatSupportNear(0x1001, support) == 0,
+              "a hostile player never counts as friendly support");
+    }
+    {
+        Client::Config config{};
+        auto client = std::make_unique<Client>(config);
+        client->SetOfflineForTest(true);
+        client->SetClockForTest(1000);
+        life::Runner runner;
+        life::Observation obs;
+        obs.nowMs = 1000;
+        life::RunnerHarnessAccess::SeedPendingBankDeposit(runner);
+        client->ActionOpenContainer(0x4000AAAA);
+        client->CompleteActionForTest(act::Result::Success, "item removed during drag");
+        auto refusal = MakeAsciiMessage(0xFFFFFFFF, "System", "Your bankbox can't hold more weight.");
+        client->DispatchPacketForTest(refusal.data(), refusal.size());
+        Check(life::RunnerHarnessAccess::SettleBankDeposit(runner, *client, obs),
+              "full-bank refusal overrides an early move success");
+        Check(runner.GetPlanner().Cooling(life::GoalKind::Bank, obs.nowMs),
+              "full-bank refusal prevents an endless deposit retry");
+        Check(!runner.GetPlanner().Cooling(life::GoalKind::TradeWithPlayer, obs.nowMs),
+              "full-bank refusal reopens the player-sale recovery path");
+        life::Runner smaller;
+        OpenBank(*client, 0x4000AAAA);
+        life::RunnerHarnessAccess::SeedPendingBankDeposit(smaller);
+        life::RunnerHarnessAccess::BankLot(smaller, 2);
+        Check(life::RunnerHarnessAccess::SettleBankDeposit(smaller, *client, obs) &&
+              life::RunnerHarnessAccess::BankLot(smaller) == 1,
+              "a refused two-unit deposit retries one unit before giving up");
+        Check(!smaller.GetPlanner().Cooling(life::GoalKind::Bank, obs.nowMs),
+              "a smaller deposit keeps banking available");
+    }
+    {
+        Client::Config config{};
+        auto client = std::make_unique<Client>(config);
+        client->SetOfflineForTest(true); client->SetInWorldForTest();
+        client->SetClockForTest(1000);
+        life::Runner runner;
+        life::RunnerHarnessAccess::SetProfessionForTest(runner, prof::Find("mage"));
+        life::Observation obs; obs.inWorld = true; obs.nowMs = 1000;
+        obs.hp = obs.hpMax = 50; obs.mana = 49; obs.manaMax = 50;
+        Check(life::RunnerHarnessAccess::RefillMana(runner, *client, obs),
+              "a safe mage refills even one missing mana point");
+        const auto sent = client->SentForTest().size();
+        Check(sent > 0, "safe refill issues meditation");
+        client->CompleteActionForTest(act::Result::Success, "meditating");
+        obs.nowMs += 1000;
+        Check(life::RunnerHarnessAccess::RefillMana(runner, *client, obs) &&
+              client->SentForTest().size() == sent,
+              "ordinary work waits without repeatedly restarting meditation");
+        obs.mana = 50;
+        Check(!life::RunnerHarnessAccess::RefillMana(runner, *client, obs),
+              "full mana releases ordinary work");
+        obs.mana = 20; obs.underAttack = true;
+        Check(!life::RunnerHarnessAccess::RefillMana(runner, *client, obs),
+              "danger takes priority over mana refill");
+        obs.underAttack = false; obs.hostilesNear = 1;
+        Check(!life::RunnerHarnessAccess::RefillMana(runner, *client, obs),
+              "hostiles on unguarded ground prevent stationary refill");
+        obs.underAttack = true;
+        life::RunnerHarnessAccess::CombatGap(runner, obs.nowMs + 10000);
+        Check(life::RunnerHarnessAccess::RefillMana(runner, *client, obs),
+              "a mage attempts meditation in a distant combat opening");
+        client->CompleteActionForTest(act::Result::Success, "meditation interrupted");
+        const auto combatSent = client->SentForTest().size();
+        obs.nowMs += 2100;
+        Check(life::RunnerHarnessAccess::RefillMana(runner, *client, obs) &&
+              client->SentForTest().size() > combatSent,
+              "combat meditation is retried rather than waiting for combat to end");
+        Check(!life::RunnerHarnessAccess::RefillMana(runner, *client, obs),
+              "an in-flight action is not replaced with another meditation attempt");
+    }
+    {
+        // Buffs use the same observed spellbook, skill, mana and reagent gates
+        // as an ordinary cast.  A known full book rotates the five safe buffs;
+        // a non-caster or an active threat never spends a preparation cast.
+        const auto savedSpells = spell::SpellTable();
+        spell::LoadSpellTableFromText(
+            "spell\tdefname\tname\tcircle\tminskill\tmana\tflags\treagents\n"
+            "6\ts_night_sight\tNight Sight\t1\t100\t4\tspellflag_good\ti_reag_spider_silk,i_reag_sulfur_ash\n"
+            "7\ts_reactive_armor\tReactive Armor\t1\t100\t4\tspellflag_good\ti_reag_garlic,i_reag_spider_silk,i_reag_sulfur_ash\n"
+            "15\ts_protection\tProtection\t2\t200\t6\tspellflag_good\ti_reag_garlic,i_reag_ginseng,i_reag_sulfur_ash\n"
+            "17\ts_bless\tBless\t3\t300\t9\tspellflag_good\ti_reag_garlic,i_reag_mandrake_root\n"
+            "36\ts_magic_reflection\tMagic Reflection\t5\t500\t14\tspellflag_good\ti_reag_garlic,i_reag_mandrake_root,i_reag_spider_silk\n");
+        Client::Config config{};
+        auto client = std::make_unique<Client>(config);
+        client->SetOfflineForTest(true);
+        auto login = MakeLoginConfirm(0x2003, 100, 100);
+        client->DispatchPacketForTest(login.data(), login.size());
+        life::Runner runner;
+        life::RunnerHarnessAccess::SetProfessionForTest(runner, prof::Find("mage"));
+        constexpr u32 book = 0x40005590u;
+        for (int spell : {6, 7, 15, 17, 36}) {
+            auto page = MakeAddItem(0x40005600u + static_cast<u32>(spell),
+                                    0x1F2E, static_cast<u16>(spell), book);
+            client->DispatchPacketForTest(page.data(), page.size());
+        }
+        life::Observation obs;
+        obs.inWorld = true; obs.nowMs = 1000;
+        obs.hp = obs.hpMax = 60; obs.mana = obs.manaMax = 60;
+        obs.spellbookSerial = book;
+        obs.skills = {{rules::kMagery, 1000}};
+        obs.pack = {{"i_reag_garlic", 10}, {"i_reag_ginseng", 10},
+                    {"i_reag_mandrake_root", 10}, {"i_reag_spider_silk", 10},
+                    {"i_reag_sulfur_ash", 10}};
+        for (int expected : {6, 7, 15, 17, 36}) {
+            client->ClearSentForTest();
+            Check(life::RunnerHarnessAccess::MaintainCasterBuffs(runner, *client, obs),
+                  "a safe mage casts the next available long-lived buff");
+            Check(client->CurrentAction().kind == act::Kind::CastSpell &&
+                  client->CurrentAction().id == expected &&
+                  client->CurrentAction().destination == client->PlayerSerial(),
+                  "the buff is cast on the caster through the normal spell action");
+            client->CompleteActionForTest(act::Result::Success, "buff applied");
+            obs.nowMs += 75001;
+        }
+        obs.underAttack = true;
+        Check(!life::RunnerHarnessAccess::MaintainCasterBuffs(runner, *client, obs),
+              "an active fight takes priority over a caster buff refresh");
+        obs.underAttack = false;
+        life::RunnerHarnessAccess::SetProfessionForTest(runner, prof::Find("fencer"));
+        Check(!life::RunnerHarnessAccess::MaintainCasterBuffs(runner, *client, obs),
+              "caster buffs are reserved for mage and warlock builds");
+        spell::SpellTable() = savedSpells;
+    }
+    {
+        Client::Config config{};
+        config.loginHost = "127.0.0.1";
+        auto client = std::make_unique<Client>(config);
+        client->SetOfflineForTest(true);
+        auto login = MakeLoginConfirm(0xED04, 1462, 1681);
+        client->DispatchPacketForTest(login.data(), login.size());
+        u8 wheel[14]{};
+        wheel[0] = 0x1A;
+        StoreBE16(wheel + 1, sizeof(wheel));
+        StoreBE32(wheel + 3, 0x40000471);
+        StoreBE16(wheel + 7, 0x101C);
+        StoreBE16(wheel + 9, 1473);
+        StoreBE16(wheel + 11, 1689);
+        client->DispatchPacketForTest(wheel, sizeof(wheel));
+        Check(life::runner_detail::FindSpinWheel(*client, 18) == 0x40000471,
+              "workshop arrival sees the wheel diagonally across the visible square");
+        Check(life::runner_detail::FindSpinWheel(*client, 18, {0x40000471}) == 0,
+              "a rejected wheel is still excluded from station selection");
+    }
     std::filesystem::create_directories(root);
     const std::string atlasPath = root + "/atlas.txt";
     const std::string gridPath = root + "/grid.bin";
@@ -699,6 +1159,13 @@ int main(int argc, char** argv) {
             }
         }
 
+        for (const auto work : {life::GoalKind::Mine, life::GoalKind::GatherLogs, life::GoalKind::Fish}) {
+            Check(client->TravelToPoint(400, 400, 2, "old food errand"), "food journey starts");
+            life::RunnerHarnessAccess::LeaveGoal(runner, *client, work, work);
+            Check(client->TravelBusy(), "a same-kind work pick preserves its journey");
+            life::RunnerHarnessAccess::LeaveGoal(runner, *client, life::GoalKind::GetFood, work);
+            Check(!client->TravelBusy(), "gathering cancels the superseded food journey");
+        }
         Check(client->TravelToPoint(400, 400, 2, "old errand"), "old errand starts");
         life::RunnerHarnessAccess::Retreat(runner, *client);
         Check(client->TravelBusy(), "retreat replaces the old errand with a live journey");
@@ -715,6 +1182,9 @@ int main(int argc, char** argv) {
             runner, *client, life::GoalKind::Survive, life::GoalKind::TrainCombat);
         Check(client->TravelBusy(),
               "TRAIN_COMBAT does not abort a banker retreat after attackers clear");
+        life::RunnerHarnessAccess::LeaveGoal(
+            runner, *client, life::GoalKind::Survive, life::GoalKind::Mine);
+        Check(client->TravelBusy(), "mining also preserves an active survival retreat");
         Check(!life::RunnerHarnessAccess::Heal(runner, *client, quiet),
               "HEAL yields while a quiet survival retreat is still travelling");
         Check(client->TravelBusy() && life::RunnerHarnessAccess::Retreating(runner),
@@ -774,6 +1244,16 @@ int main(int argc, char** argv) {
             life::RunnerHarnessAccess::GuardKeeper(runner, *client, calm);
             Check(GuardShouts(*client) == 1,
                   "safe and whole again, the shouting stops");
+
+            // A hostile merely in sight is not an attack.  This was the live
+            // fleet's spam path: every protected character repeated "Guards"
+            // every fifteen seconds whenever another character entered scan.
+            life::Observation watched = calm;
+            watched.nowMs += 60000;
+            watched.hostilesNear = 5;
+            life::RunnerHarnessAccess::GuardKeeper(runner, *client, watched);
+            Check(GuardShouts(*client) == 1,
+                  "a visible but non-attacking hostile does not call guards");
             client->ClearSentForTest();
         }
 
@@ -1153,6 +1633,24 @@ int main(int argc, char** argv) {
                   "hubs from wherever the character stands still resolves");
         }
     }
+    // Fishing is geographically viable at every listed coastal city.  Unlike
+    // ore and wood gatherers, deterministic homes must therefore distribute
+    // fishers instead of pinning each one to the first list entry (Skara Brae).
+    {
+        const char* expectedHomes[] = {"Skara Brae", "Jhelom", "Vesper", "Britain"};
+        for (int i = 0; i < 4; ++i) {
+            life::Runner fisher;
+            life::RunnerConfig fisherCfg;
+            fisherCfg.dataRoot = root + "/fisher_spread_" + std::to_string(i);
+            fisherCfg.accountName = "fisher_spread";
+            fisherCfg.characterName = "dock" + std::to_string(i);
+            fisherCfg.professionId = "fisher";
+            std::string fisherError;
+            Check(fisher.Configure(fisherCfg, &fisherError), fisherError.c_str());
+            Check(life::RunnerHarnessAccess::HomeCity(fisher) == expectedHomes[i],
+                  "fishers spread across their coastal home cities");
+        }
+    }
     // --- wind-down regression: guarded ground, hostile merely in scan ------
     // fleet122_20260907: Morven, Rhaler and Kharain looped ~9,300 times each
     // between "running for guarded ground at Minoc Mine 1" and "arrived
@@ -1439,16 +1937,30 @@ int main(int argc, char** argv) {
 
         // Both sides tick their accept and the server closes the window as
         // completed.
-        auto change = MakeTradeChange(true, true);
+        auto change = MakeTradeChange(myContainer, true, true);
         client->DispatchPacketForTest(change.data(), change.size());
         auto close = MakeTradeClose(myContainer);
         client->DispatchPacketForTest(close.data(), close.size());
+        // The client-side move request for the coin has received its normal
+        // success before the completed handler is allowed to refresh the pack.
+        client->CompleteActionForTest(act::Result::Success, "coin offered");
 
-        // The Completed-phase handler reads the OBSERVATION's own pack/gold,
-        // not the live container cache -- 10 bandages arrived, 30 gold left.
+        // The completed handler refreshes the pack once before it reads the
+        // Observation. A close packet can beat the normal inventory update on
+        // the live shard, which previously made this completed trade look
+        // empty even though both sides had accepted.
         life::Observation after = obs;
         after.pack.push_back({"i_bandage", 10});
-        after.gold = 970;
+        // The status-bar total includes banked coin while a player trade can
+        // only move the 30 coins that left the backpack.  Keep the two
+        // deliberately different so this regression catches a return to the
+        // wrong purse baseline.
+        after.gold = 8688;
+        after.goldOnHand = 970;
+        life::RunnerHarnessAccess::DoTradeWithPlayerForTest(runner, *client, after);
+        Check(client->CurrentAction().kind == act::Kind::OpenContainer,
+              "a completed trade refreshes the backpack before it verifies goods");
+        client->CompleteActionForTest(act::Result::Success, "backpack refreshed");
         life::RunnerHarnessAccess::DoTradeWithPlayerForTest(runner, *client, after);
         Check(life::RunnerHarnessAccess::BelievedSalePrice(runner, "i_bandage") == 3,
               "got 10 for 30 gold -- the recorded observation is 3/unit, "
@@ -1470,10 +1982,17 @@ int main(int argc, char** argv) {
         client->SetInWorldForTest();
         client->SetClockForTest(7000000);
 
+        const u32 me = 0x0001A000;
+        const u32 packSerial = 0x4003A010;
+        auto login = MakeLoginConfirm(me, 100, 100);
+        client->DispatchPacketForTest(login.data(), login.size());
+        auto pack = MakeEquip(packSerial, 0x0E75, 0x15, me);
+        client->DispatchPacketForTest(pack.data(), pack.size());
+
         const u32 partner = 0x0001A001;
         auto open = MakeTradeOpen(partner, 0x4003A001, 0x4003A002, "Wren");
         client->DispatchPacketForTest(open.data(), open.size());
-        auto change = MakeTradeChange(true, true);
+        auto change = MakeTradeChange(0x4003A001, true, true);
         client->DispatchPacketForTest(change.data(), change.size());
         auto close = MakeTradeClose(0x4003A001);
         client->DispatchPacketForTest(close.data(), close.size());
@@ -1503,6 +2022,10 @@ int main(int argc, char** argv) {
         after.gold = 0;
         after.pack.push_back({"i_bandage", 10});
         life::RunnerHarnessAccess::DoTradeWithPlayerForTest(runner, *client, after);
+        Check(client->CurrentAction().kind == act::Kind::OpenContainer,
+              "even a suspicious completed trade refreshes before pricing it");
+        client->CompleteActionForTest(act::Result::Success, "backpack refreshed");
+        life::RunnerHarnessAccess::DoTradeWithPlayerForTest(runner, *client, after);
         // NOT -1: i_bandage carries a shard-value seed (Market.cpp
         // kShardValueSeeds, 3gp) that BelievedSalePrice falls back to once
         // there is no PlayerTraded observation to prefer. Seeing that seed
@@ -1514,15 +2037,12 @@ int main(int argc, char** argv) {
               "leaving only the shard seed -- never taught to the fleet");
     }
 
-    // --- GET_TOOL frees an occupied hand before a wielded-tool wear ---------
-    // A refused equip used to read back as a false success (the bounce
-    // sentence, "You put the hatchet in your pack.", was not classified --
-    // see act::IsEquipBounceMessage / Client::ActionOnSysMessage), burning
-    // every one of GET_TOOL's wear attempts without the sword ever coming
-    // off, so a lumberjack_swordsman could never wield the hatchet at all
-    // (fleet122b 2026-09-07, Falen.console.txt ~20:03:55: goal_blocked=
-    // GET_TOOL "3 equip attempts left the hand empty"). Drives the real
-    // Runner::DoGetTool with a sword worn on HAND1 and a hatchet in the pack.
+    // --- GET_TOOL keeps an owned work tool in the pack ----------------------
+    // The gathering actions arm the one tool they need immediately before
+    // use.  GET_TOOL owns the whole profession catalogue, so it must regard a
+    // hatchet in the pack as complete rather than disarming a combat weapon
+    // just to wield it: a crafter can own several hand tools but only wield
+    // one at once.
     {
         const u32 me = 0x00019101;
         const u32 myPack = 0x40021001;
@@ -1559,6 +2079,20 @@ int main(int argc, char** argv) {
         Check(client->FindBackpackItemByGraphic(kHatchetGfx) == hatchet,
               "the hatchet is in the pack");
 
+        // Trainer payments are evaluated against the stack the NPC receives.
+        // A five-coin change stack must not be selected when the 495-coin
+        // stack beside it is the one that can pay a 295-gold course.
+        const u32 smallGold = 0x40021004;
+        const u32 lessonGold = 0x40021005;
+        auto small = MakeAddItem(smallGold, 0x0EED, 5, myPack);
+        auto large = MakeAddItem(lessonGold, 0x0EED, 495, myPack);
+        client->DispatchPacketForTest(small.data(), small.size());
+        client->DispatchPacketForTest(large.data(), large.size());
+        Check(client->FindBackpackItemByGraphicAtLeast(0x0EED, 295) == lessonGold,
+              "a trainer payment selects the stack that can pay the full quote");
+        Check(client->FindBackpackItemByGraphicAtLeast(0x0EED, 496) == 0,
+              "the lookup does not pretend split stacks are one payment");
+
         life::Runner runner;
         life::RunnerConfig rc;
         rc.dataRoot = root + "/get_tool_swap";
@@ -1586,43 +2120,15 @@ int main(int argc, char** argv) {
         obs.x = 100; obs.y = 100; obs.z = 0;
         obs.gold = 0;
 
-        Check(!life::RunnerHarnessAccess::DoGetToolForTest(runner, *client, obs),
-              "GET_TOOL is not finished yet -- it just asked to free the hand");
-        bool sawUnequipLift = false;
+        Check(life::RunnerHarnessAccess::DoGetToolForTest(runner, *client, obs),
+              "GET_TOOL is complete when its required tool is in the pack");
+        bool changedHand = false;
         for (const auto& p : client->SentForTest()) {
-            if (p.opcode != 0x07 || p.bytes.size() < 5) continue;
-            if (LoadBE32(p.bytes.data() + 1) == sword) sawUnequipLift = true;
+            if ((p.opcode == 0x07 || p.opcode == 0x13) && p.bytes.size() >= 5)
+                changedHand = true;
         }
-        Check(sawUnequipLift, "the sword is what got lifted off, not the hatchet");
-
-        // The server answers: the sword lands in the pack (0x25), same as any
-        // unequip -- and ForgetEquippedItem (Client::OnAddItemToContainer)
-        // is what actually clears it off HAND1, since nothing else does.
-        auto swordBounced = MakeAddItem(sword, kSwordGfx, 1, myPack);
-        client->DispatchPacketForTest(swordBounced.data(), swordBounced.size());
-        Check(client->EquippedAtLayer(life::runner_detail::kLayerHand1) == 0,
-              "the sword is off HAND1 once the unequip lands");
-
-        // Now the hand is free: the SAME goal call equips the hatchet instead
-        // of unequipping the (already unequipped) sword again.
-        obs.nowMs += 2000;
-        Check(!life::RunnerHarnessAccess::DoGetToolForTest(runner, *client, obs),
-              "GET_TOOL now asks to wear the hatchet");
-        bool sawHatchetEquip = false;
-        for (const auto& p : client->SentForTest()) {
-            if (p.opcode != 0x13 || p.bytes.size() < 5) continue;
-            if (LoadBE32(p.bytes.data() + 1) == hatchet) sawHatchetEquip = true;
-        }
-        Check(sawHatchetEquip, "the hatchet is equipped once the hand is free");
-
-        // The server confirms the wear -- a genuine 0x2E, since the hand
-        // really was empty this time.
-        auto hatchetWorn = MakeEquip(hatchet, kHatchetGfx,
-                                     life::runner_detail::kLayerHand1, me);
-        client->DispatchPacketForTest(hatchetWorn.data(), hatchetWorn.size());
-        Check(client->EquippedAtLayer(life::runner_detail::kLayerHand1) == hatchet,
-              "the hatchet is worn on HAND1 -- the swap completed without "
-              "ever hitting the 'hand empty' block");
+        Check(!changedHand,
+              "GET_TOOL does not disarm the current weapon for an owned tool");
     }
 
     // --- A REFUSED EQUIP IS AN ANSWER, AND FEMALE ARMOUR IS NEVER CHOSEN --
@@ -1851,7 +2357,7 @@ int main(int argc, char** argv) {
         life::RunnerHarnessAccess::CoolGearErrandForTest(runner, 1000000);
 
         const u32 foe = 0x40200001u;
-        SpawnHostile(*client, foe, 453, 450, 3);
+        SpawnHostile(*client, foe, 457, 450, 3);
         auto nm = MakeMobName(foe, "Harness Ghoul");
         client->DispatchPacketForTest(nm.data(), nm.size());
         std::vector<Client::HostileHit> seen;
@@ -1886,6 +2392,9 @@ int main(int argc, char** argv) {
             obs.nowMs += 2500;
             client->SetClockForTest(obs.nowMs);
             life::RunnerHarnessAccess::DoTrainCombatForTest(runner, *client, obs);
+            if (i == 0)
+                Check(client->GotoTargetsForTest(456, 450),
+                      "opening on distant non-retaliating prey requests an adjacent chase tile");
             client->CompleteActionForTest(act::Result::Timeout,
                                           "no swing landed -- test");
         }
@@ -2114,6 +2623,205 @@ int main(int argc, char** argv) {
         Check(life::RunnerHarnessAccess::IsHuntExcludedForTest(runner, foe),
               "once the health bar stops moving too, the same target is "
               "still eventually written off");
+    }
+
+    // A ghost must not walk past a healer that wanders into view on the way
+    // to the atlas healer. A nearby live healer stops the stale landmark
+    // journey so Sphere can offer resurrection immediately.
+    {
+        Client::Config config{};
+        config.loginHost = "127.0.0.1";
+        config.username = config.password = "offline_wandering_healer";
+        config.version = "2.0.7";
+        config.sessionTag = "wandering_healer";
+        config.atlasPath = atlasPath.c_str();
+        config.navgridPath = gridPath.c_str();
+        auto client = std::make_unique<Client>(config);
+        client->SetOfflineForTest(true);
+        client->SetInWorldForTest();
+        constexpr i64 kNow = 3000000;
+        client->SetClockForTest(kNow);
+        Position(*client, 450, 450);
+        Check(client->WorldKnowledgeReady(), "wandering-healer fixture loads its world");
+
+        life::Runner runner;
+        life::RunnerConfig rc;
+        rc.dataRoot = root + "/wandering_healer";
+        rc.accountName = "offline_wandering_healer";
+        rc.characterName = "wandering_healer";
+        rc.professionId = "fencer";
+        std::string error;
+        Check(runner.Configure(rc, &error), "wandering-healer runner configures");
+
+        u8 death[2] = {0x2C, 0x00};
+        client->DispatchPacketForTest(death, sizeof(death));
+        Check(client->TravelToService(wm::Service::Healer),
+              "a dead bot can begin the ordinary atlas healer route");
+
+        constexpr u32 kHealer = 0x4020A001u;
+        SpawnHostile(*client, kHealer, 451, 450, 1);
+        const auto doll = MakePaperdoll(kHealer, "Mara, the healer");
+        client->DispatchPacketForTest(doll.data(), doll.size());
+        life::Observation ghost;
+        ghost.inWorld = true;
+        ghost.dead = true;
+        ghost.nowMs = kNow;
+        ghost.x = 450; ghost.y = 450;
+        ghost.hp = ghost.hpMax = 1;
+        life::RunnerHarnessAccess::Survive(runner, *client, ghost);
+        Check(!client->TravelBusy(),
+              "a visible wandering healer replaces the fixed healer route");
+        int resurrectionRequests = 0;
+        for (const auto& p : client->SentForTest())
+            if (p.opcode == 0x03) ++resurrectionRequests;
+        Check(resurrectionRequests == 1,
+              "a ghost beside the named healer asks to be resurrected once");
+
+        // Seeing the same healer across the room must continue its trip; it
+        // is not close enough to understand a resurrection request. This is
+        // the Arvdris fleet regression where the old else branch said to
+        // Ayuna while the active entity journey was still 24 tiles away.
+        Client::Config farConfig = config;
+        farConfig.sessionTag = "wandering_healer_far";
+        auto farClient = std::make_unique<Client>(farConfig);
+        farClient->SetOfflineForTest(true);
+        farClient->SetInWorldForTest();
+        farClient->SetClockForTest(kNow);
+        Position(*farClient, 450, 450);
+        life::Runner farRunner;
+        life::RunnerConfig farRc = rc;
+        farRc.dataRoot = root + "/wandering_healer_far";
+        farRc.characterName = "wandering_healer_far";
+        Check(farRunner.Configure(farRc, &error), "far-healer runner configures");
+        farClient->DispatchPacketForTest(death, sizeof(death));
+        constexpr u32 kFarHealer = 0x4020A002u;
+        SpawnHostile(*farClient, kFarHealer, 458, 450, 1);
+        const auto farDoll = MakePaperdoll(kFarHealer, "Mara, the healer");
+        farClient->DispatchPacketForTest(farDoll.data(), farDoll.size());
+        life::RunnerHarnessAccess::Survive(farRunner, *farClient, ghost);
+        farClient->ClearSentForTest();
+        ghost.nowMs += 4000;
+        farClient->SetClockForTest(ghost.nowMs);
+        life::RunnerHarnessAccess::Survive(farRunner, *farClient, ghost);
+        resurrectionRequests = 0;
+        for (const auto& p : farClient->SentForTest())
+            if (p.opcode == 0x03) ++resurrectionRequests;
+        Check(resurrectionRequests == 0,
+              "a distant healer is not asked to resurrect until the ghost arrives");
+    }
+
+    // --- a caster moves to establish line of sight before spending a spell --
+    // (Train.cpp, fleet122combat_20260909: casters repeatedly received
+    // "Target is not in line of sight" at 6-8 tiles and never chased.)
+    {
+        Client::Config config{};
+        config.loginHost = "127.0.0.1";
+        config.username = config.password = "offline_world";
+        config.version = "2.0.7";
+        config.sessionTag = "caster_line_of_sight";
+        config.atlasPath = atlasPath.c_str();
+        config.navgridPath = gridPath.c_str();
+        auto client = std::make_unique<Client>(config);
+        client->SetOfflineForTest(true);
+        client->SetInWorldForTest();
+        client->SetClockForTest(1100000);
+
+        life::Runner runner;
+        life::RunnerConfig rc;
+        rc.dataRoot = root + "/caster_line_of_sight";
+        rc.accountName = "offline_world";
+        rc.characterName = "caster_line_of_sight";
+        rc.professionId = "fencer";
+        std::string error;
+        Check(runner.Configure(rc, &error), error.c_str());
+        life::RunnerHarnessAccess::SetProfessionForTest(runner, prof::Find("mage"));
+        life::RunnerHarnessAccess::CoolGearErrandForTest(runner, 1100000);
+        Check(client->WorldKnowledgeReady(), "caster fixture loads atlas and grid");
+        Position(*client, 452, 450);
+
+        const u32 foe = 0x40200011u;
+        SpawnHostile(*client, foe, 457, 450, 3);
+        auto name = MakeMobName(foe, "Blocked Skeleton");
+        client->DispatchPacketForTest(name.data(), name.size());
+
+        // A real spellbook page records its spell number in the amount field.
+        // The synthetic harness has no MUL sight data, so this target is
+        // deliberately not visible and exercises the approach branch.
+        const auto savedSpells = spell::SpellTable();
+        spell::LoadSpellTableFromText("spell\tdefname\tname\tcircle\tminskill\tmana\tflags\treagents\n"
+            "10\ts_harm\tHarm\t2\t100\t4\tspellflag_targ_char|spellflag_harm|spellflag_damage\t\n");
+        constexpr u32 book = 0x40005570u;
+        auto page = MakeAddItem(0x40005571u, 0x1F2E, 10, book);
+        client->DispatchPacketForTest(page.data(), page.size());
+
+        life::Observation obs;
+        obs.inWorld = true;
+        obs.x = 452; obs.y = 450;
+        obs.hp = obs.hpMax = 100;
+        obs.mana = obs.manaMax = 50;
+        obs.hostilesNear = 1;
+        obs.bandages = 200;
+        obs.spellbookSerial = book;
+        obs.skills = {{rules::kMagery, 500}};
+        obs.nowMs = 1100000;
+        client->ClearSentForTest();
+        life::RunnerHarnessAccess::DoTrainCombatForTest(runner, *client, obs);
+        Check(client->GotoTargetsForTest(454, 450),
+              "a caster without sight walks to a three-tile firing position");
+        int casts = 0;
+        for (const auto& p : client->SentForTest()) if (p.opcode == 0x12) ++casts;
+        Check(casts == 0,
+              "a caster does not waste a spell while the target is outside line of sight");
+        Check(life::RunnerHarnessAccess::HuntEngageTriesForTest(runner, foe) == 0,
+              "approaching for sight is not counted as a failed combat exchange");
+
+        // The local map said the next cast was viable, but the server rejects
+        // it after the target moves behind cover.  This is the live fleet
+        // race: the authoritative refusal must exclude the prey before the
+        // picker can send a second spell.
+        client->ActionCastSpell(1, foe);
+        auto refusal = MakeAsciiMessage(0xFFFFFFFF, "System",
+                                        "Target is not in line of sight");
+        client->DispatchPacketForTest(refusal.data(), refusal.size());
+        // Reproduce the fleet race: another combat action begins before the
+        // runner's next tick.  The refusal target must not be lost with the
+        // completed cast action.
+        client->ActionAttack(foe);
+        client->ClearSentForTest();
+        obs.nowMs += 2500;
+        client->SetClockForTest(obs.nowMs);
+        life::RunnerHarnessAccess::DoTrainCombatForTest(runner, *client, obs);
+        Check(life::RunnerHarnessAccess::IsUnreachableForTest(runner, foe, obs.nowMs),
+              "a server-rejected hunt spell temporarily excludes that target");
+        casts = 0;
+        for (const auto& p : client->SentForTest()) if (p.opcode == 0x12) ++casts;
+        Check(casts == 0,
+              "the rejected target receives no immediate second spell");
+
+        // The same completed action reaches the defensive path after a
+        // hostile retaliates.  It must get the same authoritative treatment.
+        const u32 defensiveFoe = 0x40200012u;
+        SpawnHostile(*client, defensiveFoe, 453, 451, 3);
+        auto defensiveName = MakeMobName(defensiveFoe, "Harness Zombie");
+        client->DispatchPacketForTest(defensiveName.data(), defensiveName.size());
+        client->ActionCastSpell(1, defensiveFoe);
+        client->CompleteActionForTest(act::Result::Rejected,
+                                      "Target is not in line of sight");
+        client->ClearSentForTest();
+        obs.underAttack = true;
+        obs.attackersOnMe = 1;
+        obs.hostilesNear = 1;
+        obs.nowMs += 2500;
+        client->SetClockForTest(obs.nowMs);
+        life::RunnerHarnessAccess::Survive(runner, *client, obs);
+        Check(life::RunnerHarnessAccess::IsUnreachableForTest(
+                  runner, defensiveFoe, obs.nowMs),
+              "a server-rejected defensive spell also excludes that target");
+        casts = 0;
+        for (const auto& p : client->SentForTest()) if (p.opcode == 0x12) ++casts;
+        Check(casts == 0,
+              "defensive combat does not immediately re-cast through blocked sight");
+        spell::SpellTable() = savedSpells;
     }
 
     std::printf("%d checks, %d failures\n", checks, failures);

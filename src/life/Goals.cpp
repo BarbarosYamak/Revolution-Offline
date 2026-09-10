@@ -39,6 +39,7 @@ const char* GoalKindName(GoalKind g) {
         case GoalKind::StatFarm:             return "STAT_FARM";
         case GoalKind::ReturnHome:           return "RETURN_HOME";
         case GoalKind::IdleBriefly:           return "IDLE_BRIEFLY";
+        case GoalKind::Socialize:             return "SOCIALIZE";
         case GoalKind::Count:                 break;
     }
     return "?";
@@ -109,6 +110,7 @@ GoalFamily FamilyOf(GoalKind k) {
         case GoalKind::StatFarm:
             return GoalFamily::Training;
         case GoalKind::TradeWithPlayer:
+        case GoalKind::Socialize:
             return GoalFamily::Social;
         case GoalKind::TravelToRequiredPlace:
         case GoalKind::Explore:
@@ -248,6 +250,7 @@ const GoalSpec kGoals[] = {
     // Just under EARN_GOLD: when a vendor will take the goods that is the
     // shorter errand, and the player market is for what it refuses.
     {GoalKind::TradeWithPlayer,       NeedKind::NeedTrade,         145.0},
+    {GoalKind::Socialize,             NeedKind::NeedSocial,        150.0},
     // Beside GatherLogs: it is the same kind of thing, the productive work
     // this life does, and it must not outrank housekeeping.
     {GoalKind::Fish,                  NeedKind::NeedCatch,         130.0},
@@ -284,8 +287,12 @@ const GoalSpec kGoals[] = {
     // hunt, so it cannot earn the money to fix any of it.
     {GoalKind::MakeBandages,          NeedKind::NeedMakeBandages,  145.0},
     // Below bandages and food: armour is what you want once you are fed and
-    // able to heal, not instead of them.
-    {GoalKind::UpgradeGear,           NeedKind::NeedGear,          100.0},
+    // able to heal, not instead of them. Above a ready combat score when the
+    // character has no basic armour: otherwise combat preempts the still-open
+    // shop errand every commitment window, only to hand itself back to that
+    // errand with no progress. A gear goal that exhausts its own attempts
+    // still cools and lets the existing hunt fallback proceed.
+    {GoalKind::UpgradeGear,           NeedKind::NeedGear,          130.0},
     // BETWEEN Craft (130) and BuySupplies (140), and for the same stated
     // reason BuySupplies sits above Craft: a crafter that cannot start is
     // worth the trip that lets it start. This is that trip for the one input
@@ -598,6 +605,7 @@ i64 Planner::TimeLimitFor(GoalKind k) const {
     // now 180s, so the round trip is 250+180+250 = 680s and the 12-minute
     // (720s) limit leaves no room for wind-down. 14 minutes covers the 800s
     // trip budget (kMarketTripMs + kWindDownBudgetMs) with margin.
+    if (k == GoalKind::Socialize) return 180000;
     if (k == GoalKind::TradeWithPlayer) return 14 * 60 * 1000;
     return cfg_.maxGoalMs;
 }

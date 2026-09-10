@@ -259,6 +259,7 @@ private:
     bool SettleBankItemMove(Client& client, const Observation& obs);
     bool DoGatherLogs(Client& client, const Observation& obs);
     bool DoTrainCombat(Client& client, const Observation& obs);
+    i32 HuntSupport(Client& client, const Observation& obs, u32 target, bool announce = false);
     // STAT_FARM: the Wrestling detour that is the only way a caster's STR
     // ever moves. Train.cpp, beside the other training errands.
     bool DoStatFarm(Client& client, const Observation& obs);
@@ -275,6 +276,41 @@ private:
     bool DoReturnHome(Client& client, const Observation& obs);
     bool DoTrainAtNpc(Client& client, const Observation& obs);
     bool DoTradeWithPlayer(Client& client, const Observation& obs);
+    void ObserveSocial(Client& client, const Observation& obs);
+    void AddSocialNeeds(Client& client, const Observation& obs, std::vector<Need>& needs);
+    bool DoSocialize(Client& client, const Observation& obs);
+    bool TickSparring(Client& client, const Observation& obs);
+    bool TickPoisonPractice(Client& client, const Observation& obs);
+    bool WantsPoisonPractice(const Observation& obs) const;
+    bool poisonStudent_ = false, poisonSeen_ = false;
+    i32 poisonRound_ = 1;
+    i64 poisonReadyMs_ = 0;
+    bool sparActive_ = false, sparRoundStarted_ = false;
+    i64 sparReadyMs_ = 0, sparPeerReadyMs_ = 0, sparPollMs_ = 0, sparRoundEndMs_ = 0;
+    i32 sparRound_ = 1;
+    bool FollowHuntingParty(Client& client, const Observation& obs);
+    void EndSocialGroup(Client& client, const char* reason);
+    bool SocialFoe(const std::string& name) const;
+    bool SocialSay(Client& client, i64 nowMs, const std::string& text);
+    social::Activity socialActivity_ = social::Activity::None;
+    u32 socialPeer_ = 0;
+    u32 socialPreferred_ = 0;
+    std::string socialPeerName_;
+    i64 socialHeardMs_ = 0, socialChatMs_ = 0, socialRestUntilMs_ = 0;
+    i64 socialStartedMs_ = 0, socialAgreedMs_ = 0, socialLastSeenMs_ = 0;
+    i64 socialInviteMs_ = 0, socialScanMs_ = 0, socialGroupUntilMs_ = 0;
+    i64 socialMarketUntilMs_ = 0, socialPracticeMs_ = 0;
+    u32 socialTargetGeneration_ = 0;
+    bool socialConsented_ = false, socialOwnParty_ = false;
+    bool socialLeavePending_ = false;
+    bool socialMeetingPicked_ = false;
+    i32 socialMeetingX_ = 0, socialMeetingY_ = 0;
+    i32 socialTrainingStart_ = 0;
+    i32 socialTrainingGains_ = 0;
+    std::vector<SkillTarget> socialTrainingSkills_;
+    std::string socialDemandItem_;
+    i64 socialDemandUntilMs_ = 0;
+    usize socialMeetingRotation_ = 0;
     bool DoFish(Client& client, const Observation& obs);
     bool DoBuySupplies(Client& client, const Observation& obs);
     bool DoCraft(Client& client, const Observation& obs);
@@ -324,6 +360,22 @@ private:
     // classification here, because only the Runner knows the profession.
     ItemRole RoleOfGraphic(u16 gfx) const;
     bool DoGetFood(Client& client, const Observation& obs);
+    // Pet hunger is a server-emitted, owner-specific emergency.  This is not
+    // a planner goal: letting normal scoring delay a ravenous mount behind a
+    // bank or a training trip is how animals were neglected in fleet 122.
+    // The tick is bounded and resumes the interrupted life after feeding.
+    bool PetCareTick(Client& client, const Observation& obs);
+    bool RefillManaWhenSafe(Client& client, const Observation& obs);
+    // Mages and warlocks rotate long-lived self buffs while safe.  The server
+    // does not expose these effect layers in an observation, so the cadence is
+    // deliberately shorter than their documented minimum durations.
+    bool MaintainCasterBuffs(Client& client, const Observation& obs);
+    bool refillingMana_ = false;
+    i64 manaRetryMs_ = 0;
+    i32 manaLastSeen_ = 0;
+    i64 combatMeditationRetryMs_ = 0;
+    i64 casterBuffRetryMs_ = 0;
+    usize casterBuffCursor_ = 0;
     bool DoPracticeSkill(Client& client, const Observation& obs);
     // What to cast for practice, or what the pack is short of. Reads the book
     // and the pack and defers the actual choice to uo::spell (unit-tested in
@@ -396,6 +448,7 @@ private:
     bool RemountAfterWork(Client& client, const Observation& obs);
     bool DoMine(Client& client, const Observation& obs);
     bool DoSmelt(Client& client, const Observation& obs);
+    void NoteSmeltProgress(const Observation& obs);
     // Put enough coin in the pack for a purchase, drawing on the bank. True
     // when it has taken over the tick.
     bool FetchCoinForPurchase(Client& client, const Observation& obs,
@@ -436,6 +489,7 @@ private:
     // owner's rule is about the shape of a DAY, and a preference that survived
     // a logout would decide tomorrow's first sitting from yesterday's mood.
     CraftFocus      craftFocus_;
+    bool productionWithdrawalPending_ = false;
 
     Phase phase_ = Phase::AwaitWorld;
     bool  finished_ = false;
@@ -481,6 +535,7 @@ private:
     // where the graphic could not be attributed.
     std::vector<u32> unwearableSerials_;
     i64 windDownStartedMs_ = 0;
+    bool windDownCleanupPending_ = false;
     i32 windDownTrips_ = 0;
     bool windDownArrived_ = false;
     // Say "I cannot get out of here" ONCE. The blocked branch below re-arms
@@ -543,6 +598,16 @@ private:
     i32  logsAtGoalStart_ = 0;
     i32  logsAtSessionStart_ = -1;
     u32  currentFoe_ = 0;
+    // A caster must first reach a tile from which the selected prey is
+    // visible.  Keep this separate from currentFoe_: that field describes a
+    // real fight and is also used by the survival response once the prey
+    // retaliates.
+    u32  huntApproachTarget_ = 0;
+    // The server, rather than the local map, has the final word on a spell
+    // target's visibility.  Remember the completed refusal long enough to
+    // consume it once; otherwise the finished action would be read and logged
+    // again on every tick before a new target is chosen.
+    u32  casterReachRefusedTarget_ = 0;
     int PickPoisonOpener(Client& client, const Observation& obs) const;
     u32 poisonOpenedTarget_ = 0;
     // A TARGET THAT NEVER RETALIATES MUST NOT BE RE-PICKED FOREVER (audit
@@ -616,6 +681,21 @@ private:
     std::string deathKillerName_;
     i32  ghostTrips_ = 0;
     static constexpr i32 kMaxGhostTrips = 4;
+    // A healer can be visible yet unreachable behind a wall or a counter.
+    // Remember that fact for this death so the ghost does not path to the
+    // same sealed tile until its session expires.
+    std::vector<u32> ghostHealerAvoid_;
+    u32 ghostHealerTarget_ = 0;
+    // Reaching a healer proves proximity, not that the NPC has already
+    // noticed the ghost.  Keep the last direct resurrection request so a
+    // crowded healer room receives a normal player prompt without speech
+    // spam.
+    u32 ghostHealerAsked_ = 0;
+    i64 ghostHealerAskMs_ = 0;
+    // A healer can wander into view while the ghost is walking to a fixed
+    // atlas marker. Re-inspect the nearby human NPCs on a short cadence so
+    // that live opportunity wins over a stale landmark journey.
+    i64 ghostHealerScanAtMs_ = 0;
     // A SPELL YOU DO NOT HAVE STAYS UNCAST, however much Magery you own.
     // Voris had Magery 50.0 and no Create Food in his book, and asked for it
     // every six seconds for a whole session: "The spell is not in your
@@ -931,6 +1011,12 @@ private:
     GoalKind    leavePendingFrom_ = GoalKind::IdleBriefly;
     std::string leavePendingWhy_;
     life::VendorErrand foodErrand_;
+    // Crop serials already tried during the current food errand. A ripe plant
+    // changes after harvesting and an unripe one answers no useful action, so
+    // never click either one again in a tight loop.
+    std::vector<u32> foodCropsTried_;
+    std::vector<std::string> foodFarmTried_;
+    i32  foodFarmTrips_ = 0;
     i32  toolTrips_ = 0;
     // SHOPKEEPERS WHOSE STOCK LIST HAS BEEN READ AND DID NOT HOLD THE TOOL.
     // "One NPC is not the trade": a blacksmith whose restock roll came up
@@ -966,10 +1052,14 @@ private:
     bool mountStandDownNoted_ = false;
     // The gathering dismount (DismountToWork/RemountAfterWork). `gatherOnFoot_`
     // means WE put this character on the ground for a mining or chopping
-    // sitting, so somebody owes it a remount before it travels again; the two
-    // click counters are the retry budgets, and `gatherMountLostMs_` is when we
-    // first looked for the horse and did not find it.
+    // sitting, so somebody owes it a remount before it travels again. After
+    // dismounting, the horse is explicitly told to come and follow rather
+    // than assumed to keep pace through a mine or retreat. The two click
+    // counters are the retry budgets, and `gatherMountLostMs_` is when we
+    // first looked for it.
     bool gatherOnFoot_ = false;
+    bool gatherComeCalled_ = false;
+    bool gatherFollowCalled_ = false;
     i32  gatherDismountClicks_ = 0;
     i32  gatherRemountClicks_ = 0;
     i64  gatherMountLostMs_ = 0;
@@ -1010,6 +1100,12 @@ private:
     // up instead of repeating for a whole session.
     life::Handshake craftWait_;
     bool makeLastIssued_ = false;
+    i64 orderHeardMs_ = 0, orderAnnouncedMs_ = 0;
+    void TickCraftOrders(Client& client, const Observation& obs);
+    void AddCraftOrderNeeds(const Observation& obs, std::vector<Need>& needs);
+    CraftOrder* ActiveCraftOrder(bool buying, i64 now);
+    bool DriveCraftOrder(Client& client, const Observation& obs);
+    void SettleCraftOrder(const Observation& obs);
     // THE SHARD IS STILL REPEATING. revolution_makelast.scp re-fires
     // MAKEITEM one second after every make, fail OR abort until
     // TAG.revo.makelast.remaining hits 0. Opening the menu while that runs
@@ -1086,6 +1182,18 @@ private:
     // tame sheep, a creature the shard says cannot be tamed at all. Skipped
     // when choosing the next target, so one dead end does not eat the goal.
     std::vector<u32> tameRefused_;
+    // A serial becomes ours only through an observed tame success or through
+    // mounting the animal we just bought/remounted.  Never infer ownership
+    // from a nearby horse: feeding somebody else's pet is not care.
+    u32  ownedPetSerial_ = 0;
+    i64  petJournalReadMs_ = 0;
+    i64  petCareStartedMs_ = 0;
+    i64  petCareActionMs_ = 0;
+    u32  petCareTarget_ = 0;
+    u32  petCareVendor_ = 0;
+    i32  petCareTrips_ = 0;
+    enum class PetCarePhase : u8 { Idle, Dismount, Acquire, AwaitHay, Feed };
+    PetCarePhase petCarePhase_ = PetCarePhase::Idle;
     i32  mineTrips_ = 0;
     std::string exploreTarget_;
     // --- rest and roam (S2.2) -----------------------------------------------
@@ -1163,6 +1271,9 @@ private:
     std::vector<std::string> reagentWants_;
     i32  reagentWantQty_ = 0;
     static constexpr i32 kMaxFoodTrips = 3;
+    // A field may be picked clean or still growing. Try a few distinct crop
+    // grounds before spending gold at a counter, never loop a single farm.
+    static constexpr i32 kMaxFarmFoodTrips = 3;
     // GET_TOOL is in the Emergency family and therefore exempt from
     // satiation, so a cooldown is its only brake. It had none.
     static constexpr i64 kNoToolCooldownMs = 3 * 60 * 1000;
@@ -1290,6 +1401,10 @@ private:
     // Client::ActionResult(), and three failures in a row let the box go and
     // stand the goal down instead of trying a fourth time.
     bool bankItemMovePending_ = false;
+    i64 bankItemMoveJournalMs_ = 0;
+    u32 bankItemMoveSerial_ = 0;
+    u32 bankItemMoveDestination_ = 0;
+    u16 bankItemMoveAmount_ = 1;
     int  bankItemMoveFails_ = 0;
     static constexpr int kMaxBankItemMoveFails = 3;
     // --- asking a banker for the box ------------------------------------
@@ -1318,6 +1433,15 @@ private:
     // Trips taken looking for a hunting ground this goal.
     int huntTrips_ = 0;
     usize huntPatrolStep_ = 0;
+    usize huntGroundRotation_ = 0;
+    i32 huntCrowdMoves_ = 0;
+    i64 huntSocialMs_ = 0;
+    // A low-stock departure may be authorised only when both ways to restock
+    // have already stood down.  That approval belongs to this hunt, not to
+    // the character forever: otherwise a shop cooldown expiring during the
+    // walk cancels a safe trip without a bandage being used.  HandOffFromHunt
+    // and a credited kill clear it so the next hunt rechecks its supplies.
+    bool huntUnderstockAuthorized_ = false;
     // HandOff out of TRAIN_COMBAT, returning the trip allowance: the goal that
     // takes over plans its own journeys and they are not attempts to reach a
     // hunting ground.
@@ -1403,6 +1527,7 @@ private:
     i32  trainPayAttempts_ = 0;
     // --- EARN_GOLD: selling what this life makes --------------------------
     static constexpr i32 kMaxSellTrips = 3;
+    void FinishNpcSaleVisit(i64 nowMs);
     std::string sellItem_;             // defname currently being sold
     std::string sellTrade_;            // paperdoll-title substring to look for
     wm::Service sellService_ = wm::Service::None;
@@ -1561,6 +1686,7 @@ private:
     market::TradeIntent tradeOffer_;      // what we are announcing
     u32         tradePartner_ = 0;
     std::string tradePartnerName_;
+    std::string tradeOrderId_;
     std::string tradeItem_;
     i32  tradeSellingQty_ = 0;   // >0 = we are the SELLER
     i32  tradeWantQty_ = 0;      // buyer: how many we want
@@ -1600,10 +1726,22 @@ private:
     static constexpr i64 kTradeSettleMs = 2500;
     i32  tradePackBefore_ = 0;   // the PACK is the proof, not the packet
     i32  tradeGoldBefore_ = 0;
+    // Secure-trade CLOSE can arrive before the backpack's changed contents.
+    // Refresh it once before comparing the after-state to these baselines.
+    bool tradePackRefreshPending_ = false;
+    // Minoc wood stands already exhausted during this session. A lumberjack
+    // begins at the closest town-side stand, then expands only when needed.
+    std::vector<std::string> minocLumberTried_;
     i64  tradeHeardMs_ = 0;
     i64  tradeAnnouncedMs_ = 0;
     i64  tradeOpenedMs_ = 0;
     i32  tradeAnnounceCount_ = 0;
+    // A market trip scans the room once before it starts speaking. A zero
+    // audience is meaningful only after that scan: an untouched client cache
+    // cannot distinguish an empty bank from a room whose paperdolls have not
+    // arrived yet. The stamp is short-lived so a later visit observes a new
+    // crowd instead of inheriting an old empty-room verdict.
+    i64  marketAudienceScanMs_ = 0;
     // Sellers we have already told "sorted", so the decline is said once each
     // rather than every tick they keep offering.
     std::vector<u32> tradeDeclined_;
@@ -1620,6 +1758,7 @@ private:
     // spam an empty room every tick, short enough that the pair still has a
     // chance to overlap within the same session.
     static constexpr i64 kNoAudienceMs = 2 * 60 * 1000;     // two minutes
+    static constexpr i64 kAudienceRescanMs = 30 * 1000;
     // Is this character's home-town market place usable? -1 not resolved
     // yet, 0 no, 1 yes.
     int  marketPlaceOk_ = -1;

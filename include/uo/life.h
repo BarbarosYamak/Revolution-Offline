@@ -24,6 +24,7 @@
 // ---------------------------------------------------------------------------
 
 #include "uo/market.h"
+#include "uo/social.h"
 #include "uo/professions.h"
 #include "uo/production.h"
 #include "uo/rules.h"
@@ -584,6 +585,7 @@ public:
     const std::vector<KnownResourceSource>& Resources() const { return resources_; }
     const std::vector<KnownSupplier>&       Suppliers() const { return suppliers_; }
     const std::vector<DangerMemory>&        Dangers()   const { return danger_; }
+    std::vector<social::Relationship> relationships;
     const std::vector<LifeEvent>&           Events()    const { return events_; }
     const std::vector<TrainerVerdict>&      Trainers()  const { return trainers_; }
     const std::vector<CreatureVerdict>&     Creatures() const { return creatures_; }
@@ -655,6 +657,9 @@ struct Observation {
 
     i32 gold = 0;
     i32 weight = 0, maxWeight = 0;
+    // A campfire or dropped kindling within cooking reach can fund the fire
+    // station without another piece in the backpack. Re-observed each tick.
+    bool cookingFuelNearby = false;
     // The server said "it is too heavy" -- the pack overflowed and items are
     // going on the floor. Definitive, and independent of whether the server
     // ever told us a carry capacity.
@@ -691,6 +696,7 @@ struct Observation {
     // (Runner::HasBasicArmor). Defaults TRUE so a pure need model with no
     // client behind it does not invent a starter-armour errand.
     bool hasBasicArmor = true;
+    std::string armorOrderItem; // missing wearable piece with a known player recipe
 
     // What is happening around us, as the client can see it.
     // Has the market just been tried and found empty? A character that has
@@ -1075,7 +1081,30 @@ inline bool NeedsArrowStock(const prof::Profession& p, const Observation& obs) {
 }
 
 CraftIntent ChooseCraft(const prof::Profession& p, const Observation& obs,
-                        i32 batch, const CraftFocus* focus = nullptr);
+                        i32 batch, const CraftFocus* focus = nullptr,
+                        const char* preferred = nullptr);
+
+enum class ProductionPhase : u8 { Stock, Work, Sell };
+// Free food is worth a short detour. A funded character need not cross the
+// map for a meal; a broke character must retain access to distant farms.
+inline bool FoodFarmWorthTrip(i32 distance, bool canBuyFood) {
+    return distance >= 0 && (!canBuyFood || distance <= 64);
+}
+struct ProductionBatch {
+    std::string item;
+    ProductionPhase phase = ProductionPhase::Stock;
+    i32 attempts = 100;
+};
+// A campaign spans pack loads and sessions. Quantities are recipe inputs,
+// not a profession-wide magic inventory threshold.
+void UpdateProductionBatch(ProductionBatch& batch, const prof::Profession& p,
+                           const Observation& obs, const CraftFocus* focus = nullptr);
+std::vector<market::Stock> ProductionInputs(const ProductionBatch& batch);
+i32 ProductionUnitWeight(const std::string& item);
+i32 ProductionWithdrawalQty(const ProductionBatch& batch, const Observation& obs,
+                              const prod::Ingredient& input, i32 available);
+CraftIntent ProductionShopping(const ProductionBatch& batch, const Observation& obs);
+market::TradePolicy ProductionTradePolicy(const ProductionBatch* batch, i32 gold);
 
 // HOW BIG A SITTING THE PACK IS ALREADY PAYING FOR.
 //
@@ -1096,6 +1125,15 @@ CraftIntent ChooseCraft(const prof::Profession& p, const Observation& obs,
 // `floorBatch` when nothing can be worked on.
 i32 CraftBatchFromStock(const prof::Profession& p, const Observation& obs,
                         i32 floorBatch, const CraftFocus* focus = nullptr);
+
+inline constexpr i32 kSmithTrainingStock = 1000;
+inline constexpr i32 kSmithTrainingRefill = 20;
+i32 IronTrainingStock(const Observation& obs);
+bool NeedsSmithTrainingStock(const BuildPlan& plan, const prof::Profession* p,
+                             const Observation& obs);
+inline bool SmithTrainingBatchActive(bool active, i32 stock) {
+    return stock >= (active ? kSmithTrainingRefill : kSmithTrainingStock);
+}
 
 // DOES THIS BUILD FIGHT (OR TRAVEL) WITH SPELLS?
 //
@@ -1370,6 +1408,7 @@ enum class NeedKind : u8 {
     // ordinary errand is allowed to plan. See Observation::homeKnown for the
     // Papua case this was written for.
     NeedHome,
+    NeedSocial,
     Count,
 };
 
@@ -1409,6 +1448,8 @@ struct NeedConfig {
     // cost real gold, the sale price is small, and a batch that empties the
     // purse before the first sale proves nothing about whether the trade pays.
     i32    craftBatch       = 5;
+    bool   smithTrainingBatchActive = false;
+    const ProductionBatch* productionBatch = nullptr;
     double fleeHpFraction   = 0.32;  // M3.9.1 live: disengaged at ~32% and survived
     double healHpFraction   = 0.80;
     // RESOLVED PER CHARACTER, NOT A GLOBAL. See ResolveConsumableThresholds:
@@ -1429,8 +1470,8 @@ struct NeedConfig {
     // Hector out of the Britain graveyard for ONE bandage, mid-hunt, right
     // after a kill (99 against a floor of 100; REPLACE_EQUIPMENT 130
     // superseded SURVIVE, artifacts/validation_wave_2026-09-06.md D12).
-    // Resolved beside the other two: the departure floor less one fight's
-    // worth of bandages, which is the life's OWN catalogue `low` (prof::
+    // Resolved beside the other two: the desired departure stock less three
+    // fights' worth of bandages, which is the life's OWN catalogue `low` (prof::
     // Bandages() = 8, described there as what a warrior stands in a fight
     // with). Equal to bandageLow for a life that does not hunt, so nothing
     // that never leaves town changes.
@@ -1584,7 +1625,7 @@ inline BandageSupplyPlan PlanBandageSupply(const prof::Profession* p, i32 gold,
         return out;
     }
     out.route = BandageSupply::AskPlayers;
-    out.why = "the town's counters are dry -- ask a player before cutting "
+    out.why = "ask a player before using a shared healer shelf or cutting "
               "cloth";
     return out;
 }
@@ -1599,11 +1640,14 @@ inline const char* BandageSupplyName(BandageSupply r) {
 // this and runner/Bank.cpp decides what to put down from it -- they must read
 // the same number or the need and the action disagree and the goal spins.
 inline double BankWeightLine(const NeedConfig& cfg) {
+    double line = cfg.bankWeightFrac;
     if (cfg.profession &&
         (WantsToHunt(*cfg.profession) || WantsSpellCombat(*cfg.profession)))
-        return cfg.huntWeightFrac < cfg.bankWeightFrac ? cfg.huntWeightFrac
-                                                       : cfg.bankWeightFrac;
-    return cfg.bankWeightFrac;
+        line = std::min(line, cfg.huntWeightFrac);
+    // Bulk purchases stop at 80%; their bank errand must unload at that same
+    // boundary, even when the normal gathering threshold is 85%.
+    if (cfg.productionBatch && !cfg.productionBatch->item.empty()) line = std::min(line, 0.80);
+    return line;
 }
 
 std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
@@ -1845,6 +1889,7 @@ enum class GoalKind : u8 {
     // never a recall shortcut it has not earned.
     ReturnHome,
     IdleBriefly,
+    Socialize,
     Count,
 };
 
@@ -2152,6 +2197,28 @@ struct SessionSummary {
 // path nodes, target cursors, container caches, mobile occupancy, or any
 // pointer. The brief lists those; this struct has no field that could hold
 // one.
+enum class OrderPhase : u8 { Requested, Accepted, Ready, Completed, Cancelled, Expired };
+struct CraftOrder {
+    std::string id, partner;
+    u32 partnerSerial = 0;
+    market::TradeIntent terms;
+    bool buying = false;
+    OrderPhase phase = OrderPhase::Requested;
+    i32 x = 0, y = 0, delivered = 0, targetStock = 0;
+    i64 createdMs = 0, expiresMs = 0;
+    bool Active(i64 now) const {
+        return phase <= OrderPhase::Ready && now >= createdMs && now < expiresMs;
+    }
+};
+// ORDER messages carry an opaque request id; addressed replies cannot satisfy
+// another request for the same item. Payment remains the secure-trade protocol.
+std::string FormatCraftOrder(const CraftOrder& order, const char* verb,
+                             const std::string& to = {});
+bool ParseCraftOrder(const std::string& text, std::string& verb, CraftOrder& order);
+market::TradeIntent CraftOrderWant(const prof::Profession& p, const Observation& obs,
+                                  const market::PriceBook& prices,
+                                  const market::TradePolicy& policy);
+
 struct PersistentState {
     int       schemaVersion = kSchemaVersion;
     Identity  identity;
@@ -2164,6 +2231,7 @@ struct PersistentState {
     // trainer verdict and is lost the same way if it does not survive logout.
     market::PriceBook prices;
     market::Ledger    ledger;
+    std::vector<CraftOrder> craftOrders;
 
     // WHAT IS IN THE BANK. Recorded whenever the box is open and kept, so the
     // character KNOWS its own stock while standing somewhere else.
@@ -2215,6 +2283,8 @@ struct PersistentState {
     i64 checkpointMs = 0;
     i32 deathCount = 0;
     bool huntReturnPending = false;
+    bool smithTrainingBatchActive = false;
+    ProductionBatch productionBatch;
     // Consecutive recent deaths, decayed after a quiet hour. A character that
     // keeps dying in one place should stop going there (audit section 3.9).
     i32 recentDeaths = 0;

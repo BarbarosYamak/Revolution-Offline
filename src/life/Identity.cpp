@@ -10,6 +10,156 @@
 
 namespace uo::life {
 
+namespace {
+i32 BatchHolding(const Observation& obs, const std::string& item) {
+    i32 count = market::QtyOf(obs.pack, item) + market::QtyOf(obs.bank, item);
+    if (item == "i_kindling" && obs.cookingFuelNearby) count = std::max(count, 1);
+    // Ore can fund a smith campaign before it has been carried to a forge.
+    if (item == "i_ingot_iron")
+        count += market::QtyOf(obs.pack, "i_ore_iron") + market::QtyOf(obs.bank, "i_ore_iron");
+    return count;
+}
+}
+
+std::vector<market::Stock> ProductionInputs(const ProductionBatch& batch) {
+    std::vector<market::Stock> out;
+    const prod::Recipe* recipe = prod::FindRecipe(batch.item.c_str());
+    if (!recipe) return out;
+    for (const prod::Ingredient& input : recipe->inputs) {
+        if (!input.item || input.qty <= 0) continue;
+        // Kindling creates a fire; it is not consumed by every cooking stroke.
+        const i32 attempts = std::string(input.item) == "i_kindling" ? 1 : batch.attempts;
+        out.push_back({input.item, input.qty * attempts});
+    }
+    return out;
+}
+
+i32 ProductionUnitWeight(const std::string& item) {
+    // Rounded-up Scripts-X weights; leave unknown components conservative.
+    if (item == "i_log" || item == "i_ingot_iron" || item == "i_ore_iron") return 2;
+    if (item == "i_hide") return 2;
+    if (item == "i_wool") return 3;
+    if (item == "i_cotton" || item == "i_barrel_hoops") return 4;
+    if (item == "i_fish_big_1") return 5;
+    for (const char* light : {"i_arrow_shaft", "i_barrel_tap", "i_board", "i_bowl_wood",
+                             "i_feather", "i_hides_cut", "i_ink_well", "i_map_blank", "i_parchment",
+                             "i_scroll_gate_travel", "i_scroll_recall", "i_sewing_needle", "i_thread", "i_yarn_ball"})
+        if (item == light) return 1;
+    if (item == "i_cloth" || item == "i_kindling" || item == "i_scroll_blank" ||
+        item == "i_bottle_empty" || item == "i_fish_cut_raw" ||
+        item.compare(0, 7, "i_reag_") == 0) return 1;
+    return 50;
+}
+
+void UpdateProductionBatch(ProductionBatch& batch, const prof::Profession& p,
+                           const Observation& obs, const CraftFocus* focus) {
+    if (obs.dead || !obs.inWorld) return;
+    if (!batch.item.empty() &&
+        (!prod::FindRecipe(batch.item.c_str()) ||
+         std::find(p.produces.begin(), p.produces.end(), batch.item) == p.produces.end()))
+        batch = {};
+    if (batch.phase == ProductionPhase::Sell) {
+        // Banked goods still belong to this selling phase. A logout or a
+        // weight deposit must not start another campaign on top of them.
+        const std::vector<market::Stock> holdings = {{batch.item, BatchHolding(obs, batch.item)}};
+        for (const auto& offer : market::Surplus(p, holdings, market::PolicyForPurse(obs.gold)))
+            if (offer.item == batch.item) return;
+        batch = {};
+    }
+    if (batch.item.empty()) {
+        prof::Profession crafts = p;
+        crafts.produces.erase(std::remove_if(crafts.produces.begin(), crafts.produces.end(),
+            [](const std::string& item) {
+                const prod::Recipe* r = prod::FindRecipe(item.c_str());
+                return !r || r->provenance != prod::Provenance::PlayerCrafted;
+            }), crafts.produces.end());
+        const CraftIntent choice = ChooseCraft(crafts, obs, 1, focus);
+        if (!choice.item || !choice.skillsMet) return;
+        batch.item = choice.item;
+        batch.attempts = 100;
+        const prod::Recipe* r = prod::FindRecipe(choice.item);
+        for (const prod::Ingredient& input : r->inputs) {
+            if (!input.item || input.qty <= 0) continue;
+            const std::string item = input.item;
+            if (item == "i_ingot_iron" || item == "i_log")
+                batch.attempts = std::max(batch.attempts, (1000 + input.qty - 1) / input.qty);
+        }
+    }
+    bool full = true, canWork = true;
+    const prod::Recipe* recipe = prod::FindRecipe(batch.item.c_str());
+    for (const market::Stock& input : ProductionInputs(batch))
+        full = full && BatchHolding(obs, input.item) >= input.qty;
+    for (const prod::Ingredient& input : recipe->inputs) {
+        if (input.item && input.qty > 0 && std::string(input.item) != "i_kindling")
+            canWork = canWork && BatchHolding(obs, input.item) >= input.qty;
+    }
+    if (batch.phase == ProductionPhase::Stock && !canWork) {
+        // An upgraded client may resume with the previous sitting's output.
+        // Sell that finished batch before funding a new one.
+        const std::vector<market::Stock> output = {{batch.item, BatchHolding(obs, batch.item)}};
+        for (const auto& offer : market::Surplus(p, output, market::PolicyForPurse(obs.gold)))
+            if (offer.item == batch.item) { batch.phase = ProductionPhase::Sell; return; }
+    }
+    if (batch.phase == ProductionPhase::Stock &&
+        (full || (obs.gold <= 200 && canWork)))
+        batch.phase = ProductionPhase::Work; // a broke crafter works funded stock to earn capital
+    else if (batch.phase == ProductionPhase::Work && !canWork)
+        batch.phase = ProductionPhase::Sell;
+}
+
+i32 ProductionWithdrawalQty(const ProductionBatch& batch, const Observation& obs,
+                              const prod::Ingredient& input, i32 available) {
+    const prod::Recipe* recipe = prod::FindRecipe(batch.item.c_str());
+    if (!recipe || !input.item || input.qty <= 0 || obs.maxWeight <= 0) return 0;
+    i32 loadPerAttempt = 0;
+    for (const auto& material : recipe->inputs) {
+        if (!material.item || material.qty <= 0) continue;
+        const i32 carried = market::QtyOf(obs.pack, material.item) +
+            (std::string(material.item) == "i_ingot_iron" ? market::QtyOf(obs.pack, "i_ore_iron") : 0);
+        if (carried < material.qty)
+            loadPerAttempt += material.qty * ProductionUnitWeight(material.item);
+    }
+    const i32 room = std::max(0, static_cast<i32>(obs.maxWeight * 0.65) - obs.weight);
+    const i32 attempts = std::min(batch.attempts, room / std::max(1, loadPerAttempt));
+    return std::min(std::max(0, available), input.qty * attempts);
+}
+
+CraftIntent ProductionShopping(const ProductionBatch& batch, const Observation& obs) {
+    CraftIntent out;
+    const prod::Recipe* recipe = prod::FindRecipe(batch.item.c_str());
+    if (!recipe) return out;
+    out.item = recipe->output;
+    out.skillsMet = true;
+    out.why = "stock the pinned production recipe across pack and bank";
+    const auto targets = ProductionInputs(batch);
+    for (const prod::Ingredient& input : recipe->inputs) {
+        if (!input.item || input.qty <= 0) continue;
+        const i32 target = batch.phase == ProductionPhase::Stock
+            ? market::QtyOf(targets, input.item) : input.qty;
+        const i32 shortfall = target - BatchHolding(obs, input.item);
+        if (shortfall > 0) out.missing.push_back({input.item, shortfall});
+    }
+    // Buy the weakest ingredient first. Otherwise a partial purchase of the
+    // first input remains first forever and spends the entire purse on it.
+    std::stable_sort(out.missing.begin(), out.missing.end(), [&](const prod::Ingredient& a,
+                                                                const prod::Ingredient& b) {
+        const i64 aTarget = std::max(1, market::QtyOf(targets, a.item));
+        const i64 bTarget = std::max(1, market::QtyOf(targets, b.item));
+        return static_cast<i64>(BatchHolding(obs, a.item)) * bTarget <
+               static_cast<i64>(BatchHolding(obs, b.item)) * aTarget;
+    });
+    return out;
+}
+
+market::TradePolicy ProductionTradePolicy(const ProductionBatch* batch, i32 gold) {
+    market::TradePolicy policy = market::PolicyForPurse(gold);
+    if (batch && !batch->item.empty() && batch->phase != ProductionPhase::Sell) {
+        policy.productionInputs = ProductionInputs(*batch);
+        policy.productionRestock = batch->phase == ProductionPhase::Stock;
+    }
+    return policy;
+}
+
 const char* PlanViolationName(PlanViolation v) {
     switch (v) {
         case PlanViolation::None:                  return "none";
@@ -204,9 +354,20 @@ BuildPlan PlanFromProfession(const prof::Profession& p) {
     BuildPlan plan;
     plan.family = p.id;
 
+    i32 trainerSlots = 0;
     for (const prof::SkillTargetSpec& t : p.targets) {
         plan.skills.push_back({t.skillId, t.tenths});
-        plan.viaTrainer.push_back(t.viaTrainer);
+        // Revolution starts two skills at 50.0.  The next five planned skills
+        // are the paid guildmaster phase: the server's guildmaster rule gives
+        // each to 30.0 for gold; practice takes over above that.  Catalogue
+        // flags described earlier experiments, but this creation rule is the
+        // fleet-wide progression contract.
+        const bool isStartSkill =
+            t.skillId == p.startSkillA || t.skillId == p.startSkillB;
+        const bool useTrainer = !isStartSkill &&
+            trainerSlots < prof::kRevolutionTrainerSkillCount;
+        plan.viaTrainer.push_back(useTrainer);
+        if (useTrainer) ++trainerSlots;
         plan.priority.push_back(t.priority);
     }
     plan.unresolvedTenths = p.unresolvedTenths;
@@ -413,6 +574,10 @@ const CraftMenuPath kCraftMenus[] = {
     // so a plain substring search for "poison" finds LESSER poison first and
     // quietly brews the wrong thing. A leading '^' means match the START of
     // the option instead, which only the plain "Poison" satisfies.
+    {"i_potion_heal",       "^Heal",         nullptr,   nullptr},
+    {"i_potion_healgreat",  "^Greater Heal", nullptr,   nullptr},
+    {"i_potion_cure",       "^Cure",         nullptr,   nullptr},
+    {"i_potion_curegreat",  "^Greater Cure", nullptr,   nullptr},
     {"i_potion_poisonless",  "^Lesser Poison", nullptr,   nullptr},
     {"i_potion_poison",      "^Poison",        nullptr,   nullptr},
     {"i_potion_poisongreat", "^Greater Poison",nullptr,   nullptr},
@@ -538,7 +703,7 @@ bool CraftFocus::Unreachable(const char* item) const {
 }
 
 CraftIntent ChooseCraft(const prof::Profession& p, const Observation& obs,
-                        i32 batch, const CraftFocus* focus) {
+                        i32 batch, const CraftFocus* focus, const char* preferred) {
     CraftIntent out;
     // A fully-stocked recipe this life has just spent a sitting on. Kept, not
     // discarded: it is the answer if nothing else can be made.
@@ -573,6 +738,7 @@ CraftIntent ChooseCraft(const prof::Profession& p, const Observation& obs,
     if (batch < 1) batch = 1;
 
     std::vector<std::string> products = p.produces;
+    if (preferred && *preferred) products = {preferred};
     if (NeedsArrowStock(p, obs)) {
         const i32 remaining = kArrowCarry + kArrowReserve -
             market::QtyOf(obs.pack, "i_arrow") - market::QtyOf(obs.bank, "i_arrow");
@@ -759,7 +925,11 @@ CraftIntent ChooseCraft(const prof::Profession& p, const Observation& obs,
         here.skillsMet = true;
         for (const prod::Ingredient& in : r->inputs) {
             if (!in.item || in.qty <= 0) continue;
-            const i32 want = in.qty * batch;
+            // Kindling makes the station once; it is not spent per steak.
+            const bool fireFuel = r->station == prod::Station::Fire &&
+                                  std::string(in.item) == "i_kindling";
+            if (fireFuel && obs.cookingFuelNearby) continue;
+            const i32 want = in.qty * (fireFuel ? 1 : batch);
             const i32 have = market::QtyOf(obs.pack, in.item);
             if (have < want) {
                 prod::Ingredient shortfall;

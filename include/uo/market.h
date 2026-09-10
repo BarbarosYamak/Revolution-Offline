@@ -51,6 +51,8 @@ struct Want {
 // How much of its own output a life keeps back before selling any. A smith
 // that sells every ingot cannot smith tomorrow.
 struct TradePolicy {
+    std::vector<Stock> productionInputs;
+    bool productionRestock = false;
     i32 keepOfOwnOutput = 20;
     i32 restockConsumablesTo = 20;
     // Never pay more than this multiple of what the character believes the

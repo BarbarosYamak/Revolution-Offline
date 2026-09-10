@@ -58,6 +58,10 @@ namespace uo::prof {
 // real player. Restored here.
 inline constexpr i32 kRevolutionStartSkillEach   = 500;  // 50.0, in tenths
 inline constexpr i32 kRevolutionStartSkillCount  = 2;
+// The other five starting skill slots begin at zero.  A new life buys each
+// planned non-creation skill through 30.0 from the matching guildmaster, then
+// earns the rest through play.
+inline constexpr i32 kRevolutionTrainerSkillCount = 5;
 inline constexpr i32 kRevolutionStartStatTotal   = 80;
 
 // Server-side creation ceilings, for comparison only. Never use these as

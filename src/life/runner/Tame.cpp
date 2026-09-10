@@ -82,6 +82,10 @@ bool Runner::DoTameAnimal(Client& client, const Observation& obs) {
                     "master (Taming %.1f, %d attempt(s)); it follows me now",
                     tameTargetName_.c_str(), tameTarget_, tameTargetReq_,
                     mySkill, tameAttempts_);
+            // The shard's success sentence is the ownership proof.  Keep the
+            // serial only for this client session; serials are intentionally
+            // not persisted, but the care interrupt can now feed this animal.
+            ownedPetSerial_ = tameTarget_;
             state_.memory.NotePlace("pasture", "tamed here", obs.x, obs.y,
                                     obs.z, obs.nowMs);
             planner_.NoteProgress();
@@ -276,6 +280,217 @@ bool Runner::DoTameAnimal(Client& client, const Observation& obs) {
     // DELAY=2.0 and taming usually takes several attempts.
     nextActionMs_ = obs.nowMs + 6000;
     return false;
+}
+
+// ---------------------------------------------------------------------------
+// PET CARE.
+//
+// Source-X reduces a pet's STAT_FOOD and emits its own hunger emote below
+// 40%.  At zero it also applies hunger damage.  That is not flavour text: the
+// horse can die while its owner keeps calmly running ordinary goals.  The
+// source serial on that emote is the important part.  A generic nearby horse
+// is not ours, so care begins only for an animal whose ownership this runner
+// observed through a tame or mount action.
+//
+// Horses on this shard accept t_grain (their CHARDEF FOODTYPE includes it),
+// and animal trainers sell i_hay_sheaf (0x0F36).  One sheaf is deliberately
+// handed over at a time: CChar::NPC_OnItemGive consumes only what the pet
+// needs and bounces the remainder, while a large drag would make an emergency
+// look like a bulk transfer.
+bool Runner::PetCareTick(Client& client, const Observation& obs) {
+    constexpr u16 kHaySheaf = 0x0F36;
+    constexpr i64 kCareBudgetMs = 2 * 60 * 1000;
+    constexpr i64 kSettleMs = 2000;
+    constexpr int kMaxCareTrips = 2;
+
+    if (obs.dead || obs.underAttack || obs.attackersOnMe > 0) return false;
+
+    if (petCarePhase_ == PetCarePhase::Idle) {
+        // JournalHeardSince gives us both the words a player sees and the
+        // speaker serial that produced them.  A matching phrase from an NPC,
+        // another player or another horse never spends this character's food.
+        const i64 journalSince = petJournalReadMs_;
+        std::vector<Client::Heard> heard;
+        client.JournalHeardSince(journalSince, heard);
+        petJournalReadMs_ = obs.nowMs;
+        for (const Client::Heard& h : heard) {
+            if (h.speaker == 0 || h.speaker != ownedPetSerial_) continue;
+            const bool urgent = h.text.find("ravenously hungry") != std::string::npos ||
+                                h.text.find("very hungry") != std::string::npos;
+            if (!urgent) continue;
+            petCareTarget_ = h.speaker;
+            petCareStartedMs_ = obs.nowMs;
+            petCareActionMs_ = 0;
+            petCareVendor_ = 0;
+            petCareTrips_ = 0;
+            petCarePhase_ = obs.mounted ? PetCarePhase::Dismount
+                                        : PetCarePhase::Acquire;
+            LogLine("pet care: horse 0x%08X says '%s' -- stopping to feed it",
+                    petCareTarget_, h.text.c_str());
+            break;
+        }
+        // A horse that was mounted before this process started has no animal
+        // serial in the runner yet.  Sphere reports *our* mount's hunger as
+        // "*Your ... horse looks ravenously hungry*" spoken by the player,
+        // which JournalHeardSince intentionally excludes.  Treat that exact
+        // self-facing alert as ownership evidence only while mounted; after
+        // one deliberate dismount we identify the newly visible nearby horse
+        // by body before giving it anything.  This neither adopts nor feeds a
+        // horse merely seen beside another player.
+        if (petCarePhase_ == PetCarePhase::Idle && ownedPetSerial_ == 0 &&
+            obs.mounted &&
+            client.JournalSaidSince("Your", journalSince) &&
+            (client.JournalSaidSince("horse looks ravenously hungry", journalSince) ||
+             client.JournalSaidSince("horse looks very hungry", journalSince))) {
+            petCareTarget_ = 0;  // discovered immediately after our dismount
+            petCareStartedMs_ = obs.nowMs;
+            petCareActionMs_ = 0;
+            petCareVendor_ = 0;
+            petCareTrips_ = 0;
+            petCarePhase_ = PetCarePhase::Dismount;
+            LogLine("pet care: own mounted horse reported urgent hunger -- "
+                    "dismounting to identify and feed it");
+        }
+        if (petCarePhase_ == PetCarePhase::Idle) return false;
+    }
+
+    auto finish = [&](const char* why) {
+        LogLine("pet care: %s", why);
+        petCarePhase_ = PetCarePhase::Idle;
+        petCareTarget_ = 0;
+        petCareVendor_ = 0;
+        petCareStartedMs_ = 0;
+        petCareActionMs_ = 0;
+        petCareTrips_ = 0;
+        nextActionMs_ = obs.nowMs + kSettleMs;
+        return false;
+    };
+
+    if (obs.nowMs - petCareStartedMs_ > kCareBudgetMs)
+        return finish("care budget expired; leaving the normal life unblocked");
+    if (client.ActionBusy()) return true;
+
+    if (petCarePhase_ == PetCarePhase::Dismount) {
+        if (!obs.mounted) {
+            petCarePhase_ = PetCarePhase::Acquire;
+            return true;
+        }
+        LogLine("pet care: dismounting so the hungry horse is a valid item-drop target");
+        client.ActionDismount();
+        petCareActionMs_ = obs.nowMs;
+        nextActionMs_ = obs.nowMs + kSettleMs;
+        return true;
+    }
+
+    // A persisted mount is represented by a layer-25 item until it is
+    // dismounted, so it had no mobile serial to retain at login.  The animal
+    // is spawned at its rider's feet.  Resolve it only in this narrow state
+    // (self hunger alert -> our dismount), before starting a stable trip.
+    if (petCareTarget_ == 0) {
+        static const u16 kHorseBodies[] = {0x00C8, 0x00CC, 0x00E2, 0x00E4};
+        for (u16 body : kHorseBodies) {
+            petCareTarget_ = client.NearestMobileWithBody(body, 4);
+            if (petCareTarget_ != 0) break;
+        }
+        if (petCareTarget_ == 0) {
+            if (obs.nowMs - petCareActionMs_ < 5000) return true;
+            return finish("the hungry mounted horse did not appear after dismounting");
+        }
+        ownedPetSerial_ = petCareTarget_;
+        LogLine("pet care: identified the just-dismounted owned horse as 0x%08X",
+                petCareTarget_);
+    }
+
+    // Prefer a carried sheaf.  An ordinary player carries this small reserve;
+    // a stable trip happens only after the server has actually reported hunger.
+    const u32 hay = client.FindBackpackItemByGraphic(kHaySheaf);
+    if (hay && petCarePhase_ != PetCarePhase::Feed)
+        petCarePhase_ = PetCarePhase::Feed;
+
+    if (petCarePhase_ == PetCarePhase::Acquire) {
+        if (client.TravelBusy()) return true;
+
+        if (!petCareVendor_) {
+            const u32 stablehand = client.NearestShopkeeperWithTrade(
+                "animal", wm::Service::Stablemaster);
+            if (!stablehand) {
+                if (petCareActionMs_ == 0) {
+                    LogLine("pet care: no animal trainer in sight; walking to the stable");
+                    if (!client.TravelToService(wm::Service::Stablemaster,
+                                                HomeOrNearest(state_.homeCity)))
+                        return finish("no route to animal trainer for hay");
+                    petCareActionMs_ = obs.nowMs;
+                    ++petCareTrips_;
+                    return true;
+                }
+                if (petCareTrips_ >= kMaxCareTrips)
+                    return finish("arrived at the stable but found no animal trainer");
+                client.ActionScanMobiles();
+                ++petCareTrips_;
+                nextActionMs_ = obs.nowMs + kSettleMs;
+                return true;
+            }
+            petCareVendor_ = stablehand;
+        }
+
+        i32 vx = 0, vy = 0; i8 vz = 0;
+        if (client.MobilePosition(petCareVendor_, &vx, &vy, &vz) &&
+            (TileDist(obs.x, obs.y, vx, vy) > 1 ||
+             std::abs(static_cast<int>(obs.z) - static_cast<int>(vz)) > 3)) {
+            client.TravelToEntity(petCareVendor_, 1);
+            return true;
+        }
+        if (client.VendorOfferFrom() != petCareVendor_) {
+            client.ActionVendorOpen(petCareVendor_);
+            nextActionMs_ = obs.nowMs + kSettleMs;
+            return true;
+        }
+        for (const Client::VendorItem& v : client.VendorOffer()) {
+            if (v.graphic != kHaySheaf || v.amount == 0) continue;
+            if (obs.gold < static_cast<i32>(v.price))
+                return finish("hay is for sale but the purse cannot afford one sheaf");
+            LogLine("pet care: buying 4 hay sheaves from animal trainer for %u each",
+                    v.price);
+            client.ActionVendorBuy(petCareVendor_, v.serial,
+                                   static_cast<u16>(std::min<u16>(4, v.amount)));
+            state_.ledger.Note(market::GoldFlow::DestroyedVendorPurchase,
+                               static_cast<i32>(v.price) * std::min<int>(4, v.amount),
+                               "hay for owned horse", obs.nowMs);
+            petCarePhase_ = PetCarePhase::AwaitHay;
+            petCareActionMs_ = obs.nowMs;
+            nextActionMs_ = obs.nowMs + kSettleMs;
+            return true;
+        }
+        return finish("animal trainer had no hay in stock");
+    }
+
+    if (petCarePhase_ == PetCarePhase::AwaitHay) {
+        if (client.FindBackpackItemByGraphic(kHaySheaf)) {
+            petCarePhase_ = PetCarePhase::Feed;
+            return true;
+        }
+        if (obs.nowMs - petCareActionMs_ > 5000)
+            return finish("hay purchase did not reach the backpack");
+        return true;
+    }
+
+    // Feeding is a lift/drop onto the exact animal.  We wait for it to be a
+    // visible mobile after dismount; unlike a mount item, a character is a
+    // legal recipient for the 0x08 drop packet.
+    i32 px = 0, py = 0; i8 pz = 0;
+    if (!client.MobilePosition(petCareTarget_, &px, &py, &pz)) {
+        if (obs.nowMs - petCareActionMs_ < 5000) return true;
+        return finish("the owned horse did not reappear after dismounting");
+    }
+    if (TileDist(obs.x, obs.y, px, py) > 2) {
+        client.TravelToEntity(petCareTarget_, 1);
+        return true;
+    }
+    const u32 feed = client.FindBackpackItemByGraphic(kHaySheaf);
+    if (!feed) return finish("the hay is no longer in the backpack");
+    LogLine("pet care: giving one hay sheaf to owned horse 0x%08X", petCareTarget_);
+    client.ActionNpcGive(petCareTarget_, feed, 1);
+    return finish("fed the owned horse; returning to the interrupted life");
 }
 
 }  // namespace uo::life
