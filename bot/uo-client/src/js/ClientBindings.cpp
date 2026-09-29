@@ -812,6 +812,101 @@ namespace uo::js {
             return arr;
         }
 
+        // ---- skill locks (0x3A) ---------------------------------------------
+        // Player.setSkillLock(index, 'up'|'down'|'locked') -- the skill-gump
+        // arrows. Player.skillLock(index) -> 'up'|'down'|'locked'|null.
+        static JSValue SetSkillLock(JSContext *ctx, JSValueConst, int argc, JSValueConst *argv) {
+            int32_t index = 0;
+            if (!client || argc < 2 || JS_ToInt32(ctx, &index, argv[0]) || index < 0 || index > 57)
+                return JS_ThrowTypeError(ctx, "Player.setSkillLock(index, 'up'|'down'|'locked')");
+            const char *st = JS_ToCString(ctx, argv[1]);
+            if (!st) return JS_EXCEPTION;
+            const std::string state(st);
+            JS_FreeCString(ctx, st);
+            const int lock = state == "up" ? 0 : state == "down" ? 1 : state == "locked" ? 2 : -1;
+            if (lock < 0) return JS_ThrowTypeError(ctx, "lock must be 'up', 'down' or 'locked'");
+            client->SendSkillLock(static_cast<u16>(index), static_cast<u8>(lock));
+            return JS_UNDEFINED;
+        }
+        static JSValue SkillLock(JSContext *ctx, JSValueConst, int argc, JSValueConst *argv) {
+            int32_t index = 0;
+            if (!client || argc < 1 || JS_ToInt32(ctx, &index, argv[0]) || index < 0 || index > 0xFFFF)
+                return JS_ThrowTypeError(ctx, "Player.skillLock(index)");
+            Client::SkillReport r{};
+            if (!client->PlayerSkillInfo(static_cast<u16>(index), &r)) return JS_NULL;
+            return JS_NewString(ctx, r.lock == 0 ? "up" : r.lock == 1 ? "down" : "locked");
+        }
+
+        // ---- the persistent life (M4.1 record, M4.6 access) -------------------
+        // Life.record -> the saved character: {name, archetype, sessions,
+        //   targetBuild:[{skill, tenths}], targetStr/Dex/Int, objective:{kind,
+        //   target, attempts}, deaths, lastLogout:{x,y,safe}} or null when this
+        //   session has no life (no --life-dir, or the file was unreadable).
+        // Life.memory -> the script's own JSON saved last time ('' if none).
+        // Life.setMemory(json) -> bool; Life.setObjective(kind, target);
+        // Life.save() writes the file now.
+        static JSValue LifeRecordGet(JSContext *ctx, JSValueConst) {
+            const life::CharacterRecord *r = client ? client->LifeRecord() : nullptr;
+            if (!r) return JS_NULL;
+            JSValue o = JS_NewObject(ctx);
+            JS_SetPropertyStr(ctx, o, "name", JS_NewString(ctx, r->name.c_str()));
+            JS_SetPropertyStr(ctx, o, "archetype", JS_NewString(ctx, r->archetype.c_str()));
+            JS_SetPropertyStr(ctx, o, "sessions", JS_NewInt32(ctx, r->sessions));
+            JSValue tb = JS_NewArray(ctx);
+            uint32_t i = 0;
+            for (const rules::BuildSkill &b : r->targetBuild) {
+                JSValue e = JS_NewObject(ctx);
+                JS_SetPropertyStr(ctx, e, "skill", JS_NewInt32(ctx, b.skillId));
+                JS_SetPropertyStr(ctx, e, "tenths", JS_NewInt32(ctx, b.tenths));
+                JS_SetPropertyUint32(ctx, tb, i++, e);
+            }
+            JS_SetPropertyStr(ctx, o, "targetBuild", tb);
+            JS_SetPropertyStr(ctx, o, "targetStr", JS_NewInt32(ctx, r->targetStr));
+            JS_SetPropertyStr(ctx, o, "targetDex", JS_NewInt32(ctx, r->targetDex));
+            JS_SetPropertyStr(ctx, o, "targetInt", JS_NewInt32(ctx, r->targetInt));
+            JSValue ob = JS_NewObject(ctx);
+            JS_SetPropertyStr(ctx, ob, "kind", JS_NewString(ctx, life::ObjectiveKindName(r->objective.kind)));
+            JS_SetPropertyStr(ctx, ob, "target", JS_NewString(ctx, r->objective.target.c_str()));
+            JS_SetPropertyStr(ctx, ob, "attempts", JS_NewInt32(ctx, r->objective.attempts));
+            JS_SetPropertyStr(ctx, o, "objective", ob);
+            JS_SetPropertyStr(ctx, o, "deaths", JS_NewInt32(ctx, static_cast<int32_t>(r->deaths.size())));
+            JSValue lo = JS_NewObject(ctx);
+            JS_SetPropertyStr(ctx, lo, "valid", JS_NewBool(ctx, r->lastLogout.valid));
+            JS_SetPropertyStr(ctx, lo, "x", JS_NewInt32(ctx, r->lastLogout.x));
+            JS_SetPropertyStr(ctx, lo, "y", JS_NewInt32(ctx, r->lastLogout.y));
+            JS_SetPropertyStr(ctx, lo, "safe", JS_NewBool(ctx, r->lastLogout.safe));
+            JS_SetPropertyStr(ctx, o, "lastLogout", lo);
+            return o;
+        }
+        static JSValue LifeMemoryGet(JSContext *ctx, JSValueConst) {
+            const life::CharacterRecord *r = client ? client->LifeRecord() : nullptr;
+            return JS_NewString(ctx, r ? r->scriptMemory.c_str() : "");
+        }
+        static JSValue LifeSetMemory(JSContext *ctx, JSValueConst, int argc, JSValueConst *argv) {
+            if (!client || argc < 1) return JS_ThrowTypeError(ctx, "Life.setMemory(json)");
+            size_t len = 0;
+            const char *s = JS_ToCStringLen(ctx, &len, argv[0]);
+            if (!s) return JS_EXCEPTION;
+            const bool ok = client->SetLifeScriptMemory(std::string(s, len));
+            JS_FreeCString(ctx, s);
+            return JS_NewBool(ctx, ok);
+        }
+        static JSValue LifeSetObjective(JSContext *ctx, JSValueConst, int argc, JSValueConst *argv) {
+            if (!client || argc < 1) return JS_ThrowTypeError(ctx, "Life.setObjective(kind[, target])");
+            const char *k = JS_ToCString(ctx, argv[0]);
+            if (!k) return JS_EXCEPTION;
+            const char *t = argc >= 2 ? JS_ToCString(ctx, argv[1]) : nullptr;
+            client->SetLifeObjective(life::ObjectiveKindFromName(k), t ? t : "");
+            JS_FreeCString(ctx, k);
+            if (t) JS_FreeCString(ctx, t);
+            return JS_UNDEFINED;
+        }
+        static JSValue LifeSave(JSContext *ctx, JSValueConst, int, JSValueConst *) {
+            if (!client) return JS_ThrowTypeError(ctx, "Life.save()");
+            client->LifeSaveNow();
+            return JS_UNDEFINED;
+        }
+
         // ---- secure trade (0x6F) --------------------------------------------
         // The M3 trade state machine (uo/trade.h), exposed as-is. A trade is
         // how one player pays another and hands over goods; nothing here moves
@@ -1152,6 +1247,8 @@ namespace uo::js {
             JS_CFUNC_DEF("logout", 0, ClientBindings::Logout),
             JS_CFUNC_DEF("cast", 1, ClientBindings::Cast),
             JS_CFUNC_DEF("useSkill", 1, ClientBindings::UseSkill),
+            JS_CFUNC_DEF("setSkillLock", 2, ClientBindings::SetSkillLock),
+            JS_CFUNC_DEF("skillLock", 1, ClientBindings::SkillLock),
             JS_CGETSET_MAGIC_DEF("maxWeight", ClientBindings::PlayerGet, nullptr, ClientBindings::PF_MAXWEIGHT),
             JS_CGETSET_MAGIC_DEF("equipment", ClientBindings::PlayerGet, nullptr, ClientBindings::PF_EQUIPMENT),
 
@@ -1234,6 +1331,17 @@ namespace uo::js {
             JS_CFUNC_DEF("cancel", 0, ClientBindings::TradeCancel),
             JS_CGETSET_DEF("state", ClientBindings::TradeStateGet, nullptr),
         };
+        const JSCFunctionListEntry kLifeApi[] = {
+            JS_CGETSET_DEF("record", ClientBindings::LifeRecordGet, nullptr),
+            JS_CGETSET_DEF("memory", ClientBindings::LifeMemoryGet, nullptr),
+            JS_CFUNC_DEF("setMemory", 1, ClientBindings::LifeSetMemory),
+            JS_CFUNC_DEF("setObjective", 1, ClientBindings::LifeSetObjective),
+            JS_CFUNC_DEF("save", 0, ClientBindings::LifeSave),
+        };
+        const JSValue lifeObj = JS_NewObject(ctx);
+        JS_SetPropertyFunctionList(ctx, lifeObj, kLifeApi, std::size(kLifeApi));
+        JS_SetPropertyStr(ctx, global, "Life", lifeObj);
+
         const JSValue tradeObj = JS_NewObject(ctx);
         JS_SetPropertyFunctionList(ctx, tradeObj, kTradeApi, std::size(kTradeApi));
         JS_SetPropertyStr(ctx, global, "Trade", tradeObj);

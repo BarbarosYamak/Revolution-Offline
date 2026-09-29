@@ -24,7 +24,7 @@
 
     class CrafterBot extends BehaviorScript {
         constructor(archetypeId, opts = {}) {
-            g.applyMixins(CrafterBot, ['BankSkill', 'SurvivalSkill', 'CombatSkill', 'EconomySkill', 'MemorySkill', 'CraftSkill', 'GatherSkill']);
+            g.applyMixins(CrafterBot, ['BankSkill', 'SurvivalSkill', 'CombatSkill', 'EconomySkill', 'MemorySkill', 'CraftSkill', 'GatherSkill', 'TrainingSkill', 'LifeSkill']);
             super();
             const AR = g.Archetypes;
             const a = AR.A[archetypeId];
@@ -68,6 +68,7 @@
             this.threat = null; this.fleeing = false; this.lastAteMs = 0;
             this.flowFailures = 0;
             this.installCombatSensing(); this.economyInit(); this.memoryInit(); this.craftInit();
+            this.lifeInit();
             if (c.material.blocker) console.warn(`[craft] ${archetypeId}: BLOCKED -- ${c.material.blocker}`);
             if (c.flow !== 'PROVEN') console.warn(`[craft] ${archetypeId}: craft flow UNVERIFIED on this shard (${c.evidence})`);
         }
@@ -170,7 +171,15 @@
             }
             if (Date.now() - (this.lastAdvertMs || 0) > ADVERT_EVERY_MS) await this.advertise();
             if (this.orders.some((o) => o.status === 'paid')) await this.workOrder();
-            else await this.train();
+            else {
+                // At target the skill is locked: crafting no longer trains it,
+                // but still makes goods to sell -- the crafter's income.
+                if (this.skillDone(this.CRAFT_SKILL) && !this.saidAtTarget) {
+                    console.log(`[craft] ${this.archetypeId}: skill at target -- crafting for the market now`);
+                    this.saidAtTarget = true;
+                }
+                await this.train();
+            }
         }
 
         async deliver() {
@@ -212,7 +221,17 @@
             await this.token.sleep(1500);
             console.log(`[craft] ${this.archetypeId} (${this.arch.build.ref} ${this.arch.build.cls}, flow ${this.craft.flow}): ` +
                 `skill ${(Player.skill(this.CRAFT_SKILL) / 10).toFixed(1)}, tool ${this.findTool() ? 'yes' : 'NO'}, material ${this.materialCount()}`);
+            this.applyTrainingPlan();
             await this.atWork();
+        }
+
+        onStart() { this.lifeLoop(); }
+        onStop() { this.lifePersist(); }
+
+        // Persistent life (lib/life.js) + training plan (lib/training.js).
+        onTransition(name, event) {
+            super.onTransition(name, event);
+            if (event === 'start') this.lifeNoteBehavior(name);
         }
 
         onPreempt() { Player.stop(); }

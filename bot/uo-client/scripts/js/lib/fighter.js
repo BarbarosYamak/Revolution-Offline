@@ -76,7 +76,7 @@
         constructor(archetypeId, opts = {}) {
             // Libraries load in sorted file order, so memory.js / survival.js
             // do not exist yet when this file is evaluated. Mix in on first use.
-            applyMixins(FighterBot, ['BankSkill', 'SurvivalSkill', 'CombatSkill', 'EconomySkill', 'MemorySkill', 'CustomerSkill']);
+            applyMixins(FighterBot, ['BankSkill', 'SurvivalSkill', 'CombatSkill', 'EconomySkill', 'MemorySkill', 'CustomerSkill', 'TrainingSkill', 'LifeSkill']);
             super();
             const a = AR().A[archetypeId];
             if (!a || a.kind !== 'fighter') throw new Error(`FighterBot: '${archetypeId}' is not a fighter archetype`);
@@ -143,7 +143,15 @@
             this.economyInit();
             this.memoryInit();
             this.listenForCrafters();
+            this.lifeInit();
         }
+
+        // Persistent life (lib/life.js) + training plan (lib/training.js).
+        onTransition(name, event) {
+            super.onTransition(name, event);
+            if (event === 'start') this.lifeNoteBehavior(name);
+        }
+
 
         // ===== skill / level / ground =====
 
@@ -379,9 +387,18 @@
         // No prey in sight: casters train Magery on themselves (m36_magery.txt:
         // meditate, then Greater Heal self), tamers try to tame, others walk.
         async trainIdle() {
-            if ((this.style === 'mage' || this.style === 'warlock') && this.manaFrac() > 0.4) {
-                await this.castAt(SPELL.GREATER_HEAL, Player.serial);
-                return true;
+            if ((this.style === 'mage' || this.style === 'warlock')) {
+                const SK = AR().SK;
+                // Magery at its target: stop casting to train it; top up
+                // Meditation instead if that is still short.
+                if (!this.skillDone(SK.MAGERY) && this.manaFrac() > 0.4) {
+                    await this.castAt(SPELL.GREATER_HEAL, Player.serial);
+                    return true;
+                }
+                if (this.skills.MEDI && !this.skillDone(SK.MEDI) && this.manaFrac() < 1) {
+                    await this.meditate();
+                    return true;
+                }
             }
             if (this.style === 'tamer' && (!this.pet || !Mobiles.get(this.pet).exists)) return this.tryTame();
             return false;
@@ -457,20 +474,21 @@
             ];
         }
 
-        onStart() { this.threatMeter.start(); }
+        onStart() { this.threatMeter.start(); this.lifeLoop(); }
 
         async onStartup() {
             if (typeof Player.requestSkills === 'function') Player.requestSkills();
             await this.token.sleep(1500);
             console.log(`[fighter] ${this.archetypeId} (${this.arch.build.ref} ${this.arch.build.cls}), ` +
                 `primary ${(this.primarySkill() / 10).toFixed(1)}, level ${this.huntingLevel()}`);
+            this.applyTrainingPlan();
             if (this.USES_BANDAGES) await this.rest();
             await this.restock();
         }
 
         async restock() { await this.restockConsumables(this.CONSUMABLES); }
 
-        onStop() { this.threatMeter.stop(); }
+        onStop() { this.threatMeter.stop(); this.lifePersist(); }
         onPreempt() { Player.stop(); }
     }
 

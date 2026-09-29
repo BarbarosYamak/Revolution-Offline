@@ -169,6 +169,28 @@ void Client::LifeTick() {
     if (NowMs() - lifeLastSaveMs_ >= kLifeAutosaveMs) LifeSave("autosave");
 }
 
+bool Client::SetLifeScriptMemory(const std::string& json) {
+    if (!lifeActive_ || json.size() > life::kMaxScriptMemory) return false;
+    lifeRecord_.scriptMemory = json;
+    return true;
+}
+
+// 0x3A from the client: cmd, len(2)=6, skill index(2), lock(1). Source-X's
+// PacketSkillLockChange reads the 0-based skill index and a lock byte
+// 0/1/2. UNVERIFIED live on this shard; the next 0x3A the server sends
+// reports the lock it actually holds.
+void Client::SendSkillLock(u16 index, u8 lock) {
+    if (lock > 2) return;
+    const u8 buf[6] = {0x3A, 0x00, 0x06, static_cast<u8>(index >> 8),
+                       static_cast<u8>(index & 0xFF), lock};
+    Send(buf, sizeof(buf), "0x3A SkillLock");
+    auto it = player_.skills.find(static_cast<u16>(index + 1));
+    if (it != player_.skills.end()) it->second.lock = lock;
+    char ev[48];
+    std::snprintf(ev, sizeof(ev), "skill=%u lock=%u", index, lock);
+    LogEvent("skill_lock", ev);
+}
+
 void Client::SetLifeObjective(life::ObjectiveKind kind, const char* target) {
     if (!lifeActive_) return;
     life::Objective& o = lifeRecord_.objective;

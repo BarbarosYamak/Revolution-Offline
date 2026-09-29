@@ -318,6 +318,14 @@ interface UoPlayer extends UoEvents {
     readonly skillSum: number;
     /** Ask the server for the full skill list (0x34 subtype 5). */
     requestSkills(): void;
+    /** Skill-gump arrow for a skill (0x3A): 'up' | 'down' | 'locked'. */
+    setSkillLock(index: number, state: 'up' | 'down' | 'locked'): void;
+    /** The lock the server last reported, or null if the skill is unknown. */
+    skillLock(index: number): 'up' | 'down' | 'locked' | null;
+    /** Cast a spell (1..64) at a target serial (Player.serial for self). */
+    cast(spellId: number, targetSerial?: UoSerial): void;
+    /** Use a skill from the skill list, answering its cursor with targetSerial. */
+    useSkill(skillId: number, targetSerial?: UoSerial): void;
     /** Ordinary logout (0xD1). Saves the M4.1 life and judges the spot safe --
      *  walk somewhere guarded first. */
     logout(): void;
@@ -390,6 +398,24 @@ interface UoTrade {
     };
 }
 declare const Trade: UoTrade;
+
+/** The persistent life (M4.1 record, M4.6 access). record is null without --life-dir. */
+interface UoLife {
+    readonly record: null | {
+        name: string; archetype: string; sessions: number; deaths: number;
+        targetBuild: { skill: number; tenths: number }[];
+        targetStr: number; targetDex: number; targetInt: number;
+        objective: { kind: string; target: string; attempts: number };
+        lastLogout: { valid: boolean; x: number; y: number; safe: boolean };
+    };
+    /** The script's own JSON saved last session ('' if none). */
+    readonly memory: string;
+    /** Store the script's JSON (<= 256 KB); saved with the life. */
+    setMemory(json: string): boolean;
+    setObjective(kind: string, target?: string): void;
+    save(): void;
+}
+declare const Life: UoLife;
 
 declare const Player: UoPlayer;
 declare const World: UoWorld;

@@ -453,8 +453,85 @@ async function economyTests() {
         'gear orders go to the right craft per style');
   Player.equipment.backpack.items = packItems;
 
+  // ===== training toward the target build (lib/training.js) =====
+  const TP = TrainingPolicy;
+  let pl = TP.plan({ 40: 1000, 27: 1000 }, { 40: 1000, 27: 600, 44: 300 });
+  check(pl.locks[40] === 'locked' && pl.locks[27] === 'up' && pl.locks[44] === 'down',
+        'at target -> locked; below -> up; not in build -> down');
+  check(pl.focus[0] === 27 && !pl.done, 'focus is the biggest gap');
+  pl = TP.plan({ 40: 1000 }, { 40: 1000, 27: 6100 });
+  check(pl.overCap, 'over 700.0 is noticed (the runtime would allow 1000)');
+  pl = TP.plan({ 40: 1000, 27: 1000 }, { 40: 1000, 27: 1000 });
+  check(pl.done && pl.focus.length === 0 && pl.unallocated === 5000, 'a finished build: done, and the unallocated remainder is reported');
+
+  const sw2 = mk('swordsman');
+  const locksSent = [];
+  Player.skill = (i) => ({ 40: 1000, 27: 400, 44: 250 })[i] ?? -1;
+  Player.skillLock = (i) => ({ 40: 'up', 27: 'up', 44: 'up' })[i] ?? null;
+  Player.setSkillLock = (i, st) => locksSent.push([i, st]);
+  g.Life = undefined;
+  const sp = sw2.applyTrainingPlan();
+  check(locksSent.some(([i, st]) => i === 40 && st === 'locked'), 'swordsmanship at 100 gets locked');
+  check(locksSent.some(([i, st]) => i === 44 && st === 'down'), 'lumberjacking (not in the build) is set down');
+  check(!locksSent.some(([i]) => i === 27), 'tactics already "up": no redundant packet');
+  check(sw2.skillDone(40) && !sw2.skillDone(27), 'skillDone reflects the plan');
+
+  // the mage stops self-cast training once Magery is at target
+  const pm2 = mk('pure_mage'); casts.length = 0;
+  Player.skill = (i) => (i === 25 ? 1000 : 500); Player.skillLock = () => 'up'; Player.mana = 90; Player.manaMax = 100;
+  pm2.applyTrainingPlan();
+  let medi = 0; pm2.meditate = async () => { medi++; };
+  await pm2.trainIdle();
+  check(casts.length === 0 && medi === 1, 'Magery at target: no more self-casting; meditation trains instead');
+
+  // ===== persistent life from JS (lib/life.js) =====
+  let stored = '', objective = null;
+  g.Life = { record: { name: 'Ayse', archetype: 'swordsman', sessions: 3, deaths: 1,
+      targetBuild: [{ skill: 40, tenths: 1000 }, { skill: 27, tenths: 900 }], objective: { kind: 'train', target: '', attempts: 0 },
+      lastLogout: { valid: true, safe: false } },
+    get memory() { return stored; }, setMemory(j) { stored = j; return true; },
+    setObjective(k, t) { objective = [k, t]; }, save() {} };
+  const a1 = mk('swordsman');
+  check(JSON.stringify(a1.trainingTargets()) === JSON.stringify({ 40: 1000, 27: 900 }), 'targets come from the saved life, not the table');
+  a1.noteDanger(1370, 1480, 5, 'died');
+  a1.noteEmptySpot(9, 9);
+  a1.marketEntry('bone helmet').buyers.armorer = { price: 7, seenMs: 1 };
+  a1.marketEntry('bone helmet').refusedBy.add('tanner');
+  a1.ledger.record('sale', 250, 'x');
+  a1.crafters.set('blacksmith', { name: 'Ahmet', serial: 5, x: 1, y: 2, heardMs: Date.now() });
+  a1.gearOrdered = true; a1.pet = 777;
+  check(a1.lifePersist() && stored.length > 0, 'memory handed to the C++ life');
+  const a2 = mk('swordsman');   // next session: fresh bot, same saved life
+  check(a2.dangerAt(1370, 1480) > 4.9, 'danger map survives the logout');
+  check(a2.isEmptySpot(9, 9), 'exhausted spots survive');
+  check(a2.market.get('bone helmet').buyers.armorer.price === 7 && a2.market.get('bone helmet').refusedBy.has('tanner'),
+        'market knowledge (buyers and refusals) survives');
+  check(a2.ledger.totals.sale === 250, 'ledger totals survive');
+  check(a2.knownCrafter('blacksmith') && a2.knownCrafter('blacksmith').name === 'Ahmet', 'crafters heard survive');
+  check(a2.gearOrdered && a2.pet === 777, 'pet and gear-ordered survive');
+  a2.lifeNoteBehavior('resurrect');
+  check(objective && objective[0] === 'recover_corpse', 'behaviour becomes the saved objective (resurrect -> recover_corpse)');
+  objective = null; a2.lifeNoteBehavior('resurrect');
+  check(objective === null, 'an unchanged objective is not rewritten');
+
+  // a crafter's paid orders survive, unpaid quotes do not
+  stored = '';
+  const c1 = new CrafterBot('tinker'); c1.token = h.token;
+  c1.orders.push({ id: 4, status: 'paid', customer: { serial: 9, name: 'M' }, items: [{ name: 'pickaxe', qty: 2, made: 1 }] });
+  c1.orders.push({ id: 5, status: 'quoted', customer: { serial: 9, name: 'M' }, items: [{ name: 'scissors', qty: 1, made: 0 }] });
+  c1.nextOrderId = 6; c1.lifePersist();
+  const c2 = new CrafterBot('tinker');
+  check(c2.orders.length === 1 && c2.orders[0].id === 4 && c2.orders[0].items[0].made === 1, 'a paid order resumes where it stopped');
+  check(c2.nextOrderId === 6, 'order numbering continues');
+  stored = '{not json';
+  let survived = true; try { mk('swordsman'); } catch (e) { survived = false; }
+  check(survived, 'unreadable saved memory starts fresh instead of crashing');
+  g.Life = undefined;
+  const noLife = mk('swordsman');
+  check(noLife.lifePersist() === false && noLife.life === null, 'without --life-dir everything is a no-op');
+
   // no mixin method may shadow another or a bot's own
-  const mix = { BankSkill, SurvivalSkill, CombatSkill, EconomySkill, MemorySkill, CraftSkill, CustomerSkill, GatherSkill };
+  const mix = { BankSkill, SurvivalSkill, CombatSkill, EconomySkill, MemorySkill, CraftSkill, CustomerSkill, GatherSkill, TrainingSkill, LifeSkill };
   const seen = {};
   for (const [m, obj] of Object.entries(mix)) for (const k of Object.keys(obj)) {
     if (typeof obj[k] !== 'function') continue;

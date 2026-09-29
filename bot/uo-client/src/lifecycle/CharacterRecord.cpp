@@ -528,6 +528,7 @@ std::string Serialize(const CharacterRecord& r) {
         .Int(r.createdWallMs).Int(r.sessions).Int(r.lastLoginWallMs)
         .Int(r.lastSavedWallMs).To(&out);
     if (!r.archetype.empty()) Line("archetype").Str(r.archetype).To(&out);
+    if (!r.scriptMemory.empty()) Line("memory").Str(r.scriptMemory).To(&out);
     Line("stats").Int(r.targetStr).Int(r.targetDex).Int(r.targetInt).To(&out);
     for (const rules::BuildSkill& s : r.targetBuild)
         Line("skill").Int(s.skillId).Int(s.tenths).To(&out);
@@ -630,6 +631,9 @@ ParseResult Parse(std::string_view text, CharacterRecord* out) {
             if (f.Ok() && !EnumFromName(asp, &AspirationName, &r.aspiration))
                 f.Fail("unknown aspiration");
             sawIdentity = true;
+        } else if (kind == "memory") {
+            r.scriptMemory = f.Str();
+            if (f.Ok() && r.scriptMemory.size() > kMaxScriptMemory) f.Fail("script memory over the cap");
         } else if (kind == "archetype") {
             r.archetype = f.Str();
             if (f.Ok() && r.archetype.empty()) f.Fail("empty archetype");

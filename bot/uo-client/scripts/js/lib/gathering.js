@@ -137,7 +137,7 @@
     // ---- GathererBot: miner / fisher --------------------------------------
     class GathererBot extends BehaviorScript {
         constructor(archetypeId, opts = {}) {
-            g.applyMixins(GathererBot, ['BankSkill', 'SurvivalSkill', 'CombatSkill', 'EconomySkill', 'MemorySkill', 'GatherSkill']);
+            g.applyMixins(GathererBot, ['BankSkill', 'SurvivalSkill', 'CombatSkill', 'EconomySkill', 'MemorySkill', 'GatherSkill', 'TrainingSkill', 'LifeSkill']);
             super();
             const a = g.Archetypes.A[archetypeId];
             if (!a || a.kind !== 'gatherer') throw new Error(`GathererBot: '${archetypeId}' is not a gatherer`);
@@ -158,7 +158,19 @@
             this.COMBAT_SKILL = g.Archetypes.SK.WREST;
             this.threat = null; this.fleeing = false; this.lastAteMs = 0;
             this.installCombatSensing(); this.economyInit(); this.memoryInit();
+            this.lifeInit();
         }
+
+        onStart() { this.lifeLoop(); }
+        onStop() { this.lifePersist(); }
+        async onStartup() { this.applyTrainingPlan(); }
+
+        // Persistent life (lib/life.js) + training plan (lib/training.js).
+        onTransition(name, event) {
+            super.onTransition(name, event);
+            if (event === 'start') this.lifeNoteBehavior(name);
+        }
+
 
         async work() {
             if (this.kind === 'mine') await this.gatherOre(60);

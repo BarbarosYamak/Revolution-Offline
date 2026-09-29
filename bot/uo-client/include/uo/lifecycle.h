@@ -42,6 +42,7 @@
 namespace uo::life {
 
 inline constexpr int kFormatVersion = 1;
+inline constexpr usize kMaxScriptMemory = 256 * 1024;
 
 // --- aspiration --------------------------------------------------------------
 //
@@ -157,6 +158,10 @@ struct CharacterRecord {
     // M4.5: the archetype id from data/revolution_archetypes.tsv. Empty for
     // records made before the table existed (they keep `aspiration`).
     std::string archetype;
+    // M4.6: what the JS bot has learned (danger map, market, known crafters,
+    // open orders, ledger), as the script's own JSON. Opaque to C++: stored,
+    // capped at kMaxScriptMemory, and handed back next session.
+    std::string scriptMemory;
     i64         createdWallMs = 0;
     i32         sessions = 0;
     i64         lastLoginWallMs = 0;

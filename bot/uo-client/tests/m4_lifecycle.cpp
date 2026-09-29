@@ -535,6 +535,17 @@ void TestArchetypes(const char* dataDir) {
     const std::string row = "x\tfighter\tmelee\t-\tU\t40:1000\t100\t100\t25\tbritain\n";
     Check(!life::ParseArchetypes(std::string(hdr) + row + row, &bad, &err), "a duplicate id is refused");
 
+    // M4.6: the script's memory blob round-trips, tabs/newlines and all, and is capped.
+    {
+        life::CharacterRecord m = life::NewLumberjackSwordsman("Ahmet", "acct", kWall0);
+        m.scriptMemory = "{\"v\":1,\"note\":\"tab\there\\nnewline\\\\slash\"}\n\t";
+        life::CharacterRecord back;
+        Check(life::Parse(life::Serialize(m), &back).ok && back.scriptMemory == m.scriptMemory,
+              "script memory survives the text format byte for byte");
+        m.scriptMemory.assign(life::kMaxScriptMemory + 1, 'x');
+        Check(!life::Parse(life::Serialize(m), &back).ok, "script memory over the cap is refused at load");
+    }
+
     // Records made before the table existed still load.
     life::CharacterRecord old = life::NewLumberjackSwordsman("Ahmet", "acct", kWall0);
     Check(old.archetype.empty() && life::ValidateRecord(old).ok, "a pre-table record (aspiration only) still validates");

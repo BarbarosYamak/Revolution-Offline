@@ -506,6 +506,16 @@ public:
     // Set what the character is currently doing, so the next session resumes
     // it. Saved at the next autosave, not immediately.
     void SetLifeObjective(life::ObjectiveKind kind, const char* target);
+    // M4.6, for the JS bindings: store the script's own memory in the life
+    // (capped at life::kMaxScriptMemory; false when over or when there is no
+    // life) and save now.
+    bool SetLifeScriptMemory(const std::string& json);
+    void LifeSaveNow() { LifeSave("script"); }
+
+    // Skill lock (0x3A client->server): 0 up, 1 down, 2 locked -- the arrows
+    // in the skill gump, the ordinary way a player shapes a capped build.
+    // `index` is the Sphere [SKILL n] number.
+    void SendSkillLock(u16 index, u8 lock);
 
     // -----------------------------------------------------------------
     // War / peace.
