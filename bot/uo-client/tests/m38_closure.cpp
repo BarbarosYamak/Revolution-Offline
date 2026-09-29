@@ -579,6 +579,43 @@ void TestCombatSurvival() {
         Check(Decide(v) == Tactic::Rest, "safe and hurt with no supplies: rest");
     }
 
+    // M4 retune: "disengage way too quickly". A third of our health left with
+    // bandages in the pack is still a fight, not a retreat.
+    {
+        Vitals v; v.hpNow = 18; v.hpMax = 50; v.inCombat = true;   // 36%
+        v.enemyAdjacent = true; v.bandages = 10;
+        Check(Decide(v) == Tactic::Fight, "36% in contact with bandages: keep fighting");
+    }
+
+    // Out of war mode is not out of danger. The loop this breaks: disengage,
+    // stand still, get hit, "out of contact" -> bandage, hit again, bandage...
+    {
+        Vitals v; v.hpNow = 20; v.hpMax = 50; v.inCombat = false;  // 40%
+        v.enemyAdjacent = false; v.underAttack = true; v.bandages = 10;
+        Check(Decide(v) != Tactic::Bandage,
+              "being hit counts as contact even out of war mode -- no bandage");
+        v.hpNow = 12;                                                 // 24%
+        Check(Decide(v) == Tactic::Disengage,
+              "badly hurt and being hit, out of war mode: still disengage, not bandage");
+        v.underAttack = false;
+        Check(Decide(v) == Tactic::Bandage,
+              "once nothing has hit us for a moment, bandage");
+    }
+
+    // Finish a foe that is one swing from dead instead of turning your back.
+    {
+        Vitals v; v.hpNow = 13; v.hpMax = 50; v.inCombat = true;   // 26%
+        v.enemyAdjacent = true; v.bandages = 10; v.foeHpPercent = 15;
+        Check(Decide(v) == Tactic::Fight, "foe at 15%: finish it");
+        v.foeHpPercent = 60;
+        Check(Decide(v) == Tactic::Disengage, "foe at 60%: break off as before");
+        v.foeHpPercent = 15; v.hpNow = 9; v.bandages = 0;           // 18%
+        Check(Decide(v) == Tactic::Flee,
+              "below the flee line even a dying foe is not worth it");
+        v.foeHpPercent = -1; v.hpNow = 13; v.bandages = 10;
+        Check(Decide(v) == Tactic::Disengage, "unknown foe health is not 'nearly dead'");
+    }
+
     // Resuming is a separate, stricter question than "stop healing".
     {
         Vitals v; v.hpMax = 100;
@@ -593,6 +630,8 @@ void TestCombatSurvival() {
     Check(kFleePercent < kDisengagePercent, "flee threshold is below disengage");
     Check(kDisengagePercent < kPotionPercent, "disengage is below the potion sip");
     Check(kPotionPercent < kResumePercent, "resume is the highest bar");
+    Check(kFinishFoePercent > 0 && kFinishFoePercent < kDisengagePercent,
+          "finishing is for a foe clearly worse off than our own break-off line");
     Check(kBandageSeconds == 3,
           "bandage cost matches SKILL 17 DELAY=3.0 in skill17_healing.scp");
 }

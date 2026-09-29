@@ -150,6 +150,10 @@ Client::Client(const Config& cfg)
 }
 
 Client::~Client() {
+    // A session that ended without a logout (server disconnect, fatal error)
+    // still writes its life back; ActionLogout already saved and cleared the
+    // flag for the clean case.
+    LifeSave("session_end");
     if (renderWindowOpen_) { mfb_close(); renderWindowOpen_ = false; }
     StopStdinThread();
     sock_.Close();
@@ -442,6 +446,7 @@ void Client::Tick(int waitMs) {
             TravelTick();
             WarModeTick();
             SurvivalTick();
+            LifeTick();
             BotTick();
             PurgeOutOfRange();  // cull mobiles/containers past viewRange_ (queues leave events)
             uo::js::TickClientEvents(NowMs());  // dispatch JS events + reject timeouts
@@ -930,6 +935,7 @@ void Client::OnLoginComplete(const u8* data, usize size) {
     LogInfo("[0x55] login complete — entering world\n");
     state_ = State::InWorld;
     LogEvent("in_world", "0x55 received");
+    LifeBegin();
     // Initialise the keepalive timer so the first keepalive fires
     // exactly 60s after entering the world (matches the original).
     lastActivityMs_ =
@@ -1065,10 +1071,23 @@ void Client::OnMobileHp(const u8* data, usize size) {
         // here). This must fire even when the bot is standing still -- in the
         // 21:53 huntdbg3 run the wolf killed a stationary bot without the
         // watchdog ever seeing one combat event.
-        war_.OnCombatEvent(NowMs());
-        if (nav_.bot.active || !nav_.movement.pending.empty()) {
+        const i64 now = NowMs();
+        war_.OnCombatEvent(now);
+        lastHurtMs_ = now;
+        // Halt an oblivious journey on the FIRST hit so the brain can react --
+        // but not on every hit after it. The old rule aborted any walk on any
+        // HP drop, which also aborted the reaction: a bot that decided to flee
+        // had its flee cancelled by the next swing, stood still, and was
+        // beaten to death out of war mode. Nor while a survival retreat is
+        // under way, which is the reaction.
+        const bool moving = nav_.bot.active || !nav_.movement.pending.empty();
+        const bool retreating = now < survivalRetreatUntilMs_;
+        const bool cooledDown = lastThreatInterruptMs_ == 0 ||
+                                now - lastThreatInterruptMs_ >= kThreatInterruptCooldownMs;
+        if (moving && !retreating && cooledDown) {
             char reason[48];
             std::snprintf(reason, sizeof(reason), "HP %d -> %d", player_.hpCur, curHp);
+            lastThreatInterruptMs_ = now;
             BotInterruptForThreat(reason);
         }
     }
@@ -1868,6 +1887,9 @@ void Client::RecordOwnDeath(const char* how) {
                   r ? r->id.c_str() : "?", how ? how : "?");
     LogEvent("death_location", ev);
     if (journey_.Active()) TravelAbort("died");
+    // Death is the event most worth surviving a crash: the corpse run next
+    // session depends on it.
+    LifeSave("death");
 }
 
 void Client::OnResurrectionMenu(const u8* data, usize size) {
@@ -2172,6 +2194,7 @@ void Client::OnVendorSellList(const u8* data, usize size) {
     std::snprintf(ev, sizeof(ev), "vendor=0x%08X items=%zu",
                   vendor, vendorSellOffer_.size());
     LogEvent("vendor_sell_list", ev);
+    uo::js::EmitVendorSellOffer(vendor);
 
     if (action_.Active() && action_.kind == act::Kind::VendorSell &&
         action_.subject == action_.destination) {
@@ -3126,6 +3149,32 @@ void Client::ActionVendorSell(u32 vendorSerial, u32 itemSerial, u16 qty) {
     Send(buf, n, "0x9F VendorSell");
 }
 
+usize Client::SendVendorSell(u32 vendorSerial, const std::vector<VendorSellReq>& items) {
+    std::vector<build::VendorSellEntry> entries;
+    for (const VendorSellReq& r : items) {
+        if (!r.serial || !r.qty) continue;
+        const VendorItem* offered = nullptr;
+        for (const VendorItem& v : vendorSellOffer_)
+            if (v.serial == r.serial) { offered = &v; break; }
+        if (!offered) {
+            LogWarn("[VENDOR] sell 0x%08X skipped: not in the vendor's offer\n", r.serial);
+            continue;
+        }
+        const u16 qty = r.qty > offered->amount ? offered->amount : r.qty;
+        entries.push_back(build::VendorSellEntry{r.serial, qty});
+    }
+    if (entries.empty()) return 0;
+    LogInfo("[VENDOR] sell %zu row(s) to vendor=0x%08X gold=%d\n",
+            entries.size(), vendorSerial, PlayerGold());
+    std::vector<u8> buf(16 + entries.size() * 6);
+    const usize n = build::VendorSell(buf.data(), vendorSerial, entries.data(), entries.size());
+    Send(buf.data(), n, "0x9F VendorSell");
+    char ev[96];
+    std::snprintf(ev, sizeof(ev), "vendor=0x%08X rows=%zu", vendorSerial, entries.size());
+    LogEvent("vendor_sell", ev);
+    return entries.size();
+}
+
 // --- resurrection ----------------------------------------------------------
 // Resurrection is the SERVER's decision. Replying to the 0x2C menu does NOT
 // resurrect on Source-X: both choices take the same branch and only re-send
@@ -3278,6 +3327,7 @@ void Client::ActionOnBodyChange(u16 body) {
 void Client::ActionOnVendorOffer(u32 vendorSerial) {
     vendorOfferVendor_ = vendorSerial;
     vendorOffer_ = pendingVendor_;
+    NoteVendorStock(vendorSerial);
     LogInfo("[VENDOR] offer from 0x%08X: %zu item(s)\n",
             vendorSerial, vendorOffer_.size());
     for (usize i = 0; i < vendorOffer_.size() && i < 8; ++i) {
@@ -3551,6 +3601,11 @@ void Client::ActionLogout() {
     if (loggingOut_) return;
     loggingOut_ = true;
     LogInfo("[action] logout requested\n");
+    // Saved BEFORE the request goes out, at the spot we chose to leave from.
+    // After this the life is closed for the session: nothing that happens in
+    // the logout grace period is the character's doing.
+    LifeSave("logout");
+    lifeActive_ = false;
     u8 buf[4];
     const usize n = build::LogoutRequest(buf);
     Send(buf, n, "0xD1 LogoutRequest");

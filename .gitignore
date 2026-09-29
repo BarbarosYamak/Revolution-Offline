@@ -18,6 +18,12 @@ client.dll
 # --------------------------------------------------------- CHURN / OUTPUT
 build*/
 save/
+# ...but `build*/` also matches the client's own SOURCE directory
+# bot/uo-client/src/builders/, and `mul/` above matches src/mul/ (the MUL
+# loaders). Both were silently left out of the repository by those patterns,
+# so a fresh clone could not build uo_client. Re-include them explicitly.
+!bot/uo-client/src/builders/
+!bot/uo-client/src/mul/
 logs/
 *.log
 *.console.txt

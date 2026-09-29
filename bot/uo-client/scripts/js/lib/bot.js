@@ -21,6 +21,7 @@
         EAT_INTERVAL_MS = 60 * 1000;// re-hunger interval for the eat behaviour
         FOOD = [];                  // food name substrings eatFood() looks for
         BANDAGE = 'bandage';        // bandage name substring
+        REST_UNTIL_FRAC = 0.9;      // rest() bandages up to this much of max HP
 
         // --- shared blackboard (sensing writes it, behaviours read it) ---
         token = null;

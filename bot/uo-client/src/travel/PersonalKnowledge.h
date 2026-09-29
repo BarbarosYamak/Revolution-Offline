@@ -124,6 +124,18 @@ public:
 
     void Clear();
 
+    // --- M4 persistence ----------------------------------------------------
+    // Read-only views plus restore hooks, so a character's knowledge can
+    // survive a logout. Restoring is not observing: every restored record was
+    // observed in an earlier session, and its timestamps arrive already
+    // translated into this session's clock by the caller.
+    const std::vector<ServiceSighting>& Sightings() const { return sightings_; }
+    const std::vector<DangerNote>&      Dangers()   const { return danger_; }
+    void RestoreVisit(const VisitRecord& v)        { visits_.push_back(v); }
+    void RestoreSighting(const ServiceSighting& s) { sightings_.push_back(s); }
+    void RestoreDanger(const DangerNote& n)        { danger_.push_back(n); }
+    void RestoreDeath(const DeathRecord& d)        { death_ = d; }
+
 private:
     std::vector<VisitRecord>     visits_;
     std::vector<ServiceSighting> sightings_;

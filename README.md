@@ -74,7 +74,8 @@ testimony with no dated archive, and says so.
 ## Status
 
 Milestones M0–M3.9 are recorded in `docs/`. M4 — autonomous character lifecycles
-— has not started.
+— has begun: step 1, the persistence layer, is built and unit-tested
+(`docs/M4_1_PERSISTENCE.md`) and awaits its first live run.
 
 ## Credits
 

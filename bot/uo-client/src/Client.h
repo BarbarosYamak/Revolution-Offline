@@ -10,8 +10,10 @@
 #include "travel/PersonalKnowledge.h"
 #include "travel/WarMode.h"
 #include "uo/actions.h"
+#include "uo/lifecycle.h"
 #include "uo/log.h"
 #include "uo/progression.h"
+#include "uo/supplier.h"
 #include "uo/trade.h"
 #include "uo/types.h"
 #include "uo/world_model.h"
@@ -139,6 +141,15 @@ public:
         // uo_viewer turns it on -- an observer must SEE the out-of-era object
         // rather than silently miss it. See uo/safe_graphics.h.
         bool        renderPlaceholders;
+        // M4: directory holding persistent character records
+        // (<dir>/<Name>.life). nullptr = no persistence, which is what every
+        // pre-M4 scenario expects.
+        const char* lifeDir = nullptr;
+        // M4.5: which archetype a NEW life begins as (data/revolution_archetypes.tsv
+        // id, e.g. "archer"), and where that table is. An existing life keeps
+        // the archetype it was created with.
+        const char* archetype = nullptr;
+        const char* archetypesPath = nullptr;
     };
 
     explicit Client(const Config& cfg);
@@ -482,6 +493,20 @@ public:
     travel::PersonalKnowledge&       Knowledge()       { return knowledge_; }
     const travel::PersonalKnowledge& Knowledge() const { return knowledge_; }
 
+    // Suppliers this character has verified with its own eyes (a shop list it
+    // opened). Fed from every vendor offer; see uo/supplier.h.
+    supply::Registry&       Supplies()       { return supplies_; }
+    const supply::Registry& Supplies() const { return supplies_; }
+
+    // M4: the persistent life. Null until a record is loaded or begun, and
+    // always null without --life-dir.
+    const life::CharacterRecord* LifeRecord() const {
+        return lifeActive_ ? &lifeRecord_ : nullptr;
+    }
+    // Set what the character is currently doing, so the next session resumes
+    // it. Saved at the next autosave, not immediately.
+    void SetLifeObjective(life::ObjectiveKind kind, const char* target);
+
     // -----------------------------------------------------------------
     // War / peace.
     //
@@ -669,6 +694,14 @@ private:
     // actually reports our death is 0x2C -- so the death location was never
     // recorded and travel_corpse could never resolve a destination.
     void RecordOwnDeath(const char* how);
+
+    // M4 persistence. Begin on 0x55; save on logout, on death and every
+    // kLifeAutosaveMs in world.
+    void LifeBegin();
+    void LifeSave(const char* why);
+    void LifeTick();
+    // Record every mapped item in a vendor's offer as a verified supplier.
+    void NoteVendorStock(u32 vendorSerial);
     void OnOpenDialog         (const u8* data, usize size);  // 0x7C menu/dialog
     void OnDeathAnimation     (const u8* data, usize size);  // 0xAF
     void OnMobName            (const u8* data, usize size);  // 0x98
@@ -1101,6 +1134,12 @@ private:
     // One buy request row (JS Vendor.buy): how many of `serial` to buy from `layer`.
     struct VendorBuyReq { u32 serial; u16 qty; u8 layer; };
     void SendVendorBuy(u32 vendor, const std::vector<VendorBuyReq>& items);  // 0x3B
+    // 0x9F: sell several rows of the vendor's current 0x9E offer at once. Rows
+    // the vendor did not offer to buy, or quantities above what it listed, are
+    // dropped here rather than sent -- the offer is the server's statement of
+    // what it will take. Returns the number of rows actually sent.
+    struct VendorSellReq { u32 serial; u16 qty; };
+    usize SendVendorSell(u32 vendor, const std::vector<VendorSellReq>& items);
 
     // Recent mobiles (players/NPCs) from 0x77/0x78. A reject at a tile that
     // holds a mobile is a moving obstacle (or a stamina-gated shove), never a
@@ -1260,7 +1299,21 @@ private:
     i64  survivalNextActionMs_ = 0;   // don't re-decide every single tick
     i64  survivalLastLogMs_ = 0;
     int  survivalLastTactic_ = -1;
+    // When our own HP last went down, whoever did it. Feeds
+    // combat::Vitals::underAttack, so "out of war mode" is never mistaken for
+    // "out of danger". 0 = never.
+    i64  lastHurtMs_ = 0;
+    // A disengage is a WALK, not just a 0x72: until this time the retreat leg
+    // is ours, and the HP-drop threat interrupt must not cancel it.
+    i64  survivalRetreatUntilMs_ = 0;
+    // The HP-drop threat interrupt halts travel ONCE per episode so the brain
+    // can react; it must not also cancel the reaction (a flee walk) on every
+    // subsequent hit. See OnMobileHp.
+    i64  lastThreatInterruptMs_ = 0;
+    static constexpr i64 kThreatInterruptCooldownMs = 10000;
+    static constexpr i32 kRetreatTiles = 12;
     void SurvivalTick();
+    void SurvivalRetreat(u32 fromSerial);
 public:
     void SetSurvivalEnabled(bool on);
     bool SurvivalEnabled() const { return survivalEnabled_; }
@@ -1282,6 +1335,15 @@ private:
     const world_atlas::SharedWorld* world_knowledge_ = nullptr;
     travel::Journey             journey_;
     travel::PersonalKnowledge   knowledge_;
+    supply::Registry            supplies_;
+    // M4 persistent life. `lifeActive_` is false when there is no --life-dir,
+    // and ALSO when a record exists but could not be read: a corrupt life is
+    // never overwritten by a fresh one.
+    static constexpr i64        kLifeAutosaveMs = 60000;
+    life::CharacterRecord       lifeRecord_;
+    std::string                 lifePath_;
+    bool                        lifeActive_ = false;
+    i64                         lifeLastSaveMs_ = 0;
     travel::WarModeWatchdog     war_;
     std::string travelFailure_;
     std::string travelLabel_;

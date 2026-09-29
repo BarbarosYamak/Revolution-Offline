@@ -23,6 +23,9 @@ i32 HealthPercent(const Vitals& v) {
 
 Tactic Decide(const Vitals& v) {
     const i32 pct = HealthPercent(v);
+    // Contact is anything that can hit us in the next few seconds: war mode, a
+    // target within a tile, or simply having been hit just now.
+    const bool contact = v.inCombat || v.enemyAdjacent || v.underAttack;
 
     // UNKNOWN HEALTH IS NOT GOOD HEALTH. If we are fighting and cannot see our
     // own health, the safe answer is to break contact and find out, not to keep
@@ -38,11 +41,17 @@ Tactic Decide(const Vitals& v) {
     // kind of failure.
     if (v.healPotions > 0) return Tactic::DrinkPotion;
 
+    // The foe is nearly dead: finish it. Above the flee line only -- a nearly
+    // dead foe can still land the hit that kills a nearly dead bot.
+    if (contact && v.foeHpPercent >= 0 && v.foeHpPercent <= kFinishFoePercent &&
+        pct > kFleePercent)
+        return Tactic::Fight;
+
     // No potion. Below the disengage line, stop fighting first: a bandage takes
     // ~3 seconds and standing still next to something that hits is how a bot
     // dies at 17 HP with bandages still in its pack.
     if (pct <= kDisengagePercent) {
-        if (v.inCombat || v.enemyAdjacent) {
+        if (contact) {
             // Nothing to heal with and still in contact -- running is the only
             // move left, and it is a real one. Fleeing is not failure; dying
             // with unused options is.
@@ -56,7 +65,7 @@ Tactic Decide(const Vitals& v) {
     // Between the potion line and the disengage line with no potion: keep
     // fighting if still engaged -- the fight may be nearly over -- but bandage
     // the moment we are out of contact rather than walking away wounded.
-    if (!v.inCombat && !v.enemyAdjacent && v.bandages > 0) return Tactic::Bandage;
+    if (!contact && v.bandages > 0) return Tactic::Bandage;
     return Tactic::Fight;
 }
 

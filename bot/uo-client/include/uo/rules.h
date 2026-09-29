@@ -66,6 +66,15 @@ enum SkillId : int {
     kLumberjacking    = 44,
     kMining           = 45,
     kMeditation       = 46,
+
+    // Combat skills (M4). The same Sphere SKILL_TYPE order as every id above;
+    // Swordsmanship = 40 is also what builders.h sends at character creation.
+    // NOT re-read off runtime/scripts/skills/*.scp this time -- the Scripts-X
+    // tree is not in this repository -- so check against it when it is to hand.
+    kAnatomy          = 1,
+    kHealing          = 17,
+    kTactics          = 27,
+    kSwordsmanship    = 40,
 };
 
 struct Profile {

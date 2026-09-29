@@ -143,6 +143,8 @@ memory. M4's work is making it **survive a logout**, not inventing it.
 
 1. **Persistence layer** — save/load the above per character. Nothing else can
    be tested repeatedly until a life continues across sessions.
+   *Built and unit-tested 2026-09-29, not yet proven live — see
+   `M4_1_PERSISTENCE.md`.*
 2. **State assessment** — the `assess state` branch, driven by what the client
    can actually observe (health, hunger, pack, gold, skills).
 3. **One economic loop** — chop → haul → sell → bank, with weight and hunger

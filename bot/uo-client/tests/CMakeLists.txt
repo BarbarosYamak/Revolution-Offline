@@ -129,3 +129,30 @@ target_include_directories(m38_closure PRIVATE
     ${CMAKE_SOURCE_DIR}/src)
 
 add_test(NAME m38_closure COMMAND m38_closure ${CMAKE_SOURCE_DIR}/data)
+
+# M4 step 1: the persistent character record -- targets, knowledge, the
+# two-clock crossing at logout, atomic save and corrupt-file refusal. Pure
+# logic plus a temp-dir file round trip; no server, no MULs, no world data.
+add_executable(m4_lifecycle m4_lifecycle.cpp
+    ${CMAKE_SOURCE_DIR}/src/lifecycle/CharacterRecord.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/Supplier.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/VendorPolicy.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/Production.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/Rules.cpp
+    ${CMAKE_SOURCE_DIR}/src/travel/PersonalKnowledge.cpp
+    ${CMAKE_SOURCE_DIR}/src/world/WorldModel.cpp)
+target_include_directories(m4_lifecycle PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+
+add_test(NAME m4_lifecycle COMMAND m4_lifecycle ${CMAKE_SOURCE_DIR}/data)
+
+# JS bot behaviour smoke test (combat thresholds, rest, graveyard patrol, the
+# mixin-overwrite trap). Needs Node, which the client does not; skipped when
+# Node is not installed.
+find_program(NODE_EXECUTABLE node)
+if(NODE_EXECUTABLE)
+    add_test(NAME js_bot_smoke
+             COMMAND ${NODE_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/js_bot_smoke.js
+                     ${CMAKE_SOURCE_DIR}/scripts/js)
+endif()
