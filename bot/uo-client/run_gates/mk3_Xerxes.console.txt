@@ -1,0 +1,343 @@
+[00:20:25.322] INFO  session 0: 127.0.0.1:2593 user='RevGen3_30' char=Xerxes tag='mk3_Xerxes'
+[00:20:25.324] LOG   [mk3_Xerxes] event session_start: text log opened
+[00:20:25.324] LOG   [mk3_Xerxes] event net_connect_begin: connect 127.0.0.1:2593
+[00:20:25.324] INFO  [mk3_Xerxes] [net] connecting to 127.0.0.1:2593 ...
+[00:20:25.325] LOG   [mk3_Xerxes] event net_connected: connect 127.0.0.1:2593
+[00:20:25.325] INFO  [mk3_Xerxes] [net] connected.
+[00:20:25.325] INFO  [mk3_Xerxes] [seed] sent 0x7F000001 (plaintext)
+[00:20:25.325] LOG   [mk3_Xerxes] event seed_out: 0x7F000001 hex=7f000001
+[00:20:25.326] INFO  [life] no prior state for revgen3_30.xerxes: a new Treasure Hunter
+[00:20:25.326] INFO  [life] creation request: Lockpicking 50.0 + Cartography 50.0, stats 24/32/24 = 80
+[00:20:25.326] INFO  [life] needs: reading 'treasure_hunter' from the profession catalogue
+[00:20:25.326] INFO  [life] home: Xerxes lives in Vesper
+[00:20:25.326] INFO  [life] build plan 'treasure_hunter': 700.0 resolved + 0.0 unresolved = 700.0/700.0, stats 85/100/40 = 225
+[00:20:25.326] INFO  [mk3_Xerxes] [life] autonomous player active for 'Xerxes' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 3 min)
+[00:20:25.344] INFO  [mk3_Xerxes] [0xA8] 1 server(s):
+[00:20:25.344] INFO  [mk3_Xerxes]   [0] MyShard                   1.0.0.127  full=11%  tz=0
+[00:20:25.361] INFO  [mk3_Xerxes] [0x8C] game server = 127.0.0.1:2593  seed=0x36021127
+[00:20:25.361] LOG   [mk3_Xerxes] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x36021127
+[00:20:25.361] INFO  [mk3_Xerxes] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[00:20:25.361] LOG   [mk3_Xerxes] event relay_same_socket: no seed re-sent; 0x91 follows
+[00:20:25.374] INFO  [mk3_Xerxes] [0xB9] server features = 0x0005
+[00:20:25.374] INFO  [mk3_Xerxes] [0xA9] 5 slot(s) (populated 0):
+[00:20:25.374] INFO  [mk3_Xerxes]   [0] <empty>
+[00:20:25.374] INFO  [mk3_Xerxes]   [1] <empty>
+[00:20:25.374] INFO  [mk3_Xerxes]   [2] <empty>
+[00:20:25.374] INFO  [mk3_Xerxes]   [3] <empty>
+[00:20:25.374] INFO  [mk3_Xerxes]   [4] <empty>
+[00:20:25.374] INFO  [mk3_Xerxes] create: appearance sex=M skin=0x0402 hair=0x2047/0x0465 shirt=0x01E4 pants=0x03BC
+[00:20:25.375] INFO  [mk3_Xerxes] [0x00] starting city index 8
+[00:20:25.375] INFO  [mk3_Xerxes] [0x00] requested skills 24:50 12:50 46:0
+[00:20:25.375] INFO  [mk3_Xerxes] [0x00] requested stats STR 24 DEX 32 INT 24
+[00:20:25.375] INFO  [mk3_Xerxes] [0x00] creating character 'Xerxes' in slot 0
+[00:20:25.375] LOG   [mk3_Xerxes] event char_create_sent: Xerxes
+[00:20:25.377] INFO  [mk3_Xerxes] [0x1B] serial=0x00017B74 body=0x0190 pos=(2771,976,0)
+[00:20:25.377] LOG   [mk3_Xerxes] event login_confirm: serial=0x00017B74 body=0x0190 pos=(2771,976,0)
+[00:20:25.377] INFO  [mk3_Xerxes] [0x20] player @(2771,976,0) facing=3
+[00:20:25.378] INFO  [mk3_Xerxes] [0x55] login complete — entering world
+[00:20:25.378] LOG   [mk3_Xerxes] event in_world: 0x55 received
+[00:20:25.378] INFO  [mk3_Xerxes] [backpack] opening 0x40017B44
+[00:20:25.378] INFO  [mk3_Xerxes] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[00:20:25.378] INFO  [mk3_Xerxes] [chat ascii] System: There are 29 other players here.
+[00:20:25.378] INFO  [mk3_Xerxes] [chat ascii] System: You are under the protection of the town guards
+[00:20:25.384] INFO  [mk3_Xerxes] [action] requesting the skill list
+[00:20:25.385] INFO  [life] in world; asked the server for the skill list
+[00:20:25.389] INFO  [mk3_Xerxes] [0x24] open container 0x40017B44 gump=60
+[00:20:25.389] INFO  [mk3_Xerxes] [0x3C] container contents: 8 item(s)
+[00:20:25.389] LOG   [mk3_Xerxes] event backpack_contents: serial=0x40017B44 items=8
+[00:20:27.999] INFO  [mk3_Xerxes] [bot] world data loaded (0 blacklisted spot(s)).
+[00:20:27.999] INFO  [life] reconciliation: first ever login, 7 field(s) differed
+[00:20:27.999] INFO  [life]   gold         persisted=0          server=10000      -> server value accepted
+[00:20:27.999] INFO  [life]   str          persisted=0          server=24         -> server value accepted
+[00:20:27.999] INFO  [life]   dex          persisted=0          server=32         -> server value accepted
+[00:20:27.999] INFO  [life]   int          persisted=0          server=24         -> server value accepted
+[00:20:27.999] INFO  [life]   skill_24     persisted=0.0        server=50.0       -> server value accepted
+[00:20:27.999] INFO  [life]   skill_12     persisted=0.0        server=50.0       -> server value accepted
+[00:20:27.999] INFO  [life]   skill_25     persisted=0.0        server=0.0        -> server value accepted
+[00:20:27.999] INFO  [life]   skill_16     persisted=0.0        server=0.0        -> server value accepted
+[00:20:27.999] INFO  [life]   skill_46     persisted=0.0        server=0.0        -> server value accepted
+[00:20:27.999] INFO  [life]   skill_30     persisted=0.0        server=0.0        -> server value accepted
+[00:20:27.999] INFO  [life]   skill_17     persisted=0.0        server=0.0        -> server value accepted
+[00:20:27.999] INFO  [life]   skill_1      persisted=0.0        server=0.0        -> server value accepted
+[00:20:27.999] INFO  [life]   position     persisted=0,0        server=2771,976   -> server value accepted
+[00:20:27.999] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[00:20:27.999] INFO  [mk3_Xerxes] [survival] on
+[00:20:27.999] LOG   [mk3_Xerxes] event survival_mode: on
+[00:20:28.002] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_30.xerxes/state.json
+[00:20:28.002] INFO  [mk3_Xerxes] [survival] hp 24/24 (100%) -> fight
+[00:20:28.052] INFO  [life] goal=GET_TOOL reason="no goal was running"
+[00:20:28.052] INFO  [life] needs considered: NeedTool(spellbook 0.90) NeedBank(deposit surplus gold 0.75) NeedSkillTraining(Evaluating Intelligence 0.55) NeedEquipment(bandages 0.50) NeedPractice(Magery 0.45) NeedPractice(Evaluating Intelligence 0.45) NeedPractice(Meditation 0.45) NeedTraining(Anatomy BLOCKED 0.40) NeedFood(food 0.25)  | tools defined=2 held=[shovel,] want_train=Evaluating Intelligence (target 100.0)
+[00:20:28.052] INFO  [life]   score=468.0
+[00:20:28.052] INFO  [life]   reason: NeedTool urgency 0.90 x 520 = 468.0
+[00:20:28.052] INFO  [life]   reason: no known supplier of a spellbook
+[00:20:28.052] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Anatomy 0.0 -> 60.0)
+[00:20:28.052] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:20:28.052] INFO  [life] get_tool: no remembered supplier; looking for a mage to sell a spellbook
+[00:20:28.055] INFO  [mk3_Xerxes] [travel] Vesper mage -> (2918,672) r=5 from (2771,976)
+[00:20:28.055] LOG   [mk3_Xerxes] event travel_start: label='Vesper mage' target=(2918,672) radius=5 from=(2771,976)
+[00:20:28.055] INFO  [mk3_Xerxes] [travel] mode moongate         usable   <- chosen
+[00:20:28.055] INFO  [mk3_Xerxes] [travel] mode walk             usable
+[00:20:28.055] INFO  [mk3_Xerxes] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:28.055] INFO  [mk3_Xerxes] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:28.055] LOG   [mk3_Xerxes] event travel_mode: moongate
+[00:20:28.055] INFO  [mk3_Xerxes] [travel] plan Vesper mage: ok legs=10 ~376 tiles transit=0 nodes=181
+[00:20:28.113] INFO  [mk3_Xerxes] [action] goto (2802,952) from (2771,976,0)
+[00:20:28.113] LOG   [mk3_Xerxes] event goto_start: target=(2802,952) from=(2771,976)
+[00:20:28.113] INFO  [mk3_Xerxes] [bot] running from (2771,976,0) to (2802,952)
+[00:20:28.113] INFO  [mk3_Xerxes] [bot] planning path to (2802,952) in background
+[00:20:28.175] INFO  [mk3_Xerxes] [bot] replan to (2802,952): 58 steps in 14214.4us
+[00:20:33.003] INFO  [mk3_Xerxes] [survival] hp 24/24 (100%) -> fight
+[00:20:33.248] INFO  [mk3_Xerxes] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=39 in 99.5us
+[00:20:38.026] INFO  [mk3_Xerxes] [survival] hp 24/24 (100%) -> fight
+[00:20:43.040] INFO  [mk3_Xerxes] [survival] hp 24/24 (100%) -> fight
+[00:20:45.217] INFO  [mk3_Xerxes] [bot] step (2801,953,2)->(2802,952,0) rejected; OpenDoor + retry
+[00:20:45.972] INFO  [mk3_Xerxes] [bot] step (2801,953,2)->(2802,952,0) rejected; avoiding edge + rerouting
+[00:20:45.972] INFO  [mk3_Xerxes] [bot] planning path to (2802,952) in background
+[00:20:48.053] INFO  [mk3_Xerxes] [survival] hp 24/24 (100%) -> fight
+[00:20:48.849] INFO  [mk3_Xerxes] [action] goto finished at (2801,953,2); target (2802,952); stopped short (off by 2 tile(s))
+[00:20:48.849] LOG   [mk3_Xerxes] event goto_done: at=(2801,953) target=(2802,952) arrived=0 off=2
+[00:20:48.849] INFO  [mk3_Xerxes] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:20:48.849] INFO  [mk3_Xerxes] [action] goto (2824,920) from (2801,953,2)
+[00:20:48.849] LOG   [mk3_Xerxes] event goto_start: target=(2824,920) from=(2801,953)
+[00:20:48.849] INFO  [mk3_Xerxes] [bot] running from (2801,953,2) to (2824,920)
+[00:20:48.849] INFO  [mk3_Xerxes] [bot] planning path to (2824,920) in background
+[00:20:48.912] INFO  [mk3_Xerxes] [bot] replan to (2824,920): 57 steps in 15446.7us
+[00:20:53.096] INFO  [mk3_Xerxes] [survival] hp 24/24 (100%) -> fight
+[00:20:58.127] INFO  [mk3_Xerxes] [survival] hp 24/24 (100%) -> fight
+[00:21:02.479] INFO  [mk3_Xerxes] [bot] step (2827,927,0)->(2828,926,0) rejected; OpenDoor + retry
+[00:21:03.151] INFO  [mk3_Xerxes] [survival] hp 24/24 (100%) -> fight
+[00:21:03.213] INFO  [mk3_Xerxes] [bot] step (2827,927,0)->(2828,926,0) rejected; avoiding edge + rerouting
+[00:21:03.213] INFO  [mk3_Xerxes] [bot] planning path to (2824,920) in background
+[00:21:03.274] INFO  [mk3_Xerxes] [bot] replan to (2824,920): 7 steps in 950.7us
+[00:21:05.894] INFO  [mk3_Xerxes] [bot] arrived at (2824,920,0)
+[00:21:05.894] INFO  [mk3_Xerxes] [action] goto finished at (2824,920,0); target (2824,920); ARRIVED (off by 0 tile(s))
+[00:21:05.894] LOG   [mk3_Xerxes] event goto_done: at=(2824,920) target=(2824,920) arrived=1 off=0
+[00:21:05.894] INFO  [mk3_Xerxes] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:21:05.894] INFO  [mk3_Xerxes] [action] goto (2826,888) from (2824,920,0)
+[00:21:05.894] LOG   [mk3_Xerxes] event goto_start: target=(2826,888) from=(2824,920)
+[00:21:05.894] INFO  [mk3_Xerxes] [bot] running from (2824,920,0) to (2826,888)
+[00:21:05.894] INFO  [mk3_Xerxes] [bot] planning path to (2826,888) in background
+[00:21:05.954] INFO  [mk3_Xerxes] [bot] replan to (2826,888): 32 steps in 1994.2us
+[00:21:08.204] INFO  [mk3_Xerxes] [survival] hp 24/24 (100%) -> fight
+[00:21:11.193] INFO  [mk3_Xerxes] [chat ascii] System: Observer has arrived in Minoc.
+[00:21:13.263] INFO  [mk3_Xerxes] [survival] hp 24/24 (100%) -> fight
+[00:21:14.307] INFO  [mk3_Xerxes] [bot] step (2828,890,0)->(2827,889,5) rejected; OpenDoor + retry
+[00:21:14.572] INFO  [mk3_Xerxes] [chat ascii] System: Observer has departed from Minoc.
+[00:21:15.078] INFO  [mk3_Xerxes] [bot] step (2828,890,0)->(2827,889,5) rejected; avoiding edge + rerouting
+[00:21:15.078] INFO  [mk3_Xerxes] [bot] planning path to (2826,888) in background
+[00:21:15.109] INFO  [mk3_Xerxes] [bot] replan to (2826,888): 4 steps in 248.2us
+[00:21:16.890] INFO  [mk3_Xerxes] [bot] arrived at (2826,888,-2)
+[00:21:16.890] INFO  [mk3_Xerxes] [action] goto finished at (2826,888,-2); target (2826,888); ARRIVED (off by 0 tile(s))
+[00:21:16.890] LOG   [mk3_Xerxes] event goto_done: at=(2826,888) target=(2826,888) arrived=1 off=0
+[00:21:16.890] INFO  [mk3_Xerxes] [action] goto (2840,856) from (2826,888,-2)
+[00:21:16.890] LOG   [mk3_Xerxes] event goto_start: target=(2840,856) from=(2826,888)
+[00:21:16.890] INFO  [mk3_Xerxes] [bot] running from (2826,888,-2) to (2840,856)
+[00:21:16.890] INFO  [mk3_Xerxes] [bot] planning path to (2840,856) in background
+[00:21:16.952] INFO  [mk3_Xerxes] [bot] replan to (2840,856): 60 steps in 13704.3us
+[00:21:18.269] INFO  [mk3_Xerxes] [survival] hp 24/24 (100%) -> fight
+[00:21:22.167] INFO  [mk3_Xerxes] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=39 in 451.3us
+[00:21:23.306] INFO  [mk3_Xerxes] [survival] hp 24/24 (100%) -> fight
+[00:21:27.364] INFO  [mk3_Xerxes] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=23 in 331.9us
+[00:21:27.994] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_30.xerxes/state.json
+[00:21:28.315] INFO  [mk3_Xerxes] [survival] hp 24/24 (100%) -> fight
+[00:21:33.337] INFO  [mk3_Xerxes] [survival] hp 24/24 (100%) -> fight
+[00:21:35.625] INFO  [mk3_Xerxes] [bot] arrived at (2840,856,0)
+[00:21:35.625] INFO  [mk3_Xerxes] [action] goto finished at (2840,856,0); target (2840,856); ARRIVED (off by 0 tile(s))
+[00:21:35.625] LOG   [mk3_Xerxes] event goto_done: at=(2840,856) target=(2840,856) arrived=1 off=0
+[00:21:35.625] INFO  [mk3_Xerxes] [action] goto (2840,824) from (2840,856,0)
+[00:21:35.625] LOG   [mk3_Xerxes] event goto_start: target=(2840,824) from=(2840,856)
+[00:21:35.625] INFO  [mk3_Xerxes] [bot] running from (2840,856,0) to (2840,824)
+[00:21:35.625] INFO  [mk3_Xerxes] [bot] planning path to (2840,824) in background
+[00:21:35.685] INFO  [mk3_Xerxes] [bot] replan to (2840,824): 50 steps in 14504.8us
+[00:21:38.394] INFO  [mk3_Xerxes] [survival] hp 24/24 (100%) -> fight
+[00:21:43.397] INFO  [mk3_Xerxes] [survival] hp 24/24 (100%) -> fight
+[00:21:48.427] INFO  [mk3_Xerxes] [survival] hp 24/24 (100%) -> fight
+[00:21:49.906] INFO  [mk3_Xerxes] [bot] arrived at (2840,824,2)
+[00:21:49.906] INFO  [mk3_Xerxes] [action] goto finished at (2840,824,2); target (2840,824); ARRIVED (off by 0 tile(s))
+[00:21:49.906] LOG   [mk3_Xerxes] event goto_done: at=(2840,824) target=(2840,824) arrived=1 off=0
+[00:21:49.906] INFO  [mk3_Xerxes] [action] goto (2878,786) from (2840,824,2)
+[00:21:49.906] LOG   [mk3_Xerxes] event goto_start: target=(2878,786) from=(2840,824)
+[00:21:49.906] INFO  [mk3_Xerxes] [bot] running from (2840,824,2) to (2878,786)
+[00:21:49.906] INFO  [mk3_Xerxes] [bot] planning path to (2878,786) in background
+[00:21:49.967] INFO  [mk3_Xerxes] [bot] replan to (2878,786): 62 steps in 25753.3us
+[00:21:53.463] INFO  [mk3_Xerxes] [survival] hp 24/24 (100%) -> fight
+[00:21:58.505] INFO  [mk3_Xerxes] [survival] hp 24/24 (100%) -> fight
+[00:21:58.645] INFO  [mk3_Xerxes] [chat ascii] System: Draver has departed from Minoc.
+[00:22:03.553] INFO  [mk3_Xerxes] [survival] hp 24/24 (100%) -> fight
+[00:22:08.426] INFO  [mk3_Xerxes] [bot] arrived at (2878,786,5)
+[00:22:08.426] INFO  [mk3_Xerxes] [action] goto finished at (2878,786,5); target (2878,786); ARRIVED (off by 0 tile(s))
+[00:22:08.426] LOG   [mk3_Xerxes] event goto_done: at=(2878,786) target=(2878,786) arrived=1 off=0
+[00:22:08.426] INFO  [mk3_Xerxes] [action] goto (2888,756) from (2878,786,5)
+[00:22:08.426] LOG   [mk3_Xerxes] event goto_start: target=(2888,756) from=(2878,786)
+[00:22:08.426] INFO  [mk3_Xerxes] [bot] running from (2878,786,5) to (2888,756)
+[00:22:08.426] INFO  [mk3_Xerxes] [bot] planning path to (2888,756) in background
+[00:22:08.490] INFO  [mk3_Xerxes] [bot] replan to (2888,756): 33 steps in 3963.0us
+[00:22:08.613] INFO  [mk3_Xerxes] [survival] hp 24/24 (100%) -> fight
+[00:22:13.637] INFO  [mk3_Xerxes] [survival] hp 24/24 (100%) -> fight
+[00:22:18.612] INFO  [mk3_Xerxes] [chat ascii] System: You shove Rat out of the way.
+[00:22:18.612] INFO  [mk3_Xerxes] [bot] arrived at (2888,756,0)
+[00:22:18.612] INFO  [mk3_Xerxes] [action] goto finished at (2888,756,0); target (2888,756); ARRIVED (off by 0 tile(s))
+[00:22:18.612] LOG   [mk3_Xerxes] event goto_done: at=(2888,756) target=(2888,756) arrived=1 off=0
+[00:22:18.612] INFO  [mk3_Xerxes] [action] goto (2904,728) from (2888,756,0)
+[00:22:18.612] LOG   [mk3_Xerxes] event goto_start: target=(2904,728) from=(2888,756)
+[00:22:18.612] INFO  [mk3_Xerxes] [bot] running from (2888,756,0) to (2904,728)
+[00:22:18.612] INFO  [mk3_Xerxes] [bot] planning path to (2904,728) in background
+[00:22:18.673] INFO  [mk3_Xerxes] [survival] hp 24/24 (100%) -> fight
+[00:22:18.673] INFO  [mk3_Xerxes] [bot] replan to (2904,728): 37 steps in 2629.0us
+[00:22:23.727] INFO  [mk3_Xerxes] [survival] hp 24/24 (100%) -> fight
+[00:22:28.001] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_30.xerxes/state.json
+[00:22:28.766] INFO  [mk3_Xerxes] [survival] hp 24/24 (100%) -> fight
+[00:22:28.828] INFO  [mk3_Xerxes] [bot] arrived at (2904,728,0)
+[00:22:28.828] INFO  [mk3_Xerxes] [action] goto finished at (2904,728,0); target (2904,728); ARRIVED (off by 0 tile(s))
+[00:22:28.828] LOG   [mk3_Xerxes] event goto_done: at=(2904,728) target=(2904,728) arrived=1 off=0
+[00:22:28.828] INFO  [mk3_Xerxes] [action] goto (2914,696) from (2904,728,0)
+[00:22:28.828] LOG   [mk3_Xerxes] event goto_start: target=(2914,696) from=(2904,728)
+[00:22:28.828] INFO  [mk3_Xerxes] [bot] running from (2904,728,0) to (2914,696)
+[00:22:28.829] INFO  [mk3_Xerxes] [bot] planning path to (2914,696) in background
+[00:22:28.891] INFO  [mk3_Xerxes] [bot] replan to (2914,696): 32 steps in 2678.9us
+[00:22:33.775] INFO  [mk3_Xerxes] [survival] hp 24/24 (100%) -> fight
+[00:22:37.844] INFO  [mk3_Xerxes] [bot] arrived at (2914,696,1)
+[00:22:37.844] INFO  [mk3_Xerxes] [action] goto finished at (2914,696,1); target (2914,696); ARRIVED (off by 0 tile(s))
+[00:22:37.844] LOG   [mk3_Xerxes] event goto_done: at=(2914,696) target=(2914,696) arrived=1 off=0
+[00:22:37.844] INFO  [mk3_Xerxes] [action] goto (2918,672) from (2914,696,1)
+[00:22:37.844] LOG   [mk3_Xerxes] event goto_start: target=(2918,672) from=(2914,696)
+[00:22:37.844] INFO  [mk3_Xerxes] [bot] running from (2914,696,1) to (2918,672,z0)
+[00:22:37.844] INFO  [mk3_Xerxes] [bot] planning path to (2918,672) in background
+[00:22:37.906] INFO  [mk3_Xerxes] [bot] replan to (2918,672): 27 steps in 1995.8us
+[00:22:38.419] INFO  [mk3_Xerxes] [chat ascii] System: Vorar has departed from Britain.
+[00:22:38.808] INFO  [mk3_Xerxes] [survival] hp 24/24 (100%) -> fight
+[00:22:39.440] INFO  [mk3_Xerxes] [chat ascii] System: Selene has departed from Magincia.
+[00:22:43.639] INFO  [mk3_Xerxes] [bot] door ahead at (2915,679,z0); OpenDoor before step
+[00:22:43.655] INFO  [mk3_Xerxes] [chat ascii] System: Opening door...
+[00:22:43.855] INFO  [mk3_Xerxes] [survival] hp 24/24 (100%) -> fight
+[00:22:45.029] INFO  [mk3_Xerxes] [travel] Vesper mage ARRIVED at (2915,677,0)
+[00:22:45.029] LOG   [mk3_Xerxes] event travel_done: label='Vesper mage' ok=1 at=(2915,677) legs=10 plans=1 why=''
+[00:22:45.092] INFO  [mk3_Xerxes] [action] scanning nearby mobiles for names
+[00:22:45.092] INFO  [mk3_Xerxes] [action] requested 4 paperdoll(s) for trade titles
+[00:22:45.108] INFO  [mk3_Xerxes] [mobiles] nearby (5):
+[00:22:45.108] INFO  [mk3_Xerxes]   Radcliffe 0x0000A71C
+[00:22:45.108] INFO  [mk3_Xerxes]   Rico 0x0000DE47
+[00:22:45.108] INFO  [mk3_Xerxes]   Renfry 0x0000A72C
+[00:22:45.108] INFO  [mk3_Xerxes]   Flynn 0x0000A70E
+[00:22:45.108] INFO  [mk3_Xerxes]   Rat 0x0000EBC5
+[00:22:45.108] INFO  [mk3_Xerxes] [0x20] player @(2915,677,0) facing=1
+[00:22:45.108] INFO  [mk3_Xerxes] [0x88] paperdoll 0x0000A71C: "Radcliffe, the alchemist"
+[00:22:45.108] INFO  [mk3_Xerxes] [world] Radcliffe, the alchemist is a alchemist at (2922,672)
+[00:22:45.108] INFO  [mk3_Xerxes] [0x88] paperdoll 0x0000DE47: "Rico, the scribe"
+[00:22:45.108] INFO  [mk3_Xerxes] [world] Rico, the scribe is a scribe at (2920,670)
+[00:22:45.108] INFO  [mk3_Xerxes] [0x88] paperdoll 0x0000A72C: "Renfry, the mage"
+[00:22:45.108] INFO  [mk3_Xerxes] [world] Renfry, the mage is a mage at (2921,669)
+[00:22:45.108] INFO  [mk3_Xerxes] [0x20] player @(2915,677,0) facing=0
+[00:22:45.108] INFO  [mk3_Xerxes] [0x88] paperdoll 0x0000A70E: "Flynn, the mage guildmaster"
+[00:22:45.108] INFO  [mk3_Xerxes] [world] Flynn, the mage guildmaster is a mage at (2917,668)
+[00:22:45.108] INFO  [mk3_Xerxes] [0x21] stale reject seq=28 (block already handled); pose resynced
+[00:22:46.897] INFO  [mk3_Xerxes] [chat ascii] System: Zarthal has departed from Minoc.
+[00:22:47.641] INFO  [mk3_Xerxes] [travel] mobile 0x0000A72C -> (2921,669) r=1 from (2915,677)
+[00:22:47.641] LOG   [mk3_Xerxes] event travel_start: label='mobile 0x0000A72C' target=(2921,669) radius=1 from=(2915,677)
+[00:22:47.641] INFO  [mk3_Xerxes] [travel] mode walk             usable   <- chosen
+[00:22:47.641] INFO  [mk3_Xerxes] [travel] mode moongate         usable
+[00:22:47.641] INFO  [mk3_Xerxes] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:47.641] INFO  [mk3_Xerxes] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:47.641] LOG   [mk3_Xerxes] event travel_mode: walk
+[00:22:47.641] INFO  [mk3_Xerxes] [travel] plan mobile 0x0000A72C: ok legs=1 ~8 tiles transit=0 nodes=0
+[00:22:47.702] INFO  [mk3_Xerxes] [action] goto finished at (2915,677,0); target (2918,672); stopped short (off by 8 tile(s))
+[00:22:47.702] LOG   [mk3_Xerxes] event goto_done: at=(2915,677) target=(2918,672) arrived=0 off=8
+[00:22:47.702] INFO  [mk3_Xerxes] [action] goto (2921,669) from (2915,677,0)
+[00:22:47.702] LOG   [mk3_Xerxes] event goto_start: target=(2921,669) from=(2915,677)
+[00:22:47.702] INFO  [mk3_Xerxes] [bot] running from (2915,677,0) to (2921,669,z0)
+[00:22:47.702] INFO  [mk3_Xerxes] [bot] planning path to (2921,669) in background
+[00:22:48.901] INFO  [mk3_Xerxes] [survival] hp 24/24 (100%) -> fight
+[00:22:49.378] INFO  [mk3_Xerxes] [chat ascii] System: World save in 10 seconds
+[00:22:49.623] INFO  [mk3_Xerxes] [action] goto finished at (2915,677,0); target (2921,669); stopped short (off by 14 tile(s))
+[00:22:49.623] LOG   [mk3_Xerxes] event goto_done: at=(2915,677) target=(2921,669) arrived=0 off=14
+[00:22:50.319] INFO  [mk3_Xerxes] [chat ascii] System: Thalia has departed from Moonglow.
+[00:22:50.871] INFO  [mk3_Xerxes] [action] goto (2921,669) from (2915,677,0)
+[00:22:50.871] LOG   [mk3_Xerxes] event goto_start: target=(2921,669) from=(2915,677)
+[00:22:50.871] INFO  [mk3_Xerxes] [bot] running from (2915,677,0) to (2921,669,z0)
+[00:22:50.872] INFO  [mk3_Xerxes] [bot] planning path to (2921,669) in background
+[00:22:53.217] INFO  [mk3_Xerxes] [chat ascii] System: Elvar has departed from Minoc.
+[00:22:53.218] INFO  [mk3_Xerxes] [action] goto finished at (2915,677,0); target (2921,669); stopped short (off by 14 tile(s))
+[00:22:53.218] LOG   [mk3_Xerxes] event goto_done: at=(2915,677) target=(2921,669) arrived=0 off=14
+[00:22:53.934] INFO  [mk3_Xerxes] [survival] hp 24/24 (100%) -> fight
+[00:22:54.427] INFO  [mk3_Xerxes] [travel] mode walk             usable   <- chosen
+[00:22:54.427] INFO  [mk3_Xerxes] [travel] mode moongate         usable
+[00:22:54.427] INFO  [mk3_Xerxes] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:54.427] INFO  [mk3_Xerxes] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:54.427] LOG   [mk3_Xerxes] event travel_mode: walk
+[00:22:54.427] INFO  [mk3_Xerxes] [travel] plan mobile 0x0000A72C: ok legs=1 ~8 tiles transit=0 nodes=0
+[00:22:55.978] INFO  [mk3_Xerxes] [action] goto (2921,669) from (2915,677,0)
+[00:22:55.978] LOG   [mk3_Xerxes] event goto_start: target=(2921,669) from=(2915,677)
+[00:22:55.978] INFO  [mk3_Xerxes] [bot] running from (2915,677,0) to (2921,669,z0)
+[00:22:55.978] INFO  [mk3_Xerxes] [bot] planning path to (2921,669) in background
+[00:22:57.649] INFO  [mk3_Xerxes] [action] goto finished at (2915,677,0); target (2921,669); stopped short (off by 14 tile(s))
+[00:22:57.649] LOG   [mk3_Xerxes] event goto_done: at=(2915,677) target=(2921,669) arrived=0 off=14
+[00:22:57.848] INFO  [mk3_Xerxes] [chat ascii] System: Falen has departed from Minoc.
+[00:22:58.893] INFO  [mk3_Xerxes] [action] goto (2921,669) from (2915,677,0)
+[00:22:58.893] LOG   [mk3_Xerxes] event goto_start: target=(2921,669) from=(2915,677)
+[00:22:58.893] INFO  [mk3_Xerxes] [bot] running from (2915,677,0) to (2921,669,z0)
+[00:22:58.894] INFO  [mk3_Xerxes] [bot] planning path to (2921,669) in background
+[00:22:58.955] INFO  [mk3_Xerxes] [survival] hp 24/24 (100%) -> fight
+[00:22:59.430] INFO  [mk3_Xerxes] [chat ascii] System: World save has been initiated.
+[00:23:01.301] INFO  [mk3_Xerxes] [action] goto finished at (2915,677,0); target (2921,669); stopped short (off by 14 tile(s))
+[00:23:01.301] LOG   [mk3_Xerxes] event goto_done: at=(2915,677) target=(2921,669) arrived=0 off=14
+[00:23:02.547] INFO  [mk3_Xerxes] [travel] mode walk             usable   <- chosen
+[00:23:02.547] INFO  [mk3_Xerxes] [travel] mode moongate         usable
+[00:23:02.547] INFO  [mk3_Xerxes] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:23:02.547] INFO  [mk3_Xerxes] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:23:02.548] LOG   [mk3_Xerxes] event travel_mode: walk
+[00:23:02.548] INFO  [mk3_Xerxes] [travel] plan mobile 0x0000A72C: ok legs=1 ~8 tiles transit=0 nodes=0
+[00:23:03.986] INFO  [mk3_Xerxes] [survival] hp 24/24 (100%) -> fight
+[00:23:05.561] INFO  [mk3_Xerxes] [action] goto (2921,669) from (2915,677,0)
+[00:23:05.561] LOG   [mk3_Xerxes] event goto_start: target=(2921,669) from=(2915,677)
+[00:23:05.561] INFO  [mk3_Xerxes] [bot] running from (2915,677,0) to (2921,669,z0)
+[00:23:05.561] INFO  [mk3_Xerxes] [bot] planning path to (2921,669) in background
+[00:23:05.777] INFO  [mk3_Xerxes] [chat ascii] System: Ghalor has departed from Minoc.
+[00:23:07.627] INFO  [mk3_Xerxes] [chat ascii] System: Cyras has departed from Britain.
+[00:23:07.688] INFO  [mk3_Xerxes] [action] goto finished at (2915,677,0); target (2921,669); stopped short (off by 14 tile(s))
+[00:23:07.688] LOG   [mk3_Xerxes] event goto_done: at=(2915,677) target=(2921,669) arrived=0 off=14
+[00:23:08.904] INFO  [mk3_Xerxes] [action] goto (2921,669) from (2915,677,0)
+[00:23:08.904] LOG   [mk3_Xerxes] event goto_start: target=(2921,669) from=(2915,677)
+[00:23:08.904] INFO  [mk3_Xerxes] [bot] running from (2915,677,0) to (2921,669,z0)
+[00:23:08.904] INFO  [mk3_Xerxes] [bot] planning path to (2921,669) in background
+[00:23:08.966] INFO  [mk3_Xerxes] [bot] replan to (2921,669): 23 steps in 5839.3us
+[00:23:09.043] INFO  [mk3_Xerxes] [survival] hp 24/24 (100%) -> fight
+[00:23:10.033] INFO  [mk3_Xerxes] [chat ascii] System: Kharain has departed from Minoc.
+[00:23:10.234] INFO  [mk3_Xerxes] [bot] lookahead patched around block at step 1: anchor=5 new segment=8 path=22 in 268.0us
+[00:23:12.348] INFO  [mk3_Xerxes] [chat ascii] System: Leander has departed from Moonglow.
+[00:23:13.552] INFO  [mk3_Xerxes] [bot] door ahead at (2924,671,z0); OpenDoor before step
+[00:23:13.567] INFO  [mk3_Xerxes] [chat ascii] System: Opening door...
+[00:23:14.060] INFO  [mk3_Xerxes] [survival] hp 24/24 (100%) -> fight
+[00:23:16.910] INFO  [mk3_Xerxes] [chat ascii] Rico: Don't stand so close.
+[00:23:16.910] INFO  [mk3_Xerxes] [bot] reject at (2921,666): mobile in the way — waiting 500ms, retrying (1) [no blacklist]
+[00:23:16.910] INFO  [mk3_Xerxes] [bot] planning path to (2921,669) in background
+[00:23:18.573] INFO  [mk3_Xerxes] [action] goto finished at (2922,666,0); target (2921,669); stopped short (off by 4 tile(s))
+[00:23:18.573] LOG   [mk3_Xerxes] event goto_done: at=(2922,666) target=(2921,669) arrived=0 off=4
+[00:23:19.064] INFO  [mk3_Xerxes] [survival] hp 24/24 (100%) -> fight
+[00:23:19.649] INFO  [mk3_Xerxes] [chat ascii] Rico: What's thee wantin'?
+[00:23:19.789] INFO  [mk3_Xerxes] [travel] mode walk             usable   <- chosen
+[00:23:19.789] INFO  [mk3_Xerxes] [travel] mode moongate         usable
+[00:23:19.789] INFO  [mk3_Xerxes] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:23:19.789] INFO  [mk3_Xerxes] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:23:19.789] LOG   [mk3_Xerxes] event travel_mode: walk
+[00:23:19.789] INFO  [mk3_Xerxes] [travel] plan mobile 0x0000A72C: ok legs=1 ~3 tiles transit=0 nodes=0
+[00:23:24.072] INFO  [mk3_Xerxes] [survival] hp 24/24 (100%) -> fight
+[00:23:24.321] INFO  [mk3_Xerxes] [action] goto (2921,669) from (2922,666,0)
+[00:23:24.321] LOG   [mk3_Xerxes] event goto_start: target=(2921,669) from=(2922,666)
+[00:23:24.321] INFO  [mk3_Xerxes] [bot] running from (2922,666,0) to (2921,669,z0)
+[00:23:24.321] INFO  [mk3_Xerxes] [bot] planning path to (2921,669) in background
+[00:23:24.383] INFO  [mk3_Xerxes] [bot] replan to (2921,669): 8 steps in 289.6us
+[00:23:25.411] INFO  [life] session_end_requested reason="session time limit reached"
+[00:23:25.736] INFO  [mk3_Xerxes] [chat ascii] System: Elara has departed from Magincia.
+[00:23:26.306] INFO  [mk3_Xerxes] [travel] mobile 0x0000A72C ARRIVED at (2922,670,0)
+[00:23:26.306] LOG   [mk3_Xerxes] event travel_done: label='mobile 0x0000A72C' ok=1 at=(2922,670) legs=1 plans=4 why=''
+[00:23:26.368] INFO  [life] wind-down: arrived somewhere safe at 2922,670
+[00:23:26.384] INFO  [life] session_summary duration=180s goals=0/1 gold=10000->10000 skills=100.0->100.0 logs=+0 kills=0 deaths=0 places=1 suppliers=0
+[00:23:26.384] INFO  [life] session_goals families=1 picks=1 top=100% varied=0 self_superseded=0 | emergency=1(100%) | GET_TOOL=1(100%)
+[00:23:26.386] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_30.xerxes/state.json
+[00:23:26.386] INFO  [life] logging out
+[00:23:26.386] INFO  [mk3_Xerxes] [action] logout requested
+[00:23:26.386] LOG   [mk3_Xerxes] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[00:23:26.386] INFO  [mk3_Xerxes] [0xD1] logout acknowledged (accepted=1)
+[00:23:26.386] LOG   [mk3_Xerxes] event logout_ack: accepted
+[00:23:26.386] INFO  [mk3_Xerxes] [net] closing connection (logout acknowledged)
+[00:23:26.386] LOG   [mk3_Xerxes] event logout_complete: acked

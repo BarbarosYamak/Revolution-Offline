@@ -1,0 +1,1465 @@
+[00:20:13.032] INFO  session 0: 127.0.0.1:2593 user='RevGen3_26' char=Castor tag='mk3_Castor'
+[00:20:13.034] LOG   [mk3_Castor] event session_start: text log opened
+[00:20:13.034] LOG   [mk3_Castor] event net_connect_begin: connect 127.0.0.1:2593
+[00:20:13.034] INFO  [mk3_Castor] [net] connecting to 127.0.0.1:2593 ...
+[00:20:13.035] LOG   [mk3_Castor] event net_connected: connect 127.0.0.1:2593
+[00:20:13.035] INFO  [mk3_Castor] [net] connected.
+[00:20:13.035] INFO  [mk3_Castor] [seed] sent 0x7F000001 (plaintext)
+[00:20:13.035] LOG   [mk3_Castor] event seed_out: 0x7F000001 hex=7f000001
+[00:20:13.036] INFO  [life] no prior state for revgen3_26.castor: a new Fencer
+[00:20:13.036] INFO  [life] creation request: skill 42 50.0 + Tactics 50.0, stats 32/40/8 = 80
+[00:20:13.036] INFO  [life] needs: reading 'fencer' from the profession catalogue
+[00:20:13.036] INFO  [life] home: Castor lives in Trinsic
+[00:20:13.036] INFO  [life] build plan 'fencer': 600.0 resolved + 100.0 unresolved = 700.0/700.0, stats 100/100/25 = 225
+[00:20:13.036] INFO  [mk3_Castor] [life] autonomous player active for 'Castor' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 3 min)
+[00:20:13.043] INFO  [mk3_Castor] [0xA8] 1 server(s):
+[00:20:13.043] INFO  [mk3_Castor]   [0] MyShard                   1.0.0.127  full=10%  tz=0
+[00:20:13.059] INFO  [mk3_Castor] [0x8C] game server = 127.0.0.1:2593  seed=0xC67A8553
+[00:20:13.059] LOG   [mk3_Castor] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xC67A8553
+[00:20:13.059] INFO  [mk3_Castor] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[00:20:13.059] LOG   [mk3_Castor] event relay_same_socket: no seed re-sent; 0x91 follows
+[00:20:13.059] INFO  [mk3_Castor] [0xB9] server features = 0x0005
+[00:20:13.059] INFO  [mk3_Castor] [0xA9] 5 slot(s) (populated 0):
+[00:20:13.059] INFO  [mk3_Castor]   [0] <empty>
+[00:20:13.059] INFO  [mk3_Castor]   [1] <empty>
+[00:20:13.059] INFO  [mk3_Castor]   [2] <empty>
+[00:20:13.060] INFO  [mk3_Castor]   [3] <empty>
+[00:20:13.060] INFO  [mk3_Castor]   [4] <empty>
+[00:20:13.060] INFO  [mk3_Castor] create: appearance sex=F skin=0x0414 hair=0x203B/0x0469 shirt=0x03D7 pants=0x0083
+[00:20:13.060] INFO  [mk3_Castor] [0x00] starting city index 4
+[00:20:13.060] INFO  [mk3_Castor] [0x00] requested skills 42:50 27:50 48:0
+[00:20:13.060] INFO  [mk3_Castor] [0x00] requested stats STR 32 DEX 40 INT 8
+[00:20:13.060] INFO  [mk3_Castor] [0x00] creating character 'Castor' in slot 0
+[00:20:13.060] LOG   [mk3_Castor] event char_create_sent: Castor
+[00:20:13.077] INFO  [mk3_Castor] [0x1B] serial=0x000182D0 body=0x0191 pos=(1845,2745,0)
+[00:20:13.077] LOG   [mk3_Castor] event login_confirm: serial=0x000182D0 body=0x0191 pos=(1845,2745,0)
+[00:20:13.077] INFO  [mk3_Castor] [0x20] player @(1845,2745,0) facing=3
+[00:20:13.077] INFO  [mk3_Castor] [0x55] login complete — entering world
+[00:20:13.077] LOG   [mk3_Castor] event in_world: 0x55 received
+[00:20:13.077] INFO  [mk3_Castor] [backpack] opening 0x400182CE
+[00:20:13.077] INFO  [mk3_Castor] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[00:20:13.077] INFO  [mk3_Castor] [chat ascii] System: There are 25 other players here.
+[00:20:13.077] INFO  [mk3_Castor] [chat ascii] System: You are under the protection of the town guards
+[00:20:13.082] INFO  [mk3_Castor] [action] requesting the skill list
+[00:20:13.082] INFO  [life] in world; asked the server for the skill list
+[00:20:13.089] INFO  [mk3_Castor] [0x24] open container 0x400182CE gump=60
+[00:20:13.089] INFO  [mk3_Castor] [0x3C] container contents: 6 item(s)
+[00:20:13.089] LOG   [mk3_Castor] event backpack_contents: serial=0x400182CE items=6
+[00:20:15.692] INFO  [mk3_Castor] [bot] world data loaded (0 blacklisted spot(s)).
+[00:20:15.692] INFO  [life] reconciliation: first ever login, 7 field(s) differed
+[00:20:15.692] INFO  [life]   gold         persisted=0          server=10000      -> server value accepted
+[00:20:15.692] INFO  [life]   str          persisted=0          server=32         -> server value accepted
+[00:20:15.692] INFO  [life]   dex          persisted=0          server=40         -> server value accepted
+[00:20:15.692] INFO  [life]   int          persisted=0          server=8          -> server value accepted
+[00:20:15.692] INFO  [life]   skill_42     persisted=0.0        server=50.0       -> server value accepted
+[00:20:15.692] INFO  [life]   skill_27     persisted=0.0        server=50.0       -> server value accepted
+[00:20:15.692] INFO  [life]   skill_1      persisted=0.0        server=0.0        -> server value accepted
+[00:20:15.692] INFO  [life]   skill_17     persisted=0.0        server=0.0        -> server value accepted
+[00:20:15.692] INFO  [life]   skill_30     persisted=0.0        server=0.0        -> server value accepted
+[00:20:15.692] INFO  [life]   skill_5      persisted=0.0        server=0.0        -> server value accepted
+[00:20:15.692] INFO  [life]   position     persisted=0,0        server=1845,2745  -> server value accepted
+[00:20:15.692] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[00:20:15.692] INFO  [mk3_Castor] [survival] on
+[00:20:15.692] LOG   [mk3_Castor] event survival_mode: on
+[00:20:15.694] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_26.castor/state.json
+[00:20:15.694] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:20:15.747] INFO  [life] goal=BANK reason="no goal was running"
+[00:20:15.747] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedMakeBandages(bandages BLOCKED 0.70) NeedSkillTraining(Anatomy 0.55) NeedEquipment(heal potions 0.50) NeedEquipment(bandages 0.50) NeedTraining(skill 42 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedTraining(skill 5 0.45) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=Anatomy (target 100.0)
+[00:20:15.747] INFO  [life]   score=150.0
+[00:20:15.747] INFO  [life]   reason: NeedBank urgency 0.75 x 240 = 180.0
+[00:20:15.747] INFO  [life]   reason: on_hand=10000 (total 10000) reserve=350 carry=850 spare=9150 risk=1.00
+[00:20:15.747] INFO  [life]   reason: no bank learned yet -30
+[00:20:15.747] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 10000 (buyable at 200))
+[00:20:15.747] INFO  [mk3_Castor] [action] scanning nearby mobiles for names
+[00:20:15.747] INFO  [mk3_Castor] [action] requested 2 paperdoll(s) for trade titles
+[00:20:15.747] INFO  [life] bank: asking who is standing in the bank
+[00:20:15.763] INFO  [mk3_Castor] [mobiles] nearby (3):
+[00:20:15.763] INFO  [mk3_Castor]   Hector 0x00018452
+[00:20:15.763] INFO  [mk3_Castor]   Neona 0x0000FB39
+[00:20:15.763] INFO  [mk3_Castor]   Anson 0x0000FB7D
+[00:20:15.763] INFO  [mk3_Castor] [0x20] player @(1845,2745,0) facing=0
+[00:20:15.763] INFO  [mk3_Castor] [0x88] paperdoll 0x0000FB39: "Neona, the innkeeper"
+[00:20:15.763] INFO  [mk3_Castor] [world] Neona, the innkeeper is a innkeeper at (1848,2733)
+[00:20:15.763] INFO  [mk3_Castor] [0x88] paperdoll 0x00018452: "Hector, Apprentice Fencer"
+[00:20:16.106] INFO  [mk3_Castor] [chat ascii] System: Faustus has arrived in Britain.
+[00:20:17.752] INFO  [life] bank: no banker in sight
+[00:20:17.752] INFO  [life] goal_failed=BANK status=retryable_failure reason="no banker in sight"
+[00:20:17.814] INFO  [life] goal=REPLACE_EQUIPMENT reason="previous goal abandoned: no banker answered"
+[00:20:17.814] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedMakeBandages(bandages BLOCKED 0.70) NeedSkillTraining(Anatomy 0.55) NeedEquipment(heal potions 0.50) NeedEquipment(bandages 0.50) NeedTraining(skill 42 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedTraining(skill 5 0.45) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=Anatomy (target 100.0)
+[00:20:17.814] INFO  [life]   score=130.0
+[00:20:17.814] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:20:17.814] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:20:17.814] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 299s after achieving nothing
+[00:20:17.814] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 10000 (buyable at 200))
+[00:20:19.162] INFO  [mk3_Castor] [chat ascii] System: Titus has arrived in Skara Brae.
+[00:20:20.744] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:20:22.310] INFO  [mk3_Castor] [chat ascii] System: Rhea has arrived in Britain.
+[00:20:22.771] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:20:22.771] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:20:22.775] INFO  [mk3_Castor] [travel] place: skipping Britain healer -- 1512 tiles and 0 gates for a service Trinsic Healer healer offers
+[00:20:22.775] INFO  [mk3_Castor] [travel] place: skipping Cove healer -- 2008 tiles and 1 gate for a service Trinsic Healer healer offers
+[00:20:22.775] INFO  [mk3_Castor] [travel] place: skipping Deep Forest Healing healer -- 1624 tiles and 1 gate for a service Trinsic Healer healer offers
+[00:20:22.775] INFO  [mk3_Castor] [travel] place: skipping Yew healer -- 1576 tiles and 1 gate for a service Trinsic Healer healer offers
+[00:20:22.775] INFO  [mk3_Castor] [travel] Trinsic Healer healer -> (1911,2805) r=5 from (1845,2745)
+[00:20:22.775] LOG   [mk3_Castor] event travel_start: label='Trinsic Healer healer' target=(1911,2805) radius=5 from=(1845,2745)
+[00:20:22.775] INFO  [life] bandages: walking to a 'healer' (trip 1)
+[00:20:22.775] INFO  [mk3_Castor] [travel] mode moongate         usable   <- chosen
+[00:20:22.775] INFO  [mk3_Castor] [travel] mode walk             usable
+[00:20:22.775] INFO  [mk3_Castor] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:22.775] INFO  [mk3_Castor] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:22.775] LOG   [mk3_Castor] event travel_mode: moongate
+[00:20:22.775] INFO  [mk3_Castor] [travel] plan Trinsic Healer healer: ok legs=4 ~136 tiles transit=0 nodes=33
+[00:20:22.776] INFO  [mk3_Castor] [action] goto (1864,2776) from (1845,2745,0)
+[00:20:22.776] LOG   [mk3_Castor] event goto_start: target=(1864,2776) from=(1845,2745)
+[00:20:22.776] INFO  [mk3_Castor] [bot] running from (1845,2745,0) to (1864,2776)
+[00:20:22.776] INFO  [mk3_Castor] [bot] planning path to (1864,2776) in background
+[00:20:22.833] INFO  [mk3_Castor] [bot] replan to (1864,2776): 44 steps in 5149.5us
+[00:20:25.377] INFO  [mk3_Castor] [chat ascii] System: Xerxes has arrived in Vesper.
+[00:20:25.756] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:20:30.764] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:20:34.337] INFO  [mk3_Castor] [bot] arrived at (1864,2776,0)
+[00:20:34.337] INFO  [mk3_Castor] [action] goto finished at (1864,2776,0); target (1864,2776); ARRIVED (off by 0 tile(s))
+[00:20:34.337] LOG   [mk3_Castor] event goto_done: at=(1864,2776) target=(1864,2776) arrived=1 off=0
+[00:20:34.337] INFO  [mk3_Castor] [action] goto (1864,2808) from (1864,2776,0)
+[00:20:34.337] LOG   [mk3_Castor] event goto_start: target=(1864,2808) from=(1864,2776)
+[00:20:34.337] INFO  [mk3_Castor] [bot] running from (1864,2776,0) to (1864,2808)
+[00:20:34.337] INFO  [mk3_Castor] [bot] planning path to (1864,2808) in background
+[00:20:34.398] INFO  [mk3_Castor] [bot] replan to (1864,2808): 32 steps in 1111.0us
+[00:20:35.804] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:20:40.828] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:20:42.857] INFO  [mk3_Castor] [bot] arrived at (1864,2808,0)
+[00:20:42.857] INFO  [mk3_Castor] [action] goto finished at (1864,2808,0); target (1864,2808); ARRIVED (off by 0 tile(s))
+[00:20:42.857] LOG   [mk3_Castor] event goto_done: at=(1864,2808) target=(1864,2808) arrived=1 off=0
+[00:20:42.857] INFO  [mk3_Castor] [action] goto (1896,2824) from (1864,2808,0)
+[00:20:42.857] LOG   [mk3_Castor] event goto_start: target=(1896,2824) from=(1864,2808)
+[00:20:42.857] INFO  [mk3_Castor] [bot] running from (1864,2808,0) to (1896,2824)
+[00:20:42.857] INFO  [mk3_Castor] [bot] planning path to (1896,2824) in background
+[00:20:42.919] INFO  [mk3_Castor] [bot] replan to (1896,2824): 32 steps in 9497.7us
+[00:20:45.878] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:20:50.920] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:20:52.530] INFO  [mk3_Castor] [bot] arrived at (1896,2824,6)
+[00:20:52.530] INFO  [mk3_Castor] [action] goto finished at (1896,2824,6); target (1896,2824); ARRIVED (off by 0 tile(s))
+[00:20:52.530] LOG   [mk3_Castor] event goto_done: at=(1896,2824) target=(1896,2824) arrived=1 off=0
+[00:20:52.530] INFO  [mk3_Castor] [action] goto (1911,2805) from (1896,2824,6)
+[00:20:52.530] LOG   [mk3_Castor] event goto_start: target=(1911,2805) from=(1896,2824)
+[00:20:52.530] INFO  [mk3_Castor] [bot] running from (1896,2824,6) to (1911,2805,z0)
+[00:20:52.530] INFO  [mk3_Castor] [bot] planning path to (1911,2805) in background
+[00:20:52.591] INFO  [mk3_Castor] [bot] replan to (1911,2805): 27 steps in 7618.9us
+[00:20:55.961] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:20:58.022] INFO  [mk3_Castor] [bot] door ahead at (1914,2813,z0); OpenDoor before step
+[00:20:58.022] INFO  [mk3_Castor] [chat ascii] System: Opening door...
+[00:20:58.757] INFO  [mk3_Castor] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=9 in 106.4us
+[00:20:59.247] INFO  [mk3_Castor] [bot] door ahead at (1915,2812,z0); OpenDoor before step
+[00:20:59.262] INFO  [mk3_Castor] [chat ascii] System: Opening door...
+[00:21:00.971] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:21:01.246] INFO  [mk3_Castor] [travel] Trinsic Healer healer ARRIVED at (1914,2809,0)
+[00:21:01.246] LOG   [mk3_Castor] event travel_done: label='Trinsic Healer healer' ok=1 at=(1914,2809) legs=4 plans=1 why=''
+[00:21:01.308] INFO  [mk3_Castor] [action] scanning nearby mobiles for names
+[00:21:01.308] INFO  [mk3_Castor] [action] requested 2 paperdoll(s) for trade titles
+[00:21:01.308] INFO  [life] bandages: at the shop, asking who is here (scan 1 of 3)
+[00:21:01.323] INFO  [mk3_Castor] [mobiles] nearby (4):
+[00:21:01.323] INFO  [mk3_Castor]   Hector 0x00018452
+[00:21:01.323] INFO  [mk3_Castor]   Devin 0x0000F7B0
+[00:21:01.323] INFO  [mk3_Castor]   Ryanne 0x0000F775
+[00:21:01.323] INFO  [mk3_Castor]   Burr 0x0000F7ED
+[00:21:01.323] INFO  [mk3_Castor] [0x88] paperdoll 0x0000F7B0: "Devin, the healer"
+[00:21:01.323] INFO  [mk3_Castor] [world] Devin, the healer is a healer at (1912,2803)
+[00:21:01.323] INFO  [mk3_Castor] [0x88] paperdoll 0x0000F775: "Ryanne, the healer guildmistress"
+[00:21:01.323] INFO  [mk3_Castor] [world] Ryanne, the healer guildmistress is a healer at (1912,2802)
+[00:21:02.478] INFO  [mk3_Castor] [bot] arrived at (1911,2805,0)
+[00:21:04.316] INFO  [life] bandages: found a 'healer'
+[00:21:04.376] INFO  [life] bandages: within reach
+[00:21:04.437] INFO  [mk3_Castor] [ACTION] vendor_buy start
+[00:21:04.438] INFO  [mk3_Castor] [VENDOR] open vendor=0x0000F7B0 say='Devin buy'
+[00:21:04.438] INFO  [life] bandages: asking the 'healer' to show clean bandages (attempt 1)
+[00:21:04.454] INFO  [mk3_Castor] [chat uni  ] : Devin buy
+[00:21:04.454] INFO  [mk3_Castor] [chat ascii] Devin: Yes?
+[00:21:04.454] INFO  [mk3_Castor] [chat ascii] Devin: I would gladly sell to thee of my many wares.
+[00:21:04.454] INFO  [mk3_Castor] [0x3C] container contents: 5 item(s)
+[00:21:04.454] INFO  [mk3_Castor] [0x74] pairing: straight (straight 5, mirrored 1 of 5 rows)
+[00:21:04.454] INFO  [mk3_Castor] [0x74] vendor shop data: cont=0x4000F7AA 5 item(s), layer=0x1A
+[00:21:04.455] INFO  [mk3_Castor] [0x74]   clean bandages               gfx=0x0E21 qty=10   price=1
+[00:21:04.455] INFO  [mk3_Castor] [0x74]   Heal                         gfx=0x0F0C qty=8    price=30
+[00:21:04.455] INFO  [mk3_Castor] [0x74]   Ginseng                      gfx=0x0F85 qty=21   price=3
+[00:21:04.455] INFO  [mk3_Castor] [0x74]   Garlic                       gfx=0x0F84 qty=21   price=3
+[00:21:04.455] INFO  [mk3_Castor] [0x74]   Refresh                      gfx=0x0F0B qty=27   price=16
+[00:21:04.455] INFO  [mk3_Castor] [0x3C] container contents: 0 item(s)
+[00:21:04.455] INFO  [mk3_Castor] [0x74] vendor shop data: cont=0x400132C3 0 item(s), layer=0x1B
+[00:21:04.455] INFO  [mk3_Castor] [VENDOR] offer from 0x0000F7B0: 5 item(s)
+[00:21:04.455] INFO  [mk3_Castor] [VENDOR]   0x4000C341 clean bandages         x10  1 gp
+[00:21:04.455] INFO  [mk3_Castor] [VENDOR]   0x4000C33E Heal                   x8   30 gp
+[00:21:04.455] INFO  [mk3_Castor] [VENDOR]   0x4000C33D Ginseng                x21  3 gp
+[00:21:04.455] INFO  [mk3_Castor] [VENDOR]   0x4000C33B Garlic                 x21  3 gp
+[00:21:04.455] INFO  [mk3_Castor] [VENDOR]   0x4000C33A Refresh                x27  16 gp
+[00:21:04.455] LOG   [mk3_Castor] event vendor_offer: vendor=0x0000F7B0 items=5
+[00:21:04.455] INFO  [mk3_Castor] [ACTION_RESULT] vendor_buy success (17ms) vendor offer received
+[00:21:04.455] LOG   [mk3_Castor] event action_result: vendor_buy success took=17ms vendor offer received
+[00:21:04.455] INFO  [mk3_Castor] [0x24] vendor buy gump for 0x0000F7B0
+[00:21:04.455] INFO  [life] bandages: the shop is open
+[00:21:04.515] INFO  [mk3_Castor] [ACTION] vendor_buy start
+[00:21:04.515] INFO  [mk3_Castor] [policy] allowed NPC purchase of i_bandage (0x0E21): basic healing: a life with no Healing skill has no other way to treat itself, and the shard's own healer sells it [BASIC_HEALING]
+[00:21:04.515] INFO  [mk3_Castor] [VENDOR] buy item=0x4000C341 qty=10 from vendor=0x0000F7B0 gold=10000
+[00:21:04.515] INFO  [life] bandages: buying 10 clean bandages at 1 each from the 'healer' (shelf holds 10) -- waiting for the pack
+[00:21:04.531] INFO  [mk3_Castor] [ACTION_RESULT] vendor_buy success (17ms) purchased item delivered
+[00:21:04.531] LOG   [mk3_Castor] event action_result: vendor_buy success took=17ms purchased item delivered
+[00:21:04.532] INFO  [mk3_Castor] [chat ascii] Devin: Here you are, Castor That will be 10 gold coins.  I thank thee for thy business.
+[00:21:04.532] INFO  [mk3_Castor] [0x3B] vendor transaction closed: vendor=0x0000F7B0 flag=0
+[00:21:04.532] INFO  [life] bandages: 10 clean bandages in the pack, 0 gold gone -- the goods arrived; the purse did not move -- bank paid
+[00:21:04.592] INFO  [life] bandages: found a 'healer'
+[00:21:04.592] INFO  [life] bandages: within reach
+[00:21:04.654] INFO  [mk3_Castor] [ACTION] vendor_buy start
+[00:21:04.654] INFO  [mk3_Castor] [VENDOR] open vendor=0x0000F7B0 say='Devin buy'
+[00:21:04.655] INFO  [life] bandages: asking the 'healer' to show clean bandages (attempt 1)
+[00:21:04.655] INFO  [mk3_Castor] [chat uni  ] : Devin buy
+[00:21:04.655] INFO  [mk3_Castor] [chat ascii] Devin: My shop sells many things.
+[00:21:04.655] INFO  [mk3_Castor] [0x3C] container contents: 4 item(s)
+[00:21:04.655] INFO  [mk3_Castor] [0x74] pairing: straight (straight 4, mirrored 0 of 4 rows)
+[00:21:04.656] INFO  [mk3_Castor] [0x74] vendor shop data: cont=0x4000F7AA 4 item(s), layer=0x1A
+[00:21:04.656] INFO  [mk3_Castor] [0x74]   Heal                         gfx=0x0F0C qty=8    price=30
+[00:21:04.656] INFO  [mk3_Castor] [0x74]   Ginseng                      gfx=0x0F85 qty=21   price=3
+[00:21:04.656] INFO  [mk3_Castor] [0x74]   Garlic                       gfx=0x0F84 qty=21   price=3
+[00:21:04.656] INFO  [mk3_Castor] [0x74]   Refresh                      gfx=0x0F0B qty=27   price=16
+[00:21:04.656] INFO  [mk3_Castor] [0x3C] container contents: 0 item(s)
+[00:21:04.656] INFO  [mk3_Castor] [0x74] vendor shop data: cont=0x400132C3 0 item(s), layer=0x1B
+[00:21:04.656] INFO  [mk3_Castor] [VENDOR] offer from 0x0000F7B0: 4 item(s)
+[00:21:04.656] INFO  [mk3_Castor] [VENDOR]   0x4000C33E Heal                   x8   30 gp
+[00:21:04.656] INFO  [mk3_Castor] [VENDOR]   0x4000C33D Ginseng                x21  3 gp
+[00:21:04.656] INFO  [mk3_Castor] [VENDOR]   0x4000C33B Garlic                 x21  3 gp
+[00:21:04.656] INFO  [mk3_Castor] [VENDOR]   0x4000C33A Refresh                x27  16 gp
+[00:21:04.656] LOG   [mk3_Castor] event vendor_offer: vendor=0x0000F7B0 items=4
+[00:21:04.656] INFO  [mk3_Castor] [ACTION_RESULT] vendor_buy success (1ms) vendor offer received
+[00:21:04.656] LOG   [mk3_Castor] event action_result: vendor_buy success took=1ms vendor offer received
+[00:21:04.656] INFO  [mk3_Castor] [0x24] vendor buy gump for 0x0000F7B0
+[00:21:04.656] INFO  [life] bandages: the shop is open
+[00:21:04.716] INFO  [life] bandages: this 'healer' does not stock clean bandages
+[00:21:04.716] INFO  [life] goal_failed=REPLACE_EQUIPMENT status=failed reason="this 'healer' does not stock clean bandages"
+[00:21:04.716] INFO  [life] handoff=REPLACE_EQUIPMENT->MAKE_BANDAGES reason="no bandages bought"
+[00:21:04.776] INFO  [life] goal=GET_FOOD reason="previous goal abandoned: no bandages bought"
+[00:21:04.777] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSkillTraining(Anatomy 0.55) NeedEquipment(heal potions 0.50) NeedTraining(skill 42 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedTraining(skill 5 0.45) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=Anatomy (target 100.0)
+[00:21:04.777] INFO  [life]   score=62.5
+[00:21:04.777] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[00:21:04.777] INFO  [life]   reason: food=0
+[00:21:04.777] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 239s after achieving nothing
+[00:21:04.777] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 252s after achieving nothing
+[00:21:06.001] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:21:06.774] INFO  [mk3_Castor] [travel] place: skipping Britain baker -- 1552 tiles and 0 gates for a service Baked Delights baker offers
+[00:21:06.774] INFO  [mk3_Castor] [travel] place: skipping Yew baker -- 1632 tiles and 1 gate for a service Baked Delights baker offers
+[00:21:06.774] INFO  [mk3_Castor] [travel] Baked Delights baker -> (1880,2802) r=5 from (1911,2805)
+[00:21:06.774] LOG   [mk3_Castor] event travel_start: label='Baked Delights baker' target=(1880,2802) radius=5 from=(1911,2805)
+[00:21:06.774] INFO  [life] food: walking to a 'baker' (trip 1)
+[00:21:06.774] INFO  [mk3_Castor] [travel] mode walk             usable   <- chosen
+[00:21:06.774] INFO  [mk3_Castor] [travel] mode moongate         usable
+[00:21:06.774] INFO  [mk3_Castor] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:06.774] INFO  [mk3_Castor] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:06.774] LOG   [mk3_Castor] event travel_mode: walk
+[00:21:06.774] INFO  [mk3_Castor] [travel] plan Baked Delights baker: ok legs=1 ~31 tiles transit=0 nodes=0
+[00:21:06.826] INFO  [mk3_Castor] [action] goto finished at (1911,2805,0); target (1911,2805); ARRIVED (off by 0 tile(s))
+[00:21:06.826] LOG   [mk3_Castor] event goto_done: at=(1911,2805) target=(1911,2805) arrived=1 off=0
+[00:21:06.826] INFO  [mk3_Castor] [action] goto (1880,2802) from (1911,2805,0)
+[00:21:06.826] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1911,2805)
+[00:21:06.826] INFO  [mk3_Castor] [bot] running from (1911,2805,0) to (1880,2802,z0)
+[00:21:06.826] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:21:06.948] INFO  [mk3_Castor] [action] goto finished at (1911,2805,0); target (1880,2802); stopped short (off by 34 tile(s))
+[00:21:06.948] LOG   [mk3_Castor] event goto_done: at=(1911,2805) target=(1880,2802) arrived=0 off=34
+[00:21:08.173] INFO  [mk3_Castor] [action] goto (1880,2802) from (1911,2805,0)
+[00:21:08.173] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1911,2805)
+[00:21:08.173] INFO  [mk3_Castor] [bot] running from (1911,2805,0) to (1880,2802,z0)
+[00:21:08.174] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:21:08.235] INFO  [mk3_Castor] [action] goto finished at (1911,2805,0); target (1880,2802); stopped short (off by 34 tile(s))
+[00:21:08.235] LOG   [mk3_Castor] event goto_done: at=(1911,2805) target=(1880,2802) arrived=0 off=34
+[00:21:09.449] INFO  [mk3_Castor] [action] goto (1880,2802) from (1911,2805,0)
+[00:21:09.449] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1911,2805)
+[00:21:09.449] INFO  [mk3_Castor] [bot] running from (1911,2805,0) to (1880,2802,z0)
+[00:21:09.449] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:21:09.572] INFO  [mk3_Castor] [action] goto finished at (1911,2805,0); target (1880,2802); stopped short (off by 34 tile(s))
+[00:21:09.572] LOG   [mk3_Castor] event goto_done: at=(1911,2805) target=(1880,2802) arrived=0 off=34
+[00:21:10.801] INFO  [mk3_Castor] [travel] mode walk             usable   <- chosen
+[00:21:10.801] INFO  [mk3_Castor] [travel] mode moongate         usable
+[00:21:10.801] INFO  [mk3_Castor] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:10.801] INFO  [mk3_Castor] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:10.801] LOG   [mk3_Castor] event travel_mode: walk
+[00:21:10.801] INFO  [mk3_Castor] [travel] plan Baked Delights baker: ok legs=1 ~31 tiles transit=0 nodes=0
+[00:21:11.047] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:21:11.193] INFO  [mk3_Castor] [chat ascii] System: Observer has arrived in Minoc.
+[00:21:12.355] INFO  [mk3_Castor] [action] goto (1880,2802) from (1911,2805,0)
+[00:21:12.355] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1911,2805)
+[00:21:12.355] INFO  [mk3_Castor] [bot] running from (1911,2805,0) to (1880,2802,z0)
+[00:21:12.355] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:21:12.416] INFO  [mk3_Castor] [action] goto finished at (1911,2805,0); target (1880,2802); stopped short (off by 34 tile(s))
+[00:21:12.416] LOG   [mk3_Castor] event goto_done: at=(1911,2805) target=(1880,2802) arrived=0 off=34
+[00:21:13.662] INFO  [mk3_Castor] [action] goto (1880,2802) from (1911,2805,0)
+[00:21:13.662] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1911,2805)
+[00:21:13.662] INFO  [mk3_Castor] [bot] running from (1911,2805,0) to (1880,2802,z0)
+[00:21:13.662] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:21:13.785] INFO  [mk3_Castor] [action] goto finished at (1911,2805,0); target (1880,2802); stopped short (off by 34 tile(s))
+[00:21:13.785] LOG   [mk3_Castor] event goto_done: at=(1911,2805) target=(1880,2802) arrived=0 off=34
+[00:21:14.571] INFO  [mk3_Castor] [chat ascii] System: Observer has departed from Minoc.
+[00:21:15.001] INFO  [mk3_Castor] [action] goto (1880,2802) from (1911,2805,0)
+[00:21:15.001] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1911,2805)
+[00:21:15.001] INFO  [mk3_Castor] [bot] running from (1911,2805,0) to (1880,2802,z0)
+[00:21:15.001] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:21:15.062] INFO  [mk3_Castor] [action] goto finished at (1911,2805,0); target (1880,2802); stopped short (off by 34 tile(s))
+[00:21:15.062] LOG   [mk3_Castor] event goto_done: at=(1911,2805) target=(1880,2802) arrived=0 off=34
+[00:21:15.738] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_26.castor/state.json
+[00:21:16.108] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:21:16.292] INFO  [mk3_Castor] [travel] mode walk             usable   <- chosen
+[00:21:16.292] INFO  [mk3_Castor] [travel] mode moongate         usable
+[00:21:16.292] INFO  [mk3_Castor] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:16.292] INFO  [mk3_Castor] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:16.292] LOG   [mk3_Castor] event travel_mode: walk
+[00:21:16.292] INFO  [mk3_Castor] [travel] plan Baked Delights baker: ok legs=1 ~31 tiles transit=0 nodes=0
+[00:21:19.294] INFO  [mk3_Castor] [action] goto (1880,2802) from (1911,2805,0)
+[00:21:19.294] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1911,2805)
+[00:21:19.294] INFO  [mk3_Castor] [bot] running from (1911,2805,0) to (1880,2802,z0)
+[00:21:19.294] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:21:19.355] INFO  [mk3_Castor] [action] goto finished at (1911,2805,0); target (1880,2802); stopped short (off by 34 tile(s))
+[00:21:19.355] LOG   [mk3_Castor] event goto_done: at=(1911,2805) target=(1880,2802) arrived=0 off=34
+[00:21:20.614] INFO  [mk3_Castor] [action] goto (1880,2802) from (1911,2805,0)
+[00:21:20.614] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1911,2805)
+[00:21:20.614] INFO  [mk3_Castor] [bot] running from (1911,2805,0) to (1880,2802,z0)
+[00:21:20.614] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:21:20.675] INFO  [mk3_Castor] [action] goto finished at (1911,2805,0); target (1880,2802); stopped short (off by 34 tile(s))
+[00:21:20.675] LOG   [mk3_Castor] event goto_done: at=(1911,2805) target=(1880,2802) arrived=0 off=34
+[00:21:21.168] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:21:21.905] INFO  [mk3_Castor] [action] goto (1880,2802) from (1911,2805,0)
+[00:21:21.905] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1911,2805)
+[00:21:21.905] INFO  [mk3_Castor] [bot] running from (1911,2805,0) to (1880,2802,z0)
+[00:21:21.905] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:21:21.965] INFO  [mk3_Castor] [action] goto finished at (1911,2805,0); target (1880,2802); stopped short (off by 34 tile(s))
+[00:21:21.965] LOG   [mk3_Castor] event goto_done: at=(1911,2805) target=(1880,2802) arrived=0 off=34
+[00:21:23.197] INFO  [mk3_Castor] [travel] mode walk             usable   <- chosen
+[00:21:23.197] INFO  [mk3_Castor] [travel] mode moongate         usable
+[00:21:23.197] INFO  [mk3_Castor] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:23.197] INFO  [mk3_Castor] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:23.197] LOG   [mk3_Castor] event travel_mode: walk
+[00:21:23.197] INFO  [mk3_Castor] [travel] plan Baked Delights baker: ok legs=1 ~31 tiles transit=0 nodes=0
+[00:21:26.212] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:21:27.717] INFO  [mk3_Castor] [action] goto (1880,2802) from (1911,2805,0)
+[00:21:27.717] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1911,2805)
+[00:21:27.717] INFO  [mk3_Castor] [bot] running from (1911,2805,0) to (1880,2802,z0)
+[00:21:27.717] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:21:27.777] INFO  [mk3_Castor] [action] goto finished at (1911,2805,0); target (1880,2802); stopped short (off by 34 tile(s))
+[00:21:27.777] LOG   [mk3_Castor] event goto_done: at=(1911,2805) target=(1880,2802) arrived=0 off=34
+[00:21:29.005] INFO  [mk3_Castor] [action] goto (1880,2802) from (1911,2805,0)
+[00:21:29.005] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1911,2805)
+[00:21:29.005] INFO  [mk3_Castor] [bot] running from (1911,2805,0) to (1880,2802,z0)
+[00:21:29.005] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:21:29.066] INFO  [mk3_Castor] [action] goto finished at (1911,2805,0); target (1880,2802); stopped short (off by 34 tile(s))
+[00:21:29.066] LOG   [mk3_Castor] event goto_done: at=(1911,2805) target=(1880,2802) arrived=0 off=34
+[00:21:30.284] INFO  [mk3_Castor] [action] goto (1880,2802) from (1911,2805,0)
+[00:21:30.284] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1911,2805)
+[00:21:30.284] INFO  [mk3_Castor] [bot] running from (1911,2805,0) to (1880,2802,z0)
+[00:21:30.284] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:21:30.407] INFO  [mk3_Castor] [action] goto finished at (1911,2805,0); target (1880,2802); stopped short (off by 34 tile(s))
+[00:21:30.407] LOG   [mk3_Castor] event goto_done: at=(1911,2805) target=(1880,2802) arrived=0 off=34
+[00:21:30.407] LOG   [mk3_Castor] event travel_escape: from=(1911,2805,0) to=(1896,2808) attempt=1
+[00:21:30.407] INFO  [mk3_Castor] [action] goto (1896,2808) from (1911,2805,0)
+[00:21:30.407] LOG   [mk3_Castor] event goto_start: target=(1896,2808) from=(1911,2805)
+[00:21:30.407] INFO  [mk3_Castor] [bot] running from (1911,2805,0) to (1896,2808,z0)
+[00:21:30.407] INFO  [mk3_Castor] [bot] planning path to (1896,2808) in background
+[00:21:30.468] INFO  [mk3_Castor] [bot] replan to (1896,2808): 30 steps in 3830.9us
+[00:21:31.222] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:21:33.197] INFO  [mk3_Castor] [bot] door ahead at (1914,2813,z0); OpenDoor before step
+[00:21:33.213] INFO  [mk3_Castor] [chat ascii] System: Opening door...
+[00:21:36.271] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:21:36.656] INFO  [mk3_Castor] [chat uni  ] Hector: Devin buy
+[00:21:36.656] INFO  [mk3_Castor] [chat ascii] Devin: Greetings.  What might I do for thee?
+[00:21:36.656] INFO  [mk3_Castor] [chat ascii] Devin: I would gladly sell to thee of my many wares.
+[00:21:39.040] INFO  [mk3_Castor] [bot] door ahead at (1898,2810,z0); OpenDoor before step
+[00:21:39.041] INFO  [mk3_Castor] [chat ascii] System: Opening door...
+[00:21:41.273] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:21:41.657] INFO  [mk3_Castor] [bot] arrived at (1896,2808,0)
+[00:21:41.657] INFO  [mk3_Castor] [action] goto finished at (1896,2808,0); target (1896,2808); ARRIVED (off by 0 tile(s))
+[00:21:41.657] LOG   [mk3_Castor] event goto_done: at=(1896,2808) target=(1896,2808) arrived=1 off=0
+[00:21:41.657] INFO  [mk3_Castor] [travel] recovery walk reached its anchor at (1896,2808,0) (off 0); attempt 1/3
+[00:21:41.657] LOG   [mk3_Castor] event travel_recovery_done: reached=1 at=(1896,2808,0) off=0 attempt=1
+[00:21:41.718] INFO  [mk3_Castor] [travel] mode walk             usable   <- chosen
+[00:21:41.718] INFO  [mk3_Castor] [travel] mode moongate         usable
+[00:21:41.718] INFO  [mk3_Castor] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:41.718] INFO  [mk3_Castor] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:41.718] LOG   [mk3_Castor] event travel_mode: walk
+[00:21:41.718] INFO  [mk3_Castor] [travel] plan Baked Delights baker: ok legs=1 ~16 tiles transit=0 nodes=0
+[00:21:41.779] INFO  [mk3_Castor] [action] goto (1880,2802) from (1896,2808,0)
+[00:21:41.779] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1896,2808)
+[00:21:41.779] INFO  [mk3_Castor] [bot] running from (1896,2808,0) to (1880,2802,z0)
+[00:21:41.779] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:21:41.903] INFO  [mk3_Castor] [action] goto finished at (1896,2808,0); target (1880,2802); stopped short (off by 22 tile(s))
+[00:21:41.903] LOG   [mk3_Castor] event goto_done: at=(1896,2808) target=(1880,2802) arrived=0 off=22
+[00:21:43.134] INFO  [mk3_Castor] [action] goto (1880,2802) from (1896,2808,0)
+[00:21:43.134] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1896,2808)
+[00:21:43.134] INFO  [mk3_Castor] [bot] running from (1896,2808,0) to (1880,2802,z0)
+[00:21:43.134] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:21:43.256] INFO  [mk3_Castor] [action] goto finished at (1896,2808,0); target (1880,2802); stopped short (off by 22 tile(s))
+[00:21:43.256] LOG   [mk3_Castor] event goto_done: at=(1896,2808) target=(1880,2802) arrived=0 off=22
+[00:21:43.335] INFO  [mk3_Castor] [chat ascii] Raven: Thou wishest to speak with me?
+[00:21:44.488] INFO  [mk3_Castor] [action] goto (1880,2802) from (1896,2808,0)
+[00:21:44.488] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1896,2808)
+[00:21:44.488] INFO  [mk3_Castor] [bot] running from (1896,2808,0) to (1880,2802,z0)
+[00:21:44.488] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:21:44.551] INFO  [mk3_Castor] [action] goto finished at (1896,2808,0); target (1880,2802); stopped short (off by 22 tile(s))
+[00:21:44.551] LOG   [mk3_Castor] event goto_done: at=(1896,2808) target=(1880,2802) arrived=0 off=22
+[00:21:45.762] INFO  [mk3_Castor] [travel] mode walk             usable   <- chosen
+[00:21:45.762] INFO  [mk3_Castor] [travel] mode moongate         usable
+[00:21:45.762] INFO  [mk3_Castor] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:45.762] INFO  [mk3_Castor] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:45.762] LOG   [mk3_Castor] event travel_mode: walk
+[00:21:45.762] INFO  [mk3_Castor] [travel] plan Baked Delights baker: ok legs=1 ~16 tiles transit=0 nodes=0
+[00:21:46.331] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:21:47.301] INFO  [mk3_Castor] [action] goto (1880,2802) from (1896,2808,0)
+[00:21:47.301] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1896,2808)
+[00:21:47.301] INFO  [mk3_Castor] [bot] running from (1896,2808,0) to (1880,2802,z0)
+[00:21:47.301] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:21:47.362] INFO  [mk3_Castor] [action] goto finished at (1896,2808,0); target (1880,2802); stopped short (off by 22 tile(s))
+[00:21:47.362] LOG   [mk3_Castor] event goto_done: at=(1896,2808) target=(1880,2802) arrived=0 off=22
+[00:21:48.580] INFO  [mk3_Castor] [action] goto (1880,2802) from (1896,2808,0)
+[00:21:48.580] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1896,2808)
+[00:21:48.581] INFO  [mk3_Castor] [bot] running from (1896,2808,0) to (1880,2802,z0)
+[00:21:48.581] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:21:48.703] INFO  [mk3_Castor] [action] goto finished at (1896,2808,0); target (1880,2802); stopped short (off by 22 tile(s))
+[00:21:48.703] LOG   [mk3_Castor] event goto_done: at=(1896,2808) target=(1880,2802) arrived=0 off=22
+[00:21:49.937] INFO  [mk3_Castor] [action] goto (1880,2802) from (1896,2808,0)
+[00:21:49.937] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1896,2808)
+[00:21:49.937] INFO  [mk3_Castor] [bot] running from (1896,2808,0) to (1880,2802,z0)
+[00:21:49.937] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:21:49.997] INFO  [mk3_Castor] [action] goto finished at (1896,2808,0); target (1880,2802); stopped short (off by 22 tile(s))
+[00:21:49.997] LOG   [mk3_Castor] event goto_done: at=(1896,2808) target=(1880,2802) arrived=0 off=22
+[00:21:51.224] INFO  [mk3_Castor] [travel] mode walk             usable   <- chosen
+[00:21:51.224] INFO  [mk3_Castor] [travel] mode moongate         usable
+[00:21:51.224] INFO  [mk3_Castor] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:51.224] INFO  [mk3_Castor] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:51.224] LOG   [mk3_Castor] event travel_mode: walk
+[00:21:51.224] INFO  [mk3_Castor] [travel] plan Baked Delights baker: ok legs=1 ~16 tiles transit=0 nodes=0
+[00:21:51.348] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:21:54.269] INFO  [mk3_Castor] [action] goto (1880,2802) from (1896,2808,0)
+[00:21:54.269] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1896,2808)
+[00:21:54.269] INFO  [mk3_Castor] [bot] running from (1896,2808,0) to (1880,2802,z0)
+[00:21:54.269] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:21:54.330] INFO  [mk3_Castor] [action] goto finished at (1896,2808,0); target (1880,2802); stopped short (off by 22 tile(s))
+[00:21:54.330] LOG   [mk3_Castor] event goto_done: at=(1896,2808) target=(1880,2802) arrived=0 off=22
+[00:21:55.556] INFO  [mk3_Castor] [action] goto (1880,2802) from (1896,2808,0)
+[00:21:55.556] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1896,2808)
+[00:21:55.556] INFO  [mk3_Castor] [bot] running from (1896,2808,0) to (1880,2802,z0)
+[00:21:55.557] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:21:55.678] INFO  [mk3_Castor] [action] goto finished at (1896,2808,0); target (1880,2802); stopped short (off by 22 tile(s))
+[00:21:55.678] LOG   [mk3_Castor] event goto_done: at=(1896,2808) target=(1880,2802) arrived=0 off=22
+[00:21:56.352] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:21:56.887] INFO  [mk3_Castor] [action] goto (1880,2802) from (1896,2808,0)
+[00:21:56.887] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1896,2808)
+[00:21:56.887] INFO  [mk3_Castor] [bot] running from (1896,2808,0) to (1880,2802,z0)
+[00:21:56.887] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:21:56.949] INFO  [mk3_Castor] [action] goto finished at (1896,2808,0); target (1880,2802); stopped short (off by 22 tile(s))
+[00:21:56.949] LOG   [mk3_Castor] event goto_done: at=(1896,2808) target=(1880,2802) arrived=0 off=22
+[00:21:58.180] INFO  [mk3_Castor] [travel] mode walk             usable   <- chosen
+[00:21:58.180] INFO  [mk3_Castor] [travel] mode moongate         usable
+[00:21:58.180] INFO  [mk3_Castor] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:58.180] INFO  [mk3_Castor] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:58.180] LOG   [mk3_Castor] event travel_mode: walk
+[00:21:58.180] INFO  [mk3_Castor] [travel] plan Baked Delights baker: ok legs=1 ~16 tiles transit=0 nodes=0
+[00:21:58.645] INFO  [mk3_Castor] [chat ascii] System: Draver has departed from Minoc.
+[00:22:01.360] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:22:02.706] INFO  [mk3_Castor] [action] goto (1880,2802) from (1896,2808,0)
+[00:22:02.706] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1896,2808)
+[00:22:02.706] INFO  [mk3_Castor] [bot] running from (1896,2808,0) to (1880,2802,z0)
+[00:22:02.706] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:22:02.707] INFO  [mk3_Castor] [action] goto finished at (1896,2808,0); target (1880,2802); stopped short (off by 22 tile(s))
+[00:22:02.707] LOG   [mk3_Castor] event goto_done: at=(1896,2808) target=(1880,2802) arrived=0 off=22
+[00:22:03.958] INFO  [mk3_Castor] [action] goto (1880,2802) from (1896,2808,0)
+[00:22:03.958] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1896,2808)
+[00:22:03.958] INFO  [mk3_Castor] [bot] running from (1896,2808,0) to (1880,2802,z0)
+[00:22:03.958] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:22:04.020] INFO  [mk3_Castor] [action] goto finished at (1896,2808,0); target (1880,2802); stopped short (off by 22 tile(s))
+[00:22:04.020] LOG   [mk3_Castor] event goto_done: at=(1896,2808) target=(1880,2802) arrived=0 off=22
+[00:22:05.252] INFO  [mk3_Castor] [action] goto (1880,2802) from (1896,2808,0)
+[00:22:05.252] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1896,2808)
+[00:22:05.252] INFO  [mk3_Castor] [bot] running from (1896,2808,0) to (1880,2802,z0)
+[00:22:05.252] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:22:05.314] INFO  [mk3_Castor] [action] goto finished at (1896,2808,0); target (1880,2802); stopped short (off by 22 tile(s))
+[00:22:05.314] LOG   [mk3_Castor] event goto_done: at=(1896,2808) target=(1880,2802) arrived=0 off=22
+[00:22:05.314] LOG   [mk3_Castor] event travel_escape: from=(1896,2808,0) to=(1896,2824) attempt=2
+[00:22:05.314] INFO  [mk3_Castor] [action] goto (1896,2824) from (1896,2808,0)
+[00:22:05.314] LOG   [mk3_Castor] event goto_start: target=(1896,2824) from=(1896,2808)
+[00:22:05.314] INFO  [mk3_Castor] [bot] running from (1896,2808,0) to (1896,2824,z6)
+[00:22:05.314] INFO  [mk3_Castor] [bot] planning path to (1896,2824) in background
+[00:22:05.375] INFO  [mk3_Castor] [bot] replan to (1896,2824): 42 steps in 43189.4us
+[00:22:06.380] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:22:11.417] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:22:15.767] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_26.castor/state.json
+[00:22:16.455] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:22:18.117] INFO  [mk3_Castor] [bot] arrived at (1896,2824,6)
+[00:22:18.117] INFO  [mk3_Castor] [action] goto finished at (1896,2824,6); target (1896,2824); ARRIVED (off by 0 tile(s))
+[00:22:18.117] LOG   [mk3_Castor] event goto_done: at=(1896,2824) target=(1896,2824) arrived=1 off=0
+[00:22:18.117] INFO  [mk3_Castor] [travel] recovery walk reached its anchor at (1896,2824,6) (off 0); attempt 2/3
+[00:22:18.117] LOG   [mk3_Castor] event travel_recovery_done: reached=1 at=(1896,2824,6) off=0 attempt=2
+[00:22:18.178] INFO  [mk3_Castor] [travel] mode walk             usable   <- chosen
+[00:22:18.178] INFO  [mk3_Castor] [travel] mode moongate         usable
+[00:22:18.178] INFO  [mk3_Castor] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:18.178] INFO  [mk3_Castor] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:18.178] LOG   [mk3_Castor] event travel_mode: walk
+[00:22:18.178] INFO  [mk3_Castor] [travel] plan Baked Delights baker: ok legs=1 ~22 tiles transit=0 nodes=0
+[00:22:18.239] INFO  [mk3_Castor] [action] goto (1880,2802) from (1896,2824,6)
+[00:22:18.239] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1896,2824)
+[00:22:18.239] INFO  [mk3_Castor] [bot] running from (1896,2824,6) to (1880,2802,z0)
+[00:22:18.239] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:22:18.362] INFO  [mk3_Castor] [action] goto finished at (1896,2824,6); target (1880,2802); stopped short (off by 38 tile(s))
+[00:22:18.362] LOG   [mk3_Castor] event goto_done: at=(1896,2824) target=(1880,2802) arrived=0 off=38
+[00:22:19.602] INFO  [mk3_Castor] [action] goto (1880,2802) from (1896,2824,6)
+[00:22:19.602] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1896,2824)
+[00:22:19.602] INFO  [mk3_Castor] [bot] running from (1896,2824,6) to (1880,2802,z0)
+[00:22:19.602] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:22:19.726] INFO  [mk3_Castor] [action] goto finished at (1896,2824,6); target (1880,2802); stopped short (off by 38 tile(s))
+[00:22:19.726] LOG   [mk3_Castor] event goto_done: at=(1896,2824) target=(1880,2802) arrived=0 off=38
+[00:22:20.977] INFO  [mk3_Castor] [action] goto (1880,2802) from (1896,2824,6)
+[00:22:20.977] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1896,2824)
+[00:22:20.977] INFO  [mk3_Castor] [bot] running from (1896,2824,6) to (1880,2802,z0)
+[00:22:20.977] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:22:21.038] INFO  [mk3_Castor] [action] goto finished at (1896,2824,6); target (1880,2802); stopped short (off by 38 tile(s))
+[00:22:21.038] LOG   [mk3_Castor] event goto_done: at=(1896,2824) target=(1880,2802) arrived=0 off=38
+[00:22:21.470] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:22:22.270] INFO  [mk3_Castor] [travel] mode walk             usable   <- chosen
+[00:22:22.270] INFO  [mk3_Castor] [travel] mode moongate         usable
+[00:22:22.270] INFO  [mk3_Castor] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:22.270] INFO  [mk3_Castor] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:22.270] LOG   [mk3_Castor] event travel_mode: walk
+[00:22:22.270] INFO  [mk3_Castor] [travel] plan Baked Delights baker: ok legs=1 ~22 tiles transit=0 nodes=0
+[00:22:23.789] INFO  [mk3_Castor] [action] goto (1880,2802) from (1896,2824,6)
+[00:22:23.789] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1896,2824)
+[00:22:23.789] INFO  [mk3_Castor] [bot] running from (1896,2824,6) to (1880,2802,z0)
+[00:22:23.789] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:22:23.851] INFO  [mk3_Castor] [action] goto finished at (1896,2824,6); target (1880,2802); stopped short (off by 38 tile(s))
+[00:22:23.852] LOG   [mk3_Castor] event goto_done: at=(1896,2824) target=(1880,2802) arrived=0 off=38
+[00:22:25.089] INFO  [mk3_Castor] [action] goto (1880,2802) from (1896,2824,6)
+[00:22:25.089] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1896,2824)
+[00:22:25.089] INFO  [mk3_Castor] [bot] running from (1896,2824,6) to (1880,2802,z0)
+[00:22:25.089] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:22:25.213] INFO  [mk3_Castor] [action] goto finished at (1896,2824,6); target (1880,2802); stopped short (off by 38 tile(s))
+[00:22:25.213] LOG   [mk3_Castor] event goto_done: at=(1896,2824) target=(1880,2802) arrived=0 off=38
+[00:22:26.447] INFO  [mk3_Castor] [action] goto (1880,2802) from (1896,2824,6)
+[00:22:26.447] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1896,2824)
+[00:22:26.447] INFO  [mk3_Castor] [bot] running from (1896,2824,6) to (1880,2802,z0)
+[00:22:26.447] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:22:26.508] INFO  [mk3_Castor] [action] goto finished at (1896,2824,6); target (1880,2802); stopped short (off by 38 tile(s))
+[00:22:26.508] LOG   [mk3_Castor] event goto_done: at=(1896,2824) target=(1880,2802) arrived=0 off=38
+[00:22:26.508] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:22:27.737] INFO  [mk3_Castor] [travel] mode walk             usable   <- chosen
+[00:22:27.737] INFO  [mk3_Castor] [travel] mode moongate         usable
+[00:22:27.737] INFO  [mk3_Castor] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:27.737] INFO  [mk3_Castor] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:27.737] LOG   [mk3_Castor] event travel_mode: walk
+[00:22:27.737] INFO  [mk3_Castor] [travel] plan Baked Delights baker: ok legs=1 ~22 tiles transit=0 nodes=0
+[00:22:30.761] INFO  [mk3_Castor] [action] goto (1880,2802) from (1896,2824,6)
+[00:22:30.761] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1896,2824)
+[00:22:30.761] INFO  [mk3_Castor] [bot] running from (1896,2824,6) to (1880,2802,z0)
+[00:22:30.761] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:22:30.884] INFO  [mk3_Castor] [action] goto finished at (1896,2824,6); target (1880,2802); stopped short (off by 38 tile(s))
+[00:22:30.884] LOG   [mk3_Castor] event goto_done: at=(1896,2824) target=(1880,2802) arrived=0 off=38
+[00:22:31.512] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:22:32.128] INFO  [mk3_Castor] [action] goto (1880,2802) from (1896,2824,6)
+[00:22:32.128] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1896,2824)
+[00:22:32.128] INFO  [mk3_Castor] [bot] running from (1896,2824,6) to (1880,2802,z0)
+[00:22:32.128] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:22:32.188] INFO  [mk3_Castor] [action] goto finished at (1896,2824,6); target (1880,2802); stopped short (off by 38 tile(s))
+[00:22:32.188] LOG   [mk3_Castor] event goto_done: at=(1896,2824) target=(1880,2802) arrived=0 off=38
+[00:22:33.392] INFO  [mk3_Castor] [action] goto (1880,2802) from (1896,2824,6)
+[00:22:33.392] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1896,2824)
+[00:22:33.392] INFO  [mk3_Castor] [bot] running from (1896,2824,6) to (1880,2802,z0)
+[00:22:33.392] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:22:33.454] INFO  [mk3_Castor] [action] goto finished at (1896,2824,6); target (1880,2802); stopped short (off by 38 tile(s))
+[00:22:33.454] LOG   [mk3_Castor] event goto_done: at=(1896,2824) target=(1880,2802) arrived=0 off=38
+[00:22:34.669] INFO  [mk3_Castor] [travel] mode walk             usable   <- chosen
+[00:22:34.670] INFO  [mk3_Castor] [travel] mode moongate         usable
+[00:22:34.670] INFO  [mk3_Castor] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:34.670] INFO  [mk3_Castor] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:34.670] LOG   [mk3_Castor] event travel_mode: walk
+[00:22:34.670] INFO  [mk3_Castor] [travel] plan Baked Delights baker: ok legs=1 ~22 tiles transit=0 nodes=0
+[00:22:36.522] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:22:38.419] INFO  [mk3_Castor] [chat ascii] System: Vorar has departed from Britain.
+[00:22:39.195] INFO  [mk3_Castor] [action] goto (1880,2802) from (1896,2824,6)
+[00:22:39.195] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1896,2824)
+[00:22:39.195] INFO  [mk3_Castor] [bot] running from (1896,2824,6) to (1880,2802,z0)
+[00:22:39.195] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:22:39.255] INFO  [mk3_Castor] [action] goto finished at (1896,2824,6); target (1880,2802); stopped short (off by 38 tile(s))
+[00:22:39.255] LOG   [mk3_Castor] event goto_done: at=(1896,2824) target=(1880,2802) arrived=0 off=38
+[00:22:39.440] INFO  [mk3_Castor] [chat ascii] System: Selene has departed from Magincia.
+[00:22:40.483] INFO  [mk3_Castor] [action] goto (1880,2802) from (1896,2824,6)
+[00:22:40.483] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1896,2824)
+[00:22:40.483] INFO  [mk3_Castor] [bot] running from (1896,2824,6) to (1880,2802,z0)
+[00:22:40.483] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:22:40.543] INFO  [mk3_Castor] [action] goto finished at (1896,2824,6); target (1880,2802); stopped short (off by 38 tile(s))
+[00:22:40.543] LOG   [mk3_Castor] event goto_done: at=(1896,2824) target=(1880,2802) arrived=0 off=38
+[00:22:41.532] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:22:41.762] INFO  [mk3_Castor] [action] goto (1880,2802) from (1896,2824,6)
+[00:22:41.762] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1896,2824)
+[00:22:41.762] INFO  [mk3_Castor] [bot] running from (1896,2824,6) to (1880,2802,z0)
+[00:22:41.763] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:22:41.884] INFO  [mk3_Castor] [action] goto finished at (1896,2824,6); target (1880,2802); stopped short (off by 38 tile(s))
+[00:22:41.884] LOG   [mk3_Castor] event goto_done: at=(1896,2824) target=(1880,2802) arrived=0 off=38
+[00:22:41.884] LOG   [mk3_Castor] event travel_escape: from=(1896,2824,6) to=(1880,2808) attempt=3
+[00:22:41.884] INFO  [mk3_Castor] [action] goto (1880,2808) from (1896,2824,6)
+[00:22:41.884] LOG   [mk3_Castor] event goto_start: target=(1880,2808) from=(1896,2824)
+[00:22:41.884] INFO  [mk3_Castor] [bot] running from (1896,2824,6) to (1880,2808,z10)
+[00:22:41.884] INFO  [mk3_Castor] [bot] planning path to (1880,2808) in background
+[00:22:41.945] INFO  [mk3_Castor] [bot] replan to (1880,2808): 22 steps in 2840.7us
+[00:22:45.848] INFO  [mk3_Castor] [bot] door ahead at (1885,2813,z10); OpenDoor before step
+[00:22:45.862] INFO  [mk3_Castor] [chat ascii] System: Opening door...
+[00:22:46.541] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:22:46.897] INFO  [mk3_Castor] [chat ascii] System: Zarthal has departed from Minoc.
+[00:22:48.747] INFO  [mk3_Castor] [travel] Baked Delights baker ARRIVED at (1883,2807,10)
+[00:22:48.747] LOG   [mk3_Castor] event travel_done: label='Baked Delights baker' ok=1 at=(1883,2807) legs=1 plans=4 why=''
+[00:22:48.747] INFO  [mk3_Castor] [action] scanning nearby mobiles for names
+[00:22:48.747] INFO  [mk3_Castor] [action] requested 2 paperdoll(s) for trade titles
+[00:22:48.747] INFO  [life] food: at the shop, asking who is here (scan 1 of 3)
+[00:22:48.762] INFO  [mk3_Castor] [mobiles] nearby (2):
+[00:22:48.762] INFO  [mk3_Castor]   Drina 0x0000F784
+[00:22:48.762] INFO  [mk3_Castor]   Raven 0x0000F76A
+[00:22:48.762] INFO  [mk3_Castor] [0x20] player @(1883,2807,10) facing=2
+[00:22:48.762] INFO  [mk3_Castor] [0x88] paperdoll 0x0000F76A: "Raven, the jeweler"
+[00:22:48.762] INFO  [mk3_Castor] [world] Raven, the jeweler is a jeweler at (1898,2809)
+[00:22:48.762] INFO  [mk3_Castor] [0x20] player @(1883,2807,10) facing=7
+[00:22:48.762] INFO  [mk3_Castor] [0x88] paperdoll 0x0000F784: "Drina, the baker"
+[00:22:48.762] INFO  [mk3_Castor] [world] Drina, the baker is a baker at (1880,2802)
+[00:22:49.378] INFO  [mk3_Castor] [chat ascii] System: World save in 10 seconds
+[00:22:50.319] INFO  [mk3_Castor] [chat ascii] System: Thalia has departed from Moonglow.
+[00:22:51.568] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:22:51.753] INFO  [life] food: found a 'baker'
+[00:22:51.814] INFO  [mk3_Castor] [travel] mobile 0x0000F784 -> (1880,2802) r=1 from (1883,2807)
+[00:22:51.815] LOG   [mk3_Castor] event travel_start: label='mobile 0x0000F784' target=(1880,2802) radius=1 from=(1883,2807)
+[00:22:51.815] INFO  [life] food: the 'baker' is 5 tiles off (dz 10) -- walking into reach (chase 1 of 3)
+[00:22:51.815] INFO  [mk3_Castor] [travel] mode walk             usable   <- chosen
+[00:22:51.815] INFO  [mk3_Castor] [travel] mode moongate         usable
+[00:22:51.815] INFO  [mk3_Castor] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:51.815] INFO  [mk3_Castor] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:51.815] LOG   [mk3_Castor] event travel_mode: walk
+[00:22:51.815] INFO  [mk3_Castor] [travel] plan mobile 0x0000F784: ok legs=1 ~5 tiles transit=0 nodes=0
+[00:22:51.875] INFO  [mk3_Castor] [action] goto finished at (1883,2807,10); target (1880,2808); stopped short (off by 4 tile(s))
+[00:22:51.875] LOG   [mk3_Castor] event goto_done: at=(1883,2807) target=(1880,2808) arrived=0 off=4
+[00:22:51.876] INFO  [mk3_Castor] [action] goto (1880,2802) from (1883,2807,10)
+[00:22:51.876] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1883,2807)
+[00:22:51.876] INFO  [mk3_Castor] [bot] running from (1883,2807,10) to (1880,2802,z0)
+[00:22:51.876] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:22:51.998] INFO  [mk3_Castor] [action] goto finished at (1883,2807,10); target (1880,2802); stopped short (off by 8 tile(s))
+[00:22:51.998] LOG   [mk3_Castor] event goto_done: at=(1883,2807) target=(1880,2802) arrived=0 off=8
+[00:22:53.198] INFO  [mk3_Castor] [action] goto (1880,2802) from (1883,2807,10)
+[00:22:53.199] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1883,2807)
+[00:22:53.199] INFO  [mk3_Castor] [bot] running from (1883,2807,10) to (1880,2802,z0)
+[00:22:53.199] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:22:53.217] INFO  [mk3_Castor] [chat ascii] System: Elvar has departed from Minoc.
+[00:22:53.276] INFO  [mk3_Castor] [action] goto finished at (1883,2807,10); target (1880,2802); stopped short (off by 8 tile(s))
+[00:22:53.276] LOG   [mk3_Castor] event goto_done: at=(1883,2807) target=(1880,2802) arrived=0 off=8
+[00:22:54.535] INFO  [mk3_Castor] [action] goto (1880,2802) from (1883,2807,10)
+[00:22:54.535] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1883,2807)
+[00:22:54.535] INFO  [mk3_Castor] [bot] running from (1883,2807,10) to (1880,2802,z0)
+[00:22:54.536] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:22:54.658] INFO  [mk3_Castor] [action] goto finished at (1883,2807,10); target (1880,2802); stopped short (off by 8 tile(s))
+[00:22:54.658] LOG   [mk3_Castor] event goto_done: at=(1883,2807) target=(1880,2802) arrived=0 off=8
+[00:22:55.885] INFO  [mk3_Castor] [travel] mode walk             usable   <- chosen
+[00:22:55.885] INFO  [mk3_Castor] [travel] mode moongate         usable
+[00:22:55.885] INFO  [mk3_Castor] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:55.885] INFO  [mk3_Castor] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:55.885] LOG   [mk3_Castor] event travel_mode: walk
+[00:22:55.885] INFO  [mk3_Castor] [travel] plan mobile 0x0000F784: ok legs=1 ~5 tiles transit=0 nodes=0
+[00:22:56.594] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:22:57.401] INFO  [mk3_Castor] [action] goto (1880,2802) from (1883,2807,10)
+[00:22:57.401] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1883,2807)
+[00:22:57.401] INFO  [mk3_Castor] [bot] running from (1883,2807,10) to (1880,2802,z0)
+[00:22:57.401] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:22:57.525] INFO  [mk3_Castor] [action] goto finished at (1883,2807,10); target (1880,2802); stopped short (off by 8 tile(s))
+[00:22:57.525] LOG   [mk3_Castor] event goto_done: at=(1883,2807) target=(1880,2802) arrived=0 off=8
+[00:22:57.848] INFO  [mk3_Castor] [chat ascii] System: Falen has departed from Minoc.
+[00:22:58.725] INFO  [mk3_Castor] [action] goto (1880,2802) from (1883,2807,10)
+[00:22:58.725] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1883,2807)
+[00:22:58.725] INFO  [mk3_Castor] [bot] running from (1883,2807,10) to (1880,2802,z0)
+[00:22:58.726] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:22:58.786] INFO  [mk3_Castor] [action] goto finished at (1883,2807,10); target (1880,2802); stopped short (off by 8 tile(s))
+[00:22:58.786] LOG   [mk3_Castor] event goto_done: at=(1883,2807) target=(1880,2802) arrived=0 off=8
+[00:22:59.430] INFO  [mk3_Castor] [chat ascii] System: World save has been initiated.
+[00:22:59.991] INFO  [mk3_Castor] [action] goto (1880,2802) from (1883,2807,10)
+[00:22:59.991] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1883,2807)
+[00:22:59.991] INFO  [mk3_Castor] [bot] running from (1883,2807,10) to (1880,2802,z0)
+[00:22:59.991] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:23:00.051] INFO  [mk3_Castor] [action] goto finished at (1883,2807,10); target (1880,2802); stopped short (off by 8 tile(s))
+[00:23:00.051] LOG   [mk3_Castor] event goto_done: at=(1883,2807) target=(1880,2802) arrived=0 off=8
+[00:23:01.301] INFO  [mk3_Castor] [travel] mode walk             usable   <- chosen
+[00:23:01.301] INFO  [mk3_Castor] [travel] mode moongate         usable
+[00:23:01.301] INFO  [mk3_Castor] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:23:01.301] INFO  [mk3_Castor] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:23:01.301] LOG   [mk3_Castor] event travel_mode: walk
+[00:23:01.301] INFO  [mk3_Castor] [travel] plan mobile 0x0000F784: ok legs=1 ~5 tiles transit=0 nodes=0
+[00:23:01.612] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:23:04.360] INFO  [mk3_Castor] [action] goto (1880,2802) from (1883,2807,10)
+[00:23:04.360] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1883,2807)
+[00:23:04.360] INFO  [mk3_Castor] [bot] running from (1883,2807,10) to (1880,2802,z0)
+[00:23:04.360] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:23:04.484] INFO  [mk3_Castor] [action] goto finished at (1883,2807,10); target (1880,2802); stopped short (off by 8 tile(s))
+[00:23:04.484] LOG   [mk3_Castor] event goto_done: at=(1883,2807) target=(1880,2802) arrived=0 off=8
+[00:23:05.715] INFO  [mk3_Castor] [action] goto (1880,2802) from (1883,2807,10)
+[00:23:05.715] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1883,2807)
+[00:23:05.715] INFO  [mk3_Castor] [bot] running from (1883,2807,10) to (1880,2802,z0)
+[00:23:05.715] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:23:05.777] INFO  [mk3_Castor] [action] goto finished at (1883,2807,10); target (1880,2802); stopped short (off by 8 tile(s))
+[00:23:05.777] LOG   [mk3_Castor] event goto_done: at=(1883,2807) target=(1880,2802) arrived=0 off=8
+[00:23:05.777] INFO  [mk3_Castor] [chat ascii] System: Ghalor has departed from Minoc.
+[00:23:06.639] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:23:07.008] INFO  [mk3_Castor] [action] goto (1880,2802) from (1883,2807,10)
+[00:23:07.008] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1883,2807)
+[00:23:07.008] INFO  [mk3_Castor] [bot] running from (1883,2807,10) to (1880,2802,z0)
+[00:23:07.009] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:23:07.133] INFO  [mk3_Castor] [action] goto finished at (1883,2807,10); target (1880,2802); stopped short (off by 8 tile(s))
+[00:23:07.133] LOG   [mk3_Castor] event goto_done: at=(1883,2807) target=(1880,2802) arrived=0 off=8
+[00:23:07.627] INFO  [mk3_Castor] [chat ascii] System: Cyras has departed from Britain.
+[00:23:08.367] INFO  [mk3_Castor] [travel] mode walk             usable   <- chosen
+[00:23:08.367] INFO  [mk3_Castor] [travel] mode moongate         usable
+[00:23:08.367] INFO  [mk3_Castor] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:23:08.367] INFO  [mk3_Castor] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:23:08.367] LOG   [mk3_Castor] event travel_mode: walk
+[00:23:08.367] INFO  [mk3_Castor] [travel] plan mobile 0x0000F784: ok legs=1 ~5 tiles transit=0 nodes=0
+[00:23:10.033] INFO  [mk3_Castor] [chat ascii] System: Kharain has departed from Minoc.
+[00:23:11.701] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:23:12.348] INFO  [mk3_Castor] [chat ascii] System: Leander has departed from Moonglow.
+[00:23:12.902] INFO  [mk3_Castor] [action] goto (1880,2802) from (1883,2807,10)
+[00:23:12.902] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1883,2807)
+[00:23:12.902] INFO  [mk3_Castor] [bot] running from (1883,2807,10) to (1880,2802,z0)
+[00:23:12.903] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:23:13.025] INFO  [mk3_Castor] [action] goto finished at (1883,2807,10); target (1880,2802); stopped short (off by 8 tile(s))
+[00:23:13.025] LOG   [mk3_Castor] event goto_done: at=(1883,2807) target=(1880,2802) arrived=0 off=8
+[00:23:13.087] INFO  [life] session_end_requested reason="session time limit reached"
+[00:23:14.261] INFO  [mk3_Castor] [action] goto (1880,2802) from (1883,2807,10)
+[00:23:14.261] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1883,2807)
+[00:23:14.261] INFO  [mk3_Castor] [bot] running from (1883,2807,10) to (1880,2802,z0)
+[00:23:14.261] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:23:14.325] INFO  [mk3_Castor] [action] goto finished at (1883,2807,10); target (1880,2802); stopped short (off by 8 tile(s))
+[00:23:14.325] LOG   [mk3_Castor] event goto_done: at=(1883,2807) target=(1880,2802) arrived=0 off=8
+[00:23:15.542] INFO  [mk3_Castor] [action] goto (1880,2802) from (1883,2807,10)
+[00:23:15.542] LOG   [mk3_Castor] event goto_start: target=(1880,2802) from=(1883,2807)
+[00:23:15.542] INFO  [mk3_Castor] [bot] running from (1883,2807,10) to (1880,2802,z0)
+[00:23:15.542] INFO  [mk3_Castor] [bot] planning path to (1880,2802) in background
+[00:23:15.664] INFO  [mk3_Castor] [action] goto finished at (1883,2807,10); target (1880,2802); stopped short (off by 8 tile(s))
+[00:23:15.665] LOG   [mk3_Castor] event goto_done: at=(1883,2807) target=(1880,2802) arrived=0 off=8
+[00:23:15.665] LOG   [mk3_Castor] event travel_escape: from=(1883,2807,10) to=(1896,2808) attempt=1
+[00:23:15.665] INFO  [mk3_Castor] [action] goto (1896,2808) from (1883,2807,10)
+[00:23:15.665] LOG   [mk3_Castor] event goto_start: target=(1896,2808) from=(1883,2807)
+[00:23:15.665] INFO  [mk3_Castor] [bot] running from (1883,2807,10) to (1896,2808,z0)
+[00:23:15.665] INFO  [mk3_Castor] [bot] planning path to (1896,2808) in background
+[00:23:15.726] INFO  [mk3_Castor] [bot] replan to (1896,2808): 26 steps in 5871.8us
+[00:23:16.666] INFO  [mk3_Castor] [bot] lookahead patched around block at step 4: anchor=6 new segment=7 path=24 in 763.9us
+[00:23:16.726] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:23:17.170] INFO  [mk3_Castor] [bot] lookahead patched around block at step 4: anchor=6 new segment=5 path=22 in 355.4us
+[00:23:17.662] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 367.4us
+[00:23:18.095] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 203.8us
+[00:23:18.605] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 362.6us
+[00:23:19.064] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 215.9us
+[00:23:19.450] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 285.1us
+[00:23:19.914] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 187.3us
+[00:23:20.381] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 323.1us
+[00:23:20.828] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 161.7us
+[00:23:21.276] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 376.3us
+[00:23:21.723] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 257.1us
+[00:23:21.785] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:23:22.173] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 363.7us
+[00:23:22.577] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 213.8us
+[00:23:23.025] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 365.4us
+[00:23:23.457] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 206.0us
+[00:23:23.918] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 380.0us
+[00:23:24.306] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 206.0us
+[00:23:24.828] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 361.0us
+[00:23:25.230] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 210.6us
+[00:23:25.675] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 314.9us
+[00:23:25.736] INFO  [mk3_Castor] [chat ascii] System: Elara has departed from Magincia.
+[00:23:26.183] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 162.9us
+[00:23:26.431] INFO  [mk3_Castor] [chat ascii] System: Xerxes has departed from Vesper.
+[00:23:26.614] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 277.9us
+[00:23:26.799] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:23:27.110] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 193.8us
+[00:23:27.601] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 340.3us
+[00:23:28.111] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 209.1us
+[00:23:28.544] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 280.7us
+[00:23:29.037] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 228.3us
+[00:23:29.483] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 347.7us
+[00:23:29.943] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 206.3us
+[00:23:30.389] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 348.9us
+[00:23:30.835] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 161.0us
+[00:23:31.325] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 354.9us
+[00:23:31.818] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:23:31.820] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 216.1us
+[00:23:32.282] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 362.0us
+[00:23:32.670] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 208.7us
+[00:23:33.118] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 304.9us
+[00:23:33.133] INFO  [mk3_Castor] [chat ascii] System: Dorvar has departed from Skara Brae.
+[00:23:33.519] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 184.4us
+[00:23:34.011] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 314.7us
+[00:23:34.517] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 173.3us
+[00:23:35.038] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 408.0us
+[00:23:35.473] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 197.7us
+[00:23:35.935] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 298.4us
+[00:23:36.370] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 183.4us
+[00:23:36.819] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 327.4us
+[00:23:36.819] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:23:37.280] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 212.8us
+[00:23:37.775] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 395.2us
+[00:23:37.865] INFO  [mk3_Castor] [chat ascii] System: Odessa has departed from Britain.
+[00:23:38.237] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 193.2us
+[00:23:38.734] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 365.1us
+[00:23:38.949] INFO  [mk3_Castor] [chat ascii] System: Rhea has departed from Lord British's Castle.
+[00:23:39.209] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 179.6us
+[00:23:39.720] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 304.2us
+[00:23:40.151] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 164.0us
+[00:23:40.656] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 367.6us
+[00:23:41.090] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 199.2us
+[00:23:41.550] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 358.3us
+[00:23:41.858] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:23:41.981] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 225.5us
+[00:23:42.503] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 383.5us
+[00:23:42.936] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 196.2us
+[00:23:43.199] INFO  [mk3_Castor] [chat ascii] System: Rhaler has departed from Minoc.
+[00:23:43.383] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 351.0us
+[00:23:43.843] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 202.4us
+[00:23:44.278] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 353.7us
+[00:23:44.752] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 194.5us
+[00:23:45.061] INFO  [mk3_Castor] [chat ascii] System: Ithion has departed from Skara Brae.
+[00:23:45.186] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 318.9us
+[00:23:45.678] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 201.5us
+[00:23:46.182] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 323.9us
+[00:23:46.688] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 217.3us
+[00:23:46.873] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:23:47.073] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 398.1us
+[00:23:47.566] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 205.6us
+[00:23:48.061] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 372.5us
+[00:23:48.567] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 216.3us
+[00:23:49.015] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 348.8us
+[00:23:49.522] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 167.9us
+[00:23:50.013] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 283.4us
+[00:23:50.504] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 214.3us
+[00:23:50.997] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 368.1us
+[00:23:51.460] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 207.0us
+[00:23:51.888] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:23:51.950] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 281.1us
+[00:23:52.461] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 207.3us
+[00:23:52.861] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 355.2us
+[00:23:53.305] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 209.0us
+[00:23:53.689] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 280.0us
+[00:23:54.195] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 202.9us
+[00:23:54.703] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 361.7us
+[00:23:55.091] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 209.9us
+[00:23:55.585] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 319.8us
+[00:23:56.077] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 160.8us
+[00:23:56.572] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 388.2us
+[00:23:56.940] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:23:57.063] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 288.6us
+[00:23:57.559] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 278.8us
+[00:23:58.069] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 207.2us
+[00:23:58.471] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 346.4us
+[00:23:58.901] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 201.2us
+[00:23:59.395] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 349.7us
+[00:23:59.856] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 204.6us
+[00:24:00.299] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 305.3us
+[00:24:00.424] INFO  [mk3_Castor] [chat ascii] System: Faustus has departed from Britain.
+[00:24:00.746] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 177.0us
+[00:24:01.131] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 326.5us
+[00:24:01.638] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 199.9us
+[00:24:01.869] INFO  [mk3_Castor] [chat ascii] System: Hector has departed from Bank of Britannia - Trinsic Branch.
+[00:24:01.992] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:24:02.071] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 326.7us
+[00:24:02.501] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 204.2us
+[00:24:02.609] INFO  [mk3_Castor] [chat ascii] System: Titus has departed from Magincia.
+[00:24:02.934] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 506.7us
+[00:24:03.444] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 203.9us
+[00:24:03.846] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 351.5us
+[00:24:04.294] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 244.1us
+[00:24:04.787] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 320.5us
+[00:24:05.235] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 223.9us
+[00:24:05.702] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 352.9us
+[00:24:06.213] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 211.1us
+[00:24:06.673] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 347.5us
+[00:24:06.994] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:24:07.194] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 226.6us
+[00:24:07.640] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 284.0us
+[00:24:07.840] INFO  [mk3_Castor] [chat ascii] System: Aurelius has departed from Ocllo.
+[00:24:08.088] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 332.5us
+[00:24:08.580] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 278.9us
+[00:24:09.104] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 212.6us
+[00:24:09.550] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 378.8us
+[00:24:09.952] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 207.6us
+[00:24:10.180] INFO  [mk3_Castor] [chat ascii] System: Serena has departed from Britain.
+[00:24:10.442] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 295.6us
+[00:24:10.934] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 160.5us
+[00:24:11.441] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 371.2us
+[00:24:11.931] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 169.4us
+[00:24:12.054] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:24:12.423] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 299.2us
+[00:24:12.892] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 209.6us
+[00:24:13.325] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 359.5us
+[00:24:13.834] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 280.8us
+[00:24:14.264] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 295.6us
+[00:24:14.754] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 222.2us
+[00:24:15.258] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 588.0us
+[00:24:15.660] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 180.4us
+[00:24:16.108] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 284.7us
+[00:24:16.557] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 204.5us
+[00:24:16.959] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 285.0us
+[00:24:17.082] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:24:17.450] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 212.2us
+[00:24:17.911] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 294.7us
+[00:24:18.371] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 213.5us
+[00:24:18.863] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 353.9us
+[00:24:19.356] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 224.5us
+[00:24:19.851] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 390.9us
+[00:24:20.343] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 189.8us
+[00:24:20.834] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 282.5us
+[00:24:21.325] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 253.7us
+[00:24:21.819] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 332.5us
+[00:24:22.141] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:24:22.279] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 227.2us
+[00:24:22.770] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 389.2us
+[00:24:23.262] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 203.8us
+[00:24:23.723] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 381.1us
+[00:24:24.229] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 208.5us
+[00:24:24.659] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 352.0us
+[00:24:25.154] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 200.2us
+[00:24:25.645] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 348.2us
+[00:24:26.154] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 161.3us
+[00:24:26.645] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 350.4us
+[00:24:27.138] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 197.1us
+[00:24:27.199] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:24:27.630] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 287.0us
+[00:24:28.128] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 231.6us
+[00:24:28.621] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 362.4us
+[00:24:29.110] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 204.2us
+[00:24:29.619] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 326.3us
+[00:24:30.109] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 209.5us
+[00:24:30.601] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 287.3us
+[00:24:31.093] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 198.9us
+[00:24:31.601] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 279.6us
+[00:24:32.048] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 215.9us
+[00:24:32.232] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:24:32.555] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 308.4us
+[00:24:33.048] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 228.1us
+[00:24:33.526] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 367.1us
+[00:24:34.047] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 199.6us
+[00:24:34.494] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 355.0us
+[00:24:34.956] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 193.4us
+[00:24:35.401] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 332.7us
+[00:24:35.908] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 202.6us
+[00:24:36.355] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 359.9us
+[00:24:36.801] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 161.0us
+[00:24:37.230] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 319.0us
+[00:24:37.292] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:24:37.725] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 259.6us
+[00:24:38.217] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 362.9us
+[00:24:38.682] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 214.4us
+[00:24:39.175] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 311.2us
+[00:24:39.686] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 226.9us
+[00:24:40.116] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 312.5us
+[00:24:40.624] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 215.2us
+[00:24:41.072] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 295.1us
+[00:24:41.545] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 207.0us
+[00:24:42.055] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 362.1us
+[00:24:42.299] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:24:42.516] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 204.9us
+[00:24:42.578] INFO  [mk3_Castor] [chat ascii] System: Lyra has departed from Moonglow.
+[00:24:42.979] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 332.8us
+[00:24:43.411] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 174.2us
+[00:24:43.858] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 357.5us
+[00:24:44.306] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 208.5us
+[00:24:44.767] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 367.4us
+[00:24:45.257] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 207.0us
+[00:24:45.749] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 281.4us
+[00:24:46.271] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 203.6us
+[00:24:46.705] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 382.0us
+[00:24:47.211] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 213.1us
+[00:24:47.334] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:24:47.644] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 366.1us
+[00:24:48.153] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 203.5us
+[00:24:48.586] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 286.0us
+[00:24:49.033] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 161.3us
+[00:24:49.480] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 380.8us
+[00:24:49.990] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 206.5us
+[00:24:50.419] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 352.2us
+[00:24:50.911] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 195.9us
+[00:24:51.376] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 374.0us
+[00:24:51.870] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 158.8us
+[00:24:52.360] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:24:52.361] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 286.5us
+[00:24:52.856] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 205.7us
+[00:24:53.351] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 364.4us
+[00:24:53.860] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 201.0us
+[00:24:54.350] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 335.3us
+[00:24:54.842] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 212.6us
+[00:24:55.289] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 363.5us
+[00:24:55.736] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 165.8us
+[00:24:56.184] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 358.0us
+[00:24:56.690] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 171.5us
+[00:24:57.169] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 325.0us
+[00:24:57.415] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:24:57.663] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 211.4us
+[00:24:58.107] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 349.9us
+[00:24:58.597] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 161.1us
+[00:24:59.090] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 351.4us
+[00:24:59.581] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 186.4us
+[00:25:00.075] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 323.8us
+[00:25:00.536] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 159.2us
+[00:25:01.029] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 337.5us
+[00:25:01.520] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 188.3us
+[00:25:01.769] INFO  [mk3_Castor] [chat ascii] System: Aelia has departed from Britain Territory.
+[00:25:01.971] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 276.1us
+[00:25:02.465] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:25:02.482] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 204.1us
+[00:25:02.929] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 380.6us
+[00:25:03.374] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 202.4us
+[00:25:03.877] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 350.5us
+[00:25:04.370] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 198.0us
+[00:25:04.865] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 354.0us
+[00:25:05.359] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 159.5us
+[00:25:05.836] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 359.8us
+[00:25:06.299] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 172.4us
+[00:25:06.776] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 354.1us
+[00:25:07.267] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 187.9us
+[00:25:07.514] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:25:07.731] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 364.6us
+[00:25:08.222] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 163.9us
+[00:25:08.670] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 336.2us
+[00:25:09.162] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 204.0us
+[00:25:09.653] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 349.7us
+[00:25:10.130] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 210.5us
+[00:25:10.594] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 527.4us
+[00:25:11.071] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 162.1us
+[00:25:11.562] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 354.3us
+[00:25:12.068] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 212.2us
+[00:25:12.515] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:25:12.516] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 353.5us
+[00:25:13.009] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 206.8us
+[00:25:13.453] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 366.5us
+[00:25:13.869] INFO  [mk3_Castor] [chat ascii] System: Illyria has departed from Britain.
+[00:25:13.946] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 227.4us
+[00:25:14.377] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 293.5us
+[00:25:14.865] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 168.3us
+[00:25:15.033] INFO  [mk3_Castor] [chat ascii] System: Halain has departed from Skara Brae.
+[00:25:15.298] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 350.5us
+[00:25:15.804] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 163.5us
+[00:25:16.266] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 360.8us
+[00:25:16.697] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 205.9us
+[00:25:17.206] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 352.9us
+[00:25:17.574] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:25:17.698] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 198.7us
+[00:25:18.191] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 282.4us
+[00:25:18.684] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 204.2us
+[00:25:19.195] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 354.0us
+[00:25:19.700] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 186.4us
+[00:25:20.134] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 331.6us
+[00:25:20.641] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 205.0us
+[00:25:21.101] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 317.3us
+[00:25:21.610] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 207.9us
+[00:25:22.115] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 346.4us
+[00:25:22.548] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 170.3us
+[00:25:22.609] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:25:22.640] INFO  [mk3_Castor] [chat ascii] System: Amara has departed from Magincia.
+[00:25:23.010] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 358.4us
+[00:25:23.502] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 209.9us
+[00:25:23.993] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 349.2us
+[00:25:24.486] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 162.0us
+[00:25:24.979] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 354.5us
+[00:25:25.470] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 201.8us
+[00:25:25.963] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 317.1us
+[00:25:26.454] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 207.8us
+[00:25:26.944] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 298.1us
+[00:25:27.437] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 159.6us
+[00:25:27.620] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:25:27.930] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 349.6us
+[00:25:28.436] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 196.5us
+[00:25:28.836] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 354.2us
+[00:25:29.346] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 165.5us
+[00:25:29.732] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 283.2us
+[00:25:30.208] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 160.4us
+[00:25:30.699] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 349.1us
+[00:25:31.191] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 164.6us
+[00:25:31.681] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 285.0us
+[00:25:32.130] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 162.5us
+[00:25:32.621] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 384.3us
+[00:25:32.621] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:25:33.065] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 189.6us
+[00:25:33.558] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 349.7us
+[00:25:34.052] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 160.9us
+[00:25:34.550] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 348.0us
+[00:25:35.043] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 210.2us
+[00:25:35.506] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 358.9us
+[00:25:35.907] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 202.4us
+[00:25:36.309] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 361.9us
+[00:25:36.800] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 207.6us
+[00:25:37.297] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 337.7us
+[00:25:37.663] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:25:37.788] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 200.6us
+[00:25:38.280] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 279.7us
+[00:25:38.772] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 171.2us
+[00:25:39.264] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 359.3us
+[00:25:39.757] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 199.6us
+[00:25:40.253] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 359.6us
+[00:25:40.746] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 169.3us
+[00:25:41.239] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 348.0us
+[00:25:41.734] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 161.5us
+[00:25:42.228] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 395.4us
+[00:25:42.719] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:25:42.720] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 209.5us
+[00:25:43.210] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 352.1us
+[00:25:43.703] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 200.7us
+[00:25:44.198] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 354.9us
+[00:25:44.691] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 162.2us
+[00:25:45.211] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 357.9us
+[00:25:45.672] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 170.2us
+[00:25:46.118] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 486.7us
+[00:25:46.611] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 206.5us
+[00:25:47.103] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 362.8us
+[00:25:47.593] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 197.4us
+[00:25:47.654] INFO  [mk3_Castor] [chat ascii] System: Delras has departed from Skara Brae.
+[00:25:47.777] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:25:48.086] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 357.5us
+[00:25:48.608] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 226.5us
+[00:25:49.040] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 341.9us
+[00:25:49.561] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 176.7us
+[00:25:49.993] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 356.2us
+[00:25:50.502] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 198.2us
+[00:25:50.934] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 386.0us
+[00:25:51.454] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 198.7us
+[00:25:51.842] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 362.7us
+[00:25:52.345] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 186.8us
+[00:25:52.777] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 365.9us
+[00:25:52.777] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:25:53.225] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 171.2us
+[00:25:53.720] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 366.6us
+[00:25:54.166] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 196.8us
+[00:25:54.674] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 289.0us
+[00:25:55.107] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 197.8us
+[00:25:55.553] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 345.1us
+[00:25:56.063] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 197.2us
+[00:25:56.495] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 347.1us
+[00:25:56.942] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 205.5us
+[00:25:57.446] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 351.2us
+[00:25:57.814] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:25:57.875] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 168.5us
+[00:25:58.320] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 298.4us
+[00:25:58.841] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 230.0us
+[00:25:59.274] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 360.7us
+[00:25:59.721] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 369.7us
+[00:26:00.228] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 346.3us
+[00:26:00.658] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 200.4us
+[00:26:01.104] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 383.4us
+[00:26:01.610] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 204.2us
+[00:26:02.039] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 345.6us
+[00:26:02.485] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 160.6us
+[00:26:02.852] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:26:02.990] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 375.1us
+[00:26:03.437] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 162.4us
+[00:26:03.947] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 352.1us
+[00:26:04.469] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 166.2us
+[00:26:04.899] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 376.9us
+[00:26:05.419] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 209.7us
+[00:26:05.868] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 348.7us
+[00:26:06.377] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 213.5us
+[00:26:06.808] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 348.1us
+[00:26:07.256] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 200.3us
+[00:26:07.761] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 345.3us
+[00:26:07.884] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:26:08.189] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 166.2us
+[00:26:08.636] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 285.7us
+[00:26:09.142] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 163.9us
+[00:26:09.575] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 283.5us
+[00:26:10.022] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 237.9us
+[00:26:10.471] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 352.4us
+[00:26:10.979] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 199.9us
+[00:26:11.411] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 322.8us
+[00:26:11.905] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 263.9us
+[00:26:12.413] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 276.5us
+[00:26:12.844] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 157.2us
+[00:26:12.906] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:26:13.291] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 349.9us
+[00:26:13.740] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 203.9us
+[00:26:14.190] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 351.5us
+[00:26:14.696] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 217.0us
+[00:26:15.217] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 350.3us
+[00:26:15.650] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 197.6us
+[00:26:16.097] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 316.1us
+[00:26:16.602] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 173.0us
+[00:26:17.047] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 322.2us
+[00:26:17.558] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 202.5us
+[00:26:17.928] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:26:17.991] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 279.2us
+[00:26:18.439] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 198.2us
+[00:26:18.947] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 353.1us
+[00:26:19.393] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 167.6us
+[00:26:19.824] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 351.6us
+[00:26:20.349] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 198.2us
+[00:26:20.798] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 357.7us
+[00:26:21.245] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 200.7us
+[00:26:21.752] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 350.9us
+[00:26:22.184] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 197.7us
+[00:26:22.631] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 353.5us
+[00:26:22.940] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:26:23.139] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 214.9us
+[00:26:23.586] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 324.9us
+[00:26:24.098] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 216.7us
+[00:26:24.528] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 299.2us
+[00:26:25.049] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 213.3us
+[00:26:25.571] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 331.1us
+[00:26:26.004] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 210.8us
+[00:26:26.522] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 293.2us
+[00:26:26.955] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 206.1us
+[00:26:27.403] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 283.1us
+[00:26:27.911] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 208.8us
+[00:26:27.970] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:26:28.357] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 283.5us
+[00:26:28.867] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 218.4us
+[00:26:29.300] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 350.3us
+[00:26:29.744] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 201.6us
+[00:26:30.249] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 353.1us
+[00:26:30.772] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 204.1us
+[00:26:31.205] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 315.5us
+[00:26:31.681] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 226.3us
+[00:26:32.131] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 286.1us
+[00:26:32.641] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 198.2us
+[00:26:33.008] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:26:33.071] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 350.5us
+[00:26:33.549] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 201.5us
+[00:26:34.009] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 379.7us
+[00:26:34.439] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 164.8us
+[00:26:34.888] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 351.5us
+[00:26:35.367] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 161.9us
+[00:26:35.873] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 366.1us
+[00:26:36.307] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 226.0us
+[00:26:36.757] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 348.8us
+[00:26:37.265] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 269.9us
+[00:26:37.669] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 286.3us
+[00:26:38.038] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:26:38.177] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 198.6us
+[00:26:38.623] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 292.8us
+[00:26:39.132] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 200.6us
+[00:26:39.564] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 351.2us
+[00:26:40.012] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 165.1us
+[00:26:40.488] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 478.8us
+[00:26:40.996] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 200.5us
+[00:26:41.429] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 359.6us
+[00:26:41.877] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 198.2us
+[00:26:42.387] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 359.6us
+[00:26:42.819] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 200.3us
+[00:26:43.065] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:26:43.267] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 374.7us
+[00:26:43.744] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 200.8us
+[00:26:44.254] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 361.6us
+[00:26:44.682] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 200.6us
+[00:26:45.128] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 563.8us
+[00:26:45.636] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 166.8us
+[00:26:46.021] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 352.9us
+[00:26:46.485] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 161.4us
+[00:26:46.930] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 316.4us
+[00:26:47.439] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 198.4us
+[00:26:47.871] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 283.7us
+[00:26:48.117] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:26:48.392] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 205.3us
+[00:26:48.839] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 364.2us
+[00:26:49.343] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 208.5us
+[00:26:49.865] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 348.7us
+[00:26:50.385] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 168.6us
+[00:26:50.816] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 351.1us
+[00:26:51.261] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 163.8us
+[00:26:51.771] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 278.4us
+[00:26:52.293] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 200.9us
+[00:26:52.692] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 286.6us
+[00:26:53.123] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:26:53.199] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 212.1us
+[00:26:53.628] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 351.6us
+[00:26:54.136] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 207.0us
+[00:26:54.568] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 335.2us
+[00:26:55.019] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 204.2us
+[00:26:55.482] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 425.5us
+[00:26:55.914] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 205.9us
+[00:26:56.362] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 359.8us
+[00:26:56.862] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 208.2us
+[00:26:57.291] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 337.2us
+[00:26:57.723] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 165.2us
+[00:26:58.168] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:26:58.246] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 343.8us
+[00:26:58.691] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 216.6us
+[00:26:59.201] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 294.2us
+[00:26:59.630] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 161.4us
+[00:27:00.077] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 373.3us
+[00:27:00.539] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 226.4us
+[00:27:00.985] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 300.8us
+[00:27:01.494] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 166.4us
+[00:27:01.925] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 280.2us
+[00:27:02.370] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 204.5us
+[00:27:02.878] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 350.4us
+[00:27:03.186] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:27:03.309] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 164.7us
+[00:27:03.828] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 355.3us
+[00:27:04.301] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 202.1us
+[00:27:04.750] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 347.0us
+[00:27:05.222] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 162.1us
+[00:27:05.728] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 359.9us
+[00:27:06.127] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 170.1us
+[00:27:06.633] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 274.7us
+[00:27:07.066] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 173.1us
+[00:27:07.512] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 350.8us
+[00:27:08.019] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 230.1us
+[00:27:08.201] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:27:08.538] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 347.3us
+[00:27:09.028] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 174.8us
+[00:27:09.534] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 354.7us
+[00:27:09.981] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 213.8us
+[00:27:10.489] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 281.7us
+[00:27:10.919] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 343.3us
+[00:27:11.365] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 305.4us
+[00:27:11.874] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 164.1us
+[00:27:12.305] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 290.6us
+[00:27:12.779] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 192.3us
+[00:27:13.222] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:27:13.300] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 280.4us
+[00:27:13.758] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 163.6us
+[00:27:14.204] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 290.8us
+[00:27:14.716] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 218.6us
+[00:27:15.233] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 283.4us
+[00:27:15.752] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 164.4us
+[00:27:16.181] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 288.2us
+[00:27:16.702] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 206.2us
+[00:27:17.136] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 284.9us
+[00:27:17.631] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 213.6us
+[00:27:18.062] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 348.0us
+[00:27:18.244] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:27:18.507] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 168.0us
+[00:27:18.968] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 367.3us
+[00:27:19.415] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 200.9us
+[00:27:19.919] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 289.1us
+[00:27:20.352] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 202.9us
+[00:27:20.873] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 283.6us
+[00:27:21.307] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 204.7us
+[00:27:21.753] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 353.5us
+[00:27:22.260] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 199.7us
+[00:27:22.692] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 281.4us
+[00:27:23.216] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 168.0us
+[00:27:23.278] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:27:23.646] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 368.1us
+[00:27:24.095] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 182.0us
+[00:27:24.605] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 287.1us
+[00:27:25.037] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 178.8us
+[00:27:25.486] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 364.8us
+[00:27:25.993] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 242.2us
+[00:27:26.427] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 324.8us
+[00:27:26.873] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 195.1us
+[00:27:27.380] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 285.5us
+[00:27:27.811] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 197.9us
+[00:27:28.258] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 383.0us
+[00:27:28.319] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:27:28.764] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 201.5us
+[00:27:29.195] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 301.5us
+[00:27:29.645] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 163.7us
+[00:27:30.152] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 362.7us
+[00:27:30.584] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 163.3us
+[00:27:31.028] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 282.3us
+[00:27:31.534] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 169.2us
+[00:27:31.966] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 349.7us
+[00:27:32.494] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 205.4us
+[00:27:32.925] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 277.9us
+[00:27:33.373] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:27:33.373] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 210.3us
+[00:27:33.821] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 334.6us
+[00:27:34.269] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 159.8us
+[00:27:34.776] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 300.9us
+[00:27:35.206] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 206.2us
+[00:27:35.653] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 344.8us
+[00:27:36.161] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 162.1us
+[00:27:36.593] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 289.8us
+[00:27:37.040] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 196.3us
+[00:27:37.548] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 374.5us
+[00:27:38.066] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 196.3us
+[00:27:38.374] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:27:38.498] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 347.9us
+[00:27:38.944] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 182.1us
+[00:27:39.449] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 350.8us
+[00:27:39.884] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 224.1us
+[00:27:40.332] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 298.9us
+[00:27:40.840] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 340.5us
+[00:27:41.274] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 309.6us
+[00:27:41.778] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 198.1us
+[00:27:42.227] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 346.6us
+[00:27:42.735] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 205.3us
+[00:27:43.180] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 363.9us
+[00:27:43.425] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:27:43.688] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 201.3us
+[00:27:44.118] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 349.2us
+[00:27:44.566] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 196.6us
+[00:27:45.073] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 352.3us
+[00:27:45.594] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 167.2us
+[00:27:46.025] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 289.7us
+[00:27:46.473] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 319.7us
+[00:27:46.979] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 352.4us
+[00:27:47.425] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 217.7us
+[00:27:47.859] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 374.7us
+[00:27:48.305] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 166.3us
+[00:27:48.428] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:27:48.812] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 293.6us
+[00:27:49.256] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 234.1us
+[00:27:49.766] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 364.2us
+[00:27:50.198] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 201.2us
+[00:27:50.644] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 280.2us
+[00:27:51.149] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 166.7us
+[00:27:51.594] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 281.0us
+[00:27:52.102] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 163.9us
+[00:27:52.533] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 343.6us
+[00:27:53.054] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 209.1us
+[00:27:53.483] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:27:53.484] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 283.1us
+[00:27:53.933] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 270.4us
+[00:27:54.445] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 287.4us
+[00:27:54.628] INFO  [mk3_Castor] [chat ascii] System: World save in 10 seconds
+[00:27:54.871] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 208.7us
+[00:27:55.396] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 353.0us
+[00:27:55.826] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 224.7us
+[00:27:56.270] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 283.7us
+[00:27:56.774] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 200.3us
+[00:27:57.175] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 419.6us
+[00:27:57.686] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 163.0us
+[00:27:58.115] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 278.2us
+[00:27:58.498] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:27:58.561] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 198.5us
+[00:27:59.070] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 350.4us
+[00:27:59.589] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 199.4us
+[00:28:00.019] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 372.5us
+[00:28:00.541] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 207.4us
+[00:28:00.971] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 279.0us
+[00:28:01.421] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 166.4us
+[00:28:01.881] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 281.1us
+[00:28:02.329] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 203.3us
+[00:28:02.837] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 287.7us
+[00:28:03.271] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 162.6us
+[00:28:03.516] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:28:03.717] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 283.3us
+[00:28:04.227] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 205.0us
+[00:28:04.649] INFO  [mk3_Castor] [chat ascii] System: World save has been initiated.
+[00:28:04.969] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 346.5us
+[00:28:05.217] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 195.3us
+[00:28:05.676] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 303.0us
+[00:28:06.125] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 160.6us
+[00:28:06.617] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 398.1us
+[00:28:07.113] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 164.6us
+[00:28:07.603] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 374.7us
+[00:28:08.003] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 209.9us
+[00:28:08.525] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 332.7us
+[00:28:08.525] INFO  [mk3_Castor] [survival] hp 32/32 (100%) -> fight
+[00:28:08.971] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 255.2us
+[00:28:09.387] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 355.4us
+[00:28:09.877] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 210.3us
+[00:28:10.385] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 396.6us
+[00:28:10.875] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 211.5us
+[00:28:11.383] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 322.0us
+[00:28:11.815] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 160.7us
+[00:28:12.259] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 282.3us
+[00:28:12.768] INFO  [mk3_Castor] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 166.6us
+[00:28:13.120] INFO  [life] wind-down: the trip has run past its deadline (300s, still moving, but far too long); abandoning it and logging out where I stand
+[00:28:13.120] INFO  [mk3_Castor] [travel] mobile 0x0000F784 FAILED at (1884,2812,10) -- wind-down deadline
+[00:28:13.120] LOG   [mk3_Castor] event travel_failed: label='mobile 0x0000F784' ok=0 at=(1884,2812) legs=1 plans=4 why='wind-down deadline'
+[00:28:13.182] INFO  [life] wind-down: giving up on reaching a safe spot after 0 attempt(s); logging out at 1884,2812 and recording it
+[00:28:13.182] INFO  [life] session_summary duration=480s goals=0/3 gold=10000->9990 skills=100.0->100.0 logs=+0 kills=0 deaths=0 places=1 suppliers=0
+[00:28:13.182] INFO  [life] session_goals families=1 picks=3 top=100% varied=0 self_superseded=0 | upkeep=3(100%) | REPLACE_EQUIPMENT=1(33%) BANK=1(33%) GET_FOOD=1(33%)
+[00:28:13.185] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_26.castor/state.json
+[00:28:13.185] INFO  [life] logging out
+[00:28:13.185] INFO  [mk3_Castor] [action] logout requested
+[00:28:13.185] LOG   [mk3_Castor] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[00:28:13.199] INFO  [mk3_Castor] [0xD1] logout acknowledged (accepted=1)
+[00:28:13.199] LOG   [mk3_Castor] event logout_ack: accepted
+[00:28:13.199] INFO  [mk3_Castor] [net] closing connection (logout acknowledged)
+[00:28:13.199] LOG   [mk3_Castor] event logout_complete: acked

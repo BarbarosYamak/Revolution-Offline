@@ -114,6 +114,23 @@ private:
 
     void BuildTransitIndex();
     const std::vector<TransitEdge>* EdgesFrom(u32 cell) const;
+    bool TouchesTransit(u32 cell) const;
+
+    // How many cells a walker can reach from (cx, cy) over the grid's measured
+    // edges, stopping as soon as `cap` is hit. `inbound` walks the edges
+    // backwards, i.e. "how many cells can reach me". A cell that touches a
+    // transit node counts as connected outright, because the gate is its road.
+    //
+    // This is the difference between "has an edge" and "is part of the world":
+    // Minoc Mine 1's ledge cells form a five-cell pocket that has edges only
+    // to itself.
+    usize ComponentReach(i32 cx, i32 cy, usize cap, bool inbound) const;
+
+    // Nearest cell within `maxRings` that is genuinely connected. Leaves the
+    // outputs untouched and returns false when none is found; the caller then
+    // plans from the pocket as before and reports the failure honestly.
+    bool SnapToConnected(i32 cx, i32 cy, i32 maxRings, bool inbound,
+                         i32* outCx, i32* outCy) const;
 
     const world_atlas::Atlas& atlas_;
     const navgrid::NavGrid&   grid_;
@@ -122,6 +139,9 @@ private:
     // atlas, immutable afterwards, so it is shared like the atlas itself.
     std::vector<u32> transitCellKeys_;                 // sorted, parallel to ...
     std::vector<std::vector<TransitEdge>> transitEdges_;
+    // Every cell either end of a transit sits in, sorted. A pocket with a
+    // moongate in it is not a pocket.
+    std::vector<u32> transitTouchedCells_;
 };
 
 } // namespace uo::route

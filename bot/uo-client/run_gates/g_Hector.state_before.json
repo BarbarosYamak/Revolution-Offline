@@ -1,0 +1,927 @@
+{
+  "bank": [
+    {
+      "item": "i_scissors",
+      "qty": 1
+    },
+    {
+      "item": "i_dagger",
+      "qty": 1
+    },
+    {
+      "item": "i_sash",
+      "qty": 1
+    },
+    {
+      "item": "i_spear_short",
+      "qty": 1
+    },
+    {
+      "item": "i_bottle_empty",
+      "qty": 8
+    }
+  ],
+  "bank_seen_ms": 2150575315,
+  "build_plan": {
+    "create_dex": 25,
+    "create_int": 5,
+    "create_skills": [
+      {
+        "skill": 42,
+        "tenths": 500
+      },
+      {
+        "skill": 27,
+        "tenths": 500
+      }
+    ],
+    "create_str": 50,
+    "family": "fencer",
+    "skills": [
+      {
+        "skill": 42,
+        "tenths": 1000
+      },
+      {
+        "skill": 27,
+        "tenths": 1000
+      },
+      {
+        "skill": 1,
+        "tenths": 1000
+      },
+      {
+        "skill": 17,
+        "tenths": 1000
+      },
+      {
+        "skill": 30,
+        "tenths": 1000
+      },
+      {
+        "skill": 5,
+        "tenths": 1000
+      }
+    ],
+    "target_dex": 100,
+    "target_int": 25,
+    "target_str": 100,
+    "unresolved_tenths": 1000
+  },
+  "checkpoint_ms": 2154220260,
+  "death_count": 0,
+  "goal": {
+    "active": true,
+    "attempts": 0,
+    "failure_reason": "",
+    "kind": "BANK",
+    "progress": 0,
+    "started_at_ms": 2154130792
+  },
+  "home_city": "Trinsic",
+  "hunt_return_pending": true,
+  "identity": {
+    "account_name": "RevGen3_25",
+    "character_name": "Hector",
+    "created_at_ms": 0,
+    "first_seen_at_ms": 1942899654,
+    "identity_id": "revgen3_25.hector",
+    "last_seen_at_ms": 2153857894,
+    "sessions": 16,
+    "total_play_time_ms": 12426603
+  },
+  "known_spells": [],
+  "known_spells_seen_ms": 0,
+  "last_death_ms": 0,
+  "last_server_report": {
+    "dead": false,
+    "dex": 25,
+    "gold": 7229,
+    "int": 5,
+    "skills": [
+      {
+        "skill": 42,
+        "tenths": 502
+      },
+      {
+        "skill": 27,
+        "tenths": 508
+      },
+      {
+        "skill": 1,
+        "tenths": 0
+      },
+      {
+        "skill": 17,
+        "tenths": 3
+      },
+      {
+        "skill": 30,
+        "tenths": 0
+      },
+      {
+        "skill": 5,
+        "tenths": 0
+      }
+    ],
+    "str": 51,
+    "x": 1429,
+    "y": 1691
+  },
+  "ledger": [
+    {
+      "amount": 568,
+      "detail": "riding horse",
+      "flow": 6,
+      "when_ms": 2153899990
+    }
+  ],
+  "memory": {
+    "creatures": [
+      {
+        "at_ms": 2030284295,
+        "fights": 1,
+        "heat": 2,
+        "name": "Lich"
+      },
+      {
+        "at_ms": 2154112771,
+        "fights": 20,
+        "heat": -0.3612967531,
+        "name": "Skeleton"
+      },
+      {
+        "at_ms": 2149050592,
+        "fights": 2,
+        "heat": 1.922398359,
+        "name": "Zombie"
+      }
+    ],
+    "danger": [
+      {
+        "at_ms": 2154112771,
+        "heat": 0.3091916726,
+        "radius": 14,
+        "threat": "Skeleton",
+        "x": 1385,
+        "y": 1493
+      }
+    ],
+    "events": [
+      {
+        "at_ms": 1942899654,
+        "detail": "Trinsic",
+        "kind": "newbie_knowledge_seeded",
+        "place": "",
+        "x": 1845,
+        "y": 2745
+      },
+      {
+        "at_ms": 1942941272,
+        "detail": "opened a bank box",
+        "kind": "bank_learned",
+        "place": "bank",
+        "x": 1818,
+        "y": 2822
+      },
+      {
+        "at_ms": 1942981974,
+        "detail": "session=1",
+        "kind": "mount_unavailable",
+        "place": "",
+        "x": 1913,
+        "y": 2807
+      },
+      {
+        "at_ms": 2030284295,
+        "detail": "recover after resurrection",
+        "kind": "corpse_pending",
+        "place": "",
+        "x": 1290,
+        "y": 3728
+      },
+      {
+        "at_ms": 2030391380,
+        "detail": "i_scissors",
+        "kind": "no_scissors_for_robe",
+        "place": "",
+        "x": 1412,
+        "y": 3784
+      },
+      {
+        "at_ms": 2043921999,
+        "detail": "recover after resurrection",
+        "kind": "corpse_pending",
+        "place": "",
+        "x": 5735,
+        "y": 3193
+      },
+      {
+        "at_ms": 2043937120,
+        "detail": "",
+        "kind": "first_near_death",
+        "place": "",
+        "x": 5740,
+        "y": 3217
+      },
+      {
+        "at_ms": 2044519488,
+        "detail": "could not reach a known-safe spot",
+        "kind": "logout_unsafe",
+        "place": "",
+        "x": 2523,
+        "y": 284
+      },
+      {
+        "at_ms": 2044643063,
+        "detail": "recover after resurrection",
+        "kind": "corpse_pending",
+        "place": "",
+        "x": 2523,
+        "y": 284
+      },
+      {
+        "at_ms": 2063579063,
+        "detail": "decayed before this session",
+        "kind": "corpse_abandoned",
+        "place": "",
+        "x": 2523,
+        "y": 284
+      },
+      {
+        "at_ms": 2064417880,
+        "detail": "session=6",
+        "kind": "mount_unavailable",
+        "place": "",
+        "x": 2534,
+        "y": 538
+      },
+      {
+        "at_ms": 2113718333,
+        "detail": "session=7",
+        "kind": "bandage_counters_empty",
+        "place": "",
+        "x": 2576,
+        "y": 596
+      },
+      {
+        "at_ms": 2116735657,
+        "detail": "session=8",
+        "kind": "bandage_counters_empty",
+        "place": "",
+        "x": 538,
+        "y": 963
+      },
+      {
+        "at_ms": 2117231688,
+        "detail": "session=9",
+        "kind": "bandage_counters_empty",
+        "place": "",
+        "x": 643,
+        "y": 1083
+      },
+      {
+        "at_ms": 2122427258,
+        "detail": "session=10",
+        "kind": "bandage_counters_empty",
+        "place": "",
+        "x": 644,
+        "y": 1086
+      },
+      {
+        "at_ms": 2128905854,
+        "detail": "session=11",
+        "kind": "bandage_counters_empty",
+        "place": "",
+        "x": 540,
+        "y": 964
+      },
+      {
+        "at_ms": 2143472810,
+        "detail": "session=12",
+        "kind": "bandage_counters_empty",
+        "place": "",
+        "x": 641,
+        "y": 1085
+      },
+      {
+        "at_ms": 2143700021,
+        "detail": "session=12",
+        "kind": "mount_unavailable",
+        "place": "",
+        "x": 533,
+        "y": 871
+      },
+      {
+        "at_ms": 2144217928,
+        "detail": "Skeleton",
+        "kind": "confirmed_kill",
+        "place": "",
+        "x": 1381,
+        "y": 1495
+      },
+      {
+        "at_ms": 2144251366,
+        "detail": "Skeleton",
+        "kind": "confirmed_kill",
+        "place": "",
+        "x": 1373,
+        "y": 1491
+      },
+      {
+        "at_ms": 2144277696,
+        "detail": "Skeleton",
+        "kind": "confirmed_kill",
+        "place": "",
+        "x": 1375,
+        "y": 1490
+      },
+      {
+        "at_ms": 2144407673,
+        "detail": "logs",
+        "kind": "first_bank_deposit",
+        "place": "bank",
+        "x": 1430,
+        "y": 1690
+      },
+      {
+        "at_ms": 2144407673,
+        "detail": "loot secured; ready to restock",
+        "kind": "hunt_banked",
+        "place": "bank",
+        "x": 1430,
+        "y": 1690
+      },
+      {
+        "at_ms": 2144710258,
+        "detail": "Skeleton",
+        "kind": "confirmed_kill",
+        "place": "",
+        "x": 1381,
+        "y": 1494
+      },
+      {
+        "at_ms": 2144823180,
+        "detail": "Skeleton",
+        "kind": "confirmed_kill",
+        "place": "",
+        "x": 1380,
+        "y": 1490
+      },
+      {
+        "at_ms": 2144855161,
+        "detail": "Skeleton",
+        "kind": "confirmed_kill",
+        "place": "",
+        "x": 1380,
+        "y": 1490
+      },
+      {
+        "at_ms": 2145000767,
+        "detail": "Skeleton",
+        "kind": "confirmed_kill",
+        "place": "",
+        "x": 1384,
+        "y": 1489
+      },
+      {
+        "at_ms": 2145008978,
+        "detail": "went hunting",
+        "kind": "first_hunt",
+        "place": "graveyard",
+        "x": 1384,
+        "y": 1490
+      },
+      {
+        "at_ms": 2145096070,
+        "detail": "Skeleton",
+        "kind": "confirmed_kill",
+        "place": "",
+        "x": 1380,
+        "y": 1485
+      },
+      {
+        "at_ms": 2145096594,
+        "detail": "Skeleton",
+        "kind": "confirmed_kill",
+        "place": "",
+        "x": 1380,
+        "y": 1485
+      },
+      {
+        "at_ms": 2148115583,
+        "detail": "loot secured; ready to restock",
+        "kind": "hunt_banked",
+        "place": "bank",
+        "x": 1429,
+        "y": 1690
+      },
+      {
+        "at_ms": 2148251558,
+        "detail": "Skeleton",
+        "kind": "confirmed_kill",
+        "place": "",
+        "x": 1388,
+        "y": 1501
+      },
+      {
+        "at_ms": 2148540584,
+        "detail": "Skeleton",
+        "kind": "confirmed_kill",
+        "place": "",
+        "x": 1375,
+        "y": 1490
+      },
+      {
+        "at_ms": 2148682854,
+        "detail": "Skeleton",
+        "kind": "confirmed_kill",
+        "place": "",
+        "x": 1375,
+        "y": 1486
+      },
+      {
+        "at_ms": 2148970908,
+        "detail": "",
+        "kind": "confirmed_kill",
+        "place": "",
+        "x": 1380,
+        "y": 1494
+      },
+      {
+        "at_ms": 2152699308,
+        "detail": "Skeleton",
+        "kind": "confirmed_kill",
+        "place": "",
+        "x": 1382,
+        "y": 1495
+      },
+      {
+        "at_ms": 2152700755,
+        "detail": "Skeleton",
+        "kind": "confirmed_kill",
+        "place": "",
+        "x": 1382,
+        "y": 1495
+      },
+      {
+        "at_ms": 2153920092,
+        "detail": "session=16",
+        "kind": "mount_unavailable",
+        "place": "",
+        "x": 1408,
+        "y": 1624
+      },
+      {
+        "at_ms": 2154112771,
+        "detail": "Skeleton",
+        "kind": "confirmed_kill",
+        "place": "",
+        "x": 1380,
+        "y": 1494
+      }
+    ],
+    "places": [
+      {
+        "kind": "common_knowledge_bank",
+        "last_verified_ms": 1942899654,
+        "learned_ms": 1942899654,
+        "name": "Bank of Britannia - Trinsic Branch banker",
+        "visits": 1,
+        "x": 1813,
+        "y": 2825,
+        "z": 0
+      },
+      {
+        "kind": "common_knowledge_healer",
+        "last_verified_ms": 1942899654,
+        "learned_ms": 1942899654,
+        "name": "Trinsic Healer healer",
+        "visits": 1,
+        "x": 1911,
+        "y": 2805,
+        "z": 0
+      },
+      {
+        "kind": "common_knowledge_provisioner",
+        "last_verified_ms": 1942899654,
+        "learned_ms": 1942899654,
+        "name": "Britannia Provisions provisioner",
+        "visits": 1,
+        "x": 1850,
+        "y": 2796,
+        "z": -8
+      },
+      {
+        "kind": "healer",
+        "last_verified_ms": 1943017082,
+        "learned_ms": 1942975259,
+        "name": "Devin, the healer",
+        "visits": 867,
+        "x": 1913,
+        "y": 2805,
+        "z": 0
+      },
+      {
+        "kind": "safe",
+        "last_verified_ms": 1943176697,
+        "learned_ms": 1943176697,
+        "name": "logout point",
+        "visits": 1,
+        "x": 1391,
+        "y": 3705,
+        "z": 0
+      },
+      {
+        "kind": "healer",
+        "last_verified_ms": 2033611685,
+        "learned_ms": 2030013178,
+        "name": "Damen, the healer guildmaster",
+        "visits": 69892,
+        "x": 1416,
+        "y": 3782,
+        "z": 0
+      },
+      {
+        "kind": "healer",
+        "last_verified_ms": 2113915891,
+        "learned_ms": 2044768702,
+        "name": "Riley, the healer guildmaster",
+        "visits": 12508,
+        "x": 2579,
+        "y": 599,
+        "z": 0
+      },
+      {
+        "kind": "safe",
+        "last_verified_ms": 2064614734,
+        "learned_ms": 2064614734,
+        "name": "logout point",
+        "visits": 1,
+        "x": 2471,
+        "y": 562,
+        "z": 5
+      },
+      {
+        "kind": "safe",
+        "last_verified_ms": 2114074847,
+        "learned_ms": 2114074847,
+        "name": "logout point",
+        "visits": 1,
+        "x": 569,
+        "y": 1103,
+        "z": 0
+      },
+      {
+        "kind": "safe",
+        "last_verified_ms": 2122635389,
+        "learned_ms": 2114193509,
+        "name": "logout point",
+        "visits": 2,
+        "x": 647,
+        "y": 820,
+        "z": 0
+      },
+      {
+        "kind": "healer",
+        "last_verified_ms": 2144917969,
+        "learned_ms": 2116644568,
+        "name": "Martina, the healer",
+        "visits": 30695,
+        "x": 541,
+        "y": 965,
+        "z": 0
+      },
+      {
+        "kind": "healer",
+        "last_verified_ms": 2143745757,
+        "learned_ms": 2117191529,
+        "name": "Dunstan, the healer",
+        "visits": 11434,
+        "x": 646,
+        "y": 1085,
+        "z": 0
+      },
+      {
+        "kind": "healer",
+        "last_verified_ms": 2149440343,
+        "learned_ms": 2144917984,
+        "name": "Natasha, the healer guildmistress",
+        "visits": 33316,
+        "x": 1470,
+        "y": 1608,
+        "z": 20
+      },
+      {
+        "kind": "safe",
+        "last_verified_ms": 2145229250,
+        "learned_ms": 2145229250,
+        "name": "logout point",
+        "visits": 1,
+        "x": 1430,
+        "y": 1689,
+        "z": 0
+      },
+      {
+        "kind": "safe",
+        "last_verified_ms": 2152793108,
+        "learned_ms": 2152793108,
+        "name": "logout point",
+        "visits": 1,
+        "x": 1422,
+        "y": 1685,
+        "z": 0
+      }
+    ],
+    "resources": [],
+    "suppliers": [],
+    "trainers": []
+  },
+  "prices": [
+    {
+      "item": "riding horse",
+      "price": 568,
+      "source": 0,
+      "when_ms": 2153899990,
+      "who": "tan horse",
+      "x": 1385,
+      "y": 1656
+    }
+  ],
+  "recent_deaths": 0,
+  "schema_version": 2,
+  "sessions": [
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 1943176759,
+      "goals_attempted": 4,
+      "goals_completed": 0,
+      "goals_failed": 0,
+      "gold_end": 9993,
+      "gold_start": 10000,
+      "logs_gathered": 0,
+      "places_learned": 5,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1000,
+      "skill_tenths_start": 1000,
+      "started_ms": 1942899654,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2033787271,
+      "goals_attempted": 126,
+      "goals_completed": 27,
+      "goals_failed": 0,
+      "gold_end": 8702,
+      "gold_start": 9993,
+      "logs_gathered": 0,
+      "places_learned": 6,
+      "self_supersessions": 7,
+      "skill_tenths_end": 1000,
+      "skill_tenths_start": 1000,
+      "started_ms": 2029954261,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2044519488,
+      "goals_attempted": 11,
+      "goals_completed": 1,
+      "goals_failed": 0,
+      "gold_end": 8702,
+      "gold_start": 8702,
+      "logs_gathered": 0,
+      "places_learned": 6,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1001,
+      "skill_tenths_start": 1001,
+      "started_ms": 2043921938,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2044940521,
+      "goals_attempted": 8,
+      "goals_completed": 0,
+      "goals_failed": 0,
+      "gold_end": 8367,
+      "gold_start": 8702,
+      "logs_gathered": 0,
+      "places_learned": 7,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1001,
+      "skill_tenths_start": 1001,
+      "started_ms": 2044643053,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2063876555,
+      "goals_attempted": 1,
+      "goals_completed": 0,
+      "goals_failed": 0,
+      "gold_end": 8321,
+      "gold_start": 8367,
+      "logs_gathered": 0,
+      "places_learned": 7,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1001,
+      "skill_tenths_start": 1001,
+      "started_ms": 2063579063,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2064614795,
+      "goals_attempted": 8,
+      "goals_completed": 1,
+      "goals_failed": 0,
+      "gold_end": 7936,
+      "gold_start": 8321,
+      "logs_gathered": 0,
+      "places_learned": 8,
+      "self_supersessions": 1,
+      "skill_tenths_end": 1001,
+      "skill_tenths_start": 1001,
+      "started_ms": 2064314810,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2114193571,
+      "goals_attempted": 6,
+      "goals_completed": 0,
+      "goals_failed": 0,
+      "gold_end": 7920,
+      "gold_start": 7936,
+      "logs_gathered": 0,
+      "places_learned": 10,
+      "self_supersessions": 4,
+      "skill_tenths_end": 1001,
+      "skill_tenths_start": 1001,
+      "started_ms": 2113618410,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2116881921,
+      "goals_attempted": 8,
+      "goals_completed": 0,
+      "goals_failed": 0,
+      "gold_end": 7905,
+      "gold_start": 7920,
+      "logs_gathered": 0,
+      "places_learned": 11,
+      "self_supersessions": 4,
+      "skill_tenths_end": 1001,
+      "skill_tenths_start": 1001,
+      "started_ms": 2116557770,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2117360458,
+      "goals_attempted": 9,
+      "goals_completed": 0,
+      "goals_failed": 0,
+      "gold_end": 7895,
+      "gold_start": 7905,
+      "logs_gathered": 0,
+      "places_learned": 12,
+      "self_supersessions": 1,
+      "skill_tenths_end": 1001,
+      "skill_tenths_start": 1001,
+      "started_ms": 2117048297,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2122635451,
+      "goals_attempted": 8,
+      "goals_completed": 0,
+      "goals_failed": 0,
+      "gold_end": 7883,
+      "gold_start": 7895,
+      "logs_gathered": 0,
+      "places_learned": 12,
+      "self_supersessions": 1,
+      "skill_tenths_end": 1001,
+      "skill_tenths_start": 1001,
+      "started_ms": 2122255314,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2129123915,
+      "goals_attempted": 13,
+      "goals_completed": 0,
+      "goals_failed": 0,
+      "gold_end": 7868,
+      "gold_start": 7883,
+      "logs_gathered": 0,
+      "places_learned": 12,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1001,
+      "skill_tenths_start": 1001,
+      "started_ms": 2128803310,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2145229311,
+      "goals_attempted": 65,
+      "goals_completed": 16,
+      "goals_failed": 0,
+      "gold_end": 8118,
+      "gold_start": 7868,
+      "logs_gathered": 0,
+      "places_learned": 14,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1001,
+      "skill_tenths_start": 1001,
+      "started_ms": 2143331631,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2149744125,
+      "goals_attempted": 41,
+      "goals_completed": 13,
+      "goals_failed": 0,
+      "gold_end": 7836,
+      "gold_start": 8118,
+      "logs_gathered": 0,
+      "places_learned": 14,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1006,
+      "skill_tenths_start": 1006,
+      "started_ms": 2147907757,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2150885728,
+      "goals_attempted": 11,
+      "goals_completed": 3,
+      "goals_failed": 0,
+      "gold_end": 7772,
+      "gold_start": 7836,
+      "logs_gathered": 0,
+      "places_learned": 14,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1012,
+      "skill_tenths_start": 1012,
+      "started_ms": 2150481457,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2152793168,
+      "goals_attempted": 4,
+      "goals_completed": 0,
+      "goals_failed": 0,
+      "gold_end": 7756,
+      "gold_start": 7772,
+      "logs_gathered": 0,
+      "places_learned": 15,
+      "self_supersessions": 1,
+      "skill_tenths_end": 1012,
+      "skill_tenths_start": 1012,
+      "started_ms": 2152423536,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2154220260,
+      "goals_attempted": 13,
+      "goals_completed": 6,
+      "goals_failed": 0,
+      "gold_end": 7229,
+      "gold_start": 7756,
+      "logs_gathered": 0,
+      "places_learned": 15,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1013,
+      "skill_tenths_start": 1013,
+      "started_ms": 2153857894,
+      "suppliers_learned": 0
+    }
+  ]
+}

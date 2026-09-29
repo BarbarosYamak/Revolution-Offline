@@ -1,3 +1,5 @@
+Read docs/wiki/README.md (repo root) before exploring.
+
 IMPORTANT: While user talk to you in Russian you should talk back to user using only English
 
 # Repository Guidelines

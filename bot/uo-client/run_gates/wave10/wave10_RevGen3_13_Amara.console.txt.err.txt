@@ -1,0 +1,52 @@
+start: Amara is a tailor and lives in Britain -> starting city index 2
+map: verdata 'C:\Projects\RevolutionOffline\local\revolution-client/verdata.mul' applied (685 patch block(s))
+map: verdata 'C:\Projects\RevolutionOffline\local\revolution-client/verdata.mul' applied (685 patch block(s))
+[17:29:57.988] WARN  [wave10_RevGen3_13_Amara] [bot] goal (1435,3820) is not walkable; skipping A* and stopping
+[17:29:59.202] WARN  [wave10_RevGen3_13_Amara] [bot] goal (1435,3820) is not walkable; skipping A* and stopping
+[17:30:00.513] WARN  [wave10_RevGen3_13_Amara] [bot] goal (1435,3820) is not walkable; skipping A* and stopping
+[17:30:03.260] WARN  [wave10_RevGen3_13_Amara] [bot] goal (1435,3820) is not walkable; skipping A* and stopping
+[17:30:04.548] WARN  [wave10_RevGen3_13_Amara] [bot] goal (1435,3820) is not walkable; skipping A* and stopping
+[17:30:05.766] WARN  [wave10_RevGen3_13_Amara] [bot] goal (1435,3820) is not walkable; skipping A* and stopping
+[17:30:10.035] WARN  [wave10_RevGen3_13_Amara] [bot] goal (1435,3820) is not walkable; skipping A* and stopping
+[17:30:11.321] WARN  [wave10_RevGen3_13_Amara] [bot] goal (1435,3820) is not walkable; skipping A* and stopping
+[17:30:12.592] WARN  [wave10_RevGen3_13_Amara] [bot] goal (1435,3820) is not walkable; skipping A* and stopping
+[17:30:18.434] WARN  [wave10_RevGen3_13_Amara] [bot] goal (1435,3820) is not walkable; skipping A* and stopping
+[17:30:19.702] WARN  [wave10_RevGen3_13_Amara] [bot] goal (1435,3820) is not walkable; skipping A* and stopping
+[17:30:20.992] WARN  [wave10_RevGen3_13_Amara] [bot] goal (1435,3820) is not walkable; skipping A* and stopping
+[17:30:21.053] WARN  [wave10_RevGen3_13_Amara] [travel] route exhausted at (1448,3784,0); trying to reach (1432,3768,0) to get somewhere routable (escape 1/3)
+[17:30:21.930] WARN  [wave10_RevGen3_13_Amara] [bot] no path to (1432,3768) avoiding 0 block(s); stopping (search 850424.6us)
+[17:30:21.930] WARN  [wave10_RevGen3_13_Amara] [bot] start (1448,3784,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 275 item(s), 6 mobile(s))
+[17:30:21.992] WARN  [wave10_RevGen3_13_Amara] [travel] route exhausted at (1448,3784,0); trying to reach (1464,3768,0) to get somewhere routable (escape 2/3)
+[17:30:31.072] WARN  [wave10_RevGen3_13_Amara] [travel] route exhausted at (1464,3768,0); trying to reach (1448,3752,0) to get somewhere routable (escape 3/3)
+[17:31:48.822] WARN  [wave10_RevGen3_13_Amara] [0x21] move REJECTED seq=8; server says (1427,3856,0) facing=5
+[17:31:48.838] WARN  [wave10_RevGen3_13_Amara] [bot] 0x20 resync; aborting path
+[17:32:09.672] WARN  [wave10_RevGen3_13_Amara] [0x21] move REJECTED seq=19; server says (1371,3872,0) facing=5
+[17:32:09.674] WARN  [wave10_RevGen3_13_Amara] [bot] 0x20 resync; aborting path
+[17:32:55.377] WARN  [wave10_RevGen3_13_Amara] [bot] 0x20 resync; aborting path
+[17:34:09.701] WARN  [wave10_RevGen3_13_Amara] [bot] watchdog: oldest move unacked 5s; aborting path
+[17:34:09.906] WARN  [wave10_RevGen3_13_Amara] [0x22] unsolicited ack seq=13
+[17:34:38.853] WARN  [wave10_RevGen3_13_Amara] [0x21] move REJECTED seq=27; server says (1504,3991,-3) facing=1
+[17:34:39.590] WARN  [wave10_RevGen3_13_Amara] [0x21] move REJECTED seq=0; server says (1504,3991,-3) facing=1
+[17:34:45.035] WARN  [wave10_RevGen3_13_Amara] [bot] no path to (1480,3976) avoiding 0 block(s); stopping (search 239038.5us)
+[17:34:45.035] WARN  [wave10_RevGen3_13_Amara] [bot] start (1508,3989,-2) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1104 item(s), 1 mobile(s))
+[17:34:46.629] WARN  [wave10_RevGen3_13_Amara] [bot] no path to (1480,3976) avoiding 0 block(s); stopping (search 273099.4us)
+[17:34:46.630] WARN  [wave10_RevGen3_13_Amara] [bot] start (1508,3989,-2) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1104 item(s), 1 mobile(s))
+[17:34:48.230] WARN  [wave10_RevGen3_13_Amara] [bot] no path to (1480,3976) avoiding 0 block(s); stopping (search 274940.4us)
+[17:34:48.231] WARN  [wave10_RevGen3_13_Amara] [bot] start (1508,3989,-2) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1104 item(s), 1 mobile(s))
+[17:35:24.917] WARN  [wave10_RevGen3_13_Amara] [bot] 0x20 resync; aborting path
+[17:35:30.026] WARN  [wave10_RevGen3_13_Amara] [bot] 0x20 resync; aborting path
+[17:35:31.028] WARN  [wave10_RevGen3_13_Amara] [travel] route exhausted at (1124,362,5); trying to reach (1074,370,-5) to get somewhere routable (escape 1/3)
+[17:35:31.029] WARN  [wave10_RevGen3_13_Amara] [bot] no path to (1074,370) avoiding 0 block(s); stopping (search 18.3us)
+[17:35:31.029] WARN  [wave10_RevGen3_13_Amara] [bot] start (1124,362,5) exits: open=0 terrain=8 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1134 item(s), 0 mobile(s))
+[17:35:31.090] WARN  [wave10_RevGen3_13_Amara] [travel] route exhausted at (1124,362,5); trying to reach (1176,312,1) to get somewhere routable (escape 2/3)
+[17:35:31.091] WARN  [wave10_RevGen3_13_Amara] [bot] no path to (1176,312) avoiding 0 block(s); stopping (search 3.9us)
+[17:35:31.091] WARN  [wave10_RevGen3_13_Amara] [bot] start (1124,362,5) exits: open=0 terrain=8 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1134 item(s), 0 mobile(s))
+[17:35:31.153] WARN  [wave10_RevGen3_13_Amara] [travel] route exhausted at (1124,362,5); trying to reach (1176,322,1) to get somewhere routable (escape 3/3)
+[17:35:31.154] WARN  [wave10_RevGen3_13_Amara] [bot] no path to (1176,322) avoiding 0 block(s); stopping (search 5.8us)
+[17:35:31.154] WARN  [wave10_RevGen3_13_Amara] [bot] start (1124,362,5) exits: open=0 terrain=8 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1134 item(s), 0 mobile(s))
+[17:35:34.356] WARN  [wave10_RevGen3_13_Amara] [bot] no path to (1176,322) avoiding 0 block(s); stopping (search 7.0us)
+[17:35:34.356] WARN  [wave10_RevGen3_13_Amara] [bot] start (1124,362,5) exits: open=0 terrain=8 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1134 item(s), 0 mobile(s))
+[17:35:35.650] WARN  [wave10_RevGen3_13_Amara] [bot] no path to (1176,322) avoiding 0 block(s); stopping (search 4.5us)
+[17:35:35.650] WARN  [wave10_RevGen3_13_Amara] [bot] start (1124,362,5) exits: open=0 terrain=8 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1134 item(s), 0 mobile(s))
+[17:35:36.916] WARN  [wave10_RevGen3_13_Amara] [bot] no path to (1176,322) avoiding 0 block(s); stopping (search 5.6us)
+[17:35:36.916] WARN  [wave10_RevGen3_13_Amara] [bot] start (1124,362,5) exits: open=0 terrain=8 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1134 item(s), 0 mobile(s))

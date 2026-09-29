@@ -1,0 +1,17 @@
+start: Vorar is a lumberjack_swordsman and lives in Britain -> starting city index 2
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+[19:00:57.008] WARN  [g_Vorar] [0x21] move REJECTED seq=1; server says (1655,1611,20) facing=3
+[19:00:57.986] WARN  [g_Vorar] [0x21] move REJECTED seq=1; server says (1656,1612,20) facing=3
+[19:00:57.988] WARN  [g_Vorar] [bot] 0x20 resync; aborting path
+[19:02:35.434] WARN  [g_Vorar] [bot] goal (1560,1656) is not walkable; snapping to nearest standable tile (1558,1654,20) instead
+[19:02:36.729] WARN  [g_Vorar] [bot] no path to (1558,1654) avoiding 0 block(s); stopping (search 1245646.6us)
+[19:02:36.729] WARN  [g_Vorar] [bot] start (1591,1659,10) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 190 item(s), 4 mobile(s))
+[19:02:38.112] WARN  [g_Vorar] [bot] goal (1560,1656) is not walkable; snapping to nearest standable tile (1558,1654,20) instead
+[19:02:39.280] WARN  [g_Vorar] [bot] no path to (1558,1654) avoiding 0 block(s); stopping (search 1164999.2us)
+[19:02:39.280] WARN  [g_Vorar] [bot] start (1591,1659,10) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 190 item(s), 4 mobile(s))
+[19:02:40.659] WARN  [g_Vorar] [bot] goal (1560,1656) is not walkable; snapping to nearest standable tile (1558,1654,20) instead
+[19:02:41.872] WARN  [g_Vorar] [bot] no path to (1558,1654) avoiding 0 block(s); stopping (search 1200690.3us)
+[19:02:41.872] WARN  [g_Vorar] [bot] start (1591,1659,10) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 190 item(s), 4 mobile(s))
+[19:02:46.458] WARN  [g_Vorar] [0x21] move REJECTED seq=7; server says (1591,1664,10) facing=5
+[19:02:46.459] WARN  [g_Vorar] [bot] 0x20 resync; aborting path

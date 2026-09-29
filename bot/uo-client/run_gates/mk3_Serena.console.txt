@@ -1,0 +1,938 @@
+[00:19:57.537] INFO  session 0: 127.0.0.1:2593 user='RevGen3_21' char=Serena tag='mk3_Serena'
+[00:19:57.538] LOG   [mk3_Serena] event session_start: text log opened
+[00:19:57.538] LOG   [mk3_Serena] event net_connect_begin: connect 127.0.0.1:2593
+[00:19:57.538] INFO  [mk3_Serena] [net] connecting to 127.0.0.1:2593 ...
+[00:19:57.539] LOG   [mk3_Serena] event net_connected: connect 127.0.0.1:2593
+[00:19:57.539] INFO  [mk3_Serena] [net] connected.
+[00:19:57.539] INFO  [mk3_Serena] [seed] sent 0x7F000001 (plaintext)
+[00:19:57.539] LOG   [mk3_Serena] event seed_out: 0x7F000001 hex=7f000001
+[00:19:57.540] INFO  [life] no prior state for revgen3_21.serena: a new Merchant / Tinker
+[00:19:57.540] INFO  [life] creation request: Tinkering 50.0 + Mining 50.0, stats 50/16/14 = 80
+[00:19:57.540] INFO  [life] needs: reading 'merchant_tinker' from the profession catalogue
+[00:19:57.540] INFO  [life] home: Serena lives in Britain
+[00:19:57.540] INFO  [life] build plan 'merchant_tinker': 150.0 resolved + 550.0 unresolved = 700.0/700.0, stats 100/50/75 = 225
+[00:19:57.540] INFO  [mk3_Serena] [life] autonomous player active for 'Serena' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 3 min)
+[00:19:57.565] INFO  [mk3_Serena] [0xA8] 1 server(s):
+[00:19:57.565] INFO  [mk3_Serena]   [0] MyShard                   1.0.0.127  full=8%  tz=0
+[00:19:57.582] INFO  [mk3_Serena] [0x8C] game server = 127.0.0.1:2593  seed=0x581E10F0
+[00:19:57.582] LOG   [mk3_Serena] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x581E10F0
+[00:19:57.582] INFO  [mk3_Serena] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[00:19:57.582] LOG   [mk3_Serena] event relay_same_socket: no seed re-sent; 0x91 follows
+[00:19:57.582] INFO  [mk3_Serena] [0xB9] server features = 0x0005
+[00:19:57.582] INFO  [mk3_Serena] [0xA9] 5 slot(s) (populated 0):
+[00:19:57.582] INFO  [mk3_Serena]   [0] <empty>
+[00:19:57.582] INFO  [mk3_Serena]   [1] <empty>
+[00:19:57.582] INFO  [mk3_Serena]   [2] <empty>
+[00:19:57.582] INFO  [mk3_Serena]   [3] <empty>
+[00:19:57.582] INFO  [mk3_Serena]   [4] <empty>
+[00:19:57.582] INFO  [mk3_Serena] create: appearance sex=M skin=0x03F5 hair=0x2044/0x0459 shirt=0x0389 pants=0x00B3
+[00:19:57.582] INFO  [mk3_Serena] [0x00] starting city index 2
+[00:19:57.582] INFO  [mk3_Serena] [0x00] requested skills 37:50 45:50 48:0
+[00:19:57.582] INFO  [mk3_Serena] [0x00] requested stats STR 50 DEX 16 INT 14
+[00:19:57.582] INFO  [mk3_Serena] [0x00] creating character 'Serena' in slot 0
+[00:19:57.582] LOG   [mk3_Serena] event char_create_sent: Serena
+[00:19:57.599] INFO  [mk3_Serena] [0x1B] serial=0x000193F7 body=0x0190 pos=(1496,1628,10)
+[00:19:57.599] LOG   [mk3_Serena] event login_confirm: serial=0x000193F7 body=0x0190 pos=(1496,1628,10)
+[00:19:57.599] INFO  [mk3_Serena] [0x20] player @(1496,1628,10) facing=3
+[00:19:57.599] INFO  [mk3_Serena] [0x55] login complete — entering world
+[00:19:57.599] LOG   [mk3_Serena] event in_world: 0x55 received
+[00:19:57.599] INFO  [mk3_Serena] [backpack] opening 0x400193EF
+[00:19:57.599] INFO  [mk3_Serena] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[00:19:57.599] INFO  [mk3_Serena] [chat ascii] System: There are 20 other players here.
+[00:19:57.599] INFO  [mk3_Serena] [chat ascii] System: You are under the protection of the city guards
+[00:19:57.604] INFO  [mk3_Serena] [action] requesting the skill list
+[00:19:57.604] INFO  [life] in world; asked the server for the skill list
+[00:19:57.612] INFO  [mk3_Serena] [0x24] open container 0x400193EF gump=60
+[00:19:57.612] INFO  [mk3_Serena] [0x3C] container contents: 6 item(s)
+[00:19:57.612] LOG   [mk3_Serena] event backpack_contents: serial=0x400193EF items=6
+[00:20:00.224] INFO  [mk3_Serena] [bot] world data loaded (0 blacklisted spot(s)).
+[00:20:00.224] INFO  [life] reconciliation: first ever login, 7 field(s) differed
+[00:20:00.224] INFO  [life]   gold         persisted=0          server=10000      -> server value accepted
+[00:20:00.224] INFO  [life]   str          persisted=0          server=50         -> server value accepted
+[00:20:00.224] INFO  [life]   dex          persisted=0          server=16         -> server value accepted
+[00:20:00.224] INFO  [life]   int          persisted=0          server=14         -> server value accepted
+[00:20:00.224] INFO  [life]   skill_37     persisted=0.0        server=50.0       -> server value accepted
+[00:20:00.224] INFO  [life]   skill_45     persisted=0.0        server=50.0       -> server value accepted
+[00:20:00.224] INFO  [life]   position     persisted=0,0        server=1496,1628  -> server value accepted
+[00:20:00.224] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[00:20:00.224] INFO  [mk3_Serena] [survival] on
+[00:20:00.224] LOG   [mk3_Serena] event survival_mode: on
+[00:20:00.226] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_21.serena/state.json
+[00:20:00.226] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:20:00.279] INFO  [life] goal=BANK reason="no goal was running"
+[00:20:00.279] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedTrade(buy from a player 0.55) NeedEquipment(heal potions 0.50) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=2 held=[tinker tools,pickaxe,] want_train=nothing (target 0.0)
+[00:20:00.279] INFO  [life]   score=150.0
+[00:20:00.279] INFO  [life]   reason: NeedBank urgency 0.75 x 240 = 180.0
+[00:20:00.279] INFO  [life]   reason: on_hand=10000 (total 10000) reserve=250 carry=750 spare=9250 risk=1.00
+[00:20:00.279] INFO  [life]   reason: no bank learned yet -30
+[00:20:00.279] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[00:20:00.279] INFO  [mk3_Serena] [action] scanning nearby mobiles for names
+[00:20:00.279] INFO  [mk3_Serena] [action] requested 2 paperdoll(s) for trade titles
+[00:20:00.279] INFO  [life] bank: asking who is standing in the bank
+[00:20:00.294] INFO  [mk3_Serena] [mobiles] nearby (3):
+[00:20:00.294] INFO  [mk3_Serena]   Odessa 0x000194DE
+[00:20:00.294] INFO  [mk3_Serena]   Audny 0x00001076
+[00:20:00.294] INFO  [mk3_Serena]   Starling 0x000013C5
+[00:20:00.294] INFO  [mk3_Serena] [0x20] player @(1496,1628,10) facing=0
+[00:20:00.294] INFO  [mk3_Serena] [0x88] paperdoll 0x00001076: "Audny, the innkeeper"
+[00:20:00.294] INFO  [mk3_Serena] [world] Audny, the innkeeper is a innkeeper at (1495,1618)
+[00:20:00.294] INFO  [mk3_Serena] [0x88] paperdoll 0x000194DE: "Odessa, Apprentice Miner"
+[00:20:00.645] INFO  [mk3_Serena] [chat ascii] System: Aurelius has arrived in Moonglow.
+[00:20:02.332] INFO  [life] bank: no banker in sight
+[00:20:02.332] INFO  [life] goal_failed=BANK status=retryable_failure reason="no banker in sight"
+[00:20:02.393] INFO  [life] goal=REPLACE_EQUIPMENT reason="previous goal abandoned: no banker answered"
+[00:20:02.393] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedTrade(buy from a player 0.55) NeedEquipment(heal potions 0.50) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=2 held=[tinker tools,pickaxe,] want_train=nothing (target 0.0)
+[00:20:02.393] INFO  [life]   score=130.0
+[00:20:02.393] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:20:02.393] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:20:02.393] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 299s after achieving nothing
+[00:20:02.393] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[00:20:03.869] INFO  [mk3_Serena] [chat ascii] System: Leander has arrived in Moonglow.
+[00:20:05.265] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:20:06.980] INFO  [mk3_Serena] [chat ascii] System: Illyria has arrived in Britain.
+[00:20:07.360] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:20:07.360] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[00:20:07.363] INFO  [mk3_Serena] [travel] place: skipping Cove healer -- 1344 tiles and 1 gate for a service Britain healer offers
+[00:20:07.363] INFO  [mk3_Serena] [travel] place: skipping Minoc healer -- 1704 tiles and 0 gates for a service Britain healer offers
+[00:20:07.363] INFO  [mk3_Serena] [travel] Britain healer -> (1471,1611) r=5 from (1496,1628)
+[00:20:07.363] LOG   [mk3_Serena] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1496,1628)
+[00:20:07.363] INFO  [life] potions: walking to a 'healer' (trip 1)
+[00:20:07.363] INFO  [mk3_Serena] [travel] mode walk             usable   <- chosen
+[00:20:07.363] INFO  [mk3_Serena] [travel] mode moongate         usable
+[00:20:07.363] INFO  [mk3_Serena] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:07.363] INFO  [mk3_Serena] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:07.363] LOG   [mk3_Serena] event travel_mode: walk
+[00:20:07.363] INFO  [mk3_Serena] [travel] plan Britain healer: ok legs=1 ~25 tiles transit=0 nodes=0
+[00:20:07.421] INFO  [mk3_Serena] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:20:07.421] INFO  [mk3_Serena] [action] goto (1471,1611) from (1496,1628,10)
+[00:20:07.421] LOG   [mk3_Serena] event goto_start: target=(1471,1611) from=(1496,1628)
+[00:20:07.421] INFO  [mk3_Serena] [bot] running from (1496,1628,10) to (1471,1611,z20)
+[00:20:07.421] INFO  [mk3_Serena] [bot] planning path to (1471,1611) in background
+[00:20:07.482] INFO  [mk3_Serena] [bot] replan to (1471,1611): 33 steps in 5407.6us
+[00:20:10.022] INFO  [mk3_Serena] [chat ascii] System: Hector has arrived in Trinsic.
+[00:20:10.269] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:20:12.186] INFO  [mk3_Serena] [chat uni  ] : Dale buy
+[00:20:12.186] INFO  [mk3_Serena] [chat ascii] Dale: I got lots to sell!
+[00:20:12.262] INFO  [mk3_Serena] [chat ascii] Dale: Here you are, Aelia That will be 120 gold coins.  I thank thee for thy business.
+[00:20:12.785] INFO  [mk3_Serena] [bot] lookahead patched around block at step 5: anchor=6 new segment=9 path=17 in 164.9us
+[00:20:13.077] INFO  [mk3_Serena] [chat ascii] System: Castor has arrived in Trinsic.
+[00:20:14.794] INFO  [mk3_Serena] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=10 in 69.5us
+[00:20:14.873] INFO  [mk3_Serena] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=10 in 162.4us
+[00:20:15.270] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:20:16.106] INFO  [mk3_Serena] [chat ascii] System: Faustus has arrived in Britain.
+[00:20:16.397] INFO  [mk3_Serena] [travel] Britain healer ARRIVED at (1476,1613,20)
+[00:20:16.397] LOG   [mk3_Serena] event travel_done: label='Britain healer' ok=1 at=(1476,1613) legs=1 plans=1 why=''
+[00:20:16.458] INFO  [mk3_Serena] [action] scanning nearby mobiles for names
+[00:20:16.458] INFO  [mk3_Serena] [action] requested 6 paperdoll(s) for trade titles
+[00:20:16.458] INFO  [life] potions: at the shop, asking who is here (scan 1 of 3)
+[00:20:16.474] INFO  [mk3_Serena] [mobiles] nearby (7):
+[00:20:16.474] INFO  [mk3_Serena]   Odessa 0x000194DE
+[00:20:16.474] INFO  [mk3_Serena]   Amara 0x00012E70
+[00:20:16.474] INFO  [mk3_Serena]   Aelia 0x00013DA6
+[00:20:16.474] INFO  [mk3_Serena]   Dale 0x000010C1
+[00:20:16.474] INFO  [mk3_Serena]   Natasha 0x00001194
+[00:20:16.474] INFO  [mk3_Serena]   Caimile 0x00001239
+[00:20:16.474] INFO  [mk3_Serena]   Cyras 0x00015725
+[00:20:16.474] INFO  [mk3_Serena] [0x20] player @(1476,1613,20) facing=1
+[00:20:16.474] INFO  [mk3_Serena] [0x88] paperdoll 0x00013DA6: "Aelia, Apprentice Tailor"
+[00:20:16.474] INFO  [mk3_Serena] [0x20] player @(1476,1613,20) facing=0
+[00:20:16.474] INFO  [mk3_Serena] [0x88] paperdoll 0x00012E70: "Amara, Apprentice Tailor"
+[00:20:16.474] INFO  [mk3_Serena] [0x20] player @(1476,1613,20) facing=6
+[00:20:16.474] INFO  [mk3_Serena] [0x88] paperdoll 0x000010C1: "Dale, the healer"
+[00:20:16.474] INFO  [mk3_Serena] [world] Dale, the healer is a healer at (1471,1612)
+[00:20:16.474] INFO  [mk3_Serena] [0x88] paperdoll 0x00001194: "Natasha, the healer guildmistress"
+[00:20:16.474] INFO  [mk3_Serena] [world] Natasha, the healer guildmistress is a healer at (1468,1611)
+[00:20:16.474] INFO  [mk3_Serena] [0x20] player @(1476,1613,20) facing=0
+[00:20:16.474] INFO  [mk3_Serena] [0x88] paperdoll 0x00001239: "Caimile, the merchant guildmistress"
+[00:20:16.474] INFO  [mk3_Serena] [0x20] player @(1476,1613,20) facing=6
+[00:20:16.474] INFO  [mk3_Serena] [0x88] paperdoll 0x00015725: "Cyras, Apprentice Lumberjack"
+[00:20:19.161] INFO  [mk3_Serena] [chat ascii] System: Titus has arrived in Skara Brae.
+[00:20:19.497] INFO  [life] potions: found a 'healer'
+[00:20:19.542] INFO  [mk3_Serena] [travel] mobile 0x000010C1 -> (1472,1614) r=1 from (1476,1613)
+[00:20:19.542] LOG   [mk3_Serena] event travel_start: label='mobile 0x000010C1' target=(1472,1614) radius=1 from=(1476,1613)
+[00:20:19.542] INFO  [life] potions: the 'healer' is 4 tiles off (dz 0) -- walking into reach (chase 1 of 3)
+[00:20:19.542] INFO  [mk3_Serena] [travel] mode walk             usable   <- chosen
+[00:20:19.542] INFO  [mk3_Serena] [travel] mode moongate         usable
+[00:20:19.542] INFO  [mk3_Serena] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:19.542] INFO  [mk3_Serena] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:19.542] LOG   [mk3_Serena] event travel_mode: walk
+[00:20:19.542] INFO  [mk3_Serena] [travel] plan mobile 0x000010C1: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:20:19.603] INFO  [mk3_Serena] [action] goto finished at (1476,1613,20); target (1471,1611); stopped short (off by 7 tile(s))
+[00:20:19.603] LOG   [mk3_Serena] event goto_done: at=(1476,1613) target=(1471,1611) arrived=0 off=7
+[00:20:19.603] INFO  [mk3_Serena] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:20:19.603] INFO  [mk3_Serena] [action] goto (1472,1614) from (1476,1613,20)
+[00:20:19.603] LOG   [mk3_Serena] event goto_start: target=(1472,1614) from=(1476,1613)
+[00:20:19.603] INFO  [mk3_Serena] [bot] running from (1476,1613,20) to (1472,1614,z20)
+[00:20:19.603] INFO  [mk3_Serena] [bot] planning path to (1472,1614) in background
+[00:20:20.312] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:20:21.726] INFO  [mk3_Serena] [chat uni  ] Odessa: Dale buy
+[00:20:21.726] INFO  [mk3_Serena] [chat ascii] Dale: Greetings. What can I help thee with?
+[00:20:21.726] INFO  [mk3_Serena] [chat ascii] Dale: I'm here to sell thee supplies.
+[00:20:21.803] INFO  [mk3_Serena] [chat ascii] Dale: Here you are, Odessa That will be 120 gold coins.  I thank thee for thy business.
+[00:20:22.046] INFO  [mk3_Serena] [action] goto finished at (1476,1613,20); target (1472,1614); stopped short (off by 5 tile(s))
+[00:20:22.046] LOG   [mk3_Serena] event goto_done: at=(1476,1613) target=(1472,1614) arrived=0 off=5
+[00:20:22.309] INFO  [mk3_Serena] [chat ascii] System: Rhea has arrived in Britain.
+[00:20:23.263] INFO  [mk3_Serena] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:20:23.263] INFO  [mk3_Serena] [action] goto (1472,1614) from (1476,1613,20)
+[00:20:23.263] LOG   [mk3_Serena] event goto_start: target=(1472,1614) from=(1476,1613)
+[00:20:23.263] INFO  [mk3_Serena] [bot] running from (1476,1613,20) to (1472,1614,z20)
+[00:20:23.263] INFO  [mk3_Serena] [bot] planning path to (1472,1614) in background
+[00:20:25.070] INFO  [mk3_Serena] [chat uni  ] Amara: Dale buy
+[00:20:25.070] INFO  [mk3_Serena] [chat ascii] Dale: Thou surely wants all the things that I can sell thee.
+[00:20:25.146] INFO  [mk3_Serena] [chat ascii] Dale: Here you are, Amara That will be 60 gold coins.  I thank thee for thy business.
+[00:20:25.328] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:20:25.377] INFO  [mk3_Serena] [chat ascii] System: Xerxes has arrived in Vesper.
+[00:20:25.511] INFO  [mk3_Serena] [action] goto finished at (1476,1613,20); target (1472,1614); stopped short (off by 5 tile(s))
+[00:20:25.512] LOG   [mk3_Serena] event goto_done: at=(1476,1613) target=(1472,1614) arrived=0 off=5
+[00:20:26.718] INFO  [mk3_Serena] [travel] mode walk             usable   <- chosen
+[00:20:26.719] INFO  [mk3_Serena] [travel] mode moongate         usable
+[00:20:26.719] INFO  [mk3_Serena] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:26.719] INFO  [mk3_Serena] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:26.719] LOG   [mk3_Serena] event travel_mode: walk
+[00:20:26.719] INFO  [mk3_Serena] [travel] plan mobile 0x000010C1: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:20:28.269] INFO  [mk3_Serena] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:20:28.269] INFO  [mk3_Serena] [action] goto (1472,1614) from (1476,1613,20)
+[00:20:28.269] LOG   [mk3_Serena] event goto_start: target=(1472,1614) from=(1476,1613)
+[00:20:28.269] INFO  [mk3_Serena] [bot] running from (1476,1613,20) to (1472,1614,z20)
+[00:20:28.269] INFO  [mk3_Serena] [bot] planning path to (1472,1614) in background
+[00:20:30.382] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:20:30.965] INFO  [mk3_Serena] [action] goto finished at (1476,1613,20); target (1472,1614); stopped short (off by 5 tile(s))
+[00:20:30.965] LOG   [mk3_Serena] event goto_done: at=(1476,1613) target=(1472,1614) arrived=0 off=5
+[00:20:32.189] INFO  [mk3_Serena] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:20:32.189] INFO  [mk3_Serena] [action] goto (1472,1614) from (1476,1613,20)
+[00:20:32.189] LOG   [mk3_Serena] event goto_start: target=(1472,1614) from=(1476,1613)
+[00:20:32.189] INFO  [mk3_Serena] [bot] running from (1476,1613,20) to (1472,1614,z20)
+[00:20:32.189] INFO  [mk3_Serena] [bot] planning path to (1472,1614) in background
+[00:20:34.781] INFO  [mk3_Serena] [action] goto finished at (1476,1613,20); target (1472,1614); stopped short (off by 5 tile(s))
+[00:20:34.781] LOG   [mk3_Serena] event goto_done: at=(1476,1613) target=(1472,1614) arrived=0 off=5
+[00:20:35.393] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:20:36.020] INFO  [mk3_Serena] [travel] mode walk             usable   <- chosen
+[00:20:36.020] INFO  [mk3_Serena] [travel] mode moongate         usable
+[00:20:36.020] INFO  [mk3_Serena] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:36.020] INFO  [mk3_Serena] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:36.020] LOG   [mk3_Serena] event travel_mode: walk
+[00:20:36.020] INFO  [mk3_Serena] [travel] plan mobile 0x000010C1: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:20:37.021] INFO  [mk3_Serena] [travel] mode walk             usable   <- chosen
+[00:20:37.021] INFO  [mk3_Serena] [travel] mode moongate         usable
+[00:20:37.021] INFO  [mk3_Serena] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:37.021] INFO  [mk3_Serena] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:37.021] LOG   [mk3_Serena] event travel_mode: walk
+[00:20:37.021] INFO  [mk3_Serena] [travel] plan mobile 0x000010C1: ok legs=1 ~3 tiles transit=0 nodes=0
+[00:20:37.082] INFO  [mk3_Serena] [action] goto (1473,1611) from (1476,1613,20)
+[00:20:37.082] LOG   [mk3_Serena] event goto_start: target=(1473,1611) from=(1476,1613)
+[00:20:37.082] INFO  [mk3_Serena] [bot] running from (1476,1613,20) to (1473,1611,z20)
+[00:20:37.082] INFO  [mk3_Serena] [bot] planning path to (1473,1611) in background
+[00:20:39.284] INFO  [mk3_Serena] [action] goto finished at (1476,1613,20); target (1473,1611); stopped short (off by 5 tile(s))
+[00:20:39.284] LOG   [mk3_Serena] event goto_done: at=(1476,1613) target=(1473,1611) arrived=0 off=5
+[00:20:40.402] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:20:40.522] INFO  [mk3_Serena] [travel] mode walk             usable   <- chosen
+[00:20:40.522] INFO  [mk3_Serena] [travel] mode moongate         usable
+[00:20:40.522] INFO  [mk3_Serena] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:40.522] INFO  [mk3_Serena] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:40.522] LOG   [mk3_Serena] event travel_mode: walk
+[00:20:40.522] INFO  [mk3_Serena] [travel] plan mobile 0x000010C1: ok legs=1 ~3 tiles transit=0 nodes=0
+[00:20:41.845] INFO  [mk3_Serena] [travel] mobile 0x000010C1 ARRIVED at (1476,1613,20)
+[00:20:41.845] LOG   [mk3_Serena] event travel_done: label='mobile 0x000010C1' ok=1 at=(1476,1613) legs=0 plans=0 why=''
+[00:20:41.907] INFO  [life] potions: within reach
+[00:20:41.967] INFO  [mk3_Serena] [ACTION] vendor_buy start
+[00:20:41.967] INFO  [mk3_Serena] [VENDOR] open vendor=0x000010C1 say='Dale buy'
+[00:20:41.967] INFO  [life] potions: asking the 'healer' to show heal potion (attempt 1)
+[00:20:41.984] INFO  [mk3_Serena] [chat uni  ] : Dale buy
+[00:20:41.984] INFO  [mk3_Serena] [chat ascii] Dale: Yes?
+[00:20:41.984] INFO  [mk3_Serena] [chat ascii] Dale: I'm here to sell thee supplies.
+[00:20:41.984] INFO  [mk3_Serena] [0x3C] container contents: 3 item(s)
+[00:20:41.984] INFO  [mk3_Serena] [0x74] pairing: straight (straight 3, mirrored 1 of 3 rows)
+[00:20:41.984] INFO  [mk3_Serena] [0x74] vendor shop data: cont=0x400010BB 3 item(s), layer=0x1A
+[00:20:41.984] INFO  [mk3_Serena] [0x74]   Ginseng                      gfx=0x0F85 qty=20   price=3
+[00:20:41.984] INFO  [mk3_Serena] [0x74]   Garlic                       gfx=0x0F84 qty=13   price=3
+[00:20:41.984] INFO  [mk3_Serena] [0x74]   Refresh                      gfx=0x0F0B qty=19   price=16
+[00:20:41.984] INFO  [mk3_Serena] [0x3C] container contents: 0 item(s)
+[00:20:41.984] INFO  [mk3_Serena] [0x74] vendor shop data: cont=0x40000EF5 0 item(s), layer=0x1B
+[00:20:41.984] INFO  [mk3_Serena] [VENDOR] offer from 0x000010C1: 3 item(s)
+[00:20:41.984] INFO  [mk3_Serena] [VENDOR]   0x40018237 Ginseng                x20  3 gp
+[00:20:41.984] INFO  [mk3_Serena] [VENDOR]   0x40018236 Garlic                 x13  3 gp
+[00:20:41.984] INFO  [mk3_Serena] [VENDOR]   0x40018232 Refresh                x19  16 gp
+[00:20:41.984] LOG   [mk3_Serena] event vendor_offer: vendor=0x000010C1 items=3
+[00:20:41.984] INFO  [mk3_Serena] [ACTION_RESULT] vendor_buy success (16ms) vendor offer received
+[00:20:41.984] LOG   [mk3_Serena] event action_result: vendor_buy success took=16ms vendor offer received
+[00:20:41.984] INFO  [mk3_Serena] [0x24] vendor buy gump for 0x000010C1
+[00:20:41.984] INFO  [mk3_Serena] [chat uni  ] : Dale buy
+[00:20:41.984] INFO  [mk3_Serena] [chat ascii] Dale: Excuse me Serena, but Illyria wants to speak to me
+[00:20:41.984] INFO  [mk3_Serena] [chat ascii] Dale: Good morrow!  How can I help thee?
+[00:20:41.984] INFO  [mk3_Serena] [chat ascii] Dale: Thou surely wants all the things that I can sell thee.
+[00:20:41.984] INFO  [life] potions: the shop is open
+[00:20:42.044] INFO  [life] potions: this 'healer' does not stock heal potion
+[00:20:42.044] INFO  [life] potions: none bought (this 'healer' does not stock heal potion)
+[00:20:42.044] INFO  [life] goal_completed=REPLACE_EQUIPMENT progress=0
+[00:20:42.047] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_21.serena/state.json
+[00:20:42.105] INFO  [life] goal=REPLACE_EQUIPMENT reason="no goal was running"
+[00:20:42.106] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedTrade(buy from a player 0.55) NeedEquipment(heal potions 0.50) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=2 held=[tinker tools,pickaxe,] want_train=nothing (target 0.0)
+[00:20:42.106] INFO  [life]   score=130.0
+[00:20:42.106] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:20:42.106] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:20:42.106] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 260s after achieving nothing
+[00:20:42.106] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[00:20:42.106] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:20:42.106] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[00:20:42.106] INFO  [life] potions: found a 'healer'
+[00:20:42.106] INFO  [life] potions: within reach
+[00:20:42.167] INFO  [life] potions: the shop is open
+[00:20:42.228] INFO  [life] potions: this 'healer' does not stock heal potion
+[00:20:42.228] INFO  [life] potions: none bought (this 'healer' does not stock heal potion)
+[00:20:42.228] INFO  [life] goal_completed=REPLACE_EQUIPMENT progress=0
+[00:20:42.230] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_21.serena/state.json
+[00:20:42.289] INFO  [life] goal=REPLACE_EQUIPMENT reason="no goal was running"
+[00:20:42.289] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedTrade(buy from a player 0.55) NeedEquipment(heal potions 0.50) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=2 held=[tinker tools,pickaxe,] want_train=nothing (target 0.0)
+[00:20:42.290] INFO  [life]   score=114.4
+[00:20:42.290] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:20:42.290] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:20:42.290] INFO  [life]   reason: same errand just now, easing off 12% (130.0 -> 114.4)
+[00:20:42.290] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 260s after achieving nothing
+[00:20:42.290] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[00:20:42.290] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:20:42.290] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[00:20:42.290] INFO  [life] potions: found a 'healer'
+[00:20:42.351] INFO  [life] potions: within reach
+[00:20:42.411] INFO  [life] potions: the shop is open
+[00:20:42.472] INFO  [life] potions: this 'healer' does not stock heal potion
+[00:20:42.472] INFO  [life] potions: none bought (this 'healer' does not stock heal potion)
+[00:20:42.472] INFO  [life] goal_completed=REPLACE_EQUIPMENT progress=0
+[00:20:42.474] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_21.serena/state.json
+[00:20:42.533] INFO  [life] goal=REPLACE_EQUIPMENT reason="no goal was running"
+[00:20:42.533] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedTrade(buy from a player 0.55) NeedEquipment(heal potions 0.50) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=2 held=[tinker tools,pickaxe,] want_train=nothing (target 0.0)
+[00:20:42.533] INFO  [life]   score=98.8
+[00:20:42.533] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:20:42.533] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:20:42.533] INFO  [life]   reason: same errand just now, easing off 24% (130.0 -> 98.8)
+[00:20:42.533] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 259s after achieving nothing
+[00:20:42.533] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[00:20:42.533] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:20:42.533] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[00:20:42.533] INFO  [life] potions: found a 'healer'
+[00:20:42.595] INFO  [life] potions: within reach
+[00:20:42.656] INFO  [life] potions: the shop is open
+[00:20:42.717] INFO  [life] potions: this 'healer' does not stock heal potion
+[00:20:42.717] INFO  [life] potions: none bought (this 'healer' does not stock heal potion)
+[00:20:42.717] INFO  [life] goal_completed=REPLACE_EQUIPMENT progress=0
+[00:20:42.719] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_21.serena/state.json
+[00:20:42.778] INFO  [life] goal=TRADE_WITH_PLAYER reason="no goal was running"
+[00:20:42.778] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedTrade(buy from a player 0.55) NeedEquipment(heal potions 0.50) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=2 held=[tinker tools,pickaxe,] want_train=nothing (target 0.0)
+[00:20:42.779] INFO  [life]   score=79.8
+[00:20:42.779] INFO  [life]   reason: NeedTrade urgency 0.55 x 145 = 79.8
+[00:20:42.779] INFO  [life]   reason: 20 x i_ingot_iron short
+[00:20:42.779] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 259s after achieving nothing
+[00:20:42.779] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[00:20:42.779] INFO  [life] market: the market is britain_bank_2 (Britain banker) at 1425,1690, radius 5, guarded
+[00:20:42.779] INFO  [life] goal_blocked=TRADE_WITH_PLAYER reason="not enough session left for the trip" left=134s need=800s
+[00:20:42.840] INFO  [life] goal=REPLACE_EQUIPMENT reason="previous goal abandoned: not enough session left for the trip"
+[00:20:42.840] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedEquipment(heal potions 0.50) NeedFood(food 0.25) NeedTrade(buy from a player BLOCKED 0.00) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=2 held=[tinker tools,pickaxe,] want_train=nothing (target 0.0)
+[00:20:42.841] INFO  [life]   score=78.0
+[00:20:42.841] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:20:42.841] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:20:42.841] INFO  [life]   reason: upkeep just now, easing off 40% (130.0 -> 78.0)
+[00:20:42.841] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 259s after achieving nothing
+[00:20:42.841] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 599s after achieving nothing
+[00:20:42.841] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[00:20:42.841] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:20:42.841] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[00:20:42.841] INFO  [life] potions: found a 'healer'
+[00:20:42.857] INFO  [life] potions: within reach
+[00:20:42.918] INFO  [life] potions: the shop is open
+[00:20:42.980] INFO  [life] potions: this 'healer' does not stock heal potion
+[00:20:42.980] INFO  [life] potions: none bought (this 'healer' does not stock heal potion)
+[00:20:42.980] INFO  [life] goal_completed=REPLACE_EQUIPMENT progress=0
+[00:20:42.980] INFO  [life] goal_spinning=REPLACE_EQUIPMENT reason="completed 5 times in a row with progress 0 -- cooled off for a minute; this is a bug in that goal, not pacing"
+[00:20:42.983] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_21.serena/state.json
+[00:20:43.040] INFO  [life] goal=GET_FOOD reason="no goal was running"
+[00:20:43.040] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedEquipment(heal potions 0.50) NeedFood(food 0.25) NeedTrade(buy from a player BLOCKED 0.00) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=2 held=[tinker tools,pickaxe,] want_train=nothing (target 0.0)
+[00:20:43.041] INFO  [life]   score=25.0
+[00:20:43.041] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[00:20:43.041] INFO  [life]   reason: food=0
+[00:20:43.041] INFO  [life]   reason: upkeep just now, easing off 60% (62.5 -> 25.0)
+[00:20:43.041] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 59s after achieving nothing
+[00:20:43.041] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 259s after achieving nothing
+[00:20:43.041] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 599s after achieving nothing
+[00:20:43.041] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[00:20:43.055] INFO  [mk3_Serena] [travel] Britain baker -> (1450,1617) r=5 from (1476,1613)
+[00:20:43.055] LOG   [mk3_Serena] event travel_start: label='Britain baker' target=(1450,1617) radius=5 from=(1476,1613)
+[00:20:43.055] INFO  [life] food: walking to a 'baker' (trip 1)
+[00:20:43.055] INFO  [mk3_Serena] [travel] mode walk             usable   <- chosen
+[00:20:43.055] INFO  [mk3_Serena] [travel] mode moongate         usable
+[00:20:43.055] INFO  [mk3_Serena] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:43.055] INFO  [mk3_Serena] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:43.055] LOG   [mk3_Serena] event travel_mode: walk
+[00:20:43.055] INFO  [mk3_Serena] [travel] plan Britain baker: ok legs=1 ~26 tiles transit=0 nodes=0
+[00:20:43.102] INFO  [mk3_Serena] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:20:43.102] INFO  [mk3_Serena] [action] goto (1450,1617) from (1476,1613,20)
+[00:20:43.102] LOG   [mk3_Serena] event goto_start: target=(1450,1617) from=(1476,1613)
+[00:20:43.102] INFO  [mk3_Serena] [bot] running from (1476,1613,20) to (1450,1617,z20)
+[00:20:43.102] INFO  [mk3_Serena] [bot] planning path to (1450,1617) in background
+[00:20:43.117] INFO  [mk3_Serena] [bot] replan to (1450,1617): 40 steps in 4129.0us
+[00:20:44.956] INFO  [mk3_Serena] [bot] door ahead at (1480,1610,z20); OpenDoor before step
+[00:20:44.972] INFO  [mk3_Serena] [chat ascii] System: Opening door...
+[00:20:45.417] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:20:50.400] INFO  [mk3_Serena] [chat uni  ] : Lionel buy
+[00:20:50.400] INFO  [mk3_Serena] [chat ascii] Lionel: Excuse me Halain, but Amara wants to speak to me
+[00:20:50.400] INFO  [mk3_Serena] [chat ascii] Lionel: Hello!
+[00:20:50.400] INFO  [mk3_Serena] [chat ascii] Lionel: I'm here to sell thee supplies.
+[00:20:50.431] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:20:50.448] INFO  [mk3_Serena] [chat ascii] Lionel: Here you are, Amara That will be 16 gold coins.  I thank thee for thy business.
+[00:20:54.034] INFO  [mk3_Serena] [travel] Britain baker ARRIVED at (1455,1614,20)
+[00:20:54.034] LOG   [mk3_Serena] event travel_done: label='Britain baker' ok=1 at=(1455,1614) legs=1 plans=1 why=''
+[00:20:54.064] INFO  [mk3_Serena] [action] scanning nearby mobiles for names
+[00:20:54.064] INFO  [mk3_Serena] [action] requested 4 paperdoll(s) for trade titles
+[00:20:54.064] INFO  [life] food: at the shop, asking who is here (scan 1 of 3)
+[00:20:54.079] INFO  [mk3_Serena] [mobiles] nearby (10):
+[00:20:54.079] INFO  [mk3_Serena]   Odessa 0x000194DE
+[00:20:54.079] INFO  [mk3_Serena]   Vorar 0x00016305
+[00:20:54.079] INFO  [mk3_Serena]   Aelia 0x00013DA6
+[00:20:54.079] INFO  [mk3_Serena]   Lionel 0x000010B3
+[00:20:54.079] INFO  [mk3_Serena]   Cyras 0x00015725
+[00:20:54.079] INFO  [mk3_Serena]   Amara 0x00012E70
+[00:20:54.079] INFO  [mk3_Serena]   Halain 0x0001616D
+[00:20:54.079] INFO  [mk3_Serena]   Delras 0x00015A59
+[00:20:54.079] INFO  [mk3_Serena]   Natasha 0x00001194
+[00:20:54.079] INFO  [mk3_Serena]   Dale 0x000010C1
+[00:20:54.079] INFO  [mk3_Serena] [0x20] player @(1455,1614,20) facing=7
+[00:20:54.079] INFO  [mk3_Serena] [0x88] paperdoll 0x00016305: "Vorar, Apprentice Lumberjack"
+[00:20:54.079] INFO  [mk3_Serena] [0x20] player @(1455,1614,20) facing=6
+[00:20:54.079] INFO  [mk3_Serena] [0x88] paperdoll 0x000010B3: "Lionel, the baker"
+[00:20:54.079] INFO  [mk3_Serena] [world] Lionel, the baker is a baker at (1451,1615)
+[00:20:54.079] INFO  [mk3_Serena] [0x88] paperdoll 0x0001616D: "Halain, Apprentice Lumberjack"
+[00:20:54.079] INFO  [mk3_Serena] [0x20] player @(1455,1614,20) facing=7
+[00:20:54.079] INFO  [mk3_Serena] [0x88] paperdoll 0x00015A59: "Delras, Apprentice Lumberjack"
+[00:20:54.079] INFO  [mk3_Serena] [0x21] stale reject seq=46 (block already handled); pose resynced
+[00:20:55.440] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:20:57.074] INFO  [life] food: found a 'baker'
+[00:20:57.134] INFO  [mk3_Serena] [travel] mobile 0x000010B3 -> (1451,1615) r=1 from (1455,1614)
+[00:20:57.134] LOG   [mk3_Serena] event travel_start: label='mobile 0x000010B3' target=(1451,1615) radius=1 from=(1455,1614)
+[00:20:57.134] INFO  [life] food: the 'baker' is 4 tiles off (dz 0) -- walking into reach (chase 1 of 3)
+[00:20:57.134] INFO  [mk3_Serena] [travel] mode walk             usable   <- chosen
+[00:20:57.134] INFO  [mk3_Serena] [travel] mode moongate         usable
+[00:20:57.134] INFO  [mk3_Serena] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:57.134] INFO  [mk3_Serena] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:57.134] LOG   [mk3_Serena] event travel_mode: walk
+[00:20:57.134] INFO  [mk3_Serena] [travel] plan mobile 0x000010B3: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:20:57.197] INFO  [mk3_Serena] [action] goto finished at (1455,1614,20); target (1450,1617); stopped short (off by 8 tile(s))
+[00:20:57.197] LOG   [mk3_Serena] event goto_done: at=(1455,1614) target=(1450,1617) arrived=0 off=8
+[00:20:57.197] INFO  [mk3_Serena] [action] goto (1451,1615) from (1455,1614,20)
+[00:20:57.197] LOG   [mk3_Serena] event goto_start: target=(1451,1615) from=(1455,1614)
+[00:20:57.197] INFO  [mk3_Serena] [bot] running from (1455,1614,20) to (1451,1615,z20)
+[00:20:57.197] INFO  [mk3_Serena] [bot] planning path to (1451,1615) in background
+[00:20:57.213] INFO  [mk3_Serena] [chat uni  ] Vorar: Lionel buy
+[00:20:59.727] INFO  [mk3_Serena] [action] goto finished at (1455,1614,20); target (1451,1615); stopped short (off by 5 tile(s))
+[00:20:59.727] LOG   [mk3_Serena] event goto_done: at=(1455,1614) target=(1451,1615) arrived=0 off=5
+[00:20:59.899] INFO  [mk3_Serena] [chat uni  ] : Dale buy
+[00:20:59.899] INFO  [mk3_Serena] [chat ascii] Dale: Greetings.  What might I help thee with?
+[00:20:59.899] INFO  [mk3_Serena] [chat ascii] Dale: My shop sells many things.
+[00:21:00.467] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:21:00.971] INFO  [mk3_Serena] [action] goto (1451,1615) from (1455,1614,20)
+[00:21:00.971] LOG   [mk3_Serena] event goto_start: target=(1451,1615) from=(1455,1614)
+[00:21:00.971] INFO  [mk3_Serena] [bot] running from (1455,1614,20) to (1451,1615,z20)
+[00:21:00.971] INFO  [mk3_Serena] [bot] planning path to (1451,1615) in background
+[00:21:04.055] INFO  [mk3_Serena] [action] goto finished at (1455,1614,20); target (1451,1615); stopped short (off by 5 tile(s))
+[00:21:04.055] LOG   [mk3_Serena] event goto_done: at=(1455,1614) target=(1451,1615) arrived=0 off=5
+[00:21:05.283] INFO  [mk3_Serena] [travel] mode walk             usable   <- chosen
+[00:21:05.283] INFO  [mk3_Serena] [travel] mode moongate         usable
+[00:21:05.283] INFO  [mk3_Serena] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:05.283] INFO  [mk3_Serena] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:05.283] LOG   [mk3_Serena] event travel_mode: walk
+[00:21:05.283] INFO  [mk3_Serena] [travel] plan mobile 0x000010B3: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:21:05.527] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:21:06.826] INFO  [mk3_Serena] [action] goto (1451,1615) from (1455,1614,20)
+[00:21:06.826] LOG   [mk3_Serena] event goto_start: target=(1451,1615) from=(1455,1614)
+[00:21:06.826] INFO  [mk3_Serena] [bot] running from (1455,1614,20) to (1451,1615,z20)
+[00:21:06.826] INFO  [mk3_Serena] [bot] planning path to (1451,1615) in background
+[00:21:07.332] INFO  [mk3_Serena] [chat uni  ] Vorar: Lionel buy
+[00:21:09.019] INFO  [mk3_Serena] [chat uni  ] Aelia: Lionel buy
+[00:21:09.864] INFO  [mk3_Serena] [action] goto finished at (1455,1614,20); target (1451,1615); stopped short (off by 5 tile(s))
+[00:21:09.864] LOG   [mk3_Serena] event goto_done: at=(1455,1614) target=(1451,1615) arrived=0 off=5
+[00:21:10.570] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:21:11.077] INFO  [mk3_Serena] [action] goto (1451,1615) from (1455,1614,20)
+[00:21:11.077] LOG   [mk3_Serena] event goto_start: target=(1451,1615) from=(1455,1614)
+[00:21:11.077] INFO  [mk3_Serena] [bot] running from (1455,1614,20) to (1451,1615,z20)
+[00:21:11.077] INFO  [mk3_Serena] [bot] planning path to (1451,1615) in background
+[00:21:11.193] INFO  [mk3_Serena] [chat ascii] System: Observer has arrived in Minoc.
+[00:21:13.141] INFO  [mk3_Serena] [chat ascii] Dale: Good morrow!  How can I help thee?
+[00:21:13.141] INFO  [mk3_Serena] [chat ascii] Dale: I'm here to sell thee supplies.
+[00:21:13.508] INFO  [mk3_Serena] [action] goto finished at (1455,1614,20); target (1451,1615); stopped short (off by 5 tile(s))
+[00:21:13.508] LOG   [mk3_Serena] event goto_done: at=(1455,1614) target=(1451,1615) arrived=0 off=5
+[00:21:14.571] INFO  [mk3_Serena] [chat ascii] System: Observer has departed from Minoc.
+[00:21:14.709] INFO  [mk3_Serena] [travel] mode walk             usable   <- chosen
+[00:21:14.709] INFO  [mk3_Serena] [travel] mode moongate         usable
+[00:21:14.709] INFO  [mk3_Serena] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:14.709] INFO  [mk3_Serena] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:14.709] LOG   [mk3_Serena] event travel_mode: walk
+[00:21:14.709] INFO  [mk3_Serena] [travel] plan mobile 0x000010B3: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:21:15.584] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:21:17.731] INFO  [mk3_Serena] [action] goto (1451,1615) from (1455,1614,20)
+[00:21:17.731] LOG   [mk3_Serena] event goto_start: target=(1451,1615) from=(1455,1614)
+[00:21:17.731] INFO  [mk3_Serena] [bot] running from (1455,1614,20) to (1451,1615,z20)
+[00:21:17.731] INFO  [mk3_Serena] [bot] planning path to (1451,1615) in background
+[00:21:19.066] INFO  [mk3_Serena] [chat uni  ] Aelia: Lionel buy
+[00:21:20.170] INFO  [mk3_Serena] [chat uni  ] : Lionel buy
+[00:21:20.569] INFO  [mk3_Serena] [chat uni  ] Odessa: Lionel buy
+[00:21:20.569] INFO  [mk3_Serena] [chat ascii] Lionel: Excuse me Amara, but Odessa wants to speak to me
+[00:21:20.569] INFO  [mk3_Serena] [chat ascii] Lionel: Greetings. What can I do for thee?
+[00:21:20.569] INFO  [mk3_Serena] [chat ascii] Lionel: I'm here to sell thee supplies.
+[00:21:20.600] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:21:20.660] INFO  [mk3_Serena] [action] goto finished at (1455,1614,20); target (1451,1615); stopped short (off by 5 tile(s))
+[00:21:20.660] LOG   [mk3_Serena] event goto_done: at=(1455,1614) target=(1451,1615) arrived=0 off=5
+[00:21:21.905] INFO  [mk3_Serena] [action] goto (1451,1615) from (1455,1614,20)
+[00:21:21.905] LOG   [mk3_Serena] event goto_start: target=(1451,1615) from=(1455,1614)
+[00:21:21.905] INFO  [mk3_Serena] [bot] running from (1455,1614,20) to (1451,1615,z20)
+[00:21:21.905] INFO  [mk3_Serena] [bot] planning path to (1451,1615) in background
+[00:21:24.843] INFO  [mk3_Serena] [action] goto finished at (1455,1614,20); target (1451,1615); stopped short (off by 5 tile(s))
+[00:21:24.843] LOG   [mk3_Serena] event goto_done: at=(1455,1614) target=(1451,1615) arrived=0 off=5
+[00:21:25.659] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:21:26.043] INFO  [mk3_Serena] [travel] mode walk             usable   <- chosen
+[00:21:26.043] INFO  [mk3_Serena] [travel] mode moongate         usable
+[00:21:26.043] INFO  [mk3_Serena] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:26.043] INFO  [mk3_Serena] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:26.043] LOG   [mk3_Serena] event travel_mode: walk
+[00:21:26.043] INFO  [mk3_Serena] [travel] plan mobile 0x000010B3: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:21:29.207] INFO  [mk3_Serena] [chat uni  ] Aelia: Lionel buy
+[00:21:30.268] INFO  [mk3_Serena] [chat uni  ] : Lionel buy
+[00:21:30.591] INFO  [mk3_Serena] [action] goto (1451,1615) from (1455,1614,20)
+[00:21:30.591] LOG   [mk3_Serena] event goto_start: target=(1451,1615) from=(1455,1614)
+[00:21:30.591] INFO  [mk3_Serena] [bot] running from (1455,1614,20) to (1451,1615,z20)
+[00:21:30.591] INFO  [mk3_Serena] [bot] planning path to (1451,1615) in background
+[00:21:30.715] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:21:33.429] INFO  [mk3_Serena] [action] goto finished at (1455,1614,20); target (1451,1615); stopped short (off by 5 tile(s))
+[00:21:33.429] LOG   [mk3_Serena] event goto_done: at=(1455,1614) target=(1451,1615) arrived=0 off=5
+[00:21:34.661] INFO  [mk3_Serena] [action] goto (1451,1615) from (1455,1614,20)
+[00:21:34.661] LOG   [mk3_Serena] event goto_start: target=(1451,1615) from=(1455,1614)
+[00:21:34.661] INFO  [mk3_Serena] [bot] running from (1455,1614,20) to (1451,1615,z20)
+[00:21:34.661] INFO  [mk3_Serena] [bot] planning path to (1451,1615) in background
+[00:21:35.746] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:21:37.007] INFO  [mk3_Serena] [travel] mobile 0x000010B3 ARRIVED at (1455,1614,20) -- arrived nearby; the destination tile was not free
+[00:21:37.007] LOG   [mk3_Serena] event travel_done: label='mobile 0x000010B3' ok=1 at=(1455,1614) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[00:21:37.069] INFO  [mk3_Serena] [travel] mobile 0x000010B3 -> (1451,1615) r=1 from (1455,1614)
+[00:21:37.069] LOG   [mk3_Serena] event travel_start: label='mobile 0x000010B3' target=(1451,1615) radius=1 from=(1455,1614)
+[00:21:37.069] INFO  [life] food: the 'baker' is 4 tiles off (dz 0) -- walking into reach (chase 2 of 3)
+[00:21:37.069] INFO  [mk3_Serena] [travel] mode walk             usable   <- chosen
+[00:21:37.069] INFO  [mk3_Serena] [travel] mode moongate         usable
+[00:21:37.069] INFO  [mk3_Serena] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:37.069] INFO  [mk3_Serena] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:37.069] LOG   [mk3_Serena] event travel_mode: walk
+[00:21:37.069] INFO  [mk3_Serena] [travel] plan mobile 0x000010B3: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:21:37.130] INFO  [mk3_Serena] [action] goto finished at (1455,1614,20); target (1451,1615); stopped short (off by 5 tile(s))
+[00:21:37.130] LOG   [mk3_Serena] event goto_done: at=(1455,1614) target=(1451,1615) arrived=0 off=5
+[00:21:37.130] INFO  [mk3_Serena] [action] goto (1451,1615) from (1455,1614,20)
+[00:21:37.130] LOG   [mk3_Serena] event goto_start: target=(1451,1615) from=(1455,1614)
+[00:21:37.130] INFO  [mk3_Serena] [bot] running from (1455,1614,20) to (1451,1615,z20)
+[00:21:37.130] INFO  [mk3_Serena] [bot] planning path to (1451,1615) in background
+[00:21:39.625] INFO  [mk3_Serena] [action] goto finished at (1455,1614,20); target (1451,1615); stopped short (off by 5 tile(s))
+[00:21:39.625] LOG   [mk3_Serena] event goto_done: at=(1455,1614) target=(1451,1615) arrived=0 off=5
+[00:21:40.411] INFO  [mk3_Serena] [chat uni  ] : Lionel buy
+[00:21:40.781] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:21:40.842] INFO  [mk3_Serena] [action] goto (1451,1615) from (1455,1614,20)
+[00:21:40.843] LOG   [mk3_Serena] event goto_start: target=(1451,1615) from=(1455,1614)
+[00:21:40.843] INFO  [mk3_Serena] [bot] running from (1455,1614,20) to (1451,1615,z20)
+[00:21:40.843] INFO  [mk3_Serena] [bot] planning path to (1451,1615) in background
+[00:21:42.997] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=GET_FOOD reason="REPLACE_EQUIPMENT 78.0 superseded GET_FOOD 37.5"
+[00:21:42.997] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedEquipment(heal potions 0.50) NeedFood(food 0.25) NeedTrade(buy from a player BLOCKED 0.00) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=2 held=[tinker tools,pickaxe,] want_train=nothing (target 0.0)
+[00:21:42.997] INFO  [life]   score=78.0
+[00:21:42.997] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:21:42.997] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:21:42.997] INFO  [life]   reason: upkeep just now, easing off 40% (130.0 -> 78.0)
+[00:21:42.997] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 199s after achieving nothing
+[00:21:42.997] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 539s after achieving nothing
+[00:21:42.997] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[00:21:42.997] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:21:42.999] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_21.serena/state.json
+[00:21:43.550] INFO  [mk3_Serena] [action] goto finished at (1455,1614,20); target (1451,1615); stopped short (off by 5 tile(s))
+[00:21:43.550] LOG   [mk3_Serena] event goto_done: at=(1455,1614) target=(1451,1615) arrived=0 off=5
+[00:21:44.781] INFO  [mk3_Serena] [travel] mode walk             usable   <- chosen
+[00:21:44.781] INFO  [mk3_Serena] [travel] mode moongate         usable
+[00:21:44.781] INFO  [mk3_Serena] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:44.781] INFO  [mk3_Serena] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:44.781] LOG   [mk3_Serena] event travel_mode: walk
+[00:21:44.781] INFO  [mk3_Serena] [travel] plan mobile 0x000010B3: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:21:45.823] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:21:46.331] INFO  [mk3_Serena] [action] goto (1451,1615) from (1455,1614,20)
+[00:21:46.331] LOG   [mk3_Serena] event goto_start: target=(1451,1615) from=(1455,1614)
+[00:21:46.331] INFO  [mk3_Serena] [bot] running from (1455,1614,20) to (1451,1615,z20)
+[00:21:46.331] INFO  [mk3_Serena] [bot] planning path to (1451,1615) in background
+[00:21:48.719] INFO  [mk3_Serena] [action] goto finished at (1455,1614,20); target (1451,1615); stopped short (off by 5 tile(s))
+[00:21:48.719] LOG   [mk3_Serena] event goto_done: at=(1455,1614) target=(1451,1615) arrived=0 off=5
+[00:21:49.921] INFO  [mk3_Serena] [action] goto (1451,1615) from (1455,1614,20)
+[00:21:49.921] LOG   [mk3_Serena] event goto_start: target=(1451,1615) from=(1455,1614)
+[00:21:49.921] INFO  [mk3_Serena] [bot] running from (1455,1614,20) to (1451,1615,z20)
+[00:21:49.921] INFO  [mk3_Serena] [bot] planning path to (1451,1615) in background
+[00:21:50.855] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:21:52.354] INFO  [mk3_Serena] [action] goto finished at (1455,1614,20); target (1451,1615); stopped short (off by 5 tile(s))
+[00:21:52.354] LOG   [mk3_Serena] event goto_done: at=(1455,1614) target=(1451,1615) arrived=0 off=5
+[00:21:53.601] INFO  [mk3_Serena] [travel] mode walk             usable   <- chosen
+[00:21:53.601] INFO  [mk3_Serena] [travel] mode moongate         usable
+[00:21:53.601] INFO  [mk3_Serena] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:53.601] INFO  [mk3_Serena] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:53.601] LOG   [mk3_Serena] event travel_mode: walk
+[00:21:53.601] INFO  [mk3_Serena] [travel] plan mobile 0x000010B3: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:21:55.908] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:21:56.612] INFO  [mk3_Serena] [action] goto (1451,1615) from (1455,1614,20)
+[00:21:56.612] LOG   [mk3_Serena] event goto_start: target=(1451,1615) from=(1455,1614)
+[00:21:56.612] INFO  [mk3_Serena] [bot] running from (1455,1614,20) to (1451,1615,z20)
+[00:21:56.612] INFO  [mk3_Serena] [bot] planning path to (1451,1615) in background
+[00:21:58.630] INFO  [mk3_Serena] [action] goto finished at (1455,1614,20); target (1451,1615); stopped short (off by 5 tile(s))
+[00:21:58.630] LOG   [mk3_Serena] event goto_done: at=(1455,1614) target=(1451,1615) arrived=0 off=5
+[00:21:58.645] INFO  [mk3_Serena] [chat ascii] System: Draver has departed from Minoc.
+[00:21:59.888] INFO  [mk3_Serena] [action] goto (1451,1615) from (1455,1614,20)
+[00:21:59.888] LOG   [mk3_Serena] event goto_start: target=(1451,1615) from=(1455,1614)
+[00:21:59.888] INFO  [mk3_Serena] [bot] running from (1455,1614,20) to (1451,1615,z20)
+[00:21:59.888] INFO  [mk3_Serena] [bot] planning path to (1451,1615) in background
+[00:22:00.943] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:22:02.040] INFO  [mk3_Serena] [action] goto finished at (1455,1614,20); target (1451,1615); stopped short (off by 5 tile(s))
+[00:22:02.040] LOG   [mk3_Serena] event goto_done: at=(1455,1614) target=(1451,1615) arrived=0 off=5
+[00:22:03.292] INFO  [mk3_Serena] [travel] mode walk             usable   <- chosen
+[00:22:03.292] INFO  [mk3_Serena] [travel] mode moongate         usable
+[00:22:03.292] INFO  [mk3_Serena] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:03.292] INFO  [mk3_Serena] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:03.292] LOG   [mk3_Serena] event travel_mode: walk
+[00:22:03.292] INFO  [mk3_Serena] [travel] plan mobile 0x000010B3: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:22:05.992] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:22:07.836] INFO  [mk3_Serena] [action] goto (1451,1615) from (1455,1614,20)
+[00:22:07.836] LOG   [mk3_Serena] event goto_start: target=(1451,1615) from=(1455,1614)
+[00:22:07.836] INFO  [mk3_Serena] [bot] running from (1455,1614,20) to (1451,1615,z20)
+[00:22:07.836] INFO  [mk3_Serena] [bot] planning path to (1451,1615) in background
+[00:22:10.015] INFO  [mk3_Serena] [action] goto finished at (1455,1614,20); target (1451,1615); stopped short (off by 5 tile(s))
+[00:22:10.015] LOG   [mk3_Serena] event goto_done: at=(1455,1614) target=(1451,1615) arrived=0 off=5
+[00:22:11.001] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:22:11.247] INFO  [mk3_Serena] [action] goto (1451,1615) from (1455,1614,20)
+[00:22:11.247] LOG   [mk3_Serena] event goto_start: target=(1451,1615) from=(1455,1614)
+[00:22:11.247] INFO  [mk3_Serena] [bot] running from (1455,1614,20) to (1451,1615,z20)
+[00:22:11.247] INFO  [mk3_Serena] [bot] planning path to (1451,1615) in background
+[00:22:13.482] INFO  [mk3_Serena] [action] goto finished at (1455,1614,20); target (1451,1615); stopped short (off by 5 tile(s))
+[00:22:13.482] LOG   [mk3_Serena] event goto_done: at=(1455,1614) target=(1451,1615) arrived=0 off=5
+[00:22:13.482] INFO  [mk3_Serena] [travel] mobile 0x000010B3 ARRIVED at (1455,1614,20) -- arrived nearby; the destination tile was not free
+[00:22:13.482] LOG   [mk3_Serena] event travel_done: label='mobile 0x000010B3' ok=1 at=(1455,1614) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[00:22:13.483] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[00:22:13.483] INFO  [life] potions: found a 'healer'
+[00:22:13.544] INFO  [mk3_Serena] [travel] mobile 0x000010C1 -> (1468,1609) r=1 from (1455,1614)
+[00:22:13.545] LOG   [mk3_Serena] event travel_start: label='mobile 0x000010C1' target=(1468,1609) radius=1 from=(1455,1614)
+[00:22:13.545] INFO  [life] potions: the 'healer' is 13 tiles off (dz 0) -- walking into reach (chase 1 of 3)
+[00:22:13.545] INFO  [mk3_Serena] [travel] mode walk             usable   <- chosen
+[00:22:13.545] INFO  [mk3_Serena] [travel] mode moongate         usable
+[00:22:13.545] INFO  [mk3_Serena] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:13.545] INFO  [mk3_Serena] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:13.545] LOG   [mk3_Serena] event travel_mode: walk
+[00:22:13.545] INFO  [mk3_Serena] [travel] plan mobile 0x000010C1: ok legs=1 ~13 tiles transit=0 nodes=0
+[00:22:13.606] INFO  [mk3_Serena] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:22:13.607] INFO  [mk3_Serena] [action] goto (1468,1609) from (1455,1614,20)
+[00:22:13.607] LOG   [mk3_Serena] event goto_start: target=(1468,1609) from=(1455,1614)
+[00:22:13.607] INFO  [mk3_Serena] [bot] running from (1455,1614,20) to (1468,1609,z20)
+[00:22:13.607] INFO  [mk3_Serena] [bot] planning path to (1468,1609) in background
+[00:22:16.027] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:22:16.165] INFO  [mk3_Serena] [action] goto finished at (1455,1614,20); target (1468,1609); stopped short (off by 18 tile(s))
+[00:22:16.165] LOG   [mk3_Serena] event goto_done: at=(1455,1614) target=(1468,1609) arrived=0 off=18
+[00:22:17.410] INFO  [mk3_Serena] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:22:17.410] INFO  [mk3_Serena] [action] goto (1468,1609) from (1455,1614,20)
+[00:22:17.411] LOG   [mk3_Serena] event goto_start: target=(1468,1609) from=(1455,1614)
+[00:22:17.411] INFO  [mk3_Serena] [bot] running from (1455,1614,20) to (1468,1609,z20)
+[00:22:17.411] INFO  [mk3_Serena] [bot] planning path to (1468,1609) in background
+[00:22:19.572] INFO  [mk3_Serena] [action] goto finished at (1455,1614,20); target (1468,1609); stopped short (off by 18 tile(s))
+[00:22:19.572] LOG   [mk3_Serena] event goto_done: at=(1455,1614) target=(1468,1609) arrived=0 off=18
+[00:22:20.822] INFO  [mk3_Serena] [travel] mode walk             usable   <- chosen
+[00:22:20.822] INFO  [mk3_Serena] [travel] mode moongate         usable
+[00:22:20.822] INFO  [mk3_Serena] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:20.822] INFO  [mk3_Serena] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:20.822] LOG   [mk3_Serena] event travel_mode: walk
+[00:22:20.822] INFO  [mk3_Serena] [travel] plan mobile 0x000010C1: ok legs=1 ~13 tiles transit=0 nodes=0
+[00:22:21.069] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:22:22.378] INFO  [mk3_Serena] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:22:22.378] INFO  [mk3_Serena] [action] goto (1468,1609) from (1455,1614,20)
+[00:22:22.378] LOG   [mk3_Serena] event goto_start: target=(1468,1609) from=(1455,1614)
+[00:22:22.378] INFO  [mk3_Serena] [bot] running from (1455,1614,20) to (1468,1609,z20)
+[00:22:22.378] INFO  [mk3_Serena] [bot] planning path to (1468,1609) in background
+[00:22:24.223] INFO  [mk3_Serena] [action] goto finished at (1455,1614,20); target (1468,1609); stopped short (off by 18 tile(s))
+[00:22:24.223] LOG   [mk3_Serena] event goto_done: at=(1455,1614) target=(1468,1609) arrived=0 off=18
+[00:22:25.427] INFO  [mk3_Serena] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:22:25.427] INFO  [mk3_Serena] [action] goto (1468,1609) from (1455,1614,20)
+[00:22:25.428] LOG   [mk3_Serena] event goto_start: target=(1468,1609) from=(1455,1614)
+[00:22:25.428] INFO  [mk3_Serena] [bot] running from (1455,1614,20) to (1468,1609,z20)
+[00:22:25.428] INFO  [mk3_Serena] [bot] planning path to (1468,1609) in background
+[00:22:26.122] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:22:27.493] INFO  [mk3_Serena] [action] goto finished at (1455,1614,20); target (1468,1609); stopped short (off by 18 tile(s))
+[00:22:27.493] LOG   [mk3_Serena] event goto_done: at=(1455,1614) target=(1468,1609) arrived=0 off=18
+[00:22:28.751] INFO  [mk3_Serena] [travel] mode walk             usable   <- chosen
+[00:22:28.752] INFO  [mk3_Serena] [travel] mode moongate         usable
+[00:22:28.752] INFO  [mk3_Serena] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:28.752] INFO  [mk3_Serena] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:28.752] LOG   [mk3_Serena] event travel_mode: walk
+[00:22:28.752] INFO  [mk3_Serena] [travel] plan mobile 0x000010C1: ok legs=1 ~13 tiles transit=0 nodes=0
+[00:22:31.145] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:22:31.792] INFO  [mk3_Serena] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:22:31.792] INFO  [mk3_Serena] [action] goto (1468,1609) from (1455,1614,20)
+[00:22:31.792] LOG   [mk3_Serena] event goto_start: target=(1468,1609) from=(1455,1614)
+[00:22:31.792] INFO  [mk3_Serena] [bot] running from (1455,1614,20) to (1468,1609,z20)
+[00:22:31.792] INFO  [mk3_Serena] [bot] planning path to (1468,1609) in background
+[00:22:31.852] INFO  [mk3_Serena] [chat ascii] Lionel: Nice speaking to you Odessa
+[00:22:32.851] INFO  [mk3_Serena] [chat ascii] Lionel: What's thee wantin'?
+[00:22:32.851] INFO  [mk3_Serena] [chat ascii] Lionel: What's thee wantin'?
+[00:22:33.838] INFO  [mk3_Serena] [action] goto finished at (1455,1614,20); target (1468,1609); stopped short (off by 18 tile(s))
+[00:22:33.838] LOG   [mk3_Serena] event goto_done: at=(1455,1614) target=(1468,1609) arrived=0 off=18
+[00:22:35.087] INFO  [mk3_Serena] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:22:35.087] INFO  [mk3_Serena] [action] goto (1468,1609) from (1455,1614,20)
+[00:22:35.087] LOG   [mk3_Serena] event goto_start: target=(1468,1609) from=(1455,1614)
+[00:22:35.087] INFO  [mk3_Serena] [bot] running from (1455,1614,20) to (1468,1609,z20)
+[00:22:35.087] INFO  [mk3_Serena] [bot] planning path to (1468,1609) in background
+[00:22:36.169] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:22:36.907] INFO  [mk3_Serena] [action] goto finished at (1455,1614,20); target (1468,1609); stopped short (off by 18 tile(s))
+[00:22:36.907] LOG   [mk3_Serena] event goto_done: at=(1455,1614) target=(1468,1609) arrived=0 off=18
+[00:22:38.139] INFO  [mk3_Serena] [travel] mode walk             usable   <- chosen
+[00:22:38.139] INFO  [mk3_Serena] [travel] mode moongate         usable
+[00:22:38.139] INFO  [mk3_Serena] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:38.139] INFO  [mk3_Serena] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:38.139] LOG   [mk3_Serena] event travel_mode: walk
+[00:22:38.139] INFO  [mk3_Serena] [travel] plan mobile 0x000010C1: ok legs=1 ~13 tiles transit=0 nodes=0
+[00:22:38.419] INFO  [mk3_Serena] [chat ascii] System: Vorar has departed from Britain.
+[00:22:39.439] INFO  [mk3_Serena] [chat ascii] System: Selene has departed from Magincia.
+[00:22:41.222] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:22:42.684] INFO  [mk3_Serena] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:22:42.684] INFO  [mk3_Serena] [action] goto (1468,1609) from (1455,1614,20)
+[00:22:42.684] LOG   [mk3_Serena] event goto_start: target=(1468,1609) from=(1455,1614)
+[00:22:42.684] INFO  [mk3_Serena] [bot] running from (1455,1614,20) to (1468,1609,z20)
+[00:22:42.684] INFO  [mk3_Serena] [bot] planning path to (1468,1609) in background
+[00:22:43.008] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_21.serena/state.json
+[00:22:44.135] INFO  [mk3_Serena] [action] goto finished at (1455,1614,20); target (1468,1609); stopped short (off by 18 tile(s))
+[00:22:44.135] LOG   [mk3_Serena] event goto_done: at=(1455,1614) target=(1468,1609) arrived=0 off=18
+[00:22:45.293] INFO  [mk3_Serena] [chat uni  ] : Lionel buy
+[00:22:45.293] INFO  [mk3_Serena] [chat ascii] Lionel: I got lots to sell!
+[00:22:45.355] INFO  [mk3_Serena] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:22:45.355] INFO  [mk3_Serena] [action] goto (1468,1609) from (1455,1614,20)
+[00:22:45.355] LOG   [mk3_Serena] event goto_start: target=(1468,1609) from=(1455,1614)
+[00:22:45.355] INFO  [mk3_Serena] [bot] running from (1455,1614,20) to (1468,1609,z20)
+[00:22:45.355] INFO  [mk3_Serena] [bot] planning path to (1468,1609) in background
+[00:22:45.356] INFO  [mk3_Serena] [chat ascii] Lionel: Here you are, Rhea That will be 16 gold coins.  I thank thee for thy business.
+[00:22:46.262] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:22:46.897] INFO  [mk3_Serena] [chat ascii] System: Zarthal has departed from Minoc.
+[00:22:47.082] INFO  [mk3_Serena] [action] goto finished at (1455,1614,20); target (1468,1609); stopped short (off by 18 tile(s))
+[00:22:47.082] LOG   [mk3_Serena] event goto_done: at=(1455,1614) target=(1468,1609) arrived=0 off=18
+[00:22:48.317] INFO  [mk3_Serena] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:22:48.317] INFO  [mk3_Serena] [action] goto (1468,1609) from (1455,1614,20)
+[00:22:48.317] LOG   [mk3_Serena] event goto_start: target=(1468,1609) from=(1455,1614)
+[00:22:48.317] INFO  [mk3_Serena] [bot] running from (1455,1614,20) to (1468,1609,z20)
+[00:22:48.317] INFO  [mk3_Serena] [bot] planning path to (1468,1609) in background
+[00:22:49.378] INFO  [mk3_Serena] [chat ascii] System: World save in 10 seconds
+[00:22:49.948] INFO  [mk3_Serena] [travel] mobile 0x000010C1 -> (1468,1609) r=1 from (1455,1614)
+[00:22:49.948] LOG   [mk3_Serena] event travel_start: label='mobile 0x000010C1' target=(1468,1609) radius=1 from=(1455,1614)
+[00:22:49.948] INFO  [life] potions: the 'healer' is 13 tiles off (dz 0) -- walking into reach (chase 2 of 3)
+[00:22:49.948] INFO  [mk3_Serena] [travel] mode walk             usable   <- chosen
+[00:22:49.948] INFO  [mk3_Serena] [travel] mode moongate         usable
+[00:22:49.948] INFO  [mk3_Serena] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:49.948] INFO  [mk3_Serena] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:49.948] LOG   [mk3_Serena] event travel_mode: walk
+[00:22:49.948] INFO  [mk3_Serena] [travel] plan mobile 0x000010C1: ok legs=1 ~13 tiles transit=0 nodes=0
+[00:22:50.319] INFO  [mk3_Serena] [chat ascii] System: Thalia has departed from Moonglow.
+[00:22:50.319] INFO  [mk3_Serena] [action] goto finished at (1455,1614,20); target (1468,1609); stopped short (off by 18 tile(s))
+[00:22:50.320] LOG   [mk3_Serena] event goto_done: at=(1455,1614) target=(1468,1609) arrived=0 off=18
+[00:22:50.320] INFO  [mk3_Serena] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:22:50.320] INFO  [mk3_Serena] [action] goto (1468,1609) from (1455,1614,20)
+[00:22:50.320] LOG   [mk3_Serena] event goto_start: target=(1468,1609) from=(1455,1614)
+[00:22:50.320] INFO  [mk3_Serena] [bot] running from (1455,1614,20) to (1468,1609,z20)
+[00:22:50.320] INFO  [mk3_Serena] [bot] planning path to (1468,1609) in background
+[00:22:51.274] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:22:52.430] INFO  [mk3_Serena] [action] goto finished at (1455,1614,20); target (1468,1609); stopped short (off by 18 tile(s))
+[00:22:52.430] LOG   [mk3_Serena] event goto_done: at=(1455,1614) target=(1468,1609) arrived=0 off=18
+[00:22:53.217] INFO  [mk3_Serena] [chat ascii] System: Elvar has departed from Minoc.
+[00:22:53.687] INFO  [mk3_Serena] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:22:53.687] INFO  [mk3_Serena] [action] goto (1468,1609) from (1455,1614,20)
+[00:22:53.687] LOG   [mk3_Serena] event goto_start: target=(1468,1609) from=(1455,1614)
+[00:22:53.687] INFO  [mk3_Serena] [bot] running from (1455,1614,20) to (1468,1609,z20)
+[00:22:53.687] INFO  [mk3_Serena] [bot] planning path to (1468,1609) in background
+[00:22:55.411] INFO  [mk3_Serena] [action] goto finished at (1455,1614,20); target (1468,1609); stopped short (off by 18 tile(s))
+[00:22:55.411] LOG   [mk3_Serena] event goto_done: at=(1455,1614) target=(1468,1609) arrived=0 off=18
+[00:22:56.286] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:22:56.657] INFO  [mk3_Serena] [travel] mode walk             usable   <- chosen
+[00:22:56.657] INFO  [mk3_Serena] [travel] mode moongate         usable
+[00:22:56.657] INFO  [mk3_Serena] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:56.657] INFO  [mk3_Serena] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:56.657] LOG   [mk3_Serena] event travel_mode: walk
+[00:22:56.657] INFO  [mk3_Serena] [travel] plan mobile 0x000010C1: ok legs=1 ~13 tiles transit=0 nodes=0
+[00:22:57.648] INFO  [life] session_end_requested reason="session time limit reached"
+[00:22:57.848] INFO  [mk3_Serena] [chat ascii] System: Falen has departed from Minoc.
+[00:22:58.201] INFO  [mk3_Serena] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:22:58.201] INFO  [mk3_Serena] [action] goto (1468,1609) from (1455,1614,20)
+[00:22:58.201] LOG   [mk3_Serena] event goto_start: target=(1468,1609) from=(1455,1614)
+[00:22:58.201] INFO  [mk3_Serena] [bot] running from (1455,1614,20) to (1468,1609,z20)
+[00:22:58.201] INFO  [mk3_Serena] [bot] planning path to (1468,1609) in background
+[00:22:59.430] INFO  [mk3_Serena] [chat ascii] System: World save has been initiated.
+[00:23:00.240] INFO  [mk3_Serena] [action] goto finished at (1455,1614,20); target (1468,1609); stopped short (off by 18 tile(s))
+[00:23:00.240] LOG   [mk3_Serena] event goto_done: at=(1455,1614) target=(1468,1609) arrived=0 off=18
+[00:23:01.301] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:23:01.487] INFO  [mk3_Serena] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:23:01.487] INFO  [mk3_Serena] [action] goto (1468,1609) from (1455,1614,20)
+[00:23:01.487] LOG   [mk3_Serena] event goto_start: target=(1468,1609) from=(1455,1614)
+[00:23:01.487] INFO  [mk3_Serena] [bot] running from (1455,1614,20) to (1468,1609,z20)
+[00:23:01.487] INFO  [mk3_Serena] [bot] planning path to (1468,1609) in background
+[00:23:02.919] INFO  [mk3_Serena] [action] goto finished at (1455,1614,20); target (1468,1609); stopped short (off by 18 tile(s))
+[00:23:02.919] LOG   [mk3_Serena] event goto_done: at=(1455,1614) target=(1468,1609) arrived=0 off=18
+[00:23:04.173] INFO  [mk3_Serena] [travel] mode walk             usable   <- chosen
+[00:23:04.173] INFO  [mk3_Serena] [travel] mode moongate         usable
+[00:23:04.173] INFO  [mk3_Serena] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:23:04.173] INFO  [mk3_Serena] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:23:04.173] LOG   [mk3_Serena] event travel_mode: walk
+[00:23:04.173] INFO  [mk3_Serena] [travel] plan mobile 0x000010C1: ok legs=1 ~13 tiles transit=0 nodes=0
+[00:23:05.777] INFO  [mk3_Serena] [chat ascii] System: Ghalor has departed from Minoc.
+[00:23:06.348] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:23:07.178] INFO  [mk3_Serena] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:23:07.179] INFO  [mk3_Serena] [action] goto (1468,1609) from (1455,1614,20)
+[00:23:07.179] LOG   [mk3_Serena] event goto_start: target=(1468,1609) from=(1455,1614)
+[00:23:07.179] INFO  [mk3_Serena] [bot] running from (1455,1614,20) to (1468,1609,z20)
+[00:23:07.179] INFO  [mk3_Serena] [bot] planning path to (1468,1609) in background
+[00:23:07.627] INFO  [mk3_Serena] [chat ascii] System: Cyras has departed from Britain.
+[00:23:09.212] INFO  [mk3_Serena] [action] goto finished at (1455,1614,20); target (1468,1609); stopped short (off by 18 tile(s))
+[00:23:09.213] LOG   [mk3_Serena] event goto_done: at=(1455,1614) target=(1468,1609) arrived=0 off=18
+[00:23:10.033] INFO  [mk3_Serena] [chat ascii] System: Kharain has departed from Minoc.
+[00:23:10.434] INFO  [mk3_Serena] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:23:10.434] INFO  [mk3_Serena] [action] goto (1468,1609) from (1455,1614,20)
+[00:23:10.434] LOG   [mk3_Serena] event goto_start: target=(1468,1609) from=(1455,1614)
+[00:23:10.434] INFO  [mk3_Serena] [bot] running from (1455,1614,20) to (1468,1609,z20)
+[00:23:10.434] INFO  [mk3_Serena] [bot] planning path to (1468,1609) in background
+[00:23:11.375] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:23:12.347] INFO  [mk3_Serena] [chat ascii] System: Leander has departed from Moonglow.
+[00:23:12.424] INFO  [mk3_Serena] [action] goto finished at (1455,1614,20); target (1468,1609); stopped short (off by 18 tile(s))
+[00:23:12.424] LOG   [mk3_Serena] event goto_done: at=(1455,1614) target=(1468,1609) arrived=0 off=18
+[00:23:13.659] INFO  [mk3_Serena] [travel] mode walk             usable   <- chosen
+[00:23:13.659] INFO  [mk3_Serena] [travel] mode moongate         usable
+[00:23:13.659] INFO  [mk3_Serena] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:23:13.659] INFO  [mk3_Serena] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:23:13.659] LOG   [mk3_Serena] event travel_mode: walk
+[00:23:13.659] INFO  [mk3_Serena] [travel] plan mobile 0x000010C1: ok legs=1 ~13 tiles transit=0 nodes=0
+[00:23:16.387] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:23:18.216] INFO  [mk3_Serena] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:23:18.216] INFO  [mk3_Serena] [action] goto (1468,1609) from (1455,1614,20)
+[00:23:18.216] LOG   [mk3_Serena] event goto_start: target=(1468,1609) from=(1455,1614)
+[00:23:18.216] INFO  [mk3_Serena] [bot] running from (1455,1614,20) to (1468,1609,z20)
+[00:23:18.216] INFO  [mk3_Serena] [bot] planning path to (1468,1609) in background
+[00:23:19.850] INFO  [mk3_Serena] [action] goto finished at (1455,1614,20); target (1468,1609); stopped short (off by 18 tile(s))
+[00:23:19.850] LOG   [mk3_Serena] event goto_done: at=(1455,1614) target=(1468,1609) arrived=0 off=18
+[00:23:21.058] INFO  [mk3_Serena] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:23:21.058] INFO  [mk3_Serena] [action] goto (1468,1609) from (1455,1614,20)
+[00:23:21.058] LOG   [mk3_Serena] event goto_start: target=(1468,1609) from=(1455,1614)
+[00:23:21.058] INFO  [mk3_Serena] [bot] running from (1455,1614,20) to (1468,1609,z20)
+[00:23:21.058] INFO  [mk3_Serena] [bot] planning path to (1468,1609) in background
+[00:23:21.429] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:23:22.423] INFO  [mk3_Serena] [action] goto finished at (1455,1614,20); target (1468,1609); stopped short (off by 18 tile(s))
+[00:23:22.423] LOG   [mk3_Serena] event goto_done: at=(1455,1614) target=(1468,1609) arrived=0 off=18
+[00:23:23.655] INFO  [mk3_Serena] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:23:23.655] INFO  [mk3_Serena] [action] goto (1468,1609) from (1455,1614,20)
+[00:23:23.655] LOG   [mk3_Serena] event goto_start: target=(1468,1609) from=(1455,1614)
+[00:23:23.655] INFO  [mk3_Serena] [bot] running from (1455,1614,20) to (1468,1609,z20)
+[00:23:23.655] INFO  [mk3_Serena] [bot] planning path to (1468,1609) in background
+[00:23:25.029] INFO  [life] wind-down: no bank learned yet; asking the world for one (attempt 1)
+[00:23:25.031] INFO  [mk3_Serena] [travel] place: skipping Minoc banker -- 1784 tiles and 0 gates for a service Britain banker offers
+[00:23:25.031] INFO  [mk3_Serena] [travel] Britain banker -> (1425,1690) r=5 from (1455,1614)
+[00:23:25.031] LOG   [mk3_Serena] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1455,1614)
+[00:23:25.031] INFO  [mk3_Serena] [travel] mode moongate         usable   <- chosen
+[00:23:25.032] INFO  [mk3_Serena] [travel] mode walk             usable
+[00:23:25.032] INFO  [mk3_Serena] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:23:25.032] INFO  [mk3_Serena] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:23:25.032] LOG   [mk3_Serena] event travel_mode: moongate
+[00:23:25.032] INFO  [mk3_Serena] [travel] plan Britain banker: ok legs=3 ~104 tiles transit=0 nodes=19
+[00:23:25.275] INFO  [mk3_Serena] [action] goto finished at (1455,1614,20); target (1468,1609); stopped short (off by 18 tile(s))
+[00:23:25.275] LOG   [mk3_Serena] event goto_done: at=(1455,1614) target=(1468,1609) arrived=0 off=18
+[00:23:25.275] INFO  [mk3_Serena] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:23:25.275] INFO  [mk3_Serena] [action] goto (1464,1640) from (1455,1614,20)
+[00:23:25.275] LOG   [mk3_Serena] event goto_start: target=(1464,1640) from=(1455,1614)
+[00:23:25.275] INFO  [mk3_Serena] [bot] running from (1455,1614,20) to (1464,1640)
+[00:23:25.275] INFO  [mk3_Serena] [bot] planning path to (1464,1640) in background
+[00:23:25.290] INFO  [mk3_Serena] [bot] replan to (1464,1640): 33 steps in 1201.3us
+[00:23:25.736] INFO  [mk3_Serena] [chat ascii] System: Elara has departed from Magincia.
+[00:23:26.431] INFO  [mk3_Serena] [chat ascii] System: Xerxes has departed from Vesper.
+[00:23:26.431] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:23:27.341] INFO  [mk3_Serena] [bot] step (1460,1612,20)->(1461,1613,20) rejected; OpenDoor + retry
+[00:23:27.357] INFO  [mk3_Serena] [chat ascii] System: Opening door...
+[00:23:27.357] INFO  [mk3_Serena] [0x20] player @(1460,1612,20) facing=4
+[00:23:27.357] INFO  [mk3_Serena] [action] goto finished at (1460,1612,20); target (1464,1640); stopped short (off by 32 tile(s))
+[00:23:27.357] LOG   [mk3_Serena] event goto_done: at=(1460,1612) target=(1464,1640) arrived=0 off=32
+[00:23:28.574] INFO  [mk3_Serena] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:23:28.574] INFO  [mk3_Serena] [action] goto (1464,1640) from (1460,1612,20)
+[00:23:28.574] LOG   [mk3_Serena] event goto_start: target=(1464,1640) from=(1460,1612)
+[00:23:28.574] INFO  [mk3_Serena] [bot] running from (1460,1612,20) to (1464,1640)
+[00:23:28.574] INFO  [mk3_Serena] [bot] planning path to (1464,1640) in background
+[00:23:28.635] INFO  [mk3_Serena] [bot] replan to (1464,1640): 28 steps in 745.3us
+[00:23:30.711] INFO  [mk3_Serena] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=22 in 102.6us
+[00:23:31.202] INFO  [mk3_Serena] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=20 in 63.0us
+[00:23:31.478] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:23:31.664] INFO  [mk3_Serena] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=18 in 102.1us
+[00:23:32.111] INFO  [mk3_Serena] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=16 in 36.7us
+[00:23:32.514] INFO  [mk3_Serena] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=14 in 34.3us
+[00:23:33.010] INFO  [mk3_Serena] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=12 in 100.7us
+[00:23:33.132] INFO  [mk3_Serena] [chat ascii] System: Dorvar has departed from Skara Brae.
+[00:23:34.256] INFO  [mk3_Serena] [bot] lookahead patched around block at step 1: anchor=5 new segment=5 path=8 in 103.3us
+[00:23:34.777] INFO  [mk3_Serena] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=7 in 53.1us
+[00:23:35.287] INFO  [mk3_Serena] [bot] lookahead patched around block at step 1: anchor=4 new segment=4 path=4 in 87.6us
+[00:23:35.733] INFO  [mk3_Serena] [bot] lookahead patched around block at step 1: anchor=2 new segment=3 path=3 in 43.7us
+[00:23:36.492] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:23:37.018] INFO  [mk3_Serena] [bot] arrived at (1464,1640,20)
+[00:23:37.018] INFO  [mk3_Serena] [action] goto finished at (1464,1640,20); target (1464,1640); ARRIVED (off by 0 tile(s))
+[00:23:37.018] LOG   [mk3_Serena] event goto_done: at=(1464,1640) target=(1464,1640) arrived=1 off=0
+[00:23:37.018] INFO  [mk3_Serena] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:23:37.018] INFO  [mk3_Serena] [action] goto (1448,1672) from (1464,1640,20)
+[00:23:37.018] LOG   [mk3_Serena] event goto_start: target=(1448,1672) from=(1464,1640)
+[00:23:37.018] INFO  [mk3_Serena] [bot] running from (1464,1640,20) to (1448,1672)
+[00:23:37.018] INFO  [mk3_Serena] [bot] planning path to (1448,1672) in background
+[00:23:37.034] INFO  [mk3_Serena] [bot] replan to (1448,1672): 37 steps in 4034.7us
+[00:23:37.746] INFO  [mk3_Serena] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=37 in 200.3us
+[00:23:37.865] INFO  [mk3_Serena] [chat ascii] System: Odessa has departed from Britain.
+[00:23:38.438] INFO  [mk3_Serena] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=35 in 93.7us
+[00:23:38.702] INFO  [mk3_Serena] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=34 in 120.4us
+[00:23:38.889] INFO  [mk3_Serena] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=33 in 166.5us
+[00:23:38.949] INFO  [mk3_Serena] [chat ascii] System: Rhea has departed from Lord British's Castle.
+[00:23:39.134] INFO  [mk3_Serena] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=32 in 123.4us
+[00:23:39.393] INFO  [mk3_Serena] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=31 in 152.4us
+[00:23:39.579] INFO  [mk3_Serena] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=30 in 133.5us
+[00:23:39.827] INFO  [mk3_Serena] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=29 in 150.4us
+[00:23:40.028] INFO  [mk3_Serena] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=28 in 101.4us
+[00:23:40.274] INFO  [mk3_Serena] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=26 in 92.3us
+[00:23:40.517] INFO  [mk3_Serena] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=25 in 69.5us
+[00:23:40.764] INFO  [mk3_Serena] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=24 in 81.5us
+[00:23:41.012] INFO  [mk3_Serena] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=24 in 102.1us
+[00:23:41.258] INFO  [mk3_Serena] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=23 in 174.3us
+[00:23:41.502] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:23:41.503] INFO  [mk3_Serena] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=22 in 142.0us
+[00:23:41.751] INFO  [mk3_Serena] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=21 in 81.2us
+[00:23:42.011] INFO  [mk3_Serena] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=20 in 147.0us
+[00:23:42.196] INFO  [mk3_Serena] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=19 in 144.9us
+[00:23:42.457] INFO  [mk3_Serena] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=18 in 86.9us
+[00:23:42.666] INFO  [mk3_Serena] [bot] lookahead patched around block at step 5: anchor=6 new segment=38 path=49 in 8670.4us
+[00:23:43.199] INFO  [mk3_Serena] [chat ascii] System: Rhaler has departed from Minoc.
+[00:23:45.061] INFO  [mk3_Serena] [chat ascii] System: Ithion has departed from Skara Brae.
+[00:23:46.503] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:23:51.520] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:23:56.555] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:23:57.309] INFO  [mk3_Serena] [bot] arrived at (1448,1672,10)
+[00:23:57.309] INFO  [mk3_Serena] [action] goto finished at (1448,1672,10); target (1448,1672); ARRIVED (off by 0 tile(s))
+[00:23:57.309] LOG   [mk3_Serena] event goto_done: at=(1448,1672) target=(1448,1672) arrived=1 off=0
+[00:23:57.309] INFO  [mk3_Serena] [action] goto (1425,1690) from (1448,1672,10)
+[00:23:57.309] LOG   [mk3_Serena] event goto_start: target=(1425,1690) from=(1448,1672)
+[00:23:57.309] INFO  [mk3_Serena] [bot] running from (1448,1672,10) to (1425,1690,z0)
+[00:23:57.309] INFO  [mk3_Serena] [bot] planning path to (1425,1690) in background
+[00:23:57.372] INFO  [mk3_Serena] [bot] replan to (1425,1690): 41 steps in 8484.7us
+[00:24:00.423] INFO  [mk3_Serena] [chat ascii] System: Faustus has departed from Britain.
+[00:24:01.559] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:24:01.868] INFO  [mk3_Serena] [chat ascii] System: Hector has departed from Bank of Britannia - Trinsic Branch.
+[00:24:02.195] INFO  [mk3_Serena] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=24 in 176.7us
+[00:24:02.609] INFO  [mk3_Serena] [chat ascii] System: Titus has departed from Magincia.
+[00:24:04.278] INFO  [mk3_Serena] [bot] door ahead at (1440,1693,z0); OpenDoor before step
+[00:24:04.294] INFO  [mk3_Serena] [chat ascii] System: Opening door...
+[00:24:05.733] INFO  [mk3_Serena] [bot] door ahead at (1438,1692,z0); OpenDoor before step
+[00:24:05.747] INFO  [mk3_Serena] [chat ascii] System: Opening door...
+[00:24:06.564] INFO  [mk3_Serena] [survival] hp 50/50 (100%) -> fight
+[00:24:07.794] INFO  [mk3_Serena] [chat ascii] Lyndon: What's thee wantin'?
+[00:24:07.840] INFO  [mk3_Serena] [chat ascii] System: Aurelius has departed from Ocllo.
+[00:24:08.149] INFO  [mk3_Serena] [bot] lookahead patched around block at step 5: anchor=6 new segment=10 path=13 in 610.6us
+[00:24:10.011] INFO  [mk3_Serena] [travel] Britain banker ARRIVED at (1430,1687,0)
+[00:24:10.011] LOG   [mk3_Serena] event travel_done: label='Britain banker' ok=1 at=(1430,1687) legs=3 plans=1 why=''
+[00:24:10.072] INFO  [life] wind-down: arrived somewhere safe at 1430,1687
+[00:24:10.119] INFO  [life] session_summary duration=252s goals=5/9 gold=10000->10000 skills=100.0->100.0 logs=+0 kills=0 deaths=0 places=2 suppliers=0
+[00:24:10.119] INFO  [life] session_goals families=2 picks=9 top=89% varied=0 self_superseded=0 | upkeep=8(89%) social=1(11%) | REPLACE_EQUIPMENT=6(67%) BANK=1(11%) TRADE_WITH_PLAYER=1(11%) GET_FOOD=1(11%)
+[00:24:10.121] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_21.serena/state.json
+[00:24:10.121] INFO  [life] logging out
+[00:24:10.121] INFO  [mk3_Serena] [action] logout requested
+[00:24:10.121] LOG   [mk3_Serena] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[00:24:10.135] INFO  [mk3_Serena] [0xD1] logout acknowledged (accepted=1)
+[00:24:10.135] LOG   [mk3_Serena] event logout_ack: accepted
+[00:24:10.135] INFO  [mk3_Serena] [net] closing connection (logout acknowledged)
+[00:24:10.135] LOG   [mk3_Serena] event logout_complete: acked

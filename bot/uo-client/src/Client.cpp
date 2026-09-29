@@ -1,7 +1,9 @@
 #include "Client.h"
 
 #include "bot/Scenario.h"
+#include "life/Runner.h"
 #include "uo/actions.h"
+#include "uo/appearance.h"
 #include "uo/sphere_rules.h"
 #include "uo/vendor_policy.h"
 
@@ -22,6 +24,7 @@
 #include "render/RadarColors.h"
 #include "win32/MiniFB.h"
 #include "js/ClientBindings.h"
+#include "net/Cliloc.h"
 
 #include <algorithm>
 #include <cctype>
@@ -150,10 +153,6 @@ Client::Client(const Config& cfg)
 }
 
 Client::~Client() {
-    // A session that ended without a logout (server disconnect, fatal error)
-    // still writes its life back; ActionLogout already saved and cleared the
-    // flag for the clean case.
-    LifeSave("session_end");
     if (renderWindowOpen_) { mfb_close(); renderWindowOpen_ = false; }
     StopStdinThread();
     sock_.Close();
@@ -246,6 +245,36 @@ bool Client::Start() {
         LogInfo("[scenario] loaded '%s'\n", cfg_.scenarioPath);
     }
 
+    if (cfg_.autonomous) {
+        if (scenario_) {
+            // Two decision-makers for one body is not a configuration, it is a
+            // bug waiting for a live run to expose it.
+            LogError("[life] --autonomous and --scenario are mutually exclusive\n");
+            LogEvent("life_config_failed", "scenario and autonomous both set");
+            exitCode_ = 5; finished_ = true; return false;
+        }
+        life::RunnerConfig lc;
+        lc.dataRoot = (cfg_.botDataRoot && cfg_.botDataRoot[0]) ? cfg_.botDataRoot
+                                                                : "bot_data";
+        lc.accountName = cfg_.username ? cfg_.username : "";
+        lc.characterName = (cfg_.charName && cfg_.charName[0]) ? cfg_.charName
+                                                               : lc.accountName;
+        lc.sessionLimitMs = static_cast<i64>(cfg_.lifeMinutes) * 60 * 1000;
+        lc.goalLimit = cfg_.lifeGoalLimit;
+        lc.professionId = cfg_.professionId ? cfg_.professionId : "";
+        lifeRunner_ = std::make_unique<life::Runner>();
+        std::string lerr;
+        if (!lifeRunner_->Configure(lc, &lerr)) {
+            LogError("[life] %s\n", lerr.c_str());
+            LogEvent("life_config_failed", lerr.c_str());
+            lifeRunner_.reset();
+            exitCode_ = 5; finished_ = true; return false;
+        }
+        LogInfo("[life] autonomous player active for '%s' (data root '%s', "
+                "session limit %d min)\n",
+                lc.characterName.c_str(), lc.dataRoot.c_str(), cfg_.lifeMinutes);
+    }
+
     lastActivity_ = std::chrono::steady_clock::now();
     return true;
 }
@@ -290,6 +319,18 @@ bool Client::ConnectAndSendSeed(const char* host, u16 port) {
 }
 
 bool Client::Send(const u8* data, usize size, const char* note) {
+    // Offline harness: capture instead of write. Nothing else changes -- the
+    // packet was still built by the live builder, so a test asserts on the
+    // exact bytes the shard would have received.
+    if (offlineForTest_) {
+        SentPacket p;
+        p.opcode = size ? data[0] : 0;
+        p.size = size;
+        p.bytes.assign(data, data + size);
+        sentForTest_.push_back(std::move(p));
+        LogPacketRedacted(Direction::Out, data, size, note);
+        return true;
+    }
     if (!sock_.SendAll(data, size)) {
         char detail[160];
         std::snprintf(detail, sizeof(detail),
@@ -441,12 +482,34 @@ void Client::Tick(int waitMs) {
             // trigger the lazy load themselves, and a scenario is entitled to
             // ask "which region am I in" before it asks to travel anywhere.
             EnsureWorldKnowledge();
+            // The autonomous player decides here, for the same reason the
+            // scenario runs above: it drives travel through the public API,
+            // so its requests must be in flight before TravelTick pumps them.
+            if (lifeRunner_ && !lifeRunner_->Finished()) lifeRunner_->Tick(*this, NowMs());
             // Travel drives the tile A* through ActionGoto, so it has to run
             // before BotTick pumps the steps it queued.
+            // Dead mobiles linger only until their death animation ends:
+            // 0xAF / 0x1D stamp deadRemoveMs, and this sweep is the only
+            // thing that honours it. Without it a killed mobile stays
+            // "alive" in the cache forever and MobilePosition() keeps
+            // answering for a corpse.
+            {
+                const i64 nowDead = static_cast<i64>(NowMs());
+                for (auto it = mobileCache_.begin(); it != mobileCache_.end();) {
+                    if (it->deadRemoveMs != 0 && nowDead >= it->deadRemoveMs) {
+                        const u32 s = it->serial;
+                        mobileNames_.erase(s);
+                        it = mobileCache_.erase(it);
+                        uo::js::EmitMobileLeave(s);
+                    } else {
+                        ++it;
+                    }
+                }
+            }
             TravelTick();
+            SparringSafetyTick();
             WarModeTick();
             SurvivalTick();
-            LifeTick();
             BotTick();
             PurgeOutOfRange();  // cull mobiles/containers past viewRange_ (queues leave events)
             uo::js::TickClientEvents(NowMs());  // dispatch JS events + reject timeouts
@@ -475,6 +538,8 @@ void Client::Tick(int waitMs) {
 // ---------------------------------------------------------------------------
 void Client::Dispatch(const u8* data, usize size) {
     if (cfg_.logPackets) LogPacket(Direction::In, data, size);
+    // Proof the server is still servicing this session (move-ack watchdog).
+    lastInboundMs_ = NowMs();
 
     const u8 cmd = data[0];
     switch (cmd) {
@@ -492,6 +557,8 @@ void Client::Dispatch(const u8* data, usize size) {
         case 0xA8: OnServerList(data, size); break;
         case 0xA9: OnCharacterList(data, size); break;
         case 0xAE: OnUnicodeMessage(data, size); break;
+        case 0xC1: OnClilocMessage(data, size); break;
+        case 0xCC: OnClilocMessageAffix(data, size); break;
         case 0xB9: OnFeatures(data, size); break;
         case 0xBD: OnClientVersionQuery(data, size); break;
         case 0xC8: OnViewRange(data, size); break;
@@ -527,16 +594,29 @@ void Client::Dispatch(const u8* data, usize size) {
         case 0x9E: OnVendorSellList(data, size); break;
 
         // Common in-world packets we just log + ignore for M1.
+        //
+        // These MUST NOT fall through into 0xB0. They did until 2026-09-02,
+        // and it is what stranded Xerxes and Vorar at the Magincia gate: the
+        // gate's own sound (0x54) / effect (0x70) arrives right behind its
+        // destination gump, ran OnGenericGump, whose first statement clears
+        // gump_, and returned early on the size check -- silently discarding a
+        // gump that was never answered. Sphere will not open a second dialog
+        // for an unanswered one, so every later double-click was met with
+        // silence (g_Xerxes.console.txt:119 gump open, :171 "gump active=0",
+        // then 158 identical retries).
         case 0x23: case 0x53:
         case 0x54: case 0x5B: case 0x65: case 0x6D:
         case 0x70:
         case 0x8B: case 0x97:
+            break;
+
         case 0xB0: OnGenericGump(data, size); break;
         case 0x6F: OnSecureTrade(data, size); break;
+        case 0xBF: OnPartyPacket(data, size); break;
 
         // Common in-world packets we just log + ignore for M1.
-        case 0xBA: case 0xBC: case 0xBF: case 0xC0:
-        case 0xC1: case 0xCB: case 0xCC:
+        case 0xBA: case 0xBC: case 0xC0:
+        case 0xCB:
             // Logged above; behavior is no-op until later milestones.
             break;
 
@@ -544,6 +624,7 @@ void Client::Dispatch(const u8* data, usize size) {
             OnUnknown(data, size);
             break;
     }
+    SparringSafetyTick();
 }
 
 // ---------------------------------------------------------------------------
@@ -896,6 +977,9 @@ void Client::OnCharacterList(const u8* data, usize size) {
 //   ...
 // ---------------------------------------------------------------------------
 void Client::OnLoginConfirm(const u8* data, usize size) {
+    sparringPeer_ = 0; sparringUntilMs_ = selfHealthSeenMs_ = 0;
+    partyMembers_.clear();
+    partyInviter_ = 0;
     if (size < 18) return;
     playerSerial_ = LoadBE32(data + 1) & 0x7FFFFFFFu;
     u16 body = LoadBE16(data + 9);
@@ -935,7 +1019,6 @@ void Client::OnLoginComplete(const u8* data, usize size) {
     LogInfo("[0x55] login complete — entering world\n");
     state_ = State::InWorld;
     LogEvent("in_world", "0x55 received");
-    LifeBegin();
     // Initialise the keepalive timer so the first keepalive fires
     // exactly 60s after entering the world (matches the original).
     lastActivityMs_ =
@@ -1051,6 +1134,7 @@ void Client::OnMobileHp(const u8* data, usize size) {
                 const i32 oldCur = m.hpCur;
                 m.hpMax = static_cast<i32>(LoadBE16(data + 5));
                 m.hpCur = static_cast<i32>(LoadBE16(data + 7));
+                m.healthSeenMs = NowMs();
                 // Source-X sends NO per-swing packet during a fight (0x2F is
                 // emitted once, when the fight memory is created -- see
                 // CCharMemory.cpp Memory_Fight_Start), so a watchdog fed only
@@ -1059,6 +1143,15 @@ void Client::OnMobileHp(const u8* data, usize size) {
                 // still happening; WarMode.h always promised this counted.
                 if (serial == war_.TargetSerial() && oldCur >= 0 && m.hpCur != oldCur)
                     war_.OnCombatEvent(NowMs());
+                // Castor 2026-09-05 02:25: two 20 s "stalemate" verdicts wrote
+                // Britain Graveyard off for the session and nothing in the
+                // console showed what the foe's bar did. Source-X sends other
+                // mobiles' health as 0..100 percent (send.cpp
+                // PacketHealthUpdate); it is the whole evidence the stalemate
+                // test is judged on, so it is logged.
+                if (serial == war_.TargetSerial())
+                    LogInfo("[0xA1] foe 0x%08X hp %d/%d%s\n", serial, m.hpCur, m.hpMax,
+                            m.hpCur != oldCur ? " (changed)" : "");
                 break;
             }
         }
@@ -1071,27 +1164,15 @@ void Client::OnMobileHp(const u8* data, usize size) {
         // here). This must fire even when the bot is standing still -- in the
         // 21:53 huntdbg3 run the wolf killed a stationary bot without the
         // watchdog ever seeing one combat event.
-        const i64 now = NowMs();
-        war_.OnCombatEvent(now);
-        lastHurtMs_ = now;
-        // Halt an oblivious journey on the FIRST hit so the brain can react --
-        // but not on every hit after it. The old rule aborted any walk on any
-        // HP drop, which also aborted the reaction: a bot that decided to flee
-        // had its flee cancelled by the next swing, stood still, and was
-        // beaten to death out of war mode. Nor while a survival retreat is
-        // under way, which is the reaction.
-        const bool moving = nav_.bot.active || !nav_.movement.pending.empty();
-        const bool retreating = now < survivalRetreatUntilMs_;
-        const bool cooledDown = lastThreatInterruptMs_ == 0 ||
-                                now - lastThreatInterruptMs_ >= kThreatInterruptCooldownMs;
-        if (moving && !retreating && cooledDown) {
+        war_.OnCombatEvent(NowMs());
+        if (nav_.bot.active || !nav_.movement.pending.empty()) {
             char reason[48];
             std::snprintf(reason, sizeof(reason), "HP %d -> %d", player_.hpCur, curHp);
-            lastThreatInterruptMs_ = now;
             BotInterruptForThreat(reason);
         }
     }
     player_.serial = serial;
+    selfHealthSeenMs_ = NowMs();
     player_.hpCur = curHp;
     player_.hpMax = static_cast<i32>(LoadBE16(data + 5));
 }
@@ -1126,6 +1207,7 @@ void Client::OnMobileAttributes(const u8* data, usize size) {
                 const i32 oldCur = m.hpCur;
                 m.hpMax = static_cast<i32>(LoadBE16(data + 5));
                 m.hpCur = static_cast<i32>(LoadBE16(data + 7));
+                m.healthSeenMs = NowMs();
                 // Same rule as OnMobileHp: our target's health moving is the
                 // fight still happening (Source-X sends no per-swing packet).
                 if (serial == war_.TargetSerial() && oldCur >= 0 && m.hpCur != oldCur)
@@ -1141,6 +1223,7 @@ void Client::OnMobileAttributes(const u8* data, usize size) {
     }
     player_.serial = serial;
     player_.hpMax = static_cast<i32>(LoadBE16(data + 5));
+    selfHealthSeenMs_ = NowMs();
     player_.hpCur = static_cast<i32>(LoadBE16(data + 7));
     player_.manaMax = static_cast<i32>(LoadBE16(data + 9));
     player_.manaCur = static_cast<i32>(LoadBE16(data + 11));
@@ -1255,6 +1338,25 @@ void Client::OnObjectInfo(const u8* data, usize size) {
 void Client::OnDeleteObject(const u8* data, usize size) {
     if (size < 5) return;
     const u32 serial = LoadBE32(data + 1) & 0x7FFFFFFFu;
+    // The dragged item ceasing to exist ends the drag as surely as it landing
+    // somewhere does. A scroll dropped on a spellbook is consumed (0x1D, no
+    // 0x25 ever follows), and without this the drag stayed "in flight" for
+    // the rest of the session: every later lift -- the next scroll, the bank
+    // coin -- was "lift refused locally" (run_gates/g_Elara.console.txt
+    // 01:24:51 first scroll ok, 01:24:56 onward 42 refused lifts).
+    // A LIFT WE OURSELVES SENT is not the item leaving the world -- it is
+    // relocating (to a container drop or a worn layer), and Sphere always
+    // precedes that with a 0x1D for the item's old spot. If this object is
+    // itself a container, erasing containerItems_[serial] below would wipe
+    // its cached CONTENTS every time it is merely picked up and set back
+    // down -- exactly what happened to a spellbook: STAT_FARM unequipped it
+    // (pack, still 19 spells cached), then re-equipped it a second later,
+    // and the re-equip's own pickup 0x1D erased that cache. PRACTICE_SKILL
+    // read the same still-worn, still-full book as empty right after
+    // (run_gates/g_Aurelius.console.txt:83-90,596-624, 2026-09-05). The
+    // book never left the world, so its contents cache should not either.
+    const bool ownLift = drag_.InFlight() && drag_.Serial() == serial;
+    if (ownLift) drag_.Reset();
     ActionOnObjectDeleted(serial);
     // An item leaving the world is an item leaving a trade window, if that is
     // where it was.
@@ -1292,10 +1394,12 @@ void Client::OnDeleteObject(const u8* data, usize size) {
                        [&](const ContainerItem& e) { return e.serial == serial; }),
                    list.end());
     }
-    containerItems_.erase(serial);
-    openContainers_.erase(std::remove_if(openContainers_.begin(), openContainers_.end(),
-                              [&](const OpenContainer& c) { return c.serial == serial; }),
-                          openContainers_.end());
+    if (!ownLift) {
+        containerItems_.erase(serial);
+        openContainers_.erase(std::remove_if(openContainers_.begin(), openContainers_.end(),
+                                  [&](const OpenContainer& c) { return c.serial == serial; }),
+                              openContainers_.end());
+    }
 }
 
 // Range cull, mirroring CObjectManager_UpdateMovement @0x4c8b00: the official
@@ -1375,20 +1479,40 @@ void Client::PurgeOutOfRange() {
 // 0x24 Draw Container (7 bytes): cmd, serial(4 BE), gumpId(2 BE). The real
 // client opens a gump bound to the container entity (Packet_HandleDrawContainer
 // @ 0x417f70); we just register it so DrawContainers() can list the contents.
-// gumpId 0xFFFF closes it; 500/501 = bank, 10/48 = paperdoll.
+// gumpId 0xFFFF is the SPELLBOOK gump (see below); 500/501 = bank,
+// 10/48 = paperdoll.
 void Client::OnDrawContainer(const u8* data, usize size) {
     if (size < 7) return;
     const u32 serial = LoadBE32(data + 1);
     const u16 gumpId = LoadBE16(data + 5);
 
     auto sameSerial = [&](const OpenContainer& c) { return c.serial == serial; };
-    if (gumpId == 0xFFFF) {  // close / clear
-        openContainers_.erase(std::remove_if(openContainers_.begin(),
-                                  openContainers_.end(), sameSerial),
-                              openContainers_.end());
-        containerItems_.erase(serial);
-        return;
-    }
+    // GUMP 0xFFFF IS A SPELLBOOK OPENING, NOT A CONTAINER CLOSING.
+    //
+    // This branch used to erase the container and return before anything else
+    // ran -- no registration, no [0x24] log line, no ActionOnContainerOpened.
+    // Sphere's ONLY sender of 0x24 is CClient::addOpenGump
+    // (server/Source-X/src/game/clients/CClientMsg.cpp:449, the single caller
+    // of PacketContainerOpen), and the one gump id it passes that is not a
+    // real container gump is GUMP_OPEN_SPELLBOOK = 0xFFFF
+    // (src/game/uo_files/uofiles_enums.h:1093), sent from
+    // CClient::addSpellbookOpen (CClientMsg.cpp:2325). This shard never sends
+    // a 0x24 to close anything, so reading 0xFFFF as a close swallowed every
+    // spellbook double-click: open_container sat pending for its full 4s
+    // deadline, five times, and the planner abandoned the goal with progress 0
+    // and re-picked it forever -- which is every caster in the fleet
+    // (run_gates/g_Aurelius.console.txt:58-125, 2026-09-06; the raw log shows
+    // no [0x24] and no [0x3C] between the request and the timeout).
+    //
+    // A book with NO spells in it gets no 0x3C either: addSpellbookOpen
+    // returns on `count <= 0` before `new PacketItemContents`
+    // (CClientMsg.cpp:2337-2340). So for an empty book this 0x24 is the only
+    // answer that will ever arrive, and the contents entry has to be created
+    // HERE or ContainerKnown() stays false and the caller re-opens forever.
+    // An existing listing is left alone -- for a book that does hold spells
+    // the 0x3C follows immediately and clears/refills it.
+    if (gumpId == 0xFFFF)
+        containerItems_.emplace(serial, std::vector<ContainerItem>{});
     if (gumpId == 0x30) {  // vendor buy gump — `serial` is the vendor MOBILE
         uo::js::EmitVendorOffer(serial);  // builds payload from pendingVendor_ now
         // The 0x24 gump 0x30 is what terminates the 0x2E/0x3C/0x74 burst, so
@@ -1474,12 +1598,31 @@ void Client::OnVendorShopData(const u8* data, usize size) {
         (it != containerItems_.end()) ? &it->second : nullptr;
     const std::size_t stockN = stock ? stock->size() : 0;
 
-    // CRITICAL: 0x74 SHOP_DATA walks the vendor's contents list FORWARD
-    // (spatialNext), but the 0x3C that preceded it was built in REVERSE
-    // (PacketManager_MakePacket_MULTI_OBJ_TO_OBJ @0x00499EEB: backward pass via
-    // spatialPrev). So the two packets are mirror-ordered: 0x74 row i pairs with
-    // stock row (stockN-1-i), NOT stock[i]. Zipping by the same index sends the
-    // wrong serial (we sent the Red-Potion serial for "bandage").
+    // WHICH WAY ROUND DO THESE TWO PACKETS PAIR?
+    //
+    // 0x74 carries a price and a display NAME per row; the 0x3C that preceded
+    // it carries the serial, graphic and amount. Neither has both halves, so
+    // they have to be zipped -- and the order is not something to assume.
+    // This code paired them mirror-ordered (row i with stock[N-1-i]) on the
+    // reading that 0x3C is built by a backward pass. Against this shard that
+    // is simply wrong: dumping a Britain mage shop, straight pairing matched
+    // 13 of 13 identifiable rows and mirror pairing matched 1 -- and that one
+    // was the middle element, which matches either way.
+    //
+    // Getting it wrong is not cosmetic. The serial we send to buy comes from
+    // the stock row, so a mis-zip buys the neighbouring item: the bot reported
+    // buying blank scrolls "from 'Spider's Silk'", a reagent name where a
+    // vendor name belongs.
+    //
+    // Rather than swap one assumption for another, DECIDE FROM THE DATA. Every
+    // row whose graphic is in our own graphic->defname table votes for the
+    // ordering that makes its name and its graphic agree. The winner is used.
+    // If a shard, a client version or a Sphere build ever orders these the
+    // other way, this notices instead of silently buying the wrong thing.
+    // Read the rows once, then decide the ordering before committing to it.
+    struct ShopRow { u32 price; std::string name; };
+    std::vector<ShopRow> rows;
+    rows.reserve(count);
     for (u8 i = 0; i < count; ++i) {
         if (p + 5 > size) break;
         const u32 price = LoadBE32(data + p); p += 4;
@@ -1488,13 +1631,73 @@ void Client::OnVendorShopData(const u8* data, usize size) {
         std::string name(reinterpret_cast<const char*>(data + p), nameLen);
         p += nameLen;
         if (const auto z = name.find('\0'); z != std::string::npos) name.resize(z);
+        rows.push_back(ShopRow{price, std::move(name)});
+    }
+
+    // Does this graphic's defname describe this display name? "i_reag_
+    // nightshade" against "Nightshade", "i_scroll_blank" against "blank
+    // scrolls": every word of the defname, minus its type prefix, has to
+    // appear somewhere in the name. Unknown graphics vote for neither.
+    auto agrees = [](u16 graphic, const std::string& shown) -> bool {
+        const char* def = econ::ItemNameForGraphic(graphic);
+        if (!def) return false;
+        std::string lowerName;
+        for (char c : shown)
+            lowerName.push_back(static_cast<char>(std::tolower(static_cast<unsigned char>(c))));
+        std::string word;
+        bool any = false;
+        auto check = [&](const std::string& w) {
+            if (w.empty() || w == "i" || w == "reag" || w == "potion") return true;
+            any = true;
+            return lowerName.find(w) != std::string::npos;
+        };
+        for (const char* q = def; ; ++q) {
+            if (*q == '_' || *q == '\0') {
+                if (!check(word)) return false;
+                word.clear();
+                if (*q == '\0') break;
+            } else {
+                word.push_back(static_cast<char>(std::tolower(static_cast<unsigned char>(*q))));
+            }
+        }
+        return any;
+    };
+
+    int straightScore = 0, mirrorScore = 0;
+    if (stock) {
+        for (usize i = 0; i < rows.size() && i < stockN; ++i) {
+            if (agrees((*stock)[i].graphic, rows[i].name)) ++straightScore;
+            if (agrees((*stock)[stockN - 1 - i].graphic, rows[i].name)) ++mirrorScore;
+        }
+    }
+    const bool mirrored = mirrorScore > straightScore;
+
+    for (usize i = 0; i < rows.size(); ++i) {
         if (!stock || i >= stockN)
             continue;  // no 0x3C row to pair: can't buy without a serial
-        const ContainerItem& ci = (*stock)[stockN - 1 - i];   // reverse pairing
-        pendingVendor_.push_back(VendorItem{ci.serial, ci.graphic, ci.amount, price, layer, name});
+        const ContainerItem& ci = mirrored ? (*stock)[stockN - 1 - i] : (*stock)[i];
+        pendingVendor_.push_back(
+            VendorItem{ci.serial, ci.graphic, ci.amount, rows[i].price, layer, rows[i].name});
+    }
+    if (straightScore || mirrorScore) {
+        LogInfo("[0x74] pairing: %s (straight %d, mirrored %d of %u rows)\n",
+                mirrored ? "MIRRORED" : "straight", straightScore, mirrorScore,
+                static_cast<unsigned>(rows.size()));
     }
     LogInfo("[0x74] vendor shop data: cont=0x%08X %u item(s), layer=0x%02X\n",
             contSerial, count, layer);
+    // WHAT IS ACTUALLY ON THE SHELF, not just how many rows there are.
+    //
+    // A count alone cannot answer "did this vendor restock against the new
+    // tables?" -- the question any change of vendor scripts raises. The
+    // containers rebuild on the first shop-open after a restart (m_timeRestock
+    // is not persisted, CCharNPC.cpp:58), so the answer is a matter of
+    // evidence rather than argument. One line per row provides it.
+    for (const VendorItem& v : pendingVendor_) {
+        if (v.layer != layer) continue;
+        LogInfo("[0x74]   %-28s gfx=0x%04X qty=%-4u price=%u\n",
+                v.name.c_str(), v.graphic, v.amount, v.price);
+    }
 }
 
 // 0x3B OFFERACCEPT (variable, server->client): closes the vendor gump after a
@@ -1506,6 +1709,18 @@ void Client::OnVendorOfferAccept(const u8* data, usize size) {
     const u32 vendor = LoadBE32(data + 3);
     const u8 flag = data[7];
     LogInfo("[0x3B] vendor transaction closed: vendor=0x%08X flag=%u\n", vendor, flag);
+    // A CLOSED WINDOW IS NOT AN OPEN ONE. The offer list used to outlive this
+    // packet, so VendorOfferFrom() went on naming a shop whose gump the server
+    // had already shut. Five minutes after buying a rolling pin from Lionel
+    // the baker, BUY_SUPPLIES wanted kindling, found the baker's STALE list
+    // still posing as an open window, searched it, and failed "this
+    // 'provisioner' does not stock i_kindling" -- sixteen times a second,
+    // from the wrong town, without ever walking to a provisioner. The stock
+    // list dies with the transaction, exactly as the real gump does.
+    if (vendorOfferVendor_ == vendor) {
+        vendorOfferVendor_ = 0;
+        vendorOffer_.clear();
+    }
     uo::js::EmitVendorDone(vendor, flag);
 }
 
@@ -1546,6 +1761,17 @@ void Client::OnAddItemToContainer(const u8* data, usize size) {
                   [&](const ContainerItem& e) { return e.serial == ci.serial; });
     if (it == list.end()) list.push_back(ci);
     else *it = ci;
+    // AN ITEM IN A CONTAINER IS NOT WORN. ForgetEquippedItem only ran off a
+    // 0x1D delete (a mount's animal leaving the world), so an ordinary
+    // unequip -- lift a worn item, drop it in the pack, 0x25 confirms it --
+    // left playerEquip_'s upsert-by-layer entry stale at the OLD serial
+    // forever: nothing ever erases a layer, only a NEW item worn there
+    // overwrites it. A caller that frees a hand before re-wielding (GET_TOOL,
+    // the smith-hammer swap in Craft.cpp) reads EquippedAtLayer right after
+    // the unequip lands and saw the same "occupied" serial it just took off,
+    // so it unequipped the same already-unequipped item forever and the new
+    // tool never reached the hand.
+    ForgetEquippedItem(ci.serial);
     ActionOnItemInContainer(ci.serial, cont);
     if (std::find_if(openContainers_.begin(), openContainers_.end(),
             [&](const OpenContainer& c) { return c.serial == cont; })
@@ -1594,6 +1820,42 @@ u32 Client::ResolveFollowSerialByName(const char* name) const {
 void Client::RememberMobileName(u32 serial, const char* name) {
     if (serial == 0 || !name || !name[0]) return;
     mobileNames_[serial] = name;
+}
+
+// Ask for a name we do not have, the way the client already asks for any
+// mobile's (0x98 AllNames query; the reply lands in OnMobName, which fills
+// mobileNames_). NON-BLOCKING by construction: nothing waits on the answer,
+// and every caller must already work with a blank name.
+//
+// Rate-limited per serial because the caller is a speech handler: a shouting
+// character whose name never resolves (an NPC out of range, a mobile we
+// cannot see) would otherwise send one query per line spoken.
+void Client::RequestMobileName(u32 sourceSerial) {
+    if (sourceSerial == 0 || sourceSerial == 0xFFFFFFFFu) return;
+    const u32 serial = sourceSerial & 0x7FFFFFFFu;
+    if (serial == playerSerial_) return;
+    if (mobileNames_.count(serial)) return;
+    const i64 now = NowMs();
+    auto it = nameAskedMs_.find(serial);
+    if (it != nameAskedMs_.end() && now - it->second < kNameAskGapMs) return;
+    nameAskedMs_[serial] = now;
+    u8 pkt[8];
+    Send(pkt, build::MobNameQuery(pkt, serial), "0x98 AllNames (speaker name)");
+}
+
+std::string Client::ResolveSpeakerName(u32 sourceSerial,
+                                       const std::string& raw) const {
+    if (!raw.empty() || sourceSerial == 0 || sourceSerial == 0xFFFFFFFFu)
+        return raw;
+    const u32 masked = sourceSerial & 0x7FFFFFFFu;
+    // Our own speech echoes back with an empty name field on this opcode;
+    // the login flow already knows what we are called.
+    if (masked == playerSerial_ && selectedChar_ >= 0 &&
+        selectedChar_ < charCount_ && charSlots_[selectedChar_].name[0]) {
+        return charSlots_[selectedChar_].name;
+    }
+    if (const char* known = MobileName(masked)) return known;
+    return raw;
 }
 
 void Client::RememberJournalMessage(u32 sourceSerial, u16 sourceBody, u8 type,
@@ -1652,7 +1914,7 @@ void Client::UpdateMobile(u32 serial, i32 x, i32 y, i8 z, u8 dir, u16 body,
         // the renderer can draw the local player (and facing for arrow walk).
         if (body) playerBody_ = body;
         if (hasHue) playerHue_ = hue;
-        if (hasStatusFlags) playerWarMode_ = warMode;
+        if (hasStatusFlags) { playerWarMode_ = warMode; player_.poisoned = (statusFlags & 0x04u) != 0; }
         playerFacing_ = static_cast<u8>(dir & 0x07);
         player_.serial = serial;
         if (body) player_.body = body;
@@ -1680,7 +1942,7 @@ void Client::UpdateMobile(u32 serial, i32 x, i32 y, i8 z, u8 dir, u16 body,
             m.z = z;
             m.dir = static_cast<u8>(dir & 0x07);
             m.running = running;
-            if (hasStatusFlags) m.warMode = warMode;
+            if (hasStatusFlags) { m.warMode = warMode; m.poisoned = (statusFlags & 0x04u) != 0; }
             if (body) m.body = body;
             if (hasHue) m.hue = hue;
             m.deadRemoveMs = 0;
@@ -1694,6 +1956,7 @@ void Client::UpdateMobile(u32 serial, i32 x, i32 y, i8 z, u8 dir, u16 body,
                             body, hasHue ? hue : 0u, now});
     mobileCache_.back().running = running;
     mobileCache_.back().warMode = hasStatusFlags ? warMode : false;
+    mobileCache_.back().poisoned = hasStatusFlags && (statusFlags & 0x04u) != 0;
     if (notoriety >= 0) mobileCache_.back().noto = static_cast<u8>(notoriety);
 }
 
@@ -1759,13 +2022,41 @@ void Client::OnSwing(const u8* data, usize size) {
     if (size < 10) return;
     const u32 attacker = LoadBE32(data + 2);
     const u32 defender = LoadBE32(data + 6);
-    if (defender == playerSerial_ && attacker != 0)
+    if (defender == playerSerial_ && attacker != 0) {
+        attackersOnMe_[attacker] = NowMs();
         uo::js::EmitAttackedEvent(attacker);  // -> Player 'attacked' (serial)
+    }
     else if (attacker == playerSerial_ && defender != 0)
         uo::js::EmitCombatEvent(defender);    // -> Player 'combat' (serial)
     // Either direction is combat still happening, which keeps war mode alive.
     if (attacker == playerSerial_ || defender == playerSerial_)
         war_.OnCombatEvent(NowMs());
+}
+
+bool Client::IsAttackingMe(u32 serial, i64 windowMs) const {
+    const auto it = attackersOnMe_.find(serial);
+    return it != attackersOnMe_.end() && NowMs() - it->second <= windowMs;
+}
+
+std::string Client::LastAttackerName(i64 windowMs) const {
+    const i64 now = NowMs();
+    u32 best = 0;
+    i64 bestMs = 0;
+    for (const auto& kv : attackersOnMe_) {
+        if (now - kv.second > windowMs) continue;
+        if (kv.second >= bestMs) { bestMs = kv.second; best = kv.first; }
+    }
+    if (best == 0) return std::string();
+    const char* nm = MobileName(best);
+    return nm && nm[0] ? std::string(nm) : std::string();
+}
+
+i32 Client::RecentAttackerCount(i64 windowMs) const {
+    const i64 now = NowMs();
+    i32 n = 0;
+    for (const auto& kv : attackersOnMe_)
+        if (now - kv.second <= windowMs) ++n;
+    return n;
 }
 
 // 0x2E Worn Item (15B fixed): cmd, item serial(4), graphic(2), pad(1),
@@ -1784,6 +2075,25 @@ void Client::OnEquipItem(const u8* data, usize size) {
                 sphere::MountedStepMs(nav_.movement.runStepMs, true),
                 sphere::MountedStepMs(nav_.movement.walkStepMs, true));
         LogEvent("mount_state", "mounted");
+        // A mount double-click has no reply of its own (ActionDismount's
+        // comment above is stale on this point) -- THIS layer-25 equip IS the
+        // reply. The action's own subject is NOT usable to confirm it: an
+        // earlier version of this fix required action_.subject == itemSerial
+        // on the assumption that Source-X re-serials the double-clicked
+        // animal as the equipped item, but live evidence contradicts that --
+        // Kharain's own remounts (g_Kharain.console.txt 01:26:18.421-436 and
+        // 01:31:00.731-746) double-click horse 0x0000B222 and get
+        // mount_state:mounted 15ms later, yet the item serial in this 0x2E
+        // never equals 0x0000B222 (the subject check silently never matched,
+        // and use_object still timed out 4s later both times). A player does
+        // one deliberate thing at a time (act::Action's own single-slot
+        // model), and no OTHER pending use_object can put something on our
+        // own layer 25 -- exactly the precedent below already uses for a
+        // target cursor (kind == UseObject, no subject check) -- so any
+        // pending use_object finishes here.
+        if (action_.Active() && action_.kind == act::Kind::UseObject) {
+            FinishAction(act::Result::Success, "server mounted (layer 25 equipped)");
+        }
     }
     ActionOnItemEquipped(mobile, itemSerial, layer);
 }
@@ -1887,9 +2197,6 @@ void Client::RecordOwnDeath(const char* how) {
                   r ? r->id.c_str() : "?", how ? how : "?");
     LogEvent("death_location", ev);
     if (journey_.Active()) TravelAbort("died");
-    // Death is the event most worth surviving a crash: the corpse run next
-    // session depends on it.
-    LifeSave("death");
 }
 
 void Client::OnResurrectionMenu(const u8* data, usize size) {
@@ -1902,7 +2209,7 @@ void Client::OnResurrectionMenu(const u8* data, usize size) {
     // sends 0xAF only to bystanders (src/game/chars/CCharAct.cpp:4446) and the
     // switch to the ghost body emits no packet at all (:4493-4494), so 0x2C is
     // the first and only thing that tells us we died.
-    if (life_ != act::LifeState::Dead) {
+    if (!IsDead()) {
         life_ = act::LifeState::Dead;
         LogInfo("[STATE] dead (0x2C resurrect menu)\n");
         LogEvent("state_dead", "0x2C received");
@@ -1964,7 +2271,31 @@ void Client::OnOpenDialog(const u8* data, usize size) {
     for (usize i = 0; i < activeDialog_.options.size(); ++i)
         LogInfo("        %zu) %s\n", i + 1, activeDialog_.options[i].text.c_str());
     LogEvent("dialog", activeDialog_.question.c_str());
+    // A double-click that opens a CRAFT MENU rather than a container is still
+    // the server accepting the use -- exactly the same fact a 0x24 container
+    // or a 0x6C target cursor already confirms for UseObject (see the header
+    // comment on ActionUseObject). Without this, an in-flight use_object never
+    // saw ANY of its own recognised confirmations while the menu was open, and
+    // sat pending for the full 4s use_object deadline every single craft
+    // step -- the runner's own ActionBusy() gate then could not read the menu
+    // (CraftMenuOpen()) until the timeout freed it, so a scroll that finished
+    // crafting in under 2ms was reported as "use_object timeout (no server
+    // confirmation)" first (wave2 Thalia use_object x15, Elara x6;
+    // run_gates/g_Thalia.console.txt:598-606, dialog at .826, action timeout
+    // logged at .859, answered at .923 once the timeout freed the runner).
+    ActionOnMenuOpened();
     uo::js::EmitDialogEvent();          // -> Player/World 'dialog' (built from activeDialog_)
+}
+
+// A 0x7C menu is the server accepting a double-click that opens a CHOICE
+// rather than a container -- a craft gump, a spell-circle submenu. Same
+// confirmation shape as ActionOnContainerOpened; UseObject does not know in
+// advance which one it will get.
+void Client::ActionOnMenuOpened() {
+    if (!action_.Active()) return;
+    if (action_.kind == act::Kind::UseObject) {
+        FinishAction(act::Result::Success, "server opened a menu dialog");
+    }
 }
 
 // 0x7D answer to the 0x7C menu. index is 1-based (0 = cancel); model/hue echo
@@ -1996,12 +2327,43 @@ usize Client::DialogIndexOf(const char* substring) const {
     return 0;
 }
 
+usize Client::DialogIndexOfPrefix(const char* prefix) const {
+    // ANCHORED AT THE START, because a plain substring cannot tell
+    // "Poison" from "Lesser Poison" -- and the alchemy menu lists
+    // Lesser Poison FIRST, so a substring search for "poison" silently
+    // brews the wrong potion. Leading spaces are skipped: menu text is
+    // sometimes indented.
+    if (!prefix || !*prefix || !activeDialog_.active) return 0;
+    std::string want(prefix);
+    for (char& c : want) c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+
+    for (usize i = 0; i < activeDialog_.options.size(); ++i) {
+        std::string have = activeDialog_.options[i].text;
+        for (char& c : have) c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+        const usize at = have.find_first_not_of(" 	");
+        if (at == std::string::npos) continue;
+        if (have.compare(at, want.size(), want) == 0) return i + 1;
+    }
+    return 0;
+}
+
 std::vector<std::string> Client::CraftableNow() const {
     std::vector<std::string> out;
     if (!activeDialog_.active) return out;
     out.reserve(activeDialog_.options.size());
     for (const auto& o : activeDialog_.options) out.push_back(o.text);
     return out;
+}
+
+bool Client::ChooseDialogByPrefix(const char* prefix) {
+    const usize idx = DialogIndexOfPrefix(prefix);
+    if (idx != 0) return AnswerDialog(static_cast<u16>(idx));
+    LogWarn("[menu] nothing starts with '%s' in \"%s\" (%zu option(s)):\n",
+            prefix ? prefix : "", activeDialog_.question.c_str(),
+            activeDialog_.options.size());
+    for (usize i = 0; i < activeDialog_.options.size(); ++i)
+        LogWarn("        %zu) %s\n", i + 1, activeDialog_.options[i].text.c_str());
+    return false;
 }
 
 bool Client::ChooseDialogByName(const char* substring) {
@@ -2165,6 +2527,7 @@ void Client::OnVendorSellList(const u8* data, usize size) {
     const u16 count = LoadBE16(data + 7);
 
     vendorSellOffer_.clear();
+    vendorSellVendor_ = vendor;
     usize p = 9;
     for (u16 i = 0; i < count; ++i) {
         if (p + 14 > size) break;
@@ -2194,7 +2557,6 @@ void Client::OnVendorSellList(const u8* data, usize size) {
     std::snprintf(ev, sizeof(ev), "vendor=0x%08X items=%zu",
                   vendor, vendorSellOffer_.size());
     LogEvent("vendor_sell_list", ev);
-    uo::js::EmitVendorSellOffer(vendor);
 
     if (action_.Active() && action_.kind == act::Kind::VendorSell &&
         action_.subject == action_.destination) {
@@ -2240,7 +2602,57 @@ void Client::SendCreateCharacter() {
     build::CreateCharacterParams p;
     p.name = (cfg_.charName && cfg_.charName[0]) ? cfg_.charName : "Bot";
     p.slot = static_cast<u32>(cfg_.charSlot < 0 ? 0 : cfg_.charSlot);
-    if (cfg_.createSkill[0] > 0) {
+
+    // DETERMINISTIC PER-CHARACTER APPEARANCE (docs/APPEARANCE_DESIGN.md,
+    // layer 1). Every bot used to be sent the same fixed skinHue/hairId/
+    // hairHue/shirtHue/pantsHue (the CreateCharacterParams defaults in
+    // include/uo/builders.h), so every character came out with the same
+    // face and the same shirt and pants color -- "new characters always
+    // having same face male/female shirt or pants or shoes same color we
+    // need diversity" (project owner, 2026-08-29). Appearance must still be
+    // STABLE for a given character (the same character looks the same on
+    // every login/recreate), so uo::AppearanceForIdentity (src/life/
+    // Appearance.cpp) derives it from identity rather than randomising per
+    // run, the same way main.cpp:411-427 derives a character's home city:
+    // h = h*131 + c over the lowercased "account.charname". Build that same
+    // identity string here so the two hashes agree.
+    std::string ident;
+    {
+        auto append = [&ident](const char* t) {
+            for (const char* c = t; c && *c; ++c) {
+                const unsigned char u = static_cast<unsigned char>(*c);
+                if (std::isalnum(u))
+                    ident.push_back(static_cast<char>(std::tolower(u)));
+                else if (*c == '-' || *c == '_') ident.push_back(*c);
+                else ident.push_back('_');
+            }
+        };
+        append(cfg_.username);
+        ident.push_back('.');
+        append((cfg_.charName && cfg_.charName[0]) ? cfg_.charName : p.name);
+    }
+    const uo::Appearance ap = uo::AppearanceForIdentity(ident);
+    p.female   = ap.female;
+    p.skinHue  = ap.skinHue;
+    p.hairId   = ap.hairId;
+    p.hairHue  = ap.hairHue;
+    p.beardId  = ap.beardId;
+    p.beardHue = ap.beardHue;
+    p.shirtHue = ap.shirtHue;
+    p.pantsHue = ap.pantsHue;
+
+    LogInfo("create: appearance sex=%s skin=0x%04X hair=0x%04X/0x%04X shirt=0x%04X pants=0x%04X\n",
+            p.female ? "F" : "M", p.skinHue, p.hairId, p.hairHue,
+            p.shirtHue, p.pantsHue);
+
+    if (cfg_.startCity > 0) {
+        p.startLoc = static_cast<u8>(cfg_.startCity);
+        LogInfo("[0x00] starting city index %d\n", cfg_.startCity);
+    }
+    // The VALUE decides whether a skill was requested. Skill id 0 is Alchemy
+    // on this shard, so `createSkill[0] > 0` would drop an alchemist's first
+    // skill and hand the character a default kit with no explanation.
+    if (cfg_.createSkillVal[0] > 0) {
         p.skill1 = static_cast<u8>(cfg_.createSkill[0]);
         p.skill1Val = static_cast<u8>(cfg_.createSkillVal[0]);
         p.skill2 = static_cast<u8>(cfg_.createSkill[1]);
@@ -2354,7 +2766,7 @@ bool Client::WalkQueueBusy() const {
     return !directSteps_.empty() || !nav_.movement.pending.empty();
 }
 
-void Client::ActionGoto(i32 x, i32 y, bool hasZ, i8 z) {
+void Client::ActionGoto(i32 x, i32 y, bool hasZ, i8 z, bool allowBlockedGoal) {
     gotoRequested_ = true;
     gotoArrived_ = false;
     gotoTargetX_ = x;
@@ -2365,7 +2777,7 @@ void Client::ActionGoto(i32 x, i32 y, bool hasZ, i8 z) {
     std::snprintf(ev, sizeof(ev), "target=(%d,%d) from=(%d,%d)",
                   x, y, playerX_, playerY_);
     LogEvent("goto_start", ev);
-    BotStartGoto(x, y, hasZ, z);
+    BotStartGoto(x, y, hasZ, z, /*terrainBias=*/true, allowBlockedGoal);
 }
 
 bool Client::MobilePosition(u32 serial, i32* x, i32* y, i8* z) const {
@@ -2377,6 +2789,29 @@ bool Client::MobilePosition(u32 serial, i32* x, i32* y, i8* z) const {
         return true;
     }
     return false;
+}
+
+bool Client::MobileInLineOfSight(u32 serial) const {
+    i32 tx = 0, ty = 0; i8 tz = 0;
+    if (!MobilePosition(serial, &tx, &ty, &tz) || !world_) return false;
+
+    // Sphere traces a character's LOS at body/eye height.  The sampled line
+    // below intentionally checks only the cells BETWEEN the two mobiles: a
+    // merchant may stand beside a counter or other decoration on its own
+    // tile, but a wall between rooms must make the merchant unavailable.
+    const i32 dx = tx - playerX_;
+    const i32 dy = ty - playerY_;
+    const i32 steps = std::max(std::abs(dx), std::abs(dy));
+    if (steps <= 1) return true;
+    const i32 fromEye = static_cast<i32>(playerZ_) + 15;
+    const i32 toEye = static_cast<i32>(tz) + 15;
+    for (i32 i = 1; i < steps; ++i) {
+        const i32 x = playerX_ + (dx * i) / steps;
+        const i32 y = playerY_ + (dy * i) / steps;
+        const i8 eye = static_cast<i8>(fromEye + ((toEye - fromEye) * i) / steps);
+        if (world_->StaticBlocksSightAt(x, y, eye)) return false;
+    }
+    return true;
 }
 
 bool Client::ActionGotoMobile(u32 serial, int stopWithin) {
@@ -2505,6 +2940,21 @@ void Client::ActionTick() {
     }
 }
 
+// The goal that started an action is the goal that owns it. See the
+// declaration in Client.h for the evidence this exists for.
+void Client::AbandonGoalOwnedAction(const char* why) {
+    const char* reason = (why && why[0]) ? why : "goal changed";
+    if (action_.Active()) {
+        if (drag_.InFlight()) {
+            LogWarn("[ITEM] drag of 0x%08X abandoned (%s)\n",
+                    drag_.Serial(), reason);
+            drag_.Reset();
+        }
+        FinishAction(act::Result::InvalidState, reason);
+    }
+    CancelTargetCursor(reason);   // no-op unless a cursor is actually armed
+}
+
 // --- helpers ---------------------------------------------------------------
 
 i32 Client::PlayerMana() const { return player_.manaCur; }
@@ -2530,11 +2980,20 @@ u32 Client::NearestMobile(int maxDist) const {
 }
 
 u32 Client::NearestMobileWithBody(u16 body, int maxDist) const {
+    static const std::vector<u32> kNone;
+    return NearestMobileWithBody(body, maxDist, kNone);
+}
+
+u32 Client::NearestMobileWithBody(u16 body, int maxDist,
+                                  const std::vector<u32>& exclude) const {
     u32 best = 0;
     int bestD = 0;
     for (const MobileObj& m : mobileCache_) {
         if (m.serial == playerSerial_) continue;
         if (m.body != body) continue;
+        bool skip = false;
+        for (u32 s : exclude) { if (s == m.serial) { skip = true; break; } }
+        if (skip) continue;
         const int dx = m.x - playerX_, dy = m.y - playerY_;
         const int d = (dx < 0 ? -dx : dx) + (dy < 0 ? -dy : dy);
         if (maxDist > 0 && d > maxDist) continue;
@@ -2544,6 +3003,32 @@ u32 Client::NearestMobileWithBody(u16 body, int maxDist) const {
 }
 
 u32 Client::NearestMobileWithTrade(const char* trade) const {
+    static const std::vector<u32> kNone;
+    return NearestMobileWithTrade(trade, kNone);
+}
+
+// TRAINING IS A GUILDMASTER'S SERVICE, AND A GUILDMASTER IS NOT JUST A
+// NEARER SHOPKEEPER.
+//
+// NearestMobileWithTrade truncates the paperdoll job at the first space, so
+// "Zed the mage guildmaster" and "Alenne the mage" both reduce to "mage" and
+// the lookup returns whichever is CLOSER. In Britain's mage shop that is
+// always the shopkeeper: Alenne stood two tiles from Ysolde and the
+// guildmaster five (runtime/save/sphereworld.scp has c_guild_arcane at
+// 1490,1549), so every training trip asked the one NPC who could not help.
+//
+// The difference is not cosmetic. An ordinary mage rolls
+// MEDITATION={50.0 75.0} and Source-X teaches 30% of the NPC's own skill
+// (NPC_GetTrainMax, CCharNPCStatus.cpp:514-541), so it caps around 22.5 --
+// below Ysolde's 21.9, hence "You already know as much as I can teach".
+// c_guild_arcane carries TAG.OVERRIDE.TRAINSKILLMAX=50.0 with
+// MEDITATION={75.0 100.0} and can actually teach her.
+//
+// So this matches the job WITHOUT truncating, against the guild vocabulary in
+// npcs/c_human_guildmasters.scp: eleven trades, each male "guildmaster" and
+// female "guildmistress".
+u32 Client::NearestGuildmasterForTrade(const char* trade,
+                                       const std::vector<u32>& skip) const {
     if (!trade || !trade[0]) return 0;
     auto lower = [](std::string s) {
         for (char& c : s)
@@ -2551,23 +3036,195 @@ u32 Client::NearestMobileWithTrade(const char* trade) const {
         return s;
     };
     const std::string want = lower(trade);
+    const std::string male = want + " guildmaster";
+    const std::string female = want + " guildmistress";
 
     u32 best = 0;
     int bestD = 0;
     for (const MobileObj& m : mobileCache_) {
         if (m.serial == playerSerial_) continue;
+        if (!MobileInLineOfSight(m.serial)) continue;
+        bool skipped = false;
+        for (u32 sk : skip) { if (sk == m.serial) { skipped = true; break; } }
+        if (skipped) continue;
         const char* title = PaperdollTitle(m.serial);
         if (!title || !*title) continue;
         const std::string t = lower(title);
         const usize the = t.rfind(" the ");
         if (the == std::string::npos) continue;
-        if (t.substr(the + 5) != want) continue;
+        std::string job = t.substr(the + 5);
+        // Trim trailing punctuation but NOT the second word -- the second
+        // word is the whole point here.
+        while (!job.empty() && (job.back() == '.' || job.back() == ',' ||
+                                job.back() == ' ')) job.pop_back();
+        if (job != male && job != female) continue;
 
         const int dx = m.x - playerX_, dy = m.y - playerY_;
         const int d = (dx < 0 ? -dx : dx) + (dy < 0 ? -dy : dy);
         if (!best || d < bestD) { best = m.serial; bestD = d; }
     }
     return best;
+}
+
+// Everyone of this trade who is NOT a guildmaster. Same matching as the
+// lookup below, with the guild title refused: a guildmaster teaches, and a
+// character that asks one to open a shop window waits out the timeout and
+// learns nothing.
+// SIGHT IS A REACH TEST, NOT AN IDENTITY TEST -- and using it as both cost
+// Elara her whole alchemy errand. She had known "Bret, the alchemist"
+// (0x27D1) since 18:08:57 and stood 3 tiles from him at (605,2181) with Bret
+// at (606,2184); the two tiles between them are the shop's own counter, so
+// MobileInLineOfSight said no, this lookup returned 0, and BUY_SUPPLIES
+// logged "no 'alchemist' found after 4 trips" without ever asking him for a
+// bottle (run_gates/g_Elara.console.txt:105,547,584,604,639). Worse, travel
+// was targeting that exact mobile at the same moment, so the character walked
+// to a vendor its own shop lookup refused to admit existed.
+//
+// A player in that spot does not conclude there is no alchemist. It walks
+// round the counter. So: prefer a shopkeeper in line of sight -- an open
+// approach is genuinely better -- but if none is visible, still return the
+// nearest one whose trade we KNOW, and let the caller's approach step close
+// the distance. Every caller already walks up before it speaks, and Sphere
+// still enforces the real reach rule on the buy itself
+// (CChar::CanTouch, CCharStatus.cpp:1414-1430), so nothing here can buy
+// through a wall.
+u32 Client::NearestShopkeeperWithTrade(const char* trade,
+                                       wm::Service svc,
+                                       const std::vector<u32>* skip) const {
+    if (!trade || !trade[0]) return 0;
+    auto lower = [](std::string s) {
+        for (char& c : s)
+            if (c >= 'A' && c <= 'Z') c = static_cast<char>(c - 'A' + 'a');
+        return s;
+    };
+    const std::string want = lower(trade);
+    u32 best = 0;
+    int bestD = 0;
+    // Second-choice: title matches, sight-line does not. Kept separate so a
+    // visible shopkeeper always wins over an occluded one at any distance.
+    u32 blind = 0;
+    int blindD = 0;
+    for (const MobileObj& m : mobileCache_) {
+        if (m.serial == playerSerial_) continue;
+        if (skip) {
+            bool skipped = false;
+            for (u32 sk : *skip) { if (sk == m.serial) { skipped = true; break; } }
+            if (skipped) continue;
+        }
+        const bool visible = MobileInLineOfSight(m.serial);
+        const char* title = PaperdollTitle(m.serial);
+        if (!title || !*title) continue;
+        const std::string t = lower(title);
+        if (t.find("guildmaster") != std::string::npos ||
+            t.find("guildmistress") != std::string::npos)
+            continue;
+        const usize the = t.rfind(" the ");
+        if (the == std::string::npos) continue;
+        std::string job = t.substr(the + 5);
+        const usize sp = job.find_first_of(" ,.");
+        if (sp != std::string::npos) job.resize(sp);
+        if (job != want) {
+            // MATCH BY SERVICE WHEN THE WORDS DIFFER. A trade is asked for by
+            // ONE name and worn under several: Shika is "the fisherwoman", not
+            // "the fisher". The lookup this was split from has carried that
+            // fallback since a fisher walked past its own buyer three times,
+            // and dropping it here brought the bug straight back -- Nessa
+            // logged "no 'fisher' reachable after 3 trips; trying the next
+            // trade" with a fisherman standing in the shop.
+            if (svc == wm::Service::None) continue;
+            if (ServiceForPaperdollJob(job.c_str()) != svc) continue;
+        }
+        const int dx = m.x - playerX_, dy = m.y - playerY_;
+        const int d = (dx < 0 ? -dx : dx) + (dy < 0 ? -dy : dy);
+        if (visible) {
+            if (!best || d < bestD) { best = m.serial; bestD = d; }
+        } else if (!blind || d < blindD) {
+            blind = m.serial;
+            blindD = d;
+        }
+    }
+    return best ? best : blind;
+}
+
+// SIGHT IS A REACH TEST, NOT AN IDENTITY TEST -- same rule as
+// NearestShopkeeperWithTrade (see its comment above), and the same bug in
+// the same shape: a banker whose title this life already knows stands
+// behind the bank counter, MobileInLineOfSight says no, and this lookup used
+// to return 0 even though the caller (BankErrand::Step::Approach) walks up
+// and re-checks reach before ever touching the mobile. Jarvinia, the banker
+// at Minoc, was 8 tiles from Odessa at (2505,557) -- known from her own
+// paperdoll one look earlier -- and BankErrand logged "no banker within 16
+// tiles ... after 4 looks at the crowd" while she stood on screen the whole
+// time (fleet122d30_20260907, Odessa.console.txt:444-500). Prefer a visible
+// match at any distance, same as the shopkeeper lookup, but fall back to the
+// nearest KNOWN one behind glass/counter rather than reporting nobody here.
+u32 Client::NearestMobileWithTrade(const char* trade,
+                                   const std::vector<u32>& skip) const {
+    if (!trade || !trade[0]) return 0;
+    auto lower = [](std::string s) {
+        for (char& c : s)
+            if (c >= 'A' && c <= 'Z') c = static_cast<char>(c - 'A' + 'a');
+        return s;
+    };
+    const std::string want = lower(trade);
+    // A trade is asked for by ONE name but worn under several: Shika is "the
+    // fisherwoman", not "the fisher", and a literal title match walked a
+    // fisher past its own buyer three times. Match the SERVICE where both
+    // sides name one.
+    const wm::Service wantSvc = ServiceForPaperdollJob(want.c_str());
+
+    u32 best = 0;
+    int bestD = 0;
+    // Second-choice: title matches, sight-line does not. Kept separate so a
+    // visible match always wins over an occluded one at any distance -- see
+    // NearestShopkeeperWithTrade for why.
+    u32 blind = 0;
+    int blindD = 0;
+    for (const MobileObj& m : mobileCache_) {
+        if (m.serial == playerSerial_) continue;
+        bool skipped = false;
+        for (u32 sk : skip) { if (sk == m.serial) { skipped = true; break; } }
+        if (skipped) continue;
+        const char* title = PaperdollTitle(m.serial);
+        if (!title || !*title) continue;
+        const std::string t = lower(title);
+        const usize the = t.rfind(" the ");
+        if (the == std::string::npos) continue;
+        const std::string rest = t.substr(the + 5);
+        std::string job = rest;
+        const usize sp = job.find_first_of(" ,.");
+        if (sp != std::string::npos) job.resize(sp);
+        // A GUILDMASTER IS NOT A SHOPKEEPER, AND TRUNCATION HIDES THAT.
+        //
+        // The job is cut at the first space, so "Riley, the healer
+        // guildmaster" reduces to "healer" and wins on distance -- and a
+        // guildmaster does not keep a shop. Corwyn stood in Minoc asking
+        // Riley to open a bandage list eight seconds at a time, twice, and
+        // got silence, while c_healer was four tiles further on
+        // (2577,601 against Riley's 2581,601).
+        //
+        // The mirror of this was already fixed in the other direction:
+        // NearestGuildmasterForTrade exists because the same truncation sent
+        // every TRAINING trip to the shopkeeper. Both queries mean something
+        // specific and neither may collapse into the other.
+        if (rest.find("guildmaster") != std::string::npos ||
+            rest.find("guildmistress") != std::string::npos)
+            continue;
+        if (job != want) {
+            if (wantSvc == wm::Service::None) continue;
+            if (ServiceForPaperdollJob(job.c_str()) != wantSvc) continue;
+        }
+
+        const int dx = m.x - playerX_, dy = m.y - playerY_;
+        const int d = (dx < 0 ? -dx : dx) + (dy < 0 ? -dy : dy);
+        if (MobileInLineOfSight(m.serial)) {
+            if (!best || d < bestD) { best = m.serial; bestD = d; }
+        } else if (!blind || d < blindD) {
+            blind = m.serial;
+            blindD = d;
+        }
+    }
+    return best ? best : blind;
 }
 
 u32 Client::NearestMobileNamed(const char* needle) const {
@@ -2608,6 +3265,16 @@ u32 Client::FindBackpackItemByGraphic(u16 graphic) const {
     return 0;
 }
 
+u32 Client::FindBackpackItemByGraphicAtLeast(u16 graphic, u16 amount) const {
+    const u32 pack = PlayerEquipSerialAt(kLayerBackpack);
+    if (!pack) return 0;
+    const auto it = containerItems_.find(pack);
+    if (it == containerItems_.end()) return 0;
+    for (const ContainerItem& ci : it->second)
+        if (ci.graphic == graphic && ci.amount >= amount) return ci.serial;
+    return 0;
+}
+
 // The same lookup for any open container. Looting a corpse needs this: until
 // M3.9.1 the container cache was private to the JS bindings, so a scenario could
 // kill a creature and then not touch a thing it dropped.
@@ -2628,13 +3295,14 @@ usize Client::ContainerItemCount(u32 container) const {
 }
 
 bool Client::ContainerItemAt(u32 container, usize index, u32* serial,
-                             u16* graphic, u16* amount) const {
+                             u16* graphic, u16* amount, u16* hue) const {
     const auto it = containerItems_.find(container);
     if (it == containerItems_.end() || index >= it->second.size()) return false;
     const ContainerItem& ci = it->second[index];
     if (serial)  *serial  = ci.serial;
     if (graphic) *graphic = ci.graphic;
     if (amount)  *amount  = ci.amount;
+    if (hue)     *hue     = ci.hue;
     return true;
 }
 
@@ -2655,6 +3323,41 @@ u32 Client::FindWorldItemByGraphic(u16 graphic, i32 maxDist) const {
     return best;
 }
 
+u32 Client::CorpseOfMobile(u32 mobile) const {
+    if (!mobile) return 0;
+    for (const auto& kv : corpses_) {
+        if (kv.second.deadMobile != mobile) continue;
+        if (items_.find(kv.first) == items_.end()) continue;  // decayed
+        return kv.first;
+    }
+    return 0;
+}
+
+u32 Client::FindWorldItemByGraphic(u16 graphic, i32 maxDist,
+                                   const std::vector<u32>& skip) const {
+    u32 best = 0;
+    i32 bestD = maxDist + 1;
+    for (const auto& kv : items_) {
+        if (kv.second.itemId != graphic) continue;
+        if (std::find(skip.begin(), skip.end(), kv.first) != skip.end())
+            continue;
+        const i32 dx = kv.second.x - playerX_;
+        const i32 dy = kv.second.y - playerY_;
+        const i32 d = (dx < 0 ? -dx : dx) + (dy < 0 ? -dy : dy);
+        if (d < bestD) { bestD = d; best = kv.first; }
+    }
+    return best;
+}
+
+bool Client::WorldItemPosition(u32 serial, i32* x, i32* y, i8* z) const {
+    const auto it = items_.find(serial);
+    if (it == items_.end()) return false;
+    if (x) *x = it->second.x;
+    if (y) *y = it->second.y;
+    if (z) *z = it->second.z;
+    return true;
+}
+
 u32 Client::BackpackItemCount(u16 graphic) const {
     const u32 pack = PlayerEquipSerialAt(kLayerBackpack);
     if (!pack) return 0;
@@ -2669,8 +3372,9 @@ u32 Client::BackpackItemCount(u16 graphic) const {
 // --- object use ------------------------------------------------------------
 // 0x06 double-click. What counts as confirmation depends on what was clicked,
 // so any of these ends the action: a container opening (0x24), a target cursor
-// (0x6C, e.g. a tool or bandage), a system message (0x1C), or the item
-// changing/vanishing. That is exactly what a player sees happen.
+// (0x6C, e.g. a tool or bandage), a menu dialog (0x7C, e.g. a craft gump), a
+// system message (0x1C), or the item changing/vanishing. That is exactly what
+// a player sees happen.
 void Client::ActionUseObject(u32 serial) {
     if (!serial) { BeginAction(act::Kind::UseObject, kUseTimeoutMs);
                    FinishAction(act::Result::InvalidState, "null serial"); return; }
@@ -2678,6 +3382,17 @@ void Client::ActionUseObject(u32 serial) {
     action_.subject = serial;
     LogInfo("[ACTION] use_object serial=0x%08X\n", serial);
     SendDoubleClick(serial);
+}
+
+bool Client::ActionDrinkPotion(u32 serial) {
+    const i64 now = NowMs();
+    if (!serial || now < potionCooldownUntilMs_) return false;
+    // Source-X's default drink delay is 15 seconds (CCharUse.cpp). The
+    // effect has no dedicated acknowledgement packet, so reserve the full
+    // window on send rather than retrying while the server marker is active.
+    potionCooldownUntilMs_ = now + 15000;
+    ActionUseObject(serial);
+    return action_.Active();
 }
 
 void Client::ActionOpenContainer(u32 serial) {
@@ -2723,6 +3438,25 @@ void Client::SendDropToGround(u32 serial, i32 x, i32 y, i8 z) {
     LogInfo("[ITEM] drop ground=(%d,%d,%d)\n", x, y, static_cast<int>(z));
 }
 
+// Where `serial` sits (and that stack's full amount) right now, from the
+// local container cache -- captured before a lift so a later 0x25 that lands
+// the same serial back in the SAME container, with a smaller amount, can be
+// read as "the stack split" rather than "the move failed".
+void Client::NoteMoveSource(u32 serial) {
+    moveSourceContainer_ = 0;
+    moveSourceAmount_ = 0;
+    moveSplitEchoSeen_ = false;
+    for (const auto& kv : containerItems_) {
+        for (const auto& ci : kv.second) {
+            if (ci.serial == serial) {
+                moveSourceContainer_ = kv.first;
+                moveSourceAmount_ = ci.amount;
+                return;
+            }
+        }
+    }
+}
+
 // A UO move is lift + drop. Nothing is assumed moved until the server says so:
 // success is 0x25 (item added to the destination container), failure is 0x27
 // (drag cancel) with a reason code.
@@ -2731,8 +3465,32 @@ void Client::ActionMoveItem(u32 serial, u16 amount, u32 destContainer) {
     action_.subject = serial;
     action_.destination = destContainer;
     action_.amount = amount;
+    NoteMoveSource(serial);
     if (!serial || !destContainer) {
         FinishAction(act::Result::InvalidState, "null serial/destination");
+        return;
+    }
+    // A BANK MOVE ONLY WORKS FROM THE TILE THE BOX WAS OPENED ON.
+    //
+    // Source-X compares the box's stamped open point against the character's
+    // CURRENT top point on every drop (CClientEvent.cpp:448-467) and every
+    // lift (CCharStatus.cpp:1063-1069) and silently bounces when they differ.
+    // Sending the pair anyway costs a guaranteed round trip whose only answer
+    // is a 0x25 putting the item back -- indistinguishable, at this layer,
+    // from a full box or a refused item. Refuse it here instead, with the
+    // reason, so the caller re-opens the box rather than retrying blind.
+    // (wave15 Kharain 18:09:03-18:09:26: 1083 deposits issued while walking
+    // between (1429,1687) and (1416,1688), every one bounced to the pack.)
+    if (bankContainer_ != 0 && !BankOpenTileHeld() &&
+        (destContainer == bankContainer_ ||
+         moveSourceContainer_ == bankContainer_)) {
+        char why[160];
+        std::snprintf(why, sizeof(why),
+                      "bank box 0x%08X was opened at (%d,%d), we are at "
+                      "(%d,%d) -- the server will bounce it",
+                      bankContainer_, bankOpenX_, bankOpenY_, playerX_,
+                      playerY_);
+        FinishAction(act::Result::InvalidState, why);
         return;
     }
     LogInfo("[ACTION] move_item serial=0x%08X amount=%u dest=0x%08X\n",
@@ -2770,6 +3528,18 @@ void Client::ActionEquip(u32 serial, u8 layer) {
         FinishAction(act::Result::InvalidState, "null serial");
         return;
     }
+    // Already on the layer is already done -- and asking again UNDRESSES the
+    // character (see act::EquipWouldBeNoOp). The equipment list the server
+    // itself sent (0x1A/0x2E) is the authority on what is in hand; a caller's
+    // flag is not.
+    const int wornLayer = PlayerEquipLayerOf(serial);
+    if (act::EquipWouldBeNoOp(wornLayer, layer)) {
+        char why[64];
+        std::snprintf(why, sizeof(why), "already worn on layer %d", wornLayer);
+        LogInfo("[ACTION] equip serial=0x%08X: %s\n", serial, why);
+        FinishAction(act::Result::Success, why);
+        return;
+    }
     LogInfo("[ACTION] equip serial=0x%08X layer=%u\n", serial, layer);
     if (!SendLift(serial, 1)) {
         FinishAction(act::Result::InvalidState, "lift refused locally");
@@ -2788,6 +3558,10 @@ void Client::ActionUnequip(u32 serial) {
     action_.subject = serial;
     const u32 pack = PlayerEquipSerialAt(kLayerBackpack);
     action_.destination = pack;
+    // Equipped items are not in the local container cache, so this resolves
+    // to 0/0 -- which also clears any stale source left over from a previous
+    // MoveItem action so it cannot be mistaken for this one's.
+    NoteMoveSource(serial);
     if (!serial || !pack) {
         FinishAction(act::Result::InvalidState, "no item or no backpack");
         return;
@@ -2872,7 +3646,12 @@ void Client::OnTargetArmedForAction() {
         LogInfo("[TARGET] auto-reply for %s -> 0x%08X\n",
                 act::KindName(action_.kind), action_.destination);
         ActionTargetObject(action_.destination);
-        action_.awaitingTarget = false;
+        if (action_.kind == act::Kind::UseSkill && action_.id == 30 && action_.subject) {
+            action_.destination = action_.subject;
+            action_.subject = 0;
+        } else {
+            action_.awaitingTarget = false;
+        }
         // The action itself is confirmed by its own effect (message, mana,
         // bandage completion); the target reply is only a step along the way.
     }
@@ -2891,6 +3670,16 @@ void Client::ActionUseSkill(int skillId, u32 targetSerial) {
     u8 buf[64];
     const usize n = build::UseSkill(buf, skillId);
     Send(buf, n, "0x12 UseSkill");
+}
+
+void Client::ActionApplyPoison(u32 weapon, u32 potion) {
+    if (!weapon || !potion) {
+        BeginAction(act::Kind::UseSkill, kSkillTimeoutMs);
+        FinishAction(act::Result::InvalidState, "poisoning needs weapon and potion");
+        return;
+    }
+    ActionUseSkill(30, weapon);
+    action_.subject = potion; // Sphere asks for the weapon first, then the potion.
 }
 
 void Client::ActionCastSpell(int spellId, u32 targetSerial) {
@@ -2921,6 +3710,7 @@ void Client::ActionCastScroll(u32 scrollSerial, u32 targetSerial) {
 }
 
 void Client::ActionAttack(u32 serial) {
+    if (sparringPeer_ && serial != sparringPeer_) StopSparring("different combat target");
     BeginAction(act::Kind::Attack, kAttackTimeoutMs);
     action_.subject = serial;
     if (!serial) { FinishAction(act::Result::InvalidState, "null serial"); return; }
@@ -2942,6 +3732,30 @@ void Client::ActionWarMode(bool on) {
 // A bandage is used like any other item (double-click) and then asks for a
 // target. The targeting layer stays generic: the bandage-specific part is only
 // that this action knows which serial to answer with.
+// USE ONE THING ON ANOTHER. The same double-click-then-answer-the-cursor
+// gesture ActionUseBandage performs, without assuming the target is a
+// character or the item a bandage.
+//
+// Every step of turning a sheep into bandages is this and nothing else:
+//   scissors -> woolly sheep      wool     (CHARDEF 0cf RESOURCES=3 I_WOOL)
+//   wool     -> spinning wheel    thread   (CClientTarg.cpp:2053 IT_SPINWHEEL)
+//   thread   -> loom              cloth    (CClientTarg.cpp:2186 IT_LOOM)
+//   scissors -> cloth             BANDAGES (CClientTarg.cpp:2151 IT_CLOTH ->
+//                                           ITEMID_BANDAGES1, one per cloth)
+void Client::ActionUseItemOn(u32 itemSerial, u32 targetSerial) {
+    BeginAction(act::Kind::UseItemOn, kBandageTimeoutMs);
+    action_.subject = itemSerial;
+    action_.destination = targetSerial;
+    action_.awaitingTarget = true;
+    if (!itemSerial || !targetSerial) {
+        FinishAction(act::Result::InvalidState, "no item or no target");
+        return;
+    }
+    LogInfo("[ACTION] use_item_on item=0x%08X target=0x%08X\n",
+            itemSerial, targetSerial);
+    SendDoubleClick(itemSerial);
+}
+
 void Client::ActionUseBandage(u32 bandageSerial, u32 targetSerial) {
     BeginAction(act::Kind::Bandage, kBandageTimeoutMs);
     action_.subject = bandageSerial;
@@ -2959,12 +3773,36 @@ void Client::ActionUseBandage(u32 bandageSerial, u32 targetSerial) {
 // --- banking ---------------------------------------------------------------
 // Sphere opens the bank the way a player does it: speak the keyword near a
 // banker. There is no client-side shortcut; the server decides.
+//
+// ADDRESS THE BANKER BY NAME, for the same reason a vendor is addressed by
+// name (see AddressMobile below). A bare "bank" is an UNNAMED keyword, and
+// Source-X answers those with "pick the closest NPC" (CClientEvent.cpp:1962) --
+// so which NPC hears it depends on who happens to be standing nearest at that
+// instant, and Britain's bankers wander. run_m5/p0gate1 asked Hyman and Lyndon
+// six times between them from two and four tiles and every one timed out,
+// while the same phrase from the same tile had opened the box six minutes
+// earlier. Naming the NPC removes the coin-flip.
 void Client::ActionOpenBank(u32 bankerSerial, const char* phrase) {
     BeginAction(act::Kind::OpenBank, kBankTimeoutMs);
     action_.subject = bankerSerial;
-    LogInfo("[ACTION] open_bank banker=0x%08X phrase='%s'\n",
-            bankerSerial, phrase ? phrase : "bank");
-    SayAscii(phrase && phrase[0] ? phrase : "bank");
+    // SAY "BANK", NOT "JARVINIA BANK".
+    //
+    // "when say bank dont say with name just bank" (project owner,
+    // 2026-08-29), and the game agrees: a player standing in a bank types the
+    // bare word. Prefixing the banker's name made the phrase a NAMED command,
+    // and a named command is matched against that one NPC -- which is why the
+    // trainer path had the identical problem an hour ago, saying "Rhyssa train
+    // Tinkering" while Pembroke was the one who answered.
+    //
+    // The comment this replaces argued the opposite: that a bare keyword is
+    // unnamed, so Source-X picks the closest NPC, and Britain's bankers
+    // wander. Both halves are true and the conclusion was still wrong --
+    // picking the closest NPC is exactly what you want when you are standing
+    // in the bank, and the caller now only says this while it is.
+    const std::string say = phrase && phrase[0] ? phrase : "bank";
+    LogInfo("[ACTION] open_bank banker=0x%08X say='%s'\n",
+            bankerSerial, say.c_str());
+    SayAscii(say.c_str());
 }
 
 // --- vendors ---------------------------------------------------------------
@@ -2999,6 +3837,7 @@ void Client::ActionVendorOpen(u32 vendorSerial, const char* phrase) {
     action_.destination = vendorSerial;
     vendorOffer_.clear();
     vendorOfferVendor_ = 0;
+    vendorSellVendor_ = 0;
     const std::string say = AddressMobile(vendorSerial, phrase && phrase[0] ? phrase : "buy");
     LogInfo("[VENDOR] open vendor=0x%08X say='%s'\n", vendorSerial, say.c_str());
     SayAscii(say.c_str());
@@ -3060,10 +3899,12 @@ void Client::ActionVendorBuy(u32 vendorSerial, u32 itemSerial, u16 qty) {
 
     u8 layer = 0x1A;
     u16 graphic = 0;
+    u16 stock = 0;
     bool found = false;
     for (const VendorItem& v : vendorOffer_) {
         if (v.serial == itemSerial) {
-            layer = v.layer; graphic = v.graphic; found = true; break;
+            layer = v.layer; graphic = v.graphic; stock = v.amount; found = true;
+            break;
         }
     }
     if (!found) {
@@ -3071,18 +3912,43 @@ void Client::ActionVendorBuy(u32 vendorSerial, u32 itemSerial, u16 qty) {
         return;
     }
 
-    // --- M3.7 Revolution vendor authenticity policy -------------------------
+    // NEVER ASK FOR MORE THAN THE SHELF HOLDS.
+    //
+    // Sphere refuses the WHOLE order when the quantity exceeds stock -- the
+    // vendor answers "Your order cannot be fulfilled, please try again" and
+    // the system line is "You cannot buy that" -- so ONE over-ask buys
+    // nothing at all rather than buying what is there. A healer holding 19
+    // clean bandages, asked for 20, sold none, eight times running
+    // (run_m7/r1a_Corwyn.console.txt, 11:16-11:18 on 2026-08-30).
+    //
+    // THIS BELONGS HERE, not in the caller. It is a fact about the protocol
+    // and the server, not a decision any particular errand gets to make, and
+    // the 0x74 list this function already reads is the authority on it. Both
+    // life-layer buy paths had to learn it separately; anything that ever
+    // buys from a vendor -- an errand, a scenario, a future VendorErrand --
+    // now inherits it.
+    if (stock > 0 && qty > stock) {
+        LogInfo("[VENDOR] asked for %u %s but the shelf holds %u -- buying "
+                "what is there\n", qty,
+                econ::ItemNameForGraphic(graphic)
+                    ? econ::ItemNameForGraphic(graphic) : "item",
+                stock);
+        qty = stock;
+        action_.amount = qty;
+    }
+
+    // --- observed-stock purchase policy -------------------------------------
     //
     // The M3.7 audit found that stock Sphere vendors sell nearly the whole raw
     // and intermediate production chain -- ore, logs, boards, wool, yarn,
     // thread, cloth, bolts, hides, blank scrolls, bottles and every reagent.
     // 284 of the 608 items on a working human vendor are goods a PLAYER makes.
     //
-    // The shard is deliberately left untouched, so the vendor really will sell
-    // these. The refusal therefore lives HERE, at the last moment before the
-    // 0x3B goes out, and that ordering is the whole point of the proof: the
-    // item is in the offer, the gold is in the pack, and the bot still declines.
-    const econ::VendorRuling ruling = econ::CanUseNPCVendorForGraphic(graphic);
+    // The shard is deliberately left untouched, so this offer is the runtime
+    // proof of stock. The owner ruling separates buying from selling: the bot
+    // may buy what an NPC offers, while the NPC buy-back/faucet policy remains
+    // strict elsewhere.
+    const econ::VendorRuling ruling = econ::CanBuyFromNPCGraphic(graphic);
     const char* itemName = econ::ItemNameForGraphic(graphic);
     if (!ruling.allowed) {
         LogWarn("[policy] REFUSED NPC purchase of %s (0x%04X): %s [%s]\n",
@@ -3090,9 +3956,8 @@ void Client::ActionVendorBuy(u32 vendorSerial, u32 itemSerial, u16 qty) {
                 ruling.reason ? ruling.reason : "no reason",
                 econ::VendorClassName(ruling.klass));
         if (ruling.authenticityGap) {
-            // An UNKNOWN refusal is a RESEARCH GAP, not a decision. Logging it
-            // apart from the ordinary refusals is what turns the accumulated
-            // list into a backlog rather than a mystery.
+            // This branch is retained for a future hard refusal. An UNKNOWN
+            // stock item is currently allowed, but its class is still logged.
             LogWarn("[policy] AUTHENTICITY GAP: no Revolution evidence either "
                     "way for whether an NPC sold %s\n",
                     itemName ? itemName : "this item");
@@ -3144,35 +4009,55 @@ void Client::ActionVendorSell(u32 vendorSerial, u32 itemSerial, u16 qty) {
             itemSerial, qty, vendorSerial, PlayerGold());
 
     build::VendorSellEntry e{itemSerial, qty};
-    u8 buf[64];
+    // 256, not 64: build::VendorSell writes through a BufWriter constructed
+    // with a capacity of 256, so a 64-byte buffer was only ever safe because
+    // the count was hardcoded to one.
+    u8 buf[256];
     const usize n = build::VendorSell(buf, vendorSerial, &e, 1);
     Send(buf, n, "0x9F VendorSell");
 }
 
-usize Client::SendVendorSell(u32 vendorSerial, const std::vector<VendorSellReq>& items) {
-    std::vector<build::VendorSellEntry> entries;
-    for (const VendorSellReq& r : items) {
-        if (!r.serial || !r.qty) continue;
-        const VendorItem* offered = nullptr;
-        for (const VendorItem& v : vendorSellOffer_)
-            if (v.serial == r.serial) { offered = &v; break; }
-        if (!offered) {
-            LogWarn("[VENDOR] sell 0x%08X skipped: not in the vendor's offer\n", r.serial);
-            continue;
-        }
-        const u16 qty = r.qty > offered->amount ? offered->amount : r.qty;
-        entries.push_back(build::VendorSellEntry{r.serial, qty});
+void Client::ActionVendorSellMany(
+        u32 vendorSerial, const std::vector<std::pair<u32, u16>>& items) {
+    if (items.empty()) return;
+    if (items.size() == 1) {
+        ActionVendorSell(vendorSerial, items[0].first, items[0].second);
+        return;
     }
-    if (entries.empty()) return 0;
-    LogInfo("[VENDOR] sell %zu row(s) to vendor=0x%08X gold=%d\n",
-            entries.size(), vendorSerial, PlayerGold());
-    std::vector<u8> buf(16 + entries.size() * 6);
-    const usize n = build::VendorSell(buf.data(), vendorSerial, entries.data(), entries.size());
-    Send(buf.data(), n, "0x9F VendorSell");
-    char ev[96];
-    std::snprintf(ev, sizeof(ev), "vendor=0x%08X rows=%zu", vendorSerial, entries.size());
-    LogEvent("vendor_sell", ev);
-    return entries.size();
+    BeginAction(act::Kind::VendorSell, kVendorTimeoutMs);
+    action_.subject = items[0].first;
+    action_.destination = vendorSerial;
+    u32 total = 0;
+    for (const auto& e : items) total += e.second;
+    action_.amount = static_cast<u16>(total > 0xFFFF ? 0xFFFF : total);
+
+    // Everything offered must be something this vendor actually asked to buy.
+    for (const auto& e : items) {
+        bool offered = false;
+        for (const VendorItem& v : vendorSellOffer_) {
+            if (v.serial == e.first) { offered = true; break; }
+        }
+        if (!offered) {
+            FinishAction(act::Result::InvalidState,
+                         "the vendor did not offer to buy one of those items");
+            return;
+        }
+    }
+
+    // The header is 9 bytes and each entry 6, against the builder's 256-byte
+    // window -- so 40 is the most that fits with room to spare.
+    std::vector<build::VendorSellEntry> lot;
+    for (const auto& e : items) {
+        if (lot.size() >= 40) break;
+        lot.push_back(build::VendorSellEntry{e.first, e.second});
+    }
+
+    LogInfo("[VENDOR] sell %u item(s) totalling %u to vendor=0x%08X gold=%d\n",
+            static_cast<unsigned>(lot.size()), total, vendorSerial,
+            PlayerGold());
+    u8 buf[256];
+    const usize n = build::VendorSell(buf, vendorSerial, lot.data(), lot.size());
+    Send(buf, n, "0x9F VendorSell");
 }
 
 // --- resurrection ----------------------------------------------------------
@@ -3202,10 +4087,20 @@ void Client::ActionResurrectAccept() {
 
 void Client::ActionOnContainerOpened(u32 serial, u16 gumpId) {
     // The bank box arrives as a container we did not double-click, while an
-    // open_bank action is outstanding.
-    if (action_.Active() && action_.kind == act::Kind::OpenBank) {
+    // open_bank action is outstanding. A spellbook (gump 0xFFFF, see
+    // OnDrawContainer) is never the bank box, so it must not be adopted as
+    // one just because it happened to open first.
+    if (action_.Active() && action_.kind == act::Kind::OpenBank &&
+        gumpId != 0xFFFF) {
         bankContainer_ = serial;
-        LogInfo("[STATE] bank container=0x%08X gump=0x%04X\n", serial, gumpId);
+        // Sphere stamps the box with the tile we were standing on right now
+        // (CItemContainer.cpp:1119) and will not accept a drop or a lift from
+        // anywhere else. Remember it so we can tell "the box is not open" from
+        // "we walked off the tile we opened it on". See BankOpenTileHeld().
+        bankOpenX_ = playerX_;
+        bankOpenY_ = playerY_;
+        LogInfo("[STATE] bank container=0x%08X gump=0x%04X opened at (%d,%d)\n",
+                serial, gumpId, playerX_, playerY_);
         LogEvent("bank_opened", "container recognised");
         FinishAction(act::Result::Success, "bank container opened");
         return;
@@ -3242,10 +4137,99 @@ void Client::ActionOnItemInContainer(u32 item, u32 container) {
         action_.kind == act::Kind::Unequip) {
         if (action_.destination == container || action_.destination == 0) {
             FinishAction(act::Result::Success, "item is in the destination");
-        } else {
-            FinishAction(act::Result::ServerFailure,
-                         "item landed in a different container");
+            return;
         }
+
+        // A trade window has TWO legitimate containers, and the FIRST 0x25
+        // for an item dropped into our own side sometimes names the OTHER
+        // side's container -- corrected a packet later by a second 0x25 this
+        // client never got to see because the action had already finished.
+        // (run_r4 pair_Tarath.console.txt 20:53:35.052-053: 0x40010870 failed
+        // verification, then "is now in the our window" one line later.)
+        // The resolved bank box is the same kind of alternate-but-legitimate
+        // destination when a deposit's container id does not match the one
+        // ActionMoveItem was called with.
+        const bool inTradeWindow = trade_.Active() &&
+            (container == trade_.MyContainer() ||
+             container == trade_.TheirContainer());
+        // ...but ONLY for a deposit. A WITHDRAWAL asks for the backpack, and
+        // an item reported still inside the bank box is that withdrawal
+        // failing, not an alternate spelling of where we wanted it.
+        // (wave15 Kharain 18:08:20.467: `dest=0x40016AE5` -- the pack --
+        // answered "is in the bank box 0x40016AE7" and was scored a success.)
+        const bool inBankBox = bankContainer_ != 0 &&
+                               container == bankContainer_ &&
+                               action_.destination != BackpackSerial();
+        if (inTradeWindow || inBankBox) {
+            char why[128];
+            std::snprintf(why, sizeof(why),
+                          "item 0x%08X is in %s 0x%08X (asked for 0x%08X)", item,
+                          inTradeWindow ? "the trade window" : "the bank box",
+                          container, action_.destination);
+            FinishAction(act::Result::Success, why);
+            return;
+        }
+
+        // THE SPLIT ECHO IS NOT AN ANSWER.
+        //
+        // Lifting PART of a stack makes Sphere split it during the PICKUP,
+        // before the drop is looked at at all
+        // (CChar::ItemPickup, src/game/chars/CCharAct.cpp:3007-3010):
+        //   CItem::UnStackSplit(amount) sets THIS item -- the ORIGINAL serial,
+        //   the one that goes on to be dragged -- to `amount`, and creates a
+        //   NEW item for the leftover (src/game/items/CItem.cpp:1251-1284).
+        //   SetAmountUpdate() then calls Update() -> addItem()
+        //   (src/game/items/CItem.cpp:2272-2286, 4204-4239), so the client is
+        //   sent a 0x25 naming the ORIGINAL serial, still in the SOURCE
+        //   container, carrying the amount being lifted.
+        //
+        // That echo says only "the stack was split", never where the item
+        // ended up. The previous reading of it -- "the remainder was left
+        // behind, so the move succeeded" -- matched only when the requested
+        // amount happened to be exactly half the stack, because both the echo
+        // and a bounce carry the same amount. wave15 is full of that
+        // coincidence (10 of 20 iron ingots) and scored 7 of the corpus's 11
+        // move_item successes on it while nothing ever reached a bank box.
+        //
+        // A bounce looks IDENTICAL on the wire, so order is the only
+        // discriminator: the split echo comes first, during the lift; a bounce
+        // can only arrive after it. Swallow the first one and keep waiting for
+        // the destination's own 0x25 (or the deadline). An unsplit move never
+        // produces the echo at all -- UnStackSplit is skipped when the whole
+        // stack is taken -- so a full-stack bounce still fails on the first
+        // packet, exactly as before.
+        if (moveSourceContainer_ != 0 && container == moveSourceContainer_ &&
+            action_.amount > 0 && moveSourceAmount_ > action_.amount &&
+            !moveSplitEchoSeen_) {
+            moveSplitEchoSeen_ = true;
+            LogInfo("[ITEM] 0x%08X split off %u of %u in 0x%08X; still waiting "
+                    "for it to land in 0x%08X\n",
+                    item, action_.amount, moveSourceAmount_, container,
+                    action_.destination);
+            return;
+        }
+
+        // None of the above: a real bounce/refusal, e.g. the item reappeared
+        // whole in the backpack because the destination would not take it.
+        char why[128];
+        std::snprintf(why, sizeof(why),
+                      "item 0x%08X landed in 0x%08X, not the destination 0x%08X",
+                      item, container, action_.destination);
+        FinishAction(act::Result::ServerFailure, why);
+    } else if (action_.kind == act::Kind::Equip) {
+        // The item we tried to wear landed in a container instead of on the
+        // requested layer -- CanEquipLayer refused it and ItemEquip bounced
+        // it into the pack before ever reaching LayerAdd (CCharAct.cpp:
+        // 3298-3306), so no 0x2E for it is coming. The bounce speech usually
+        // gets here first (ActionOnSysMessage), but a 0x25 with no preceding
+        // speech -- or one this client missed -- must reject just the same
+        // rather than sit pending for the full equip deadline.
+        char why[128];
+        std::snprintf(why, sizeof(why),
+                      "item 0x%08X was bounced into container 0x%08X instead "
+                      "of being worn on layer %u",
+                      item, container, action_.layer);
+        FinishAction(act::Result::Rejected, why);
     } else if (action_.kind == act::Kind::VendorBuy) {
         FinishAction(act::Result::Success, "purchased item delivered");
     }
@@ -3290,6 +4274,27 @@ void Client::ActionOnDragCancel(u8 reason) {
     char ev[96];
     std::snprintf(ev, sizeof(ev), "reason=%u %s", reason, why);
     LogEvent("drag_cancel", ev);
+    // "Cannot lift" on something the cache says is in OUR OWN PACK means the
+    // cache is wrong, not the server: the item is on a corpse (Castor,
+    // 2026-09-03 -- died, resurrected, bought a kryss, then tried to arm the
+    // OLD kryss serial 214 times because the pack list never learned it had
+    // left). Drop the serial so the next lookup finds what is really there;
+    // if it really is there, the next container refresh puts it back.
+    if (reason == 0 && drag_.InFlight()) {
+        const u32 dead = drag_.Serial();
+        const u32 pack = PlayerEquipSerialAt(kLayerBackpack);
+        auto it = pack ? containerItems_.find(pack) : containerItems_.end();
+        if (it != containerItems_.end()) {
+            auto& list = it->second;
+            const usize before = list.size();
+            list.erase(std::remove_if(list.begin(), list.end(),
+                           [&](const ContainerItem& e) { return e.serial == dead; }),
+                       list.end());
+            if (list.size() != before)
+                LogWarn("[ITEM] 0x%08X refused a lift from our own pack -- "
+                        "dropping it from the pack cache (stale)\n", dead);
+        }
+    }
     drag_.Reset();
     if (!action_.Active()) return;
     if (action_.kind == act::Kind::MoveItem ||
@@ -3322,12 +4327,31 @@ void Client::ActionOnBodyChange(u16 body) {
         action_.kind == act::Kind::Resurrect) {
         FinishAction(act::Result::Success, "character is alive again");
     }
+    // Faustus, 2026-09-05 01:57: logged in as a ghost, so the login-time
+    // backpack open answered "Your ghostly hand passes through the object."
+    // Sphere only registers a container as opened when the open succeeds
+    // (CClientMsg.cpp addContainerSetup), and Cmd_Use_Item refuses every
+    // double-click on the contents of a pack it has not seen opened
+    // (CClientUse.cpp:85, "You can't use this where it is."). Five heal
+    // potions sat unusable in his pack for ten minutes. A resurrected
+    // character opens its pack again, exactly as a human would.
+    if (life_ == act::LifeState::Alive) OpenBackpack();
 }
 
 void Client::ActionOnVendorOffer(u32 vendorSerial) {
     vendorOfferVendor_ = vendorSerial;
     vendorOffer_ = pendingVendor_;
-    NoteVendorStock(vendorSerial);
+    observedSuppliers_.BeginVendorSnapshot(vendorSerial, NowMs());
+    i32 vendorX = 0, vendorY = 0; i8 vendorZ = 0;
+    if (MobilePosition(vendorSerial, &vendorX, &vendorY, &vendorZ)) {
+        for (const auto& item : vendorOffer_) {
+            const char* name = econ::ItemNameForGraphic(item.graphic);
+            if (!name || !*name) continue;
+            observedSuppliers_.RecordVendorStock(vendorSerial, PaperdollTitle(vendorSerial),
+                vendorX, vendorY, vendorZ, name, item.amount,
+                static_cast<i32>(item.price), NowMs());
+        }
+    }
     LogInfo("[VENDOR] offer from 0x%08X: %zu item(s)\n",
             vendorSerial, vendorOffer_.size());
     for (usize i = 0; i < vendorOffer_.size() && i < 8; ++i) {
@@ -3385,19 +4409,99 @@ void Client::ActionOnSysMessage(const char* text, u32 sourceSerial, u8 type) {
         return false;
     };
 
-    if (contains("you cannot reach") || contains("out of range") ||
-        contains("too far away") || contains("cannot see")) {
+    // "can't" AS WELL AS "cannot". Source-X writes the contraction for the
+    // vendor case -- "You can't reach the Vendor" -- and matching only the
+    // spelled-out form let that sail past as an unrecognised line. The buy
+    // action then had no result to report, so the goal re-issued it every 2.5
+    // seconds against a vendor that had simply walked away, and the ledger
+    // recorded a purchase each time (run_m5/p0gate1). A definitive refusal
+    // that is not read is worse than no message at all.
+    if (act::IsReachRefusal(text)) {
+        // The runner may start a defensive action between this message and
+        // its next decision tick. `action_` then no longer identifies the
+        // rejected cast, so retain its target for exactly one consumer.
+        if (action_.kind == act::Kind::CastSpell && action_.destination != 0 &&
+            action_.destination != playerSerial_) {
+            spellReachRefusalTarget_ = action_.destination;
+        }
         FinishAction(act::Result::Rejected, text);
         return;
     }
-    if (contains("you have no line of sight")) {
+    // "You put the hatchet in your pack." is Sphere bouncing a refused wear
+    // BEFORE any 0x2E for the item is ever sent (act::IsEquipBounceMessage).
+    // Catching it here, ahead of the 0x2E handler, is what stops a later
+    // ActionOnItemEquipped from reporting a bounced equip as worn: once this
+    // finishes the action as Rejected, action_.Active() is false and the
+    // 0x2E guard (item == action_.subject) becomes a no-op.
+    if (action_.kind == act::Kind::Equip && act::IsEquipBounceMessage(text)) {
         FinishAction(act::Result::Rejected, text);
         return;
     }
-    if (contains("more reagents") || contains("not enough mana") ||
-        contains("lack the mana") || contains("fizzle")) {
+    // "You can't use this where it is." is Sphere's DEFMSG_REACH_UNABLE from
+    // Cmd_Use_Item (CClientUse.cpp:85): the item sits in a container THIS
+    // connection has not successfully opened. Titus 2026-09-05 02:23 logged
+    // in dead with a living body (0x0190, hp 0), so the login-time pack open
+    // met "Your ghostly hand passes through the object", no body change ever
+    // fired on resurrection, and five heal potions in his pack drew this
+    // refusal every 4 s. The item is fine; the pack needs opening. Reopen it
+    // and fail fast so the caller retries after the 0x3C arrives.
+    if ((action_.kind == act::Kind::UseObject ||
+         action_.kind == act::Kind::UseItemOn) &&
+        contains("can't use this where it is")) {
+        LogInfo("[backpack] server has not seen the pack opened this session -- reopening\n");
+        OpenBackpack();
+        FinishAction(act::Result::Rejected, text);
+        return;
+    }
+    // See act::IsSpellCastRefusal / act::IsVendorRateLimited (uo/actions.h)
+    // for the exact Sphere wording and the wave2 2026-09-01 evidence -- kept
+    // there, not here, so the classification is unit-testable without a live
+    // Client (tests/m2_actions.cpp).
+    if (act::IsSpellCastRefusal(text)) {
         FinishAction(act::Result::ServerFailure, text);
         return;
+    }
+    if (act::IsVendorRateLimited(text)) {
+        FinishAction(act::Result::ServerFailure, text);
+        return;
+    }
+    // EATING IS ANSWERED IN WORDS. A double-click on food produces no gump, no
+    // cursor and -- when the stack merely shrinks -- no 0x1D either, so this
+    // line is the entire confirmation. See act::ClassifyEatMessage for the
+    // Source-X wording and the 2026-09-02 evidence.
+    if (action_.kind == act::Kind::UseObject ||
+        action_.kind == act::Kind::UseItemOn) {
+        switch (act::ClassifyEatMessage(text)) {
+            case act::EatOutcome::Ate:
+                FinishAction(act::Result::Success, text);
+                return;
+            case act::EatOutcome::AlreadyFull:
+                // Not an error and not a success: the food is untouched and
+                // the character does not need it. InvalidState is exactly
+                // "you asked for something this state does not allow".
+                FinishAction(act::Result::InvalidState, text);
+                return;
+            case act::EatOutcome::CannotEat:
+                FinishAction(act::Result::ServerFailure, text);
+                return;
+            case act::EatOutcome::None:
+                break;
+        }
+    }
+    // CARVING IS ANSWERED IN WORDS TOO: the parts go into the corpse, which
+    // the client only hears about once it opens it. The first part line is
+    // the confirmation; "nothing useful" is the corpse refusing.
+    if (action_.kind == act::Kind::UseItemOn) {
+        switch (act::ClassifyCarveMessage(text)) {
+            case act::CarveOutcome::Carved:
+                FinishAction(act::Result::Success, text);
+                return;
+            case act::CarveOutcome::Nothing:
+                FinishAction(act::Result::ServerFailure, text);
+                return;
+            case act::CarveOutcome::None:
+                break;
+        }
     }
     // Sphere's refusal when the spell is not castable at all -- no spellbook
     // holding it, or not enough skill (CChar::Spell_CanCast,
@@ -3419,6 +4523,10 @@ void Client::ActionOnSysMessage(const char* text, u32 sourceSerial, u8 type) {
     // attempt (~2 s) -- and a failed attempt still earns skill, because
     // CChar::Skill_Fail calls Skill_Experience just as success does.
     if (action_.kind == act::Kind::UseSkill) {
+        if (action_.id == 30 && (contains("you apply the poison") || contains("fail to apply a sufficient dose"))) {
+            FinishAction(act::Result::Success, text);
+            return;
+        }
         // Gathering. Sphere reports the outcome as text (core/messages.scp
         // fishing_*), so these phrases are the result packet.
         if (contains("you pull out")) {
@@ -3501,7 +4609,10 @@ void Client::ActionOnSysMessage(const char* text, u32 sourceSerial, u8 type) {
     if (sourceSerial != 0 && sourceSerial == playerSerial_ &&
         type != kTalkModeSpell) {
         if (action_.kind == act::Kind::UseSkill ||
-            action_.kind == act::Kind::Bandage) {
+            action_.kind == act::Kind::Bandage ||
+            // "You put the cloth in your backpack", "You create the bandages"
+            // -- the server narrating what the gesture did is the confirmation.
+            action_.kind == act::Kind::UseItemOn) {
             FinishAction(act::Result::Success, text);
             return;
         }
@@ -3513,10 +4624,47 @@ void Client::ActionOnSysMessage(const char* text, u32 sourceSerial, u8 type) {
 // (src/game/chars/CCharSpell.cpp:3054 -> Spell_CanCast with fTest=false).
 // The server deletes a scroll when its spell is cast (Spell_CastDone consumes
 // the charge), so a 0x1D for the scroll we used confirms the cast completed.
+//
+// A MoveItem onto a SPELLBOOK is the same "the item is gone, and that is the
+// success" shape: learning a spell from a scroll consumes it (the book gains
+// a spell flag, not a stored item), so the drop never produces the ordinary
+// "item is in the destination container" 0x25 that ActionOnItemInContainer
+// waits for -- that confirmation simply never arrives, and the move sat
+// pending for the full move_item deadline every time (wave2 Thalia
+// move_item x4, Elara x3). Reopening the book right after each timeout
+// showed the spell count had already gone up by exactly one
+// (run_gates/g_Elara.console.txt:329-339: drop at 18:09:49.658, timeout at
+// 18:09:53.670, reopen at 18:09:53.685 shows 19 items, up from 18 before the
+// drop -- and the same +1-after-timeout shape repeats at line 429/443 and in
+// g_Thalia.console.txt:252-262), so the server was doing the move correctly
+// the whole time; only the client's own confirmation was missing.
 void Client::ActionOnObjectDeleted(u32 serial) {
-    if (!action_.Active() || action_.kind != act::Kind::CastSpell) return;
-    if (serial != action_.subject) return;
-    FinishAction(act::Result::Success, "scroll consumed by the cast");
+    if (!action_.Active()) return;
+    if (action_.kind == act::Kind::CastSpell) {
+        if (serial != action_.subject) return;
+        FinishAction(act::Result::Success, "scroll consumed by the cast");
+        return;
+    }
+    if (action_.kind == act::Kind::MoveItem || action_.kind == act::Kind::UseItemOn) {
+        if (serial != action_.subject) return;
+        // A TOOL THAT HAS NOT BEEN GIVEN ITS CURSOR YET WAS NOT CONSUMED.
+        //
+        // Double-clicking a weapon that is in the pack makes Source-X WIELD it
+        // first, and an item leaving the pack for a layer arrives here as a
+        // plain 0x1D delete. Treating that as "consumed by the destination"
+        // finished the action one millisecond after it started -- so when the
+        // carve cursor arrived the next line, OnTargetArmedForAction found no
+        // active action and never answered it. Wave 2026-09-02: Ithion cut the
+        // same whole fish 322 times without ever cutting it, leaving a live
+        // cursor that then cancelled the next equip's drag
+        // (run_gates/g_Ithion.console.txt:515-533).
+        if (action_.kind == act::Kind::UseItemOn && action_.awaitingTarget) {
+            LogInfo("[ACTION] use_item_on item=0x%08X left the pack before its "
+                    "cursor -- wielded, not consumed; still waiting\n", serial);
+            return;
+        }
+        FinishAction(act::Result::Success, "item consumed by the destination");
+    }
 }
 
 // A completed sale shows up as gold arriving. Source-X only credits it after
@@ -3567,13 +4715,22 @@ void Client::ActionScanMobiles() {
     //
     // Trade titles only exist on humans, so restricting the click to human
     // bodies loses nothing and removes the side effect entirely.
+    // RADIUS MATCHES WHO WE ARE ASKING FOR. This used to be a 12-tile
+    // Manhattan (taxicab) cap, half of Runner.cpp's kTradeEarshot (16,
+    // Chebyshev/chessboard -- the same test PlayersNearby uses:
+    // max(|dx|,|dy|)). A trade partner standing diagonally at the edge of
+    // earshot could be inside kTradeEarshot yet outside this scan's old
+    // Manhattan 12, so PlayersNearby would keep counting zero people it was
+    // never asked to look for. Use the identical metric and radius so a scan
+    // covers everyone the earshot test can see.
     int clicked = 0;
     for (const MobileObj& m : mobileCache_) {
         if (m.serial == playerSerial_) continue;
         if (!sphere::IsHumanBody(m.body)) continue;
         const int dx = m.x - playerX_, dy = m.y - playerY_;
-        const int d = (dx < 0 ? -dx : dx) + (dy < 0 ? -dy : dy);
-        if (d > 12) continue;
+        const int ax = dx < 0 ? -dx : dx, ay = dy < 0 ? -dy : dy;
+        const int d = ax > ay ? ax : ay;
+        if (d > 16) continue;
         if (PaperdollTitle(m.serial)) continue;   // already known
         SendDoubleClick(m.serial);
         if (++clicked >= 8) break;
@@ -3601,11 +4758,6 @@ void Client::ActionLogout() {
     if (loggingOut_) return;
     loggingOut_ = true;
     LogInfo("[action] logout requested\n");
-    // Saved BEFORE the request goes out, at the spot we chose to leave from.
-    // After this the life is closed for the session: nothing that happens in
-    // the logout grace period is the character's doing.
-    LifeSave("logout");
-    lifeActive_ = false;
     u8 buf[4];
     const usize n = build::LogoutRequest(buf);
     Send(buf, n, "0xD1 LogoutRequest");
@@ -3769,6 +4921,20 @@ u32 Client::PlayerEquipSerialAt(u8 layer) const {
     return 0;
 }
 
+// Which layer a serial of OURS is worn on, or -1 when it is not worn.
+int Client::PlayerEquipLayerOf(u32 serial) const {
+    if (!serial) return -1;
+    for (const auto& e : playerEquip_)
+        if (e.serial == serial) return static_cast<int>(e.layer);
+    return -1;
+}
+
+u16 Client::EquippedGraphicAt(u8 layer) const {
+    for (const auto& e : playerEquip_)
+        if (e.layer == layer) return e.graphic;
+    return 0;
+}
+
 // Dismount by double-clicking YOURSELF. Source-X spells this out in
 // CClient::Event_DoubleClick (src/game/clients/CClientEvent.cpp:2362-2375):
 //
@@ -3831,6 +4997,17 @@ void Client::ForgetEquippedItem(u32 itemSerial) {
         LogInfo("[move] dismounted; step cadence back to %u/%ums\n",
                 nav_.movement.runStepMs, nav_.movement.walkStepMs);
         LogEvent("mount_state", "dismounted");
+        // ActionDismount aims its double-click at ourselves (action_.subject
+        // == playerSerial_), never at the mount item, so it cannot be
+        // answered by matching itemSerial the way ActionOnItemEquipped's
+        // mount case does above. This layer-25 REMOVAL is the dismount's own
+        // reply (Client::ActionDismount's comment calling neither gesture "a
+        // packet of its own" is stale on this point); finish the pending
+        // use_object here instead of running out its whole timeout window.
+        if (action_.Active() && action_.kind == act::Kind::UseObject &&
+            action_.subject == playerSerial_) {
+            FinishAction(act::Result::Success, "server dismounted (layer 25 cleared)");
+        }
     }
     for (auto& m : mobileCache_) drop(m.equip);
 }
@@ -4543,6 +5720,8 @@ void Client::OnStats(const u8* data, usize size) {
     if (size < 41) return;
     const u32 serial = LoadBE32(data + 3) & 0x7FFFFFFFu;
     if (playerSerial_ != 0 && serial != playerSerial_) {
+        const std::string name = PacketString(data + 7, 30);
+        RememberMobileName(serial, name.c_str());
         // Status of another mobile (from our 0x34 query): cache its HP so the bot
         // can judge a fight before committing. curHp@37, maxHp@39 are in the fixed
         // header; the rest of the extended block is only sent for self/editing.
@@ -4550,6 +5729,7 @@ void Client::OnStats(const u8* data, usize size) {
             if (m.serial == serial) {
                 m.hpCur = static_cast<i32>(LoadBE16(data + 37));
                 m.hpMax = static_cast<i32>(LoadBE16(data + 39));
+                m.healthSeenMs = NowMs();
                 break;
             }
         }
@@ -4558,6 +5738,7 @@ void Client::OnStats(const u8* data, usize size) {
     player_.serial = serial;
     playerSerial_ = serial;
     player_.name = PacketString(data + 7, 30);
+    selfHealthSeenMs_ = NowMs();
     player_.hpCur = static_cast<i32>(LoadBE16(data + 37));
     player_.hpMax = static_cast<i32>(LoadBE16(data + 39));
 
@@ -4663,6 +5844,7 @@ void Client::OnAsciiMessage(const u8* data, usize size) {
     RememberJournalMessage(sourceSerial, sourceBody, type, hue, font,
                            speaker.c_str(), text.c_str());
     LogInfo("[chat ascii] %s: %s\n", speaker.c_str(), text.c_str());
+    NoteAttackEmote(sourceSerial, text.c_str());
 
     // Stamina signal: the server denies movement and says "too fatigued to
     // move" when stamina is spent. Record it so a reject right after is
@@ -4677,10 +5859,28 @@ void Client::OnAsciiMessage(const u8* data, usize size) {
 }
 
 // ---------------------------------------------------------------------------
-// 0xAE Unicode Message (variable). Speaker name at offset 14 ASCII,
-// text at offset 48 as UTF-16BE (NUL-terminated). For the M1 log we
-// degrade UTF-16 to ASCII (best-effort) so the console output stays
-// readable.
+// 0xAE Unicode Message (variable):
+//   [0] cmd  [1..2] length  [3..6] serial  [7..8] body  [9] mode
+//   [10..11] hue  [12..13] font  [14..17] language (4 ASCII)
+//   [18..47] speaker name (30 ASCII)  [48..] text, UTF-16BE NUL-terminated.
+// For the M1 log we degrade UTF-16 to ASCII (best-effort) so the console
+// output stays readable.
+//
+// THE NAME IS AT 18, NOT 14. Offset 14 is the four-byte LANGUAGE code that
+// Source-X writes immediately before the name (network/send.cpp,
+// PacketMessageUNICODE: writeStringFixedASCII(language.GetStr(), 4) then
+// writeStringFixedASCII(source->GetName(), 30)), and which this shard leaves
+// NUL-filled. PacketString stops at the first NUL, so reading 30 bytes from
+// offset 14 returned an EMPTY name for EVERY unicode speaker -- ours and
+// everyone else's (artifacts/wave30_bandage20_20260907/Kharos.console.txt:
+// every `[chat uni  ]` line from another player logs a blank name, and 252
+// `trade: heard '...' from ` lines carry a blank `from`). Only the ASCII
+// opcode 0x1C has no language field, so its name genuinely is at 14 -- see
+// OnAsciiMessage. Layout also in pol_packets.md, "Packet: 0xAE".
+//
+// This is what broke the market handshake: a seller that cannot name the
+// buyer it is answering says an UNADDRESSED reply, and market::AddressedTo on
+// the buyer's side then refuses to take it as an answer to its own WTB.
 // ---------------------------------------------------------------------------
 void Client::OnUnicodeMessage(const u8* data, usize size) {
     if (size < 50) return;
@@ -4689,9 +5889,20 @@ void Client::OnUnicodeMessage(const u8* data, usize size) {
     const u8 type = data[9];
     const u16 hue = LoadBE16(data + 10);
     const u16 font = LoadBE16(data + 12);
-    const std::string speaker = PacketString(data + 14, 30);
+    const std::string rawSpeaker = PacketString(data + 18, 30);
+    // The packet is the first source of truth; the world cache is the
+    // fallback, so a mode or shard that sends no name still files a journal
+    // line naming somebody we already know. See ResolveSpeakerName.
+    const std::string speaker = ResolveSpeakerName(sourceSerial, rawSpeaker);
     if (sourceSerial != 0 && sourceSerial != 0xFFFFFFFFu)
         RememberMobileName(sourceSerial & 0x7FFFFFFFu, speaker.c_str());
+    // Neither the packet nor the cache knew who this was: ask the way the
+    // client already asks for any mobile's name (0x98 AllNames query ->
+    // OnMobName). Fire-and-forget -- the journal entry below is filed NOW,
+    // carrying the serial and a blank name, so nothing waits on the answer;
+    // only the NEXT line from this speaker reads better. Identity for the
+    // trade handshake is the SERIAL, which is always present.
+    if (speaker.empty()) RequestMobileName(sourceSerial);
 
     char buf[256];
     usize n = 0;
@@ -4704,6 +5915,67 @@ void Client::OnUnicodeMessage(const u8* data, usize size) {
     RememberJournalMessage(sourceSerial, sourceBody, type, hue, font,
                            speaker.c_str(), buf);
     LogInfo("[chat uni  ] %s: %s\n", speaker.c_str(), buf);
+    NoteAttackEmote(sourceSerial, buf);
+}
+
+// "*Skeleton is attacking you!*" is Sphere's own announcement of a swing at
+// this character, spoken BY the attacker (its serial is the message source).
+// Live on 2026-09-05 11:29-11:30 Aurelius received two of these and no 0x2F
+// for either, so the emote is the signal that actually arrives for an NPC
+// hitting a player on this shard; OnSwing stays for the cases that do send
+// the packet. Other people's fights ("*Castor is attacking Skeleton!*") do
+// not say "you" and are ignored.
+void Client::NoteAttackEmote(u32 sourceSerial, const char* text) {
+    if (!text || sourceSerial == 0 || sourceSerial == 0xFFFFFFFFu) return;
+    const u32 serial = sourceSerial & 0x7FFFFFFFu;
+    if (serial == playerSerial_) return;
+    if (std::strstr(text, "is attacking you") == nullptr) return;
+    attackersOnMe_[serial] = NowMs();
+    war_.OnCombatEvent(NowMs());
+
+}
+
+// ---------------------------------------------------------------------------
+// 0xC1 Cliloc Message (variable). Layout and the fallback-text rationale are
+// in src/net/Cliloc.h (S6: this used to be a logged no-op at this line --
+// see docs/S3_CHARACTERIZATION.md's "shard messages" section -- so the
+// crafting system's cliloc numbers (crafting/crafting_messages.scp:
+// craft_msg_fail 1044043, craft_msg_noresources 1044253, craft_msg_noskill
+// 1044153) were never reaching the journal at all).
+//
+// Decoded into the SAME journal RememberJournalMessage feeds from 0x1C/0xAE,
+// so every existing journal grep (JournalSaidSince, CraftConfirm.cpp) sees
+// this text without change.
+// ---------------------------------------------------------------------------
+void Client::OnClilocMessage(const u8* data, usize size) {
+    net::ClilocMessage msg;
+    if (!net::ParseClilocMessage(data, size, msg)) return;
+    if (msg.sourceSerial != 0 && msg.sourceSerial != 0xFFFFFFFFu)
+        RememberMobileName(msg.sourceSerial & 0x7FFFFFFFu, msg.speaker.c_str());
+    const std::string text = net::FormatClilocJournalText(msg);
+    RememberJournalMessage(msg.sourceSerial, msg.sourceBody, msg.type,
+                           msg.hue, msg.font, msg.speaker.c_str(),
+                           text.c_str());
+    LogInfo("cliloc %u \"%s\"\n", msg.clilocId, text.c_str());
+    ActionOnSysMessage(text.c_str(), msg.sourceSerial & 0x7FFFFFFFu, msg.type);
+}
+
+// ---------------------------------------------------------------------------
+// 0xCC Cliloc Message Affix (variable). Same journal path and fallback text
+// as 0xC1; see src/net/Cliloc.h for the affix prepend/append rule and the
+// documented (and left as documented) args endianness asymmetry.
+// ---------------------------------------------------------------------------
+void Client::OnClilocMessageAffix(const u8* data, usize size) {
+    net::ClilocMessage msg;
+    if (!net::ParseClilocMessageAffix(data, size, msg)) return;
+    if (msg.sourceSerial != 0 && msg.sourceSerial != 0xFFFFFFFFu)
+        RememberMobileName(msg.sourceSerial & 0x7FFFFFFFu, msg.speaker.c_str());
+    const std::string text = net::FormatClilocJournalText(msg);
+    RememberJournalMessage(msg.sourceSerial, msg.sourceBody, msg.type,
+                           msg.hue, msg.font, msg.speaker.c_str(),
+                           text.c_str());
+    LogInfo("cliloc %u \"%s\"\n", msg.clilocId, text.c_str());
+    ActionOnSysMessage(text.c_str(), msg.sourceSerial & 0x7FFFFFFFu, msg.type);
 }
 
 void Client::OnUnknown(const u8* data, usize size) {
@@ -4744,6 +6016,7 @@ void Client::OnDrawGamePlayer(const u8* data, usize size) {
         playerFacing_  = dir & 0x07;
         playerRunning_ = false;
         playerWarMode_ = (flags & 0x40u) != 0;
+        player_.poisoned = (flags & 0x04u) != 0;
         playerBody_ = body;
         ActionOnBodyChange(body);
         player_.serial = serial;
@@ -5330,6 +6603,10 @@ void Client::SendResurrectChoice(u8 choice) {
 }
 
 i64 Client::NowMs() const {
+    // SetClockForTest freezes every wall-clock read in one place: all 48
+    // in-file uses go through here, so a harness that steps the clock steps
+    // deadlines, retry gaps and action timeouts with it.
+    if (clockOverrideMs_ >= 0) return clockOverrideMs_;
     return std::chrono::duration_cast<std::chrono::milliseconds>(
                std::chrono::steady_clock::now().time_since_epoch()).count();
 }

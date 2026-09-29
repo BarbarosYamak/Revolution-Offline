@@ -71,43 +71,45 @@ const char* TacticName(Tactic t);
 //
 // Drinking earlier than disengaging is deliberate: a potion is free in time, so
 // it is the cheap first answer, and it may end the fight without giving ground.
-//
-// M4 retune (owner report: bots "disengage way too quickly" and bandage all
-// the time). The first values, 60 / 35, were set after bots that fought to the
-// death, and overcorrected: at 35% a 55-HP character broke off with ~19 HP, two
-// hits from dead only against the heaviest undead, and usually walked away
-// from a fight it was winning. Still DERIVED, still tunable here, still not a
-// Revolution-documented number.
-inline constexpr i32 kPotionPercent    = 50;  // sip at/below this
-inline constexpr i32 kDisengagePercent = 30;  // stop fighting at/below this
+inline constexpr i32 kPotionPercent    = 60;  // sip at/below this
+inline constexpr i32 kDisengagePercent = 35;  // stop fighting at/below this
 inline constexpr i32 kFleePercent      = 20;  // no heals left: run
 inline constexpr i32 kResumePercent    = 80;  // healed enough to re-engage
-
-// A foe at or below this is finished, not fled from. Turning your back on
-// something one swing from dead gives it free hits for nothing; a player
-// finishes it. Only overridden by the flee line -- below kFleePercent the
-// character runs regardless.
-inline constexpr i32 kFinishFoePercent = 25;
-
-// Our own health dropped within this window: something is hitting us, war mode
-// or not. Without it, a bot that had already left war mode read as "out of
-// contact" while a zombie kept swinging, and started a 3-second bandage that
-// the next hit wasted -- over and over.
-inline constexpr i64 kUnderAttackMs = 3000;
 
 // A bandage takes about this long on this shard (SKILL 17 DELAY=3.0), which is
 // why it is never the answer while an enemy is adjacent.
 inline constexpr i32 kBandageSeconds = 3;
+
+// HOW LONG AN EMPTY BOARD HAS TO STAY EMPTY BEFORE SITTING DOWN IS SAFE.
+//
+// Read off the run that made this necessary. Odessa (merchant_tinker, 50 hp)
+// was chased north out of Britain by a Harpy and three orcs on 2026-09-07 and
+// the watchdog's 5 s poll saw TWO ten-second lulls in the middle of it --
+// g_Odessa.console.txt:
+//   00:54:49 40/50   00:54:54 40/50   00:54:59 40/50   00:55:04 31/50
+//   00:55:15 50/50   00:55:20 50/50   00:55:25 38/50
+// Ten seconds without a landed blow, twice, while four hostiles were still on
+// her. So ten seconds of quiet is not safety; the smallest number the trace
+// supports is one poll beyond the longest observed lull.
+inline constexpr i32 kRestAllClearSeconds = 15;
 
 struct Vitals {
     i32  hpNow = -1;          // -1 = not yet known
     i32  hpMax = -1;
     bool inCombat = false;    // war mode / an active combat target
     bool enemyAdjacent = false;
-    bool underAttack = false; // our HP dropped within kUnderAttackMs
-    i32  foeHpPercent = -1;   // the target's health, -1 = not known
     int  healPotions = 0;
     int  bandages = 0;
+    // WHAT IS ON THE BOARD, independent of war mode. `inCombat` is war mode
+    // and `enemyAdjacent` needs a chosen target, so a character who never
+    // swings back -- a crafter, a fleeing mage -- looked SAFE to this policy
+    // while it was being beaten to death, and the tactic came out `rest`
+    // (Odessa, g_Odessa.console.txt:1338,1360-1361: "hp 15/50 (30%) -> rest",
+    // "hp 5/50 (10%) -> rest", dead at 00:55:57).
+    i32  hostilesNear = 0;      // hostiles within scan range right now
+    // Seconds since one was last seen there. Defaults to "long clear" so a
+    // caller that does not fill it in keeps the old behaviour exactly.
+    i32  quietSeconds = kRestAllClearSeconds;
     i32  healingTenths = 0;   // bandages still work untrained, just worse
 };
 

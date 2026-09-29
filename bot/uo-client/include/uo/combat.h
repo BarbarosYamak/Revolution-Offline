@@ -1,0 +1,263 @@
+#pragma once
+
+// M6 -- who a character may fight, and which of them is worth fighting.
+//
+// Protocol-free on purpose, exactly like uo/life.h: everything here is a pure
+// function of what a HUMAN PLAYER can see on screen -- a name, a notoriety
+// hue, a health BAR (a fraction, never a number of hit points), whether the
+// thing is in war mode, and whether it has already hit us. No monster
+// database, no true HitsMax, no server-side aggression state.
+//
+// The rules that decide legality are not guessed. They are read off this
+// shard's own sphere.ini and Source-X source, and each one is cited where it
+// is declared. Every character this project has lost so far died to a rule it
+// did not model: M3.9 lost one to GuardsInstantKill after it swung at a blue
+// farm animal.
+
+#include "uo/types.h"
+
+#include <functional>
+#include <string>
+#include <vector>
+
+namespace uo::combat {
+
+// Source-X NOTO_TYPE, verbatim (src/common/sphereproto.h:540-550). These are
+// the wire values in 0x78/0x77 and the only thing a client is told about
+// another character's standing.
+enum class Noto : u8 {
+    Unknown       = 0,   // NOTO_INVALID -- the hue has not arrived yet
+    Innocent      = 1,   // NOTO_GOOD        blue
+    GuildSame     = 2,   // NOTO_GUILD_SAME  green
+    Neutral       = 3,   // NOTO_NEUTRAL     gray
+    Criminal      = 4,   // NOTO_CRIMINAL    gray
+    GuildWar      = 5,   // NOTO_GUILD_WAR   orange
+    Murderer      = 6,   // NOTO_EVIL        red
+    Invulnerable  = 7,   // NOTO_INVUL       yellow
+};
+
+const char* NotoName(Noto n);
+
+// This shard's crime settings. Defaults are READ VALUES, not conventions --
+// runtime/sphere.ini lines 745-772. A different shard would need different
+// numbers, which is why they are a struct and not constants in the code.
+struct CrimeRules {
+    // AttackingIsaCrime=1. Source-X only calls CheckCrimeSeen on an attack
+    // when this is set AND the target reads NOTO_GOOD to us AND it has not
+    // already aggressed us (CCharFight.cpp:1474).
+    bool attackingIsACrime = true;
+
+    // GuardsInstantKill=1. In a guarded region a criminal or murderer is
+    // killed outright -- there is no fight to flee from and no health bar to
+    // watch. This is the single most expensive rule on the shard for a bot.
+    bool guardsInstantKill = true;
+
+    // CriminalTimer=3 (minutes). How long the gray flag lasts once earned.
+    i32 criminalMinutes = 3;
+
+    // MurderMinCount=1. The FIRST reported murder turns the character red,
+    // and MurderDecayTime=8*60*60 means it stays that way for eight hours of
+    // play. On this shard there is no "one mistake" allowance.
+    i32 murderMinCount = 1;
+    i32 murderDecaySeconds = 8 * 60 * 60;
+};
+
+// The values above, as read from runtime/sphere.ini.
+const CrimeRules& RevolutionCrimeRules();
+
+// What a player can actually see about one nearby mobile, plus the two things
+// we know from our own memory of the last few seconds: whether it is hitting
+// us, and whether it hit us first.
+struct Candidate {
+    u32         serial = 0;
+    std::string name;
+    Noto        noto = Noto::Unknown;
+    i32         dist = 0;
+
+    // The health BAR. hpMax is the bar's own scale as the server sends it for
+    // display, so hpCur/hpMax is a fraction a player reads by eye. Neither
+    // number is treated as a monster's real strength anywhere below.
+    i32  hpCur = -1, hpMax = -1;
+
+    bool warMode     = false;   // drawn in war mode
+    bool isPlayer    = false;   // a real player, as far as we can tell
+    bool attackingMe = false;   // currently swinging at us
+    bool aggressedMe = false;   // IT started it (Source-X MEMORY_AGGREIVED)
+    bool isMyPet     = false;   // our own follower
+    i32 friendlySupport = 0;    // visible friendly fighters near this prey
+
+    // WHAT KIND OF THING THIS IS, as a player recognises it by sight.
+    //
+    // 0..1, and it is NOT a stat block: no hit points, no armour, no damage
+    // roll reaches this struct. It is one number for "how bad is a thing of
+    // this NAME", which is precisely the knowledge a human has when a skeletal
+    // knight walks into view and a zombie does not scare them. The caller
+    // supplies it from the shard-derived prior in
+    // data/revolution_creatures.tsv, so combat.h still owns no creature
+    // table.  Learned outcomes rank otherwise-legal prey separately; they
+    // must not replace this calibrated species tier. 0.0 = never heard of it,
+    // which is the same answer a first-time player gives.
+    double speciesDanger = 0.0;
+};
+
+// Where WE are standing, and what we already are. Legality depends on both.
+struct Stance {
+    bool inGuardedRegion = false;  // a guard will answer a call here
+    bool iAmCriminal     = false;  // we are already flagged gray
+    bool iAmMurderer     = false;  // we are already red
+    i32  attackersOnMe   = 0;
+};
+
+enum class Legality : u8 {
+    // Free to attack: no flag, no guard, no consequence beyond the fight.
+    Lawful = 0,
+    // Attacking would flag us criminal for CriminalTimer minutes.
+    FlagsCriminal,
+    // Attacking would flag us AND we are standing where guards answer, which
+    // with GuardsInstantKill=1 is not a risk but a death.
+    GuardKill,
+    // Cannot be attacked at all (invulnerable), or must not be (our own pet,
+    // a guildmate), or we simply do not know yet.
+    Forbidden,
+};
+
+const char* LegalityName(Legality l);
+
+// The one word a decision trace should print for a verdict. `LegalityName`
+// answers "is this a crime"; a refusal on RISK is lawful and still a refusal,
+// and printing "lawful" for a fight the character just walked away from is how
+// `hunt: picked 'skeletal knight' -- verdict=lawful` came to describe four
+// deaths. "avoid" is the honest word for that case.
+struct Classification;
+const char* VerdictName(const Classification& v);
+
+struct Classification {
+    Legality legality = Legality::Forbidden;
+    // May we swing right now, under this policy?
+    bool     engage = false;
+    // 0..1, from what is visible only. Higher = more dangerous to us.
+    double   threat = 0.0;
+    // Why, in one printable line, the way the life layer's goals print.
+    std::string reason;
+};
+
+// How willing this character is to fight. Comes from the profession's
+// riskTolerance, so a mage and a swordsman genuinely differ.
+struct EngagePolicy {
+    double riskTolerance = 0.5;
+    // Never start a fight that would flag us, even outside a guard zone. A
+    // criminal flag follows the character across logouts, so this defaults to
+    // refusing: the M3.9 loss began with a single swing at a blue.
+    bool   acceptCriminalFlag = false;
+    // Fight back when something is already on us, even if hitting back would
+    // flag us. Self-defence against an aggressor is NOT a crime in Source-X
+    // (CCharFight.cpp:1474 excludes MEMORY_AGGREIVED|MEMORY_HARMEDBY).
+    bool   defendSelf = true;
+    // Do not open a fight below this health fraction.
+    double minHpFractionToOpen = 0.60;
+    i32    maxEngageDistance = 10;
+    // THE STRONGEST KIND OF THING THIS CHARACTER WILL OPEN ON, on the same
+    // 0..1 scale as Candidate::speciesDanger. 1.0 (the default) is "anything",
+    // which is exactly what every caller had before this field existed.
+    // SpeciesCeiling() below turns a fight skill into this number.
+    double maxSpeciesDanger = 1.0;
+};
+
+// HOW STRONG A SPECIES THIS CHARACTER MAY PICK A FIGHT WITH, from its best
+// fighting skill in tenths (weapon school or Magery, whichever is higher).
+//
+// WHY THIS EXISTS. On 2026-09-07 four novices -- Eldian, Zaran, Leander,
+// Rhalan, all under 60.0 weapon skill -- deliberately opened on a skeletal
+// knight and all four died (artifacts/fleet122c30_20260907/triage_deaths.md).
+// Every one of those picks logged `threat=0.35-0.67 learned_danger=0.00`,
+// because Classify scored only the situation: a knight standing still at nine
+// tiles read exactly like a zombie standing still at nine tiles. A player does
+// not make that mistake, and not because they can see the knight's hit points.
+//
+// THE RANKING IS DATA, THE TWO CUT LINES ARE POLICY. The ranking comes from
+// the shard's own chardefs, via data/revolution_creatures.tsv (danger column,
+// computed from DAM / armour / STR / Magery -- see RunnerInternal.h). For the
+// Britain graveyard it reads:
+//
+//   Zombie .037  Skeleton .038  Ghoul .054  Skeletal Mage .097  Spectre .101
+//   | -- the gap --------------------------------------------------------- |
+//   Skeletal Mount .168  Lich .180  skeletal knight .185  lich lord .269
+//
+// The two ceilings are placed in the gaps of that generated ranking, not
+// picked off a hand-written species list:
+//   0.12 sits in the .101 -> .168 gap: above every undead a novice has been
+//        observed to farm, below every one that has killed a bot.
+//   0.20 sits in the .185 -> .237 gap: a knight and a lich are in reach of a
+//        trained fighter; a lich lord and an ancient lich are not, and no bot
+//        has ever been observed killing one (hunt_tier_gate_2026-09-06.md).
+// Where the bands END is a policy choice and is stated as one: 60.0 is the
+// existing novice line (life/novice::kNoviceWeaponTenths), 80.0 is where a
+// character is called trained, and the ramp between them is linear so nothing
+// flips on a single skill gain.
+double SpeciesCeiling(i32 bestFightSkillTenths);
+
+// Pick the number used by the hard species-tier gate.  A seeded row is the
+// shard-calibrated tier and therefore remains authoritative even when one
+// character's history is costly: that history is a prey-ranking signal, not
+// the same 0..1 scale.  An unknown name has no calibrated tier, so only then
+// may a positive learned danger keep it out of an unready character's hunt.
+double EligibilitySpeciesDanger(double seededDanger, double learnedDanger);
+
+// The whole M6 legality question for one candidate. Pure: no clock, no I/O.
+Classification Classify(const Candidate& c, const Stance& me,
+                        const CrimeRules& rules, const EngagePolicy& policy,
+                        double myHpFraction);
+
+// The best thing to attack, or -1 if nothing should be attacked. Chooses the
+// most threatening ENGAGEABLE candidate, because the thing already hitting us
+// is the thing that kills us.
+int ChooseTarget(const std::vector<Candidate>& candidates, const Stance& me,
+                 const CrimeRules& rules, const EngagePolicy& policy,
+                 double myHpFraction,
+                 std::vector<Classification>* verdictsOut = nullptr);
+
+// Per-creature-TYPE danger, looked up by the client-visible mobile name.
+// Returns a signed, decaying confidence: positive means evidence this KIND of
+// creature has been costly to fight (a death, a near-death flee), negative
+// means it has proven cheap, 0.0 means unknown. This is exactly the shape of
+// uo::life::Memory::CreatureDanger -- combat.h stays free of a dependency on
+// life.h (the two headers are peers, like uo/life.h says of itself) by taking
+// the query as a callback instead of a concrete memory type. A caller with no
+// learned-creature memory yet may pass nullptr/{}, and ChoosePrey then falls
+// back to exactly its old behaviour.
+using CreatureDangerLookup = std::function<double(const std::string& name)>;
+
+// The best thing to PICK A FIGHT WITH, or -1 if nothing is worth starting on.
+//
+// NOT the same question as ChooseTarget, and the difference is the whole
+// point. ChooseTarget answers "what is most likely to kill me" -- correct when
+// something is already swinging, because the thing hitting you is the thing
+// you must deal with. This answers "what can I safely beat", which is how a
+// player actually levels a warrior:
+//
+//   "Start on the weakest undead around the edges rather than diving into
+//    the middle. Fight one target at a time." -- the project owner's warrior
+//   loop, 2026-08-29.
+//
+// So it inverts the threat term (weakest first), it penalises a candidate
+// that has COMPANY within kCrowdRadius (two skeletons at once is how a new
+// fencer dies -- which is exactly what happened on this project's first
+// warrior outing, run_m5/r1warrior.console.txt), and -- the same owner's
+// note that a character must "learn which graveyard mobs are safe and which
+// are dangerous" -- it takes a THIRD term from `creatureDanger`: a creature
+// TYPE this character has already found costly is deprioritised as prey even
+// when it looks weak and alone on THIS board, and one already proven cheap is
+// nudged toward the front. Unknown types (the common case for a fresh
+// character, or any lookup that is empty) are unaffected.
+//
+// Anything already attacking us is refused here: that is a fight in progress,
+// not a fight to pick, and ChooseTarget owns it.
+int ChoosePrey(const std::vector<Candidate>& candidates, const Stance& me,
+               const CrimeRules& rules, const EngagePolicy& policy,
+               double myHpFraction,
+               const CreatureDangerLookup& creatureDanger = nullptr);
+
+// How close another mobile has to be to count as the prey's company.
+inline constexpr i32 kCrowdRadius = 4;
+
+}  // namespace uo::combat

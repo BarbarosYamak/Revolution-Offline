@@ -61,6 +61,18 @@ struct PathOptions {
     // several levels (e.g. ground vs. an upper storey). Unset = any reachable z.
     bool hasGoalZ = false;
     i32  goalZ    = 0;
+    // The literal GOAL cell only: treated as walkable (standing at goalZ)
+    // and exempt from blacklist/extraBlocked/extraBlockedStep, regardless of
+    // what they say about it. A teleporter pad is exactly this case -- Sphere
+    // marks the spot with a decorative overlay (a pentagram / a reused-
+    // shield-graphic "shield_chaos" acting as the t_telepad item) that our
+    // terrain/surface model reads as an obstacle, even though stepping onto
+    // that one tile is how the mechanic fires. Every other cell in the
+    // search is unaffected. Safe because a live mobile actually standing on
+    // the goal is caught upstream, before this ever runs -- see
+    // PathPlanner's GoalColumnIsWalkable, the only place that sets this.
+    // Requires hasGoalZ so the substituted standZ is known.
+    bool allowBlockedGoal = false;
     // Optional runtime overlay for short-lived dynamic obstacles owned by the
     // caller (mobiles, server-spawned items, etc.). Return true to reject cell.
     bool (*extraBlocked)(i32 x, i32 y, i8 z, void* user) = nullptr;

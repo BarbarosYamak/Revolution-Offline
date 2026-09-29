@@ -1,0 +1,229 @@
+#pragma once
+// Novice engagement policy -- how a low-skill, low-hp fighter opens and
+// breaks off a fight. Pure: ints and doubles only, no Client, no Observation,
+// no world model, so tests/novice_engage.cpp links it with nothing.
+//
+// WHY THIS EXISTS. Hector (fencer, 51 hp, Fencing 50.7, starter leather) died
+// twice in the WEAK band of the Britain graveyard on 2026-09-06, both times
+// against a group, both times with the flee interrupt firing after the fight
+// was already lost:
+//
+//   Trace A -- artifacts/wave2_observation_2026-09-06.md, "02:16 -- DEATH":
+//     two c_skeleton, hp 51 -> 34 -> 27 -> (potion) 41 -> 32 -> 30 ->
+//     (potion) -> 13%. interrupt=FLEE at 02:16:23 "HP 25%; 2 attacker(s);
+//     bail at 30%"; dead at 02:16:24, ONE SECOND after the decision.
+//
+//   Trace B -- run_gates/g_Hector.console.txt 23:36:39-23:38:10, Skeleton +
+//     Skeleton + Spectre at 1389,1505 (sphere2026-09-06.log
+//     "23:38 ... P'Hector' was killed by"):
+//       23:37:21.5  51/51        23:38:01.8  38/51  (-13 over 5.0 s)
+//       23:37:26.6  46/51 (-5)   23:38:02.4  31/51  (-7  over 0.6 s)
+//       23:37:31.6  42/51 (-4)   23:38:07.5  21/51  (-10 over 5.1 s)
+//       23:37:56.8  51/51 potion 23:38:10.6  DEAD   (-21 over 3.1 s)
+//     "bail at 22%" all through -- 11 hp of 51, i.e. under two landed blows.
+//
+// THE TWO NUMBERS BELOW ARE READ OFF THOSE ROWS. Nothing here is a guess at a
+// Sphere damage formula; the shard's damage-after-armour rule and this
+// character's AR are both still UNKNOWN (artifacts/hunt_tier_gate_2026-09-06.md
+// section 3), so the policy is stated in observed hp lost per exchange.
+#include "uo/strategies/combat_strategy.h"
+
+namespace uo::life::novice {
+
+// HP TAKEN PER LANDED BLOW, weak band vs starter leather.
+//   Trace B 23:38:01.8 -> 23:38:02.4: 7 hp in 0.6 s -- one blow, isolated.
+//   Trace A 51 -> 34 in one poll with two attackers: 8.5 hp each.
+// Round up to the larger of the two so the flee line is never optimistic.
+inline constexpr int kHitDamage = 8;
+
+// HOW MANY OF THOSE BLOWS THE RETREAT ITSELF HAS TO SURVIVE, per hostile that
+// can reach us. A bail decision is acted on up to one observation poll late:
+// the survival tick reschedules 2 s out and the hp watchdog reports every
+// ~5 s. Both deaths measure exactly one such window between the last decision
+// and the corpse -- trace A fled at 13 hp and died 1 s later, trace B was last
+// seen at 21 hp and died 3.1 s later -- so one window is what killed him and
+// two is the smallest margin the evidence supports.
+inline constexpr int kHitsToLiveOnRetreat = 2;
+
+// The hp floor a retreat needs against `attackers` things that can reach us.
+// 1 attacker = 16 hp, 2 = 32, 3 = 48. For Hector's 51-hp bar that reads
+// 31% / 63% / 94%: fight one, leave two, never stand in three -- which is the
+// same conclusion the owner's "one target at a time" rule reaches from the
+// other side.
+inline constexpr int RetreatFloorHp(int attackers) {
+    return (attackers < 1 ? 1 : attackers) * kHitDamage * kHitsToLiveOnRetreat;
+}
+
+// As a fraction of this character's own bar, capped where the existing
+// survival code already caps (Survive.cpp: bailAt is clamped to 0.90).
+inline double RetreatFloorFraction(int attackers, int hpMax) {
+    if (hpMax <= 0) return 0.0;
+    const double f = static_cast<double>(RetreatFloorHp(attackers)) /
+                     static_cast<double>(hpMax);
+    return f > 0.90 ? 0.90 : f;
+}
+
+// WHO THIS APPLIES TO. Both deaths were the same profile: best weapon skill
+// 50.7 (507 tenths) and a 51-point health bar. These bounds are the measured
+// profile rounded up one step -- a policy choice about where the novice band
+// ends, NOT a measured cliff, and deliberately generous so the character that
+// actually died is inside it by a wide margin. A veteran keeps the older,
+// looser rules.
+inline constexpr int kNoviceWeaponTenths = 600;   // 60.0
+inline constexpr int kNoviceHpMax        = 70;
+
+inline constexpr bool IsNovice(int bestWeaponTenths, int hpMax) {
+    return bestWeaponTenths < kNoviceWeaponTenths || hpMax < kNoviceHpMax;
+}
+
+// A BUILD WITH NO COMBAT SKILL NEVER FIGHTS AT ALL.
+//
+// Odessa (merchant_tinker, 50 hp, Tinkering/Blacksmithing/Mining, no weapon
+// or Magery target anywhere in her plan) walked north out of Britain to the
+// mine on 2026-09-07, was picked up by a Harpy and three orcs at 1448,1375
+// and beaten from 50/50 down over ninety seconds
+// (run_gates/g_Odessa.console.txt:1161-1361; sphere2026-09-07.log
+// "00:55:P'Odessa' was killed by N'Harpy'., N'Hysil'., N'Noogugh'.,
+// N'Fitaki'."). Nothing in that fight was winnable: she had no weapon skill
+// to win it with. `plannedCombatSkills` counts the Primary/Secondary weapon
+// or Magery targets in the character's 700-point plan -- zero means every
+// engagement question below is already answered "no", whatever the board
+// looks like and whatever the character's nerve says.
+inline constexpr bool BuildMayFight(int plannedCombatSkills) {
+    return plannedCombatSkills > 0;
+}
+
+// DO NOT OPEN ON A GROUP -- BUT COUNT THE RIGHT THING.
+//
+// The first version of this rule counted hostiles WITHIN REACH, and that read
+// a duel next to a bystander as a group. Hector, 2026-09-07: he picked a
+// Cougar at 9 tiles and a Spectre at 10, walked in, and both times a second
+// skeleton drifted inside four tiles on the way -- so `in_reach=2` fired the
+// break-off at 100% health with attackers=1 and once with attackers=0
+// (run_gates/g_Hector.console.txt:108,128,632,1106,1127,1129). Five refusals,
+// zero fights, zero kills in ten minutes, then
+// goal_failed=TRAIN_COMBAT "no hunting ground reachable after 3 trips".
+// A graveyard always has a second skeleton somewhere in the yard; a player
+// who waited for an empty one would never train.
+//
+// So the duel test is about who is SWINGING AT US, not who is standing near.
+// Company still costs something -- it raises the retreat floor above, because
+// `board` is max(attackers, inReach) -- but it no longer vetoes the fight.
+// What survives unchanged is the owner's hard ceiling (2026-09-04): "don't
+// fight where 3+ hostiles are within reach", which is where both 2026-09-06
+// deaths actually happened.
+inline constexpr int kNoviceCrowdCeiling = 3;   // 3+ within reach: leave
+
+// A radius wide enough to see a pull turn into a pack: the Britain graveyard's
+// ring spacing is 6-7 tiles (artifacts/hunt_tier_gate_2026-09-06.md section 1).
+// It is REPORTED, not vetoed on -- see above.
+inline constexpr int kSoloRadius = 8;
+
+// May a novice START a fight? One thing already on us at most, and fewer than
+// three things within reach of joining it.
+inline constexpr bool NoviceMayOpen(int attackersOnMe, int inReach) {
+    return attackersOnMe <= 1 && inReach < kNoviceCrowdCeiling;
+}
+
+inline constexpr int GroupAttackerLimit(int support) {
+    return support > 0 ? 2 : 1;
+}
+inline constexpr bool GroupMayOpen(int attackersOnMe, int inReach, int support) {
+    return attackersOnMe <= GroupAttackerLimit(support) &&
+           inReach < kNoviceCrowdCeiling + (support > 2 ? 2 : support);
+}
+
+// BREAK CONTACT WHEN A SECOND ONE ATTACKS -- at whatever health, not at 25%.
+// Trace A's flee fired at 25% with two attackers and was one second too late;
+// by RetreatFloorFraction a novice with two attackers is already under the
+// line at 63% of a 51-hp bar, so the honest rule is "two ON ME is too many".
+//
+// ATTACKERS ONLY (owner ruling, 2026-09-07: "novice rule too strict"). The
+// in-reach arm used to end fights here too, and the counting fix above only
+// moved the failure from the opening to the fight: Hector 01:10-01:22 opened
+// three times and every one of the three ended `in_reach=3` with attackers=1
+// and zero kills. A graveyard yard always has a third skeleton somewhere in
+// it; a player does not drop a duel he is winning because of one. What the
+// company still costs is the retreat margin -- see RetreatBoard -- and the
+// owner's 3+ ceiling still refuses to OPEN on that board (NoviceMayOpen).
+inline constexpr bool NoviceMustDisengage(int attackersOnMe, int /*inReach*/) {
+    return attackersOnMe >= 2;
+}
+
+// WHAT THE RETREAT HAS TO SURVIVE, in hostiles.
+//
+// A bystander is not swinging, so counting it as an attacker (the old
+// max(attackers, inReach)) put a novice's floor at 94% of its bar the moment a
+// third skeleton drifted into the yard -- which ends the fight on health one
+// tick after the in-reach arm above stopped ending it directly, and leaves the
+// same zero kills. But a bystander is not nothing either: it may join, and
+// they join ONE AT A TIME, which is the same "one target at a time" the owner's
+// crowd rule is built on. So company adds exactly one more blow's worth of
+// margin, however much of it is standing there.
+inline constexpr int RetreatBoard(int attackersOnMe, int inReach) {
+    const int atk = attackersOnMe < 1 ? 1 : attackersOnMe;
+    return inReach > attackersOnMe ? atk + 1 : atk;
+}
+
+// WHO BREAKS OFF A FIGHT IT IS NOT LOSING.
+//
+// "This life avoids combat" is a property of the BUILD -- a crafter's answer
+// to a fight is to leave it (CombatStrategyId::AvoidCombat), a tamer has no
+// pet transport to fight through, a build with no combat skill in its 700
+// points has nothing to win with. It is NOT a property of the mana bar.
+//
+// Survive.cpp used to fold "no attack spell castable right now" into that same
+// flag, and right now includes mana and reagents. So a pure mage who opened a
+// TRAIN_COMBAT fight, cast one Harm and spent his pool read as a pacifist on
+// the very next tick and ran, at full health, from one attacker he had chosen:
+// Aurelius 2026-09-07 23:17:22 (fleet122d30_20260907), `cast_spell id=12` then
+// one second later `disengage=yes attackers=1 in_reach=0 hp=100%
+// reason="this life avoids combat"`, then `BLOCKED_NEED TRAIN_COMBAT: mana
+// 2/25 will not pay for an opening cast`. Seven mages/warlocks in that wave,
+// 62 such lines, no completed fights. The owner watching the client: "they
+// don't fully fight -- they use one spell and go somewhere else."
+//
+// So the question this asks is "can this life EVER hurt what is hitting it",
+// not "can it hurt it this second": knowsAnAttackSpell is the book and the
+// Magery skill, ignoring mana and reagents. An empty pool is a pause in the
+// fight (wait, the ladder walks back down as mana returns); an empty book is
+// a life that avoids combat. Callers pass `true` for the flags that do not
+// belong to their strategy.
+inline bool LifeAvoidsCombat(bool buildFightsAtAll, CombatStrategyId strategy,
+                             bool knowsAnAttackSpell, bool hasAmmo) {
+    if (!buildFightsAtAll) return true;
+    switch (strategy) {
+        case CombatStrategyId::AvoidCombat: return true;
+        case CombatStrategyId::Tamer:       return true;
+        case CombatStrategyId::Mage:        return !knowsAnAttackSpell;
+        case CombatStrategyId::Ranged:      return !hasAmmo;
+        case CombatStrategyId::Melee:       break;
+    }
+    return false;
+}
+
+// The whole break-contact question in one place, in the order Survive.cpp
+// asks it: a life that cannot fight this thing at all, then a crowd past this
+// nerve's tolerance, then health under the bail line (which already carries
+// the retreat floor from RetreatFloorFraction).
+inline bool ShouldBreakContact(bool avoidsCombat, int attackersOnMe,
+                               int crowdTolerated, double hpFraction,
+                               double bailAt) {
+    return avoidsCombat || attackersOnMe > crowdTolerated ||
+           hpFraction < bailAt;
+}
+
+// A fresh trainee who has just met a second attacker does not become brave;
+// it changes lanes.  The alternative to this narrow exception is a full bank
+// retreat on every crowded pull, which made a healthy novice spend a whole
+// session commuting instead of looking for a lawful one-on-one.  Damage, a
+// non-combat job, or any reason other than crowding still takes the normal
+// safety route.
+inline bool MayRepositionWithinHunt(bool novicePolicy, bool combatTraining,
+                                    int attackersOnMe, int crowdTolerated,
+                                    double hpFraction) {
+    return novicePolicy && combatTraining && attackersOnMe > crowdTolerated &&
+           hpFraction >= 0.90;
+}
+
+}  // namespace uo::life::novice

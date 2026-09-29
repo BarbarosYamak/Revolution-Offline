@@ -1,0 +1,34 @@
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+[00:29:13.947] WARN  [p0gate2] [bot] no path to (1489,1550) avoiding 0 block(s); stopping (search 1009625.7us)
+[00:29:13.947] WARN  [p0gate2] [bot] start (1485,1550,30) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 97 item(s), 4 mobile(s))
+[00:29:16.299] WARN  [p0gate2] [bot] no path to (1489,1550) avoiding 0 block(s); stopping (search 994464.8us)
+[00:29:16.299] WARN  [p0gate2] [bot] start (1485,1550,30) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 97 item(s), 4 mobile(s))
+[00:29:18.600] WARN  [p0gate2] [bot] no path to (1489,1550) avoiding 0 block(s); stopping (search 994393.7us)
+[00:29:18.600] WARN  [p0gate2] [bot] start (1485,1550,30) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 97 item(s), 4 mobile(s))
+[00:29:41.957] WARN  [p0gate2] [ACTION_RESULT] vendor_sell timeout (no server confirmation)
+[00:29:55.717] WARN  [p0gate2] [ACTION_RESULT] vendor_sell timeout (no server confirmation)
+[00:30:00.641] WARN  [p0gate2] [bot] no path to (1487,1550) avoiding 0 block(s); stopping (search 1045468.7us)
+[00:30:00.641] WARN  [p0gate2] [bot] start (1489,1554,70) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 120 item(s), 4 mobile(s))
+[00:30:10.798] WARN  [p0gate2] [ACTION_RESULT] vendor_sell timeout (no server confirmation)
+[00:30:15.564] WARN  [p0gate2] [0x21] move REJECTED seq=1; server says (1487,1550,30) facing=7
+[00:30:18.058] WARN  [p0gate2] [0x21] move REJECTED seq=1; server says (1487,1550,30) facing=1
+[00:30:34.190] WARN  [p0gate2] [action] vendor_sell superseded by vendor_sell
+[00:30:34.190] WARN  [p0gate2] [ACTION_RESULT] vendor_sell invalid_state (2639ms) superseded
+[00:31:34.357] WARN  [p0gate2] [bot] 0x20 resync; aborting path
+[00:32:00.694] WARN  [p0gate2] [0x21] move REJECTED seq=19; server says (1439,1693,0) facing=3
+[00:32:00.694] WARN  [p0gate2] [bot] 0x20 resync; aborting path
+[00:33:06.064] WARN  [p0gate2] [bot] goal (1484,1547) is not walkable; skipping A* and stopping
+[00:33:08.935] WARN  [p0gate2] [bot] goal (1484,1547) is not walkable; skipping A* and stopping
+[00:33:13.312] WARN  [p0gate2] [bot] goal (1484,1547) is not walkable; skipping A* and stopping
+[00:33:19.140] WARN  [p0gate2] [bot] goal (1484,1547) is not walkable; skipping A* and stopping
+[00:33:34.848] WARN  [p0gate2] [ACTION_RESULT] use_object timeout (no server confirmation)
+[00:33:40.940] WARN  [p0gate2] [ACTION_RESULT] use_object timeout (no server confirmation)
+[00:33:47.049] WARN  [p0gate2] [ACTION_RESULT] use_object timeout (no server confirmation)
+[00:33:53.132] WARN  [p0gate2] [ACTION_RESULT] use_object timeout (no server confirmation)
+[00:33:59.279] WARN  [p0gate2] [ACTION_RESULT] use_object timeout (no server confirmation)
+[00:34:23.503] WARN  [p0gate2] [ACTION_RESULT] use_object timeout (no server confirmation)
+[00:34:29.632] WARN  [p0gate2] [ACTION_RESULT] use_object timeout (no server confirmation)
+[00:34:35.761] WARN  [p0gate2] [ACTION_RESULT] use_object timeout (no server confirmation)
+[00:34:41.927] WARN  [p0gate2] [ACTION_RESULT] use_object timeout (no server confirmation)
+[00:34:47.988] WARN  [p0gate2] [ACTION_RESULT] use_object timeout (no server confirmation)

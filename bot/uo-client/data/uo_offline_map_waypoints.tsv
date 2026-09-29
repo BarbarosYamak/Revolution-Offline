@@ -1,0 +1,344 @@
+# MAP0 WAYPOINTS TAKEN FROM uo-offline. NOT SHARD DATA.
+#
+# Source: reference/uo-offline/playerbots/data/Destinations/destinations.json
+# Extracted 2026-08-29. 317 of that file's 448 entries.
+#
+# WHY THESE AND NOT THE REST. uo-offline's file mixes two very different
+# things. Its vendor, bank, inn and healer entries were EXPORTED FROM ITS OWN
+# LIVE NPCs -- its header says so -- and vendor positions are a property of a
+# shard's spawn scripts, not of the map. Importing those would point our bots
+# at places our vendors are not. They are deliberately excluded.
+#
+# What IS here is map0 GEOMETRY, which is the same world on every shard:
+# dungeon rooms, descends, ascends and entrances, docks, and moongates.
+#
+# STRUCTURAL CHECK PASSED, WALKABILITY NOT VERIFIED. 283 of the 293 dungeon
+# points fall in map0's dungeon strip (x >= 5120) and the 10 that do not are
+# overworld entrances, which is exactly the right shape; docks and moongates
+# are all overworld. But NO check has been done that our own navgrid can stand
+# on these tiles. Treat every row as a LEAD, the same way the atlas separates a
+# hinted resource spot from an earned one -- a place worth trying, not a place
+# known to work.
+#
+# Our own atlas already carries 15 dungeon ENTRANCES and no interior structure
+# at all, which is the gap this fills: 'graduate to harder hunting' needs to
+# know where the inside of a dungeon goes.
+#
+# name	type	x	y	z	city	nearest_waypoint
+Dagger Landing	Dock	4213	541	0	Dagger Isle	Dagger Trail 1
+Dock 114	Dock	1503	3695	-15	Jhelom	WP 907
+Dock 115	Dock	1371	3900	-15	Jhelom	WP 947
+Dock 117	Dock	3674	2291	-5	Magincia	WP 1240
+Dock 118	Dock	3648	2666	-15	Magincia	WP 1036
+Dock 130	Dock	3030	829	-15	Vesper	WP 779
+Dock 48	Dock	2072	2856	-15	Trinsic	WP 197
+Dock 63	Dock	1486	1757	0	Britain	britdock2 1
+Dock 93	Dock	661	2236	-15	Skara Brae	WP 435
+Dock 95	Dock	1512	3990	-15	Jhelom	WP 965
+Fire Landing	Dock	2790	3432	0	Fire Isle	Fire Isle Trail 1
+Humility Landing	Dock	4132	3692	0	Humility Isle	Humility Trail 1
+Trinsic South Pier	Dock	2072	2848	-15	Trinsic	WP 197
+Valor Landing	Dock	2392	3899	0	Valor Isle	Valor Trail 1
+Verity Dock	Dock	4552	847	0	Moonglow	Verity Dock Trail 23
+britdock 1	Dock	1438	1762	-2	Britain	britdock 2
+Covetous lvl1b Exit Ascend	DungeonAscend	5388	2027	0		Covetous L1 WP 1
+Covetous lvl1d Exit Ascend	DungeonAscend	5579	1927	0		Covetous L1 WP 1 C
+Covetous lvl1e Exit Ascend	DungeonAscend	5393	1959	0		Covetous L1 WP 1 B
+Covetous lvl1f Exit Ascend	DungeonAscend	5615	1997	0		Covetous L1 WP 3
+Covetous lvl1g Exit Ascend	DungeonAscend	5456	1864	0		Covetous L1 WP 3 B
+Deceit lvl1 Exit Ascend	DungeonAscend	5188	639	0		Deceit L1 WP 2
+Deceit lvl2 Ascend to L4	DungeonAscend	5219	761	-28		Deceit L2 WP 4
+Deceit lvl4 Passage to Despise	DungeonAscend	5265	683	0		Deceit L4 WP 2
+Deceit lvl4 Passage to Fire	DungeonAscend	5265	669	0		Deceit L4 WP 1
+Deceit lvl7 Ascend to L2	DungeonAscend	5346	578	5		Deceit L7 WP 1
+Despise lvl1 Ascend to L1c	DungeonAscend	5522	673	32	Moonglow	despise1
+Despise lvl1c Exit Ascend	DungeonAscend	5588	631	30	Britain	WP 1311
+Despise lvl2b Ascend to L1c	DungeonAscend	5504	570	46		Despise L2 WP 4
+Destard lvl1 Exit Ascend	DungeonAscend	5243	1007	0		Destard L1 WP 5
+Destard lvl2 Ascend to L1	DungeonAscend	5144	797	22		Destard L2 WP 3
+Fire lvl1 Exit Ascend	DungeonAscend	5687	1424	38		Fire L1 WP 2 B
+Fire lvl1 Exit Ascend B	DungeonAscend	5900	1411	42		Fire L1 WP 8 B
+Ice lvl1 Exit Ascend	DungeonAscend	5882	242	0		Ice L1 WP 12
+Ice lvl2 Ascend to L1	DungeonAscend	5706	306	12		Ice L2 WP 3
+Ice lvl2b Ascend to L1	DungeonAscend	5833	323	33		Ice L2 WP 3 B
+Orc Cave lvl1 Exit Ascend	DungeonAscend	5139	2016	0		Orc Cave L1 WP 4
+Shame lvl1 Exit Ascend	DungeonAscend	5395	127	0		Shame L1 WP 1
+Shame lvl2 Ascend to L1	DungeonAscend	5514	10	5		Shame L2 WP 1
+Shame lvl3 Ascend to L2	DungeonAscend	5514	147	25		Shame L3 WP 1
+Terathan Keep lvl2b Ascend to L1	DungeonAscend	5140	1773	0		Terathan Keep L2 WP 1
+Terathan Keep lvl3 Passage to Deceit	DungeonAscend	5356	1540	0		Terathan Keep L3 WP 1
+Terathan Keep lvl3 Passage to Fire	DungeonAscend	5360	1540	0		Terathan Keep L3 WP 2
+Wrong lvl1 Exit Ascend	DungeonAscend	5825	631	5		Wrong L1 WP 3
+Wrong lvl2 Ascend to L1	DungeonAscend	5690	569	25		Wrong L2 WP 1
+Wrong lvl2 Ascend to L1 B	DungeonAscend	5733	554	20		Wrong L2 WP 1 C
+Covetous lvl2 Descend to L4	DungeonDescend	5466	1805	12		Covetous L2 WP 1
+Covetous lvl3 Descend to L4	DungeonDescend	5552	1805	12		Covetous L3 WP 2
+Covetous lvl4 Descend to L2	DungeonDescend	5594	1841	-8		Covetous L5 WP 3
+Covetous lvl4 Descend to L3	DungeonDescend	5557	1826	-10		Covetous L4 WP 2
+Deceit lvl2 Descend to L7	DungeonDescend	5137	649	5		Deceit L2 WP 1
+Deceit lvl3 Descend to L5	DungeonDescend	5217	586	-13		Deceit L3 WP 2
+Deceit lvl4 Descend to L2	DungeonDescend	5306	650	12		Deceit L6 WP 3
+Deceit lvl5 Descend to L3	DungeonDescend	5305	532	7		Deceit L5 WP 3
+Despise lvl1 Descend to L1b	DungeonDescend	5386	756	-8	Moonglow	WP 1348
+Despise lvl1b Descend to L1	DungeonDescend	5409	859	52		Despise L1 WP 4
+Despise lvl1b Passage to Destard	DungeonDescend	5506	814	60		Despise L1 WP 5
+Despise lvl1b Passage to Terathan Keep	DungeonDescend	5506	817	60		Despise L1 WP 6
+Despise lvl1c Descend to L1	DungeonDescend	5572	633	17	Moonglow	WP 1310
+Despise lvl1c Descend to L2b	DungeonDescend	5573	629	42		Despise L1 WP 7 B
+Destard lvl1 Descend to L2	DungeonDescend	5131	909	-28		Destard L1 WP 3
+Destard lvl1b Descend to L2	DungeonDescend	5133	986	22		Destard L1 WP 3 B
+Destard lvl1b Passage to Deceit	DungeonDescend	5140	973	0		Destard L1 WP 4 B
+Destard lvl1b Passage to Terathan Keep	DungeonDescend	5145	973	0		Destard L1 WP 5 B
+Destard lvl2 Descend to L1b	DungeonDescend	5153	810	-25		Destard L2 WP 7
+Fire lvl1 Descend	DungeonDescend	5792	1416	41		Fire L1 WP 6
+Fire lvl1 Descend to L2	DungeonDescend	5787	1335	-13		Fire L1 WP 3 B
+Fire lvl1 Passage to Despise	DungeonDescend	5682	1440	0		Fire L1 WP 2
+Fire lvl1 Passage to Destard	DungeonDescend	5682	1437	0		Fire L1 WP 1
+Fire lvl2 Descend to L2	DungeonDescend	5690	1352	-26		Fire L2 WP 1
+Fire lvl2 Descend to L2 B	DungeonDescend	5691	1348	0		Fire L2 WP 2
+Hythloth lvl2 Descend to L2	DungeonDescend	5926	147	22		Hythloth L2 WP 1 B
+Hythloth lvl2 Descend to L2 B	DungeonDescend	5933	147	22		Hythloth L2 WP 2 B
+Hythloth lvl2 Descend to L2 C	DungeonDescend	5944	146	22		Hythloth L2 WP 3 B
+Hythloth lvl2 Descend to L2 D	DungeonDescend	5955	148	22		Hythloth L2 WP 4 B
+Hythloth lvl2 Descend to L2 E	DungeonDescend	5963	146	22		Hythloth L2 WP 5 B
+Hythloth lvl2 Descend to L8	DungeonDescend	5972	168	0		Hythloth L2 WP 7
+Hythloth lvl3 Descend	DungeonDescend	6026	197	25		Hythloth L3 WP 1
+Hythloth lvl4 Descend to L3	DungeonDescend	6044	226	44		Hythloth L4 WP 1
+Hythloth lvl5 Descend to L3	DungeonDescend	6059	90	24		Hythloth L5 WP 1
+Hythloth lvl6 Descend to L2	DungeonDescend	6083	145	-20		Hythloth L6 WP 3
+Hythloth lvl7 Descend to L7b	DungeonDescend	6115	176	0		Hythloth L7 WP 1 B
+Hythloth lvl7b Descend to L7	DungeonDescend	6107	179	0		Hythloth L7 WP 2
+Ice lvl1 Descend	DungeonDescend	5876	146	27		Ice L1 WP 10
+Ice lvl1 Descend to L2	DungeonDescend	5705	147	-45		Ice L1 WP 2
+Ice lvl1 Descend to L2b	DungeonDescend	5851	239	-25		Ice L1 WP 5
+Khaldun lvl1 Descend	DungeonDescend	5572	1299	0		Khaldun L1 WP 17
+Khaldun lvl1 Descend to L1	DungeonDescend	5527	1340	0		Khaldun L1 WP 8
+Khaldun lvl1 Descend to L1 B	DungeonDescend	5543	1355	0		Khaldun L1 WP 9
+Khaldun lvl1 Descend to L1 C	DungeonDescend	5557	1317	0		Khaldun L1 WP 10
+Khaldun lvl1 Descend to L1 D	DungeonDescend	5566	1337	0		Khaldun L1 WP 11
+Orc Cave lvl1 Descend to L2	DungeonDescend	5134	1946	0		Orc Cave L1 WP 1
+Shame lvl1 Descend to L2	DungeonDescend	5490	19	-25		Shame L1 WP 3
+Shame lvl2 Descend to L3	DungeonDescend	5604	102	5		Shame L2 WP 2
+Shame lvl3b Descend to L4	DungeonDescend	5538	170	5		Shame L3 WP 22
+Shame lvl4 Descend to L3b	DungeonDescend	5513	176	5		Shame L4 WP 1 B
+Shame lvl4 Descend to L5	DungeonDescend	5507	162	5		Shame L4 WP 1
+Shame lvl5 Descend to L4	DungeonDescend	5875	19	-5		Shame L5 WP 1
+Terathan Keep lvl1 Descend to L2b	DungeonDescend	5172	1589	-2		Terathan Keep L1 WP 2
+Terathan Keep lvl1b Descend to L2	DungeonDescend	5341	1599	40		Terathan Keep L1 WP 4
+Terathan Keep lvl2 Descend to L1b	DungeonDescend	5426	3123	-80		Terathan Keep L2 WP 2 B
+Wrong lvl1 Descend to L2	DungeonDescend	5829	593	0		Wrong L1 WP 4
+Wrong lvl1 Descend to L2 B	DungeonDescend	5870	530	15		Wrong L1 WP 6
+Wrong lvl1 Descend to L2 C	DungeonDescend	5867	528	15		Wrong L1 WP 6
+Wrong lvl2b Descend to L1b	DungeonDescend	5698	662	0		Wrong L2 WP 1 B
+Wrong lvl2b Descend to L2b	DungeonDescend	5705	625	0		Wrong L2 WP 3 B
+Covetous L1 Entrance	DungeonEntrance	2497	918	0		Covetous Approach D 5
+Deceit L1 Entrance	DungeonEntrance	4109	432	5		Dagger Trail 22
+Despise L1 Entrance	DungeonEntrance	1298	1082	0	Britain	WP 570
+Destard L1 Entrance	DungeonEntrance	1174	2637	0		Destard Approach 27
+Fire L1 Entrance	DungeonEntrance	2921	3407	6		Fire Isle Trail 25
+Hythloth L1 Entrance	DungeonEntrance	4720	3811	0		Hythloth Approach 37
+Ice L1 Entrance	DungeonEntrance	1997	79	7		Ice Approach 31
+Orc Cave L1 Entrance	DungeonEntrance	1014	1436	0		Orc Cave Approach 39
+Shame L1 Entrance	DungeonEntrance	511	1561	0		Shame Approach 36
+Wrong L1 Entrance	DungeonEntrance	2040	217	14		Wrong Approach 29
+Covetous lvl1 Room 2 B	DungeonRoom	5503	1887	0		Covetous L1 WP 7 B
+Covetous lvl1 Room 3 B	DungeonRoom	5398	1852	0		Covetous L1 WP 9 B
+Covetous lvl1b Room	DungeonRoom	5388	2022	0		Covetous L1 WP 1
+Covetous lvl1b Room 21	DungeonRoom	5468	1966	0		Covetous L1 WP 11
+Covetous lvl1c Room	DungeonRoom	5501	1991	0		Covetous L1 WP 5
+Covetous lvl1c Room B	DungeonRoom	5557	2031	0		Covetous L1 WP 7
+Covetous lvl1d Room	DungeonRoom	5578	1922	0		Covetous L1 WP 1 C
+Covetous lvl1d Room 21	DungeonRoom	5580	1888	0		Covetous L1 WP 3 C
+Covetous lvl1e Room	DungeonRoom	5392	1954	0		Covetous L1 WP 1 B
+Covetous lvl1e Room 21	DungeonRoom	5394	1923	0		Covetous L1 WP 11 B
+Covetous lvl1f Room	DungeonRoom	5610	1996	0		Covetous L1 WP 3
+Covetous lvl1f Room 21	DungeonRoom	5578	2006	0		Covetous L1 WP 82
+Covetous lvl1g Room 21	DungeonRoom	5467	1884	0		Covetous L1 WP 54 B
+Covetous lvl1g Room 22	DungeonRoom	5497	1867	0		Covetous L1 WP 57 B
+Covetous lvl1h Room	DungeonRoom	5387	1907	0		Covetous L1 WP 26 B
+Covetous lvl1i Room	DungeonRoom	5449	1937	0		Covetous L1 WP 31 B
+Covetous lvl2 Room 1	DungeonRoom	5461	1800	0		Covetous L2 WP 1
+Covetous lvl2 Room 21	DungeonRoom	5463	1824	0		Covetous L2 WP 4
+Covetous lvl3 Room 1	DungeonRoom	5550	1810	0		Covetous L3 WP 2
+Covetous lvl4 Room	DungeonRoom	5591	1846	0		Covetous L5 WP 1
+Covetous lvl4 Room 1	DungeonRoom	5562	1824	0		Covetous L4 WP 1
+Deceit lvl1 Room 1	DungeonRoom	5185	634	0		Deceit L1 WP 2
+Deceit lvl1 Room 2	DungeonRoom	5196	568	0		Deceit L1 WP 4
+Deceit lvl1 Room 3	DungeonRoom	5179	603	0		Deceit L1 WP 5
+Deceit lvl1 Room 4	DungeonRoom	5206	608	0		Deceit L1 WP 6
+Deceit lvl1 Room 5	DungeonRoom	5176	576	0		Deceit L1 WP 7
+Deceit lvl2 Room 1	DungeonRoom	5136	654	0		Deceit L2 WP 1
+Deceit lvl2 Room 2	DungeonRoom	5220	755	0		Deceit L2 WP 4
+Deceit lvl2 Room 3	DungeonRoom	5221	673	0		Deceit L2 WP 5
+Deceit lvl2 Room 4	DungeonRoom	5168	702	0		Deceit L2 WP 6
+Deceit lvl2 Room 5	DungeonRoom	5218	716	0		Deceit L2 WP 7
+Deceit lvl3 Room 1	DungeonRoom	5216	581	0		Deceit L3 WP 2
+Deceit lvl3 Room 2	DungeonRoom	5137	627	0		Deceit L3 WP 4
+Deceit lvl3 Room 3	DungeonRoom	5144	552	0		Deceit L3 WP 5
+Deceit lvl3 Room 4	DungeonRoom	5203	529	0		Deceit L3 WP 6
+Deceit lvl3 Room 5	DungeonRoom	5146	590	0		Deceit L3 WP 7
+Deceit lvl4 Room	DungeonRoom	5299	671	0		Deceit L6 WP 1
+Deceit lvl4 Room 1	DungeonRoom	5264	664	0		Deceit L4 WP 1
+Deceit lvl4 Room B	DungeonRoom	5330	706	0		Deceit L1 WP 1 B
+Deceit lvl5 Room 1	DungeonRoom	5305	537	0		Deceit L5 WP 3
+Deceit lvl5 Room 2	DungeonRoom	5342	546	0		Deceit L5 WP 4
+Deceit lvl7 Room 1	DungeonRoom	5341	576	0		Deceit L7 WP 1
+Deceit lvl7 Room 21	DungeonRoom	5308	630	0		Deceit L7 WP 2
+Despise lvl1 L1 Room	DungeonRoom	5443	677	20	Moonglow	WP 1305
+Despise lvl1 giantsspider L1 Room	DungeonRoom	5406	725	15	Moonglow	WP 1353
+Despise lvl1 headlessspider L1 Room	DungeonRoom	5430	751	5	Moonglow	WP 1343
+Despise lvl1 ratmen L1 Room	DungeonRoom	5472	741	5	Moonglow	WP 1363
+Despise lvl1 spider2 L1 Room	DungeonRoom	5392	700	15	Moonglow	WP 1323
+Despise lvl1 spiderl L1 Room	DungeonRoom	5393	663	20	Moonglow	WP 1320
+Despise lvl1b Room	DungeonRoom	5404	855	0		Despise L1 WP 4
+Despise lvl1b Room 21	DungeonRoom	5387	1000	0		Despise L1 WP 157
+Despise lvl1b Room 22	DungeonRoom	5504	926	0		Despise Link WP 12
+Despise lvl1b Room B	DungeonRoom	5621	823	0		Despise L1 WP 63
+Despise lvl1b Room C	DungeonRoom	5507	1015	0		Despise L1 WP 8
+Despise lvl1b Room D	DungeonRoom	5514	840	0		Despise L1 WP 53
+Despise lvl1d Room	DungeonRoom	5384	1004	0		Despise L1 WP 9
+Despise lvl2 Room 2	DungeonRoom	5384	614	0		Despise L2 WP 5
+Despise lvl2 Room 21	DungeonRoom	5450	520	0		Despise L2 WP 9
+Despise lvl2 Room 3	DungeonRoom	5398	520	0		Despise L2 WP 6
+Despise lvl2 Room 5	DungeonRoom	5442	576	0		Despise L2 WP 8
+Despise lvl2b Room	DungeonRoom	5499	565	0		Despise L2 WP 1
+Despise lvl2b Room 21	DungeonRoom	5504	520	0		Despise L2 WP 11
+Despise lvl2b Room B	DungeonRoom	5485	631	0		Despise L2 WP 35
+Destard lvl1 Room 1	DungeonRoom	5129	904	0		Destard L1 WP 3
+Destard lvl1 Room 2	DungeonRoom	5364	942	0		Destard L1 WP 9
+Destard lvl1 Room 21	DungeonRoom	5330	788	0		Destard L1 WP 7
+Destard lvl1 Room 22	DungeonRoom	5237	873	0		Destard L1 WP 46
+Destard lvl1 Room 4	DungeonRoom	5246	952	0		Destard L1 WP 18
+Destard lvl1 Room 5	DungeonRoom	5196	776	0		Destard L1 WP 8
+Destard lvl1b Room	DungeonRoom	5138	984	0		Destard L1 WP 3 B
+Destard lvl1b Room B	DungeonRoom	5193	1009	0		Destard L1 WP 7 B
+Destard lvl1c Room	DungeonRoom	5312	784	0		Destard L1 WP 56
+Destard lvl2 Room 1	DungeonRoom	5139	797	0		Destard L2 WP 3
+Destard lvl2 Room 2	DungeonRoom	5151	881	0		Destard L2 WP 8
+Destard lvl2 Room 3	DungeonRoom	5179	845	0		Destard L2 WP 10
+Destard lvl2 Room 4	DungeonRoom	5138	846	0		Destard L2 WP 9
+Fire lvl1 Room 1	DungeonRoom	5677	1432	0		Fire L1 WP 1
+Fire lvl1 Room 1 B	DungeonRoom	5683	1419	0		Fire L1 WP 2 B
+Fire lvl1 Room 1 C	DungeonRoom	5784	1340	0		Fire L1 WP 3 B
+Fire lvl1 Room 2	DungeonRoom	5841	1495	0		Fire L1 WP 11
+Fire lvl1 Room 2 B	DungeonRoom	5860	1486	0		Fire L1 WP 5 B
+Fire lvl1 Room 3	DungeonRoom	5787	1416	0		Fire L1 WP 6
+Fire lvl1 Room 3 B	DungeonRoom	5875	1377	0		Fire L1 WP 4 B
+Fire lvl1 Room 4	DungeonRoom	5767	1481	0		Fire L1 WP 14
+Fire lvl1 Room 5	DungeonRoom	5738	1424	0		Fire L1 WP 9
+Fire lvl1 Room 5 B	DungeonRoom	5801	1407	0		Fire L1 WP 7 B
+Fire lvl1b Room	DungeonRoom	5874	1296	0		Fire L1 WP 6 B
+Fire lvl1b Room 21	DungeonRoom	5807	1331	0		Fire L1 WP 45 B
+Fire lvl2 Room 1	DungeonRoom	5695	1353	0		Fire L2 WP 1
+Fire lvl2 Room 1 B	DungeonRoom	5697	1315	0		Fire L2 WP 1 B
+Fire lvl2 Room 3	DungeonRoom	5721	1399	0		Fire L2 WP 6
+Fire lvl2 Room 4	DungeonRoom	5654	1384	0		Fire L2 WP 7
+Fire lvl2 Room 5	DungeonRoom	5640	1320	0		Fire L2 WP 8
+Fire lvl2b Room	DungeonRoom	5641	1449	0		Fire L2 WP 5
+Fire lvl2b Room 21	DungeonRoom	5647	1430	0		Fire L2 WP 80
+Hythloth lvl1 Room 1	DungeonRoom	5904	21	0		Hythloth L1 WP 1
+Hythloth lvl2 Room 1	DungeonRoom	5914	164	0		Hythloth L2 WP 1
+Hythloth lvl2 Room 1 B	DungeonRoom	5921	144	0		Hythloth L2 WP 1 B
+Hythloth lvl2 Room 2	DungeonRoom	5958	214	0		Hythloth L2 WP 9
+Hythloth lvl2 Room 3	DungeonRoom	5967	168	0		Hythloth L2 WP 7
+Hythloth lvl2 Room 4	DungeonRoom	5912	206	0		Hythloth L2 WP 8
+Hythloth lvl2 Room 5	DungeonRoom	5942	184	0		Hythloth L2 WP 10
+Hythloth lvl3 Room 1	DungeonRoom	6035	192	0		Hythloth L3 WP 1
+Hythloth lvl4 Room 1	DungeonRoom	6041	221	0		Hythloth L4 WP 1
+Hythloth lvl5 Room 1	DungeonRoom	6056	95	0		Hythloth L5 WP 1
+Hythloth lvl6 Room 1	DungeonRoom	6080	151	0		Hythloth L6 WP 3
+Hythloth lvl7 Room 1 B	DungeonRoom	6112	174	0		Hythloth L7 WP 1 B
+Hythloth lvl7 Room 21	DungeonRoom	6123	154	0		Hythloth L7 WP 2 B
+Hythloth lvl7b Room	DungeonRoom	6106	176	0		Hythloth L7 WP 2
+Hythloth lvl8 Room 1	DungeonRoom	5904	99	0		Hythloth L8 WP 1
+Ice lvl1 Room 1	DungeonRoom	5710	144	0		Ice L1 WP 2
+Ice lvl1 Room 2	DungeonRoom	5877	239	0		Ice L1 WP 12
+Ice lvl1 Room 3	DungeonRoom	5779	257	0		Ice L1 WP 28
+Ice lvl1 Room 4	DungeonRoom	5854	144	0		Ice L1 WP 37
+Ice lvl1 Room 5	DungeonRoom	5779	173	0		Ice L1 WP 97
+Ice lvl2 Room 1	DungeonRoom	5701	302	0		Ice L2 WP 3
+Ice lvl2 Room 2	DungeonRoom	5656	306	0		Ice L2 WP 4
+Ice lvl2 Room 3	DungeonRoom	5690	334	0		Ice L2 WP 5
+Ice lvl2b Room	DungeonRoom	5828	328	0		Ice L2 WP 3 B
+Ice lvl2b Room B	DungeonRoom	5831	375	0		Ice L2 WP 5 B
+Ice lvl2b Room C	DungeonRoom	5809	349	0		Ice L2 WP 6 B
+Khaldun lvl1 Room 1	DungeonRoom	5395	1296	0		Khaldun L1 WP 1
+Khaldun lvl1 Room 2	DungeonRoom	5619	1340	0		Khaldun L1 WP 18
+Khaldun lvl1 Room 21	DungeonRoom	5476	1412	0		Khaldun L1 WP 59
+Khaldun lvl1 Room 3	DungeonRoom	5423	1487	0		Khaldun L1 WP 34
+Khaldun lvl1 Room 4	DungeonRoom	5508	1334	0		Khaldun L1 WP 65
+Khaldun lvl1 Room 5	DungeonRoom	5392	1390	0		Khaldun L1 WP 56
+Orc Cave lvl1 Room 1	DungeonRoom	5132	1951	0		Orc Cave L1 WP 1
+Orc Cave lvl1 Room 2	DungeonRoom	5135	2010	0		Orc Cave L1 WP 4
+Orc Cave lvl2 Room 1	DungeonRoom	5329	1376	0		Orc Cave L2 WP 1
+Orc Cave lvl2 Room 21	DungeonRoom	5340	1292	0		Orc Cave L2 WP 7
+Orc Cave lvl3 Room 1	DungeonRoom	5270	2038	0		Orc Cave L3 WP 1
+Orc Cave lvl3 Room 2	DungeonRoom	5361	2011	0		Orc Cave L3 WP 3
+Orc Cave lvl3 Room 3	DungeonRoom	5297	1973	0		Orc Cave L3 WP 4
+Shame lvl1 Room 1	DungeonRoom	5394	122	0		Shame L1 WP 1
+Shame lvl1 Room 3	DungeonRoom	5493	115	0		Shame L1 WP 5
+Shame lvl1 Room 4	DungeonRoom	5384	10	0		Shame L1 WP 4
+Shame lvl1 Room 5	DungeonRoom	5386	68	0		Shame L1 WP 142
+Shame lvl2 Room	DungeonRoom	5610	20	10	Moonglow	Shame L2 WP 75
+Shame lvl2 Room 1	DungeonRoom	5514	15	0		Shame L2 WP 1
+Shame lvl2 Room 21	DungeonRoom	5618	118	0		Shame L2 WP 55
+Shame lvl3 Room 1	DungeonRoom	5514	142	0		Shame L3 WP 1
+Shame lvl3 Room 2	DungeonRoom	5384	238	0		Shame L3 WP 3
+Shame lvl3 Room 21	DungeonRoom	5442	214	0		Shame L3 WP 43
+Shame lvl3 Room 22	DungeonRoom	5463	161	0		Shame L3 WP 9
+Shame lvl3 Room 4	DungeonRoom	5501	247	0		Shame L3 WP 41
+Shame lvl3 Room 5	DungeonRoom	5413	139	0		Shame L3 WP 4
+Shame lvl3b Room	DungeonRoom	5623	173	0		Shame L3 WP 5
+Shame lvl3b Room 21	DungeonRoom	5507	220	0		Shame L3 WP 170
+Shame lvl3b Room 22	DungeonRoom	5582	244	0		Shame L3 WP 19
+Shame lvl4 Room 1	DungeonRoom	5504	160	0		Shame L4 WP 1
+Shame lvl4 Room 1 B	DungeonRoom	5509	171	0		Shame L4 WP 1 B
+Shame lvl5 Room 1	DungeonRoom	5875	24	0		Shame L5 WP 1
+Shame lvl5 Room 2	DungeonRoom	5640	98	0		Shame L5 WP 2
+Shame lvl5 Room 21	DungeonRoom	5721	8	0		Shame L5 WP 128
+Shame lvl5 Room 22	DungeonRoom	5834	107	0		Shame L5 WP 71
+Shame lvl5 Room 3	DungeonRoom	5757	95	0		Shame L5 WP 3
+Shame lvl5b Room	DungeonRoom	5662	8	0		Shame L5 WP 5
+Shame lvl5b Room 21	DungeonRoom	5658	55	0		Shame L5 WP 56
+Shame lvl5c Room	DungeonRoom	5869	117	0		Shame L5 WP 4
+Shame lvl5c Room 21	DungeonRoom	5839	108	0		Shame L5 WP 73
+Terathan Keep lvl1 Room 1	DungeonRoom	5169	1584	0		Terathan Keep L1 WP 1
+Terathan Keep lvl1 Room 21	DungeonRoom	5227	1637	0		Terathan Keep L1 WP 27
+Terathan Keep lvl1 Room 5	DungeonRoom	5270	1560	0		Terathan Keep L1 WP 10
+Terathan Keep lvl1b Room	DungeonRoom	5369	1601	0		Terathan Keep L1 WP 31
+Terathan Keep lvl1b Room 21	DungeonRoom	5344	1693	0		Terathan Keep L1 WP 76
+Terathan Keep lvl1c Room	DungeonRoom	5338	1776	0		Terathan Keep L1 WP 6
+Terathan Keep lvl1c Room 21	DungeonRoom	5128	1588	0		Terathan Keep L1 WP 20
+Terathan Keep lvl1c Room 22	DungeonRoom	5173	1713	0		Terathan Keep L1 WP 70
+Terathan Keep lvl1c Room 23	DungeonRoom	5269	1671	0		Terathan Keep L1 WP 40
+Terathan Keep lvl1c Room 24	DungeonRoom	5345	1712	-68		Terathan Keep L1 WP 68
+Terathan Keep lvl1d Room	DungeonRoom	5151	1721	0		Terathan Keep L1 WP 7
+Terathan Keep lvl2 Room 1 B	DungeonRoom	5424	3118	0		Terathan Keep L2 WP 2 B
+Terathan Keep lvl2 Room 3	DungeonRoom	5481	3099	0		Terathan Keep L2 WP 4 B
+Terathan Keep lvl2 Room 4	DungeonRoom	5414	3166	0		Terathan Keep L2 WP 5 B
+Terathan Keep lvl2 Room 5	DungeonRoom	5464	3130	0		Terathan Keep L2 WP 6
+Terathan Keep lvl2b Room	DungeonRoom	5136	1768	0		Terathan Keep L2 WP 1
+Terathan Keep lvl2b Room 21	DungeonRoom	5157	1771	0		Terathan Keep L2 WP 4
+Terathan Keep lvl2c Room	DungeonRoom	5481	3161	0		Terathan Keep L2 WP 3 B
+Terathan Keep lvl2c Room 21	DungeonRoom	5460	3152	0		Terathan Keep L2 WP 12
+Terathan Keep lvl3 Room 1	DungeonRoom	5351	1538	0		Terathan Keep L3 WP 1
+Wrong lvl1 Room 2	DungeonRoom	5823	626	0		Wrong L1 WP 3
+Wrong lvl1 Room 3	DungeonRoom	5875	549	0		Wrong L1 WP 56
+Wrong lvl1 Room 4	DungeonRoom	5822	578	0		Wrong L1 WP 26
+Wrong lvl1 Room 5	DungeonRoom	5872	600	0		Wrong L1 WP 8
+Wrong lvl1b Room	DungeonRoom	5792	526	0		Wrong L1 WP 1
+Wrong lvl1b Room 21	DungeonRoom	5783	549	0		Wrong L1 WP 14
+Wrong lvl2 Room 1	DungeonRoom	5685	568	0		Wrong L2 WP 1
+Wrong lvl2 Room 1 C	DungeonRoom	5728	550	0		Wrong L2 WP 1 C
+Wrong lvl2 Room 2	DungeonRoom	5673	521	0		Wrong L2 WP 2
+Wrong lvl2 Room 3	DungeonRoom	5733	571	0		Wrong L2 WP 3
+Wrong lvl2b Room	DungeonRoom	5695	659	0		Wrong L2 WP 1 B
+Wrong lvl2b Room 21	DungeonRoom	5718	624	0		Wrong L2 WP 7 B
+Moongate 116	Moongate	3564	2140	34	Magincia	WP 1261
+Moongate 134	Moongate	2702	692	5	Vesper	WP 1296
+Moongate 150	Moongate	4467	1283	0	Moonglow	Moonglow Road 1
+Moongate 151	Moongate	2711	2234	0	Buccaneer's Den	WP 1014
+Moongate 60	Moongate	772	751	5	Yew	Rec 8.2
+Moongate 61	Moongate	644	2068	5	Skara Brae	WP 454
+Moongate 63	Moongate	1337	1998	5	Britain	WP 62
+Moongate 94	Moongate	1500	3773	5	Jhelom	WP 916

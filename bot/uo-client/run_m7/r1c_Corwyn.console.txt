@@ -1,0 +1,135 @@
+[11:58:04.601] INFO  session 0: 127.0.0.1:2593 user='reva01' char=Corwyn tag='r1c_Corwyn'
+[11:58:04.602] LOG   [r1c_Corwyn] event session_start: text log opened
+[11:58:04.602] LOG   [r1c_Corwyn] event net_connect_begin: connect 127.0.0.1:2593
+[11:58:04.602] INFO  [r1c_Corwyn] [net] connecting to 127.0.0.1:2593 ...
+[11:58:04.603] LOG   [r1c_Corwyn] event net_connected: connect 127.0.0.1:2593
+[11:58:04.603] INFO  [r1c_Corwyn] [net] connected.
+[11:58:04.603] INFO  [r1c_Corwyn] [seed] sent 0x7F000001 (plaintext)
+[11:58:04.604] LOG   [r1c_Corwyn] event seed_out: 0x7F000001 hex=7f000001
+[11:58:04.605] INFO  [life] loaded persistent state for Corwyn (7 places, 4 suppliers, 25 events, 4 prior sessions)
+[11:58:04.605] INFO  [life] needs: reading 'miner_smith' from the profession catalogue
+[11:58:04.605] INFO  [life] build plan 'miner_smith': 300.0 resolved + 400.0 unresolved = 700.0/700.0, stats 100/45/80 = 225
+[11:58:04.605] INFO  [r1c_Corwyn] [life] autonomous player active for 'Corwyn' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 60 min)
+[11:58:04.629] INFO  [r1c_Corwyn] [0xA8] 1 server(s):
+[11:58:04.629] INFO  [r1c_Corwyn]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[11:58:04.645] INFO  [r1c_Corwyn] [0x8C] game server = 127.0.0.1:2593  seed=0x14CEE7D0
+[11:58:04.645] LOG   [r1c_Corwyn] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x14CEE7D0
+[11:58:04.645] INFO  [r1c_Corwyn] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[11:58:04.645] LOG   [r1c_Corwyn] event relay_same_socket: no seed re-sent; 0x91 follows
+[11:58:04.646] INFO  [r1c_Corwyn] [0xB9] server features = 0x0005
+[11:58:04.646] INFO  [r1c_Corwyn] [0xA9] 5 slot(s) (populated 1):
+[11:58:04.646] INFO  [r1c_Corwyn]   [0] Corwyn
+[11:58:04.646] INFO  [r1c_Corwyn]   [1] <empty>
+[11:58:04.646] INFO  [r1c_Corwyn]   [2] <empty>
+[11:58:04.646] INFO  [r1c_Corwyn]   [3] <empty>
+[11:58:04.646] INFO  [r1c_Corwyn]   [4] <empty>
+[11:58:04.646] INFO  [r1c_Corwyn] [ui] playing slot 0 ('Corwyn')
+[11:58:04.660] INFO  [r1c_Corwyn] [0x1B] serial=0x00014DDF body=0x0190 pos=(2560,500,0)
+[11:58:04.660] LOG   [r1c_Corwyn] event login_confirm: serial=0x00014DDF body=0x0190 pos=(2560,500,0)
+[11:58:04.660] INFO  [r1c_Corwyn] [0x20] player @(2560,500,0) facing=3
+[11:58:04.660] INFO  [r1c_Corwyn] [0x55] login complete — entering world
+[11:58:04.660] LOG   [r1c_Corwyn] event in_world: 0x55 received
+[11:58:04.661] INFO  [r1c_Corwyn] [backpack] opening 0x40014DDB
+[11:58:04.661] INFO  [r1c_Corwyn] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[11:58:04.661] INFO  [r1c_Corwyn] [chat ascii] System: There is 1 other player here.
+[11:58:04.661] INFO  [r1c_Corwyn] [chat ascii] System: Last logged: 2026/08/30 11:19:38
+[11:58:04.664] INFO  [r1c_Corwyn] [action] requesting the skill list
+[11:58:04.664] INFO  [life] in world; asked the server for the skill list
+[11:58:04.664] INFO  [r1c_Corwyn] [0x24] open container 0x40014DDB gump=60
+[11:58:04.664] INFO  [r1c_Corwyn] [0x3C] container contents: 18 item(s)
+[11:58:04.664] LOG   [r1c_Corwyn] event backpack_contents: serial=0x40014DDB items=18
+[11:58:07.262] INFO  [r1c_Corwyn] [bot] world data loaded (0 blacklisted spot(s)).
+[11:58:07.262] INFO  [life] reconciliation: resuming a life, 1 field(s) differed
+[11:58:07.262] INFO  [life]   gold         persisted=9310       server=9310       -> server value accepted
+[11:58:07.262] INFO  [life]   str          persisted=56         server=56         -> server value accepted
+[11:58:07.262] INFO  [life]   dex          persisted=16         server=16         -> server value accepted
+[11:58:07.262] INFO  [life]   int          persisted=8          server=8          -> server value accepted
+[11:58:07.262] INFO  [life]   skill_7      persisted=50.5       server=50.5       -> server value accepted
+[11:58:07.262] INFO  [life]   skill_45     persisted=51.1       server=51.2       -> server value accepted
+[11:58:07.262] INFO  [life]   skill_37     persisted=19.9       server=19.9       -> server value accepted
+[11:58:07.262] INFO  [life]   skill_4      persisted=19.3       server=19.3       -> server value accepted
+[11:58:07.262] INFO  [life]   position     persisted=2560,500   server=2560,500   -> server value accepted
+[11:58:07.262] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[11:58:07.262] INFO  [life]   restored objective KEPT: SMELT (progress 0)
+[11:58:07.262] INFO  [r1c_Corwyn] [survival] on
+[11:58:07.262] LOG   [r1c_Corwyn] event survival_mode: on
+[11:58:07.264] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/reva01.corwyn/state.json
+[11:58:07.264] INFO  [r1c_Corwyn] [survival] hp 56/56 (100%) -> fight
+[11:58:07.315] INFO  [life] smelt: opening the forge at 2561,501
+[11:58:07.315] INFO  [r1c_Corwyn] [ACTION] use_object start
+[11:58:07.315] INFO  [r1c_Corwyn] [ACTION] use_object serial=0x40007506
+[11:58:07.331] INFO  [r1c_Corwyn] [chat ascii] System: You can't reach that.
+[11:58:07.331] LOG   [r1c_Corwyn] event action_result: use_object rejected took=17ms You can't reach that.
+[11:58:12.306] INFO  [r1c_Corwyn] [survival] hp 56/56 (100%) -> fight
+[11:58:13.411] INFO  [life] smelt: "you can't reach that" from 2560,500 -- walking onto the forge itself (try 1 of 3)
+[11:58:15.435] INFO  [life] smelt: "you can't reach that" from 2560,500 -- walking onto the forge itself (try 2 of 3)
+[11:58:17.337] INFO  [r1c_Corwyn] [survival] hp 56/56 (100%) -> fight
+[11:58:17.462] INFO  [life] smelt: "you can't reach that" from 2560,500 -- walking onto the forge itself (try 3 of 3)
+[11:58:19.489] INFO  [life] goal_failed=SMELT reason="the forge at 2561,501 refused every approach after 3 tries"
+[11:58:19.551] INFO  [life] goal=GET_FOOD reason="previous goal abandoned: the forge cannot be reached"
+[11:58:19.551] INFO  [life] needs considered: NeedSmelt(ingots 0.45) NeedSupplies(buy craft inputs 0.44) NeedOre(ore 0.40) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[11:58:19.551] INFO  [life]   score=62.5
+[11:58:19.551] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[11:58:19.551] INFO  [life]   reason: food=0
+[11:58:19.551] INFO  [life]   BLOCKED_NEED SMELT: on cooldown for another 239s after achieving nothing
+[11:58:19.551] INFO  [life] food: looking for a baker (trip 1)
+[11:58:19.551] INFO  [r1c_Corwyn] [travel] Vesper baker -> (2998,760) r=5 from (2560,500)
+[11:58:19.551] LOG   [r1c_Corwyn] event travel_start: label='Vesper baker' target=(2998,760) radius=5 from=(2560,500)
+[11:58:19.551] INFO  [r1c_Corwyn] [travel] mode moongate         usable   <- chosen
+[11:58:19.551] INFO  [r1c_Corwyn] [travel] mode walk             usable
+[11:58:19.551] INFO  [r1c_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[11:58:19.551] INFO  [r1c_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[11:58:19.551] LOG   [r1c_Corwyn] event travel_mode: moongate
+[11:58:19.560] INFO  [r1c_Corwyn] [travel] plan Vesper baker: no world route to the destination legs=0 ~0 tiles transit=0 nodes=25431
+[11:58:19.560] LOG   [r1c_Corwyn] event travel_escape: from=(2560,500,0) to=(2552,504) attempt=1
+[11:58:19.560] INFO  [r1c_Corwyn] [action] goto (2552,504) from (2560,500,0)
+[11:58:19.560] LOG   [r1c_Corwyn] event goto_start: target=(2552,504) from=(2560,500)
+[11:58:19.560] INFO  [r1c_Corwyn] [bot] running from (2560,500,0) to (2552,504,z15)
+[11:58:19.560] INFO  [r1c_Corwyn] [bot] planning path to (2552,504) in background
+[11:58:19.674] INFO  [r1c_Corwyn] [action] goto finished at (2560,500,0); target (2552,504); stopped short (off by 12 tile(s))
+[11:58:19.674] LOG   [r1c_Corwyn] event goto_done: at=(2560,500) target=(2552,504) arrived=0 off=12
+[11:58:19.674] INFO  [r1c_Corwyn] [travel] recovery walk fell short at (2560,500,0) (off 8); attempt 1/3
+[11:58:19.674] LOG   [r1c_Corwyn] event travel_recovery_done: reached=0 at=(2560,500,0) off=8 attempt=1
+[11:58:19.674] LOG   [r1c_Corwyn] event travel_escape: from=(2560,500,0) to=(2552,488) attempt=2
+[11:58:19.674] INFO  [r1c_Corwyn] [action] goto (2552,488) from (2560,500,0)
+[11:58:19.674] LOG   [r1c_Corwyn] event goto_start: target=(2552,488) from=(2560,500)
+[11:58:19.674] INFO  [r1c_Corwyn] [bot] running from (2560,500,0) to (2552,488,z15)
+[11:58:19.674] INFO  [r1c_Corwyn] [bot] planning path to (2552,488) in background
+[11:58:19.796] INFO  [r1c_Corwyn] [action] goto finished at (2560,500,0); target (2552,488); stopped short (off by 20 tile(s))
+[11:58:19.796] LOG   [r1c_Corwyn] event goto_done: at=(2560,500) target=(2552,488) arrived=0 off=20
+[11:58:19.796] INFO  [r1c_Corwyn] [travel] recovery walk fell short at (2560,500,0) (off 12); attempt 1/3
+[11:58:19.796] LOG   [r1c_Corwyn] event travel_recovery_done: reached=0 at=(2560,500,0) off=12 attempt=1
+[11:58:19.796] LOG   [r1c_Corwyn] event travel_escape: from=(2560,500,0) to=(2566,484) attempt=3
+[11:58:19.796] INFO  [r1c_Corwyn] [action] goto (2566,484) from (2560,500,0)
+[11:58:19.796] LOG   [r1c_Corwyn] event goto_start: target=(2566,484) from=(2560,500)
+[11:58:19.796] INFO  [r1c_Corwyn] [bot] running from (2560,500,0) to (2566,484,z40)
+[11:58:19.796] INFO  [r1c_Corwyn] [bot] planning path to (2566,484) in background
+[11:58:20.902] INFO  [r1c_Corwyn] [action] goto finished at (2560,500,0); target (2566,484); stopped short (off by 22 tile(s))
+[11:58:20.902] LOG   [r1c_Corwyn] event goto_done: at=(2560,500) target=(2566,484) arrived=0 off=22
+[11:58:20.902] INFO  [r1c_Corwyn] [travel] recovery walk fell short at (2560,500,0) (off 16); attempt 1/3
+[11:58:20.902] LOG   [r1c_Corwyn] event travel_recovery_done: reached=0 at=(2560,500,0) off=16 attempt=1
+[11:58:20.902] INFO  [r1c_Corwyn] [travel] Vesper baker FAILED at (2560,500,0) -- sealed in; recovery exhausted
+[11:58:20.902] LOG   [r1c_Corwyn] event travel_failed: label='Vesper baker' ok=0 at=(2560,500) legs=0 plans=1 why='sealed in; recovery exhausted'
+[11:58:21.573] INFO  [r1c_Corwyn] [action] scanning nearby mobiles for names
+[11:58:21.573] INFO  [r1c_Corwyn] [action] requested 1 paperdoll(s) for trade titles
+[11:58:21.573] INFO  [r1c_Corwyn] [mobiles] nearby (1):
+[11:58:21.573] INFO  [r1c_Corwyn]   Observer 0x0000063C
+[11:58:21.574] INFO  [r1c_Corwyn] [0x20] player @(2560,500,0) facing=5
+[11:58:21.574] INFO  [r1c_Corwyn] [0x88] paperdoll 0x0000063C: "The Eminent Owner Observer, Grandmaster Bladeweaver"
+[11:58:22.370] INFO  [r1c_Corwyn] [survival] hp 56/56 (100%) -> fight
+[11:58:24.087] INFO  [life] food: looking for a provisioner (trip 2)
+[11:58:24.087] INFO  [r1c_Corwyn] [travel] Minoc provisioner -> (2526,546) r=5 from (2560,500)
+[11:58:24.087] LOG   [r1c_Corwyn] event travel_start: label='Minoc provisioner' target=(2526,546) radius=5 from=(2560,500)
+[11:58:24.087] INFO  [r1c_Corwyn] [travel] mode walk             usable   <- chosen
+[11:58:24.087] INFO  [r1c_Corwyn] [travel] mode moongate         usable
+[11:58:24.087] INFO  [r1c_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[11:58:24.087] INFO  [r1c_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[11:58:24.087] LOG   [r1c_Corwyn] event travel_mode: walk
+[11:58:24.087] INFO  [r1c_Corwyn] [travel] plan Minoc provisioner: ok legs=2 ~80 tiles transit=0 nodes=17
+[11:58:24.149] INFO  [r1c_Corwyn] [action] goto (2532,536) from (2560,500,0)
+[11:58:24.149] LOG   [r1c_Corwyn] event goto_start: target=(2532,536) from=(2560,500)
+[11:58:24.149] INFO  [r1c_Corwyn] [bot] running from (2560,500,0) to (2532,536)
+[11:58:24.149] INFO  [r1c_Corwyn] [bot] planning path to (2532,536) in background
+[11:58:24.211] INFO  [r1c_Corwyn] [bot] replan to (2532,536): 65 steps in 20559.0us
+[11:58:26.184] INFO  [r1c_Corwyn] [chat ascii] System: You are now under the protection of the guards
+[11:58:27.406] INFO  [r1c_Corwyn] [survival] hp 56/56 (100%) -> fight

@@ -1,0 +1,310 @@
+[18:29:07.334] INFO  session 0: 127.0.0.1:2593 user='RevolutionSoak42' char=Ysolde tag='zero3'
+[18:29:07.335] LOG   [zero3] event session_start: text log opened
+[18:29:07.335] LOG   [zero3] event net_connect_begin: connect 127.0.0.1:2593
+[18:29:07.335] INFO  [zero3] [net] connecting to 127.0.0.1:2593 ...
+[18:29:07.336] LOG   [zero3] event net_connected: connect 127.0.0.1:2593
+[18:29:07.336] INFO  [zero3] [net] connected.
+[18:29:07.336] INFO  [zero3] [seed] sent 0x7F000001 (plaintext)
+[18:29:07.336] LOG   [zero3] event seed_out: 0x7F000001 hex=7f000001
+[18:29:07.336] INFO  [life] no prior state for revolutionsoak42.ysolde: a new Scribe
+[18:29:07.337] INFO  [life] creation request: Inscription 50.0 + Magery 50.0, stats 10/10/30 = 50
+[18:29:07.337] INFO  [life] needs: reading 'scribe' from the profession catalogue
+[18:29:07.337] INFO  [life] home: Ysolde lives in Britain
+[18:29:07.337] INFO  [life] build plan 'scribe': 240.0 resolved + 460.0 unresolved = 700.0/700.0, stats 30/20/100 = 150
+[18:29:07.337] INFO  [zero3] [life] autonomous player active for 'Ysolde' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 22 min)
+[18:29:07.344] INFO  [zero3] [0xA8] 1 server(s):
+[18:29:07.344] INFO  [zero3]   [0] MyShard                   1.0.0.127  full=1%  tz=0
+[18:29:07.359] INFO  [zero3] [0x8C] game server = 127.0.0.1:2593  seed=0xF0B4C7C7
+[18:29:07.359] LOG   [zero3] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xF0B4C7C7
+[18:29:07.359] INFO  [zero3] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[18:29:07.359] LOG   [zero3] event relay_same_socket: no seed re-sent; 0x91 follows
+[18:29:07.360] INFO  [zero3] [0xB9] server features = 0x0005
+[18:29:07.360] INFO  [zero3] [0xA9] 5 slot(s) (populated 0):
+[18:29:07.360] INFO  [zero3]   [0] <empty>
+[18:29:07.360] INFO  [zero3]   [1] <empty>
+[18:29:07.360] INFO  [zero3]   [2] <empty>
+[18:29:07.360] INFO  [zero3]   [3] <empty>
+[18:29:07.360] INFO  [zero3]   [4] <empty>
+[18:29:07.360] INFO  [zero3] [0x00] requested skills 23:50 25:50 46:0
+[18:29:07.360] INFO  [zero3] [0x00] requested stats STR 10 DEX 10 INT 30
+[18:29:07.360] INFO  [zero3] [0x00] creating character 'Ysolde' in slot 0
+[18:29:07.360] LOG   [zero3] event char_create_sent: Ysolde
+[18:29:07.378] INFO  [zero3] [0x1B] serial=0x00014261 body=0x0190 pos=(633,858,0)
+[18:29:07.378] LOG   [zero3] event login_confirm: serial=0x00014261 body=0x0190 pos=(633,858,0)
+[18:29:07.378] INFO  [zero3] [0x20] player @(633,858,0) facing=3
+[18:29:07.378] INFO  [zero3] [0x55] login complete — entering world
+[18:29:07.378] LOG   [zero3] event in_world: 0x55 received
+[18:29:07.378] INFO  [zero3] [backpack] opening 0x4001425D
+[18:29:07.379] INFO  [zero3] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[18:29:07.379] INFO  [zero3] [chat ascii] System: There are 2 other players here.
+[18:29:07.379] INFO  [zero3] [chat ascii] System: You are under the protection of the town guards
+[18:29:07.382] INFO  [zero3] [action] requesting the skill list
+[18:29:07.382] INFO  [life] in world; asked the server for the skill list
+[18:29:07.382] INFO  [zero3] [0x24] open container 0x4001425D gump=60
+[18:29:07.382] INFO  [zero3] [0x3C] container contents: 9 item(s)
+[18:29:07.382] LOG   [zero3] event backpack_contents: serial=0x4001425D items=9
+[18:29:09.990] INFO  [zero3] [bot] world data loaded (0 blacklisted spot(s)).
+[18:29:09.990] INFO  [life] reconciliation: first ever login, 7 field(s) differed
+[18:29:09.990] INFO  [life]   gold         persisted=0          server=1000       -> server value accepted
+[18:29:09.990] INFO  [life]   str          persisted=0          server=10         -> server value accepted
+[18:29:09.990] INFO  [life]   dex          persisted=0          server=10         -> server value accepted
+[18:29:09.990] INFO  [life]   int          persisted=0          server=30         -> server value accepted
+[18:29:09.990] INFO  [life]   skill_23     persisted=0.0        server=50.0       -> server value accepted
+[18:29:09.990] INFO  [life]   skill_25     persisted=0.0        server=50.0       -> server value accepted
+[18:29:09.990] INFO  [life]   skill_46     persisted=0.0        server=0.0        -> server value accepted
+[18:29:09.990] INFO  [life]   position     persisted=0,0        server=633,858    -> server value accepted
+[18:29:09.990] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[18:29:09.990] INFO  [zero3] [survival] on
+[18:29:09.990] LOG   [zero3] event survival_mode: on
+[18:29:09.992] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[18:29:09.992] INFO  [zero3] [survival] hp 10/10 (100%) -> fight
+[18:29:10.045] INFO  [life] goal=TRAIN_AT_NPC reason="no goal was running"
+[18:29:10.045] INFO  [life] needs considered: NeedSkillTraining(Meditation 0.55) NeedTraining(Meditation BLOCKED 0.40) NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,]
+[18:29:10.045] INFO  [life]   score=110.0
+[18:29:10.045] INFO  [life]   reason: NeedSkillTraining urgency 0.55 x 200 = 110.0
+[18:29:10.045] INFO  [life]   reason: Meditation 0.0 -> 40.0, gold 1000 (fee is quoted on arrival, roughly 300)
+[18:29:10.045] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Meditation 0.0 -> 40.0)
+[18:29:10.045] INFO  [life] training: looking for a 'mage' to teach Meditation (trip 1)
+[18:29:10.045] INFO  [zero3] [travel] Britain mage -> (1485,1550) r=5 from (633,858)
+[18:29:10.045] LOG   [zero3] event travel_start: label='Britain mage' target=(1485,1550) radius=5 from=(633,858)
+[18:29:10.045] INFO  [zero3] [travel] mode moongate         usable   <- chosen
+[18:29:10.045] INFO  [zero3] [travel] mode walk             usable
+[18:29:10.045] INFO  [zero3] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:29:10.045] INFO  [zero3] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:29:10.045] LOG   [zero3] event travel_mode: moongate
+[18:29:10.045] INFO  [zero3] [travel] plan Britain mage: ok legs=21 ~832 tiles transit=1 nodes=785
+[18:29:10.105] INFO  [zero3] [action] goto (664,856) from (633,858,0)
+[18:29:10.105] LOG   [zero3] event goto_start: target=(664,856) from=(633,858)
+[18:29:10.105] INFO  [zero3] [bot] running from (633,858,0) to (664,856)
+[18:29:10.105] INFO  [zero3] [bot] planning path to (664,856) in background
+[18:29:10.166] INFO  [zero3] [bot] replan to (664,856): 31 steps in 5675.5us
+[18:29:15.003] INFO  [zero3] [survival] hp 10/10 (100%) -> fight
+[18:29:19.680] INFO  [zero3] [bot] arrived at (664,856,0)
+[18:29:19.681] INFO  [zero3] [action] goto finished at (664,856,0); target (664,856); ARRIVED (off by 0 tile(s))
+[18:29:19.681] LOG   [zero3] event goto_done: at=(664,856) target=(664,856) arrived=1 off=0
+[18:29:19.681] INFO  [zero3] [action] goto (696,840) from (664,856,0)
+[18:29:19.681] LOG   [zero3] event goto_start: target=(696,840) from=(664,856)
+[18:29:19.681] INFO  [zero3] [bot] running from (664,856,0) to (696,840)
+[18:29:19.681] INFO  [zero3] [bot] planning path to (696,840) in background
+[18:29:19.742] INFO  [zero3] [bot] replan to (696,840): 36 steps in 7734.6us
+[18:29:20.049] INFO  [zero3] [survival] hp 10/10 (100%) -> fight
+[18:29:25.082] INFO  [zero3] [survival] hp 10/10 (100%) -> fight
+[18:29:26.403] INFO  [zero3] [chat ascii] System: You have left the protection of the town guards
+[18:29:30.141] INFO  [zero3] [survival] hp 10/10 (100%) -> fight
+[18:29:32.517] INFO  [zero3] [bot] arrived at (696,840,0)
+[18:29:32.517] INFO  [zero3] [action] goto finished at (696,840,0); target (696,840); ARRIVED (off by 0 tile(s))
+[18:29:32.517] LOG   [zero3] event goto_done: at=(696,840) target=(696,840) arrived=1 off=0
+[18:29:32.517] INFO  [zero3] [action] goto (728,808) from (696,840,0)
+[18:29:32.517] LOG   [zero3] event goto_start: target=(728,808) from=(696,840)
+[18:29:32.517] INFO  [zero3] [bot] running from (696,840,0) to (728,808)
+[18:29:32.517] INFO  [zero3] [bot] planning path to (728,808) in background
+[18:29:32.564] INFO  [zero3] [bot] replan to (728,808): 40 steps in 10979.6us
+[18:29:35.150] INFO  [zero3] [survival] hp 10/10 (100%) -> fight
+[18:29:40.189] INFO  [zero3] [survival] hp 10/10 (100%) -> fight
+[18:29:45.223] INFO  [zero3] [survival] hp 10/10 (100%) -> fight
+[18:29:46.728] INFO  [zero3] [bot] arrived at (728,808,0)
+[18:29:46.728] INFO  [zero3] [action] goto finished at (728,808,0); target (728,808); ARRIVED (off by 0 tile(s))
+[18:29:46.728] LOG   [zero3] event goto_done: at=(728,808) target=(728,808) arrived=1 off=0
+[18:29:46.728] INFO  [zero3] [action] goto (760,776) from (728,808,0)
+[18:29:46.728] LOG   [zero3] event goto_start: target=(760,776) from=(728,808)
+[18:29:46.728] INFO  [zero3] [bot] running from (728,808,0) to (760,776)
+[18:29:46.728] INFO  [zero3] [bot] planning path to (760,776) in background
+[18:29:46.788] INFO  [zero3] [bot] replan to (760,776): 37 steps in 11698.0us
+[18:29:50.246] INFO  [zero3] [survival] hp 10/10 (100%) -> fight
+[18:29:55.308] INFO  [zero3] [survival] hp 10/10 (100%) -> fight
+[18:29:59.054] INFO  [zero3] [bot] arrived at (760,776,0)
+[18:29:59.054] INFO  [zero3] [action] goto finished at (760,776,0); target (760,776); ARRIVED (off by 0 tile(s))
+[18:29:59.054] LOG   [zero3] event goto_done: at=(760,776) target=(760,776) arrived=1 off=0
+[18:29:59.054] INFO  [zero3] [action] goto (776,760) from (760,776,0)
+[18:29:59.054] LOG   [zero3] event goto_start: target=(776,760) from=(760,776)
+[18:29:59.054] INFO  [zero3] [bot] running from (760,776,0) to (776,760)
+[18:29:59.054] INFO  [zero3] [bot] planning path to (776,760) in background
+[18:29:59.115] INFO  [zero3] [bot] replan to (776,760): 20 steps in 2266.6us
+[18:30:00.359] INFO  [zero3] [survival] hp 10/10 (100%) -> fight
+[18:30:04.014] INFO  [zero3] [chat ascii] grey wolf: *grey wolf is attacking you!*
+[18:30:05.401] INFO  [zero3] [survival] hp 10/10 (100%) -> fight
+[18:30:06.653] INFO  [zero3] [bot] arrived at (776,760,0)
+[18:30:06.653] INFO  [zero3] [action] goto finished at (776,760,0); target (776,760); ARRIVED (off by 0 tile(s))
+[18:30:06.653] LOG   [zero3] event goto_done: at=(776,760) target=(776,760) arrived=1 off=0
+[18:30:06.653] INFO  [zero3] [action] goto (771,752) from (776,760,0)
+[18:30:06.653] LOG   [zero3] event goto_start: target=(771,752) from=(776,760)
+[18:30:06.653] INFO  [zero3] [bot] running from (776,760,0) to (771,752)
+[18:30:06.653] INFO  [zero3] [bot] planning path to (771,752) in background
+[18:30:06.714] INFO  [zero3] [bot] replan to (771,752): 8 steps in 108.2us
+[18:30:09.997] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[18:30:10.073] INFO  [zero3] [gump] 0x400028B7 context=0x80A00438: 13 option(s), 15 text(s)
+[18:30:10.073] INFO  [zero3] [gump]   button 1000 = 'OKAY'
+[18:30:10.073] INFO  [zero3] [gump]   button 0 = 'CANCEL'
+[18:30:10.073] INFO  [zero3] [gump]   button 1 = 'Felucca'
+[18:30:10.073] INFO  [zero3] [gump]   choice 1 = 'Moonglow'
+[18:30:10.073] INFO  [zero3] [gump]   choice 2 = 'Britain'
+[18:30:10.073] INFO  [zero3] [gump]   choice 3 = 'Jhelom'
+[18:30:10.073] INFO  [zero3] [gump]   choice 4 = 'Yew'
+[18:30:10.073] INFO  [zero3] [gump]   choice 5 = 'New Magincia'
+[18:30:10.073] INFO  [zero3] [gump]   choice 6 = 'Minoc'
+[18:30:10.073] INFO  [zero3] [gump]   choice 7 = 'Trinsic'
+[18:30:10.073] INFO  [zero3] [gump]   choice 8 = 'Skara Brae'
+[18:30:10.073] INFO  [zero3] [gump]   choice 9 = 'Buccaneer's Den'
+[18:30:10.073] INFO  [zero3] [gump]   choice 10 = 'Ocllo (Newplayers)'
+[18:30:10.073] INFO  [zero3] [gump]   text 0 = 'Pick your destination:'
+[18:30:10.073] INFO  [zero3] [gump]   text 1 = 'OKAY'
+[18:30:10.073] INFO  [zero3] [gump]   text 2 = 'CANCEL'
+[18:30:10.073] INFO  [zero3] [gump]   text 3 = 'Felucca'
+[18:30:10.073] INFO  [zero3] [gump]   text 4 = 'Felucca'
+[18:30:10.073] INFO  [zero3] [gump]   text 5 = 'Moonglow'
+[18:30:10.073] INFO  [zero3] [gump]   text 6 = 'Britain'
+[18:30:10.073] INFO  [zero3] [gump]   text 7 = 'Jhelom'
+[18:30:10.073] INFO  [zero3] [gump]   text 8 = 'Yew'
+[18:30:10.073] INFO  [zero3] [gump]   text 9 = 'New Magincia'
+[18:30:10.073] INFO  [zero3] [gump]   text 10 = 'Minoc'
+[18:30:10.073] INFO  [zero3] [gump]   text 11 = 'Trinsic'
+[18:30:10.073] INFO  [zero3] [gump]   text 12 = 'Skara Brae'
+[18:30:10.073] INFO  [zero3] [gump]   text 13 = 'Buccaneer's Den'
+[18:30:10.073] INFO  [zero3] [gump]   text 14 = 'Ocllo (Newplayers)'
+[18:30:10.073] LOG   [zero3] event gump_open: serial=0x400028B7 context=0x80A00438 options=13
+[18:30:10.073] INFO  [zero3] [travel] gate gump: choosing 'Britain' (choice 2, button 1000)
+[18:30:10.073] LOG   [zero3] event moongate_use: destination='Britain' choice=2 button=1000
+[18:30:10.073] INFO  [zero3] [bot] arrived at (771,752,5)
+[18:30:10.073] INFO  [zero3] [action] goto finished at (771,752,5); target (771,752); ARRIVED (off by 0 tile(s))
+[18:30:10.073] LOG   [zero3] event goto_done: at=(771,752) target=(771,752) arrived=1 off=0
+[18:30:10.073] INFO  [zero3] [travel] using moongate 0x400028B7 for 'Britain' (gump active=0 serial=0x00000000)
+[18:30:10.073] INFO  [zero3] [0x20] player @(1336,1997,5) facing=7
+[18:30:10.073] INFO  [zero3] [0x20] player @(1336,1997,5) facing=7
+[18:30:10.087] INFO  [zero3] [chat ascii] System: You can't see the target
+[18:30:10.455] INFO  [zero3] [survival] hp 10/10 (100%) -> fight
+[18:30:10.515] INFO  [zero3] [action] goto (1336,1960) from (1336,1997,5)
+[18:30:10.516] LOG   [zero3] event goto_start: target=(1336,1960) from=(1336,1997)
+[18:30:10.516] INFO  [zero3] [bot] running from (1336,1997,5) to (1336,1960)
+[18:30:10.516] INFO  [zero3] [bot] planning path to (1336,1960) in background
+[18:30:10.578] INFO  [zero3] [bot] replan to (1336,1960): 37 steps in 17039.7us
+[18:30:10.840] INFO  [zero3] [chat ascii] System: You have been revealed
+[18:30:15.499] INFO  [zero3] [survival] hp 10/10 (100%) -> fight
+[18:30:20.502] INFO  [zero3] [survival] hp 10/10 (100%) -> fight
+[18:30:22.737] INFO  [zero3] [bot] arrived at (1336,1960,0)
+[18:30:22.737] INFO  [zero3] [action] goto finished at (1336,1960,0); target (1336,1960); ARRIVED (off by 0 tile(s))
+[18:30:22.737] LOG   [zero3] event goto_done: at=(1336,1960) target=(1336,1960) arrived=1 off=0
+[18:30:22.737] INFO  [zero3] [action] goto (1336,1928) from (1336,1960,0)
+[18:30:22.737] LOG   [zero3] event goto_start: target=(1336,1928) from=(1336,1960)
+[18:30:22.737] INFO  [zero3] [bot] running from (1336,1960,0) to (1336,1928)
+[18:30:22.737] INFO  [zero3] [bot] planning path to (1336,1928) in background
+[18:30:22.799] INFO  [zero3] [bot] replan to (1336,1928): 33 steps in 6133.1us
+[18:30:25.519] INFO  [zero3] [survival] hp 10/10 (100%) -> fight
+[18:30:30.531] INFO  [zero3] [survival] hp 10/10 (100%) -> fight
+[18:30:33.117] INFO  [zero3] [bot] arrived at (1336,1928,0)
+[18:30:33.117] INFO  [zero3] [action] goto finished at (1336,1928,0); target (1336,1928); ARRIVED (off by 0 tile(s))
+[18:30:33.117] LOG   [zero3] event goto_done: at=(1336,1928) target=(1336,1928) arrived=1 off=0
+[18:30:33.117] INFO  [zero3] [action] goto (1336,1896) from (1336,1928,0)
+[18:30:33.117] LOG   [zero3] event goto_start: target=(1336,1896) from=(1336,1928)
+[18:30:33.117] INFO  [zero3] [bot] running from (1336,1928,0) to (1336,1896)
+[18:30:33.117] INFO  [zero3] [bot] planning path to (1336,1896) in background
+[18:30:33.177] INFO  [zero3] [bot] replan to (1336,1896): 32 steps in 8455.1us
+[18:30:35.546] INFO  [zero3] [survival] hp 10/10 (100%) -> fight
+[18:30:40.562] INFO  [zero3] [survival] hp 10/10 (100%) -> fight
+[18:30:44.510] INFO  [zero3] [bot] arrived at (1336,1896,0)
+[18:30:44.510] INFO  [zero3] [action] goto finished at (1336,1896,0); target (1336,1896); ARRIVED (off by 0 tile(s))
+[18:30:44.510] LOG   [zero3] event goto_done: at=(1336,1896) target=(1336,1896) arrived=1 off=0
+[18:30:44.510] INFO  [zero3] [action] goto (1336,1864) from (1336,1896,0)
+[18:30:44.510] LOG   [zero3] event goto_start: target=(1336,1864) from=(1336,1896)
+[18:30:44.510] INFO  [zero3] [bot] running from (1336,1896,0) to (1336,1864)
+[18:30:44.510] INFO  [zero3] [bot] planning path to (1336,1864) in background
+[18:30:44.571] INFO  [zero3] [bot] replan to (1336,1864): 37 steps in 5889.4us
+[18:30:45.600] INFO  [zero3] [survival] hp 10/10 (100%) -> fight
+[18:30:50.602] INFO  [zero3] [survival] hp 10/10 (100%) -> fight
+[18:30:55.628] INFO  [zero3] [survival] hp 10/10 (100%) -> fight
+[18:30:58.307] INFO  [zero3] [bot] arrived at (1336,1864,0)
+[18:30:58.307] INFO  [zero3] [action] goto finished at (1336,1864,0); target (1336,1864); ARRIVED (off by 0 tile(s))
+[18:30:58.307] LOG   [zero3] event goto_done: at=(1336,1864) target=(1336,1864) arrived=1 off=0
+[18:30:58.307] INFO  [zero3] [action] goto (1336,1832) from (1336,1864,0)
+[18:30:58.307] LOG   [zero3] event goto_start: target=(1336,1832) from=(1336,1864)
+[18:30:58.307] INFO  [zero3] [bot] running from (1336,1864,0) to (1336,1832)
+[18:30:58.307] INFO  [zero3] [bot] planning path to (1336,1832) in background
+[18:30:58.367] INFO  [zero3] [bot] replan to (1336,1832): 33 steps in 6366.0us
+[18:31:00.673] INFO  [zero3] [survival] hp 10/10 (100%) -> fight
+[18:31:05.718] INFO  [zero3] [survival] hp 10/10 (100%) -> fight
+[18:31:10.016] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[18:31:10.585] INFO  [zero3] [bot] arrived at (1336,1832,0)
+[18:31:10.585] INFO  [zero3] [action] goto finished at (1336,1832,0); target (1336,1832); ARRIVED (off by 0 tile(s))
+[18:31:10.585] LOG   [zero3] event goto_done: at=(1336,1832) target=(1336,1832) arrived=1 off=0
+[18:31:10.585] INFO  [zero3] [action] goto (1336,1800) from (1336,1832,0)
+[18:31:10.585] LOG   [zero3] event goto_start: target=(1336,1800) from=(1336,1832)
+[18:31:10.585] INFO  [zero3] [bot] running from (1336,1832,0) to (1336,1800)
+[18:31:10.585] INFO  [zero3] [bot] planning path to (1336,1800) in background
+[18:31:10.646] INFO  [zero3] [bot] replan to (1336,1800): 32 steps in 6124.8us
+[18:31:10.769] INFO  [zero3] [survival] hp 10/10 (100%) -> fight
+[18:31:15.822] INFO  [zero3] [survival] hp 10/10 (100%) -> fight
+[18:31:20.187] INFO  [zero3] [bot] arrived at (1336,1800,0)
+[18:31:20.187] INFO  [zero3] [action] goto finished at (1336,1800,0); target (1336,1800); ARRIVED (off by 0 tile(s))
+[18:31:20.187] LOG   [zero3] event goto_done: at=(1336,1800) target=(1336,1800) arrived=1 off=0
+[18:31:20.187] INFO  [zero3] [action] goto (1352,1766) from (1336,1800,0)
+[18:31:20.187] LOG   [zero3] event goto_start: target=(1352,1766) from=(1336,1800)
+[18:31:20.187] INFO  [zero3] [bot] running from (1336,1800,0) to (1352,1766)
+[18:31:20.187] INFO  [zero3] [bot] planning path to (1352,1766) in background
+[18:31:20.247] INFO  [zero3] [bot] replan to (1352,1766): 49 steps in 14712.1us
+[18:31:20.875] INFO  [zero3] [survival] hp 10/10 (100%) -> fight
+[18:31:25.893] INFO  [zero3] [survival] hp 10/10 (100%) -> fight
+[18:31:30.951] INFO  [zero3] [survival] hp 10/10 (100%) -> fight
+[18:31:34.988] INFO  [zero3] [bot] arrived at (1352,1766,15)
+[18:31:34.989] INFO  [zero3] [action] goto finished at (1352,1766,15); target (1352,1766); ARRIVED (off by 0 tile(s))
+[18:31:34.989] LOG   [zero3] event goto_done: at=(1352,1766) target=(1352,1766) arrived=1 off=0
+[18:31:34.989] INFO  [zero3] [action] goto (1386,1728) from (1352,1766,15)
+[18:31:34.989] LOG   [zero3] event goto_start: target=(1386,1728) from=(1352,1766)
+[18:31:34.989] INFO  [zero3] [bot] running from (1352,1766,15) to (1386,1728)
+[18:31:34.989] INFO  [zero3] [bot] planning path to (1386,1728) in background
+[18:31:35.051] INFO  [zero3] [bot] replan to (1386,1728): 64 steps in 33568.3us
+[18:31:36.003] INFO  [zero3] [survival] hp 10/10 (100%) -> fight
+[18:31:41.029] INFO  [zero3] [survival] hp 10/10 (100%) -> fight
+[18:31:46.042] INFO  [zero3] [survival] hp 10/10 (100%) -> fight
+[18:31:46.546] INFO  [zero3] [chat ascii] System: You are now under the protection of the city guards
+[18:31:48.084] INFO  [zero3] [bot] lookahead patched around block at step 5: anchor=9 new segment=13 path=22 in 470.9us
+[18:31:51.045] INFO  [zero3] [survival] hp 10/10 (100%) -> fight
+[18:31:53.996] INFO  [zero3] [chat ascii] System: You have left the protection of the city guards
+[18:31:54.427] INFO  [zero3] [bot] arrived at (1386,1728,0)
+[18:31:54.427] INFO  [zero3] [action] goto finished at (1386,1728,0); target (1386,1728); ARRIVED (off by 0 tile(s))
+[18:31:54.427] LOG   [zero3] event goto_done: at=(1386,1728) target=(1386,1728) arrived=1 off=0
+[18:31:54.427] INFO  [zero3] [action] goto (1416,1688) from (1386,1728,0)
+[18:31:54.427] LOG   [zero3] event goto_start: target=(1416,1688) from=(1386,1728)
+[18:31:54.427] INFO  [zero3] [bot] running from (1386,1728,0) to (1416,1688)
+[18:31:54.427] INFO  [zero3] [bot] planning path to (1416,1688) in background
+[18:31:54.489] INFO  [zero3] [bot] replan to (1416,1688): 52 steps in 6660.6us
+[18:31:55.380] INFO  [zero3] [chat ascii] System: You are now under the protection of the city guards
+[18:31:56.054] INFO  [zero3] [survival] hp 10/10 (100%) -> fight
+[18:32:01.114] INFO  [zero3] [survival] hp 10/10 (100%) -> fight
+[18:32:06.156] INFO  [zero3] [survival] hp 10/10 (100%) -> fight
+[18:32:10.069] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[18:32:11.062] INFO  [zero3] [bot] arrived at (1416,1688,0)
+[18:32:11.062] INFO  [zero3] [action] goto finished at (1416,1688,0); target (1416,1688); ARRIVED (off by 0 tile(s))
+[18:32:11.062] LOG   [zero3] event goto_done: at=(1416,1688) target=(1416,1688) arrived=1 off=0
+[18:32:11.062] INFO  [zero3] [action] goto (1448,1656) from (1416,1688,0)
+[18:32:11.062] LOG   [zero3] event goto_start: target=(1448,1656) from=(1416,1688)
+[18:32:11.062] INFO  [zero3] [bot] running from (1416,1688,0) to (1448,1656)
+[18:32:11.062] INFO  [zero3] [bot] planning path to (1448,1656) in background
+[18:32:11.122] INFO  [zero3] [bot] replan to (1448,1656): 46 steps in 2919.3us
+[18:32:11.183] INFO  [zero3] [survival] hp 10/10 (100%) -> fight
+[18:32:16.245] INFO  [zero3] [survival] hp 10/10 (100%) -> fight
+[18:32:19.652] INFO  [zero3] [bot] step (1432,1666,10)->(1433,1665,10) rejected; OpenDoor + retry
+[18:32:20.366] INFO  [zero3] [bot] step (1432,1666,10)->(1433,1665,10) rejected; avoiding edge + rerouting
+[18:32:20.366] INFO  [zero3] [bot] planning path to (1448,1656) in background
+[18:32:20.426] INFO  [zero3] [bot] replan to (1448,1656): 20 steps in 846.6us
+[18:32:21.299] INFO  [zero3] [survival] hp 10/10 (100%) -> fight
+[18:32:26.332] INFO  [zero3] [survival] hp 10/10 (100%) -> fight
+[18:32:27.387] INFO  [zero3] [bot] arrived at (1448,1656,10)
+[18:32:27.387] INFO  [zero3] [action] goto finished at (1448,1656,10); target (1448,1656); ARRIVED (off by 0 tile(s))
+[18:32:27.387] LOG   [zero3] event goto_done: at=(1448,1656) target=(1448,1656) arrived=1 off=0
+[18:32:27.387] INFO  [zero3] [travel] avoiding 2 teleporter pad(s) on this leg
+[18:32:27.387] INFO  [zero3] [action] goto (1464,1624) from (1448,1656,10)
+[18:32:27.387] LOG   [zero3] event goto_start: target=(1464,1624) from=(1448,1656)
+[18:32:27.387] INFO  [zero3] [bot] running from (1448,1656,10) to (1464,1624)
+[18:32:27.387] INFO  [zero3] [bot] planning path to (1464,1624) in background
+[18:32:27.447] INFO  [zero3] [bot] replan to (1464,1624): 43 steps in 3547.6us
+[18:32:31.348] INFO  [zero3] [survival] hp 10/10 (100%) -> fight
+[18:32:36.397] INFO  [zero3] [survival] hp 10/10 (100%) -> fight
+[18:32:40.836] INFO  [zero3] [bot] arrived at (1464,1624,20)
+[18:32:40.836] INFO  [zero3] [action] goto finished at (1464,1624,20); target (1464,1624); ARRIVED (off by 0 tile(s))
+[18:32:40.836] LOG   [zero3] event goto_done: at=(1464,1624) target=(1464,1624) arrived=1 off=0
+[18:32:40.836] INFO  [zero3] [travel] avoiding 2 teleporter pad(s) on this leg
+[18:32:40.836] INFO  [zero3] [action] goto (1464,1592) from (1464,1624,20)
+[18:32:40.836] LOG   [zero3] event goto_start: target=(1464,1592) from=(1464,1624)
+[18:32:40.836] INFO  [zero3] [bot] running from (1464,1624,20) to (1464,1592)
+[18:32:40.836] INFO  [zero3] [bot] planning path to (1464,1592) in background
+[18:32:40.896] INFO  [zero3] [bot] replan to (1464,1592): 32 steps in 437.6us
+[18:32:41.419] INFO  [zero3] [survival] hp 10/10 (100%) -> fight

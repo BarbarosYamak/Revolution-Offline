@@ -1,0 +1,1004 @@
+[22:26:39.344] INFO  session 0: 127.0.0.1:2593 user='RevolutionFighter03' char=Loradan tag='m6b'
+[22:26:39.345] LOG   [m6b] event session_start: text log opened
+[22:26:39.345] LOG   [m6b] event net_connect_begin: connect 127.0.0.1:2593
+[22:26:39.345] INFO  [m6b] [net] connecting to 127.0.0.1:2593 ...
+[22:26:39.346] LOG   [m6b] event net_connected: connect 127.0.0.1:2593
+[22:26:39.346] INFO  [m6b] [net] connected.
+[22:26:39.346] INFO  [m6b] [seed] sent 0x7F000001 (plaintext)
+[22:26:39.346] LOG   [m6b] event seed_out: 0x7F000001 hex=7f000001
+[22:26:39.347] INFO  [life] loaded persistent state for Loradan (24 places, 0 suppliers, 14 events, 0 prior sessions)
+[22:26:39.347] INFO  [life] needs: reading 'lumberjack_swordsman' from the profession catalogue
+[22:26:39.347] INFO  [life] build plan 'lumberjack_swordsman': 600.0 resolved + 100.0 unresolved = 700.0/700.0, stats 100/100/25 = 225
+[22:26:39.347] INFO  [m6b] [life] autonomous player active for 'Loradan' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 25 min)
+[22:26:39.361] INFO  [m6b] [0xA8] 1 server(s):
+[22:26:39.361] INFO  [m6b]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[22:26:39.376] INFO  [m6b] [0x8C] game server = 127.0.0.1:2593  seed=0xDFA0A29F
+[22:26:39.376] LOG   [m6b] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xDFA0A29F
+[22:26:39.376] INFO  [m6b] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[22:26:39.376] LOG   [m6b] event relay_same_socket: no seed re-sent; 0x91 follows
+[22:26:39.376] INFO  [m6b] [0xB9] server features = 0x0005
+[22:26:39.376] INFO  [m6b] [0xA9] 5 slot(s) (populated 1):
+[22:26:39.376] INFO  [m6b]   [0] Loradan
+[22:26:39.376] INFO  [m6b]   [1] <empty>
+[22:26:39.376] INFO  [m6b]   [2] <empty>
+[22:26:39.376] INFO  [m6b]   [3] <empty>
+[22:26:39.376] INFO  [m6b]   [4] <empty>
+[22:26:39.376] INFO  [m6b] [ui] playing slot 0 ('Loradan')
+[22:26:39.391] INFO  [m6b] [0x1B] serial=0x00017C2B body=0x0190 pos=(661,839,0)
+[22:26:39.392] LOG   [m6b] event login_confirm: serial=0x00017C2B body=0x0190 pos=(661,839,0)
+[22:26:39.392] INFO  [m6b] [0x20] player @(661,839,0) facing=6
+[22:26:39.392] INFO  [m6b] [0x55] login complete — entering world
+[22:26:39.392] LOG   [m6b] event in_world: 0x55 received
+[22:26:39.392] INFO  [m6b] [backpack] opening 0x40017BBB
+[22:26:39.392] INFO  [m6b] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[22:26:39.392] INFO  [m6b] [chat ascii] System: There are 0 other players here.
+[22:26:39.392] INFO  [m6b] [chat ascii] System: Last logged: 2026/08/28 22:24:54
+[22:26:39.392] INFO  [m6b] [chat ascii] System: You are under the protection of the town guards
+[22:26:39.395] INFO  [m6b] [action] requesting the skill list
+[22:26:39.395] INFO  [life] in world; asked the server for the skill list
+[22:26:39.395] INFO  [m6b] [0x24] open container 0x40017BBB gump=60
+[22:26:39.395] INFO  [m6b] [0x3C] container contents: 8 item(s)
+[22:26:39.395] LOG   [m6b] event backpack_contents: serial=0x40017BBB items=8
+[22:26:41.966] INFO  [m6b] [bot] world data loaded (0 blacklisted spot(s)).
+[22:26:41.967] INFO  [life] reconciliation: resuming a life, 1 field(s) differed
+[22:26:41.967] INFO  [life]   gold         persisted=1000       server=1000       -> server value accepted
+[22:26:41.967] INFO  [life]   str          persisted=25         server=25         -> server value accepted
+[22:26:41.967] INFO  [life]   dex          persisted=20         server=20         -> server value accepted
+[22:26:41.967] INFO  [life]   int          persisted=5          server=5          -> server value accepted
+[22:26:41.967] INFO  [life]   skill_44     persisted=51.0       server=51.0       -> server value accepted
+[22:26:41.967] INFO  [life]   skill_40     persisted=50.0       server=50.0       -> server value accepted
+[22:26:41.967] INFO  [life]   skill_27     persisted=18.2       server=18.2       -> server value accepted
+[22:26:41.967] INFO  [life]   skill_1      persisted=11.2       server=11.2       -> server value accepted
+[22:26:41.967] INFO  [life]   skill_17     persisted=8.9        server=8.9        -> server value accepted
+[22:26:41.967] INFO  [life]   skill_11     persisted=2.8        server=2.8        -> server value accepted
+[22:26:41.967] INFO  [life]   position     persisted=668,840    server=661,839    -> server value accepted
+[22:26:41.967] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[22:26:41.967] INFO  [life]   restored objective KEPT: BANK (progress 0)
+[22:26:41.967] INFO  [m6b] [survival] on
+[22:26:41.967] LOG   [m6b] event survival_mode: on
+[22:26:41.969] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfighter03.loradan/state.json
+[22:26:41.969] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:26:42.022] INFO  [life] bank: returning to a remembered bank at 668,839 (trip 1)
+[22:26:42.022] INFO  [m6b] [travel] bank -> (668,839) r=2 from (661,839)
+[22:26:42.022] LOG   [m6b] event travel_start: label='bank' target=(668,839) radius=2 from=(661,839)
+[22:26:42.022] INFO  [m6b] [travel] mode walk             usable   <- chosen
+[22:26:42.022] INFO  [m6b] [travel] mode moongate         usable
+[22:26:42.022] INFO  [m6b] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:26:42.022] INFO  [m6b] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:26:42.022] LOG   [m6b] event travel_mode: walk
+[22:26:42.022] INFO  [m6b] [travel] plan bank: ok legs=1 ~7 tiles transit=0 nodes=0
+[22:26:42.083] INFO  [m6b] [action] goto (668,839) from (661,839,0)
+[22:26:42.083] LOG   [m6b] event goto_start: target=(668,839) from=(661,839)
+[22:26:42.083] INFO  [m6b] [bot] running from (661,839,0) to (668,839)
+[22:26:42.083] INFO  [m6b] [bot] planning path to (668,839) in background
+[22:26:42.145] INFO  [m6b] [bot] replan to (668,839): 7 steps in 47.3us
+[22:26:42.361] INFO  [m6b] [chat ascii] System: Ysolde has arrived in Britain.
+[22:26:43.560] INFO  [m6b] [travel] bank ARRIVED at (667,839,0)
+[22:26:43.560] LOG   [m6b] event travel_done: label='bank' ok=1 at=(667,839) legs=1 plans=1 why=''
+[22:26:43.946] INFO  [m6b] [bot] arrived at (668,839,0)
+[22:26:44.070] INFO  [life] bank: arrived at 668,839 -- asking who is here
+[22:26:44.070] INFO  [m6b] [action] scanning nearby mobiles for names
+[22:26:44.071] INFO  [m6b] [mobiles] nearby (4):
+[22:26:44.071] INFO  [m6b]   Rat 0x00000023
+[22:26:44.071] INFO  [m6b]   Rat 0x0000151E
+[22:26:44.071] INFO  [m6b]   Dog 0x00000968
+[22:26:44.071] INFO  [m6b]   Filbert 0x0000183F
+[22:26:46.600] INFO  [life] bank: returning to a remembered bank at 668,839 (trip 2)
+[22:26:46.600] INFO  [m6b] [travel] bank -> (668,839) r=2 from (668,839)
+[22:26:46.600] LOG   [m6b] event travel_start: label='bank' target=(668,839) radius=2 from=(668,839)
+[22:26:46.600] INFO  [m6b] [travel] bank ARRIVED at (668,839,0)
+[22:26:46.600] LOG   [m6b] event travel_done: label='bank' ok=1 at=(668,839) legs=0 plans=0 why=''
+[22:26:46.984] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:26:48.649] INFO  [life] bank: arrived at 668,839 -- asking who is here
+[22:26:48.649] INFO  [m6b] [action] scanning nearby mobiles for names
+[22:26:48.664] INFO  [m6b] [mobiles] nearby (5):
+[22:26:48.664] INFO  [m6b]   Rat 0x0000151E
+[22:26:48.664] INFO  [m6b]   Rat 0x00000023
+[22:26:48.664] INFO  [m6b]   Filbert 0x0000183F
+[22:26:48.664] INFO  [m6b]   Dog 0x00000968
+[22:26:48.664] INFO  [m6b]   Basia 0x00001858
+[22:26:51.199] INFO  [life] bank: two trips to 668,839 found no banker -- forgetting that place
+[22:26:51.199] INFO  [life] bank: returning to a remembered bank at 661,839 (trip 3)
+[22:26:51.199] INFO  [m6b] [travel] bank -> (661,839) r=2 from (668,839)
+[22:26:51.199] LOG   [m6b] event travel_start: label='bank' target=(661,839) radius=2 from=(668,839)
+[22:26:51.199] INFO  [m6b] [travel] mode walk             usable   <- chosen
+[22:26:51.199] INFO  [m6b] [travel] mode moongate         usable
+[22:26:51.199] INFO  [m6b] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:26:51.199] INFO  [m6b] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:26:51.199] LOG   [m6b] event travel_mode: walk
+[22:26:51.199] INFO  [m6b] [travel] plan bank: ok legs=1 ~7 tiles transit=0 nodes=0
+[22:26:51.261] INFO  [m6b] [action] goto finished at (668,839,0); target (668,839); ARRIVED (off by 0 tile(s))
+[22:26:51.261] LOG   [m6b] event goto_done: at=(668,839) target=(668,839) arrived=1 off=0
+[22:26:51.261] INFO  [m6b] [action] goto (661,839) from (668,839,0)
+[22:26:51.261] LOG   [m6b] event goto_start: target=(661,839) from=(668,839)
+[22:26:51.261] INFO  [m6b] [bot] running from (668,839,0) to (661,839)
+[22:26:51.261] INFO  [m6b] [bot] planning path to (661,839) in background
+[22:26:51.323] INFO  [m6b] [bot] replan to (661,839): 7 steps in 25.0us
+[22:26:51.999] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:26:52.752] INFO  [m6b] [travel] bank ARRIVED at (662,839,0)
+[22:26:52.752] LOG   [m6b] event travel_done: label='bank' ok=1 at=(662,839) legs=1 plans=1 why=''
+[22:26:53.195] INFO  [m6b] [bot] arrived at (661,839,0)
+[22:26:53.257] INFO  [life] bank: arrived at 661,839 -- asking who is here
+[22:26:53.257] INFO  [m6b] [action] scanning nearby mobiles for names
+[22:26:53.274] INFO  [m6b] [mobiles] nearby (3):
+[22:26:53.274] INFO  [m6b]   Rat 0x0000151E
+[22:26:53.274] INFO  [m6b]   Rat 0x00000023
+[22:26:53.274] INFO  [m6b]   Filbert 0x0000183F
+[22:26:55.762] INFO  [life] bank: two trips to 661,839 found no banker -- forgetting that place
+[22:26:55.762] INFO  [life] bank: returning to a remembered bank at 680,853 (trip 4)
+[22:26:55.762] INFO  [m6b] [travel] bank -> (680,853) r=2 from (661,839)
+[22:26:55.762] LOG   [m6b] event travel_start: label='bank' target=(680,853) radius=2 from=(661,839)
+[22:26:55.762] INFO  [m6b] [travel] mode walk             usable   <- chosen
+[22:26:55.762] INFO  [m6b] [travel] mode moongate         usable
+[22:26:55.762] INFO  [m6b] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:26:55.762] INFO  [m6b] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:26:55.762] LOG   [m6b] event travel_mode: walk
+[22:26:55.762] INFO  [m6b] [travel] plan bank: ok legs=1 ~19 tiles transit=0 nodes=0
+[22:26:55.824] INFO  [m6b] [action] goto finished at (661,839,0); target (661,839); ARRIVED (off by 0 tile(s))
+[22:26:55.824] LOG   [m6b] event goto_done: at=(661,839) target=(661,839) arrived=1 off=0
+[22:26:55.824] INFO  [m6b] [action] goto (680,853) from (661,839,0)
+[22:26:55.824] LOG   [m6b] event goto_start: target=(680,853) from=(661,839)
+[22:26:55.824] INFO  [m6b] [bot] running from (661,839,0) to (680,853)
+[22:26:55.824] INFO  [m6b] [bot] planning path to (680,853) in background
+[22:26:55.886] INFO  [m6b] [bot] replan to (680,853): 20 steps in 4441.6us
+[22:26:57.020] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:27:02.077] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:27:02.646] INFO  [m6b] [travel] bank ARRIVED at (679,853,0)
+[22:27:02.646] LOG   [m6b] event travel_done: label='bank' ok=1 at=(679,853) legs=1 plans=1 why=''
+[22:27:02.705] INFO  [life] bank: arrived at 679,853 -- asking who is here
+[22:27:02.705] INFO  [m6b] [action] scanning nearby mobiles for names
+[22:27:02.705] INFO  [m6b] [mobiles] nearby (1):
+[22:27:02.705] INFO  [m6b]   Dog 0x00000968
+[22:27:03.332] INFO  [m6b] [chat ascii] System: You have left the protection of the town guards
+[22:27:03.332] INFO  [m6b] [bot] arrived at (680,853,0)
+[22:27:05.224] INFO  [life] goal_failed=BANK reason="4 trips and still no banker in reach; the pack stays full"
+[22:27:05.286] INFO  [life] goal=BANK reason="previous goal abandoned: no banker reachable"
+[22:27:05.286] INFO  [life] needs considered: NeedBank(deposit carried load 0.69) NeedEquipment(bandages BLOCKED 0.50) NeedLogs(logs 0.40) NeedTraining(Carpentry BLOCKED 0.39) NeedTraining(Healing BLOCKED 0.38) NeedTraining(Anatomy BLOCKED 0.37) NeedTrade(sell to a player 0.37) NeedGold(sell surplus BLOCKED 0.37) NeedTraining(Tactics BLOCKED 0.35) NeedSkillTraining(Carpentry 0.30) NeedTraining(Swordsmanship BLOCKED 0.28) NeedTraining(Lumberjacking BLOCKED 0.27) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools d
+[22:27:05.286] INFO  [life]   score=166.8
+[22:27:05.286] INFO  [life]   reason: NeedBank urgency 0.69 x 240 = 166.8
+[22:27:05.286] INFO  [life]   reason: weight=120/127 (94%) logs=31
+[22:27:05.286] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[22:27:05.286] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (11 x i_log spare, and no buyer known -- on this shard it is a player-market good)
+[22:27:05.286] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Carpentry 2.8 -> 100.0)
+[22:27:05.286] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[22:27:07.138] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:27:12.140] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:27:17.166] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:27:22.184] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:27:27.221] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:27:32.251] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:27:35.245] INFO  [life] bank: returning to a remembered bank at 680,853 (trip 1)
+[22:27:35.245] INFO  [m6b] [travel] bank -> (680,853) r=2 from (680,853)
+[22:27:35.245] LOG   [m6b] event travel_start: label='bank' target=(680,853) radius=2 from=(680,853)
+[22:27:35.245] INFO  [m6b] [travel] bank ARRIVED at (680,853,0)
+[22:27:35.245] LOG   [m6b] event travel_done: label='bank' ok=1 at=(680,853) legs=0 plans=0 why=''
+[22:27:37.257] INFO  [life] bank: arrived at 680,853 -- asking who is here
+[22:27:37.257] INFO  [m6b] [action] scanning nearby mobiles for names
+[22:27:37.257] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:27:37.272] INFO  [m6b] [mobiles] nearby (1):
+[22:27:37.272] INFO  [m6b]   Dog 0x00000968
+[22:27:39.776] INFO  [life] bank: returning to a remembered bank at 680,853 (trip 2)
+[22:27:39.776] INFO  [m6b] [travel] bank -> (680,853) r=2 from (680,853)
+[22:27:39.776] LOG   [m6b] event travel_start: label='bank' target=(680,853) radius=2 from=(680,853)
+[22:27:39.776] INFO  [m6b] [travel] bank ARRIVED at (680,853,0)
+[22:27:39.776] LOG   [m6b] event travel_done: label='bank' ok=1 at=(680,853) legs=0 plans=0 why=''
+[22:27:41.795] INFO  [life] bank: arrived at 680,853 -- asking who is here
+[22:27:41.795] INFO  [m6b] [action] scanning nearby mobiles for names
+[22:27:41.809] INFO  [m6b] [mobiles] nearby (1):
+[22:27:41.809] INFO  [m6b]   Dog 0x00000968
+[22:27:41.999] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfighter03.loradan/state.json
+[22:27:42.306] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:27:44.306] INFO  [life] bank: two trips to 680,853 found no banker -- forgetting that place
+[22:27:44.306] INFO  [life] bank: returning to a remembered bank at 682,846 (trip 3)
+[22:27:44.306] INFO  [m6b] [travel] bank -> (682,846) r=2 from (680,853)
+[22:27:44.306] LOG   [m6b] event travel_start: label='bank' target=(682,846) radius=2 from=(680,853)
+[22:27:44.306] INFO  [m6b] [travel] mode walk             usable   <- chosen
+[22:27:44.306] INFO  [m6b] [travel] mode moongate         usable
+[22:27:44.306] INFO  [m6b] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:27:44.306] INFO  [m6b] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:27:44.306] LOG   [m6b] event travel_mode: walk
+[22:27:44.306] INFO  [m6b] [travel] plan bank: ok legs=1 ~7 tiles transit=0 nodes=0
+[22:27:44.368] INFO  [m6b] [action] goto finished at (680,853,0); target (680,853); ARRIVED (off by 0 tile(s))
+[22:27:44.368] LOG   [m6b] event goto_done: at=(680,853) target=(680,853) arrived=1 off=0
+[22:27:44.368] INFO  [m6b] [action] goto (682,846) from (680,853,0)
+[22:27:44.368] LOG   [m6b] event goto_start: target=(682,846) from=(680,853)
+[22:27:44.368] INFO  [m6b] [bot] running from (680,853,0) to (682,846)
+[22:27:44.368] INFO  [m6b] [bot] planning path to (682,846) in background
+[22:27:44.429] INFO  [m6b] [bot] replan to (682,846): 7 steps in 274.4us
+[22:27:46.394] INFO  [m6b] [travel] bank ARRIVED at (683,848,0)
+[22:27:46.394] LOG   [m6b] event travel_done: label='bank' ok=1 at=(683,848) legs=1 plans=1 why=''
+[22:27:46.454] INFO  [life] bank: arrived at 683,848 -- asking who is here
+[22:27:46.454] INFO  [m6b] [action] scanning nearby mobiles for names
+[22:27:46.454] INFO  [m6b] [mobiles] nearby (1):
+[22:27:46.454] INFO  [m6b]   Dog 0x00000968
+[22:27:47.333] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:27:47.472] INFO  [m6b] [bot] arrived at (682,846,0)
+[22:27:48.963] INFO  [life] bank: two trips to 682,846 found no banker -- forgetting that place
+[22:27:48.963] INFO  [life] bank: returning to a remembered bank at 675,839 (trip 4)
+[22:27:48.963] INFO  [m6b] [travel] bank -> (675,839) r=2 from (682,846)
+[22:27:48.963] LOG   [m6b] event travel_start: label='bank' target=(675,839) radius=2 from=(682,846)
+[22:27:48.963] INFO  [m6b] [travel] mode walk             usable   <- chosen
+[22:27:48.963] INFO  [m6b] [travel] mode moongate         usable
+[22:27:48.963] INFO  [m6b] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:27:48.963] INFO  [m6b] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:27:48.963] LOG   [m6b] event travel_mode: walk
+[22:27:48.963] INFO  [m6b] [travel] plan bank: ok legs=1 ~7 tiles transit=0 nodes=0
+[22:27:49.025] INFO  [m6b] [action] goto finished at (682,846,0); target (682,846); ARRIVED (off by 0 tile(s))
+[22:27:49.025] LOG   [m6b] event goto_done: at=(682,846) target=(682,846) arrived=1 off=0
+[22:27:49.026] INFO  [m6b] [action] goto (675,839) from (682,846,0)
+[22:27:49.026] LOG   [m6b] event goto_start: target=(675,839) from=(682,846)
+[22:27:49.026] INFO  [m6b] [bot] running from (682,846,0) to (675,839)
+[22:27:49.026] INFO  [m6b] [bot] planning path to (675,839) in background
+[22:27:49.088] INFO  [m6b] [bot] replan to (675,839): 10 steps in 150.1us
+[22:27:50.119] INFO  [m6b] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=6 in 74.2us
+[22:27:50.499] INFO  [m6b] [chat ascii] System: You are now under the protection of the town guards
+[22:27:51.632] INFO  [m6b] [travel] bank ARRIVED at (677,840,0)
+[22:27:51.632] LOG   [m6b] event travel_done: label='bank' ok=1 at=(677,840) legs=1 plans=1 why=''
+[22:27:51.694] INFO  [life] bank: arrived at 677,840 -- asking who is here
+[22:27:51.694] INFO  [m6b] [action] scanning nearby mobiles for names
+[22:27:51.694] INFO  [m6b] [mobiles] nearby (1):
+[22:27:51.694] INFO  [m6b]   Dog 0x00000968
+[22:27:52.338] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:27:53.017] INFO  [m6b] [bot] arrived at (675,839,0)
+[22:27:54.203] INFO  [life] goal_failed=BANK reason="4 trips and still no banker in reach; the pack stays full"
+[22:27:54.265] INFO  [life] goal=BANK reason="previous goal abandoned: no banker reachable"
+[22:27:54.265] INFO  [life] needs considered: NeedBank(deposit carried load 0.69) NeedEquipment(bandages BLOCKED 0.50) NeedLogs(logs 0.40) NeedTraining(Carpentry BLOCKED 0.39) NeedTraining(Healing BLOCKED 0.38) NeedTraining(Anatomy BLOCKED 0.37) NeedTrade(sell to a player 0.37) NeedGold(sell surplus BLOCKED 0.37) NeedTraining(Tactics BLOCKED 0.35) NeedSkillTraining(Carpentry 0.30) NeedTraining(Swordsmanship BLOCKED 0.28) NeedTraining(Lumberjacking BLOCKED 0.27) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools d
+[22:27:54.265] INFO  [life]   score=166.8
+[22:27:54.265] INFO  [life]   reason: NeedBank urgency 0.69 x 240 = 166.8
+[22:27:54.265] INFO  [life]   reason: weight=120/127 (94%) logs=31
+[22:27:54.265] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[22:27:54.265] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (11 x i_log spare, and no buyer known -- on this shard it is a player-market good)
+[22:27:54.265] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Carpentry 2.8 -> 100.0)
+[22:27:54.265] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[22:27:57.391] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:28:02.429] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:28:07.437] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:28:12.485] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:28:17.487] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:28:22.547] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:28:24.224] INFO  [life] bank: returning to a remembered bank at 675,839 (trip 1)
+[22:28:24.224] INFO  [m6b] [travel] bank -> (675,839) r=2 from (675,839)
+[22:28:24.224] LOG   [m6b] event travel_start: label='bank' target=(675,839) radius=2 from=(675,839)
+[22:28:24.224] INFO  [m6b] [travel] bank ARRIVED at (675,839,0)
+[22:28:24.224] LOG   [m6b] event travel_done: label='bank' ok=1 at=(675,839) legs=0 plans=0 why=''
+[22:28:26.250] INFO  [life] bank: arrived at 675,839 -- asking who is here
+[22:28:26.250] INFO  [m6b] [action] scanning nearby mobiles for names
+[22:28:26.251] INFO  [m6b] [mobiles] nearby (2):
+[22:28:26.251] INFO  [m6b]   Rat 0x00000023
+[22:28:26.251] INFO  [m6b]   Dog 0x00000968
+[22:28:27.582] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:28:28.798] INFO  [life] bank: returning to a remembered bank at 675,839 (trip 2)
+[22:28:28.798] INFO  [m6b] [travel] bank -> (675,839) r=2 from (675,839)
+[22:28:28.798] LOG   [m6b] event travel_start: label='bank' target=(675,839) radius=2 from=(675,839)
+[22:28:28.798] INFO  [m6b] [travel] bank ARRIVED at (675,839,0)
+[22:28:28.798] LOG   [m6b] event travel_done: label='bank' ok=1 at=(675,839) legs=0 plans=0 why=''
+[22:28:30.847] INFO  [life] bank: arrived at 675,839 -- asking who is here
+[22:28:30.847] INFO  [m6b] [action] scanning nearby mobiles for names
+[22:28:30.861] INFO  [m6b] [mobiles] nearby (2):
+[22:28:30.861] INFO  [m6b]   Rat 0x00000023
+[22:28:30.861] INFO  [m6b]   Dog 0x00000968
+[22:28:32.639] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:28:33.395] INFO  [life] bank: two trips to 675,839 found no banker -- forgetting that place
+[22:28:33.395] INFO  [life] bank: returning to a remembered bank at 680,832 (trip 3)
+[22:28:33.395] INFO  [m6b] [travel] bank -> (680,832) r=2 from (675,839)
+[22:28:33.395] LOG   [m6b] event travel_start: label='bank' target=(680,832) radius=2 from=(675,839)
+[22:28:33.395] INFO  [m6b] [travel] mode walk             usable   <- chosen
+[22:28:33.395] INFO  [m6b] [travel] mode moongate         usable
+[22:28:33.395] INFO  [m6b] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:28:33.395] INFO  [m6b] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:28:33.395] LOG   [m6b] event travel_mode: walk
+[22:28:33.395] INFO  [m6b] [travel] plan bank: ok legs=1 ~7 tiles transit=0 nodes=0
+[22:28:33.456] INFO  [m6b] [action] goto finished at (675,839,0); target (675,839); ARRIVED (off by 0 tile(s))
+[22:28:33.456] LOG   [m6b] event goto_done: at=(675,839) target=(675,839) arrived=1 off=0
+[22:28:33.456] INFO  [m6b] [action] goto (680,832) from (675,839,0)
+[22:28:33.456] LOG   [m6b] event goto_start: target=(680,832) from=(675,839)
+[22:28:33.456] INFO  [m6b] [bot] running from (675,839,0) to (680,832)
+[22:28:33.456] INFO  [m6b] [bot] planning path to (680,832) in background
+[22:28:33.518] INFO  [m6b] [bot] replan to (680,832): 8 steps in 188.8us
+[22:28:35.545] INFO  [m6b] [travel] bank ARRIVED at (679,834,0)
+[22:28:35.545] LOG   [m6b] event travel_done: label='bank' ok=1 at=(679,834) legs=1 plans=1 why=''
+[22:28:35.546] INFO  [life] bank: arrived at 679,834 -- asking who is here
+[22:28:35.546] INFO  [m6b] [action] scanning nearby mobiles for names
+[22:28:35.546] INFO  [m6b] [mobiles] nearby (2):
+[22:28:35.546] INFO  [m6b]   Dog 0x00000968
+[22:28:35.546] INFO  [m6b]   Rat 0x00000023
+[22:28:36.569] INFO  [m6b] [chat ascii] System: You have left the protection of the town guards
+[22:28:36.569] INFO  [m6b] [bot] arrived at (680,832,0)
+[22:28:37.691] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:28:38.076] INFO  [life] bank: two trips to 680,832 found no banker -- forgetting that place
+[22:28:38.076] INFO  [life] bank: returning to a remembered bank at 680,825 (trip 4)
+[22:28:38.076] INFO  [m6b] [travel] bank -> (680,825) r=2 from (680,832)
+[22:28:38.076] LOG   [m6b] event travel_start: label='bank' target=(680,825) radius=2 from=(680,832)
+[22:28:38.076] INFO  [m6b] [travel] mode walk             usable   <- chosen
+[22:28:38.076] INFO  [m6b] [travel] mode moongate         usable
+[22:28:38.076] INFO  [m6b] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:28:38.076] INFO  [m6b] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:28:38.076] LOG   [m6b] event travel_mode: walk
+[22:28:38.076] INFO  [m6b] [travel] plan bank: ok legs=1 ~7 tiles transit=0 nodes=0
+[22:28:38.137] INFO  [m6b] [action] goto finished at (680,832,0); target (680,832); ARRIVED (off by 0 tile(s))
+[22:28:38.137] LOG   [m6b] event goto_done: at=(680,832) target=(680,832) arrived=1 off=0
+[22:28:38.137] INFO  [m6b] [action] goto (680,825) from (680,832,0)
+[22:28:38.137] LOG   [m6b] event goto_start: target=(680,825) from=(680,832)
+[22:28:38.137] INFO  [m6b] [bot] running from (680,832,0) to (680,825)
+[22:28:38.137] INFO  [m6b] [bot] planning path to (680,825) in background
+[22:28:38.198] INFO  [m6b] [bot] replan to (680,825): 7 steps in 91.7us
+[22:28:40.152] INFO  [m6b] [travel] bank ARRIVED at (681,826,0)
+[22:28:40.152] LOG   [m6b] event travel_done: label='bank' ok=1 at=(681,826) legs=1 plans=1 why=''
+[22:28:40.212] INFO  [life] bank: arrived at 681,826 -- asking who is here
+[22:28:40.212] INFO  [m6b] [action] scanning nearby mobiles for names
+[22:28:40.212] INFO  [m6b] [mobiles] nearby (2):
+[22:28:40.212] INFO  [m6b]   Dog 0x00000968
+[22:28:40.212] INFO  [m6b]   Rat 0x00000023
+[22:28:40.949] INFO  [m6b] [bot] arrived at (680,825,0)
+[22:28:41.998] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfighter03.loradan/state.json
+[22:28:42.735] INFO  [life] goal_failed=BANK reason="4 trips and still no banker in reach; the pack stays full"
+[22:28:42.735] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:28:42.797] INFO  [life] goal=BANK reason="previous goal abandoned: no banker reachable"
+[22:28:42.797] INFO  [life] needs considered: NeedBank(deposit carried load 0.69) NeedEquipment(bandages BLOCKED 0.50) NeedLogs(logs 0.40) NeedTraining(Carpentry BLOCKED 0.39) NeedTraining(Healing BLOCKED 0.38) NeedTraining(Anatomy BLOCKED 0.37) NeedTrade(sell to a player 0.37) NeedGold(sell surplus BLOCKED 0.37) NeedTraining(Tactics BLOCKED 0.35) NeedSkillTraining(Carpentry 0.30) NeedTraining(Swordsmanship BLOCKED 0.28) NeedTraining(Lumberjacking BLOCKED 0.27) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools d
+[22:28:42.797] INFO  [life]   score=166.8
+[22:28:42.797] INFO  [life]   reason: NeedBank urgency 0.69 x 240 = 166.8
+[22:28:42.797] INFO  [life]   reason: weight=120/127 (94%) logs=31
+[22:28:42.797] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[22:28:42.797] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (11 x i_log spare, and no buyer known -- on this shard it is a player-market good)
+[22:28:42.797] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Carpentry 2.8 -> 100.0)
+[22:28:42.797] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[22:28:47.789] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:28:52.811] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:28:57.861] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:29:02.868] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:29:07.900] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:29:12.764] INFO  [life] bank: returning to a remembered bank at 680,825 (trip 1)
+[22:29:12.764] INFO  [m6b] [travel] bank -> (680,825) r=2 from (680,825)
+[22:29:12.764] LOG   [m6b] event travel_start: label='bank' target=(680,825) radius=2 from=(680,825)
+[22:29:12.764] INFO  [m6b] [travel] bank ARRIVED at (680,825,0)
+[22:29:12.764] LOG   [m6b] event travel_done: label='bank' ok=1 at=(680,825) legs=0 plans=0 why=''
+[22:29:12.947] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:29:14.766] INFO  [life] bank: arrived at 680,825 -- asking who is here
+[22:29:14.766] INFO  [m6b] [action] scanning nearby mobiles for names
+[22:29:14.780] INFO  [m6b] [mobiles] nearby (2):
+[22:29:14.780] INFO  [m6b]   Dog 0x00000968
+[22:29:14.780] INFO  [m6b]   Rat 0x00000023
+[22:29:17.314] INFO  [life] bank: returning to a remembered bank at 680,825 (trip 2)
+[22:29:17.314] INFO  [m6b] [travel] bank -> (680,825) r=2 from (680,825)
+[22:29:17.314] LOG   [m6b] event travel_start: label='bank' target=(680,825) radius=2 from=(680,825)
+[22:29:17.314] INFO  [m6b] [travel] bank ARRIVED at (680,825,0)
+[22:29:17.314] LOG   [m6b] event travel_done: label='bank' ok=1 at=(680,825) legs=0 plans=0 why=''
+[22:29:17.989] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:29:19.343] INFO  [life] bank: arrived at 680,825 -- asking who is here
+[22:29:19.343] INFO  [m6b] [action] scanning nearby mobiles for names
+[22:29:19.358] INFO  [m6b] [mobiles] nearby (2):
+[22:29:19.358] INFO  [m6b]   Rat 0x00000023
+[22:29:19.358] INFO  [m6b]   Dog 0x00000968
+[22:29:21.895] INFO  [life] bank: two trips to 680,825 found no banker -- forgetting that place
+[22:29:21.895] INFO  [life] bank: returning to a remembered bank at 681,818 (trip 3)
+[22:29:21.895] INFO  [m6b] [travel] bank -> (681,818) r=2 from (680,825)
+[22:29:21.895] LOG   [m6b] event travel_start: label='bank' target=(681,818) radius=2 from=(680,825)
+[22:29:21.895] INFO  [m6b] [travel] mode walk             usable   <- chosen
+[22:29:21.895] INFO  [m6b] [travel] mode moongate         usable
+[22:29:21.895] INFO  [m6b] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:29:21.895] INFO  [m6b] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:29:21.895] LOG   [m6b] event travel_mode: walk
+[22:29:21.895] INFO  [m6b] [travel] plan bank: ok legs=1 ~7 tiles transit=0 nodes=0
+[22:29:21.956] INFO  [m6b] [action] goto finished at (680,825,0); target (680,825); ARRIVED (off by 0 tile(s))
+[22:29:21.956] LOG   [m6b] event goto_done: at=(680,825) target=(680,825) arrived=1 off=0
+[22:29:21.956] INFO  [m6b] [action] goto (681,818) from (680,825,0)
+[22:29:21.956] LOG   [m6b] event goto_start: target=(681,818) from=(680,825)
+[22:29:21.956] INFO  [m6b] [bot] running from (680,825,0) to (681,818)
+[22:29:21.956] INFO  [m6b] [bot] planning path to (681,818) in background
+[22:29:22.017] INFO  [m6b] [bot] replan to (681,818): 7 steps in 111.8us
+[22:29:22.710] INFO  [m6b] [chat ascii] System: You are now under the protection of the town guards
+[22:29:23.021] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:29:23.990] INFO  [m6b] [travel] bank ARRIVED at (679,820,0)
+[22:29:23.990] LOG   [m6b] event travel_done: label='bank' ok=1 at=(679,820) legs=1 plans=1 why=''
+[22:29:24.052] INFO  [life] bank: arrived at 679,820 -- asking who is here
+[22:29:24.052] INFO  [m6b] [action] scanning nearby mobiles for names
+[22:29:24.053] INFO  [m6b] [mobiles] nearby (2):
+[22:29:24.053] INFO  [m6b]   Rat 0x00000023
+[22:29:24.053] INFO  [m6b]   Dog 0x00000968
+[22:29:24.067] INFO  [m6b] [chat ascii] System: You have left the protection of the town guards
+[22:29:24.512] INFO  [m6b] [bot] arrived at (681,818,0)
+[22:29:26.570] INFO  [life] bank: two trips to 681,818 found no banker -- forgetting that place
+[22:29:26.570] INFO  [life] bank: returning to a remembered bank at 675,810 (trip 4)
+[22:29:26.570] INFO  [m6b] [travel] bank -> (675,810) r=2 from (681,818)
+[22:29:26.570] LOG   [m6b] event travel_start: label='bank' target=(675,810) radius=2 from=(681,818)
+[22:29:26.570] INFO  [m6b] [travel] mode walk             usable   <- chosen
+[22:29:26.570] INFO  [m6b] [travel] mode moongate         usable
+[22:29:26.570] INFO  [m6b] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:29:26.570] INFO  [m6b] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:29:26.570] LOG   [m6b] event travel_mode: walk
+[22:29:26.570] INFO  [m6b] [travel] plan bank: ok legs=1 ~8 tiles transit=0 nodes=0
+[22:29:26.633] INFO  [m6b] [action] goto finished at (681,818,0); target (681,818); ARRIVED (off by 0 tile(s))
+[22:29:26.633] LOG   [m6b] event goto_done: at=(681,818) target=(681,818) arrived=1 off=0
+[22:29:26.633] INFO  [m6b] [action] goto (675,810) from (681,818,0)
+[22:29:26.633] LOG   [m6b] event goto_start: target=(675,810) from=(681,818)
+[22:29:26.633] INFO  [m6b] [bot] running from (681,818,0) to (675,810)
+[22:29:26.633] INFO  [m6b] [bot] planning path to (675,810) in background
+[22:29:26.694] INFO  [m6b] [bot] replan to (675,810): 8 steps in 419.4us
+[22:29:27.662] INFO  [m6b] [chat ascii] System: You are now under the protection of the town guards
+[22:29:28.045] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:29:28.663] INFO  [m6b] [travel] bank ARRIVED at (676,811,0)
+[22:29:28.663] LOG   [m6b] event travel_done: label='bank' ok=1 at=(676,811) legs=1 plans=1 why=''
+[22:29:28.724] INFO  [life] bank: arrived at 676,811 -- asking who is here
+[22:29:28.724] INFO  [m6b] [action] scanning nearby mobiles for names
+[22:29:28.724] INFO  [m6b] [mobiles] no mobiles cached yet
+[22:29:28.802] INFO  [m6b] [bot] arrived at (675,810,0)
+[22:29:31.263] INFO  [life] goal_failed=BANK reason="4 trips and still no banker in reach; the pack stays full"
+[22:29:31.325] INFO  [life] goal=BANK reason="previous goal abandoned: no banker reachable"
+[22:29:31.325] INFO  [life] needs considered: NeedBank(deposit carried load 0.69) NeedEquipment(bandages BLOCKED 0.50) NeedLogs(logs 0.40) NeedTraining(Carpentry BLOCKED 0.39) NeedTraining(Healing BLOCKED 0.38) NeedTraining(Anatomy BLOCKED 0.37) NeedTrade(sell to a player 0.37) NeedGold(sell surplus BLOCKED 0.37) NeedTraining(Tactics BLOCKED 0.35) NeedSkillTraining(Carpentry 0.30) NeedTraining(Swordsmanship BLOCKED 0.28) NeedTraining(Lumberjacking BLOCKED 0.27) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools d
+[22:29:31.325] INFO  [life]   score=166.8
+[22:29:31.325] INFO  [life]   reason: NeedBank urgency 0.69 x 240 = 166.8
+[22:29:31.325] INFO  [life]   reason: weight=120/127 (94%) logs=31
+[22:29:31.325] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[22:29:31.325] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (11 x i_log spare, and no buyer known -- on this shard it is a player-market good)
+[22:29:31.325] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Carpentry 2.8 -> 100.0)
+[22:29:31.325] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[22:29:33.048] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:29:38.076] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:29:42.027] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfighter03.loradan/state.json
+[22:29:43.131] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:29:48.139] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:29:53.155] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:29:58.189] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:30:01.319] INFO  [life] bank: returning to a remembered bank at 675,810 (trip 1)
+[22:30:01.319] INFO  [m6b] [travel] bank -> (675,810) r=2 from (675,810)
+[22:30:01.319] LOG   [m6b] event travel_start: label='bank' target=(675,810) radius=2 from=(675,810)
+[22:30:01.319] INFO  [m6b] [travel] bank ARRIVED at (675,810,0)
+[22:30:01.319] LOG   [m6b] event travel_done: label='bank' ok=1 at=(675,810) legs=0 plans=0 why=''
+[22:30:03.229] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:30:03.353] INFO  [life] bank: arrived at 675,810 -- asking who is here
+[22:30:03.353] INFO  [m6b] [action] scanning nearby mobiles for names
+[22:30:03.353] INFO  [m6b] [mobiles] nearby (1):
+[22:30:03.353] INFO  [m6b]   Rat 0x00000023
+[22:30:05.882] INFO  [life] bank: returning to a remembered bank at 675,810 (trip 2)
+[22:30:05.882] INFO  [m6b] [travel] bank -> (675,810) r=2 from (675,810)
+[22:30:05.882] LOG   [m6b] event travel_start: label='bank' target=(675,810) radius=2 from=(675,810)
+[22:30:05.882] INFO  [m6b] [travel] bank ARRIVED at (675,810,0)
+[22:30:05.882] LOG   [m6b] event travel_done: label='bank' ok=1 at=(675,810) legs=0 plans=0 why=''
+[22:30:07.940] INFO  [life] bank: arrived at 675,810 -- asking who is here
+[22:30:07.940] INFO  [m6b] [action] scanning nearby mobiles for names
+[22:30:07.955] INFO  [m6b] [mobiles] nearby (1):
+[22:30:07.956] INFO  [m6b]   Rat 0x00000023
+[22:30:08.265] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:30:10.485] INFO  [life] bank: two trips to 675,810 found no banker -- forgetting that place
+[22:30:10.485] INFO  [life] bank: returning to a remembered bank at 668,806 (trip 3)
+[22:30:10.485] INFO  [m6b] [travel] bank -> (668,806) r=2 from (675,810)
+[22:30:10.485] LOG   [m6b] event travel_start: label='bank' target=(668,806) radius=2 from=(675,810)
+[22:30:10.485] INFO  [m6b] [travel] mode walk             usable   <- chosen
+[22:30:10.485] INFO  [m6b] [travel] mode moongate         usable
+[22:30:10.485] INFO  [m6b] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:30:10.485] INFO  [m6b] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:30:10.485] LOG   [m6b] event travel_mode: walk
+[22:30:10.485] INFO  [m6b] [travel] plan bank: ok legs=1 ~7 tiles transit=0 nodes=0
+[22:30:10.546] INFO  [m6b] [action] goto finished at (675,810,0); target (675,810); ARRIVED (off by 0 tile(s))
+[22:30:10.546] LOG   [m6b] event goto_done: at=(675,810) target=(675,810) arrived=1 off=0
+[22:30:10.546] INFO  [m6b] [action] goto (668,806) from (675,810,0)
+[22:30:10.546] LOG   [m6b] event goto_start: target=(668,806) from=(675,810)
+[22:30:10.546] INFO  [m6b] [bot] running from (675,810,0) to (668,806)
+[22:30:10.546] INFO  [m6b] [bot] planning path to (668,806) in background
+[22:30:10.607] INFO  [m6b] [bot] replan to (668,806): 9 steps in 204.9us
+[22:30:13.021] INFO  [m6b] [travel] bank ARRIVED at (669,806,0)
+[22:30:13.022] LOG   [m6b] event travel_done: label='bank' ok=1 at=(669,806) legs=1 plans=1 why=''
+[22:30:13.082] INFO  [life] bank: arrived at 669,806 -- asking who is here
+[22:30:13.083] INFO  [m6b] [action] scanning nearby mobiles for names
+[22:30:13.098] INFO  [m6b] [mobiles] nearby (3):
+[22:30:13.098] INFO  [m6b]   Basia 0x00001858
+[22:30:13.098] INFO  [m6b]   Rat 0x00000023
+[22:30:13.098] INFO  [m6b]   Filbert 0x0000183F
+[22:30:13.177] INFO  [m6b] [bot] arrived at (668,806,0)
+[22:30:13.300] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:30:15.625] INFO  [life] bank: two trips to 668,806 found no banker -- forgetting that place
+[22:30:15.625] INFO  [life] bank: returning to a remembered bank at 661,806 (trip 4)
+[22:30:15.625] INFO  [m6b] [travel] bank -> (661,806) r=2 from (668,806)
+[22:30:15.625] LOG   [m6b] event travel_start: label='bank' target=(661,806) radius=2 from=(668,806)
+[22:30:15.625] INFO  [m6b] [travel] mode walk             usable   <- chosen
+[22:30:15.625] INFO  [m6b] [travel] mode moongate         usable
+[22:30:15.625] INFO  [m6b] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:30:15.625] INFO  [m6b] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:30:15.625] LOG   [m6b] event travel_mode: walk
+[22:30:15.625] INFO  [m6b] [travel] plan bank: ok legs=1 ~7 tiles transit=0 nodes=0
+[22:30:15.626] INFO  [m6b] [action] goto finished at (668,806,0); target (668,806); ARRIVED (off by 0 tile(s))
+[22:30:15.626] LOG   [m6b] event goto_done: at=(668,806) target=(668,806) arrived=1 off=0
+[22:30:15.626] INFO  [m6b] [action] goto (661,806) from (668,806,0)
+[22:30:15.626] LOG   [m6b] event goto_start: target=(661,806) from=(668,806)
+[22:30:15.626] INFO  [m6b] [bot] running from (668,806,0) to (661,806)
+[22:30:15.626] INFO  [m6b] [bot] planning path to (661,806) in background
+[22:30:15.686] INFO  [m6b] [bot] replan to (661,806): 7 steps in 198.0us
+[22:30:17.149] INFO  [m6b] [travel] bank ARRIVED at (662,806,0)
+[22:30:17.149] LOG   [m6b] event travel_done: label='bank' ok=1 at=(662,806) legs=1 plans=1 why=''
+[22:30:17.270] INFO  [m6b] [bot] arrived at (661,806,0)
+[22:30:17.636] INFO  [life] bank: arrived at 661,806 -- asking who is here
+[22:30:17.636] INFO  [m6b] [action] scanning nearby mobiles for names
+[22:30:17.650] INFO  [m6b] [mobiles] nearby (3):
+[22:30:17.650] INFO  [m6b]   Basia 0x00001858
+[22:30:17.650] INFO  [m6b]   Rat 0x00000023
+[22:30:17.650] INFO  [m6b]   Filbert 0x0000183F
+[22:30:18.311] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:30:20.156] INFO  [life] goal_failed=BANK reason="4 trips and still no banker in reach; the pack stays full"
+[22:30:20.218] INFO  [life] goal=BANK reason="previous goal abandoned: no banker reachable"
+[22:30:20.218] INFO  [life] needs considered: NeedBank(deposit carried load 0.69) NeedEquipment(bandages BLOCKED 0.50) NeedLogs(logs 0.40) NeedTraining(Carpentry BLOCKED 0.39) NeedTraining(Healing BLOCKED 0.38) NeedTraining(Anatomy BLOCKED 0.37) NeedTrade(sell to a player 0.37) NeedGold(sell surplus BLOCKED 0.37) NeedTraining(Tactics BLOCKED 0.35) NeedSkillTraining(Carpentry 0.30) NeedTraining(Swordsmanship BLOCKED 0.28) NeedTraining(Lumberjacking BLOCKED 0.27) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools d
+[22:30:20.218] INFO  [life]   score=166.8
+[22:30:20.218] INFO  [life]   reason: NeedBank urgency 0.69 x 240 = 166.8
+[22:30:20.218] INFO  [life]   reason: weight=120/127 (94%) logs=31
+[22:30:20.218] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[22:30:20.218] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (11 x i_log spare, and no buyer known -- on this shard it is a player-market good)
+[22:30:20.218] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Carpentry 2.8 -> 100.0)
+[22:30:20.218] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[22:30:23.342] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:30:28.402] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:30:33.455] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:30:38.480] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:30:42.063] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfighter03.loradan/state.json
+[22:30:43.538] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:30:48.593] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:30:50.204] INFO  [life] bank: returning to a remembered bank at 661,806 (trip 1)
+[22:30:50.204] INFO  [m6b] [travel] bank -> (661,806) r=2 from (661,806)
+[22:30:50.204] LOG   [m6b] event travel_start: label='bank' target=(661,806) radius=2 from=(661,806)
+[22:30:50.204] INFO  [m6b] [travel] bank ARRIVED at (661,806,0)
+[22:30:50.204] LOG   [m6b] event travel_done: label='bank' ok=1 at=(661,806) legs=0 plans=0 why=''
+[22:30:52.261] INFO  [life] bank: arrived at 661,806 -- asking who is here
+[22:30:52.261] INFO  [m6b] [action] scanning nearby mobiles for names
+[22:30:52.261] INFO  [m6b] [mobiles] nearby (2):
+[22:30:52.261] INFO  [m6b]   Basia 0x00001858
+[22:30:52.261] INFO  [m6b]   Filbert 0x0000183F
+[22:30:53.601] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:30:54.766] INFO  [life] bank: returning to a remembered bank at 661,806 (trip 2)
+[22:30:54.766] INFO  [m6b] [travel] bank -> (661,806) r=2 from (661,806)
+[22:30:54.766] LOG   [m6b] event travel_start: label='bank' target=(661,806) radius=2 from=(661,806)
+[22:30:54.766] INFO  [m6b] [travel] bank ARRIVED at (661,806,0)
+[22:30:54.766] LOG   [m6b] event travel_done: label='bank' ok=1 at=(661,806) legs=0 plans=0 why=''
+[22:30:56.802] INFO  [life] bank: arrived at 661,806 -- asking who is here
+[22:30:56.802] INFO  [m6b] [action] scanning nearby mobiles for names
+[22:30:56.817] INFO  [m6b] [mobiles] nearby (2):
+[22:30:56.817] INFO  [m6b]   Basia 0x00001858
+[22:30:56.817] INFO  [m6b]   Filbert 0x0000183F
+[22:30:58.659] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:30:59.336] INFO  [life] bank: two trips to 661,806 found no banker -- forgetting that place
+[22:30:59.336] INFO  [life] bank: returning to a remembered bank at 654,806 (trip 3)
+[22:30:59.336] INFO  [m6b] [travel] bank -> (654,806) r=2 from (661,806)
+[22:30:59.336] LOG   [m6b] event travel_start: label='bank' target=(654,806) radius=2 from=(661,806)
+[22:30:59.336] INFO  [m6b] [travel] mode walk             usable   <- chosen
+[22:30:59.336] INFO  [m6b] [travel] mode moongate         usable
+[22:30:59.336] INFO  [m6b] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:30:59.336] INFO  [m6b] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:30:59.336] LOG   [m6b] event travel_mode: walk
+[22:30:59.336] INFO  [m6b] [travel] plan bank: ok legs=1 ~7 tiles transit=0 nodes=0
+[22:30:59.396] INFO  [m6b] [action] goto finished at (661,806,0); target (661,806); ARRIVED (off by 0 tile(s))
+[22:30:59.396] LOG   [m6b] event goto_done: at=(661,806) target=(661,806) arrived=1 off=0
+[22:30:59.396] INFO  [m6b] [action] goto (654,806) from (661,806,0)
+[22:30:59.396] LOG   [m6b] event goto_start: target=(654,806) from=(661,806)
+[22:30:59.396] INFO  [m6b] [bot] running from (661,806,0) to (654,806)
+[22:30:59.396] INFO  [m6b] [bot] planning path to (654,806) in background
+[22:30:59.457] INFO  [m6b] [bot] replan to (654,806): 7 steps in 102.1us
+[22:31:00.903] INFO  [m6b] [travel] bank ARRIVED at (655,806,0)
+[22:31:00.903] LOG   [m6b] event travel_done: label='bank' ok=1 at=(655,806) legs=1 plans=1 why=''
+[22:31:01.027] INFO  [m6b] [bot] arrived at (654,806,0)
+[22:31:01.394] INFO  [life] bank: arrived at 654,806 -- asking who is here
+[22:31:01.394] INFO  [m6b] [action] scanning nearby mobiles for names
+[22:31:01.409] INFO  [m6b] [mobiles] nearby (2):
+[22:31:01.409] INFO  [m6b]   Basia 0x00001858
+[22:31:01.409] INFO  [m6b]   Filbert 0x0000183F
+[22:31:03.683] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:31:03.928] INFO  [life] bank: two trips to 654,806 found no banker -- forgetting that place
+[22:31:03.928] INFO  [life] bank: returning to a remembered bank at 647,806 (trip 4)
+[22:31:03.928] INFO  [m6b] [travel] bank -> (647,806) r=2 from (654,806)
+[22:31:03.928] LOG   [m6b] event travel_start: label='bank' target=(647,806) radius=2 from=(654,806)
+[22:31:03.928] INFO  [m6b] [travel] mode walk             usable   <- chosen
+[22:31:03.928] INFO  [m6b] [travel] mode moongate         usable
+[22:31:03.928] INFO  [m6b] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:31:03.928] INFO  [m6b] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:31:03.928] LOG   [m6b] event travel_mode: walk
+[22:31:03.928] INFO  [m6b] [travel] plan bank: ok legs=1 ~7 tiles transit=0 nodes=0
+[22:31:03.990] INFO  [m6b] [action] goto finished at (654,806,0); target (654,806); ARRIVED (off by 0 tile(s))
+[22:31:03.990] LOG   [m6b] event goto_done: at=(654,806) target=(654,806) arrived=1 off=0
+[22:31:03.990] INFO  [m6b] [action] goto (647,806) from (654,806,0)
+[22:31:03.990] LOG   [m6b] event goto_start: target=(647,806) from=(654,806)
+[22:31:03.990] INFO  [m6b] [bot] running from (654,806,0) to (647,806)
+[22:31:03.990] INFO  [m6b] [bot] planning path to (647,806) in background
+[22:31:04.050] INFO  [m6b] [bot] replan to (647,806): 7 steps in 151.3us
+[22:31:05.462] INFO  [m6b] [travel] bank ARRIVED at (648,806,0)
+[22:31:05.462] LOG   [m6b] event travel_done: label='bank' ok=1 at=(648,806) legs=1 plans=1 why=''
+[22:31:05.664] INFO  [m6b] [bot] arrived at (647,806,0)
+[22:31:05.942] INFO  [life] bank: arrived at 647,806 -- asking who is here
+[22:31:05.942] INFO  [m6b] [action] scanning nearby mobiles for names
+[22:31:05.942] INFO  [m6b] [action] requested 1 paperdoll(s) for trade titles
+[22:31:05.942] INFO  [m6b] [mobiles] nearby (2):
+[22:31:05.942] INFO  [m6b]   Basia 0x00001858
+[22:31:05.942] INFO  [m6b]   Filbert 0x0000183F
+[22:31:05.956] INFO  [m6b] [0x20] player @(647,806,0) facing=4
+[22:31:05.956] INFO  [m6b] [0x88] paperdoll 0x00001858: "Basia, the banker"
+[22:31:05.956] INFO  [m6b] [world] Basia, the banker is a banker at (648,817)
+[22:31:08.475] INFO  [m6b] [ACTION] open_bank start
+[22:31:08.476] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:31:08.476] INFO  [m6b] [chat uni  ] : bank
+[22:31:08.721] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:31:11.025] LOG   [m6b] event action_result: open_bank invalid_state took=2549ms superseded
+[22:31:11.025] INFO  [m6b] [ACTION] open_bank start
+[22:31:11.025] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:31:11.039] INFO  [m6b] [chat uni  ] : bank
+[22:31:13.566] LOG   [m6b] event action_result: open_bank invalid_state took=2542ms superseded
+[22:31:13.566] INFO  [m6b] [ACTION] open_bank start
+[22:31:13.566] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:31:13.566] INFO  [m6b] [chat uni  ] : bank
+[22:31:13.748] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:31:16.080] LOG   [m6b] event action_result: open_bank invalid_state took=2511ms superseded
+[22:31:16.080] INFO  [m6b] [ACTION] open_bank start
+[22:31:16.080] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:31:16.080] INFO  [m6b] [chat uni  ] : bank
+[22:31:18.629] LOG   [m6b] event action_result: open_bank invalid_state took=2549ms superseded
+[22:31:18.629] INFO  [m6b] [ACTION] open_bank start
+[22:31:18.629] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:31:18.644] INFO  [m6b] [chat uni  ] : bank
+[22:31:18.768] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:31:21.184] LOG   [m6b] event action_result: open_bank invalid_state took=2555ms superseded
+[22:31:21.184] INFO  [m6b] [ACTION] open_bank start
+[22:31:21.184] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:31:21.199] INFO  [m6b] [chat uni  ] : bank
+[22:31:23.693] LOG   [m6b] event action_result: open_bank invalid_state took=2509ms superseded
+[22:31:23.693] INFO  [m6b] [ACTION] open_bank start
+[22:31:23.693] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:31:23.708] INFO  [m6b] [chat uni  ] : bank
+[22:31:23.770] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:31:26.222] LOG   [m6b] event action_result: open_bank invalid_state took=2529ms superseded
+[22:31:26.222] INFO  [m6b] [ACTION] open_bank start
+[22:31:26.222] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:31:26.222] INFO  [m6b] [chat uni  ] : bank
+[22:31:28.773] LOG   [m6b] event action_result: open_bank invalid_state took=2551ms superseded
+[22:31:28.773] INFO  [m6b] [ACTION] open_bank start
+[22:31:28.773] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:31:28.773] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:31:28.789] INFO  [m6b] [chat uni  ] : bank
+[22:31:31.315] LOG   [m6b] event action_result: open_bank invalid_state took=2542ms superseded
+[22:31:31.315] INFO  [m6b] [ACTION] open_bank start
+[22:31:31.315] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:31:31.316] INFO  [m6b] [chat uni  ] : bank
+[22:31:33.776] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:31:33.838] LOG   [m6b] event action_result: open_bank invalid_state took=2523ms superseded
+[22:31:33.838] INFO  [m6b] [ACTION] open_bank start
+[22:31:33.838] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:31:33.838] INFO  [m6b] [chat uni  ] : bank
+[22:31:36.357] LOG   [m6b] event action_result: open_bank invalid_state took=2519ms superseded
+[22:31:36.357] INFO  [m6b] [ACTION] open_bank start
+[22:31:36.357] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:31:36.358] INFO  [m6b] [chat uni  ] : bank
+[22:31:38.797] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:31:38.860] LOG   [m6b] event action_result: open_bank invalid_state took=2503ms superseded
+[22:31:38.860] INFO  [m6b] [ACTION] open_bank start
+[22:31:38.860] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:31:38.874] INFO  [m6b] [chat uni  ] : bank
+[22:31:41.379] LOG   [m6b] event action_result: open_bank invalid_state took=2519ms superseded
+[22:31:41.379] INFO  [m6b] [ACTION] open_bank start
+[22:31:41.379] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:31:41.379] INFO  [m6b] [chat uni  ] : bank
+[22:31:42.122] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfighter03.loradan/state.json
+[22:31:43.845] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:31:43.906] LOG   [m6b] event action_result: open_bank invalid_state took=2527ms superseded
+[22:31:43.906] INFO  [m6b] [ACTION] open_bank start
+[22:31:43.906] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:31:43.906] INFO  [m6b] [chat uni  ] : bank
+[22:31:46.433] LOG   [m6b] event action_result: open_bank invalid_state took=2527ms superseded
+[22:31:46.433] INFO  [m6b] [ACTION] open_bank start
+[22:31:46.433] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:31:46.433] INFO  [m6b] [chat uni  ] : bank
+[22:31:48.862] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:31:48.939] LOG   [m6b] event action_result: open_bank invalid_state took=2506ms superseded
+[22:31:48.939] INFO  [m6b] [ACTION] open_bank start
+[22:31:48.939] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:31:48.954] INFO  [m6b] [chat uni  ] : bank
+[22:31:51.479] LOG   [m6b] event action_result: open_bank invalid_state took=2540ms superseded
+[22:31:51.479] INFO  [m6b] [ACTION] open_bank start
+[22:31:51.479] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:31:51.479] INFO  [m6b] [chat uni  ] : bank
+[22:31:53.871] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:31:53.995] LOG   [m6b] event action_result: open_bank invalid_state took=2516ms superseded
+[22:31:53.995] INFO  [m6b] [ACTION] open_bank start
+[22:31:53.995] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:31:53.995] INFO  [m6b] [chat uni  ] : bank
+[22:31:56.539] LOG   [m6b] event action_result: open_bank invalid_state took=2544ms superseded
+[22:31:56.539] INFO  [m6b] [ACTION] open_bank start
+[22:31:56.539] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:31:56.539] INFO  [m6b] [chat uni  ] : bank
+[22:31:58.911] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:31:59.094] LOG   [m6b] event action_result: open_bank invalid_state took=2555ms superseded
+[22:31:59.094] INFO  [m6b] [ACTION] open_bank start
+[22:31:59.094] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:31:59.109] INFO  [m6b] [chat uni  ] : bank
+[22:32:01.648] LOG   [m6b] event action_result: open_bank invalid_state took=2554ms superseded
+[22:32:01.648] INFO  [m6b] [ACTION] open_bank start
+[22:32:01.648] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:32:01.648] INFO  [m6b] [chat uni  ] : bank
+[22:32:03.921] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:32:04.167] LOG   [m6b] event action_result: open_bank invalid_state took=2519ms superseded
+[22:32:04.167] INFO  [m6b] [ACTION] open_bank start
+[22:32:04.167] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:32:04.168] INFO  [m6b] [chat uni  ] : bank
+[22:32:06.690] LOG   [m6b] event action_result: open_bank invalid_state took=2523ms superseded
+[22:32:06.690] INFO  [m6b] [ACTION] open_bank start
+[22:32:06.690] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:32:06.690] INFO  [m6b] [chat uni  ] : bank
+[22:32:08.939] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:32:09.249] LOG   [m6b] event action_result: open_bank invalid_state took=2558ms superseded
+[22:32:09.249] INFO  [m6b] [ACTION] open_bank start
+[22:32:09.249] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:32:09.249] INFO  [m6b] [chat uni  ] : bank
+[22:32:11.779] LOG   [m6b] event action_result: open_bank invalid_state took=2531ms superseded
+[22:32:11.779] INFO  [m6b] [ACTION] open_bank start
+[22:32:11.779] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:32:11.779] INFO  [m6b] [chat uni  ] : bank
+[22:32:13.960] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:32:14.329] LOG   [m6b] event action_result: open_bank invalid_state took=2550ms superseded
+[22:32:14.329] INFO  [m6b] [ACTION] open_bank start
+[22:32:14.329] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:32:14.344] INFO  [m6b] [chat uni  ] : bank
+[22:32:16.856] LOG   [m6b] event action_result: open_bank invalid_state took=2527ms superseded
+[22:32:16.856] INFO  [m6b] [ACTION] open_bank start
+[22:32:16.856] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:32:16.871] INFO  [m6b] [chat uni  ] : bank
+[22:32:19.017] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:32:19.387] LOG   [m6b] event action_result: open_bank invalid_state took=2531ms superseded
+[22:32:19.387] INFO  [m6b] [ACTION] open_bank start
+[22:32:19.387] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:32:19.387] INFO  [m6b] [chat uni  ] : bank
+[22:32:21.936] LOG   [m6b] event action_result: open_bank invalid_state took=2549ms superseded
+[22:32:21.936] INFO  [m6b] [ACTION] open_bank start
+[22:32:21.936] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:32:21.936] INFO  [m6b] [chat uni  ] : bank
+[22:32:24.042] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:32:24.469] LOG   [m6b] event action_result: open_bank invalid_state took=2533ms superseded
+[22:32:24.469] INFO  [m6b] [ACTION] open_bank start
+[22:32:24.469] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:32:24.483] INFO  [m6b] [chat uni  ] : bank
+[22:32:26.974] LOG   [m6b] event action_result: open_bank invalid_state took=2505ms superseded
+[22:32:26.974] INFO  [m6b] [ACTION] open_bank start
+[22:32:26.974] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:32:26.975] INFO  [m6b] [chat uni  ] : bank
+[22:32:29.068] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:32:29.514] LOG   [m6b] event action_result: open_bank invalid_state took=2540ms superseded
+[22:32:29.514] INFO  [m6b] [ACTION] open_bank start
+[22:32:29.514] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:32:29.529] INFO  [m6b] [chat uni  ] : bank
+[22:32:32.017] LOG   [m6b] event action_result: open_bank invalid_state took=2503ms superseded
+[22:32:32.017] INFO  [m6b] [ACTION] open_bank start
+[22:32:32.017] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:32:32.017] INFO  [m6b] [chat uni  ] : bank
+[22:32:34.106] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:32:34.538] LOG   [m6b] event action_result: open_bank invalid_state took=2520ms superseded
+[22:32:34.538] INFO  [m6b] [ACTION] open_bank start
+[22:32:34.538] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:32:34.538] INFO  [m6b] [chat uni  ] : bank
+[22:32:37.083] LOG   [m6b] event action_result: open_bank invalid_state took=2546ms superseded
+[22:32:37.083] INFO  [m6b] [ACTION] open_bank start
+[22:32:37.083] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:32:37.083] INFO  [m6b] [chat uni  ] : bank
+[22:32:39.140] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:32:39.631] LOG   [m6b] event action_result: open_bank invalid_state took=2548ms superseded
+[22:32:39.631] INFO  [m6b] [ACTION] open_bank start
+[22:32:39.631] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:32:39.646] INFO  [m6b] [chat uni  ] : bank
+[22:32:42.176] LOG   [m6b] event action_result: open_bank invalid_state took=2545ms superseded
+[22:32:42.176] INFO  [m6b] [ACTION] open_bank start
+[22:32:42.176] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:32:42.178] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfighter03.loradan/state.json
+[22:32:42.178] INFO  [m6b] [chat uni  ] : bank
+[22:32:44.144] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:32:44.694] LOG   [m6b] event action_result: open_bank invalid_state took=2518ms superseded
+[22:32:44.694] INFO  [m6b] [ACTION] open_bank start
+[22:32:44.694] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:32:44.709] INFO  [m6b] [chat uni  ] : bank
+[22:32:47.236] LOG   [m6b] event action_result: open_bank invalid_state took=2542ms superseded
+[22:32:47.236] INFO  [m6b] [ACTION] open_bank start
+[22:32:47.236] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:32:47.236] INFO  [m6b] [chat uni  ] : bank
+[22:32:49.146] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:32:49.792] LOG   [m6b] event action_result: open_bank invalid_state took=2556ms superseded
+[22:32:49.792] INFO  [m6b] [ACTION] open_bank start
+[22:32:49.792] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:32:49.807] INFO  [m6b] [chat uni  ] : bank
+[22:32:52.343] LOG   [m6b] event action_result: open_bank invalid_state took=2551ms superseded
+[22:32:52.343] INFO  [m6b] [ACTION] open_bank start
+[22:32:52.343] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:32:52.343] INFO  [m6b] [chat uni  ] : bank
+[22:32:54.196] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:32:54.872] LOG   [m6b] event action_result: open_bank invalid_state took=2529ms superseded
+[22:32:54.872] INFO  [m6b] [ACTION] open_bank start
+[22:32:54.872] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:32:54.888] INFO  [m6b] [chat uni  ] : bank
+[22:32:57.415] LOG   [m6b] event action_result: open_bank invalid_state took=2543ms superseded
+[22:32:57.415] INFO  [m6b] [ACTION] open_bank start
+[22:32:57.415] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:32:57.416] INFO  [m6b] [chat uni  ] : bank
+[22:32:59.209] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:32:59.950] LOG   [m6b] event action_result: open_bank invalid_state took=2535ms superseded
+[22:32:59.950] INFO  [m6b] [ACTION] open_bank start
+[22:32:59.950] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:32:59.950] INFO  [m6b] [chat uni  ] : bank
+[22:33:02.492] LOG   [m6b] event action_result: open_bank invalid_state took=2542ms superseded
+[22:33:02.492] INFO  [m6b] [ACTION] open_bank start
+[22:33:02.492] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:33:02.506] INFO  [m6b] [chat uni  ] : bank
+[22:33:04.224] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:33:05.028] LOG   [m6b] event action_result: open_bank invalid_state took=2536ms superseded
+[22:33:05.028] INFO  [m6b] [ACTION] open_bank start
+[22:33:05.028] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:33:05.029] INFO  [m6b] [chat uni  ] : bank
+[22:33:07.548] LOG   [m6b] event action_result: open_bank invalid_state took=2520ms superseded
+[22:33:07.548] INFO  [m6b] [ACTION] open_bank start
+[22:33:07.548] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:33:07.548] INFO  [m6b] [chat uni  ] : bank
+[22:33:09.257] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:33:10.061] LOG   [m6b] event action_result: open_bank invalid_state took=2512ms superseded
+[22:33:10.061] INFO  [m6b] [ACTION] open_bank start
+[22:33:10.061] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:33:10.061] INFO  [m6b] [chat uni  ] : bank
+[22:33:12.612] LOG   [m6b] event action_result: open_bank invalid_state took=2551ms superseded
+[22:33:12.612] INFO  [m6b] [ACTION] open_bank start
+[22:33:12.612] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:33:12.626] INFO  [m6b] [chat uni  ] : bank
+[22:33:14.272] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:33:15.148] LOG   [m6b] event action_result: open_bank invalid_state took=2536ms superseded
+[22:33:15.148] INFO  [m6b] [ACTION] open_bank start
+[22:33:15.148] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:33:15.149] INFO  [m6b] [chat uni  ] : bank
+[22:33:17.689] LOG   [m6b] event action_result: open_bank invalid_state took=2541ms superseded
+[22:33:17.689] INFO  [m6b] [ACTION] open_bank start
+[22:33:17.689] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:33:17.689] INFO  [m6b] [chat uni  ] : bank
+[22:33:19.316] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:33:20.242] LOG   [m6b] event action_result: open_bank invalid_state took=2553ms superseded
+[22:33:20.242] INFO  [m6b] [ACTION] open_bank start
+[22:33:20.242] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:33:20.242] INFO  [m6b] [chat uni  ] : bank
+[22:33:22.793] LOG   [m6b] event action_result: open_bank invalid_state took=2551ms superseded
+[22:33:22.793] INFO  [m6b] [ACTION] open_bank start
+[22:33:22.793] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:33:22.793] INFO  [m6b] [chat uni  ] : bank
+[22:33:24.327] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:33:25.308] LOG   [m6b] event action_result: open_bank invalid_state took=2515ms superseded
+[22:33:25.308] INFO  [m6b] [ACTION] open_bank start
+[22:33:25.309] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:33:25.309] INFO  [m6b] [chat uni  ] : bank
+[22:33:27.842] LOG   [m6b] event action_result: open_bank invalid_state took=2534ms superseded
+[22:33:27.842] INFO  [m6b] [ACTION] open_bank start
+[22:33:27.842] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:33:27.857] INFO  [m6b] [chat uni  ] : bank
+[22:33:29.338] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:33:30.384] LOG   [m6b] event action_result: open_bank invalid_state took=2542ms superseded
+[22:33:30.384] INFO  [m6b] [ACTION] open_bank start
+[22:33:30.384] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:33:30.384] INFO  [m6b] [chat uni  ] : bank
+[22:33:32.902] LOG   [m6b] event action_result: open_bank invalid_state took=2518ms superseded
+[22:33:32.902] INFO  [m6b] [ACTION] open_bank start
+[22:33:32.902] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:33:32.916] INFO  [m6b] [chat uni  ] : bank
+[22:33:34.386] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:33:35.427] LOG   [m6b] event action_result: open_bank invalid_state took=2525ms superseded
+[22:33:35.427] INFO  [m6b] [ACTION] open_bank start
+[22:33:35.427] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:33:35.428] INFO  [m6b] [chat uni  ] : bank
+[22:33:37.988] LOG   [m6b] event action_result: open_bank invalid_state took=2561ms superseded
+[22:33:37.988] INFO  [m6b] [ACTION] open_bank start
+[22:33:37.988] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:33:37.988] INFO  [m6b] [chat uni  ] : bank
+[22:33:39.399] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:33:40.521] LOG   [m6b] event action_result: open_bank invalid_state took=2533ms superseded
+[22:33:40.521] INFO  [m6b] [ACTION] open_bank start
+[22:33:40.521] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:33:40.536] INFO  [m6b] [chat uni  ] : bank
+[22:33:42.233] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfighter03.loradan/state.json
+[22:33:43.032] LOG   [m6b] event action_result: open_bank invalid_state took=2511ms superseded
+[22:33:43.032] INFO  [m6b] [ACTION] open_bank start
+[22:33:43.032] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:33:43.047] INFO  [m6b] [chat uni  ] : bank
+[22:33:44.400] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:33:45.570] LOG   [m6b] event action_result: open_bank invalid_state took=2538ms superseded
+[22:33:45.570] INFO  [m6b] [ACTION] open_bank start
+[22:33:45.570] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:33:45.570] INFO  [m6b] [chat uni  ] : bank
+[22:33:48.084] LOG   [m6b] event action_result: open_bank invalid_state took=2514ms superseded
+[22:33:48.084] INFO  [m6b] [ACTION] open_bank start
+[22:33:48.084] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:33:48.084] INFO  [m6b] [chat uni  ] : bank
+[22:33:49.416] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:33:50.613] LOG   [m6b] event action_result: open_bank invalid_state took=2529ms superseded
+[22:33:50.613] INFO  [m6b] [ACTION] open_bank start
+[22:33:50.613] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:33:50.613] INFO  [m6b] [chat uni  ] : bank
+[22:33:53.151] LOG   [m6b] event action_result: open_bank invalid_state took=2538ms superseded
+[22:33:53.151] INFO  [m6b] [ACTION] open_bank start
+[22:33:53.151] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:33:53.165] INFO  [m6b] [chat uni  ] : bank
+[22:33:54.444] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:33:55.687] LOG   [m6b] event action_result: open_bank invalid_state took=2536ms superseded
+[22:33:55.687] INFO  [m6b] [ACTION] open_bank start
+[22:33:55.687] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:33:55.687] INFO  [m6b] [chat uni  ] : bank
+[22:33:58.225] LOG   [m6b] event action_result: open_bank invalid_state took=2538ms superseded
+[22:33:58.225] INFO  [m6b] [ACTION] open_bank start
+[22:33:58.225] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:33:58.225] INFO  [m6b] [chat uni  ] : bank
+[22:33:59.455] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:34:00.747] LOG   [m6b] event action_result: open_bank invalid_state took=2522ms superseded
+[22:34:00.747] INFO  [m6b] [ACTION] open_bank start
+[22:34:00.747] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:34:00.762] INFO  [m6b] [chat uni  ] : bank
+[22:34:03.289] LOG   [m6b] event action_result: open_bank invalid_state took=2542ms superseded
+[22:34:03.289] INFO  [m6b] [ACTION] open_bank start
+[22:34:03.289] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:34:03.290] INFO  [m6b] [chat uni  ] : bank
+[22:34:04.462] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:34:05.815] LOG   [m6b] event action_result: open_bank invalid_state took=2526ms superseded
+[22:34:05.815] INFO  [m6b] [ACTION] open_bank start
+[22:34:05.815] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:34:05.815] INFO  [m6b] [chat uni  ] : bank
+[22:34:08.316] LOG   [m6b] event action_result: open_bank invalid_state took=2501ms superseded
+[22:34:08.316] INFO  [m6b] [ACTION] open_bank start
+[22:34:08.316] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:34:08.330] INFO  [m6b] [chat uni  ] : bank
+[22:34:09.498] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:34:10.854] LOG   [m6b] event action_result: open_bank invalid_state took=2538ms superseded
+[22:34:10.854] INFO  [m6b] [ACTION] open_bank start
+[22:34:10.854] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:34:10.854] INFO  [m6b] [chat uni  ] : bank
+[22:34:13.366] LOG   [m6b] event action_result: open_bank invalid_state took=2512ms superseded
+[22:34:13.366] INFO  [m6b] [ACTION] open_bank start
+[22:34:13.366] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:34:13.381] INFO  [m6b] [chat uni  ] : bank
+[22:34:14.501] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:34:15.874] LOG   [m6b] event action_result: open_bank invalid_state took=2508ms superseded
+[22:34:15.874] INFO  [m6b] [ACTION] open_bank start
+[22:34:15.874] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:34:15.874] INFO  [m6b] [chat uni  ] : bank
+[22:34:18.415] LOG   [m6b] event action_result: open_bank invalid_state took=2541ms superseded
+[22:34:18.415] INFO  [m6b] [ACTION] open_bank start
+[22:34:18.415] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:34:18.429] INFO  [m6b] [chat uni  ] : bank
+[22:34:19.539] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:34:20.935] LOG   [m6b] event action_result: open_bank invalid_state took=2520ms superseded
+[22:34:20.935] INFO  [m6b] [ACTION] open_bank start
+[22:34:20.935] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:34:20.935] INFO  [m6b] [chat uni  ] : bank
+[22:34:23.476] LOG   [m6b] event action_result: open_bank invalid_state took=2541ms superseded
+[22:34:23.476] INFO  [m6b] [ACTION] open_bank start
+[22:34:23.476] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:34:23.491] INFO  [m6b] [chat uni  ] : bank
+[22:34:24.573] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:34:25.992] LOG   [m6b] event action_result: open_bank invalid_state took=2516ms superseded
+[22:34:25.992] INFO  [m6b] [ACTION] open_bank start
+[22:34:25.992] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:34:25.992] INFO  [m6b] [chat uni  ] : bank
+[22:34:28.497] LOG   [m6b] event action_result: open_bank invalid_state took=2505ms superseded
+[22:34:28.497] INFO  [m6b] [ACTION] open_bank start
+[22:34:28.497] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:34:28.497] INFO  [m6b] [chat uni  ] : bank
+[22:34:29.607] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:34:31.018] LOG   [m6b] event action_result: open_bank invalid_state took=2521ms superseded
+[22:34:31.018] INFO  [m6b] [ACTION] open_bank start
+[22:34:31.018] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:34:31.018] INFO  [m6b] [chat uni  ] : bank
+[22:34:33.538] LOG   [m6b] event action_result: open_bank invalid_state took=2520ms superseded
+[22:34:33.538] INFO  [m6b] [ACTION] open_bank start
+[22:34:33.538] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:34:33.539] INFO  [m6b] [chat uni  ] : bank
+[22:34:34.647] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:34:36.065] LOG   [m6b] event action_result: open_bank invalid_state took=2527ms superseded
+[22:34:36.065] INFO  [m6b] [ACTION] open_bank start
+[22:34:36.065] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:34:36.065] INFO  [m6b] [chat uni  ] : bank
+[22:34:38.587] LOG   [m6b] event action_result: open_bank invalid_state took=2522ms superseded
+[22:34:38.587] INFO  [m6b] [ACTION] open_bank start
+[22:34:38.587] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:34:38.588] INFO  [m6b] [chat uni  ] : bank
+[22:34:39.692] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:34:41.110] LOG   [m6b] event action_result: open_bank invalid_state took=2523ms superseded
+[22:34:41.110] INFO  [m6b] [ACTION] open_bank start
+[22:34:41.110] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:34:41.110] INFO  [m6b] [chat uni  ] : bank
+[22:34:42.283] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfighter03.loradan/state.json
+[22:34:43.634] LOG   [m6b] event action_result: open_bank invalid_state took=2524ms superseded
+[22:34:43.634] INFO  [m6b] [ACTION] open_bank start
+[22:34:43.634] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:34:43.649] INFO  [m6b] [chat uni  ] : bank
+[22:34:44.696] INFO  [m6b] [survival] hp 25/25 (100%) -> fight
+[22:34:46.174] LOG   [m6b] event action_result: open_bank invalid_state took=2539ms superseded
+[22:34:46.174] INFO  [m6b] [ACTION] open_bank start
+[22:34:46.174] INFO  [m6b] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:34:46.174] INFO  [m6b] [chat uni  ] : bank

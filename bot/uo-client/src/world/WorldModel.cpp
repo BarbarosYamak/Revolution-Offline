@@ -46,7 +46,7 @@ static_assert(sizeof(kServiceNames) / sizeof(kServiceNames[0]) ==
               "kServiceNames is out of step with Service");
 
 const char* const kResourceNames[] = {
-    "none", "mining", "lumber", "fishing", "reagents", "hunting",
+    "none", "mining", "lumber", "fishing", "reagents", "hunting", "food",
 };
 static_assert(sizeof(kResourceNames) / sizeof(kResourceNames[0]) ==
                   static_cast<usize>(ResourceKind::Count),

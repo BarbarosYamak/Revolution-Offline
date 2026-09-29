@@ -1,0 +1,698 @@
+[00:19:36.055] INFO  session 0: 127.0.0.1:2593 user='RevGen3_14' char=Elara tag='mk3_Elara'
+[00:19:36.056] LOG   [mk3_Elara] event session_start: text log opened
+[00:19:36.056] LOG   [mk3_Elara] event net_connect_begin: connect 127.0.0.1:2593
+[00:19:36.056] INFO  [mk3_Elara] [net] connecting to 127.0.0.1:2593 ...
+[00:19:36.057] LOG   [mk3_Elara] event net_connected: connect 127.0.0.1:2593
+[00:19:36.057] INFO  [mk3_Elara] [net] connected.
+[00:19:36.057] INFO  [mk3_Elara] [seed] sent 0x7F000001 (plaintext)
+[00:19:36.057] LOG   [mk3_Elara] event seed_out: 0x7F000001 hex=7f000001
+[00:19:36.057] INFO  [life] no prior state for revgen3_14.elara: a new Alchemist
+[00:19:36.057] INFO  [life] creation request: Alchemy 50.0 + Magery 50.0, stats 32/16/32 = 80
+[00:19:36.057] INFO  [life] needs: reading 'alchemist' from the profession catalogue
+[00:19:36.057] INFO  [life] home: Elara lives in Magincia
+[00:19:36.057] INFO  [life] build plan 'alchemist': 200.0 resolved + 450.0 unresolved = 650.0/700.0, stats 50/25/100 = 175
+[00:19:36.057] INFO  [mk3_Elara] [life] autonomous player active for 'Elara' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 3 min)
+[00:19:36.098] INFO  [mk3_Elara] [0xA8] 1 server(s):
+[00:19:36.098] INFO  [mk3_Elara]   [0] MyShard                   1.0.0.127  full=5%  tz=0
+[00:19:36.113] INFO  [mk3_Elara] [0x8C] game server = 127.0.0.1:2593  seed=0x0359B7BC
+[00:19:36.113] LOG   [mk3_Elara] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x0359B7BC
+[00:19:36.113] INFO  [mk3_Elara] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[00:19:36.113] LOG   [mk3_Elara] event relay_same_socket: no seed re-sent; 0x91 follows
+[00:19:36.113] INFO  [mk3_Elara] [0xB9] server features = 0x0005
+[00:19:36.113] INFO  [mk3_Elara] [0xA9] 5 slot(s) (populated 0):
+[00:19:36.113] INFO  [mk3_Elara]   [0] <empty>
+[00:19:36.113] INFO  [mk3_Elara]   [1] <empty>
+[00:19:36.113] INFO  [mk3_Elara]   [2] <empty>
+[00:19:36.113] INFO  [mk3_Elara]   [3] <empty>
+[00:19:36.113] INFO  [mk3_Elara]   [4] <empty>
+[00:19:36.113] INFO  [mk3_Elara] create: appearance sex=F skin=0x040E hair=0x203D/0x0455 shirt=0x0367 pants=0x031B
+[00:19:36.113] INFO  [mk3_Elara] [0x00] starting city index 5
+[00:19:36.113] INFO  [mk3_Elara] [0x00] requested skills 0:50 25:50 46:0
+[00:19:36.113] INFO  [mk3_Elara] [0x00] requested stats STR 32 DEX 16 INT 32
+[00:19:36.113] INFO  [mk3_Elara] [0x00] creating character 'Elara' in slot 0
+[00:19:36.113] LOG   [mk3_Elara] event char_create_sent: Elara
+[00:19:36.131] INFO  [mk3_Elara] [0x1B] serial=0x00011030 body=0x0191 pos=(3734,2222,20)
+[00:19:36.131] LOG   [mk3_Elara] event login_confirm: serial=0x00011030 body=0x0191 pos=(3734,2222,20)
+[00:19:36.131] INFO  [mk3_Elara] [0x20] player @(3734,2222,20) facing=3
+[00:19:36.131] INFO  [mk3_Elara] [0x55] login complete — entering world
+[00:19:36.131] LOG   [mk3_Elara] event in_world: 0x55 received
+[00:19:36.131] INFO  [mk3_Elara] [backpack] opening 0x40011013
+[00:19:36.131] INFO  [mk3_Elara] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[00:19:36.131] INFO  [mk3_Elara] [chat ascii] System: There are 13 other players here.
+[00:19:36.131] INFO  [mk3_Elara] [chat ascii] System: You are under the protection of the town guards
+[00:19:36.136] INFO  [mk3_Elara] [action] requesting the skill list
+[00:19:36.136] INFO  [life] in world; asked the server for the skill list
+[00:19:36.145] INFO  [mk3_Elara] [0x24] open container 0x40011013 gump=60
+[00:19:36.145] INFO  [mk3_Elara] [0x3C] container contents: 10 item(s)
+[00:19:36.145] LOG   [mk3_Elara] event backpack_contents: serial=0x40011013 items=10
+[00:19:38.725] INFO  [mk3_Elara] [bot] world data loaded (0 blacklisted spot(s)).
+[00:19:38.725] INFO  [life] reconciliation: first ever login, 7 field(s) differed
+[00:19:38.725] INFO  [life]   gold         persisted=0          server=10000      -> server value accepted
+[00:19:38.725] INFO  [life]   str          persisted=0          server=32         -> server value accepted
+[00:19:38.725] INFO  [life]   dex          persisted=0          server=16         -> server value accepted
+[00:19:38.725] INFO  [life]   int          persisted=0          server=32         -> server value accepted
+[00:19:38.725] INFO  [life]   skill_0      persisted=0.0        server=50.0       -> server value accepted
+[00:19:38.725] INFO  [life]   skill_25     persisted=0.0        server=50.0       -> server value accepted
+[00:19:38.725] INFO  [life]   skill_46     persisted=0.0        server=0.0        -> server value accepted
+[00:19:38.725] INFO  [life]   position     persisted=0,0        server=3734,2222  -> server value accepted
+[00:19:38.725] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[00:19:38.725] INFO  [mk3_Elara] [survival] on
+[00:19:38.725] LOG   [mk3_Elara] event survival_mode: on
+[00:19:38.727] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_14.elara/state.json
+[00:19:38.727] INFO  [mk3_Elara] [survival] hp 32/32 (100%) -> fight
+[00:19:38.793] INFO  [life] goal=BANK reason="no goal was running"
+[00:19:38.793] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedSkillTraining(Meditation 0.55) NeedEquipment(heal potions 0.50) NeedTrade(buy from a player 0.47) NeedPractice(Meditation 0.45) NeedSupplies(buy craft inputs 0.44) NeedFood(food 0.25)  | tools defined=1 held=[mortar,] want_train=Meditation (target 50.0)
+[00:19:38.793] INFO  [life]   score=150.0
+[00:19:38.793] INFO  [life]   reason: NeedBank urgency 0.75 x 240 = 180.0
+[00:19:38.793] INFO  [life]   reason: on_hand=10000 (total 10000) reserve=600 carry=1100 spare=8900 risk=1.00
+[00:19:38.793] INFO  [life]   reason: no bank learned yet -30
+[00:19:38.793] INFO  [mk3_Elara] [action] scanning nearby mobiles for names
+[00:19:38.793] INFO  [mk3_Elara] [action] requested 4 paperdoll(s) for trade titles
+[00:19:38.793] INFO  [life] bank: asking who is standing in the bank
+[00:19:38.794] INFO  [mk3_Elara] [mobiles] nearby (7):
+[00:19:38.794] INFO  [mk3_Elara]   Maris 0x000025E9
+[00:19:38.794] INFO  [mk3_Elara]   Amala 0x00002733
+[00:19:38.794] INFO  [mk3_Elara]   Chantal 0x000026FA
+[00:19:38.794] INFO  [mk3_Elara]   Dog 0x000106ED
+[00:19:38.794] INFO  [mk3_Elara]   Bailey 0x00002055
+[00:19:38.794] INFO  [mk3_Elara]   Rat 0x00017F25
+[00:19:38.794] INFO  [mk3_Elara]   Cat 0x0000E7E2
+[00:19:38.794] INFO  [mk3_Elara] [0x20] player @(3734,2222,20) facing=5
+[00:19:38.794] INFO  [mk3_Elara] [0x88] paperdoll 0x00002733: "Amala, the waitress"
+[00:19:38.794] INFO  [mk3_Elara] [0x20] player @(3734,2222,20) facing=6
+[00:19:38.794] INFO  [mk3_Elara] [0x88] paperdoll 0x000026FA: "Chantal, the cook"
+[00:19:38.794] INFO  [mk3_Elara] [world] Chantal, the cook is a cook at (3727,2224)
+[00:19:38.794] INFO  [mk3_Elara] [0x88] paperdoll 0x000025E9: "Maris, the tavernkeeper"
+[00:19:38.794] INFO  [mk3_Elara] [world] Maris, the tavernkeeper is a innkeeper at (3731,2222)
+[00:19:38.794] INFO  [mk3_Elara] [0x88] paperdoll 0x00002055: "Bailey, the tavernkeeper"
+[00:19:38.794] INFO  [mk3_Elara] [world] Bailey, the tavernkeeper is a innkeeper at (3724,2225)
+[00:19:39.272] INFO  [mk3_Elara] [chat ascii] System: Selene has arrived in Magincia.
+[00:19:40.814] INFO  [life] bank: no banker in sight
+[00:19:40.814] INFO  [life] goal_failed=BANK status=retryable_failure reason="no banker in sight"
+[00:19:40.876] INFO  [life] goal=REPLACE_EQUIPMENT reason="previous goal abandoned: no banker answered"
+[00:19:40.876] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedSkillTraining(Meditation 0.55) NeedEquipment(heal potions 0.50) NeedTrade(buy from a player 0.47) NeedPractice(Meditation 0.45) NeedSupplies(buy craft inputs 0.44) NeedFood(food 0.25)  | tools defined=1 held=[mortar,] want_train=Meditation (target 50.0)
+[00:19:40.876] INFO  [life]   score=130.0
+[00:19:40.876] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:19:40.876] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:19:40.876] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 299s after achieving nothing
+[00:19:42.315] INFO  [mk3_Elara] [chat ascii] Maris: What's thee wantin'?
+[00:19:42.315] INFO  [mk3_Elara] [chat ascii] Maris: I'm listenin'.
+[00:19:42.350] INFO  [mk3_Elara] [chat ascii] System: Lyra has arrived in Moonglow.
+[00:19:43.771] INFO  [mk3_Elara] [survival] hp 32/32 (100%) -> fight
+[00:19:45.357] INFO  [mk3_Elara] [chat ascii] System: Thalia has arrived in Moonglow.
+[00:19:45.857] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:19:45.857] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[00:19:45.857] INFO  [mk3_Elara] [travel] Magincia healer -> (3687,2227) r=5 from (3734,2222)
+[00:19:45.857] LOG   [mk3_Elara] event travel_start: label='Magincia healer' target=(3687,2227) radius=5 from=(3734,2222)
+[00:19:45.857] INFO  [life] potions: walking to a 'healer' (trip 1)
+[00:19:45.857] INFO  [mk3_Elara] [travel] mode walk             usable   <- chosen
+[00:19:45.857] INFO  [mk3_Elara] [travel] mode moongate         usable
+[00:19:45.857] INFO  [mk3_Elara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:19:45.857] INFO  [mk3_Elara] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:19:45.857] LOG   [mk3_Elara] event travel_mode: walk
+[00:19:45.857] INFO  [mk3_Elara] [travel] plan Magincia healer: ok legs=2 ~56 tiles transit=0 nodes=9
+[00:19:45.918] INFO  [mk3_Elara] [action] goto (3704,2232) from (3734,2222,20)
+[00:19:45.918] LOG   [mk3_Elara] event goto_start: target=(3704,2232) from=(3734,2222)
+[00:19:45.918] INFO  [mk3_Elara] [bot] running from (3734,2222,20) to (3704,2232)
+[00:19:45.918] INFO  [mk3_Elara] [bot] planning path to (3704,2232) in background
+[00:19:45.980] INFO  [mk3_Elara] [bot] replan to (3704,2232): 43 steps in 1781.3us
+[00:19:48.422] INFO  [mk3_Elara] [chat ascii] System: Dorvar has arrived in Skara Brae.
+[00:19:48.801] INFO  [mk3_Elara] [survival] hp 32/32 (100%) -> fight
+[00:19:51.484] INFO  [mk3_Elara] [chat ascii] System: Ithion has arrived in Skara Brae.
+[00:19:53.809] INFO  [mk3_Elara] [survival] hp 32/32 (100%) -> fight
+[00:19:54.532] INFO  [mk3_Elara] [chat ascii] System: Odessa has arrived in Britain.
+[00:19:57.598] INFO  [mk3_Elara] [chat ascii] System: Serena has arrived in Britain.
+[00:19:57.658] INFO  [mk3_Elara] [bot] arrived at (3704,2232,20)
+[00:19:57.658] INFO  [mk3_Elara] [action] goto finished at (3704,2232,20); target (3704,2232); ARRIVED (off by 0 tile(s))
+[00:19:57.658] LOG   [mk3_Elara] event goto_done: at=(3704,2232) target=(3704,2232) arrived=1 off=0
+[00:19:57.658] INFO  [mk3_Elara] [action] goto (3687,2227) from (3704,2232,20)
+[00:19:57.658] LOG   [mk3_Elara] event goto_start: target=(3687,2227) from=(3704,2232)
+[00:19:57.658] INFO  [mk3_Elara] [bot] running from (3704,2232,20) to (3687,2227,z20)
+[00:19:57.658] INFO  [mk3_Elara] [bot] planning path to (3687,2227) in background
+[00:19:57.718] INFO  [mk3_Elara] [bot] replan to (3687,2227): 20 steps in 726.9us
+[00:19:58.823] INFO  [mk3_Elara] [survival] hp 32/32 (100%) -> fight
+[00:20:00.645] INFO  [mk3_Elara] [chat ascii] System: Aurelius has arrived in Moonglow.
+[00:20:00.706] INFO  [mk3_Elara] [travel] Magincia healer ARRIVED at (3691,2232,20)
+[00:20:00.706] LOG   [mk3_Elara] event travel_done: label='Magincia healer' ok=1 at=(3691,2232) legs=2 plans=1 why=''
+[00:20:00.766] INFO  [mk3_Elara] [action] scanning nearby mobiles for names
+[00:20:00.767] INFO  [mk3_Elara] [action] requested 7 paperdoll(s) for trade titles
+[00:20:00.767] INFO  [life] potions: at the shop, asking who is here (scan 1 of 3)
+[00:20:00.782] INFO  [mk3_Elara] [mobiles] nearby (8):
+[00:20:00.782] INFO  [mk3_Elara]   Magena 0x0000265E
+[00:20:00.782] INFO  [mk3_Elara]   Jocasa 0x00002723
+[00:20:00.782] INFO  [mk3_Elara]   Arne 0x000026E6
+[00:20:00.782] INFO  [mk3_Elara]   Selene 0x00010BC9
+[00:20:00.782] INFO  [mk3_Elara]   Corbey 0x0000264F
+[00:20:00.782] INFO  [mk3_Elara]   Alanna 0x0000263D
+[00:20:00.782] INFO  [mk3_Elara]   Jin 0x0000E0B0
+[00:20:00.782] INFO  [mk3_Elara]   Dog 0x00011AB0
+[00:20:00.782] INFO  [mk3_Elara] [0x20] player @(3691,2232,20) facing=2
+[00:20:00.782] INFO  [mk3_Elara] [0x88] paperdoll 0x00010BC9: "Selene, Apprentice Mage"
+[00:20:00.782] INFO  [mk3_Elara] [0x20] player @(3691,2232,20) facing=1
+[00:20:00.782] INFO  [mk3_Elara] [0x88] paperdoll 0x0000E0B0: "Jin, the scribe"
+[00:20:00.782] INFO  [mk3_Elara] [world] Jin, the scribe is a scribe at (3705,2217)
+[00:20:00.782] INFO  [mk3_Elara] [0x88] paperdoll 0x000026E6: "Arne, the mage"
+[00:20:00.782] INFO  [mk3_Elara] [world] Arne, the mage is a mage at (3701,2221)
+[00:20:00.782] INFO  [mk3_Elara] [0x88] paperdoll 0x0000264F: "Corbey, the alchemist"
+[00:20:00.782] INFO  [mk3_Elara] [world] Corbey, the alchemist is a alchemist at (3702,2220)
+[00:20:00.782] INFO  [mk3_Elara] [0x20] player @(3691,2232,20) facing=0
+[00:20:00.782] INFO  [mk3_Elara] [0x88] paperdoll 0x0000263D: "Alanna, the mage guildmistress"
+[00:20:00.782] INFO  [mk3_Elara] [world] Alanna, the mage guildmistress is a mage at (3696,2220)
+[00:20:00.782] INFO  [mk3_Elara] [0x88] paperdoll 0x00002723: "Jocasa, the healer"
+[00:20:00.782] INFO  [mk3_Elara] [world] Jocasa, the healer is a healer at (3690,2223)
+[00:20:00.782] INFO  [mk3_Elara] [0x20] player @(3691,2232,20) facing=7
+[00:20:00.782] INFO  [mk3_Elara] [0x88] paperdoll 0x0000265E: "Magena, the healer guildmistress"
+[00:20:00.782] INFO  [mk3_Elara] [world] Magena, the healer guildmistress is a healer at (3685,2228)
+[00:20:03.787] INFO  [life] potions: found a 'healer'
+[00:20:03.834] INFO  [mk3_Elara] [travel] mobile 0x00002723 -> (3688,2224) r=1 from (3691,2232)
+[00:20:03.834] LOG   [mk3_Elara] event travel_start: label='mobile 0x00002723' target=(3688,2224) radius=1 from=(3691,2232)
+[00:20:03.834] INFO  [life] potions: the 'healer' is 8 tiles off (dz 0) -- walking into reach (chase 1 of 3)
+[00:20:03.834] INFO  [mk3_Elara] [travel] mode walk             usable   <- chosen
+[00:20:03.834] INFO  [mk3_Elara] [travel] mode moongate         usable
+[00:20:03.834] INFO  [mk3_Elara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:03.834] INFO  [mk3_Elara] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:03.834] LOG   [mk3_Elara] event travel_mode: walk
+[00:20:03.834] INFO  [mk3_Elara] [travel] plan mobile 0x00002723: ok legs=1 ~8 tiles transit=0 nodes=0
+[00:20:03.834] INFO  [mk3_Elara] [survival] hp 32/32 (100%) -> fight
+[00:20:03.869] INFO  [mk3_Elara] [chat ascii] System: Leander has arrived in Moonglow.
+[00:20:03.869] INFO  [mk3_Elara] [action] goto finished at (3691,2232,20); target (3687,2227); stopped short (off by 9 tile(s))
+[00:20:03.869] LOG   [mk3_Elara] event goto_done: at=(3691,2232) target=(3687,2227) arrived=0 off=9
+[00:20:03.869] INFO  [mk3_Elara] [action] goto (3688,2224) from (3691,2232,20)
+[00:20:03.869] LOG   [mk3_Elara] event goto_start: target=(3688,2224) from=(3691,2232)
+[00:20:03.869] INFO  [mk3_Elara] [bot] running from (3691,2232,20) to (3688,2224,z20)
+[00:20:03.869] INFO  [mk3_Elara] [bot] planning path to (3688,2224) in background
+[00:20:04.850] INFO  [mk3_Elara] [action] goto finished at (3691,2232,20); target (3688,2224); stopped short (off by 11 tile(s))
+[00:20:04.850] LOG   [mk3_Elara] event goto_done: at=(3691,2232) target=(3688,2224) arrived=0 off=11
+[00:20:06.051] INFO  [mk3_Elara] [action] goto (3688,2224) from (3691,2232,20)
+[00:20:06.051] LOG   [mk3_Elara] event goto_start: target=(3688,2224) from=(3691,2232)
+[00:20:06.051] INFO  [mk3_Elara] [bot] running from (3691,2232,20) to (3688,2224,z20)
+[00:20:06.051] INFO  [mk3_Elara] [bot] planning path to (3688,2224) in background
+[00:20:06.823] INFO  [mk3_Elara] [action] goto finished at (3691,2232,20); target (3688,2224); stopped short (off by 11 tile(s))
+[00:20:06.823] LOG   [mk3_Elara] event goto_done: at=(3691,2232) target=(3688,2224) arrived=0 off=11
+[00:20:06.980] INFO  [mk3_Elara] [chat ascii] System: Illyria has arrived in Britain.
+[00:20:08.065] INFO  [mk3_Elara] [action] goto (3688,2224) from (3691,2232,20)
+[00:20:08.065] LOG   [mk3_Elara] event goto_start: target=(3688,2224) from=(3691,2232)
+[00:20:08.065] INFO  [mk3_Elara] [bot] running from (3691,2232,20) to (3688,2224,z20)
+[00:20:08.065] INFO  [mk3_Elara] [bot] planning path to (3688,2224) in background
+[00:20:08.868] INFO  [mk3_Elara] [survival] hp 32/32 (100%) -> fight
+[00:20:09.085] INFO  [mk3_Elara] [action] goto finished at (3691,2232,20); target (3688,2224); stopped short (off by 11 tile(s))
+[00:20:09.085] LOG   [mk3_Elara] event goto_done: at=(3691,2232) target=(3688,2224) arrived=0 off=11
+[00:20:10.022] INFO  [mk3_Elara] [chat ascii] System: Hector has arrived in Trinsic.
+[00:20:10.348] INFO  [mk3_Elara] [travel] mode walk             usable   <- chosen
+[00:20:10.348] INFO  [mk3_Elara] [travel] mode moongate         usable
+[00:20:10.348] INFO  [mk3_Elara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:10.348] INFO  [mk3_Elara] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:10.348] LOG   [mk3_Elara] event travel_mode: walk
+[00:20:10.348] INFO  [mk3_Elara] [travel] plan mobile 0x00002723: ok legs=1 ~8 tiles transit=0 nodes=0
+[00:20:11.891] INFO  [mk3_Elara] [action] goto (3688,2224) from (3691,2232,20)
+[00:20:11.891] LOG   [mk3_Elara] event goto_start: target=(3688,2224) from=(3691,2232)
+[00:20:11.891] INFO  [mk3_Elara] [bot] running from (3691,2232,20) to (3688,2224,z20)
+[00:20:11.891] INFO  [mk3_Elara] [bot] planning path to (3688,2224) in background
+[00:20:13.012] INFO  [mk3_Elara] [action] goto finished at (3691,2232,20); target (3688,2224); stopped short (off by 11 tile(s))
+[00:20:13.013] LOG   [mk3_Elara] event goto_done: at=(3691,2232) target=(3688,2224) arrived=0 off=11
+[00:20:13.076] INFO  [mk3_Elara] [chat ascii] System: Castor has arrived in Trinsic.
+[00:20:13.871] INFO  [mk3_Elara] [survival] hp 32/32 (100%) -> fight
+[00:20:14.224] INFO  [mk3_Elara] [action] goto (3688,2224) from (3691,2232,20)
+[00:20:14.224] LOG   [mk3_Elara] event goto_start: target=(3688,2224) from=(3691,2232)
+[00:20:14.224] INFO  [mk3_Elara] [bot] running from (3691,2232,20) to (3688,2224,z20)
+[00:20:14.224] INFO  [mk3_Elara] [bot] planning path to (3688,2224) in background
+[00:20:15.348] INFO  [mk3_Elara] [action] goto finished at (3691,2232,20); target (3688,2224); stopped short (off by 11 tile(s))
+[00:20:15.348] LOG   [mk3_Elara] event goto_done: at=(3691,2232) target=(3688,2224) arrived=0 off=11
+[00:20:16.106] INFO  [mk3_Elara] [chat ascii] System: Faustus has arrived in Britain.
+[00:20:16.581] INFO  [mk3_Elara] [action] goto (3688,2224) from (3691,2232,20)
+[00:20:16.581] LOG   [mk3_Elara] event goto_start: target=(3688,2224) from=(3691,2232)
+[00:20:16.581] INFO  [mk3_Elara] [bot] running from (3691,2232,20) to (3688,2224,z20)
+[00:20:16.581] INFO  [mk3_Elara] [bot] planning path to (3688,2224) in background
+[00:20:17.705] INFO  [mk3_Elara] [action] goto finished at (3691,2232,20); target (3688,2224); stopped short (off by 11 tile(s))
+[00:20:17.705] LOG   [mk3_Elara] event goto_done: at=(3691,2232) target=(3688,2224) arrived=0 off=11
+[00:20:18.912] INFO  [mk3_Elara] [travel] mode walk             usable   <- chosen
+[00:20:18.912] INFO  [mk3_Elara] [travel] mode moongate         usable
+[00:20:18.912] INFO  [mk3_Elara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:18.912] INFO  [mk3_Elara] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:18.912] LOG   [mk3_Elara] event travel_mode: walk
+[00:20:18.912] INFO  [mk3_Elara] [travel] plan mobile 0x00002723: ok legs=1 ~8 tiles transit=0 nodes=0
+[00:20:18.912] INFO  [mk3_Elara] [survival] hp 32/32 (100%) -> fight
+[00:20:19.161] INFO  [mk3_Elara] [chat ascii] System: Titus has arrived in Skara Brae.
+[00:20:21.938] INFO  [mk3_Elara] [action] goto (3688,2224) from (3691,2232,20)
+[00:20:21.938] LOG   [mk3_Elara] event goto_start: target=(3688,2224) from=(3691,2232)
+[00:20:21.938] INFO  [mk3_Elara] [bot] running from (3691,2232,20) to (3688,2224,z20)
+[00:20:21.938] INFO  [mk3_Elara] [bot] planning path to (3688,2224) in background
+[00:20:22.309] INFO  [mk3_Elara] [chat ascii] System: Rhea has arrived in Britain.
+[00:20:23.017] INFO  [mk3_Elara] [action] goto finished at (3691,2232,20); target (3688,2224); stopped short (off by 11 tile(s))
+[00:20:23.017] LOG   [mk3_Elara] event goto_done: at=(3691,2232) target=(3688,2224) arrived=0 off=11
+[00:20:23.934] INFO  [mk3_Elara] [survival] hp 32/32 (100%) -> fight
+[00:20:24.243] INFO  [mk3_Elara] [action] goto (3688,2224) from (3691,2232,20)
+[00:20:24.243] LOG   [mk3_Elara] event goto_start: target=(3688,2224) from=(3691,2232)
+[00:20:24.243] INFO  [mk3_Elara] [bot] running from (3691,2232,20) to (3688,2224,z20)
+[00:20:24.243] INFO  [mk3_Elara] [bot] planning path to (3688,2224) in background
+[00:20:24.304] INFO  [mk3_Elara] [bot] replan to (3688,2224): 12 steps in 220.7us
+[00:20:25.377] INFO  [mk3_Elara] [chat ascii] System: Xerxes has arrived in Vesper.
+[00:20:26.856] INFO  [mk3_Elara] [travel] mode walk             usable   <- chosen
+[00:20:26.856] INFO  [mk3_Elara] [travel] mode moongate         usable
+[00:20:26.856] INFO  [mk3_Elara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:26.856] INFO  [mk3_Elara] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:26.856] LOG   [mk3_Elara] event travel_mode: walk
+[00:20:26.856] INFO  [mk3_Elara] [travel] plan mobile 0x00002723: ok legs=1 ~5 tiles transit=0 nodes=0
+[00:20:26.917] INFO  [mk3_Elara] [action] goto finished at (3688,2230,20); target (3688,2224); stopped short (off by 6 tile(s))
+[00:20:26.917] LOG   [mk3_Elara] event goto_done: at=(3688,2230) target=(3688,2224) arrived=0 off=6
+[00:20:26.917] INFO  [mk3_Elara] [action] goto (3691,2225) from (3688,2230,20)
+[00:20:26.917] LOG   [mk3_Elara] event goto_start: target=(3691,2225) from=(3688,2230)
+[00:20:26.917] INFO  [mk3_Elara] [bot] running from (3688,2230,20) to (3691,2225,z20)
+[00:20:26.917] INFO  [mk3_Elara] [bot] planning path to (3691,2225) in background
+[00:20:28.097] INFO  [mk3_Elara] [action] goto finished at (3688,2230,20); target (3691,2225); stopped short (off by 8 tile(s))
+[00:20:28.097] LOG   [mk3_Elara] event goto_done: at=(3688,2230) target=(3691,2225) arrived=0 off=8
+[00:20:28.943] INFO  [mk3_Elara] [survival] hp 32/32 (100%) -> fight
+[00:20:29.324] INFO  [mk3_Elara] [action] goto (3691,2225) from (3688,2230,20)
+[00:20:29.325] LOG   [mk3_Elara] event goto_start: target=(3691,2225) from=(3688,2230)
+[00:20:29.325] INFO  [mk3_Elara] [bot] running from (3688,2230,20) to (3691,2225,z20)
+[00:20:29.325] INFO  [mk3_Elara] [bot] planning path to (3691,2225) in background
+[00:20:29.386] INFO  [mk3_Elara] [bot] replan to (3691,2225): 5 steps in 120.3us
+[00:20:29.691] INFO  [mk3_Elara] [chat ascii] Jocasa: Aye?
+[00:20:30.522] INFO  [mk3_Elara] [travel] mobile 0x00002723 ARRIVED at (3690,2226,20)
+[00:20:30.522] LOG   [mk3_Elara] event travel_done: label='mobile 0x00002723' ok=1 at=(3690,2226) legs=1 plans=1 why=''
+[00:20:30.537] INFO  [life] potions: within reach
+[00:20:30.597] INFO  [mk3_Elara] [ACTION] vendor_buy start
+[00:20:30.597] INFO  [mk3_Elara] [VENDOR] open vendor=0x00002723 say='Jocasa buy'
+[00:20:30.597] INFO  [life] potions: asking the 'healer' to show heal potion (attempt 1)
+[00:20:30.614] INFO  [mk3_Elara] [chat uni  ] : Jocasa buy
+[00:20:30.614] INFO  [mk3_Elara] [chat ascii] Jocasa: Thou surely wants all the things that I can sell thee.
+[00:20:30.614] INFO  [mk3_Elara] [0x3C] container contents: 5 item(s)
+[00:20:30.614] INFO  [mk3_Elara] [0x74] pairing: straight (straight 5, mirrored 1 of 5 rows)
+[00:20:30.614] INFO  [mk3_Elara] [0x74] vendor shop data: cont=0x40002719 5 item(s), layer=0x1A
+[00:20:30.614] INFO  [mk3_Elara] [0x74]   clean bandages               gfx=0x0E21 qty=8    price=1
+[00:20:30.614] INFO  [mk3_Elara] [0x74]   Heal                         gfx=0x0F0C qty=4    price=30
+[00:20:30.614] INFO  [mk3_Elara] [0x74]   Ginseng                      gfx=0x0F85 qty=10   price=3
+[00:20:30.614] INFO  [mk3_Elara] [0x74]   Garlic                       gfx=0x0F84 qty=8    price=3
+[00:20:30.614] INFO  [mk3_Elara] [0x74]   Refresh                      gfx=0x0F0B qty=18   price=16
+[00:20:30.614] INFO  [mk3_Elara] [0x3C] container contents: 0 item(s)
+[00:20:30.614] INFO  [mk3_Elara] [0x74] vendor shop data: cont=0x400121EC 0 item(s), layer=0x1B
+[00:20:30.614] INFO  [mk3_Elara] [VENDOR] offer from 0x00002723: 5 item(s)
+[00:20:30.614] INFO  [mk3_Elara] [VENDOR]   0x4000DD06 clean bandages         x8   1 gp
+[00:20:30.614] INFO  [mk3_Elara] [VENDOR]   0x4000DCDB Heal                   x4   30 gp
+[00:20:30.614] INFO  [mk3_Elara] [VENDOR]   0x4000DCD9 Ginseng                x10  3 gp
+[00:20:30.614] INFO  [mk3_Elara] [VENDOR]   0x4000DCD7 Garlic                 x8   3 gp
+[00:20:30.614] INFO  [mk3_Elara] [VENDOR]   0x4000DCD6 Refresh                x18  16 gp
+[00:20:30.614] LOG   [mk3_Elara] event vendor_offer: vendor=0x00002723 items=5
+[00:20:30.614] INFO  [mk3_Elara] [ACTION_RESULT] vendor_buy success (17ms) vendor offer received
+[00:20:30.614] LOG   [mk3_Elara] event action_result: vendor_buy success took=17ms vendor offer received
+[00:20:30.614] INFO  [mk3_Elara] [0x24] vendor buy gump for 0x00002723
+[00:20:30.614] INFO  [life] potions: the shop is open
+[00:20:30.614] INFO  [mk3_Elara] [ACTION] vendor_buy start
+[00:20:30.614] INFO  [mk3_Elara] [policy] allowed NPC purchase of i_potion_heal (0x0F0C): basic healing: a life with no Healing skill has no other way to treat itself, and the shard's own healer sells it [BASIC_HEALING]
+[00:20:30.614] INFO  [mk3_Elara] [VENDOR] buy item=0x4000DCDB qty=4 from vendor=0x00002723 gold=10000
+[00:20:30.614] INFO  [life] potions: buying 4 heal potion at 30 each from the 'healer' (shelf holds 4) -- waiting for the pack
+[00:20:30.628] INFO  [mk3_Elara] [ACTION_RESULT] vendor_buy success (14ms) purchased item delivered
+[00:20:30.628] LOG   [mk3_Elara] event action_result: vendor_buy success took=14ms purchased item delivered
+[00:20:30.628] INFO  [mk3_Elara] [chat ascii] Jocasa: Here you are, Elara That will be 120 gold coins.  I thank thee for thy business.
+[00:20:30.628] INFO  [mk3_Elara] [0x3B] vendor transaction closed: vendor=0x00002723 flag=0
+[00:20:30.629] INFO  [life] goal_changed=FILL_SPELLBOOK from=REPLACE_EQUIPMENT reason="FILL_SPELLBOOK 77.0 superseded REPLACE_EQUIPMENT 0.0"
+[00:20:30.629] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedSkillTraining(Meditation 0.55) NeedTrade(buy from a player 0.47) NeedPractice(Meditation 0.45) NeedSupplies(buy craft inputs 0.44) NeedFood(food 0.25)  | tools defined=1 held=[mortar,] want_train=Meditation (target 50.0)
+[00:20:30.629] INFO  [life]   score=77.0
+[00:20:30.629] INFO  [life]   reason: NeedSpells urgency 0.70 x 110 = 77.0
+[00:20:30.629] INFO  [life]   reason: spells 0/24 book=carried magery 50.0 gold 10000 reserve 600 spare 9400 wealth 1.00
+[00:20:30.629] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 250s after achieving nothing
+[00:20:30.629] INFO  [life] spellbook: opening the book to see what is already in it
+[00:20:30.629] INFO  [mk3_Elara] [ACTION] use_object start
+[00:20:30.629] INFO  [mk3_Elara] [ACTION] use_object serial=0x40010EB3
+[00:20:30.643] INFO  [mk3_Elara] [0x3C] container contents: 12 item(s)
+[00:20:30.643] INFO  [mk3_Elara] [ACTION_RESULT] use_object success (15ms) contents received
+[00:20:30.643] LOG   [mk3_Elara] event action_result: use_object success took=15ms contents received
+[00:20:30.765] INFO  [mk3_Elara] [bot] arrived at (3691,2225,20)
+[00:20:32.649] INFO  [mk3_Elara] [chat uni  ] Selene: Jocasa buy
+[00:20:32.649] INFO  [mk3_Elara] [chat ascii] Jocasa: Excuse me Elara, but Selene wants to speak to me
+[00:20:32.649] INFO  [mk3_Elara] [chat ascii] Jocasa: Yes?
+[00:20:32.649] INFO  [mk3_Elara] [chat ascii] Jocasa: I got lots to sell!
+[00:20:33.170] INFO  [life] spellbook: adding scroll 0x1F2E to the book (12 spells so far)
+[00:20:33.170] INFO  [mk3_Elara] [ACTION] move_item start
+[00:20:33.170] INFO  [mk3_Elara] [ACTION] move_item serial=0x40010E57 amount=1 dest=0x40010EB3
+[00:20:33.170] INFO  [mk3_Elara] [ITEM] drag serial=0x40010E57 amount=1
+[00:20:33.170] INFO  [mk3_Elara] [ITEM] drop container=0x40010EB3
+[00:20:33.969] INFO  [mk3_Elara] [survival] hp 32/32 (100%) -> fight
+[00:20:37.221] LOG   [mk3_Elara] event action_result: move_item timeout
+[00:20:37.282] INFO  [life] spellbook: opening the book to see what is already in it
+[00:20:37.282] INFO  [mk3_Elara] [ACTION] use_object start
+[00:20:37.282] INFO  [mk3_Elara] [ACTION] use_object serial=0x40010EB3
+[00:20:37.298] INFO  [mk3_Elara] [0x3C] container contents: 13 item(s)
+[00:20:37.298] INFO  [mk3_Elara] [ACTION_RESULT] use_object success (16ms) contents received
+[00:20:37.298] LOG   [mk3_Elara] event action_result: use_object success took=16ms contents received
+[00:20:38.718] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_14.elara/state.json
+[00:20:39.023] INFO  [mk3_Elara] [survival] hp 32/32 (100%) -> fight
+[00:20:39.820] INFO  [life] spellbook: adding scroll 0x1F3C to the book (13 spells so far)
+[00:20:39.820] INFO  [mk3_Elara] [ACTION] move_item start
+[00:20:39.820] INFO  [mk3_Elara] [ACTION] move_item serial=0x40010DEF amount=1 dest=0x40010EB3
+[00:20:39.820] INFO  [mk3_Elara] [ITEM] drag serial=0x40010DEF amount=1
+[00:20:39.820] INFO  [mk3_Elara] [ITEM] drop container=0x40010EB3
+[00:20:39.820] INFO  [mk3_Elara] [chat ascii] System: Can't add this to the spellbook
+[00:20:39.820] LOG   [mk3_Elara] event action_result: move_item server_failure took=1ms item 0x40010DEF landed in 0x40011013, not the destination 0x40010EB3
+[00:20:42.351] INFO  [life] spellbook: the book would not take scroll 0x1F3C (still 13 spells) -- it already knows that one; not offering it again
+[00:20:42.351] INFO  [life] spellbook: opening the book to see what is already in it
+[00:20:42.351] INFO  [mk3_Elara] [ACTION] use_object start
+[00:20:42.351] INFO  [mk3_Elara] [ACTION] use_object serial=0x40010EB3
+[00:20:42.351] INFO  [mk3_Elara] [0x3C] container contents: 13 item(s)
+[00:20:42.351] INFO  [mk3_Elara] [ACTION_RESULT] use_object success (1ms) contents received
+[00:20:42.351] LOG   [mk3_Elara] event action_result: use_object success took=1ms contents received
+[00:20:44.032] INFO  [mk3_Elara] [survival] hp 32/32 (100%) -> fight
+[00:20:44.876] INFO  [life] spellbook: adding scroll 0x1F3E to the book (13 spells so far)
+[00:20:44.876] INFO  [mk3_Elara] [ACTION] move_item start
+[00:20:44.876] INFO  [mk3_Elara] [ACTION] move_item serial=0x40010DEE amount=1 dest=0x40010EB3
+[00:20:44.876] INFO  [mk3_Elara] [ITEM] drag serial=0x40010DEE amount=1
+[00:20:44.876] INFO  [mk3_Elara] [ITEM] drop container=0x40010EB3
+[00:20:44.892] INFO  [mk3_Elara] [chat ascii] System: Can't add this to the spellbook
+[00:20:44.892] LOG   [mk3_Elara] event action_result: move_item server_failure took=17ms item 0x40010DEE landed in 0x40011013, not the destination 0x40010EB3
+[00:20:47.377] INFO  [life] spellbook: the book would not take scroll 0x1F3E (still 13 spells) -- it already knows that one; not offering it again
+[00:20:47.377] INFO  [life] spellbook: opening the book to see what is already in it
+[00:20:47.377] INFO  [mk3_Elara] [ACTION] use_object start
+[00:20:47.377] INFO  [mk3_Elara] [ACTION] use_object serial=0x40010EB3
+[00:20:47.378] INFO  [mk3_Elara] [0x3C] container contents: 13 item(s)
+[00:20:47.378] INFO  [mk3_Elara] [ACTION_RESULT] use_object success (0ms) contents received
+[00:20:47.378] LOG   [mk3_Elara] event action_result: use_object success took=0ms contents received
+[00:20:49.051] INFO  [mk3_Elara] [survival] hp 32/32 (100%) -> fight
+[00:20:49.895] INFO  [life] FILL_SPELLBOOK: the scribe is 10 tiles away -- walking up
+[00:20:49.895] INFO  [mk3_Elara] [travel] mobile 0x0000E0B0 -> (3701,2222) r=1 from (3691,2225)
+[00:20:49.895] LOG   [mk3_Elara] event travel_start: label='mobile 0x0000E0B0' target=(3701,2222) radius=1 from=(3691,2225)
+[00:20:49.895] INFO  [mk3_Elara] [travel] mode walk             usable   <- chosen
+[00:20:49.895] INFO  [mk3_Elara] [travel] mode moongate         usable
+[00:20:49.895] INFO  [mk3_Elara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:49.895] INFO  [mk3_Elara] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:49.895] LOG   [mk3_Elara] event travel_mode: walk
+[00:20:49.895] INFO  [mk3_Elara] [travel] plan mobile 0x0000E0B0: ok legs=1 ~10 tiles transit=0 nodes=0
+[00:20:49.957] INFO  [mk3_Elara] [action] goto finished at (3691,2225,20); target (3691,2225); ARRIVED (off by 0 tile(s))
+[00:20:49.957] LOG   [mk3_Elara] event goto_done: at=(3691,2225) target=(3691,2225) arrived=1 off=0
+[00:20:49.957] INFO  [mk3_Elara] [action] goto (3701,2222) from (3691,2225,20)
+[00:20:49.957] LOG   [mk3_Elara] event goto_start: target=(3701,2222) from=(3691,2225)
+[00:20:49.957] INFO  [mk3_Elara] [bot] running from (3691,2225,20) to (3701,2222,z20)
+[00:20:49.957] INFO  [mk3_Elara] [bot] planning path to (3701,2222) in background
+[00:20:51.208] INFO  [mk3_Elara] [action] goto finished at (3691,2225,20); target (3701,2222); stopped short (off by 13 tile(s))
+[00:20:51.208] LOG   [mk3_Elara] event goto_done: at=(3691,2225) target=(3701,2222) arrived=0 off=13
+[00:20:52.408] INFO  [mk3_Elara] [action] goto (3701,2222) from (3691,2225,20)
+[00:20:52.408] LOG   [mk3_Elara] event goto_start: target=(3701,2222) from=(3691,2225)
+[00:20:52.408] INFO  [mk3_Elara] [bot] running from (3691,2225,20) to (3701,2222,z20)
+[00:20:52.408] INFO  [mk3_Elara] [bot] planning path to (3701,2222) in background
+[00:20:52.469] INFO  [mk3_Elara] [bot] replan to (3701,2222): 52 steps in 15798.9us
+[00:20:54.094] INFO  [mk3_Elara] [survival] hp 32/32 (100%) -> fight
+[00:20:59.139] INFO  [mk3_Elara] [survival] hp 32/32 (100%) -> fight
+[00:21:00.467] INFO  [mk3_Elara] [travel] mode walk             usable   <- chosen
+[00:21:00.467] INFO  [mk3_Elara] [travel] mode moongate         usable
+[00:21:00.467] INFO  [mk3_Elara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:00.467] INFO  [mk3_Elara] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:00.467] LOG   [mk3_Elara] event travel_mode: walk
+[00:21:00.467] INFO  [mk3_Elara] [travel] plan mobile 0x0000E0B0: ok legs=1 ~13 tiles transit=0 nodes=0
+[00:21:00.527] INFO  [mk3_Elara] [action] goto finished at (3711,2232,20); target (3701,2222); stopped short (off by 20 tile(s))
+[00:21:00.527] LOG   [mk3_Elara] event goto_done: at=(3711,2232) target=(3701,2222) arrived=0 off=20
+[00:21:00.527] INFO  [mk3_Elara] [action] goto (3698,2221) from (3711,2232,20)
+[00:21:00.527] LOG   [mk3_Elara] event goto_start: target=(3698,2221) from=(3711,2232)
+[00:21:00.527] INFO  [mk3_Elara] [bot] running from (3711,2232,20) to (3698,2221,z20)
+[00:21:00.527] INFO  [mk3_Elara] [bot] planning path to (3698,2221) in background
+[00:21:02.137] INFO  [mk3_Elara] [action] goto finished at (3711,2232,20); target (3698,2221); stopped short (off by 24 tile(s))
+[00:21:02.137] LOG   [mk3_Elara] event goto_done: at=(3711,2232) target=(3698,2221) arrived=0 off=24
+[00:21:03.350] INFO  [mk3_Elara] [action] goto (3698,2221) from (3711,2232,20)
+[00:21:03.350] LOG   [mk3_Elara] event goto_start: target=(3698,2221) from=(3711,2232)
+[00:21:03.350] INFO  [mk3_Elara] [bot] running from (3711,2232,20) to (3698,2221,z20)
+[00:21:03.350] INFO  [mk3_Elara] [bot] planning path to (3698,2221) in background
+[00:21:03.411] INFO  [mk3_Elara] [bot] replan to (3698,2221): 25 steps in 3255.1us
+[00:21:04.178] INFO  [mk3_Elara] [survival] hp 32/32 (100%) -> fight
+[00:21:06.903] INFO  [mk3_Elara] [travel] mode walk             usable   <- chosen
+[00:21:06.903] INFO  [mk3_Elara] [travel] mode moongate         usable
+[00:21:06.903] INFO  [mk3_Elara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:06.903] INFO  [mk3_Elara] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:06.903] LOG   [mk3_Elara] event travel_mode: walk
+[00:21:06.903] INFO  [mk3_Elara] [travel] plan mobile 0x0000E0B0: ok legs=1 ~13 tiles transit=0 nodes=0
+[00:21:06.949] INFO  [mk3_Elara] [action] goto finished at (3710,2220,20); target (3698,2221); stopped short (off by 13 tile(s))
+[00:21:06.949] LOG   [mk3_Elara] event goto_done: at=(3710,2220) target=(3698,2221) arrived=0 off=13
+[00:21:06.949] INFO  [mk3_Elara] [action] goto (3697,2218) from (3710,2220,20)
+[00:21:06.949] LOG   [mk3_Elara] event goto_start: target=(3697,2218) from=(3710,2220)
+[00:21:06.949] INFO  [mk3_Elara] [bot] running from (3710,2220,20) to (3697,2218,z20)
+[00:21:06.949] INFO  [mk3_Elara] [bot] planning path to (3697,2218) in background
+[00:21:08.695] INFO  [mk3_Elara] [action] goto finished at (3710,2220,20); target (3697,2218); stopped short (off by 15 tile(s))
+[00:21:08.695] LOG   [mk3_Elara] event goto_done: at=(3710,2220) target=(3697,2218) arrived=0 off=15
+[00:21:09.202] INFO  [mk3_Elara] [survival] hp 32/32 (100%) -> fight
+[00:21:09.925] INFO  [mk3_Elara] [action] goto (3697,2218) from (3710,2220,20)
+[00:21:09.925] LOG   [mk3_Elara] event goto_start: target=(3697,2218) from=(3710,2220)
+[00:21:09.925] INFO  [mk3_Elara] [bot] running from (3710,2220,20) to (3697,2218,z20)
+[00:21:09.925] INFO  [mk3_Elara] [bot] planning path to (3697,2218) in background
+[00:21:11.193] INFO  [mk3_Elara] [chat ascii] System: Observer has arrived in Minoc.
+[00:21:11.617] INFO  [mk3_Elara] [action] goto finished at (3710,2220,20); target (3697,2218); stopped short (off by 15 tile(s))
+[00:21:11.617] LOG   [mk3_Elara] event goto_done: at=(3710,2220) target=(3697,2218) arrived=0 off=15
+[00:21:12.819] INFO  [mk3_Elara] [action] goto (3697,2218) from (3710,2220,20)
+[00:21:12.819] LOG   [mk3_Elara] event goto_start: target=(3697,2218) from=(3710,2220)
+[00:21:12.819] INFO  [mk3_Elara] [bot] running from (3710,2220,20) to (3697,2218,z20)
+[00:21:12.819] INFO  [mk3_Elara] [bot] planning path to (3697,2218) in background
+[00:21:12.880] INFO  [mk3_Elara] [bot] replan to (3697,2218): 13 steps in 721.6us
+[00:21:14.261] INFO  [mk3_Elara] [survival] hp 32/32 (100%) -> fight
+[00:21:14.571] INFO  [mk3_Elara] [chat ascii] System: Observer has departed from Minoc.
+[00:21:16.352] INFO  [mk3_Elara] [travel] mobile 0x0000E0B0 ARRIVED at (3698,2219,20)
+[00:21:16.352] LOG   [mk3_Elara] event travel_done: label='mobile 0x0000E0B0' ok=1 at=(3698,2219) legs=1 plans=1 why=''
+[00:21:16.413] INFO  [life] FILL_SPELLBOOK: asking the scribe to show a spell this book lacks
+[00:21:16.413] INFO  [mk3_Elara] [ACTION] vendor_buy start
+[00:21:16.413] INFO  [mk3_Elara] [VENDOR] open vendor=0x0000E0B0 say='Jin buy'
+[00:21:16.414] INFO  [mk3_Elara] [chat uni  ] : Jin buy
+[00:21:16.414] INFO  [mk3_Elara] [chat ascii] Jin: Yes?
+[00:21:16.414] INFO  [mk3_Elara] [chat ascii] Jin: I got lots to sell!
+[00:21:16.414] INFO  [mk3_Elara] [0x3C] container contents: 48 item(s)
+[00:21:16.414] INFO  [mk3_Elara] [0x74] pairing: straight (straight 4, mirrored 0 of 48 rows)
+[00:21:16.414] INFO  [mk3_Elara] [0x74] vendor shop data: cont=0x4000E0A6 48 item(s), layer=0x1A
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   blank scrolls                gfx=0x0E34 qty=250  price=6
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   pen and ink                  gfx=0x0FBF qty=24   price=13
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   book                         gfx=0x0FF1 qty=6    price=1825361101
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   book                         gfx=0x0FF2 qty=14   price=1825361101
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   Reactive Armor Scroll        gfx=0x1F2D qty=25   price=23
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   Clumsy Scroll                gfx=0x1F2E qty=25   price=20
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   Create Food Scroll           gfx=0x1F2F qty=25   price=23
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   Feeblemind Scroll            gfx=0x1F30 qty=25   price=20
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   Heal Scroll                  gfx=0x1F31 qty=25   price=23
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   Magic Arrow Scroll           gfx=0x1F32 qty=25   price=20
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   Night Sight Scroll           gfx=0x1F33 qty=25   price=20
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   Weaken Scroll                gfx=0x1F34 qty=25   price=20
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   Agility Scroll               gfx=0x1F35 qty=25   price=21
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   Strength Scroll              gfx=0x1F3C qty=25   price=21
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   Cure Scroll                  gfx=0x1F37 qty=25   price=21
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   Cunning Scroll               gfx=0x1F36 qty=25   price=21
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   Protection Scroll            gfx=0x1F3B qty=25   price=24
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   Magic Trap Scroll            gfx=0x1F39 qty=25   price=24
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   Harm Scroll                  gfx=0x1F38 qty=25   price=21
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   Magic Untrap Scroll          gfx=0x1F3A qty=25   price=21
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   Bless Scroll                 gfx=0x1F3D qty=25   price=23
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   Fireball Scroll              gfx=0x1F3E qty=25   price=23
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   Magic Lock Scroll            gfx=0x1F3F qty=25   price=38
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   Telekinisis Scroll           gfx=0x1F41 qty=25   price=23
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   Poison Scroll                gfx=0x1F40 qty=25   price=35
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   Teleport Scroll              gfx=0x1F42 qty=25   price=23
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   Unlock Scroll                gfx=0x1F43 qty=25   price=23
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   Wall of Stone Scroll         gfx=0x1F44 qty=25   price=23
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   Archcure Scroll              gfx=0x1F45 qty=25   price=29
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   Greater Heal Scroll          gfx=0x1F49 qty=25   price=52
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   Curse Scroll                 gfx=0x1F47 qty=25   price=29
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   Arch Protection Scroll       gfx=0x1F46 qty=25   price=32
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   Fire Field Scroll            gfx=0x1F48 qty=25   price=29
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   Lightning Scroll             gfx=0x1F4A qty=25   price=29
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   Mana Drain Scroll            gfx=0x1F4B qty=25   price=29
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   Recall Scroll                gfx=0x1F4C qty=25   price=46
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   Mark Scroll                  gfx=0x1F59 qty=25   price=46
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   Blade Spirits Scroll         gfx=0x1F4D qty=25   price=31
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   Dispel Field Scroll          gfx=0x1F4E qty=25   price=35
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   Incognito Scroll             gfx=0x1F4F qty=25   price=31
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   Magic Reflection Scroll      gfx=0x1F50 qty=25   price=31
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   Mind Blast Scroll            gfx=0x1F51 qty=25   price=35
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   Paralyze Scroll              gfx=0x1F52 qty=25   price=31
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   Poison Field Scroll          gfx=0x1F53 qty=25   price=46
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   Summon Creature Scroll       gfx=0x1F54 qty=25   price=31
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   Dispel Scroll                gfx=0x1F55 qty=25   price=33
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   Energy Bolt Scroll           gfx=0x1F56 qty=25   price=40
+[00:21:16.415] INFO  [mk3_Elara] [0x74]   Resurrection Scroll          gfx=0x1F67 qty=25   price=182
+[00:21:16.415] INFO  [mk3_Elara] [0x3C] container contents: 0 item(s)
+[00:21:16.415] INFO  [mk3_Elara] [0x74] vendor shop data: cont=0x4000D425 0 item(s), layer=0x1B
+[00:21:16.415] INFO  [mk3_Elara] [VENDOR] offer from 0x0000E0B0: 48 item(s)
+[00:21:16.415] INFO  [mk3_Elara] [VENDOR]   0x4001626E blank scrolls          x250 6 gp
+[00:21:16.415] INFO  [mk3_Elara] [VENDOR]   0x4001626D pen and ink            x24  13 gp
+[00:21:16.415] INFO  [mk3_Elara] [VENDOR]   0x4001626C book                   x6   1825361101 gp
+[00:21:16.415] INFO  [mk3_Elara] [VENDOR]   0x4001626B book                   x14  1825361101 gp
+[00:21:16.415] INFO  [mk3_Elara] [VENDOR]   0x4001626A Reactive Armor Scroll  x25  23 gp
+[00:21:16.415] INFO  [mk3_Elara] [VENDOR]   0x40016267 Clumsy Scroll          x25  20 gp
+[00:21:16.415] INFO  [mk3_Elara] [VENDOR]   0x40016263 Create Food Scroll     x25  23 gp
+[00:21:16.415] INFO  [mk3_Elara] [VENDOR]   0x4001625E Feeblemind Scroll      x25  20 gp
+[00:21:16.415] LOG   [mk3_Elara] event vendor_offer: vendor=0x0000E0B0 items=48
+[00:21:16.415] INFO  [mk3_Elara] [ACTION_RESULT] vendor_buy success (2ms) vendor offer received
+[00:21:16.415] LOG   [mk3_Elara] event action_result: vendor_buy success took=2ms vendor offer received
+[00:21:16.415] INFO  [mk3_Elara] [0x24] vendor buy gump for 0x0000E0B0
+[00:21:16.982] INFO  [mk3_Elara] [bot] arrived at (3697,2218,20)
+[00:21:18.498] INFO  [mk3_Elara] [chat ascii] Corbey: Hmm?
+[00:21:19.264] INFO  [mk3_Elara] [survival] hp 32/32 (100%) -> fight
+[00:21:24.319] INFO  [mk3_Elara] [survival] hp 32/32 (100%) -> fight
+[00:21:25.417] INFO  [life] spellbook: buying a spell this book lacks ('Reactive Armor Scroll', 0x1F2D, spell 7) at 23 gold -- 0 of this shop's scrolls were already in the book
+[00:21:25.417] INFO  [mk3_Elara] [ACTION] vendor_buy start
+[00:21:25.418] LOG   [mk3_Elara] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[00:21:29.345] INFO  [mk3_Elara] [survival] hp 32/32 (100%) -> fight
+[00:21:34.353] INFO  [mk3_Elara] [survival] hp 32/32 (100%) -> fight
+[00:21:34.475] INFO  [life] spellbook: opening the book to see what is already in it
+[00:21:34.475] INFO  [mk3_Elara] [ACTION] use_object start
+[00:21:34.475] INFO  [mk3_Elara] [ACTION] use_object serial=0x40010EB3
+[00:21:34.491] INFO  [mk3_Elara] [0x3C] container contents: 13 item(s)
+[00:21:34.491] INFO  [mk3_Elara] [ACTION_RESULT] use_object success (16ms) contents received
+[00:21:34.491] LOG   [mk3_Elara] event action_result: use_object success took=16ms contents received
+[00:21:36.975] INFO  [life] spellbook: buying a spell this book lacks ('Reactive Armor Scroll', 0x1F2D, spell 7) at 23 gold -- 0 of this shop's scrolls were already in the book
+[00:21:36.975] INFO  [mk3_Elara] [ACTION] vendor_buy start
+[00:21:36.976] LOG   [mk3_Elara] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[00:21:38.766] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_14.elara/state.json
+[00:21:39.377] INFO  [mk3_Elara] [survival] hp 32/32 (100%) -> fight
+[00:21:44.396] INFO  [mk3_Elara] [survival] hp 32/32 (100%) -> fight
+[00:21:45.976] INFO  [life] spellbook: opening the book to see what is already in it
+[00:21:45.976] INFO  [mk3_Elara] [ACTION] use_object start
+[00:21:45.976] INFO  [mk3_Elara] [ACTION] use_object serial=0x40010EB3
+[00:21:45.976] INFO  [mk3_Elara] [0x3C] container contents: 13 item(s)
+[00:21:45.976] INFO  [mk3_Elara] [ACTION_RESULT] use_object success (0ms) contents received
+[00:21:45.976] LOG   [mk3_Elara] event action_result: use_object success took=0ms contents received
+[00:21:48.520] INFO  [life] spellbook: buying a spell this book lacks ('Reactive Armor Scroll', 0x1F2D, spell 7) at 23 gold -- 0 of this shop's scrolls were already in the book
+[00:21:48.520] INFO  [mk3_Elara] [ACTION] vendor_buy start
+[00:21:48.520] LOG   [mk3_Elara] event action_result: vendor_buy rejected took=1ms Revolution vendor policy refuses this NPC purchase
+[00:21:49.410] INFO  [mk3_Elara] [survival] hp 32/32 (100%) -> fight
+[00:21:54.423] INFO  [mk3_Elara] [survival] hp 32/32 (100%) -> fight
+[00:21:55.526] INFO  [mk3_Elara] [chat ascii] Corbey: Aye?
+[00:21:57.532] INFO  [life] spellbook: opening the book to see what is already in it
+[00:21:57.532] INFO  [mk3_Elara] [ACTION] use_object start
+[00:21:57.532] INFO  [mk3_Elara] [ACTION] use_object serial=0x40010EB3
+[00:21:57.548] INFO  [mk3_Elara] [0x3C] container contents: 13 item(s)
+[00:21:57.548] INFO  [mk3_Elara] [ACTION_RESULT] use_object success (16ms) contents received
+[00:21:57.548] LOG   [mk3_Elara] event action_result: use_object success took=16ms contents received
+[00:21:58.644] INFO  [mk3_Elara] [chat ascii] System: Draver has departed from Minoc.
+[00:21:59.428] INFO  [mk3_Elara] [survival] hp 32/32 (100%) -> fight
+[00:22:00.087] INFO  [life] spellbook: buying a spell this book lacks ('Reactive Armor Scroll', 0x1F2D, spell 7) at 23 gold -- 0 of this shop's scrolls were already in the book
+[00:22:00.087] INFO  [mk3_Elara] [ACTION] vendor_buy start
+[00:22:00.087] LOG   [mk3_Elara] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[00:22:04.467] INFO  [mk3_Elara] [survival] hp 32/32 (100%) -> fight
+[00:22:09.108] INFO  [life] spellbook: opening the book to see what is already in it
+[00:22:09.108] INFO  [mk3_Elara] [ACTION] use_object start
+[00:22:09.108] INFO  [mk3_Elara] [ACTION] use_object serial=0x40010EB3
+[00:22:09.108] INFO  [mk3_Elara] [0x3C] container contents: 13 item(s)
+[00:22:09.108] INFO  [mk3_Elara] [ACTION_RESULT] use_object success (0ms) contents received
+[00:22:09.108] LOG   [mk3_Elara] event action_result: use_object success took=0ms contents received
+[00:22:09.492] INFO  [mk3_Elara] [survival] hp 32/32 (100%) -> fight
+[00:22:10.000] INFO  [mk3_Elara] [chat ascii] Jocasa: Thou'rt nearer to me than I like.
+[00:22:11.615] INFO  [life] spellbook: buying a spell this book lacks ('Reactive Armor Scroll', 0x1F2D, spell 7) at 23 gold -- 0 of this shop's scrolls were already in the book
+[00:22:11.615] INFO  [mk3_Elara] [ACTION] vendor_buy start
+[00:22:11.616] LOG   [mk3_Elara] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[00:22:11.647] INFO  [life] goal_changed=TRADE_WITH_PLAYER from=FILL_SPELLBOOK reason="previous goal abandoned: attempts 5 >= 5"
+[00:22:11.647] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.56) NeedSkillTraining(Meditation 0.55) NeedTrade(buy from a player 0.47) NeedPractice(Meditation 0.45) NeedSupplies(buy craft inputs 0.44) NeedFood(food 0.25)  | tools defined=1 held=[mortar,] want_train=Meditation (target 50.0)
+[00:22:11.647] INFO  [life]   score=68.2
+[00:22:11.647] INFO  [life]   reason: NeedTrade urgency 0.47 x 145 = 68.2
+[00:22:11.647] INFO  [life]   reason: 16 x i_bottle_empty short
+[00:22:11.647] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 149s after achieving nothing
+[00:22:14.531] INFO  [mk3_Elara] [survival] hp 32/32 (100%) -> fight
+[00:22:19.572] INFO  [mk3_Elara] [survival] hp 32/32 (100%) -> fight
+[00:22:20.251] INFO  [mk3_Elara] [chat ascii] Arne: I'm listenin'.
+[00:22:20.621] INFO  [life] market: the market is britain_bank_2 (Britain banker) at 1425,1690, radius 5, guarded
+[00:22:20.621] INFO  [life] goal_blocked=TRADE_WITH_PLAYER reason="not enough session left for the trip" left=15s need=800s
+[00:22:20.652] INFO  [life] goal=GET_FOOD reason="previous goal abandoned: not enough session left for the trip"
+[00:22:20.653] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.56) NeedSkillTraining(Meditation 0.55) NeedPractice(Meditation 0.45) NeedSupplies(buy craft inputs 0.44) NeedFood(food 0.25) NeedTrade(buy from a player BLOCKED 0.00)  | tools defined=1 held=[mortar,] want_train=Meditation (target 50.0)
+[00:22:20.653] INFO  [life]   score=62.5
+[00:22:20.653] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[00:22:20.653] INFO  [life]   reason: food=0
+[00:22:20.653] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 140s after achieving nothing
+[00:22:20.653] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 599s after achieving nothing
+[00:22:20.653] INFO  [life] food: casting Create Food rather than shopping (magery 50.0, mana 32)
+[00:22:20.653] INFO  [mk3_Elara] [ACTION] cast_spell start
+[00:22:20.653] INFO  [mk3_Elara] [ACTION] cast_spell id=2 target=0x00000000 mana=32
+[00:22:20.653] INFO  [mk3_Elara] [chat ascii] System: The spell is not in your spellbook.
+[00:22:20.653] LOG   [mk3_Elara] event action_result: cast_spell server_failure took=0ms The spell is not in your spellbook.
+[00:22:24.580] INFO  [mk3_Elara] [survival] hp 32/32 (100%) -> fight
+[00:22:26.690] INFO  [life] food: Create Food is not in this character's spellbook (magery 50.0) -- buying food instead for the rest of the session
+[00:22:26.706] INFO  [mk3_Elara] [travel] place: skipping Wind baker -- 1772 tiles and 2 gates for a service Magincia baker offers
+[00:22:26.706] INFO  [mk3_Elara] [travel] Magincia baker -> (3683,2171) r=5 from (3697,2218)
+[00:22:26.706] LOG   [mk3_Elara] event travel_start: label='Magincia baker' target=(3683,2171) radius=5 from=(3697,2218)
+[00:22:26.706] INFO  [life] food: walking to a 'baker' (trip 1)
+[00:22:26.706] INFO  [mk3_Elara] [travel] mode walk             usable   <- chosen
+[00:22:26.706] INFO  [mk3_Elara] [travel] mode moongate         usable
+[00:22:26.706] INFO  [mk3_Elara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:26.706] INFO  [mk3_Elara] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:26.706] LOG   [mk3_Elara] event travel_mode: walk
+[00:22:26.706] INFO  [mk3_Elara] [travel] plan Magincia baker: ok legs=2 ~56 tiles transit=0 nodes=8
+[00:22:26.708] INFO  [mk3_Elara] [action] goto finished at (3697,2218,20); target (3697,2218); ARRIVED (off by 0 tile(s))
+[00:22:26.708] LOG   [mk3_Elara] event goto_done: at=(3697,2218) target=(3697,2218) arrived=1 off=0
+[00:22:26.708] INFO  [mk3_Elara] [action] goto (3704,2184) from (3697,2218,20)
+[00:22:26.708] LOG   [mk3_Elara] event goto_start: target=(3704,2184) from=(3697,2218)
+[00:22:26.708] INFO  [mk3_Elara] [bot] running from (3697,2218,20) to (3704,2184)
+[00:22:26.708] INFO  [mk3_Elara] [bot] planning path to (3704,2184) in background
+[00:22:26.767] INFO  [mk3_Elara] [bot] replan to (3704,2184): 49 steps in 7952.7us
+[00:22:29.586] INFO  [mk3_Elara] [survival] hp 32/32 (100%) -> fight
+[00:22:34.607] INFO  [mk3_Elara] [survival] hp 32/32 (100%) -> fight
+[00:22:35.210] INFO  [mk3_Elara] [chat ascii] Jin: Aye?
+[00:22:36.169] INFO  [life] session_end_requested reason="session time limit reached"
+[00:22:38.419] INFO  [mk3_Elara] [chat ascii] System: Vorar has departed from Britain.
+[00:22:39.439] INFO  [mk3_Elara] [chat ascii] System: Selene has departed from Magincia.
+[00:22:39.625] INFO  [mk3_Elara] [survival] hp 32/32 (100%) -> fight
+[00:22:40.069] INFO  [mk3_Elara] [bot] arrived at (3704,2184,20)
+[00:22:40.069] INFO  [mk3_Elara] [action] goto finished at (3704,2184,20); target (3704,2184); ARRIVED (off by 0 tile(s))
+[00:22:40.069] LOG   [mk3_Elara] event goto_done: at=(3704,2184) target=(3704,2184) arrived=1 off=0
+[00:22:40.069] INFO  [mk3_Elara] [action] goto (3683,2171) from (3704,2184,20)
+[00:22:40.069] LOG   [mk3_Elara] event goto_start: target=(3683,2171) from=(3704,2184)
+[00:22:40.069] INFO  [mk3_Elara] [bot] running from (3704,2184,20) to (3683,2171,z20)
+[00:22:40.069] INFO  [mk3_Elara] [bot] planning path to (3683,2171) in background
+[00:22:40.130] INFO  [mk3_Elara] [bot] replan to (3683,2171): 28 steps in 2189.9us
+[00:22:44.643] INFO  [mk3_Elara] [survival] hp 32/32 (100%) -> fight
+[00:22:46.897] INFO  [mk3_Elara] [chat ascii] System: Zarthal has departed from Minoc.
+[00:22:47.391] INFO  [mk3_Elara] [travel] Magincia baker ARRIVED at (3685,2176,20)
+[00:22:47.391] LOG   [mk3_Elara] event travel_done: label='Magincia baker' ok=1 at=(3685,2176) legs=2 plans=1 why=''
+[00:22:47.455] INFO  [life] wind-down: no bank learned yet; asking the world for one (attempt 1)
+[00:22:47.464] INFO  [mk3_Elara] [travel] Magincia banker -> (3734,2149) r=5 from (3685,2176)
+[00:22:47.464] LOG   [mk3_Elara] event travel_start: label='Magincia banker' target=(3734,2149) radius=5 from=(3685,2176)
+[00:22:47.464] INFO  [mk3_Elara] [travel] mode walk             usable   <- chosen
+[00:22:47.464] INFO  [mk3_Elara] [travel] mode moongate         usable
+[00:22:47.464] INFO  [mk3_Elara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:47.464] INFO  [mk3_Elara] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:47.464] LOG   [mk3_Elara] event travel_mode: walk
+[00:22:47.464] INFO  [mk3_Elara] [travel] plan Magincia banker: ok legs=2 ~64 tiles transit=0 nodes=11
+[00:22:49.378] INFO  [mk3_Elara] [chat ascii] System: World save in 10 seconds
+[00:22:49.501] INFO  [mk3_Elara] [bot] arrived at (3683,2171,20)
+[00:22:49.501] INFO  [mk3_Elara] [action] goto finished at (3683,2171,20); target (3683,2171); ARRIVED (off by 0 tile(s))
+[00:22:49.501] LOG   [mk3_Elara] event goto_done: at=(3683,2171) target=(3683,2171) arrived=1 off=0
+[00:22:49.501] INFO  [mk3_Elara] [action] goto (3720,2152) from (3683,2171,20)
+[00:22:49.501] LOG   [mk3_Elara] event goto_start: target=(3720,2152) from=(3683,2171)
+[00:22:49.501] INFO  [mk3_Elara] [bot] running from (3683,2171,20) to (3720,2152)
+[00:22:49.501] INFO  [mk3_Elara] [bot] planning path to (3720,2152) in background
+[00:22:49.561] INFO  [mk3_Elara] [bot] replan to (3720,2152): 40 steps in 7641.3us
+[00:22:49.684] INFO  [mk3_Elara] [survival] hp 32/32 (100%) -> fight
+[00:22:50.319] INFO  [mk3_Elara] [chat ascii] System: Thalia has departed from Moonglow.
+[00:22:53.217] INFO  [mk3_Elara] [chat ascii] System: Elvar has departed from Minoc.
+[00:22:53.444] INFO  [mk3_Elara] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=31 in 125.0us
+[00:22:54.537] INFO  [mk3_Elara] [bot] lookahead patched around block at step 1: anchor=5 new segment=47 path=70 in 1802.2us
+[00:22:54.736] INFO  [mk3_Elara] [survival] hp 32/32 (100%) -> fight
+[00:22:57.848] INFO  [mk3_Elara] [chat ascii] System: Falen has departed from Minoc.
+[00:22:59.429] INFO  [mk3_Elara] [chat ascii] System: World save has been initiated.
+[00:22:59.741] INFO  [mk3_Elara] [survival] hp 32/32 (100%) -> fight
+[00:23:04.484] INFO  [mk3_Elara] [action] goto finished at (3685,2172,20); target (3720,2152); stopped short (off by 55 tile(s))
+[00:23:04.484] LOG   [mk3_Elara] event goto_done: at=(3685,2172) target=(3720,2152) arrived=0 off=55
+[00:23:04.777] INFO  [mk3_Elara] [survival] hp 32/32 (100%) -> fight
+[00:23:05.698] INFO  [mk3_Elara] [action] goto (3720,2152) from (3685,2172,20)
+[00:23:05.698] LOG   [mk3_Elara] event goto_start: target=(3720,2152) from=(3685,2172)
+[00:23:05.698] INFO  [mk3_Elara] [bot] running from (3685,2172,20) to (3720,2152)
+[00:23:05.698] INFO  [mk3_Elara] [bot] planning path to (3720,2152) in background
+[00:23:05.762] INFO  [mk3_Elara] [bot] replan to (3720,2152): 49 steps in 10738.9us
+[00:23:05.777] INFO  [mk3_Elara] [chat ascii] System: Ghalor has departed from Minoc.
+[00:23:07.627] INFO  [mk3_Elara] [chat ascii] System: Cyras has departed from Britain.
+[00:23:09.817] INFO  [mk3_Elara] [survival] hp 32/32 (100%) -> fight
+[00:23:10.033] INFO  [mk3_Elara] [chat ascii] System: Kharain has departed from Minoc.
+[00:23:12.347] INFO  [mk3_Elara] [chat ascii] System: Leander has departed from Moonglow.
+[00:23:14.866] INFO  [mk3_Elara] [survival] hp 32/32 (100%) -> fight
+[00:23:19.913] INFO  [mk3_Elara] [survival] hp 32/32 (100%) -> fight
+[00:23:20.163] INFO  [mk3_Elara] [bot] arrived at (3720,2152,20)
+[00:23:20.163] INFO  [mk3_Elara] [action] goto finished at (3720,2152,20); target (3720,2152); ARRIVED (off by 0 tile(s))
+[00:23:20.163] LOG   [mk3_Elara] event goto_done: at=(3720,2152) target=(3720,2152) arrived=1 off=0
+[00:23:20.163] INFO  [mk3_Elara] [action] goto (3734,2149) from (3720,2152,20)
+[00:23:20.163] LOG   [mk3_Elara] event goto_start: target=(3734,2149) from=(3720,2152)
+[00:23:20.163] INFO  [mk3_Elara] [bot] running from (3720,2152,20) to (3734,2149,z20)
+[00:23:20.163] INFO  [mk3_Elara] [bot] planning path to (3734,2149) in background
+[00:23:20.226] INFO  [mk3_Elara] [bot] replan to (3734,2149): 22 steps in 1494.1us
+[00:23:24.935] INFO  [mk3_Elara] [survival] hp 32/32 (100%) -> fight
+[00:23:25.290] INFO  [mk3_Elara] [chat ascii] Dakarai: What's thee wantin'?
+[00:23:25.597] INFO  [mk3_Elara] [travel] Magincia banker ARRIVED at (3730,2154,20)
+[00:23:25.597] LOG   [mk3_Elara] event travel_done: label='Magincia banker' ok=1 at=(3730,2154) legs=2 plans=1 why=''
+[00:23:25.597] INFO  [life] wind-down: arrived somewhere safe at 3730,2154
+[00:23:25.658] INFO  [life] session_summary duration=229s goals=0/5 gold=10000->9880 skills=100.0->100.0 logs=+0 kills=0 deaths=0 places=2 suppliers=0
+[00:23:25.658] INFO  [life] session_goals families=2 picks=5 top=80% varied=0 self_superseded=0 | upkeep=4(80%) social=1(20%) | REPLACE_EQUIPMENT=1(20%) BANK=1(20%) TRADE_WITH_PLAYER=1(20%) GET_FOOD=1(20%) FILL_SPELLBOOK=1(20%)
+[00:23:25.660] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_14.elara/state.json
+[00:23:25.660] INFO  [life] logging out
+[00:23:25.660] INFO  [mk3_Elara] [action] logout requested
+[00:23:25.660] LOG   [mk3_Elara] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[00:23:25.674] INFO  [mk3_Elara] [0xD1] logout acknowledged (accepted=1)
+[00:23:25.674] LOG   [mk3_Elara] event logout_ack: accepted
+[00:23:25.674] INFO  [mk3_Elara] [net] closing connection (logout acknowledged)
+[00:23:25.674] LOG   [mk3_Elara] event logout_complete: acked

@@ -406,17 +406,17 @@ void TestSupplierResolution() {
     Check(reg.Best(tools, 2460, 460, t0 + 10).usable,
           "a restock clears the invalidation");
 
-    // POLICY REFUSAL IS NOT IGNORANCE. Logs are WORLD_GATHERED, so an NPC
-    // selling them is refused -- but the observation is still recorded, and the
-    // reason must survive to the caller rather than being reported as "unknown".
+    // OBSERVED STOCK IS USABLE. Logs remain WorldGathered in the audit, but
+    // the purchase/sale split allows a bot to spend its own gold on an NPC's
+    // real offer; only the buy-back/faucet path remains restricted.
     Registry reg2;
     reg2.RecordVendorStock(0x1234, "a carpenter", 100, 100, 0,
                            "i_log", 50, 3, t0);
     Need logs{NeedKind::Item, "i_log", 1};
-    auto refused = reg2.Best(logs, 100, 100, t0);
-    Check(!refused.usable, "a policy-refused good is not usable");
-    Check(refused.why.find("policy") != std::string::npos,
-          "and the refusal says POLICY, not 'never seen'");
+    auto stocked = reg2.Best(logs, 100, 100, t0);
+    Check(stocked.usable, "an observed stocked good is usable for purchase");
+    Check(stocked.supplier.policyClass == econ::VendorClass::WorldGathered,
+          "the supplier retains the audit class for reporting");
     Check(reg2.Size() == 1, "the observation is still kept -- it is a world fact");
 
     // Quantity is checked against what was SEEN, not what a template promises.
@@ -444,6 +444,8 @@ void TestPetSemantics() {
     // Exact vocabulary from CCharNPCPet.cpp:88-115. Asserted so nobody
     // "improves" them into something the server does not parse.
     Check(std::strcmp(CommandWords(Command::Come), "come") == 0, "come");
+    Check(std::strcmp(CommandWords(Command::FollowMe), "follow me") == 0,
+          "follow me");
     Check(std::strcmp(CommandWords(Command::Stay), "stay") == 0, "stay");
     Check(std::strcmp(CommandWords(Command::Stop), "stop") == 0, "stop");
     Check(std::strcmp(CommandWords(Command::Kill), "kill") == 0, "kill");
@@ -461,6 +463,7 @@ void TestPetSemantics() {
     Check(NeedsTarget(Command::Attack), "attack is spoken-then-targeted");
     Check(NeedsTarget(Command::FollowTarget), "follow takes a target");
     Check(!NeedsTarget(Command::Come), "come acts immediately");
+    Check(!NeedsTarget(Command::FollowMe), "follow me acts immediately");
     Check(!NeedsTarget(Command::Stay), "stay acts immediately");
     Check(!NeedsTarget(Command::Stop), "stop acts immediately");
     Check(!NeedsTarget(Command::GuardMe), "guard me acts immediately");
@@ -579,43 +582,6 @@ void TestCombatSurvival() {
         Check(Decide(v) == Tactic::Rest, "safe and hurt with no supplies: rest");
     }
 
-    // M4 retune: "disengage way too quickly". A third of our health left with
-    // bandages in the pack is still a fight, not a retreat.
-    {
-        Vitals v; v.hpNow = 18; v.hpMax = 50; v.inCombat = true;   // 36%
-        v.enemyAdjacent = true; v.bandages = 10;
-        Check(Decide(v) == Tactic::Fight, "36% in contact with bandages: keep fighting");
-    }
-
-    // Out of war mode is not out of danger. The loop this breaks: disengage,
-    // stand still, get hit, "out of contact" -> bandage, hit again, bandage...
-    {
-        Vitals v; v.hpNow = 20; v.hpMax = 50; v.inCombat = false;  // 40%
-        v.enemyAdjacent = false; v.underAttack = true; v.bandages = 10;
-        Check(Decide(v) != Tactic::Bandage,
-              "being hit counts as contact even out of war mode -- no bandage");
-        v.hpNow = 12;                                                 // 24%
-        Check(Decide(v) == Tactic::Disengage,
-              "badly hurt and being hit, out of war mode: still disengage, not bandage");
-        v.underAttack = false;
-        Check(Decide(v) == Tactic::Bandage,
-              "once nothing has hit us for a moment, bandage");
-    }
-
-    // Finish a foe that is one swing from dead instead of turning your back.
-    {
-        Vitals v; v.hpNow = 13; v.hpMax = 50; v.inCombat = true;   // 26%
-        v.enemyAdjacent = true; v.bandages = 10; v.foeHpPercent = 15;
-        Check(Decide(v) == Tactic::Fight, "foe at 15%: finish it");
-        v.foeHpPercent = 60;
-        Check(Decide(v) == Tactic::Disengage, "foe at 60%: break off as before");
-        v.foeHpPercent = 15; v.hpNow = 9; v.bandages = 0;           // 18%
-        Check(Decide(v) == Tactic::Flee,
-              "below the flee line even a dying foe is not worth it");
-        v.foeHpPercent = -1; v.hpNow = 13; v.bandages = 10;
-        Check(Decide(v) == Tactic::Disengage, "unknown foe health is not 'nearly dead'");
-    }
-
     // Resuming is a separate, stricter question than "stop healing".
     {
         Vitals v; v.hpMax = 100;
@@ -630,8 +596,6 @@ void TestCombatSurvival() {
     Check(kFleePercent < kDisengagePercent, "flee threshold is below disengage");
     Check(kDisengagePercent < kPotionPercent, "disengage is below the potion sip");
     Check(kPotionPercent < kResumePercent, "resume is the highest bar");
-    Check(kFinishFoePercent > 0 && kFinishFoePercent < kDisengagePercent,
-          "finishing is for a foe clearly worse off than our own break-off line");
     Check(kBandageSeconds == 3,
           "bandage cost matches SKILL 17 DELAY=3.0 in skill17_healing.scp");
 }

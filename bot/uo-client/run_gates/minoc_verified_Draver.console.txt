@@ -1,0 +1,700 @@
+[12:51:39.604] INFO  session 0: 127.0.0.1:2593 user='RevGen3_01' char=Draver tag='minoc_verified_Draver'
+[12:51:39.606] LOG   [minoc_verified_Draver] event session_start: text log opened
+[12:51:39.607] LOG   [minoc_verified_Draver] event net_connect_begin: connect 127.0.0.1:2593
+[12:51:39.608] INFO  [minoc_verified_Draver] [net] connecting to 127.0.0.1:2593 ...
+[12:51:39.610] LOG   [minoc_verified_Draver] event net_connected: connect 127.0.0.1:2593
+[12:51:39.611] INFO  [minoc_verified_Draver] [net] connected.
+[12:51:39.613] INFO  [minoc_verified_Draver] [seed] sent 0x7F000001 (plaintext)
+[12:51:39.613] LOG   [minoc_verified_Draver] event seed_out: 0x7F000001 hex=7f000001
+[12:51:39.614] INFO  [life] loaded persistent state for Draver (36 places, 2 suppliers, 13 events, 3 prior sessions)
+[12:51:39.614] INFO  [life] needs: reading 'miner_smith' from the profession catalogue
+[12:51:39.614] INFO  [life] build plan 'miner_smith': 300.0 resolved + 400.0 unresolved = 700.0/700.0, stats 100/45/80 = 225
+[12:51:39.614] INFO  [minoc_verified_Draver] [life] autonomous player active for 'Draver' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 30 min)
+[12:51:39.646] INFO  [minoc_verified_Draver] [0xA8] 1 server(s):
+[12:51:39.646] INFO  [minoc_verified_Draver]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[12:51:39.661] INFO  [minoc_verified_Draver] [0x8C] game server = 127.0.0.1:2593  seed=0x6A287272
+[12:51:39.661] LOG   [minoc_verified_Draver] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x6A287272
+[12:51:39.661] INFO  [minoc_verified_Draver] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[12:51:39.661] LOG   [minoc_verified_Draver] event relay_same_socket: no seed re-sent; 0x91 follows
+[12:51:39.662] INFO  [minoc_verified_Draver] [0xB9] server features = 0x0005
+[12:51:39.662] INFO  [minoc_verified_Draver] [0xA9] 5 slot(s) (populated 1):
+[12:51:39.662] INFO  [minoc_verified_Draver]   [0] Draver
+[12:51:39.662] INFO  [minoc_verified_Draver]   [1] <empty>
+[12:51:39.662] INFO  [minoc_verified_Draver]   [2] <empty>
+[12:51:39.662] INFO  [minoc_verified_Draver]   [3] <empty>
+[12:51:39.662] INFO  [minoc_verified_Draver]   [4] <empty>
+[12:51:39.662] INFO  [minoc_verified_Draver] [ui] playing slot 0 ('Draver')
+[12:51:39.676] INFO  [minoc_verified_Draver] [0x1B] serial=0x00016DBB body=0x0190 pos=(1454,1675,0)
+[12:51:39.676] LOG   [minoc_verified_Draver] event login_confirm: serial=0x00016DBB body=0x0190 pos=(1454,1675,0)
+[12:51:39.677] INFO  [minoc_verified_Draver] [0x20] player @(1454,1675,0) facing=5
+[12:51:39.677] INFO  [minoc_verified_Draver] [0x55] login complete — entering world
+[12:51:39.677] LOG   [minoc_verified_Draver] event in_world: 0x55 received
+[12:51:39.677] INFO  [minoc_verified_Draver] [backpack] opening 0x40016DB8
+[12:51:39.677] INFO  [minoc_verified_Draver] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[12:51:39.677] INFO  [minoc_verified_Draver] [chat ascii] System: There is 1 other player here.
+[12:51:39.677] INFO  [minoc_verified_Draver] [chat ascii] System: Last logged: 2026/08/31 12:44:47
+[12:51:39.677] INFO  [minoc_verified_Draver] [chat ascii] System: You are under the protection of the city guards
+[12:51:39.681] INFO  [minoc_verified_Draver] [action] requesting the skill list
+[12:51:39.681] INFO  [life] in world; asked the server for the skill list
+[12:51:39.681] INFO  [minoc_verified_Draver] [chat ascii] System: Your ghostly hand passes through the object.
+[12:51:42.270] INFO  [minoc_verified_Draver] [bot] world data loaded (0 blacklisted spot(s)).
+[12:51:42.270] INFO  [life] reconciliation: resuming a life, 2 field(s) differed
+[12:51:42.270] INFO  [life]   gold         persisted=8880       server=8880       -> server value accepted
+[12:51:42.271] INFO  [life]   str          persisted=56         server=56         -> server value accepted
+[12:51:42.271] INFO  [life]   dex          persisted=16         server=16         -> server value accepted
+[12:51:42.271] INFO  [life]   int          persisted=8          server=8          -> server value accepted
+[12:51:42.271] INFO  [life]   skill_7      persisted=50.2       server=50.2       -> server value accepted
+[12:51:42.271] INFO  [life]   skill_45     persisted=50.0       server=50.0       -> server value accepted
+[12:51:42.271] INFO  [life]   skill_37     persisted=20.6       server=20.6       -> server value accepted
+[12:51:42.271] INFO  [life]   skill_4      persisted=0.0        server=0.0        -> server value accepted
+[12:51:42.271] INFO  [life]   position     persisted=1826,1258  server=1454,1675  -> server value accepted
+[12:51:42.272] INFO  [life]   alive        persisted=alive      server=dead       -> server value accepted
+[12:51:42.272] INFO  [life]   restored objective KEPT: SURVIVE (progress 0)
+[12:51:42.272] INFO  [minoc_verified_Draver] [survival] on
+[12:51:42.272] LOG   [minoc_verified_Draver] event survival_mode: on
+[12:51:42.274] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_01.draver/state.json
+[12:51:42.339] INFO  [minoc_verified_Draver] [ACTION] resurrect start
+[12:51:42.340] LOG   [minoc_verified_Draver] event action_result: resurrect invalid_state took=1ms not dead
+[12:51:42.340] INFO  [life] dead: walking to a healer (trip 1)
+[12:51:42.380] INFO  [minoc_verified_Draver] [travel] place: skipping Cove healer -- 1272 tiles and 1 gate for a service Britain healer offers
+[12:51:42.381] INFO  [minoc_verified_Draver] [travel] place: skipping Delucia healer -- 1860 tiles and 3 gates for a service Britain healer offers
+[12:51:42.381] INFO  [minoc_verified_Draver] [travel] Britain healer -> (1471,1611) r=5 from (1454,1675)
+[12:51:42.381] LOG   [minoc_verified_Draver] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1454,1675)
+[12:51:42.381] INFO  [minoc_verified_Draver] [travel] mode walk             usable   <- chosen
+[12:51:42.381] INFO  [minoc_verified_Draver] [travel] mode moongate         no: dead characters cannot use gates
+[12:51:42.381] INFO  [minoc_verified_Draver] [travel] mode loose_rune_recall no: no rune marked at that destination
+[12:51:42.381] INFO  [minoc_verified_Draver] [travel] mode runebook_recall  no: no runebook page for that destination
+[12:51:42.381] LOG   [minoc_verified_Draver] event travel_mode: walk
+[12:51:42.382] INFO  [minoc_verified_Draver] [travel] plan Britain healer: ok legs=2 ~72 tiles transit=0 nodes=39
+[12:51:42.445] INFO  [minoc_verified_Draver] [travel] avoiding 2 teleporter pad(s) on this leg
+[12:51:42.446] INFO  [minoc_verified_Draver] [action] goto (1464,1640) from (1454,1675,0)
+[12:51:42.446] LOG   [minoc_verified_Draver] event goto_start: target=(1464,1640) from=(1454,1675)
+[12:51:42.446] INFO  [minoc_verified_Draver] [bot] running from (1454,1675,0) to (1464,1640)
+[12:51:42.446] INFO  [minoc_verified_Draver] [bot] planning path to (1464,1640) in background
+[12:51:42.507] INFO  [minoc_verified_Draver] [bot] replan to (1464,1640): 35 steps in 1131.2us
+[12:51:47.345] INFO  [minoc_verified_Draver] [ACTION] resurrect start
+[12:51:47.346] LOG   [minoc_verified_Draver] event action_result: resurrect invalid_state took=0ms not dead
+[12:51:52.345] INFO  [minoc_verified_Draver] [ACTION] resurrect start
+[12:51:52.345] LOG   [minoc_verified_Draver] event action_result: resurrect invalid_state took=0ms not dead
+[12:51:54.386] INFO  [minoc_verified_Draver] [bot] arrived at (1464,1640,20)
+[12:51:54.387] INFO  [minoc_verified_Draver] [action] goto finished at (1464,1640,20); target (1464,1640); ARRIVED (off by 0 tile(s))
+[12:51:54.387] LOG   [minoc_verified_Draver] event goto_done: at=(1464,1640) target=(1464,1640) arrived=1 off=0
+[12:51:54.387] INFO  [minoc_verified_Draver] [travel] avoiding 2 teleporter pad(s) on this leg
+[12:51:54.388] INFO  [minoc_verified_Draver] [action] goto (1471,1611) from (1464,1640,20)
+[12:51:54.388] LOG   [minoc_verified_Draver] event goto_start: target=(1471,1611) from=(1464,1640)
+[12:51:54.388] INFO  [minoc_verified_Draver] [bot] running from (1464,1640,20) to (1471,1611,z20)
+[12:51:54.388] INFO  [minoc_verified_Draver] [bot] planning path to (1471,1611) in background
+[12:51:54.448] INFO  [minoc_verified_Draver] [bot] replan to (1471,1611): 37 steps in 7159.7us
+[12:51:57.400] INFO  [minoc_verified_Draver] [ACTION] resurrect start
+[12:51:57.400] LOG   [minoc_verified_Draver] event action_result: resurrect invalid_state took=0ms not dead
+[12:51:59.339] INFO  [minoc_verified_Draver] [chat ascii] System: World save in 10 seconds
+[12:52:02.443] INFO  [minoc_verified_Draver] [ACTION] resurrect start
+[12:52:02.443] LOG   [minoc_verified_Draver] event action_result: resurrect invalid_state took=0ms not dead
+[12:52:03.132] INFO  [minoc_verified_Draver] [bot] door ahead at (1479,1612,z20); OpenDoor before step
+[12:52:03.147] INFO  [minoc_verified_Draver] [chat ascii] System: Opening door...
+[12:52:03.148] INFO  [minoc_verified_Draver] [chat ascii] System: Your ghostly hand passes through the object.
+[12:52:04.908] INFO  [minoc_verified_Draver] [travel] Britain healer ARRIVED at (1475,1612,20)
+[12:52:04.908] LOG   [minoc_verified_Draver] event travel_done: label='Britain healer' ok=1 at=(1475,1612) legs=2 plans=1 why=''
+[12:52:06.476] INFO  [minoc_verified_Draver] [bot] arrived at (1471,1611,20)
+[12:52:06.847] INFO  [minoc_verified_Draver] [chat ascii] Dale: Thou wishest to speak with me?
+[12:52:06.847] INFO  [minoc_verified_Draver] [chat ascii] Dale: Perhaps thou shouldst be more careful. Here, I shall resurrect thee.
+[12:52:06.848] INFO  [minoc_verified_Draver] [0x20] player @(1471,1611,20) facing=7
+[12:52:06.892] INFO  [life] goal_changed=GET_TOOL from=SURVIVE reason="GET_TOOL 468.0 superseded SURVIVE 0.0"
+[12:52:06.892] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedTool(pickaxe 0.90) NeedTool(smith hammer 0.90) NeedOre(ore 0.65) NeedEquipment(heal potions 0.50) NeedSkillTraining(Tinkering 0.45) NeedSupplies(buy craft inputs 0.44) NeedEquipment(clothes 0.28) NeedFood(food 0.25)  | tools defined=2 held=[] want_train=Tinkering (target 50.0)
+[12:52:06.893] INFO  [life]   score=468.0
+[12:52:06.893] INFO  [life]   reason: NeedTool urgency 0.90 x 520 = 468.0
+[12:52:06.893] INFO  [life]   reason: no known supplier of a pickaxe
+[12:52:06.893] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=7/56 bandages=0)
+[12:52:06.893] INFO  [minoc_verified_Draver] [survival] hp 7/56 (12%) -> rest
+[12:52:06.983] INFO  [minoc_verified_Draver] [chat ascii] Dale: Well it was nice speaking to you Draver but I must go about my business
+[12:52:07.475] INFO  [life] plan=buy reason="none held, and it may be bought"
+[12:52:07.476] INFO  [life] GET_TOOL: 500 gold needed and 0 carried -- standing down so the bank goal can fetch it
+[12:52:07.536] INFO  [life] goal=BANK reason="previous goal abandoned: needs coin from the bank"
+[12:52:07.536] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedTool(pickaxe 0.90) NeedTool(smith hammer 0.90) NeedBank(withdraw for a purchase 0.80) NeedOre(ore 0.65) NeedEquipment(heal potions 0.50) NeedSkillTraining(Tinkering 0.45) NeedSupplies(buy craft inputs 0.44) NeedEquipment(clothes 0.28) NeedFood(food 0.25)  | tools defined=2 held=[] want_train=Tinkering (target 50.0)
+[12:52:07.537] INFO  [life]   score=162.0
+[12:52:07.537] INFO  [life]   reason: NeedBank urgency 0.80 x 240 = 192.0
+[12:52:07.537] INFO  [life]   reason: wanted=500 on_hand=0 banked=8880
+[12:52:07.537] INFO  [life]   reason: no bank learned yet -30
+[12:52:07.537] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=7/56 bandages=0)
+[12:52:07.537] INFO  [life]   BLOCKED_NEED GET_TOOL: on cooldown for another 44s after achieving nothing
+[12:52:08.518] INFO  [life] bank: nothing proven yet -- trying what common knowledge says is here, Minoc banker at 2503,552
+[12:52:08.519] INFO  [minoc_verified_Draver] [travel] seeded_bank -> (2503,552) r=5 from (1471,1611)
+[12:52:08.519] LOG   [minoc_verified_Draver] event travel_start: label='seeded_bank' target=(2503,552) radius=5 from=(1471,1611)
+[12:52:08.519] INFO  [minoc_verified_Draver] [travel] mode moongate         usable   <- chosen
+[12:52:08.519] INFO  [minoc_verified_Draver] [travel] mode walk             usable
+[12:52:08.519] INFO  [minoc_verified_Draver] [travel] mode loose_rune_recall no: no rune marked at that destination
+[12:52:08.519] INFO  [minoc_verified_Draver] [travel] mode runebook_recall  no: no runebook page for that destination
+[12:52:08.520] LOG   [minoc_verified_Draver] event travel_mode: moongate
+[12:52:08.522] INFO  [minoc_verified_Draver] [travel] plan seeded_bank: ok legs=20 ~832 tiles transit=1 nodes=7251
+[12:52:08.580] INFO  [minoc_verified_Draver] [action] goto finished at (1471,1611,20); target (1471,1611); ARRIVED (off by 0 tile(s))
+[12:52:08.580] LOG   [minoc_verified_Draver] event goto_done: at=(1471,1611) target=(1471,1611) arrived=1 off=0
+[12:52:08.580] INFO  [minoc_verified_Draver] [travel] avoiding 2 teleporter pad(s) on this leg
+[12:52:08.581] INFO  [minoc_verified_Draver] [action] goto (1464,1640) from (1471,1611,20)
+[12:52:08.581] LOG   [minoc_verified_Draver] event goto_start: target=(1464,1640) from=(1471,1611)
+[12:52:08.581] INFO  [minoc_verified_Draver] [bot] running from (1471,1611,20) to (1464,1640)
+[12:52:08.581] INFO  [minoc_verified_Draver] [bot] planning path to (1464,1640) in background
+[12:52:08.641] INFO  [minoc_verified_Draver] [bot] replan to (1464,1640): 37 steps in 833.6us
+[12:52:09.398] INFO  [minoc_verified_Draver] [chat ascii] System: World save has been initiated.
+[12:52:10.870] INFO  [minoc_verified_Draver] [bot] door ahead at (1479,1612,z20); OpenDoor before step
+[12:52:10.870] INFO  [minoc_verified_Draver] [chat ascii] System: Opening door...
+[12:52:12.019] INFO  [minoc_verified_Draver] [bot] door ahead at (1480,1613,z20); OpenDoor before step
+[12:52:12.034] INFO  [minoc_verified_Draver] [chat ascii] System: Opening door...
+[12:52:12.969] INFO  [minoc_verified_Draver] [survival] hp 7/56 (12%) -> rest
+[12:52:19.003] INFO  [minoc_verified_Draver] [survival] hp 7/56 (12%) -> rest
+[12:52:20.872] INFO  [minoc_verified_Draver] [bot] arrived at (1464,1640,20)
+[12:52:20.873] INFO  [minoc_verified_Draver] [action] goto finished at (1464,1640,20); target (1464,1640); ARRIVED (off by 0 tile(s))
+[12:52:20.873] LOG   [minoc_verified_Draver] event goto_done: at=(1464,1640) target=(1464,1640) arrived=1 off=0
+[12:52:20.873] INFO  [minoc_verified_Draver] [travel] avoiding 2 teleporter pad(s) on this leg
+[12:52:20.874] INFO  [minoc_verified_Draver] [action] goto (1448,1672) from (1464,1640,20)
+[12:52:20.874] LOG   [minoc_verified_Draver] event goto_start: target=(1448,1672) from=(1464,1640)
+[12:52:20.874] INFO  [minoc_verified_Draver] [bot] running from (1464,1640,20) to (1448,1672)
+[12:52:20.874] INFO  [minoc_verified_Draver] [bot] planning path to (1448,1672) in background
+[12:52:20.932] INFO  [minoc_verified_Draver] [bot] replan to (1448,1672): 37 steps in 1982.9us
+[12:52:25.040] INFO  [minoc_verified_Draver] [survival] hp 7/56 (12%) -> rest
+[12:52:31.063] INFO  [minoc_verified_Draver] [survival] hp 7/56 (12%) -> rest
+[12:52:32.162] INFO  [minoc_verified_Draver] [bot] arrived at (1448,1672,10)
+[12:52:32.163] INFO  [minoc_verified_Draver] [action] goto finished at (1448,1672,10); target (1448,1672); ARRIVED (off by 0 tile(s))
+[12:52:32.163] LOG   [minoc_verified_Draver] event goto_done: at=(1448,1672) target=(1448,1672) arrived=1 off=0
+[12:52:32.163] INFO  [minoc_verified_Draver] [travel] avoiding 2 teleporter pad(s) on this leg
+[12:52:32.163] INFO  [minoc_verified_Draver] [action] goto (1448,1702) from (1448,1672,10)
+[12:52:32.164] LOG   [minoc_verified_Draver] event goto_start: target=(1448,1702) from=(1448,1672)
+[12:52:32.164] INFO  [minoc_verified_Draver] [bot] running from (1448,1672,10) to (1448,1702)
+[12:52:32.164] INFO  [minoc_verified_Draver] [bot] planning path to (1448,1702) in background
+[12:52:32.222] INFO  [minoc_verified_Draver] [bot] replan to (1448,1702): 32 steps in 713.9us
+[12:52:37.118] INFO  [minoc_verified_Draver] [survival] hp 7/56 (12%) -> rest
+[12:52:41.392] INFO  [minoc_verified_Draver] [bot] arrived at (1448,1702,0)
+[12:52:41.393] INFO  [minoc_verified_Draver] [action] goto finished at (1448,1702,0); target (1448,1702); ARRIVED (off by 0 tile(s))
+[12:52:41.393] LOG   [minoc_verified_Draver] event goto_done: at=(1448,1702) target=(1448,1702) arrived=1 off=0
+[12:52:41.393] INFO  [minoc_verified_Draver] [action] goto (1432,1736) from (1448,1702,0)
+[12:52:41.393] LOG   [minoc_verified_Draver] event goto_start: target=(1432,1736) from=(1448,1702)
+[12:52:41.394] INFO  [minoc_verified_Draver] [bot] running from (1448,1702,0) to (1432,1736)
+[12:52:41.394] INFO  [minoc_verified_Draver] [bot] planning path to (1432,1736) in background
+[12:52:41.453] INFO  [minoc_verified_Draver] [bot] replan to (1432,1736): 36 steps in 645.7us
+[12:52:42.281] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_01.draver/state.json
+[12:52:43.152] INFO  [minoc_verified_Draver] [survival] hp 7/56 (12%) -> rest
+[12:52:49.180] INFO  [minoc_verified_Draver] [survival] hp 8/56 (14%) -> rest
+[12:52:51.317] INFO  [minoc_verified_Draver] [bot] arrived at (1432,1736,20)
+[12:52:51.318] INFO  [minoc_verified_Draver] [action] goto finished at (1432,1736,20); target (1432,1736); ARRIVED (off by 0 tile(s))
+[12:52:51.318] LOG   [minoc_verified_Draver] event goto_done: at=(1432,1736) target=(1432,1736) arrived=1 off=0
+[12:52:51.318] INFO  [minoc_verified_Draver] [action] goto (1402,1760) from (1432,1736,20)
+[12:52:51.318] LOG   [minoc_verified_Draver] event goto_start: target=(1402,1760) from=(1432,1736)
+[12:52:51.318] INFO  [minoc_verified_Draver] [bot] running from (1432,1736,20) to (1402,1760)
+[12:52:51.319] INFO  [minoc_verified_Draver] [bot] planning path to (1402,1760) in background
+[12:52:51.378] INFO  [minoc_verified_Draver] [bot] replan to (1402,1760): 43 steps in 12727.4us
+[12:52:52.525] INFO  [life] goal_changed=GET_TOOL from=BANK reason="GET_TOOL 468.0 superseded BANK 162.0"
+[12:52:52.525] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedTool(pickaxe 0.90) NeedTool(smith hammer 0.90) NeedBank(withdraw for a purchase 0.80) NeedEquipment(heal potions 0.50) NeedOre(ore 0.45) NeedSkillTraining(Tinkering 0.45) NeedSupplies(buy craft inputs 0.44) NeedEquipment(clothes 0.28) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20)  | tools defined=2 held=[] want_train=Tinkering (target 50.0)
+[12:52:52.526] INFO  [life]   score=468.0
+[12:52:52.526] INFO  [life]   reason: NeedTool urgency 0.90 x 520 = 468.0
+[12:52:52.526] INFO  [life]   reason: no known supplier of a pickaxe
+[12:52:52.526] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=8/56 bandages=0)
+[12:52:52.526] INFO  [life] plan=buy reason="none held, and it may be bought"
+[12:52:52.526] INFO  [life] GET_TOOL: 500 gold needed and 0 carried -- standing down so the bank goal can fetch it
+[12:52:52.527] INFO  [life] goal=BANK reason="previous goal abandoned: needs coin from the bank"
+[12:52:52.527] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedTool(pickaxe 0.90) NeedTool(smith hammer 0.90) NeedBank(withdraw for a purchase 0.80) NeedEquipment(heal potions 0.50) NeedOre(ore 0.45) NeedSkillTraining(Tinkering 0.45) NeedSupplies(buy craft inputs 0.44) NeedEquipment(clothes 0.28) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20)  | tools defined=2 held=[] want_train=Tinkering (target 50.0)
+[12:52:52.527] INFO  [life]   score=162.0
+[12:52:52.527] INFO  [life]   reason: NeedBank urgency 0.80 x 240 = 192.0
+[12:52:52.527] INFO  [life]   reason: wanted=500 on_hand=0 banked=8880
+[12:52:52.527] INFO  [life]   reason: no bank learned yet -30
+[12:52:52.528] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=8/56 bandages=0)
+[12:52:52.528] INFO  [life]   BLOCKED_NEED GET_TOOL: on cooldown for another 44s after achieving nothing
+[12:52:55.264] INFO  [minoc_verified_Draver] [survival] hp 8/56 (14%) -> rest
+[12:53:01.285] INFO  [minoc_verified_Draver] [survival] hp 8/56 (14%) -> rest
+[12:53:03.644] INFO  [minoc_verified_Draver] [bot] arrived at (1402,1760,0)
+[12:53:03.645] INFO  [minoc_verified_Draver] [action] goto finished at (1402,1760,0); target (1402,1760); ARRIVED (off by 0 tile(s))
+[12:53:03.645] LOG   [minoc_verified_Draver] event goto_done: at=(1402,1760) target=(1402,1760) arrived=1 off=0
+[12:53:03.645] INFO  [minoc_verified_Draver] [action] goto (1368,1800) from (1402,1760,0)
+[12:53:03.645] LOG   [minoc_verified_Draver] event goto_start: target=(1368,1800) from=(1402,1760)
+[12:53:03.645] INFO  [minoc_verified_Draver] [bot] running from (1402,1760,0) to (1368,1800)
+[12:53:03.645] INFO  [minoc_verified_Draver] [bot] planning path to (1368,1800) in background
+[12:53:03.705] INFO  [minoc_verified_Draver] [bot] replan to (1368,1800): 79 steps in 20238.2us
+[12:53:07.296] INFO  [minoc_verified_Draver] [survival] hp 8/56 (14%) -> rest
+[12:53:08.111] INFO  [minoc_verified_Draver] [chat ascii] System: You have left the protection of the city guards
+[12:53:13.350] INFO  [minoc_verified_Draver] [survival] hp 8/56 (14%) -> rest
+[12:53:19.428] INFO  [minoc_verified_Draver] [survival] hp 8/56 (14%) -> rest
+[12:53:25.491] INFO  [minoc_verified_Draver] [survival] hp 8/56 (14%) -> rest
+[12:53:27.023] INFO  [minoc_verified_Draver] [bot] arrived at (1368,1800,3)
+[12:53:27.024] INFO  [minoc_verified_Draver] [action] goto finished at (1368,1800,3); target (1368,1800); ARRIVED (off by 0 tile(s))
+[12:53:27.024] LOG   [minoc_verified_Draver] event goto_done: at=(1368,1800) target=(1368,1800) arrived=1 off=0
+[12:53:27.024] INFO  [minoc_verified_Draver] [action] goto (1368,1832) from (1368,1800,3)
+[12:53:27.024] LOG   [minoc_verified_Draver] event goto_start: target=(1368,1832) from=(1368,1800)
+[12:53:27.024] INFO  [minoc_verified_Draver] [bot] running from (1368,1800,3) to (1368,1832)
+[12:53:27.024] INFO  [minoc_verified_Draver] [bot] planning path to (1368,1832) in background
+[12:53:27.084] INFO  [minoc_verified_Draver] [bot] replan to (1368,1832): 32 steps in 2660.2us
+[12:53:31.543] INFO  [minoc_verified_Draver] [survival] hp 9/56 (16%) -> rest
+[12:53:37.194] INFO  [minoc_verified_Draver] [bot] arrived at (1368,1832,0)
+[12:53:37.194] INFO  [minoc_verified_Draver] [action] goto finished at (1368,1832,0); target (1368,1832); ARRIVED (off by 0 tile(s))
+[12:53:37.195] LOG   [minoc_verified_Draver] event goto_done: at=(1368,1832) target=(1368,1832) arrived=1 off=0
+[12:53:37.195] INFO  [minoc_verified_Draver] [action] goto (1368,1864) from (1368,1832,0)
+[12:53:37.195] LOG   [minoc_verified_Draver] event goto_start: target=(1368,1864) from=(1368,1832)
+[12:53:37.195] INFO  [minoc_verified_Draver] [bot] running from (1368,1832,0) to (1368,1864)
+[12:53:37.195] INFO  [minoc_verified_Draver] [bot] planning path to (1368,1864) in background
+[12:53:37.255] INFO  [minoc_verified_Draver] [bot] replan to (1368,1864): 38 steps in 3947.2us
+[12:53:37.577] INFO  [life] goal_changed=GET_TOOL from=BANK reason="GET_TOOL 468.0 superseded BANK 162.0"
+[12:53:37.578] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedTool(pickaxe 0.90) NeedTool(smith hammer 0.90) NeedBank(withdraw for a purchase 0.80) NeedEquipment(heal potions 0.50) NeedOre(ore 0.45) NeedSkillTraining(Tinkering 0.45) NeedSupplies(buy craft inputs 0.44) NeedEquipment(clothes 0.28) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20)  | tools defined=2 held=[] want_train=Tinkering (target 50.0)
+[12:53:37.578] INFO  [life]   score=468.0
+[12:53:37.578] INFO  [life]   reason: NeedTool urgency 0.90 x 520 = 468.0
+[12:53:37.578] INFO  [life]   reason: no known supplier of a pickaxe
+[12:53:37.578] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=9/56 bandages=0)
+[12:53:37.578] INFO  [life] plan=buy reason="none held, and it may be bought"
+[12:53:37.578] INFO  [life] GET_TOOL: 500 gold needed and 0 carried -- standing down so the bank goal can fetch it
+[12:53:37.638] INFO  [life] goal=BANK reason="previous goal abandoned: needs coin from the bank"
+[12:53:37.638] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedTool(pickaxe 0.90) NeedTool(smith hammer 0.90) NeedBank(withdraw for a purchase 0.80) NeedEquipment(heal potions 0.50) NeedOre(ore 0.45) NeedSkillTraining(Tinkering 0.45) NeedSupplies(buy craft inputs 0.44) NeedEquipment(clothes 0.28) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20)  | tools defined=2 held=[] want_train=Tinkering (target 50.0)
+[12:53:37.639] INFO  [life]   score=162.0
+[12:53:37.639] INFO  [life]   reason: NeedBank urgency 0.80 x 240 = 192.0
+[12:53:37.639] INFO  [life]   reason: wanted=500 on_hand=0 banked=8880
+[12:53:37.639] INFO  [life]   reason: no bank learned yet -30
+[12:53:37.639] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=9/56 bandages=0)
+[12:53:37.639] INFO  [life]   BLOCKED_NEED GET_TOOL: on cooldown for another 44s after achieving nothing
+[12:53:37.639] INFO  [minoc_verified_Draver] [survival] hp 9/56 (16%) -> rest
+[12:53:42.305] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_01.draver/state.json
+[12:53:43.712] INFO  [minoc_verified_Draver] [survival] hp 9/56 (16%) -> rest
+[12:53:49.589] INFO  [minoc_verified_Draver] [bot] arrived at (1368,1864,0)
+[12:53:49.590] INFO  [minoc_verified_Draver] [action] goto finished at (1368,1864,0); target (1368,1864); ARRIVED (off by 0 tile(s))
+[12:53:49.590] LOG   [minoc_verified_Draver] event goto_done: at=(1368,1864) target=(1368,1864) arrived=1 off=0
+[12:53:49.590] INFO  [minoc_verified_Draver] [action] goto (1368,1894) from (1368,1864,0)
+[12:53:49.590] LOG   [minoc_verified_Draver] event goto_start: target=(1368,1894) from=(1368,1864)
+[12:53:49.590] INFO  [minoc_verified_Draver] [bot] running from (1368,1864,0) to (1368,1894)
+[12:53:49.590] INFO  [minoc_verified_Draver] [bot] planning path to (1368,1894) in background
+[12:53:49.649] INFO  [minoc_verified_Draver] [bot] replan to (1368,1894): 31 steps in 13050.6us
+[12:53:49.773] INFO  [minoc_verified_Draver] [survival] hp 9/56 (16%) -> rest
+[12:53:55.863] INFO  [minoc_verified_Draver] [survival] hp 9/56 (16%) -> rest
+[12:54:00.219] INFO  [minoc_verified_Draver] [bot] arrived at (1368,1894,0)
+[12:54:00.220] INFO  [minoc_verified_Draver] [action] goto finished at (1368,1894,0); target (1368,1894); ARRIVED (off by 0 tile(s))
+[12:54:00.220] LOG   [minoc_verified_Draver] event goto_done: at=(1368,1894) target=(1368,1894) arrived=1 off=0
+[12:54:00.220] INFO  [minoc_verified_Draver] [action] goto (1368,1928) from (1368,1894,0)
+[12:54:00.220] LOG   [minoc_verified_Draver] event goto_start: target=(1368,1928) from=(1368,1894)
+[12:54:00.220] INFO  [minoc_verified_Draver] [bot] running from (1368,1894,0) to (1368,1928)
+[12:54:00.221] INFO  [minoc_verified_Draver] [bot] planning path to (1368,1928) in background
+[12:54:00.280] INFO  [minoc_verified_Draver] [bot] replan to (1368,1928): 34 steps in 11155.8us
+[12:54:01.926] INFO  [minoc_verified_Draver] [survival] hp 9/56 (16%) -> rest
+[12:54:07.970] INFO  [minoc_verified_Draver] [survival] hp 10/56 (17%) -> rest
+[12:54:12.006] INFO  [minoc_verified_Draver] [bot] arrived at (1368,1928,0)
+[12:54:12.007] INFO  [minoc_verified_Draver] [action] goto finished at (1368,1928,0); target (1368,1928); ARRIVED (off by 0 tile(s))
+[12:54:12.007] LOG   [minoc_verified_Draver] event goto_done: at=(1368,1928) target=(1368,1928) arrived=1 off=0
+[12:54:12.007] INFO  [minoc_verified_Draver] [action] goto (1368,1960) from (1368,1928,0)
+[12:54:12.007] LOG   [minoc_verified_Draver] event goto_start: target=(1368,1960) from=(1368,1928)
+[12:54:12.007] INFO  [minoc_verified_Draver] [bot] running from (1368,1928,0) to (1368,1960)
+[12:54:12.007] INFO  [minoc_verified_Draver] [bot] planning path to (1368,1960) in background
+[12:54:12.067] INFO  [minoc_verified_Draver] [bot] replan to (1368,1960): 39 steps in 15119.0us
+[12:54:14.019] INFO  [minoc_verified_Draver] [survival] hp 10/56 (17%) -> rest
+[12:54:19.952] INFO  [minoc_verified_Draver] [chat ascii] Kitaki: *Kitaki is attacking you!*
+[12:54:20.088] INFO  [minoc_verified_Draver] [survival] hp 10/56 (17%) -> rest
+[12:54:22.608] INFO  [life] goal_changed=GET_TOOL from=BANK reason="GET_TOOL 468.0 superseded BANK 162.0"
+[12:54:22.609] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedTool(pickaxe 0.90) NeedTool(smith hammer 0.90) NeedBank(withdraw for a purchase 0.80) NeedEquipment(heal potions 0.50) NeedOre(ore 0.45) NeedSkillTraining(Tinkering 0.45) NeedSupplies(buy craft inputs 0.44) NeedEquipment(clothes 0.28) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20)  | tools defined=2 held=[] want_train=Tinkering (target 50.0)
+[12:54:22.609] INFO  [life]   score=468.0
+[12:54:22.609] INFO  [life]   reason: NeedTool urgency 0.90 x 520 = 468.0
+[12:54:22.609] INFO  [life]   reason: no known supplier of a pickaxe
+[12:54:22.609] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=10/56 bandages=0)
+[12:54:22.609] INFO  [life] plan=buy reason="none held, and it may be bought"
+[12:54:22.609] INFO  [life] GET_TOOL: 500 gold needed and 0 carried -- standing down so the bank goal can fetch it
+[12:54:22.669] INFO  [life] goal=BANK reason="previous goal abandoned: needs coin from the bank"
+[12:54:22.669] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedTool(pickaxe 0.90) NeedTool(smith hammer 0.90) NeedBank(withdraw for a purchase 0.80) NeedEquipment(heal potions 0.50) NeedOre(ore 0.45) NeedSkillTraining(Tinkering 0.45) NeedSupplies(buy craft inputs 0.44) NeedEquipment(clothes 0.28) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20)  | tools defined=2 held=[] want_train=Tinkering (target 50.0)
+[12:54:22.669] INFO  [life]   score=162.0
+[12:54:22.669] INFO  [life]   reason: NeedBank urgency 0.80 x 240 = 192.0
+[12:54:22.669] INFO  [life]   reason: wanted=500 on_hand=0 banked=8880
+[12:54:22.670] INFO  [life]   reason: no bank learned yet -30
+[12:54:22.670] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=10/56 bandages=0)
+[12:54:22.670] INFO  [life]   BLOCKED_NEED GET_TOOL: on cooldown for another 44s after achieving nothing
+[12:54:25.863] INFO  [minoc_verified_Draver] [bot] arrived at (1368,1960,0)
+[12:54:25.864] INFO  [minoc_verified_Draver] [action] goto finished at (1368,1960,0); target (1368,1960); ARRIVED (off by 0 tile(s))
+[12:54:25.864] LOG   [minoc_verified_Draver] event goto_done: at=(1368,1960) target=(1368,1960) arrived=1 off=0
+[12:54:25.864] INFO  [minoc_verified_Draver] [action] goto (1336,1992) from (1368,1960,0)
+[12:54:25.864] LOG   [minoc_verified_Draver] event goto_start: target=(1336,1992) from=(1368,1960)
+[12:54:25.864] INFO  [minoc_verified_Draver] [bot] running from (1368,1960,0) to (1336,1992)
+[12:54:25.864] INFO  [minoc_verified_Draver] [bot] planning path to (1336,1992) in background
+[12:54:25.910] INFO  [minoc_verified_Draver] [bot] replan to (1336,1992): 43 steps in 20209.8us
+[12:54:26.172] INFO  [minoc_verified_Draver] [survival] hp 10/56 (17%) -> rest
+[12:54:27.378] INFO  [minoc_verified_Draver] [chat ascii] Tikckek: *Tikckek is attacking you!*
+[12:54:32.234] INFO  [minoc_verified_Draver] [survival] hp 10/56 (17%) -> rest
+[12:54:38.269] INFO  [minoc_verified_Draver] [survival] hp 10/56 (17%) -> rest
+[12:54:39.794] INFO  [minoc_verified_Draver] [bot] arrived at (1336,1992,0)
+[12:54:39.794] INFO  [minoc_verified_Draver] [action] goto finished at (1336,1992,0); target (1336,1992); ARRIVED (off by 0 tile(s))
+[12:54:39.794] LOG   [minoc_verified_Draver] event goto_done: at=(1336,1992) target=(1336,1992) arrived=1 off=0
+[12:54:39.794] INFO  [minoc_verified_Draver] [action] goto (1336,1997) from (1336,1992,0)
+[12:54:39.795] LOG   [minoc_verified_Draver] event goto_start: target=(1336,1997) from=(1336,1992)
+[12:54:39.795] INFO  [minoc_verified_Draver] [bot] running from (1336,1992,0) to (1336,1997)
+[12:54:39.795] INFO  [minoc_verified_Draver] [bot] planning path to (1336,1997) in background
+[12:54:39.855] INFO  [minoc_verified_Draver] [bot] replan to (1336,1997): 5 steps in 155.2us
+[12:54:40.374] LOG   [minoc_verified_Draver] event threat: HP 10 -> 6
+[12:54:40.374] INFO  [minoc_verified_Draver] [action] goto finished at (1336,1993,0); target (1336,1997); stopped short (off by 4 tile(s))
+[12:54:40.374] LOG   [minoc_verified_Draver] event goto_done: at=(1336,1993) target=(1336,1997) arrived=0 off=4
+[12:54:41.273] INFO  [minoc_verified_Draver] [survival] hp 6/56 (10%) -> flee
+[12:54:41.274] LOG   [minoc_verified_Draver] event survival_disengage: flee
+[12:54:41.274] INFO  [minoc_verified_Draver] [war] leaving war mode
+[12:54:41.580] INFO  [minoc_verified_Draver] [action] goto (1336,1997) from (1336,1993,0)
+[12:54:41.581] LOG   [minoc_verified_Draver] event goto_start: target=(1336,1997) from=(1336,1993)
+[12:54:41.581] INFO  [minoc_verified_Draver] [bot] running from (1336,1993,0) to (1336,1997)
+[12:54:41.581] INFO  [minoc_verified_Draver] [bot] planning path to (1336,1997) in background
+[12:54:41.581] INFO  [minoc_verified_Draver] [bot] replan to (1336,1997): 4 steps in 33.6us
+[12:54:42.362] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_01.draver/state.json
+[12:54:42.529] INFO  [minoc_verified_Draver] [gump] 0x400028A0 context=0x80A0043E: 13 option(s), 15 text(s)
+[12:54:42.529] INFO  [minoc_verified_Draver] [gump]   button 1000 = 'OKAY'
+[12:54:42.529] INFO  [minoc_verified_Draver] [gump]   button 0 = 'CANCEL'
+[12:54:42.529] INFO  [minoc_verified_Draver] [gump]   button 1 = 'Felucca'
+[12:54:42.529] INFO  [minoc_verified_Draver] [gump]   choice 1 = 'Moonglow'
+[12:54:42.529] INFO  [minoc_verified_Draver] [gump]   choice 2 = 'Britain'
+[12:54:42.529] INFO  [minoc_verified_Draver] [gump]   choice 3 = 'Jhelom'
+[12:54:42.529] INFO  [minoc_verified_Draver] [gump]   choice 4 = 'Yew'
+[12:54:42.530] INFO  [minoc_verified_Draver] [gump]   choice 5 = 'New Magincia'
+[12:54:42.530] INFO  [minoc_verified_Draver] [gump]   choice 6 = 'Minoc'
+[12:54:42.530] INFO  [minoc_verified_Draver] [gump]   choice 7 = 'Trinsic'
+[12:54:42.530] INFO  [minoc_verified_Draver] [gump]   choice 8 = 'Skara Brae'
+[12:54:42.530] INFO  [minoc_verified_Draver] [gump]   choice 9 = 'Buccaneer's Den'
+[12:54:42.530] INFO  [minoc_verified_Draver] [gump]   choice 10 = 'Ocllo (Newplayers)'
+[12:54:42.530] INFO  [minoc_verified_Draver] [gump]   text 0 = 'Pick your destination:'
+[12:54:42.530] INFO  [minoc_verified_Draver] [gump]   text 1 = 'OKAY'
+[12:54:42.530] INFO  [minoc_verified_Draver] [gump]   text 2 = 'CANCEL'
+[12:54:42.531] INFO  [minoc_verified_Draver] [gump]   text 3 = 'Felucca'
+[12:54:42.531] INFO  [minoc_verified_Draver] [gump]   text 4 = 'Felucca'
+[12:54:42.531] INFO  [minoc_verified_Draver] [gump]   text 5 = 'Moonglow'
+[12:54:42.531] INFO  [minoc_verified_Draver] [gump]   text 6 = 'Britain'
+[12:54:42.531] INFO  [minoc_verified_Draver] [gump]   text 7 = 'Jhelom'
+[12:54:42.531] INFO  [minoc_verified_Draver] [gump]   text 8 = 'Yew'
+[12:54:42.531] INFO  [minoc_verified_Draver] [gump]   text 9 = 'New Magincia'
+[12:54:42.532] INFO  [minoc_verified_Draver] [gump]   text 10 = 'Minoc'
+[12:54:42.532] INFO  [minoc_verified_Draver] [gump]   text 11 = 'Trinsic'
+[12:54:42.532] INFO  [minoc_verified_Draver] [gump]   text 12 = 'Skara Brae'
+[12:54:42.532] INFO  [minoc_verified_Draver] [gump]   text 13 = 'Buccaneer's Den'
+[12:54:42.532] INFO  [minoc_verified_Draver] [gump]   text 14 = 'Ocllo (Newplayers)'
+[12:54:42.532] LOG   [minoc_verified_Draver] event gump_open: serial=0x400028A0 context=0x80A0043E options=13
+[12:54:42.532] INFO  [minoc_verified_Draver] [travel] gate gump: choosing 'Minoc' (choice 6, button 1000)
+[12:54:42.533] LOG   [minoc_verified_Draver] event moongate_use: destination='Minoc' choice=6 button=1000
+[12:54:42.533] INFO  [minoc_verified_Draver] [bot] arrived at (1336,1997,5)
+[12:54:42.533] INFO  [minoc_verified_Draver] [action] goto finished at (1336,1997,5); target (1336,1997); ARRIVED (off by 0 tile(s))
+[12:54:42.533] LOG   [minoc_verified_Draver] event goto_done: at=(1336,1997) target=(1336,1997) arrived=1 off=0
+[12:54:42.533] INFO  [minoc_verified_Draver] [travel] using moongate 0x400028A0 for 'Minoc' (gump active=0 serial=0x00000000)
+[12:54:42.534] INFO  [minoc_verified_Draver] [0x20] player @(2701,692,5) facing=4
+[12:54:42.534] INFO  [minoc_verified_Draver] [0x20] player @(2701,692,5) facing=4
+[12:54:42.542] INFO  [minoc_verified_Draver] [chat ascii] System: You can't see the target
+[12:54:42.664] INFO  [minoc_verified_Draver] [action] goto (2664,694) from (2701,692,5)
+[12:54:42.665] LOG   [minoc_verified_Draver] event goto_start: target=(2664,694) from=(2701,692)
+[12:54:42.665] INFO  [minoc_verified_Draver] [bot] running from (2701,692,5) to (2664,694)
+[12:54:42.665] INFO  [minoc_verified_Draver] [bot] planning path to (2664,694) in background
+[12:54:42.725] INFO  [minoc_verified_Draver] [bot] replan to (2664,694): 37 steps in 5570.3us
+[12:54:42.786] LOG   [minoc_verified_Draver] event survival_disengage: flee
+[12:54:42.786] INFO  [minoc_verified_Draver] [war] leaving war mode
+[12:54:42.970] INFO  [minoc_verified_Draver] [chat ascii] System: You have been revealed
+[12:54:44.285] INFO  [minoc_verified_Draver] [survival] hp 1/56 (1%) -> rest
+[12:54:50.300] INFO  [minoc_verified_Draver] [survival] hp 2/56 (3%) -> rest
+[12:54:55.502] INFO  [minoc_verified_Draver] [bot] arrived at (2664,694,0)
+[12:54:55.503] INFO  [minoc_verified_Draver] [action] goto finished at (2664,694,0); target (2664,694); ARRIVED (off by 0 tile(s))
+[12:54:55.503] LOG   [minoc_verified_Draver] event goto_done: at=(2664,694) target=(2664,694) arrived=1 off=0
+[12:54:55.503] INFO  [minoc_verified_Draver] [action] goto (2632,664) from (2664,694,0)
+[12:54:55.503] LOG   [minoc_verified_Draver] event goto_start: target=(2632,664) from=(2664,694)
+[12:54:55.503] INFO  [minoc_verified_Draver] [bot] running from (2664,694,0) to (2632,664)
+[12:54:55.504] INFO  [minoc_verified_Draver] [bot] planning path to (2632,664) in background
+[12:54:55.563] INFO  [minoc_verified_Draver] [bot] replan to (2632,664): 42 steps in 2806.3us
+[12:54:56.388] INFO  [minoc_verified_Draver] [survival] hp 2/56 (3%) -> rest
+[12:55:02.423] INFO  [minoc_verified_Draver] [survival] hp 2/56 (3%) -> rest
+[12:55:07.627] INFO  [life] goal_changed=GET_TOOL from=BANK reason="GET_TOOL 468.0 superseded BANK 162.0"
+[12:55:07.628] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedTool(pickaxe 0.90) NeedTool(smith hammer 0.90) NeedBank(withdraw for a purchase 0.80) NeedEquipment(heal potions 0.50) NeedOre(ore 0.45) NeedSkillTraining(Tinkering 0.45) NeedSupplies(buy craft inputs 0.44) NeedEquipment(clothes 0.28) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20)  | tools defined=2 held=[] want_train=Tinkering (target 50.0)
+[12:55:07.628] INFO  [life]   score=468.0
+[12:55:07.628] INFO  [life]   reason: NeedTool urgency 0.90 x 520 = 468.0
+[12:55:07.628] INFO  [life]   reason: no known supplier of a pickaxe
+[12:55:07.628] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=2/56 bandages=0)
+[12:55:07.628] INFO  [life] plan=buy reason="none held, and it may be bought"
+[12:55:07.628] INFO  [life] GET_TOOL: 500 gold needed and 0 carried -- standing down so the bank goal can fetch it
+[12:55:07.688] INFO  [life] goal=BANK reason="previous goal abandoned: needs coin from the bank"
+[12:55:07.688] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedTool(pickaxe 0.90) NeedTool(smith hammer 0.90) NeedBank(withdraw for a purchase 0.80) NeedEquipment(heal potions 0.50) NeedOre(ore 0.45) NeedSkillTraining(Tinkering 0.45) NeedSupplies(buy craft inputs 0.44) NeedEquipment(clothes 0.28) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20)  | tools defined=2 held=[] want_train=Tinkering (target 50.0)
+[12:55:07.689] INFO  [life]   score=162.0
+[12:55:07.689] INFO  [life]   reason: NeedBank urgency 0.80 x 240 = 192.0
+[12:55:07.689] INFO  [life]   reason: wanted=500 on_hand=0 banked=8880
+[12:55:07.689] INFO  [life]   reason: no bank learned yet -30
+[12:55:07.689] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=2/56 bandages=0)
+[12:55:07.689] INFO  [life]   BLOCKED_NEED GET_TOOL: on cooldown for another 59s after achieving nothing
+[12:55:07.690] INFO  [life] goal_spinning=GET_TOOL reason="completed 5 times in a row with progress 0 -- cooled off for a minute; this is a bug in that goal, not pacing"
+[12:55:08.455] INFO  [minoc_verified_Draver] [survival] hp 2/56 (3%) -> rest
+[12:55:10.203] INFO  [minoc_verified_Draver] [bot] arrived at (2632,664,0)
+[12:55:10.204] INFO  [minoc_verified_Draver] [action] goto finished at (2632,664,0); target (2632,664); ARRIVED (off by 0 tile(s))
+[12:55:10.204] LOG   [minoc_verified_Draver] event goto_done: at=(2632,664) target=(2632,664) arrived=1 off=0
+[12:55:10.204] INFO  [minoc_verified_Draver] [action] goto (2600,632) from (2632,664,0)
+[12:55:10.204] LOG   [minoc_verified_Draver] event goto_start: target=(2600,632) from=(2632,664)
+[12:55:10.204] INFO  [minoc_verified_Draver] [bot] running from (2632,664,0) to (2600,632)
+[12:55:10.204] INFO  [minoc_verified_Draver] [bot] planning path to (2600,632) in background
+[12:55:10.263] INFO  [minoc_verified_Draver] [bot] replan to (2600,632): 45 steps in 11098.7us
+[12:55:14.541] INFO  [minoc_verified_Draver] [survival] hp 2/56 (3%) -> rest
+[12:55:20.625] INFO  [minoc_verified_Draver] [survival] hp 2/56 (3%) -> rest
+[12:55:21.663] INFO  [minoc_verified_Draver] [chat ascii] System: You are now under the protection of the town guards
+[12:55:26.256] INFO  [minoc_verified_Draver] [bot] arrived at (2600,632,0)
+[12:55:26.256] INFO  [minoc_verified_Draver] [action] goto finished at (2600,632,0); target (2600,632); ARRIVED (off by 0 tile(s))
+[12:55:26.256] LOG   [minoc_verified_Draver] event goto_done: at=(2600,632) target=(2600,632) arrived=1 off=0
+[12:55:26.256] INFO  [minoc_verified_Draver] [action] goto (2568,600) from (2600,632,0)
+[12:55:26.257] LOG   [minoc_verified_Draver] event goto_start: target=(2568,600) from=(2600,632)
+[12:55:26.257] INFO  [minoc_verified_Draver] [bot] running from (2600,632,0) to (2568,600)
+[12:55:26.257] INFO  [minoc_verified_Draver] [bot] planning path to (2568,600) in background
+[12:55:26.317] INFO  [minoc_verified_Draver] [bot] replan to (2568,600): 44 steps in 19324.2us
+[12:55:26.689] INFO  [minoc_verified_Draver] [survival] hp 2/56 (3%) -> rest
+[12:55:32.725] INFO  [minoc_verified_Draver] [survival] hp 3/56 (5%) -> rest
+[12:55:38.789] INFO  [minoc_verified_Draver] [survival] hp 3/56 (5%) -> rest
+[12:55:40.491] INFO  [minoc_verified_Draver] [bot] arrived at (2568,600,0)
+[12:55:40.492] INFO  [minoc_verified_Draver] [action] goto finished at (2568,600,0); target (2568,600); ARRIVED (off by 0 tile(s))
+[12:55:40.492] LOG   [minoc_verified_Draver] event goto_done: at=(2568,600) target=(2568,600) arrived=1 off=0
+[12:55:40.492] INFO  [minoc_verified_Draver] [action] goto (2536,568) from (2568,600,0)
+[12:55:40.492] LOG   [minoc_verified_Draver] event goto_start: target=(2536,568) from=(2568,600)
+[12:55:40.492] INFO  [minoc_verified_Draver] [bot] running from (2568,600,0) to (2536,568)
+[12:55:40.493] INFO  [minoc_verified_Draver] [bot] planning path to (2536,568) in background
+[12:55:40.552] INFO  [minoc_verified_Draver] [bot] replan to (2536,568): 43 steps in 16970.7us
+[12:55:42.413] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_01.draver/state.json
+[12:55:44.865] INFO  [minoc_verified_Draver] [survival] hp 3/56 (5%) -> rest
+[12:55:50.902] INFO  [minoc_verified_Draver] [survival] hp 3/56 (5%) -> rest
+[12:55:55.922] INFO  [minoc_verified_Draver] [bot] arrived at (2536,568,0)
+[12:55:55.922] INFO  [minoc_verified_Draver] [action] goto finished at (2536,568,0); target (2536,568); ARRIVED (off by 0 tile(s))
+[12:55:55.923] LOG   [minoc_verified_Draver] event goto_done: at=(2536,568) target=(2536,568) arrived=1 off=0
+[12:55:55.923] INFO  [minoc_verified_Draver] [action] goto (2503,552) from (2536,568,0)
+[12:55:55.923] LOG   [minoc_verified_Draver] event goto_start: target=(2503,552) from=(2536,568)
+[12:55:55.923] INFO  [minoc_verified_Draver] [bot] running from (2536,568,0) to (2503,552)
+[12:55:55.923] INFO  [minoc_verified_Draver] [bot] planning path to (2503,552) in background
+[12:55:55.953] INFO  [minoc_verified_Draver] [bot] replan to (2503,552): 40 steps in 7586.1us
+[12:55:56.948] INFO  [minoc_verified_Draver] [survival] hp 3/56 (5%) -> rest
+[12:56:03.026] INFO  [minoc_verified_Draver] [survival] hp 3/56 (5%) -> rest
+[12:56:05.044] INFO  [minoc_verified_Draver] [bot] door ahead at (2503,559,z0); OpenDoor before step
+[12:56:05.045] INFO  [minoc_verified_Draver] [chat ascii] System: Opening door...
+[12:56:06.571] INFO  [minoc_verified_Draver] [travel] seeded_bank ARRIVED at (2503,557,0)
+[12:56:06.572] LOG   [minoc_verified_Draver] event travel_done: label='seeded_bank' ok=1 at=(2503,557) legs=20 plans=1 why=''
+[12:56:06.633] INFO  [minoc_verified_Draver] [ACTION] open_bank start
+[12:56:06.634] INFO  [minoc_verified_Draver] [ACTION] open_bank banker=0x00000000 say='bank'
+[12:56:06.634] INFO  [life] bank: at the known bank -- saying 'bank' aloud (1 of 3)
+[12:56:06.635] INFO  [minoc_verified_Draver] [chat uni  ] Draver: bank
+[12:56:06.635] INFO  [minoc_verified_Draver] [chat ascii] Jarvinia: Greetings. What can I do for thee?
+[12:56:06.636] INFO  [minoc_verified_Draver] [chat ascii] Jarvinia: Never lost a coin from robberies.
+[12:56:06.636] INFO  [minoc_verified_Draver] [chat ascii] System: You have 0 stones in your Bank Box
+[12:56:06.636] INFO  [minoc_verified_Draver] [0x24] open container 0x40016DBA gump=74
+[12:56:06.636] INFO  [minoc_verified_Draver] [STATE] bank container=0x40016DBA gump=0x004A
+[12:56:06.636] LOG   [minoc_verified_Draver] event bank_opened: container recognised
+[12:56:06.636] INFO  [minoc_verified_Draver] [ACTION_RESULT] open_bank success (3ms) bank container opened
+[12:56:06.636] LOG   [minoc_verified_Draver] event action_result: open_bank success took=3ms bank container opened
+[12:56:06.637] INFO  [minoc_verified_Draver] [0x3C] container contents: 1 item(s)
+[12:56:07.629] INFO  [life] goal_changed=GET_TOOL from=BANK reason="GET_TOOL 468.0 superseded BANK 222.0"
+[12:56:07.630] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedTool(pickaxe 0.90) NeedTool(smith hammer 0.90) NeedBank(withdraw for a purchase 0.80) NeedOre(ore 0.65) NeedEquipment(heal potions 0.50) NeedSkillTraining(Tinkering 0.45) NeedSupplies(buy craft inputs 0.44) NeedEquipment(clothes 0.28) NeedFood(food 0.25)  | tools defined=2 held=[] want_train=Tinkering (target 50.0)
+[12:56:07.630] INFO  [life]   score=468.0
+[12:56:07.630] INFO  [life]   reason: NeedTool urgency 0.90 x 520 = 468.0
+[12:56:07.630] INFO  [life]   reason: no known supplier of a pickaxe
+[12:56:07.631] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=3/56 bandages=0)
+[12:56:07.907] INFO  [minoc_verified_Draver] [bot] arrived at (2503,552,0)
+[12:56:09.070] INFO  [minoc_verified_Draver] [survival] hp 4/56 (7%) -> rest
+[12:56:15.166] INFO  [minoc_verified_Draver] [survival] hp 4/56 (7%) -> rest
+[12:56:15.659] INFO  [life] plan=buy reason="none held, and it may be bought"
+[12:56:15.659] INFO  [life] bank: withdrawing 700 gold for a purchase (need 500, carrying 0)
+[12:56:15.659] INFO  [minoc_verified_Draver] [ACTION] move_item start
+[12:56:15.659] INFO  [minoc_verified_Draver] [ACTION] move_item serial=0x40016DA8 amount=700 dest=0x40016DB8
+[12:56:15.660] INFO  [minoc_verified_Draver] [ITEM] drag serial=0x40016DA8 amount=700
+[12:56:15.660] INFO  [minoc_verified_Draver] [ITEM] drop container=0x40016DB8
+[12:56:15.660] LOG   [minoc_verified_Draver] event drag_cancel: reason=0 cannot lift that
+[12:56:15.661] LOG   [minoc_verified_Draver] event action_result: move_item rejected took=1ms cannot lift that
+[12:56:15.661] LOG   [minoc_verified_Draver] event drag_cancel: reason=5 unspecified
+[12:56:18.713] INFO  [life] bank: withdrawing 700 gold for a purchase (need 500, carrying 0)
+[12:56:18.714] INFO  [minoc_verified_Draver] [ACTION] move_item start
+[12:56:18.714] INFO  [minoc_verified_Draver] [ACTION] move_item serial=0x40016DA8 amount=700 dest=0x40016DB8
+[12:56:18.715] INFO  [minoc_verified_Draver] [ITEM] drag serial=0x40016DA8 amount=700
+[12:56:18.715] INFO  [minoc_verified_Draver] [ITEM] drop container=0x40016DB8
+[12:56:18.715] LOG   [minoc_verified_Draver] event drag_cancel: reason=0 cannot lift that
+[12:56:18.715] LOG   [minoc_verified_Draver] event action_result: move_item rejected took=1ms cannot lift that
+[12:56:18.716] LOG   [minoc_verified_Draver] event drag_cancel: reason=5 unspecified
+[12:56:21.265] INFO  [minoc_verified_Draver] [survival] hp 4/56 (7%) -> rest
+[12:56:21.751] INFO  [life] bank: withdrawing 700 gold for a purchase (need 500, carrying 0)
+[12:56:21.751] INFO  [minoc_verified_Draver] [ACTION] move_item start
+[12:56:21.751] INFO  [minoc_verified_Draver] [ACTION] move_item serial=0x40016DA8 amount=700 dest=0x40016DB8
+[12:56:21.751] INFO  [minoc_verified_Draver] [ITEM] drag serial=0x40016DA8 amount=700
+[12:56:21.752] INFO  [minoc_verified_Draver] [ITEM] drop container=0x40016DB8
+[12:56:21.752] LOG   [minoc_verified_Draver] event drag_cancel: reason=0 cannot lift that
+[12:56:21.752] LOG   [minoc_verified_Draver] event action_result: move_item rejected took=1ms cannot lift that
+[12:56:21.752] LOG   [minoc_verified_Draver] event drag_cancel: reason=5 unspecified
+[12:56:24.755] INFO  [life] bank: withdrawing 700 gold for a purchase (need 500, carrying 0)
+[12:56:24.756] INFO  [minoc_verified_Draver] [ACTION] move_item start
+[12:56:24.756] INFO  [minoc_verified_Draver] [ACTION] move_item serial=0x40016DA8 amount=700 dest=0x40016DB8
+[12:56:24.756] INFO  [minoc_verified_Draver] [ITEM] drag serial=0x40016DA8 amount=700
+[12:56:24.757] INFO  [minoc_verified_Draver] [ITEM] drop container=0x40016DB8
+[12:56:24.757] LOG   [minoc_verified_Draver] event drag_cancel: reason=0 cannot lift that
+[12:56:24.757] LOG   [minoc_verified_Draver] event action_result: move_item rejected took=1ms cannot lift that
+[12:56:24.758] LOG   [minoc_verified_Draver] event drag_cancel: reason=5 unspecified
+[12:56:27.340] INFO  [minoc_verified_Draver] [survival] hp 4/56 (7%) -> rest
+[12:56:27.768] INFO  [life] bank: withdrawing 700 gold for a purchase (need 500, carrying 0)
+[12:56:27.769] INFO  [minoc_verified_Draver] [ACTION] move_item start
+[12:56:27.769] INFO  [minoc_verified_Draver] [ACTION] move_item serial=0x40016DA8 amount=700 dest=0x40016DB8
+[12:56:27.769] INFO  [minoc_verified_Draver] [ITEM] drag serial=0x40016DA8 amount=700
+[12:56:27.769] INFO  [minoc_verified_Draver] [ITEM] drop container=0x40016DB8
+[12:56:27.769] LOG   [minoc_verified_Draver] event drag_cancel: reason=0 cannot lift that
+[12:56:27.770] LOG   [minoc_verified_Draver] event action_result: move_item rejected took=1ms cannot lift that
+[12:56:27.784] LOG   [minoc_verified_Draver] event drag_cancel: reason=5 unspecified
+[12:56:30.818] INFO  [life] bank: withdrawing 700 gold for a purchase (need 500, carrying 0)
+[12:56:30.819] INFO  [minoc_verified_Draver] [ACTION] move_item start
+[12:56:30.819] INFO  [minoc_verified_Draver] [ACTION] move_item serial=0x40016DA8 amount=700 dest=0x40016DB8
+[12:56:30.819] INFO  [minoc_verified_Draver] [ITEM] drag serial=0x40016DA8 amount=700
+[12:56:30.819] INFO  [minoc_verified_Draver] [ITEM] drop container=0x40016DB8
+[12:56:30.834] LOG   [minoc_verified_Draver] event drag_cancel: reason=0 cannot lift that
+[12:56:30.834] LOG   [minoc_verified_Draver] event action_result: move_item rejected took=15ms cannot lift that
+[12:56:30.834] LOG   [minoc_verified_Draver] event drag_cancel: reason=5 unspecified
+[12:56:33.425] INFO  [minoc_verified_Draver] [survival] hp 4/56 (7%) -> rest
+[12:56:33.855] INFO  [life] bank: withdrawing 700 gold for a purchase (need 500, carrying 0)
+[12:56:33.856] INFO  [minoc_verified_Draver] [ACTION] move_item start
+[12:56:33.856] INFO  [minoc_verified_Draver] [ACTION] move_item serial=0x40016DA8 amount=700 dest=0x40016DB8
+[12:56:33.856] INFO  [minoc_verified_Draver] [ITEM] drag serial=0x40016DA8 amount=700
+[12:56:33.856] INFO  [minoc_verified_Draver] [ITEM] drop container=0x40016DB8
+[12:56:33.857] LOG   [minoc_verified_Draver] event drag_cancel: reason=0 cannot lift that
+[12:56:33.857] LOG   [minoc_verified_Draver] event action_result: move_item rejected took=1ms cannot lift that
+[12:56:33.871] LOG   [minoc_verified_Draver] event drag_cancel: reason=5 unspecified
+[12:56:36.878] INFO  [life] bank: withdrawing 700 gold for a purchase (need 500, carrying 0)
+[12:56:36.878] INFO  [minoc_verified_Draver] [ACTION] move_item start
+[12:56:36.879] INFO  [minoc_verified_Draver] [ACTION] move_item serial=0x40016DA8 amount=700 dest=0x40016DB8
+[12:56:36.879] INFO  [minoc_verified_Draver] [ITEM] drag serial=0x40016DA8 amount=700
+[12:56:36.879] INFO  [minoc_verified_Draver] [ITEM] drop container=0x40016DB8
+[12:56:36.894] LOG   [minoc_verified_Draver] event drag_cancel: reason=0 cannot lift that
+[12:56:36.895] LOG   [minoc_verified_Draver] event action_result: move_item rejected took=16ms cannot lift that
+[12:56:36.895] LOG   [minoc_verified_Draver] event drag_cancel: reason=5 unspecified
+[12:56:39.504] INFO  [minoc_verified_Draver] [survival] hp 4/56 (7%) -> rest
+[12:56:39.938] INFO  [life] bank: withdrawing 700 gold for a purchase (need 500, carrying 0)
+[12:56:39.939] INFO  [minoc_verified_Draver] [ACTION] move_item start
+[12:56:39.940] INFO  [minoc_verified_Draver] [ACTION] move_item serial=0x40016DA8 amount=700 dest=0x40016DB8
+[12:56:39.940] INFO  [minoc_verified_Draver] [ITEM] drag serial=0x40016DA8 amount=700
+[12:56:39.941] INFO  [minoc_verified_Draver] [ITEM] drop container=0x40016DB8
+[12:56:39.941] LOG   [minoc_verified_Draver] event drag_cancel: reason=0 cannot lift that
+[12:56:39.941] LOG   [minoc_verified_Draver] event action_result: move_item rejected took=2ms cannot lift that
+[12:56:39.954] LOG   [minoc_verified_Draver] event drag_cancel: reason=5 unspecified
+[12:56:42.466] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_01.draver/state.json
+[12:56:42.951] INFO  [life] bank: withdrawing 700 gold for a purchase (need 500, carrying 0)
+[12:56:42.952] INFO  [minoc_verified_Draver] [ACTION] move_item start
+[12:56:42.952] INFO  [minoc_verified_Draver] [ACTION] move_item serial=0x40016DA8 amount=700 dest=0x40016DB8
+[12:56:42.952] INFO  [minoc_verified_Draver] [ITEM] drag serial=0x40016DA8 amount=700
+[12:56:42.952] INFO  [minoc_verified_Draver] [ITEM] drop container=0x40016DB8
+[12:56:42.967] LOG   [minoc_verified_Draver] event drag_cancel: reason=0 cannot lift that
+[12:56:42.967] LOG   [minoc_verified_Draver] event action_result: move_item rejected took=15ms cannot lift that
+[12:56:42.967] LOG   [minoc_verified_Draver] event drag_cancel: reason=5 unspecified
+[12:56:45.536] INFO  [minoc_verified_Draver] [survival] hp 4/56 (7%) -> rest
+[12:56:45.966] INFO  [life] bank: withdrawing 700 gold for a purchase (need 500, carrying 0)
+[12:56:45.967] INFO  [minoc_verified_Draver] [ACTION] move_item start
+[12:56:45.967] INFO  [minoc_verified_Draver] [ACTION] move_item serial=0x40016DA8 amount=700 dest=0x40016DB8
+[12:56:45.967] INFO  [minoc_verified_Draver] [ITEM] drag serial=0x40016DA8 amount=700
+[12:56:45.967] INFO  [minoc_verified_Draver] [ITEM] drop container=0x40016DB8
+[12:56:45.968] LOG   [minoc_verified_Draver] event drag_cancel: reason=0 cannot lift that
+[12:56:45.968] LOG   [minoc_verified_Draver] event action_result: move_item rejected took=1ms cannot lift that
+[12:56:45.969] LOG   [minoc_verified_Draver] event drag_cancel: reason=5 unspecified
+[12:56:49.001] INFO  [life] bank: withdrawing 700 gold for a purchase (need 500, carrying 0)
+[12:56:49.002] INFO  [minoc_verified_Draver] [ACTION] move_item start
+[12:56:49.002] INFO  [minoc_verified_Draver] [ACTION] move_item serial=0x40016DA8 amount=700 dest=0x40016DB8
+[12:56:49.002] INFO  [minoc_verified_Draver] [ITEM] drag serial=0x40016DA8 amount=700
+[12:56:49.002] INFO  [minoc_verified_Draver] [ITEM] drop container=0x40016DB8
+[12:56:49.002] LOG   [minoc_verified_Draver] event drag_cancel: reason=0 cannot lift that
+[12:56:49.003] LOG   [minoc_verified_Draver] event action_result: move_item rejected took=1ms cannot lift that
+[12:56:49.003] LOG   [minoc_verified_Draver] event drag_cancel: reason=5 unspecified
+[12:56:51.632] INFO  [minoc_verified_Draver] [survival] hp 5/56 (8%) -> rest
+[12:56:52.030] INFO  [life] bank: withdrawing 700 gold for a purchase (need 500, carrying 0)
+[12:56:52.030] INFO  [minoc_verified_Draver] [ACTION] move_item start
+[12:56:52.031] INFO  [minoc_verified_Draver] [ACTION] move_item serial=0x40016DA8 amount=700 dest=0x40016DB8
+[12:56:52.031] INFO  [minoc_verified_Draver] [ITEM] drag serial=0x40016DA8 amount=700
+[12:56:52.031] INFO  [minoc_verified_Draver] [ITEM] drop container=0x40016DB8
+[12:56:52.031] LOG   [minoc_verified_Draver] event drag_cancel: reason=0 cannot lift that
+[12:56:52.031] LOG   [minoc_verified_Draver] event action_result: move_item rejected took=1ms cannot lift that
+[12:56:52.046] LOG   [minoc_verified_Draver] event drag_cancel: reason=5 unspecified
+[12:56:55.075] INFO  [life] bank: withdrawing 700 gold for a purchase (need 500, carrying 0)
+[12:56:55.076] INFO  [minoc_verified_Draver] [ACTION] move_item start
+[12:56:55.076] INFO  [minoc_verified_Draver] [ACTION] move_item serial=0x40016DA8 amount=700 dest=0x40016DB8
+[12:56:55.076] INFO  [minoc_verified_Draver] [ITEM] drag serial=0x40016DA8 amount=700
+[12:56:55.077] INFO  [minoc_verified_Draver] [ITEM] drop container=0x40016DB8
+[12:56:55.091] LOG   [minoc_verified_Draver] event drag_cancel: reason=0 cannot lift that
+[12:56:55.091] LOG   [minoc_verified_Draver] event action_result: move_item rejected took=15ms cannot lift that
+[12:56:55.092] LOG   [minoc_verified_Draver] event drag_cancel: reason=5 unspecified
+[12:56:57.660] INFO  [minoc_verified_Draver] [survival] hp 5/56 (8%) -> rest
+[12:56:58.087] INFO  [life] bank: withdrawing 700 gold for a purchase (need 500, carrying 0)
+[12:56:58.088] INFO  [minoc_verified_Draver] [ACTION] move_item start
+[12:56:58.088] INFO  [minoc_verified_Draver] [ACTION] move_item serial=0x40016DA8 amount=700 dest=0x40016DB8
+[12:56:58.088] INFO  [minoc_verified_Draver] [ITEM] drag serial=0x40016DA8 amount=700
+[12:56:58.088] INFO  [minoc_verified_Draver] [ITEM] drop container=0x40016DB8
+[12:56:58.103] LOG   [minoc_verified_Draver] event drag_cancel: reason=0 cannot lift that
+[12:56:58.103] LOG   [minoc_verified_Draver] event action_result: move_item rejected took=15ms cannot lift that
+[12:56:58.103] LOG   [minoc_verified_Draver] event drag_cancel: reason=5 unspecified
+[12:56:59.710] INFO  [minoc_verified_Draver] [chat ascii] System: World save in 10 seconds
+[12:57:01.118] INFO  [life] bank: withdrawing 700 gold for a purchase (need 500, carrying 0)
+[12:57:01.118] INFO  [minoc_verified_Draver] [ACTION] move_item start
+[12:57:01.119] INFO  [minoc_verified_Draver] [ACTION] move_item serial=0x40016DA8 amount=700 dest=0x40016DB8
+[12:57:01.119] INFO  [minoc_verified_Draver] [ITEM] drag serial=0x40016DA8 amount=700
+[12:57:01.119] INFO  [minoc_verified_Draver] [ITEM] drop container=0x40016DB8
+[12:57:01.134] LOG   [minoc_verified_Draver] event drag_cancel: reason=0 cannot lift that
+[12:57:01.134] LOG   [minoc_verified_Draver] event action_result: move_item rejected took=16ms cannot lift that
+[12:57:01.134] LOG   [minoc_verified_Draver] event drag_cancel: reason=5 unspecified
+[12:57:03.700] INFO  [minoc_verified_Draver] [survival] hp 5/56 (8%) -> rest
+[12:57:04.127] INFO  [life] bank: withdrawing 700 gold for a purchase (need 500, carrying 0)
+[12:57:04.127] INFO  [minoc_verified_Draver] [ACTION] move_item start
+[12:57:04.127] INFO  [minoc_verified_Draver] [ACTION] move_item serial=0x40016DA8 amount=700 dest=0x40016DB8
+[12:57:04.127] INFO  [minoc_verified_Draver] [ITEM] drag serial=0x40016DA8 amount=700
+[12:57:04.128] INFO  [minoc_verified_Draver] [ITEM] drop container=0x40016DB8
+[12:57:04.128] LOG   [minoc_verified_Draver] event drag_cancel: reason=0 cannot lift that
+[12:57:04.128] LOG   [minoc_verified_Draver] event action_result: move_item rejected took=1ms cannot lift that
+[12:57:04.142] LOG   [minoc_verified_Draver] event drag_cancel: reason=5 unspecified
+[12:57:07.140] INFO  [life] bank: withdrawing 700 gold for a purchase (need 500, carrying 0)
+[12:57:07.140] INFO  [minoc_verified_Draver] [ACTION] move_item start
+[12:57:07.141] INFO  [minoc_verified_Draver] [ACTION] move_item serial=0x40016DA8 amount=700 dest=0x40016DB8
+[12:57:07.141] INFO  [minoc_verified_Draver] [ITEM] drag serial=0x40016DA8 amount=700
+[12:57:07.141] INFO  [minoc_verified_Draver] [ITEM] drop container=0x40016DB8
+[12:57:07.156] LOG   [minoc_verified_Draver] event drag_cancel: reason=0 cannot lift that
+[12:57:07.156] LOG   [minoc_verified_Draver] event action_result: move_item rejected took=16ms cannot lift that
+[12:57:07.157] LOG   [minoc_verified_Draver] event drag_cancel: reason=5 unspecified
+[12:57:09.752] INFO  [minoc_verified_Draver] [chat ascii] System: World save has been initiated.
+[12:57:09.811] INFO  [minoc_verified_Draver] [survival] hp 5/56 (8%) -> rest
+[12:57:10.180] INFO  [life] bank: withdrawing 700 gold for a purchase (need 500, carrying 0)
+[12:57:10.181] INFO  [minoc_verified_Draver] [ACTION] move_item start
+[12:57:10.181] INFO  [minoc_verified_Draver] [ACTION] move_item serial=0x40016DA8 amount=700 dest=0x40016DB8
+[12:57:10.181] INFO  [minoc_verified_Draver] [ITEM] drag serial=0x40016DA8 amount=700
+[12:57:10.181] INFO  [minoc_verified_Draver] [ITEM] drop container=0x40016DB8
+[12:57:10.196] LOG   [minoc_verified_Draver] event drag_cancel: reason=0 cannot lift that
+[12:57:10.196] LOG   [minoc_verified_Draver] event action_result: move_item rejected took=15ms cannot lift that
+[12:57:10.196] LOG   [minoc_verified_Draver] event drag_cancel: reason=5 unspecified
+[12:57:12.326] INFO  [minoc_verified_Draver] [chat ascii] Jarvinia: Nice speaking to you Draver
+[12:57:13.200] INFO  [life] bank: withdrawing 700 gold for a purchase (need 500, carrying 0)
+[12:57:13.201] INFO  [minoc_verified_Draver] [ACTION] move_item start
+[12:57:13.201] INFO  [minoc_verified_Draver] [ACTION] move_item serial=0x40016DA8 amount=700 dest=0x40016DB8
+[12:57:13.201] INFO  [minoc_verified_Draver] [ITEM] drag serial=0x40016DA8 amount=700
+[12:57:13.202] INFO  [minoc_verified_Draver] [ITEM] drop container=0x40016DB8
+[12:57:13.202] LOG   [minoc_verified_Draver] event drag_cancel: reason=0 cannot lift that
+[12:57:13.202] LOG   [minoc_verified_Draver] event action_result: move_item rejected took=1ms cannot lift that
+[12:57:13.216] LOG   [minoc_verified_Draver] event drag_cancel: reason=5 unspecified
+[12:57:15.885] INFO  [minoc_verified_Draver] [survival] hp 5/56 (8%) -> rest
+[12:57:16.254] INFO  [life] bank: withdrawing 700 gold for a purchase (need 500, carrying 0)
+[12:57:16.256] INFO  [minoc_verified_Draver] [ACTION] move_item start
+[12:57:16.256] INFO  [minoc_verified_Draver] [ACTION] move_item serial=0x40016DA8 amount=700 dest=0x40016DB8
+[12:57:16.256] INFO  [minoc_verified_Draver] [ITEM] drag serial=0x40016DA8 amount=700
+[12:57:16.256] INFO  [minoc_verified_Draver] [ITEM] drop container=0x40016DB8
+[12:57:16.256] LOG   [minoc_verified_Draver] event drag_cancel: reason=0 cannot lift that
+[12:57:16.257] LOG   [minoc_verified_Draver] event action_result: move_item rejected took=1ms cannot lift that
+[12:57:16.270] LOG   [minoc_verified_Draver] event drag_cancel: reason=5 unspecified
+[12:57:19.308] INFO  [life] bank: withdrawing 700 gold for a purchase (need 500, carrying 0)
+[12:57:19.309] INFO  [minoc_verified_Draver] [ACTION] move_item start
+[12:57:19.309] INFO  [minoc_verified_Draver] [ACTION] move_item serial=0x40016DA8 amount=700 dest=0x40016DB8
+[12:57:19.309] INFO  [minoc_verified_Draver] [ITEM] drag serial=0x40016DA8 amount=700
+[12:57:19.310] INFO  [minoc_verified_Draver] [ITEM] drop container=0x40016DB8
+[12:57:19.324] LOG   [minoc_verified_Draver] event drag_cancel: reason=0 cannot lift that
+[12:57:19.324] LOG   [minoc_verified_Draver] event action_result: move_item rejected took=15ms cannot lift that
+[12:57:19.325] LOG   [minoc_verified_Draver] event drag_cancel: reason=5 unspecified
+[12:57:21.953] INFO  [minoc_verified_Draver] [survival] hp 5/56 (8%) -> rest
+[12:57:22.321] INFO  [life] bank: withdrawing 700 gold for a purchase (need 500, carrying 0)
+[12:57:22.322] INFO  [minoc_verified_Draver] [ACTION] move_item start
+[12:57:22.322] INFO  [minoc_verified_Draver] [ACTION] move_item serial=0x40016DA8 amount=700 dest=0x40016DB8
+[12:57:22.322] INFO  [minoc_verified_Draver] [ITEM] drag serial=0x40016DA8 amount=700
+[12:57:22.322] INFO  [minoc_verified_Draver] [ITEM] drop container=0x40016DB8
+[12:57:22.323] LOG   [minoc_verified_Draver] event drag_cancel: reason=0 cannot lift that
+[12:57:22.323] LOG   [minoc_verified_Draver] event action_result: move_item rejected took=1ms cannot lift that
+[12:57:22.323] LOG   [minoc_verified_Draver] event drag_cancel: reason=5 unspecified
+[12:57:25.325] INFO  [life] bank: withdrawing 700 gold for a purchase (need 500, carrying 0)
+[12:57:25.325] INFO  [minoc_verified_Draver] [ACTION] move_item start
+[12:57:25.325] INFO  [minoc_verified_Draver] [ACTION] move_item serial=0x40016DA8 amount=700 dest=0x40016DB8
+[12:57:25.326] INFO  [minoc_verified_Draver] [ITEM] drag serial=0x40016DA8 amount=700
+[12:57:25.326] INFO  [minoc_verified_Draver] [ITEM] drop container=0x40016DB8
+[12:57:25.340] LOG   [minoc_verified_Draver] event drag_cancel: reason=0 cannot lift that
+[12:57:25.341] LOG   [minoc_verified_Draver] event action_result: move_item rejected took=15ms cannot lift that
+[12:57:25.341] LOG   [minoc_verified_Draver] event drag_cancel: reason=5 unspecified
+[12:57:27.981] INFO  [minoc_verified_Draver] [survival] hp 5/56 (8%) -> rest
+[12:57:28.382] INFO  [life] bank: withdrawing 700 gold for a purchase (need 500, carrying 0)
+[12:57:28.382] INFO  [minoc_verified_Draver] [ACTION] move_item start
+[12:57:28.382] INFO  [minoc_verified_Draver] [ACTION] move_item serial=0x40016DA8 amount=700 dest=0x40016DB8
+[12:57:28.383] INFO  [minoc_verified_Draver] [ITEM] drag serial=0x40016DA8 amount=700
+[12:57:28.383] INFO  [minoc_verified_Draver] [ITEM] drop container=0x40016DB8
+[12:57:28.383] LOG   [minoc_verified_Draver] event drag_cancel: reason=0 cannot lift that
+[12:57:28.383] LOG   [minoc_verified_Draver] event action_result: move_item rejected took=1ms cannot lift that
+[12:57:28.398] LOG   [minoc_verified_Draver] event drag_cancel: reason=5 unspecified
+[12:57:31.412] INFO  [life] bank: withdrawing 700 gold for a purchase (need 500, carrying 0)
+[12:57:31.412] INFO  [minoc_verified_Draver] [ACTION] move_item start
+[12:57:31.412] INFO  [minoc_verified_Draver] [ACTION] move_item serial=0x40016DA8 amount=700 dest=0x40016DB8
+[12:57:31.412] INFO  [minoc_verified_Draver] [ITEM] drag serial=0x40016DA8 amount=700
+[12:57:31.412] INFO  [minoc_verified_Draver] [ITEM] drop container=0x40016DB8
+[12:57:31.413] LOG   [minoc_verified_Draver] event drag_cancel: reason=0 cannot lift that
+[12:57:31.413] LOG   [minoc_verified_Draver] event action_result: move_item rejected took=1ms cannot lift that
+[12:57:31.428] LOG   [minoc_verified_Draver] event drag_cancel: reason=5 unspecified

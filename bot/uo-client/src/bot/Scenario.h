@@ -240,10 +240,26 @@ private:
     // bug (a place that does not exist, a mobile not in view), not a travel
     // outcome, so it aborts rather than being reported as a failed trip.
     void FailTravelStart(Client& client, const Step& st, const char* verb);
-    void Bind(const std::string& name, u32 serial);
+    void Bind(const std::string& name, u32 serial,
+              const char* liveKind = nullptr, const char* liveArg = nullptr);
 
     std::vector<Step> steps_;
-    std::vector<std::pair<std::string, u32>> binds_;
+    // A remembered name. For a LIVE-LOOKUP kind (pack_graphic) the recipe is
+    // kept rather than the answer, so @name re-resolves at USE time.
+    //
+    // Storing the answer was the trainer-payment bug in a second costume:
+    // Sphere splits a gold stack to make change, which retires the serial, and
+    // a `give @npc @gold N` addressed to the retired serial is a silent no-op
+    // -- no gold moves, the NPC says nothing, nothing reports an error. The
+    // runner was fixed by re-resolving immediately before each send; the
+    // scenario DSL that drives it was not.
+    struct Remembered {
+        std::string name;
+        u32         serial = 0;    // the snapshot, for kinds with no live form
+        std::string liveKind;      // empty = no re-lookup, use `serial`
+        std::string liveArg;
+    };
+    std::vector<Remembered> binds_;
     i32 markHp_ = -1;
     i32 markGold_ = -1;
     u16 markSkillIndex_ = 0xFFFF;

@@ -1,0 +1,839 @@
+[00:19:51.438] INFO  session 0: 127.0.0.1:2593 user='RevGen3_19' char=Ithion tag='mk3_Ithion'
+[00:19:51.439] LOG   [mk3_Ithion] event session_start: text log opened
+[00:19:51.440] LOG   [mk3_Ithion] event net_connect_begin: connect 127.0.0.1:2593
+[00:19:51.440] INFO  [mk3_Ithion] [net] connecting to 127.0.0.1:2593 ...
+[00:19:51.441] LOG   [mk3_Ithion] event net_connected: connect 127.0.0.1:2593
+[00:19:51.441] INFO  [mk3_Ithion] [net] connected.
+[00:19:51.441] INFO  [mk3_Ithion] [seed] sent 0x7F000001 (plaintext)
+[00:19:51.441] LOG   [mk3_Ithion] event seed_out: 0x7F000001 hex=7f000001
+[00:19:51.441] INFO  [life] no prior state for revgen3_19.ithion: a new Fisher
+[00:19:51.441] INFO  [life] creation request: Fishing 50.0 + Cooking 50.0, stats 40/24/16 = 80
+[00:19:51.441] INFO  [life] needs: reading 'fisher' from the profession catalogue
+[00:19:51.441] INFO  [life] home: Ithion lives in Skara Brae
+[00:19:51.441] INFO  [life] build plan 'fisher': 150.0 resolved + 550.0 unresolved = 700.0/700.0, stats 80/50/45 = 175
+[00:19:51.441] INFO  [mk3_Ithion] [life] autonomous player active for 'Ithion' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 3 min)
+[00:19:51.451] INFO  [mk3_Ithion] [0xA8] 1 server(s):
+[00:19:51.452] INFO  [mk3_Ithion]   [0] MyShard                   1.0.0.127  full=7%  tz=0
+[00:19:51.466] INFO  [mk3_Ithion] [0x8C] game server = 127.0.0.1:2593  seed=0x7DE8CB01
+[00:19:51.466] LOG   [mk3_Ithion] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x7DE8CB01
+[00:19:51.467] INFO  [mk3_Ithion] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[00:19:51.467] LOG   [mk3_Ithion] event relay_same_socket: no seed re-sent; 0x91 follows
+[00:19:51.467] INFO  [mk3_Ithion] [0xB9] server features = 0x0005
+[00:19:51.467] INFO  [mk3_Ithion] [0xA9] 5 slot(s) (populated 0):
+[00:19:51.467] INFO  [mk3_Ithion]   [0] <empty>
+[00:19:51.467] INFO  [mk3_Ithion]   [1] <empty>
+[00:19:51.467] INFO  [mk3_Ithion]   [2] <empty>
+[00:19:51.467] INFO  [mk3_Ithion]   [3] <empty>
+[00:19:51.467] INFO  [mk3_Ithion]   [4] <empty>
+[00:19:51.467] INFO  [mk3_Ithion] create: appearance sex=M skin=0x0411 hair=0x2048/0x0469 shirt=0x020E pants=0x03A3
+[00:19:51.467] INFO  [mk3_Ithion] [0x00] starting city index 7
+[00:19:51.467] INFO  [mk3_Ithion] [0x00] requested skills 18:50 13:50 48:0
+[00:19:51.467] INFO  [mk3_Ithion] [0x00] requested stats STR 40 DEX 24 INT 16
+[00:19:51.467] INFO  [mk3_Ithion] [0x00] creating character 'Ithion' in slot 0
+[00:19:51.467] LOG   [mk3_Ithion] event char_create_sent: Ithion
+[00:19:51.484] INFO  [mk3_Ithion] [0x1B] serial=0x00019837 body=0x0190 pos=(618,2234,0)
+[00:19:51.484] LOG   [mk3_Ithion] event login_confirm: serial=0x00019837 body=0x0190 pos=(618,2234,0)
+[00:19:51.484] INFO  [mk3_Ithion] [0x20] player @(618,2234,0) facing=3
+[00:19:51.484] INFO  [mk3_Ithion] [0x55] login complete — entering world
+[00:19:51.484] LOG   [mk3_Ithion] event in_world: 0x55 received
+[00:19:51.484] INFO  [mk3_Ithion] [backpack] opening 0x40019826
+[00:19:51.484] INFO  [mk3_Ithion] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[00:19:51.484] INFO  [mk3_Ithion] [chat ascii] System: There are 18 other players here.
+[00:19:51.484] INFO  [mk3_Ithion] [chat ascii] System: You are under the protection of the town guards
+[00:19:51.488] INFO  [mk3_Ithion] [action] requesting the skill list
+[00:19:51.488] INFO  [life] in world; asked the server for the skill list
+[00:19:51.497] INFO  [mk3_Ithion] [0x24] open container 0x40019826 gump=60
+[00:19:51.497] INFO  [mk3_Ithion] [0x3C] container contents: 12 item(s)
+[00:19:51.497] LOG   [mk3_Ithion] event backpack_contents: serial=0x40019826 items=12
+[00:19:54.108] INFO  [mk3_Ithion] [bot] world data loaded (0 blacklisted spot(s)).
+[00:19:54.109] INFO  [life] common knowledge: Skara Brae Docks E at 638,2227 (20 tiles away)
+[00:19:54.109] INFO  [life] common knowledge: Skara Brae Docks S at 617,2276 (42 tiles away)
+[00:19:54.109] INFO  [life] common knowledge: Skara Brae Ferry Dock at 726,2236 (108 tiles away)
+[00:19:54.109] INFO  [life] seeded 3 fish hint(s) of 17 the atlas knows -- everything else is earned
+[00:19:54.109] INFO  [life] reconciliation: first ever login, 7 field(s) differed
+[00:19:54.109] INFO  [life]   gold         persisted=0          server=10000      -> server value accepted
+[00:19:54.109] INFO  [life]   str          persisted=0          server=40         -> server value accepted
+[00:19:54.109] INFO  [life]   dex          persisted=0          server=24         -> server value accepted
+[00:19:54.109] INFO  [life]   int          persisted=0          server=16         -> server value accepted
+[00:19:54.109] INFO  [life]   skill_18     persisted=0.0        server=50.0       -> server value accepted
+[00:19:54.109] INFO  [life]   skill_13     persisted=0.0        server=50.0       -> server value accepted
+[00:19:54.109] INFO  [life]   position     persisted=0,0        server=618,2234   -> server value accepted
+[00:19:54.109] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[00:19:54.109] INFO  [mk3_Ithion] [survival] on
+[00:19:54.109] LOG   [mk3_Ithion] event survival_mode: on
+[00:19:54.110] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_19.ithion/state.json
+[00:19:54.110] INFO  [mk3_Ithion] [survival] hp 40/40 (100%) -> fight
+[00:19:54.111] INFO  [life] goal=BANK reason="no goal was running"
+[00:19:54.111] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedEquipment(heal potions 0.50) NeedCraft(make goods to sell 0.50) NeedCatch(fish 0.45) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20)  | tools defined=2 held=[fishing pole,rolling pin,] want_train=nothing (target 0.0)
+[00:19:54.111] INFO  [life]   score=150.0
+[00:19:54.111] INFO  [life]   reason: NeedBank urgency 0.75 x 240 = 180.0
+[00:19:54.111] INFO  [life]   reason: on_hand=10000 (total 10000) reserve=150 carry=650 spare=9350 risk=1.00
+[00:19:54.111] INFO  [life]   reason: no bank learned yet -30
+[00:19:54.111] INFO  [mk3_Ithion] [action] scanning nearby mobiles for names
+[00:19:54.111] INFO  [mk3_Ithion] [action] requested 2 paperdoll(s) for trade titles
+[00:19:54.111] INFO  [life] bank: asking who is standing in the bank
+[00:19:54.117] INFO  [mk3_Ithion] [mobiles] nearby (10):
+[00:19:54.117] INFO  [mk3_Ithion]   Dorvar 0x00019D4B
+[00:19:54.117] INFO  [mk3_Ithion]   Cat 0x00014BAA
+[00:19:54.117] INFO  [mk3_Ithion]   jungle bird 0x0000D6AF
+[00:19:54.117] INFO  [mk3_Ithion]   jungle bird 0x00011AA9
+[00:19:54.117] INFO  [mk3_Ithion]   Aiken 0x000027DC
+[00:19:54.117] INFO  [mk3_Ithion]   Cat 0x0000D0F8
+[00:19:54.117] INFO  [mk3_Ithion]   Rat 0x00015CD6
+[00:19:54.117] INFO  [mk3_Ithion]   Li 0x00002822
+[00:19:54.117] INFO  [mk3_Ithion]   Iolana 0x000027ED
+[00:19:54.117] INFO  [mk3_Ithion]   Rat 0x00010AC3
+[00:19:54.117] INFO  [mk3_Ithion] [0x20] player @(618,2234,0) facing=0
+[00:19:54.117] INFO  [mk3_Ithion] [0x88] paperdoll 0x000027DC: "Aiken, the healer guildmaster"
+[00:19:54.117] INFO  [mk3_Ithion] [world] Aiken, the healer guildmaster is a healer at (622,2219)
+[00:19:54.117] INFO  [mk3_Ithion] [0x88] paperdoll 0x00019D4B: "Dorvar, Apprentice Fisherman"
+[00:19:54.532] INFO  [mk3_Ithion] [chat ascii] System: Odessa has arrived in Britain.
+[00:19:56.115] INFO  [life] bank: no banker in sight
+[00:19:56.115] INFO  [life] goal_failed=BANK status=retryable_failure reason="no banker in sight"
+[00:19:56.175] INFO  [life] goal=REPLACE_EQUIPMENT reason="previous goal abandoned: no banker answered"
+[00:19:56.175] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedEquipment(heal potions 0.50) NeedCraft(make goods to sell 0.50) NeedCatch(fish 0.45) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20)  | tools defined=2 held=[fishing pole,rolling pin,] want_train=nothing (target 0.0)
+[00:19:56.175] INFO  [life]   score=130.0
+[00:19:56.175] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:19:56.175] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:19:56.175] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 299s after achieving nothing
+[00:19:57.599] INFO  [mk3_Ithion] [chat ascii] System: Serena has arrived in Britain.
+[00:19:59.127] INFO  [mk3_Ithion] [survival] hp 40/40 (100%) -> fight
+[00:20:00.645] INFO  [mk3_Ithion] [chat ascii] System: Aurelius has arrived in Moonglow.
+[00:20:01.135] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:20:01.135] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[00:20:01.135] INFO  [mk3_Ithion] [travel] healer (seen) -> (622,2219) r=2 from (618,2234)
+[00:20:01.135] LOG   [mk3_Ithion] event travel_start: label='healer (seen)' target=(622,2219) radius=2 from=(618,2234)
+[00:20:01.135] INFO  [life] potions: walking to a 'healer' (trip 1)
+[00:20:01.135] INFO  [mk3_Ithion] [travel] mode walk             usable   <- chosen
+[00:20:01.135] INFO  [mk3_Ithion] [travel] mode moongate         usable
+[00:20:01.135] INFO  [mk3_Ithion] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:01.135] INFO  [mk3_Ithion] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:01.135] LOG   [mk3_Ithion] event travel_mode: walk
+[00:20:01.135] INFO  [mk3_Ithion] [travel] plan healer (seen): ok legs=1 ~13 tiles transit=0 nodes=0
+[00:20:01.196] INFO  [mk3_Ithion] [action] goto (617,2221) from (618,2234,0)
+[00:20:01.196] LOG   [mk3_Ithion] event goto_start: target=(617,2221) from=(618,2234)
+[00:20:01.196] INFO  [mk3_Ithion] [bot] running from (618,2234,0) to (617,2221,z0)
+[00:20:01.196] INFO  [mk3_Ithion] [bot] planning path to (617,2221) in background
+[00:20:01.764] INFO  [mk3_Ithion] [action] goto finished at (618,2234,0); target (617,2221); stopped short (off by 14 tile(s))
+[00:20:01.764] LOG   [mk3_Ithion] event goto_done: at=(618,2234) target=(617,2221) arrived=0 off=14
+[00:20:02.973] INFO  [mk3_Ithion] [action] goto (617,2221) from (618,2234,0)
+[00:20:02.973] LOG   [mk3_Ithion] event goto_start: target=(617,2221) from=(618,2234)
+[00:20:02.973] INFO  [mk3_Ithion] [bot] running from (618,2234,0) to (617,2221,z0)
+[00:20:02.973] INFO  [mk3_Ithion] [bot] planning path to (617,2221) in background
+[00:20:03.034] INFO  [mk3_Ithion] [bot] replan to (617,2221): 18 steps in 2457.8us
+[00:20:03.869] INFO  [mk3_Ithion] [chat ascii] System: Leander has arrived in Moonglow.
+[00:20:04.187] INFO  [mk3_Ithion] [survival] hp 40/40 (100%) -> fight
+[00:20:05.312] INFO  [mk3_Ithion] [travel] mode walk             usable   <- chosen
+[00:20:05.312] INFO  [mk3_Ithion] [travel] mode moongate         usable
+[00:20:05.312] INFO  [mk3_Ithion] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:05.312] INFO  [mk3_Ithion] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:05.312] LOG   [mk3_Ithion] event travel_mode: walk
+[00:20:05.312] INFO  [mk3_Ithion] [travel] plan healer (seen): ok legs=1 ~7 tiles transit=0 nodes=0
+[00:20:05.313] INFO  [mk3_Ithion] [action] goto finished at (624,2225,0); target (617,2221); stopped short (off by 11 tile(s))
+[00:20:05.313] LOG   [mk3_Ithion] event goto_done: at=(624,2225) target=(617,2221) arrived=0 off=11
+[00:20:05.313] INFO  [mk3_Ithion] [action] goto (618,2218) from (624,2225,0)
+[00:20:05.313] LOG   [mk3_Ithion] event goto_start: target=(618,2218) from=(624,2225)
+[00:20:05.313] INFO  [mk3_Ithion] [bot] running from (624,2225,0) to (618,2218,z0)
+[00:20:05.313] INFO  [mk3_Ithion] [bot] planning path to (618,2218) in background
+[00:20:05.989] INFO  [mk3_Ithion] [action] goto finished at (624,2225,0); target (618,2218); stopped short (off by 13 tile(s))
+[00:20:05.989] LOG   [mk3_Ithion] event goto_done: at=(624,2225) target=(618,2218) arrived=0 off=13
+[00:20:06.980] INFO  [mk3_Ithion] [chat ascii] System: Illyria has arrived in Britain.
+[00:20:07.224] INFO  [mk3_Ithion] [action] goto (618,2218) from (624,2225,0)
+[00:20:07.224] LOG   [mk3_Ithion] event goto_start: target=(618,2218) from=(624,2225)
+[00:20:07.224] INFO  [mk3_Ithion] [bot] running from (624,2225,0) to (618,2218,z0)
+[00:20:07.224] INFO  [mk3_Ithion] [bot] planning path to (618,2218) in background
+[00:20:07.284] INFO  [mk3_Ithion] [bot] replan to (618,2218): 9 steps in 252.1us
+[00:20:09.223] INFO  [mk3_Ithion] [survival] hp 40/40 (100%) -> fight
+[00:20:09.544] INFO  [mk3_Ithion] [travel] healer (seen) ARRIVED at (620,2220,0)
+[00:20:09.544] LOG   [mk3_Ithion] event travel_done: label='healer (seen)' ok=1 at=(620,2220) legs=1 plans=1 why=''
+[00:20:09.545] INFO  [mk3_Ithion] [action] scanning nearby mobiles for names
+[00:20:09.546] INFO  [mk3_Ithion] [action] requested 1 paperdoll(s) for trade titles
+[00:20:09.546] INFO  [life] potions: at the shop, asking who is here (scan 1 of 3)
+[00:20:09.559] INFO  [mk3_Ithion] [mobiles] nearby (9):
+[00:20:09.559] INFO  [mk3_Ithion]   Dorvar 0x00019D4B
+[00:20:09.559] INFO  [mk3_Ithion]   Rat 0x00015CD6
+[00:20:09.559] INFO  [mk3_Ithion]   Iolana 0x000027ED
+[00:20:09.559] INFO  [mk3_Ithion]   Aiken 0x000027DC
+[00:20:09.559] INFO  [mk3_Ithion]   Cat 0x0000D0F8
+[00:20:09.559] INFO  [mk3_Ithion]   Rat 0x00010AC3
+[00:20:09.559] INFO  [mk3_Ithion]   jungle bird 0x0000D6AF
+[00:20:09.559] INFO  [mk3_Ithion]   Cat 0x00014BAA
+[00:20:09.559] INFO  [mk3_Ithion]   Li 0x00002822
+[00:20:09.560] INFO  [mk3_Ithion] [0x20] player @(620,2220,0) facing=7
+[00:20:09.560] INFO  [mk3_Ithion] [0x88] paperdoll 0x000027ED: "Iolana, the healer"
+[00:20:09.560] INFO  [mk3_Ithion] [world] Iolana, the healer is a healer at (616,2216)
+[00:20:10.022] INFO  [mk3_Ithion] [chat ascii] System: Hector has arrived in Trinsic.
+[00:20:12.598] INFO  [life] potions: found a 'healer'
+[00:20:12.660] INFO  [mk3_Ithion] [travel] mobile 0x000027ED -> (616,2216) r=1 from (620,2220)
+[00:20:12.660] LOG   [mk3_Ithion] event travel_start: label='mobile 0x000027ED' target=(616,2216) radius=1 from=(620,2220)
+[00:20:12.660] INFO  [life] potions: the 'healer' is 4 tiles off (dz 0) -- walking into reach (chase 1 of 3)
+[00:20:12.660] INFO  [mk3_Ithion] [travel] mode walk             usable   <- chosen
+[00:20:12.660] INFO  [mk3_Ithion] [travel] mode moongate         usable
+[00:20:12.660] INFO  [mk3_Ithion] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:12.660] INFO  [mk3_Ithion] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:12.660] LOG   [mk3_Ithion] event travel_mode: walk
+[00:20:12.660] INFO  [mk3_Ithion] [travel] plan mobile 0x000027ED: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:20:12.722] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (618,2218); stopped short (off by 4 tile(s))
+[00:20:12.722] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(618,2218) arrived=0 off=4
+[00:20:12.722] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:20:12.722] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:20:12.722] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:20:12.722] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:20:13.077] INFO  [mk3_Ithion] [chat ascii] System: Castor has arrived in Trinsic.
+[00:20:13.534] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:20:13.534] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:20:14.270] INFO  [mk3_Ithion] [survival] hp 40/40 (100%) -> fight
+[00:20:14.763] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:20:14.763] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:20:14.763] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:20:14.763] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:20:15.532] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:20:15.532] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:20:16.106] INFO  [mk3_Ithion] [chat ascii] System: Faustus has arrived in Britain.
+[00:20:16.782] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:20:16.782] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:20:16.782] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:20:16.782] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:20:17.643] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:20:17.643] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:20:18.880] INFO  [mk3_Ithion] [travel] mode walk             usable   <- chosen
+[00:20:18.880] INFO  [mk3_Ithion] [travel] mode moongate         usable
+[00:20:18.880] INFO  [mk3_Ithion] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:18.880] INFO  [mk3_Ithion] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:18.880] LOG   [mk3_Ithion] event travel_mode: walk
+[00:20:18.880] INFO  [mk3_Ithion] [travel] plan mobile 0x000027ED: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:20:19.161] INFO  [mk3_Ithion] [chat ascii] System: Titus has arrived in Skara Brae.
+[00:20:19.283] INFO  [mk3_Ithion] [survival] hp 40/40 (100%) -> fight
+[00:20:20.418] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:20:20.419] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:20:20.419] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:20:20.419] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:20:21.389] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:20:21.389] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:20:22.309] INFO  [mk3_Ithion] [chat ascii] System: Rhea has arrived in Britain.
+[00:20:22.601] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:20:22.601] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:20:22.601] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:20:22.601] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:20:23.386] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:20:23.386] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:20:24.304] INFO  [mk3_Ithion] [survival] hp 40/40 (100%) -> fight
+[00:20:24.611] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:20:24.611] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:20:24.611] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:20:24.611] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:20:25.377] INFO  [mk3_Ithion] [chat ascii] System: Xerxes has arrived in Vesper.
+[00:20:25.497] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:20:25.497] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:20:26.749] INFO  [mk3_Ithion] [travel] mode walk             usable   <- chosen
+[00:20:26.749] INFO  [mk3_Ithion] [travel] mode moongate         usable
+[00:20:26.749] INFO  [mk3_Ithion] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:26.749] INFO  [mk3_Ithion] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:26.749] LOG   [mk3_Ithion] event travel_mode: walk
+[00:20:26.749] INFO  [mk3_Ithion] [travel] plan mobile 0x000027ED: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:20:29.325] INFO  [mk3_Ithion] [survival] hp 40/40 (100%) -> fight
+[00:20:29.782] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:20:29.783] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:20:29.783] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:20:29.783] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:20:30.842] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:20:30.842] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:20:32.054] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:20:32.054] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:20:32.054] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:20:32.054] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:20:33.064] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:20:33.064] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:20:34.321] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:20:34.321] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:20:34.321] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:20:34.321] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:20:34.382] INFO  [mk3_Ithion] [survival] hp 40/40 (100%) -> fight
+[00:20:35.331] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:20:35.331] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:20:36.573] INFO  [mk3_Ithion] [travel] mode walk             usable   <- chosen
+[00:20:36.573] INFO  [mk3_Ithion] [travel] mode moongate         usable
+[00:20:36.573] INFO  [mk3_Ithion] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:36.573] INFO  [mk3_Ithion] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:36.573] LOG   [mk3_Ithion] event travel_mode: walk
+[00:20:36.573] INFO  [mk3_Ithion] [travel] plan mobile 0x000027ED: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:20:39.392] INFO  [mk3_Ithion] [survival] hp 40/40 (100%) -> fight
+[00:20:41.078] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:20:41.078] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:20:41.078] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:20:41.078] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:20:42.168] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:20:42.168] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:20:43.421] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:20:43.421] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:20:43.421] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:20:43.421] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:20:44.353] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:20:44.353] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:20:44.415] INFO  [mk3_Ithion] [survival] hp 40/40 (100%) -> fight
+[00:20:45.569] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:20:45.569] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:20:45.569] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:20:45.569] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:20:46.674] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:20:46.674] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:20:46.674] INFO  [mk3_Ithion] [travel] mobile 0x000027ED ARRIVED at (620,2220,0) -- arrived nearby; the destination tile was not free
+[00:20:46.674] LOG   [mk3_Ithion] event travel_done: label='mobile 0x000027ED' ok=1 at=(620,2220) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[00:20:46.675] INFO  [mk3_Ithion] [travel] mobile 0x000027ED -> (616,2216) r=1 from (620,2220)
+[00:20:46.675] LOG   [mk3_Ithion] event travel_start: label='mobile 0x000027ED' target=(616,2216) radius=1 from=(620,2220)
+[00:20:46.675] INFO  [life] potions: the 'healer' is 4 tiles off (dz 0) -- walking into reach (chase 2 of 3)
+[00:20:46.675] INFO  [mk3_Ithion] [travel] mode walk             usable   <- chosen
+[00:20:46.675] INFO  [mk3_Ithion] [travel] mode moongate         usable
+[00:20:46.675] INFO  [mk3_Ithion] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:46.675] INFO  [mk3_Ithion] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:46.675] LOG   [mk3_Ithion] event travel_mode: walk
+[00:20:46.675] INFO  [mk3_Ithion] [travel] plan mobile 0x000027ED: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:20:46.737] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:20:46.737] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:20:46.737] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:20:46.737] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:20:47.902] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:20:47.902] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:20:49.126] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:20:49.126] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:20:49.126] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:20:49.126] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:20:49.463] INFO  [mk3_Ithion] [survival] hp 40/40 (100%) -> fight
+[00:20:49.957] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:20:49.957] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:20:50.080] INFO  [mk3_Ithion] [chat uni  ] : Iolana buy
+[00:20:50.080] INFO  [mk3_Ithion] [chat ascii] Iolana: Greetings. What can I help thee with?
+[00:20:50.080] INFO  [mk3_Ithion] [chat ascii] Iolana: I'm here to sell thee supplies.
+[00:20:50.141] INFO  [mk3_Ithion] [chat ascii] Iolana: Here you are, Titus That will be 16 gold coins.  I thank thee for thy business.
+[00:20:50.263] INFO  [mk3_Ithion] [chat uni  ] : Iolana buy
+[00:20:50.263] INFO  [mk3_Ithion] [chat ascii] Iolana: Thou surely wants all the things that I can sell thee.
+[00:20:51.163] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:20:51.163] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:20:51.163] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:20:51.163] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:20:52.040] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:20:52.040] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:20:52.347] INFO  [mk3_Ithion] [chat ascii] Titus: *Titus is attacking Rat!*
+[00:20:53.266] INFO  [mk3_Ithion] [travel] mode walk             usable   <- chosen
+[00:20:53.266] INFO  [mk3_Ithion] [travel] mode moongate         usable
+[00:20:53.266] INFO  [mk3_Ithion] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:53.266] INFO  [mk3_Ithion] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:53.266] LOG   [mk3_Ithion] event travel_mode: walk
+[00:20:53.266] INFO  [mk3_Ithion] [travel] plan mobile 0x000027ED: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:20:54.127] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_19.ithion/state.json
+[00:20:54.489] INFO  [mk3_Ithion] [survival] hp 40/40 (100%) -> fight
+[00:20:54.782] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:20:54.782] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:20:54.782] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:20:54.782] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:20:55.823] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:20:55.823] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:20:57.074] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:20:57.074] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:20:57.074] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:20:57.074] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:20:57.473] INFO  [mk3_Ithion] [chat ascii] Titus: *Titus is attacking Rat!*
+[00:20:58.022] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:20:58.022] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:20:59.262] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:20:59.262] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:20:59.262] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:20:59.262] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:20:59.511] INFO  [mk3_Ithion] [survival] hp 40/40 (100%) -> fight
+[00:21:00.129] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:21:00.130] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:21:01.384] INFO  [mk3_Ithion] [travel] mode walk             usable   <- chosen
+[00:21:01.384] INFO  [mk3_Ithion] [travel] mode moongate         usable
+[00:21:01.384] INFO  [mk3_Ithion] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:01.384] INFO  [mk3_Ithion] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:01.384] LOG   [mk3_Ithion] event travel_mode: walk
+[00:21:01.384] INFO  [mk3_Ithion] [travel] plan mobile 0x000027ED: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:21:04.438] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:21:04.438] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:21:04.438] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:21:04.438] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:21:04.562] INFO  [mk3_Ithion] [survival] hp 40/40 (100%) -> fight
+[00:21:05.466] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:21:05.466] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:21:06.689] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:21:06.689] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:21:06.689] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:21:06.689] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:21:07.700] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:21:07.700] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:21:08.910] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:21:08.910] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:21:08.910] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:21:08.910] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:21:09.588] INFO  [mk3_Ithion] [survival] hp 40/40 (100%) -> fight
+[00:21:09.986] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:21:09.986] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:21:11.193] INFO  [mk3_Ithion] [chat ascii] System: Observer has arrived in Minoc.
+[00:21:11.194] INFO  [mk3_Ithion] [travel] mode walk             usable   <- chosen
+[00:21:11.194] INFO  [mk3_Ithion] [travel] mode moongate         usable
+[00:21:11.194] INFO  [mk3_Ithion] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:11.194] INFO  [mk3_Ithion] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:11.194] LOG   [mk3_Ithion] event travel_mode: walk
+[00:21:11.194] INFO  [mk3_Ithion] [travel] plan mobile 0x000027ED: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:21:14.571] INFO  [mk3_Ithion] [chat ascii] System: Observer has departed from Minoc.
+[00:21:14.632] INFO  [mk3_Ithion] [survival] hp 40/40 (100%) -> fight
+[00:21:15.186] INFO  [mk3_Ithion] [chat ascii] Rat: *Rat is attacking Titus!*
+[00:21:15.752] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:21:15.752] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:21:15.752] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:21:15.753] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:21:17.014] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:21:17.014] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:21:18.224] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:21:18.224] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:21:18.224] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:21:18.224] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:21:19.355] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:21:19.356] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:21:19.660] INFO  [mk3_Ithion] [survival] hp 40/40 (100%) -> fight
+[00:21:20.614] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:21:20.614] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:21:20.615] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:21:20.615] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:21:21.551] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:21:21.551] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:21:21.551] INFO  [mk3_Ithion] [travel] mobile 0x000027ED ARRIVED at (620,2220,0) -- arrived nearby; the destination tile was not free
+[00:21:21.551] LOG   [mk3_Ithion] event travel_done: label='mobile 0x000027ED' ok=1 at=(620,2220) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[00:21:21.613] INFO  [mk3_Ithion] [travel] mobile 0x000027ED -> (616,2216) r=1 from (620,2220)
+[00:21:21.613] LOG   [mk3_Ithion] event travel_start: label='mobile 0x000027ED' target=(616,2216) radius=1 from=(620,2220)
+[00:21:21.613] INFO  [life] potions: the 'healer' is 4 tiles off (dz 0) -- walking into reach (chase 3 of 3)
+[00:21:21.613] INFO  [mk3_Ithion] [travel] mode walk             usable   <- chosen
+[00:21:21.613] INFO  [mk3_Ithion] [travel] mode moongate         usable
+[00:21:21.613] INFO  [mk3_Ithion] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:21.613] INFO  [mk3_Ithion] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:21.613] LOG   [mk3_Ithion] event travel_mode: walk
+[00:21:21.613] INFO  [mk3_Ithion] [travel] plan mobile 0x000027ED: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:21:21.675] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:21:21.675] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:21:21.675] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:21:21.675] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:21:22.891] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:21:22.891] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:21:24.136] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:21:24.136] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:21:24.136] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:21:24.136] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:21:24.674] INFO  [mk3_Ithion] [survival] hp 40/40 (100%) -> fight
+[00:21:24.981] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:21:24.981] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:21:26.212] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:21:26.212] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:21:26.212] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:21:26.212] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:21:27.333] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:21:27.333] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:21:28.577] INFO  [mk3_Ithion] [travel] mode walk             usable   <- chosen
+[00:21:28.577] INFO  [mk3_Ithion] [travel] mode moongate         usable
+[00:21:28.577] INFO  [mk3_Ithion] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:28.577] INFO  [mk3_Ithion] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:28.577] LOG   [mk3_Ithion] event travel_mode: walk
+[00:21:28.577] INFO  [mk3_Ithion] [travel] plan mobile 0x000027ED: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:21:29.729] INFO  [mk3_Ithion] [survival] hp 40/40 (100%) -> fight
+[00:21:30.097] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:21:30.097] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:21:30.097] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:21:30.097] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:21:31.054] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:21:31.054] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:21:32.281] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:21:32.281] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:21:32.281] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:21:32.281] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:21:33.384] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:21:33.384] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:21:34.598] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:21:34.598] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:21:34.598] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:21:34.598] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:21:34.737] INFO  [mk3_Ithion] [survival] hp 40/40 (100%) -> fight
+[00:21:35.594] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:21:35.594] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:21:36.854] INFO  [mk3_Ithion] [travel] mode walk             usable   <- chosen
+[00:21:36.854] INFO  [mk3_Ithion] [travel] mode moongate         usable
+[00:21:36.854] INFO  [mk3_Ithion] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:36.854] INFO  [mk3_Ithion] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:36.854] LOG   [mk3_Ithion] event travel_mode: walk
+[00:21:36.854] INFO  [mk3_Ithion] [travel] plan mobile 0x000027ED: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:21:39.762] INFO  [mk3_Ithion] [survival] hp 40/40 (100%) -> fight
+[00:21:39.885] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:21:39.885] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:21:39.885] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:21:39.885] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:21:40.673] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:21:40.673] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:21:41.888] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:21:41.888] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:21:41.888] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:21:41.888] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:21:43.012] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:21:43.012] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:21:44.257] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:21:44.257] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:21:44.257] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:21:44.257] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:21:44.766] INFO  [mk3_Ithion] [survival] hp 40/40 (100%) -> fight
+[00:21:45.196] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:21:45.196] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:21:46.422] INFO  [mk3_Ithion] [travel] mode walk             usable   <- chosen
+[00:21:46.423] INFO  [mk3_Ithion] [travel] mode moongate         usable
+[00:21:46.423] INFO  [mk3_Ithion] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:46.423] INFO  [mk3_Ithion] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:46.423] LOG   [mk3_Ithion] event travel_mode: walk
+[00:21:46.423] INFO  [mk3_Ithion] [travel] plan mobile 0x000027ED: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:21:49.782] INFO  [mk3_Ithion] [survival] hp 40/40 (100%) -> fight
+[00:21:50.964] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:21:50.964] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:21:50.964] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:21:50.964] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:21:51.810] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:21:51.810] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:21:53.047] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:21:53.047] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:21:53.047] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:21:53.048] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:21:54.068] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:21:54.068] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:21:54.134] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_19.ithion/state.json
+[00:21:54.792] INFO  [mk3_Ithion] [survival] hp 40/40 (100%) -> fight
+[00:21:55.297] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:21:55.297] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:21:55.297] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:21:55.297] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:21:56.030] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:21:56.030] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:21:56.030] INFO  [mk3_Ithion] [travel] mobile 0x000027ED ARRIVED at (620,2220,0) -- arrived nearby; the destination tile was not free
+[00:21:56.030] LOG   [mk3_Ithion] event travel_done: label='mobile 0x000027ED' ok=1 at=(620,2220) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[00:21:56.031] INFO  [life] potions: the 'healer' keeps moving (4 tiles after 3 chases) -- asking from here
+[00:21:56.092] INFO  [mk3_Ithion] [ACTION] vendor_buy start
+[00:21:56.092] INFO  [mk3_Ithion] [VENDOR] open vendor=0x000027ED say='Iolana buy'
+[00:21:56.092] INFO  [life] potions: asking the 'healer' to show heal potion (attempt 1)
+[00:21:56.093] INFO  [mk3_Ithion] [chat uni  ] : Iolana buy
+[00:21:56.093] INFO  [mk3_Ithion] [chat ascii] Iolana: Hello! ?
+[00:21:56.093] INFO  [mk3_Ithion] [chat ascii] Iolana: I'm here to sell thee supplies.
+[00:21:56.093] INFO  [mk3_Ithion] [0x3C] container contents: 4 item(s)
+[00:21:56.093] INFO  [mk3_Ithion] [0x74] pairing: straight (straight 4, mirrored 0 of 4 rows)
+[00:21:56.093] INFO  [mk3_Ithion] [0x74] vendor shop data: cont=0x400027E7 4 item(s), layer=0x1A
+[00:21:56.093] INFO  [mk3_Ithion] [0x74]   Heal                         gfx=0x0F0C qty=10   price=30
+[00:21:56.093] INFO  [mk3_Ithion] [0x74]   Ginseng                      gfx=0x0F85 qty=22   price=3
+[00:21:56.093] INFO  [mk3_Ithion] [0x74]   Garlic                       gfx=0x0F84 qty=7    price=3
+[00:21:56.093] INFO  [mk3_Ithion] [0x74]   Refresh                      gfx=0x0F0B qty=32   price=16
+[00:21:56.093] INFO  [mk3_Ithion] [0x3C] container contents: 0 item(s)
+[00:21:56.093] INFO  [mk3_Ithion] [0x74] vendor shop data: cont=0x40012259 0 item(s), layer=0x1B
+[00:21:56.093] INFO  [mk3_Ithion] [VENDOR] offer from 0x000027ED: 4 item(s)
+[00:21:56.093] INFO  [mk3_Ithion] [VENDOR]   0x400001BD Heal                   x10  30 gp
+[00:21:56.093] INFO  [mk3_Ithion] [VENDOR]   0x400001BC Ginseng                x22  3 gp
+[00:21:56.093] INFO  [mk3_Ithion] [VENDOR]   0x400001A4 Garlic                 x7   3 gp
+[00:21:56.093] INFO  [mk3_Ithion] [VENDOR]   0x4000019F Refresh                x32  16 gp
+[00:21:56.093] LOG   [mk3_Ithion] event vendor_offer: vendor=0x000027ED items=4
+[00:21:56.093] INFO  [mk3_Ithion] [ACTION_RESULT] vendor_buy success (2ms) vendor offer received
+[00:21:56.093] LOG   [mk3_Ithion] event action_result: vendor_buy success took=2ms vendor offer received
+[00:21:56.093] INFO  [mk3_Ithion] [0x24] vendor buy gump for 0x000027ED
+[00:21:56.094] INFO  [life] potions: the shop is open
+[00:21:56.153] INFO  [mk3_Ithion] [ACTION] vendor_buy start
+[00:21:56.153] INFO  [mk3_Ithion] [policy] allowed NPC purchase of i_potion_heal (0x0F0C): basic healing: a life with no Healing skill has no other way to treat itself, and the shard's own healer sells it [BASIC_HEALING]
+[00:21:56.153] INFO  [mk3_Ithion] [VENDOR] buy item=0x400001BD qty=4 from vendor=0x000027ED gold=10000
+[00:21:56.153] INFO  [life] potions: buying 4 heal potion at 30 each from the 'healer' (shelf holds 10) -- waiting for the pack
+[00:21:56.153] INFO  [mk3_Ithion] [chat ascii] System: You can't reach the Vendor
+[00:21:56.154] LOG   [mk3_Ithion] event action_result: vendor_buy rejected took=1ms You can't reach the Vendor
+[00:21:56.154] INFO  [life] potions: the goods have not arrived in the pack
+[00:21:58.644] INFO  [mk3_Ithion] [chat ascii] System: Draver has departed from Minoc.
+[00:21:59.797] INFO  [mk3_Ithion] [survival] hp 40/40 (100%) -> fight
+[00:22:04.854] INFO  [mk3_Ithion] [survival] hp 40/40 (100%) -> fight
+[00:22:08.209] INFO  [life] potions: asked for 4 heal potion and the goods have not arrived in the pack after 12s
+[00:22:08.209] INFO  [life] potions: none bought (asked for 4 heal potion and the goods have not arrived in the pack after 12s)
+[00:22:08.209] INFO  [life] goal_completed=REPLACE_EQUIPMENT progress=0
+[00:22:08.211] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_19.ithion/state.json
+[00:22:08.271] INFO  [life] goal=REPLACE_EQUIPMENT reason="no goal was running"
+[00:22:08.271] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedEquipment(heal potions 0.50) NeedCraft(make goods to sell 0.50) NeedCatch(fish 0.45) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20)  | tools defined=2 held=[fishing pole,rolling pin,] want_train=nothing (target 0.0)
+[00:22:08.271] INFO  [life]   score=130.0
+[00:22:08.271] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:22:08.271] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:22:08.271] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 167s after achieving nothing
+[00:22:08.271] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:22:08.271] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[00:22:08.271] INFO  [life] potions: found a 'healer'
+[00:22:08.333] INFO  [mk3_Ithion] [travel] mobile 0x000027ED -> (616,2216) r=1 from (620,2220)
+[00:22:08.333] LOG   [mk3_Ithion] event travel_start: label='mobile 0x000027ED' target=(616,2216) radius=1 from=(620,2220)
+[00:22:08.333] INFO  [life] potions: the 'healer' is 4 tiles off (dz 0) -- walking into reach (chase 1 of 3)
+[00:22:08.333] INFO  [mk3_Ithion] [travel] mode walk             usable   <- chosen
+[00:22:08.333] INFO  [mk3_Ithion] [travel] mode moongate         usable
+[00:22:08.333] INFO  [mk3_Ithion] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:08.333] INFO  [mk3_Ithion] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:08.333] LOG   [mk3_Ithion] event travel_mode: walk
+[00:22:08.333] INFO  [mk3_Ithion] [travel] plan mobile 0x000027ED: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:22:08.395] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:22:08.395] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:22:08.395] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:22:08.395] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:22:09.277] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:22:09.277] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:22:09.891] INFO  [mk3_Ithion] [survival] hp 40/40 (100%) -> fight
+[00:22:10.520] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:22:10.520] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:22:10.520] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:22:10.520] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:22:11.508] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:22:11.508] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:22:12.741] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:22:12.741] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:22:12.741] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:22:12.741] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:22:13.468] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:22:13.468] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:22:14.702] INFO  [mk3_Ithion] [travel] mode walk             usable   <- chosen
+[00:22:14.702] INFO  [mk3_Ithion] [travel] mode moongate         usable
+[00:22:14.702] INFO  [mk3_Ithion] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:14.702] INFO  [mk3_Ithion] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:14.702] LOG   [mk3_Ithion] event travel_mode: walk
+[00:22:14.702] INFO  [mk3_Ithion] [travel] plan mobile 0x000027ED: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:22:14.946] INFO  [mk3_Ithion] [survival] hp 40/40 (100%) -> fight
+[00:22:16.227] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:22:16.227] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:22:16.227] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:22:16.227] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:22:17.084] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:22:17.084] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:22:18.286] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:22:18.286] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:22:18.286] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:22:18.286] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:22:19.125] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:22:19.125] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:22:19.988] INFO  [mk3_Ithion] [survival] hp 40/40 (100%) -> fight
+[00:22:20.360] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:22:20.360] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:22:20.360] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:22:20.360] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:22:21.070] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:22:21.070] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:22:22.286] INFO  [mk3_Ithion] [travel] mode walk             usable   <- chosen
+[00:22:22.286] INFO  [mk3_Ithion] [travel] mode moongate         usable
+[00:22:22.286] INFO  [mk3_Ithion] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:22.286] INFO  [mk3_Ithion] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:22.286] LOG   [mk3_Ithion] event travel_mode: walk
+[00:22:22.286] INFO  [mk3_Ithion] [travel] plan mobile 0x000027ED: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:22:25.042] INFO  [mk3_Ithion] [survival] hp 40/40 (100%) -> fight
+[00:22:25.320] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:22:25.320] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:22:25.320] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:22:25.320] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:22:26.138] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:22:26.138] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:22:27.383] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:22:27.383] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:22:27.383] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:22:27.383] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:22:28.046] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:22:28.046] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:22:29.277] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:22:29.277] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:22:29.277] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:22:29.277] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:22:29.971] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:22:29.971] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:22:30.095] INFO  [mk3_Ithion] [survival] hp 40/40 (100%) -> fight
+[00:22:31.205] INFO  [mk3_Ithion] [travel] mode walk             usable   <- chosen
+[00:22:31.205] INFO  [mk3_Ithion] [travel] mode moongate         usable
+[00:22:31.205] INFO  [mk3_Ithion] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:31.205] INFO  [mk3_Ithion] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:31.205] LOG   [mk3_Ithion] event travel_mode: walk
+[00:22:31.205] INFO  [mk3_Ithion] [travel] plan mobile 0x000027ED: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:22:35.118] INFO  [mk3_Ithion] [survival] hp 40/40 (100%) -> fight
+[00:22:35.748] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:22:35.749] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:22:35.749] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:22:35.749] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:22:36.492] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:22:36.492] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:22:37.722] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:22:37.722] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:22:37.722] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:22:37.722] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:22:38.357] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:22:38.357] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:22:38.419] INFO  [mk3_Ithion] [chat ascii] System: Vorar has departed from Britain.
+[00:22:39.439] INFO  [mk3_Ithion] [chat ascii] System: Selene has departed from Magincia.
+[00:22:39.563] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:22:39.563] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:22:39.563] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:22:39.563] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:22:40.162] INFO  [mk3_Ithion] [survival] hp 40/40 (100%) -> fight
+[00:22:40.193] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:22:40.193] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:22:40.193] INFO  [mk3_Ithion] [travel] mobile 0x000027ED ARRIVED at (620,2220,0) -- arrived nearby; the destination tile was not free
+[00:22:40.193] LOG   [mk3_Ithion] event travel_done: label='mobile 0x000027ED' ok=1 at=(620,2220) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[00:22:40.255] INFO  [mk3_Ithion] [travel] mobile 0x000027ED -> (616,2216) r=1 from (620,2220)
+[00:22:40.255] LOG   [mk3_Ithion] event travel_start: label='mobile 0x000027ED' target=(616,2216) radius=1 from=(620,2220)
+[00:22:40.255] INFO  [life] potions: the 'healer' is 4 tiles off (dz 0) -- walking into reach (chase 2 of 3)
+[00:22:40.255] INFO  [mk3_Ithion] [travel] mode walk             usable   <- chosen
+[00:22:40.255] INFO  [mk3_Ithion] [travel] mode moongate         usable
+[00:22:40.255] INFO  [mk3_Ithion] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:40.255] INFO  [mk3_Ithion] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:40.255] LOG   [mk3_Ithion] event travel_mode: walk
+[00:22:40.255] INFO  [mk3_Ithion] [travel] plan mobile 0x000027ED: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:22:40.315] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:22:40.315] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:22:40.315] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:22:40.315] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:22:40.901] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:22:40.901] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:22:42.134] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:22:42.134] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:22:42.134] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:22:42.134] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:22:42.730] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:22:42.730] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:22:43.933] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:22:43.933] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:22:43.933] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:22:43.933] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:22:44.535] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:22:44.535] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:22:45.184] INFO  [mk3_Ithion] [survival] hp 40/40 (100%) -> fight
+[00:22:45.785] INFO  [mk3_Ithion] [travel] mode walk             usable   <- chosen
+[00:22:45.785] INFO  [mk3_Ithion] [travel] mode moongate         usable
+[00:22:45.785] INFO  [mk3_Ithion] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:45.785] INFO  [mk3_Ithion] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:45.785] LOG   [mk3_Ithion] event travel_mode: walk
+[00:22:45.785] INFO  [mk3_Ithion] [travel] plan mobile 0x000027ED: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:22:46.897] INFO  [mk3_Ithion] [chat ascii] System: Zarthal has departed from Minoc.
+[00:22:47.330] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:22:47.330] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:22:47.330] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:22:47.330] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:22:47.870] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:22:47.870] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:22:49.117] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:22:49.117] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:22:49.117] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:22:49.117] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:22:49.378] INFO  [mk3_Ithion] [chat ascii] System: World save in 10 seconds
+[00:22:49.933] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:22:49.933] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:22:50.196] INFO  [mk3_Ithion] [survival] hp 40/40 (100%) -> fight
+[00:22:50.319] INFO  [mk3_Ithion] [chat ascii] System: Thalia has departed from Moonglow.
+[00:22:51.150] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:22:51.150] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:22:51.150] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:22:51.150] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:22:51.523] INFO  [life] session_end_requested reason="session time limit reached"
+[00:22:52.014] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:22:52.014] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:22:53.217] INFO  [mk3_Ithion] [chat ascii] System: Elvar has departed from Minoc.
+[00:22:53.217] INFO  [mk3_Ithion] [travel] mode walk             usable   <- chosen
+[00:22:53.217] INFO  [mk3_Ithion] [travel] mode moongate         usable
+[00:22:53.217] INFO  [mk3_Ithion] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:53.217] INFO  [mk3_Ithion] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:53.217] LOG   [mk3_Ithion] event travel_mode: walk
+[00:22:53.217] INFO  [mk3_Ithion] [travel] plan mobile 0x000027ED: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:22:55.226] INFO  [mk3_Ithion] [survival] hp 40/40 (100%) -> fight
+[00:22:56.240] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:22:56.240] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:22:56.240] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:22:56.240] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:22:56.844] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:22:56.844] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:22:57.848] INFO  [mk3_Ithion] [chat ascii] System: Falen has departed from Minoc.
+[00:22:58.092] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:22:58.092] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:22:58.092] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:22:58.093] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:22:58.710] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:22:58.710] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:22:59.430] INFO  [mk3_Ithion] [chat ascii] System: World save has been initiated.
+[00:22:59.929] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:22:59.929] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:22:59.929] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:22:59.929] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:23:00.240] INFO  [mk3_Ithion] [survival] hp 40/40 (100%) -> fight
+[00:23:00.737] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:23:00.737] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:23:01.988] INFO  [mk3_Ithion] [travel] mode walk             usable   <- chosen
+[00:23:01.988] INFO  [mk3_Ithion] [travel] mode moongate         usable
+[00:23:01.988] INFO  [mk3_Ithion] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:23:01.988] INFO  [mk3_Ithion] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:23:01.988] LOG   [mk3_Ithion] event travel_mode: walk
+[00:23:01.988] INFO  [mk3_Ithion] [travel] plan mobile 0x000027ED: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:23:05.269] INFO  [mk3_Ithion] [survival] hp 40/40 (100%) -> fight
+[00:23:05.777] INFO  [mk3_Ithion] [chat ascii] System: Ghalor has departed from Minoc.
+[00:23:06.518] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:23:06.518] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:23:06.518] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:23:06.518] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:23:07.319] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:23:07.319] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:23:07.627] INFO  [mk3_Ithion] [chat ascii] System: Cyras has departed from Britain.
+[00:23:08.551] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:23:08.551] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:23:08.551] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:23:08.551] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:23:09.305] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:23:09.305] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:23:10.033] INFO  [mk3_Ithion] [chat ascii] System: Kharain has departed from Minoc.
+[00:23:10.295] INFO  [mk3_Ithion] [survival] hp 40/40 (100%) -> fight
+[00:23:10.543] INFO  [mk3_Ithion] [action] goto (616,2216) from (620,2220,0)
+[00:23:10.543] LOG   [mk3_Ithion] event goto_start: target=(616,2216) from=(620,2220)
+[00:23:10.543] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2216,z0)
+[00:23:10.543] INFO  [mk3_Ithion] [bot] planning path to (616,2216) in background
+[00:23:11.298] INFO  [mk3_Ithion] [action] goto finished at (620,2220,0); target (616,2216); stopped short (off by 8 tile(s))
+[00:23:11.298] LOG   [mk3_Ithion] event goto_done: at=(620,2220) target=(616,2216) arrived=0 off=8
+[00:23:11.298] INFO  [mk3_Ithion] [travel] mobile 0x000027ED ARRIVED at (620,2220,0) -- arrived nearby; the destination tile was not free
+[00:23:11.298] LOG   [mk3_Ithion] event travel_done: label='mobile 0x000027ED' ok=1 at=(620,2220) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[00:23:11.360] INFO  [life] wind-down: no bank learned yet; asking the world for one (attempt 1)
+[00:23:11.361] INFO  [mk3_Ithion] [travel] Skara Brae banker -> (587,2146) r=5 from (620,2220)
+[00:23:11.361] LOG   [mk3_Ithion] event travel_start: label='Skara Brae banker' target=(587,2146) radius=5 from=(620,2220)
+[00:23:11.361] INFO  [mk3_Ithion] [travel] mode moongate         usable   <- chosen
+[00:23:11.361] INFO  [mk3_Ithion] [travel] mode walk             usable
+[00:23:11.361] INFO  [mk3_Ithion] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:23:11.361] INFO  [mk3_Ithion] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:23:11.361] LOG   [mk3_Ithion] event travel_mode: moongate
+[00:23:11.361] INFO  [mk3_Ithion] [travel] plan Skara Brae banker: ok legs=2 ~104 tiles transit=0 nodes=23
+[00:23:11.422] INFO  [mk3_Ithion] [action] goto (616,2184) from (620,2220,0)
+[00:23:11.422] LOG   [mk3_Ithion] event goto_start: target=(616,2184) from=(620,2220)
+[00:23:11.422] INFO  [mk3_Ithion] [bot] running from (620,2220,0) to (616,2184)
+[00:23:11.422] INFO  [mk3_Ithion] [bot] planning path to (616,2184) in background
+[00:23:11.483] INFO  [mk3_Ithion] [bot] replan to (616,2184): 62 steps in 10644.9us
+[00:23:12.347] INFO  [mk3_Ithion] [chat ascii] System: Leander has departed from Moonglow.
+[00:23:12.656] INFO  [mk3_Ithion] [bot] door ahead at (623,2223,z0); OpenDoor before step
+[00:23:12.672] INFO  [mk3_Ithion] [chat ascii] System: Opening door...
+[00:23:13.860] INFO  [mk3_Ithion] [bot] door ahead at (622,2224,z0); OpenDoor before step
+[00:23:13.876] INFO  [mk3_Ithion] [chat ascii] System: Opening door...
+[00:23:15.297] INFO  [mk3_Ithion] [survival] hp 40/40 (100%) -> fight
+[00:23:20.304] INFO  [mk3_Ithion] [survival] hp 40/40 (100%) -> fight
+[00:23:25.351] INFO  [mk3_Ithion] [survival] hp 40/40 (100%) -> fight
+[00:23:25.736] INFO  [mk3_Ithion] [chat ascii] System: Elara has departed from Magincia.
+[00:23:26.431] INFO  [mk3_Ithion] [chat ascii] System: Xerxes has departed from Vesper.
+[00:23:29.283] INFO  [mk3_Ithion] [bot] arrived at (616,2184,0)
+[00:23:29.283] INFO  [mk3_Ithion] [action] goto finished at (616,2184,0); target (616,2184); ARRIVED (off by 0 tile(s))
+[00:23:29.283] LOG   [mk3_Ithion] event goto_done: at=(616,2184) target=(616,2184) arrived=1 off=0
+[00:23:29.283] INFO  [mk3_Ithion] [action] goto (587,2146) from (616,2184,0)
+[00:23:29.283] LOG   [mk3_Ithion] event goto_start: target=(587,2146) from=(616,2184)
+[00:23:29.283] INFO  [mk3_Ithion] [bot] running from (616,2184,0) to (587,2146,z0)
+[00:23:29.283] INFO  [mk3_Ithion] [bot] planning path to (587,2146) in background
+[00:23:29.344] INFO  [mk3_Ithion] [bot] replan to (587,2146): 51 steps in 11046.7us
+[00:23:30.403] INFO  [mk3_Ithion] [survival] hp 40/40 (100%) -> fight
+[00:23:33.132] INFO  [mk3_Ithion] [chat ascii] System: Dorvar has departed from Skara Brae.
+[00:23:35.424] INFO  [mk3_Ithion] [survival] hp 40/40 (100%) -> fight
+[00:23:37.865] INFO  [mk3_Ithion] [chat ascii] System: Odessa has departed from Britain.
+[00:23:38.949] INFO  [mk3_Ithion] [chat ascii] System: Rhea has departed from Lord British's Castle.
+[00:23:40.471] INFO  [mk3_Ithion] [survival] hp 40/40 (100%) -> fight
+[00:23:41.412] INFO  [mk3_Ithion] [bot] lookahead patched around block at step 5: anchor=6 new segment=17 path=22 in 869.9us
+[00:23:43.199] INFO  [mk3_Ithion] [chat ascii] System: Rhaler has departed from Minoc.
+[00:23:44.936] INFO  [mk3_Ithion] [travel] Skara Brae banker ARRIVED at (592,2145,0)
+[00:23:44.936] LOG   [mk3_Ithion] event travel_done: label='Skara Brae banker' ok=1 at=(592,2145) legs=2 plans=1 why=''
+[00:23:44.997] INFO  [life] wind-down: arrived somewhere safe at 592,2145
+[00:23:45.014] INFO  [life] session_summary duration=233s goals=1/3 gold=10000->10000 skills=100.0->100.0 logs=+0 kills=0 deaths=0 places=2 suppliers=0
+[00:23:45.014] INFO  [life] session_goals families=1 picks=3 top=100% varied=0 self_superseded=0 | upkeep=3(100%) | REPLACE_EQUIPMENT=2(67%) BANK=1(33%)
+[00:23:45.016] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_19.ithion/state.json
+[00:23:45.016] INFO  [life] logging out
+[00:23:45.016] INFO  [mk3_Ithion] [action] logout requested
+[00:23:45.016] LOG   [mk3_Ithion] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[00:23:45.016] INFO  [mk3_Ithion] [0xD1] logout acknowledged (accepted=1)
+[00:23:45.016] LOG   [mk3_Ithion] event logout_ack: accepted
+[00:23:45.016] INFO  [mk3_Ithion] [net] closing connection (logout acknowledged)
+[00:23:45.016] LOG   [mk3_Ithion] event logout_complete: acked

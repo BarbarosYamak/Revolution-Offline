@@ -54,6 +54,12 @@ struct MovementState {
 
     // Consecutive rejects seen while draining the current step queue.
     u32 rejectStreak = 0;
+
+    // Acks still owed for moves that were on the wire when a reset cleared the
+    // pending queue. They arrive after the reset and must not be mistaken for
+    // the ack of a freshly sent move (sphere::ClassifyMoveAck).
+    u32 abandonedAcks = 0;
+    i64 abandonedUntilMs = 0;   // after this, give up expecting them
 };
 
 struct BotState {
@@ -62,16 +68,37 @@ struct BotState {
     i32 goalY = 0;
     i32 goalZ = 0;              // valid only when hasGoalZ is true
     bool hasGoalZ = false;
+    // The exact goal tile is a known teleporter pad: skip the terrain/
+    // dynamic-item walkability verdict for that one cell (see
+    // bot::PathOptions::allowBlockedGoal). A live mobile there still blocks.
+    bool allowBlockedGoal = false;
     bool active = false;
     bool planning = false;
     bool terrainBias = true;    // false = no grass/foliage penalty (e.g. tree-to-tree)
     u64 planRequestId = 0;
     u64 nextPlanRequestId = 1;
     u32 replanCount = 0;
+    // Runtime lookahead repairs are local detours, not full replans.  Bound
+    // them separately so a doorway/mobile obstruction cannot rewrite the same
+    // short path forever without ever consuming the normal replan budget.
+    u32 lookaheadPatches = 0;
+    // Where the character stood at the last lookahead patch. The counter is
+    // only reset by a step sent from a DIFFERENT tile: a step sent from the
+    // same tile is the same trap again (Castor, Trinsic 2026-09-05 02:41:
+    // 2,024 patches in nine minutes at (2030,2810), every one followed by a
+    // "sent" step that never moved him, so the cap never tripped).
+    i32 lookaheadPatchX = -1;
+    i32 lookaheadPatchY = -1;
     // Latched for one replan when a failed plan found the character enclosed
     // with mobiles among the walls. Cleared by any plan that produces a path,
     // so a genuinely unreachable goal still fails in finite time.
     bool softMobileRetry = false;
+    // A literal goal tile is frequently a resource's own tile (a tree, open
+    // water, a rock) rather than somewhere a character can stand. One snap to
+    // the nearest walkable tile near that goal is tried before giving up; this
+    // flag bounds it to once per trip so a genuinely unreachable area still
+    // fails instead of snapping forever.
+    bool goalSnapTried = false;
     i64 resumeAtMs = 0;
     u32 stuckWaits = 0;         // consecutive wait-retries at the current bump cell
     bot::Blacklist blacklist;

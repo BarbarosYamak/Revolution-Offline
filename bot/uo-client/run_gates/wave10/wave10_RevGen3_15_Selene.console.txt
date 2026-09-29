@@ -1,0 +1,423 @@
+[17:29:35.145] LOG   [wave10_RevGen3_15_Selen] event session_start: text log opened
+[17:29:35.146] LOG   [wave10_RevGen3_15_Selen] event net_connect_begin: connect 127.0.0.1:2593
+[17:29:35.147] INFO  [wave10_RevGen3_15_Selen] [net] connecting to 127.0.0.1:2593 ...
+[17:29:35.149] LOG   [wave10_RevGen3_15_Selen] event net_connected: connect 127.0.0.1:2593
+[17:29:35.150] INFO  [wave10_RevGen3_15_Selen] [net] connected.
+[17:29:35.151] INFO  [wave10_RevGen3_15_Selen] [seed] sent 0x7F000001 (plaintext)
+[17:29:35.152] LOG   [wave10_RevGen3_15_Selen] event seed_out: 0x7F000001 hex=7f000001
+[17:29:35.156] INFO  [wave10_RevGen3_15_Selen] [life] autonomous player active for 'Selene' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 30 min)
+[17:29:35.165] INFO  [wave10_RevGen3_15_Selen] [0xA8] 1 server(s):
+[17:29:35.165] INFO  [wave10_RevGen3_15_Selen]   [0] MyShard                   1.0.0.127  full=6%  tz=0
+[17:29:35.184] INFO  [wave10_RevGen3_15_Selen] [0x8C] game server = 127.0.0.1:2593  seed=0x745E872A
+[17:29:35.185] LOG   [wave10_RevGen3_15_Selen] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x745E872A
+[17:29:35.186] INFO  [wave10_RevGen3_15_Selen] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[17:29:35.186] LOG   [wave10_RevGen3_15_Selen] event relay_same_socket: no seed re-sent; 0x91 follows
+[17:29:35.187] INFO  [wave10_RevGen3_15_Selen] [0xB9] server features = 0x0005
+[17:29:35.188] INFO  [wave10_RevGen3_15_Selen] [0xA9] 5 slot(s) (populated 1):
+[17:29:35.188] INFO  [wave10_RevGen3_15_Selen]   [0] Selene
+[17:29:35.189] INFO  [wave10_RevGen3_15_Selen]   [1] <empty>
+[17:29:35.189] INFO  [wave10_RevGen3_15_Selen]   [2] <empty>
+[17:29:35.189] INFO  [wave10_RevGen3_15_Selen]   [3] <empty>
+[17:29:35.189] INFO  [wave10_RevGen3_15_Selen]   [4] <empty>
+[17:29:35.190] INFO  [wave10_RevGen3_15_Selen] [ui] playing slot 0 ('Selene')
+[17:29:35.201] INFO  [wave10_RevGen3_15_Selen] [0x1B] serial=0x00010BC9 body=0x0191 pos=(1429,1690,0)
+[17:29:35.202] LOG   [wave10_RevGen3_15_Selen] event login_confirm: serial=0x00010BC9 body=0x0191 pos=(1429,1690,0)
+[17:29:35.203] INFO  [wave10_RevGen3_15_Selen] [0x20] player @(1429,1690,0) facing=6
+[17:29:35.204] INFO  [wave10_RevGen3_15_Selen] [0x55] login complete — entering world
+[17:29:35.205] LOG   [wave10_RevGen3_15_Selen] event in_world: 0x55 received
+[17:29:35.205] INFO  [wave10_RevGen3_15_Selen] [backpack] opening 0x40010BA3
+[17:29:35.207] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[17:29:35.208] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: There are 17 other players here.
+[17:29:35.209] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Last logged: 2026/08/31 18:12:43
+[17:29:35.209] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: You are under the protection of the city guards
+[17:29:35.210] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Lyra has arrived in Moonglow.
+[17:29:35.217] INFO  [wave10_RevGen3_15_Selen] [action] requesting the skill list
+[17:29:35.217] INFO  [wave10_RevGen3_15_Selen] [0x24] open container 0x40010BA3 gump=60
+[17:29:35.217] INFO  [wave10_RevGen3_15_Selen] [0x3C] container contents: 11 item(s)
+[17:29:35.218] LOG   [wave10_RevGen3_15_Selen] event backpack_contents: serial=0x40010BA3 items=11
+[17:29:35.218] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Thalia has arrived in Jhelom Territory.
+[17:29:35.236] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Dorvar has arrived in Magincia.
+[17:29:35.247] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Ithion has arrived in Magincia.
+[17:29:35.253] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Odessa has arrived in Britain.
+[17:29:35.278] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Serena has arrived in Britain.
+[17:29:35.306] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Aurelius has arrived in Britain.
+[17:29:35.326] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Leander has arrived in Britain.
+[17:29:35.327] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Illyria has arrived in Britain.
+[17:29:35.340] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Hector has arrived in Trinsic.
+[17:29:35.360] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Castor has arrived in The Rusty Anchor.
+[17:29:35.370] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Faustus has arrived in Britain.
+[17:29:35.385] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Titus has arrived in Britain Territory.
+[17:29:35.402] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Rhea has arrived in Yew.
+[17:29:35.403] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Xerxes has arrived in Ocllo Island.
+[17:29:35.434] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Thane has arrived in Britain.
+[17:29:35.434] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Varek has arrived in Britain Territory.
+[17:29:35.449] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Nyx has arrived in Trinsic.
+[17:29:37.260] INFO  [wave10_RevGen3_15_Selen] [chat uni  ] : WTS 10 i_ingot_iron 35gp
+[17:29:37.260] INFO  [wave10_RevGen3_15_Selen] [chat ascii] Hyman: What?
+[17:29:37.790] INFO  [wave10_RevGen3_15_Selen] [bot] world data loaded (0 blacklisted spot(s)).
+[17:29:37.791] INFO  [wave10_RevGen3_15_Selen] [survival] on
+[17:29:37.791] LOG   [wave10_RevGen3_15_Selen] event survival_mode: on
+[17:29:37.794] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:29:37.933] INFO  [wave10_RevGen3_15_Selen] [chat uni  ] : WTB i_ingot_iron
+[17:29:37.934] INFO  [wave10_RevGen3_15_Selen] [chat ascii] Hyman: Huh?
+[17:29:42.798] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:29:47.845] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:29:52.850] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:29:57.876] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:30:02.936] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:30:07.978] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:30:09.819] INFO  [wave10_RevGen3_15_Selen] [chat ascii] Hyman: I'm listenin'.
+[17:30:09.819] INFO  [wave10_RevGen3_15_Selen] [chat ascii] Hyman: Hmm?
+[17:30:09.819] INFO  [wave10_RevGen3_15_Selen] [chat ascii] Hyman: Hmm?
+[17:30:13.038] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:30:18.093] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:30:23.115] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:30:28.158] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:30:33.168] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:30:38.209] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:30:43.253] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:30:48.294] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:30:53.340] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:30:58.394] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:31:03.440] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:31:08.500] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:31:13.506] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:31:18.562] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:31:20.792] INFO  [wave10_RevGen3_15_Selen] [chat ascii] Hyman: I'm listenin'.
+[17:31:20.792] INFO  [wave10_RevGen3_15_Selen] [chat ascii] Hyman: What's thee wantin'?
+[17:31:23.585] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:31:28.638] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:31:33.686] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:31:38.741] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:31:43.782] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:31:48.791] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:31:53.823] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:31:58.858] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:32:03.864] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:32:08.916] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:32:13.967] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:32:15.834] INFO  [wave10_RevGen3_15_Selen] [chat uni  ] : bank
+[17:32:15.834] INFO  [wave10_RevGen3_15_Selen] [chat ascii] Lyndon: What's thou need?
+[17:32:15.834] INFO  [wave10_RevGen3_15_Selen] [chat ascii] Lyndon: Keeping the money of others is my job.
+[17:32:18.995] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:32:24.014] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:32:29.051] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:32:34.101] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:32:38.320] INFO  [wave10_RevGen3_15_Selen] [ACTION] use_object start
+[17:32:38.320] INFO  [wave10_RevGen3_15_Selen] [ACTION] use_object serial=0x40010AF9
+[17:32:38.333] INFO  [wave10_RevGen3_15_Selen] [0x3C] container contents: 16 item(s)
+[17:32:38.333] INFO  [wave10_RevGen3_15_Selen] [ACTION_RESULT] use_object success (13ms) contents received
+[17:32:38.334] LOG   [wave10_RevGen3_15_Selen] event action_result: use_object success took=13ms contents received
+[17:32:39.139] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:32:40.852] INFO  [wave10_RevGen3_15_Selen] [ACTION] move_item start
+[17:32:40.852] INFO  [wave10_RevGen3_15_Selen] [ACTION] move_item serial=0x4000F468 amount=1 dest=0x40010AF9
+[17:32:40.852] INFO  [wave10_RevGen3_15_Selen] [ITEM] drag serial=0x4000F468 amount=1
+[17:32:40.852] INFO  [wave10_RevGen3_15_Selen] [ITEM] drop container=0x40010AF9
+[17:32:40.868] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Can't add this to the spellbook
+[17:32:40.868] WARN  [wave10_RevGen3_15_Selen] [ACTION_RESULT] move_item server_failure (16ms) item 0x4000F468 landed in 0x40010BA3, not the destination 0x40010AF9
+[17:32:40.869] LOG   [wave10_RevGen3_15_Selen] event action_result: move_item server_failure took=16ms item 0x4000F468 landed in 0x40010BA3, not the destination 0x40010AF9
+[17:32:43.384] INFO  [wave10_RevGen3_15_Selen] [ACTION] use_object start
+[17:32:43.384] INFO  [wave10_RevGen3_15_Selen] [ACTION] use_object serial=0x40010AF9
+[17:32:43.399] INFO  [wave10_RevGen3_15_Selen] [0x3C] container contents: 16 item(s)
+[17:32:43.399] INFO  [wave10_RevGen3_15_Selen] [ACTION_RESULT] use_object success (15ms) contents received
+[17:32:43.399] LOG   [wave10_RevGen3_15_Selen] event action_result: use_object success took=15ms contents received
+[17:32:44.196] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:32:45.904] INFO  [wave10_RevGen3_15_Selen] [ACTION] move_item start
+[17:32:45.904] INFO  [wave10_RevGen3_15_Selen] [ACTION] move_item serial=0x4000ED2F amount=1 dest=0x40010AF9
+[17:32:45.904] INFO  [wave10_RevGen3_15_Selen] [ITEM] drag serial=0x4000ED2F amount=1
+[17:32:45.904] INFO  [wave10_RevGen3_15_Selen] [ITEM] drop container=0x40010AF9
+[17:32:45.920] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Can't add this to the spellbook
+[17:32:45.921] WARN  [wave10_RevGen3_15_Selen] [ACTION_RESULT] move_item server_failure (16ms) item 0x4000ED2F landed in 0x40010BA3, not the destination 0x40010AF9
+[17:32:45.922] LOG   [wave10_RevGen3_15_Selen] event action_result: move_item server_failure took=16ms item 0x4000ED2F landed in 0x40010BA3, not the destination 0x40010AF9
+[17:32:48.460] INFO  [wave10_RevGen3_15_Selen] [ACTION] use_object start
+[17:32:48.460] INFO  [wave10_RevGen3_15_Selen] [ACTION] use_object serial=0x40010AF9
+[17:32:48.460] INFO  [wave10_RevGen3_15_Selen] [0x3C] container contents: 16 item(s)
+[17:32:48.460] INFO  [wave10_RevGen3_15_Selen] [ACTION_RESULT] use_object success (1ms) contents received
+[17:32:48.460] LOG   [wave10_RevGen3_15_Selen] event action_result: use_object success took=1ms contents received
+[17:32:49.199] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:32:50.989] INFO  [wave10_RevGen3_15_Selen] [travel] Britain scribe -> (1494,1715) r=5 from (1429,1690)
+[17:32:50.989] LOG   [wave10_RevGen3_15_Selen] event travel_start: label='Britain scribe' target=(1494,1715) radius=5 from=(1429,1690)
+[17:32:50.989] INFO  [wave10_RevGen3_15_Selen] [travel] mode moongate         usable   <- chosen
+[17:32:50.990] INFO  [wave10_RevGen3_15_Selen] [travel] mode walk             usable
+[17:32:50.990] INFO  [wave10_RevGen3_15_Selen] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:50.990] INFO  [wave10_RevGen3_15_Selen] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:50.990] LOG   [wave10_RevGen3_15_Selen] event travel_mode: moongate
+[17:32:50.990] INFO  [wave10_RevGen3_15_Selen] [travel] plan Britain scribe: ok legs=2 ~80 tiles transit=0 nodes=44
+[17:32:50.991] INFO  [wave10_RevGen3_15_Selen] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:32:50.991] INFO  [wave10_RevGen3_15_Selen] [action] goto (1464,1688) from (1429,1690,0)
+[17:32:50.991] LOG   [wave10_RevGen3_15_Selen] event goto_start: target=(1464,1688) from=(1429,1690)
+[17:32:50.991] INFO  [wave10_RevGen3_15_Selen] [bot] running from (1429,1690,0) to (1464,1688)
+[17:32:50.991] INFO  [wave10_RevGen3_15_Selen] [bot] planning path to (1464,1688) in background
+[17:32:51.043] INFO  [wave10_RevGen3_15_Selen] [bot] replan to (1464,1688): 36 steps in 2605.1us
+[17:32:52.207] INFO  [wave10_RevGen3_15_Selen] [chat uni  ] : bank
+[17:32:52.208] INFO  [wave10_RevGen3_15_Selen] [chat ascii] Lyndon: Good morrow!  How can I help thee?
+[17:32:52.208] INFO  [wave10_RevGen3_15_Selen] [chat ascii] Lyndon: Yes, banking is my unfortunate lot in life.
+[17:32:54.236] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:32:54.621] WARN  [wave10_RevGen3_15_Selen] [0x21] move REJECTED seq=15; server says (1439,1693,0) facing=3
+[17:32:54.622] INFO  [wave10_RevGen3_15_Selen] [bot] step (1439,1693,0)->(1440,1694,0) rejected; OpenDoor + retry
+[17:32:54.637] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Opening door...
+[17:32:54.638] WARN  [wave10_RevGen3_15_Selen] [bot] 0x20 resync; aborting path
+[17:32:54.638] INFO  [wave10_RevGen3_15_Selen] [0x20] player @(1439,1693,0) facing=2
+[17:32:54.638] INFO  [wave10_RevGen3_15_Selen] [action] goto finished at (1439,1693,0); target (1464,1688); stopped short (off by 30 tile(s))
+[17:32:54.638] LOG   [wave10_RevGen3_15_Selen] event goto_done: at=(1439,1693) target=(1464,1688) arrived=0 off=30
+[17:32:55.855] INFO  [wave10_RevGen3_15_Selen] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:32:55.855] INFO  [wave10_RevGen3_15_Selen] [action] goto (1464,1688) from (1439,1693,0)
+[17:32:55.855] LOG   [wave10_RevGen3_15_Selen] event goto_start: target=(1464,1688) from=(1439,1693)
+[17:32:55.855] INFO  [wave10_RevGen3_15_Selen] [bot] running from (1439,1693,0) to (1464,1688)
+[17:32:55.856] INFO  [wave10_RevGen3_15_Selen] [bot] planning path to (1464,1688) in background
+[17:32:55.916] INFO  [wave10_RevGen3_15_Selen] [bot] replan to (1464,1688): 25 steps in 607.4us
+[17:32:59.246] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:32:59.510] INFO  [wave10_RevGen3_15_Selen] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=12 in 220.0us
+[17:33:03.042] INFO  [wave10_RevGen3_15_Selen] [bot] arrived at (1464,1688,0)
+[17:33:03.042] INFO  [wave10_RevGen3_15_Selen] [action] goto finished at (1464,1688,0); target (1464,1688); ARRIVED (off by 0 tile(s))
+[17:33:03.042] LOG   [wave10_RevGen3_15_Selen] event goto_done: at=(1464,1688) target=(1464,1688) arrived=1 off=0
+[17:33:03.043] INFO  [wave10_RevGen3_15_Selen] [action] goto (1494,1715) from (1464,1688,0)
+[17:33:03.043] LOG   [wave10_RevGen3_15_Selen] event goto_start: target=(1494,1715) from=(1464,1688)
+[17:33:03.043] INFO  [wave10_RevGen3_15_Selen] [bot] running from (1464,1688,0) to (1494,1715,z6)
+[17:33:03.043] INFO  [wave10_RevGen3_15_Selen] [bot] planning path to (1494,1715) in background
+[17:33:03.119] INFO  [wave10_RevGen3_15_Selen] [bot] replan to (1494,1715): 53 steps in 21679.4us
+[17:33:04.256] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:33:09.284] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:33:14.341] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:33:14.726] INFO  [wave10_RevGen3_15_Selen] [bot] door ahead at (1494,1723,z6); OpenDoor before step
+[17:33:14.726] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Opening door...
+[17:33:15.776] INFO  [wave10_RevGen3_15_Selen] [bot] lookahead patched around block at step 5: anchor=8 new segment=11 path=12 in 1313.9us
+[17:33:16.549] INFO  [wave10_RevGen3_15_Selen] [travel] Britain scribe ARRIVED at (1494,1720,7)
+[17:33:16.549] LOG   [wave10_RevGen3_15_Selen] event travel_done: label='Britain scribe' ok=1 at=(1494,1720) legs=2 plans=1 why=''
+[17:33:16.626] INFO  [wave10_RevGen3_15_Selen] [travel] Lord British's Castle scribe -> (1409,1590) r=5 from (1494,1720)
+[17:33:16.627] LOG   [wave10_RevGen3_15_Selen] event travel_start: label='Lord British's Castle scribe' target=(1409,1590) radius=5 from=(1494,1720)
+[17:33:16.627] INFO  [wave10_RevGen3_15_Selen] [travel] mode moongate         usable   <- chosen
+[17:33:16.627] INFO  [wave10_RevGen3_15_Selen] [travel] mode walk             usable
+[17:33:16.627] INFO  [wave10_RevGen3_15_Selen] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:16.627] INFO  [wave10_RevGen3_15_Selen] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:16.627] LOG   [wave10_RevGen3_15_Selen] event travel_mode: moongate
+[17:33:16.628] INFO  [wave10_RevGen3_15_Selen] [travel] plan Lord British's Castle scribe: ok legs=5 ~176 tiles transit=0 nodes=197
+[17:33:16.686] INFO  [wave10_RevGen3_15_Selen] [action] goto finished at (1494,1720,7); target (1494,1715); stopped short (off by 5 tile(s))
+[17:33:16.687] LOG   [wave10_RevGen3_15_Selen] event goto_done: at=(1494,1720) target=(1494,1715) arrived=0 off=5
+[17:33:16.687] INFO  [wave10_RevGen3_15_Selen] [action] goto (1464,1688) from (1494,1720,7)
+[17:33:16.687] LOG   [wave10_RevGen3_15_Selen] event goto_start: target=(1464,1688) from=(1494,1720)
+[17:33:16.687] INFO  [wave10_RevGen3_15_Selen] [bot] running from (1494,1720,7) to (1464,1688)
+[17:33:16.687] INFO  [wave10_RevGen3_15_Selen] [bot] planning path to (1464,1688) in background
+[17:33:16.747] INFO  [wave10_RevGen3_15_Selen] [bot] replan to (1464,1688): 46 steps in 5320.5us
+[17:33:17.910] INFO  [wave10_RevGen3_15_Selen] [bot] door ahead at (1493,1724,z6); OpenDoor before step
+[17:33:17.925] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Opening door...
+[17:33:19.346] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:33:24.380] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:33:29.413] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:33:31.088] INFO  [wave10_RevGen3_15_Selen] [bot] arrived at (1464,1688,0)
+[17:33:31.088] INFO  [wave10_RevGen3_15_Selen] [action] goto finished at (1464,1688,0); target (1464,1688); ARRIVED (off by 0 tile(s))
+[17:33:31.088] LOG   [wave10_RevGen3_15_Selen] event goto_done: at=(1464,1688) target=(1464,1688) arrived=1 off=0
+[17:33:31.089] INFO  [wave10_RevGen3_15_Selen] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:33:31.089] INFO  [wave10_RevGen3_15_Selen] [action] goto (1432,1672) from (1464,1688,0)
+[17:33:31.089] LOG   [wave10_RevGen3_15_Selen] event goto_start: target=(1432,1672) from=(1464,1688)
+[17:33:31.089] INFO  [wave10_RevGen3_15_Selen] [bot] running from (1464,1688,0) to (1432,1672)
+[17:33:31.089] INFO  [wave10_RevGen3_15_Selen] [bot] planning path to (1432,1672) in background
+[17:33:31.149] INFO  [wave10_RevGen3_15_Selen] [bot] replan to (1432,1672): 38 steps in 3153.4us
+[17:33:34.416] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:33:39.445] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:33:41.472] INFO  [wave10_RevGen3_15_Selen] [bot] arrived at (1432,1672,10)
+[17:33:41.472] INFO  [wave10_RevGen3_15_Selen] [action] goto finished at (1432,1672,10); target (1432,1672); ARRIVED (off by 0 tile(s))
+[17:33:41.473] LOG   [wave10_RevGen3_15_Selen] event goto_done: at=(1432,1672) target=(1432,1672) arrived=1 off=0
+[17:33:41.473] INFO  [wave10_RevGen3_15_Selen] [action] goto (1416,1640) from (1432,1672,10)
+[17:33:41.473] LOG   [wave10_RevGen3_15_Selen] event goto_start: target=(1416,1640) from=(1432,1672)
+[17:33:41.473] INFO  [wave10_RevGen3_15_Selen] [bot] running from (1432,1672,10) to (1416,1640)
+[17:33:41.473] INFO  [wave10_RevGen3_15_Selen] [bot] planning path to (1416,1640) in background
+[17:33:41.532] INFO  [wave10_RevGen3_15_Selen] [bot] replan to (1416,1640): 38 steps in 2928.1us
+[17:33:44.503] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:33:49.556] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:33:52.729] INFO  [wave10_RevGen3_15_Selen] [bot] arrived at (1416,1640,20)
+[17:33:52.729] INFO  [wave10_RevGen3_15_Selen] [action] goto finished at (1416,1640,20); target (1416,1640); ARRIVED (off by 0 tile(s))
+[17:33:52.729] LOG   [wave10_RevGen3_15_Selen] event goto_done: at=(1416,1640) target=(1416,1640) arrived=1 off=0
+[17:33:52.730] INFO  [wave10_RevGen3_15_Selen] [action] goto (1416,1608) from (1416,1640,20)
+[17:33:52.730] LOG   [wave10_RevGen3_15_Selen] event goto_start: target=(1416,1608) from=(1416,1640)
+[17:33:52.730] INFO  [wave10_RevGen3_15_Selen] [bot] running from (1416,1640,20) to (1416,1608)
+[17:33:52.730] INFO  [wave10_RevGen3_15_Selen] [bot] planning path to (1416,1608) in background
+[17:33:52.790] INFO  [wave10_RevGen3_15_Selen] [bot] replan to (1416,1608): 59 steps in 30560.7us
+[17:33:54.568] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: World save in 10 seconds
+[17:33:54.568] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:33:58.896] INFO  [wave10_RevGen3_15_Selen] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=37 in 464.6us
+[17:33:59.603] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:34:03.425] INFO  [wave10_RevGen3_15_Selen] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=22 in 356.7us
+[17:34:04.598] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: World save has been initiated.
+[17:34:04.657] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:34:09.699] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:34:09.762] WARN  [wave10_RevGen3_15_Selen] [bot] watchdog: oldest move unacked 5s; aborting path
+[17:34:09.824] INFO  [wave10_RevGen3_15_Selen] [action] goto finished at (1423,1600,20); target (1416,1608); stopped short (off by 15 tile(s))
+[17:34:09.824] LOG   [wave10_RevGen3_15_Selen] event goto_done: at=(1423,1600) target=(1416,1608) arrived=0 off=15
+[17:34:09.906] WARN  [wave10_RevGen3_15_Selen] [0x22] unsolicited ack seq=51
+[17:34:11.043] INFO  [wave10_RevGen3_15_Selen] [action] goto (1416,1608) from (1423,1600,20)
+[17:34:11.043] LOG   [wave10_RevGen3_15_Selen] event goto_start: target=(1416,1608) from=(1423,1600)
+[17:34:11.043] INFO  [wave10_RevGen3_15_Selen] [bot] running from (1423,1600,20) to (1416,1608)
+[17:34:11.044] INFO  [wave10_RevGen3_15_Selen] [bot] planning path to (1416,1608) in background
+[17:34:11.104] INFO  [wave10_RevGen3_15_Selen] [bot] replan to (1416,1608): 38 steps in 22222.4us
+[17:34:13.078] INFO  [wave10_RevGen3_15_Selen] [chat ascii] Raisa: What's thee wantin'?
+[17:34:13.387] INFO  [wave10_RevGen3_15_Selen] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=31 in 315.8us
+[17:34:13.833] INFO  [wave10_RevGen3_15_Selen] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=30 in 169.0us
+[17:34:14.322] INFO  [wave10_RevGen3_15_Selen] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=30 in 246.3us
+[17:34:14.737] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:34:14.754] INFO  [wave10_RevGen3_15_Selen] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=30 in 177.4us
+[17:34:15.145] INFO  [wave10_RevGen3_15_Selen] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=30 in 221.4us
+[17:34:15.607] INFO  [wave10_RevGen3_15_Selen] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=30 in 158.2us
+[17:34:16.069] INFO  [wave10_RevGen3_15_Selen] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=30 in 238.1us
+[17:34:16.532] INFO  [wave10_RevGen3_15_Selen] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=30 in 207.1us
+[17:34:17.052] INFO  [wave10_RevGen3_15_Selen] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=30 in 227.9us
+[17:34:17.441] INFO  [wave10_RevGen3_15_Selen] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=30 in 169.8us
+[17:34:17.932] INFO  [wave10_RevGen3_15_Selen] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=30 in 254.1us
+[17:34:18.396] INFO  [wave10_RevGen3_15_Selen] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=30 in 158.2us
+[17:34:18.704] INFO  [wave10_RevGen3_15_Selen] [travel] mode walk             usable   <- chosen
+[17:34:18.704] INFO  [wave10_RevGen3_15_Selen] [travel] mode moongate         usable
+[17:34:18.704] INFO  [wave10_RevGen3_15_Selen] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:18.705] INFO  [wave10_RevGen3_15_Selen] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:18.705] LOG   [wave10_RevGen3_15_Selen] event travel_mode: walk
+[17:34:18.705] INFO  [wave10_RevGen3_15_Selen] [travel] plan Lord British's Castle scribe: ok legs=1 ~7 tiles transit=0 nodes=0
+[17:34:19.677] INFO  [wave10_RevGen3_15_Selen] [travel] Lord British's Castle scribe ARRIVED at (1414,1593,30)
+[17:34:19.678] LOG   [wave10_RevGen3_15_Selen] event travel_done: label='Lord British's Castle scribe' ok=1 at=(1414,1593) legs=1 plans=2 why=''
+[17:34:19.755] INFO  [wave10_RevGen3_15_Selen] [travel] Jhelom scribe -> (1387,3771) r=5 from (1414,1593)
+[17:34:19.756] LOG   [wave10_RevGen3_15_Selen] event travel_start: label='Jhelom scribe' target=(1387,3771) radius=5 from=(1414,1593)
+[17:34:19.756] INFO  [wave10_RevGen3_15_Selen] [travel] mode moongate         usable   <- chosen
+[17:34:19.756] INFO  [wave10_RevGen3_15_Selen] [travel] mode walk             usable
+[17:34:19.756] INFO  [wave10_RevGen3_15_Selen] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:19.756] INFO  [wave10_RevGen3_15_Selen] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:19.756] LOG   [wave10_RevGen3_15_Selen] event travel_mode: moongate
+[17:34:19.759] INFO  [wave10_RevGen3_15_Selen] [travel] plan Jhelom scribe: ok legs=18 ~688 tiles transit=1 nodes=3721
+[17:34:19.759] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:34:19.816] INFO  [wave10_RevGen3_15_Selen] [action] goto finished at (1414,1593,30); target (1416,1608); stopped short (off by 17 tile(s))
+[17:34:19.817] LOG   [wave10_RevGen3_15_Selen] event goto_done: at=(1414,1593) target=(1416,1608) arrived=0 off=17
+[17:34:19.817] INFO  [wave10_RevGen3_15_Selen] [action] goto (1416,1624) from (1414,1593,30)
+[17:34:19.817] LOG   [wave10_RevGen3_15_Selen] event goto_start: target=(1416,1624) from=(1414,1593)
+[17:34:19.817] INFO  [wave10_RevGen3_15_Selen] [bot] running from (1414,1593,30) to (1416,1624)
+[17:34:19.817] INFO  [wave10_RevGen3_15_Selen] [bot] planning path to (1416,1624) in background
+[17:34:19.862] INFO  [wave10_RevGen3_15_Selen] [bot] replan to (1416,1624): 38 steps in 6854.2us
+[17:34:19.863] INFO  [wave10_RevGen3_15_Selen] [bot] lookahead patched around block at step 3: anchor=5 new segment=6 path=39 in 244.4us
+[17:34:20.541] INFO  [wave10_RevGen3_15_Selen] [bot] lookahead patched around block at step 3: anchor=5 new segment=7 path=38 in 320.0us
+[17:34:20.989] INFO  [wave10_RevGen3_15_Selen] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=36 in 237.1us
+[17:34:21.236] INFO  [wave10_RevGen3_15_Selen] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=37 in 373.1us
+[17:34:21.884] INFO  [wave10_RevGen3_15_Selen] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=34 in 323.6us
+[17:34:22.129] INFO  [wave10_RevGen3_15_Selen] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=34 in 492.8us
+[17:34:22.379] INFO  [wave10_RevGen3_15_Selen] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=35 in 859.1us
+[17:34:24.386] INFO  [wave10_RevGen3_15_Selen] [chat ascii] Raisa: I'm listenin'.
+[17:34:24.786] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:34:29.842] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:34:32.320] INFO  [wave10_RevGen3_15_Selen] [bot] arrived at (1416,1624,22)
+[17:34:32.321] INFO  [wave10_RevGen3_15_Selen] [action] goto finished at (1416,1624,22); target (1416,1624); ARRIVED (off by 0 tile(s))
+[17:34:32.321] LOG   [wave10_RevGen3_15_Selen] event goto_done: at=(1416,1624) target=(1416,1624) arrived=1 off=0
+[17:34:32.321] INFO  [wave10_RevGen3_15_Selen] [action] goto (1416,1656) from (1416,1624,22)
+[17:34:32.321] LOG   [wave10_RevGen3_15_Selen] event goto_start: target=(1416,1656) from=(1416,1624)
+[17:34:32.322] INFO  [wave10_RevGen3_15_Selen] [bot] running from (1416,1624,22) to (1416,1656)
+[17:34:32.322] INFO  [wave10_RevGen3_15_Selen] [bot] planning path to (1416,1656) in background
+[17:34:32.336] INFO  [wave10_RevGen3_15_Selen] [bot] replan to (1416,1656): 32 steps in 1482.9us
+[17:34:34.885] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:34:39.943] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:34:41.699] INFO  [wave10_RevGen3_15_Selen] [bot] arrived at (1416,1656,10)
+[17:34:41.700] INFO  [wave10_RevGen3_15_Selen] [action] goto finished at (1416,1656,10); target (1416,1656); ARRIVED (off by 0 tile(s))
+[17:34:41.700] LOG   [wave10_RevGen3_15_Selen] event goto_done: at=(1416,1656) target=(1416,1656) arrived=1 off=0
+[17:34:41.700] INFO  [wave10_RevGen3_15_Selen] [action] goto (1416,1688) from (1416,1656,10)
+[17:34:41.700] LOG   [wave10_RevGen3_15_Selen] event goto_start: target=(1416,1688) from=(1416,1656)
+[17:34:41.700] INFO  [wave10_RevGen3_15_Selen] [bot] running from (1416,1656,10) to (1416,1688)
+[17:34:41.700] INFO  [wave10_RevGen3_15_Selen] [bot] planning path to (1416,1688) in background
+[17:34:41.760] INFO  [wave10_RevGen3_15_Selen] [bot] replan to (1416,1688): 32 steps in 1647.8us
+[17:34:44.972] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:34:47.351] INFO  [wave10_RevGen3_15_Selen] [chat ascii] Lyndon: Aye?
+[17:34:49.990] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:34:50.192] INFO  [wave10_RevGen3_15_Selen] [bot] arrived at (1416,1688,0)
+[17:34:50.192] INFO  [wave10_RevGen3_15_Selen] [action] goto finished at (1416,1688,0); target (1416,1688); ARRIVED (off by 0 tile(s))
+[17:34:50.192] LOG   [wave10_RevGen3_15_Selen] event goto_done: at=(1416,1688) target=(1416,1688) arrived=1 off=0
+[17:34:50.192] INFO  [wave10_RevGen3_15_Selen] [action] goto (1416,1720) from (1416,1688,0)
+[17:34:50.192] LOG   [wave10_RevGen3_15_Selen] event goto_start: target=(1416,1720) from=(1416,1688)
+[17:34:50.193] INFO  [wave10_RevGen3_15_Selen] [bot] running from (1416,1688,0) to (1416,1720)
+[17:34:50.193] INFO  [wave10_RevGen3_15_Selen] [bot] planning path to (1416,1720) in background
+[17:34:50.252] INFO  [wave10_RevGen3_15_Selen] [bot] replan to (1416,1720): 32 steps in 1340.2us
+[17:34:54.996] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:34:58.601] INFO  [wave10_RevGen3_15_Selen] [bot] arrived at (1416,1720,20)
+[17:34:58.601] INFO  [wave10_RevGen3_15_Selen] [action] goto finished at (1416,1720,20); target (1416,1720); ARRIVED (off by 0 tile(s))
+[17:34:58.601] LOG   [wave10_RevGen3_15_Selen] event goto_done: at=(1416,1720) target=(1416,1720) arrived=1 off=0
+[17:34:58.602] INFO  [wave10_RevGen3_15_Selen] [action] goto (1402,1760) from (1416,1720,20)
+[17:34:58.602] LOG   [wave10_RevGen3_15_Selen] event goto_start: target=(1402,1760) from=(1416,1720)
+[17:34:58.602] INFO  [wave10_RevGen3_15_Selen] [bot] running from (1416,1720,20) to (1402,1760)
+[17:34:58.602] INFO  [wave10_RevGen3_15_Selen] [bot] planning path to (1402,1760) in background
+[17:34:58.677] INFO  [wave10_RevGen3_15_Selen] [bot] replan to (1402,1760): 40 steps in 14687.9us
+[17:35:00.000] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:35:05.008] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:35:10.028] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:35:10.936] INFO  [wave10_RevGen3_15_Selen] [bot] arrived at (1402,1760,0)
+[17:35:10.936] INFO  [wave10_RevGen3_15_Selen] [action] goto finished at (1402,1760,0); target (1402,1760); ARRIVED (off by 0 tile(s))
+[17:35:10.936] LOG   [wave10_RevGen3_15_Selen] event goto_done: at=(1402,1760) target=(1402,1760) arrived=1 off=0
+[17:35:10.937] INFO  [wave10_RevGen3_15_Selen] [action] goto (1368,1800) from (1402,1760,0)
+[17:35:10.937] LOG   [wave10_RevGen3_15_Selen] event goto_start: target=(1368,1800) from=(1402,1760)
+[17:35:10.937] INFO  [wave10_RevGen3_15_Selen] [bot] running from (1402,1760,0) to (1368,1800)
+[17:35:10.937] INFO  [wave10_RevGen3_15_Selen] [bot] planning path to (1368,1800) in background
+[17:35:11.011] INFO  [wave10_RevGen3_15_Selen] [bot] replan to (1368,1800): 79 steps in 22409.3us
+[17:35:15.035] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:35:15.235] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: You have left the protection of the city guards
+[17:35:20.038] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:35:25.041] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:35:30.086] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:35:33.016] INFO  [wave10_RevGen3_15_Selen] [bot] arrived at (1368,1800,3)
+[17:35:33.021] INFO  [wave10_RevGen3_15_Selen] [action] goto finished at (1368,1800,3); target (1368,1800); ARRIVED (off by 0 tile(s))
+[17:35:33.021] LOG   [wave10_RevGen3_15_Selen] event goto_done: at=(1368,1800) target=(1368,1800) arrived=1 off=0
+[17:35:33.022] INFO  [wave10_RevGen3_15_Selen] [action] goto (1368,1832) from (1368,1800,3)
+[17:35:33.022] LOG   [wave10_RevGen3_15_Selen] event goto_start: target=(1368,1832) from=(1368,1800)
+[17:35:33.022] INFO  [wave10_RevGen3_15_Selen] [bot] running from (1368,1800,3) to (1368,1832)
+[17:35:33.022] INFO  [wave10_RevGen3_15_Selen] [bot] planning path to (1368,1832) in background
+[17:35:33.076] INFO  [wave10_RevGen3_15_Selen] [bot] replan to (1368,1832): 32 steps in 3766.4us
+[17:35:35.108] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:35:39.329] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.345] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.346] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.362] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.363] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Lyra has departed from Moonglow.
+[17:35:39.376] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Zarthal has departed from Britain.
+[17:35:39.377] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Castor has departed from Trinsic Healer.
+[17:35:39.391] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Odessa has departed from Britain.
+[17:35:39.406] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Illyria has departed from Britain.
+[17:35:39.407] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Thane has departed from Lord British's Castle.
+[17:35:39.422] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Ithion has departed from Magincia.
+[17:35:39.423] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Rhea has departed from Yew.
+[17:35:39.438] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Aelia has departed from Britain.
+[17:35:39.438] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Titus has departed from Britain.
+,1720) arrived=1 off=0
+[17:34:58.602] INFO  [wave10_RevGen3_15_Selen] [action] goto (1402,1760) from (1416,1720,20)
+[17:34:58.602] LOG   [wave10_RevGen3_15_Selen] event goto_start: target=(1402,1760) from=(1416,1720)
+[17:34:58.602] INFO  [wave10_RevGen3_15_Selen] [bot] running from (1416,1720,20) to (1402,1760)
+[17:34:58.602] INFO  [wave10_RevGen3_15_Selen] [bot] planning path to (1402,1760) in background
+[17:34:58.677] INFO  [wave10_RevGen3_15_Selen] [bot] replan to (1402,1760): 40 steps in 14687.9us
+[17:35:00.000] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:35:05.008] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:35:10.028] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:35:10.936] INFO  [wave10_RevGen3_15_Selen] [bot] arrived at (1402,1760,0)
+[17:35:10.936] INFO  [wave10_RevGen3_15_Selen] [action] goto finished at (1402,1760,0); target (1402,1760); ARRIVED (off by 0 tile(s))
+[17:35:10.936] LOG   [wave10_RevGen3_15_Selen] event goto_done: at=(1402,1760) target=(1402,1760) arrived=1 off=0
+[17:35:10.937] INFO  [wave10_RevGen3_15_Selen] [action] goto (1368,1800) from (1402,1760,0)
+[17:35:10.937] LOG   [wave10_RevGen3_15_Selen] event goto_start: target=(1368,1800) from=(1402,1760)
+[17:35:10.937] INFO  [wave10_RevGen3_15_Selen] [bot] running from (1402,1760,0) to (1368,1800)
+[17:35:10.937] INFO  [wave10_RevGen3_15_Selen] [bot] planning path to (1368,1800) in background
+[17:35:11.011] INFO  [wave10_RevGen3_15_Selen] [bot] replan to (1368,1800): 79 steps in 22409.3us
+[17:35:15.035] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:35:15.235] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: You have left the protection of the city guards
+[17:35:20.038] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:35:25.041] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:35:30.086] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:35:33.016] INFO  [wave10_RevGen3_15_Selen] [bot] arrived at (1368,1800,3)
+[17:35:33.021] INFO  [wave10_RevGen3_15_Selen] [action] goto finished at (1368,1800,3); target (1368,1800); ARRIVED (off by 0 tile(s))
+[17:35:33.021] LOG   [wave10_RevGen3_15_Selen] event goto_done: at=(1368,1800) target=(1368,1800) arrived=1 off=0
+[17:35:33.022] INFO  [wave10_RevGen3_15_Selen] [action] goto (1368,1832) from (1368,1800,3)
+[17:35:33.022] LOG   [wave10_RevGen3_15_Selen] event goto_start: target=(1368,1832) from=(1368,1800)
+[17:35:33.022] INFO  [wave10_RevGen3_15_Selen] [bot] running from (1368,1800,3) to (1368,1832)
+[17:35:33.022] INFO  [wave10_RevGen3_15_Selen] [bot] planning path to (1368,1832) in background
+[17:35:33.076] INFO  [wave10_RevGen3_15_Selen] [bot] replan to (1368,1832): 32 steps in 3766.4us
+[17:35:35.108] INFO  [wave10_RevGen3_15_Selen] [survival] hp 32/32 (100%) -> fight
+[17:35:37.958] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_15.selene/state.json
+[17:35:39.329] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.345] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.346] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.362] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.363] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Lyra has departed from Moonglow.
+[17:35:39.376] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Zarthal has departed from Britain.
+[17:35:39.377] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Castor has departed from Trinsic Healer.
+[17:35:39.391] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Odessa has departed from Britain.
+[17:35:39.406] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Illyria has departed from Britain.
+[17:35:39.407] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Thane has departed from Lord British's Castle.
+[17:35:39.422] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Ithion has departed from Magincia.
+[17:35:39.423] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Rhea has departed from Yew.
+[17:35:39.438] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Aelia has departed from Britain.
+[17:35:39.438] INFO  [wave10_RevGen3_15_Selen] [chat ascii] System: Titus has departed from Britain.

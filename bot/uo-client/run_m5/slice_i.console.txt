@@ -1,0 +1,276 @@
+[17:19:42.557] INFO  session 0: 127.0.0.1:2593 user='RevolutionSoak31' char=Bryn tag='slice_i'
+[17:19:42.558] LOG   [slice_i] event session_start: text log opened
+[17:19:42.558] LOG   [slice_i] event net_connect_begin: connect 127.0.0.1:2593
+[17:19:42.558] INFO  [slice_i] [net] connecting to 127.0.0.1:2593 ...
+[17:19:42.559] LOG   [slice_i] event net_connected: connect 127.0.0.1:2593
+[17:19:42.559] INFO  [slice_i] [net] connected.
+[17:19:42.559] INFO  [slice_i] [seed] sent 0x7F000001 (plaintext)
+[17:19:42.559] LOG   [slice_i] event seed_out: 0x7F000001 hex=7f000001
+[17:19:42.560] INFO  [life] loaded persistent state for Bryn (0 places, 0 suppliers, 1 events, 0 prior sessions)
+[17:19:42.560] INFO  [life] needs: reading 'fisher' from the profession catalogue
+[17:19:42.560] INFO  [life] build plan 'fisher': 150.0 resolved + 550.0 unresolved = 700.0/700.0, stats 80/50/45 = 175
+[17:19:42.560] INFO  [slice_i] [life] autonomous player active for 'Bryn' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 45 min)
+[17:19:42.564] INFO  [slice_i] [0xA8] 1 server(s):
+[17:19:42.564] INFO  [slice_i]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[17:19:42.579] INFO  [slice_i] [0x8C] game server = 127.0.0.1:2593  seed=0x26FC00BA
+[17:19:42.579] LOG   [slice_i] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x26FC00BA
+[17:19:42.579] INFO  [slice_i] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[17:19:42.579] LOG   [slice_i] event relay_same_socket: no seed re-sent; 0x91 follows
+[17:19:42.580] INFO  [slice_i] [0xB9] server features = 0x0005
+[17:19:42.580] INFO  [slice_i] [0xA9] 5 slot(s) (populated 1):
+[17:19:42.580] INFO  [slice_i]   [0] Bryn
+[17:19:42.580] INFO  [slice_i]   [1] <empty>
+[17:19:42.580] INFO  [slice_i]   [2] <empty>
+[17:19:42.580] INFO  [slice_i]   [3] <empty>
+[17:19:42.580] INFO  [slice_i]   [4] <empty>
+[17:19:42.580] INFO  [slice_i] [ui] playing slot 0 ('Bryn')
+[17:19:42.595] INFO  [slice_i] [0x1B] serial=0x00012E10 body=0x0190 pos=(1479,1757,-2)
+[17:19:42.595] LOG   [slice_i] event login_confirm: serial=0x00012E10 body=0x0190 pos=(1479,1757,-2)
+[17:19:42.595] INFO  [slice_i] [0x20] player @(1479,1757,-2) facing=3
+[17:19:42.595] INFO  [slice_i] [0x55] login complete — entering world
+[17:19:42.595] LOG   [slice_i] event in_world: 0x55 received
+[17:19:42.595] INFO  [slice_i] [backpack] opening 0x40012DD6
+[17:19:42.595] INFO  [slice_i] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[17:19:42.595] INFO  [slice_i] [chat ascii] System: There is 1 other player here.
+[17:19:42.595] INFO  [slice_i] [chat ascii] System: Last logged: 2026/08/28 17:18:01
+[17:19:42.595] INFO  [slice_i] [chat ascii] System: You are under the protection of the city guards
+[17:19:42.599] INFO  [slice_i] [action] requesting the skill list
+[17:19:42.599] INFO  [life] in world; asked the server for the skill list
+[17:19:42.599] INFO  [slice_i] [0x24] open container 0x40012DD6 gump=60
+[17:19:42.599] INFO  [slice_i] [0x3C] container contents: 10 item(s)
+[17:19:42.599] LOG   [slice_i] event backpack_contents: serial=0x40012DD6 items=10
+[17:19:45.192] INFO  [slice_i] [bot] world data loaded (0 blacklisted spot(s)).
+[17:19:45.193] INFO  [life] reconciliation: resuming a life, 0 field(s) differed
+[17:19:45.193] INFO  [life]   gold         persisted=1000       server=1000       -> server value accepted
+[17:19:45.193] INFO  [life]   str          persisted=25         server=25         -> server value accepted
+[17:19:45.193] INFO  [life]   dex          persisted=15         server=15         -> server value accepted
+[17:19:45.193] INFO  [life]   int          persisted=10         server=10         -> server value accepted
+[17:19:45.193] INFO  [life]   skill_18     persisted=50.0       server=50.0       -> server value accepted
+[17:19:45.193] INFO  [life]   skill_13     persisted=50.0       server=50.0       -> server value accepted
+[17:19:45.193] INFO  [life]   position     persisted=1479,1757  server=1479,1757  -> server value accepted
+[17:19:45.193] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[17:19:45.193] INFO  [life]   restored objective KEPT: FISH (progress 0)
+[17:19:45.193] INFO  [slice_i] [survival] on
+[17:19:45.193] LOG   [slice_i] event survival_mode: on
+[17:19:45.195] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak31.bryn/state.json
+[17:19:45.195] INFO  [slice_i] [survival] hp 25/25 (100%) -> fight
+[17:19:45.248] INFO  [life] fish: water at 1488,1767 is 10 tiles off -- walking to the edge
+[17:19:50.234] INFO  [slice_i] [survival] hp 25/25 (100%) -> fight
+[17:19:54.327] INFO  [slice_i] [action] goto (1488,1767) from (1479,1757,-2)
+[17:19:54.327] LOG   [slice_i] event goto_start: target=(1488,1767) from=(1479,1757)
+[17:19:54.327] INFO  [slice_i] [bot] running from (1479,1757,-2) to (1488,1767)
+[17:19:54.327] INFO  [slice_i] [bot] planning path to (1488,1767) in background
+[17:19:55.243] INFO  [slice_i] [survival] hp 25/25 (100%) -> fight
+[17:19:56.374] INFO  [slice_i] [action] goto finished at (1479,1757,-2); target (1488,1767); stopped short (off by 19 tile(s))
+[17:19:56.374] LOG   [slice_i] event goto_done: at=(1479,1757) target=(1488,1767) arrived=0 off=19
+[17:19:56.374] INFO  [slice_i] [action] goto (1488,1767) from (1479,1757,-2)
+[17:19:56.374] LOG   [slice_i] event goto_start: target=(1488,1767) from=(1479,1757)
+[17:19:56.374] INFO  [slice_i] [bot] running from (1479,1757,-2) to (1488,1767)
+[17:19:56.374] INFO  [slice_i] [bot] planning path to (1488,1767) in background
+[17:19:58.392] INFO  [slice_i] [action] goto finished at (1479,1757,-2); target (1488,1767); stopped short (off by 19 tile(s))
+[17:19:58.392] LOG   [slice_i] event goto_done: at=(1479,1757) target=(1488,1767) arrived=0 off=19
+[17:19:58.392] INFO  [slice_i] [action] goto (1488,1767) from (1479,1757,-2)
+[17:19:58.392] LOG   [slice_i] event goto_start: target=(1488,1767) from=(1479,1757)
+[17:19:58.392] INFO  [slice_i] [bot] running from (1479,1757,-2) to (1488,1767)
+[17:19:58.392] INFO  [slice_i] [bot] planning path to (1488,1767) in background
+[17:20:00.298] INFO  [slice_i] [survival] hp 25/25 (100%) -> fight
+[17:20:00.422] INFO  [slice_i] [action] goto finished at (1479,1757,-2); target (1488,1767); stopped short (off by 19 tile(s))
+[17:20:00.422] LOG   [slice_i] event goto_done: at=(1479,1757) target=(1488,1767) arrived=0 off=19
+[17:20:00.422] INFO  [slice_i] [action] goto (1488,1767) from (1479,1757,-2)
+[17:20:00.422] LOG   [slice_i] event goto_start: target=(1488,1767) from=(1479,1757)
+[17:20:00.422] INFO  [slice_i] [bot] running from (1479,1757,-2) to (1488,1767)
+[17:20:00.422] INFO  [slice_i] [bot] planning path to (1488,1767) in background
+[17:20:02.443] INFO  [slice_i] [action] goto finished at (1479,1757,-2); target (1488,1767); stopped short (off by 19 tile(s))
+[17:20:02.443] LOG   [slice_i] event goto_done: at=(1479,1757) target=(1488,1767) arrived=0 off=19
+[17:20:02.443] INFO  [slice_i] [action] goto (1488,1767) from (1479,1757,-2)
+[17:20:02.443] LOG   [slice_i] event goto_start: target=(1488,1767) from=(1479,1757)
+[17:20:02.443] INFO  [slice_i] [bot] running from (1479,1757,-2) to (1488,1767)
+[17:20:02.443] INFO  [slice_i] [bot] planning path to (1488,1767) in background
+[17:20:04.470] INFO  [slice_i] [action] goto finished at (1479,1757,-2); target (1488,1767); stopped short (off by 19 tile(s))
+[17:20:04.470] LOG   [slice_i] event goto_done: at=(1479,1757) target=(1488,1767) arrived=0 off=19
+[17:20:04.470] INFO  [slice_i] [action] goto (1488,1767) from (1479,1757,-2)
+[17:20:04.470] LOG   [slice_i] event goto_start: target=(1488,1767) from=(1479,1757)
+[17:20:04.470] INFO  [slice_i] [bot] running from (1479,1757,-2) to (1488,1767)
+[17:20:04.470] INFO  [slice_i] [bot] planning path to (1488,1767) in background
+[17:20:05.329] INFO  [slice_i] [survival] hp 25/25 (100%) -> fight
+[17:20:06.474] INFO  [slice_i] [action] goto finished at (1479,1757,-2); target (1488,1767); stopped short (off by 19 tile(s))
+[17:20:06.474] LOG   [slice_i] event goto_done: at=(1479,1757) target=(1488,1767) arrived=0 off=19
+[17:20:06.474] INFO  [slice_i] [action] goto (1488,1767) from (1479,1757,-2)
+[17:20:06.474] LOG   [slice_i] event goto_start: target=(1488,1767) from=(1479,1757)
+[17:20:06.474] INFO  [slice_i] [bot] running from (1479,1757,-2) to (1488,1767)
+[17:20:06.474] INFO  [slice_i] [bot] planning path to (1488,1767) in background
+[17:20:08.489] INFO  [slice_i] [action] goto finished at (1479,1757,-2); target (1488,1767); stopped short (off by 19 tile(s))
+[17:20:08.489] LOG   [slice_i] event goto_done: at=(1479,1757) target=(1488,1767) arrived=0 off=19
+[17:20:08.489] INFO  [slice_i] [action] goto (1488,1767) from (1479,1757,-2)
+[17:20:08.489] LOG   [slice_i] event goto_start: target=(1488,1767) from=(1479,1757)
+[17:20:08.489] INFO  [slice_i] [bot] running from (1479,1757,-2) to (1488,1767)
+[17:20:08.489] INFO  [slice_i] [bot] planning path to (1488,1767) in background
+[17:20:10.388] INFO  [slice_i] [survival] hp 25/25 (100%) -> fight
+[17:20:10.510] INFO  [slice_i] [action] goto finished at (1479,1757,-2); target (1488,1767); stopped short (off by 19 tile(s))
+[17:20:10.510] LOG   [slice_i] event goto_done: at=(1479,1757) target=(1488,1767) arrived=0 off=19
+[17:20:10.510] INFO  [slice_i] [action] goto (1488,1767) from (1479,1757,-2)
+[17:20:10.510] LOG   [slice_i] event goto_start: target=(1488,1767) from=(1479,1757)
+[17:20:10.510] INFO  [slice_i] [bot] running from (1479,1757,-2) to (1488,1767)
+[17:20:10.510] INFO  [slice_i] [bot] planning path to (1488,1767) in background
+[17:20:12.541] INFO  [slice_i] [action] goto finished at (1479,1757,-2); target (1488,1767); stopped short (off by 19 tile(s))
+[17:20:12.541] LOG   [slice_i] event goto_done: at=(1479,1757) target=(1488,1767) arrived=0 off=19
+[17:20:12.541] INFO  [slice_i] [action] goto (1488,1767) from (1479,1757,-2)
+[17:20:12.541] LOG   [slice_i] event goto_start: target=(1488,1767) from=(1479,1757)
+[17:20:12.541] INFO  [slice_i] [bot] running from (1479,1757,-2) to (1488,1767)
+[17:20:12.541] INFO  [slice_i] [bot] planning path to (1488,1767) in background
+[17:20:14.567] INFO  [slice_i] [action] goto finished at (1479,1757,-2); target (1488,1767); stopped short (off by 19 tile(s))
+[17:20:14.567] LOG   [slice_i] event goto_done: at=(1479,1757) target=(1488,1767) arrived=0 off=19
+[17:20:14.567] INFO  [slice_i] [action] goto (1488,1767) from (1479,1757,-2)
+[17:20:14.567] LOG   [slice_i] event goto_start: target=(1488,1767) from=(1479,1757)
+[17:20:14.567] INFO  [slice_i] [bot] running from (1479,1757,-2) to (1488,1767)
+[17:20:14.567] INFO  [slice_i] [bot] planning path to (1488,1767) in background
+[17:20:15.426] INFO  [slice_i] [survival] hp 25/25 (100%) -> fight
+[17:20:16.607] INFO  [slice_i] [action] goto finished at (1479,1757,-2); target (1488,1767); stopped short (off by 19 tile(s))
+[17:20:16.607] LOG   [slice_i] event goto_done: at=(1479,1757) target=(1488,1767) arrived=0 off=19
+[17:20:16.607] INFO  [life] fish: could not reach the water at 1488,1767 -- picking again
+[17:20:16.670] INFO  [life] fish: water at 1488,1767 is 10 tiles off -- walking to the edge
+[17:20:20.475] INFO  [slice_i] [survival] hp 25/25 (100%) -> fight
+[17:20:25.522] INFO  [slice_i] [survival] hp 25/25 (100%) -> fight
+[17:20:25.828] INFO  [slice_i] [action] goto (1488,1767) from (1479,1757,-2)
+[17:20:25.829] LOG   [slice_i] event goto_start: target=(1488,1767) from=(1479,1757)
+[17:20:25.829] INFO  [slice_i] [bot] running from (1479,1757,-2) to (1488,1767)
+[17:20:25.829] INFO  [slice_i] [bot] planning path to (1488,1767) in background
+[17:20:27.833] INFO  [slice_i] [action] goto finished at (1479,1757,-2); target (1488,1767); stopped short (off by 19 tile(s))
+[17:20:27.834] LOG   [slice_i] event goto_done: at=(1479,1757) target=(1488,1767) arrived=0 off=19
+[17:20:27.834] INFO  [slice_i] [action] goto (1488,1767) from (1479,1757,-2)
+[17:20:27.834] LOG   [slice_i] event goto_start: target=(1488,1767) from=(1479,1757)
+[17:20:27.834] INFO  [slice_i] [bot] running from (1479,1757,-2) to (1488,1767)
+[17:20:27.834] INFO  [slice_i] [bot] planning path to (1488,1767) in background
+[17:20:29.857] INFO  [slice_i] [action] goto finished at (1479,1757,-2); target (1488,1767); stopped short (off by 19 tile(s))
+[17:20:29.857] LOG   [slice_i] event goto_done: at=(1479,1757) target=(1488,1767) arrived=0 off=19
+[17:20:29.857] INFO  [slice_i] [action] goto (1488,1767) from (1479,1757,-2)
+[17:20:29.857] LOG   [slice_i] event goto_start: target=(1488,1767) from=(1479,1757)
+[17:20:29.857] INFO  [slice_i] [bot] running from (1479,1757,-2) to (1488,1767)
+[17:20:29.857] INFO  [slice_i] [bot] planning path to (1488,1767) in background
+[17:20:30.528] INFO  [slice_i] [survival] hp 25/25 (100%) -> fight
+[17:20:31.875] INFO  [slice_i] [action] goto finished at (1479,1757,-2); target (1488,1767); stopped short (off by 19 tile(s))
+[17:20:31.875] LOG   [slice_i] event goto_done: at=(1479,1757) target=(1488,1767) arrived=0 off=19
+[17:20:31.875] INFO  [slice_i] [action] goto (1488,1767) from (1479,1757,-2)
+[17:20:31.875] LOG   [slice_i] event goto_start: target=(1488,1767) from=(1479,1757)
+[17:20:31.875] INFO  [slice_i] [bot] running from (1479,1757,-2) to (1488,1767)
+[17:20:31.875] INFO  [slice_i] [bot] planning path to (1488,1767) in background
+[17:20:33.895] INFO  [slice_i] [action] goto finished at (1479,1757,-2); target (1488,1767); stopped short (off by 19 tile(s))
+[17:20:33.895] LOG   [slice_i] event goto_done: at=(1479,1757) target=(1488,1767) arrived=0 off=19
+[17:20:33.895] INFO  [slice_i] [action] goto (1488,1767) from (1479,1757,-2)
+[17:20:33.895] LOG   [slice_i] event goto_start: target=(1488,1767) from=(1479,1757)
+[17:20:33.895] INFO  [slice_i] [bot] running from (1479,1757,-2) to (1488,1767)
+[17:20:33.895] INFO  [slice_i] [bot] planning path to (1488,1767) in background
+[17:20:35.554] INFO  [slice_i] [survival] hp 25/25 (100%) -> fight
+[17:20:35.924] INFO  [slice_i] [action] goto finished at (1479,1757,-2); target (1488,1767); stopped short (off by 19 tile(s))
+[17:20:35.924] LOG   [slice_i] event goto_done: at=(1479,1757) target=(1488,1767) arrived=0 off=19
+[17:20:35.924] INFO  [slice_i] [action] goto (1488,1767) from (1479,1757,-2)
+[17:20:35.924] LOG   [slice_i] event goto_start: target=(1488,1767) from=(1479,1757)
+[17:20:35.924] INFO  [slice_i] [bot] running from (1479,1757,-2) to (1488,1767)
+[17:20:35.924] INFO  [slice_i] [bot] planning path to (1488,1767) in background
+[17:20:37.941] INFO  [slice_i] [action] goto finished at (1479,1757,-2); target (1488,1767); stopped short (off by 19 tile(s))
+[17:20:37.941] LOG   [slice_i] event goto_done: at=(1479,1757) target=(1488,1767) arrived=0 off=19
+[17:20:37.941] INFO  [slice_i] [action] goto (1488,1767) from (1479,1757,-2)
+[17:20:37.941] LOG   [slice_i] event goto_start: target=(1488,1767) from=(1479,1757)
+[17:20:37.941] INFO  [slice_i] [bot] running from (1479,1757,-2) to (1488,1767)
+[17:20:37.941] INFO  [slice_i] [bot] planning path to (1488,1767) in background
+[17:20:39.997] INFO  [slice_i] [action] goto finished at (1479,1757,-2); target (1488,1767); stopped short (off by 19 tile(s))
+[17:20:39.997] LOG   [slice_i] event goto_done: at=(1479,1757) target=(1488,1767) arrived=0 off=19
+[17:20:39.997] INFO  [slice_i] [action] goto (1488,1767) from (1479,1757,-2)
+[17:20:39.997] LOG   [slice_i] event goto_start: target=(1488,1767) from=(1479,1757)
+[17:20:39.997] INFO  [slice_i] [bot] running from (1479,1757,-2) to (1488,1767)
+[17:20:39.997] INFO  [slice_i] [bot] planning path to (1488,1767) in background
+[17:20:40.614] INFO  [slice_i] [survival] hp 25/25 (100%) -> fight
+[17:20:42.046] INFO  [slice_i] [action] goto finished at (1479,1757,-2); target (1488,1767); stopped short (off by 19 tile(s))
+[17:20:42.046] LOG   [slice_i] event goto_done: at=(1479,1757) target=(1488,1767) arrived=0 off=19
+[17:20:42.046] INFO  [slice_i] [action] goto (1488,1767) from (1479,1757,-2)
+[17:20:42.046] LOG   [slice_i] event goto_start: target=(1488,1767) from=(1479,1757)
+[17:20:42.046] INFO  [slice_i] [bot] running from (1479,1757,-2) to (1488,1767)
+[17:20:42.046] INFO  [slice_i] [bot] planning path to (1488,1767) in background
+[17:20:44.053] INFO  [slice_i] [action] goto finished at (1479,1757,-2); target (1488,1767); stopped short (off by 19 tile(s))
+[17:20:44.053] LOG   [slice_i] event goto_done: at=(1479,1757) target=(1488,1767) arrived=0 off=19
+[17:20:44.053] INFO  [slice_i] [action] goto (1488,1767) from (1479,1757,-2)
+[17:20:44.053] LOG   [slice_i] event goto_start: target=(1488,1767) from=(1479,1757)
+[17:20:44.053] INFO  [slice_i] [bot] running from (1479,1757,-2) to (1488,1767)
+[17:20:44.053] INFO  [slice_i] [bot] planning path to (1488,1767) in background
+[17:20:45.220] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak31.bryn/state.json
+[17:20:45.649] INFO  [slice_i] [survival] hp 25/25 (100%) -> fight
+[17:20:46.081] INFO  [slice_i] [action] goto finished at (1479,1757,-2); target (1488,1767); stopped short (off by 19 tile(s))
+[17:20:46.081] LOG   [slice_i] event goto_done: at=(1479,1757) target=(1488,1767) arrived=0 off=19
+[17:20:46.081] INFO  [slice_i] [action] goto (1488,1767) from (1479,1757,-2)
+[17:20:46.081] LOG   [slice_i] event goto_start: target=(1488,1767) from=(1479,1757)
+[17:20:46.081] INFO  [slice_i] [bot] running from (1479,1757,-2) to (1488,1767)
+[17:20:46.081] INFO  [slice_i] [bot] planning path to (1488,1767) in background
+[17:20:48.108] INFO  [slice_i] [action] goto finished at (1479,1757,-2); target (1488,1767); stopped short (off by 19 tile(s))
+[17:20:48.108] LOG   [slice_i] event goto_done: at=(1479,1757) target=(1488,1767) arrived=0 off=19
+[17:20:48.108] INFO  [life] fish: could not reach the water at 1488,1767 -- picking again
+[17:20:48.171] INFO  [life] fish: water at 1488,1767 is 10 tiles off -- walking to the edge
+[17:20:50.682] INFO  [slice_i] [survival] hp 25/25 (100%) -> fight
+[17:20:55.740] INFO  [slice_i] [survival] hp 25/25 (100%) -> fight
+[17:20:57.337] INFO  [slice_i] [action] goto (1488,1767) from (1479,1757,-2)
+[17:20:57.337] LOG   [slice_i] event goto_start: target=(1488,1767) from=(1479,1757)
+[17:20:57.337] INFO  [slice_i] [bot] running from (1479,1757,-2) to (1488,1767)
+[17:20:57.337] INFO  [slice_i] [bot] planning path to (1488,1767) in background
+[17:20:59.348] INFO  [slice_i] [action] goto finished at (1479,1757,-2); target (1488,1767); stopped short (off by 19 tile(s))
+[17:20:59.348] LOG   [slice_i] event goto_done: at=(1479,1757) target=(1488,1767) arrived=0 off=19
+[17:20:59.348] INFO  [slice_i] [action] goto (1488,1767) from (1479,1757,-2)
+[17:20:59.348] LOG   [slice_i] event goto_start: target=(1488,1767) from=(1479,1757)
+[17:20:59.348] INFO  [slice_i] [bot] running from (1479,1757,-2) to (1488,1767)
+[17:20:59.348] INFO  [slice_i] [bot] planning path to (1488,1767) in background
+[17:21:00.761] INFO  [slice_i] [survival] hp 25/25 (100%) -> fight
+[17:21:01.374] INFO  [slice_i] [action] goto finished at (1479,1757,-2); target (1488,1767); stopped short (off by 19 tile(s))
+[17:21:01.374] LOG   [slice_i] event goto_done: at=(1479,1757) target=(1488,1767) arrived=0 off=19
+[17:21:01.374] INFO  [slice_i] [action] goto (1488,1767) from (1479,1757,-2)
+[17:21:01.374] LOG   [slice_i] event goto_start: target=(1488,1767) from=(1479,1757)
+[17:21:01.374] INFO  [slice_i] [bot] running from (1479,1757,-2) to (1488,1767)
+[17:21:01.374] INFO  [slice_i] [bot] planning path to (1488,1767) in background
+[17:21:03.401] INFO  [slice_i] [action] goto finished at (1479,1757,-2); target (1488,1767); stopped short (off by 19 tile(s))
+[17:21:03.401] LOG   [slice_i] event goto_done: at=(1479,1757) target=(1488,1767) arrived=0 off=19
+[17:21:03.401] INFO  [slice_i] [action] goto (1488,1767) from (1479,1757,-2)
+[17:21:03.401] LOG   [slice_i] event goto_start: target=(1488,1767) from=(1479,1757)
+[17:21:03.401] INFO  [slice_i] [bot] running from (1479,1757,-2) to (1488,1767)
+[17:21:03.401] INFO  [slice_i] [bot] planning path to (1488,1767) in background
+[17:21:05.447] INFO  [slice_i] [action] goto finished at (1479,1757,-2); target (1488,1767); stopped short (off by 19 tile(s))
+[17:21:05.447] LOG   [slice_i] event goto_done: at=(1479,1757) target=(1488,1767) arrived=0 off=19
+[17:21:05.447] INFO  [slice_i] [action] goto (1488,1767) from (1479,1757,-2)
+[17:21:05.447] LOG   [slice_i] event goto_start: target=(1488,1767) from=(1479,1757)
+[17:21:05.447] INFO  [slice_i] [bot] running from (1479,1757,-2) to (1488,1767)
+[17:21:05.447] INFO  [slice_i] [bot] planning path to (1488,1767) in background
+[17:21:05.817] INFO  [slice_i] [survival] hp 25/25 (100%) -> fight
+[17:21:07.453] INFO  [slice_i] [action] goto finished at (1479,1757,-2); target (1488,1767); stopped short (off by 19 tile(s))
+[17:21:07.453] LOG   [slice_i] event goto_done: at=(1479,1757) target=(1488,1767) arrived=0 off=19
+[17:21:07.454] INFO  [slice_i] [action] goto (1488,1767) from (1479,1757,-2)
+[17:21:07.454] LOG   [slice_i] event goto_start: target=(1488,1767) from=(1479,1757)
+[17:21:07.454] INFO  [slice_i] [bot] running from (1479,1757,-2) to (1488,1767)
+[17:21:07.454] INFO  [slice_i] [bot] planning path to (1488,1767) in background
+[17:21:09.469] INFO  [slice_i] [action] goto finished at (1479,1757,-2); target (1488,1767); stopped short (off by 19 tile(s))
+[17:21:09.469] LOG   [slice_i] event goto_done: at=(1479,1757) target=(1488,1767) arrived=0 off=19
+[17:21:09.469] INFO  [slice_i] [action] goto (1488,1767) from (1479,1757,-2)
+[17:21:09.469] LOG   [slice_i] event goto_start: target=(1488,1767) from=(1479,1757)
+[17:21:09.469] INFO  [slice_i] [bot] running from (1479,1757,-2) to (1488,1767)
+[17:21:09.469] INFO  [slice_i] [bot] planning path to (1488,1767) in background
+[17:21:10.862] INFO  [slice_i] [survival] hp 25/25 (100%) -> fight
+[17:21:11.506] INFO  [slice_i] [action] goto finished at (1479,1757,-2); target (1488,1767); stopped short (off by 19 tile(s))
+[17:21:11.506] LOG   [slice_i] event goto_done: at=(1479,1757) target=(1488,1767) arrived=0 off=19
+[17:21:11.506] INFO  [slice_i] [action] goto (1488,1767) from (1479,1757,-2)
+[17:21:11.506] LOG   [slice_i] event goto_start: target=(1488,1767) from=(1479,1757)
+[17:21:11.506] INFO  [slice_i] [bot] running from (1479,1757,-2) to (1488,1767)
+[17:21:11.506] INFO  [slice_i] [bot] planning path to (1488,1767) in background
+[17:21:13.512] INFO  [slice_i] [action] goto finished at (1479,1757,-2); target (1488,1767); stopped short (off by 19 tile(s))
+[17:21:13.512] LOG   [slice_i] event goto_done: at=(1479,1757) target=(1488,1767) arrived=0 off=19
+[17:21:13.512] INFO  [slice_i] [action] goto (1488,1767) from (1479,1757,-2)
+[17:21:13.512] LOG   [slice_i] event goto_start: target=(1488,1767) from=(1479,1757)
+[17:21:13.512] INFO  [slice_i] [bot] running from (1479,1757,-2) to (1488,1767)
+[17:21:13.512] INFO  [slice_i] [bot] planning path to (1488,1767) in background
+[17:21:15.534] INFO  [slice_i] [action] goto finished at (1479,1757,-2); target (1488,1767); stopped short (off by 19 tile(s))
+[17:21:15.534] LOG   [slice_i] event goto_done: at=(1479,1757) target=(1488,1767) arrived=0 off=19
+[17:21:15.534] INFO  [slice_i] [action] goto (1488,1767) from (1479,1757,-2)
+[17:21:15.534] LOG   [slice_i] event goto_start: target=(1488,1767) from=(1479,1757)
+[17:21:15.534] INFO  [slice_i] [bot] running from (1479,1757,-2) to (1488,1767)
+[17:21:15.534] INFO  [slice_i] [bot] planning path to (1488,1767) in background
+[17:21:15.902] INFO  [slice_i] [survival] hp 25/25 (100%) -> fight
+[17:21:17.560] INFO  [slice_i] [action] goto finished at (1479,1757,-2); target (1488,1767); stopped short (off by 19 tile(s))
+[17:21:17.560] LOG   [slice_i] event goto_done: at=(1479,1757) target=(1488,1767) arrived=0 off=19
+[17:21:17.560] INFO  [slice_i] [action] goto (1488,1767) from (1479,1757,-2)
+[17:21:17.560] LOG   [slice_i] event goto_start: target=(1488,1767) from=(1479,1757)
+[17:21:17.560] INFO  [slice_i] [bot] running from (1479,1757,-2) to (1488,1767)
+[17:21:17.560] INFO  [slice_i] [bot] planning path to (1488,1767) in background

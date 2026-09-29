@@ -1,0 +1,1975 @@
+[15:51:07.887] INFO  session 0: 127.0.0.1:2593 user='RevolutionNew08' char=Wystan tag='n10_Wystan'
+[15:51:07.888] LOG   [n10_Wystan] event session_start: text log opened
+[15:51:07.889] LOG   [n10_Wystan] event net_connect_begin: connect 127.0.0.1:2593
+[15:51:07.889] INFO  [n10_Wystan] [net] connecting to 127.0.0.1:2593 ...
+[15:51:07.890] LOG   [n10_Wystan] event net_connected: connect 127.0.0.1:2593
+[15:51:07.890] INFO  [n10_Wystan] [net] connected.
+[15:51:07.890] INFO  [n10_Wystan] [seed] sent 0x7F000001 (plaintext)
+[15:51:07.890] LOG   [n10_Wystan] event seed_out: 0x7F000001 hex=7f000001
+[15:51:07.890] INFO  [life] no prior state for revolutionnew08.wystan: a new Pure Mage
+[15:51:07.890] INFO  [life] creation request: Magery 50.0 + Meditation 50.0, stats 20/12/48 = 80
+[15:51:07.890] INFO  [life] needs: reading 'mage' from the profession catalogue
+[15:51:07.890] INFO  [life] home: Wystan lives in Britain
+[15:51:07.890] INFO  [life] build plan 'mage': 300.0 resolved + 400.0 unresolved = 700.0/700.0, stats 25/25/100 = 150
+[15:51:07.890] INFO  [n10_Wystan] [life] autonomous player active for 'Wystan' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 25 min)
+[15:51:07.894] INFO  [n10_Wystan] [0xA8] 1 server(s):
+[15:51:07.894] INFO  [n10_Wystan]   [0] MyShard                   1.0.0.127  full=3%  tz=0
+[15:51:07.910] INFO  [n10_Wystan] [0x8C] game server = 127.0.0.1:2593  seed=0x0BA157A5
+[15:51:07.910] LOG   [n10_Wystan] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x0BA157A5
+[15:51:07.910] INFO  [n10_Wystan] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[15:51:07.910] LOG   [n10_Wystan] event relay_same_socket: no seed re-sent; 0x91 follows
+[15:51:07.911] INFO  [n10_Wystan] [0xB9] server features = 0x0005
+[15:51:07.911] INFO  [n10_Wystan] [0xA9] 5 slot(s) (populated 0):
+[15:51:07.911] INFO  [n10_Wystan]   [0] <empty>
+[15:51:07.911] INFO  [n10_Wystan]   [1] <empty>
+[15:51:07.911] INFO  [n10_Wystan]   [2] <empty>
+[15:51:07.911] INFO  [n10_Wystan]   [3] <empty>
+[15:51:07.911] INFO  [n10_Wystan]   [4] <empty>
+[15:51:07.911] INFO  [n10_Wystan] [0x00] requested skills 25:50 46:50 16:0
+[15:51:07.911] INFO  [n10_Wystan] [0x00] requested stats STR 20 DEX 12 INT 48
+[15:51:07.911] INFO  [n10_Wystan] [0x00] creating character 'Wystan' in slot 0
+[15:51:07.911] LOG   [n10_Wystan] event char_create_sent: Wystan
+[15:51:07.922] INFO  [n10_Wystan] [0x1B] serial=0x00012B12 body=0x0190 pos=(633,858,0)
+[15:51:07.922] LOG   [n10_Wystan] event login_confirm: serial=0x00012B12 body=0x0190 pos=(633,858,0)
+[15:51:07.922] INFO  [n10_Wystan] [0x20] player @(633,858,0) facing=3
+[15:51:07.922] INFO  [n10_Wystan] [0x55] login complete — entering world
+[15:51:07.922] LOG   [n10_Wystan] event in_world: 0x55 received
+[15:51:07.922] INFO  [n10_Wystan] [backpack] opening 0x40012B10
+[15:51:07.922] INFO  [n10_Wystan] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[15:51:07.922] INFO  [n10_Wystan] [chat ascii] System: There are 9 other players here.
+[15:51:07.922] INFO  [n10_Wystan] [chat ascii] System: You are under the protection of the town guards
+[15:51:07.925] INFO  [n10_Wystan] [action] requesting the skill list
+[15:51:07.925] INFO  [life] in world; asked the server for the skill list
+[15:51:07.926] INFO  [n10_Wystan] [0x24] open container 0x40012B10 gump=60
+[15:51:07.927] INFO  [n10_Wystan] [0x3C] container contents: 8 item(s)
+[15:51:07.927] LOG   [n10_Wystan] event backpack_contents: serial=0x40012B10 items=8
+[15:51:07.944] INFO  [n10_Wystan] [chat ascii] System: Delwyn has arrived in Yew.
+[15:51:07.975] INFO  [n10_Wystan] [chat ascii] System: Rowan has arrived in Yew.
+[15:51:10.515] INFO  [n10_Wystan] [bot] world data loaded (0 blacklisted spot(s)).
+[15:51:10.515] INFO  [life] reconciliation: first ever login, 7 field(s) differed
+[15:51:10.515] INFO  [life]   gold         persisted=0          server=10000      -> server value accepted
+[15:51:10.515] INFO  [life]   str          persisted=0          server=20         -> server value accepted
+[15:51:10.515] INFO  [life]   dex          persisted=0          server=12         -> server value accepted
+[15:51:10.515] INFO  [life]   int          persisted=0          server=48         -> server value accepted
+[15:51:10.515] INFO  [life]   skill_25     persisted=0.0        server=50.0       -> server value accepted
+[15:51:10.515] INFO  [life]   skill_46     persisted=0.0        server=50.0       -> server value accepted
+[15:51:10.515] INFO  [life]   skill_16     persisted=0.0        server=0.0        -> server value accepted
+[15:51:10.515] INFO  [life]   position     persisted=0,0        server=633,858    -> server value accepted
+[15:51:10.515] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[15:51:10.515] INFO  [n10_Wystan] [survival] on
+[15:51:10.515] LOG   [n10_Wystan] event survival_mode: on
+[15:51:10.517] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew08.wystan/state.json
+[15:51:10.517] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:51:10.575] INFO  [life] goal=TRAIN_AT_NPC reason="no goal was running"
+[15:51:10.575] INFO  [life] needs considered: NeedSpells(spells 0.70) NeedSkillTraining(Evaluating Intelligence 0.55) NeedPractice(Evaluating Intelligence 0.45) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=Evaluating Intelligence (target 100.0)
+[15:51:10.575] INFO  [life]   score=110.0
+[15:51:10.575] INFO  [life]   reason: NeedSkillTraining urgency 0.55 x 200 = 110.0
+[15:51:10.575] INFO  [life]   reason: Evaluating Intelligence 0.0 -> 100.0, gold 10000 (fee is quoted on arrival, roughly 300)
+[15:51:10.575] INFO  [life] training: looking for a 'mage' to teach Evaluating Intelligence (trip 1)
+[15:51:10.575] INFO  [n10_Wystan] [travel] Britain mage -> (1485,1550) r=5 from (633,858)
+[15:51:10.575] LOG   [n10_Wystan] event travel_start: label='Britain mage' target=(1485,1550) radius=5 from=(633,858)
+[15:51:10.575] INFO  [n10_Wystan] [travel] mode moongate         usable   <- chosen
+[15:51:10.575] INFO  [n10_Wystan] [travel] mode walk             usable
+[15:51:10.575] INFO  [n10_Wystan] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:51:10.575] INFO  [n10_Wystan] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:51:10.575] LOG   [n10_Wystan] event travel_mode: moongate
+[15:51:10.575] INFO  [n10_Wystan] [travel] plan Britain mage: ok legs=21 ~832 tiles transit=1 nodes=785
+[15:51:10.591] INFO  [n10_Wystan] [action] goto (664,856) from (633,858,0)
+[15:51:10.591] LOG   [n10_Wystan] event goto_start: target=(664,856) from=(633,858)
+[15:51:10.591] INFO  [n10_Wystan] [bot] running from (633,858,0) to (664,856)
+[15:51:10.591] INFO  [n10_Wystan] [bot] planning path to (664,856) in background
+[15:51:10.667] INFO  [n10_Wystan] [bot] replan to (664,856): 31 steps in 7850.3us
+[15:51:10.685] INFO  [n10_Wystan] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=32 in 63.9us
+[15:51:11.019] INFO  [n10_Wystan] [bot] lookahead patched around block at step 1: anchor=5 new segment=5 path=32 in 22.5us
+[15:51:11.450] INFO  [n10_Wystan] [bot] lookahead patched around block at step 1: anchor=5 new segment=5 path=31 in 54.5us
+[15:51:11.585] INFO  [n10_Wystan] [bot] lookahead patched around block at step 4: anchor=5 new segment=4 path=29 in 45.9us
+[15:51:12.000] INFO  [n10_Wystan] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=28 in 64.3us
+[15:51:12.216] INFO  [n10_Wystan] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=27 in 72.9us
+[15:51:12.446] INFO  [n10_Wystan] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=26 in 60.7us
+[15:51:13.134] INFO  [n10_Wystan] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=24 in 61.7us
+[15:51:13.597] INFO  [n10_Wystan] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=22 in 49.1us
+[15:51:14.060] INFO  [n10_Wystan] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=20 in 63.9us
+[15:51:14.520] INFO  [n10_Wystan] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=18 in 80.5us
+[15:51:15.213] INFO  [n10_Wystan] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=16 in 113.0us
+[15:51:15.520] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:51:15.904] INFO  [n10_Wystan] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=15 in 62.9us
+[15:51:16.366] INFO  [n10_Wystan] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=14 in 54.8us
+[15:51:16.595] INFO  [n10_Wystan] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=13 in 49.3us
+[15:51:16.826] INFO  [n10_Wystan] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=14 in 81.8us
+[15:51:18.373] INFO  [n10_Wystan] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=10 in 112.7us
+[15:51:18.834] INFO  [n10_Wystan] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=8 in 45.2us
+[15:51:19.370] INFO  [n10_Wystan] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=6 in 104.0us
+[15:51:19.525] INFO  [n10_Wystan] [bot] lookahead patched around block at step 4: anchor=5 new segment=7 path=8 in 92.2us
+[15:51:20.057] INFO  [n10_Wystan] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=5 in 76.8us
+[15:51:20.580] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:51:22.507] INFO  [n10_Wystan] [bot] arrived at (664,856,0)
+[15:51:22.507] INFO  [n10_Wystan] [action] goto finished at (664,856,0); target (664,856); ARRIVED (off by 0 tile(s))
+[15:51:22.507] LOG   [n10_Wystan] event goto_done: at=(664,856) target=(664,856) arrived=1 off=0
+[15:51:22.507] INFO  [n10_Wystan] [action] goto (696,840) from (664,856,0)
+[15:51:22.507] LOG   [n10_Wystan] event goto_start: target=(696,840) from=(664,856)
+[15:51:22.507] INFO  [n10_Wystan] [bot] running from (664,856,0) to (696,840)
+[15:51:22.507] INFO  [n10_Wystan] [bot] planning path to (696,840) in background
+[15:51:22.567] INFO  [n10_Wystan] [bot] replan to (696,840): 38 steps in 7851.2us
+[15:51:24.512] INFO  [n10_Wystan] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=33 in 127.9us
+[15:51:25.160] INFO  [n10_Wystan] [bot] lookahead patched around block at step 4: anchor=5 new segment=7 path=33 in 174.1us
+[15:51:25.586] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:51:26.031] INFO  [n10_Wystan] [bot] lookahead patched around block at step 5: anchor=6 new segment=4 path=28 in 34.5us
+[15:51:26.293] INFO  [n10_Wystan] [bot] lookahead patched around block at step 3: anchor=5 new segment=3 path=25 in 75.0us
+[15:51:26.692] INFO  [n10_Wystan] [bot] lookahead patched around block at step 3: anchor=5 new segment=6 path=26 in 99.7us
+[15:51:26.907] INFO  [n10_Wystan] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=24 in 66.6us
+[15:51:27.091] INFO  [n10_Wystan] [bot] lookahead patched around block at step 4: anchor=5 new segment=4 path=23 in 65.4us
+[15:51:27.582] INFO  [n10_Wystan] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=21 in 51.8us
+[15:51:28.599] INFO  [n10_Wystan] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=18 in 147.8us
+[15:51:28.812] INFO  [n10_Wystan] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=18 in 64.2us
+[15:51:29.024] INFO  [n10_Wystan] [chat ascii] System: You have left the protection of the town guards
+[15:51:29.024] INFO  [n10_Wystan] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=17 in 52.8us
+[15:51:29.712] INFO  [n10_Wystan] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=15 in 31.5us
+[15:51:30.332] INFO  [n10_Wystan] [bot] lookahead patched around block at step 2: anchor=5 new segment=4 path=11 in 67.9us
+[15:51:30.596] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:51:31.182] INFO  [n10_Wystan] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=10 in 89.7us
+[15:51:32.370] INFO  [n10_Wystan] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=6 in 46.5us
+[15:51:33.569] INFO  [n10_Wystan] [bot] lookahead patched around block at step 2: anchor=3 new segment=4 path=4 in 177.2us
+[15:51:35.302] INFO  [n10_Wystan] [bot] arrived at (696,840,0)
+[15:51:35.302] INFO  [n10_Wystan] [action] goto finished at (696,840,0); target (696,840); ARRIVED (off by 0 tile(s))
+[15:51:35.302] LOG   [n10_Wystan] event goto_done: at=(696,840) target=(696,840) arrived=1 off=0
+[15:51:35.302] INFO  [n10_Wystan] [action] goto (728,808) from (696,840,0)
+[15:51:35.302] LOG   [n10_Wystan] event goto_start: target=(728,808) from=(696,840)
+[15:51:35.302] INFO  [n10_Wystan] [bot] running from (696,840,0) to (728,808)
+[15:51:35.302] INFO  [n10_Wystan] [bot] planning path to (728,808) in background
+[15:51:35.364] INFO  [n10_Wystan] [bot] replan to (728,808): 42 steps in 13342.3us
+[15:51:35.641] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:51:36.130] INFO  [n10_Wystan] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=40 in 102.9us
+[15:51:36.544] INFO  [n10_Wystan] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=38 in 90.3us
+[15:51:36.787] INFO  [n10_Wystan] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=37 in 93.5us
+[15:51:36.987] INFO  [n10_Wystan] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=36 in 66.1us
+[15:51:40.694] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:51:45.714] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:51:49.310] INFO  [n10_Wystan] [bot] arrived at (728,808,0)
+[15:51:49.310] INFO  [n10_Wystan] [action] goto finished at (728,808,0); target (728,808); ARRIVED (off by 0 tile(s))
+[15:51:49.310] LOG   [n10_Wystan] event goto_done: at=(728,808) target=(728,808) arrived=1 off=0
+[15:51:49.310] INFO  [n10_Wystan] [action] goto (760,776) from (728,808,0)
+[15:51:49.310] LOG   [n10_Wystan] event goto_start: target=(760,776) from=(728,808)
+[15:51:49.310] INFO  [n10_Wystan] [bot] running from (728,808,0) to (760,776)
+[15:51:49.310] INFO  [n10_Wystan] [bot] planning path to (760,776) in background
+[15:51:49.341] INFO  [n10_Wystan] [bot] replan to (760,776): 39 steps in 22615.7us
+[15:51:50.729] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:51:53.814] INFO  [n10_Wystan] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=27 in 189.4us
+[15:51:54.306] INFO  [n10_Wystan] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=26 in 55.4us
+[15:51:55.745] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:51:59.332] INFO  [n10_Wystan] [bot] lookahead patched around block at step 5: anchor=7 new segment=8 path=11 in 185.5us
+[15:52:00.167] INFO  [n10_Wystan] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=8 in 84.5us
+[15:52:00.783] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:52:00.799] INFO  [n10_Wystan] [bot] lookahead patched around block at step 5: anchor=7 new segment=6 path=6 in 128.4us
+[15:52:02.533] INFO  [n10_Wystan] [chat ascii] System: You shove Thessaly out of the way.
+[15:52:02.533] INFO  [n10_Wystan] [bot] arrived at (760,776,0)
+[15:52:02.533] INFO  [n10_Wystan] [action] goto finished at (760,776,0); target (760,776); ARRIVED (off by 0 tile(s))
+[15:52:02.533] LOG   [n10_Wystan] event goto_done: at=(760,776) target=(760,776) arrived=1 off=0
+[15:52:02.533] INFO  [n10_Wystan] [action] goto (776,760) from (760,776,0)
+[15:52:02.533] LOG   [n10_Wystan] event goto_start: target=(776,760) from=(760,776)
+[15:52:02.533] INFO  [n10_Wystan] [bot] running from (760,776,0) to (776,760)
+[15:52:02.533] INFO  [n10_Wystan] [bot] planning path to (776,760) in background
+[15:52:02.595] INFO  [n10_Wystan] [bot] replan to (776,760): 21 steps in 4360.1us
+[15:52:02.595] INFO  [n10_Wystan] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=22 in 101.3us
+[15:52:03.583] INFO  [n10_Wystan] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=20 in 137.2us
+[15:52:04.640] INFO  [n10_Wystan] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=18 in 86.4us
+[15:52:04.888] INFO  [n10_Wystan] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=17 in 89.5us
+[15:52:05.072] INFO  [n10_Wystan] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=18 in 92.7us
+[15:52:05.103] INFO  [n10_Wystan] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=19 in 88.8us
+[15:52:05.792] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:52:07.177] INFO  [n10_Wystan] [bot] lookahead patched around block at step 4: anchor=5 new segment=7 path=14 in 74.5us
+[15:52:08.907] INFO  [n10_Wystan] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=10 in 91.0us
+[15:52:10.521] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew08.wystan/state.json
+[15:52:10.794] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:52:11.714] INFO  [n10_Wystan] [bot] reject at (775,763): mobile in the way — waiting 500ms, retrying (1) [no blacklist]
+[15:52:11.714] INFO  [n10_Wystan] [bot] planning path to (776,760) in background
+[15:52:12.950] INFO  [n10_Wystan] [action] goto finished at (776,764,0); target (776,760); stopped short (off by 4 tile(s))
+[15:52:12.950] LOG   [n10_Wystan] event goto_done: at=(776,764) target=(776,760) arrived=0 off=4
+[15:52:14.207] INFO  [n10_Wystan] [action] goto (776,760) from (776,764,0)
+[15:52:14.207] LOG   [n10_Wystan] event goto_start: target=(776,760) from=(776,764)
+[15:52:14.207] INFO  [n10_Wystan] [bot] running from (776,764,0) to (776,760)
+[15:52:14.207] INFO  [n10_Wystan] [bot] planning path to (776,760) in background
+[15:52:14.237] INFO  [n10_Wystan] [bot] replan to (776,760): 5 steps in 247.1us
+[15:52:15.811] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:52:15.967] INFO  [n10_Wystan] [bot] arrived at (776,760,0)
+[15:52:15.967] INFO  [n10_Wystan] [action] goto finished at (776,760,0); target (776,760); ARRIVED (off by 0 tile(s))
+[15:52:15.967] LOG   [n10_Wystan] event goto_done: at=(776,760) target=(776,760) arrived=1 off=0
+[15:52:15.967] INFO  [n10_Wystan] [action] goto (771,752) from (776,760,0)
+[15:52:15.967] LOG   [n10_Wystan] event goto_start: target=(771,752) from=(776,760)
+[15:52:15.967] INFO  [n10_Wystan] [bot] running from (776,760,0) to (771,752)
+[15:52:15.967] INFO  [n10_Wystan] [bot] planning path to (771,752) in background
+[15:52:16.027] INFO  [n10_Wystan] [bot] replan to (771,752): 9 steps in 97.6us
+[15:52:16.042] INFO  [n10_Wystan] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=9 in 99.5us
+[15:52:17.138] INFO  [n10_Wystan] [bot] lookahead patched around block at step 3: anchor=5 new segment=6 path=7 in 54.1us
+[15:52:17.975] INFO  [n10_Wystan] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=6 in 80.4us
+[15:52:20.572] INFO  [n10_Wystan] [gump] 0x400028B7 context=0x80A00425: 13 option(s), 15 text(s)
+[15:52:20.572] INFO  [n10_Wystan] [gump]   button 1000 = 'OKAY'
+[15:52:20.572] INFO  [n10_Wystan] [gump]   button 0 = 'CANCEL'
+[15:52:20.572] INFO  [n10_Wystan] [gump]   button 1 = 'Felucca'
+[15:52:20.572] INFO  [n10_Wystan] [gump]   choice 1 = 'Moonglow'
+[15:52:20.572] INFO  [n10_Wystan] [gump]   choice 2 = 'Britain'
+[15:52:20.572] INFO  [n10_Wystan] [gump]   choice 3 = 'Jhelom'
+[15:52:20.572] INFO  [n10_Wystan] [gump]   choice 4 = 'Yew'
+[15:52:20.572] INFO  [n10_Wystan] [gump]   choice 5 = 'New Magincia'
+[15:52:20.572] INFO  [n10_Wystan] [gump]   choice 6 = 'Minoc'
+[15:52:20.572] INFO  [n10_Wystan] [gump]   choice 7 = 'Trinsic'
+[15:52:20.572] INFO  [n10_Wystan] [gump]   choice 8 = 'Skara Brae'
+[15:52:20.572] INFO  [n10_Wystan] [gump]   choice 9 = 'Buccaneer's Den'
+[15:52:20.572] INFO  [n10_Wystan] [gump]   choice 10 = 'Ocllo (Newplayers)'
+[15:52:20.572] INFO  [n10_Wystan] [gump]   text 0 = 'Pick your destination:'
+[15:52:20.572] INFO  [n10_Wystan] [gump]   text 1 = 'OKAY'
+[15:52:20.572] INFO  [n10_Wystan] [gump]   text 2 = 'CANCEL'
+[15:52:20.572] INFO  [n10_Wystan] [gump]   text 3 = 'Felucca'
+[15:52:20.572] INFO  [n10_Wystan] [gump]   text 4 = 'Felucca'
+[15:52:20.572] INFO  [n10_Wystan] [gump]   text 5 = 'Moonglow'
+[15:52:20.572] INFO  [n10_Wystan] [gump]   text 6 = 'Britain'
+[15:52:20.572] INFO  [n10_Wystan] [gump]   text 7 = 'Jhelom'
+[15:52:20.572] INFO  [n10_Wystan] [gump]   text 8 = 'Yew'
+[15:52:20.572] INFO  [n10_Wystan] [gump]   text 9 = 'New Magincia'
+[15:52:20.572] INFO  [n10_Wystan] [gump]   text 10 = 'Minoc'
+[15:52:20.572] INFO  [n10_Wystan] [gump]   text 11 = 'Trinsic'
+[15:52:20.572] INFO  [n10_Wystan] [gump]   text 12 = 'Skara Brae'
+[15:52:20.572] INFO  [n10_Wystan] [gump]   text 13 = 'Buccaneer's Den'
+[15:52:20.572] INFO  [n10_Wystan] [gump]   text 14 = 'Ocllo (Newplayers)'
+[15:52:20.572] LOG   [n10_Wystan] event gump_open: serial=0x400028B7 context=0x80A00425 options=13
+[15:52:20.572] INFO  [n10_Wystan] [travel] gate gump: choosing 'Britain' (choice 2, button 1000)
+[15:52:20.572] LOG   [n10_Wystan] event moongate_use: destination='Britain' choice=2 button=1000
+[15:52:20.572] INFO  [n10_Wystan] [bot] arrived at (771,752,5)
+[15:52:20.572] INFO  [n10_Wystan] [action] goto finished at (771,752,5); target (771,752); ARRIVED (off by 0 tile(s))
+[15:52:20.572] LOG   [n10_Wystan] event goto_done: at=(771,752) target=(771,752) arrived=1 off=0
+[15:52:20.572] INFO  [n10_Wystan] [travel] using moongate 0x400028B7 for 'Britain' (gump active=0 serial=0x00000000)
+[15:52:20.572] INFO  [n10_Wystan] [0x20] player @(1336,1997,5) facing=0
+[15:52:20.572] INFO  [n10_Wystan] [0x20] player @(1336,1997,5) facing=0
+[15:52:20.586] INFO  [n10_Wystan] [chat ascii] System: You can't see the target
+[15:52:20.832] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:52:20.893] INFO  [n10_Wystan] [action] goto (1336,1960) from (1336,1997,5)
+[15:52:20.893] LOG   [n10_Wystan] event goto_start: target=(1336,1960) from=(1336,1997)
+[15:52:20.893] INFO  [n10_Wystan] [bot] running from (1336,1997,5) to (1336,1960)
+[15:52:20.893] INFO  [n10_Wystan] [bot] planning path to (1336,1960) in background
+[15:52:20.954] INFO  [n10_Wystan] [bot] replan to (1336,1960): 37 steps in 14476.6us
+[15:52:20.954] INFO  [n10_Wystan] [chat ascii] System: You have been revealed
+[15:52:25.855] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:52:30.917] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:52:33.723] INFO  [n10_Wystan] [bot] arrived at (1336,1960,0)
+[15:52:33.723] INFO  [n10_Wystan] [action] goto finished at (1336,1960,0); target (1336,1960); ARRIVED (off by 0 tile(s))
+[15:52:33.723] LOG   [n10_Wystan] event goto_done: at=(1336,1960) target=(1336,1960) arrived=1 off=0
+[15:52:33.723] INFO  [n10_Wystan] [action] goto (1336,1928) from (1336,1960,0)
+[15:52:33.723] LOG   [n10_Wystan] event goto_start: target=(1336,1928) from=(1336,1960)
+[15:52:33.723] INFO  [n10_Wystan] [bot] running from (1336,1960,0) to (1336,1928)
+[15:52:33.723] INFO  [n10_Wystan] [bot] planning path to (1336,1928) in background
+[15:52:33.784] INFO  [n10_Wystan] [bot] replan to (1336,1928): 33 steps in 10178.6us
+[15:52:35.972] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:52:40.977] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:52:44.210] INFO  [n10_Wystan] [bot] arrived at (1336,1928,0)
+[15:52:44.210] INFO  [n10_Wystan] [action] goto finished at (1336,1928,0); target (1336,1928); ARRIVED (off by 0 tile(s))
+[15:52:44.210] LOG   [n10_Wystan] event goto_done: at=(1336,1928) target=(1336,1928) arrived=1 off=0
+[15:52:44.210] INFO  [n10_Wystan] [action] goto (1336,1896) from (1336,1928,0)
+[15:52:44.210] LOG   [n10_Wystan] event goto_start: target=(1336,1896) from=(1336,1928)
+[15:52:44.210] INFO  [n10_Wystan] [bot] running from (1336,1928,0) to (1336,1896)
+[15:52:44.210] INFO  [n10_Wystan] [bot] planning path to (1336,1896) in background
+[15:52:44.270] INFO  [n10_Wystan] [bot] replan to (1336,1896): 32 steps in 11776.8us
+[15:52:46.021] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:52:51.038] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:52:55.463] INFO  [n10_Wystan] [bot] arrived at (1336,1896,0)
+[15:52:55.463] INFO  [n10_Wystan] [action] goto finished at (1336,1896,0); target (1336,1896); ARRIVED (off by 0 tile(s))
+[15:52:55.463] LOG   [n10_Wystan] event goto_done: at=(1336,1896) target=(1336,1896) arrived=1 off=0
+[15:52:55.463] INFO  [n10_Wystan] [action] goto (1336,1864) from (1336,1896,0)
+[15:52:55.463] LOG   [n10_Wystan] event goto_start: target=(1336,1864) from=(1336,1896)
+[15:52:55.463] INFO  [n10_Wystan] [bot] running from (1336,1896,0) to (1336,1864)
+[15:52:55.463] INFO  [n10_Wystan] [bot] planning path to (1336,1864) in background
+[15:52:55.524] INFO  [n10_Wystan] [bot] replan to (1336,1864): 37 steps in 8605.4us
+[15:52:56.043] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:53:01.055] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:53:06.079] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:53:08.684] INFO  [n10_Wystan] [bot] arrived at (1336,1864,0)
+[15:53:08.684] INFO  [n10_Wystan] [action] goto finished at (1336,1864,0); target (1336,1864); ARRIVED (off by 0 tile(s))
+[15:53:08.684] LOG   [n10_Wystan] event goto_done: at=(1336,1864) target=(1336,1864) arrived=1 off=0
+[15:53:08.684] INFO  [n10_Wystan] [action] goto (1336,1832) from (1336,1864,0)
+[15:53:08.684] LOG   [n10_Wystan] event goto_start: target=(1336,1832) from=(1336,1864)
+[15:53:08.684] INFO  [n10_Wystan] [bot] running from (1336,1864,0) to (1336,1832)
+[15:53:08.684] INFO  [n10_Wystan] [bot] planning path to (1336,1832) in background
+[15:53:08.744] INFO  [n10_Wystan] [bot] replan to (1336,1832): 33 steps in 7345.2us
+[15:53:10.538] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew08.wystan/state.json
+[15:53:11.103] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:53:14.973] INFO  [n10_Wystan] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=19 in 86.9us
+[15:53:15.834] INFO  [n10_Wystan] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=19 in 143.8us
+[15:53:16.110] INFO  [n10_Wystan] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=16 in 40.8us
+[15:53:16.110] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:53:16.567] INFO  [n10_Wystan] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=15 in 55.3us
+[15:53:17.041] INFO  [n10_Wystan] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=13 in 25.6us
+[15:53:17.486] INFO  [n10_Wystan] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=11 in 77.9us
+[15:53:18.620] INFO  [n10_Wystan] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=10 in 42.7us
+[15:53:18.865] INFO  [n10_Wystan] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=8 in 45.8us
+[15:53:19.285] INFO  [n10_Wystan] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=7 in 43.4us
+[15:53:19.791] INFO  [n10_Wystan] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=6 in 26.1us
+[15:53:20.023] INFO  [n10_Wystan] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=5 in 84.6us
+[15:53:21.124] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:53:22.123] INFO  [n10_Wystan] [bot] arrived at (1336,1832,0)
+[15:53:22.123] INFO  [n10_Wystan] [action] goto finished at (1336,1832,0); target (1336,1832); ARRIVED (off by 0 tile(s))
+[15:53:22.123] LOG   [n10_Wystan] event goto_done: at=(1336,1832) target=(1336,1832) arrived=1 off=0
+[15:53:22.123] INFO  [n10_Wystan] [action] goto (1336,1800) from (1336,1832,0)
+[15:53:22.123] LOG   [n10_Wystan] event goto_start: target=(1336,1800) from=(1336,1832)
+[15:53:22.123] INFO  [n10_Wystan] [bot] running from (1336,1832,0) to (1336,1800)
+[15:53:22.123] INFO  [n10_Wystan] [bot] planning path to (1336,1800) in background
+[15:53:22.184] INFO  [n10_Wystan] [bot] replan to (1336,1800): 33 steps in 10212.9us
+[15:53:22.569] INFO  [n10_Wystan] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=32 in 48.1us
+[15:53:23.442] INFO  [n10_Wystan] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=28 in 58.7us
+[15:53:23.686] INFO  [n10_Wystan] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=27 in 66.2us
+[15:53:23.943] INFO  [n10_Wystan] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=27 in 86.8us
+[15:53:24.145] INFO  [n10_Wystan] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=26 in 69.7us
+[15:53:24.362] INFO  [n10_Wystan] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=25 in 67.6us
+[15:53:24.577] INFO  [n10_Wystan] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=24 in 74.0us
+[15:53:24.777] INFO  [n10_Wystan] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=23 in 75.5us
+[15:53:25.219] INFO  [n10_Wystan] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=23 in 106.5us
+[15:53:25.680] INFO  [n10_Wystan] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=21 in 104.3us
+[15:53:26.140] INFO  [n10_Wystan] [bot] lookahead patched around block at step 3: anchor=5 new segment=4 path=18 in 126.4us
+[15:53:26.140] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:53:26.799] INFO  [n10_Wystan] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=16 in 165.5us
+[15:53:27.260] INFO  [n10_Wystan] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=16 in 119.2us
+[15:53:27.461] INFO  [n10_Wystan] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=15 in 102.2us
+[15:53:27.676] INFO  [n10_Wystan] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=14 in 85.7us
+[15:53:27.877] INFO  [n10_Wystan] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=13 in 49.7us
+[15:53:28.122] INFO  [n10_Wystan] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=12 in 61.3us
+[15:53:28.364] INFO  [n10_Wystan] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=10 in 60.1us
+[15:53:28.841] INFO  [n10_Wystan] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=9 in 50.5us
+[15:53:29.042] INFO  [n10_Wystan] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=8 in 96.6us
+[15:53:29.227] INFO  [n10_Wystan] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=7 in 50.0us
+[15:53:29.443] INFO  [n10_Wystan] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=6 in 71.5us
+[15:53:29.629] INFO  [n10_Wystan] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=5 in 88.2us
+[15:53:31.185] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:53:31.185] INFO  [n10_Wystan] [bot] arrived at (1336,1800,0)
+[15:53:31.185] INFO  [n10_Wystan] [action] goto finished at (1336,1800,0); target (1336,1800); ARRIVED (off by 0 tile(s))
+[15:53:31.185] LOG   [n10_Wystan] event goto_done: at=(1336,1800) target=(1336,1800) arrived=1 off=0
+[15:53:31.185] INFO  [n10_Wystan] [action] goto (1352,1766) from (1336,1800,0)
+[15:53:31.185] LOG   [n10_Wystan] event goto_start: target=(1352,1766) from=(1336,1800)
+[15:53:31.185] INFO  [n10_Wystan] [bot] running from (1336,1800,0) to (1352,1766)
+[15:53:31.185] INFO  [n10_Wystan] [bot] planning path to (1352,1766) in background
+[15:53:31.245] INFO  [n10_Wystan] [bot] replan to (1352,1766): 49 steps in 16019.5us
+[15:53:31.460] INFO  [n10_Wystan] [bot] lookahead patched around block at step 3: anchor=5 new segment=7 path=50 in 155.3us
+[15:53:32.200] INFO  [n10_Wystan] [bot] lookahead patched around block at step 4: anchor=5 new segment=24 path=66 in 2088.3us
+[15:53:36.193] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:53:41.243] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:53:46.300] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:53:51.310] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:53:51.615] INFO  [n10_Wystan] [bot] arrived at (1352,1766,15)
+[15:53:51.615] INFO  [n10_Wystan] [action] goto finished at (1352,1766,15); target (1352,1766); ARRIVED (off by 0 tile(s))
+[15:53:51.615] LOG   [n10_Wystan] event goto_done: at=(1352,1766) target=(1352,1766) arrived=1 off=0
+[15:53:51.615] INFO  [n10_Wystan] [action] goto (1386,1728) from (1352,1766,15)
+[15:53:51.615] LOG   [n10_Wystan] event goto_start: target=(1386,1728) from=(1352,1766)
+[15:53:51.615] INFO  [n10_Wystan] [bot] running from (1352,1766,15) to (1386,1728)
+[15:53:51.615] INFO  [n10_Wystan] [bot] planning path to (1386,1728) in background
+[15:53:51.675] INFO  [n10_Wystan] [bot] replan to (1386,1728): 64 steps in 44791.3us
+[15:53:56.320] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:54:01.338] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:54:02.737] INFO  [n10_Wystan] [chat ascii] System: You are now under the protection of the city guards
+[15:54:04.292] INFO  [n10_Wystan] [bot] lookahead patched around block at step 5: anchor=9 new segment=13 path=22 in 949.0us
+[15:54:06.399] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:54:09.590] INFO  [n10_Wystan] [chat ascii] System: You have left the protection of the city guards
+[15:54:10.034] INFO  [n10_Wystan] [bot] arrived at (1386,1728,0)
+[15:54:10.035] INFO  [n10_Wystan] [action] goto finished at (1386,1728,0); target (1386,1728); ARRIVED (off by 0 tile(s))
+[15:54:10.035] LOG   [n10_Wystan] event goto_done: at=(1386,1728) target=(1386,1728) arrived=1 off=0
+[15:54:10.035] INFO  [n10_Wystan] [action] goto (1416,1688) from (1386,1728,0)
+[15:54:10.035] LOG   [n10_Wystan] event goto_start: target=(1416,1688) from=(1386,1728)
+[15:54:10.035] INFO  [n10_Wystan] [bot] running from (1386,1728,0) to (1416,1688)
+[15:54:10.035] INFO  [n10_Wystan] [bot] planning path to (1416,1688) in background
+[15:54:10.110] INFO  [n10_Wystan] [bot] replan to (1416,1688): 50 steps in 24861.8us
+[15:54:10.560] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew08.wystan/state.json
+[15:54:11.224] INFO  [n10_Wystan] [chat ascii] System: You are now under the protection of the city guards
+[15:54:11.408] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:54:16.428] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:54:21.440] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:54:25.564] INFO  [n10_Wystan] [bot] arrived at (1416,1688,0)
+[15:54:25.564] INFO  [n10_Wystan] [action] goto finished at (1416,1688,0); target (1416,1688); ARRIVED (off by 0 tile(s))
+[15:54:25.564] LOG   [n10_Wystan] event goto_done: at=(1416,1688) target=(1416,1688) arrived=1 off=0
+[15:54:25.564] INFO  [n10_Wystan] [action] goto (1448,1656) from (1416,1688,0)
+[15:54:25.564] LOG   [n10_Wystan] event goto_start: target=(1448,1656) from=(1416,1688)
+[15:54:25.564] INFO  [n10_Wystan] [bot] running from (1416,1688,0) to (1448,1656)
+[15:54:25.564] INFO  [n10_Wystan] [bot] planning path to (1448,1656) in background
+[15:54:25.625] INFO  [n10_Wystan] [bot] replan to (1448,1656): 46 steps in 5359.3us
+[15:54:26.502] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:54:31.514] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:54:33.971] INFO  [n10_Wystan] [bot] step (1432,1666,10)->(1433,1665,10) rejected; OpenDoor + retry
+[15:54:34.726] INFO  [n10_Wystan] [bot] step (1432,1666,10)->(1433,1665,10) rejected; avoiding edge + rerouting
+[15:54:34.726] INFO  [n10_Wystan] [bot] planning path to (1448,1656) in background
+[15:54:34.788] INFO  [n10_Wystan] [bot] replan to (1448,1656): 20 steps in 1124.0us
+[15:54:36.558] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:54:37.783] INFO  [n10_Wystan] [chat ascii] System: World save in 10 seconds
+[15:54:41.578] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:54:41.716] INFO  [n10_Wystan] [bot] arrived at (1448,1656,10)
+[15:54:41.716] INFO  [n10_Wystan] [action] goto finished at (1448,1656,10); target (1448,1656); ARRIVED (off by 0 tile(s))
+[15:54:41.716] LOG   [n10_Wystan] event goto_done: at=(1448,1656) target=(1448,1656) arrived=1 off=0
+[15:54:41.716] INFO  [n10_Wystan] [travel] avoiding 2 teleporter pad(s) on this leg
+[15:54:41.716] INFO  [n10_Wystan] [action] goto (1464,1624) from (1448,1656,10)
+[15:54:41.716] LOG   [n10_Wystan] event goto_start: target=(1464,1624) from=(1448,1656)
+[15:54:41.716] INFO  [n10_Wystan] [bot] running from (1448,1656,10) to (1464,1624)
+[15:54:41.716] INFO  [n10_Wystan] [bot] planning path to (1464,1624) in background
+[15:54:41.776] INFO  [n10_Wystan] [bot] replan to (1464,1624): 43 steps in 4494.1us
+[15:54:46.604] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:54:47.796] INFO  [n10_Wystan] [chat ascii] System: World save has been initiated.
+[15:54:51.658] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:54:55.478] INFO  [n10_Wystan] [bot] arrived at (1464,1624,20)
+[15:54:55.478] INFO  [n10_Wystan] [action] goto finished at (1464,1624,20); target (1464,1624); ARRIVED (off by 0 tile(s))
+[15:54:55.478] LOG   [n10_Wystan] event goto_done: at=(1464,1624) target=(1464,1624) arrived=1 off=0
+[15:54:55.478] INFO  [n10_Wystan] [travel] avoiding 2 teleporter pad(s) on this leg
+[15:54:55.478] INFO  [n10_Wystan] [action] goto (1464,1592) from (1464,1624,20)
+[15:54:55.478] LOG   [n10_Wystan] event goto_start: target=(1464,1592) from=(1464,1624)
+[15:54:55.478] INFO  [n10_Wystan] [bot] running from (1464,1624,20) to (1464,1592)
+[15:54:55.478] INFO  [n10_Wystan] [bot] planning path to (1464,1592) in background
+[15:54:55.538] INFO  [n10_Wystan] [bot] replan to (1464,1592): 32 steps in 594.5us
+[15:54:56.719] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:55:01.739] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:55:03.317] INFO  [n10_Wystan] [bot] arrived at (1464,1592,20)
+[15:55:03.317] INFO  [n10_Wystan] [action] goto finished at (1464,1592,20); target (1464,1592); ARRIVED (off by 0 tile(s))
+[15:55:03.317] LOG   [n10_Wystan] event goto_done: at=(1464,1592) target=(1464,1592) arrived=1 off=0
+[15:55:03.317] INFO  [n10_Wystan] [action] goto (1480,1558) from (1464,1592,20)
+[15:55:03.317] LOG   [n10_Wystan] event goto_start: target=(1480,1558) from=(1464,1592)
+[15:55:03.317] INFO  [n10_Wystan] [bot] running from (1464,1592,20) to (1480,1558)
+[15:55:03.317] INFO  [n10_Wystan] [bot] planning path to (1480,1558) in background
+[15:55:03.377] INFO  [n10_Wystan] [bot] replan to (1480,1558): 41 steps in 6580.1us
+[15:55:06.755] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:55:09.364] INFO  [n10_Wystan] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=19 in 418.7us
+[15:55:10.561] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew08.wystan/state.json
+[15:55:11.756] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:55:16.214] INFO  [n10_Wystan] [bot] arrived at (1480,1558,30)
+[15:55:16.214] INFO  [n10_Wystan] [action] goto finished at (1480,1558,30); target (1480,1558); ARRIVED (off by 0 tile(s))
+[15:55:16.214] LOG   [n10_Wystan] event goto_done: at=(1480,1558) target=(1480,1558) arrived=1 off=0
+[15:55:16.214] INFO  [n10_Wystan] [action] goto (1485,1550) from (1480,1558,30)
+[15:55:16.214] LOG   [n10_Wystan] event goto_start: target=(1485,1550) from=(1480,1558)
+[15:55:16.214] INFO  [n10_Wystan] [bot] running from (1480,1558,30) to (1485,1550,z30)
+[15:55:16.214] INFO  [n10_Wystan] [bot] planning path to (1485,1550) in background
+[15:55:16.276] INFO  [n10_Wystan] [bot] replan to (1485,1550): 48 steps in 16548.2us
+[15:55:16.793] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:55:19.960] INFO  [n10_Wystan] [chat ascii] Xanthe: I'm listenin'.
+[15:55:21.802] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:55:26.845] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:55:27.554] INFO  [n10_Wystan] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=10 in 399.7us
+[15:55:27.616] INFO  [n10_Wystan] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=10 in 422.6us
+[15:55:27.709] INFO  [n10_Wystan] [chat ascii] Xanthe: Aye?
+[15:55:27.770] INFO  [n10_Wystan] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=10 in 320.4us
+[15:55:28.383] INFO  [n10_Wystan] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=10 in 938.3us
+[15:55:29.378] INFO  [n10_Wystan] [chat uni  ] : Caedmon train Meditation
+[15:55:29.378] INFO  [n10_Wystan] [chat ascii] Caedmon: For 300 gold I will train you in all I know of Meditation. For less gold I will teach you less
+[15:55:29.423] INFO  [n10_Wystan] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=7 in 268.2us
+[15:55:29.807] INFO  [n10_Wystan] [bot] lookahead patched around block at step 3: anchor=5 new segment=7 path=8 in 760.0us
+[15:55:30.006] INFO  [n10_Wystan] [travel] Britain mage ARRIVED at (1490,1552,30)
+[15:55:30.007] LOG   [n10_Wystan] event travel_done: label='Britain mage' ok=1 at=(1490,1552) legs=21 plans=1 why=''
+[15:55:30.068] INFO  [life] training: arrived at 1490,1552 -- asking who is here
+[15:55:30.068] INFO  [n10_Wystan] [action] scanning nearby mobiles for names
+[15:55:30.068] INFO  [n10_Wystan] [action] requested 5 paperdoll(s) for trade titles
+[15:55:30.084] INFO  [n10_Wystan] [mobiles] nearby (7):
+[15:55:30.084] INFO  [n10_Wystan]   Xanthe 0x00001211
+[15:55:30.084] INFO  [n10_Wystan]   Thessaly 0x00012B2F
+[15:55:30.084] INFO  [n10_Wystan]   Caedmon 0x000012EE
+[15:55:30.084] INFO  [n10_Wystan]   Alenne 0x00001145
+[15:55:30.084] INFO  [n10_Wystan]   Shunnar 0x0000E14F
+[15:55:30.084] INFO  [n10_Wystan]   dark brown horse 0x000006AD
+[15:55:30.084] INFO  [n10_Wystan]   Cat 0x00002663
+[15:55:30.084] INFO  [n10_Wystan] [0x88] paperdoll 0x00012B2F: "Thessaly, Apprentice Mage"
+[15:55:30.084] INFO  [n10_Wystan] [0x20] player @(1490,1552,30) facing=5
+[15:55:30.084] INFO  [n10_Wystan] [0x88] paperdoll 0x00001211: "Xanthe, the alchemist"
+[15:55:30.084] INFO  [n10_Wystan] [world] Xanthe, the alchemist is a alchemist at (1489,1553)
+[15:55:30.084] INFO  [n10_Wystan] [0x20] player @(1490,1552,30) facing=7
+[15:55:30.084] INFO  [n10_Wystan] [0x88] paperdoll 0x000012EE: "Caedmon, the mage guildmaster"
+[15:55:30.084] INFO  [n10_Wystan] [world] Caedmon, the mage guildmaster is a mage at (1488,1550)
+[15:55:30.084] INFO  [n10_Wystan] [0x88] paperdoll 0x00001145: "Alenne, the mage"
+[15:55:30.084] INFO  [n10_Wystan] [world] Alenne, the mage is a mage at (1485,1547)
+[15:55:30.084] INFO  [n10_Wystan] [0x88] paperdoll 0x0000E14F: "Shunnar, the scribe"
+[15:55:30.084] INFO  [n10_Wystan] [world] Shunnar, the scribe is a scribe at (1484,1549)
+[15:55:30.084] INFO  [n10_Wystan] [0x21] stale reject seq=59 (block already handled); pose resynced
+[15:55:31.894] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:55:32.598] INFO  [life] training: a 'mage guildmaster' is here -- asking them rather than the shopkeeper
+[15:55:32.599] INFO  [life] training: 'mage' is 5 tiles and 5 z away -- walking to them before speaking (approach 1 of 3)
+[15:55:32.599] INFO  [n10_Wystan] [travel] mobile 0x000012EE -> (1487,1547) r=1 from (1490,1552)
+[15:55:32.599] LOG   [n10_Wystan] event travel_start: label='mobile 0x000012EE' target=(1487,1547) radius=1 from=(1490,1552)
+[15:55:32.599] INFO  [n10_Wystan] [travel] mode walk             usable   <- chosen
+[15:55:32.599] INFO  [n10_Wystan] [travel] mode moongate         usable
+[15:55:32.599] INFO  [n10_Wystan] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:55:32.599] INFO  [n10_Wystan] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:55:32.599] LOG   [n10_Wystan] event travel_mode: walk
+[15:55:32.599] INFO  [n10_Wystan] [travel] plan mobile 0x000012EE: ok legs=1 ~5 tiles transit=0 nodes=0
+[15:55:32.659] INFO  [n10_Wystan] [action] goto finished at (1490,1552,30); target (1485,1550); stopped short (off by 7 tile(s))
+[15:55:32.659] LOG   [n10_Wystan] event goto_done: at=(1490,1552) target=(1485,1550) arrived=0 off=7
+[15:55:32.659] INFO  [n10_Wystan] [action] goto (1487,1547) from (1490,1552,30)
+[15:55:32.659] LOG   [n10_Wystan] event goto_start: target=(1487,1547) from=(1490,1552)
+[15:55:32.659] INFO  [n10_Wystan] [bot] running from (1490,1552,30) to (1487,1547,z35)
+[15:55:32.659] INFO  [n10_Wystan] [bot] planning path to (1487,1547) in background
+[15:55:34.332] INFO  [n10_Wystan] [action] goto finished at (1490,1552,30); target (1487,1547); stopped short (off by 8 tile(s))
+[15:55:34.332] LOG   [n10_Wystan] event goto_done: at=(1490,1552) target=(1487,1547) arrived=0 off=8
+[15:55:35.549] INFO  [n10_Wystan] [action] goto (1487,1547) from (1490,1552,30)
+[15:55:35.550] LOG   [n10_Wystan] event goto_start: target=(1487,1547) from=(1490,1552)
+[15:55:35.550] INFO  [n10_Wystan] [bot] running from (1490,1552,30) to (1487,1547,z35)
+[15:55:35.550] INFO  [n10_Wystan] [bot] planning path to (1487,1547) in background
+[15:55:36.936] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:55:37.396] INFO  [n10_Wystan] [action] goto finished at (1490,1552,30); target (1487,1547); stopped short (off by 8 tile(s))
+[15:55:37.396] LOG   [n10_Wystan] event goto_done: at=(1490,1552) target=(1487,1547) arrived=0 off=8
+[15:55:38.605] INFO  [n10_Wystan] [travel] mode walk             usable   <- chosen
+[15:55:38.605] INFO  [n10_Wystan] [travel] mode moongate         usable
+[15:55:38.605] INFO  [n10_Wystan] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:55:38.605] INFO  [n10_Wystan] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:55:38.605] LOG   [n10_Wystan] event travel_mode: walk
+[15:55:38.605] INFO  [n10_Wystan] [travel] plan mobile 0x000012EE: ok legs=1 ~5 tiles transit=0 nodes=0
+[15:55:40.142] INFO  [n10_Wystan] [action] goto (1487,1547) from (1490,1552,30)
+[15:55:40.142] LOG   [n10_Wystan] event goto_start: target=(1487,1547) from=(1490,1552)
+[15:55:40.142] INFO  [n10_Wystan] [bot] running from (1490,1552,30) to (1487,1547,z42)
+[15:55:40.142] INFO  [n10_Wystan] [bot] planning path to (1487,1547) in background
+[15:55:40.187] INFO  [n10_Wystan] [chat ascii] Shunnar: Hmm?
+[15:55:40.248] INFO  [n10_Wystan] [action] goto finished at (1490,1552,30); target (1487,1547); stopped short (off by 8 tile(s))
+[15:55:40.248] LOG   [n10_Wystan] event goto_done: at=(1490,1552) target=(1487,1547) arrived=0 off=8
+[15:55:41.501] INFO  [n10_Wystan] [action] goto (1487,1547) from (1490,1552,30)
+[15:55:41.502] LOG   [n10_Wystan] event goto_start: target=(1487,1547) from=(1490,1552)
+[15:55:41.502] INFO  [n10_Wystan] [bot] running from (1490,1552,30) to (1487,1547,z42)
+[15:55:41.502] INFO  [n10_Wystan] [bot] planning path to (1487,1547) in background
+[15:55:41.607] INFO  [n10_Wystan] [action] goto finished at (1490,1552,30); target (1487,1547); stopped short (off by 8 tile(s))
+[15:55:41.607] LOG   [n10_Wystan] event goto_done: at=(1490,1552) target=(1487,1547) arrived=0 off=8
+[15:55:41.971] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:55:42.842] INFO  [n10_Wystan] [action] goto (1487,1547) from (1490,1552,30)
+[15:55:42.842] LOG   [n10_Wystan] event goto_start: target=(1487,1547) from=(1490,1552)
+[15:55:42.842] INFO  [n10_Wystan] [bot] running from (1490,1552,30) to (1487,1547,z42)
+[15:55:42.842] INFO  [n10_Wystan] [bot] planning path to (1487,1547) in background
+[15:55:42.903] INFO  [n10_Wystan] [action] goto finished at (1490,1552,30); target (1487,1547); stopped short (off by 8 tile(s))
+[15:55:42.903] LOG   [n10_Wystan] event goto_done: at=(1490,1552) target=(1487,1547) arrived=0 off=8
+[15:55:43.270] INFO  [n10_Wystan] [travel] mode walk             usable   <- chosen
+[15:55:43.270] INFO  [n10_Wystan] [travel] mode moongate         usable
+[15:55:43.270] INFO  [n10_Wystan] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:55:43.270] INFO  [n10_Wystan] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:55:43.270] LOG   [n10_Wystan] event travel_mode: walk
+[15:55:43.270] INFO  [n10_Wystan] [travel] plan mobile 0x000012EE: ok legs=1 ~6 tiles transit=0 nodes=0
+[15:55:43.330] INFO  [n10_Wystan] [action] goto (1484,1547) from (1490,1552,30)
+[15:55:43.330] LOG   [n10_Wystan] event goto_start: target=(1484,1547) from=(1490,1552)
+[15:55:43.330] INFO  [n10_Wystan] [bot] running from (1490,1552,30) to (1484,1547,z42)
+[15:55:43.330] INFO  [n10_Wystan] [bot] planning path to (1484,1547) in background
+[15:55:45.245] INFO  [n10_Wystan] [action] goto finished at (1490,1552,30); target (1484,1547); stopped short (off by 11 tile(s))
+[15:55:45.245] LOG   [n10_Wystan] event goto_done: at=(1490,1552) target=(1484,1547) arrived=0 off=11
+[15:55:46.470] INFO  [n10_Wystan] [action] goto (1484,1547) from (1490,1552,30)
+[15:55:46.471] LOG   [n10_Wystan] event goto_start: target=(1484,1547) from=(1490,1552)
+[15:55:46.471] INFO  [n10_Wystan] [bot] running from (1490,1552,30) to (1484,1547,z42)
+[15:55:46.471] INFO  [n10_Wystan] [bot] planning path to (1484,1547) in background
+[15:55:47.023] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:55:49.061] INFO  [n10_Wystan] [action] goto finished at (1490,1552,30); target (1484,1547); stopped short (off by 11 tile(s))
+[15:55:49.061] LOG   [n10_Wystan] event goto_done: at=(1490,1552) target=(1484,1547) arrived=0 off=11
+[15:55:50.303] INFO  [n10_Wystan] [travel] mode walk             usable   <- chosen
+[15:55:50.303] INFO  [n10_Wystan] [travel] mode moongate         usable
+[15:55:50.303] INFO  [n10_Wystan] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:55:50.303] INFO  [n10_Wystan] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:55:50.303] LOG   [n10_Wystan] event travel_mode: walk
+[15:55:50.303] INFO  [n10_Wystan] [travel] plan mobile 0x000012EE: ok legs=1 ~6 tiles transit=0 nodes=0
+[15:55:51.042] INFO  [n10_Wystan] [chat uni  ] : Caedmon train Meditation
+[15:55:51.042] INFO  [n10_Wystan] [chat ascii] Caedmon: For 300 gold I will train you in all I know of Meditation. For less gold I will teach you less
+[15:55:51.841] INFO  [n10_Wystan] [action] goto (1484,1547) from (1490,1552,30)
+[15:55:51.841] LOG   [n10_Wystan] event goto_start: target=(1484,1547) from=(1490,1552)
+[15:55:51.841] INFO  [n10_Wystan] [bot] running from (1490,1552,30) to (1484,1547,z42)
+[15:55:51.841] INFO  [n10_Wystan] [bot] planning path to (1484,1547) in background
+[15:55:52.084] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:55:53.948] INFO  [n10_Wystan] [action] goto finished at (1490,1552,30); target (1484,1547); stopped short (off by 11 tile(s))
+[15:55:53.948] LOG   [n10_Wystan] event goto_done: at=(1490,1552) target=(1484,1547) arrived=0 off=11
+[15:55:55.177] INFO  [n10_Wystan] [action] goto (1484,1547) from (1490,1552,30)
+[15:55:55.177] LOG   [n10_Wystan] event goto_start: target=(1484,1547) from=(1490,1552)
+[15:55:55.177] INFO  [n10_Wystan] [bot] running from (1490,1552,30) to (1484,1547,z47)
+[15:55:55.177] INFO  [n10_Wystan] [bot] planning path to (1484,1547) in background
+[15:55:55.239] INFO  [n10_Wystan] [bot] replan to (1484,1547): 7 steps in 305.8us
+[15:55:57.106] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:55:57.368] INFO  [n10_Wystan] [travel] mobile 0x000012EE ARRIVED at (1485,1548,40)
+[15:55:57.368] LOG   [n10_Wystan] event travel_done: label='mobile 0x000012EE' ok=1 at=(1485,1548) legs=1 plans=2 why=''
+[15:55:57.430] INFO  [life] training: 'mage' is 2 tiles and 7 z away -- walking to them before speaking (approach 2 of 3)
+[15:55:57.430] INFO  [n10_Wystan] [travel] mobile 0x000012EE -> (1484,1546) r=1 from (1485,1548)
+[15:55:57.430] LOG   [n10_Wystan] event travel_start: label='mobile 0x000012EE' target=(1484,1546) radius=1 from=(1485,1548)
+[15:55:57.430] INFO  [n10_Wystan] [travel] mode walk             usable   <- chosen
+[15:55:57.430] INFO  [n10_Wystan] [travel] mode moongate         usable
+[15:55:57.430] INFO  [n10_Wystan] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:55:57.430] INFO  [n10_Wystan] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:55:57.430] LOG   [n10_Wystan] event travel_mode: walk
+[15:55:57.430] INFO  [n10_Wystan] [travel] plan mobile 0x000012EE: ok legs=1 ~2 tiles transit=0 nodes=0
+[15:55:57.553] INFO  [n10_Wystan] [bot] arrived at (1484,1547,45)
+[15:55:57.553] INFO  [n10_Wystan] [action] goto finished at (1484,1547,45); target (1484,1547); ARRIVED (off by 0 tile(s))
+[15:55:57.553] LOG   [n10_Wystan] event goto_done: at=(1484,1547) target=(1484,1547) arrived=1 off=0
+[15:55:57.553] INFO  [n10_Wystan] [action] goto (1484,1546) from (1484,1547,45)
+[15:55:57.553] LOG   [n10_Wystan] event goto_start: target=(1484,1546) from=(1484,1547)
+[15:55:57.553] INFO  [n10_Wystan] [bot] running from (1484,1547,45) to (1484,1546,z47)
+[15:55:57.553] INFO  [n10_Wystan] [bot] planning path to (1484,1546) in background
+[15:55:57.977] INFO  [n10_Wystan] [travel] mobile 0x000012EE ARRIVED at (1484,1547,45)
+[15:55:57.977] LOG   [n10_Wystan] event travel_done: label='mobile 0x000012EE' ok=1 at=(1484,1547) legs=1 plans=1 why=''
+[15:55:59.473] INFO  [life] training: asking the trainer about Evaluating Intelligence
+[15:55:59.473] INFO  [n10_Wystan] [ACTION] npc_train start
+[15:55:59.473] INFO  [n10_Wystan] [TRAIN] ask 0x000012EE say='Caedmon train EvaluatingIntel'
+[15:55:59.473] LOG   [n10_Wystan] event npc_train_ask: Caedmon train EvaluatingIntel
+[15:55:59.474] INFO  [n10_Wystan] [chat uni  ] : Caedmon train EvaluatingIntel
+[15:55:59.474] INFO  [n10_Wystan] [chat ascii] Caedmon: For 300 gold I will train you in all I know of EvaluatingIntel. For less gold I will teach you less
+[15:55:59.474] INFO  [n10_Wystan] [ACTION_RESULT] npc_train success (0ms) For 300 gold I will train you in all I know of EvaluatingIntel. For less gold I will teach you less
+[15:55:59.474] LOG   [n10_Wystan] event action_result: npc_train success took=0ms For 300 gold I will train you in all I know of EvaluatingIntel. For less gold I will teach you less
+[15:56:00.442] INFO  [n10_Wystan] [chat ascii] Shunnar: What's thee wantin'?
+[15:56:01.982] INFO  [n10_Wystan] [action] open backpack
+[15:56:01.982] INFO  [n10_Wystan] [backpack] opening 0x40012B10
+[15:56:01.997] INFO  [n10_Wystan] [0x24] open container 0x40012B10 gump=60
+[15:56:01.997] INFO  [n10_Wystan] [0x3C] container contents: 8 item(s)
+[15:56:02.120] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:56:03.196] INFO  [life] training: paying the quoted 300 gold for Evaluating Intelligence (purse 10000)
+[15:56:03.196] INFO  [n10_Wystan] [GIVE] 0x40012B0C x300 -> 0x000012EE (gold 10000)
+[15:56:03.196] INFO  [n10_Wystan] [ITEM] drag serial=0x40012B0C amount=300
+[15:56:03.196] INFO  [n10_Wystan] [ITEM] drop container=0x000012EE
+[15:56:03.196] LOG   [n10_Wystan] event npc_give: item=0x40012B0C amount=300 to=0x000012EE
+[15:56:07.150] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:56:07.212] INFO  [n10_Wystan] [action] requesting the skill list
+[15:56:10.581] INFO  [life] goal_changed=TRAIN_AT_NPC from=TRAIN_AT_NPC reason="previous goal abandoned: ran 300s without finishing (limit 300s)"
+[15:56:10.581] INFO  [life] needs considered: NeedSpells(spells 0.70) NeedSkillTraining(Evaluating Intelligence 0.55) NeedPractice(Evaluating Intelligence 0.45) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=Evaluating Intelligence (target 100.0)
+[15:56:10.581] INFO  [life]   score=110.0
+[15:56:10.581] INFO  [life]   reason: NeedSkillTraining urgency 0.55 x 200 = 110.0
+[15:56:10.581] INFO  [life]   reason: Evaluating Intelligence 0.0 -> 100.0, gold 10000 (fee is quoted on arrival, roughly 300)
+[15:56:10.583] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew08.wystan/state.json
+[15:56:12.200] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:56:12.478] INFO  [n10_Wystan] [chat uni  ] : Caedmon train Meditation
+[15:56:12.478] INFO  [n10_Wystan] [chat ascii] Caedmon: For 300 gold I will train you in all I know of Meditation. For less gold I will teach you less
+[15:56:16.208] INFO  [n10_Wystan] [chat ascii] Caedmon: Let me show you something of how this is done
+[15:56:16.208] INFO  [n10_Wystan] [chat ascii] Caedmon: That is all I can teach.
+[15:56:17.255] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:56:19.537] INFO  [life] training: paid 300 for Evaluating Intelligence but the server still reports 0.0 after 15s
+[15:56:21.067] INFO  [life] training: asking the trainer about Evaluating Intelligence
+[15:56:21.067] INFO  [n10_Wystan] [ACTION] npc_train start
+[15:56:21.067] INFO  [n10_Wystan] [TRAIN] ask 0x000012EE say='Caedmon train EvaluatingIntel'
+[15:56:21.067] LOG   [n10_Wystan] event npc_train_ask: Caedmon train EvaluatingIntel
+[15:56:21.068] INFO  [n10_Wystan] [chat uni  ] : Caedmon train EvaluatingIntel
+[15:56:21.068] INFO  [n10_Wystan] [chat ascii] Caedmon: For 300 gold I will train you in all I know of EvaluatingIntel. For less gold I will teach you less
+[15:56:21.068] INFO  [n10_Wystan] [ACTION_RESULT] npc_train success (1ms) For 300 gold I will train you in all I know of EvaluatingIntel. For less gold I will teach you less
+[15:56:21.068] LOG   [n10_Wystan] event action_result: npc_train success took=1ms For 300 gold I will train you in all I know of EvaluatingIntel. For less gold I will teach you less
+[15:56:22.291] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:56:23.579] INFO  [n10_Wystan] [action] open backpack
+[15:56:23.579] INFO  [n10_Wystan] [backpack] opening 0x40012B10
+[15:56:23.579] INFO  [n10_Wystan] [0x24] open container 0x40012B10 gump=60
+[15:56:23.579] INFO  [n10_Wystan] [0x3C] container contents: 9 item(s)
+[15:56:24.819] INFO  [life] training: paying the quoted 300 gold for Evaluating Intelligence (purse 10000)
+[15:56:24.820] INFO  [n10_Wystan] [GIVE] 0x4000D497 x300 -> 0x000012EE (gold 10000)
+[15:56:24.820] INFO  [n10_Wystan] [ITEM] drag serial=0x4000D497 amount=300
+[15:56:24.820] INFO  [n10_Wystan] [ITEM] drop container=0x000012EE
+[15:56:24.820] LOG   [n10_Wystan] event npc_give: item=0x4000D497 amount=300 to=0x000012EE
+[15:56:24.820] INFO  [n10_Wystan] [chat ascii] Caedmon: Let me show you something of how this is done
+[15:56:24.820] INFO  [n10_Wystan] [chat ascii] Caedmon: That is all I can teach.
+[15:56:27.318] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:56:28.853] INFO  [n10_Wystan] [action] requesting the skill list
+[15:56:30.413] INFO  [life] goal_completed=TRAIN_AT_NPC progress=0
+[15:56:30.415] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew08.wystan/state.json
+[15:56:30.473] INFO  [life] goal=FILL_SPELLBOOK reason="no goal was running"
+[15:56:30.473] INFO  [life] needs considered: NeedSpells(spells 0.70) NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[15:56:30.473] INFO  [life]   score=77.0
+[15:56:30.473] INFO  [life]   reason: NeedSpells urgency 0.70 x 110 = 77.0
+[15:56:30.473] INFO  [life]   reason: spells 0/24 book=none magery 50.0 gold 9700 reserve 800 spare 8900 wealth 1.00
+[15:56:30.473] INFO  [life] spellbook: the mage is 5 tiles away -- walking up
+[15:56:30.473] INFO  [n10_Wystan] [travel] mobile 0x00001145 -> (1489,1548) r=1 from (1484,1547)
+[15:56:30.473] LOG   [n10_Wystan] event travel_start: label='mobile 0x00001145' target=(1489,1548) radius=1 from=(1484,1547)
+[15:56:30.473] INFO  [n10_Wystan] [travel] mode walk             usable   <- chosen
+[15:56:30.473] INFO  [n10_Wystan] [travel] mode moongate         usable
+[15:56:30.473] INFO  [n10_Wystan] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:56:30.473] INFO  [n10_Wystan] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:56:30.473] LOG   [n10_Wystan] event travel_mode: walk
+[15:56:30.473] INFO  [n10_Wystan] [travel] plan mobile 0x00001145: ok legs=1 ~5 tiles transit=0 nodes=0
+[15:56:30.535] INFO  [n10_Wystan] [action] goto finished at (1484,1547,45); target (1484,1546); stopped short (off by 1 tile(s))
+[15:56:30.535] LOG   [n10_Wystan] event goto_done: at=(1484,1547) target=(1484,1546) arrived=0 off=1
+[15:56:30.535] INFO  [n10_Wystan] [action] goto (1489,1548) from (1484,1547,45)
+[15:56:30.535] LOG   [n10_Wystan] event goto_start: target=(1489,1548) from=(1484,1547)
+[15:56:30.535] INFO  [n10_Wystan] [bot] running from (1484,1547,45) to (1489,1548,z70)
+[15:56:30.535] INFO  [n10_Wystan] [bot] planning path to (1489,1548) in background
+[15:56:32.088] INFO  [n10_Wystan] [action] goto finished at (1484,1547,45); target (1489,1548); stopped short (off by 6 tile(s))
+[15:56:32.088] LOG   [n10_Wystan] event goto_done: at=(1484,1547) target=(1489,1548) arrived=0 off=6
+[15:56:32.333] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:56:33.339] INFO  [n10_Wystan] [action] goto (1489,1548) from (1484,1547,45)
+[15:56:33.339] LOG   [n10_Wystan] event goto_start: target=(1489,1548) from=(1484,1547)
+[15:56:33.339] INFO  [n10_Wystan] [bot] running from (1484,1547,45) to (1489,1548,z70)
+[15:56:33.339] INFO  [n10_Wystan] [bot] planning path to (1489,1548) in background
+[15:56:33.401] INFO  [n10_Wystan] [bot] replan to (1489,1548): 12 steps in 2450.4us
+[15:56:37.342] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:56:37.879] INFO  [n10_Wystan] [travel] mobile 0x00001145 ARRIVED at (1490,1548,70)
+[15:56:37.879] LOG   [n10_Wystan] event travel_done: label='mobile 0x00001145' ok=1 at=(1490,1548) legs=1 plans=1 why=''
+[15:56:37.880] INFO  [life] spellbook: asking the mage to show a spellbook
+[15:56:37.880] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[15:56:37.880] INFO  [n10_Wystan] [VENDOR] open vendor=0x00001145 say='Alenne buy'
+[15:56:37.895] INFO  [n10_Wystan] [chat uni  ] : Alenne buy
+[15:56:37.895] INFO  [n10_Wystan] [chat ascii] Alenne: Good morrow!  How can I help thee?
+[15:56:37.895] INFO  [n10_Wystan] [chat ascii] Alenne: I got lots to sell!
+[15:56:37.895] INFO  [n10_Wystan] [0x3C] container contents: 17 item(s)
+[15:56:37.895] INFO  [n10_Wystan] [0x74] pairing: straight (straight 10, mirrored 1 of 17 rows)
+[15:56:37.895] INFO  [n10_Wystan] [0x74] vendor shop data: cont=0x4000113C 17 item(s), layer=0x1A
+[15:56:37.895] INFO  [n10_Wystan] [0x74]   Weaken Scroll                gfx=0x1F34 qty=12   price=20
+[15:56:37.895] INFO  [n10_Wystan] [0x74]   Agility Scroll               gfx=0x1F35 qty=15   price=21
+[15:56:37.895] INFO  [n10_Wystan] [0x74]   Telekinisis Scroll           gfx=0x1F41 qty=14   price=23
+[15:56:37.895] INFO  [n10_Wystan] [0x74]   Lightning Scroll             gfx=0x1F4A qty=14   price=29
+[15:56:37.895] INFO  [n10_Wystan] [0x74]   Bones                        gfx=0x0F7E qty=77   price=3
+[15:56:37.895] INFO  [n10_Wystan] [0x74]   pen and ink                  gfx=0x0FBF qty=10   price=13
+[15:56:37.895] INFO  [n10_Wystan] [0x74]   recall rune                  gfx=0x1F14 qty=3    price=21
+[15:56:37.895] INFO  [n10_Wystan] [0x74]   blank scrolls                gfx=0x0E34 qty=250  price=6
+[15:56:37.895] INFO  [n10_Wystan] [0x74]   Black Pearls                 gfx=0x0F7A qty=250  price=3
+[15:56:37.895] INFO  [n10_Wystan] [0x74]   Blood Moss                   gfx=0x0F7B qty=250  price=3
+[15:56:37.895] INFO  [n10_Wystan] [0x74]   Garlic                       gfx=0x0F84 qty=250  price=3
+[15:56:37.895] INFO  [n10_Wystan] [0x74]   Ginseng                      gfx=0x0F85 qty=250  price=3
+[15:56:37.895] INFO  [n10_Wystan] [0x74]   Mandrake Roots               gfx=0x0F86 qty=250  price=3
+[15:56:37.895] INFO  [n10_Wystan] [0x74]   Nightshade                   gfx=0x0F88 qty=250  price=3
+[15:56:37.895] INFO  [n10_Wystan] [0x74]   Sulfurous Ash                gfx=0x0F8C qty=250  price=3
+[15:56:37.895] INFO  [n10_Wystan] [0x74]   Spider's Silk                gfx=0x0F8D qty=250  price=3
+[15:56:37.895] INFO  [n10_Wystan] [0x74]   Spellbook                    gfx=0x0EFA qty=4    price=18
+[15:56:37.895] INFO  [n10_Wystan] [0x3C] container contents: 0 item(s)
+[15:56:37.895] INFO  [n10_Wystan] [0x74] vendor shop data: cont=0x40000841 0 item(s), layer=0x1B
+[15:56:37.895] INFO  [n10_Wystan] [VENDOR] offer from 0x00001145: 17 item(s)
+[15:56:37.895] INFO  [n10_Wystan] [VENDOR]   0x4001374F Weaken Scroll          x12  20 gp
+[15:56:37.895] INFO  [n10_Wystan] [VENDOR]   0x4001374E Agility Scroll         x15  21 gp
+[15:56:37.895] INFO  [n10_Wystan] [VENDOR]   0x4001374D Telekinisis Scroll     x14  23 gp
+[15:56:37.895] INFO  [n10_Wystan] [VENDOR]   0x4001374C Lightning Scroll       x14  29 gp
+[15:56:37.895] INFO  [n10_Wystan] [VENDOR]   0x4001374B Bones                  x77  3 gp
+[15:56:37.895] INFO  [n10_Wystan] [VENDOR]   0x4001374A pen and ink            x10  13 gp
+[15:56:37.895] INFO  [n10_Wystan] [VENDOR]   0x40013749 recall rune            x3   21 gp
+[15:56:37.895] INFO  [n10_Wystan] [VENDOR]   0x40013748 blank scrolls          x250 6 gp
+[15:56:37.895] LOG   [n10_Wystan] event vendor_offer: vendor=0x00001145 items=17
+[15:56:37.895] INFO  [n10_Wystan] [ACTION_RESULT] vendor_buy success (16ms) vendor offer received
+[15:56:37.895] LOG   [n10_Wystan] event action_result: vendor_buy success took=16ms vendor offer received
+[15:56:37.895] INFO  [n10_Wystan] [0x24] vendor buy gump for 0x00001145
+[15:56:38.459] INFO  [n10_Wystan] [bot] arrived at (1489,1548,70)
+[15:56:42.402] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:56:46.894] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[15:56:46.894] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[15:56:46.894] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[15:56:47.448] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:56:52.502] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:56:55.942] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[15:56:55.942] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[15:56:55.942] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[15:56:57.550] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:57:02.610] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:57:04.995] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[15:57:04.995] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[15:57:04.995] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[15:57:07.672] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:57:12.733] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:57:14.054] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[15:57:14.054] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[15:57:14.054] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[15:57:17.774] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:57:22.825] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:57:23.071] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[15:57:23.071] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[15:57:23.071] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[15:57:23.071] INFO  [life] goal_changed=FILL_SPELLBOOK from=FILL_SPELLBOOK reason="previous goal abandoned: attempts 5 >= 5"
+[15:57:23.071] INFO  [life] needs considered: NeedSpells(spells 0.70) NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[15:57:23.071] INFO  [life]   score=77.0
+[15:57:23.071] INFO  [life]   reason: NeedSpells urgency 0.70 x 110 = 77.0
+[15:57:23.071] INFO  [life]   reason: spells 0/24 book=none magery 50.0 gold 9700 reserve 800 spare 8900 wealth 1.00
+[15:57:27.846] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:57:30.453] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew08.wystan/state.json
+[15:57:32.100] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[15:57:32.100] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[15:57:32.100] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[15:57:32.882] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:57:37.944] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:57:41.101] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[15:57:41.101] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[15:57:41.101] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[15:57:42.965] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:57:44.295] INFO  [n10_Wystan] [chat ascii] Alenne: Well it was nice speaking to you Wystan but I must go about my business
+[15:57:47.972] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:57:50.118] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[15:57:50.118] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[15:57:50.118] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[15:57:52.997] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:57:58.016] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:57:59.153] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[15:57:59.153] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[15:57:59.153] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[15:58:03.052] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:58:08.059] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:58:08.181] INFO  [life] spellbook: the mage is 4 tiles away -- walking up
+[15:58:08.181] INFO  [n10_Wystan] [travel] mobile 0x00001145 -> (1485,1547) r=1 from (1489,1548)
+[15:58:08.181] LOG   [n10_Wystan] event travel_start: label='mobile 0x00001145' target=(1485,1547) radius=1 from=(1489,1548)
+[15:58:08.181] INFO  [n10_Wystan] [travel] mode walk             usable   <- chosen
+[15:58:08.181] INFO  [n10_Wystan] [travel] mode moongate         usable
+[15:58:08.181] INFO  [n10_Wystan] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:58:08.181] INFO  [n10_Wystan] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:58:08.181] LOG   [n10_Wystan] event travel_mode: walk
+[15:58:08.181] INFO  [n10_Wystan] [travel] plan mobile 0x00001145: ok legs=1 ~4 tiles transit=0 nodes=0
+[15:58:08.241] INFO  [n10_Wystan] [action] goto finished at (1489,1548,70); target (1489,1548); ARRIVED (off by 0 tile(s))
+[15:58:08.241] LOG   [n10_Wystan] event goto_done: at=(1489,1548) target=(1489,1548) arrived=1 off=0
+[15:58:08.241] INFO  [n10_Wystan] [action] goto (1485,1547) from (1489,1548,70)
+[15:58:08.241] LOG   [n10_Wystan] event goto_start: target=(1485,1547) from=(1489,1548)
+[15:58:08.241] INFO  [n10_Wystan] [bot] running from (1489,1548,70) to (1485,1547,z70)
+[15:58:08.241] INFO  [n10_Wystan] [bot] planning path to (1485,1547) in background
+[15:58:09.733] INFO  [n10_Wystan] [action] goto finished at (1489,1548,70); target (1485,1547); stopped short (off by 5 tile(s))
+[15:58:09.733] LOG   [n10_Wystan] event goto_done: at=(1489,1548) target=(1485,1547) arrived=0 off=5
+[15:58:10.960] INFO  [n10_Wystan] [action] goto (1485,1547) from (1489,1548,70)
+[15:58:10.960] LOG   [n10_Wystan] event goto_start: target=(1485,1547) from=(1489,1548)
+[15:58:10.960] INFO  [n10_Wystan] [bot] running from (1489,1548,70) to (1485,1547,z70)
+[15:58:10.960] INFO  [n10_Wystan] [bot] planning path to (1485,1547) in background
+[15:58:12.537] INFO  [n10_Wystan] [action] goto finished at (1489,1548,70); target (1485,1547); stopped short (off by 5 tile(s))
+[15:58:12.537] LOG   [n10_Wystan] event goto_done: at=(1489,1548) target=(1485,1547) arrived=0 off=5
+[15:58:13.108] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:58:13.738] INFO  [n10_Wystan] [action] goto (1485,1547) from (1489,1548,70)
+[15:58:13.738] LOG   [n10_Wystan] event goto_start: target=(1485,1547) from=(1489,1548)
+[15:58:13.738] INFO  [n10_Wystan] [bot] running from (1489,1548,70) to (1485,1547,z70)
+[15:58:13.738] INFO  [n10_Wystan] [bot] planning path to (1485,1547) in background
+[15:58:13.799] INFO  [n10_Wystan] [bot] replan to (1485,1547): 4 steps in 105.7us
+[15:58:14.565] INFO  [n10_Wystan] [travel] mode walk             usable   <- chosen
+[15:58:14.565] INFO  [n10_Wystan] [travel] mode moongate         usable
+[15:58:14.565] INFO  [n10_Wystan] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:58:14.565] INFO  [n10_Wystan] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:58:14.565] LOG   [n10_Wystan] event travel_mode: walk
+[15:58:14.565] INFO  [n10_Wystan] [travel] plan mobile 0x00001145: ok legs=1 ~2 tiles transit=0 nodes=0
+[15:58:14.627] INFO  [n10_Wystan] [action] goto finished at (1486,1548,70); target (1485,1547); stopped short (off by 2 tile(s))
+[15:58:14.627] LOG   [n10_Wystan] event goto_done: at=(1486,1548) target=(1485,1547) arrived=0 off=2
+[15:58:14.627] INFO  [n10_Wystan] [action] goto (1488,1547) from (1486,1548,70)
+[15:58:14.627] LOG   [n10_Wystan] event goto_start: target=(1488,1547) from=(1486,1548)
+[15:58:14.627] INFO  [n10_Wystan] [bot] running from (1486,1548,70) to (1488,1547,z70)
+[15:58:14.627] INFO  [n10_Wystan] [bot] planning path to (1488,1547) in background
+[15:58:16.507] INFO  [n10_Wystan] [action] goto finished at (1486,1548,70); target (1488,1547); stopped short (off by 3 tile(s))
+[15:58:16.507] LOG   [n10_Wystan] event goto_done: at=(1486,1548) target=(1488,1547) arrived=0 off=3
+[15:58:17.749] INFO  [n10_Wystan] [travel] mode walk             usable   <- chosen
+[15:58:17.750] INFO  [n10_Wystan] [travel] mode moongate         usable
+[15:58:17.750] INFO  [n10_Wystan] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:58:17.750] INFO  [n10_Wystan] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:58:17.750] LOG   [n10_Wystan] event travel_mode: walk
+[15:58:17.750] INFO  [n10_Wystan] [travel] plan mobile 0x00001145: ok legs=1 ~2 tiles transit=0 nodes=0
+[15:58:18.114] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:58:19.262] INFO  [n10_Wystan] [action] goto (1488,1547) from (1486,1548,70)
+[15:58:19.263] LOG   [n10_Wystan] event goto_start: target=(1488,1547) from=(1486,1548)
+[15:58:19.263] INFO  [n10_Wystan] [bot] running from (1486,1548,70) to (1488,1547,z70)
+[15:58:19.263] INFO  [n10_Wystan] [bot] planning path to (1488,1547) in background
+[15:58:19.322] INFO  [n10_Wystan] [bot] replan to (1488,1547): 2 steps in 113.5us
+[15:58:19.830] INFO  [n10_Wystan] [travel] mobile 0x00001145 ARRIVED at (1487,1547,70)
+[15:58:19.830] LOG   [n10_Wystan] event travel_done: label='mobile 0x00001145' ok=1 at=(1487,1547) legs=1 plans=2 why=''
+[15:58:19.847] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[15:58:19.847] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[15:58:19.847] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[15:58:19.907] INFO  [life] goal_changed=FILL_SPELLBOOK from=FILL_SPELLBOOK reason="previous goal abandoned: attempts 5 >= 5"
+[15:58:19.907] INFO  [life] needs considered: NeedSpells(spells 0.70) NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[15:58:19.907] INFO  [life]   score=77.0
+[15:58:19.907] INFO  [life]   reason: NeedSpells urgency 0.70 x 110 = 77.0
+[15:58:19.907] INFO  [life]   reason: spells 0/24 book=none magery 50.0 gold 9700 reserve 800 spare 8900 wealth 1.00
+[15:58:20.460] INFO  [n10_Wystan] [bot] arrived at (1488,1547,70)
+[15:58:23.167] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:58:28.195] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:58:28.899] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[15:58:28.899] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[15:58:28.899] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[15:58:30.455] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew08.wystan/state.json
+[15:58:33.206] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:58:37.928] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[15:58:37.928] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[15:58:37.928] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[15:58:38.217] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:58:43.233] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:58:46.937] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[15:58:46.937] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[15:58:46.938] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[15:58:48.288] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:58:53.291] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:58:55.954] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[15:58:55.954] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[15:58:55.955] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[15:58:58.301] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:59:03.320] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:59:05.012] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[15:59:05.012] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[15:59:05.012] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[15:59:05.074] INFO  [life] goal_changed=FILL_SPELLBOOK from=FILL_SPELLBOOK reason="previous goal abandoned: attempts 5 >= 5"
+[15:59:05.074] INFO  [life] needs considered: NeedSpells(spells 0.70) NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[15:59:05.074] INFO  [life]   score=77.0
+[15:59:05.074] INFO  [life]   reason: NeedSpells urgency 0.70 x 110 = 77.0
+[15:59:05.074] INFO  [life]   reason: spells 0/24 book=none magery 50.0 gold 9700 reserve 800 spare 8900 wealth 1.00
+[15:59:08.332] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:59:09.817] INFO  [n10_Wystan] [chat ascii] System: Nessa has arrived in Yew.
+[15:59:13.366] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:59:14.040] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[15:59:14.040] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[15:59:14.041] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[15:59:18.377] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:59:23.058] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[15:59:23.058] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[15:59:23.058] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[15:59:23.379] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:59:28.389] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:59:30.495] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew08.wystan/state.json
+[15:59:32.094] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[15:59:32.094] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[15:59:32.094] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[15:59:33.444] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:59:38.201] INFO  [n10_Wystan] [chat ascii] System: World save in 10 seconds
+[15:59:38.503] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:59:41.138] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[15:59:41.138] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[15:59:41.138] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[15:59:43.519] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:59:48.272] INFO  [n10_Wystan] [chat ascii] System: World save has been initiated.
+[15:59:48.519] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:59:50.197] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[15:59:50.197] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[15:59:50.197] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[15:59:50.257] INFO  [life] goal_changed=FILL_SPELLBOOK from=FILL_SPELLBOOK reason="previous goal abandoned: attempts 5 >= 5"
+[15:59:50.257] INFO  [life] needs considered: NeedSpells(spells 0.70) NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[15:59:50.257] INFO  [life]   score=77.0
+[15:59:50.257] INFO  [life]   reason: NeedSpells urgency 0.70 x 110 = 77.0
+[15:59:50.257] INFO  [life]   reason: spells 0/24 book=none magery 50.0 gold 9700 reserve 800 spare 8900 wealth 1.00
+[15:59:53.529] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:59:58.562] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[15:59:59.237] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[15:59:59.237] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[15:59:59.237] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:00:03.614] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:00:08.254] INFO  [life] spellbook: the mage is 4 tiles away -- walking up
+[16:00:08.254] INFO  [n10_Wystan] [travel] mobile 0x00001145 -> (1484,1547) r=1 from (1488,1547)
+[16:00:08.254] LOG   [n10_Wystan] event travel_start: label='mobile 0x00001145' target=(1484,1547) radius=1 from=(1488,1547)
+[16:00:08.254] INFO  [n10_Wystan] [travel] mode walk             usable   <- chosen
+[16:00:08.254] INFO  [n10_Wystan] [travel] mode moongate         usable
+[16:00:08.254] INFO  [n10_Wystan] [travel] mode loose_rune_recall no: no rune marked at that destination
+[16:00:08.254] INFO  [n10_Wystan] [travel] mode runebook_recall  no: no runebook page for that destination
+[16:00:08.254] LOG   [n10_Wystan] event travel_mode: walk
+[16:00:08.254] INFO  [n10_Wystan] [travel] plan mobile 0x00001145: ok legs=1 ~4 tiles transit=0 nodes=0
+[16:00:08.314] INFO  [n10_Wystan] [action] goto finished at (1488,1547,70); target (1488,1547); ARRIVED (off by 0 tile(s))
+[16:00:08.314] LOG   [n10_Wystan] event goto_done: at=(1488,1547) target=(1488,1547) arrived=1 off=0
+[16:00:08.314] INFO  [n10_Wystan] [action] goto (1484,1547) from (1488,1547,70)
+[16:00:08.314] LOG   [n10_Wystan] event goto_start: target=(1484,1547) from=(1488,1547)
+[16:00:08.314] INFO  [n10_Wystan] [bot] running from (1488,1547,70) to (1484,1547,z70)
+[16:00:08.314] INFO  [n10_Wystan] [bot] planning path to (1484,1547) in background
+[16:00:08.622] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:00:10.556] INFO  [n10_Wystan] [action] goto finished at (1488,1547,70); target (1484,1547); stopped short (off by 4 tile(s))
+[16:00:10.556] LOG   [n10_Wystan] event goto_done: at=(1488,1547) target=(1484,1547) arrived=0 off=4
+[16:00:11.805] INFO  [n10_Wystan] [action] goto (1484,1547) from (1488,1547,70)
+[16:00:11.805] LOG   [n10_Wystan] event goto_start: target=(1484,1547) from=(1488,1547)
+[16:00:11.805] INFO  [n10_Wystan] [bot] running from (1488,1547,70) to (1484,1547,z70)
+[16:00:11.805] INFO  [n10_Wystan] [bot] planning path to (1484,1547) in background
+[16:00:13.676] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:00:13.860] INFO  [n10_Wystan] [action] goto finished at (1488,1547,70); target (1484,1547); stopped short (off by 4 tile(s))
+[16:00:13.860] LOG   [n10_Wystan] event goto_done: at=(1488,1547) target=(1484,1547) arrived=0 off=4
+[16:00:15.114] INFO  [n10_Wystan] [travel] mode walk             usable   <- chosen
+[16:00:15.114] INFO  [n10_Wystan] [travel] mode moongate         usable
+[16:00:15.114] INFO  [n10_Wystan] [travel] mode loose_rune_recall no: no rune marked at that destination
+[16:00:15.114] INFO  [n10_Wystan] [travel] mode runebook_recall  no: no runebook page for that destination
+[16:00:15.114] LOG   [n10_Wystan] event travel_mode: walk
+[16:00:15.114] INFO  [n10_Wystan] [travel] plan mobile 0x00001145: ok legs=1 ~4 tiles transit=0 nodes=0
+[16:00:16.649] INFO  [n10_Wystan] [action] goto (1484,1547) from (1488,1547,70)
+[16:00:16.649] LOG   [n10_Wystan] event goto_start: target=(1484,1547) from=(1488,1547)
+[16:00:16.649] INFO  [n10_Wystan] [bot] running from (1488,1547,70) to (1484,1547,z70)
+[16:00:16.649] INFO  [n10_Wystan] [bot] planning path to (1484,1547) in background
+[16:00:18.714] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:00:19.233] INFO  [n10_Wystan] [action] goto finished at (1488,1547,70); target (1484,1547); stopped short (off by 4 tile(s))
+[16:00:19.233] LOG   [n10_Wystan] event goto_done: at=(1488,1547) target=(1484,1547) arrived=0 off=4
+[16:00:20.441] INFO  [n10_Wystan] [action] goto (1484,1547) from (1488,1547,70)
+[16:00:20.441] LOG   [n10_Wystan] event goto_start: target=(1484,1547) from=(1488,1547)
+[16:00:20.441] INFO  [n10_Wystan] [bot] running from (1488,1547,70) to (1484,1547,z70)
+[16:00:20.442] INFO  [n10_Wystan] [bot] planning path to (1484,1547) in background
+[16:00:22.035] INFO  [n10_Wystan] [action] goto finished at (1488,1547,70); target (1484,1547); stopped short (off by 4 tile(s))
+[16:00:22.035] LOG   [n10_Wystan] event goto_done: at=(1488,1547) target=(1484,1547) arrived=0 off=4
+[16:00:23.239] INFO  [n10_Wystan] [travel] mode walk             usable   <- chosen
+[16:00:23.239] INFO  [n10_Wystan] [travel] mode moongate         usable
+[16:00:23.239] INFO  [n10_Wystan] [travel] mode loose_rune_recall no: no rune marked at that destination
+[16:00:23.239] INFO  [n10_Wystan] [travel] mode runebook_recall  no: no runebook page for that destination
+[16:00:23.239] LOG   [n10_Wystan] event travel_mode: walk
+[16:00:23.239] INFO  [n10_Wystan] [travel] plan mobile 0x00001145: ok legs=1 ~4 tiles transit=0 nodes=0
+[16:00:23.731] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:00:26.288] INFO  [n10_Wystan] [action] goto (1484,1547) from (1488,1547,70)
+[16:00:26.288] LOG   [n10_Wystan] event goto_start: target=(1484,1547) from=(1488,1547)
+[16:00:26.288] INFO  [n10_Wystan] [bot] running from (1488,1547,70) to (1484,1547,z70)
+[16:00:26.288] INFO  [n10_Wystan] [bot] planning path to (1484,1547) in background
+[16:00:28.141] INFO  [n10_Wystan] [action] goto finished at (1488,1547,70); target (1484,1547); stopped short (off by 4 tile(s))
+[16:00:28.141] LOG   [n10_Wystan] event goto_done: at=(1488,1547) target=(1484,1547) arrived=0 off=4
+[16:00:28.766] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:00:29.385] INFO  [n10_Wystan] [action] goto (1484,1547) from (1488,1547,70)
+[16:00:29.385] LOG   [n10_Wystan] event goto_start: target=(1484,1547) from=(1488,1547)
+[16:00:29.385] INFO  [n10_Wystan] [bot] running from (1488,1547,70) to (1484,1547,z70)
+[16:00:29.385] INFO  [n10_Wystan] [bot] planning path to (1484,1547) in background
+[16:00:30.508] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew08.wystan/state.json
+[16:00:31.737] INFO  [n10_Wystan] [action] goto finished at (1488,1547,70); target (1484,1547); stopped short (off by 4 tile(s))
+[16:00:31.737] LOG   [n10_Wystan] event goto_done: at=(1488,1547) target=(1484,1547) arrived=0 off=4
+[16:00:32.941] INFO  [n10_Wystan] [travel] mode walk             usable   <- chosen
+[16:00:32.941] INFO  [n10_Wystan] [travel] mode moongate         usable
+[16:00:32.941] INFO  [n10_Wystan] [travel] mode loose_rune_recall no: no rune marked at that destination
+[16:00:32.941] INFO  [n10_Wystan] [travel] mode runebook_recall  no: no runebook page for that destination
+[16:00:32.941] LOG   [n10_Wystan] event travel_mode: walk
+[16:00:32.941] INFO  [n10_Wystan] [travel] plan mobile 0x00001145: ok legs=1 ~4 tiles transit=0 nodes=0
+[16:00:33.812] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:00:37.459] INFO  [n10_Wystan] [action] goto (1484,1547) from (1488,1547,70)
+[16:00:37.459] LOG   [n10_Wystan] event goto_start: target=(1484,1547) from=(1488,1547)
+[16:00:37.459] INFO  [n10_Wystan] [bot] running from (1488,1547,70) to (1484,1547,z70)
+[16:00:37.459] INFO  [n10_Wystan] [bot] planning path to (1484,1547) in background
+[16:00:38.819] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:00:39.642] INFO  [n10_Wystan] [action] goto finished at (1488,1547,70); target (1484,1547); stopped short (off by 4 tile(s))
+[16:00:39.642] LOG   [n10_Wystan] event goto_done: at=(1488,1547) target=(1484,1547) arrived=0 off=4
+[16:00:40.856] INFO  [n10_Wystan] [action] goto (1484,1547) from (1488,1547,70)
+[16:00:40.856] LOG   [n10_Wystan] event goto_start: target=(1484,1547) from=(1488,1547)
+[16:00:40.856] INFO  [n10_Wystan] [bot] running from (1488,1547,70) to (1484,1547,z70)
+[16:00:40.856] INFO  [n10_Wystan] [bot] planning path to (1484,1547) in background
+[16:00:43.137] INFO  [n10_Wystan] [action] goto finished at (1488,1547,70); target (1484,1547); stopped short (off by 4 tile(s))
+[16:00:43.137] LOG   [n10_Wystan] event goto_done: at=(1488,1547) target=(1484,1547) arrived=0 off=4
+[16:00:43.137] INFO  [n10_Wystan] [travel] mobile 0x00001145 ARRIVED at (1488,1547,70) -- arrived nearby; the destination tile was not free
+[16:00:43.137] LOG   [n10_Wystan] event travel_done: label='mobile 0x00001145' ok=1 at=(1488,1547) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[16:00:43.197] INFO  [life] spellbook: the mage is 4 tiles away -- walking up
+[16:00:43.197] INFO  [n10_Wystan] [travel] mobile 0x00001145 -> (1484,1547) r=1 from (1488,1547)
+[16:00:43.197] LOG   [n10_Wystan] event travel_start: label='mobile 0x00001145' target=(1484,1547) radius=1 from=(1488,1547)
+[16:00:43.198] INFO  [n10_Wystan] [travel] mode walk             usable   <- chosen
+[16:00:43.198] INFO  [n10_Wystan] [travel] mode moongate         usable
+[16:00:43.198] INFO  [n10_Wystan] [travel] mode loose_rune_recall no: no rune marked at that destination
+[16:00:43.198] INFO  [n10_Wystan] [travel] mode runebook_recall  no: no runebook page for that destination
+[16:00:43.198] LOG   [n10_Wystan] event travel_mode: walk
+[16:00:43.198] INFO  [n10_Wystan] [travel] plan mobile 0x00001145: ok legs=1 ~4 tiles transit=0 nodes=0
+[16:00:43.214] INFO  [n10_Wystan] [action] goto (1484,1547) from (1488,1547,70)
+[16:00:43.214] LOG   [n10_Wystan] event goto_start: target=(1484,1547) from=(1488,1547)
+[16:00:43.214] INFO  [n10_Wystan] [bot] running from (1488,1547,70) to (1484,1547,z70)
+[16:00:43.214] INFO  [n10_Wystan] [bot] planning path to (1484,1547) in background
+[16:00:43.826] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:00:45.512] INFO  [n10_Wystan] [action] goto finished at (1488,1547,70); target (1484,1547); stopped short (off by 4 tile(s))
+[16:00:45.512] LOG   [n10_Wystan] event goto_done: at=(1488,1547) target=(1484,1547) arrived=0 off=4
+[16:00:46.729] INFO  [n10_Wystan] [action] goto (1484,1547) from (1488,1547,70)
+[16:00:46.729] LOG   [n10_Wystan] event goto_start: target=(1484,1547) from=(1488,1547)
+[16:00:46.729] INFO  [n10_Wystan] [bot] running from (1488,1547,70) to (1484,1547,z70)
+[16:00:46.729] INFO  [n10_Wystan] [bot] planning path to (1484,1547) in background
+[16:00:48.551] INFO  [n10_Wystan] [action] goto finished at (1488,1547,70); target (1484,1547); stopped short (off by 4 tile(s))
+[16:00:48.551] LOG   [n10_Wystan] event goto_done: at=(1488,1547) target=(1484,1547) arrived=0 off=4
+[16:00:48.842] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:00:49.779] INFO  [n10_Wystan] [travel] mode walk             usable   <- chosen
+[16:00:49.779] INFO  [n10_Wystan] [travel] mode moongate         usable
+[16:00:49.779] INFO  [n10_Wystan] [travel] mode loose_rune_recall no: no rune marked at that destination
+[16:00:49.779] INFO  [n10_Wystan] [travel] mode runebook_recall  no: no runebook page for that destination
+[16:00:49.779] LOG   [n10_Wystan] event travel_mode: walk
+[16:00:49.779] INFO  [n10_Wystan] [travel] plan mobile 0x00001145: ok legs=1 ~4 tiles transit=0 nodes=0
+[16:00:51.336] INFO  [n10_Wystan] [action] goto (1484,1547) from (1488,1547,70)
+[16:00:51.336] LOG   [n10_Wystan] event goto_start: target=(1484,1547) from=(1488,1547)
+[16:00:51.336] INFO  [n10_Wystan] [bot] running from (1488,1547,70) to (1484,1547,z70)
+[16:00:51.336] INFO  [n10_Wystan] [bot] planning path to (1484,1547) in background
+[16:00:51.396] INFO  [n10_Wystan] [bot] replan to (1484,1547): 4 steps in 101.1us
+[16:00:52.295] INFO  [n10_Wystan] [travel] mobile 0x00001145 ARRIVED at (1485,1547,70)
+[16:00:52.295] LOG   [n10_Wystan] event travel_done: label='mobile 0x00001145' ok=1 at=(1485,1547) legs=1 plans=2 why=''
+[16:00:52.356] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:00:52.356] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:00:52.356] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=1ms Revolution vendor policy refuses this NPC purchase
+[16:00:52.557] INFO  [n10_Wystan] [bot] arrived at (1484,1547,70)
+[16:00:53.898] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:00:58.958] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:01:01.401] INFO  [life] spellbook: the mage is 5 tiles away -- walking up
+[16:01:01.401] INFO  [n10_Wystan] [travel] mobile 0x00001145 -> (1489,1548) r=1 from (1484,1547)
+[16:01:01.401] LOG   [n10_Wystan] event travel_start: label='mobile 0x00001145' target=(1489,1548) radius=1 from=(1484,1547)
+[16:01:01.401] INFO  [n10_Wystan] [travel] mode walk             usable   <- chosen
+[16:01:01.401] INFO  [n10_Wystan] [travel] mode moongate         usable
+[16:01:01.401] INFO  [n10_Wystan] [travel] mode loose_rune_recall no: no rune marked at that destination
+[16:01:01.401] INFO  [n10_Wystan] [travel] mode runebook_recall  no: no runebook page for that destination
+[16:01:01.401] LOG   [n10_Wystan] event travel_mode: walk
+[16:01:01.401] INFO  [n10_Wystan] [travel] plan mobile 0x00001145: ok legs=1 ~5 tiles transit=0 nodes=0
+[16:01:01.417] INFO  [n10_Wystan] [action] goto finished at (1484,1547,70); target (1484,1547); ARRIVED (off by 0 tile(s))
+[16:01:01.417] LOG   [n10_Wystan] event goto_done: at=(1484,1547) target=(1484,1547) arrived=1 off=0
+[16:01:01.417] INFO  [n10_Wystan] [action] goto (1489,1548) from (1484,1547,70)
+[16:01:01.417] LOG   [n10_Wystan] event goto_start: target=(1489,1548) from=(1484,1547)
+[16:01:01.417] INFO  [n10_Wystan] [bot] running from (1484,1547,70) to (1489,1548,z70)
+[16:01:01.417] INFO  [n10_Wystan] [bot] planning path to (1489,1548) in background
+[16:01:01.478] INFO  [n10_Wystan] [bot] replan to (1489,1548): 5 steps in 217.6us
+[16:01:02.501] INFO  [n10_Wystan] [travel] mobile 0x00001145 ARRIVED at (1488,1547,70)
+[16:01:02.501] LOG   [n10_Wystan] event travel_done: label='mobile 0x00001145' ok=1 at=(1488,1547) legs=1 plans=1 why=''
+[16:01:03.309] INFO  [n10_Wystan] [bot] arrived at (1489,1548,70)
+[16:01:03.432] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:01:03.432] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:01:03.432] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:01:03.999] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:01:09.019] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:01:12.478] INFO  [life] spellbook: the mage is 5 tiles away -- walking up
+[16:01:12.478] INFO  [n10_Wystan] [travel] mobile 0x00001145 -> (1484,1547) r=1 from (1489,1548)
+[16:01:12.478] LOG   [n10_Wystan] event travel_start: label='mobile 0x00001145' target=(1484,1547) radius=1 from=(1489,1548)
+[16:01:12.478] INFO  [n10_Wystan] [travel] mode walk             usable   <- chosen
+[16:01:12.478] INFO  [n10_Wystan] [travel] mode moongate         usable
+[16:01:12.478] INFO  [n10_Wystan] [travel] mode loose_rune_recall no: no rune marked at that destination
+[16:01:12.478] INFO  [n10_Wystan] [travel] mode runebook_recall  no: no runebook page for that destination
+[16:01:12.478] LOG   [n10_Wystan] event travel_mode: walk
+[16:01:12.478] INFO  [n10_Wystan] [travel] plan mobile 0x00001145: ok legs=1 ~5 tiles transit=0 nodes=0
+[16:01:12.539] INFO  [n10_Wystan] [action] goto finished at (1489,1548,70); target (1489,1548); ARRIVED (off by 0 tile(s))
+[16:01:12.539] LOG   [n10_Wystan] event goto_done: at=(1489,1548) target=(1489,1548) arrived=1 off=0
+[16:01:12.539] INFO  [n10_Wystan] [action] goto (1484,1547) from (1489,1548,70)
+[16:01:12.539] LOG   [n10_Wystan] event goto_start: target=(1484,1547) from=(1489,1548)
+[16:01:12.539] INFO  [n10_Wystan] [bot] running from (1489,1548,70) to (1484,1547,z70)
+[16:01:12.539] INFO  [n10_Wystan] [bot] planning path to (1484,1547) in background
+[16:01:14.061] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:01:14.184] INFO  [n10_Wystan] [action] goto finished at (1489,1548,70); target (1484,1547); stopped short (off by 6 tile(s))
+[16:01:14.184] LOG   [n10_Wystan] event goto_done: at=(1489,1548) target=(1484,1547) arrived=0 off=6
+[16:01:15.400] INFO  [n10_Wystan] [action] goto (1484,1547) from (1489,1548,70)
+[16:01:15.400] LOG   [n10_Wystan] event goto_start: target=(1484,1547) from=(1489,1548)
+[16:01:15.400] INFO  [n10_Wystan] [bot] running from (1489,1548,70) to (1484,1547,z70)
+[16:01:15.400] INFO  [n10_Wystan] [bot] planning path to (1484,1547) in background
+[16:01:17.216] INFO  [n10_Wystan] [action] goto finished at (1489,1548,70); target (1484,1547); stopped short (off by 6 tile(s))
+[16:01:17.216] LOG   [n10_Wystan] event goto_done: at=(1489,1548) target=(1484,1547) arrived=0 off=6
+[16:01:18.434] INFO  [n10_Wystan] [action] goto (1484,1547) from (1489,1548,70)
+[16:01:18.434] LOG   [n10_Wystan] event goto_start: target=(1484,1547) from=(1489,1548)
+[16:01:18.434] INFO  [n10_Wystan] [bot] running from (1489,1548,70) to (1484,1547,z70)
+[16:01:18.434] INFO  [n10_Wystan] [bot] planning path to (1484,1547) in background
+[16:01:19.112] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:01:20.844] INFO  [n10_Wystan] [action] goto finished at (1489,1548,70); target (1484,1547); stopped short (off by 6 tile(s))
+[16:01:20.844] LOG   [n10_Wystan] event goto_done: at=(1489,1548) target=(1484,1547) arrived=0 off=6
+[16:01:22.098] INFO  [n10_Wystan] [travel] mode walk             usable   <- chosen
+[16:01:22.098] INFO  [n10_Wystan] [travel] mode moongate         usable
+[16:01:22.098] INFO  [n10_Wystan] [travel] mode loose_rune_recall no: no rune marked at that destination
+[16:01:22.098] INFO  [n10_Wystan] [travel] mode runebook_recall  no: no runebook page for that destination
+[16:01:22.098] LOG   [n10_Wystan] event travel_mode: walk
+[16:01:22.098] INFO  [n10_Wystan] [travel] plan mobile 0x00001145: ok legs=1 ~5 tiles transit=0 nodes=0
+[16:01:23.601] INFO  [n10_Wystan] [action] goto (1484,1547) from (1489,1548,70)
+[16:01:23.601] LOG   [n10_Wystan] event goto_start: target=(1484,1547) from=(1489,1548)
+[16:01:23.601] INFO  [n10_Wystan] [bot] running from (1489,1548,70) to (1484,1547,z70)
+[16:01:23.601] INFO  [n10_Wystan] [bot] planning path to (1484,1547) in background
+[16:01:24.152] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:01:25.835] INFO  [n10_Wystan] [action] goto finished at (1489,1548,70); target (1484,1547); stopped short (off by 6 tile(s))
+[16:01:25.835] LOG   [n10_Wystan] event goto_done: at=(1489,1548) target=(1484,1547) arrived=0 off=6
+[16:01:27.092] INFO  [n10_Wystan] [action] goto (1484,1547) from (1489,1548,70)
+[16:01:27.092] LOG   [n10_Wystan] event goto_start: target=(1484,1547) from=(1489,1548)
+[16:01:27.092] INFO  [n10_Wystan] [bot] running from (1489,1548,70) to (1484,1547,z70)
+[16:01:27.092] INFO  [n10_Wystan] [bot] planning path to (1484,1547) in background
+[16:01:29.205] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:01:29.237] INFO  [n10_Wystan] [action] goto finished at (1489,1548,70); target (1484,1547); stopped short (off by 6 tile(s))
+[16:01:29.237] LOG   [n10_Wystan] event goto_done: at=(1489,1548) target=(1484,1547) arrived=0 off=6
+[16:01:30.450] INFO  [n10_Wystan] [travel] mode walk             usable   <- chosen
+[16:01:30.450] INFO  [n10_Wystan] [travel] mode moongate         usable
+[16:01:30.450] INFO  [n10_Wystan] [travel] mode loose_rune_recall no: no rune marked at that destination
+[16:01:30.450] INFO  [n10_Wystan] [travel] mode runebook_recall  no: no runebook page for that destination
+[16:01:30.450] LOG   [n10_Wystan] event travel_mode: walk
+[16:01:30.450] INFO  [n10_Wystan] [travel] plan mobile 0x00001145: ok legs=1 ~5 tiles transit=0 nodes=0
+[16:01:30.512] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew08.wystan/state.json
+[16:01:33.495] INFO  [n10_Wystan] [action] goto (1484,1547) from (1489,1548,70)
+[16:01:33.495] LOG   [n10_Wystan] event goto_start: target=(1484,1547) from=(1489,1548)
+[16:01:33.495] INFO  [n10_Wystan] [bot] running from (1489,1548,70) to (1484,1547,z70)
+[16:01:33.495] INFO  [n10_Wystan] [bot] planning path to (1484,1547) in background
+[16:01:34.244] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:01:35.232] INFO  [n10_Wystan] [action] goto finished at (1489,1548,70); target (1484,1547); stopped short (off by 6 tile(s))
+[16:01:35.232] LOG   [n10_Wystan] event goto_done: at=(1489,1548) target=(1484,1547) arrived=0 off=6
+[16:01:36.490] INFO  [n10_Wystan] [action] goto (1484,1547) from (1489,1548,70)
+[16:01:36.491] LOG   [n10_Wystan] event goto_start: target=(1484,1547) from=(1489,1548)
+[16:01:36.491] INFO  [n10_Wystan] [bot] running from (1489,1548,70) to (1484,1547,z70)
+[16:01:36.491] INFO  [n10_Wystan] [bot] planning path to (1484,1547) in background
+[16:01:36.552] INFO  [n10_Wystan] [bot] replan to (1484,1547): 6 steps in 221.6us
+[16:01:37.733] INFO  [n10_Wystan] [travel] mobile 0x00001145 ARRIVED at (1485,1548,70)
+[16:01:37.733] LOG   [n10_Wystan] event travel_done: label='mobile 0x00001145' ok=1 at=(1485,1548) legs=1 plans=3 why=''
+[16:01:37.734] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:01:37.734] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:01:37.734] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:01:38.611] INFO  [n10_Wystan] [bot] arrived at (1484,1547,70)
+[16:01:39.283] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:01:44.313] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:01:46.746] INFO  [life] spellbook: the mage is 5 tiles away -- walking up
+[16:01:46.746] INFO  [n10_Wystan] [travel] mobile 0x00001145 -> (1489,1547) r=1 from (1484,1547)
+[16:01:46.746] LOG   [n10_Wystan] event travel_start: label='mobile 0x00001145' target=(1489,1547) radius=1 from=(1484,1547)
+[16:01:46.746] INFO  [n10_Wystan] [travel] mode walk             usable   <- chosen
+[16:01:46.746] INFO  [n10_Wystan] [travel] mode moongate         usable
+[16:01:46.746] INFO  [n10_Wystan] [travel] mode loose_rune_recall no: no rune marked at that destination
+[16:01:46.746] INFO  [n10_Wystan] [travel] mode runebook_recall  no: no runebook page for that destination
+[16:01:46.746] LOG   [n10_Wystan] event travel_mode: walk
+[16:01:46.746] INFO  [n10_Wystan] [travel] plan mobile 0x00001145: ok legs=1 ~5 tiles transit=0 nodes=0
+[16:01:46.806] INFO  [n10_Wystan] [action] goto finished at (1484,1547,70); target (1484,1547); ARRIVED (off by 0 tile(s))
+[16:01:46.806] LOG   [n10_Wystan] event goto_done: at=(1484,1547) target=(1484,1547) arrived=1 off=0
+[16:01:46.806] INFO  [n10_Wystan] [action] goto (1489,1547) from (1484,1547,70)
+[16:01:46.806] LOG   [n10_Wystan] event goto_start: target=(1489,1547) from=(1484,1547)
+[16:01:46.806] INFO  [n10_Wystan] [bot] running from (1484,1547,70) to (1489,1547,z70)
+[16:01:46.806] INFO  [n10_Wystan] [bot] planning path to (1489,1547) in background
+[16:01:48.520] INFO  [n10_Wystan] [chat ascii] Alenne: I'm listenin'.
+[16:01:48.642] INFO  [n10_Wystan] [action] goto finished at (1484,1547,70); target (1489,1547); stopped short (off by 5 tile(s))
+[16:01:48.642] LOG   [n10_Wystan] event goto_done: at=(1484,1547) target=(1489,1547) arrived=0 off=5
+[16:01:49.318] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:01:49.868] INFO  [n10_Wystan] [action] goto (1489,1547) from (1484,1547,70)
+[16:01:49.868] LOG   [n10_Wystan] event goto_start: target=(1489,1547) from=(1484,1547)
+[16:01:49.869] INFO  [n10_Wystan] [bot] running from (1484,1547,70) to (1489,1547,z70)
+[16:01:49.869] INFO  [n10_Wystan] [bot] planning path to (1489,1547) in background
+[16:01:51.892] INFO  [n10_Wystan] [action] goto finished at (1484,1547,70); target (1489,1547); stopped short (off by 5 tile(s))
+[16:01:51.892] LOG   [n10_Wystan] event goto_done: at=(1484,1547) target=(1489,1547) arrived=0 off=5
+[16:01:53.148] INFO  [n10_Wystan] [travel] mode walk             usable   <- chosen
+[16:01:53.148] INFO  [n10_Wystan] [travel] mode moongate         usable
+[16:01:53.148] INFO  [n10_Wystan] [travel] mode loose_rune_recall no: no rune marked at that destination
+[16:01:53.148] INFO  [n10_Wystan] [travel] mode runebook_recall  no: no runebook page for that destination
+[16:01:53.148] LOG   [n10_Wystan] event travel_mode: walk
+[16:01:53.148] INFO  [n10_Wystan] [travel] plan mobile 0x00001145: ok legs=1 ~5 tiles transit=0 nodes=0
+[16:01:54.357] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:01:54.663] INFO  [n10_Wystan] [action] goto (1489,1547) from (1484,1547,70)
+[16:01:54.663] LOG   [n10_Wystan] event goto_start: target=(1489,1547) from=(1484,1547)
+[16:01:54.663] INFO  [n10_Wystan] [bot] running from (1484,1547,70) to (1489,1547,z70)
+[16:01:54.663] INFO  [n10_Wystan] [bot] planning path to (1489,1547) in background
+[16:01:54.726] INFO  [n10_Wystan] [bot] replan to (1489,1547): 5 steps in 102.4us
+[16:01:55.397] INFO  [n10_Wystan] [travel] mode walk             usable   <- chosen
+[16:01:55.397] INFO  [n10_Wystan] [travel] mode moongate         usable
+[16:01:55.397] INFO  [n10_Wystan] [travel] mode loose_rune_recall no: no rune marked at that destination
+[16:01:55.397] INFO  [n10_Wystan] [travel] mode runebook_recall  no: no runebook page for that destination
+[16:01:55.397] LOG   [n10_Wystan] event travel_mode: walk
+[16:01:55.397] INFO  [n10_Wystan] [travel] plan mobile 0x00001145: ok legs=1 ~2 tiles transit=0 nodes=0
+[16:01:55.458] INFO  [n10_Wystan] [action] goto finished at (1486,1547,70); target (1489,1547); stopped short (off by 3 tile(s))
+[16:01:55.458] LOG   [n10_Wystan] event goto_done: at=(1486,1547) target=(1489,1547) arrived=0 off=3
+[16:01:55.458] INFO  [n10_Wystan] [action] goto (1486,1549) from (1486,1547,70)
+[16:01:55.458] LOG   [n10_Wystan] event goto_start: target=(1486,1549) from=(1486,1547)
+[16:01:55.458] INFO  [n10_Wystan] [bot] running from (1486,1547,70) to (1486,1549,z70)
+[16:01:55.458] INFO  [n10_Wystan] [bot] planning path to (1486,1549) in background
+[16:01:57.725] INFO  [n10_Wystan] [action] goto finished at (1486,1547,70); target (1486,1549); stopped short (off by 2 tile(s))
+[16:01:57.725] LOG   [n10_Wystan] event goto_done: at=(1486,1547) target=(1486,1549) arrived=0 off=2
+[16:01:58.972] INFO  [n10_Wystan] [travel] mode walk             usable   <- chosen
+[16:01:58.972] INFO  [n10_Wystan] [travel] mode moongate         usable
+[16:01:58.972] INFO  [n10_Wystan] [travel] mode loose_rune_recall no: no rune marked at that destination
+[16:01:58.972] INFO  [n10_Wystan] [travel] mode runebook_recall  no: no runebook page for that destination
+[16:01:58.972] LOG   [n10_Wystan] event travel_mode: walk
+[16:01:58.972] INFO  [n10_Wystan] [travel] plan mobile 0x00001145: ok legs=1 ~2 tiles transit=0 nodes=0
+[16:01:59.390] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:02:00.513] INFO  [n10_Wystan] [action] goto (1486,1549) from (1486,1547,70)
+[16:02:00.513] LOG   [n10_Wystan] event goto_start: target=(1486,1549) from=(1486,1547)
+[16:02:00.513] INFO  [n10_Wystan] [bot] running from (1486,1547,70) to (1486,1549,z70)
+[16:02:00.513] INFO  [n10_Wystan] [bot] planning path to (1486,1549) in background
+[16:02:02.677] INFO  [n10_Wystan] [action] goto finished at (1486,1547,70); target (1486,1549); stopped short (off by 2 tile(s))
+[16:02:02.677] LOG   [n10_Wystan] event goto_done: at=(1486,1547) target=(1486,1549) arrived=0 off=2
+[16:02:03.885] INFO  [n10_Wystan] [travel] mode walk             usable   <- chosen
+[16:02:03.885] INFO  [n10_Wystan] [travel] mode moongate         usable
+[16:02:03.885] INFO  [n10_Wystan] [travel] mode loose_rune_recall no: no rune marked at that destination
+[16:02:03.885] INFO  [n10_Wystan] [travel] mode runebook_recall  no: no runebook page for that destination
+[16:02:03.885] LOG   [n10_Wystan] event travel_mode: walk
+[16:02:03.885] INFO  [n10_Wystan] [travel] plan mobile 0x00001145: ok legs=1 ~2 tiles transit=0 nodes=0
+[16:02:04.405] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:02:06.899] INFO  [n10_Wystan] [action] goto (1486,1549) from (1486,1547,70)
+[16:02:06.899] LOG   [n10_Wystan] event goto_start: target=(1486,1549) from=(1486,1547)
+[16:02:06.899] INFO  [n10_Wystan] [bot] running from (1486,1547,70) to (1486,1549,z70)
+[16:02:06.899] INFO  [n10_Wystan] [bot] planning path to (1486,1549) in background
+[16:02:06.961] INFO  [n10_Wystan] [bot] replan to (1486,1549): 2 steps in 63.1us
+[16:02:07.640] INFO  [n10_Wystan] [travel] mobile 0x00001145 ARRIVED at (1486,1548,70)
+[16:02:07.640] LOG   [n10_Wystan] event travel_done: label='mobile 0x00001145' ok=1 at=(1486,1548) legs=1 plans=3 why=''
+[16:02:07.641] INFO  [n10_Wystan] [bot] arrived at (1486,1549,70)
+[16:02:07.641] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:02:07.641] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:02:07.641] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:02:07.670] INFO  [life] goal_changed=FILL_SPELLBOOK from=FILL_SPELLBOOK reason="previous goal abandoned: attempts 5 >= 5"
+[16:02:07.670] INFO  [life] needs considered: NeedSpells(spells 0.70) NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[16:02:07.670] INFO  [life]   score=77.0
+[16:02:07.670] INFO  [life]   reason: NeedSpells urgency 0.70 x 110 = 77.0
+[16:02:07.670] INFO  [life]   reason: spells 0/24 book=none magery 50.0 gold 9700 reserve 800 spare 8900 wealth 1.00
+[16:02:09.419] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:02:14.436] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:02:16.687] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:02:16.687] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:02:16.687] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:02:19.488] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:02:24.512] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:02:25.689] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:02:25.689] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:02:25.689] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:02:29.524] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:02:30.571] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew08.wystan/state.json
+[16:02:34.535] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:02:34.734] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:02:34.734] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:02:34.734] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:02:39.549] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:02:43.741] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:02:43.741] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:02:43.741] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:02:44.568] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:02:49.580] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:02:52.750] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:02:52.750] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:02:52.750] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:02:52.810] INFO  [life] goal_changed=FILL_SPELLBOOK from=FILL_SPELLBOOK reason="previous goal abandoned: attempts 5 >= 5"
+[16:02:52.810] INFO  [life] needs considered: NeedSpells(spells 0.70) NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[16:02:52.810] INFO  [life]   score=77.0
+[16:02:52.810] INFO  [life]   reason: NeedSpells urgency 0.70 x 110 = 77.0
+[16:02:52.810] INFO  [life]   reason: spells 0/24 book=none magery 50.0 gold 9700 reserve 800 spare 8900 wealth 1.00
+[16:02:54.636] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:02:59.639] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:03:01.809] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:03:01.809] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:03:01.809] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:03:04.659] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:03:07.459] INFO  [n10_Wystan] [chat ascii] Shunnar: Hmm?
+[16:03:08.020] INFO  [n10_Wystan] [chat uni  ] : Alenne buy
+[16:03:09.691] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:03:10.829] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:03:10.829] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:03:10.829] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:03:14.699] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:03:16.494] INFO  [n10_Wystan] [chat ascii] Alenne: Hmm?
+[16:03:17.045] INFO  [n10_Wystan] [chat uni  ] : Alenne buy
+[16:03:17.045] INFO  [n10_Wystan] [chat ascii] Alenne: I'm here to sell thee supplies.
+[16:03:19.732] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:03:19.853] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:03:19.853] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:03:19.853] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:03:24.753] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:03:28.859] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:03:28.859] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:03:28.859] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:03:29.781] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:03:30.628] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew08.wystan/state.json
+[16:03:34.824] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:03:37.906] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:03:37.906] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:03:37.906] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:03:37.968] INFO  [life] goal_changed=FILL_SPELLBOOK from=FILL_SPELLBOOK reason="previous goal abandoned: attempts 5 >= 5"
+[16:03:37.968] INFO  [life] needs considered: NeedSpells(spells 0.70) NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[16:03:37.968] INFO  [life]   score=77.0
+[16:03:37.968] INFO  [life]   reason: NeedSpells urgency 0.70 x 110 = 77.0
+[16:03:37.968] INFO  [life]   reason: spells 0/24 book=none magery 50.0 gold 9700 reserve 800 spare 8900 wealth 1.00
+[16:03:39.877] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:03:44.901] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:03:46.910] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:03:46.910] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:03:46.910] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:03:49.066] INFO  [n10_Wystan] [chat ascii] System: Cassia has arrived in Yew.
+[16:03:49.940] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:03:54.948] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:03:55.944] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:03:55.944] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:03:55.944] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:03:59.984] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:04:05.000] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:04:05.000] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:04:05.000] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:04:05.000] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:04:10.058] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:04:14.025] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:04:14.025] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:04:14.025] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:04:15.074] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:04:20.127] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:04:21.293] INFO  [n10_Wystan] [chat ascii] Alenne: Here you are, Thessaly That will be 18 gold coins.  I thank thee for thy business.
+[16:04:23.043] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:04:23.043] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:04:23.043] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:04:23.105] INFO  [life] goal_changed=FILL_SPELLBOOK from=FILL_SPELLBOOK reason="previous goal abandoned: attempts 5 >= 5"
+[16:04:23.105] INFO  [life] needs considered: NeedSpells(spells 0.70) NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[16:04:23.105] INFO  [life]   score=77.0
+[16:04:23.105] INFO  [life]   reason: NeedSpells urgency 0.70 x 110 = 77.0
+[16:04:23.105] INFO  [life]   reason: spells 0/24 book=none magery 50.0 gold 9700 reserve 800 spare 8900 wealth 1.00
+[16:04:25.127] INFO  [n10_Wystan] [chat ascii] Shunnar: Hmm?
+[16:04:25.190] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:04:30.141] INFO  [n10_Wystan] [chat ascii] Alenne: Nice speaking to you Thessaly
+[16:04:30.200] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:04:30.354] INFO  [n10_Wystan] [chat ascii] Alenne: Here you are, Thessaly That will be 15 gold coins.  I thank thee for thy business.
+[16:04:30.663] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew08.wystan/state.json
+[16:04:32.060] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:04:32.061] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:04:32.061] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:04:35.251] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:04:38.612] INFO  [n10_Wystan] [chat ascii] System: World save in 10 seconds
+[16:04:40.266] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:04:41.103] INFO  [life] spellbook: the mage is 4 tiles away -- walking up
+[16:04:41.103] INFO  [n10_Wystan] [travel] mobile 0x00001145 -> (1490,1549) r=1 from (1486,1549)
+[16:04:41.103] LOG   [n10_Wystan] event travel_start: label='mobile 0x00001145' target=(1490,1549) radius=1 from=(1486,1549)
+[16:04:41.103] INFO  [n10_Wystan] [travel] mode walk             usable   <- chosen
+[16:04:41.103] INFO  [n10_Wystan] [travel] mode moongate         usable
+[16:04:41.103] INFO  [n10_Wystan] [travel] mode loose_rune_recall no: no rune marked at that destination
+[16:04:41.103] INFO  [n10_Wystan] [travel] mode runebook_recall  no: no runebook page for that destination
+[16:04:41.103] LOG   [n10_Wystan] event travel_mode: walk
+[16:04:41.103] INFO  [n10_Wystan] [travel] plan mobile 0x00001145: ok legs=1 ~4 tiles transit=0 nodes=0
+[16:04:41.165] INFO  [n10_Wystan] [action] goto finished at (1486,1549,70); target (1486,1549); ARRIVED (off by 0 tile(s))
+[16:04:41.165] LOG   [n10_Wystan] event goto_done: at=(1486,1549) target=(1486,1549) arrived=1 off=0
+[16:04:41.165] INFO  [n10_Wystan] [action] goto (1490,1549) from (1486,1549,70)
+[16:04:41.165] LOG   [n10_Wystan] event goto_start: target=(1490,1549) from=(1486,1549)
+[16:04:41.165] INFO  [n10_Wystan] [bot] running from (1486,1549,70) to (1490,1549,z70)
+[16:04:41.165] INFO  [n10_Wystan] [bot] planning path to (1490,1549) in background
+[16:04:42.727] INFO  [n10_Wystan] [action] goto finished at (1486,1549,70); target (1490,1549); stopped short (off by 4 tile(s))
+[16:04:42.727] LOG   [n10_Wystan] event goto_done: at=(1486,1549) target=(1490,1549) arrived=0 off=4
+[16:04:43.986] INFO  [n10_Wystan] [action] goto (1490,1549) from (1486,1549,70)
+[16:04:43.986] LOG   [n10_Wystan] event goto_start: target=(1490,1549) from=(1486,1549)
+[16:04:43.986] INFO  [n10_Wystan] [bot] running from (1486,1549,70) to (1490,1549,z70)
+[16:04:43.986] INFO  [n10_Wystan] [bot] planning path to (1490,1549) in background
+[16:04:44.047] INFO  [n10_Wystan] [bot] replan to (1490,1549): 5 steps in 170.6us
+[16:04:45.322] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:04:45.446] INFO  [n10_Wystan] [travel] mode walk             usable   <- chosen
+[16:04:45.446] INFO  [n10_Wystan] [travel] mode moongate         usable
+[16:04:45.446] INFO  [n10_Wystan] [travel] mode loose_rune_recall no: no rune marked at that destination
+[16:04:45.446] INFO  [n10_Wystan] [travel] mode runebook_recall  no: no runebook page for that destination
+[16:04:45.446] LOG   [n10_Wystan] event travel_mode: walk
+[16:04:45.446] INFO  [n10_Wystan] [travel] plan mobile 0x00001145: ok legs=1 ~2 tiles transit=0 nodes=0
+[16:04:45.507] INFO  [n10_Wystan] [action] goto finished at (1489,1548,70); target (1490,1549); stopped short (off by 2 tile(s))
+[16:04:45.507] LOG   [n10_Wystan] event goto_done: at=(1489,1548) target=(1490,1549) arrived=0 off=2
+[16:04:45.507] INFO  [n10_Wystan] [action] goto (1487,1549) from (1489,1548,70)
+[16:04:45.507] LOG   [n10_Wystan] event goto_start: target=(1487,1549) from=(1489,1548)
+[16:04:45.507] INFO  [n10_Wystan] [bot] running from (1489,1548,70) to (1487,1549,z70)
+[16:04:45.508] INFO  [n10_Wystan] [bot] planning path to (1487,1549) in background
+[16:04:47.159] INFO  [n10_Wystan] [action] goto finished at (1489,1548,70); target (1487,1549); stopped short (off by 3 tile(s))
+[16:04:47.159] LOG   [n10_Wystan] event goto_done: at=(1489,1548) target=(1487,1549) arrived=0 off=3
+[16:04:48.365] INFO  [n10_Wystan] [travel] mode walk             usable   <- chosen
+[16:04:48.365] INFO  [n10_Wystan] [travel] mode moongate         usable
+[16:04:48.365] INFO  [n10_Wystan] [travel] mode loose_rune_recall no: no rune marked at that destination
+[16:04:48.365] INFO  [n10_Wystan] [travel] mode runebook_recall  no: no runebook page for that destination
+[16:04:48.365] LOG   [n10_Wystan] event travel_mode: walk
+[16:04:48.365] INFO  [n10_Wystan] [travel] plan mobile 0x00001145: ok legs=1 ~2 tiles transit=0 nodes=0
+[16:04:48.654] INFO  [n10_Wystan] [chat ascii] System: World save has been initiated.
+[16:04:49.904] INFO  [n10_Wystan] [action] goto (1487,1549) from (1489,1548,70)
+[16:04:49.904] LOG   [n10_Wystan] event goto_start: target=(1487,1549) from=(1489,1548)
+[16:04:49.904] INFO  [n10_Wystan] [bot] running from (1489,1548,70) to (1487,1549,z70)
+[16:04:49.904] INFO  [n10_Wystan] [bot] planning path to (1487,1549) in background
+[16:04:50.337] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:04:51.664] INFO  [n10_Wystan] [action] goto finished at (1489,1548,70); target (1487,1549); stopped short (off by 3 tile(s))
+[16:04:51.664] LOG   [n10_Wystan] event goto_done: at=(1489,1548) target=(1487,1549) arrived=0 off=3
+[16:04:52.864] INFO  [n10_Wystan] [travel] mode walk             usable   <- chosen
+[16:04:52.864] INFO  [n10_Wystan] [travel] mode moongate         usable
+[16:04:52.864] INFO  [n10_Wystan] [travel] mode loose_rune_recall no: no rune marked at that destination
+[16:04:52.864] INFO  [n10_Wystan] [travel] mode runebook_recall  no: no runebook page for that destination
+[16:04:52.864] LOG   [n10_Wystan] event travel_mode: walk
+[16:04:52.864] INFO  [n10_Wystan] [travel] plan mobile 0x00001145: ok legs=1 ~2 tiles transit=0 nodes=0
+[16:04:55.394] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:04:55.868] INFO  [n10_Wystan] [action] goto (1487,1549) from (1489,1548,70)
+[16:04:55.868] LOG   [n10_Wystan] event goto_start: target=(1487,1549) from=(1489,1548)
+[16:04:55.868] INFO  [n10_Wystan] [bot] running from (1489,1548,70) to (1487,1549,z70)
+[16:04:55.869] INFO  [n10_Wystan] [bot] planning path to (1487,1549) in background
+[16:04:55.929] INFO  [n10_Wystan] [bot] replan to (1487,1549): 3 steps in 53.6us
+[16:04:57.119] INFO  [n10_Wystan] [travel] mobile 0x00001145 ARRIVED at (1488,1549,70)
+[16:04:57.119] LOG   [n10_Wystan] event travel_done: label='mobile 0x00001145' ok=1 at=(1488,1549) legs=1 plans=3 why=''
+[16:04:57.120] INFO  [n10_Wystan] [bot] arrived at (1487,1549,70)
+[16:04:57.120] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:04:57.120] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:04:57.120] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=1ms Revolution vendor policy refuses this NPC purchase
+[16:05:00.452] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:05:05.514] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:05:06.127] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:05:06.127] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:05:06.127] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:05:09.928] INFO  [n10_Wystan] [chat ascii] Alenne: Here you are, Thessaly That will be 30 gold coins.  I thank thee for thy business.
+[16:05:10.542] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:05:15.152] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:05:15.152] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:05:15.152] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:05:15.562] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:05:18.971] INFO  [n10_Wystan] [chat ascii] Alenne: Here you are, Thessaly That will be 15 gold coins.  I thank thee for thy business.
+[16:05:20.571] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:05:24.157] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:05:24.157] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:05:24.157] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:05:24.217] INFO  [life] goal_changed=FILL_SPELLBOOK from=FILL_SPELLBOOK reason="previous goal abandoned: attempts 5 >= 5"
+[16:05:24.217] INFO  [life] needs considered: NeedSpells(spells 0.70) NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[16:05:24.217] INFO  [life]   score=77.0
+[16:05:24.217] INFO  [life]   reason: NeedSpells urgency 0.70 x 110 = 77.0
+[16:05:24.217] INFO  [life]   reason: spells 0/24 book=none magery 50.0 gold 9700 reserve 800 spare 8900 wealth 1.00
+[16:05:25.580] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:05:30.618] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:05:30.682] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew08.wystan/state.json
+[16:05:33.162] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:05:33.162] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:05:33.162] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:05:35.663] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:05:40.686] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:05:42.162] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:05:42.162] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:05:42.162] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:05:45.715] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:05:50.739] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:05:51.213] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:05:51.213] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:05:51.213] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:05:55.758] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:06:00.234] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:06:00.234] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:06:00.234] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:06:00.802] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:06:05.822] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:06:09.287] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:06:09.287] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:06:09.287] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=1ms Revolution vendor policy refuses this NPC purchase
+[16:06:09.302] INFO  [life] goal_changed=FILL_SPELLBOOK from=FILL_SPELLBOOK reason="previous goal abandoned: attempts 5 >= 5"
+[16:06:09.302] INFO  [life] needs considered: NeedSpells(spells 0.70) NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[16:06:09.302] INFO  [life]   score=77.0
+[16:06:09.302] INFO  [life]   reason: NeedSpells urgency 0.70 x 110 = 77.0
+[16:06:09.302] INFO  [life]   reason: spells 0/24 book=none magery 50.0 gold 9700 reserve 800 spare 8900 wealth 1.00
+[16:06:10.869] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:06:15.929] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:06:16.606] INFO  [n10_Wystan] [chat ascii] Alenne: Here you are, Thessaly That will be 30 gold coins.  I thank thee for thy business.
+[16:06:18.328] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:06:18.328] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:06:18.328] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:06:20.983] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:06:25.653] INFO  [n10_Wystan] [chat ascii] Alenne: Here you are, Thessaly That will be 15 gold coins.  I thank thee for thy business.
+[16:06:26.017] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:06:27.371] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:06:27.371] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:06:27.371] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:06:30.683] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew08.wystan/state.json
+[16:06:31.035] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:06:36.037] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:06:36.389] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:06:36.389] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:06:36.389] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:06:39.469] INFO  [n10_Wystan] [chat ascii] Alenne: Hmm? Oh! Tis thee, Observer!
+[16:06:41.045] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:06:45.439] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:06:45.439] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:06:45.439] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:06:46.094] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:06:51.141] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:06:52.371] INFO  [n10_Wystan] [chat ascii] Alenne: I'm listenin'.
+[16:06:53.087] INFO  [n10_Wystan] [gump] 0x00000024 context=0xB800012B: 0 option(s), 1 text(s)
+[16:06:53.087] INFO  [n10_Wystan] [gump]   text 0 = ''
+[16:06:53.087] LOG   [n10_Wystan] event gump_open: serial=0x00000024 context=0xB800012B options=0
+[16:06:54.464] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:06:54.464] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:06:54.464] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:06:54.525] INFO  [life] goal_changed=FILL_SPELLBOOK from=FILL_SPELLBOOK reason="previous goal abandoned: attempts 5 >= 5"
+[16:06:54.525] INFO  [life] needs considered: NeedSpells(spells 0.70) NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[16:06:54.525] INFO  [life]   score=77.0
+[16:06:54.525] INFO  [life]   reason: NeedSpells urgency 0.70 x 110 = 77.0
+[16:06:54.525] INFO  [life]   reason: spells 0/24 book=none magery 50.0 gold 9700 reserve 800 spare 8900 wealth 1.00
+[16:06:55.064] INFO  [n10_Wystan] [gump] 0x00000001 context=0x2C00012B: 0 option(s), 1 text(s)
+[16:06:55.064] INFO  [n10_Wystan] [gump]   text 0 = ''
+[16:06:55.064] LOG   [n10_Wystan] event gump_open: serial=0x00000001 context=0x2C00012B options=0
+[16:06:56.155] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:07:01.184] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:07:03.485] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:07:03.485] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:07:03.485] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:07:06.190] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:07:10.236] INFO  [n10_Wystan] [gump] 0x00000001 context=0x2C00012B: 0 option(s), 1 text(s)
+[16:07:10.237] INFO  [n10_Wystan] [gump]   text 0 = ''
+[16:07:10.237] LOG   [n10_Wystan] event gump_open: serial=0x00000001 context=0x2C00012B options=0
+[16:07:11.232] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:07:12.026] INFO  [n10_Wystan] [gump] 0x00000024 context=0x2D00012B: 0 option(s), 1 text(s)
+[16:07:12.026] INFO  [n10_Wystan] [gump]   text 0 = ''
+[16:07:12.026] LOG   [n10_Wystan] event gump_open: serial=0x00000024 context=0x2D00012B options=0
+[16:07:12.523] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:07:12.523] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:07:12.523] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:07:16.287] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:07:21.334] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:07:21.579] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:07:21.579] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:07:21.579] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:07:26.356] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:07:30.580] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:07:30.580] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:07:30.580] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:07:30.706] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew08.wystan/state.json
+[16:07:31.377] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:07:36.427] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:07:39.585] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:07:39.585] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:07:39.585] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:07:39.645] INFO  [life] goal_changed=FILL_SPELLBOOK from=FILL_SPELLBOOK reason="previous goal abandoned: attempts 5 >= 5"
+[16:07:39.645] INFO  [life] needs considered: NeedSpells(spells 0.70) NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[16:07:39.645] INFO  [life]   score=77.0
+[16:07:39.645] INFO  [life]   reason: NeedSpells urgency 0.70 x 110 = 77.0
+[16:07:39.645] INFO  [life]   reason: spells 0/24 book=none magery 50.0 gold 9700 reserve 800 spare 8900 wealth 1.00
+[16:07:41.489] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:07:46.546] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:07:48.605] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:07:48.605] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:07:48.605] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:07:51.565] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:07:56.618] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:07:57.659] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:07:57.659] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:07:57.659] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:08:01.651] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:08:06.669] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:08:06.669] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:08:06.669] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:08:06.669] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:08:11.672] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:08:15.723] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:08:15.723] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:08:15.723] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:08:16.713] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:08:18.217] INFO  [n10_Wystan] [chat ascii] Alenne: I'm listenin'.
+[16:08:21.735] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:08:24.759] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:08:24.759] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:08:24.759] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:08:24.820] INFO  [life] goal_changed=FILL_SPELLBOOK from=FILL_SPELLBOOK reason="previous goal abandoned: attempts 5 >= 5"
+[16:08:24.820] INFO  [life] needs considered: NeedSpells(spells 0.70) NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[16:08:24.820] INFO  [life]   score=77.0
+[16:08:24.820] INFO  [life]   reason: NeedSpells urgency 0.70 x 110 = 77.0
+[16:08:24.820] INFO  [life]   reason: spells 0/24 book=none magery 50.0 gold 9700 reserve 800 spare 8900 wealth 1.00
+[16:08:26.750] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:08:30.741] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew08.wystan/state.json
+[16:08:31.779] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:08:33.806] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:08:33.806] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:08:33.806] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:08:36.782] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:08:41.808] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:08:42.865] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:08:42.865] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:08:42.865] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:08:46.831] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:08:51.865] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:08:51.865] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:08:51.865] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:08:51.865] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:08:56.867] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:09:00.873] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:09:00.873] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:09:00.873] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:09:01.909] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:09:06.938] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:09:09.930] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:09:09.930] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:09:09.930] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:09:09.991] INFO  [life] goal_changed=FILL_SPELLBOOK from=FILL_SPELLBOOK reason="previous goal abandoned: attempts 5 >= 5"
+[16:09:09.991] INFO  [life] needs considered: NeedSpells(spells 0.70) NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[16:09:09.991] INFO  [life]   score=77.0
+[16:09:09.991] INFO  [life]   reason: NeedSpells urgency 0.70 x 110 = 77.0
+[16:09:09.991] INFO  [life]   reason: spells 0/24 book=none magery 50.0 gold 9700 reserve 800 spare 8900 wealth 1.00
+[16:09:11.943] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:09:16.974] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:09:18.988] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:09:18.988] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:09:18.988] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:09:22.025] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:09:27.071] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:09:28.037] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:09:28.037] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:09:28.037] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=1ms Revolution vendor policy refuses this NPC purchase
+[16:09:30.754] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew08.wystan/state.json
+[16:09:32.116] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:09:37.062] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:09:37.062] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:09:37.062] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:09:37.124] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:09:39.017] INFO  [n10_Wystan] [chat ascii] System: World save in 10 seconds
+[16:09:42.128] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:09:46.110] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:09:46.110] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:09:46.110] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:09:47.165] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:09:49.040] INFO  [n10_Wystan] [chat ascii] System: World save has been initiated.
+[16:09:52.179] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:09:55.139] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:09:55.139] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:09:55.139] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:09:55.201] INFO  [life] goal_changed=FILL_SPELLBOOK from=FILL_SPELLBOOK reason="previous goal abandoned: attempts 5 >= 5"
+[16:09:55.201] INFO  [life] needs considered: NeedSpells(spells 0.70) NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[16:09:55.201] INFO  [life]   score=77.0
+[16:09:55.201] INFO  [life]   reason: NeedSpells urgency 0.70 x 110 = 77.0
+[16:09:55.201] INFO  [life]   reason: spells 0/24 book=none magery 50.0 gold 9700 reserve 800 spare 8900 wealth 1.00
+[16:09:57.180] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:10:02.191] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:10:04.150] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:10:04.150] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:10:04.150] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:10:07.195] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:10:12.207] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:10:13.150] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:10:13.150] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:10:13.150] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:10:17.248] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:10:22.208] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:10:22.208] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:10:22.208] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:10:22.268] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:10:27.295] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:10:30.757] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew08.wystan/state.json
+[16:10:31.245] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:10:31.245] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:10:31.245] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:10:32.350] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:10:37.354] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:10:40.267] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:10:40.267] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:10:40.267] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:10:40.328] INFO  [life] goal_changed=FILL_SPELLBOOK from=FILL_SPELLBOOK reason="previous goal abandoned: attempts 5 >= 5"
+[16:10:40.328] INFO  [life] needs considered: NeedSpells(spells 0.70) NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[16:10:40.328] INFO  [life]   score=77.0
+[16:10:40.328] INFO  [life]   reason: NeedSpells urgency 0.70 x 110 = 77.0
+[16:10:40.328] INFO  [life]   reason: spells 0/24 book=none magery 50.0 gold 9700 reserve 800 spare 8900 wealth 1.00
+[16:10:42.381] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:10:47.409] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:10:49.269] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:10:49.269] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:10:49.269] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:10:52.468] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:10:57.492] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:10:58.292] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:10:58.292] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:10:58.293] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:11:02.493] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:11:07.323] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:11:07.323] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:11:07.323] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:11:07.507] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:11:12.516] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:11:16.346] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:11:16.346] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:11:16.346] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:11:17.558] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:11:22.576] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:11:25.376] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:11:25.376] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:11:25.376] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:11:25.436] INFO  [life] goal_changed=FILL_SPELLBOOK from=FILL_SPELLBOOK reason="previous goal abandoned: attempts 5 >= 5"
+[16:11:25.436] INFO  [life] needs considered: NeedSpells(spells 0.70) NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[16:11:25.436] INFO  [life]   score=77.0
+[16:11:25.436] INFO  [life]   reason: NeedSpells urgency 0.70 x 110 = 77.0
+[16:11:25.436] INFO  [life]   reason: spells 0/24 book=none magery 50.0 gold 9700 reserve 800 spare 8900 wealth 1.00
+[16:11:27.597] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:11:30.790] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew08.wystan/state.json
+[16:11:32.635] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:11:34.434] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:11:34.434] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:11:34.434] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:11:37.668] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:11:42.681] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:11:43.495] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:11:43.495] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:11:43.495] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:11:47.728] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:11:52.511] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:11:52.511] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:11:52.511] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:11:52.757] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:11:55.185] INFO  [n10_Wystan] [chat ascii] Alenne: Aye?
+[16:11:57.780] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:12:01.564] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:12:01.564] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:12:01.564] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:12:02.821] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:12:06.392] INFO  [n10_Wystan] [chat ascii] Alenne: Here you are, Thessaly That will be 275 gold coins.  I thank thee for thy business.
+[16:12:07.861] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:12:10.579] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:12:10.579] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:12:10.579] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:12:10.642] INFO  [life] goal_changed=FILL_SPELLBOOK from=FILL_SPELLBOOK reason="previous goal abandoned: attempts 5 >= 5"
+[16:12:10.642] INFO  [life] needs considered: NeedSpells(spells 0.70) NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[16:12:10.642] INFO  [life]   score=77.0
+[16:12:10.642] INFO  [life]   reason: NeedSpells urgency 0.70 x 110 = 77.0
+[16:12:10.642] INFO  [life]   reason: spells 0/24 book=none magery 50.0 gold 9700 reserve 800 spare 8900 wealth 1.00
+[16:12:12.890] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:12:15.448] INFO  [n10_Wystan] [chat ascii] Alenne: Here you are, Thessaly That will be 275 gold coins.  I thank thee for thy business.
+[16:12:17.908] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:12:19.581] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:12:19.581] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:12:19.581] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:12:22.917] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:12:27.945] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:12:28.620] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:12:28.620] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:12:28.620] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:12:30.824] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew08.wystan/state.json
+[16:12:32.973] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:12:33.524] INFO  [n10_Wystan] [chat ascii] Alenne: Your order cannot be fulfilled, please try again.
+[16:12:37.652] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:12:37.652] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:12:37.652] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=1ms Revolution vendor policy refuses this NPC purchase
+[16:12:38.017] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:12:42.536] INFO  [n10_Wystan] [chat ascii] Alenne: Your order cannot be fulfilled, please try again.
+[16:12:43.026] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:12:46.705] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:12:46.705] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:12:46.705] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:12:48.085] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:12:51.594] INFO  [n10_Wystan] [chat ascii] Alenne: Your order cannot be fulfilled, please try again.
+[16:12:53.129] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:12:55.765] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:12:55.765] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:12:55.765] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:12:55.826] INFO  [life] goal_changed=FILL_SPELLBOOK from=FILL_SPELLBOOK reason="previous goal abandoned: attempts 5 >= 5"
+[16:12:55.826] INFO  [life] needs considered: NeedSpells(spells 0.70) NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[16:12:55.827] INFO  [life]   score=77.0
+[16:12:55.827] INFO  [life]   reason: NeedSpells urgency 0.70 x 110 = 77.0
+[16:12:55.827] INFO  [life]   reason: spells 0/24 book=none magery 50.0 gold 9700 reserve 800 spare 8900 wealth 1.00
+[16:12:58.178] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:13:00.648] INFO  [n10_Wystan] [chat ascii] Alenne: Your order cannot be fulfilled, please try again.
+[16:13:03.199] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:13:04.774] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:13:04.774] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:13:04.774] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:13:08.238] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:13:09.717] INFO  [n10_Wystan] [chat ascii] Alenne: Your order cannot be fulfilled, please try again.
+[16:13:13.300] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:13:13.789] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:13:13.789] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:13:13.789] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:13:18.326] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:13:18.772] INFO  [n10_Wystan] [chat ascii] Alenne: Your order cannot be fulfilled, please try again.
+[16:13:19.033] INFO  [n10_Wystan] [chat ascii] Alenne: Hmm?
+[16:13:22.798] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:13:22.798] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:13:22.798] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:13:23.353] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:13:27.800] INFO  [n10_Wystan] [chat ascii] Alenne: Your order cannot be fulfilled, please try again.
+[16:13:28.382] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:13:30.826] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew08.wystan/state.json
+[16:13:31.852] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:13:31.852] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:13:31.852] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=1ms Revolution vendor policy refuses this NPC purchase
+[16:13:33.441] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:13:36.868] INFO  [n10_Wystan] [chat ascii] Alenne: Your order cannot be fulfilled, please try again.
+[16:13:38.495] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:13:40.884] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:13:40.885] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:13:40.885] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:13:40.945] INFO  [life] goal_changed=FILL_SPELLBOOK from=FILL_SPELLBOOK reason="previous goal abandoned: attempts 5 >= 5"
+[16:13:40.945] INFO  [life] needs considered: NeedSpells(spells 0.70) NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[16:13:40.945] INFO  [life]   score=77.0
+[16:13:40.945] INFO  [life]   reason: NeedSpells urgency 0.70 x 110 = 77.0
+[16:13:40.945] INFO  [life]   reason: spells 0/24 book=none magery 50.0 gold 9700 reserve 800 spare 8900 wealth 1.00
+[16:13:43.549] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:13:45.902] INFO  [n10_Wystan] [chat ascii] Alenne: Your order cannot be fulfilled, please try again.
+[16:13:48.610] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:13:49.939] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:13:49.939] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:13:49.939] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:13:53.643] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:13:54.914] INFO  [n10_Wystan] [chat ascii] Alenne: Your order cannot be fulfilled, please try again.
+[16:13:58.663] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:13:58.967] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:13:58.967] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:13:58.968] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:14:03.706] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:14:03.950] INFO  [n10_Wystan] [chat ascii] Alenne: Your order cannot be fulfilled, please try again.
+[16:14:08.018] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:14:08.018] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:14:08.019] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:14:08.745] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:14:12.997] INFO  [n10_Wystan] [chat ascii] Alenne: Your order cannot be fulfilled, please try again.
+[16:14:13.779] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:14:17.079] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:14:17.079] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:14:17.079] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:14:18.831] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:14:22.021] INFO  [n10_Wystan] [chat ascii] Alenne: Your order cannot be fulfilled, please try again.
+[16:14:23.838] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:14:26.106] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:14:26.106] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:14:26.106] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:14:26.168] INFO  [life] goal_changed=FILL_SPELLBOOK from=FILL_SPELLBOOK reason="previous goal abandoned: attempts 5 >= 5"
+[16:14:26.168] INFO  [life] needs considered: NeedSpells(spells 0.70) NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[16:14:26.168] INFO  [life]   score=77.0
+[16:14:26.168] INFO  [life]   reason: NeedSpells urgency 0.70 x 110 = 77.0
+[16:14:26.168] INFO  [life]   reason: spells 0/24 book=none magery 50.0 gold 9700 reserve 800 spare 8900 wealth 1.00
+[16:14:28.844] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:14:30.864] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew08.wystan/state.json
+[16:14:31.065] INFO  [n10_Wystan] [chat ascii] Alenne: Your order cannot be fulfilled, please try again.
+[16:14:33.887] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:14:35.148] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:14:35.148] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:14:35.148] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=1ms Revolution vendor policy refuses this NPC purchase
+[16:14:38.907] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:14:39.412] INFO  [n10_Wystan] [chat ascii] System: World save in 10 seconds
+[16:14:40.070] INFO  [n10_Wystan] [chat ascii] Alenne: Your order cannot be fulfilled, please try again.
+[16:14:43.960] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:14:44.175] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:14:44.175] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:14:44.175] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:14:48.978] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:14:49.445] INFO  [n10_Wystan] [chat ascii] System: World save has been initiated.
+[16:14:53.200] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:14:53.200] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:14:53.200] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:14:54.018] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:14:58.166] INFO  [n10_Wystan] [chat ascii] Alenne: Your order cannot be fulfilled, please try again.
+[16:14:59.023] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:15:02.208] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:15:02.208] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:15:02.208] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:15:04.055] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:15:07.171] INFO  [n10_Wystan] [chat ascii] Alenne: Your order cannot be fulfilled, please try again.
+[16:15:09.114] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:15:11.239] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:15:11.239] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:15:11.239] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:15:11.300] INFO  [life] goal_changed=FILL_SPELLBOOK from=FILL_SPELLBOOK reason="previous goal abandoned: attempts 5 >= 5"
+[16:15:11.300] INFO  [life] needs considered: NeedSpells(spells 0.70) NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[16:15:11.300] INFO  [life]   score=77.0
+[16:15:11.300] INFO  [life]   reason: NeedSpells urgency 0.70 x 110 = 77.0
+[16:15:11.300] INFO  [life]   reason: spells 0/24 book=none magery 50.0 gold 9700 reserve 800 spare 8900 wealth 1.00
+[16:15:14.170] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:15:16.192] INFO  [n10_Wystan] [chat ascii] Alenne: Your order cannot be fulfilled, please try again.
+[16:15:19.203] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:15:20.294] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:15:20.294] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:15:20.294] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:15:24.265] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:15:29.287] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:15:29.349] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:15:29.349] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:15:29.349] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:15:30.884] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew08.wystan/state.json
+[16:15:34.198] INFO  [n10_Wystan] [chat ascii] Alenne: Your order cannot be fulfilled, please try again.
+[16:15:34.321] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:15:38.399] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:15:38.399] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:15:38.399] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:15:39.335] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:15:43.202] INFO  [n10_Wystan] [chat ascii] Alenne: Your order cannot be fulfilled, please try again.
+[16:15:44.366] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:15:47.434] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:15:47.434] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:15:47.434] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:15:49.419] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:15:52.234] INFO  [n10_Wystan] [chat ascii] Alenne: Your order cannot be fulfilled, please try again.
+[16:15:54.474] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:15:56.435] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:15:56.435] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:15:56.435] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:15:56.496] INFO  [life] goal_changed=FILL_SPELLBOOK from=FILL_SPELLBOOK reason="previous goal abandoned: attempts 5 >= 5"
+[16:15:56.496] INFO  [life] needs considered: NeedSpells(spells 0.70) NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[16:15:56.496] INFO  [life]   score=77.0
+[16:15:56.496] INFO  [life]   reason: NeedSpells urgency 0.70 x 110 = 77.0
+[16:15:56.496] INFO  [life]   reason: spells 0/24 book=none magery 50.0 gold 9700 reserve 800 spare 8900 wealth 1.00
+[16:15:59.506] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:16:01.288] INFO  [n10_Wystan] [chat ascii] Alenne: Your order cannot be fulfilled, please try again.
+[16:16:04.538] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:16:05.442] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[16:16:05.442] INFO  [n10_Wystan] [ACTION] vendor_buy start
+[16:16:05.442] LOG   [n10_Wystan] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[16:16:07.941] INFO  [life] session_end_requested reason="session time limit reached"
+[16:16:08.003] INFO  [life] wind-down: no bank learned yet; asking the world for one (attempt 1)
+[16:16:08.003] INFO  [n10_Wystan] [travel] Britain banker -> (1425,1690) r=5 from (1487,1549)
+[16:16:08.003] LOG   [n10_Wystan] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1487,1549)
+[16:16:08.003] INFO  [n10_Wystan] [travel] mode moongate         usable   <- chosen
+[16:16:08.003] INFO  [n10_Wystan] [travel] mode walk             usable
+[16:16:08.003] INFO  [n10_Wystan] [travel] mode loose_rune_recall no: no rune marked at that destination
+[16:16:08.003] INFO  [n10_Wystan] [travel] mode runebook_recall  no: no runebook page for that destination
+[16:16:08.003] LOG   [n10_Wystan] event travel_mode: moongate
+[16:16:08.004] INFO  [n10_Wystan] [travel] plan Britain banker: ok legs=5 ~168 tiles transit=0 nodes=28
+[16:16:08.065] INFO  [n10_Wystan] [action] goto finished at (1487,1549,70); target (1487,1549); ARRIVED (off by 0 tile(s))
+[16:16:08.065] LOG   [n10_Wystan] event goto_done: at=(1487,1549) target=(1487,1549) arrived=1 off=0
+[16:16:08.066] INFO  [n10_Wystan] [action] goto (1480,1574) from (1487,1549,70)
+[16:16:08.066] LOG   [n10_Wystan] event goto_start: target=(1480,1574) from=(1487,1549)
+[16:16:08.066] INFO  [n10_Wystan] [bot] running from (1487,1549,70) to (1480,1574)
+[16:16:08.066] INFO  [n10_Wystan] [bot] planning path to (1480,1574) in background
+[16:16:08.097] INFO  [n10_Wystan] [chat ascii] System: Ovid has departed from Moonglow.
+[16:16:08.097] INFO  [n10_Wystan] [bot] replan to (1480,1574): 49 steps in 5589.2us
+[16:16:09.575] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:16:14.581] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:16:19.618] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:16:23.068] INFO  [n10_Wystan] [bot] arrived at (1480,1574,30)
+[16:16:23.068] INFO  [n10_Wystan] [action] goto finished at (1480,1574,30); target (1480,1574); ARRIVED (off by 0 tile(s))
+[16:16:23.068] LOG   [n10_Wystan] event goto_done: at=(1480,1574) target=(1480,1574) arrived=1 off=0
+[16:16:23.069] INFO  [n10_Wystan] [travel] avoiding 2 teleporter pad(s) on this leg
+[16:16:23.069] INFO  [n10_Wystan] [action] goto (1464,1608) from (1480,1574,30)
+[16:16:23.069] LOG   [n10_Wystan] event goto_start: target=(1464,1608) from=(1480,1574)
+[16:16:23.069] INFO  [n10_Wystan] [bot] running from (1480,1574,30) to (1464,1608)
+[16:16:23.069] INFO  [n10_Wystan] [bot] planning path to (1464,1608) in background
+[16:16:23.084] INFO  [n10_Wystan] [bot] replan to (1464,1608): 48 steps in 3669.0us
+[16:16:23.115] INFO  [n10_Wystan] [chat ascii] System: Delwyn has departed from Trinsic's Order of Engineers.
+[16:16:24.637] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:16:29.660] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:16:34.663] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:16:36.648] INFO  [n10_Wystan] [bot] arrived at (1464,1608,20)
+[16:16:36.648] INFO  [n10_Wystan] [action] goto finished at (1464,1608,20); target (1464,1608); ARRIVED (off by 0 tile(s))
+[16:16:36.648] LOG   [n10_Wystan] event goto_done: at=(1464,1608) target=(1464,1608) arrived=1 off=0
+[16:16:36.648] INFO  [n10_Wystan] [travel] avoiding 2 teleporter pad(s) on this leg
+[16:16:36.648] INFO  [n10_Wystan] [action] goto (1464,1640) from (1464,1608,20)
+[16:16:36.648] LOG   [n10_Wystan] event goto_start: target=(1464,1640) from=(1464,1608)
+[16:16:36.648] INFO  [n10_Wystan] [bot] running from (1464,1608,20) to (1464,1640)
+[16:16:36.648] INFO  [n10_Wystan] [bot] planning path to (1464,1640) in background
+[16:16:36.708] INFO  [n10_Wystan] [bot] replan to (1464,1640): 32 steps in 1915.1us
+[16:16:39.717] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:16:44.379] INFO  [n10_Wystan] [chat ascii] System: Maribel has departed from Britain Fields.
+[16:16:44.718] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:16:45.301] INFO  [n10_Wystan] [bot] arrived at (1464,1640,20)
+[16:16:45.301] INFO  [n10_Wystan] [action] goto finished at (1464,1640,20); target (1464,1640); ARRIVED (off by 0 tile(s))
+[16:16:45.301] LOG   [n10_Wystan] event goto_done: at=(1464,1640) target=(1464,1640) arrived=1 off=0
+[16:16:45.301] INFO  [n10_Wystan] [travel] avoiding 2 teleporter pad(s) on this leg
+[16:16:45.301] INFO  [n10_Wystan] [action] goto (1448,1672) from (1464,1640,20)
+[16:16:45.301] LOG   [n10_Wystan] event goto_start: target=(1448,1672) from=(1464,1640)
+[16:16:45.302] INFO  [n10_Wystan] [bot] running from (1464,1640,20) to (1448,1672)
+[16:16:45.302] INFO  [n10_Wystan] [bot] planning path to (1448,1672) in background
+[16:16:45.364] INFO  [n10_Wystan] [bot] replan to (1448,1672): 37 steps in 3291.5us
+[16:16:49.742] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:16:54.767] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:16:55.860] INFO  [n10_Wystan] [bot] arrived at (1448,1672,10)
+[16:16:55.860] INFO  [n10_Wystan] [action] goto finished at (1448,1672,10); target (1448,1672); ARRIVED (off by 0 tile(s))
+[16:16:55.860] LOG   [n10_Wystan] event goto_done: at=(1448,1672) target=(1448,1672) arrived=1 off=0
+[16:16:55.860] INFO  [n10_Wystan] [action] goto (1425,1690) from (1448,1672,10)
+[16:16:55.860] LOG   [n10_Wystan] event goto_start: target=(1425,1690) from=(1448,1672)
+[16:16:55.860] INFO  [n10_Wystan] [bot] running from (1448,1672,10) to (1425,1690,z0)
+[16:16:55.860] INFO  [n10_Wystan] [bot] planning path to (1425,1690) in background
+[16:16:55.921] INFO  [n10_Wystan] [bot] replan to (1425,1690): 41 steps in 7270.4us
+[16:16:59.804] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:17:00.848] INFO  [n10_Wystan] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=24 in 580.1us
+[16:17:03.833] INFO  [n10_Wystan] [bot] door ahead at (1438,1692,z0); OpenDoor before step
+[16:17:03.833] INFO  [n10_Wystan] [chat ascii] System: Opening door...
+[16:17:04.827] INFO  [n10_Wystan] [survival] hp 20/20 (100%) -> fight
+[16:17:07.478] INFO  [n10_Wystan] [travel] Britain banker ARRIVED at (1430,1691,0)
+[16:17:07.478] LOG   [n10_Wystan] event travel_done: label='Britain banker' ok=1 at=(1430,1691) legs=5 plans=1 why=''
+[16:17:07.540] INFO  [life] wind-down: arrived somewhere safe at 1430,1691
+[16:17:07.600] INFO  [life] session_summary duration=1559s goals=1/26 gold=10000->9700 skills=100.0->130.0 logs=+0 deaths=0 places=1 suppliers=0
+[16:17:07.601] INFO  [life] session_goals families=2 picks=26 top=92% varied=0 | upkeep=24(92%) training=2(8%) | TRAIN_AT_NPC=2(8%) FILL_SPELLBOOK=24(92%)
+[16:17:07.603] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew08.wystan/state.json
+[16:17:07.603] INFO  [life] logging out
+[16:17:07.603] INFO  [n10_Wystan] [action] logout requested
+[16:17:07.603] LOG   [n10_Wystan] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[16:17:07.616] INFO  [n10_Wystan] [0xD1] logout acknowledged (accepted=1)
+[16:17:07.616] LOG   [n10_Wystan] event logout_ack: accepted
+[16:17:07.616] INFO  [n10_Wystan] [net] closing connection (logout acknowledged)
+[16:17:07.616] LOG   [n10_Wystan] event logout_complete: acked

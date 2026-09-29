@@ -1,0 +1,26 @@
+# Britain graveyard STRONG TIER orphan cleanup -- one-off, 2026-09-07.
+#
+# RUN ONLY AS THE ADMIN ACCOUNT (character "Observer") via run_admin.ps1:
+#   .\run_admin.ps1 -Scenario m40_gy_britain_strong_orphans -Tag gy_orphan1 -TimeoutSec 180
+#
+# Calls revolution/f_m40_graveyards.scp's f_m40_gy_britain_strong_orphans,
+# which needs a logged-in character context (P=/FORCHARS fail from the bare
+# server console -- "FOR Loop trigger on non-world object 'MyShard'", seen
+# live 2026-09-07 20:35). Kills any c_skeleton_knight/c_lich/c_lich_lord
+# inside the Britain graveyard AREADEF whose position is outside all three
+# strong rings (a pre-HOMEDIST-fix orphan that wandered loose, e.g. the
+# c_lich_lord uid 0xb21a found at 1348,1499). Does not touch the gems, the
+# weak band, or any strong mob still inside its own ring.
+
+wait_world
+sleep 3000
+
+say .f_m40_gy_britain_strong_orphans
+sleep 5000
+
+say .save
+sleep 15000
+
+say m40 britain strong orphans done
+sleep 1500
+logout

@@ -1,0 +1,267 @@
+[18:38:45.966] INFO  session 0: 127.0.0.1:2593 user='RevolutionSoak42' char=Ysolde tag='zero5'
+[18:38:45.967] LOG   [zero5] event session_start: text log opened
+[18:38:45.967] LOG   [zero5] event net_connect_begin: connect 127.0.0.1:2593
+[18:38:45.967] INFO  [zero5] [net] connecting to 127.0.0.1:2593 ...
+[18:38:45.969] LOG   [zero5] event net_connected: connect 127.0.0.1:2593
+[18:38:45.969] INFO  [zero5] [net] connected.
+[18:38:45.969] INFO  [zero5] [seed] sent 0x7F000001 (plaintext)
+[18:38:45.969] LOG   [zero5] event seed_out: 0x7F000001 hex=7f000001
+[18:38:45.969] INFO  [life] loaded persistent state for Ysolde (0 places, 0 suppliers, 5 events, 0 prior sessions)
+[18:38:45.969] INFO  [life] needs: reading 'scribe' from the profession catalogue
+[18:38:45.969] INFO  [life] build plan 'scribe': 240.0 resolved + 460.0 unresolved = 700.0/700.0, stats 30/20/100 = 150
+[18:38:45.969] INFO  [zero5] [life] autonomous player active for 'Ysolde' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 25 min)
+[18:38:45.995] INFO  [zero5] [0xA8] 1 server(s):
+[18:38:45.995] INFO  [zero5]   [0] MyShard                   1.0.0.127  full=1%  tz=0
+[18:38:46.010] INFO  [zero5] [0x8C] game server = 127.0.0.1:2593  seed=0xF0B4C7C7
+[18:38:46.010] LOG   [zero5] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xF0B4C7C7
+[18:38:46.010] INFO  [zero5] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[18:38:46.010] LOG   [zero5] event relay_same_socket: no seed re-sent; 0x91 follows
+[18:38:46.011] INFO  [zero5] [0xB9] server features = 0x0005
+[18:38:46.011] INFO  [zero5] [0xA9] 5 slot(s) (populated 1):
+[18:38:46.011] INFO  [zero5]   [0] Ysolde
+[18:38:46.011] INFO  [zero5]   [1] <empty>
+[18:38:46.011] INFO  [zero5]   [2] <empty>
+[18:38:46.011] INFO  [zero5]   [3] <empty>
+[18:38:46.011] INFO  [zero5]   [4] <empty>
+[18:38:46.011] INFO  [zero5] [ui] playing slot 0 ('Ysolde')
+[18:38:46.026] INFO  [zero5] [0x1B] serial=0x00014261 body=0x0190 pos=(1487,1549,70)
+[18:38:46.026] LOG   [zero5] event login_confirm: serial=0x00014261 body=0x0190 pos=(1487,1549,70)
+[18:38:46.026] INFO  [zero5] [0x20] player @(1487,1549,70) facing=5
+[18:38:46.026] INFO  [zero5] [0x55] login complete — entering world
+[18:38:46.026] LOG   [zero5] event in_world: 0x55 received
+[18:38:46.026] INFO  [zero5] [backpack] opening 0x4001425D
+[18:38:46.026] INFO  [zero5] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[18:38:46.026] INFO  [zero5] [chat ascii] System: There are 2 other players here.
+[18:38:46.026] INFO  [zero5] [chat ascii] System: Last logged: 2026/08/28 18:33:03
+[18:38:46.026] INFO  [zero5] [chat ascii] System: You are under the protection of the city guards
+[18:38:46.030] INFO  [zero5] [action] requesting the skill list
+[18:38:46.030] INFO  [life] in world; asked the server for the skill list
+[18:38:46.030] INFO  [zero5] [0x24] open container 0x4001425D gump=60
+[18:38:46.030] INFO  [zero5] [0x3C] container contents: 9 item(s)
+[18:38:46.030] LOG   [zero5] event backpack_contents: serial=0x4001425D items=9
+[18:38:48.622] INFO  [zero5] [bot] world data loaded (0 blacklisted spot(s)).
+[18:38:48.622] INFO  [life] reconciliation: resuming a life, 0 field(s) differed
+[18:38:48.622] INFO  [life]   gold         persisted=1000       server=1000       -> server value accepted
+[18:38:48.622] INFO  [life]   str          persisted=10         server=10         -> server value accepted
+[18:38:48.622] INFO  [life]   dex          persisted=10         server=10         -> server value accepted
+[18:38:48.622] INFO  [life]   int          persisted=30         server=30         -> server value accepted
+[18:38:48.622] INFO  [life]   skill_23     persisted=50.0       server=50.0       -> server value accepted
+[18:38:48.622] INFO  [life]   skill_25     persisted=50.0       server=50.0       -> server value accepted
+[18:38:48.623] INFO  [life]   skill_46     persisted=0.0        server=0.0        -> server value accepted
+[18:38:48.623] INFO  [life]   position     persisted=1487,1549  server=1487,1549  -> server value accepted
+[18:38:48.623] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[18:38:48.623] INFO  [life]   restored objective KEPT: TRAIN_AT_NPC (progress 0)
+[18:38:48.623] INFO  [zero5] [survival] on
+[18:38:48.623] LOG   [zero5] event survival_mode: on
+[18:38:48.624] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[18:38:48.624] INFO  [zero5] [survival] hp 10/10 (100%) -> fight
+[18:38:48.676] INFO  [life] training: looking for a 'mage' to teach Meditation (trip 1)
+[18:38:48.676] INFO  [zero5] [travel] Britain mage -> (1485,1550) r=5 from (1487,1549)
+[18:38:48.676] LOG   [zero5] event travel_start: label='Britain mage' target=(1485,1550) radius=5 from=(1487,1549)
+[18:38:48.676] INFO  [zero5] [travel] mode walk             usable   <- chosen
+[18:38:48.676] INFO  [zero5] [travel] mode moongate         usable
+[18:38:48.676] INFO  [zero5] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:38:48.676] INFO  [zero5] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:38:48.676] LOG   [zero5] event travel_mode: walk
+[18:38:48.676] INFO  [zero5] [travel] plan Britain mage: ok legs=1 ~2 tiles transit=0 nodes=0
+[18:38:48.737] INFO  [zero5] [action] goto (1485,1550) from (1487,1549,70)
+[18:38:48.737] LOG   [zero5] event goto_start: target=(1485,1550) from=(1487,1549)
+[18:38:48.737] INFO  [zero5] [bot] running from (1487,1549,70) to (1485,1550,z30)
+[18:38:48.737] INFO  [zero5] [bot] planning path to (1485,1550) in background
+[18:38:48.859] INFO  [zero5] [action] goto finished at (1487,1549,70); target (1485,1550); stopped short (off by 3 tile(s))
+[18:38:48.859] LOG   [zero5] event goto_done: at=(1487,1549) target=(1485,1550) arrived=0 off=3
+[18:38:50.109] INFO  [zero5] [travel] mode walk             usable   <- chosen
+[18:38:50.109] INFO  [zero5] [travel] mode moongate         usable
+[18:38:50.109] INFO  [zero5] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:38:50.109] INFO  [zero5] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:38:50.109] LOG   [zero5] event travel_mode: walk
+[18:38:50.109] INFO  [zero5] [travel] plan Britain mage: ok legs=1 ~2 tiles transit=0 nodes=0
+[18:38:51.659] INFO  [zero5] [action] goto (1485,1550) from (1487,1549,70)
+[18:38:51.659] LOG   [zero5] event goto_start: target=(1485,1550) from=(1487,1549)
+[18:38:51.659] INFO  [zero5] [bot] running from (1487,1549,70) to (1485,1550,z30)
+[18:38:51.659] INFO  [zero5] [bot] planning path to (1485,1550) in background
+[18:38:51.721] INFO  [zero5] [bot] replan to (1485,1550): 17 steps in 1127.8us
+[18:38:53.644] INFO  [zero5] [survival] hp 10/10 (100%) -> fight
+[18:38:56.415] INFO  [zero5] [chat ascii] Xanthe: I am listening to thee.
+[18:38:56.796] INFO  [zero5] [travel] Britain mage ARRIVED at (1485,1549,35)
+[18:38:56.796] LOG   [zero5] event travel_done: label='Britain mage' ok=1 at=(1485,1549) legs=1 plans=2 why=''
+[18:38:56.857] INFO  [life] training: arrived at 1485,1549 -- asking who is here
+[18:38:56.857] INFO  [zero5] [action] scanning nearby mobiles for names
+[18:38:56.857] INFO  [zero5] [action] requested 3 paperdoll(s) for trade titles
+[18:38:56.857] INFO  [zero5] [mobiles] nearby (3):
+[18:38:56.857] INFO  [zero5]   Caedmon 0x000012EE
+[18:38:56.857] INFO  [zero5]   Xanthe 0x00001211
+[18:38:56.858] INFO  [zero5]   Alenne 0x00001145
+[18:38:56.858] INFO  [zero5] [0x88] paperdoll 0x000012EE: "Caedmon, the mage guildmaster"
+[18:38:56.858] INFO  [zero5] [world] Caedmon, the mage guildmaster is a mage at (1485,1551)
+[18:38:56.858] INFO  [zero5] [0x20] player @(1485,1549,32) facing=0
+[18:38:56.858] INFO  [zero5] [0x88] paperdoll 0x00001211: "Xanthe, the alchemist"
+[18:38:56.858] INFO  [zero5] [world] Xanthe, the alchemist is a alchemist at (1485,1547)
+[18:38:56.858] INFO  [zero5] [0x20] player @(1485,1549,32) facing=3
+[18:38:56.858] INFO  [zero5] [0x88] paperdoll 0x00001145: "Alenne, the mage"
+[18:38:56.858] INFO  [zero5] [world] Alenne, the mage is a mage at (1486,1551)
+[18:38:58.669] INFO  [zero5] [survival] hp 10/10 (100%) -> fight
+[18:38:59.409] INFO  [life] training: asking the trainer about Meditation
+[18:38:59.409] INFO  [zero5] [ACTION] npc_train start
+[18:38:59.409] INFO  [zero5] [TRAIN] ask 0x00001145 say='Alenne train Meditation'
+[18:38:59.409] LOG   [zero5] event npc_train_ask: Alenne train Meditation
+[18:38:59.426] INFO  [zero5] [chat uni  ] : Alenne train Meditation
+[18:38:59.426] INFO  [zero5] [chat ascii] Alenne: Greetings.  What might I do for thee?
+[18:38:59.426] INFO  [zero5] [chat ascii] Alenne: For 219 gold I will train you in all I know of Meditation. For less gold I will teach you less
+[18:38:59.426] INFO  [zero5] [ACTION_RESULT] npc_train success (17ms) For 219 gold I will train you in all I know of Meditation. For less gold I will teach you less
+[18:38:59.426] LOG   [zero5] event action_result: npc_train success took=17ms For 219 gold I will train you in all I know of Meditation. For less gold I will teach you less
+[18:39:01.922] INFO  [zero5] [action] open backpack
+[18:39:01.922] INFO  [zero5] [backpack] opening 0x4001425D
+[18:39:01.937] INFO  [zero5] [0x24] open container 0x4001425D gump=60
+[18:39:01.937] INFO  [zero5] [0x3C] container contents: 9 item(s)
+[18:39:03.133] INFO  [life] training: paying the quoted 219 gold for Meditation (purse 1000)
+[18:39:03.133] INFO  [zero5] [GIVE] 0x4001425A x219 -> 0x00001145 (gold 1000)
+[18:39:03.133] INFO  [zero5] [ITEM] drag serial=0x4001425A amount=219
+[18:39:03.133] INFO  [zero5] [ITEM] drop container=0x00001145
+[18:39:03.133] LOG   [zero5] event npc_give: item=0x4001425A amount=219 to=0x00001145
+[18:39:03.149] INFO  [zero5] [chat ascii] Alenne: Let me show you something of how this is done
+[18:39:03.149] INFO  [zero5] [chat ascii] Alenne: That is all I can teach.
+[18:39:03.715] INFO  [zero5] [survival] hp 10/10 (100%) -> fight
+[18:39:03.974] INFO  [zero5] [chat ascii] System: World save in 10 seconds
+[18:39:07.170] INFO  [zero5] [action] requesting the skill list
+[18:39:08.699] INFO  [life] training: Meditation 0.0 -> 21.9, bought from a trainer
+[18:39:08.701] INFO  [life] checkpoint (skill bought from a trainer) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[18:39:08.701] INFO  [life] goal_completed=TRAIN_AT_NPC progress=0
+[18:39:08.702] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[18:39:08.760] INFO  [life] goal=TRAIN_AT_NPC reason="no goal was running"
+[18:39:08.760] INFO  [life] needs considered: NeedSkillTraining(Meditation 0.30) NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,]
+[18:39:08.760] INFO  [life]   score=60.0
+[18:39:08.760] INFO  [life]   reason: NeedSkillTraining urgency 0.30 x 200 = 60.0
+[18:39:08.760] INFO  [life]   reason: Meditation 21.9 -> 40.0, gold 781 (fee is quoted on arrival, roughly 300)
+[18:39:08.760] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Inscription 50.0 -> 100.0)
+[18:39:08.760] INFO  [life] training: asking the trainer about Meditation
+[18:39:08.760] INFO  [zero5] [ACTION] npc_train start
+[18:39:08.760] INFO  [zero5] [TRAIN] ask 0x00001145 say='Alenne train Meditation'
+[18:39:08.760] LOG   [zero5] event npc_train_ask: Alenne train Meditation
+[18:39:08.760] INFO  [zero5] [survival] hp 10/10 (100%) -> fight
+[18:39:08.776] INFO  [zero5] [chat uni  ] : Alenne train Meditation
+[18:39:08.776] INFO  [zero5] [chat ascii] Alenne: You already know as much as I can teach of Meditation
+[18:39:08.777] LOG   [zero5] event action_result: npc_train invalid_state took=16ms You already know as much as I can teach of Meditation
+[18:39:11.306] INFO  [life] training: mage refused to teach Meditation at 21.9 -- the trainer has nothing left to give
+[18:39:11.308] INFO  [life] checkpoint (trainer refusal) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[18:39:11.368] INFO  [life] goal=IDLE_BRIEFLY reason="previous goal abandoned: the trainer has nothing left to give"
+[18:39:11.368] INFO  [life] needs considered: NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,]
+[18:39:11.368] INFO  [life]   score=10.0
+[18:39:11.368] INFO  [life]   reason: fallback: nothing else scored
+[18:39:11.368] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Inscription 50.0 -> 100.0)
+[18:39:13.796] INFO  [zero5] [survival] hp 10/10 (100%) -> fight
+[18:39:13.980] INFO  [zero5] [chat ascii] System: World save has been initiated.
+[18:39:18.823] INFO  [zero5] [survival] hp 10/10 (100%) -> fight
+[18:39:23.882] INFO  [zero5] [survival] hp 10/10 (100%) -> fight
+[18:39:26.478] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[18:39:26.480] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[18:39:26.540] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[18:39:26.540] INFO  [life] needs considered: NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,]
+[18:39:26.540] INFO  [life]   score=10.0
+[18:39:26.540] INFO  [life]   reason: fallback: nothing else scored
+[18:39:26.540] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Inscription 50.0 -> 100.0)
+[18:39:28.929] INFO  [zero5] [survival] hp 10/10 (100%) -> fight
+[18:39:33.972] INFO  [zero5] [survival] hp 10/10 (100%) -> fight
+[18:39:38.982] INFO  [zero5] [survival] hp 10/10 (100%) -> fight
+[18:39:41.552] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[18:39:41.554] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[18:39:41.614] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[18:39:41.614] INFO  [life] needs considered: NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,]
+[18:39:41.614] INFO  [life]   score=10.0
+[18:39:41.614] INFO  [life]   reason: fallback: nothing else scored
+[18:39:41.614] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Inscription 50.0 -> 100.0)
+[18:39:44.039] INFO  [zero5] [survival] hp 10/10 (100%) -> fight
+[18:39:49.064] INFO  [zero5] [survival] hp 10/10 (100%) -> fight
+[18:39:54.079] INFO  [zero5] [survival] hp 10/10 (100%) -> fight
+[18:39:59.134] INFO  [zero5] [survival] hp 10/10 (100%) -> fight
+[18:40:01.645] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[18:40:01.647] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[18:40:01.706] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[18:40:01.706] INFO  [life] needs considered: NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,]
+[18:40:01.706] INFO  [life]   score=10.0
+[18:40:01.706] INFO  [life]   reason: fallback: nothing else scored
+[18:40:01.706] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Inscription 50.0 -> 100.0)
+[18:40:04.154] INFO  [zero5] [survival] hp 10/10 (100%) -> fight
+[18:40:09.157] INFO  [zero5] [survival] hp 10/10 (100%) -> fight
+[18:40:14.198] INFO  [zero5] [survival] hp 10/10 (100%) -> fight
+[18:40:16.744] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[18:40:16.747] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[18:40:16.806] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[18:40:16.806] INFO  [life] needs considered: NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,]
+[18:40:16.806] INFO  [life]   score=10.0
+[18:40:16.806] INFO  [life]   reason: fallback: nothing else scored
+[18:40:16.806] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Inscription 50.0 -> 100.0)
+[18:40:19.246] INFO  [zero5] [survival] hp 10/10 (100%) -> fight
+[18:40:24.307] INFO  [zero5] [survival] hp 10/10 (100%) -> fight
+[18:40:29.368] INFO  [zero5] [survival] hp 10/10 (100%) -> fight
+[18:40:31.831] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[18:40:31.833] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[18:40:31.892] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[18:40:31.892] INFO  [life] needs considered: NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,]
+[18:40:31.892] INFO  [life]   score=10.0
+[18:40:31.892] INFO  [life]   reason: fallback: nothing else scored
+[18:40:31.892] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Inscription 50.0 -> 100.0)
+[18:40:34.373] INFO  [zero5] [survival] hp 10/10 (100%) -> fight
+[18:40:39.392] INFO  [zero5] [survival] hp 10/10 (100%) -> fight
+[18:40:44.409] INFO  [zero5] [survival] hp 10/10 (100%) -> fight
+[18:40:49.464] INFO  [zero5] [survival] hp 10/10 (100%) -> fight
+[18:40:51.880] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[18:40:51.882] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[18:40:51.941] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[18:40:51.941] INFO  [life] needs considered: NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,]
+[18:40:51.941] INFO  [life]   score=10.0
+[18:40:51.941] INFO  [life]   reason: fallback: nothing else scored
+[18:40:51.941] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Inscription 50.0 -> 100.0)
+[18:40:54.519] INFO  [zero5] [survival] hp 10/10 (100%) -> fight
+[18:40:59.576] INFO  [zero5] [survival] hp 10/10 (100%) -> fight
+[18:41:04.610] INFO  [zero5] [survival] hp 10/10 (100%) -> fight
+[18:41:07.010] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[18:41:07.012] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[18:41:07.071] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[18:41:07.071] INFO  [life] needs considered: NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,]
+[18:41:07.072] INFO  [life]   score=10.0
+[18:41:07.072] INFO  [life]   reason: fallback: nothing else scored
+[18:41:07.072] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Inscription 50.0 -> 100.0)
+[18:41:09.651] INFO  [zero5] [survival] hp 10/10 (100%) -> fight
+[18:41:14.669] INFO  [zero5] [survival] hp 10/10 (100%) -> fight
+[18:41:19.671] INFO  [zero5] [survival] hp 10/10 (100%) -> fight
+[18:41:22.076] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[18:41:22.078] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[18:41:22.137] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[18:41:22.137] INFO  [life] needs considered: NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,]
+[18:41:22.137] INFO  [life]   score=10.0
+[18:41:22.137] INFO  [life]   reason: fallback: nothing else scored
+[18:41:22.137] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Inscription 50.0 -> 100.0)
+[18:41:24.696] INFO  [zero5] [survival] hp 10/10 (100%) -> fight
+[18:41:29.722] INFO  [zero5] [survival] hp 10/10 (100%) -> fight
+[18:41:34.747] INFO  [zero5] [survival] hp 10/10 (100%) -> fight
+[18:41:37.176] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[18:41:37.178] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[18:41:37.237] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[18:41:37.237] INFO  [life] needs considered: NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,]
+[18:41:37.237] INFO  [life]   score=10.0
+[18:41:37.237] INFO  [life]   reason: fallback: nothing else scored
+[18:41:37.237] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Inscription 50.0 -> 100.0)
+[18:41:39.772] INFO  [zero5] [survival] hp 10/10 (100%) -> fight
+[18:41:44.811] INFO  [zero5] [survival] hp 10/10 (100%) -> fight
+[18:41:49.863] INFO  [zero5] [survival] hp 10/10 (100%) -> fight
+[18:41:52.255] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[18:41:52.257] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[18:41:52.317] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[18:41:52.317] INFO  [life] needs considered: NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,]
+[18:41:52.317] INFO  [life]   score=10.0
+[18:41:52.317] INFO  [life]   reason: fallback: nothing else scored
+[18:41:52.317] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Inscription 50.0 -> 100.0)
+[18:41:54.912] INFO  [zero5] [survival] hp 10/10 (100%) -> fight
+[18:41:59.942] INFO  [zero5] [survival] hp 10/10 (100%) -> fight
+[18:42:04.969] INFO  [zero5] [survival] hp 10/10 (100%) -> fight
+[18:42:07.396] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[18:42:07.398] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[18:42:07.456] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[18:42:07.456] INFO  [life] needs considered: NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,]
+[18:42:07.456] INFO  [life]   score=10.0
+[18:42:07.456] INFO  [life]   reason: fallback: nothing else scored
+[18:42:07.456] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Inscription 50.0 -> 100.0)
+[18:42:10.021] INFO  [zero5] [survival] hp 10/10 (100%) -> fight
+[18:42:15.028] INFO  [zero5] [survival] hp 10/10 (100%) -> fight
+[18:42:20.037] INFO  [zero5] [survival] hp 10/10 (100%) -> fight

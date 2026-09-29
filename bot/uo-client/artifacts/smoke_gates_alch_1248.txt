@@ -1,0 +1,6 @@
+[rev] gates: 2 characters, 5 min each, stagger 3s
+[rev] gate Elara: pre-state snapshot -> g_Elara.state_before.json
+[rev] gate Elara: launched on RevGen3_14 as alchemist for 5 min
+[rev] gate Selene: pre-state snapshot -> g_Selene.state_before.json
+[rev] gate Selene: launched on RevGen3_15 as alchemist for 5 min
+[rev] gates: launched 2/2 (rest were live). wait with `python tools/rev.py wait`

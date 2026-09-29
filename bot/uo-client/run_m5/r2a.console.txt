@@ -1,0 +1,93 @@
+[10:06:33.500] INFO  session 0: 127.0.0.1:2593 user='RevolutionWarrior01' char=Kaelen tag='r2a'
+[10:06:33.501] LOG   [r2a] event session_start: text log opened
+[10:06:33.501] LOG   [r2a] event net_connect_begin: connect 127.0.0.1:2593
+[10:06:33.501] INFO  [r2a] [net] connecting to 127.0.0.1:2593 ...
+[10:06:33.502] LOG   [r2a] event net_connected: connect 127.0.0.1:2593
+[10:06:33.502] INFO  [r2a] [net] connected.
+[10:06:33.502] INFO  [r2a] [seed] sent 0x7F000001 (plaintext)
+[10:06:33.502] LOG   [r2a] event seed_out: 0x7F000001 hex=7f000001
+[10:06:33.502] INFO  [life] loaded persistent state for Kaelen (1 places, 1 suppliers, 4 events, 0 prior sessions)
+[10:06:33.503] INFO  [life] needs: reading 'fencer' from the profession catalogue
+[10:06:33.503] INFO  [life] build plan 'fencer': 600.0 resolved + 100.0 unresolved = 700.0/700.0, stats 100/100/25 = 225
+[10:06:33.503] INFO  [r2a] [life] autonomous player active for 'Kaelen' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 25 min)
+[10:06:33.535] INFO  [r2a] [0xA8] 1 server(s):
+[10:06:33.535] INFO  [r2a]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[10:06:33.550] INFO  [r2a] [0x8C] game server = 127.0.0.1:2593  seed=0x3996AFF7
+[10:06:33.550] LOG   [r2a] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x3996AFF7
+[10:06:33.550] INFO  [r2a] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[10:06:33.550] LOG   [r2a] event relay_same_socket: no seed re-sent; 0x91 follows
+[10:06:33.551] INFO  [r2a] [0xB9] server features = 0x0005
+[10:06:33.551] INFO  [r2a] [0xA9] 5 slot(s) (populated 1):
+[10:06:33.551] INFO  [r2a]   [0] Kaelen
+[10:06:33.551] INFO  [r2a]   [1] <empty>
+[10:06:33.551] INFO  [r2a]   [2] <empty>
+[10:06:33.551] INFO  [r2a]   [3] <empty>
+[10:06:33.551] INFO  [r2a]   [4] <empty>
+[10:06:33.551] INFO  [r2a] [ui] playing slot 0 ('Kaelen')
+[10:06:33.566] INFO  [r2a] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[10:06:33.566] LOG   [r2a] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[10:06:33.566] INFO  [r2a] [STATE] dead (body 0x0192)
+[10:06:33.566] LOG   [r2a] event state_dead: server body change
+[10:06:33.566] LOG   [r2a] event death_location: at=(1384,1497,10) region=? via=body change
+[10:06:33.566] INFO  [r2a] [0x20] player @(1384,1497,10) facing=4
+[10:06:33.566] INFO  [r2a] [0x55] login complete — entering world
+[10:06:33.566] LOG   [r2a] event in_world: 0x55 received
+[10:06:33.566] INFO  [r2a] [backpack] opening 0x40015DF6
+[10:06:33.566] INFO  [r2a] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[10:06:33.566] INFO  [r2a] [chat ascii] System: There is 1 other player here.
+[10:06:33.566] INFO  [r2a] [chat ascii] System: Last logged: 1970/01/01 01:00:00
+[10:06:33.570] INFO  [r2a] [action] requesting the skill list
+[10:06:33.570] INFO  [life] in world; asked the server for the skill list
+[10:06:33.570] INFO  [r2a] [chat ascii] System: Your ghostly hand passes through the object.
+[10:06:36.160] INFO  [r2a] [bot] world data loaded (0 blacklisted spot(s)).
+[10:06:36.160] INFO  [life] reconciliation: resuming a life, 0 field(s) differed
+[10:06:36.160] INFO  [life]   gold         persisted=0          server=0          -> server value accepted
+[10:06:36.160] INFO  [life]   str          persisted=20         server=20         -> server value accepted
+[10:06:36.160] INFO  [life]   dex          persisted=25         server=25         -> server value accepted
+[10:06:36.160] INFO  [life]   int          persisted=5          server=5          -> server value accepted
+[10:06:36.160] INFO  [life]   skill_42     persisted=50.0       server=50.0       -> server value accepted
+[10:06:36.160] INFO  [life]   skill_27     persisted=50.0       server=50.0       -> server value accepted
+[10:06:36.160] INFO  [life]   skill_1      persisted=30.0       server=30.0       -> server value accepted
+[10:06:36.160] INFO  [life]   skill_17     persisted=30.0       server=30.0       -> server value accepted
+[10:06:36.160] INFO  [life]   skill_30     persisted=9.2        server=9.2        -> server value accepted
+[10:06:36.160] INFO  [life]   skill_5      persisted=9.5        server=9.5        -> server value accepted
+[10:06:36.160] INFO  [life]   position     persisted=1384,1497  server=1384,1497  -> server value accepted
+[10:06:36.160] INFO  [life]   alive        persisted=dead       server=dead       -> server value accepted
+[10:06:36.160] INFO  [life]   restored objective KEPT: SURVIVE (progress 0)
+[10:06:36.160] INFO  [r2a] [survival] on
+[10:06:36.160] LOG   [r2a] event survival_mode: on
+[10:06:36.162] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionwarrior01.kaelen/state.json
+[10:06:36.215] INFO  [r2a] [ACTION] resurrect start
+[10:06:36.215] INFO  [r2a] [ACTION] resurrect: waiting for the server to raise us
+[10:06:36.232] INFO  [r2a] [chat ascii] System: You are a ghost
+[10:06:36.232] INFO  [r2a] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[10:06:36.232] LOG   [r2a] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[10:06:36.232] INFO  [r2a] [0x20] player @(1384,1497,10) facing=4
+[10:06:36.232] INFO  [r2a] [0x55] login complete — entering world
+[10:06:36.232] LOG   [r2a] event in_world: 0x55 received
+[10:06:36.232] INFO  [r2a] [backpack] opening 0x40015DF6
+[10:06:36.232] INFO  [r2a] [chat ascii] System: Your ghostly hand passes through the object.
+[10:07:36.175] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionwarrior01.kaelen/state.json
+[10:08:36.230] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionwarrior01.kaelen/state.json
+[10:09:36.283] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionwarrior01.kaelen/state.json
+[10:09:44.383] INFO  [r2a] [chat ascii] System: World save in 10 seconds
+[10:09:54.414] INFO  [r2a] [chat ascii] System: World save has been initiated.
+[10:10:36.289] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionwarrior01.kaelen/state.json
+[10:11:36.154] INFO  [life] goal_changed=SURVIVE from=SURVIVE reason="previous goal abandoned: ran 300s without finishing (limit 300s)"
+[10:11:36.154] INFO  [life] needs considered: StayAlive(resurrection 1.00)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[10:11:36.154] INFO  [life]   score=1000.0
+[10:11:36.154] INFO  [life]   reason: StayAlive urgency 1.00 x 1000 = 1000.0
+[10:11:36.154] INFO  [life]   reason: life=dead
+[10:11:36.340] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionwarrior01.kaelen/state.json
+[10:12:36.359] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionwarrior01.kaelen/state.json
+[10:13:36.403] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionwarrior01.kaelen/state.json
+[10:14:36.421] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionwarrior01.kaelen/state.json
+[10:14:44.765] INFO  [r2a] [chat ascii] System: World save in 10 seconds
+[10:14:54.799] INFO  [r2a] [chat ascii] System: World save has been initiated.
+[10:15:36.444] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionwarrior01.kaelen/state.json
+[10:16:36.177] INFO  [life] goal_changed=SURVIVE from=SURVIVE reason="previous goal abandoned: ran 300s without finishing (limit 300s)"
+[10:16:36.177] INFO  [life] needs considered: StayAlive(resurrection 1.00)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[10:16:36.177] INFO  [life]   score=1000.0
+[10:16:36.177] INFO  [life]   reason: StayAlive urgency 1.00 x 1000 = 1000.0
+[10:16:36.177] INFO  [life]   reason: life=dead
+[10:16:36.485] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionwarrior01.kaelen/state.json

@@ -1,0 +1,29 @@
+# Probe: does a MULTI-NAME (a:b:c) worldgen spawner actually produce creatures?
+# Force the Britain weak-mix gem 0x40011a2a to tick eight times and save.
+# Read-only apart from the creatures the spawner itself makes.
+
+wait_world
+sleep 3000
+
+say .serv.uid.040011a2a.start
+sleep 4000
+say .serv.uid.040011a2a.start
+sleep 4000
+say .serv.uid.040011a2a.start
+sleep 4000
+say .serv.uid.040011a2a.start
+sleep 4000
+say .serv.uid.040011937.start
+sleep 4000
+say .serv.uid.040011937.start
+sleep 4000
+say .serv.uid.040011937.start
+sleep 4000
+say .serv.uid.040011937.start
+sleep 4000
+
+say .save
+sleep 30000
+say probe done
+sleep 1500
+logout

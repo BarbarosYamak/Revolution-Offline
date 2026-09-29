@@ -1,0 +1,631 @@
+[00:20:22.264] INFO  session 0: 127.0.0.1:2593 user='RevGen3_29' char=Rhea tag='mk3_Rhea'
+[00:20:22.265] LOG   [mk3_Rhea] event session_start: text log opened
+[00:20:22.265] LOG   [mk3_Rhea] event net_connect_begin: connect 127.0.0.1:2593
+[00:20:22.265] INFO  [mk3_Rhea] [net] connecting to 127.0.0.1:2593 ...
+[00:20:22.267] LOG   [mk3_Rhea] event net_connected: connect 127.0.0.1:2593
+[00:20:22.267] INFO  [mk3_Rhea] [net] connected.
+[00:20:22.267] INFO  [mk3_Rhea] [seed] sent 0x7F000001 (plaintext)
+[00:20:22.267] LOG   [mk3_Rhea] event seed_out: 0x7F000001 hex=7f000001
+[00:20:22.267] INFO  [life] no prior state for revgen3_29.rhea: a new Animal Tamer
+[00:20:22.267] INFO  [life] creation request: Animal Taming 50.0 + Animal Lore 50.0, stats 32/16/32 = 80
+[00:20:22.267] INFO  [life] needs: reading 'tamer' from the profession catalogue
+[00:20:22.267] INFO  [life] home: Rhea lives in Britain
+[00:20:22.267] INFO  [life] build plan 'tamer': 300.0 resolved + 400.0 unresolved = 700.0/700.0, stats 80/45/100 = 225
+[00:20:22.267] INFO  [mk3_Rhea] [life] autonomous player active for 'Rhea' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 3 min)
+[00:20:22.275] INFO  [mk3_Rhea] [0xA8] 1 server(s):
+[00:20:22.275] INFO  [mk3_Rhea]   [0] MyShard                   1.0.0.127  full=11%  tz=0
+[00:20:22.292] INFO  [mk3_Rhea] [0x8C] game server = 127.0.0.1:2593  seed=0x56C598C2
+[00:20:22.292] LOG   [mk3_Rhea] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x56C598C2
+[00:20:22.292] INFO  [mk3_Rhea] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[00:20:22.292] LOG   [mk3_Rhea] event relay_same_socket: no seed re-sent; 0x91 follows
+[00:20:22.292] INFO  [mk3_Rhea] [0xB9] server features = 0x0005
+[00:20:22.292] INFO  [mk3_Rhea] [0xA9] 5 slot(s) (populated 0):
+[00:20:22.292] INFO  [mk3_Rhea]   [0] <empty>
+[00:20:22.292] INFO  [mk3_Rhea]   [1] <empty>
+[00:20:22.292] INFO  [mk3_Rhea]   [2] <empty>
+[00:20:22.292] INFO  [mk3_Rhea]   [3] <empty>
+[00:20:22.292] INFO  [mk3_Rhea]   [4] <empty>
+[00:20:22.292] INFO  [mk3_Rhea] create: appearance sex=F skin=0x0400 hair=0x2046/0x0466 shirt=0x0170 pants=0x0228
+[00:20:22.292] INFO  [mk3_Rhea] [0x00] starting city index 2
+[00:20:22.292] INFO  [mk3_Rhea] [0x00] requested skills 35:50 2:50 48:0
+[00:20:22.292] INFO  [mk3_Rhea] [0x00] requested stats STR 32 DEX 16 INT 32
+[00:20:22.292] INFO  [mk3_Rhea] [0x00] creating character 'Rhea' in slot 0
+[00:20:22.292] LOG   [mk3_Rhea] event char_create_sent: Rhea
+[00:20:22.310] INFO  [mk3_Rhea] [0x1B] serial=0x00017DD9 body=0x0191 pos=(1496,1628,10)
+[00:20:22.310] LOG   [mk3_Rhea] event login_confirm: serial=0x00017DD9 body=0x0191 pos=(1496,1628,10)
+[00:20:22.310] INFO  [mk3_Rhea] [0x20] player @(1496,1628,10) facing=3
+[00:20:22.310] INFO  [mk3_Rhea] [0x55] login complete — entering world
+[00:20:22.310] LOG   [mk3_Rhea] event in_world: 0x55 received
+[00:20:22.310] INFO  [mk3_Rhea] [backpack] opening 0x40017D64
+[00:20:22.310] INFO  [mk3_Rhea] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[00:20:22.310] INFO  [mk3_Rhea] [chat ascii] System: There are 28 other players here.
+[00:20:22.310] INFO  [mk3_Rhea] [chat ascii] System: You are under the protection of the city guards
+[00:20:22.314] INFO  [mk3_Rhea] [action] requesting the skill list
+[00:20:22.314] INFO  [life] in world; asked the server for the skill list
+[00:20:22.314] INFO  [mk3_Rhea] [0x24] open container 0x40017D64 gump=60
+[00:20:22.314] INFO  [mk3_Rhea] [0x3C] container contents: 5 item(s)
+[00:20:22.314] LOG   [mk3_Rhea] event backpack_contents: serial=0x40017D64 items=5
+[00:20:24.939] INFO  [mk3_Rhea] [bot] world data loaded (0 blacklisted spot(s)).
+[00:20:24.939] INFO  [life] reconciliation: first ever login, 7 field(s) differed
+[00:20:24.939] INFO  [life]   gold         persisted=0          server=10000      -> server value accepted
+[00:20:24.939] INFO  [life]   str          persisted=0          server=32         -> server value accepted
+[00:20:24.939] INFO  [life]   dex          persisted=0          server=16         -> server value accepted
+[00:20:24.939] INFO  [life]   int          persisted=0          server=32         -> server value accepted
+[00:20:24.939] INFO  [life]   skill_35     persisted=0.0        server=50.0       -> server value accepted
+[00:20:24.939] INFO  [life]   skill_2      persisted=0.0        server=50.0       -> server value accepted
+[00:20:24.939] INFO  [life]   skill_39     persisted=0.0        server=0.0        -> server value accepted
+[00:20:24.939] INFO  [life]   position     persisted=0,0        server=1496,1628  -> server value accepted
+[00:20:24.939] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[00:20:24.939] INFO  [mk3_Rhea] [survival] on
+[00:20:24.940] LOG   [mk3_Rhea] event survival_mode: on
+[00:20:24.941] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_29.rhea/state.json
+[00:20:24.941] INFO  [mk3_Rhea] [survival] hp 32/32 (100%) -> fight
+[00:20:24.994] INFO  [life] goal=BANK reason="no goal was running"
+[00:20:24.994] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSkillTraining(Veterinary 0.55) NeedEquipment(heal potions 0.50) NeedEquipment(bandages 0.50) NeedPet(a pet 0.42) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=Veterinary (target 100.0)
+[00:20:24.994] INFO  [life]   score=150.0
+[00:20:24.994] INFO  [life]   reason: NeedBank urgency 0.75 x 240 = 180.0
+[00:20:24.994] INFO  [life]   reason: on_hand=10000 (total 10000) reserve=400 carry=900 spare=9100 risk=1.00
+[00:20:24.994] INFO  [life]   reason: no bank learned yet -30
+[00:20:24.994] INFO  [mk3_Rhea] [action] scanning nearby mobiles for names
+[00:20:24.994] INFO  [mk3_Rhea] [action] requested 2 paperdoll(s) for trade titles
+[00:20:24.994] INFO  [life] bank: asking who is standing in the bank
+[00:20:24.994] INFO  [mk3_Rhea] [mobiles] nearby (5):
+[00:20:24.994] INFO  [mk3_Rhea]   Faustus 0x000181F7
+[00:20:24.994] INFO  [mk3_Rhea]   Audny 0x00001076
+[00:20:24.994] INFO  [mk3_Rhea]   Illyria 0x0001916B
+[00:20:24.994] INFO  [mk3_Rhea]   Starling 0x000013C5
+[00:20:24.994] INFO  [mk3_Rhea]   Odessa 0x000194DE
+[00:20:24.994] INFO  [mk3_Rhea] [0x20] player @(1496,1628,10) facing=0
+[00:20:24.995] INFO  [mk3_Rhea] [0x88] paperdoll 0x00001076: "Audny, the innkeeper"
+[00:20:24.995] INFO  [mk3_Rhea] [world] Audny, the innkeeper is a innkeeper at (1496,1615)
+[00:20:24.995] INFO  [mk3_Rhea] [0x88] paperdoll 0x000181F7: "Faustus, Apprentice Armsman"
+[00:20:25.377] INFO  [mk3_Rhea] [chat ascii] System: Xerxes has arrived in Vesper.
+[00:20:27.026] INFO  [life] bank: no banker in sight
+[00:20:27.026] INFO  [life] goal_failed=BANK status=retryable_failure reason="no banker in sight"
+[00:20:27.087] INFO  [life] goal=REPLACE_EQUIPMENT reason="previous goal abandoned: no banker answered"
+[00:20:27.087] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSkillTraining(Veterinary 0.55) NeedEquipment(heal potions 0.50) NeedEquipment(bandages 0.50) NeedPet(a pet 0.42) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=Veterinary (target 100.0)
+[00:20:27.087] INFO  [life]   score=130.0
+[00:20:27.087] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:20:27.087] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:20:27.087] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 299s after achieving nothing
+[00:20:29.985] INFO  [mk3_Rhea] [survival] hp 32/32 (100%) -> fight
+[00:20:32.069] INFO  [life] robe: taking off the resurrection robe -- it is worth sixteen bandages
+[00:20:32.069] INFO  [mk3_Rhea] [ACTION] unequip start
+[00:20:32.069] INFO  [mk3_Rhea] [ACTION] unequip serial=0x40017C4C -> backpack 0x40017D64
+[00:20:32.069] INFO  [mk3_Rhea] [ITEM] drag serial=0x40017C4C amount=1
+[00:20:32.069] INFO  [mk3_Rhea] [ITEM] drop container=0x40017D64
+[00:20:32.085] INFO  [mk3_Rhea] [ACTION_RESULT] unequip success (16ms) item is in the destination
+[00:20:32.085] LOG   [mk3_Rhea] event action_result: unequip success took=16ms item is in the destination
+[00:20:33.614] INFO  [life] robe: cutting the resurrection robe into bandages
+[00:20:33.614] INFO  [mk3_Rhea] [ACTION] use_item_on start
+[00:20:33.614] INFO  [mk3_Rhea] [ACTION] use_item_on item=0x40017D33 target=0x40017C4C
+[00:20:33.630] INFO  [mk3_Rhea] [chat ascii] System: What do you want to use this on?
+[00:20:33.630] INFO  [mk3_Rhea] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=1
+[00:20:33.630] LOG   [mk3_Rhea] event target_requested: id=0x000002CE type=0 subtype=1 gen=1
+[00:20:33.631] INFO  [mk3_Rhea] [TARGET] auto-reply for use_item_on -> 0x40017C4C
+[00:20:33.631] INFO  [mk3_Rhea] [TARGET] reply serial=0x40017C4C gen=1
+[00:20:33.631] INFO  [mk3_Rhea] [target] object 0x40017C4C (0,0,0) model 0x0000
+[00:20:33.646] INFO  [mk3_Rhea] [chat ascii] System: You put the clean bandages in your pack.
+[00:20:35.040] INFO  [mk3_Rhea] [survival] hp 32/32 (100%) -> fight
+[00:20:35.636] INFO  [life] plan=buy reason="some held, more wanted"
+[00:20:35.636] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:20:35.636] INFO  [life] bandages: an action is already in flight
+[00:20:40.083] INFO  [mk3_Rhea] [survival] hp 32/32 (100%) -> fight
+[00:20:45.093] INFO  [mk3_Rhea] [survival] hp 32/32 (100%) -> fight
+[00:20:48.635] LOG   [mk3_Rhea] event action_result: use_item_on timeout
+[00:20:48.700] INFO  [mk3_Rhea] [travel] place: skipping Cove healer -- 1344 tiles and 1 gate for a service Britain healer offers
+[00:20:48.700] INFO  [mk3_Rhea] [travel] place: skipping Minoc healer -- 1704 tiles and 0 gates for a service Britain healer offers
+[00:20:48.700] INFO  [mk3_Rhea] [travel] Britain healer -> (1471,1611) r=5 from (1496,1628)
+[00:20:48.700] LOG   [mk3_Rhea] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1496,1628)
+[00:20:48.700] INFO  [life] bandages: walking to a 'healer' (trip 1)
+[00:20:48.700] INFO  [mk3_Rhea] [travel] mode walk             usable   <- chosen
+[00:20:48.700] INFO  [mk3_Rhea] [travel] mode moongate         usable
+[00:20:48.700] INFO  [mk3_Rhea] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:48.700] INFO  [mk3_Rhea] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:48.700] LOG   [mk3_Rhea] event travel_mode: walk
+[00:20:48.700] INFO  [mk3_Rhea] [travel] plan Britain healer: ok legs=1 ~25 tiles transit=0 nodes=0
+[00:20:48.700] INFO  [mk3_Rhea] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:20:48.700] INFO  [mk3_Rhea] [action] goto (1471,1611) from (1496,1628,10)
+[00:20:48.700] LOG   [mk3_Rhea] event goto_start: target=(1471,1611) from=(1496,1628)
+[00:20:48.700] INFO  [mk3_Rhea] [bot] running from (1496,1628,10) to (1471,1611,z20)
+[00:20:48.700] INFO  [mk3_Rhea] [bot] planning path to (1471,1611) in background
+[00:20:48.757] INFO  [mk3_Rhea] [bot] replan to (1471,1611): 32 steps in 5810.6us
+[00:20:50.111] INFO  [mk3_Rhea] [survival] hp 32/32 (100%) -> fight
+[00:20:55.132] INFO  [mk3_Rhea] [survival] hp 32/32 (100%) -> fight
+[00:20:56.418] INFO  [mk3_Rhea] [bot] door ahead at (1480,1613,z20); OpenDoor before step
+[00:20:56.433] INFO  [mk3_Rhea] [chat ascii] System: Opening door...
+[00:20:57.151] INFO  [mk3_Rhea] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=11 in 109.9us
+[00:20:57.612] INFO  [mk3_Rhea] [bot] door ahead at (1479,1612,z20); OpenDoor before step
+[00:20:57.612] INFO  [mk3_Rhea] [chat ascii] System: Opening door...
+[00:20:58.787] INFO  [mk3_Rhea] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=8 in 153.2us
+[00:20:58.988] INFO  [mk3_Rhea] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=8 in 154.2us
+[00:20:59.481] INFO  [mk3_Rhea] [bot] lookahead patched around block at step 4: anchor=5 new segment=4 path=6 in 61.9us
+[00:20:59.820] INFO  [mk3_Rhea] [travel] Britain healer ARRIVED at (1475,1612,20)
+[00:20:59.820] LOG   [mk3_Rhea] event travel_done: label='Britain healer' ok=1 at=(1475,1612) legs=1 plans=1 why=''
+[00:20:59.882] INFO  [mk3_Rhea] [action] scanning nearby mobiles for names
+[00:20:59.883] INFO  [mk3_Rhea] [action] requested 3 paperdoll(s) for trade titles
+[00:20:59.883] INFO  [life] bandages: at the shop, asking who is here (scan 1 of 3)
+[00:20:59.883] INFO  [mk3_Rhea] [mobiles] nearby (5):
+[00:20:59.883] INFO  [mk3_Rhea]   Faustus 0x000181F7
+[00:20:59.883] INFO  [mk3_Rhea]   Dale 0x000010C1
+[00:20:59.883] INFO  [mk3_Rhea]   Natasha 0x00001194
+[00:20:59.883] INFO  [mk3_Rhea]   Caimile 0x00001239
+[00:20:59.883] INFO  [mk3_Rhea]   Dog 0x00000230
+[00:20:59.883] INFO  [mk3_Rhea] [0x20] player @(1475,1612,20) facing=7
+[00:20:59.883] INFO  [mk3_Rhea] [0x88] paperdoll 0x000010C1: "Dale, the healer"
+[00:20:59.883] INFO  [mk3_Rhea] [world] Dale, the healer is a healer at (1472,1609)
+[00:20:59.883] INFO  [mk3_Rhea] [0x20] player @(1475,1612,20) facing=6
+[00:20:59.883] INFO  [mk3_Rhea] [0x88] paperdoll 0x00001194: "Natasha, the healer guildmistress"
+[00:20:59.883] INFO  [mk3_Rhea] [world] Natasha, the healer guildmistress is a healer at (1468,1609)
+[00:20:59.883] INFO  [mk3_Rhea] [0x20] player @(1475,1612,20) facing=0
+[00:20:59.883] INFO  [mk3_Rhea] [0x88] paperdoll 0x00001239: "Caimile, the merchant guildmistress"
+[00:20:59.899] INFO  [mk3_Rhea] [chat uni  ] Faustus: Dale buy
+[00:20:59.899] INFO  [mk3_Rhea] [chat ascii] Dale: Greetings.  What might I help thee with?
+[00:20:59.899] INFO  [mk3_Rhea] [chat ascii] Dale: My shop sells many things.
+[00:21:00.160] INFO  [mk3_Rhea] [survival] hp 32/32 (100%) -> fight
+[00:21:02.907] INFO  [life] bandages: found a 'healer'
+[00:21:02.908] INFO  [life] bandages: within reach
+[00:21:02.967] INFO  [mk3_Rhea] [ACTION] vendor_buy start
+[00:21:02.967] INFO  [mk3_Rhea] [VENDOR] open vendor=0x000010C1 say='Dale buy'
+[00:21:02.968] INFO  [life] bandages: asking the 'healer' to show clean bandages (attempt 1)
+[00:21:02.984] INFO  [mk3_Rhea] [chat uni  ] : Dale buy
+[00:21:02.984] INFO  [life] bandages: an action is already in flight
+[00:21:05.177] INFO  [mk3_Rhea] [survival] hp 32/32 (100%) -> fight
+[00:21:10.229] INFO  [mk3_Rhea] [survival] hp 32/32 (100%) -> fight
+[00:21:11.016] LOG   [mk3_Rhea] event action_result: vendor_buy timeout
+[00:21:11.077] INFO  [life] bandages: resting after a failure
+[00:21:11.193] INFO  [mk3_Rhea] [chat ascii] System: Observer has arrived in Minoc.
+[00:21:13.124] INFO  [mk3_Rhea] [ACTION] vendor_buy start
+[00:21:13.124] INFO  [mk3_Rhea] [VENDOR] open vendor=0x000010C1 say='Dale buy'
+[00:21:13.124] INFO  [life] bandages: asking the 'healer' to show clean bandages (attempt 2)
+[00:21:13.141] INFO  [mk3_Rhea] [chat uni  ] : Dale buy
+[00:21:13.141] INFO  [mk3_Rhea] [chat ascii] Dale: Good morrow!  How can I help thee?
+[00:21:13.141] INFO  [mk3_Rhea] [chat ascii] Dale: I'm here to sell thee supplies.
+[00:21:13.141] INFO  [mk3_Rhea] [0x3C] container contents: 3 item(s)
+[00:21:13.141] INFO  [mk3_Rhea] [0x74] pairing: straight (straight 3, mirrored 1 of 3 rows)
+[00:21:13.141] INFO  [mk3_Rhea] [0x74] vendor shop data: cont=0x400010BB 3 item(s), layer=0x1A
+[00:21:13.141] INFO  [mk3_Rhea] [0x74]   Ginseng                      gfx=0x0F85 qty=20   price=3
+[00:21:13.141] INFO  [mk3_Rhea] [0x74]   Garlic                       gfx=0x0F84 qty=13   price=3
+[00:21:13.141] INFO  [mk3_Rhea] [0x74]   Refresh                      gfx=0x0F0B qty=19   price=16
+[00:21:13.141] INFO  [mk3_Rhea] [0x3C] container contents: 0 item(s)
+[00:21:13.141] INFO  [mk3_Rhea] [0x74] vendor shop data: cont=0x40000EF5 0 item(s), layer=0x1B
+[00:21:13.141] INFO  [mk3_Rhea] [VENDOR] offer from 0x000010C1: 3 item(s)
+[00:21:13.141] INFO  [mk3_Rhea] [VENDOR]   0x40018237 Ginseng                x20  3 gp
+[00:21:13.141] INFO  [mk3_Rhea] [VENDOR]   0x40018236 Garlic                 x13  3 gp
+[00:21:13.141] INFO  [mk3_Rhea] [VENDOR]   0x40018232 Refresh                x19  16 gp
+[00:21:13.141] LOG   [mk3_Rhea] event vendor_offer: vendor=0x000010C1 items=3
+[00:21:13.141] INFO  [mk3_Rhea] [ACTION_RESULT] vendor_buy success (18ms) vendor offer received
+[00:21:13.142] LOG   [mk3_Rhea] event action_result: vendor_buy success took=18ms vendor offer received
+[00:21:13.142] INFO  [mk3_Rhea] [0x24] vendor buy gump for 0x000010C1
+[00:21:13.142] INFO  [life] bandages: the shop is open
+[00:21:13.201] INFO  [life] bandages: this 'healer' does not stock clean bandages
+[00:21:13.201] INFO  [life] goal_failed=REPLACE_EQUIPMENT status=failed reason="this 'healer' does not stock clean bandages"
+[00:21:13.201] INFO  [life] handoff=REPLACE_EQUIPMENT->MAKE_BANDAGES reason="no bandages bought"
+[00:21:13.263] INFO  [life] goal=GET_FOOD reason="previous goal abandoned: no bandages bought"
+[00:21:13.263] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSkillTraining(Veterinary 0.55) NeedEquipment(heal potions 0.50) NeedPet(a pet 0.42) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=Veterinary (target 100.0)
+[00:21:13.263] INFO  [life]   score=62.5
+[00:21:13.263] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[00:21:13.263] INFO  [life]   reason: food=0
+[00:21:13.263] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 239s after achieving nothing
+[00:21:13.263] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 253s after achieving nothing
+[00:21:14.572] INFO  [mk3_Rhea] [chat ascii] System: Observer has departed from Minoc.
+[00:21:15.259] INFO  [mk3_Rhea] [travel] Britain baker -> (1450,1617) r=5 from (1475,1612)
+[00:21:15.259] LOG   [mk3_Rhea] event travel_start: label='Britain baker' target=(1450,1617) radius=5 from=(1475,1612)
+[00:21:15.259] INFO  [life] food: walking to a 'baker' (trip 1)
+[00:21:15.259] INFO  [mk3_Rhea] [travel] mode walk             usable   <- chosen
+[00:21:15.259] INFO  [mk3_Rhea] [travel] mode moongate         usable
+[00:21:15.259] INFO  [mk3_Rhea] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:15.259] INFO  [mk3_Rhea] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:15.259] LOG   [mk3_Rhea] event travel_mode: walk
+[00:21:15.259] INFO  [mk3_Rhea] [travel] plan Britain baker: ok legs=1 ~25 tiles transit=0 nodes=0
+[00:21:15.259] INFO  [mk3_Rhea] [survival] hp 32/32 (100%) -> fight
+[00:21:15.323] INFO  [mk3_Rhea] [action] goto finished at (1475,1612,20); target (1471,1611); stopped short (off by 5 tile(s))
+[00:21:15.323] LOG   [mk3_Rhea] event goto_done: at=(1475,1612) target=(1471,1611) arrived=0 off=5
+[00:21:15.323] INFO  [mk3_Rhea] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:15.323] INFO  [mk3_Rhea] [action] goto (1450,1617) from (1475,1612,20)
+[00:21:15.323] LOG   [mk3_Rhea] event goto_start: target=(1450,1617) from=(1475,1612)
+[00:21:15.323] INFO  [mk3_Rhea] [bot] running from (1475,1612,20) to (1450,1617,z20)
+[00:21:15.323] INFO  [mk3_Rhea] [bot] planning path to (1450,1617) in background
+[00:21:15.384] INFO  [mk3_Rhea] [bot] replan to (1450,1617): 40 steps in 4345.8us
+[00:21:16.829] INFO  [mk3_Rhea] [bot] step (1479,1612,20)->(1480,1611,20) rejected; OpenDoor + retry
+[00:21:16.843] INFO  [mk3_Rhea] [chat ascii] System: Opening door...
+[00:21:16.843] INFO  [mk3_Rhea] [0x20] player @(1479,1612,20) facing=0
+[00:21:16.843] INFO  [mk3_Rhea] [action] goto finished at (1479,1612,20); target (1450,1617); stopped short (off by 34 tile(s))
+[00:21:16.843] LOG   [mk3_Rhea] event goto_done: at=(1479,1612) target=(1450,1617) arrived=0 off=34
+[00:21:18.102] INFO  [mk3_Rhea] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:18.102] INFO  [mk3_Rhea] [action] goto (1450,1617) from (1479,1612,20)
+[00:21:18.102] LOG   [mk3_Rhea] event goto_start: target=(1450,1617) from=(1479,1612)
+[00:21:18.102] INFO  [mk3_Rhea] [bot] running from (1479,1612,20) to (1450,1617,z20)
+[00:21:18.102] INFO  [mk3_Rhea] [bot] planning path to (1450,1617) in background
+[00:21:18.163] INFO  [mk3_Rhea] [bot] replan to (1450,1617): 36 steps in 4870.6us
+[00:21:18.668] INFO  [mk3_Rhea] [bot] door ahead at (1480,1610,z20); OpenDoor before step
+[00:21:18.683] INFO  [mk3_Rhea] [chat ascii] System: Opening door...
+[00:21:20.276] INFO  [mk3_Rhea] [survival] hp 32/32 (100%) -> fight
+[00:21:24.983] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_29.rhea/state.json
+[00:21:25.417] INFO  [mk3_Rhea] [survival] hp 32/32 (100%) -> fight
+[00:21:29.604] INFO  [mk3_Rhea] [chat uni  ] : Lionel buy
+[00:21:29.604] INFO  [mk3_Rhea] [chat ascii] System: You shove Cyras out of the way.
+[00:21:30.390] INFO  [mk3_Rhea] [chat uni  ] : Lionel buy
+[00:21:30.390] INFO  [mk3_Rhea] [travel] Britain baker ARRIVED at (1455,1614,20)
+[00:21:30.390] LOG   [mk3_Rhea] event travel_done: label='Britain baker' ok=1 at=(1455,1614) legs=1 plans=1 why=''
+[00:21:30.391] INFO  [mk3_Rhea] [bot] reject at (1455,1614): mobile in the way — waiting 500ms, retrying (1) [no blacklist]
+[00:21:30.391] INFO  [mk3_Rhea] [bot] planning path to (1450,1617) in background
+[00:21:30.391] INFO  [mk3_Rhea] [action] scanning nearby mobiles for names
+[00:21:30.391] INFO  [mk3_Rhea] [action] requested 8 paperdoll(s) for trade titles
+[00:21:30.391] INFO  [life] food: at the shop, asking who is here (scan 1 of 3)
+[00:21:30.407] INFO  [mk3_Rhea] [mobiles] nearby (13):
+[00:21:30.407] INFO  [mk3_Rhea]   Cyras 0x00015725
+[00:21:30.407] INFO  [mk3_Rhea]   Serena 0x000193F7
+[00:21:30.407] INFO  [mk3_Rhea]   Vorar 0x00016305
+[00:21:30.407] INFO  [mk3_Rhea]   Odessa 0x000194DE
+[00:21:30.407] INFO  [mk3_Rhea]   Aelia 0x00013DA6
+[00:21:30.407] INFO  [mk3_Rhea]   Faustus 0x000181F7
+[00:21:30.407] INFO  [mk3_Rhea]   Lionel 0x000010B3
+[00:21:30.407] INFO  [mk3_Rhea]   Amara 0x00012E70
+[00:21:30.407] INFO  [mk3_Rhea]   Halain 0x0001616D
+[00:21:30.407] INFO  [mk3_Rhea]   Delras 0x00015A59
+[00:21:30.407] INFO  [mk3_Rhea]   Dale 0x000010C1
+[00:21:30.407] INFO  [mk3_Rhea]   Natasha 0x00001194
+[00:21:30.408] INFO  [mk3_Rhea]   Caimile 0x00001239
+[00:21:30.408] INFO  [mk3_Rhea] [0x88] paperdoll 0x00015725: "Cyras, Apprentice Lumberjack"
+[00:21:30.408] INFO  [mk3_Rhea] [0x88] paperdoll 0x000193F7: "Serena, Apprentice Miner"
+[00:21:30.408] INFO  [mk3_Rhea] [0x20] player @(1456,1614,20) facing=7
+[00:21:30.408] INFO  [mk3_Rhea] [0x88] paperdoll 0x00016305: "Vorar, Apprentice Lumberjack"
+[00:21:30.408] INFO  [mk3_Rhea] [0x88] paperdoll 0x000194DE: "Odessa, Apprentice Miner"
+[00:21:30.408] INFO  [mk3_Rhea] [0x20] player @(1456,1614,20) facing=6
+[00:21:30.408] INFO  [mk3_Rhea] [0x88] paperdoll 0x00013DA6: "Aelia, Apprentice Tailor"
+[00:21:30.408] INFO  [mk3_Rhea] [0x88] paperdoll 0x000010B3: "Lionel, the baker"
+[00:21:30.408] INFO  [mk3_Rhea] [world] Lionel, the baker is a baker at (1451,1615)
+[00:21:30.408] INFO  [mk3_Rhea] [0x88] paperdoll 0x00012E70: "Amara, Apprentice Tailor"
+[00:21:30.408] INFO  [mk3_Rhea] [0x88] paperdoll 0x0001616D: "Halain, Apprentice Lumberjack"
+[00:21:30.468] INFO  [mk3_Rhea] [survival] hp 32/32 (100%) -> fight
+[00:21:33.428] INFO  [life] food: found a 'baker'
+[00:21:33.488] INFO  [mk3_Rhea] [travel] mobile 0x000010B3 -> (1451,1615) r=1 from (1456,1614)
+[00:21:33.488] LOG   [mk3_Rhea] event travel_start: label='mobile 0x000010B3' target=(1451,1615) radius=1 from=(1456,1614)
+[00:21:33.488] INFO  [life] food: the 'baker' is 5 tiles off (dz 0) -- walking into reach (chase 1 of 3)
+[00:21:33.488] INFO  [mk3_Rhea] [travel] mode walk             usable   <- chosen
+[00:21:33.488] INFO  [mk3_Rhea] [travel] mode moongate         usable
+[00:21:33.488] INFO  [mk3_Rhea] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:33.488] INFO  [mk3_Rhea] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:33.488] LOG   [mk3_Rhea] event travel_mode: walk
+[00:21:33.488] INFO  [mk3_Rhea] [travel] plan mobile 0x000010B3: ok legs=1 ~5 tiles transit=0 nodes=0
+[00:21:33.550] INFO  [mk3_Rhea] [action] goto finished at (1456,1614,20); target (1450,1617); stopped short (off by 9 tile(s))
+[00:21:33.550] LOG   [mk3_Rhea] event goto_done: at=(1456,1614) target=(1450,1617) arrived=0 off=9
+[00:21:33.551] INFO  [mk3_Rhea] [action] goto (1451,1615) from (1456,1614,20)
+[00:21:33.551] LOG   [mk3_Rhea] event goto_start: target=(1451,1615) from=(1456,1614)
+[00:21:33.551] INFO  [mk3_Rhea] [bot] running from (1456,1614,20) to (1451,1615,z20)
+[00:21:33.551] INFO  [mk3_Rhea] [bot] planning path to (1451,1615) in background
+[00:21:35.502] INFO  [mk3_Rhea] [survival] hp 32/32 (100%) -> fight
+[00:21:35.808] INFO  [mk3_Rhea] [action] goto finished at (1456,1614,20); target (1451,1615); stopped short (off by 6 tile(s))
+[00:21:35.808] LOG   [mk3_Rhea] event goto_done: at=(1456,1614) target=(1451,1615) arrived=0 off=6
+[00:21:37.069] INFO  [mk3_Rhea] [action] goto (1451,1615) from (1456,1614,20)
+[00:21:37.069] LOG   [mk3_Rhea] event goto_start: target=(1451,1615) from=(1456,1614)
+[00:21:37.069] INFO  [mk3_Rhea] [bot] running from (1456,1614,20) to (1451,1615,z20)
+[00:21:37.069] INFO  [mk3_Rhea] [bot] planning path to (1451,1615) in background
+[00:21:39.562] INFO  [mk3_Rhea] [action] goto finished at (1456,1614,20); target (1451,1615); stopped short (off by 6 tile(s))
+[00:21:39.562] LOG   [mk3_Rhea] event goto_done: at=(1456,1614) target=(1451,1615) arrived=0 off=6
+[00:21:40.412] INFO  [mk3_Rhea] [chat uni  ] Faustus: Lionel buy
+[00:21:40.534] INFO  [mk3_Rhea] [survival] hp 32/32 (100%) -> fight
+[00:21:40.781] INFO  [mk3_Rhea] [travel] mode walk             usable   <- chosen
+[00:21:40.781] INFO  [mk3_Rhea] [travel] mode moongate         usable
+[00:21:40.781] INFO  [mk3_Rhea] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:40.781] INFO  [mk3_Rhea] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:40.781] LOG   [mk3_Rhea] event travel_mode: walk
+[00:21:40.781] INFO  [mk3_Rhea] [travel] plan mobile 0x000010B3: ok legs=1 ~5 tiles transit=0 nodes=0
+[00:21:42.317] INFO  [mk3_Rhea] [action] goto (1451,1615) from (1456,1614,20)
+[00:21:42.317] LOG   [mk3_Rhea] event goto_start: target=(1451,1615) from=(1456,1614)
+[00:21:42.317] INFO  [mk3_Rhea] [bot] running from (1456,1614,20) to (1451,1615,z20)
+[00:21:42.317] INFO  [mk3_Rhea] [bot] planning path to (1451,1615) in background
+[00:21:45.211] INFO  [mk3_Rhea] [action] goto finished at (1456,1614,20); target (1451,1615); stopped short (off by 6 tile(s))
+[00:21:45.211] LOG   [mk3_Rhea] event goto_done: at=(1456,1614) target=(1451,1615) arrived=0 off=6
+[00:21:45.579] INFO  [mk3_Rhea] [survival] hp 32/32 (100%) -> fight
+[00:21:46.453] INFO  [mk3_Rhea] [action] goto (1451,1615) from (1456,1614,20)
+[00:21:46.453] LOG   [mk3_Rhea] event goto_start: target=(1451,1615) from=(1456,1614)
+[00:21:46.453] INFO  [mk3_Rhea] [bot] running from (1456,1614,20) to (1451,1615,z20)
+[00:21:46.453] INFO  [mk3_Rhea] [bot] planning path to (1451,1615) in background
+[00:21:48.902] INFO  [mk3_Rhea] [action] goto finished at (1456,1614,20); target (1451,1615); stopped short (off by 6 tile(s))
+[00:21:48.902] LOG   [mk3_Rhea] event goto_done: at=(1456,1614) target=(1451,1615) arrived=0 off=6
+[00:21:50.105] INFO  [mk3_Rhea] [travel] mode walk             usable   <- chosen
+[00:21:50.105] INFO  [mk3_Rhea] [travel] mode moongate         usable
+[00:21:50.105] INFO  [mk3_Rhea] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:50.105] INFO  [mk3_Rhea] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:50.105] LOG   [mk3_Rhea] event travel_mode: walk
+[00:21:50.105] INFO  [mk3_Rhea] [travel] plan mobile 0x000010B3: ok legs=1 ~5 tiles transit=0 nodes=0
+[00:21:50.610] INFO  [mk3_Rhea] [survival] hp 32/32 (100%) -> fight
+[00:21:53.141] INFO  [mk3_Rhea] [action] goto (1451,1615) from (1456,1614,20)
+[00:21:53.141] LOG   [mk3_Rhea] event goto_start: target=(1451,1615) from=(1456,1614)
+[00:21:53.141] INFO  [mk3_Rhea] [bot] running from (1456,1614,20) to (1451,1615,z20)
+[00:21:53.141] INFO  [mk3_Rhea] [bot] planning path to (1451,1615) in background
+[00:21:55.632] INFO  [mk3_Rhea] [survival] hp 32/32 (100%) -> fight
+[00:21:55.649] INFO  [mk3_Rhea] [action] goto finished at (1456,1614,20); target (1451,1615); stopped short (off by 6 tile(s))
+[00:21:55.649] LOG   [mk3_Rhea] event goto_done: at=(1456,1614) target=(1451,1615) arrived=0 off=6
+[00:21:56.886] INFO  [mk3_Rhea] [action] goto (1451,1615) from (1456,1614,20)
+[00:21:56.886] LOG   [mk3_Rhea] event goto_start: target=(1451,1615) from=(1456,1614)
+[00:21:56.886] INFO  [mk3_Rhea] [bot] running from (1456,1614,20) to (1451,1615,z20)
+[00:21:56.886] INFO  [mk3_Rhea] [bot] planning path to (1451,1615) in background
+[00:21:58.645] INFO  [mk3_Rhea] [chat ascii] System: Draver has departed from Minoc.
+[00:21:58.984] INFO  [mk3_Rhea] [action] goto finished at (1456,1614,20); target (1451,1615); stopped short (off by 6 tile(s))
+[00:21:58.984] LOG   [mk3_Rhea] event goto_done: at=(1456,1614) target=(1451,1615) arrived=0 off=6
+[00:22:00.210] INFO  [mk3_Rhea] [travel] mode walk             usable   <- chosen
+[00:22:00.210] INFO  [mk3_Rhea] [travel] mode moongate         usable
+[00:22:00.210] INFO  [mk3_Rhea] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:00.210] INFO  [mk3_Rhea] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:00.210] LOG   [mk3_Rhea] event travel_mode: walk
+[00:22:00.210] INFO  [mk3_Rhea] [travel] plan mobile 0x000010B3: ok legs=1 ~5 tiles transit=0 nodes=0
+[00:22:00.657] INFO  [mk3_Rhea] [survival] hp 32/32 (100%) -> fight
+[00:22:04.761] INFO  [mk3_Rhea] [action] goto (1451,1615) from (1456,1614,20)
+[00:22:04.761] LOG   [mk3_Rhea] event goto_start: target=(1451,1615) from=(1456,1614)
+[00:22:04.761] INFO  [mk3_Rhea] [bot] running from (1456,1614,20) to (1451,1615,z20)
+[00:22:04.761] INFO  [mk3_Rhea] [bot] planning path to (1451,1615) in background
+[00:22:05.713] INFO  [mk3_Rhea] [survival] hp 32/32 (100%) -> fight
+[00:22:06.890] INFO  [mk3_Rhea] [action] goto finished at (1456,1614,20); target (1451,1615); stopped short (off by 6 tile(s))
+[00:22:06.890] LOG   [mk3_Rhea] event goto_done: at=(1456,1614) target=(1451,1615) arrived=0 off=6
+[00:22:08.116] INFO  [mk3_Rhea] [action] goto (1451,1615) from (1456,1614,20)
+[00:22:08.116] LOG   [mk3_Rhea] event goto_start: target=(1451,1615) from=(1456,1614)
+[00:22:08.116] INFO  [mk3_Rhea] [bot] running from (1456,1614,20) to (1451,1615,z20)
+[00:22:08.116] INFO  [mk3_Rhea] [bot] planning path to (1451,1615) in background
+[00:22:10.488] INFO  [mk3_Rhea] [travel] mobile 0x000010B3 -> (1451,1615) r=1 from (1456,1614)
+[00:22:10.488] LOG   [mk3_Rhea] event travel_start: label='mobile 0x000010B3' target=(1451,1615) radius=1 from=(1456,1614)
+[00:22:10.488] INFO  [life] food: the 'baker' is 5 tiles off (dz 0) -- walking into reach (chase 2 of 3)
+[00:22:10.488] INFO  [mk3_Rhea] [travel] mode walk             usable   <- chosen
+[00:22:10.488] INFO  [mk3_Rhea] [travel] mode moongate         usable
+[00:22:10.488] INFO  [mk3_Rhea] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:10.488] INFO  [mk3_Rhea] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:10.488] LOG   [mk3_Rhea] event travel_mode: walk
+[00:22:10.488] INFO  [mk3_Rhea] [travel] plan mobile 0x000010B3: ok legs=1 ~5 tiles transit=0 nodes=0
+[00:22:10.550] INFO  [mk3_Rhea] [action] goto finished at (1456,1614,20); target (1451,1615); stopped short (off by 6 tile(s))
+[00:22:10.550] LOG   [mk3_Rhea] event goto_done: at=(1456,1614) target=(1451,1615) arrived=0 off=6
+[00:22:10.550] INFO  [mk3_Rhea] [action] goto (1451,1615) from (1456,1614,20)
+[00:22:10.550] LOG   [mk3_Rhea] event goto_start: target=(1451,1615) from=(1456,1614)
+[00:22:10.550] INFO  [mk3_Rhea] [bot] running from (1456,1614,20) to (1451,1615,z20)
+[00:22:10.550] INFO  [mk3_Rhea] [bot] planning path to (1451,1615) in background
+[00:22:10.737] INFO  [mk3_Rhea] [survival] hp 32/32 (100%) -> fight
+[00:22:12.911] INFO  [mk3_Rhea] [action] goto finished at (1456,1614,20); target (1451,1615); stopped short (off by 6 tile(s))
+[00:22:12.911] LOG   [mk3_Rhea] event goto_done: at=(1456,1614) target=(1451,1615) arrived=0 off=6
+[00:22:14.158] INFO  [mk3_Rhea] [action] goto (1451,1615) from (1456,1614,20)
+[00:22:14.159] LOG   [mk3_Rhea] event goto_start: target=(1451,1615) from=(1456,1614)
+[00:22:14.159] INFO  [mk3_Rhea] [bot] running from (1456,1614,20) to (1451,1615,z20)
+[00:22:14.159] INFO  [mk3_Rhea] [bot] planning path to (1451,1615) in background
+[00:22:15.780] INFO  [mk3_Rhea] [survival] hp 32/32 (100%) -> fight
+[00:22:16.688] INFO  [mk3_Rhea] [action] goto finished at (1456,1614,20); target (1451,1615); stopped short (off by 6 tile(s))
+[00:22:16.688] LOG   [mk3_Rhea] event goto_done: at=(1456,1614) target=(1451,1615) arrived=0 off=6
+[00:22:17.920] INFO  [mk3_Rhea] [travel] mode walk             usable   <- chosen
+[00:22:17.920] INFO  [mk3_Rhea] [travel] mode moongate         usable
+[00:22:17.920] INFO  [mk3_Rhea] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:17.920] INFO  [mk3_Rhea] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:17.920] LOG   [mk3_Rhea] event travel_mode: walk
+[00:22:17.920] INFO  [mk3_Rhea] [travel] plan mobile 0x000010B3: ok legs=1 ~5 tiles transit=0 nodes=0
+[00:22:19.447] INFO  [mk3_Rhea] [action] goto (1451,1615) from (1456,1614,20)
+[00:22:19.447] LOG   [mk3_Rhea] event goto_start: target=(1451,1615) from=(1456,1614)
+[00:22:19.447] INFO  [mk3_Rhea] [bot] running from (1456,1614,20) to (1451,1615,z20)
+[00:22:19.447] INFO  [mk3_Rhea] [bot] planning path to (1451,1615) in background
+[00:22:20.822] INFO  [mk3_Rhea] [survival] hp 32/32 (100%) -> fight
+[00:22:21.315] INFO  [mk3_Rhea] [action] goto finished at (1456,1614,20); target (1451,1615); stopped short (off by 6 tile(s))
+[00:22:21.315] LOG   [mk3_Rhea] event goto_done: at=(1456,1614) target=(1451,1615) arrived=0 off=6
+[00:22:22.561] INFO  [mk3_Rhea] [action] goto (1451,1615) from (1456,1614,20)
+[00:22:22.561] LOG   [mk3_Rhea] event goto_start: target=(1451,1615) from=(1456,1614)
+[00:22:22.561] INFO  [mk3_Rhea] [bot] running from (1456,1614,20) to (1451,1615,z20)
+[00:22:22.561] INFO  [mk3_Rhea] [bot] planning path to (1451,1615) in background
+[00:22:24.503] INFO  [mk3_Rhea] [action] goto finished at (1456,1614,20); target (1451,1615); stopped short (off by 6 tile(s))
+[00:22:24.503] LOG   [mk3_Rhea] event goto_done: at=(1456,1614) target=(1451,1615) arrived=0 off=6
+[00:22:24.998] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_29.rhea/state.json
+[00:22:25.751] INFO  [mk3_Rhea] [travel] mode walk             usable   <- chosen
+[00:22:25.751] INFO  [mk3_Rhea] [travel] mode moongate         usable
+[00:22:25.751] INFO  [mk3_Rhea] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:25.751] INFO  [mk3_Rhea] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:25.751] LOG   [mk3_Rhea] event travel_mode: walk
+[00:22:25.751] INFO  [mk3_Rhea] [travel] plan mobile 0x000010B3: ok legs=1 ~5 tiles transit=0 nodes=0
+[00:22:25.875] INFO  [mk3_Rhea] [survival] hp 32/32 (100%) -> fight
+[00:22:28.751] INFO  [mk3_Rhea] [action] goto (1451,1615) from (1456,1614,20)
+[00:22:28.751] LOG   [mk3_Rhea] event goto_start: target=(1451,1615) from=(1456,1614)
+[00:22:28.751] INFO  [mk3_Rhea] [bot] running from (1456,1614,20) to (1451,1615,z20)
+[00:22:28.751] INFO  [mk3_Rhea] [bot] planning path to (1451,1615) in background
+[00:22:30.297] INFO  [mk3_Rhea] [action] goto finished at (1456,1614,20); target (1451,1615); stopped short (off by 6 tile(s))
+[00:22:30.297] LOG   [mk3_Rhea] event goto_done: at=(1456,1614) target=(1451,1615) arrived=0 off=6
+[00:22:30.884] INFO  [mk3_Rhea] [survival] hp 32/32 (100%) -> fight
+[00:22:31.543] INFO  [mk3_Rhea] [action] goto (1451,1615) from (1456,1614,20)
+[00:22:31.543] LOG   [mk3_Rhea] event goto_start: target=(1451,1615) from=(1456,1614)
+[00:22:31.543] INFO  [mk3_Rhea] [bot] running from (1456,1614,20) to (1451,1615,z20)
+[00:22:31.543] INFO  [mk3_Rhea] [bot] planning path to (1451,1615) in background
+[00:22:31.852] INFO  [mk3_Rhea] [chat ascii] Lionel: Nice speaking to you Odessa
+[00:22:32.851] INFO  [mk3_Rhea] [chat ascii] Lionel: What's thee wantin'?
+[00:22:32.851] INFO  [mk3_Rhea] [chat ascii] Lionel: What's thee wantin'?
+[00:22:33.576] INFO  [mk3_Rhea] [action] goto finished at (1456,1614,20); target (1451,1615); stopped short (off by 6 tile(s))
+[00:22:33.576] LOG   [mk3_Rhea] event goto_done: at=(1456,1614) target=(1451,1615) arrived=0 off=6
+[00:22:34.778] INFO  [mk3_Rhea] [action] goto (1451,1615) from (1456,1614,20)
+[00:22:34.778] LOG   [mk3_Rhea] event goto_start: target=(1451,1615) from=(1456,1614)
+[00:22:34.778] INFO  [mk3_Rhea] [bot] running from (1456,1614,20) to (1451,1615,z20)
+[00:22:34.778] INFO  [mk3_Rhea] [bot] planning path to (1451,1615) in background
+[00:22:35.888] INFO  [mk3_Rhea] [survival] hp 32/32 (100%) -> fight
+[00:22:36.692] INFO  [mk3_Rhea] [action] goto finished at (1456,1614,20); target (1451,1615); stopped short (off by 6 tile(s))
+[00:22:36.692] LOG   [mk3_Rhea] event goto_done: at=(1456,1614) target=(1451,1615) arrived=0 off=6
+[00:22:37.891] INFO  [mk3_Rhea] [travel] mode walk             usable   <- chosen
+[00:22:37.891] INFO  [mk3_Rhea] [travel] mode moongate         usable
+[00:22:37.891] INFO  [mk3_Rhea] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:37.891] INFO  [mk3_Rhea] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:37.891] LOG   [mk3_Rhea] event travel_mode: walk
+[00:22:37.891] INFO  [mk3_Rhea] [travel] plan mobile 0x000010B3: ok legs=1 ~5 tiles transit=0 nodes=0
+[00:22:38.419] INFO  [mk3_Rhea] [chat ascii] System: Vorar has departed from Britain.
+[00:22:38.868] INFO  [mk3_Rhea] [travel] mode walk             usable   <- chosen
+[00:22:38.869] INFO  [mk3_Rhea] [travel] mode moongate         usable
+[00:22:38.869] INFO  [mk3_Rhea] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:38.869] INFO  [mk3_Rhea] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:38.869] LOG   [mk3_Rhea] event travel_mode: walk
+[00:22:38.869] INFO  [mk3_Rhea] [travel] plan mobile 0x000010B3: ok legs=1 ~6 tiles transit=0 nodes=0
+[00:22:38.930] INFO  [mk3_Rhea] [action] goto (1450,1612) from (1456,1614,20)
+[00:22:38.930] LOG   [mk3_Rhea] event goto_start: target=(1450,1612) from=(1456,1614)
+[00:22:38.930] INFO  [mk3_Rhea] [bot] running from (1456,1614,20) to (1450,1612,z20)
+[00:22:38.930] INFO  [mk3_Rhea] [bot] planning path to (1450,1612) in background
+[00:22:39.440] INFO  [mk3_Rhea] [chat ascii] System: Selene has departed from Magincia.
+[00:22:40.391] INFO  [mk3_Rhea] [action] goto finished at (1456,1614,20); target (1450,1612); stopped short (off by 8 tile(s))
+[00:22:40.391] LOG   [mk3_Rhea] event goto_done: at=(1456,1614) target=(1450,1612) arrived=0 off=8
+[00:22:40.915] INFO  [mk3_Rhea] [survival] hp 32/32 (100%) -> fight
+[00:22:41.624] INFO  [mk3_Rhea] [action] goto (1450,1612) from (1456,1614,20)
+[00:22:41.624] LOG   [mk3_Rhea] event goto_start: target=(1450,1612) from=(1456,1614)
+[00:22:41.624] INFO  [mk3_Rhea] [bot] running from (1456,1614,20) to (1450,1612,z20)
+[00:22:41.624] INFO  [mk3_Rhea] [bot] planning path to (1450,1612) in background
+[00:22:41.685] INFO  [mk3_Rhea] [bot] replan to (1450,1612): 13 steps in 320.2us
+[00:22:43.502] INFO  [mk3_Rhea] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=10 in 140.6us
+[00:22:45.168] INFO  [mk3_Rhea] [travel] mobile 0x000010B3 ARRIVED at (1450,1615,20)
+[00:22:45.168] LOG   [mk3_Rhea] event travel_done: label='mobile 0x000010B3' ok=1 at=(1450,1615) legs=0 plans=0 why=''
+[00:22:45.230] INFO  [life] food: within reach
+[00:22:45.292] INFO  [mk3_Rhea] [ACTION] vendor_buy start
+[00:22:45.292] INFO  [mk3_Rhea] [VENDOR] open vendor=0x000010B3 say='Lionel buy'
+[00:22:45.292] INFO  [life] food: asking the 'baker' to show something to eat (attempt 1)
+[00:22:45.293] INFO  [mk3_Rhea] [chat uni  ] : Lionel buy
+[00:22:45.293] INFO  [mk3_Rhea] [chat ascii] Lionel: I got lots to sell!
+[00:22:45.293] INFO  [mk3_Rhea] [0x3C] container contents: 11 item(s)
+[00:22:45.293] INFO  [mk3_Rhea] [0x74] pairing: straight (straight 1, mirrored 0 of 11 rows)
+[00:22:45.293] INFO  [mk3_Rhea] [0x74] vendor shop data: cont=0x400010A9 11 item(s), layer=0x1A
+[00:22:45.293] INFO  [mk3_Rhea] [0x74]   bread loaves                 gfx=0x103B qty=73   price=8
+[00:22:45.293] INFO  [mk3_Rhea] [0x74]   baked pie                    gfx=0x1041 qty=23   price=17
+[00:22:45.293] INFO  [mk3_Rhea] [0x74]   cake                         gfx=0x09E9 qty=22   price=38
+[00:22:45.293] INFO  [mk3_Rhea] [0x74]   muffins                      gfx=0x09EA qty=46   price=8
+[00:22:45.293] INFO  [mk3_Rhea] [0x74]   sack of flour                gfx=0x1039 qty=105  price=6
+[00:22:45.293] INFO  [mk3_Rhea] [0x74]   french bread                 gfx=0x098C qty=33   price=9
+[00:22:45.293] INFO  [mk3_Rhea] [0x74]   pan of cookies               gfx=0x160B qty=64   price=7
+[00:22:45.294] INFO  [mk3_Rhea] [0x74]   pizzas                       gfx=0x1040 qty=57   price=15
+[00:22:45.294] INFO  [mk3_Rhea] [0x74]   jars of honey                gfx=0x09EC qty=55   price=10
+[00:22:45.294] INFO  [mk3_Rhea] [0x74]   dough                        gfx=0x103D qty=45   price=12
+[00:22:45.294] INFO  [mk3_Rhea] [0x74]   rolling pin                  gfx=0x1043 qty=5    price=9
+[00:22:45.294] INFO  [mk3_Rhea] [0x3C] container contents: 0 item(s)
+[00:22:45.294] INFO  [mk3_Rhea] [0x74] vendor shop data: cont=0x40000E04 0 item(s), layer=0x1B
+[00:22:45.294] INFO  [mk3_Rhea] [VENDOR] offer from 0x000010B3: 11 item(s)
+[00:22:45.294] INFO  [mk3_Rhea] [VENDOR]   0x400193BC bread loaves           x73  8 gp
+[00:22:45.294] INFO  [mk3_Rhea] [VENDOR]   0x400193BB baked pie              x23  17 gp
+[00:22:45.294] INFO  [mk3_Rhea] [VENDOR]   0x400193B8 cake                   x22  38 gp
+[00:22:45.294] INFO  [mk3_Rhea] [VENDOR]   0x400193B7 muffins                x46  8 gp
+[00:22:45.294] INFO  [mk3_Rhea] [VENDOR]   0x400193B5 sack of flour          x105 6 gp
+[00:22:45.294] INFO  [mk3_Rhea] [VENDOR]   0x400193B4 french bread           x33  9 gp
+[00:22:45.294] INFO  [mk3_Rhea] [VENDOR]   0x400193B2 pan of cookies         x64  7 gp
+[00:22:45.294] INFO  [mk3_Rhea] [VENDOR]   0x400193AF pizzas                 x57  15 gp
+[00:22:45.294] LOG   [mk3_Rhea] event vendor_offer: vendor=0x000010B3 items=11
+[00:22:45.294] INFO  [mk3_Rhea] [ACTION_RESULT] vendor_buy success (2ms) vendor offer received
+[00:22:45.294] LOG   [mk3_Rhea] event action_result: vendor_buy success took=2ms vendor offer received
+[00:22:45.294] INFO  [mk3_Rhea] [0x24] vendor buy gump for 0x000010B3
+[00:22:45.294] INFO  [life] food: the shop is open
+[00:22:45.355] INFO  [life] food: the shop is open; the caller chooses
+[00:22:45.355] INFO  [life] food: buying bread loaves at 8 gold
+[00:22:45.355] INFO  [mk3_Rhea] [ACTION] vendor_buy start
+[00:22:45.355] INFO  [mk3_Rhea] [policy] allowed NPC purchase of i_bread_loaf (0x103B): basic food: a character with hunger enabled must be able to eat, and Revolution's cooking economy shows food was not an income good [BASIC_FOOD]
+[00:22:45.355] INFO  [mk3_Rhea] [VENDOR] buy item=0x400193BC qty=2 from vendor=0x000010B3 gold=10000
+[00:22:45.356] INFO  [mk3_Rhea] [ACTION_RESULT] vendor_buy success (1ms) purchased item delivered
+[00:22:45.356] LOG   [mk3_Rhea] event action_result: vendor_buy success took=1ms purchased item delivered
+[00:22:45.356] INFO  [mk3_Rhea] [chat ascii] Lionel: Here you are, Rhea That will be 16 gold coins.  I thank thee for thy business.
+[00:22:45.356] INFO  [mk3_Rhea] [0x3B] vendor transaction closed: vendor=0x000010B3 flag=0
+[00:22:45.356] INFO  [life] goal_changed=TRAIN_AT_NPC from=GET_FOOD reason="TRAIN_AT_NPC 60.5 superseded GET_FOOD 0.0"
+[00:22:45.356] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSkillTraining(Veterinary 0.55) NeedEquipment(heal potions 0.50) NeedPet(a pet 0.42)  | tools defined=0 held=[] want_train=Veterinary (target 100.0)
+[00:22:45.356] INFO  [life]   score=60.5
+[00:22:45.356] INFO  [life]   reason: NeedSkillTraining urgency 0.55 x 110 = 60.5
+[00:22:45.356] INFO  [life]   reason: Veterinary 0.0 -> 100.0, gold 10000 (fee is quoted on arrival, roughly 300)
+[00:22:45.356] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 147s after achieving nothing
+[00:22:45.356] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 161s after achieving nothing
+[00:22:45.955] INFO  [mk3_Rhea] [survival] hp 32/32 (100%) -> fight
+[00:22:46.897] INFO  [mk3_Rhea] [chat ascii] System: Zarthal has departed from Minoc.
+[00:22:49.378] INFO  [mk3_Rhea] [chat ascii] System: World save in 10 seconds
+[00:22:50.319] INFO  [mk3_Rhea] [chat ascii] System: Thalia has departed from Moonglow.
+[00:22:50.964] INFO  [mk3_Rhea] [survival] hp 32/32 (100%) -> fight
+[00:22:53.217] INFO  [mk3_Rhea] [chat ascii] System: Elvar has departed from Minoc.
+[00:22:54.412] INFO  [life] plan=buy reason="below the ceiling, worth buying, and affordable"
+[00:22:54.412] INFO  [life] training: looking for a 'animal' to teach Veterinary (trip 1)
+[00:22:54.414] INFO  [mk3_Rhea] [travel] place: skipping Minoc animaltrainer -- 1952 tiles and 0 gates for a service Lord British's Castle animaltrainer offers
+[00:22:54.414] INFO  [mk3_Rhea] [travel] place: skipping Delucia animaltrainer -- 1764 tiles and 3 gates for a service Lord British's Castle animaltrainer offers
+[00:22:54.414] INFO  [mk3_Rhea] [travel] Lord British's Castle animaltrainer -> (1388,1655) r=5 from (1450,1615)
+[00:22:54.414] LOG   [mk3_Rhea] event travel_start: label='Lord British's Castle animaltrainer' target=(1388,1655) radius=5 from=(1450,1615)
+[00:22:54.414] INFO  [mk3_Rhea] [travel] mode moongate         usable   <- chosen
+[00:22:54.414] INFO  [mk3_Rhea] [travel] mode walk             usable
+[00:22:54.414] INFO  [mk3_Rhea] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:54.414] INFO  [mk3_Rhea] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:54.414] LOG   [mk3_Rhea] event travel_mode: moongate
+[00:22:54.414] INFO  [mk3_Rhea] [travel] plan Lord British's Castle animaltrainer: ok legs=2 ~96 tiles transit=0 nodes=16
+[00:22:54.474] INFO  [mk3_Rhea] [action] goto finished at (1450,1615,20); target (1450,1612); stopped short (off by 3 tile(s))
+[00:22:54.474] LOG   [mk3_Rhea] event goto_done: at=(1450,1615) target=(1450,1612) arrived=0 off=3
+[00:22:54.474] INFO  [mk3_Rhea] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:22:54.474] INFO  [mk3_Rhea] [action] goto (1416,1624) from (1450,1615,20)
+[00:22:54.474] LOG   [mk3_Rhea] event goto_start: target=(1416,1624) from=(1450,1615)
+[00:22:54.474] INFO  [mk3_Rhea] [bot] running from (1450,1615,20) to (1416,1624)
+[00:22:54.474] INFO  [mk3_Rhea] [bot] planning path to (1416,1624) in background
+[00:22:54.535] INFO  [mk3_Rhea] [bot] replan to (1416,1624): 65 steps in 1282.9us
+[00:22:56.024] INFO  [mk3_Rhea] [survival] hp 32/32 (100%) -> fight
+[00:22:56.935] INFO  [mk3_Rhea] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=59 in 148.1us
+[00:22:57.848] INFO  [mk3_Rhea] [chat ascii] System: Falen has departed from Minoc.
+[00:22:57.864] INFO  [mk3_Rhea] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=58 in 163.1us
+[00:22:58.726] INFO  [mk3_Rhea] [bot] step (1458,1612,20)->(1459,1611,20) rejected; OpenDoor + retry
+[00:22:58.741] INFO  [mk3_Rhea] [chat ascii] System: Opening door...
+[00:22:58.741] INFO  [mk3_Rhea] [0x20] player @(1458,1612,20) facing=2
+[00:22:58.741] INFO  [mk3_Rhea] [action] goto finished at (1458,1612,20); target (1416,1624); stopped short (off by 54 tile(s))
+[00:22:58.741] LOG   [mk3_Rhea] event goto_done: at=(1458,1612) target=(1416,1624) arrived=0 off=54
+[00:22:59.430] INFO  [mk3_Rhea] [chat ascii] System: World save has been initiated.
+[00:22:59.991] INFO  [mk3_Rhea] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:22:59.991] INFO  [mk3_Rhea] [action] goto (1416,1624) from (1458,1612,20)
+[00:22:59.991] LOG   [mk3_Rhea] event goto_start: target=(1416,1624) from=(1458,1612)
+[00:22:59.991] INFO  [mk3_Rhea] [bot] running from (1458,1612,20) to (1416,1624)
+[00:22:59.991] INFO  [mk3_Rhea] [bot] planning path to (1416,1624) in background
+[00:23:00.051] INFO  [mk3_Rhea] [bot] replan to (1416,1624): 55 steps in 2160.8us
+[00:23:01.051] INFO  [mk3_Rhea] [survival] hp 32/32 (100%) -> fight
+[00:23:04.608] INFO  [mk3_Rhea] [bot] step (1458,1612,20)->(1459,1611,20) rejected; OpenDoor + retry
+[00:23:04.609] INFO  [mk3_Rhea] [chat ascii] System: Opening door...
+[00:23:04.609] INFO  [mk3_Rhea] [0x20] player @(1458,1612,20) facing=2
+[00:23:04.609] INFO  [mk3_Rhea] [action] goto finished at (1458,1612,20); target (1416,1624); stopped short (off by 54 tile(s))
+[00:23:04.609] LOG   [mk3_Rhea] event goto_done: at=(1458,1612) target=(1416,1624) arrived=0 off=54
+[00:23:05.777] INFO  [mk3_Rhea] [chat ascii] System: Ghalor has departed from Minoc.
+[00:23:05.840] INFO  [mk3_Rhea] [travel] mode moongate         usable   <- chosen
+[00:23:05.840] INFO  [mk3_Rhea] [travel] mode walk             usable
+[00:23:05.840] INFO  [mk3_Rhea] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:23:05.840] INFO  [mk3_Rhea] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:23:05.840] LOG   [mk3_Rhea] event travel_mode: moongate
+[00:23:05.840] INFO  [mk3_Rhea] [travel] plan Lord British's Castle animaltrainer: ok legs=3 ~128 tiles transit=0 nodes=34
+[00:23:06.102] INFO  [mk3_Rhea] [survival] hp 32/32 (100%) -> fight
+[00:23:07.364] INFO  [mk3_Rhea] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:23:07.364] INFO  [mk3_Rhea] [action] goto (1432,1624) from (1458,1612,20)
+[00:23:07.364] LOG   [mk3_Rhea] event goto_start: target=(1432,1624) from=(1458,1612)
+[00:23:07.364] INFO  [mk3_Rhea] [bot] running from (1458,1612,20) to (1432,1624)
+[00:23:07.364] INFO  [mk3_Rhea] [bot] planning path to (1432,1624) in background
+[00:23:07.426] INFO  [mk3_Rhea] [bot] replan to (1432,1624): 37 steps in 1616.5us
+[00:23:07.627] INFO  [mk3_Rhea] [chat ascii] System: Cyras has departed from Britain.
+[00:23:07.889] INFO  [mk3_Rhea] [bot] door ahead at (1460,1613,z20); OpenDoor before step
+[00:23:07.904] INFO  [mk3_Rhea] [chat ascii] System: Opening door...
+[00:23:10.033] INFO  [mk3_Rhea] [chat ascii] System: Kharain has departed from Minoc.
+[00:23:11.112] INFO  [mk3_Rhea] [survival] hp 32/32 (100%) -> fight
+[00:23:12.348] INFO  [mk3_Rhea] [chat ascii] System: Leander has departed from Moonglow.
+[00:23:16.143] INFO  [mk3_Rhea] [survival] hp 32/32 (100%) -> fight
+[00:23:17.523] INFO  [mk3_Rhea] [bot] arrived at (1432,1624,20)
+[00:23:17.523] INFO  [mk3_Rhea] [action] goto finished at (1432,1624,20); target (1432,1624); ARRIVED (off by 0 tile(s))
+[00:23:17.523] LOG   [mk3_Rhea] event goto_done: at=(1432,1624) target=(1432,1624) arrived=1 off=0
+[00:23:17.523] INFO  [mk3_Rhea] [action] goto (1400,1624) from (1432,1624,20)
+[00:23:17.523] LOG   [mk3_Rhea] event goto_start: target=(1400,1624) from=(1432,1624)
+[00:23:17.523] INFO  [mk3_Rhea] [bot] running from (1432,1624,20) to (1400,1624)
+[00:23:17.523] INFO  [mk3_Rhea] [bot] planning path to (1400,1624) in background
+[00:23:17.585] INFO  [mk3_Rhea] [bot] replan to (1400,1624): 32 steps in 791.4us
+[00:23:21.198] INFO  [mk3_Rhea] [survival] hp 32/32 (100%) -> fight
+[00:23:22.359] INFO  [life] session_end_requested reason="session time limit reached"
+[00:23:22.931] INFO  [mk3_Rhea] [chat ascii] System: You have left the protection of the city guards
+[00:23:22.931] INFO  [mk3_Rhea] [chat ascii] System: You have a feeling of complete safety
+[00:23:25.230] INFO  [mk3_Rhea] [bot] arrived at (1400,1624,28)
+[00:23:25.230] INFO  [mk3_Rhea] [action] goto finished at (1400,1624,28); target (1400,1624); ARRIVED (off by 0 tile(s))
+[00:23:25.230] LOG   [mk3_Rhea] event goto_done: at=(1400,1624) target=(1400,1624) arrived=1 off=0
+[00:23:25.230] INFO  [mk3_Rhea] [action] goto (1388,1655) from (1400,1624,28)
+[00:23:25.230] LOG   [mk3_Rhea] event goto_start: target=(1388,1655) from=(1400,1624)
+[00:23:25.230] INFO  [mk3_Rhea] [bot] running from (1400,1624,28) to (1388,1655,z30)
+[00:23:25.230] INFO  [mk3_Rhea] [bot] planning path to (1388,1655) in background
+[00:23:25.290] INFO  [mk3_Rhea] [bot] replan to (1388,1655): 48 steps in 8221.9us
+[00:23:25.736] INFO  [mk3_Rhea] [chat ascii] System: Elara has departed from Magincia.
+[00:23:26.228] INFO  [mk3_Rhea] [survival] hp 32/32 (100%) -> fight
+[00:23:26.431] INFO  [mk3_Rhea] [chat ascii] System: Xerxes has departed from Vesper.
+[00:23:31.247] INFO  [mk3_Rhea] [survival] hp 32/32 (100%) -> fight
+[00:23:33.133] INFO  [mk3_Rhea] [chat ascii] System: Dorvar has departed from Skara Brae.
+[00:23:36.306] INFO  [mk3_Rhea] [survival] hp 32/32 (100%) -> fight
+[00:23:37.865] INFO  [mk3_Rhea] [chat ascii] System: Odessa has departed from Britain.
+[00:23:38.825] INFO  [mk3_Rhea] [travel] Lord British's Castle animaltrainer ARRIVED at (1388,1650,30)
+[00:23:38.825] LOG   [mk3_Rhea] event travel_done: label='Lord British's Castle animaltrainer' ok=1 at=(1388,1650) legs=3 plans=2 why=''
+[00:23:38.888] INFO  [life] wind-down: arrived somewhere safe at 1388,1650
+[00:23:38.905] INFO  [life] session_summary duration=196s goals=0/4 gold=10000->9984 skills=100.0->100.0 logs=+0 kills=0 deaths=0 places=2 suppliers=0
+[00:23:38.905] INFO  [life] session_goals families=2 picks=4 top=75% varied=0 self_superseded=0 | upkeep=3(75%) training=1(25%) | REPLACE_EQUIPMENT=1(25%) BANK=1(25%) TRAIN_AT_NPC=1(25%) GET_FOOD=1(25%)
+[00:23:38.907] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_29.rhea/state.json
+[00:23:38.907] INFO  [life] logging out
+[00:23:38.907] INFO  [mk3_Rhea] [action] logout requested
+[00:23:38.907] LOG   [mk3_Rhea] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[00:23:38.907] INFO  [mk3_Rhea] [0xD1] logout acknowledged (accepted=1)
+[00:23:38.907] LOG   [mk3_Rhea] event logout_ack: accepted
+[00:23:38.907] INFO  [mk3_Rhea] [net] closing connection (logout acknowledged)
+[00:23:38.907] LOG   [mk3_Rhea] event logout_complete: acked

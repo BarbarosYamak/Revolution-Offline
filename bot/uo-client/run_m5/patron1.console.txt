@@ -1,0 +1,594 @@
+[09:14:31.392] INFO  session 0: 127.0.0.1:2593 user='RevolutionPatron01' char=Aldric tag='patron1'
+[09:14:31.393] LOG   [patron1] event session_start: text log opened
+[09:14:31.393] LOG   [patron1] event net_connect_begin: connect 127.0.0.1:2593
+[09:14:31.393] INFO  [patron1] [net] connecting to 127.0.0.1:2593 ...
+[09:14:31.394] LOG   [patron1] event net_connected: connect 127.0.0.1:2593
+[09:14:31.394] INFO  [patron1] [net] connected.
+[09:14:31.394] INFO  [patron1] [seed] sent 0x7F000001 (plaintext)
+[09:14:31.394] LOG   [patron1] event seed_out: 0x7F000001 hex=7f000001
+[09:14:31.395] INFO  [life] no prior state for revolutionpatron01.aldric: a new Lumberjack / Carpenter
+[09:14:31.395] INFO  [life] creation request: Lumberjacking 50.0 + Swordsmanship 50.0, stats 25/20/5 = 50
+[09:14:31.395] INFO  [life] needs: reading 'lumberjack_swordsman' from the profession catalogue
+[09:14:31.395] INFO  [life] home: Aldric lives in Britain
+[09:14:31.395] INFO  [life] build plan 'lumberjack_swordsman': 600.0 resolved + 100.0 unresolved = 700.0/700.0, stats 100/100/25 = 225
+[09:14:31.395] INFO  [patron1] [life] autonomous player active for 'Aldric' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 3 min)
+[09:14:31.395] INFO  [patron1] [0xA8] 1 server(s):
+[09:14:31.395] INFO  [patron1]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[09:14:31.407] INFO  [patron1] [0x8C] game server = 127.0.0.1:2593  seed=0xD70B870A
+[09:14:31.407] LOG   [patron1] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xD70B870A
+[09:14:31.407] INFO  [patron1] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[09:14:31.407] LOG   [patron1] event relay_same_socket: no seed re-sent; 0x91 follows
+[09:14:31.407] INFO  [patron1] [0xB9] server features = 0x0005
+[09:14:31.407] INFO  [patron1] [0xA9] 5 slot(s) (populated 0):
+[09:14:31.407] INFO  [patron1]   [0] <empty>
+[09:14:31.407] INFO  [patron1]   [1] <empty>
+[09:14:31.407] INFO  [patron1]   [2] <empty>
+[09:14:31.407] INFO  [patron1]   [3] <empty>
+[09:14:31.407] INFO  [patron1]   [4] <empty>
+[09:14:31.407] INFO  [patron1] [0x00] requested skills 44:50 40:50 48:0
+[09:14:31.407] INFO  [patron1] [0x00] requested stats STR 25 DEX 20 INT 5
+[09:14:31.407] INFO  [patron1] [0x00] creating character 'Aldric' in slot 0
+[09:14:31.407] LOG   [patron1] event char_create_sent: Aldric
+[09:14:31.424] INFO  [patron1] [0x1B] serial=0x000132A0 body=0x0190 pos=(633,858,0)
+[09:14:31.424] LOG   [patron1] event login_confirm: serial=0x000132A0 body=0x0190 pos=(633,858,0)
+[09:14:31.424] INFO  [patron1] [0x20] player @(633,858,0) facing=3
+[09:14:31.424] INFO  [patron1] [0x55] login complete — entering world
+[09:14:31.424] LOG   [patron1] event in_world: 0x55 received
+[09:14:31.424] INFO  [patron1] [backpack] opening 0x400131FC
+[09:14:31.424] INFO  [patron1] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[09:14:31.424] INFO  [patron1] [chat ascii] System: There are 0 other players here.
+[09:14:31.424] INFO  [patron1] [chat ascii] System: You are under the protection of the town guards
+[09:14:31.428] INFO  [patron1] [action] requesting the skill list
+[09:14:31.428] INFO  [life] in world; asked the server for the skill list
+[09:14:31.428] INFO  [patron1] [0x24] open container 0x400131FC gump=60
+[09:14:31.428] INFO  [patron1] [0x3C] container contents: 5 item(s)
+[09:14:31.428] LOG   [patron1] event backpack_contents: serial=0x400131FC items=5
+[09:14:33.955] INFO  [patron1] [bot] world data loaded (0 blacklisted spot(s)).
+[09:14:33.955] INFO  [life] reconciliation: first ever login, 11 field(s) differed
+[09:14:33.955] INFO  [life]   gold         persisted=0          server=1000       -> server value accepted
+[09:14:33.955] INFO  [life]   str          persisted=0          server=25         -> server value accepted
+[09:14:33.955] INFO  [life]   dex          persisted=0          server=20         -> server value accepted
+[09:14:33.955] INFO  [life]   int          persisted=0          server=5          -> server value accepted
+[09:14:33.956] INFO  [life]   skill_44     persisted=0.0        server=50.0       -> server value accepted
+[09:14:33.956] INFO  [life]   skill_40     persisted=0.0        server=50.0       -> server value accepted
+[09:14:33.956] INFO  [life]   skill_27     persisted=0.0        server=4.9        -> server value accepted
+[09:14:33.956] INFO  [life]   skill_1      persisted=0.0        server=0.9        -> server value accepted
+[09:14:33.956] INFO  [life]   skill_17     persisted=0.0        server=11.8       -> server value accepted
+[09:14:33.956] INFO  [life]   skill_11     persisted=0.0        server=9.8        -> server value accepted
+[09:14:33.956] INFO  [life]   position     persisted=0,0        server=633,858    -> server value accepted
+[09:14:33.956] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[09:14:33.956] INFO  [patron1] [survival] on
+[09:14:33.956] LOG   [patron1] event survival_mode: on
+[09:14:33.957] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionpatron01.aldric/state.json
+[09:14:33.957] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:14:34.008] INFO  [life] goal=TRAIN_AT_NPC reason="no goal was running"
+[09:14:34.008] INFO  [life] needs considered: NeedEquipment(bandages BLOCKED 0.50) NeedSkillTraining(Carpentry 0.45) NeedLogs(logs 0.40) NeedTraining(Anatomy 0.40) NeedTraining(Tactics 0.39) NeedTraining(Swordsmanship 0.28) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[09:14:34.008] INFO  [life]   score=90.0
+[09:14:34.008] INFO  [life]   reason: NeedSkillTraining urgency 0.45 x 200 = 90.0
+[09:14:34.008] INFO  [life]   reason: Carpentry 9.8 -> 100.0, gold 1000 (fee is quoted on arrival, roughly 300)
+[09:14:34.008] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[09:14:34.008] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[09:14:34.008] INFO  [life] training: looking for a 'carpenter' to teach Carpentry (trip 1)
+[09:14:34.008] INFO  [patron1] [travel] Britain carpenter -> (1430,1597) r=5 from (633,858)
+[09:14:34.008] LOG   [patron1] event travel_start: label='Britain carpenter' target=(1430,1597) radius=5 from=(633,858)
+[09:14:34.008] INFO  [patron1] [travel] mode moongate         usable   <- chosen
+[09:14:34.008] INFO  [patron1] [travel] mode walk             usable
+[09:14:34.008] INFO  [patron1] [travel] mode loose_rune_recall no: no rune marked at that destination
+[09:14:34.008] INFO  [patron1] [travel] mode runebook_recall  no: no runebook page for that destination
+[09:14:34.008] LOG   [patron1] event travel_mode: moongate
+[09:14:34.009] INFO  [patron1] [travel] plan Britain carpenter: ok legs=19 ~760 tiles transit=1 nodes=942
+[09:14:34.070] INFO  [patron1] [action] goto (664,856) from (633,858,0)
+[09:14:34.070] LOG   [patron1] event goto_start: target=(664,856) from=(633,858)
+[09:14:34.070] INFO  [patron1] [bot] running from (633,858,0) to (664,856)
+[09:14:34.070] INFO  [patron1] [bot] planning path to (664,856) in background
+[09:14:34.131] INFO  [patron1] [bot] replan to (664,856): 31 steps in 5648.8us
+[09:14:38.973] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:14:43.410] INFO  [patron1] [bot] arrived at (664,856,0)
+[09:14:43.411] INFO  [patron1] [action] goto finished at (664,856,0); target (664,856); ARRIVED (off by 0 tile(s))
+[09:14:43.411] LOG   [patron1] event goto_done: at=(664,856) target=(664,856) arrived=1 off=0
+[09:14:43.411] INFO  [patron1] [action] goto (696,840) from (664,856,0)
+[09:14:43.411] LOG   [patron1] event goto_start: target=(696,840) from=(664,856)
+[09:14:43.411] INFO  [patron1] [bot] running from (664,856,0) to (696,840)
+[09:14:43.411] INFO  [patron1] [bot] planning path to (696,840) in background
+[09:14:43.439] INFO  [patron1] [bot] replan to (696,840): 36 steps in 9514.1us
+[09:14:43.992] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:14:49.030] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:14:50.122] INFO  [patron1] [chat ascii] System: You have left the protection of the town guards
+[09:14:54.037] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:14:56.259] INFO  [patron1] [bot] arrived at (696,840,0)
+[09:14:56.260] INFO  [patron1] [action] goto finished at (696,840,0); target (696,840); ARRIVED (off by 0 tile(s))
+[09:14:56.260] LOG   [patron1] event goto_done: at=(696,840) target=(696,840) arrived=1 off=0
+[09:14:56.260] INFO  [patron1] [action] goto (728,808) from (696,840,0)
+[09:14:56.260] LOG   [patron1] event goto_start: target=(728,808) from=(696,840)
+[09:14:56.260] INFO  [patron1] [bot] running from (696,840,0) to (728,808)
+[09:14:56.260] INFO  [patron1] [bot] planning path to (728,808) in background
+[09:14:56.321] INFO  [patron1] [bot] replan to (728,808): 40 steps in 10404.2us
+[09:14:59.052] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:15:04.114] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:15:09.127] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:15:10.413] INFO  [patron1] [bot] arrived at (728,808,0)
+[09:15:10.414] INFO  [patron1] [action] goto finished at (728,808,0); target (728,808); ARRIVED (off by 0 tile(s))
+[09:15:10.414] LOG   [patron1] event goto_done: at=(728,808) target=(728,808) arrived=1 off=0
+[09:15:10.414] INFO  [patron1] [action] goto (760,776) from (728,808,0)
+[09:15:10.414] LOG   [patron1] event goto_start: target=(760,776) from=(728,808)
+[09:15:10.414] INFO  [patron1] [bot] running from (728,808,0) to (760,776)
+[09:15:10.414] INFO  [patron1] [bot] planning path to (760,776) in background
+[09:15:10.476] INFO  [patron1] [bot] replan to (760,776): 43 steps in 13239.5us
+[09:15:14.136] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:15:19.152] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:15:24.162] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:15:25.954] INFO  [patron1] [bot] arrived at (760,776,0)
+[09:15:25.954] INFO  [patron1] [action] goto finished at (760,776,0); target (760,776); ARRIVED (off by 0 tile(s))
+[09:15:25.954] LOG   [patron1] event goto_done: at=(760,776) target=(760,776) arrived=1 off=0
+[09:15:25.954] INFO  [patron1] [action] goto (776,760) from (760,776,0)
+[09:15:25.954] LOG   [patron1] event goto_start: target=(776,760) from=(760,776)
+[09:15:25.954] INFO  [patron1] [bot] running from (760,776,0) to (776,760)
+[09:15:25.954] INFO  [patron1] [bot] planning path to (776,760) in background
+[09:15:26.016] INFO  [patron1] [bot] replan to (776,760): 21 steps in 2363.7us
+[09:15:29.209] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:15:33.478] INFO  [patron1] [bot] arrived at (776,760,0)
+[09:15:33.479] INFO  [patron1] [action] goto finished at (776,760,0); target (776,760); ARRIVED (off by 0 tile(s))
+[09:15:33.479] LOG   [patron1] event goto_done: at=(776,760) target=(776,760) arrived=1 off=0
+[09:15:33.479] INFO  [patron1] [action] goto (771,752) from (776,760,0)
+[09:15:33.479] LOG   [patron1] event goto_start: target=(771,752) from=(776,760)
+[09:15:33.479] INFO  [patron1] [bot] running from (776,760,0) to (771,752)
+[09:15:33.479] INFO  [patron1] [bot] planning path to (771,752) in background
+[09:15:33.539] INFO  [patron1] [bot] replan to (771,752): 8 steps in 89.1us
+[09:15:33.986] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionpatron01.aldric/state.json
+[09:15:34.248] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:15:36.911] INFO  [patron1] [gump] 0x400028B7 context=0x80A003F8: 13 option(s), 15 text(s)
+[09:15:36.911] INFO  [patron1] [gump]   button 1000 = 'OKAY'
+[09:15:36.911] INFO  [patron1] [gump]   button 0 = 'CANCEL'
+[09:15:36.911] INFO  [patron1] [gump]   button 1 = 'Felucca'
+[09:15:36.911] INFO  [patron1] [gump]   choice 1 = 'Moonglow'
+[09:15:36.911] INFO  [patron1] [gump]   choice 2 = 'Britain'
+[09:15:36.911] INFO  [patron1] [gump]   choice 3 = 'Jhelom'
+[09:15:36.911] INFO  [patron1] [gump]   choice 4 = 'Yew'
+[09:15:36.911] INFO  [patron1] [gump]   choice 5 = 'New Magincia'
+[09:15:36.911] INFO  [patron1] [gump]   choice 6 = 'Minoc'
+[09:15:36.911] INFO  [patron1] [gump]   choice 7 = 'Trinsic'
+[09:15:36.911] INFO  [patron1] [gump]   choice 8 = 'Skara Brae'
+[09:15:36.911] INFO  [patron1] [gump]   choice 9 = 'Buccaneer's Den'
+[09:15:36.911] INFO  [patron1] [gump]   choice 10 = 'Ocllo (Newplayers)'
+[09:15:36.911] INFO  [patron1] [gump]   text 0 = 'Pick your destination:'
+[09:15:36.911] INFO  [patron1] [gump]   text 1 = 'OKAY'
+[09:15:36.911] INFO  [patron1] [gump]   text 2 = 'CANCEL'
+[09:15:36.911] INFO  [patron1] [gump]   text 3 = 'Felucca'
+[09:15:36.911] INFO  [patron1] [gump]   text 4 = 'Felucca'
+[09:15:36.911] INFO  [patron1] [gump]   text 5 = 'Moonglow'
+[09:15:36.911] INFO  [patron1] [gump]   text 6 = 'Britain'
+[09:15:36.911] INFO  [patron1] [gump]   text 7 = 'Jhelom'
+[09:15:36.911] INFO  [patron1] [gump]   text 8 = 'Yew'
+[09:15:36.911] INFO  [patron1] [gump]   text 9 = 'New Magincia'
+[09:15:36.911] INFO  [patron1] [gump]   text 10 = 'Minoc'
+[09:15:36.911] INFO  [patron1] [gump]   text 11 = 'Trinsic'
+[09:15:36.911] INFO  [patron1] [gump]   text 12 = 'Skara Brae'
+[09:15:36.911] INFO  [patron1] [gump]   text 13 = 'Buccaneer's Den'
+[09:15:36.911] INFO  [patron1] [gump]   text 14 = 'Ocllo (Newplayers)'
+[09:15:36.911] LOG   [patron1] event gump_open: serial=0x400028B7 context=0x80A003F8 options=13
+[09:15:36.911] INFO  [patron1] [travel] gate gump: choosing 'Britain' (choice 2, button 1000)
+[09:15:36.911] LOG   [patron1] event moongate_use: destination='Britain' choice=2 button=1000
+[09:15:36.911] INFO  [patron1] [bot] arrived at (771,752,5)
+[09:15:36.912] INFO  [patron1] [action] goto finished at (771,752,5); target (771,752); ARRIVED (off by 0 tile(s))
+[09:15:36.912] LOG   [patron1] event goto_done: at=(771,752) target=(771,752) arrived=1 off=0
+[09:15:36.912] INFO  [patron1] [travel] using moongate 0x400028B7 for 'Britain' (gump active=0 serial=0x00000000)
+[09:15:36.912] INFO  [patron1] [0x20] player @(1336,1997,5) facing=7
+[09:15:36.912] INFO  [patron1] [0x20] player @(1336,1997,5) facing=7
+[09:15:36.925] INFO  [patron1] [chat ascii] System: You can't see the target
+[09:15:37.109] INFO  [patron1] [action] goto (1336,1960) from (1336,1997,5)
+[09:15:37.109] LOG   [patron1] event goto_start: target=(1336,1960) from=(1336,1997)
+[09:15:37.109] INFO  [patron1] [bot] running from (1336,1997,5) to (1336,1960)
+[09:15:37.109] INFO  [patron1] [bot] planning path to (1336,1960) in background
+[09:15:37.170] INFO  [patron1] [bot] replan to (1336,1960): 37 steps in 19564.3us
+[09:15:37.372] INFO  [patron1] [chat ascii] System: You have been revealed
+[09:15:39.264] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:15:44.320] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:15:49.372] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:15:49.387] INFO  [patron1] [bot] arrived at (1336,1960,0)
+[09:15:49.388] INFO  [patron1] [action] goto finished at (1336,1960,0); target (1336,1960); ARRIVED (off by 0 tile(s))
+[09:15:49.388] LOG   [patron1] event goto_done: at=(1336,1960) target=(1336,1960) arrived=1 off=0
+[09:15:49.388] INFO  [patron1] [action] goto (1336,1928) from (1336,1960,0)
+[09:15:49.388] LOG   [patron1] event goto_start: target=(1336,1928) from=(1336,1960)
+[09:15:49.388] INFO  [patron1] [bot] running from (1336,1960,0) to (1336,1928)
+[09:15:49.388] INFO  [patron1] [bot] planning path to (1336,1928) in background
+[09:15:49.449] INFO  [patron1] [bot] replan to (1336,1928): 33 steps in 9743.3us
+[09:15:54.384] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:15:59.395] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:15:59.962] INFO  [patron1] [bot] arrived at (1336,1928,0)
+[09:15:59.963] INFO  [patron1] [action] goto finished at (1336,1928,0); target (1336,1928); ARRIVED (off by 0 tile(s))
+[09:15:59.963] LOG   [patron1] event goto_done: at=(1336,1928) target=(1336,1928) arrived=1 off=0
+[09:15:59.963] INFO  [patron1] [action] goto (1336,1896) from (1336,1928,0)
+[09:15:59.963] LOG   [patron1] event goto_start: target=(1336,1896) from=(1336,1928)
+[09:15:59.963] INFO  [patron1] [bot] running from (1336,1928,0) to (1336,1896)
+[09:15:59.963] INFO  [patron1] [bot] planning path to (1336,1896) in background
+[09:16:00.025] INFO  [patron1] [bot] replan to (1336,1896): 32 steps in 8779.5us
+[09:16:03.360] INFO  [patron1] [chat ascii] System: World save has been initiated.
+[09:16:04.410] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:16:09.413] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:16:11.240] INFO  [patron1] [bot] arrived at (1336,1896,0)
+[09:16:11.241] INFO  [patron1] [action] goto finished at (1336,1896,0); target (1336,1896); ARRIVED (off by 0 tile(s))
+[09:16:11.241] LOG   [patron1] event goto_done: at=(1336,1896) target=(1336,1896) arrived=1 off=0
+[09:16:11.241] INFO  [patron1] [action] goto (1336,1864) from (1336,1896,0)
+[09:16:11.241] LOG   [patron1] event goto_start: target=(1336,1864) from=(1336,1896)
+[09:16:11.241] INFO  [patron1] [bot] running from (1336,1896,0) to (1336,1864)
+[09:16:11.241] INFO  [patron1] [bot] planning path to (1336,1864) in background
+[09:16:11.300] INFO  [patron1] [bot] replan to (1336,1864): 37 steps in 6339.9us
+[09:16:14.470] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:16:19.485] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:16:24.499] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:16:24.941] INFO  [patron1] [bot] arrived at (1336,1864,0)
+[09:16:24.942] INFO  [patron1] [action] goto finished at (1336,1864,0); target (1336,1864); ARRIVED (off by 0 tile(s))
+[09:16:24.942] LOG   [patron1] event goto_done: at=(1336,1864) target=(1336,1864) arrived=1 off=0
+[09:16:24.942] INFO  [patron1] [action] goto (1336,1832) from (1336,1864,0)
+[09:16:24.942] LOG   [patron1] event goto_start: target=(1336,1832) from=(1336,1864)
+[09:16:24.942] INFO  [patron1] [bot] running from (1336,1864,0) to (1336,1832)
+[09:16:24.942] INFO  [patron1] [bot] planning path to (1336,1832) in background
+[09:16:24.988] INFO  [patron1] [bot] replan to (1336,1832): 33 steps in 7029.8us
+[09:16:29.543] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:16:34.026] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionpatron01.aldric/state.json
+[09:16:34.595] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:16:37.354] INFO  [patron1] [bot] arrived at (1336,1832,0)
+[09:16:37.354] INFO  [patron1] [action] goto finished at (1336,1832,0); target (1336,1832); ARRIVED (off by 0 tile(s))
+[09:16:37.354] LOG   [patron1] event goto_done: at=(1336,1832) target=(1336,1832) arrived=1 off=0
+[09:16:37.354] INFO  [patron1] [action] goto (1336,1800) from (1336,1832,0)
+[09:16:37.354] LOG   [patron1] event goto_start: target=(1336,1800) from=(1336,1832)
+[09:16:37.354] INFO  [patron1] [bot] running from (1336,1832,0) to (1336,1800)
+[09:16:37.354] INFO  [patron1] [bot] planning path to (1336,1800) in background
+[09:16:37.415] INFO  [patron1] [bot] replan to (1336,1800): 32 steps in 5965.0us
+[09:16:39.597] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:16:44.637] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:16:46.783] INFO  [patron1] [bot] arrived at (1336,1800,0)
+[09:16:46.783] INFO  [patron1] [action] goto finished at (1336,1800,0); target (1336,1800); ARRIVED (off by 0 tile(s))
+[09:16:46.783] LOG   [patron1] event goto_done: at=(1336,1800) target=(1336,1800) arrived=1 off=0
+[09:16:46.784] INFO  [patron1] [action] goto (1352,1766) from (1336,1800,0)
+[09:16:46.784] LOG   [patron1] event goto_start: target=(1352,1766) from=(1336,1800)
+[09:16:46.784] INFO  [patron1] [bot] running from (1336,1800,0) to (1352,1766)
+[09:16:46.784] INFO  [patron1] [bot] planning path to (1352,1766) in background
+[09:16:46.844] INFO  [patron1] [bot] replan to (1352,1766): 49 steps in 17334.4us
+[09:16:49.669] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:16:54.708] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:16:59.711] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:17:01.529] INFO  [patron1] [bot] arrived at (1352,1766,15)
+[09:17:01.530] INFO  [patron1] [action] goto finished at (1352,1766,15); target (1352,1766); ARRIVED (off by 0 tile(s))
+[09:17:01.530] LOG   [patron1] event goto_done: at=(1352,1766) target=(1352,1766) arrived=1 off=0
+[09:17:01.530] INFO  [patron1] [action] goto (1386,1728) from (1352,1766,15)
+[09:17:01.530] LOG   [patron1] event goto_start: target=(1386,1728) from=(1352,1766)
+[09:17:01.530] INFO  [patron1] [bot] running from (1352,1766,15) to (1386,1728)
+[09:17:01.530] INFO  [patron1] [bot] planning path to (1386,1728) in background
+[09:17:01.592] INFO  [patron1] [bot] replan to (1386,1728): 64 steps in 34326.2us
+[09:17:04.729] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:17:09.775] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:17:12.938] INFO  [patron1] [chat ascii] System: You are now under the protection of the city guards
+[09:17:14.523] INFO  [patron1] [bot] lookahead patched around block at step 5: anchor=9 new segment=13 path=22 in 558.9us
+[09:17:14.783] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:17:19.820] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:17:20.520] INFO  [patron1] [chat ascii] System: You have left the protection of the city guards
+[09:17:20.963] INFO  [patron1] [bot] arrived at (1386,1728,0)
+[09:17:20.964] INFO  [patron1] [action] goto finished at (1386,1728,0); target (1386,1728); ARRIVED (off by 0 tile(s))
+[09:17:20.964] LOG   [patron1] event goto_done: at=(1386,1728) target=(1386,1728) arrived=1 off=0
+[09:17:20.964] INFO  [patron1] [action] goto (1416,1688) from (1386,1728,0)
+[09:17:20.964] LOG   [patron1] event goto_start: target=(1416,1688) from=(1386,1728)
+[09:17:20.964] INFO  [patron1] [bot] running from (1386,1728,0) to (1416,1688)
+[09:17:20.964] INFO  [patron1] [bot] planning path to (1416,1688) in background
+[09:17:21.025] INFO  [patron1] [bot] replan to (1416,1688): 52 steps in 7373.4us
+[09:17:21.913] INFO  [patron1] [chat ascii] System: You are now under the protection of the city guards
+[09:17:24.880] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:17:29.917] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:17:31.486] INFO  [life] session_end_requested reason="session time limit reached"
+[09:17:34.923] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:17:37.421] INFO  [patron1] [bot] arrived at (1416,1688,0)
+[09:17:37.421] INFO  [patron1] [action] goto finished at (1416,1688,0); target (1416,1688); ARRIVED (off by 0 tile(s))
+[09:17:37.421] LOG   [patron1] event goto_done: at=(1416,1688) target=(1416,1688) arrived=1 off=0
+[09:17:37.421] INFO  [patron1] [action] goto (1416,1656) from (1416,1688,0)
+[09:17:37.421] LOG   [patron1] event goto_start: target=(1416,1656) from=(1416,1688)
+[09:17:37.421] INFO  [patron1] [bot] running from (1416,1688,0) to (1416,1656)
+[09:17:37.421] INFO  [patron1] [bot] planning path to (1416,1656) in background
+[09:17:37.481] INFO  [patron1] [bot] replan to (1416,1656): 32 steps in 610.6us
+[09:17:39.962] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:17:44.998] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:17:45.271] INFO  [patron1] [bot] arrived at (1416,1656,10)
+[09:17:45.271] INFO  [patron1] [action] goto finished at (1416,1656,10); target (1416,1656); ARRIVED (off by 0 tile(s))
+[09:17:45.271] LOG   [patron1] event goto_done: at=(1416,1656) target=(1416,1656) arrived=1 off=0
+[09:17:45.271] INFO  [patron1] [action] goto (1416,1624) from (1416,1656,10)
+[09:17:45.271] LOG   [patron1] event goto_start: target=(1416,1624) from=(1416,1656)
+[09:17:45.271] INFO  [patron1] [bot] running from (1416,1656,10) to (1416,1624)
+[09:17:45.271] INFO  [patron1] [bot] planning path to (1416,1624) in background
+[09:17:45.332] INFO  [patron1] [bot] replan to (1416,1624): 32 steps in 2522.7us
+[09:17:50.043] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:17:53.660] INFO  [patron1] [bot] arrived at (1416,1624,22)
+[09:17:53.660] INFO  [patron1] [action] goto finished at (1416,1624,22); target (1416,1624); ARRIVED (off by 0 tile(s))
+[09:17:53.660] LOG   [patron1] event goto_done: at=(1416,1624) target=(1416,1624) arrived=1 off=0
+[09:17:53.660] INFO  [patron1] [action] goto (1430,1597) from (1416,1624,22)
+[09:17:53.660] LOG   [patron1] event goto_start: target=(1430,1597) from=(1416,1624)
+[09:17:53.660] INFO  [patron1] [bot] running from (1416,1624,22) to (1430,1597,z20)
+[09:17:53.660] INFO  [patron1] [bot] planning path to (1430,1597) in background
+[09:17:53.781] INFO  [patron1] [action] goto finished at (1416,1624,22); target (1430,1597); stopped short (off by 41 tile(s))
+[09:17:53.781] LOG   [patron1] event goto_done: at=(1416,1624) target=(1430,1597) arrived=0 off=41
+[09:17:55.002] INFO  [patron1] [action] goto (1430,1597) from (1416,1624,22)
+[09:17:55.002] LOG   [patron1] event goto_start: target=(1430,1597) from=(1416,1624)
+[09:17:55.002] INFO  [patron1] [bot] running from (1416,1624,22) to (1430,1597,z20)
+[09:17:55.002] INFO  [patron1] [bot] planning path to (1430,1597) in background
+[09:17:55.065] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:17:55.080] INFO  [patron1] [action] goto finished at (1416,1624,22); target (1430,1597); stopped short (off by 41 tile(s))
+[09:17:55.080] LOG   [patron1] event goto_done: at=(1416,1624) target=(1430,1597) arrived=0 off=41
+[09:17:56.308] INFO  [patron1] [action] goto (1430,1597) from (1416,1624,22)
+[09:17:56.309] LOG   [patron1] event goto_start: target=(1430,1597) from=(1416,1624)
+[09:17:56.309] INFO  [patron1] [bot] running from (1416,1624,22) to (1430,1597,z20)
+[09:17:56.309] INFO  [patron1] [bot] planning path to (1430,1597) in background
+[09:17:56.370] INFO  [patron1] [action] goto finished at (1416,1624,22); target (1430,1597); stopped short (off by 41 tile(s))
+[09:17:56.370] LOG   [patron1] event goto_done: at=(1416,1624) target=(1430,1597) arrived=0 off=41
+[09:17:57.597] INFO  [patron1] [travel] mode walk             usable   <- chosen
+[09:17:57.597] INFO  [patron1] [travel] mode moongate         usable
+[09:17:57.597] INFO  [patron1] [travel] mode loose_rune_recall no: no rune marked at that destination
+[09:17:57.597] INFO  [patron1] [travel] mode runebook_recall  no: no runebook page for that destination
+[09:17:57.597] LOG   [patron1] event travel_mode: walk
+[09:17:57.597] INFO  [patron1] [travel] plan Britain carpenter: ok legs=1 ~27 tiles transit=0 nodes=0
+[09:17:59.124] INFO  [patron1] [action] goto (1430,1597) from (1416,1624,22)
+[09:17:59.124] LOG   [patron1] event goto_start: target=(1430,1597) from=(1416,1624)
+[09:17:59.124] INFO  [patron1] [bot] running from (1416,1624,22) to (1430,1597,z20)
+[09:17:59.124] INFO  [patron1] [bot] planning path to (1430,1597) in background
+[09:17:59.185] INFO  [patron1] [action] goto finished at (1416,1624,22); target (1430,1597); stopped short (off by 41 tile(s))
+[09:17:59.185] LOG   [patron1] event goto_done: at=(1416,1624) target=(1430,1597) arrived=0 off=41
+[09:18:00.102] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:18:00.408] INFO  [patron1] [action] goto (1430,1597) from (1416,1624,22)
+[09:18:00.408] LOG   [patron1] event goto_start: target=(1430,1597) from=(1416,1624)
+[09:18:00.408] INFO  [patron1] [bot] running from (1416,1624,22) to (1430,1597,z20)
+[09:18:00.408] INFO  [patron1] [bot] planning path to (1430,1597) in background
+[09:18:00.468] INFO  [patron1] [action] goto finished at (1416,1624,22); target (1430,1597); stopped short (off by 41 tile(s))
+[09:18:00.468] LOG   [patron1] event goto_done: at=(1416,1624) target=(1430,1597) arrived=0 off=41
+[09:18:01.698] INFO  [patron1] [action] goto (1430,1597) from (1416,1624,22)
+[09:18:01.698] LOG   [patron1] event goto_start: target=(1430,1597) from=(1416,1624)
+[09:18:01.698] INFO  [patron1] [bot] running from (1416,1624,22) to (1430,1597,z20)
+[09:18:01.698] INFO  [patron1] [bot] planning path to (1430,1597) in background
+[09:18:01.760] INFO  [patron1] [action] goto finished at (1416,1624,22); target (1430,1597); stopped short (off by 41 tile(s))
+[09:18:01.760] LOG   [patron1] event goto_done: at=(1416,1624) target=(1430,1597) arrived=0 off=41
+[09:18:02.986] INFO  [patron1] [travel] mode walk             usable   <- chosen
+[09:18:02.986] INFO  [patron1] [travel] mode moongate         usable
+[09:18:02.986] INFO  [patron1] [travel] mode loose_rune_recall no: no rune marked at that destination
+[09:18:02.987] INFO  [patron1] [travel] mode runebook_recall  no: no runebook page for that destination
+[09:18:02.987] LOG   [patron1] event travel_mode: walk
+[09:18:02.987] INFO  [patron1] [travel] plan Britain carpenter: ok legs=1 ~27 tiles transit=0 nodes=0
+[09:18:05.128] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:18:05.986] INFO  [patron1] [action] goto (1430,1597) from (1416,1624,22)
+[09:18:05.986] LOG   [patron1] event goto_start: target=(1430,1597) from=(1416,1624)
+[09:18:05.986] INFO  [patron1] [bot] running from (1416,1624,22) to (1430,1597,z20)
+[09:18:05.987] INFO  [patron1] [bot] planning path to (1430,1597) in background
+[09:18:06.048] INFO  [patron1] [action] goto finished at (1416,1624,22); target (1430,1597); stopped short (off by 41 tile(s))
+[09:18:06.048] LOG   [patron1] event goto_done: at=(1416,1624) target=(1430,1597) arrived=0 off=41
+[09:18:07.269] INFO  [patron1] [action] goto (1430,1597) from (1416,1624,22)
+[09:18:07.269] LOG   [patron1] event goto_start: target=(1430,1597) from=(1416,1624)
+[09:18:07.269] INFO  [patron1] [bot] running from (1416,1624,22) to (1430,1597,z20)
+[09:18:07.269] INFO  [patron1] [bot] planning path to (1430,1597) in background
+[09:18:07.393] INFO  [patron1] [action] goto finished at (1416,1624,22); target (1430,1597); stopped short (off by 41 tile(s))
+[09:18:07.393] LOG   [patron1] event goto_done: at=(1416,1624) target=(1430,1597) arrived=0 off=41
+[09:18:08.617] INFO  [patron1] [action] goto (1430,1597) from (1416,1624,22)
+[09:18:08.617] LOG   [patron1] event goto_start: target=(1430,1597) from=(1416,1624)
+[09:18:08.617] INFO  [patron1] [bot] running from (1416,1624,22) to (1430,1597,z20)
+[09:18:08.617] INFO  [patron1] [bot] planning path to (1430,1597) in background
+[09:18:08.678] INFO  [patron1] [action] goto finished at (1416,1624,22); target (1430,1597); stopped short (off by 41 tile(s))
+[09:18:08.678] LOG   [patron1] event goto_done: at=(1416,1624) target=(1430,1597) arrived=0 off=41
+[09:18:09.902] INFO  [patron1] [travel] mode walk             usable   <- chosen
+[09:18:09.902] INFO  [patron1] [travel] mode moongate         usable
+[09:18:09.902] INFO  [patron1] [travel] mode loose_rune_recall no: no rune marked at that destination
+[09:18:09.902] INFO  [patron1] [travel] mode runebook_recall  no: no runebook page for that destination
+[09:18:09.902] LOG   [patron1] event travel_mode: walk
+[09:18:09.902] INFO  [patron1] [travel] plan Britain carpenter: ok legs=1 ~27 tiles transit=0 nodes=0
+[09:18:10.149] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:18:14.444] INFO  [patron1] [action] goto (1430,1597) from (1416,1624,22)
+[09:18:14.444] LOG   [patron1] event goto_start: target=(1430,1597) from=(1416,1624)
+[09:18:14.444] INFO  [patron1] [bot] running from (1416,1624,22) to (1430,1597,z20)
+[09:18:14.444] INFO  [patron1] [bot] planning path to (1430,1597) in background
+[09:18:14.566] INFO  [patron1] [action] goto finished at (1416,1624,22); target (1430,1597); stopped short (off by 41 tile(s))
+[09:18:14.566] LOG   [patron1] event goto_done: at=(1416,1624) target=(1430,1597) arrived=0 off=41
+[09:18:15.178] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:18:15.792] INFO  [patron1] [action] goto (1430,1597) from (1416,1624,22)
+[09:18:15.792] LOG   [patron1] event goto_start: target=(1430,1597) from=(1416,1624)
+[09:18:15.792] INFO  [patron1] [bot] running from (1416,1624,22) to (1430,1597,z20)
+[09:18:15.792] INFO  [patron1] [bot] planning path to (1430,1597) in background
+[09:18:15.855] INFO  [patron1] [action] goto finished at (1416,1624,22); target (1430,1597); stopped short (off by 41 tile(s))
+[09:18:15.855] LOG   [patron1] event goto_done: at=(1416,1624) target=(1430,1597) arrived=0 off=41
+[09:18:17.078] INFO  [patron1] [action] goto (1430,1597) from (1416,1624,22)
+[09:18:17.078] LOG   [patron1] event goto_start: target=(1430,1597) from=(1416,1624)
+[09:18:17.078] INFO  [patron1] [bot] running from (1416,1624,22) to (1430,1597,z20)
+[09:18:17.078] INFO  [patron1] [bot] planning path to (1430,1597) in background
+[09:18:17.201] INFO  [patron1] [action] goto finished at (1416,1624,22); target (1430,1597); stopped short (off by 41 tile(s))
+[09:18:17.201] LOG   [patron1] event goto_done: at=(1416,1624) target=(1430,1597) arrived=0 off=41
+[09:18:17.201] LOG   [patron1] event travel_escape: from=(1416,1624,22) to=(1416,1640) attempt=1
+[09:18:17.201] INFO  [patron1] [action] goto (1416,1640) from (1416,1624,22)
+[09:18:17.201] LOG   [patron1] event goto_start: target=(1416,1640) from=(1416,1624)
+[09:18:17.201] INFO  [patron1] [bot] running from (1416,1624,22) to (1416,1640,z20)
+[09:18:17.201] INFO  [patron1] [bot] planning path to (1416,1640) in background
+[09:18:17.263] INFO  [patron1] [bot] replan to (1416,1640): 18 steps in 1143.5us
+[09:18:20.227] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:18:22.987] INFO  [patron1] [bot] arrived at (1416,1640,20)
+[09:18:22.987] INFO  [patron1] [action] goto finished at (1416,1640,20); target (1416,1640); ARRIVED (off by 0 tile(s))
+[09:18:22.987] LOG   [patron1] event goto_done: at=(1416,1640) target=(1416,1640) arrived=1 off=0
+[09:18:22.987] INFO  [patron1] [travel] recovery walk reached its anchor at (1416,1640,20) (off 0); attempt 1/3
+[09:18:22.987] LOG   [patron1] event travel_recovery_done: reached=1 at=(1416,1640,20) off=0 attempt=1
+[09:18:23.047] INFO  [patron1] [travel] mode walk             usable   <- chosen
+[09:18:23.047] INFO  [patron1] [travel] mode moongate         usable
+[09:18:23.047] INFO  [patron1] [travel] mode loose_rune_recall no: no rune marked at that destination
+[09:18:23.047] INFO  [patron1] [travel] mode runebook_recall  no: no runebook page for that destination
+[09:18:23.047] LOG   [patron1] event travel_mode: walk
+[09:18:23.055] INFO  [patron1] [travel] plan Britain carpenter: no world route to the destination legs=0 ~0 tiles transit=0 nodes=23707
+[09:18:23.055] LOG   [patron1] event travel_escape: from=(1416,1640,20) to=(1400,1624) attempt=2
+[09:18:23.055] INFO  [patron1] [action] goto (1400,1624) from (1416,1640,20)
+[09:18:23.055] LOG   [patron1] event goto_start: target=(1400,1624) from=(1416,1640)
+[09:18:23.055] INFO  [patron1] [bot] running from (1416,1640,20) to (1400,1624,z28)
+[09:18:23.055] INFO  [patron1] [bot] planning path to (1400,1624) in background
+[09:18:23.109] INFO  [patron1] [bot] replan to (1400,1624): 33 steps in 2336.0us
+[09:18:25.278] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:18:30.318] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:18:30.380] INFO  [patron1] [chat ascii] System: You have left the protection of the city guards
+[09:18:30.380] INFO  [patron1] [chat ascii] System: You have a feeling of complete safety
+[09:18:33.063] INFO  [patron1] [bot] arrived at (1400,1624,28)
+[09:18:33.063] INFO  [patron1] [action] goto finished at (1400,1624,28); target (1400,1624); ARRIVED (off by 0 tile(s))
+[09:18:33.063] LOG   [patron1] event goto_done: at=(1400,1624) target=(1400,1624) arrived=1 off=0
+[09:18:33.063] INFO  [patron1] [travel] recovery walk reached its anchor at (1400,1624,28) (off 0); attempt 2/3
+[09:18:33.063] LOG   [patron1] event travel_recovery_done: reached=1 at=(1400,1624,28) off=0 attempt=2
+[09:18:33.124] INFO  [patron1] [travel] mode walk             usable   <- chosen
+[09:18:33.124] INFO  [patron1] [travel] mode moongate         usable
+[09:18:33.124] INFO  [patron1] [travel] mode loose_rune_recall no: no rune marked at that destination
+[09:18:33.124] INFO  [patron1] [travel] mode runebook_recall  no: no runebook page for that destination
+[09:18:33.124] LOG   [patron1] event travel_mode: walk
+[09:18:33.124] INFO  [patron1] [travel] plan Britain carpenter: ok legs=1 ~30 tiles transit=0 nodes=0
+[09:18:33.187] INFO  [patron1] [action] goto (1430,1597) from (1400,1624,28)
+[09:18:33.187] LOG   [patron1] event goto_start: target=(1430,1597) from=(1400,1624)
+[09:18:33.187] INFO  [patron1] [bot] running from (1400,1624,28) to (1430,1597,z20)
+[09:18:33.187] INFO  [patron1] [bot] planning path to (1430,1597) in background
+[09:18:33.310] INFO  [patron1] [action] goto finished at (1400,1624,28); target (1430,1597); stopped short (off by 57 tile(s))
+[09:18:33.310] LOG   [patron1] event goto_done: at=(1400,1624) target=(1430,1597) arrived=0 off=57
+[09:18:34.530] INFO  [patron1] [action] goto (1430,1597) from (1400,1624,28)
+[09:18:34.530] LOG   [patron1] event goto_start: target=(1430,1597) from=(1400,1624)
+[09:18:34.530] INFO  [patron1] [bot] running from (1400,1624,28) to (1430,1597,z20)
+[09:18:34.530] INFO  [patron1] [bot] planning path to (1430,1597) in background
+[09:18:34.530] INFO  [patron1] [action] goto finished at (1400,1624,28); target (1430,1597); stopped short (off by 57 tile(s))
+[09:18:34.530] LOG   [patron1] event goto_done: at=(1400,1624) target=(1430,1597) arrived=0 off=57
+[09:18:35.328] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:18:35.756] INFO  [patron1] [action] goto (1430,1597) from (1400,1624,28)
+[09:18:35.756] LOG   [patron1] event goto_start: target=(1430,1597) from=(1400,1624)
+[09:18:35.756] INFO  [patron1] [bot] running from (1400,1624,28) to (1430,1597,z20)
+[09:18:35.756] INFO  [patron1] [bot] planning path to (1430,1597) in background
+[09:18:35.819] INFO  [patron1] [action] goto finished at (1400,1624,28); target (1430,1597); stopped short (off by 57 tile(s))
+[09:18:35.819] LOG   [patron1] event goto_done: at=(1400,1624) target=(1430,1597) arrived=0 off=57
+[09:18:37.042] INFO  [patron1] [travel] mode walk             usable   <- chosen
+[09:18:37.042] INFO  [patron1] [travel] mode moongate         usable
+[09:18:37.042] INFO  [patron1] [travel] mode loose_rune_recall no: no rune marked at that destination
+[09:18:37.042] INFO  [patron1] [travel] mode runebook_recall  no: no runebook page for that destination
+[09:18:37.042] LOG   [patron1] event travel_mode: walk
+[09:18:37.042] INFO  [patron1] [travel] plan Britain carpenter: ok legs=1 ~30 tiles transit=0 nodes=0
+[09:18:38.579] INFO  [patron1] [action] goto (1430,1597) from (1400,1624,28)
+[09:18:38.579] LOG   [patron1] event goto_start: target=(1430,1597) from=(1400,1624)
+[09:18:38.579] INFO  [patron1] [bot] running from (1400,1624,28) to (1430,1597,z20)
+[09:18:38.580] INFO  [patron1] [bot] planning path to (1430,1597) in background
+[09:18:38.641] INFO  [patron1] [action] goto finished at (1400,1624,28); target (1430,1597); stopped short (off by 57 tile(s))
+[09:18:38.641] LOG   [patron1] event goto_done: at=(1400,1624) target=(1430,1597) arrived=0 off=57
+[09:18:39.869] INFO  [patron1] [action] goto (1430,1597) from (1400,1624,28)
+[09:18:39.869] LOG   [patron1] event goto_start: target=(1430,1597) from=(1400,1624)
+[09:18:39.869] INFO  [patron1] [bot] running from (1400,1624,28) to (1430,1597,z20)
+[09:18:39.869] INFO  [patron1] [bot] planning path to (1430,1597) in background
+[09:18:39.930] INFO  [patron1] [action] goto finished at (1400,1624,28); target (1430,1597); stopped short (off by 57 tile(s))
+[09:18:39.930] LOG   [patron1] event goto_done: at=(1400,1624) target=(1430,1597) arrived=0 off=57
+[09:18:40.358] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:18:41.154] INFO  [patron1] [action] goto (1430,1597) from (1400,1624,28)
+[09:18:41.154] LOG   [patron1] event goto_start: target=(1430,1597) from=(1400,1624)
+[09:18:41.154] INFO  [patron1] [bot] running from (1400,1624,28) to (1430,1597,z20)
+[09:18:41.154] INFO  [patron1] [bot] planning path to (1430,1597) in background
+[09:18:41.275] INFO  [patron1] [action] goto finished at (1400,1624,28); target (1430,1597); stopped short (off by 57 tile(s))
+[09:18:41.275] LOG   [patron1] event goto_done: at=(1400,1624) target=(1430,1597) arrived=0 off=57
+[09:18:42.499] INFO  [patron1] [travel] mode walk             usable   <- chosen
+[09:18:42.499] INFO  [patron1] [travel] mode moongate         usable
+[09:18:42.499] INFO  [patron1] [travel] mode loose_rune_recall no: no rune marked at that destination
+[09:18:42.499] INFO  [patron1] [travel] mode runebook_recall  no: no runebook page for that destination
+[09:18:42.499] LOG   [patron1] event travel_mode: walk
+[09:18:42.499] INFO  [patron1] [travel] plan Britain carpenter: ok legs=1 ~30 tiles transit=0 nodes=0
+[09:18:45.399] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:18:45.522] INFO  [patron1] [action] goto (1430,1597) from (1400,1624,28)
+[09:18:45.522] LOG   [patron1] event goto_start: target=(1430,1597) from=(1400,1624)
+[09:18:45.522] INFO  [patron1] [bot] running from (1400,1624,28) to (1430,1597,z20)
+[09:18:45.522] INFO  [patron1] [bot] planning path to (1430,1597) in background
+[09:18:45.584] INFO  [patron1] [action] goto finished at (1400,1624,28); target (1430,1597); stopped short (off by 57 tile(s))
+[09:18:45.584] LOG   [patron1] event goto_done: at=(1400,1624) target=(1430,1597) arrived=0 off=57
+[09:18:46.820] INFO  [patron1] [action] goto (1430,1597) from (1400,1624,28)
+[09:18:46.820] LOG   [patron1] event goto_start: target=(1430,1597) from=(1400,1624)
+[09:18:46.820] INFO  [patron1] [bot] running from (1400,1624,28) to (1430,1597,z20)
+[09:18:46.820] INFO  [patron1] [bot] planning path to (1430,1597) in background
+[09:18:46.881] INFO  [patron1] [action] goto finished at (1400,1624,28); target (1430,1597); stopped short (off by 57 tile(s))
+[09:18:46.881] LOG   [patron1] event goto_done: at=(1400,1624) target=(1430,1597) arrived=0 off=57
+[09:18:48.110] INFO  [patron1] [action] goto (1430,1597) from (1400,1624,28)
+[09:18:48.110] LOG   [patron1] event goto_start: target=(1430,1597) from=(1400,1624)
+[09:18:48.110] INFO  [patron1] [bot] running from (1400,1624,28) to (1430,1597,z20)
+[09:18:48.110] INFO  [patron1] [bot] planning path to (1430,1597) in background
+[09:18:48.170] INFO  [patron1] [action] goto finished at (1400,1624,28); target (1430,1597); stopped short (off by 57 tile(s))
+[09:18:48.170] LOG   [patron1] event goto_done: at=(1400,1624) target=(1430,1597) arrived=0 off=57
+[09:18:49.397] INFO  [patron1] [travel] mode walk             usable   <- chosen
+[09:18:49.397] INFO  [patron1] [travel] mode moongate         usable
+[09:18:49.397] INFO  [patron1] [travel] mode loose_rune_recall no: no rune marked at that destination
+[09:18:49.397] INFO  [patron1] [travel] mode runebook_recall  no: no runebook page for that destination
+[09:18:49.397] LOG   [patron1] event travel_mode: walk
+[09:18:49.397] INFO  [patron1] [travel] plan Britain carpenter: ok legs=1 ~30 tiles transit=0 nodes=0
+[09:18:50.445] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:18:53.943] INFO  [patron1] [action] goto (1430,1597) from (1400,1624,28)
+[09:18:53.943] LOG   [patron1] event goto_start: target=(1430,1597) from=(1400,1624)
+[09:18:53.943] INFO  [patron1] [bot] running from (1400,1624,28) to (1430,1597,z20)
+[09:18:53.943] INFO  [patron1] [bot] planning path to (1430,1597) in background
+[09:18:54.004] INFO  [patron1] [action] goto finished at (1400,1624,28); target (1430,1597); stopped short (off by 57 tile(s))
+[09:18:54.004] LOG   [patron1] event goto_done: at=(1400,1624) target=(1430,1597) arrived=0 off=57
+[09:18:55.227] INFO  [patron1] [action] goto (1430,1597) from (1400,1624,28)
+[09:18:55.227] LOG   [patron1] event goto_start: target=(1430,1597) from=(1400,1624)
+[09:18:55.227] INFO  [patron1] [bot] running from (1400,1624,28) to (1430,1597,z20)
+[09:18:55.227] INFO  [patron1] [bot] planning path to (1430,1597) in background
+[09:18:55.350] INFO  [patron1] [action] goto finished at (1400,1624,28); target (1430,1597); stopped short (off by 57 tile(s))
+[09:18:55.350] LOG   [patron1] event goto_done: at=(1400,1624) target=(1430,1597) arrived=0 off=57
+[09:18:55.473] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:18:56.575] INFO  [patron1] [action] goto (1430,1597) from (1400,1624,28)
+[09:18:56.575] LOG   [patron1] event goto_start: target=(1430,1597) from=(1400,1624)
+[09:18:56.575] INFO  [patron1] [bot] running from (1400,1624,28) to (1430,1597,z20)
+[09:18:56.575] INFO  [patron1] [bot] planning path to (1430,1597) in background
+[09:18:56.697] INFO  [patron1] [action] goto finished at (1400,1624,28); target (1430,1597); stopped short (off by 57 tile(s))
+[09:18:56.697] LOG   [patron1] event goto_done: at=(1400,1624) target=(1430,1597) arrived=0 off=57
+[09:18:56.697] LOG   [patron1] event travel_escape: from=(1400,1624,28) to=(1384,1608) attempt=3
+[09:18:56.697] INFO  [patron1] [action] goto (1384,1608) from (1400,1624,28)
+[09:18:56.697] LOG   [patron1] event goto_start: target=(1384,1608) from=(1400,1624)
+[09:18:56.697] INFO  [patron1] [bot] running from (1400,1624,28) to (1384,1608,z30)
+[09:18:56.697] INFO  [patron1] [bot] planning path to (1384,1608) in background
+[09:18:56.757] INFO  [patron1] [bot] replan to (1384,1608): 26 steps in 1353.9us
+[09:19:00.519] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:19:04.774] INFO  [patron1] [bot] arrived at (1384,1608,30)
+[09:19:04.774] INFO  [patron1] [action] goto finished at (1384,1608,30); target (1384,1608); ARRIVED (off by 0 tile(s))
+[09:19:04.774] LOG   [patron1] event goto_done: at=(1384,1608) target=(1384,1608) arrived=1 off=0
+[09:19:04.774] INFO  [patron1] [travel] recovery walk reached its anchor at (1384,1608,30) (off 0); attempt 3/3
+[09:19:04.774] LOG   [patron1] event travel_recovery_done: reached=1 at=(1384,1608,30) off=0 attempt=3
+[09:19:04.835] INFO  [patron1] [travel] mode walk             usable   <- chosen
+[09:19:04.835] INFO  [patron1] [travel] mode moongate         usable
+[09:19:04.835] INFO  [patron1] [travel] mode loose_rune_recall no: no rune marked at that destination
+[09:19:04.835] INFO  [patron1] [travel] mode runebook_recall  no: no runebook page for that destination
+[09:19:04.835] LOG   [patron1] event travel_mode: walk
+[09:19:04.842] INFO  [patron1] [travel] plan Britain carpenter: no world route to the destination legs=0 ~0 tiles transit=0 nodes=23707
+[09:19:04.842] INFO  [patron1] [travel] Britain carpenter FAILED at (1384,1608,30) -- no world route to the destination
+[09:19:04.842] LOG   [patron1] event travel_failed: label='Britain carpenter' ok=0 at=(1384,1608) legs=0 plans=1 why='no world route to the destination'
+[09:19:04.897] INFO  [life] wind-down: the trip did not arrive (no world route to the destination)
+[09:19:04.958] INFO  [life] wind-down: no bank learned yet; asking the world for one (attempt 1)
+[09:19:04.958] INFO  [patron1] [travel] Britain banker -> (1425,1690) r=5 from (1384,1608)
+[09:19:04.958] LOG   [patron1] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1384,1608)
+[09:19:04.958] INFO  [patron1] [travel] mode moongate         usable   <- chosen
+[09:19:04.958] INFO  [patron1] [travel] mode walk             usable
+[09:19:04.958] INFO  [patron1] [travel] mode loose_rune_recall no: no rune marked at that destination
+[09:19:04.958] INFO  [patron1] [travel] mode runebook_recall  no: no runebook page for that destination
+[09:19:04.958] LOG   [patron1] event travel_mode: moongate
+[09:19:04.958] INFO  [patron1] [travel] plan Britain banker: ok legs=3 ~104 tiles transit=0 nodes=17
+[09:19:05.018] INFO  [patron1] [action] goto (1416,1640) from (1384,1608,30)
+[09:19:05.018] LOG   [patron1] event goto_start: target=(1416,1640) from=(1384,1608)
+[09:19:05.018] INFO  [patron1] [bot] running from (1384,1608,30) to (1416,1640)
+[09:19:05.018] INFO  [patron1] [bot] planning path to (1416,1640) in background
+[09:19:05.079] INFO  [patron1] [bot] replan to (1416,1640): 59 steps in 13612.3us
+[09:19:05.522] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:19:10.528] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:19:15.587] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:19:15.649] INFO  [patron1] [chat ascii] System: You are now under the protection of the city guards
+[09:19:15.649] INFO  [patron1] [chat ascii] System: You lose your feeling of safety
+[09:19:20.594] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:19:22.549] INFO  [patron1] [bot] arrived at (1416,1640,20)
+[09:19:22.549] INFO  [patron1] [action] goto finished at (1416,1640,20); target (1416,1640); ARRIVED (off by 0 tile(s))
+[09:19:22.549] LOG   [patron1] event goto_done: at=(1416,1640) target=(1416,1640) arrived=1 off=0
+[09:19:22.549] INFO  [patron1] [action] goto (1432,1672) from (1416,1640,20)
+[09:19:22.549] LOG   [patron1] event goto_start: target=(1432,1672) from=(1416,1640)
+[09:19:22.549] INFO  [patron1] [bot] running from (1416,1640,20) to (1432,1672)
+[09:19:22.549] INFO  [patron1] [bot] planning path to (1432,1672) in background
+[09:19:22.609] INFO  [patron1] [bot] replan to (1432,1672): 38 steps in 4993.2us
+[09:19:25.634] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:19:30.647] INFO  [patron1] [survival] hp 25/25 (100%) -> fight
+[09:19:31.494] INFO  [life] wind-down: the trip has run past its deadline; abandoning it and logging out where I stand
+[09:19:31.494] INFO  [patron1] [travel] Britain banker FAILED at (1427,1667,10) -- wind-down deadline
+[09:19:31.494] LOG   [patron1] event travel_failed: label='Britain banker' ok=0 at=(1427,1667) legs=3 plans=1 why='wind-down deadline'
+[09:19:31.556] INFO  [life] wind-down: giving up on reaching a safe spot after 1 attempt(s); logging out at 1427,1667 and recording it
+[09:19:31.556] INFO  [life] session_summary duration=300s goals=0/1 gold=1000->1000 skills=127.4->127.4 logs=+0 deaths=0 places=0 suppliers=0
+[09:19:31.556] INFO  [life] session_goals families=1 picks=1 top=100% varied=0 | training=1(100%) | TRAIN_AT_NPC=1(100%)
+[09:19:31.558] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionpatron01.aldric/state.json
+[09:19:31.558] INFO  [life] logging out
+[09:19:31.558] INFO  [patron1] [action] logout requested
+[09:19:31.558] LOG   [patron1] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[09:19:31.571] INFO  [patron1] [0xD1] logout acknowledged (accepted=1)
+[09:19:31.571] LOG   [patron1] event logout_ack: accepted
+[09:19:31.571] INFO  [patron1] [net] closing connection (logout acknowledged)
+[09:19:31.571] LOG   [patron1] event logout_complete: acked

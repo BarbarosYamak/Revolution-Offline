@@ -1,0 +1,1432 @@
+[17:29:35.313] LOG   [wave10_RevGen3_25_Hecto] event session_start: text log opened
+[17:29:35.314] LOG   [wave10_RevGen3_25_Hecto] event net_connect_begin: connect 127.0.0.1:2593
+[17:29:35.316] INFO  [wave10_RevGen3_25_Hecto] [net] connecting to 127.0.0.1:2593 ...
+[17:29:35.318] LOG   [wave10_RevGen3_25_Hecto] event net_connected: connect 127.0.0.1:2593
+[17:29:35.319] INFO  [wave10_RevGen3_25_Hecto] [net] connected.
+[17:29:35.320] INFO  [wave10_RevGen3_25_Hecto] [seed] sent 0x7F000001 (plaintext)
+[17:29:35.320] LOG   [wave10_RevGen3_25_Hecto] event seed_out: 0x7F000001 hex=7f000001
+[17:29:35.322] INFO  [wave10_RevGen3_25_Hecto] [life] autonomous player active for 'Hector' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 30 min)
+[17:29:35.326] INFO  [wave10_RevGen3_25_Hecto] [0xA8] 1 server(s):
+[17:29:35.327] INFO  [wave10_RevGen3_25_Hecto]   [0] MyShard                   1.0.0.127  full=10%  tz=0
+[17:29:35.332] INFO  [wave10_RevGen3_25_Hecto] [0x8C] game server = 127.0.0.1:2593  seed=0x5F73D4E9
+[17:29:35.332] LOG   [wave10_RevGen3_25_Hecto] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x5F73D4E9
+[17:29:35.333] INFO  [wave10_RevGen3_25_Hecto] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[17:29:35.334] LOG   [wave10_RevGen3_25_Hecto] event relay_same_socket: no seed re-sent; 0x91 follows
+[17:29:35.334] INFO  [wave10_RevGen3_25_Hecto] [0xB9] server features = 0x0005
+[17:29:35.334] INFO  [wave10_RevGen3_25_Hecto] [0xA9] 5 slot(s) (populated 1):
+[17:29:35.334] INFO  [wave10_RevGen3_25_Hecto]   [0] Hector
+[17:29:35.335] INFO  [wave10_RevGen3_25_Hecto]   [1] <empty>
+[17:29:35.335] INFO  [wave10_RevGen3_25_Hecto]   [2] <empty>
+[17:29:35.336] INFO  [wave10_RevGen3_25_Hecto]   [3] <empty>
+[17:29:35.336] INFO  [wave10_RevGen3_25_Hecto]   [4] <empty>
+[17:29:35.336] INFO  [wave10_RevGen3_25_Hecto] [ui] playing slot 0 ('Hector')
+[17:29:35.341] INFO  [wave10_RevGen3_25_Hecto] [0x1B] serial=0x00018452 body=0x0190 pos=(1862,2802,-2)
+[17:29:35.342] LOG   [wave10_RevGen3_25_Hecto] event login_confirm: serial=0x00018452 body=0x0190 pos=(1862,2802,-2)
+[17:29:35.343] INFO  [wave10_RevGen3_25_Hecto] [0x20] player @(1862,2802,-2) facing=6
+[17:29:35.344] INFO  [wave10_RevGen3_25_Hecto] [0x55] login complete — entering world
+[17:29:35.344] LOG   [wave10_RevGen3_25_Hecto] event in_world: 0x55 received
+[17:29:35.345] INFO  [wave10_RevGen3_25_Hecto] [backpack] opening 0x40018316
+[17:29:35.346] INFO  [wave10_RevGen3_25_Hecto] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[17:29:35.347] INFO  [wave10_RevGen3_25_Hecto] [chat ascii] System: There are 26 other players here.
+[17:29:35.347] INFO  [wave10_RevGen3_25_Hecto] [chat ascii] System: Last logged: 2026/08/31 18:12:43
+[17:29:35.348] INFO  [wave10_RevGen3_25_Hecto] [chat ascii] System: You are under the protection of the town guards
+[17:29:35.352] INFO  [wave10_RevGen3_25_Hecto] [action] requesting the skill list
+[17:29:35.355] INFO  [wave10_RevGen3_25_Hecto] [0x24] open container 0x40018316 gump=60
+[17:29:35.356] INFO  [wave10_RevGen3_25_Hecto] [0x3C] container contents: 8 item(s)
+[17:29:35.356] LOG   [wave10_RevGen3_25_Hecto] event backpack_contents: serial=0x40018316 items=8
+[17:29:35.361] INFO  [wave10_RevGen3_25_Hecto] [chat ascii] System: Castor has arrived in The Rusty Anchor.
+[17:29:35.371] INFO  [wave10_RevGen3_25_Hecto] [chat ascii] System: Faustus has arrived in Britain.
+[17:29:35.385] INFO  [wave10_RevGen3_25_Hecto] [chat ascii] System: Titus has arrived in Britain Territory.
+[17:29:35.403] INFO  [wave10_RevGen3_25_Hecto] [chat ascii] System: Rhea has arrived in Yew.
+[17:29:35.403] INFO  [wave10_RevGen3_25_Hecto] [chat ascii] System: Xerxes has arrived in Ocllo Island.
+[17:29:35.434] INFO  [wave10_RevGen3_25_Hecto] [chat ascii] System: Thane has arrived in Britain.
+[17:29:35.435] INFO  [wave10_RevGen3_25_Hecto] [chat ascii] System: Varek has arrived in Britain Territory.
+[17:29:35.449] INFO  [wave10_RevGen3_25_Hecto] [chat ascii] System: Nyx has arrived in Trinsic.
+[17:29:37.960] INFO  [wave10_RevGen3_25_Hecto] [bot] world data loaded (0 blacklisted spot(s)).
+[17:29:37.963] INFO  [wave10_RevGen3_25_Hecto] [survival] on
+[17:29:37.963] LOG   [wave10_RevGen3_25_Hecto] event survival_mode: on
+[17:29:37.966] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:29:39.452] INFO  [wave10_RevGen3_25_Hecto] [travel] place: skipping Wind baker -- 1996 tiles and 2 gates for a service Baked Delights baker offers
+[17:29:39.452] INFO  [wave10_RevGen3_25_Hecto] [travel] Baked Delights baker -> (1880,2802) r=5 from (1862,2802)
+[17:29:39.453] LOG   [wave10_RevGen3_25_Hecto] event travel_start: label='Baked Delights baker' target=(1880,2802) radius=5 from=(1862,2802)
+[17:29:39.453] INFO  [wave10_RevGen3_25_Hecto] [travel] mode walk             usable   <- chosen
+[17:29:39.453] INFO  [wave10_RevGen3_25_Hecto] [travel] mode moongate         usable
+[17:29:39.453] INFO  [wave10_RevGen3_25_Hecto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:39.453] INFO  [wave10_RevGen3_25_Hecto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:39.453] LOG   [wave10_RevGen3_25_Hecto] event travel_mode: walk
+[17:29:39.454] INFO  [wave10_RevGen3_25_Hecto] [travel] plan Baked Delights baker: ok legs=1 ~18 tiles transit=0 nodes=0
+[17:29:39.517] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1862,2802,-2)
+[17:29:39.518] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1862,2802)
+[17:29:39.518] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1862,2802,-2) to (1880,2802,z0)
+[17:29:39.518] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:29:39.578] WARN  [wave10_RevGen3_25_Hecto] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:29:39.639] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1862,2802,-2); target (1880,2802); stopped short (off by 18 tile(s))
+[17:29:39.639] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1862,2802) target=(1880,2802) arrived=0 off=18
+[17:29:40.853] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1862,2802,-2)
+[17:29:40.853] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1862,2802)
+[17:29:40.853] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1862,2802,-2) to (1880,2802,z0)
+[17:29:40.853] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:29:40.854] WARN  [wave10_RevGen3_25_Hecto] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:29:40.914] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1862,2802,-2); target (1880,2802); stopped short (off by 18 tile(s))
+[17:29:40.915] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1862,2802) target=(1880,2802) arrived=0 off=18
+[17:29:42.152] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1862,2802,-2)
+[17:29:42.153] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1862,2802)
+[17:29:42.153] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1862,2802,-2) to (1880,2802,z0)
+[17:29:42.154] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:29:42.164] WARN  [wave10_RevGen3_25_Hecto] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:29:42.214] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1862,2802,-2); target (1880,2802); stopped short (off by 18 tile(s))
+[17:29:42.215] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1862,2802) target=(1880,2802) arrived=0 off=18
+[17:29:43.014] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:29:43.444] INFO  [wave10_RevGen3_25_Hecto] [travel] mode walk             usable   <- chosen
+[17:29:43.444] INFO  [wave10_RevGen3_25_Hecto] [travel] mode moongate         usable
+[17:29:43.445] INFO  [wave10_RevGen3_25_Hecto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:43.445] INFO  [wave10_RevGen3_25_Hecto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:43.445] LOG   [wave10_RevGen3_25_Hecto] event travel_mode: walk
+[17:29:43.445] INFO  [wave10_RevGen3_25_Hecto] [travel] plan Baked Delights baker: ok legs=1 ~18 tiles transit=0 nodes=0
+[17:29:44.977] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1862,2802,-2)
+[17:29:44.978] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1862,2802)
+[17:29:44.978] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1862,2802,-2) to (1880,2802,z0)
+[17:29:44.978] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:29:44.978] WARN  [wave10_RevGen3_25_Hecto] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:29:45.037] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1862,2802,-2); target (1880,2802); stopped short (off by 18 tile(s))
+[17:29:45.038] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1862,2802) target=(1880,2802) arrived=0 off=18
+[17:29:46.275] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1862,2802,-2)
+[17:29:46.275] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1862,2802)
+[17:29:46.275] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1862,2802,-2) to (1880,2802,z0)
+[17:29:46.275] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:29:46.276] WARN  [wave10_RevGen3_25_Hecto] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:29:46.337] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1862,2802,-2); target (1880,2802); stopped short (off by 18 tile(s))
+[17:29:46.337] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1862,2802) target=(1880,2802) arrived=0 off=18
+[17:29:47.568] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1862,2802,-2)
+[17:29:47.568] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1862,2802)
+[17:29:47.568] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1862,2802,-2) to (1880,2802,z0)
+[17:29:47.569] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:29:47.569] WARN  [wave10_RevGen3_25_Hecto] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:29:47.629] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1862,2802,-2); target (1880,2802); stopped short (off by 18 tile(s))
+[17:29:47.629] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1862,2802) target=(1880,2802) arrived=0 off=18
+[17:29:48.075] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:29:48.879] INFO  [wave10_RevGen3_25_Hecto] [travel] mode walk             usable   <- chosen
+[17:29:48.880] INFO  [wave10_RevGen3_25_Hecto] [travel] mode moongate         usable
+[17:29:48.880] INFO  [wave10_RevGen3_25_Hecto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:48.880] INFO  [wave10_RevGen3_25_Hecto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:48.880] LOG   [wave10_RevGen3_25_Hecto] event travel_mode: walk
+[17:29:48.880] INFO  [wave10_RevGen3_25_Hecto] [travel] plan Baked Delights baker: ok legs=1 ~18 tiles transit=0 nodes=0
+[17:29:51.893] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1862,2802,-2)
+[17:29:51.893] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1862,2802)
+[17:29:51.894] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1862,2802,-2) to (1880,2802,z0)
+[17:29:51.894] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:29:51.894] WARN  [wave10_RevGen3_25_Hecto] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:29:51.956] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1862,2802,-2); target (1880,2802); stopped short (off by 18 tile(s))
+[17:29:51.956] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1862,2802) target=(1880,2802) arrived=0 off=18
+[17:29:53.109] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:29:53.172] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1862,2802,-2)
+[17:29:53.172] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1862,2802)
+[17:29:53.172] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1862,2802,-2) to (1880,2802,z0)
+[17:29:53.172] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:29:53.172] WARN  [wave10_RevGen3_25_Hecto] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:29:53.233] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1862,2802,-2); target (1880,2802); stopped short (off by 18 tile(s))
+[17:29:53.233] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1862,2802) target=(1880,2802) arrived=0 off=18
+[17:29:54.464] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1862,2802,-2)
+[17:29:54.464] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1862,2802)
+[17:29:54.464] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1862,2802,-2) to (1880,2802,z0)
+[17:29:54.464] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:29:54.465] WARN  [wave10_RevGen3_25_Hecto] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:29:54.525] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1862,2802,-2); target (1880,2802); stopped short (off by 18 tile(s))
+[17:29:54.526] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1862,2802) target=(1880,2802) arrived=0 off=18
+[17:29:55.772] INFO  [wave10_RevGen3_25_Hecto] [travel] mode walk             usable   <- chosen
+[17:29:55.773] INFO  [wave10_RevGen3_25_Hecto] [travel] mode moongate         usable
+[17:29:55.773] INFO  [wave10_RevGen3_25_Hecto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:55.773] INFO  [wave10_RevGen3_25_Hecto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:55.773] LOG   [wave10_RevGen3_25_Hecto] event travel_mode: walk
+[17:29:55.773] INFO  [wave10_RevGen3_25_Hecto] [travel] plan Baked Delights baker: ok legs=1 ~18 tiles transit=0 nodes=0
+[17:29:58.154] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:30:00.311] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1862,2802,-2)
+[17:30:00.312] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1862,2802)
+[17:30:00.312] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1862,2802,-2) to (1880,2802,z0)
+[17:30:00.312] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:30:00.312] WARN  [wave10_RevGen3_25_Hecto] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:30:00.371] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1862,2802,-2); target (1880,2802); stopped short (off by 18 tile(s))
+[17:30:00.372] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1862,2802) target=(1880,2802) arrived=0 off=18
+[17:30:01.600] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1862,2802,-2)
+[17:30:01.600] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1862,2802)
+[17:30:01.600] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1862,2802,-2) to (1880,2802,z0)
+[17:30:01.601] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:30:01.601] WARN  [wave10_RevGen3_25_Hecto] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:30:01.661] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1862,2802,-2); target (1880,2802); stopped short (off by 18 tile(s))
+[17:30:01.661] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1862,2802) target=(1880,2802) arrived=0 off=18
+[17:30:02.920] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1862,2802,-2)
+[17:30:02.921] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1862,2802)
+[17:30:02.921] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1862,2802,-2) to (1880,2802,z0)
+[17:30:02.921] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:30:02.921] WARN  [wave10_RevGen3_25_Hecto] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:30:02.982] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1862,2802,-2); target (1880,2802); stopped short (off by 18 tile(s))
+[17:30:02.982] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1862,2802) target=(1880,2802) arrived=0 off=18
+[17:30:02.983] WARN  [wave10_RevGen3_25_Hecto] [travel] route exhausted at (1862,2802,-2); trying to reach (1864,2792,0) to get somewhere routable (escape 1/3)
+[17:30:02.983] LOG   [wave10_RevGen3_25_Hecto] event travel_escape: from=(1862,2802,-2) to=(1864,2792) attempt=1
+[17:30:02.983] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1864,2792) from (1862,2802,-2)
+[17:30:02.983] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1864,2792) from=(1862,2802)
+[17:30:02.983] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1862,2802,-2) to (1864,2792,z0)
+[17:30:02.983] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1864,2792) in background
+[17:30:03.044] INFO  [wave10_RevGen3_25_Hecto] [bot] replan to (1864,2792): 11 steps in 160.1us
+[17:30:03.167] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:30:06.400] INFO  [wave10_RevGen3_25_Hecto] [bot] arrived at (1864,2792,0)
+[17:30:06.401] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2792,0); target (1864,2792); ARRIVED (off by 0 tile(s))
+[17:30:06.401] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2792) target=(1864,2792) arrived=1 off=0
+[17:30:06.401] INFO  [wave10_RevGen3_25_Hecto] [travel] recovery walk reached its anchor at (1864,2792,0) (off 0); attempt 1/3
+[17:30:06.401] LOG   [wave10_RevGen3_25_Hecto] event travel_recovery_done: reached=1 at=(1864,2792,0) off=0 attempt=1
+[17:30:06.460] INFO  [wave10_RevGen3_25_Hecto] [travel] mode walk             usable   <- chosen
+[17:30:06.461] INFO  [wave10_RevGen3_25_Hecto] [travel] mode moongate         usable
+[17:30:06.461] INFO  [wave10_RevGen3_25_Hecto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:06.461] INFO  [wave10_RevGen3_25_Hecto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:06.461] LOG   [wave10_RevGen3_25_Hecto] event travel_mode: walk
+[17:30:06.461] INFO  [wave10_RevGen3_25_Hecto] [travel] plan Baked Delights baker: ok legs=1 ~16 tiles transit=0 nodes=0
+[17:30:06.523] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2792,0)
+[17:30:06.523] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2792)
+[17:30:06.523] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2792,0) to (1880,2802,z0)
+[17:30:06.523] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:30:06.523] WARN  [wave10_RevGen3_25_Hecto] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:30:06.585] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2792,0); target (1880,2802); stopped short (off by 26 tile(s))
+[17:30:06.585] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2792) target=(1880,2802) arrived=0 off=26
+[17:30:07.790] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2792,0)
+[17:30:07.791] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2792)
+[17:30:07.791] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2792,0) to (1880,2802,z0)
+[17:30:07.791] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:30:07.792] WARN  [wave10_RevGen3_25_Hecto] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:30:07.852] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2792,0); target (1880,2802); stopped short (off by 26 tile(s))
+[17:30:07.853] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2792) target=(1880,2802) arrived=0 off=26
+[17:30:08.224] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:30:09.095] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2792,0)
+[17:30:09.096] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2792)
+[17:30:09.096] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2792,0) to (1880,2802,z0)
+[17:30:09.096] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:30:09.097] WARN  [wave10_RevGen3_25_Hecto] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:30:09.157] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2792,0); target (1880,2802); stopped short (off by 26 tile(s))
+[17:30:09.157] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2792) target=(1880,2802) arrived=0 off=26
+[17:30:10.385] INFO  [wave10_RevGen3_25_Hecto] [travel] mode walk             usable   <- chosen
+[17:30:10.386] INFO  [wave10_RevGen3_25_Hecto] [travel] mode moongate         usable
+[17:30:10.386] INFO  [wave10_RevGen3_25_Hecto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:10.386] INFO  [wave10_RevGen3_25_Hecto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:10.386] LOG   [wave10_RevGen3_25_Hecto] event travel_mode: walk
+[17:30:10.386] INFO  [wave10_RevGen3_25_Hecto] [travel] plan Baked Delights baker: ok legs=1 ~16 tiles transit=0 nodes=0
+[17:30:11.926] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2792,0)
+[17:30:11.926] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2792)
+[17:30:11.927] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2792,0) to (1880,2802,z0)
+[17:30:11.927] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:30:11.927] WARN  [wave10_RevGen3_25_Hecto] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:30:11.987] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2792,0); target (1880,2802); stopped short (off by 26 tile(s))
+[17:30:11.988] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2792) target=(1880,2802) arrived=0 off=26
+[17:30:13.223] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2792,0)
+[17:30:13.224] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2792)
+[17:30:13.224] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2792,0) to (1880,2802,z0)
+[17:30:13.224] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:30:13.224] WARN  [wave10_RevGen3_25_Hecto] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:30:13.286] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2792,0); target (1880,2802); stopped short (off by 26 tile(s))
+[17:30:13.287] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2792) target=(1880,2802) arrived=0 off=26
+[17:30:13.287] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:30:14.524] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2792,0)
+[17:30:14.525] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2792)
+[17:30:14.525] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2792,0) to (1880,2802,z0)
+[17:30:14.525] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:30:14.525] WARN  [wave10_RevGen3_25_Hecto] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:30:14.587] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2792,0); target (1880,2802); stopped short (off by 26 tile(s))
+[17:30:14.587] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2792) target=(1880,2802) arrived=0 off=26
+[17:30:15.820] INFO  [wave10_RevGen3_25_Hecto] [travel] mode walk             usable   <- chosen
+[17:30:15.821] INFO  [wave10_RevGen3_25_Hecto] [travel] mode moongate         usable
+[17:30:15.821] INFO  [wave10_RevGen3_25_Hecto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:15.821] INFO  [wave10_RevGen3_25_Hecto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:15.821] LOG   [wave10_RevGen3_25_Hecto] event travel_mode: walk
+[17:30:15.821] INFO  [wave10_RevGen3_25_Hecto] [travel] plan Baked Delights baker: ok legs=1 ~16 tiles transit=0 nodes=0
+[17:30:18.293] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:30:18.848] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2792,0)
+[17:30:18.849] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2792)
+[17:30:18.849] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2792,0) to (1880,2802,z0)
+[17:30:18.849] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:30:18.849] WARN  [wave10_RevGen3_25_Hecto] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:30:18.909] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2792,0); target (1880,2802); stopped short (off by 26 tile(s))
+[17:30:18.910] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2792) target=(1880,2802) arrived=0 off=26
+[17:30:20.144] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2792,0)
+[17:30:20.145] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2792)
+[17:30:20.145] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2792,0) to (1880,2802,z0)
+[17:30:20.145] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:30:20.145] WARN  [wave10_RevGen3_25_Hecto] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:30:20.206] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2792,0); target (1880,2802); stopped short (off by 26 tile(s))
+[17:30:20.207] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2792) target=(1880,2802) arrived=0 off=26
+[17:30:21.437] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2792,0)
+[17:30:21.438] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2792)
+[17:30:21.438] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2792,0) to (1880,2802,z0)
+[17:30:21.438] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:30[17:30:21.499] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2792,0); target (1880,2802)[17:30:21.499] INFO  [wave10_RevGen3_[17:30:21.499] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2792) target=(1880,2802) arrived[17:30:21.4[17:30:22.728] INFO  [wave10_RevGen3_25_Hecto] [travel] mode walk             usable   <- chosen
+[17:30:22.729] INFO  [wave10_RevGen3_25_Hecto] [travel] mode moongate         usable
+[17:30:22.729] INFO  [wave10_RevGen3_25_Hecto] [travel] mode loose_rune_recall no: no rune marked at t[17:30:22.729] IN[17:30:22.729] INFO  [wave10_RevGen3_25_Hecto] [travel] mode runebook_recall  no: no runebook page fo[17:30:22.729] INFO [17:30:22.729] LOG   [wave10_RevGen3_25_Hecto] event travel_mode: walk
+[17:30:22.729] INFO  [wave10_RevGen3_25_Hecto] [travel] plan Baked Delights baker: ok legs=1 ~16 ti[17:30:22.729] INFO  [w[17:30:23.345] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:30:27.234] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2792,0)
+[17:30:27.234] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2[17:30[17:30:27.235] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2792,0) to (1880,2802,z[17:[17:30:27.235] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in backgroun[17[17:30:27.251] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2792,0); target (1880,2802); stopped short (off by 26 tile(s))
+[17:30:27.251] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2792) target=(1880,2802) arrived=0 off=26
+[17:30:28.358] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:30:28.479] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2792,0)
+[17:30:28.479] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2792)
+[17:30:28.479] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2792,0) to (1880,2802,z0)
+[17:30:28.480] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:30:28.542] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2792,0); target (1880,2802); stopped short (off by 26 tile(s))
+[17:30:28.542] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2792) target=(1880,2802) arrived=0 off=26
+[17:30:29.776] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2792,0)
+[17:30:29.776] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2792)
+[17:30:29.776] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2792,0) to (1880,2802,z0)
+[17:30:29.776] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:30:29.837] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2792,0); target (1880,2802); stopped short (off by 26 tile(s))
+[17:30:29.837] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2792) target=(1880,2802) arrived=0 off=26
+[17:30:29.837] LOG   [wave10_RevGen3_25_Hecto] event travel_escape: from=(1864,2792,0) to=(1872,2792) attempt=2
+[17:30:29.838] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1872,2792) from (1864,2792,0)
+[17:30:29.838] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1872,2792) from=(1864,2792)
+[17:30:29.838] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2792,0) to (1872,2792,z0)
+[17:30:29.838] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1872,2792) in background
+[17:30:29.898] INFO  [wave10_RevGen3_25_Hecto] [bot] replan to (1872,2792): 8 steps in 239.8us
+[17:30:32.057] INFO  [wave10_RevGen3_25_Hecto] [bot] arrived at (1872,2792,0)
+[17:30:32.057] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1872,2792,0); target (1872,2792); ARRIVED (off by 0 tile(s))
+[17:30:32.057] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1872,2792) target=(1872,2792) arrived=1 off=0
+[17:30:32.058] INFO  [wave10_RevGen3_25_Hecto] [travel] recovery walk reached its anchor at (1872,2792,0) (off 0); attempt 2/3
+[17:30:32.058] LOG   [wave10_RevGen3_25_Hecto] event travel_recovery_done: reached=1 at=(1872,2792,0) off=0 attempt=2
+[17:30:32.119] INFO  [wave10_RevGen3_25_Hecto] [travel] mode walk             usable   <- chosen
+[17:30:32.120] INFO  [wave10_RevGen3_25_Hecto] [travel] mode moongate         usable
+[17:30:32.120] INFO  [wave10_RevGen3_25_Hecto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:32.120] INFO  [wave10_RevGen3_25_Hecto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:32.120] LOG   [wave10_RevGen3_25_Hecto] event travel_mode: walk
+[17:30:32.120] INFO  [wave10_RevGen3_25_Hecto] [travel] plan Baked Delights baker: ok legs=1 ~10 tiles transit=0 nodes=0
+[17:30:32.181] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1872,2792,0)
+[17:30:32.181] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1872,2792)
+[17:30:32.181] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1872,2792,0) to (1880,2802,z0)
+[17:30:32.181] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:30:32.243] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1872,2792,0); target (1880,2802); stopped short (off by 18 tile(s))
+[17:30:32.243] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1872,2792) target=(1880,2802) arrived=0 off=18
+[17:30:33.416] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:30:33.478] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1872,2792,0)
+[17:30:33.478] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1872,2792)
+[17:30:33.478] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1872,2792,0) to (1880,2802,z0)
+[17:30:33.478] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:30:33.540] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1872,2792,0); target (1880,2802); stopped short (off by 18 tile(s))
+[17:30:33.541] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1872,2792) target=(1880,2802) arrived=0 off=18
+[17:30:34.774] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1872,2792,0)
+[17:30:34.775] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1872,2792)
+[17:30:34.775] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1872,2792,0) to (1880,2802,z0)
+[17:30:34.775] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:30:34.836] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1872,2792,0); target (1880,2802); stopped short (off by 18 tile(s))
+[17:30:34.836] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1872,2792) target=(1880,2802) arrived=0 off=18
+[17:30:36.068] INFO  [wave10_RevGen3_25_Hecto] [travel] mode walk             usable   <- chosen
+[17:30:36.068] INFO  [wave10_RevGen3_25_Hecto] [travel] mode moongate         usable
+[17:30:36.068] INFO  [wave10_RevGen3_25_Hecto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:36.069] INFO  [wave10_RevGen3_25_Hecto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:36.069] LOG   [wave10_RevGen3_25_Hecto] event travel_mode: walk
+[17:30:36.069] INFO  [wave10_RevGen3_25_Hecto] [travel] plan Baked Delights baker: ok legs=1 ~10 tiles transit=0 nodes=0
+[17:30:37.608] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1872,2792,0)
+[17:30:37.608] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1872,2792)
+[17:30:37.608] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1872,2792,0) to (1880,2802,z0)
+[17:30:37.608] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:30:37.670] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1872,2792,0); target (1880,2802); stopped short (off by 18 tile(s))
+[17:30:37.671] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1872,2792) target=(1880,2802) arrived=0 off=18
+[17:30:37.983] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_25.hector/state.json
+[17:30:38.472] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:30:38.901] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1872,2792,0)
+[17:30:38.901] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1872,2792)
+[17:30:38.902] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1872,2792,0) to (1880,2802,z0)
+[17:30:38.902] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:30:38.962] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1872,2792,0); target (1880,2802); stopped short (off by 18 tile(s))
+[17:30:38.962] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1872,2792) target=(1880,2802) arrived=0 off=18
+[17:30:40.195] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1872,2792,0)
+[17:30:40.195] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1872,2792)
+[17:30:40.196] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1872,2792,0) to (1880,2802,z0)
+[17:30:40.196] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:30:40.256] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1872,2792,0); target (1880,2802); stopped short (off by 18 tile(s))
+[17:30:40.256] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1872,2792) target=(1880,2802) arrived=0 off=18
+[17:30:41.485] INFO  [wave10_RevGen3_25_Hecto] [travel] mode walk             usable   <- chosen
+[17:30:41.485] INFO  [wave10_RevGen3_25_Hecto] [travel] mode moongate         usable
+[17:30:41.485] INFO  [wave10_RevGen3_25_Hecto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:41.485] INFO  [wave10_RevGen3_25_Hecto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:41.485] LOG   [wave10_RevGen3_25_Hecto] event travel_mode: walk
+[17:30:41.485] INFO  [wave10_RevGen3_25_Hecto] [travel] plan Baked Delights baker: ok legs=1 ~10 tiles transit=0 nodes=0
+[17:30:43.483] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:30:44.501] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1872,2792,0)
+[17:30:44.501] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1872,2792)
+[17:30:44.501] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1872,2792,0) to (1880,2802,z0)
+[17:30:44.502] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:30:44.562] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1872,2792,0); target (1880,2802); stopped short (off by 18 tile(s))
+[17:30:44.563] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1872,2792) target=(1880,2802) arrived=0 off=18
+[17:30:45.791] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1872,2792,0)
+[17:30:45.791] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1872,2792)
+[17:30:45.791] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1872,2792,0) to (1880,2802,z0)
+[17:30:45.791] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:30:45.851] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1872,2792,0); target (1880,2802); stopped short (off by 18 tile(s))
+[17:30:45.851] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1872,2792) target=(1880,2802) arrived=0 off=18
+[17:30:47.112] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1872,2792,0)
+[17:30:47.112] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1872,2792)
+[17:30:47.112] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1872,2792,0) to (1880,2802,z0)
+[17:30:47.112] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:30:47.174] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1872,2792,0); target (1880,2802); stopped short (off by 18 tile(s))
+[17:30:47.174] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1872,2792) target=(1880,2802) arrived=0 off=18
+[17:30:48.432] INFO  [wave10_RevGen3_25_Hecto] [travel] mode walk             usable   <- chosen
+[17:30:48.432] INFO  [wave10_RevGen3_25_Hecto] [travel] mode moongate         usable
+[17:30:48.432] INFO  [wave10_RevGen3_25_Hecto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:48.432] INFO  [wave10_RevGen3_25_Hecto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:48.432] LOG   [wave10_RevGen3_25_Hecto] event travel_mode: walk
+[17:30:48.432] INFO  [wave10_RevGen3_25_Hecto] [travel] plan Baked Delights baker: ok legs=1 ~10 tiles transit=0 nodes=0
+[17:30:48.492] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:30:52.989] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1872,2792,0)
+[17:30:52.989] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1872,2792)
+[17:30:52.989] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1872,2792,0) to (1880,2802,z0)
+[17:30:52.990] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:30:53.050] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1872,2792,0); target (1880,2802); stopped short (off by 18 tile(s))
+[17:30:53.050] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1872,2792) target=(1880,2802) arrived=0 off=18
+[17:30:53.541] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:30:54.283] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1872,2792,0)
+[17:30:54.283] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1872,2792)
+[17:30:54.283] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1872,2792,0) to (1880,2802,z0)
+[17:30:54.283] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:30:54.344] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1872,2792,0); target (1880,2802); stopped short (off by 18 tile(s))
+[17:30:54.344] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1872,2792) target=(1880,2802) arrived=0 off=18
+[17:30:55.578] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1872,2792,0)
+[17:30:55.579] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1872,2792)
+[17:30:55.579] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1872,2792,0) to (1880,2802,z0)
+[17:30:55.579] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:30:55.641] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1872,2792,0); target (1880,2802); stopped short (off by 18 tile(s))
+[17:30:55.641] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1872,2792) target=(1880,2802) arrived=0 off=18
+[17:30:55.641] LOG   [wave10_RevGen3_25_Hecto] event travel_escape: from=(1872,2792,0) to=(1864,2776) attempt=3
+[17:30:55.641] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1864,2776) from (1872,2792,0)
+[17:30:55.641] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1864,2776) from=(1872,2792)
+[17:30:55.642] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1872,2792,0) to (1864,2776,z0)
+[17:30:55.642] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1864,2776) in background
+[17:30:55.701] INFO  [wave10_RevGen3_25_Hecto] [bot] replan to (1864,2776): 16 steps in 362.4us
+[17:30:58.549] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:31:01.325] INFO  [wave10_RevGen3_25_Hecto] [bot] arrived at (1864,2776,0)
+[17:31:01.325] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1864,2776); ARRIVED (off by 0 tile(s))
+[17:31:01.325] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1864,2776) arrived=1 off=0
+[17:31:01.325] INFO  [wave10_RevGen3_25_Hecto] [travel] recovery walk reached its anchor at (1864,2776,0) (off 0); attempt 3/3
+[17:31:01.325] LOG   [wave10_RevGen3_25_Hecto] event travel_recovery_done: reached=1 at=(1864,2776,0) off=0 attempt=3
+[17:31:01.386] INFO  [wave10_RevGen3_25_Hecto] [travel] mode walk             usable   <- chosen
+[17:31:01.386] INFO  [wave10_RevGen3_25_Hecto] [travel] mode moongate         usable
+[17:31:01.386] INFO  [wave10_RevGen3_25_Hecto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:01.386] INFO  [wave10_RevGen3_25_Hecto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:01.386] LOG   [wave10_RevGen3_25_Hecto] event travel_mode: walk
+[17:31:01.386] INFO  [wave10_RevGen3_25_Hecto] [travel] plan Baked Delights baker: ok legs=1 ~26 tiles transit=0 nodes=0
+[17:31:01.449] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:31:01.449] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:31:01.449] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:31:01.449] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:31:01.510] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:31:01.510] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:31:02.746] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:31:02.746] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:31:02.746] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:31:02.747] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:31:02.808] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:31:02.808] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:31:03.609] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:31:04.041] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:31:04.041] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:31:04.041] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:31:04.041] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:31:04.101] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:31:04.101] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:31:05.318] INFO  [wave10_RevGen3_25_Hecto] [travel] mode walk             usable   <- chosen
+[17:31:05.318] INFO  [wave10_RevGen3_25_Hecto] [travel] mode moongate         usable
+[17:31:05.318] INFO  [wave10_RevGen3_25_Hecto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:05.318] INFO  [wave10_RevGen3_25_Hecto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:05.318] LOG   [wave10_RevGen3_25_Hecto] event travel_mode: walk
+[17:31:05.318] INFO  [wave10_RevGen3_25_Hecto] [travel] plan Baked Delights baker: ok legs=1 ~26 tiles transit=0 nodes=0
+[17:31:06.852] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:31:06.852] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:31:06.852] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:31:06.853] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:31:06.913] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:31:06.913] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:31:08.149] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:31:08.150] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:31:08.150] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:31:08.150] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:31:08.211] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:31:08.211] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:31:08.638] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:31:09.439] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:31:09.439] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:31:09.439] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:31:09.439] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:31:09.501] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:31:09.502] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:31:10.746] INFO  [wave10_RevGen3_25_Hecto] [travel] mode walk             usable   <- chosen
+[17:31:10.747] INFO  [wave10_RevGen3_25_Hecto] [travel] mode moongate         usable
+[17:31:10.747] INFO  [wave10_RevGen3_25_Hecto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:10.747] INFO  [wave10_RevGen3_25_Hecto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:10.747] LOG   [wave10_RevGen3_25_Hecto] event travel_mode: walk
+[17:31:10.747] INFO  [wave10_RevGen3_25_Hecto] [travel] plan Baked Delights baker: ok legs=1 ~26 tiles transit=0 nodes=0
+[17:31:13.645] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:31:13.770] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:31:13.771] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:31:13.771] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:31:13.771] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:31:13.831] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:31:13.832] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:31:15.060] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:31:15.061] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:31:15.061] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:31:15.061] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:31:15.123] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:31:15.123] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:31:16.357] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:31:16.357] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:31:16.358] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:31:16.358] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:31:16.417] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:31:16.418] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:31:17.621] INFO  [wave10_RevGen3_25_Hecto] [travel] mode walk             usable   <- chosen
+[17:31:17.632] INFO  [wave10_RevGen3_25_Hecto] [travel] mode moongate         usable
+[17:31:17.643] INFO  [wave10_RevGen3_25_Hecto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:17.653] INFO  [wave10_RevGen3_25_Hecto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:17.664] LOG   [wave10_RevGen3_25_Hecto] event travel_mode: walk
+[17:31:17.675] INFO  [wave10_RevGen3_25_Hecto] [travel] plan Baked Delights baker: ok legs=1 ~26 tiles transit=0 nodes=0
+[17:31:18.669] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:31:22.197] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:31:22.198] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:31:22.198] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:31:22.198] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:31:22.260] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:31:22.260] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:31:23.507] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:31:23.508] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:31:23.508] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:31:23.508] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:31:23.570] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:31:23.570] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:31:23.694] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:31:24.800] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:31:24.816] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:31:24.816] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:31:24.816] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:31:24.878] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:31:24.878] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:31:24.878] INFO  [wave10_RevGen3_25_Hecto] [travel] Baked Delights baker FAILED at (1864,2776,0) -- tile route stopped short
+[17:31:24.878] LOG   [wave10_RevGen3_25_Hecto] event travel_failed: label='Baked Delights baker' ok=0 at=(1864,2776) legs=1 plans=4 why='tile route stopped short'
+[17:31:24.940] INFO  [wave10_RevGen3_25_Hecto] [action] scanning nearby mobiles for names
+[17:31:24.941] INFO  [life] food: at the shop, asking who is here (scan 1 of 3)
+[17:31:24.941] INFO  [wave10_RevGen3_25_Hecto] [mobiles] nearby (2):
+[17:31:24.941] INFO  [wave10_RevGen3_25_Hecto]   Dog 0x0000F6F9
+[17:31:24.941] INFO  [wave10_RevGen3_25_Hecto]   Rhodanthe 0x0000F7DE
+[17:31:27.994] INFO  [wave10_RevGen3_25_Hecto] [action] scanning nearby mobiles for names
+[17:31:27.995] INFO  [life] food: at the shop, asking who is here (scan 2 of 3)
+[17:31:28.010] INFO  [wave10_RevGen3_25_Hecto] [mobiles] nearby (3):
+[17:31:28.010] INFO  [wave10_RevGen3_25_Hecto]   Dog 0x0000F6F9
+[17:31:28.010] INFO  [wave10_RevGen3_25_Hecto]   Rhodanthe 0x0000F7DE
+[17:31:28.011] INFO  [wave10_RevGen3_25_Hecto]   Zandra 0x0000F790
+[17:31:28.700] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:31:31.022] INFO  [wave10_RevGen3_25_Hecto] [action] scanning nearby mobiles for names
+[17:31:31.022] INFO  [life] food: at the shop, asking who is here (scan 3 of 3)
+[17:31:31.022] INFO  [wave10_RevGen3_25_Hecto] [mobiles] nearby (3):
+[17:31:31.023] INFO  [wave10_RevGen3_25_Hecto]   Dog 0x0000F6F9
+[17:31:31.023] INFO  [wave10_RevGen3_25_Hecto]   Rhodanthe 0x0000F7DE
+[17:31:31.023] INFO  [wave10_RevGen3_25_Hecto]   Zandra 0x0000F790
+[17:31:33.732] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:31:35.177] INFO  [wave10_RevGen3_25_Hecto] [travel] place: skipping Wind baker -- 2028 tiles and 2 gates for a service Baked Delights baker offers
+[17:31:35.178] INFO  [wave10_RevGen3_25_Hecto] [travel] Baked Delights baker -> (1880,2802) r=5 from (1864,2776)
+[17:31:35.178] LOG   [wave10_RevGen3_25_Hecto] event travel_start: label='Baked Delights baker' target=(1880,2802) radius=5 from=(1864,2776)
+[17:31:35.178] INFO  [life] food: walking to a 'baker' (trip 2)
+[17:31:35.178] INFO  [wave10_RevGen3_25_Hecto] [travel] mode walk             usable   <- chosen
+[17:31:35.178] INFO  [wave10_RevGen3_25_Hecto] [travel] mode moongate         usable
+[17:31:35.178] INFO  [wave10_RevGen3_25_Hecto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:35.178] INFO  [wave10_RevGen3_25_Hecto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:35.178] LOG   [wave10_RevGen3_25_Hecto] event travel_mode: walk
+[17:31:35.178] INFO  [wave10_RevGen3_25_Hecto] [travel] plan Baked Delights baker: ok legs=1 ~26 tiles transit=0 nodes=0
+[17:31:35.179] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:31:35.179] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:31:35.179] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:31:35.179] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:31:35.245] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:31:35.245] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:31:36.478] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:31:36.478] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:31:36.478] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:31:36.478] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:31:36.540] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:31:36.540] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:31:37.770] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:31:37.770] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:31:37.770] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:31:37.770] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:31:37.831] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:31:37.831] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:31:38.018] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_25.hector/state.json
+[17:31:38.756] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:31:39.065] INFO  [wave10_RevGen3_25_Hecto] [travel] mode walk             usable   <- chosen
+[17:31:39.065] INFO  [wave10_RevGen3_25_Hecto] [travel] mode moongate         usable
+[17:31:39.065] INFO  [wave10_RevGen3_25_Hecto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:39.065] INFO  [wave10_RevGen3_25_Hecto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:39.065] LOG   [wave10_RevGen3_25_Hecto] event travel_mode: walk
+[17:31:39.065] INFO  [wave10_RevGen3_25_Hecto] [travel] plan Baked Delights baker: ok legs=1 ~26 tiles transit=0 nodes=0
+[17:31:40.612] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:31:40.612] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:31:40.612] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:31:40.613] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:31:40.673] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:31:40.674] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:31:41.907] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:31:41.907] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:31:41.907] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:31:41.908] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:31:41.968] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:31:41.968] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:31:43.196] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:31:43.196] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:31:43.196] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:31:43.197] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:31:43.258] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:31:43.258] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:31:43.782] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:31:44.462] INFO  [wave10_RevGen3_25_Hecto] [travel] mode walk             usable   <- chosen
+[17:31:44.462] INFO  [wave10_RevGen3_25_Hecto] [travel] mode moongate         usable
+[17:31:44.462] INFO  [wave10_RevGen3_25_Hecto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:44.462] INFO  [wave10_RevGen3_25_Hecto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:44.463] LOG   [wave10_RevGen3_25_Hecto] event travel_mode: walk
+[17:31:44.463] INFO  [wave10_RevGen3_25_Hecto] [travel] plan Baked Delights baker: ok legs=1 ~26 tiles transit=0 nodes=0
+[17:31:47.496] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:31:47.497] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:31:47.497] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:31:47.497] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:31:47.558] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:31:47.558] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:31:48.791] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:31:48.791] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:31:48.792] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:31:48.792] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:31:48.792] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:31:48.853] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:31:48.854] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:31:50.082] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:31:50.082] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:31:50.083] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:31:50.083] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:31:50.144] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:31:50.145] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:31:51.371] INFO  [wave10_RevGen3_25_Hecto] [travel] mode walk             usable   <- chosen
+[17:31:51.371] INFO  [wave10_RevGen3_25_Hecto] [travel] mode moongate         usable
+[17:31:51.371] INFO  [wave10_RevGen3_25_Hecto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:51.372] INFO  [wave10_RevGen3_25_Hecto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:51.372] LOG   [wave10_RevGen3_25_Hecto] event travel_mode: walk
+[17:31:51.372] INFO  [wave10_RevGen3_25_Hecto] [travel] plan Baked Delights baker: ok legs=1 ~26 tiles transit=0 nodes=0
+[17:31:53.839] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:31:55.932] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:31:55.933] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:31:55.933] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:31:55.933] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:31:55.994] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:31:55.994] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:31:57.230] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:31:57.231] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:31:57.231] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:31:57.231] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:31:57.292] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:31:57.292] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:31:58.522] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:31:58.523] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:31:58.523] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:31:58.523] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:31:58.583] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:31:58.583] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:31:58.584] LOG   [wave10_RevGen3_25_Hecto] event travel_escape: from=(1864,2776,0) to=(1848,2760) attempt=1
+[17:31:58.584] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1848,2760) from (1864,2776,0)
+[17:31:58.584] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1848,2760) from=(1864,2776)
+[17:31:58.584] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1848,2760,z0)
+[17:31:58.584] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1848,2760) in background
+[17:31:58.644] INFO  [wave10_RevGen3_25_Hecto] [bot] replan to (1848,2760): 36 steps in 11153.0us
+[17:31:58.888] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:32:02.603] INFO  [wave10_RevGen3_25_Hecto] [chat ascii] System: You have left the protection of the town guards
+[17:32:02.604] INFO  [wave10_RevGen3_25_Hecto] [chat ascii] System: You have a feeling of complete safety
+[17:32:03.924] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:32:05.025] INFO  [wave10_RevGen3_25_Hecto] [bot] door ahead at (1857,2766,z0); OpenDoor before step
+[17:32:05.025] INFO  [wave10_RevGen3_25_Hecto] [chat ascii] System: Opening door...
+[17:32:08.807] INFO  [wave10_RevGen3_25_Hecto] [bot] door ahead at (1849,2762,z0); OpenDoor before step
+[17:32:08.808] INFO  [wave10_RevGen3_25_Hecto] [chat ascii] System: Opening door...
+[17:32:08.931] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:32:10.673] INFO  [wave10_RevGen3_25_Hecto] [bot] arrived at (1848,2760,0)
+[17:32:10.673] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1848,2760,0); target (1848,2760); ARRIVED (off by 0 tile(s))
+[17:32:10.674] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1848,2760) target=(1848,2760) arrived=1 off=0
+[17:32:10.674] INFO  [wave10_RevGen3_25_Hecto] [travel] recovery walk reached its anchor at (1848,2760,0) (off 0); attempt 1/3
+[17:32:10.674] LOG   [wave10_RevGen3_25_Hecto] event travel_recovery_done: reached=1 at=(1848,2760,0) off=0 attempt=1
+[17:32:10.734] INFO  [wave10_RevGen3_25_Hecto] [travel] mode walk             usable   <- chosen
+[17:32:10.735] INFO  [wave10_RevGen3_25_Hecto] [travel] mode moongate         usable
+[17:32:10.735] INFO  [wave10_RevGen3_25_Hecto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:10.735] INFO  [wave10_RevGen3_25_Hecto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:10.735] LOG   [wave10_RevGen3_25_Hecto] event travel_mode: walk
+[17:32:10.746] INFO  [wave10_RevGen3_25_Hecto] [travel] plan Baked Delights baker: no world route to the destination legs=0 ~0 tiles transit=0 nodes=23752
+[17:32:10.746] LOG   [wave10_RevGen3_25_Hecto] event travel_escape: from=(1848,2760,0) to=(1832,2744) attempt=2
+[17:32:10.746] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1832,2744) from (1848,2760,0)
+[17:32:10.747] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1832,2744) from=(1848,2760)
+[17:32:10.747] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1848,2760,0) to (1832,2744,z0)
+[17:32:10.747] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1832,2744) in background
+[17:32:10.812] INFO  [wave10_RevGen3_25_Hecto] [bot] replan to (1832,2744): 93 steps in 27015.4us
+[17:32:13.967] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:32:15.351] INFO  [wave10_RevGen3_25_Hecto] [bot] step (1857,2767,0)->(1856,2768,0) rejected; OpenDoor + retry
+[17:32:15.351] INFO  [wave10_RevGen3_25_Hecto] [chat ascii] System: Opening door...
+[17:32:15.351] INFO  [wave10_RevGen3_25_Hecto] [0x20] player @(1857,2767,0) facing=6
+[17:32:15.351] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1857,2767,0); target (1832,2744); stopped short (off by 48 tile(s))
+[17:32:15.352] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1857,2767) target=(1832,2744) arrived=0 off=48
+[17:32:15.352] INFO  [wave10_RevGen3_25_Hecto] [travel] recovery walk fell short at (1857,2767,0) (off 25); attempt 2/3
+[17:32:15.352] LOG   [wave10_RevGen3_25_Hecto] event travel_recovery_done: reached=0 at=(1857,2767,0) off=25 attempt=2
+[17:32:15.352] LOG   [wave10_RevGen3_25_Hecto] event travel_escape: from=(1857,2767,0) to=(1864,2776) attempt=3
+[17:32:15.352] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1864,2776) from (1857,2767,0)
+[17:32:15.352] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1864,2776) from=(1857,2767)
+[17:32:15.352] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1857,2767,0) to (1864,2776,z0)
+[17:32:15.352] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1864,2776) in background
+[17:32:15.413] INFO  [wave10_RevGen3_25_Hecto] [bot] replan to (1864,2776): 23 steps in 2712.6us
+[17:32:18.546] INFO  [wave10_RevGen3_25_Hecto] [chat ascii] System: You are now under the protection of the town guards
+[17:32:18.546] INFO  [wave10_RevGen3_25_Hecto] [chat ascii] System: You lose your feeling of safety
+[17:32:18.980] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:32:22.734] INFO  [wave10_RevGen3_25_Hecto] [bot] arrived at (1864,2776,0)
+[17:32:22.734] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1864,2776); ARRIVED (off by 0 tile(s))
+[17:32:22.735] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1864,2776) arrived=1 off=0
+[17:32:22.735] INFO  [wave10_RevGen3_25_Hecto] [travel] recovery walk reached its anchor at (1864,2776,0) (off 0); attempt 2/3
+[17:32:22.735] LOG   [wave10_RevGen3_25_Hecto] event travel_recovery_done: reached=1 at=(1864,2776,0) off=0 attempt=2
+[17:32:22.794] INFO  [wave10_RevGen3_25_Hecto] [travel] mode walk             usable   <- chosen
+[17:32:22.795] INFO  [wave10_RevGen3_25_Hecto] [travel] mode moongate         usable
+[17:32:22.795] INFO  [wave10_RevGen3_25_Hecto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:22.795] INFO  [wave10_RevGen3_25_Hecto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:22.795] LOG   [wave10_RevGen3_25_Hecto] event travel_mode: walk
+[17:32:22.795] INFO  [wave10_RevGen3_25_Hecto] [travel] plan Baked Delights baker: ok legs=1 ~26 tiles transit=0 nodes=0
+[17:32:22.856] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:32:22.857] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:32:22.857] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:32:22.857] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:32:22.918] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:32:22.918] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:32:24.029] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:32:24.154] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:32:24.154] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:32:24.154] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:32:24.154] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:32:24.216] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:32:24.216] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:32:25.445] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:32:25.445] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:32:25.445] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:32:25.445] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:32:25.507] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:32:25.507] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:32:26.740] INFO  [wave10_RevGen3_25_Hecto] [travel] mode walk             usable   <- chosen
+[17:32:26.741] INFO  [wave10_RevGen3_25_Hecto] [travel] mode moongate         usable
+[17:32:26.741] INFO  [wave10_RevGen3_25_Hecto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:26.741] INFO  [wave10_RevGen3_25_Hecto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:26.741] LOG   [wave10_RevGen3_25_Hecto] event travel_mode: walk
+[17:32:26.741] INFO  [wave10_RevGen3_25_Hecto] [travel] plan Baked Delights baker: ok legs=1 ~26 tiles transit=0 nodes=0
+[17:32:28.257] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:32:28.258] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:32:28.258] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:32:28.258] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:32:28.318] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:32:28.318] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:32:29.051] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:32:29.544] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:32:29.544] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:32:29.544] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:32:29.544] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:32:29.605] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:32:29.606] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:32:30.838] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:32:30.838] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:32:30.838] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:32:30.838] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:32:30.900] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:32:30.900] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:32:32.133] INFO  [wave10_RevGen3_25_Hecto] [travel] mode walk             usable   <- chosen
+[17:32:32.134] INFO  [wave10_RevGen3_25_Hecto] [travel] mode moongate         usable
+[17:32:32.134] INFO  [wave10_RevGen3_25_Hecto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:32.134] INFO  [wave10_RevGen3_25_Hecto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:32.134] LOG   [wave10_RevGen3_25_Hecto] event travel_mode: walk
+[17:32:32.134] INFO  [wave10_RevGen3_25_Hecto] [travel] plan Baked Delights baker: ok legs=1 ~26 tiles transit=0 nodes=0
+[17:32:34.070] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:32:35.151] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:32:35.151] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:32:35.151] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:32:35.152] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:32:35.213] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:32:35.213] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:32:36.417] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:32:36.417] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:32:36.417] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:32:36.417] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:32:36.478] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:32:36.479] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:32:37.718] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:32:37.719] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:32:37.719] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:32:37.719] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:32:37.780] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:32:37.780] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:32:38.028] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_25.hector/state.json
+[17:32:38.999] INFO  [wave10_RevGen3_25_Hecto] [travel] mode walk             usable   <- chosen
+[17:32:39.000] INFO  [wave10_RevGen3_25_Hecto] [travel] mode moongate         usable
+[17:32:39.000] INFO  [wave10_RevGen3_25_Hecto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:39.000] INFO  [wave10_RevGen3_25_Hecto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:39.000] LOG   [wave10_RevGen3_25_Hecto] event travel_mode: walk
+[17:32:39.000] INFO  [wave10_RevGen3_25_Hecto] [travel] plan Baked Delights baker: ok legs=1 ~26 tiles transit=0 nodes=0
+[17:32:39.124] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:32:43.521] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:32:43.521] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:32:43.521] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:32:43.522] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:32:43.583] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:32:43.583] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:32:44.133] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:32:44.811] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:32:44.811] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:32:44.811] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:32:44.812] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:32:44.872] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:32:44.872] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:32:46.103] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:32:46.103] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:32:46.103] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:32:46.104] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:32:46.165] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:32:46.165] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:32:46.165] INFO  [wave10_RevGen3_25_Hecto] [travel] Baked Delights baker FAILED at (1864,2776,0) -- tile route stopped short
+[17:32:46.165] LOG   [wave10_RevGen3_25_Hecto] event travel_failed: label='Baked Delights baker' ok=0 at=(1864,2776) legs=1 plans=4 why='tile route stopped short'
+[17:32:46.225] INFO  [wave10_RevGen3_25_Hecto] [action] scanning nearby mobiles for names
+[17:32:46.226] INFO  [life] food: at the shop, asking who is here (scan 1 of 3)
+[17:32:46.226] INFO  [wave10_RevGen3_25_Hecto] [mobiles] nearby (2):
+[17:32:46.226] INFO  [wave10_RevGen3_25_Hecto]   Dog 0x0000F6F9
+[17:32:46.226] INFO  [wave10_RevGen3_25_Hecto]   Zandra 0x0000F790
+[17:32:49.183] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:32:49.244] INFO  [wave10_RevGen3_25_Hecto] [action] scanning nearby mobiles for names
+[17:32:49.244] INFO  [life] food: at the shop, asking who is here (scan 2 of 3)
+[17:32:49.244] INFO  [life] goal_changed=GET_FOOD from=GET_FOOD reason="previous goal abandoned: attempts 5 >= 5"
+[17:32:49.244] INFO  [life] needs considered: NeedSkillTraining(Anatomy 0.55) NeedTraining(skill 42 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedTraining(skill 5 0.45) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=Anatomy (target 100.0)
+[17:32:49.245] INFO  [life]   score=62.5
+[17:32:49.245] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[17:32:49.245] INFO  [life]   reason: food=0
+[17:32:49.245] INFO  [wave10_RevGen3_25_Hecto] [mobiles] nearby (2):
+[17:32:49.245] INFO  [wave10_RevGen3_25_Hecto]   Dog 0x0000F6F9
+[17:32:49.245] INFO  [wave10_RevGen3_25_Hecto]   Zandra 0x0000F790
+[17:32:52.252] INFO  [wave10_RevGen3_25_Hecto] [action] scanning nearby mobiles for names
+[17:32:52.252] INFO  [life] food: at the shop, asking who is here (scan 3 of 3)
+[17:32:52.268] INFO  [wave10_RevGen3_25_Hecto] [mobiles] nearby (2):
+[17:32:52.268] INFO  [wave10_RevGen3_25_Hecto]   Dog 0x0000F6F9
+[17:32:52.268] INFO  [wave10_RevGen3_25_Hecto]   Zandra 0x0000F790
+[17:32:54.206] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:32:56.380] INFO  [wave10_RevGen3_25_Hecto] [travel] place: skipping Wind baker -- 2028 tiles and 2 gates for a service Baked Delights baker offers
+[17:32:56.380] INFO  [wave10_RevGen3_25_Hecto] [travel] Baked Delights baker -> (1880,2802) r=5 from (1864,2776)
+[17:32:56.380] LOG   [wave10_RevGen3_25_Hecto] event travel_start: label='Baked Delights baker' target=(1880,2802) radius=5 from=(1864,2776)
+[17:32:56.380] INFO  [life] food: walking to a 'baker' (trip 3)
+[17:32:56.380] INFO  [wave10_RevGen3_25_Hecto] [travel] mode walk             usable   <- chosen
+[17:32:56.380] INFO  [wave10_RevGen3_25_Hecto] [travel] mode moongate         usable
+[17:32:56.380] INFO  [wave10_RevGen3_25_Hecto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:56.380] INFO  [wave10_RevGen3_25_Hecto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:56.381] LOG   [wave10_RevGen3_25_Hecto] event travel_mode: walk
+[17:32:56.381] INFO  [wave10_RevGen3_25_Hecto] [travel] plan Baked Delights baker: ok legs=1 ~26 tiles transit=0 nodes=0
+[17:32:56.381] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:32:56.381] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:32:56.381] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:32:56.381] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:32:56.394] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:32:56.394] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:32:57.631] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:32:57.631] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:32:57.631] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:32:57.631] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:32:57.692] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:32:57.692] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:32:58.924] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:32:58.924] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:32:58.924] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:32:58.924] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:32:58.985] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:32:58.985] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:32:59.231] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:33:00.203] INFO  [wave10_RevGen3_25_Hecto] [travel] mode walk             usable   <- chosen
+[17:33:00.203] INFO  [wave10_RevGen3_25_Hecto] [travel] mode moongate         usable
+[17:33:00.203] INFO  [wave10_RevGen3_25_Hecto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:00.203] INFO  [wave10_RevGen3_25_Hecto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:00.204] LOG   [wave10_RevGen3_25_Hecto] event travel_mode: walk
+[17:33:00.204] INFO  [wave10_RevGen3_25_Hecto] [travel] plan Baked Delights baker: ok legs=1 ~26 tiles transit=0 nodes=0
+[17:33:01.712] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:33:01.712] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:33:01.712] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:33:01.712] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:33:01.773] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:33:01.773] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:33:02.994] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:33:02.994] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:33:02.994] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:33:02.995] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:33:03.057] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:33:03.057] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:33:04.256] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:33:04.319] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:33:04.319] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:33:04.319] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:33:04.319] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:33:04.381] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:33:04.381] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:33:05.586] INFO  [wave10_RevGen3_25_Hecto] [travel] mode walk             usable   <- chosen
+[17:33:05.587] INFO  [wave10_RevGen3_25_Hecto] [travel] mode moongate         usable
+[17:33:05.587] INFO  [wave10_RevGen3_25_Hecto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:05.587] INFO  [wave10_RevGen3_25_Hecto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:05.587] LOG   [wave10_RevGen3_25_Hecto] event travel_mode: walk
+[17:33:05.587] INFO  [wave10_RevGen3_25_Hecto] [travel] plan Baked Delights baker: ok legs=1 ~26 tiles transit=0 nodes=0
+[17:33:08.591] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:33:08.592] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:33:08.592] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:33:08.592] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:33:08.654] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:33:08.654] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:33:09.300] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:33:09.855] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:33:09.855] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:33:09.855] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:33:09.856] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:33:09.917] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:33:09.917] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:33:11.151] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:33:11.151] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:33:11.151] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:33:11.151] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:33:11.214] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:33:11.214] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:33:12.461] INFO  [wave10_RevGen3_25_Hecto] [travel] mode walk             usable   <- chosen
+[17:33:12.461] INFO  [wave10_RevGen3_25_Hecto] [travel] mode moongate         usable
+[17:33:12.461] INFO  [wave10_RevGen3_25_Hecto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:12.461] INFO  [wave10_RevGen3_25_Hecto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:12.461] LOG   [wave10_RevGen3_25_Hecto] event travel_mode: walk
+[17:33:12.462] INFO  [wave10_RevGen3_25_Hecto] [travel] plan Baked Delights baker: ok legs=1 ~26 tiles transit=0 nodes=0
+[17:33:14.310] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:33:16.965] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:33:16.965] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:33:16.965] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:33:16.966] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:33:17.026] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:33:17.027] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:33:18.266] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:33:18.266] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:33:18.266] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:33:18.266] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:33:18.328] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:33:18.328] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:33:19.345] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:33:19.532] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:33:19.533] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:33:19.533] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:33:19.533] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:33:19.593] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:33:19.593] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:33:19.594] LOG   [wave10_RevGen3_25_Hecto] event travel_escape: from=(1864,2776,0) to=(1848,2760) attempt=1
+[17:33:19.594] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1848,2760) from (1864,2776,0)
+[17:33:19.594] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1848,2760) from=(1864,2776)
+[17:33:19.594] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1848,2760,z0)
+[17:33:19.594] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1848,2760) in background
+[17:33:19.655] INFO  [wave10_RevGen3_25_Hecto] [bot] replan to (1848,2760): 36 steps in 9451.2us
+[17:33:23.768] INFO  [wave10_RevGen3_25_Hecto] [chat ascii] System: You have left the protection of the town guards
+[17:33:23.768] INFO  [wave10_RevGen3_25_Hecto] [chat ascii] System: You have a feeling of complete safety
+[17:33:24.380] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:33:26.111] INFO  [wave10_RevGen3_25_Hecto] [bot] door ahead at (1857,2766,z0); OpenDoor before step
+[17:33:26.126] INFO  [wave10_RevGen3_25_Hecto] [chat ascii] System: Opening door...
+[17:33:29.413] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:33:30.036] INFO  [wave10_RevGen3_25_Hecto] [bot] door ahead at (1849,2762,z0); OpenDoor before step
+[17:33:30.051] INFO  [wave10_RevGen3_25_Hecto] [chat ascii] System: Opening door...
+[17:33:31.859] INFO  [wave10_RevGen3_25_Hecto] [bot] arrived at (1848,2760,0)
+[17:33:31.860] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1848,2760,0); target (1848,2760); ARRIVED (off by 0 tile(s))
+[17:33:31.860] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1848,2760) target=(1848,2760) arrived=1 off=0
+[17:33:31.860] INFO  [wave10_RevGen3_25_Hecto] [travel] recovery walk reached its anchor at (1848,2760,0) (off 0); attempt 1/3
+[17:33:31.860] LOG   [wave10_RevGen3_25_Hecto] event travel_recovery_done: reached=1 at=(1848,2760,0) off=0 attempt=1
+[17:33:31.920] INFO  [wave10_RevGen3_25_Hecto] [travel] mode walk             usable   <- chosen
+[17:33:31.921] INFO  [wave10_RevGen3_25_Hecto] [travel] mode moongate         usable
+[17:33:31.921] INFO  [wave10_RevGen3_25_Hecto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:31.921] INFO  [wave10_RevGen3_25_Hecto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:31.921] LOG   [wave10_RevGen3_25_Hecto] event travel_mode: walk
+[17:33:31.929] INFO  [wave10_RevGen3_25_Hecto] [travel] plan Baked Delights baker: no world route to the destination legs=0 ~0 tiles transit=0 nodes=23752
+[17:33:31.930] LOG   [wave10_RevGen3_25_Hecto] event travel_escape: from=(1848,2760,0) to=(1832,2744) attempt=2
+[17:33:31.930] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1832,2744) from (1848,2760,0)
+[17:33:31.930] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1832,2744) from=(1848,2760)
+[17:33:31.930] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1848,2760,0) to (1832,2744,z0)
+[17:33:31.930] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1832,2744) in background
+[17:33:31.982] INFO  [wave10_RevGen3_25_Hecto] [bot] replan to (1832,2744): 93 steps in 29904.1us
+[17:33:34.431] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:33:36.492] INFO  [wave10_RevGen3_25_Hecto] [bot] step (1857,2767,0)->(1856,2768,0) rejected; OpenDoor + retry
+[17:33:36.492] INFO  [wave10_RevGen3_25_Hecto] [chat ascii] System: Opening door...
+[17:33:36.492] INFO  [wave10_RevGen3_25_Hecto] [0x20] player @(1857,2767,0) facing=6
+[17:33:36.493] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1857,2767,0); target (1832,2744); stopped short (off by 48 tile(s))
+[17:33:36.493] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1857,2767) target=(1832,2744) arrived=0 off=48
+[17:33:36.493] INFO  [wave10_RevGen3_25_Hecto] [travel] recovery walk fell short at (1857,2767,0) (off 25); attempt 2/3
+[17:33:36.493] LOG   [wave10_RevGen3_25_Hecto] event travel_recovery_done: reached=0 at=(1857,2767,0) off=25 attempt=2
+[17:33:36.493] LOG   [wave10_RevGen3_25_Hecto] event travel_escape: from=(1857,2767,0) to=(1864,2776) attempt=3
+[17:33:36.493] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1864,2776) from (1857,2767,0)
+[17:33:36.493] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1864,2776) from=(1857,2767)
+[17:33:36.493] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1857,2767,0) to (1864,2776,z0)
+[17:33:36.493] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1864,2776) in background
+[17:33:36.552] INFO  [wave10_RevGen3_25_Hecto] [bot] replan to (1864,2776): 23 steps in 3013.3us
+[17:33:38.067] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_25.hector/state.json
+[17:33:39.445] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:33:39.783] INFO  [wave10_RevGen3_25_Hecto] [chat ascii] System: You are now under the protection of the town guards
+[17:33:39.783] INFO  [wave10_RevGen3_25_Hecto] [chat ascii] System: You lose your feeling of safety
+[17:33:43.857] INFO  [wave10_RevGen3_25_Hecto] [bot] arrived at (1864,2776,0)
+[17:33:43.857] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1864,2776); ARRIVED (off by 0 tile(s))
+[17:33:43.858] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1864,2776) arrived=1 off=0
+[17:33:43.858] INFO  [wave10_RevGen3_25_Hecto] [travel] recovery walk reached its anchor at (1864,2776,0) (off 0); attempt 2/3
+[17:33:43.858] LOG   [wave10_RevGen3_25_Hecto] event travel_recovery_done: reached=1 at=(1864,2776,0) off=0 attempt=2
+[17:33:43.919] INFO  [wave10_RevGen3_25_Hecto] [travel] mode walk             usable   <- chosen
+[17:33:43.919] INFO  [wave10_RevGen3_25_Hecto] [travel] mode moongate         usable
+[17:33:43.919] INFO  [wave10_RevGen3_25_Hecto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:43.919] INFO  [wave10_RevGen3_25_Hecto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:43.919] LOG   [wave10_RevGen3_25_Hecto] event travel_mode: walk
+[17:33:43.919] INFO  [wave10_RevGen3_25_Hecto] [travel] plan Baked Delights baker: ok legs=1 ~26 tiles transit=0 nodes=0
+[17:33:43.980] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:33:43.980] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:33:43.980] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:33:43.981] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:33:44.104] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:33:44.105] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:33:44.473] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:33:45.333] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:33:45.333] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:33:45.333] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:33:45.333] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:33:45.394] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:33:45.394] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:33:46.625] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:33:46.625] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:33:46.625] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:33:46.625] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:33:46.687] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:33:46.687] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:33:47.947] INFO  [wave10_RevGen3_25_Hecto] [travel] mode walk             usable   <- chosen
+[17:33:47.947] INFO  [wave10_RevGen3_25_Hecto] [travel] mode moongate         usable
+[17:33:47.948] INFO  [wave10_RevGen3_25_Hecto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:47.948] INFO  [wave10_RevGen3_25_Hecto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:47.948] LOG   [wave10_RevGen3_25_Hecto] event travel_mode: walk
+[17:33:47.948] INFO  [wave10_RevGen3_25_Hecto] [travel] plan Baked Delights baker: ok legs=1 ~26 tiles transit=0 nodes=0
+[17:33:49.448] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:33:49.449] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:33:49.449] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:33:49.449] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:33:49.510] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:33:49.510] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:33:49.510] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:33:50.759] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:33:50.759] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:33:50.759] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:33:50.759] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:33:50.820] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:33:50.820] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:33:52.051] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:33:52.051] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:33:52.051] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:33:52.051] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:33:52.111] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:33:52.112] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:33:53.342] INFO  [wave10_RevGen3_25_Hecto] [travel] mode walk             usable   <- chosen
+[17:33:53.342] INFO  [wave10_RevGen3_25_Hecto] [travel] mode moongate         usable
+[17:33:53.342] INFO  [wave10_RevGen3_25_Hecto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:53.343] INFO  [wave10_RevGen3_25_Hecto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:53.343] LOG   [wave10_RevGen3_25_Hecto] event travel_mode: walk
+[17:33:53.343] INFO  [wave10_RevGen3_25_Hecto] [travel] plan Baked Delights baker: ok legs=1 ~26 tiles transit=0 nodes=0
+[17:33:54.552] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:33:54.568] INFO  [wave10_RevGen3_25_Hecto] [chat ascii] System: World save in 10 seconds
+[17:33:56.359] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:33:56.359] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:33:56.360] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:33:56.360] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:33:56.421] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:33:56.421] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:33:57.646] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:33:57.646] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:33:57.646] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:33:57.647] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:33:57.709] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:33:57.709] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:33:58.941] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:33:58.941] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:33:58.941] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:33:58.942] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:33:59.004] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:33:59.004] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:33:59.556] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:34:00.232] INFO  [wave10_RevGen3_25_Hecto] [travel] mode walk             usable   <- chosen
+[17:34:00.232] INFO  [wave10_RevGen3_25_Hecto] [travel] mode moongate         usable
+[17:34:00.232] INFO  [wave10_RevGen3_25_Hecto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:00.232] INFO  [wave10_RevGen3_25_Hecto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:00.232] LOG   [wave10_RevGen3_25_Hecto] event travel_mode: walk
+[17:34:00.233] INFO  [wave10_RevGen3_25_Hecto] [travel] plan Baked Delights baker: ok legs=1 ~26 tiles transit=0 nodes=0
+[17:34:04.598] INFO  [wave10_RevGen3_25_Hecto] [chat ascii] System: World save has been initiated.
+[17:34:04.599] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:34:04.783] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:34:04.783] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:34:04.783] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:34:04.783] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:34:04.845] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:34:04.845] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:34:06.093] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:34:06.094] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:34:06.094] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:34:06.094] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:34:06.157] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:34:06.157] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:34:07.402] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2802) from (1864,2776,0)
+[17:34:07.402] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2802) from=(1864,2776)
+[17:34:07.402] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1880,2802,z0)
+[17:34:07.402] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2802) in background
+[17:34:07.464] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1864,2776,0); target (1880,2802); stopped short (off by 42 tile(s))
+[17:34:07.464] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1864,2776) target=(1880,2802) arrived=0 off=42
+[17:34:07.465] INFO  [wave10_RevGen3_25_Hecto] [travel] Baked Delights baker FAILED at (1864,2776,0) -- tile route stopped short
+[17:34:07.465] LOG   [wave10_RevGen3_25_Hecto] event travel_failed: label='Baked Delights baker' ok=0 at=(1864,2776) legs=1 plans=4 why='tile route stopped short'
+[17:34:07.527] INFO  [wave10_RevGen3_25_Hecto] [action] scanning nearby mobiles for names
+[17:34:07.527] INFO  [life] food: at the shop, asking who is here (scan 1 of 3)
+[17:34:08.085] INFO  [wave10_RevGen3_25_Hecto] [mobiles] nearby (2):
+[17:34:08.086] INFO  [wave10_RevGen3_25_Hecto]   <unknown> 0x0000F6F9
+[17:34:08.086] INFO  [wave10_RevGen3_25_Hecto]   <unknown> 0x0000F790
+[17:34:09.635] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:34:10.549] INFO  [wave10_RevGen3_25_Hecto] [action] scanning nearby mobiles for names
+[17:34:10.549] INFO  [life] food: at the shop, asking who is here (scan 2 of 3)
+[17:34:10.565] INFO  [wave10_RevGen3_25_Hecto] [mobiles] nearby (2):
+[17:34:10.565] INFO  [wave10_RevGen3_25_Hecto]   Dog 0x0000F6F9
+[17:34:10.565] INFO  [wave10_RevGen3_25_Hecto]   Zandra 0x0000F790
+[17:34:13.601] INFO  [wave10_RevGen3_25_Hecto] [action] scanning nearby mobiles for names
+[17:34:13.601] INFO  [life] food: at the shop, asking who is here (scan 3 of 3)
+[17:34:13.617] INFO  [wave10_RevGen3_25_Hecto] [mobiles] nearby (2):
+[17:34:13.617] INFO  [wave10_RevGen3_25_Hecto]   Dog 0x0000F6F9
+[17:34:13.617] INFO  [wave10_RevGen3_25_Hecto]   Zandra 0x0000F790
+[17:34:14.660] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:34:16.640] INFO  [life] food: no 'baker' answered -- trying a 'provisioner'
+[17:34:16.757] INFO  [wave10_RevGen3_25_Hecto] [travel] place: skipping Cove provisioner -- 1360 tiles and 1 gate for a service Britannia Provisions provisioner offers
+[17:34:16.757] INFO  [wave10_RevGen3_25_Hecto] [travel] place: skipping Vesper provisioner -- 1384 tiles and 1 gate for a service Britannia Provisions provisioner offers
+[17:34:16.757] INFO  [wave10_RevGen3_25_Hecto] [travel] place: skipping Wind provisioner -- 1956 tiles and 2 gates for a service Britannia Provisions provisioner offers
+[17:34:16.757] INFO  [wave10_RevGen3_25_Hecto] [travel] place: skipping Delucia provisioner -- 1644 tiles and 3 gates for a service Britannia Provisions provisioner offers
+[17:34:16.757] INFO  [wave10_RevGen3_25_Hecto] [travel] Britannia Provisions provisioner -> (1850,2796) r=5 from (1864,2776)
+[17:34:16.757] LOG   [wave10_RevGen3_25_Hecto] event travel_start: label='Britannia Provisions provisioner' target=(1850,2796) radius=5 from=(1864,2776)
+[17:34:16.757] INFO  [life] food: walking to a 'provisioner' (trip 1)
+[17:34:16.757] INFO  [wave10_RevGen3_25_Hecto] [travel] mode walk             usable   <- chosen
+[17:34:16.757] INFO  [wave10_RevGen3_25_Hecto] [travel] mode moongate         usable
+[17:34:16.758] INFO  [wave10_RevGen3_25_Hecto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:16.758] INFO  [wave10_RevGen3_25_Hecto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:16.758] LOG   [wave10_RevGen3_25_Hecto] event travel_mode: walk
+[17:34:16.758] INFO  [wave10_RevGen3_25_Hecto] [travel] plan Britannia Provisions provisioner: ok legs=1 ~20 tiles transit=0 nodes=0
+[17:34:16.822] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1850,2796) from (1864,2776,0)
+[17:34:16.822] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1850,2796) from=(1864,2776)
+[17:34:16.822] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1864,2776,0) to (1850,2796,z-8)
+[17:34:16.822] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1850,2796) in background
+[17:34:16.883] INFO  [wave10_RevGen3_25_Hecto] [bot] replan to (1850,2796): 41 steps in 11228.6us
+[17:34:19.693] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:34:24.723] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:34:26.285] INFO  [wave10_RevGen3_25_Hecto] [travel] Britannia Provisions provisioner ARRIVED at (1855,2801,-8)
+[17:34:26.285] LOG   [wave10_RevGen3_25_Hecto] event travel_done: label='Britannia Provisions provisioner' ok=1 at=(1855,2801) legs=1 plans=1 why=''
+[17:34:26.346] INFO  [wave10_RevGen3_25_Hecto] [action] scanning nearby mobiles for names
+[17:34:26.346] INFO  [wave10_RevGen3_25_Hecto] [action] requested 2 paperdoll(s) for trade titles
+[17:34:26.346] INFO  [life] food: at the shop, asking who is here (scan 1 of 3)
+[17:34:26.361] INFO  [wave10_RevGen3_25_Hecto] [mobiles] nearby (2):
+[17:34:26.362] INFO  [wave10_RevGen3_25_Hecto]   Zandra 0x0000F790
+[17:34:26.362] INFO  [wave10_RevGen3_25_Hecto]   Rhodanthe 0x0000F7DE
+[17:34:26.362] INFO  [wave10_RevGen3_25_Hecto] [0x88] paperdoll 0x0000F790: "Zandra, the cobbler"
+[17:34:26.362] INFO  [wave10_RevGen3_25_Hecto] [world] Zandra, the cobbler is a tailor at (1848,2793)
+[17:34:26.362] INFO  [wave10_RevGen3_25_Hecto] [0x20] player @(1855,2801,-4) facing=6
+[17:34:26.362] INFO  [wave10_RevGen3_25_Hecto] [0x88] paperdoll 0x0000F7DE: "Rhodanthe, the provisioner"
+[17:34:26.362] INFO  [wave10_RevGen3_25_Hecto] [world] Rhodanthe, the provisioner is a provisioner at (1845,2798)
+[17:34:26.362] INFO  [life] goal_changed=GET_FOOD from=GET_FOOD reason="previous goal abandoned: attempts 5 >= 5"
+[17:34:26.362] INFO  [life] needs considered: NeedSkillTraining(Anatomy 0.55) NeedTraining(skill 42 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedTraining(skill 5 0.45) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=Anatomy (target 100.0)
+[17:34:26.363] INFO  [life]   score=62.5
+[17:34:26.363] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[17:34:26.363] INFO  [life]   reason: food=0
+[17:34:29.381] INFO  [life] food: found a 'provisioner'
+[17:34:29.442] INFO  [wave10_RevGen3_25_Hecto] [travel] mobile 0x0000F7DE -> (1846,2798) r=1 from (1855,2801)
+[17:34:29.442] LOG   [wave10_RevGen3_25_Hecto] event travel_start: label='mobile 0x0000F7DE' target=(1846,2798) radius=1 from=(1855,2801)
+[17:34:29.442] INFO  [life] food: the 'provisioner' is 9 tiles off (dz 4) -- walking into reach (chase 1 of 3)
+[17:34:29.442] INFO  [wave10_RevGen3_25_Hecto] [travel] mode walk             usable   <- chosen
+[17:34:29.442] INFO  [wave10_RevGen3_25_Hecto] [travel] mode moongate         usable
+[17:34:29.443] INFO  [wave10_RevGen3_25_Hecto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:29.443] INFO  [wave10_RevGen3_25_Hecto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:29.443] LOG   [wave10_RevGen3_25_Hecto] event travel_mode: walk
+[17:34:29.443] INFO  [wave10_RevGen3_25_Hecto] [travel] plan mobile 0x0000F7DE: ok legs=1 ~9 tiles transit=0 nodes=0
+[17:34:29.503] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1855,2801,-4); target (1850,2796); stopped short (off by 10 tile(s))
+[17:34:29.503] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1855,2801) target=(1850,2796) arrived=0 off=10
+[17:34:29.503] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1846,2798) from (1855,2801,-4)
+[17:34:29.503] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1846,2798) from=(1855,2801)
+[17:34:29.503] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1855,2801,-4) to (1846,2798,z-8)
+[17:34:29.504] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1846,2798) in background
+[17:34:29.749] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:34:31.229] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1855,2801,-4); target (1846,2798); stopped short (off by 12 tile(s))
+[17:34:31.229] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1855,2801) target=(1846,2798) arrived=0 off=12
+[17:34:32.459] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1846,2798) from (1855,2801,-4)
+[17:34:32.459] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1846,2798) from=(1855,2801)
+[17:34:32.459] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1855,2801,-4) to (1846,2798,z-8)
+[17:34:32.460] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1846,2798) in background
+[17:34:34.547] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1855,2801,-4); target (1846,2798); stopped short (off by 12 tile(s))
+[17:34:34.548] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1855,2801) target=(1846,2798) arrived=0 off=12
+[17:34:34.792] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:34:35.794] INFO  [wave10_RevGen3_25_Hecto] [travel] mode walk             usable   <- chosen
+[17:34:35.794] INFO  [wave10_RevGen3_25_Hecto] [travel] mode moongate         usable
+[17:34:35.794] INFO  [wave10_RevGen3_25_Hecto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:35.794] INFO  [wave10_RevGen3_25_Hecto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:35.794] LOG   [wave10_RevGen3_25_Hecto] event travel_mode: walk
+[17:34:35.794] INFO  [wave10_RevGen3_25_Hecto] [travel] plan mobile 0x0000F7DE: ok legs=1 ~9 tiles transit=0 nodes=0
+[17:34:37.298] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1846,2798) from (1855,2801,-4)
+[17:34:37.298] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1846,2798) from=(1855,2801)
+[17:34:37.298] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1855,2801,-4) to (1846,2798,z-8)
+[17:34:37.298] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1846,2798) in background
+[17:34:37.360] INFO  [wave10_RevGen3_25_Hecto] [bot] replan to (1846,2798): 20 steps in 1987.1us
+[17:34:37.622] INFO  [wave10_RevGen3_25_Hecto] [bot] door ahead at (1853,2799,z-8); OpenDoor before step
+[17:34:37.637] INFO  [wave10_RevGen3_25_Hecto] [chat ascii] System: Opening door...
+[17:34:38.075] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_25.hector/state.json
+[17:34:38.868] INFO  [wave10_RevGen3_25_Hecto] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=18 in 547.0us
+[17:34:39.266] INFO  [wave10_RevGen3_25_Hecto] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=17 in 111.1us
+[17:34:39.819] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:34:44.849] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:34:44.973] INFO  [wave10_RevGen3_25_Hecto] [bot] arrived at (1846,2798,-8)
+[17:34:44.973] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1846,2798,-8); target (1846,2798); ARRIVED (off by 0 tile(s))
+[17:34:44.974] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1846,2798) target=(1846,2798) arrived=1 off=0
+[17:34:44.974] INFO  [wave10_RevGen3_25_Hecto] [travel] mobile 0x0000F7DE ARRIVED at (1846,2798,-8)
+[17:34:44.974] LOG   [wave10_RevGen3_25_Hecto] event travel_done: label='mobile 0x0000F7DE' ok=1 at=(1846,2798) legs=1 plans=2 why=''
+[17:34:45.034] INFO  [life] food: within reach
+[17:34:45.095] INFO  [wave10_RevGen3_25_Hecto] [ACTION] vendor_buy start
+[17:34:45.095] INFO  [wave10_RevGen3_25_Hecto] [VENDOR] open vendor=0x0000F7DE say='Rhodanthe buy'
+[17:34:45.095] INFO  [life] food: asking the 'provisioner' to show something to eat (attempt 1)
+[17:34:45.096] INFO  [wave10_RevGen3_25_Hecto] [chat uni  ] Hector: Rhodanthe buy
+[17:34:45.096] INFO  [wave10_RevGen3_25_Hecto] [chat ascii] Rhodanthe: Hello!
+[17:34:45.097] INFO  [wave10_RevGen3_25_Hecto] [chat ascii] Rhodanthe: I sell many wares and thou'rt welcome to buy from me!
+[17:34:45.097] INFO  [wave10_RevGen3_25_Hecto] [0x3C] container contents: 28 item(s)
+[17:34:45.097] INFO  [wave10_RevGen3_25_Hecto] [0x74] pairing: straight (straight 3, mirrored 0 of 28 rows)
+[17:34:45.097] INFO  [wave10_RevGen3_25_Hecto] [0x74] vendor shop data: cont=0x4000F7D5 28 item(s), layer=0x1A
+[17:34:45.097] INFO  [wave10_RevGen3_25_Hecto] [0x74]   bulk order book              gfx=0x2259 qty=5    price=105
+[17:34:45.097] INFO  [wave10_RevGen3_25_Hecto] [0x74]   spyglass                     gfx=0x14F5 qty=5    price=78
+[17:34:45.097] INFO  [wave10_RevGen3_25_Hecto] [0x74]   House Placement Tool         gfx=0x14F6 qty=25   price=690
+[17:34:45.097] INFO  [wave10_RevGen3_25_Hecto] [0x74]   backpack                     gfx=0x0E75 qty=7    price=25
+[17:34:45.097] INFO  [wave10_RevGen3_25_Hecto] [0x74]   belt pouch                   gfx=0x09B0 qty=13   price=15
+[17:34:45.097] INFO  [wave10_RevGen3_25_Hecto] [0x74]   bag                          gfx=0x0E76 qty=60   price=13
+[17:34:45.097] INFO  [wave10_RevGen3_25_Hecto] [0x74]   candles                      gfx=0x0A28 qty=30   price=7
+[17:34:45.097] INFO  [wave10_RevGen3_25_Hecto] [0x74]   torches                      gfx=0x0F64 qty=39   price=8
+[17:34:45.098] INFO  [wave10_RevGen3_25_Hecto] [0x74]   lantern                      gfx=0x0A25 qty=35   price=55
+[17:34:45.098] INFO  [wave10_RevGen3_25_Hecto] [0x74]   oil flasks                   gfx=0x1C18 qty=33   price=15
+[17:34:45.098] INFO  [wave10_RevGen3_25_Hecto] [0x74]   lockpicks                    gfx=0x14FB qty=26   price=10
+[17:34:45.098] INFO  [wave10_RevGen3_25_Hecto] [0x74]   bread loaves                 gfx=0x103B qty=11   price=8
+[17:34:45.098] INFO  [wave10_RevGen3_25_Hecto] [0x74]   legs of lamb                 gfx=0x160A qty=35   price=8
+[17:34:45.098] INFO  [wave10_RevGen3_25_Hecto] [0x74]   chicken legs                 gfx=0x1608 qty=7    price=6
+[17:34:45.098] INFO  [wave10_RevGen3_25_Hecto] [0x74]   cooked birds                 gfx=0x09B7 qty=32   price=3
+[17:34:45.098] INFO  [wave10_RevGen3_25_Hecto] [0x74]   bottle of ale                gfx=0x099F qty=14   price=25
+[17:34:45.098] INFO  [wave10_RevGen3_25_Hecto] [0x74]   bottle of wine               gfx=0x09C7 qty=14   price=28
+[17:34:45.098] INFO  [wave10_RevGen3_25_Hecto] [0x74]   bottle of liquor             gfx=0x099B qty=38   price=17
+[17:34:45.098] INFO  [wave10_RevGen3_25_Hecto] [0x74]   jug of cider                 gfx=0x09C8 qty=38   price=26
+[17:34:45.098] INFO  [wave10_RevGen3_25_Hecto] [0x74]   empty bottles                gfx=0x0F0E qty=12   price=12
+[17:34:45.098] INFO  [wave10_RevGen3_25_Hecto] [0x74]   wooden box                   gfx=0x09AA qty=28   price=28
+[17:34:45.099] INFO  [wave10_RevGen3_25_Hecto] [0x74]   copper key                   gfx=0x100E qty=8    price=51
+[17:34:45.099] INFO  [wave10_RevGen3_25_Hecto] [0x74]   bedroll                      gfx=0x0A57 qty=34   price=109
+[17:34:45.099] INFO  [wave10_RevGen3_25_Hecto] [0x74]   kindling                     gfx=0x0DE1 qty=25   price=1
+[17:34:45.099] INFO  [wave10_RevGen3_25_Hecto] [0x74]   Chessboard                   gfx=0x0FA6 qty=35   price=1825361101
+[17:34:45.099] INFO  [wave10_RevGen3_25_Hecto] [0x74]   Checkerboard                 gfx=0x0FA6 qty=6    price=1825361101
+[17:34:45.099] INFO  [wave10_RevGen3_25_Hecto] [0x74]   backgammon board             gfx=0x0E1C qty=12   price=46
+[17:34:45.099] INFO  [wave10_RevGen3_25_Hecto] [0x74]   dice and cup                 gfx=0x0FA7 qty=23   price=36
+[17:34:45.099] INFO  [wave10_RevGen3_25_Hecto] [0x3C] container contents: 0 item(s)
+[17:34:45.099] INFO  [wave10_RevGen3_25_Hecto] [0x74] vendor shop data: cont=0x40013489 0 item(s), layer=0x1B
+[17:34:45.099] INFO  [wave10_RevGen3_25_Hecto] [VENDOR] offer from 0x0000F7DE: 28 item(s)
+[17:34:45.099] INFO  [wave10_RevGen3_25_Hecto] [VENDOR]   0x40019ECC bulk order book        x5   105 gp
+[17:34:45.099] INFO  [wave10_RevGen3_25_Hecto] [VENDOR]   0x40019ECB spyglass               x5   78 gp
+[17:34:45.099] INFO  [wave10_RevGen3_25_Hecto] [VENDOR]   0x40019ECA House Placement Tool   x25  690 gp
+[17:34:45.099] INFO  [wave10_RevGen3_25_Hecto] [VENDOR]   0x40019EC9 backpack               x7   25 gp
+[17:34:45.099] INFO  [wave10_RevGen3_25_Hecto] [VENDOR]   0x40019EC8 belt pouch             x13  15 gp
+[17:34:45.100] INFO  [wave10_RevGen3_25_Hecto] [VENDOR]   0x40019EC7 bag                    x60  13 gp
+[17:34:45.100] INFO  [wave10_RevGen3_25_Hecto] [VENDOR]   0x40019EC6 candles                x30  7 gp
+[17:34:45.100] INFO  [wave10_RevGen3_25_Hecto] [VENDOR]   0x40019EC5 torches                x39  8 gp
+[17:34:45.100] LOG   [wave10_RevGen3_25_Hecto] event vendor_offer: vendor=0x0000F7DE items=28
+[17:34:45.100] INFO  [wave10_RevGen3_25_Hecto] [ACTION_RESULT] vendor_buy success (5ms) vendor offer received
+[17:34:45.100] LOG   [wave10_RevGen3_25_Hecto] event action_result: vendor_buy success took=5ms vendor offer received
+[17:34:45.100] INFO  [wave10_RevGen3_25_Hecto] [0x24] vendor buy gump for 0x0000F7DE
+[17:34:45.100] INFO  [life] food: the shop is open
+[17:34:45.157] INFO  [life] food: the shop is open; the caller chooses
+[17:34:45.158] INFO  [life] food: buying bread loaves at 8 gold
+[17:34:45.158] INFO  [wave10_RevGen3_25_Hecto] [ACTION] vendor_buy start
+[17:34:45.158] INFO  [wave10_RevGen3_25_Hecto] [policy] allowed NPC purchase of i_bread_loaf (0x103B): NPC purchase is allowed when the item is actually offered; NPC selling remains separately restricted [BASIC_FOOD]
+[17:34:45.158] INFO  [wave10_RevGen3_25_Hecto] [VENDOR] buy item=0x40019EBF qty=2 from vendor=0x0000F7DE gold=9730
+[17:34:45.174] INFO  [wave10_RevGen3_25_Hecto] [ACTION_RESULT] vendor_buy success (16ms) purchased item delivered
+[17:34:45.174] LOG   [wave10_RevGen3_25_Hecto] event action_result: vendor_buy success took=16ms purchased item delivered
+[17:34:45.174] INFO  [wave10_RevGen3_25_Hecto] [chat ascii] Rhodanthe: Here you are, Hector That will be 16 gold coins.  I thank thee for thy business.
+[17:34:45.174] INFO  [wave10_RevGen3_25_Hecto] [0x3B] vendor transaction closed: vendor=0x0000F7DE flag=0
+[17:34:46.394] INFO  [life] goal_changed=TRAIN_AT_NPC from=GET_FOOD reason="TRAIN_AT_NPC 60.5 superseded GET_FOOD 0.0"
+[17:34:46.394] INFO  [life] needs considered: NeedSkillTraining(Anatomy 0.55) NeedTraining(skill 42 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedTraining(skill 5 0.45) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=Anatomy (target 100.0)
+[17:34:46.394] INFO  [life]   score=60.5
+[17:34:46.395] INFO  [life]   reason: NeedSkillTraining urgency 0.55 x 110 = 60.5
+[17:34:46.395] INFO  [life]   reason: Anatomy 0.0 -> 100.0, gold 9714 (fee is quoted on arrival, roughly 300)
+[17:34:49.883] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:34:54.206] INFO  [life] plan=buy reason="below the ceiling, worth buying, and affordable"
+[17:34:54.207] INFO  [life] training: looking for a 'healer' to teach Anatomy (trip 1)
+[17:34:54.244] INFO  [wave10_RevGen3_25_Hecto] [travel] place: skipping Cove healer -- 1336 tiles and 1 gate for a service Trinsic Healer healer offers
+[17:34:54.244] INFO  [wave10_RevGen3_25_Hecto] [travel] place: skipping Delucia healer -- 1652 tiles and 3 gates for a service Trinsic Healer healer offers
+[17:34:54.244] INFO  [wave10_RevGen3_25_Hecto] [travel] place: skipping Wind healer -- 1892 tiles and 2 gates for a service Trinsic Healer healer offers
+[17:34:54.244] INFO  [wave10_RevGen3_25_Hecto] [travel] Trinsic Healer healer -> (1911,2805) r=5 from (1846,2798)
+[17:34:54.245] LOG   [wave10_RevGen3_25_Hecto] event travel_start: label='Trinsic Healer healer' target=(1911,2805) radius=5 from=(1846,2798)
+[17:34:54.245] INFO  [wave10_RevGen3_25_Hecto] [travel] mode moongate         usable   <- chosen
+[17:34:54.245] INFO  [wave10_RevGen3_25_Hecto] [travel] mode walk             usable
+[17:34:54.245] INFO  [wave10_RevGen3_25_Hecto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:54.245] INFO  [wave10_RevGen3_25_Hecto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:54.245] LOG   [wave10_RevGen3_25_Hecto] event travel_mode: moongate
+[17:34:54.245] INFO  [wave10_RevGen3_25_Hecto] [travel] plan Trinsic Healer healer: ok legs=2 ~88 tiles transit=0 nodes=48
+[17:34:54.297] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2824) from (1846,2798,-8)
+[17:34:54.298] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2824) from=(1846,2798)
+[17:34:54.298] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1846,2798,-8) to (1880,2824)
+[17:34:54.298] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2824) in background
+[17:34:54.359] INFO  [wave10_RevGen3_25_Hecto] [bot] replan to (1880,2824): 43 steps in 8308.1us
+[17:34:54.917] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:34:59.938] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:35:00.494] INFO  [wave10_RevGen3_25_Hecto] [bot] step (1854,2800,-8)->(1855,2801,-8) rejected; OpenDoor + retry
+[17:35:00.508] INFO  [wave10_RevGen3_25_Hecto] [chat ascii] System: Opening door...
+[17:35:00.509] INFO  [wave10_RevGen3_25_Hecto] [0x20] player @(1854,2800,-8) facing=2
+[17:35:00.509] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1854,2800,-8); target (1880,2824); stopped short (off by 50 tile(s))
+[17:35:00.509] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1854,2800) target=(1880,2824) arrived=0 off=50
+[17:35:01.739] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1880,2824) from (1854,2800,-8)
+[17:35:01.740] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1880,2824) from=(1854,2800)
+[17:35:01.740] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1854,2800,-8) to (1880,2824)
+[17:35:01.740] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1880,2824) in background
+[17:35:01.802] INFO  [wave10_RevGen3_25_Hecto] [bot] replan to (1880,2824): 26 steps in 3607.2us
+[17:35:04.978] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:35:08.548] INFO  [wave10_RevGen3_25_Hecto] [bot] arrived at (1880,2824,5)
+[17:35:08.549] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1880,2824,5); target (1880,2824); ARRIVED (off by 0 tile(s))
+[17:35:08.549] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1880,2824) target=(1880,2824) arrived=1 off=0
+[17:35:08.549] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1911,2805) from (1880,2824,5)
+[17:35:08.549] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1911,2805) from=(1880,2824)
+[17:35:08.549] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1880,2824,5) to (1911,2805,z0)
+[17:35:08.549] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1911,2805) in background
+[17:35:08.608] INFO  [wave10_RevGen3_25_Hecto] [bot] replan to (1911,2805): 43 steps in 8783.7us
+[17:35:09.981] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:35:14.987] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:35:18.057] INFO  [wave10_RevGen3_25_Hecto] [bot] door ahead at (1914,2813,z0); OpenDoor before step
+[17:35:18.072] INFO  [wave10_RevGen3_25_Hecto] [chat ascii] System: Opening door...
+[17:35:19.319] INFO  [wave10_RevGen3_25_Hecto] [bot] door ahead at (1915,2812,z0); OpenDoor before step
+[17:35:19.335] INFO  [wave10_RevGen3_25_Hecto] [chat ascii] System: Opening door...
+[17:35:20.008] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:35:21.047] INFO  [wave10_RevGen3_25_Hecto] [travel] Trinsic Healer healer ARRIVED at (1915,2809,0)
+[17:35:21.047] LOG   [wave10_RevGen3_25_Hecto] event travel_done: label='Trinsic Healer healer' ok=1 at=(1915,2809) legs=2 plans=1 why=''
+[17:35:21.109] INFO  [life] training: arrived at 1915,2809 -- asking who is here
+[17:35:21.113] INFO  [wave10_RevGen3_25_Hecto] [action] scanning nearby mobiles for names
+[17:35:21.113] INFO  [wave10_RevGen3_25_Hecto] [action] requested 3 paperdoll(s) for trade titles
+[17:35:21.125] INFO  [wave10_RevGen3_25_Hecto] [mobiles] nearby (5):
+[17:35:21.125] INFO  [wave10_RevGen3_25_Hecto]   Nyx 0x000197E4
+[17:35:21.125] INFO  [wave10_RevGen3_25_Hecto]   Devin 0x0000F7B0
+[17:35:21.125] INFO  [wave10_RevGen3_25_Hecto]   Ryanne 0x0000F775
+[17:35:21.125] INFO  [wave10_RevGen3_25_Hecto]   Quenby 0x0000F7FA
+[17:35:21.125] INFO  [wave10_RevGen3_25_Hecto]   Raven 0x0000F76A
+[17:35:21.125] INFO  [wave10_RevGen3_25_Hecto] [0x20] player @(1915,2809,0) facing=6
+[17:35:21.125] INFO  [wave10_RevGen3_25_Hecto] [0x88] paperdoll 0x0000F7B0: "Devin, the healer"
+[17:35:21.125] INFO  [wave10_RevGen3_25_Hecto] [world] Devin, the healer is a healer at (1909,2808)
+[17:35:21.126] INFO  [wave10_RevGen3_25_Hecto] [0x20] player @(1915,2809,0) facing=7
+[17:35:21.126] INFO  [wave10_RevGen3_25_Hecto] [0x88] paperdoll 0x000197E4: "Nyx, Apprentice Swordsman"
+[17:35:21.126] INFO  [wave10_RevGen3_25_Hecto] [0x20] player @(1915,2809,0) facing=0
+[17:35:21.126] INFO  [wave10_RevGen3_25_Hecto] [0x88] paperdoll 0x0000F775: "Ryanne, the healer guildmistress"
+[17:35:21.126] INFO  [wave10_RevGen3_25_Hecto] [world] Ryanne, the healer guildmistress is a healer at (1914,2802)
+[17:35:23.638] INFO  [life] training: a 'healer guildmaster' is here -- asking them rather than the shopkeeper
+[17:35:23.638] INFO  [life] training: 'healer' is 7 tiles and 0 z away -- walking to them before speaking (approach 1 of 3)
+[17:35:23.639] INFO  [wave10_RevGen3_25_Hecto] [travel] mobile 0x0000F775 -> (1914,2802) r=1 from (1915,2809)
+[17:35:23.639] LOG   [wave10_RevGen3_25_Hecto] event travel_start: label='mobile 0x0000F775' target=(1914,2802) radius=1 from=(1915,2809)
+[17:35:23.639] INFO  [wave10_RevGen3_25_Hecto] [travel] mode walk             usable   <- chosen
+[17:35:23.639] INFO  [wave10_RevGen3_25_Hecto] [travel] mode moongate         usable
+[17:35:23.639] INFO  [wave10_RevGen3_25_Hecto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:23.639] INFO  [wave10_RevGen3_25_Hecto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:23.639] LOG   [wave10_RevGen3_25_Hecto] event travel_mode: walk
+[17:35:23.639] INFO  [wave10_RevGen3_25_Hecto] [travel] plan mobile 0x0000F775: ok legs=1 ~7 tiles transit=0 nodes=0
+[17:35:23.701] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1915,2809,0); target (1911,2805); stopped short (off by 8 tile(s))
+[17:35:23.705] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1915,2809) target=(1911,2805) arrived=0 off=8
+[17:35:23.705] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1914,2802) from (1915,2809,0)
+[17:35:23.705] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1914,2802) from=(1915,2809)
+[17:35:23.705] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1915,2809,0) to (1914,2802,z0)
+[17:35:23.706] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1914,2802) in background
+[17:35:25.055] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:35:25.179] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1915,2809,0); target (1914,2802); stopped short (off by 8 tile(s))
+[17:35:25.180] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1915,2809) target=(1914,2802) arrived=0 off=8
+[17:35:26.396] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1914,2802) from (1915,2809,0)
+[17:35:26.396] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1914,2802) from=(1915,2809)
+[17:35:26.396] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1915,2809,0) to (1914,2802,z0)
+[17:35:26.396] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1914,2802) in background
+[17:35:27.920] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1915,2809,0); target (1914,2802); stopped short (off by 8 tile(s))
+[17:35:27.920] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1915,2809) target=(1914,2802) arrived=0 off=8
+[17:35:29.150] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1914,2802) from (1915,2809,0)
+[17:35:29.150] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1914,2802) from=(1915,2809)
+[17:35:29.150] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1915,2809,0) to (1914,2802,z0)
+[17:35:29.150] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1914,2802) in background
+[17:35:30.056] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:35:30.858] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1915,2809,0); target (1914,2802); stopped short (off by 8 tile(s))
+[17:35:30.860] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1915,2809) target=(1914,2802) arrived=0 off=8
+[17:35:32.119] INFO  [wave10_RevGen3_25_Hecto] [travel] mode walk             usable   <- chosen
+[17:35:32.119] INFO  [wave10_RevGen3_25_Hecto] [travel] mode moongate         usable
+[17:35:32.119] INFO  [wave10_RevGen3_25_Hecto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:32.119] INFO  [wave10_RevGen3_25_Hecto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:32.120] LOG   [wave10_RevGen3_25_Hecto] event travel_mode: walk
+[17:35:32.120] INFO  [wave10_RevGen3_25_Hecto] [travel] plan mobile 0x0000F775: ok legs=1 ~7 tiles transit=0 nodes=0
+[17:35:33.661] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1914,2802) from (1915,2809,0)
+[17:35:33.662] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1914,2802) from=(1915,2809)
+[17:35:33.663] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1915,2809,0) to (1914,2802,z0)
+[17:35:33.663] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1914,2802) in background
+[17:35:33.891] INFO  [wave10_RevGen3_25_Hecto] [chat ascii] Devin: What is it thou wishest?
+[17:35:35.107] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:35:35.169] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1915,2809,0); target (1914,2802); stopped short (off by 8 tile(s))
+[17:35:35.169] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1915,2809) target=(1914,2802) arrived=0 off=8
+[17:35:35.896] INFO  [wave10_RevGen3_25_Hecto] [chat ascii] Devin: What is it thou wishest?
+[17:35:36.369] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1914,2802) from (1915,2809,0)
+[17:35:36.369] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1914,2802) from=(1915,2809)
+[17:35:36.369] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1915,2809,0) to (1914,2802,z0)
+[17:35:36.369] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1914,2802) in background
+[17:35:37.894] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1915,2809,0); target (1914,2802); stopped short (off by 8 tile(s))
+[17:35:37.894] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1915,2809) target=(1914,2802) arrived=0 off=8
+[17:35:38.097] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_25.hector/state.json
+[17:35:39.097] INFO  [wave10_RevGen3_25_Hecto] [travel] mode walk             usable   <- chosen
+[17:35:39.097] INFO  [wave10_RevGen3_25_Hecto] [travel] mode moongate         usable
+[17:35:39.097] INFO  [wave10_RevGen3_25_Hecto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:39.097] INFO  [wave10_RevGen3_25_Hecto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:39.097] LOG   [wave10_RevGen3_25_Hecto] event travel_mode: walk
+[17:35:39.097] INFO  [wave10_RevGen3_25_Hecto] [travel] plan mobile 0x0000F775: ok legs=1 ~7 tiles transit=0 nodes=0
+[wave10_RevGen3_25_Hecto] [travel] plan mobile 0x0000F775: ok legs=1 ~7 tiles transit=0 nodes=0
+[17:35:23.701] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1915,2809,0); target (1911,2805); stopped short (off by 8 tile(s))
+[17:35:23.705] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1915,2809) target=(1911,2805) arrived=0 off=8
+[17:35:23.705] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1914,2802) from (1915,2809,0)
+[17:35:23.705] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1914,2802) from=(1915,2809)
+[17:35:23.705] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1915,2809,0) to (1914,2802,z0)
+[17:35:23.706] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1914,2802) in background
+[17:35:25.055] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:35:25.117] WARN  [wave10_RevGen3_25_Hecto] [bot] no path to (1914,2802) avoiding 0 block(s); stopping (search 1382337.7us)
+[17:35:25.118] WARN  [wave10_RevGen3_25_Hecto] [bot] start (1915,2809,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 338 item(s), 5 mobile(s))
+[17:35:25.179] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1915,2809,0); target (1914,2802); stopped short (off by 8 tile(s))
+[17:35:25.180] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1915,2809) target=(1914,2802) arrived=0 off=8
+[17:35:26.396] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1914,2802) from (1915,2809,0)
+[17:35:26.396] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1914,2802) from=(1915,2809)
+[17:35:26.396] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1915,2809,0) to (1914,2802,z0)
+[17:35:26.396] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1914,2802) in background
+[17:35:27.859] WARN  [wave10_RevGen3_25_Hecto] [bot] no path to (1914,2802) avoiding 0 block(s); stopping (search 1454491.2us)
+[17:35:27.859] WARN  [wave10_RevGen3_25_Hecto] [bot] start (1915,2809,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 338 item(s), 6 mobile(s))
+[17:35:27.920] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1915,2809,0); target (1914,2802); stopped short (off by 8 tile(s))
+[17:35:27.920] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1915,2809) target=(1914,2802) arrived=0 off=8
+[17:35:29.150] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1914,2802) from (1915,2809,0)
+[17:35:29.150] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1914,2802) from=(1915,2809)
+[17:35:29.150] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1915,2809,0) to (1914,2802,z0)
+[17:35:29.150] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1914,2802) in background
+[17:35:30.056] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:35:30.796] WARN  [wave10_RevGen3_25_Hecto] [bot] no path to (1914,2802) avoiding 0 block(s); stopping (search 1609764.0us)
+[17:35:30.796] WARN  [wave10_RevGen3_25_Hecto] [bot] start (1915,2809,0) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 338 item(s), 7 mobile(s))
+[17:35:30.858] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1915,2809,0); target (1914,2802); stopped short (off by 8 tile(s))
+[17:35:30.860] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1915,2809) target=(1914,2802) arrived=0 off=8
+[17:35:32.119] INFO  [wave10_RevGen3_25_Hecto] [travel] mode walk             usable   <- chosen
+[17:35:32.119] INFO  [wave10_RevGen3_25_Hecto] [travel] mode moongate         usable
+[17:35:32.119] INFO  [wave10_RevGen3_25_Hecto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:32.119] INFO  [wave10_RevGen3_25_Hecto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:32.120] LOG   [wave10_RevGen3_25_Hecto] event travel_mode: walk
+[17:35:32.120] INFO  [wave10_RevGen3_25_Hecto] [travel] plan mobile 0x0000F775: ok legs=1 ~7 tiles transit=0 nodes=0
+[17:35:33.661] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1914,2802) from (1915,2809,0)
+[17:35:33.662] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1914,2802) from=(1915,2809)
+[17:35:33.663] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1915,2809,0) to (1914,2802,z0)
+[17:35:33.663] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1914,2802) in background
+[17:35:33.891] INFO  [wave10_RevGen3_25_Hecto] [chat ascii] Devin: What is it thou wishest?
+[17:35:35.107] INFO  [wave10_RevGen3_25_Hecto] [survival] hp 32/32 (100%) -> fight
+[17:35:35.107] WARN  [wave10_RevGen3_25_Hecto] [bot] no path to (1914,2802) avoiding 0 block(s); stopping (search 1431008.1us)
+[17:35:35.108] WARN  [wave10_RevGen3_25_Hecto] [bot] start (1915,2809,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 338 item(s), 8 mobile(s))
+[17:35:35.169] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1915,2809,0); target (1914,2802); stopped short (off by 8 tile(s))
+[17:35:35.169] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1915,2809) target=(1914,2802) arrived=0 off=8
+[17:35:35.896] INFO  [wave10_RevGen3_25_Hecto] [chat ascii] Devin: What is it thou wishest?
+[17:35:36.369] INFO  [wave10_RevGen3_25_Hecto] [action] goto (1914,2802) from (1915,2809,0)
+[17:35:36.369] LOG   [wave10_RevGen3_25_Hecto] event goto_start: target=(1914,2802) from=(1915,2809)
+[17:35:36.369] INFO  [wave10_RevGen3_25_Hecto] [bot] running from (1915,2809,0) to (1914,2802,z0)
+[17:35:36.369] INFO  [wave10_RevGen3_25_Hecto] [bot] planning path to (1914,2802) in background
+[17:35:37.832] WARN  [wave10_RevGen3_25_Hecto] [bot] no path to (1914,2802) avoiding 0 block(s); stopping (search 1460318.1us)
+[17:35:37.833] WARN  [wave10_RevGen3_25_Hecto] [bot] start (1915,2809,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 338 item(s), 7 mobile(s))
+[17:35:37.894] INFO  [wave10_RevGen3_25_Hecto] [action] goto finished at (1915,2809,0); target (1914,2802); stopped short (off by 8 tile(s))
+[17:35:37.894] LOG   [wave10_RevGen3_25_Hecto] event goto_done: at=(1915,2809) target=(1914,2802) arrived=0 off=8
+[17:35:39.097] INFO  [wave10_RevGen3_25_Hecto] [travel] mode walk             usable   <- chosen
+[17:35:39.097] INFO  [wave10_RevGen3_25_Hecto] [travel] mode moongate         usable
+[17:35:39.097] INFO  [wave10_RevGen3_25_Hecto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:39.097] INFO  [wave10_RevGen3_25_Hecto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:39.097] LOG   [wave10_RevGen3_25_Hecto] event travel_mode: walk
+[17:35:39.097] INFO  [wave10_RevGen3_25_Hecto] [travel] plan mobile 0x0000F775: ok legs=1 ~7 tiles transit=0 nodes=0

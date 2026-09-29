@@ -1,0 +1,480 @@
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+[15:51:11.451] WARN  [n10_Ovid] [0x21] move REJECTED seq=4; server says (633,857,0) facing=2
+[15:51:12.216] WARN  [n10_Ovid] [0x21] move REJECTED seq=1; server says (633,857,0) facing=4
+[15:51:12.981] WARN  [n10_Ovid] [0x21] move REJECTED seq=1; server says (633,857,0) facing=5
+[15:51:13.751] WARN  [n10_Ovid] [0x21] move REJECTED seq=1; server says (633,857,0) facing=2
+[15:53:37.450] WARN  [n10_Ovid] [bot] 0x20 resync; aborting path
+[15:53:41.243] WARN  [n10_Ovid] [bot] no path to (4445,1088) avoiding 0 block(s); stopping (search 1212942.0us)
+[15:53:41.243] WARN  [n10_Ovid] [bot] start (4453,1086,0) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 428 item(s), 11 mobile(s))
+[15:53:43.784] WARN  [n10_Ovid] [bot] no path to (4445,1088) avoiding 0 block(s); stopping (search 1234674.4us)
+[15:53:43.784] WARN  [n10_Ovid] [bot] start (4453,1086,0) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 428 item(s), 11 mobile(s))
+[15:54:03.202] WARN  [n10_Ovid] [ACTION_RESULT] npc_train invalid_state (2ms) You already know as much as I can teach of Meditation
+[15:54:11.113] WARN  [n10_Ovid] [bot] no path to (4448,1096) avoiding 0 block(s); stopping (search 3159756.4us)
+[15:54:11.113] WARN  [n10_Ovid] [bot] start (4445,1088,0) exits: open=4 terrain=3 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 429 item(s), 11 mobile(s))
+[15:54:26.193] WARN  [n10_Ovid] [bot] no path to (4445,1086) avoiding 0 block(s); stopping (search 1299046.7us)
+[15:54:26.193] WARN  [n10_Ovid] [bot] start (4448,1096,0) exits: open=4 terrain=3 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 429 item(s), 11 mobile(s))
+[15:54:28.755] WARN  [n10_Ovid] [bot] no path to (4445,1086) avoiding 0 block(s); stopping (search 1289524.7us)
+[15:54:28.755] WARN  [n10_Ovid] [bot] start (4448,1096,0) exits: open=4 terrain=3 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 429 item(s), 11 mobile(s))
+[15:54:42.415] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:54:42.415] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:54:42.415] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:54:51.425] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:54:51.425] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:54:51.425] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:55:00.469] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:55:00.469] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:55:00.469] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:55:09.485] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:55:09.485] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:55:09.485] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:55:18.512] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:55:18.512] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:55:18.512] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:55:27.523] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:55:27.523] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:55:27.523] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:55:36.567] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:55:36.567] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:55:36.567] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:55:45.582] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:55:45.582] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:55:45.582] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:55:54.608] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:55:54.608] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:55:54.608] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:56:03.641] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:56:03.641] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:56:03.641] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:56:12.691] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:56:12.691] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:56:12.691] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:56:21.708] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:56:21.708] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:56:21.708] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:56:30.768] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:56:30.768] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:56:30.768] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (1ms) Revolution vendor policy refuses this NPC purchase
+[15:56:41.139] WARN  [n10_Ovid] [bot] no path to (4444,1093) avoiding 0 block(s); stopping (search 1282715.1us)
+[15:56:41.139] WARN  [n10_Ovid] [bot] start (4445,1086,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 430 item(s), 9 mobile(s))
+[15:56:43.671] WARN  [n10_Ovid] [bot] no path to (4444,1093) avoiding 0 block(s); stopping (search 1219867.4us)
+[15:56:43.672] WARN  [n10_Ovid] [bot] start (4445,1086,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 430 item(s), 9 mobile(s))
+[15:56:46.328] WARN  [n10_Ovid] [bot] no path to (4444,1093) avoiding 0 block(s); stopping (search 1352124.2us)
+[15:56:46.328] WARN  [n10_Ovid] [bot] start (4445,1086,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 430 item(s), 9 mobile(s))
+[15:56:48.165] WARN  [n10_Ovid] [bot] no path to (4444,1090) avoiding 0 block(s); stopping (search 1391542.2us)
+[15:56:48.165] WARN  [n10_Ovid] [bot] start (4445,1086,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 430 item(s), 9 mobile(s))
+[15:56:51.003] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:56:51.003] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:56:51.003] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:57:01.374] WARN  [n10_Ovid] [bot] no path to (4445,1086) avoiding 0 block(s); stopping (search 1199332.2us)
+[15:57:01.374] WARN  [n10_Ovid] [bot] start (4444,1090,0) exits: open=6 terrain=0 mobile=2 dynamic=0 door=0 blacklist=0 (overlay saw 430 item(s), 9 mobile(s))
+[15:57:03.973] WARN  [n10_Ovid] [bot] no path to (4445,1086) avoiding 0 block(s); stopping (search 1252078.5us)
+[15:57:03.973] WARN  [n10_Ovid] [bot] start (4444,1090,0) exits: open=6 terrain=0 mobile=2 dynamic=0 door=0 blacklist=0 (overlay saw 430 item(s), 9 mobile(s))
+[15:57:06.455] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:57:06.455] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:57:06.455] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:57:15.463] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:57:15.463] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:57:15.463] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:57:24.504] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:57:24.504] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:57:24.504] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:57:34.803] WARN  [n10_Ovid] [bot] no path to (4445,1091) avoiding 0 block(s); stopping (search 1173488.2us)
+[15:57:34.803] WARN  [n10_Ovid] [bot] start (4445,1086,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 430 item(s), 9 mobile(s))
+[15:57:37.338] WARN  [n10_Ovid] [bot] no path to (4445,1091) avoiding 0 block(s); stopping (search 1260947.2us)
+[15:57:37.338] WARN  [n10_Ovid] [bot] start (4445,1086,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 430 item(s), 10 mobile(s))
+[15:57:40.039] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:57:40.039] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:57:40.039] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:57:49.059] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:57:49.059] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:57:49.059] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:57:59.397] WARN  [n10_Ovid] [bot] no path to (4445,1095) avoiding 0 block(s); stopping (search 1216165.2us)
+[15:57:59.397] WARN  [n10_Ovid] [bot] start (4445,1091,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 430 item(s), 9 mobile(s))
+[15:58:01.903] WARN  [n10_Ovid] [bot] no path to (4445,1095) avoiding 0 block(s); stopping (search 1211204.2us)
+[15:58:01.903] WARN  [n10_Ovid] [bot] start (4445,1091,0) exits: open=4 terrain=3 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 430 item(s), 9 mobile(s))
+[15:58:04.062] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:58:04.062] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:58:04.062] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:58:14.305] WARN  [n10_Ovid] [bot] no path to (4445,1091) avoiding 0 block(s); stopping (search 1184132.7us)
+[15:58:14.305] WARN  [n10_Ovid] [bot] start (4445,1095,0) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 430 item(s), 9 mobile(s))
+[15:58:16.829] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:58:16.829] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:58:16.829] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:58:25.878] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:58:25.878] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:58:25.878] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:58:34.933] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:58:34.933] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:58:34.933] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:58:43.983] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:58:43.983] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:58:43.983] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:58:52.999] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:58:52.999] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:58:52.999] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:59:02.021] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:59:02.021] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:59:02.021] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:59:11.021] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:59:11.021] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:59:11.021] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:59:20.047] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:59:20.047] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:59:20.047] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:59:29.066] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:59:29.066] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:59:29.066] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:59:38.123] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:59:38.123] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:59:38.123] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:59:47.157] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:59:47.157] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:59:47.157] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:59:56.177] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:59:56.177] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:59:56.177] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (1ms) Revolution vendor policy refuses this NPC purchase
+[16:00:05.194] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:00:05.195] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:00:05.195] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:00:15.723] WARN  [n10_Ovid] [bot] no path to (4444,1086) avoiding 0 block(s); stopping (search 1393198.2us)
+[16:00:15.723] WARN  [n10_Ovid] [bot] start (4445,1091,0) exits: open=4 terrain=3 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 430 item(s), 9 mobile(s))
+[16:00:19.203] WARN  [n10_Ovid] [bot] no path to (4444,1086) avoiding 0 block(s); stopping (search 2214146.1us)
+[16:00:19.203] WARN  [n10_Ovid] [bot] start (4445,1091,0) exits: open=4 terrain=3 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 430 item(s), 10 mobile(s))
+[16:00:25.984] WARN  [n10_Ovid] [bot] no path to (4445,1089) avoiding 0 block(s); stopping (search 1661930.8us)
+[16:00:25.985] WARN  [n10_Ovid] [bot] start (4443,1087,0) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 430 item(s), 9 mobile(s))
+[16:00:30.691] WARN  [n10_Ovid] [bot] no path to (4445,1089) avoiding 0 block(s); stopping (search 1851657.5us)
+[16:00:30.691] WARN  [n10_Ovid] [bot] start (4443,1087,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 430 item(s), 9 mobile(s))
+[16:00:36.329] WARN  [n10_Ovid] [bot] no path to (4445,1089) avoiding 0 block(s); stopping (search 1255561.9us)
+[16:00:36.329] WARN  [n10_Ovid] [bot] start (4443,1087,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 430 item(s), 10 mobile(s))
+[16:00:43.948] WARN  [n10_Ovid] [bot] no path to (4445,1089) avoiding 0 block(s); stopping (search 1798111.2us)
+[16:00:43.948] WARN  [n10_Ovid] [bot] start (4443,1087,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 430 item(s), 10 mobile(s))
+[16:00:45.838] WARN  [n10_Ovid] [bot] no path to (4445,1091) avoiding 0 block(s); stopping (search 1694427.0us)
+[16:00:45.838] WARN  [n10_Ovid] [bot] start (4443,1087,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 430 item(s), 9 mobile(s))
+[16:00:48.858] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:00:48.858] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:00:48.858] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:00:57.885] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:00:57.885] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:00:57.885] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:01:08.519] WARN  [n10_Ovid] [bot] no path to (4443,1087) avoiding 0 block(s); stopping (search 1497224.2us)
+[16:01:08.519] WARN  [n10_Ovid] [bot] start (4445,1091,0) exits: open=4 terrain=3 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 430 item(s), 8 mobile(s))
+[16:01:11.207] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:01:11.207] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:01:11.207] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:01:20.219] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:01:20.219] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:01:20.219] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (1ms) Revolution vendor policy refuses this NPC purchase
+[16:01:29.237] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:01:29.237] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:01:29.237] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:01:39.988] WARN  [n10_Ovid] [bot] no path to (4445,1092) avoiding 0 block(s); stopping (search 1621481.7us)
+[16:01:39.988] WARN  [n10_Ovid] [bot] start (4443,1087,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 430 item(s), 8 mobile(s))
+[16:01:42.780] WARN  [n10_Ovid] [bot] no path to (4445,1092) avoiding 0 block(s); stopping (search 1496276.9us)
+[16:01:42.780] WARN  [n10_Ovid] [bot] start (4443,1087,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 430 item(s), 8 mobile(s))
+[16:01:45.340] WARN  [n10_Ovid] [bot] no path to (4445,1092) avoiding 0 block(s); stopping (search 1244657.2us)
+[16:01:45.340] WARN  [n10_Ovid] [bot] start (4443,1087,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 430 item(s), 8 mobile(s))
+[16:01:49.564] WARN  [n10_Ovid] [bot] no path to (4445,1092) avoiding 0 block(s); stopping (search 1333682.9us)
+[16:01:49.564] WARN  [n10_Ovid] [bot] start (4443,1087,0) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 430 item(s), 8 mobile(s))
+[16:01:53.255] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:01:53.255] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:01:53.255] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:02:02.267] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:02:02.267] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:02:02.267] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:02:11.284] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:02:11.284] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:02:11.284] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:02:20.289] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:02:20.289] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:02:20.289] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:02:29.338] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:02:29.338] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:02:29.338] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:02:38.339] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:02:38.339] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:02:38.339] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:02:47.348] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:02:47.348] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:02:47.348] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:02:56.353] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:02:56.353] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:02:56.353] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:03:05.382] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:03:05.382] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:03:05.382] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:03:14.420] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:03:14.420] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:03:14.420] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:03:23.450] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:03:23.450] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:03:23.450] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:03:32.493] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:03:32.493] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:03:32.493] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:03:41.514] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:03:41.514] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:03:41.514] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:03:50.571] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:03:50.571] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:03:50.571] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:03:59.617] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:03:59.617] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:03:59.617] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:04:08.665] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:04:08.665] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:04:08.665] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:04:17.665] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:04:17.665] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:04:17.665] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:04:26.665] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:04:26.665] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:04:26.665] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:04:35.695] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:04:35.695] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:04:35.695] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:04:44.754] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:04:44.754] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:04:44.754] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:04:55.119] WARN  [n10_Ovid] [bot] no path to (4445,1088) avoiding 0 block(s); stopping (search 1218720.4us)
+[16:04:55.119] WARN  [n10_Ovid] [bot] start (4445,1092,0) exits: open=4 terrain=3 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 430 item(s), 8 mobile(s))
+[16:04:57.611] WARN  [n10_Ovid] [bot] no path to (4445,1088) avoiding 0 block(s); stopping (search 1234729.0us)
+[16:04:57.611] WARN  [n10_Ovid] [bot] start (4445,1092,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 430 item(s), 8 mobile(s))
+[16:05:00.314] WARN  [n10_Ovid] [bot] no path to (4445,1088) avoiding 0 block(s); stopping (search 1346619.5us)
+[16:05:00.314] WARN  [n10_Ovid] [bot] start (4445,1092,0) exits: open=3 terrain=3 mobile=2 dynamic=0 door=0 blacklist=0 (overlay saw 430 item(s), 8 mobile(s))
+[16:05:05.514] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:05:05.514] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:05:05.514] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:05:14.569] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:05:14.569] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:05:14.569] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:05:23.576] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:05:23.576] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:05:23.576] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:05:32.624] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:05:32.624] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:05:32.624] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:05:41.671] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:05:41.671] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:05:41.671] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:05:50.724] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:05:50.724] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:05:50.724] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (1ms) Revolution vendor policy refuses this NPC purchase
+[16:05:59.774] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:05:59.774] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:05:59.774] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:06:08.798] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:06:08.798] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:06:08.798] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:06:19.109] WARN  [n10_Ovid] [bot] no path to (4445,1092) avoiding 0 block(s); stopping (search 1230730.7us)
+[16:06:19.109] WARN  [n10_Ovid] [bot] start (4445,1088,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 431 item(s), 8 mobile(s))
+[16:06:21.703] WARN  [n10_Ovid] [bot] no path to (4445,1092) avoiding 0 block(s); stopping (search 1272234.0us)
+[16:06:21.703] WARN  [n10_Ovid] [bot] start (4445,1088,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 431 item(s), 7 mobile(s))
+[16:06:25.101] WARN  [n10_Ovid] [bot] no path to (4444,1095) avoiding 0 block(s); stopping (search 1332821.2us)
+[16:06:25.101] WARN  [n10_Ovid] [bot] start (4444,1090,0) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 431 item(s), 6 mobile(s))
+[16:06:27.880] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:06:27.880] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:06:27.880] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:06:36.924] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:06:36.924] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:06:36.924] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:06:45.957] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:06:45.957] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:06:45.957] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:06:55.002] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:06:55.002] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:06:55.002] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:07:04.051] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:07:04.051] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:07:04.051] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:07:13.091] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:07:13.091] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:07:13.091] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:07:23.359] WARN  [n10_Ovid] [bot] no path to (4445,1090) avoiding 0 block(s); stopping (search 1154963.7us)
+[16:07:23.359] WARN  [n10_Ovid] [bot] start (4444,1095,0) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 431 item(s), 9 mobile(s))
+[16:07:26.431] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:07:26.431] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:07:26.432] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:07:35.447] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:07:35.447] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:07:35.447] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:07:44.491] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:07:44.491] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:07:44.491] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:07:54.799] WARN  [n10_Ovid] [bot] no path to (4444,1086) avoiding 0 block(s); stopping (search 1175073.3us)
+[16:07:54.799] WARN  [n10_Ovid] [bot] start (4445,1090,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 431 item(s), 8 mobile(s))
+[16:07:57.308] WARN  [n10_Ovid] [bot] no path to (4444,1086) avoiding 0 block(s); stopping (search 1199112.4us)
+[16:07:57.308] WARN  [n10_Ovid] [bot] start (4445,1090,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 431 item(s), 8 mobile(s))
+[16:08:00.472] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:08:00.472] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:08:00.472] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:08:09.478] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:08:09.478] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:08:09.478] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:08:19.762] WARN  [n10_Ovid] [bot] no path to (4445,1093) avoiding 0 block(s); stopping (search 1161316.6us)
+[16:08:19.762] WARN  [n10_Ovid] [bot] start (4444,1086,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 431 item(s), 8 mobile(s))
+[16:08:22.229] WARN  [n10_Ovid] [bot] no path to (4445,1093) avoiding 0 block(s); stopping (search 1154393.7us)
+[16:08:22.229] WARN  [n10_Ovid] [bot] start (4444,1086,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 431 item(s), 8 mobile(s))
+[16:08:26.076] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:08:26.076] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:08:26.076] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:08:35.136] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:08:35.136] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:08:35.136] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:08:44.170] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:08:44.170] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:08:44.170] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:08:54.523] WARN  [n10_Ovid] [bot] no path to (4444,1088) avoiding 0 block(s); stopping (search 1278794.7us)
+[16:08:54.523] WARN  [n10_Ovid] [bot] start (4445,1093,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 431 item(s), 7 mobile(s))
+[16:08:57.132] WARN  [n10_Ovid] [bot] no path to (4444,1088) avoiding 0 block(s); stopping (search 1269904.0us)
+[16:08:57.132] WARN  [n10_Ovid] [bot] start (4445,1093,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 431 item(s), 7 mobile(s))
+[16:09:00.064] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:09:00.064] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:09:00.064] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:09:09.100] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:09:09.100] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:09:09.100] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:09:18.144] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:09:18.144] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:09:18.144] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:09:27.163] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:09:27.163] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:09:27.163] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:09:36.169] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:09:36.169] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:09:36.169] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:09:45.222] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:09:45.222] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:09:45.222] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:09:54.253] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:09:54.253] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:09:54.253] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:10:03.278] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:10:03.278] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:10:03.278] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:10:12.329] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:10:12.329] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:10:12.329] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:10:21.369] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:10:21.369] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:10:21.369] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:10:30.374] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:10:30.374] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:10:30.374] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:10:39.406] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:10:39.406] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:10:39.406] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:10:48.441] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:10:48.441] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:10:48.441] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:10:58.816] WARN  [n10_Ovid] [bot] no path to (4443,1095) avoiding 0 block(s); stopping (search 1332588.3us)
+[16:10:58.816] WARN  [n10_Ovid] [bot] start (4444,1088,0) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 431 item(s), 9 mobile(s))
+[16:11:03.384] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:11:03.384] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:11:03.384] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:11:12.439] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:11:12.439] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:11:12.439] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:11:23.096] WARN  [n10_Ovid] [bot] no path to (4445,1089) avoiding 0 block(s); stopping (search 1547579.0us)
+[16:11:23.096] WARN  [n10_Ovid] [bot] start (4443,1095,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 431 item(s), 9 mobile(s))
+[16:11:25.683] WARN  [n10_Ovid] [bot] no path to (4445,1089) avoiding 0 block(s); stopping (search 1277333.1us)
+[16:11:25.683] WARN  [n10_Ovid] [bot] start (4443,1095,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 431 item(s), 9 mobile(s))
+[16:11:29.038] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:11:29.039] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:11:29.039] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:11:38.065] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:11:38.066] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:11:38.066] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:11:47.083] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:11:47.083] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:11:47.083] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:11:57.704] WARN  [n10_Ovid] [bot] no path to (4445,1094) avoiding 0 block(s); stopping (search 1496155.6us)
+[16:11:57.704] WARN  [n10_Ovid] [bot] start (4445,1089,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 431 item(s), 8 mobile(s))
+[16:12:00.472] WARN  [n10_Ovid] [bot] no path to (4445,1094) avoiding 0 block(s); stopping (search 1441862.3us)
+[16:12:00.472] WARN  [n10_Ovid] [bot] start (4445,1089,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 431 item(s), 8 mobile(s))
+[16:12:03.127] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:12:03.127] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:12:03.127] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:12:12.181] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:12:12.181] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:12:12.181] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:12:21.218] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:12:21.218] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:12:21.218] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:12:30.225] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:12:30.225] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:12:30.225] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:12:39.259] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:12:39.259] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:12:39.259] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:12:48.269] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:12:48.269] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:12:48.269] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (1ms) Revolution vendor policy refuses this NPC purchase
+[16:12:57.302] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:12:57.302] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:12:57.302] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (1ms) Revolution vendor policy refuses this NPC purchase
+[16:13:07.995] WARN  [n10_Ovid] [bot] no path to (4443,1088) avoiding 0 block(s); stopping (search 1551020.1us)
+[16:13:07.995] WARN  [n10_Ovid] [bot] start (4445,1094,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 431 item(s), 7 mobile(s))
+[16:13:11.672] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:13:11.672] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:13:11.672] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:13:20.721] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:13:20.721] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:13:20.721] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:13:29.763] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:13:29.763] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:13:29.763] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:13:38.771] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:13:38.771] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:13:38.771] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:13:47.780] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:13:47.780] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:13:47.780] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:13:56.795] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:13:56.795] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:13:56.795] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:14:05.814] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:14:05.814] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:14:05.814] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:14:14.825] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:14:14.825] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:14:14.825] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:14:23.853] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:14:23.853] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:14:23.853] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:14:32.878] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:14:32.878] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:14:32.878] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:14:41.880] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:14:41.880] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:14:41.880] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:14:50.919] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:14:50.919] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:14:50.919] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:14:59.949] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:14:59.949] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:14:59.949] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:15:10.395] WARN  [n10_Ovid] [bot] no path to (4445,1093) avoiding 0 block(s); stopping (search 1282808.1us)
+[16:15:10.395] WARN  [n10_Ovid] [bot] start (4443,1088,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 431 item(s), 7 mobile(s))
+[16:15:13.803] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:15:13.803] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:15:13.803] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:15:22.808] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:15:22.808] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:15:22.808] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:15:33.368] WARN  [n10_Ovid] [bot] no path to (4444,1089) avoiding 0 block(s); stopping (search 1420011.1us)
+[16:15:33.368] WARN  [n10_Ovid] [bot] start (4445,1093,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 431 item(s), 7 mobile(s))
+[16:15:36.124] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:15:36.124] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:15:36.124] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:15:46.544] WARN  [n10_Ovid] [bot] no path to (4445,1093) avoiding 0 block(s); stopping (search 1314543.0us)
+[16:15:46.544] WARN  [n10_Ovid] [bot] start (4444,1089,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 431 item(s), 7 mobile(s))
+[16:15:49.326] WARN  [n10_Ovid] [bot] no path to (4445,1093) avoiding 0 block(s); stopping (search 1475824.9us)
+[16:15:49.326] WARN  [n10_Ovid] [bot] start (4444,1089,0) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 431 item(s), 7 mobile(s))
+[16:15:52.156] WARN  [n10_Ovid] [bot] no path to (4445,1093) avoiding 0 block(s); stopping (search 1539106.1us)
+[16:15:52.156] WARN  [n10_Ovid] [bot] start (4444,1089,0) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 431 item(s), 7 mobile(s))
+[16:15:56.527] WARN  [n10_Ovid] [bot] no path to (4445,1093) avoiding 0 block(s); stopping (search 1490489.7us)
+[16:15:56.527] WARN  [n10_Ovid] [bot] start (4444,1089,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 431 item(s), 7 mobile(s))
+[16:16:00.138] WARN  [n10_Ovid] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:16:00.138] WARN  [n10_Ovid] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:16:00.138] WARN  [n10_Ovid] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase

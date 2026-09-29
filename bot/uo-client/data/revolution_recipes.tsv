@@ -10,16 +10,18 @@ i_robe	1	i_cloth	16	34	59.0	none		none	sewing kit	0	PLAYER_CRAFTED	SCRIPT i_robe
 i_robe	1	i_thread	1	34	59.0	none		none	sewing kit	0	PLAYER_CRAFTED	SCRIPT i_robe SKILLMAKE=Tailoring 59.0
 i_hide	12		0	none		none		none	blade	0	PVM_DROP	ENGINE CCharUse.cpp:49 Use_CarveCorpse; SCRIPT c_cow_brown RESOURCES=8 i_ribs_raw,12 i_hide
 i_hides_cut	1	i_hide	1	none		none		none	scissors	0	WORLD_PROCESSED	ENGINE CClientTarg.cpp:2159 (IT_HIDE -> TDATA1)
-i_leather_tunic	1	i_hides_cut	12	34	70.5	4	10.0	none	sewing kit	0	PLAYER_CRAFTED	SCRIPT sm_leather_armor; SKILLMAKE=Tailoring 70.5,Armslore 10.0
+i_leather_tunic	1	i_hides_cut	12	34	70.5	none		none	sewing kit	0	PLAYER_CRAFTED	SCRIPT sm_leather_armor; SKILLMAKE=Tailoring 70.5 (Armslore removed 2026-09-03, owner ruling)
 i_ore_iron	1		0	45	1.0	none		none	pickaxe	1	WORLD_GATHERED	SCRIPT core/regiontypes.scp r_default_rock 50.0 mr_iron; regionresources.scp mr_iron SKILL=1.0,30.0
 i_ingot_iron	1	i_ore_iron	1	45	20.0	none		forge	none	0	WORLD_PROCESSED	ENGINE CCharSkill.cpp:1154 iResourceQty=1; TDATA1=20.0 TDATA2=50.0; failure loses up to half
 i_dagger	1	i_ingot_iron	4	7	0.0	none		forge	smith hammer	1	PLAYER_CRAFTED	ENGINE CClientUse.cpp:1273 LayerFind(LAYER_HAND1), :1282 IsItemTypeNear(IT_FORGE,3); SCRIPT i_dagger SKILLMAKE=Blacksmithing 0.0
 i_spear_short	1	i_ingot_iron	6	7	45.3	none		forge	smith hammer	1	PLAYER_CRAFTED	SCRIPT i_spear_short SKILLMAKE=Blacksmithing 45.3; REVOLUTION forum 59111 band 70.1-100
 i_spear_short	1	i_log	1	7	45.3	none		forge	smith hammer	1	PLAYER_CRAFTED	SCRIPT i_spear_short SKILLMAKE=Blacksmithing 45.3; REVOLUTION forum 59111 band 70.1-100
+i_cutlass	1	i_ingot_iron	8	7	24.3	none		forge	smith hammer	1	PLAYER_CRAFTED	SCRIPT def_blacksmithing.scp:173 blacksmithing_category_6_4 "i_cutlass"; sm_legacy_blacksmithing.scp:157-158 MAKEITEM=i_cutlass; i_weapons.scp:1232 RESOURCES=8 i_ingot_iron, :1233 SKILLMAKE=Blacksmithing 24.3
 i_log	1		0	44	1.0	none		none	blade	0	WORLD_GATHERED	SCRIPT r_default_tree 40.0 mr_tree; mr_tree REAPAMOUNT=1,3 SKILL=1.0,80.0
 i_board	1	i_log	1	11	0.0	none		none	carpentry tool	0	PLAYER_CRAFTED	SCRIPT sm_carpentry; i_board SKILLMAKE=Carpentry 0.0
 i_parchment	1	i_log	1	11	25.7	none		none	carpentry tool	0	PLAYER_CRAFTED	SCRIPT sm_wood_misc; i_parchment SKILLMAKE=Carpentry 25.7
 i_scroll_blank	1	i_parchment	1	11	25.7	none		none	carpentry tool	0	PLAYER_CRAFTED	SCRIPT sm_wood_misc; i_scroll_blank SKILLMAKE=Carpentry 25.7
+i_club	1	i_log	1	11	0.0	none		none	carpentry tool	0	PLAYER_CRAFTED	SCRIPT def_carpentry.scp:41 menu entry; SKILLMAKE and log count UNKNOWN; buyer tm_vend.scp:1710 VENDOR_B_WEAPONS_BLUNT {10 15}
 i_model_ship	1	i_board	10	11	95.0	none		none	carpentry tool	0	PLAYER_CRAFTED	SCRIPT i_model_ship SKILLMAKE=carpentry 95.0; REVOLUTION forum 59111 band 95-100
 i_arrow_shaft	1	i_log	1	8	9.8	none		none	none	0	PLAYER_CRAFTED	SCRIPT sm_bowcraft; i_arrow_shaft SKILLMAKE=9.8 Bowcraft; REVOLUTION forum 59111 band 0-100 Shaft
 i_arrow	1	i_arrow_shaft	1	8	0.0	none		none	none	0	PLAYER_MARKET	SCRIPT i_arrow SKILLMAKE=Bowcraft 0.0; REVOLUTION cooperative category 08.11.2008
@@ -44,6 +46,8 @@ i_pen_and_ink	1	i_ink_well	1	37	44.1	none		none	tinker tools	0	PLAYER_CRAFTED	SC
 i_bottle_empty	1		0	0	25.0	none		none	none	0	PLAYER_CRAFTED	SCRIPT i_bottle_empty SKILLMAKE=Alchemy 25.0,t_glassblowing_tool
 i_potion_heal	1	i_reag_ginseng	3	0	15.1	none		none	mortar and pestle	0	PLAYER_CRAFTED	SCRIPT SKILLMAKE=ALCHEMY 15.1; REVOLUTION guide band 15.1-25.1 Heal
 i_potion_heal	1	i_bottle_empty	1	0	15.1	none		none	mortar and pestle	0	PLAYER_CRAFTED	SCRIPT SKILLMAKE=ALCHEMY 15.1; REVOLUTION guide band 15.1-25.1 Heal
+i_potion_poison	1	i_reag_nightshade	2	0	15.1	none		none	mortar and pestle	0	PLAYER_CRAFTED	SCRIPT i_potion_Poison SKILLMAKE=ALCHEMY 15.1,t_mortar; RESOURCES=2 i_reag_nightshade,1 i_bottle_empty
+i_potion_poison	1	i_bottle_empty	1	0	15.1	none		none	mortar and pestle	0	PLAYER_CRAFTED	SCRIPT i_potion_Poison SKILLMAKE=ALCHEMY 15.1,t_mortar; RESOURCES=2 i_reag_nightshade,1 i_bottle_empty
 i_potion_cure	1	i_reag_garlic	3	0	25.1	none		none	mortar and pestle	0	PLAYER_CRAFTED	SCRIPT SKILLMAKE=ALCHEMY 25.1; REVOLUTION guide band 25.1-35.1 Cure
 i_potion_cure	1	i_bottle_empty	1	0	25.1	none		none	mortar and pestle	0	PLAYER_CRAFTED	SCRIPT SKILLMAKE=ALCHEMY 25.1; REVOLUTION guide band 25.1-35.1 Cure
 i_potion_agilitygreat	1	i_reag_blood_moss	3	0	35.1	none		none	mortar and pestle	0	PLAYER_CRAFTED	SCRIPT SKILLMAKE=ALCHEMY 35.1; REVOLUTION guide band 35.1-55.1 Gr. Agility
@@ -52,6 +56,10 @@ i_potion_healgreat	1	i_reag_ginseng	7	0	55.1	none		none	mortar and pestle	0	PLAY
 i_potion_healgreat	1	i_bottle_empty	1	0	55.1	none		none	mortar and pestle	0	PLAYER_CRAFTED	SCRIPT SKILLMAKE=ALCHEMY 55.1; REVOLUTION guide band 55.1-65.1 Gr. Heal
 i_potion_curegreat	1	i_reag_garlic	6	0	65.1	none		none	mortar and pestle	0	PLAYER_CRAFTED	SCRIPT SKILLMAKE=ALCHEMY 65.1; REVOLUTION guide band 65.1-90.1 Gr. Cure
 i_potion_curegreat	1	i_bottle_empty	1	0	65.1	none		none	mortar and pestle	0	PLAYER_CRAFTED	SCRIPT SKILLMAKE=ALCHEMY 65.1; REVOLUTION guide band 65.1-90.1 Gr. Cure
+i_potion_poisonless	1	i_reag_nightshade	1	0	0.0	none		none	mortar and pestle	0	PLAYER_CRAFTED	SCRIPT i_potion_PoisonLess SKILLMAKE=ALCHEMY 0,t_mortar; RESOURCES=1 i_reag_nightshade,1 i_bottle_empty
+i_potion_poisonless	1	i_bottle_empty	1	0	0.0	none		none	mortar and pestle	0	PLAYER_CRAFTED	SCRIPT i_potion_PoisonLess SKILLMAKE=ALCHEMY 0,t_mortar; RESOURCES=1 i_reag_nightshade,1 i_bottle_empty
+i_potion_poisongreat	1	i_reag_nightshade	4	0	55.1	none		none	mortar and pestle	0	PLAYER_CRAFTED	SCRIPT i_potion_PoisonGreat SKILLMAKE=ALCHEMY 55.1,t_mortar; RESOURCES=4 i_reag_nightshade,1 i_bottle_empty
+i_potion_poisongreat	1	i_bottle_empty	1	0	55.1	none		none	mortar and pestle	0	PLAYER_CRAFTED	SCRIPT i_potion_PoisonGreat SKILLMAKE=ALCHEMY 55.1,t_mortar; RESOURCES=4 i_reag_nightshade,1 i_bottle_empty
 i_potion_poisondeadly	1	i_reag_nightshade	8	0	90.1	none		none	mortar and pestle	0	PLAYER_CRAFTED	SCRIPT SKILLMAKE=ALCHEMY 90.1; REVOLUTION guide band 90.1-100 Deadly Poison
 i_potion_poisondeadly	1	i_bottle_empty	1	0	90.1	none		none	mortar and pestle	0	PLAYER_CRAFTED	SCRIPT SKILLMAKE=ALCHEMY 90.1; REVOLUTION guide band 90.1-100 Deadly Poison
 i_scroll_poison	1	i_scroll_blank	1	23	30.0	25	20.0	none	blank scroll	0	PLAYER_CRAFTED	SCRIPT SKILLMAKE=Inscription 30.0,Magery 20.0; REVOLUTION forum 59111 band 0-60
@@ -68,9 +76,16 @@ i_scroll_resurrection	1	i_scroll_blank	1	23	80.0	25	70.0	none	blank scroll	0	PLA
 i_scroll_resurrection	1	i_reag_blood_moss	1	23	80.0	25	70.0	none	blank scroll	0	PLAYER_CRAFTED	SCRIPT SKILLMAKE=Inscription 80.0,Magery 70.0; REVOLUTION forum 59111 band 80-100
 i_scroll_resurrection	1	i_reag_garlic	1	23	80.0	25	70.0	none	blank scroll	0	PLAYER_CRAFTED	SCRIPT SKILLMAKE=Inscription 80.0,Magery 70.0; REVOLUTION forum 59111 band 80-100
 i_scroll_resurrection	1	i_reag_ginseng	1	23	80.0	25	70.0	none	blank scroll	0	PLAYER_CRAFTED	SCRIPT SKILLMAKE=Inscription 80.0,Magery 70.0; REVOLUTION forum 59111 band 80-100
-i_spellbook_runebook	1	i_scroll_blank	8	23	45.0	none		none	pen and ink	0	PLAYER_MARKET	SCRIPT revolution/revolution_runebook.scp SKILLMAKE=Inscription 45.0,i_pen_and_ink; REVOLUTION cooperative 19.12.2008; NO MENU ENTRY
-i_spellbook_runebook	1	i_rune_marker	1	23	45.0	none		none	pen and ink	0	PLAYER_MARKET	SCRIPT revolution/revolution_runebook.scp SKILLMAKE=Inscription 45.0,i_pen_and_ink; REVOLUTION cooperative 19.12.2008; NO MENU ENTRY
-i_spellbook_runebook	1	i_scroll_recall	1	23	45.0	none		none	pen and ink	0	PLAYER_MARKET	SCRIPT revolution/revolution_runebook.scp SKILLMAKE=Inscription 45.0,i_pen_and_ink; REVOLUTION cooperative 19.12.2008; NO MENU ENTRY
-i_spellbook_runebook	1	i_scroll_gate_travel	1	23	45.0	none		none	pen and ink	0	PLAYER_MARKET	SCRIPT revolution/revolution_runebook.scp SKILLMAKE=Inscription 45.0,i_pen_and_ink; REVOLUTION cooperative 19.12.2008; NO MENU ENTRY
+i_spellbook_runebook	1	i_scroll_blank	8	23	45.0	none		none	pen and ink	0	PLAYER_MARKET	SCRIPT i_spellbook_runebook
+i_spellbook_runebook	1	i_rune_marker	1	23	45.0	none		none	pen and ink	0	PLAYER_MARKET	SCRIPT i_spellbook_runebook
+i_spellbook_runebook	1	i_scroll_recall	1	23	45.0	none		none	pen and ink	0	PLAYER_MARKET	SCRIPT i_spellbook_runebook
+i_spellbook_runebook	1	i_scroll_gate_travel	1	23	45.0	none		none	pen and ink	0	PLAYER_MARKET	SCRIPT i_spellbook_runebook
+i_map_local	1	i_map_blank	1	12	0.0	none		none	pen and ink	0	PLAYER_CRAFTED	SCRIPT i_map_local SKILLMAKE=Cartography 0.0,t_cartography; RESOURCES=1 i_map_blank
+i_map_city	1	i_map_blank	1	12	25.0	none		none	pen and ink	0	PLAYER_CRAFTED	SCRIPT i_map_city SKILLMAKE=Cartography 25.0,t_cartography; RESOURCES=1 i_map_blank
+i_map_sea_chart	1	i_map_blank	1	12	35.0	none		none	pen and ink	0	PLAYER_CRAFTED	SCRIPT i_map_sea_chart SKILLMAKE=Cartography 35.0,t_cartography; RESOURCES=1 i_map_blank
+i_map_world	1	i_map_blank	1	12	50.0	none		none	pen and ink	0	PLAYER_CRAFTED	SCRIPT i_map_world SKILLMAKE=Cartography 50.0,t_cartography; RESOURCES=1 i_map_blank
+i_mapmakers_pen	1	i_ingot_iron	1	37	25.0	none		none	tinker tools	0	PLAYER_CRAFTED	SCRIPT revolution/revolution_runebook.scp SKILLMAKE=Inscription 45.0,i_pen_and_ink; REVOLUTION cooperative 19.12.2008; NO MENU ENTRY
 i_fish_big_1	1		0	18	1.0	none		none	fishing pole	0	WORLD_GATHERED	SCRIPT r_default_water 60.0 nothing / 10.0 each of four fish; REAPAMOUNT=1,3
+i_fish_cut_cooked	1	i_fish_cut_raw	1	13	0.0	none		campfire	none	0	PLAYER_CRAFTED	SCRIPT i_fish_cut_cooked RESOURCES=1 i_fish_cut_raw, SKILLMAKE=Cooking 0.0,t_cooking; ENGINE CCharUse.cpp:294 Use_Kindling -> Skill_UseQuick(SKILL_CAMPING) -> ITEMID_CAMPFIRE 0x0de3
+i_fish_cut_cooked	1	i_kindling	1	13	0.0	none		campfire	none	0	PLAYER_CRAFTED	SCRIPT i_fish_cut_cooked RESOURCES=1 i_fish_cut_raw, SKILLMAKE=Cooking 0.0,t_cooking; ENGINE CCharUse.cpp:294 Use_Kindling -> Skill_UseQuick(SKILL_CAMPING) -> ITEMID_CAMPFIRE 0x0de3
 i_fish_cut_raw	4	i_fish_big_1	1	none		none		none	blade	0	WORLD_PROCESSED	ENGINE CClientTarg.cpp:1950 SetAmount(4 * GetAmount()); LIVE m3_cut1

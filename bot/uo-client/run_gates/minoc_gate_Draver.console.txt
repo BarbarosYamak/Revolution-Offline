@@ -1,0 +1,162 @@
+[12:44:47.542] INFO  session 0: 127.0.0.1:2593 user='RevGen3_01' char=Draver tag='minoc_gate_Draver'
+[12:44:47.545] LOG   [minoc_gate_Draver] event session_start: text log opened
+[12:44:47.546] LOG   [minoc_gate_Draver] event net_connect_begin: connect 127.0.0.1:2593
+[12:44:47.547] INFO  [minoc_gate_Draver] [net] connecting to 127.0.0.1:2593 ...
+[12:44:47.549] LOG   [minoc_gate_Draver] event net_connected: connect 127.0.0.1:2593
+[12:44:47.550] INFO  [minoc_gate_Draver] [net] connected.
+[12:44:47.551] INFO  [minoc_gate_Draver] [seed] sent 0x7F000001 (plaintext)
+[12:44:47.552] LOG   [minoc_gate_Draver] event seed_out: 0x7F000001 hex=7f000001
+[12:44:47.553] INFO  [life] loaded persistent state for Draver (36 places, 2 suppliers, 13 events, 3 prior sessions)
+[12:44:47.553] INFO  [life] needs: reading 'miner_smith' from the profession catalogue
+[12:44:47.553] INFO  [life] build plan 'miner_smith': 300.0 resolved + 400.0 unresolved = 700.0/700.0, stats 100/45/80 = 225
+[12:44:47.553] INFO  [minoc_gate_Draver] [life] autonomous player active for 'Draver' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 30 min)
+[12:44:47.566] INFO  [minoc_gate_Draver] [0xA8] 1 server(s):
+[12:44:47.566] INFO  [minoc_gate_Draver]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[12:44:47.581] INFO  [minoc_gate_Draver] [0x8C] game server = 127.0.0.1:2593  seed=0x6A287272
+[12:44:47.581] LOG   [minoc_gate_Draver] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x6A287272
+[12:44:47.581] INFO  [minoc_gate_Draver] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[12:44:47.582] LOG   [minoc_gate_Draver] event relay_same_socket: no seed re-sent; 0x91 follows
+[12:44:47.582] INFO  [minoc_gate_Draver] [0xB9] server features = 0x0005
+[12:44:47.582] INFO  [minoc_gate_Draver] [0xA9] 5 slot(s) (populated 1):
+[12:44:47.582] INFO  [minoc_gate_Draver]   [0] Draver
+[12:44:47.582] INFO  [minoc_gate_Draver]   [1] <empty>
+[12:44:47.582] INFO  [minoc_gate_Draver]   [2] <empty>
+[12:44:47.583] INFO  [minoc_gate_Draver]   [3] <empty>
+[12:44:47.583] INFO  [minoc_gate_Draver]   [4] <empty>
+[12:44:47.583] INFO  [minoc_gate_Draver] [ui] playing slot 0 ('Draver')
+[12:44:47.596] INFO  [minoc_gate_Draver] [0x1B] serial=0x00016DBB body=0x0190 pos=(1826,1258,0)
+[12:44:47.597] LOG   [minoc_gate_Draver] event login_confirm: serial=0x00016DBB body=0x0190 pos=(1826,1258,0)
+[12:44:47.597] INFO  [minoc_gate_Draver] [0x20] player @(1826,1258,0) facing=0
+[12:44:47.597] INFO  [minoc_gate_Draver] [0x55] login complete — entering world
+[12:44:47.597] LOG   [minoc_gate_Draver] event in_world: 0x55 received
+[12:44:47.597] INFO  [minoc_gate_Draver] [backpack] opening 0x40016DB8
+[12:44:47.597] INFO  [minoc_gate_Draver] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[12:44:47.597] INFO  [minoc_gate_Draver] [chat ascii] System: There is 1 other player here.
+[12:44:47.598] INFO  [minoc_gate_Draver] [chat ascii] System: Last logged: 2026/08/31 12:41:13
+[12:44:47.601] INFO  [minoc_gate_Draver] [action] requesting the skill list
+[12:44:47.602] INFO  [life] in world; asked the server for the skill list
+[12:44:47.602] INFO  [minoc_gate_Draver] [chat ascii] System: Your ghostly hand passes through the object.
+[12:44:50.228] INFO  [minoc_gate_Draver] [bot] world data loaded (0 blacklisted spot(s)).
+[12:44:50.228] INFO  [life] reconciliation: resuming a life, 1 field(s) differed
+[12:44:50.228] INFO  [life]   gold         persisted=8880       server=8880       -> server value accepted
+[12:44:50.229] INFO  [life]   str          persisted=56         server=56         -> server value accepted
+[12:44:50.229] INFO  [life]   dex          persisted=16         server=16         -> server value accepted
+[12:44:50.229] INFO  [life]   int          persisted=8          server=8          -> server value accepted
+[12:44:50.229] INFO  [life]   skill_7      persisted=50.2       server=50.2       -> server value accepted
+[12:44:50.229] INFO  [life]   skill_45     persisted=50.0       server=50.0       -> server value accepted
+[12:44:50.229] INFO  [life]   skill_37     persisted=20.6       server=20.6       -> server value accepted
+[12:44:50.229] INFO  [life]   skill_4      persisted=0.0        server=0.0        -> server value accepted
+[12:44:50.229] INFO  [life]   position     persisted=1806,1275  server=1826,1258  -> server value accepted
+[12:44:50.229] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[12:44:50.230] INFO  [life]   restored objective KEPT: SURVIVE (progress 0)
+[12:44:50.230] INFO  [minoc_gate_Draver] [survival] on
+[12:44:50.230] LOG   [minoc_gate_Draver] event survival_mode: on
+[12:44:50.232] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_01.draver/state.json
+[12:44:50.232] INFO  [minoc_gate_Draver] [survival] hp 0/56 (0%) -> rest
+[12:44:50.235] INFO  [life] plan=disengage reason="this life does not fight for a living"
+[12:44:50.236] INFO  [life] interrupt=FLEE reason="HP 0%; 0 attacker(s); bail at 32%"
+[12:44:52.243] INFO  [life] interrupt=FLEE reason="HP 0%; 0 attacker(s); bail at 32%"
+[12:44:54.294] INFO  [life] interrupt=FLEE reason="HP 0%; 0 attacker(s); bail at 32%"
+[12:44:56.302] INFO  [life] interrupt=FLEE reason="HP 0%; 0 attacker(s); bail at 32%"
+[12:44:56.302] INFO  [minoc_gate_Draver] [survival] hp 0/56 (0%) -> rest
+[12:44:58.331] INFO  [life] interrupt=FLEE reason="HP 0%; 0 attacker(s); bail at 32%"
+[12:44:58.392] INFO  [life] goal_changed=GET_TOOL from=SURVIVE reason="previous goal abandoned: attempts 5 >= 5"
+[12:44:58.393] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedTool(pickaxe 0.90) NeedTool(smith hammer 0.90) NeedEquipment(heal potions 0.50) NeedOre(ore 0.45) NeedSkillTraining(Tinkering 0.45) NeedSupplies(buy craft inputs 0.44) NeedEquipment(clothes 0.28) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20)  | tools defined=2 held=[] want_train=Tinkering (target 50.0)
+[12:44:58.393] INFO  [life]   score=468.0
+[12:44:58.393] INFO  [life]   reason: NeedTool urgency 0.90 x 520 = 468.0
+[12:44:58.393] INFO  [life]   reason: no known supplier of a pickaxe
+[12:44:58.393] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=0/56 bandages=0)
+[12:45:00.368] INFO  [life] plan=buy reason="none held, and it may be bought"
+[12:45:00.368] INFO  [life] GET_TOOL: 500 gold needed and 0 carried -- standing down so the bank goal can fetch it
+[12:45:00.429] INFO  [life] goal=BANK reason="previous goal abandoned: needs coin from the bank"
+[12:45:00.429] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedTool(pickaxe 0.90) NeedTool(smith hammer 0.90) NeedBank(withdraw for a purchase 0.80) NeedEquipment(heal potions 0.50) NeedOre(ore 0.45) NeedSkillTraining(Tinkering 0.45) NeedSupplies(buy craft inputs 0.44) NeedEquipment(clothes 0.28) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20)  | tools defined=2 held=[] want_train=Tinkering (target 50.0)
+[12:45:00.429] INFO  [life]   score=162.0
+[12:45:00.429] INFO  [life]   reason: NeedBank urgency 0.80 x 240 = 192.0
+[12:45:00.429] INFO  [life]   reason: wanted=500 on_hand=0 banked=8880
+[12:45:00.430] INFO  [life]   reason: no bank learned yet -30
+[12:45:00.430] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=0/56 bandages=0)
+[12:45:00.430] INFO  [life]   BLOCKED_NEED GET_TOOL: on cooldown for another 44s after achieving nothing
+[12:45:01.372] INFO  [life] bank: nothing proven yet -- trying what common knowledge says is here, Minoc banker at 2503,552
+[12:45:01.372] INFO  [minoc_gate_Draver] [travel] seeded_bank -> (2503,552) r=5 from (1826,1258)
+[12:45:01.373] LOG   [minoc_gate_Draver] event travel_start: label='seeded_bank' target=(2503,552) radius=5 from=(1826,1258)
+[12:45:01.373] INFO  [minoc_gate_Draver] [travel] mode moongate         usable   <- chosen
+[12:45:01.373] INFO  [minoc_gate_Draver] [travel] mode walk             usable
+[12:45:01.373] INFO  [minoc_gate_Draver] [travel] mode loose_rune_recall no: no rune marked at that destination
+[12:45:01.374] INFO  [minoc_gate_Draver] [travel] mode runebook_recall  no: no runebook page for that destination
+[12:45:01.374] LOG   [minoc_gate_Draver] event travel_mode: moongate
+[12:45:01.376] INFO  [minoc_gate_Draver] [travel] plan seeded_bank: ok legs=30 ~1208 tiles transit=0 nodes=7552
+[12:45:01.402] INFO  [minoc_gate_Draver] [action] goto (1832,1222) from (1826,1258,0)
+[12:45:01.402] LOG   [minoc_gate_Draver] event goto_start: target=(1832,1222) from=(1826,1258)
+[12:45:01.402] INFO  [minoc_gate_Draver] [bot] running from (1826,1258,0) to (1832,1222)
+[12:45:01.402] INFO  [minoc_gate_Draver] [bot] planning path to (1832,1222) in background
+[12:45:01.462] INFO  [minoc_gate_Draver] [bot] replan to (1832,1222): 36 steps in 7873.6us
+[12:45:02.398] INFO  [minoc_gate_Draver] [survival] hp 0/56 (0%) -> rest
+[12:45:08.473] INFO  [minoc_gate_Draver] [survival] hp 0/56 (0%) -> rest
+[12:45:09.194] INFO  [minoc_gate_Draver] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=12 in 47.1us
+[12:45:09.805] INFO  [minoc_gate_Draver] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=11 in 85.6us
+[12:45:10.843] INFO  [minoc_gate_Draver] [bot] lookahead patched around block at step 1: anchor=5 new segment=4 path=5 in 35.8us
+[12:45:13.045] INFO  [minoc_gate_Draver] [bot] arrived at (1832,1222,0)
+[12:45:13.046] INFO  [minoc_gate_Draver] [action] goto finished at (1832,1222,0); target (1832,1222); ARRIVED (off by 0 tile(s))
+[12:45:13.046] LOG   [minoc_gate_Draver] event goto_done: at=(1832,1222) target=(1832,1222) arrived=1 off=0
+[12:45:13.046] INFO  [minoc_gate_Draver] [action] goto (1864,1192) from (1832,1222,0)
+[12:45:13.046] LOG   [minoc_gate_Draver] event goto_start: target=(1864,1192) from=(1832,1222)
+[12:45:13.046] INFO  [minoc_gate_Draver] [bot] running from (1832,1222,0) to (1864,1192)
+[12:45:13.046] INFO  [minoc_gate_Draver] [bot] planning path to (1864,1192) in background
+[12:45:13.102] INFO  [minoc_gate_Draver] [bot] replan to (1864,1192): 36 steps in 8290.5us
+[12:45:14.532] INFO  [minoc_gate_Draver] [survival] hp 0/56 (0%) -> rest
+[12:45:20.579] INFO  [minoc_gate_Draver] [survival] hp 0/56 (0%) -> rest
+[12:45:25.284] INFO  [minoc_gate_Draver] [bot] arrived at (1864,1192,0)
+[12:45:25.284] INFO  [minoc_gate_Draver] [action] goto finished at (1864,1192,0); target (1864,1192); ARRIVED (off by 0 tile(s))
+[12:45:25.285] LOG   [minoc_gate_Draver] event goto_done: at=(1864,1192) target=(1864,1192) arrived=1 off=0
+[12:45:25.285] INFO  [minoc_gate_Draver] [action] goto (1896,1160) from (1864,1192,0)
+[12:45:25.285] LOG   [minoc_gate_Draver] event goto_start: target=(1896,1160) from=(1864,1192)
+[12:45:25.285] INFO  [minoc_gate_Draver] [bot] running from (1864,1192,0) to (1896,1160)
+[12:45:25.285] INFO  [minoc_gate_Draver] [bot] planning path to (1896,1160) in background
+[12:45:25.346] INFO  [minoc_gate_Draver] [bot] replan to (1896,1160): 37 steps in 13486.0us
+[12:45:26.666] INFO  [minoc_gate_Draver] [survival] hp 0/56 (0%) -> rest
+[12:45:29.955] INFO  [minoc_gate_Draver] [0x20] player @(1495,1629,10) facing=1
+[12:45:29.956] INFO  [minoc_gate_Draver] [action] goto finished at (1495,1629,10); target (1896,1160); stopped short (off by 870 tile(s))
+[12:45:29.956] LOG   [minoc_gate_Draver] event goto_done: at=(1495,1629) target=(1896,1160) arrived=0 off=870
+[12:45:30.010] INFO  [minoc_gate_Draver] [travel] mode moongate         usable   <- chosen
+[12:45:30.011] INFO  [minoc_gate_Draver] [travel] mode walk             usable
+[12:45:30.011] INFO  [minoc_gate_Draver] [travel] mode loose_rune_recall no: no rune marked at that destination
+[12:45:30.011] INFO  [minoc_gate_Draver] [travel] mode runebook_recall  no: no runebook page for that destination
+[12:45:30.011] LOG   [minoc_gate_Draver] event travel_mode: moongate
+[12:45:30.014] INFO  [minoc_gate_Draver] [travel] plan seeded_bank: ok legs=20 ~832 tiles transit=1 nodes=7016
+[12:45:31.541] INFO  [minoc_gate_Draver] [travel] avoiding 2 teleporter pad(s) on this leg
+[12:45:31.542] INFO  [minoc_gate_Draver] [action] goto (1464,1656) from (1495,1629,10)
+[12:45:31.542] LOG   [minoc_gate_Draver] event goto_start: target=(1464,1656) from=(1495,1629)
+[12:45:31.542] INFO  [minoc_gate_Draver] [bot] running from (1495,1629,10) to (1464,1656)
+[12:45:31.542] INFO  [minoc_gate_Draver] [bot] planning path to (1464,1656) in background
+[12:45:31.602] INFO  [minoc_gate_Draver] [bot] replan to (1464,1656): 35 steps in 2699.2us
+[12:45:32.754] INFO  [minoc_gate_Draver] [survival] hp 0/56 (0%) -> rest
+[12:45:38.281] INFO  [minoc_gate_Draver] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=14 in 39.4us
+[12:45:38.501] INFO  [minoc_gate_Draver] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=15 in 74.5us
+[12:45:38.761] INFO  [minoc_gate_Draver] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=14 in 117.9us
+[12:45:38.799] INFO  [minoc_gate_Draver] [survival] hp 0/56 (0%) -> rest
+[12:45:43.872] INFO  [minoc_gate_Draver] [bot] arrived at (1464,1656,10)
+[12:45:43.872] INFO  [minoc_gate_Draver] [action] goto finished at (1464,1656,10); target (1464,1656); ARRIVED (off by 0 tile(s))
+[12:45:43.872] LOG   [minoc_gate_Draver] event goto_done: at=(1464,1656) target=(1464,1656) arrived=1 off=0
+[12:45:43.872] INFO  [minoc_gate_Draver] [travel] avoiding 2 teleporter pad(s) on this leg
+[12:45:43.873] INFO  [minoc_gate_Draver] [action] goto (1448,1688) from (1464,1656,10)
+[12:45:43.873] LOG   [minoc_gate_Draver] event goto_start: target=(1448,1688) from=(1464,1656)
+[12:45:43.873] INFO  [minoc_gate_Draver] [bot] running from (1464,1656,10) to (1448,1688)
+[12:45:43.873] INFO  [minoc_gate_Draver] [bot] planning path to (1448,1688) in background
+[12:45:43.932] INFO  [minoc_gate_Draver] [bot] replan to (1448,1688): 37 steps in 1765.6us
+[12:45:44.879] INFO  [minoc_gate_Draver] [survival] hp 0/56 (0%) -> rest
+[12:45:45.414] INFO  [life] goal_changed=GET_TOOL from=BANK reason="GET_TOOL 468.0 superseded BANK 162.0"
+[12:45:45.415] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedTool(pickaxe 0.90) NeedTool(smith hammer 0.90) NeedBank(withdraw for a purchase 0.80) NeedEquipment(heal potions 0.50) NeedOre(ore 0.45) NeedSkillTraining(Tinkering 0.45) NeedSupplies(buy craft inputs 0.44) NeedEquipment(clothes 0.28) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20)  | tools defined=2 held=[] want_train=Tinkering (target 50.0)
+[12:45:45.415] INFO  [life]   score=468.0
+[12:45:45.415] INFO  [life]   reason: NeedTool urgency 0.90 x 520 = 468.0
+[12:45:45.416] INFO  [life]   reason: no known supplier of a pickaxe
+[12:45:45.416] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=0/56 bandages=0)
+[12:45:45.416] INFO  [life] plan=buy reason="none held, and it may be bought"
+[12:45:45.416] INFO  [life] GET_TOOL: 500 gold needed and 0 carried -- standing down so the bank goal can fetch it
+[12:45:45.475] INFO  [life] goal=BANK reason="previous goal abandoned: needs coin from the bank"
+[12:45:45.476] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedTool(pickaxe 0.90) NeedTool(smith hammer 0.90) NeedBank(withdraw for a purchase 0.80) NeedEquipment(heal potions 0.50) NeedOre(ore 0.45) NeedSkillTraining(Tinkering 0.45) NeedSupplies(buy craft inputs 0.44) NeedEquipment(clothes 0.28) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20)  | tools defined=2 held=[] want_train=Tinkering (target 50.0)
+[12:45:45.476] INFO  [life]   score=162.0
+[12:45:45.476] INFO  [life]   reason: NeedBank urgency 0.80 x 240 = 192.0
+[12:45:45.476] INFO  [life]   reason: wanted=500 on_hand=0 banked=8880
+[12:45:45.476] INFO  [life]   reason: no bank learned yet -30
+[12:45:45.477] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=0/56 bandages=0)
+[12:45:45.477] INFO  [life]   BLOCKED_NEED GET_TOOL: on cooldown for another 44s after achieving nothing

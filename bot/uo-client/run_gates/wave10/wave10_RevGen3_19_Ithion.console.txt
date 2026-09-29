@@ -1,0 +1,510 @@
+[17:29:35.202] LOG   [wave10_RevGen3_19_Ithio] event session_start: text log opened
+[17:29:35.205] LOG   [wave10_RevGen3_19_Ithio] event net_connect_begin: connect 127.0.0.1:2593
+[17:29:35.206] INFO  [wave10_RevGen3_19_Ithio] [net] connecting to 127.0.0.1:2593 ...
+[17:29:35.209] LOG   [wave10_RevGen3_19_Ithio] event net_connected: connect 127.0.0.1:2593
+[17:29:35.210] INFO  [wave10_RevGen3_19_Ithio] [net] connected.
+[17:29:35.212] INFO  [wave10_RevGen3_19_Ithio] [seed] sent 0x7F000001 (plaintext)
+[17:29:35.212] LOG   [wave10_RevGen3_19_Ithio] event seed_out: 0x7F000001 hex=7f000001
+[17:29:35.214] INFO  [wave10_RevGen3_19_Ithio] [life] autonomous player active for 'Ithion' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 30 min)
+[17:29:35.217] INFO  [wave10_RevGen3_19_Ithio] [0xA8] 1 server(s):
+[17:29:35.217] INFO  [wave10_RevGen3_19_Ithio]   [0] MyShard                   1.0.0.127  full=7%  tz=0
+[17:29:35.227] INFO  [wave10_RevGen3_19_Ithio] [0x8C] game server = 127.0.0.1:2593  seed=0x7DE8CB01
+[17:29:35.228] LOG   [wave10_RevGen3_19_Ithio] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x7DE8CB01
+[17:29:35.229] INFO  [wave10_RevGen3_19_Ithio] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[17:29:35.229] LOG   [wave10_RevGen3_19_Ithio] event relay_same_socket: no seed re-sent; 0x91 follows
+[17:29:35.230] INFO  [wave10_RevGen3_19_Ithio] [0xB9] server features = 0x0005
+[17:29:35.234] INFO  [wave10_RevGen3_19_Ithio] [0xA9] 5 slot(s) (populated 1):
+[17:29:35.234] INFO  [wave10_RevGen3_19_Ithio]   [0] Ithion
+[17:29:35.236] INFO  [wave10_RevGen3_19_Ithio]   [1] <empty>
+[17:29:35.237] INFO  [wave10_RevGen3_19_Ithio]   [2] <empty>
+[17:29:35.237] INFO  [wave10_RevGen3_19_Ithio]   [3] <empty>
+[17:29:35.238] INFO  [wave10_RevGen3_19_Ithio]   [4] <empty>
+[17:29:35.239] INFO  [wave10_RevGen3_19_Ithio] [ui] playing slot 0 ('Ithion')
+[17:29:35.239] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Dorvar has arrived in Magincia.
+[17:29:35.247] INFO  [wave10_RevGen3_19_Ithio] [0x1B] serial=0x00019837 body=0x0190 pos=(3667,2257,20)
+[17:29:35.248] LOG   [wave10_RevGen3_19_Ithio] event login_confirm: serial=0x00019837 body=0x0190 pos=(3667,2257,20)
+[17:29:35.249] INFO  [wave10_RevGen3_19_Ithio] [0x20] player @(3667,2257,20) facing=5
+[17:29:35.249] INFO  [wave10_RevGen3_19_Ithio] [0x55] login complete — entering world
+[17:29:35.250] LOG   [wave10_RevGen3_19_Ithio] event in_world: 0x55 received
+[17:29:35.250] INFO  [wave10_RevGen3_19_Ithio] [backpack] opening 0x40019826
+[17:29:35.250] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[17:29:35.250] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: There are 20 other players here.
+[17:29:35.251] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Last logged: 2026/08/31 18:12:43
+[17:29:35.251] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: You are under the protection of the town guards
+[17:29:35.255] INFO  [wave10_RevGen3_19_Ithio] [action] requesting the skill list
+[17:29:35.258] INFO  [wave10_RevGen3_19_Ithio] [0x24] open container 0x40019826 gump=60
+[17:29:35.258] INFO  [wave10_RevGen3_19_Ithio] [0x3C] container contents: 17 item(s)
+[17:29:35.258] LOG   [wave10_RevGen3_19_Ithio] event backpack_contents: serial=0x40019826 items=17
+[17:29:35.258] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Odessa has arrived in Britain.
+[17:29:35.279] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Serena has arrived in Britain.
+[17:29:35.306] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Aurelius has arrived in Britain.
+[17:29:35.326] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Leander has arrived in Britain.
+[17:29:35.327] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Illyria has arrived in Britain.
+[17:29:35.341] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Hector has arrived in Trinsic.
+[17:29:35.360] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Castor has arrived in The Rusty Anchor.
+[17:29:35.371] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Faustus has arrived in Britain.
+[17:29:35.385] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Titus has arrived in Britain Territory.
+[17:29:35.403] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Rhea has arrived in Yew.
+[17:29:35.403] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Xerxes has arrived in Ocllo Island.
+[17:29:35.434] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Thane has arrived in Britain.
+[17:29:35.434] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Varek has arrived in Britain Territory.
+[17:29:35.449] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Nyx has arrived in Trinsic.
+[17:29:37.882] INFO  [wave10_RevGen3_19_Ithio] [bot] world data loaded (0 blacklisted spot(s)).
+[17:29:37.884] INFO  [wave10_RevGen3_19_Ithio] [survival] on
+[17:29:37.884] LOG   [wave10_RevGen3_19_Ithio] event survival_mode: on
+[17:29:37.887] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:29:37.948] INFO  [wave10_RevGen3_19_Ithio] [travel] fishing spot -> (3673,2252) r=4 from (3667,2257)
+[17:29:37.948] LOG   [wave10_RevGen3_19_Ithio] event travel_start: label='fishing spot' target=(3673,2252) radius=4 from=(3667,2257)
+[17:29:37.948] INFO  [wave10_RevGen3_19_Ithio] [travel] mode walk             usable   <- chosen
+[17:29:37.948] INFO  [wave10_RevGen3_19_Ithio] [travel] mode moongate         usable
+[17:29:37.949] INFO  [wave10_RevGen3_19_Ithio] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:37.949] INFO  [wave10_RevGen3_19_Ithio] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:37.949] LOG   [wave10_RevGen3_19_Ithio] event travel_mode: walk
+[17:29:37.949] INFO  [wave10_RevGen3_19_Ithio] [travel] plan fishing spot: ok legs=1 ~6 tiles transit=0 nodes=0
+[17:29:38.009] INFO  [wave10_RevGen3_19_Ithio] [action] goto (3673,2252) from (3667,2257,20)
+[17:29:38.009] LOG   [wave10_RevGen3_19_Ithio] event goto_start: target=(3673,2252) from=(3667,2257)
+[17:29:38.009] INFO  [wave10_RevGen3_19_Ithio] [bot] running from (3667,2257,20) to (3673,2252)
+[17:29:38.009] INFO  [wave10_RevGen3_19_Ithio] [bot] planning path to (3673,2252) in background
+[17:29:38.070] INFO  [wave10_RevGen3_19_Ithio] [bot] replan to (3673,2252): 18 steps in 1511.6us
+[17:29:42.631] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] Jun: Aye?
+[17:29:42.693] INFO  [wave10_RevGen3_19_Ithio] [travel] fishing spot ARRIVED at (3673,2254,20)
+[17:29:42.693] LOG   [wave10_RevGen3_19_Ithio] event travel_done: label='fishing spot' ok=1 at=(3673,2254) legs=1 plans=1 why=''
+[17:29:42.788] INFO  [wave10_RevGen3_19_Ithio] [action] goto finished at (3673,2254,20); target (3673,2252); stopped short (off by 2 tile(s))
+[17:29:42.788] LOG   [wave10_RevGen3_19_Ithio] event goto_done: at=(3673,2254) target=(3673,2252) arrived=0 off=2
+[17:29:42.824] INFO  [wave10_RevGen3_19_Ithio] [action] goto (3667,2257) from (3673,2254,20)
+[17:29:42.824] LOG   [wave10_RevGen3_19_Ithio] event goto_start: target=(3667,2257) from=(3673,2254)
+[17:29:42.824] INFO  [wave10_RevGen3_19_Ithio] [bot] running from (3673,2254,20) to (3667,2257)
+[17:29:42.824] INFO  [wave10_RevGen3_19_Ithio] [bot] planning path to (3667,2257) in background
+[17:29:42.860] INFO  [wave10_RevGen3_19_Ithio] [bot] replan to (3667,2257): 16 steps in 491.8us
+[17:29:42.937] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:29:43.292] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: That is too far away.
+[17:29:46.413] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] Jun: What's thee wantin'?
+[17:29:47.353] INFO  [wave10_RevGen3_19_Ithio] [bot] arrived at (3667,2257,20)
+[17:29:47.354] INFO  [wave10_RevGen3_19_Ithio] [action] goto finished at (3667,2257,20); target (3667,2257); ARRIVED (off by 0 tile(s))
+[17:29:47.354] LOG   [wave10_RevGen3_19_Ithio] event goto_done: at=(3667,2257) target=(3667,2257) arrived=1 off=0
+[17:29:47.662] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object start
+[17:29:47.662] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object serial=0x400197BF
+[17:29:47.676] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Where would you like to fish?
+[17:29:47.676] INFO  [wave10_RevGen3_19_Ithio] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=1
+[17:29:47.677] LOG   [wave10_RevGen3_19_Ithio] event target_requested: id=0x000002CE type=1 subtype=0 gen=1
+[17:29:47.677] INFO  [wave10_RevGen3_19_Ithio] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
+[17:29:47.677] LOG   [wave10_RevGen3_19_Ithio] event action_result: use_object success took=15ms server armed a target cursor
+[17:29:47.967] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:29:48.493] INFO  [wave10_RevGen3_19_Ithio] [TARGET] reply static=(3663,2261,-5) gfx=0x17B2 gen=1
+[17:29:48.493] INFO  [wave10_RevGen3_19_Ithio] [target] static 0x17B2 (3663,2261,-5)
+[17:29:48.494] INFO  [wave10_RevGen3_19_Ithio] [0x20] player @(3667,2257,20) facing=5
+[17:29:53.016] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:29:55.251] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] Davita: Aye?
+[17:29:56.492] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: There are no fish here.
+[17:29:56.492] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: You fish a while, but fail to catch anything.
+[17:29:56.738] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object start
+[17:29:56.738] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object serial=0x400197BF
+[17:29:56.753] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Where would you like to fish?
+[17:29:56.753] INFO  [wave10_RevGen3_19_Ithio] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=2
+[17:29:56.753] LOG   [wave10_RevGen3_19_Ithio] event target_requested: id=0x000002CE type=1 subtype=0 gen=2
+[17:29:56.753] INFO  [wave10_RevGen3_19_Ithio] [ACTION_RESULT] use_object success (16ms) server armed a target cursor
+[17:29:56.753] LOG   [wave10_RevGen3_19_Ithio] event action_result: use_object success took=16ms server armed a target cursor
+[17:29:56.954] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] Mackenzie: Hmm?
+[17:29:57.585] INFO  [wave10_RevGen3_19_Ithio] [TARGET] reply static=(3663,2261,-5) gfx=0x17B2 gen=2
+[17:29:57.585] INFO  [wave10_RevGen3_19_Ithio] [target] static 0x17B2 (3663,2261,-5)
+[17:29:58.017] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:30:03.029] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:30:08.070] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:30:13.115] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:30:13.626] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: There are no fish here.
+[17:30:13.626] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: You fish a while, but fail to catch anything.
+[17:30:14.013] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object start
+[17:30:14.013] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object serial=0x400197BF
+[17:30:14.028] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Where would you like to fish?
+[17:30:14.028] INFO  [wave10_RevGen3_19_Ithio] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=3
+[17:30:14.029] LOG   [wave10_RevGen3_19_Ithio] event target_requested: id=0x000002CE type=1 subtype=0 gen=3
+[17:30:14.029] INFO  [wave10_RevGen3_19_Ithio] [ACTION_RESULT] use_object success (16ms) server armed a target cursor
+[17:30:14.029] LOG   [wave10_RevGen3_19_Ithio] event action_result: use_object success took=16ms server armed a target cursor
+[17:30:14.818] INFO  [wave10_RevGen3_19_Ithio] [TARGET] reply static=(3663,2261,-5) gfx=0x17B2 gen=3
+[17:30:14.818] INFO  [wave10_RevGen3_19_Ithio] [target] static 0x17B2 (3663,2261,-5)
+[17:30:18.171] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:30:23.222] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:30:28.250] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:30:30.867] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: There are no fish here.
+[17:30:30.868] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: You fish a while, but fail to catch anything.
+[17:30:31.179] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object start
+[17:30:31.179] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object serial=0x400197BF
+[17:30:31.179] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Where would you like to fish?
+[17:30:31.179] INFO  [wave10_RevGen3_19_Ithio] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=4
+[17:30:31.179] LOG   [wave10_RevGen3_19_Ithio] event target_requested: id=0x000002CE type=1 subtype=0 gen=4
+[17:30:31.180] INFO  [wave10_RevGen3_19_Ithio] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[17:30:31.180] LOG   [wave10_RevGen3_19_Ithio] event action_result: use_object success took=0ms server armed a target cursor
+[17:30:32.026] INFO  [wave10_RevGen3_19_Ithio] [TARGET] reply static=(3663,2261,-5) gfx=0x17B2 gen=4
+[17:30:32.026] INFO  [wave10_RevGen3_19_Ithio] [target] static 0x17B2 (3663,2261,-5)
+[17:30:33.292] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:30:38.333] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:30:40.057] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: There are no fish here.
+[17:30:40.057] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: You fish a while, but fail to catch anything.
+[17:30:40.118] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object start
+[17:30:40.119] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object serial=0x400197BF
+[17:30:40.119] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Where would you like to fish?
+[17:30:40.119] INFO  [wave10_RevGen3_19_Ithio] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=5
+[17:30:40.119] LOG   [wave10_RevGen3_19_Ithio] event target_requested: id=0x000002CE type=1 subtype=0 gen=5
+[17:30:40.119] INFO  [wave10_RevGen3_19_Ithio] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[17:30:40.120] LOG   [wave10_RevGen3_19_Ithio] event action_result: use_object success took=1ms server armed a target cursor
+[17:30:40.931] INFO  [wave10_RevGen3_19_Ithio] [TARGET] reply static=(3663,2261,-5) gfx=0x17B2 gen=5
+[17:30:40.931] INFO  [wave10_RevGen3_19_Ithio] [target] static 0x17B2 (3663,2261,-5)
+[17:30:43.361] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:30:48.417] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:30:48.969] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: There are no fish here.
+[17:30:48.969] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: You fish a while, but fail to catch anything.
+[17:30:49.030] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object start
+[17:30:49.031] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object serial=0x400197BF
+[17:30:49.031] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Where would you like to fish?
+[17:30:49.031] INFO  [wave10_RevGen3_19_Ithio] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=6
+[17:30:49.031] LOG   [wave10_RevGen3_19_Ithio] event target_requested: id=0x000002CE type=1 subtype=0 gen=6
+[17:30:49.031] INFO  [wave10_RevGen3_19_Ithio] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[17:30:49.031] LOG   [wave10_RevGen3_19_Ithio] event action_result: use_object success took=1ms server armed a target cursor
+[17:30:49.873] INFO  [wave10_RevGen3_19_Ithio] [TARGET] reply static=(3663,2261,-5) gfx=0x17B2 gen=6
+[17:30:49.874] INFO  [wave10_RevGen3_19_Ithio] [target] static 0x17B2 (3663,2261,-5)
+[17:30:53.464] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:30:58.502] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:31:03.532] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:31:05.913] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: There are no fish here.
+[17:31:05.914] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: You fish a while, but fail to catch anything.
+[17:31:06.160] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object start
+[17:31:06.161] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object serial=0x400197BF
+[17:31:06.175] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Where would you like to fish?
+[17:31:06.175] INFO  [wave10_RevGen3_19_Ithio] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=7
+[17:31:06.175] LOG   [wave10_RevGen3_19_Ithio] event target_requested: id=0x000002CE type=1 subtype=0 gen=7
+[17:31:06.175] INFO  [wave10_RevGen3_19_Ithio] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
+[17:31:06.176] LOG   [wave10_RevGen3_19_Ithio] event action_result: use_object success took=15ms server armed a target cursor
+[17:31:06.975] INFO  [wave10_RevGen3_19_Ithio] [TARGET] reply static=(3663,2261,-5) gfx=0x17B2 gen=7
+[17:31:06.976] INFO  [wave10_RevGen3_19_Ithio] [target] static 0x17B2 (3663,2261,-5)
+[17:31:08.577] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:31:13.631] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:31:18.670] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:31:23.031] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: There are no fish here.
+[17:31:23.031] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: You fish a while, but fail to catch anything.
+[17:31:23.354] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object start
+[17:31:23.355] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object serial=0x400197BF
+[17:31:23.369] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Where would you like to fish?
+[17:31:23.370] INFO  [wave10_RevGen3_19_Ithio] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=8
+[17:31:23.370] LOG   [wave10_RevGen3_19_Ithio] event target_requested: id=0x000002CE type=1 subtype=0 gen=8
+[17:31:23.370] INFO  [wave10_RevGen3_19_Ithio] [ACTION_RESULT] use_object success (16ms) server armed a target cursor
+[17:31:23.370] LOG   [wave10_RevGen3_19_Ithio] event action_result: use_object success took=16ms server armed a target cursor
+[17:31:23.679] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:31:24.172] INFO  [wave10_RevGen3_19_Ithio] [TARGET] reply static=(3663,2261,-5) gfx=0x17B2 gen=8
+[17:31:24.172] INFO  [wave10_RevGen3_19_Ithio] [target] static 0x17B2 (3663,2261,-5)
+[17:31:28.685] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:31:32.178] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: There are no fish here.
+[17:31:32.179] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: You fish a while, but fail to catch anything.
+[17:31:32.361] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object start
+[17:31:32.362] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object serial=0x400197BF
+[17:31:32.376] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Where would you like to fish?
+[17:31:32.377] INFO  [wave10_RevGen3_19_Ithio] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=9
+[17:31:32.377] LOG   [wave10_RevGen3_19_Ithio] event target_requested: id=0x000002CE type=1 subtype=0 gen=9
+[17:31:32.377] INFO  [wave10_RevGen3_19_Ithio] [ACTION_RESULT] use_object success (16ms) server armed a target cursor
+[17:31:32.377] LOG   [wave10_RevGen3_19_Ithio] event action_result: use_object success took=16ms server armed a target cursor
+[17:31:33.194] INFO  [wave10_RevGen3_19_Ithio] [TARGET] reply static=(3663,2261,-5) gfx=0x17B2 gen=9
+[17:31:33.195] INFO  [wave10_RevGen3_19_Ithio] [target] static 0x17B2 (3663,2261,-5)
+[17:31:33.717] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:31:38.741] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:31:41.215] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: There are no fish here.
+[17:31:41.215] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: You fish a while, but fail to catch anything.
+[17:31:41.400] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object start
+[17:31:41.400] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object serial=0x400197BF
+[17:31:41.416] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Where would you like to fish?
+[17:31:41.416] INFO  [wave10_RevGen3_19_Ithio] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=10
+[17:31:41.416] LOG   [wave10_RevGen3_19_Ithio] event target_requested: id=0x000002CE type=1 subtype=0 gen=10
+[17:31:41.416] INFO  [wave10_RevGen3_19_Ithio] [ACTION_RESULT] use_object success (16ms) server armed a target cursor
+[17:31:41.416] LOG   [wave10_RevGen3_19_Ithio] event action_result: use_object success took=16ms server armed a target cursor
+[17:31:42.215] INFO  [wave10_RevGen3_19_Ithio] [TARGET] reply static=(3663,2261,-5) gfx=0x17B2 gen=10
+[17:31:42.215] INFO  [wave10_RevGen3_19_Ithio] [target] static 0x17B2 (3663,2261,-5)
+[17:31:43.783] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:31:48.792] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:31:50.251] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: There are no fish here.
+[17:31:50.251] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: You fish a while, but fail to catch anything.
+[17:31:50.683] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object start
+[17:31:50.683] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object serial=0x400197BF
+[17:31:50.698] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Where would you like to fish?
+[17:31:50.698] INFO  [wave10_RevGen3_19_Ithio] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=11
+[17:31:50.698] LOG   [wave10_RevGen3_19_Ithio] event target_requested: id=0x000002CE type=1 subtype=0 gen=11
+[17:31:50.698] INFO  [wave10_RevGen3_19_Ithio] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
+[17:31:50.699] LOG   [wave10_RevGen3_19_Ithio] event action_result: use_object success took=15ms server armed a target cursor
+[17:31:51.512] INFO  [wave10_RevGen3_19_Ithio] [TARGET] reply static=(3663,2261,-5) gfx=0x17B2 gen=11
+[17:31:51.513] INFO  [wave10_RevGen3_19_Ithio] [target] static 0x17B2 (3663,2261,-5)
+[17:31:53.809] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:31:58.827] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:32:03.865] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:32:07.522] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: There are no fish here.
+[17:32:07.523] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: You fish a while, but fail to catch anything.
+[17:32:07.835] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object start
+[17:32:07.835] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object serial=0x400197BF
+[17:32:07.850] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Where would you like to fish?
+[17:32:07.850] INFO  [wave10_RevGen3_19_Ithio] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=12
+[17:32:07.850] LOG   [wave10_RevGen3_19_Ithio] event target_requested: id=0x000002CE type=1 subtype=0 gen=12
+[17:32:07.850] INFO  [wave10_RevGen3_19_Ithio] [ACTION_RESULT] use_object success (16ms) server armed a target cursor
+[17:32:07.850] LOG   [wave10_RevGen3_19_Ithio] event action_result: use_object success took=16ms server armed a target cursor
+[17:32:08.668] INFO  [wave10_RevGen3_19_Ithio] [TARGET] reply static=(3663,2261,-5) gfx=0x17B2 gen=12
+[17:32:08.668] INFO  [wave10_RevGen3_19_Ithio] [target] static 0x17B2 (3663,2261,-5)
+[17:32:08.916] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:32:13.952] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:32:16.700] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: There are no fish here.
+[17:32:16.701] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: You fish a while, but fail to catch anything.
+[17:32:16.883] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object start
+[17:32:16.884] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object serial=0x400197BF
+[17:32:16.884] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Where would you like to fish?
+[17:32:16.884] INFO  [wave10_RevGen3_19_Ithio] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=13
+[17:32:16.884] LOG   [wave10_RevGen3_19_Ithio] event target_requested: id=0x000002CE type=1 subtype=0 gen=13
+[17:32:16.884] INFO  [wave10_RevGen3_19_Ithio] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[17:32:16.884] LOG   [wave10_RevGen3_19_Ithio] event action_result: use_object success took=1ms server armed a target cursor
+[17:32:17.683] INFO  [wave10_RevGen3_19_Ithio] [TARGET] reply static=(3663,2261,-5) gfx=0x17B2 gen=13
+[17:32:17.684] INFO  [wave10_RevGen3_19_Ithio] [target] static 0x17B2 (3663,2261,-5)
+[17:32:18.965] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:32:23.983] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:32:29.019] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:32:33.700] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: There are no fish here.
+[17:32:33.700] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: You fish a while, but fail to catch anything.
+[17:32:33.885] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object start
+[17:32:33.885] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object serial=0x400197BF
+[17:32:33.886] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Where would you like to fish?
+[17:32:33.886] INFO  [wave10_RevGen3_19_Ithio] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=14
+[17:32:33.886] LOG   [wave10_RevGen3_19_Ithio] event target_requested: id=0x000002CE type=1 subtype=0 gen=14
+[17:32:33.886] INFO  [wave10_RevGen3_19_Ithio] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[17:32:33.886] LOG   [wave10_RevGen3_19_Ithio] event action_result: use_object success took=1ms server armed a target cursor
+[17:32:34.071] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:32:34.717] INFO  [wave10_RevGen3_19_Ithio] [TARGET] reply static=(3663,2261,-5) gfx=0x17B2 gen=14
+[17:32:34.718] INFO  [wave10_RevGen3_19_Ithio] [target] static 0x17B2 (3663,2261,-5)
+[17:32:39.093] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:32:44.118] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:32:49.153] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:32:50.768] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: There are no fish here.
+[17:32:50.768] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: You fish a while, but fail to catch anything.
+[17:32:51.014] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object start
+[17:32:51.014] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object serial=0x400197BF
+[17:32:51.015] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Where would you like to fish?
+[17:32:51.015] INFO  [wave10_RevGen3_19_Ithio] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=15
+[17:32:51.015] LOG   [wave10_RevGen3_19_Ithio] event target_requested: id=0x000002CE type=1 subtype=0 gen=15
+[17:32:51.015] INFO  [wave10_RevGen3_19_Ithio] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[17:32:51.015] LOG   [wave10_RevGen3_19_Ithio] event action_result: use_object success took=1ms server armed a target cursor
+[17:32:51.851] INFO  [wave10_RevGen3_19_Ithio] [TARGET] reply static=(3663,2261,-5) gfx=0x17B2 gen=15
+[17:32:51.852] INFO  [wave10_RevGen3_19_Ithio] [target] static 0x17B2 (3663,2261,-5)
+[17:32:54.191] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:32:59.216] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:32:59.881] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: There are no fish here.
+[17:32:59.881] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: You fish a while, but fail to catch anything.
+[17:33:00.004] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object start
+[17:33:00.004] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object serial=0x400197BF
+[17:33:00.019] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Where would you like to fish?
+[17:33:00.020] INFO  [wave10_RevGen3_19_Ithio] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=16
+[17:33:00.020] LOG   [wave10_RevGen3_19_Ithio] event target_requested: id=0x000002CE type=1 subtype=0 gen=16
+[17:33:00.020] INFO  [wave10_RevGen3_19_Ithio] [ACTION_RESULT] use_object success (16ms) server armed a target cursor
+[17:33:00.020] LOG   [wave10_RevGen3_19_Ithio] event action_result: use_object success took=16ms server armed a target cursor
+[17:33:00.847] INFO  [wave10_RevGen3_19_Ithio] [TARGET] reply static=(3663,2261,-5) gfx=0x17B2 gen=16
+[17:33:00.848] INFO  [wave10_RevGen3_19_Ithio] [target] static 0x17B2 (3663,2261,-5)
+[17:33:04.241] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:33:09.269] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:33:14.326] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:33:16.889] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: There are no fish here.
+[17:33:16.889] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: You fish a while, but fail to catch anything.
+[17:33:17.075] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object start
+[17:33:17.075] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object serial=0x400197BF
+[17:33:17.090] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Where would you like to fish?
+[17:33:17.091] INFO  [wave10_RevGen3_19_Ithio] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=17
+[17:33:17.091] LOG   [wave10_RevGen3_19_Ithio] event target_requested: id=0x000002CE type=1 subtype=0 gen=17
+[17:33:17.091] INFO  [wave10_RevGen3_19_Ithio] [ACTION_RESULT] use_object success (16ms) server armed a target cursor
+[17:33:17.092] LOG   [wave10_RevGen3_19_Ithio] event action_result: use_object success took=16ms server armed a target cursor
+[17:33:17.879] INFO  [wave10_RevGen3_19_Ithio] [TARGET] reply static=(3663,2261,-5) gfx=0x17B2 gen=17
+[17:33:17.880] INFO  [wave10_RevGen3_19_Ithio] [target] static 0x17B2 (3663,2261,-5)
+[17:33:19.361] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:33:24.395] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:33:29.413] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:33:33.939] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: There are no fish here.
+[17:33:33.939] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: You fish a while, but fail to catch anything.
+[17:33:34.309] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object start
+[17:33:34.309] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object serial=0x400197BF
+[17:33:34.309] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Where would you like to fish?
+[17:33:34.309] INFO  [wave10_RevGen3_19_Ithio] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=18
+[17:33:34.309] LOG   [wave10_RevGen3_19_Ithio] event target_requested: id=0x000002CE type=1 subtype=0 gen=18
+[17:33:34.310] INFO  [wave10_RevGen3_19_Ithio] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[17:33:34.310] LOG   [wave10_RevGen3_19_Ithio] event action_result: use_object success took=1ms server armed a target cursor
+[17:33:34.431] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:33:35.131] INFO  [wave10_RevGen3_19_Ithio] [TARGET] reply static=(3663,2261,-5) gfx=0x17B2 gen=18
+[17:33:35.131] INFO  [wave10_RevGen3_19_Ithio] [target] static 0x17B2 (3663,2261,-5)
+[17:33:39.461] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:33:43.158] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: There are no fish here.
+[17:33:43.159] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: You fish a while, but fail to catch anything.
+[17:33:43.220] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object start
+[17:33:43.220] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object serial=0x400197BF
+[17:33:43.220] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Where would you like to fish?
+[17:33:43.221] INFO  [wave10_RevGen3_19_Ithio] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=19
+[17:33:43.221] LOG   [wave10_RevGen3_19_Ithio] event target_requested: id=0x000002CE type=1 subtype=0 gen=19
+[17:33:43.221] INFO  [wave10_RevGen3_19_Ithio] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[17:33:43.221] LOG   [wave10_RevGen3_19_Ithio] event action_result: use_object success took=1ms server armed a target cursor
+[17:33:44.027] INFO  [wave10_RevGen3_19_Ithio] [TARGET] reply static=(3663,2261,-5) gfx=0x17B2 gen=19
+[17:33:44.028] INFO  [wave10_RevGen3_19_Ithio] [target] static 0x17B2 (3663,2261,-5)
+[17:33:44.519] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:33:49.525] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:33:52.051] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: There are no fish here.
+[17:33:52.051] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: You fish a while, but fail to catch anything.
+[17:33:52.112] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object start
+[17:33:52.112] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object serial=0x400197BF
+[17:33:52.127] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Where would you like to fish?
+[17:33:52.128] INFO  [wave10_RevGen3_19_Ithio] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=20
+[17:33:52.128] LOG   [wave10_RevGen3_19_Ithio] event target_requested: id=0x000002CE type=1 subtype=0 gen=20
+[17:33:52.128] INFO  [wave10_RevGen3_19_Ithio] [ACTION_RESULT] use_object success (16ms) server armed a target cursor
+[17:33:52.128] LOG   [wave10_RevGen3_19_Ithio] event action_result: use_object success took=16ms server armed a target cursor
+[17:33:52.929] INFO  [wave10_RevGen3_19_Ithio] [TARGET] reply static=(3663,2261,-5) gfx=0x17B2 gen=20
+[17:33:52.929] INFO  [wave10_RevGen3_19_Ithio] [target] static 0x17B2 (3663,2261,-5)
+[17:33:54.568] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: World save in 10 seconds
+[17:33:54.569] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:33:59.588] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:34:00.941] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: There are no fish here.
+[17:34:00.941] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: You fish a while, but fail to catch anything.
+[17:34:01.187] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object start
+[17:34:01.187] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object serial=0x400197BF
+[17:34:01.202] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Where would you like to fish?
+[17:34:01.202] INFO  [wave10_RevGen3_19_Ithio] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=21
+[17:34:01.202] LOG   [wave10_RevGen3_19_Ithio] event target_requested: id=0x000002CE type=1 subtype=0 gen=21
+[17:34:01.203] INFO  [wave10_RevGen3_19_Ithio] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
+[17:34:01.203] LOG   [wave10_RevGen3_19_Ithio] event action_result: use_object success took=15ms server armed a target cursor
+[17:34:02.010] INFO  [wave10_RevGen3_19_Ithio] [TARGET] reply static=(3663,2261,-5) gfx=0x17B2 gen=21
+[17:34:02.011] INFO  [wave10_RevGen3_19_Ithio] [target] static 0x17B2 (3663,2261,-5)
+[17:34:04.596] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:34:04.598] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: World save has been initiated.
+[17:34:09.636] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:34:10.641] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] Mackenzie: Can I help thee?
+[17:34:11.058] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] Davita: Can I help thee?
+[17:34:14.676] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:34:15.406] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: There are no fish here.
+[17:34:15.406] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: You fish a while, but fail to catch anything.
+[17:34:15.407] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object start
+[17:34:15.407] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object serial=0x400197BF
+[17:34:15.422] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Where would you like to fish?
+[17:34:15.422] INFO  [wave10_RevGen3_19_Ithio] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=22
+[17:34:15.422] LOG   [wave10_RevGen3_19_Ithio] event target_requested: id=0x000002CE type=1 subtype=0 gen=22
+[17:34:15.422] INFO  [wave10_RevGen3_19_Ithio] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
+[17:34:15.423] LOG   [wave10_RevGen3_19_Ithio] event action_result: use_object success took=15ms server armed a target cursor
+[17:34:16.253] INFO  [wave10_RevGen3_19_Ithio] [TARGET] reply static=(3663,2261,-5) gfx=0x17B2 gen=22
+[17:34:16.254] INFO  [wave10_RevGen3_19_Ithio] [target] static 0x17B2 (3663,2261,-5)
+[17:34:19.694] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:34:24.708] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:34:29.719] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:34:32.320] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: There are no fish here.
+[17:34:32.321] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: You fish a while, but fail to catch anything.
+[17:34:32.413] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object start
+[17:34:32.413] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object serial=0x400197BF
+[17:34:32.413] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Where would you like to fish?
+[17:34:32.414] INFO  [wave10_RevGen3_19_Ithio] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=23
+[17:34:32.414] LOG   [wave10_RevGen3_19_Ithio] event target_requested: id=0x000002CE type=1 subtype=0 gen=23
+[17:34:32.414] INFO  [wave10_RevGen3_19_Ithio] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[17:34:32.414] LOG   [wave10_RevGen3_19_Ithio] event action_result: use_object success took=1ms server armed a target cursor
+[17:34:33.271] INFO  [wave10_RevGen3_19_Ithio] [TARGET] reply static=(3663,2261,-5) gfx=0x17B2 gen=23
+[17:34:33.271] INFO  [wave10_RevGen3_19_Ithio] [target] static 0x17B2 (3663,2261,-5)
+[17:34:34.732] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:34:39.758] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:34:44.787] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:34:49.344] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: There are no fish here.
+[17:34:49.344] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: You fish a while, but fail to catch anything.
+[17:34:49.528] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object start
+[17:34:49.529] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object serial=0x400197BF
+[17:34:49.529] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Where would you like to fish?
+[17:34:49.529] INFO  [wave10_RevGen3_19_Ithio] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=24
+[17:34:49.529] LOG   [wave10_RevGen3_19_Ithio] event target_requested: id=0x000002CE type=1 subtype=0 gen=24
+[17:34:49.529] INFO  [wave10_RevGen3_19_Ithio] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[17:34:49.530] LOG   [wave10_RevGen3_19_Ithio] event action_result: use_object success took=1ms server armed a target cursor
+[17:34:49.821] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:34:50.347] INFO  [wave10_RevGen3_19_Ithio] [TARGET] reply static=(3663,2261,-5) gfx=0x17B2 gen=24
+[17:34:50.347] INFO  [wave10_RevGen3_19_Ithio] [target] static 0x17B2 (3663,2261,-5)
+[17:34:54.837] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:34:59.847] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:35:04.886] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:35:06.378] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: There are no fish here.
+[17:35:06.379] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: You fish a while, but fail to catch anything.
+[17:35:06.626] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object start
+[17:35:06.627] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object serial=0x400197BF
+[17:35:06.642] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Where would you like to fish?
+[17:35:06.642] INFO  [wave10_RevGen3_19_Ithio] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=25
+[17:35:06.642] LOG   [wave10_RevGen3_19_Ithio] event target_requested: id=0x000002CE type=1 subtype=0 gen=25
+[17:35:06.642] INFO  [wave10_RevGen3_19_Ithio] [ACTION_RESULT] use_object success (16ms) server armed a target cursor
+[17:35:06.643] LOG   [wave10_RevGen3_19_Ithio] event action_result: use_object success took=16ms server armed a target cursor
+[17:35:07.471] INFO  [wave10_RevGen3_19_Ithio] [TARGET] reply static=(3663,2261,-5) gfx=0x17B2 gen=25
+[17:35:07.475] INFO  [wave10_RevGen3_19_Ithio] [target] static 0x17B2 (3663,2261,-5)
+[17:35:09.889] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:35:14.911] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:35:19.931] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:35:23.515] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: There are no fish here.
+[17:35:23.515] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: You fish a while, but fail to catch anything.
+[17:35:23.809] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object start
+[17:35:23.813] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object serial=0x400197BF
+[17:35:23.823] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Where would you like to fish?
+[17:35:23.823] INFO  [wave10_RevGen3_19_Ithio] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=26
+[17:35:23.823] LOG   [wave10_RevGen3_19_Ithio] event target_requested: id=0x000002CE type=1 subtype=0 gen=26
+[17:35:23.824] INFO  [wave10_RevGen3_19_Ithio] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
+[17:35:23.824] LOG   [wave10_RevGen3_19_Ithio] event action_result: use_object success took=15ms server armed a target cursor
+[17:35:24.670] INFO  [wave10_RevGen3_19_Ithio] [TARGET] reply static=(3663,2261,-5) gfx=0x17B2 gen=26
+[17:35:24.670] INFO  [wave10_RevGen3_19_Ithio] [target] static 0x17B2 (3663,2261,-5)
+[17:35:24.994] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:35:30.041] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:35:32.694] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: There are no fish here.
+[17:35:32.695] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: You fish a while, but fail to catch anything.
+[17:35:32.893] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object start
+[17:35:32.893] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object serial=0x400197BF
+[17:35:32.894] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Where would you like to fish?
+[17:35:32.894] INFO  [wave10_RevGen3_19_Ithio] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=27
+[17:35:32.894] LOG   [wave10_RevGen3_19_Ithio] event target_requested: id=0x000002CE type=1 subtype=0 gen=27
+[17:35:32.894] INFO  [wave10_RevGen3_19_Ithio] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[17:35:32.894] LOG   [wave10_RevGen3_19_Ithio] event action_result: use_object success took=1ms server armed a target cursor
+[17:35:33.707] INFO  [wave10_RevGen3_19_Ithio] [TARGET] reply static=(3663,2261,-5) gfx=0x17B2 gen=27
+[17:35:33.707] INFO  [wave10_RevGen3_19_Ithio] [target] static 0x17B2 (3663,2261,-5)
+[17:35:35.092] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:35:39.298] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] Jun: Hmm? Oh! Tis thee, Observer!
+[17:35:39.329] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.345] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.346] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.362] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.363] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Lyra has departed from Moonglow.
+[17:35:39.376] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Zarthal has departed from Britain.
+[17:35:39.379] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Castor has departed from Trinsic Healer.
+[17:35:39.391] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Odessa has departed from Britain.
+: Where would you like to fish?
+[17:35:06.642] INFO  [wave10_RevGen3_19_Ithio] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=25
+[17:35:06.642] LOG   [wave10_RevGen3_19_Ithio] event target_requested: id=0x000002CE type=1 subtype=0 gen=25
+[17:35:06.642] INFO  [wave10_RevGen3_19_Ithio] [ACTION_RESULT] use_object success (16ms) server armed a target cursor
+[17:35:06.643] LOG   [wave10_RevGen3_19_Ithio] event action_result: use_object success took=16ms server armed a target cursor
+[17:35:07.471] INFO  [wave10_RevGen3_19_Ithio] [TARGET] reply static=(3663,2261,-5) gfx=0x17B2 gen=25
+[17:35:07.475] INFO  [wave10_RevGen3_19_Ithio] [target] static 0x17B2 (3663,2261,-5)
+[17:35:09.889] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:35:14.911] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:35:19.931] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:35:23.515] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: There are no fish here.
+[17:35:23.515] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: You fish a while, but fail to catch anything.
+[17:35:23.809] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object start
+[17:35:23.813] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object serial=0x400197BF
+[17:35:23.823] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Where would you like to fish?
+[17:35:23.823] INFO  [wave10_RevGen3_19_Ithio] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=26
+[17:35:23.823] LOG   [wave10_RevGen3_19_Ithio] event target_requested: id=0x000002CE type=1 subtype=0 gen=26
+[17:35:23.824] INFO  [wave10_RevGen3_19_Ithio] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
+[17:35:23.824] LOG   [wave10_RevGen3_19_Ithio] event action_result: use_object success took=15ms server armed a target cursor
+[17:35:24.670] INFO  [wave10_RevGen3_19_Ithio] [TARGET] reply static=(3663,2261,-5) gfx=0x17B2 gen=26
+[17:35:24.670] INFO  [wave10_RevGen3_19_Ithio] [target] static 0x17B2 (3663,2261,-5)
+[17:35:24.994] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:35:30.041] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:35:32.694] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: There are no fish here.
+[17:35:32.695] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: You fish a while, but fail to catch anything.
+[17:35:32.893] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object start
+[17:35:32.893] INFO  [wave10_RevGen3_19_Ithio] [ACTION] use_object serial=0x400197BF
+[17:35:32.894] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Where would you like to fish?
+[17:35:32.894] INFO  [wave10_RevGen3_19_Ithio] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=27
+[17:35:32.894] LOG   [wave10_RevGen3_19_Ithio] event target_requested: id=0x000002CE type=1 subtype=0 gen=27
+[17:35:32.894] INFO  [wave10_RevGen3_19_Ithio] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[17:35:32.894] LOG   [wave10_RevGen3_19_Ithio] event action_result: use_object success took=1ms server armed a target cursor
+[17:35:33.707] INFO  [wave10_RevGen3_19_Ithio] [TARGET] reply static=(3663,2261,-5) gfx=0x17B2 gen=27
+[17:35:33.707] INFO  [wave10_RevGen3_19_Ithio] [target] static 0x17B2 (3663,2261,-5)
+[17:35:35.092] INFO  [wave10_RevGen3_19_Ithio] [survival] hp 40/40 (100%) -> fight
+[17:35:38.100] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_19.ithion/state.json
+[17:35:39.298] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] Jun: Hmm? Oh! Tis thee, Observer!
+[17:35:39.329] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.345] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.346] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.362] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.363] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Lyra has departed from Moonglow.
+[17:35:39.376] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Zarthal has departed from Britain.
+[17:35:39.379] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Castor has departed from Trinsic Healer.
+[17:35:39.391] INFO  [wave10_RevGen3_19_Ithio] [chat ascii] System: Odessa has departed from Britain.

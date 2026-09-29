@@ -1,0 +1,27 @@
+# Move the Britain sheep flock from 1323,1351 (wolves at 5 tiles, harpy at 13,
+# bears/panther at 17 -- killed a tailor on her first wool trip) to the west
+# Britain cow farm at 1321,1815 (cows, chickens, farmers; nearest hostile
+# spawn 65 tiles away per world_query 2026-09-02).
+#
+# RUN ONLY AS THE ADMIN ACCOUNT (character "Observer") via run_admin.ps1.
+# NOT IDEMPOTENT: run exactly once.
+#
+# Removing the old gem calls CCSpawn::Delete -> KillChildren
+# (server/Source-X/src/game/components/CCSpawn.cpp:284), so its sheep go with it.
+# Serial 040018000 is the Britain gem recorded by m40_sheep_flocks_fill.txt.
+# The new gem is created with the same f_create_spawner argv the worldgen line
+# in TownsLife_spawns_felucca.scp now carries, then ticked forward so the
+# flock is present tonight rather than in ~2 h (see m40_sheep_flocks_fill.txt).
+
+wait_world
+sleep 3000
+say .show p
+sleep 2500
+
+say .serv.uid.040018000.remove
+sleep 3000
+
+say .f_create_spawner Sheep,,,,,,1321,1815,0,2,5,10,15,10,1,15,0,0,0,0,0
+sleep 4000
+say .save
+sleep 20000

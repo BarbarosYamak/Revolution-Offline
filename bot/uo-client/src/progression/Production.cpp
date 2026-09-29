@@ -12,6 +12,7 @@ using rules::kArmsLore;
 using rules::kBlacksmithing;
 using rules::kBowcraft;
 using rules::kCarpentry;
+using rules::kCooking;
 using rules::kInscription;
 using rules::kMagery;
 using rules::kMining;
@@ -84,8 +85,8 @@ const std::vector<Recipe>& Table() {
     {"i_hides_cut", 1, Provenance::WorldProcessed, Station::None, Tool::Scissors,
      kNoSkill, 0, kNoSkill, 0, {{"i_hide", 1}}, "ENGINE CClientTarg.cpp:2159 (IT_HIDE -> TDATA1)"},
     {"i_leather_tunic", 1, Provenance::PlayerCrafted, Station::None, Tool::SewingKit,
-     kTailoring, 705, kArmsLore, 100, {{"i_hides_cut", 12}},
-     "SCRIPT sm_leather_armor; SKILLMAKE=Tailoring 70.5,Armslore 10.0"},
+     kTailoring, 705, kNoSkill, 0, {{"i_hides_cut", 12}},
+     "SCRIPT sm_leather_armor; SKILLMAKE=Tailoring 70.5 (Armslore removed 2026-09-03, owner ruling)"},
 
     // --- mining and smithing ------------------------------------------------
     // Iron is 50.0 of ~99.9 in r_default_rock; a swing yields 1-3 and the tile
@@ -107,6 +108,36 @@ const std::vector<Recipe>& Table() {
     {"i_spear_short", 1, Provenance::PlayerCrafted, Station::Forge, Tool::SmithHammer,
      kBlacksmithing, 453, kNoSkill, 0, {{"i_ingot_iron", 6}, {"i_log", 1}},
      "SCRIPT i_spear_short SKILLMAKE=Blacksmithing 45.3; REVOLUTION forum 59111 band 70.1-100"},
+    // THE SWORDSMAN'S WEAPON, and the cheapest one a smith at 50 can make.
+    //
+    // Chosen from the shard's OWN blacksmithing menu, not from UO lore. Of the
+    // twenty-five entries in the Bladed category
+    // (crafting/interface/def_blacksmithing.scp:170-194,
+    // blacksmithing_category_6_*), these are the ones whose ITEMDEF carries
+    // both TYPE=t_weapon_sword and SKILL=Swordsmanship, with their ingot cost
+    // and SKILLMAKE (items/weapons/i_weapons.scp):
+    //
+    //   i_cutlass        8 ingots   Blacksmithing 24.3   :1221-1240
+    //   i_sword_viking  14 ingots   Blacksmithing 24.3   :797-816
+    //   i_scimitar      10 ingots   Blacksmithing 31.7   :741-760
+    //   i_katana         8 ingots   Blacksmithing 44.1   :966-985
+    //   i_sword_broad   12 ingots   Blacksmithing 48.8   :553-572
+    //   i_sword_long    16 ingots   Blacksmithing 53.8   :581-601
+    //
+    // i_dagger, which the smith already makes, is TYPE=t_weapon_fence
+    // SKILL=Fencing (:496-508) -- it is NOT a swordsman's weapon on this
+    // shard, whatever the menu category calls it.
+    //
+    // The CUTLASS wins on both axes at once: joint-lowest SKILLMAKE and the
+    // lowest ingot count of the pair, so a smith at 50.0 (Durnholde, Brannoc)
+    // makes it with 25.7 points of headroom -- and _chanceatmin is 0.0
+    // (def_blacksmithing.scp:88), so the margin IS the success chance.
+    // ReqStr=25 (:1237) against a lumberjack_swordsman's start STR of 40.
+    {"i_cutlass", 1, Provenance::PlayerCrafted, Station::Forge, Tool::SmithHammer,
+     kBlacksmithing, 243, kNoSkill, 0, {{"i_ingot_iron", 8}},
+     "SCRIPT def_blacksmithing.scp:173 blacksmithing_category_6_4 \"i_cutlass\"; "
+     "sm_legacy_blacksmithing.scp:157-158 MAKEITEM=i_cutlass; "
+     "i_weapons.scp:1232 RESOURCES=8 i_ingot_iron, :1233 SKILLMAKE=Blacksmithing 24.3"},
 
     // --- wood ---------------------------------------------------------------
     {"i_log", 1, Provenance::WorldGathered, Station::None, Tool::Blade,
@@ -123,6 +154,22 @@ const std::vector<Recipe>& Table() {
     {"i_scroll_blank", 1, Provenance::PlayerCrafted, Station::None, Tool::CarpentryTool,
      kCarpentry, 257, kNoSkill, 0, {{"i_parchment", 1}},
      "SCRIPT sm_wood_misc; i_scroll_blank SKILLMAKE=Carpentry 25.7"},
+    // The carpenter's one verified SELLABLE good below the endgame. Two of its
+    // three numbers are UNKNOWN and are marked rather than invented:
+    //   - our runtime carries NO [ITEMDEF i_club] and therefore no SKILLMAKE;
+    //     i_club is a base Sphere item. The carpentry menu's default material
+    //     tier is "Carpentry 0.0" (def_carpentry.scp:200), so 0 is the
+    //     best-supported reading of the gate, NOT a measured one.
+    //   - the log count is UNKNOWN. The magic variant i_club_ruin takes
+    //     "RESOURCES=4 i_log, i_club" (i_magic_weapon.scp:2279), which is the
+    //     ENCHANT cost, not the craft cost. 1 is a placeholder.
+    // What IS verified: our own carpentry menu offers it
+    // (def_carpentry.scp:41, category 1 "Weapons and Armor"), and the blunt
+    // weaponsmith buys it at {10 15} (tm_vend.scp:1710).
+    {"i_club", 1, Provenance::PlayerCrafted, Station::None, Tool::CarpentryTool,
+     kCarpentry, 0, kNoSkill, 0, {{"i_log", 1}},
+     "SCRIPT def_carpentry.scp:41 menu entry; SKILLMAKE and log count UNKNOWN; "
+     "buyer tm_vend.scp:1710 VENDOR_B_WEAPONS_BLUNT {10 15}"},
     {"i_model_ship", 1, Provenance::PlayerCrafted, Station::None, Tool::CarpentryTool,
      kCarpentry, 950, kNoSkill, 0, {{"i_board", 10}},
      "SCRIPT i_model_ship SKILLMAKE=carpentry 95.0; REVOLUTION forum 59111 band 95-100"},
@@ -180,6 +227,20 @@ const std::vector<Recipe>& Table() {
     {"i_potion_heal", 1, Provenance::PlayerCrafted, Station::None, Tool::MortarPestle,
      kAlchemy, 151, kNoSkill, 0, {{"i_reag_ginseng", 3}, {"i_bottle_empty", 1}},
      "SCRIPT SKILLMAKE=ALCHEMY 15.1; REVOLUTION guide band 15.1-25.1 Heal"},
+    // Poison, added 2026-08-29 on the owner's instruction ("Voris it can make
+    // poison bottle and it can sell to npc"). Cheapest potion this life can
+    // make -- ALCHEMY 15.1, the same band as Heal -- and the one an NPC will
+    // take, so it is both the training sink and the first coin. Recipe read
+    // from the shard: [ITEMDEF i_potion_Poison] RESOURCES=2 i_reag_nightshade,
+    // 1 i_bottle_empty, SKILLMAKE=ALCHEMY 15.1, t_mortar.
+    //
+    // Note these potion defs use the DEFNAME as the ITEMDEF header rather than
+    // a numeric id with a DEFNAME line, which is why a search for
+    // "DEFNAME=i_potion_poison" finds nothing at all.
+    {"i_potion_poison", 1, Provenance::PlayerCrafted, Station::None, Tool::MortarPestle,
+     kAlchemy, 151, kNoSkill, 0, {{"i_reag_nightshade", 2}, {"i_bottle_empty", 1}},
+     "SCRIPT i_potion_Poison SKILLMAKE=ALCHEMY 15.1,t_mortar; "
+     "RESOURCES=2 i_reag_nightshade,1 i_bottle_empty"},
     {"i_potion_cure", 1, Provenance::PlayerCrafted, Station::None, Tool::MortarPestle,
      kAlchemy, 251, kNoSkill, 0, {{"i_reag_garlic", 3}, {"i_bottle_empty", 1}},
      "SCRIPT SKILLMAKE=ALCHEMY 25.1; REVOLUTION guide band 25.1-35.1 Cure"},
@@ -192,6 +253,18 @@ const std::vector<Recipe>& Table() {
     {"i_potion_curegreat", 1, Provenance::PlayerCrafted, Station::None, Tool::MortarPestle,
      kAlchemy, 651, kNoSkill, 0, {{"i_reag_garlic", 6}, {"i_bottle_empty", 1}},
      "SCRIPT SKILLMAKE=ALCHEMY 65.1; REVOLUTION guide band 65.1-90.1 Gr. Cure"},
+    // THE REST OF THE POISON LADDER. i_potion_Poison sat alone with nothing
+    // below or beside it, so an alchemist could only ever make one rung of a
+    // four-rung skill line. All four are in i_provisions_potions.scp with the
+    // same shape: more nightshade as the skill gate rises.
+    {"i_potion_poisonless", 1, Provenance::PlayerCrafted, Station::None, Tool::MortarPestle,
+     kAlchemy, 0, kNoSkill, 0, {{"i_reag_nightshade", 1}, {"i_bottle_empty", 1}},
+     "SCRIPT i_potion_PoisonLess SKILLMAKE=ALCHEMY 0,t_mortar; "
+     "RESOURCES=1 i_reag_nightshade,1 i_bottle_empty"},
+    {"i_potion_poisongreat", 1, Provenance::PlayerCrafted, Station::None, Tool::MortarPestle,
+     kAlchemy, 551, kNoSkill, 0, {{"i_reag_nightshade", 4}, {"i_bottle_empty", 1}},
+     "SCRIPT i_potion_PoisonGreat SKILLMAKE=ALCHEMY 55.1,t_mortar; "
+     "RESOURCES=4 i_reag_nightshade,1 i_bottle_empty"},
     {"i_potion_poisondeadly", 1, Provenance::PlayerCrafted, Station::None, Tool::MortarPestle,
      kAlchemy, 901, kNoSkill, 0, {{"i_reag_nightshade", 8}, {"i_bottle_empty", 1}},
      "SCRIPT SKILLMAKE=ALCHEMY 90.1; REVOLUTION guide band 90.1-100 Deadly Poison"},
@@ -225,6 +298,31 @@ const std::vector<Recipe>& Table() {
     {"i_spellbook_runebook", 1, Provenance::PlayerMarket, Station::None, Tool::PenAndInk,
      kInscription, 450, kNoSkill, 0,
      {{"i_scroll_blank", 8}, {"i_rune_marker", 1}, {"i_scroll_recall", 1}, {"i_scroll_gate_travel", 1}},
+     "SCRIPT i_spellbook_runebook"},
+
+    // CARTOGRAPHY, the treasure hunter's trained skill (owner, 2026-09-05:
+    // "for treasure hunter it needs cartography to train as well"). Four
+    // rungs, every one a blank map drawn with a mapmaker's pen, whose ID is
+    // i_pen_and_ink's graphic (i_profession_cartographer.scp:213-296). The
+    // menu is sm_cartography (crafting/interface/legacy skillmenu/
+    // sm_legacy_cartography.scp:15-25). Nobody buys a drawn map -- these are
+    // training crafts (Profession::trainingCrafts), not goods.
+    {"i_map_local", 1, Provenance::PlayerCrafted, Station::None, Tool::PenAndInk,
+     rules::kCartography, 0, kNoSkill, 0, {{"i_map_blank", 1}},
+     "SCRIPT i_map_local SKILLMAKE=Cartography 0.0,t_cartography; RESOURCES=1 i_map_blank"},
+    {"i_map_city", 1, Provenance::PlayerCrafted, Station::None, Tool::PenAndInk,
+     rules::kCartography, 250, kNoSkill, 0, {{"i_map_blank", 1}},
+     "SCRIPT i_map_city SKILLMAKE=Cartography 25.0,t_cartography; RESOURCES=1 i_map_blank"},
+    {"i_map_sea_chart", 1, Provenance::PlayerCrafted, Station::None, Tool::PenAndInk,
+     rules::kCartography, 350, kNoSkill, 0, {{"i_map_blank", 1}},
+     "SCRIPT i_map_sea_chart SKILLMAKE=Cartography 35.0,t_cartography; RESOURCES=1 i_map_blank"},
+    {"i_map_world", 1, Provenance::PlayerCrafted, Station::None, Tool::PenAndInk,
+     rules::kCartography, 500, kNoSkill, 0, {{"i_map_blank", 1}},
+     "SCRIPT i_map_world SKILLMAKE=Cartography 50.0,t_cartography; RESOURCES=1 i_map_blank"},
+    // The pen itself: a tinker's product (Tinkering 25, one ingot); the
+    // shard's tinker menu got a row for it on 2026-09-05.
+    {"i_mapmakers_pen", 1, Provenance::PlayerCrafted, Station::None, Tool::TinkerTools,
+     kTinkering, 250, kNoSkill, 0, {{"i_ingot_iron", 1}},
      "SCRIPT revolution/revolution_runebook.scp SKILLMAKE=Inscription 45.0,i_pen_and_ink; REVOLUTION cooperative 19.12.2008; NO MENU ENTRY"},
 
     // --- fishing ------------------------------------------------------------
@@ -233,6 +331,17 @@ const std::vector<Recipe>& Table() {
      "SCRIPT r_default_water 60.0 nothing / 10.0 each of four fish; REAPAMOUNT=1,3"},
     // The M3 finding, as an edge: one fish becomes four steaks at a twelfth of
     // the weight, and only the cook buys them.
+    // COOKED, which is what a vendor buys and what a person can eat. The raw
+    // steak cannot simply be double-clicked onto a fire: Source-X answers a
+    // double-click on IT_FOOD_RAW by EATING it (CCharUse.cpp:1860), so this
+    // goes through the Cooking menu with a fire in reach, exactly as the
+    // itemdef says -- SKILLMAKE=Cooking 0.0, t_cooking.
+    {"i_fish_cut_cooked", 1, Provenance::PlayerCrafted, Station::Fire,
+     Tool::None, kCooking, 0, kNoSkill, 0,
+     {{"i_fish_cut_raw", 1}, {"i_kindling", 1}},
+     "SCRIPT i_fish_cut_cooked RESOURCES=1 i_fish_cut_raw, "
+     "SKILLMAKE=Cooking 0.0,t_cooking; ENGINE CCharUse.cpp:294 Use_Kindling "
+     "-> Skill_UseQuick(SKILL_CAMPING) -> ITEMID_CAMPFIRE 0x0de3"},
     {"i_fish_cut_raw", 4, Provenance::WorldProcessed, Station::None, Tool::Blade,
      kNoSkill, 0, kNoSkill, 0, {{"i_fish_big_1", 1}},
      "ENGINE CClientTarg.cpp:1950 SetAmount(4 * GetAmount()); LIVE m3_cut1"},
@@ -288,6 +397,7 @@ const char* StationName(Station s) {
         case Station::Anvil:         return "anvil";
         case Station::SpinningWheel: return "spinning wheel";
         case Station::Loom:          return "loom";
+        case Station::Fire:          return "campfire";
         default:                     return "?";
     }
 }

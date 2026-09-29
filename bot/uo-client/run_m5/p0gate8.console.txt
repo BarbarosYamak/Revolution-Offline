@@ -1,0 +1,630 @@
+[01:47:01.887] INFO  session 0: 127.0.0.1:2593 user='RevolutionSoak42' char=Ysolde tag='p0gate8'
+[01:47:01.889] LOG   [p0gate8] event session_start: text log opened
+[01:47:01.889] LOG   [p0gate8] event net_connect_begin: connect 127.0.0.1:2593
+[01:47:01.889] INFO  [p0gate8] [net] connecting to 127.0.0.1:2593 ...
+[01:47:01.890] LOG   [p0gate8] event net_connected: connect 127.0.0.1:2593
+[01:47:01.890] INFO  [p0gate8] [net] connected.
+[01:47:01.890] INFO  [p0gate8] [seed] sent 0x7F000001 (plaintext)
+[01:47:01.890] LOG   [p0gate8] event seed_out: 0x7F000001 hex=7f000001
+[01:47:01.892] INFO  [life] loaded persistent state for Ysolde (2 places, 2 suppliers, 256 events, 1 prior sessions)
+[01:47:01.892] INFO  [life] needs: reading 'scribe' from the profession catalogue
+[01:47:01.893] INFO  [life] build plan 'scribe': 240.0 resolved + 460.0 unresolved = 700.0/700.0, stats 30/20/100 = 150
+[01:47:01.893] INFO  [p0gate8] [life] autonomous player active for 'Ysolde' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 30 min)
+[01:47:01.893] INFO  [p0gate8] [0xA8] 1 server(s):
+[01:47:01.893] INFO  [p0gate8]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[01:47:01.899] INFO  [p0gate8] [0x8C] game server = 127.0.0.1:2593  seed=0xF0B4C7C7
+[01:47:01.899] LOG   [p0gate8] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xF0B4C7C7
+[01:47:01.899] INFO  [p0gate8] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[01:47:01.899] LOG   [p0gate8] event relay_same_socket: no seed re-sent; 0x91 follows
+[01:47:01.899] INFO  [p0gate8] [0xB9] server features = 0x0005
+[01:47:01.899] INFO  [p0gate8] [0xA9] 5 slot(s) (populated 1):
+[01:47:01.899] INFO  [p0gate8]   [0] Ysolde
+[01:47:01.899] INFO  [p0gate8]   [1] <empty>
+[01:47:01.899] INFO  [p0gate8]   [2] <empty>
+[01:47:01.899] INFO  [p0gate8]   [3] <empty>
+[01:47:01.899] INFO  [p0gate8]   [4] <empty>
+[01:47:01.900] INFO  [p0gate8] [ui] playing slot 0 ('Ysolde')
+[01:47:01.915] INFO  [p0gate8] [0x1B] serial=0x00014261 body=0x0190 pos=(1486,1549,32)
+[01:47:01.915] LOG   [p0gate8] event login_confirm: serial=0x00014261 body=0x0190 pos=(1486,1549,32)
+[01:47:01.915] INFO  [p0gate8] [0x20] player @(1486,1549,32) facing=6
+[01:47:01.915] INFO  [p0gate8] [0x55] login complete — entering world
+[01:47:01.915] LOG   [p0gate8] event in_world: 0x55 received
+[01:47:01.915] INFO  [p0gate8] [backpack] opening 0x4001425D
+[01:47:01.915] INFO  [p0gate8] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[01:47:01.915] INFO  [p0gate8] [chat ascii] System: There are 0 other players here.
+[01:47:01.915] INFO  [p0gate8] [chat ascii] System: Last logged: 2026/08/29 01:34:56
+[01:47:01.915] INFO  [p0gate8] [chat ascii] System: You are under the protection of the city guards
+[01:47:01.919] INFO  [p0gate8] [action] requesting the skill list
+[01:47:01.919] INFO  [life] in world; asked the server for the skill list
+[01:47:01.919] INFO  [p0gate8] [0x24] open container 0x4001425D gump=60
+[01:47:01.919] INFO  [p0gate8] [0x3C] container contents: 5 item(s)
+[01:47:01.919] LOG   [p0gate8] event backpack_contents: serial=0x4001425D items=5
+[01:47:04.518] INFO  [p0gate8] [bot] world data loaded (0 blacklisted spot(s)).
+[01:47:04.519] INFO  [life] reconciliation: resuming a life, 1 field(s) differed
+[01:47:04.519] INFO  [life]   gold         persisted=386        server=386        -> server value accepted
+[01:47:04.519] INFO  [life]   str          persisted=10         server=10         -> server value accepted
+[01:47:04.519] INFO  [life]   dex          persisted=10         server=10         -> server value accepted
+[01:47:04.519] INFO  [life]   int          persisted=31         server=31         -> server value accepted
+[01:47:04.519] INFO  [life]   skill_23     persisted=50.6       server=50.6       -> server value accepted
+[01:47:04.519] INFO  [life]   skill_25     persisted=50.0       server=50.0       -> server value accepted
+[01:47:04.519] INFO  [life]   skill_46     persisted=21.9       server=21.9       -> server value accepted
+[01:47:04.519] INFO  [life]   position     persisted=1489,1550  server=1486,1549  -> server value accepted
+[01:47:04.519] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[01:47:04.519] INFO  [life]   restored objective KEPT: BUY_SUPPLIES (progress 0)
+[01:47:04.519] INFO  [p0gate8] [survival] on
+[01:47:04.519] LOG   [p0gate8] event survival_mode: on
+[01:47:04.522] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[01:47:04.522] INFO  [p0gate8] [survival] hp 10/10 (100%) -> fight
+[01:47:04.574] INFO  [life] supplies: looking for a 'mage' to sell 5 i_scroll_blank (trip 1)
+[01:47:04.574] INFO  [p0gate8] [travel] Britain mage -> (1485,1550) r=5 from (1486,1549)
+[01:47:04.574] LOG   [p0gate8] event travel_start: label='Britain mage' target=(1485,1550) radius=5 from=(1486,1549)
+[01:47:04.574] INFO  [p0gate8] [travel] Britain mage ARRIVED at (1486,1549,32)
+[01:47:04.574] LOG   [p0gate8] event travel_done: label='Britain mage' ok=1 at=(1486,1549) legs=0 plans=0 why=''
+[01:47:06.597] INFO  [life] supplies: arrived at 1486,1549 -- asking who is here
+[01:47:06.597] INFO  [p0gate8] [action] scanning nearby mobiles for names
+[01:47:06.597] INFO  [p0gate8] [action] requested 4 paperdoll(s) for trade titles
+[01:47:06.612] INFO  [p0gate8] [mobiles] nearby (5):
+[01:47:06.612] INFO  [p0gate8]   Xanthe 0x00001211
+[01:47:06.612] INFO  [p0gate8]   Caedmon 0x000012EE
+[01:47:06.612] INFO  [p0gate8]   Alenne 0x00001145
+[01:47:06.612] INFO  [p0gate8]   Shunnar 0x0000E14F
+[01:47:06.612] INFO  [p0gate8]   Dog 0x00000655
+[01:47:06.612] INFO  [p0gate8] [0x20] player @(1486,1549,32) facing=5
+[01:47:06.612] INFO  [p0gate8] [0x88] paperdoll 0x000012EE: "Caedmon, the mage guildmaster"
+[01:47:06.612] INFO  [p0gate8] [world] Caedmon, the mage guildmaster is a mage at (1485,1551)
+[01:47:06.612] INFO  [p0gate8] [0x20] player @(1486,1549,32) facing=0
+[01:47:06.612] INFO  [p0gate8] [0x88] paperdoll 0x00001211: "Xanthe, the alchemist"
+[01:47:06.612] INFO  [p0gate8] [world] Xanthe, the alchemist is a alchemist at (1486,1548)
+[01:47:06.612] INFO  [p0gate8] [0x20] player @(1486,1549,32) facing=5
+[01:47:06.612] INFO  [p0gate8] [0x88] paperdoll 0x00001145: "Alenne, the mage"
+[01:47:06.612] INFO  [p0gate8] [world] Alenne, the mage is a mage at (1484,1550)
+[01:47:06.612] INFO  [p0gate8] [0x20] player @(1486,1549,32) facing=0
+[01:47:06.612] INFO  [p0gate8] [0x88] paperdoll 0x0000E14F: "Shunnar, the scribe"
+[01:47:06.612] INFO  [p0gate8] [world] Shunnar, the scribe is a scribe at (1485,1545)
+[01:47:09.154] INFO  [p0gate8] [travel] mobile 0x000012EE -> (1486,1551) r=1 from (1486,1549)
+[01:47:09.154] LOG   [p0gate8] event travel_start: label='mobile 0x000012EE' target=(1486,1551) radius=1 from=(1486,1549)
+[01:47:09.154] INFO  [p0gate8] [travel] mode walk             usable   <- chosen
+[01:47:09.154] INFO  [p0gate8] [travel] mode moongate         usable
+[01:47:09.154] INFO  [p0gate8] [travel] mode loose_rune_recall no: no rune marked at that destination
+[01:47:09.154] INFO  [p0gate8] [travel] mode runebook_recall  no: no runebook page for that destination
+[01:47:09.154] LOG   [p0gate8] event travel_mode: walk
+[01:47:09.154] INFO  [p0gate8] [travel] plan mobile 0x000012EE: ok legs=1 ~2 tiles transit=0 nodes=0
+[01:47:09.215] INFO  [p0gate8] [action] goto (1486,1551) from (1486,1549,32)
+[01:47:09.215] LOG   [p0gate8] event goto_start: target=(1486,1551) from=(1486,1549)
+[01:47:09.215] INFO  [p0gate8] [bot] running from (1486,1549,32) to (1486,1551,z30)
+[01:47:09.215] INFO  [p0gate8] [bot] planning path to (1486,1551) in background
+[01:47:09.539] INFO  [p0gate8] [survival] hp 10/10 (100%) -> fight
+[01:47:10.632] INFO  [p0gate8] [action] goto finished at (1486,1549,32); target (1486,1551); stopped short (off by 2 tile(s))
+[01:47:10.632] LOG   [p0gate8] event goto_done: at=(1486,1549) target=(1486,1551) arrived=0 off=2
+[01:47:11.859] INFO  [p0gate8] [travel] mode walk             usable   <- chosen
+[01:47:11.860] INFO  [p0gate8] [travel] mode moongate         usable
+[01:47:11.860] INFO  [p0gate8] [travel] mode loose_rune_recall no: no rune marked at that destination
+[01:47:11.860] INFO  [p0gate8] [travel] mode runebook_recall  no: no runebook page for that destination
+[01:47:11.860] LOG   [p0gate8] event travel_mode: walk
+[01:47:11.860] INFO  [p0gate8] [travel] plan mobile 0x000012EE: ok legs=1 ~2 tiles transit=0 nodes=0
+[01:47:12.886] INFO  [p0gate8] [travel] mobile 0x000012EE ARRIVED at (1486,1549,32)
+[01:47:12.886] LOG   [p0gate8] event travel_done: label='mobile 0x000012EE' ok=1 at=(1486,1549) legs=0 plans=0 why=''
+[01:47:12.946] INFO  [p0gate8] [ACTION] vendor_buy start
+[01:47:12.946] INFO  [p0gate8] [VENDOR] open vendor=0x000012EE say='Caedmon buy'
+[01:47:12.962] INFO  [p0gate8] [chat uni  ] : Caedmon buy
+[01:47:14.580] INFO  [p0gate8] [survival] hp 10/10 (100%) -> fight
+[01:47:15.500] INFO  [p0gate8] [travel] mobile 0x000012EE -> (1487,1547) r=1 from (1486,1549)
+[01:47:15.500] LOG   [p0gate8] event travel_start: label='mobile 0x000012EE' target=(1487,1547) radius=1 from=(1486,1549)
+[01:47:15.500] INFO  [p0gate8] [travel] mode walk             usable   <- chosen
+[01:47:15.500] INFO  [p0gate8] [travel] mode moongate         usable
+[01:47:15.500] INFO  [p0gate8] [travel] mode loose_rune_recall no: no rune marked at that destination
+[01:47:15.500] INFO  [p0gate8] [travel] mode runebook_recall  no: no runebook page for that destination
+[01:47:15.500] LOG   [p0gate8] event travel_mode: walk
+[01:47:15.500] INFO  [p0gate8] [travel] plan mobile 0x000012EE: ok legs=1 ~2 tiles transit=0 nodes=0
+[01:47:15.561] INFO  [p0gate8] [action] goto (1487,1547) from (1486,1549,32)
+[01:47:15.561] LOG   [p0gate8] event goto_start: target=(1487,1547) from=(1486,1549)
+[01:47:15.561] INFO  [p0gate8] [bot] running from (1486,1549,32) to (1487,1547,z35)
+[01:47:15.561] INFO  [p0gate8] [bot] planning path to (1487,1547) in background
+[01:47:16.696] INFO  [p0gate8] [action] goto finished at (1486,1549,32); target (1487,1547); stopped short (off by 3 tile(s))
+[01:47:16.696] LOG   [p0gate8] event goto_done: at=(1486,1549) target=(1487,1547) arrived=0 off=3
+[01:47:17.951] INFO  [p0gate8] [travel] mode walk             usable   <- chosen
+[01:47:17.951] INFO  [p0gate8] [travel] mode moongate         usable
+[01:47:17.951] INFO  [p0gate8] [travel] mode loose_rune_recall no: no rune marked at that destination
+[01:47:17.951] INFO  [p0gate8] [travel] mode runebook_recall  no: no runebook page for that destination
+[01:47:17.951] LOG   [p0gate8] event travel_mode: walk
+[01:47:17.951] INFO  [p0gate8] [travel] plan mobile 0x000012EE: ok legs=1 ~2 tiles transit=0 nodes=0
+[01:47:19.478] INFO  [p0gate8] [action] goto (1487,1547) from (1486,1549,32)
+[01:47:19.478] LOG   [p0gate8] event goto_start: target=(1487,1547) from=(1486,1549)
+[01:47:19.478] INFO  [p0gate8] [bot] running from (1486,1549,32) to (1487,1547,z30)
+[01:47:19.478] INFO  [p0gate8] [bot] planning path to (1487,1547) in background
+[01:47:19.601] INFO  [p0gate8] [action] goto finished at (1486,1549,32); target (1487,1547); stopped short (off by 3 tile(s))
+[01:47:19.601] LOG   [p0gate8] event goto_done: at=(1486,1549) target=(1487,1547) arrived=0 off=3
+[01:47:19.601] INFO  [p0gate8] [survival] hp 10/10 (100%) -> fight
+[01:47:19.726] INFO  [p0gate8] [travel] mode walk             usable   <- chosen
+[01:47:19.726] INFO  [p0gate8] [travel] mode moongate         usable
+[01:47:19.726] INFO  [p0gate8] [travel] mode loose_rune_recall no: no rune marked at that destination
+[01:47:19.726] INFO  [p0gate8] [travel] mode runebook_recall  no: no runebook page for that destination
+[01:47:19.726] LOG   [p0gate8] event travel_mode: walk
+[01:47:19.726] INFO  [p0gate8] [travel] plan mobile 0x000012EE: ok legs=1 ~4 tiles transit=0 nodes=0
+[01:47:19.788] INFO  [p0gate8] [action] goto (1490,1549) from (1486,1549,32)
+[01:47:19.788] LOG   [p0gate8] event goto_start: target=(1490,1549) from=(1486,1549)
+[01:47:19.788] INFO  [p0gate8] [bot] running from (1486,1549,32) to (1490,1549,z30)
+[01:47:19.788] INFO  [p0gate8] [bot] planning path to (1490,1549) in background
+[01:47:20.868] INFO  [p0gate8] [action] goto finished at (1486,1549,32); target (1490,1549); stopped short (off by 4 tile(s))
+[01:47:20.868] LOG   [p0gate8] event goto_done: at=(1486,1549) target=(1490,1549) arrived=0 off=4
+[01:47:20.991] LOG   [p0gate8] event action_result: vendor_buy timeout
+[01:47:22.101] INFO  [p0gate8] [action] goto (1490,1549) from (1486,1549,32)
+[01:47:22.101] LOG   [p0gate8] event goto_start: target=(1490,1549) from=(1486,1549)
+[01:47:22.101] INFO  [p0gate8] [bot] running from (1486,1549,32) to (1490,1549,z30)
+[01:47:22.101] INFO  [p0gate8] [bot] planning path to (1490,1549) in background
+[01:47:22.148] INFO  [p0gate8] [bot] replan to (1490,1549): 5 steps in 225.0us
+[01:47:23.536] INFO  [p0gate8] [travel] mobile 0x000012EE ARRIVED at (1490,1548,35)
+[01:47:23.536] LOG   [p0gate8] event travel_done: label='mobile 0x000012EE' ok=1 at=(1490,1548) legs=1 plans=1 why=''
+[01:47:23.597] INFO  [p0gate8] [travel] mobile 0x000012EE -> (1488,1551) r=1 from (1490,1548)
+[01:47:23.597] LOG   [p0gate8] event travel_start: label='mobile 0x000012EE' target=(1488,1551) radius=1 from=(1490,1548)
+[01:47:23.597] INFO  [p0gate8] [travel] mode walk             usable   <- chosen
+[01:47:23.597] INFO  [p0gate8] [travel] mode moongate         usable
+[01:47:23.597] INFO  [p0gate8] [travel] mode loose_rune_recall no: no rune marked at that destination
+[01:47:23.597] INFO  [p0gate8] [travel] mode runebook_recall  no: no runebook page for that destination
+[01:47:23.597] LOG   [p0gate8] event travel_mode: walk
+[01:47:23.597] INFO  [p0gate8] [travel] plan mobile 0x000012EE: ok legs=1 ~3 tiles transit=0 nodes=0
+[01:47:24.201] INFO  [p0gate8] [bot] arrived at (1490,1549,30)
+[01:47:24.202] INFO  [p0gate8] [action] goto finished at (1490,1549,30); target (1490,1549); ARRIVED (off by 0 tile(s))
+[01:47:24.202] LOG   [p0gate8] event goto_done: at=(1490,1549) target=(1490,1549) arrived=1 off=0
+[01:47:24.202] INFO  [p0gate8] [action] goto (1488,1551) from (1490,1549,30)
+[01:47:24.202] LOG   [p0gate8] event goto_start: target=(1488,1551) from=(1490,1549)
+[01:47:24.202] INFO  [p0gate8] [bot] running from (1490,1549,30) to (1488,1551,z30)
+[01:47:24.202] INFO  [p0gate8] [bot] planning path to (1488,1551) in background
+[01:47:24.263] INFO  [p0gate8] [bot] replan to (1488,1551): 2 steps in 52.9us
+[01:47:24.569] INFO  [life] goal_changed=TRAIN_AT_NPC from=BUY_SUPPLIES reason="TRAIN_AT_NPC 90.0 superseded BUY_SUPPLIES 61.6"
+[01:47:24.569] INFO  [life] needs considered: NeedGold(sell surplus 0.55) NeedSkillTraining(Meditation 0.45) NeedSupplies(buy craft inputs 0.44) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Inscription BLOCKED 0.27) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
+[01:47:24.569] INFO  [life]   score=90.0
+[01:47:24.569] INFO  [life]   reason: NeedSkillTraining urgency 0.45 x 200 = 90.0
+[01:47:24.569] INFO  [life]   reason: Meditation 21.9 -> 40.0, gold 386 (fee is quoted on arrival, roughly 300)
+[01:47:24.569] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Magery 50.0 -> 100.0)
+[01:47:24.631] INFO  [p0gate8] [survival] hp 10/10 (100%) -> fight
+[01:47:25.047] INFO  [p0gate8] [bot] arrived at (1488,1551,30)
+[01:47:25.047] INFO  [p0gate8] [action] goto finished at (1488,1551,30); target (1488,1551); ARRIVED (off by 0 tile(s))
+[01:47:25.047] LOG   [p0gate8] event goto_done: at=(1488,1551) target=(1488,1551) arrived=1 off=0
+[01:47:25.047] INFO  [p0gate8] [travel] mobile 0x000012EE ARRIVED at (1488,1551,30)
+[01:47:25.047] LOG   [p0gate8] event travel_done: label='mobile 0x000012EE' ok=1 at=(1488,1551) legs=1 plans=1 why=''
+[01:47:25.598] INFO  [life] training: back to a trainer we have used before, 'mage' at 1485,1549
+[01:47:25.598] INFO  [p0gate8] [travel] trainer -> (1485,1549) r=2 from (1488,1551)
+[01:47:25.598] LOG   [p0gate8] event travel_start: label='trainer' target=(1485,1549) radius=2 from=(1488,1551)
+[01:47:25.598] INFO  [p0gate8] [travel] mode walk             usable   <- chosen
+[01:47:25.598] INFO  [p0gate8] [travel] mode moongate         usable
+[01:47:25.598] INFO  [p0gate8] [travel] mode loose_rune_recall no: no rune marked at that destination
+[01:47:25.598] INFO  [p0gate8] [travel] mode runebook_recall  no: no runebook page for that destination
+[01:47:25.598] LOG   [p0gate8] event travel_mode: walk
+[01:47:25.598] INFO  [p0gate8] [travel] plan trainer: ok legs=1 ~3 tiles transit=0 nodes=0
+[01:47:25.660] INFO  [p0gate8] [action] goto (1485,1549) from (1488,1551,30)
+[01:47:25.660] LOG   [p0gate8] event goto_start: target=(1485,1549) from=(1488,1551)
+[01:47:25.660] INFO  [p0gate8] [bot] running from (1488,1551,30) to (1485,1549)
+[01:47:25.660] INFO  [p0gate8] [bot] planning path to (1485,1549) in background
+[01:47:25.722] INFO  [p0gate8] [bot] replan to (1485,1549): 3 steps in 218.9us
+[01:47:26.152] INFO  [p0gate8] [travel] trainer ARRIVED at (1487,1551,30)
+[01:47:26.152] LOG   [p0gate8] event travel_done: label='trainer' ok=1 at=(1487,1551) legs=1 plans=1 why=''
+[01:47:26.893] INFO  [p0gate8] [bot] arrived at (1485,1549,35)
+[01:47:27.614] INFO  [life] training: arrived at 1485,1549 -- asking who is here
+[01:47:27.614] INFO  [p0gate8] [action] scanning nearby mobiles for names
+[01:47:27.614] INFO  [p0gate8] [mobiles] nearby (5):
+[01:47:27.614] INFO  [p0gate8]   Xanthe 0x00001211
+[01:47:27.614] INFO  [p0gate8]   Alenne 0x00001145
+[01:47:27.614] INFO  [p0gate8]   Caedmon 0x000012EE
+[01:47:27.614] INFO  [p0gate8]   Shunnar 0x0000E14F
+[01:47:27.614] INFO  [p0gate8]   Dog 0x00000655
+[01:47:29.655] INFO  [p0gate8] [survival] hp 10/10 (100%) -> fight
+[01:47:30.147] INFO  [life] training: back to a trainer we have used before, 'mage' at 1485,1549
+[01:47:30.147] INFO  [p0gate8] [travel] trainer -> (1485,1549) r=2 from (1485,1549)
+[01:47:30.147] LOG   [p0gate8] event travel_start: label='trainer' target=(1485,1549) radius=2 from=(1485,1549)
+[01:47:30.147] INFO  [p0gate8] [travel] trainer ARRIVED at (1485,1549,35)
+[01:47:30.147] LOG   [p0gate8] event travel_done: label='trainer' ok=1 at=(1485,1549) legs=0 plans=0 why=''
+[01:47:32.206] INFO  [life] training: arrived at 1485,1549 -- asking who is here
+[01:47:32.206] INFO  [p0gate8] [action] scanning nearby mobiles for names
+[01:47:32.207] INFO  [p0gate8] [mobiles] nearby (5):
+[01:47:32.207] INFO  [p0gate8]   Xanthe 0x00001211
+[01:47:32.207] INFO  [p0gate8]   Alenne 0x00001145
+[01:47:32.207] INFO  [p0gate8]   Caedmon 0x000012EE
+[01:47:32.207] INFO  [p0gate8]   Shunnar 0x0000E14F
+[01:47:32.207] INFO  [p0gate8]   Dog 0x00000655
+[01:47:34.663] INFO  [p0gate8] [survival] hp 10/10 (100%) -> fight
+[01:47:34.725] INFO  [life] training: back to a trainer we have used before, 'mage' at 1485,1549
+[01:47:34.725] INFO  [p0gate8] [travel] trainer -> (1485,1549) r=2 from (1485,1549)
+[01:47:34.725] LOG   [p0gate8] event travel_start: label='trainer' target=(1485,1549) radius=2 from=(1485,1549)
+[01:47:34.725] INFO  [p0gate8] [travel] trainer ARRIVED at (1485,1549,35)
+[01:47:34.725] LOG   [p0gate8] event travel_done: label='trainer' ok=1 at=(1485,1549) legs=0 plans=0 why=''
+[01:47:36.772] INFO  [life] goal_failed=TRAIN_AT_NPC reason="no 'mage' reachable after 3 trips"
+[01:47:36.835] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: no trainer reachable"
+[01:47:36.835] INFO  [life] needs considered: NeedGold(sell surplus 0.55) NeedSkillTraining(Meditation 0.45) NeedSupplies(buy craft inputs 0.44) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Inscription BLOCKED 0.27) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
+[01:47:36.835] INFO  [life]   score=90.0
+[01:47:36.835] INFO  [life]   reason: NeedSkillTraining urgency 0.45 x 200 = 90.0
+[01:47:36.835] INFO  [life]   reason: Meditation 21.9 -> 40.0, gold 386 (fee is quoted on arrival, roughly 300)
+[01:47:36.835] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Magery 50.0 -> 100.0)
+[01:47:36.835] INFO  [life] training: back to a trainer we have used before, 'mage' at 1485,1549
+[01:47:36.835] INFO  [p0gate8] [travel] trainer -> (1485,1549) r=2 from (1485,1549)
+[01:47:36.835] LOG   [p0gate8] event travel_start: label='trainer' target=(1485,1549) radius=2 from=(1485,1549)
+[01:47:36.835] INFO  [p0gate8] [travel] trainer ARRIVED at (1485,1549,35)
+[01:47:36.835] LOG   [p0gate8] event travel_done: label='trainer' ok=1 at=(1485,1549) legs=0 plans=0 why=''
+[01:47:38.854] INFO  [life] training: arrived at 1485,1549 -- asking who is here
+[01:47:38.854] INFO  [p0gate8] [action] scanning nearby mobiles for names
+[01:47:38.870] INFO  [p0gate8] [mobiles] nearby (5):
+[01:47:38.870] INFO  [p0gate8]   Xanthe 0x00001211
+[01:47:38.870] INFO  [p0gate8]   Alenne 0x00001145
+[01:47:38.870] INFO  [p0gate8]   Caedmon 0x000012EE
+[01:47:38.870] INFO  [p0gate8]   Shunnar 0x0000E14F
+[01:47:38.870] INFO  [p0gate8]   Dog 0x00000655
+[01:47:39.670] INFO  [p0gate8] [survival] hp 10/10 (100%) -> fight
+[01:47:41.413] INFO  [life] training: back to a trainer we have used before, 'mage' at 1485,1549
+[01:47:41.413] INFO  [p0gate8] [travel] trainer -> (1485,1549) r=2 from (1485,1549)
+[01:47:41.413] LOG   [p0gate8] event travel_start: label='trainer' target=(1485,1549) radius=2 from=(1485,1549)
+[01:47:41.413] INFO  [p0gate8] [travel] trainer ARRIVED at (1485,1549,35)
+[01:47:41.413] LOG   [p0gate8] event travel_done: label='trainer' ok=1 at=(1485,1549) legs=0 plans=0 why=''
+[01:47:43.445] INFO  [life] training: arrived at 1485,1549 -- asking who is here
+[01:47:43.445] INFO  [p0gate8] [action] scanning nearby mobiles for names
+[01:47:43.460] INFO  [p0gate8] [mobiles] nearby (5):
+[01:47:43.460] INFO  [p0gate8]   Xanthe 0x00001211
+[01:47:43.460] INFO  [p0gate8]   Caedmon 0x000012EE
+[01:47:43.460] INFO  [p0gate8]   Alenne 0x00001145
+[01:47:43.460] INFO  [p0gate8]   Shunnar 0x0000E14F
+[01:47:43.460] INFO  [p0gate8]   Dog 0x00000655
+[01:47:44.693] INFO  [p0gate8] [survival] hp 10/10 (100%) -> fight
+[01:47:45.968] INFO  [life] training: back to a trainer we have used before, 'mage' at 1485,1549
+[01:47:45.968] INFO  [p0gate8] [travel] trainer -> (1485,1549) r=2 from (1485,1549)
+[01:47:45.968] LOG   [p0gate8] event travel_start: label='trainer' target=(1485,1549) radius=2 from=(1485,1549)
+[01:47:45.968] INFO  [p0gate8] [travel] trainer ARRIVED at (1485,1549,35)
+[01:47:45.968] LOG   [p0gate8] event travel_done: label='trainer' ok=1 at=(1485,1549) legs=0 plans=0 why=''
+[01:47:48.011] INFO  [life] goal_failed=TRAIN_AT_NPC reason="no 'mage' reachable after 3 trips"
+[01:47:48.073] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: no trainer reachable"
+[01:47:48.073] INFO  [life] needs considered: NeedGold(sell surplus 0.55) NeedSkillTraining(Meditation 0.45) NeedSupplies(buy craft inputs 0.44) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Inscription BLOCKED 0.27) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
+[01:47:48.073] INFO  [life]   score=90.0
+[01:47:48.073] INFO  [life]   reason: NeedSkillTraining urgency 0.45 x 200 = 90.0
+[01:47:48.073] INFO  [life]   reason: Meditation 21.9 -> 40.0, gold 386 (fee is quoted on arrival, roughly 300)
+[01:47:48.073] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Magery 50.0 -> 100.0)
+[01:47:48.073] INFO  [life] training: back to a trainer we have used before, 'mage' at 1485,1549
+[01:47:48.073] INFO  [p0gate8] [travel] trainer -> (1485,1549) r=2 from (1485,1549)
+[01:47:48.073] LOG   [p0gate8] event travel_start: label='trainer' target=(1485,1549) radius=2 from=(1485,1549)
+[01:47:48.073] INFO  [p0gate8] [travel] trainer ARRIVED at (1485,1549,35)
+[01:47:48.073] LOG   [p0gate8] event travel_done: label='trainer' ok=1 at=(1485,1549) legs=0 plans=0 why=''
+[01:47:49.750] INFO  [p0gate8] [survival] hp 10/10 (100%) -> fight
+[01:47:50.117] INFO  [life] training: arrived at 1485,1549 -- asking who is here
+[01:47:50.117] INFO  [p0gate8] [action] scanning nearby mobiles for names
+[01:47:50.132] INFO  [p0gate8] [mobiles] nearby (5):
+[01:47:50.132] INFO  [p0gate8]   Alenne 0x00001145
+[01:47:50.132] INFO  [p0gate8]   Caedmon 0x000012EE
+[01:47:50.132] INFO  [p0gate8]   Xanthe 0x00001211
+[01:47:50.132] INFO  [p0gate8]   Shunnar 0x0000E14F
+[01:47:50.132] INFO  [p0gate8]   Dog 0x00000655
+[01:47:50.502] INFO  [p0gate8] [chat ascii] Alenne: I'm listenin'.
+[01:47:52.624] INFO  [life] training: back to a trainer we have used before, 'mage' at 1485,1549
+[01:47:52.624] INFO  [p0gate8] [travel] trainer -> (1485,1549) r=2 from (1485,1549)
+[01:47:52.624] LOG   [p0gate8] event travel_start: label='trainer' target=(1485,1549) radius=2 from=(1485,1549)
+[01:47:52.624] INFO  [p0gate8] [travel] trainer ARRIVED at (1485,1549,35)
+[01:47:52.624] LOG   [p0gate8] event travel_done: label='trainer' ok=1 at=(1485,1549) legs=0 plans=0 why=''
+[01:47:54.668] INFO  [life] training: arrived at 1485,1549 -- asking who is here
+[01:47:54.668] INFO  [p0gate8] [action] scanning nearby mobiles for names
+[01:47:54.683] INFO  [p0gate8] [mobiles] nearby (5):
+[01:47:54.683] INFO  [p0gate8]   Caedmon 0x000012EE
+[01:47:54.683] INFO  [p0gate8]   Alenne 0x00001145
+[01:47:54.683] INFO  [p0gate8]   Xanthe 0x00001211
+[01:47:54.683] INFO  [p0gate8]   Shunnar 0x0000E14F
+[01:47:54.683] INFO  [p0gate8]   Dog 0x00000655
+[01:47:54.806] INFO  [p0gate8] [survival] hp 10/10 (100%) -> fight
+[01:47:57.189] INFO  [life] training: back to a trainer we have used before, 'mage' at 1485,1549
+[01:47:57.189] INFO  [p0gate8] [travel] trainer -> (1485,1549) r=2 from (1485,1549)
+[01:47:57.189] LOG   [p0gate8] event travel_start: label='trainer' target=(1485,1549) radius=2 from=(1485,1549)
+[01:47:57.189] INFO  [p0gate8] [travel] trainer ARRIVED at (1485,1549,35)
+[01:47:57.189] LOG   [p0gate8] event travel_done: label='trainer' ok=1 at=(1485,1549) legs=0 plans=0 why=''
+[01:47:59.204] INFO  [life] goal_failed=TRAIN_AT_NPC reason="no 'mage' reachable after 3 trips"
+[01:47:59.250] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: no trainer reachable"
+[01:47:59.250] INFO  [life] needs considered: NeedGold(sell surplus 0.55) NeedSkillTraining(Meditation 0.45) NeedSupplies(buy craft inputs 0.44) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Inscription BLOCKED 0.27) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
+[01:47:59.250] INFO  [life]   score=90.0
+[01:47:59.250] INFO  [life]   reason: NeedSkillTraining urgency 0.45 x 200 = 90.0
+[01:47:59.250] INFO  [life]   reason: Meditation 21.9 -> 40.0, gold 386 (fee is quoted on arrival, roughly 300)
+[01:47:59.250] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Magery 50.0 -> 100.0)
+[01:47:59.250] INFO  [life] training: back to a trainer we have used before, 'mage' at 1485,1549
+[01:47:59.250] INFO  [p0gate8] [travel] trainer -> (1485,1549) r=2 from (1485,1549)
+[01:47:59.250] LOG   [p0gate8] event travel_start: label='trainer' target=(1485,1549) radius=2 from=(1485,1549)
+[01:47:59.250] INFO  [p0gate8] [travel] trainer ARRIVED at (1485,1549,35)
+[01:47:59.250] LOG   [p0gate8] event travel_done: label='trainer' ok=1 at=(1485,1549) legs=0 plans=0 why=''
+[01:47:59.863] INFO  [p0gate8] [survival] hp 10/10 (100%) -> fight
+[01:48:01.303] INFO  [life] training: arrived at 1485,1549 -- asking who is here
+[01:48:01.303] INFO  [p0gate8] [action] scanning nearby mobiles for names
+[01:48:01.304] INFO  [p0gate8] [mobiles] nearby (5):
+[01:48:01.304] INFO  [p0gate8]   Xanthe 0x00001211
+[01:48:01.304] INFO  [p0gate8]   Caedmon 0x000012EE
+[01:48:01.304] INFO  [p0gate8]   Alenne 0x00001145
+[01:48:01.304] INFO  [p0gate8]   Shunnar 0x0000E14F
+[01:48:01.304] INFO  [p0gate8]   Dog 0x00000655
+[01:48:03.821] INFO  [life] training: back to a trainer we have used before, 'mage' at 1485,1549
+[01:48:03.821] INFO  [p0gate8] [travel] trainer -> (1485,1549) r=2 from (1485,1549)
+[01:48:03.821] LOG   [p0gate8] event travel_start: label='trainer' target=(1485,1549) radius=2 from=(1485,1549)
+[01:48:03.821] INFO  [p0gate8] [travel] trainer ARRIVED at (1485,1549,35)
+[01:48:03.821] LOG   [p0gate8] event travel_done: label='trainer' ok=1 at=(1485,1549) legs=0 plans=0 why=''
+[01:48:04.548] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[01:48:04.912] INFO  [p0gate8] [survival] hp 10/10 (100%) -> fight
+[01:48:05.834] INFO  [life] training: arrived at 1485,1549 -- asking who is here
+[01:48:05.834] INFO  [p0gate8] [action] scanning nearby mobiles for names
+[01:48:05.834] INFO  [p0gate8] [mobiles] nearby (5):
+[01:48:05.834] INFO  [p0gate8]   Caedmon 0x000012EE
+[01:48:05.834] INFO  [p0gate8]   Xanthe 0x00001211
+[01:48:05.834] INFO  [p0gate8]   Shunnar 0x0000E14F
+[01:48:05.834] INFO  [p0gate8]   Alenne 0x00001145
+[01:48:05.834] INFO  [p0gate8]   Dog 0x00000655
+[01:48:08.356] INFO  [life] training: back to a trainer we have used before, 'mage' at 1485,1549
+[01:48:08.356] INFO  [p0gate8] [travel] trainer -> (1485,1549) r=2 from (1485,1549)
+[01:48:08.356] LOG   [p0gate8] event travel_start: label='trainer' target=(1485,1549) radius=2 from=(1485,1549)
+[01:48:08.356] INFO  [p0gate8] [travel] trainer ARRIVED at (1485,1549,35)
+[01:48:08.356] LOG   [p0gate8] event travel_done: label='trainer' ok=1 at=(1485,1549) legs=0 plans=0 why=''
+[01:48:09.969] INFO  [p0gate8] [survival] hp 10/10 (100%) -> fight
+[01:48:10.400] INFO  [life] goal_failed=TRAIN_AT_NPC reason="no 'mage' reachable after 3 trips"
+[01:48:10.462] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: no trainer reachable"
+[01:48:10.462] INFO  [life] needs considered: NeedGold(sell surplus 0.55) NeedSkillTraining(Meditation 0.45) NeedSupplies(buy craft inputs 0.44) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Inscription BLOCKED 0.27) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
+[01:48:10.462] INFO  [life]   score=90.0
+[01:48:10.462] INFO  [life]   reason: NeedSkillTraining urgency 0.45 x 200 = 90.0
+[01:48:10.462] INFO  [life]   reason: Meditation 21.9 -> 40.0, gold 386 (fee is quoted on arrival, roughly 300)
+[01:48:10.462] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Magery 50.0 -> 100.0)
+[01:48:10.462] INFO  [life] training: back to a trainer we have used before, 'mage' at 1485,1549
+[01:48:10.462] INFO  [p0gate8] [travel] trainer -> (1485,1549) r=2 from (1485,1549)
+[01:48:10.462] LOG   [p0gate8] event travel_start: label='trainer' target=(1485,1549) radius=2 from=(1485,1549)
+[01:48:10.462] INFO  [p0gate8] [travel] trainer ARRIVED at (1485,1549,35)
+[01:48:10.462] LOG   [p0gate8] event travel_done: label='trainer' ok=1 at=(1485,1549) legs=0 plans=0 why=''
+[01:48:12.522] INFO  [life] training: arrived at 1485,1549 -- asking who is here
+[01:48:12.522] INFO  [p0gate8] [action] scanning nearby mobiles for names
+[01:48:12.537] INFO  [p0gate8] [mobiles] nearby (5):
+[01:48:12.538] INFO  [p0gate8]   Xanthe 0x00001211
+[01:48:12.538] INFO  [p0gate8]   Shunnar 0x0000E14F
+[01:48:12.538] INFO  [p0gate8]   Alenne 0x00001145
+[01:48:12.538] INFO  [p0gate8]   Caedmon 0x000012EE
+[01:48:12.538] INFO  [p0gate8]   Dog 0x00000655
+[01:48:14.989] INFO  [p0gate8] [survival] hp 10/10 (100%) -> fight
+[01:48:15.035] INFO  [life] training: back to a trainer we have used before, 'mage' at 1485,1549
+[01:48:15.035] INFO  [p0gate8] [travel] trainer -> (1485,1549) r=2 from (1485,1549)
+[01:48:15.035] LOG   [p0gate8] event travel_start: label='trainer' target=(1485,1549) radius=2 from=(1485,1549)
+[01:48:15.035] INFO  [p0gate8] [travel] trainer ARRIVED at (1485,1549,35)
+[01:48:15.035] LOG   [p0gate8] event travel_done: label='trainer' ok=1 at=(1485,1549) legs=0 plans=0 why=''
+[01:48:17.092] INFO  [life] training: arrived at 1485,1549 -- asking who is here
+[01:48:17.092] INFO  [p0gate8] [action] scanning nearby mobiles for names
+[01:48:17.092] INFO  [p0gate8] [mobiles] nearby (5):
+[01:48:17.092] INFO  [p0gate8]   Xanthe 0x00001211
+[01:48:17.092] INFO  [p0gate8]   Shunnar 0x0000E14F
+[01:48:17.092] INFO  [p0gate8]   Alenne 0x00001145
+[01:48:17.092] INFO  [p0gate8]   Caedmon 0x000012EE
+[01:48:17.092] INFO  [p0gate8]   Dog 0x00000655
+[01:48:19.620] INFO  [life] training: back to a trainer we have used before, 'mage' at 1485,1549
+[01:48:19.620] INFO  [p0gate8] [travel] trainer -> (1485,1549) r=2 from (1485,1549)
+[01:48:19.620] LOG   [p0gate8] event travel_start: label='trainer' target=(1485,1549) radius=2 from=(1485,1549)
+[01:48:19.620] INFO  [p0gate8] [travel] trainer ARRIVED at (1485,1549,35)
+[01:48:19.620] LOG   [p0gate8] event travel_done: label='trainer' ok=1 at=(1485,1549) legs=0 plans=0 why=''
+[01:48:20.005] INFO  [p0gate8] [survival] hp 10/10 (100%) -> fight
+[01:48:21.620] INFO  [life] goal_failed=TRAIN_AT_NPC reason="no 'mage' reachable after 3 trips"
+[01:48:21.651] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: no trainer reachable"
+[01:48:21.651] INFO  [life] needs considered: NeedGold(sell surplus 0.55) NeedSkillTraining(Meditation 0.45) NeedSupplies(buy craft inputs 0.44) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Inscription BLOCKED 0.27) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
+[01:48:21.651] INFO  [life]   score=90.0
+[01:48:21.651] INFO  [life]   reason: NeedSkillTraining urgency 0.45 x 200 = 90.0
+[01:48:21.651] INFO  [life]   reason: Meditation 21.9 -> 40.0, gold 386 (fee is quoted on arrival, roughly 300)
+[01:48:21.651] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Magery 50.0 -> 100.0)
+[01:48:21.651] INFO  [life] training: back to a trainer we have used before, 'mage' at 1485,1549
+[01:48:21.651] INFO  [p0gate8] [travel] trainer -> (1485,1549) r=2 from (1485,1549)
+[01:48:21.651] LOG   [p0gate8] event travel_start: label='trainer' target=(1485,1549) radius=2 from=(1485,1549)
+[01:48:21.651] INFO  [p0gate8] [travel] trainer ARRIVED at (1485,1549,35)
+[01:48:21.651] LOG   [p0gate8] event travel_done: label='trainer' ok=1 at=(1485,1549) legs=0 plans=0 why=''
+[01:48:23.679] INFO  [life] training: arrived at 1485,1549 -- asking who is here
+[01:48:23.679] INFO  [p0gate8] [action] scanning nearby mobiles for names
+[01:48:23.696] INFO  [p0gate8] [mobiles] nearby (5):
+[01:48:23.696] INFO  [p0gate8]   Xanthe 0x00001211
+[01:48:23.696] INFO  [p0gate8]   Alenne 0x00001145
+[01:48:23.696] INFO  [p0gate8]   Caedmon 0x000012EE
+[01:48:23.696] INFO  [p0gate8]   Shunnar 0x0000E14F
+[01:48:23.696] INFO  [p0gate8]   Dog 0x00000655
+[01:48:25.034] INFO  [p0gate8] [survival] hp 10/10 (100%) -> fight
+[01:48:26.190] INFO  [life] training: back to a trainer we have used before, 'mage' at 1485,1549
+[01:48:26.190] INFO  [p0gate8] [travel] trainer -> (1485,1549) r=2 from (1485,1549)
+[01:48:26.190] LOG   [p0gate8] event travel_start: label='trainer' target=(1485,1549) radius=2 from=(1485,1549)
+[01:48:26.190] INFO  [p0gate8] [travel] trainer ARRIVED at (1485,1549,35)
+[01:48:26.190] LOG   [p0gate8] event travel_done: label='trainer' ok=1 at=(1485,1549) legs=0 plans=0 why=''
+[01:48:28.242] INFO  [life] training: arrived at 1485,1549 -- asking who is here
+[01:48:28.242] INFO  [p0gate8] [action] scanning nearby mobiles for names
+[01:48:28.257] INFO  [p0gate8] [mobiles] nearby (5):
+[01:48:28.257] INFO  [p0gate8]   Caedmon 0x000012EE
+[01:48:28.257] INFO  [p0gate8]   Alenne 0x00001145
+[01:48:28.257] INFO  [p0gate8]   Xanthe 0x00001211
+[01:48:28.257] INFO  [p0gate8]   Shunnar 0x0000E14F
+[01:48:28.257] INFO  [p0gate8]   Dog 0x00000655
+[01:48:30.046] INFO  [p0gate8] [survival] hp 10/10 (100%) -> fight
+[01:48:30.799] INFO  [life] training: back to a trainer we have used before, 'mage' at 1485,1549
+[01:48:30.799] INFO  [p0gate8] [travel] trainer -> (1485,1549) r=2 from (1485,1549)
+[01:48:30.799] LOG   [p0gate8] event travel_start: label='trainer' target=(1485,1549) radius=2 from=(1485,1549)
+[01:48:30.799] INFO  [p0gate8] [travel] trainer ARRIVED at (1485,1549,35)
+[01:48:30.799] LOG   [p0gate8] event travel_done: label='trainer' ok=1 at=(1485,1549) legs=0 plans=0 why=''
+[01:48:32.813] INFO  [life] goal_failed=TRAIN_AT_NPC reason="no 'mage' reachable after 3 trips"
+[01:48:32.873] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: no trainer reachable"
+[01:48:32.873] INFO  [life] needs considered: NeedGold(sell surplus 0.55) NeedSkillTraining(Meditation 0.45) NeedSupplies(buy craft inputs 0.44) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Inscription BLOCKED 0.27) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
+[01:48:32.873] INFO  [life]   score=90.0
+[01:48:32.873] INFO  [life]   reason: NeedSkillTraining urgency 0.45 x 200 = 90.0
+[01:48:32.873] INFO  [life]   reason: Meditation 21.9 -> 40.0, gold 386 (fee is quoted on arrival, roughly 300)
+[01:48:32.873] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Magery 50.0 -> 100.0)
+[01:48:32.873] INFO  [life] training: back to a trainer we have used before, 'mage' at 1485,1549
+[01:48:32.873] INFO  [p0gate8] [travel] trainer -> (1485,1549) r=2 from (1485,1549)
+[01:48:32.873] LOG   [p0gate8] event travel_start: label='trainer' target=(1485,1549) radius=2 from=(1485,1549)
+[01:48:32.873] INFO  [p0gate8] [travel] trainer ARRIVED at (1485,1549,35)
+[01:48:32.873] LOG   [p0gate8] event travel_done: label='trainer' ok=1 at=(1485,1549) legs=0 plans=0 why=''
+[01:48:34.874] INFO  [life] training: arrived at 1485,1549 -- asking who is here
+[01:48:34.874] INFO  [p0gate8] [action] scanning nearby mobiles for names
+[01:48:34.889] INFO  [p0gate8] [mobiles] nearby (5):
+[01:48:34.889] INFO  [p0gate8]   Caedmon 0x000012EE
+[01:48:34.889] INFO  [p0gate8]   Xanthe 0x00001211
+[01:48:34.890] INFO  [p0gate8]   Alenne 0x00001145
+[01:48:34.890] INFO  [p0gate8]   Shunnar 0x0000E14F
+[01:48:34.890] INFO  [p0gate8]   Dog 0x00000655
+[01:48:35.075] INFO  [p0gate8] [survival] hp 10/10 (100%) -> fight
+[01:48:37.383] INFO  [life] training: back to a trainer we have used before, 'mage' at 1485,1549
+[01:48:37.383] INFO  [p0gate8] [travel] trainer -> (1485,1549) r=2 from (1485,1549)
+[01:48:37.383] LOG   [p0gate8] event travel_start: label='trainer' target=(1485,1549) radius=2 from=(1485,1549)
+[01:48:37.383] INFO  [p0gate8] [travel] trainer ARRIVED at (1485,1549,35)
+[01:48:37.383] LOG   [p0gate8] event travel_done: label='trainer' ok=1 at=(1485,1549) legs=0 plans=0 why=''
+[01:48:39.399] INFO  [life] training: arrived at 1485,1549 -- asking who is here
+[01:48:39.399] INFO  [p0gate8] [action] scanning nearby mobiles for names
+[01:48:39.399] INFO  [p0gate8] [mobiles] nearby (5):
+[01:48:39.399] INFO  [p0gate8]   Caedmon 0x000012EE
+[01:48:39.399] INFO  [p0gate8]   Xanthe 0x00001211
+[01:48:39.399] INFO  [p0gate8]   Shunnar 0x0000E14F
+[01:48:39.399] INFO  [p0gate8]   Alenne 0x00001145
+[01:48:39.399] INFO  [p0gate8]   Dog 0x00000655
+[01:48:40.077] INFO  [p0gate8] [survival] hp 10/10 (100%) -> fight
+[01:48:41.904] INFO  [life] training: back to a trainer we have used before, 'mage' at 1485,1549
+[01:48:41.904] INFO  [p0gate8] [travel] trainer -> (1485,1549) r=2 from (1485,1549)
+[01:48:41.904] LOG   [p0gate8] event travel_start: label='trainer' target=(1485,1549) radius=2 from=(1485,1549)
+[01:48:41.904] INFO  [p0gate8] [travel] trainer ARRIVED at (1485,1549,35)
+[01:48:41.904] LOG   [p0gate8] event travel_done: label='trainer' ok=1 at=(1485,1549) legs=0 plans=0 why=''
+[01:48:43.936] INFO  [life] goal_failed=TRAIN_AT_NPC reason="no 'mage' reachable after 3 trips"
+[01:48:43.997] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: no trainer reachable"
+[01:48:43.997] INFO  [life] needs considered: NeedGold(sell surplus 0.55) NeedSkillTraining(Meditation 0.45) NeedSupplies(buy craft inputs 0.44) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Inscription BLOCKED 0.27) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
+[01:48:43.997] INFO  [life]   score=90.0
+[01:48:43.997] INFO  [life]   reason: NeedSkillTraining urgency 0.45 x 200 = 90.0
+[01:48:43.997] INFO  [life]   reason: Meditation 21.9 -> 40.0, gold 386 (fee is quoted on arrival, roughly 300)
+[01:48:43.997] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Magery 50.0 -> 100.0)
+[01:48:43.997] INFO  [life] training: back to a trainer we have used before, 'mage' at 1485,1549
+[01:48:43.997] INFO  [p0gate8] [travel] trainer -> (1485,1549) r=2 from (1485,1549)
+[01:48:43.997] LOG   [p0gate8] event travel_start: label='trainer' target=(1485,1549) radius=2 from=(1485,1549)
+[01:48:43.997] INFO  [p0gate8] [travel] trainer ARRIVED at (1485,1549,35)
+[01:48:43.997] LOG   [p0gate8] event travel_done: label='trainer' ok=1 at=(1485,1549) legs=0 plans=0 why=''
+[01:48:45.134] INFO  [p0gate8] [survival] hp 10/10 (100%) -> fight
+[01:48:46.026] INFO  [life] training: arrived at 1485,1549 -- asking who is here
+[01:48:46.026] INFO  [p0gate8] [action] scanning nearby mobiles for names
+[01:48:46.042] INFO  [p0gate8] [mobiles] nearby (5):
+[01:48:46.042] INFO  [p0gate8]   Xanthe 0x00001211
+[01:48:46.042] INFO  [p0gate8]   Shunnar 0x0000E14F
+[01:48:46.042] INFO  [p0gate8]   Alenne 0x00001145
+[01:48:46.042] INFO  [p0gate8]   Caedmon 0x000012EE
+[01:48:46.042] INFO  [p0gate8]   Dog 0x00000655
+[01:48:48.566] INFO  [life] training: back to a trainer we have used before, 'mage' at 1485,1549
+[01:48:48.566] INFO  [p0gate8] [travel] trainer -> (1485,1549) r=2 from (1485,1549)
+[01:48:48.566] LOG   [p0gate8] event travel_start: label='trainer' target=(1485,1549) radius=2 from=(1485,1549)
+[01:48:48.566] INFO  [p0gate8] [travel] trainer ARRIVED at (1485,1549,35)
+[01:48:48.566] LOG   [p0gate8] event travel_done: label='trainer' ok=1 at=(1485,1549) legs=0 plans=0 why=''
+[01:48:50.150] INFO  [p0gate8] [survival] hp 10/10 (100%) -> fight
+[01:48:50.565] INFO  [life] training: arrived at 1485,1549 -- asking who is here
+[01:48:50.565] INFO  [p0gate8] [action] scanning nearby mobiles for names
+[01:48:50.581] INFO  [p0gate8] [mobiles] nearby (5):
+[01:48:50.581] INFO  [p0gate8]   Shunnar 0x0000E14F
+[01:48:50.581] INFO  [p0gate8]   Alenne 0x00001145
+[01:48:50.581] INFO  [p0gate8]   Caedmon 0x000012EE
+[01:48:50.581] INFO  [p0gate8]   Xanthe 0x00001211
+[01:48:50.581] INFO  [p0gate8]   Dog 0x00000655
+[01:48:53.083] INFO  [life] training: back to a trainer we have used before, 'mage' at 1485,1549
+[01:48:53.083] INFO  [p0gate8] [travel] trainer -> (1485,1549) r=2 from (1485,1549)
+[01:48:53.083] LOG   [p0gate8] event travel_start: label='trainer' target=(1485,1549) radius=2 from=(1485,1549)
+[01:48:53.083] INFO  [p0gate8] [travel] trainer ARRIVED at (1485,1549,35)
+[01:48:53.083] LOG   [p0gate8] event travel_done: label='trainer' ok=1 at=(1485,1549) legs=0 plans=0 why=''
+[01:48:55.093] INFO  [life] goal_failed=TRAIN_AT_NPC reason="no 'mage' reachable after 3 trips"
+[01:48:55.154] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: no trainer reachable"
+[01:48:55.154] INFO  [life] needs considered: NeedGold(sell surplus 0.55) NeedSkillTraining(Meditation 0.45) NeedSupplies(buy craft inputs 0.44) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Inscription BLOCKED 0.27) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
+[01:48:55.154] INFO  [life]   score=90.0
+[01:48:55.154] INFO  [life]   reason: NeedSkillTraining urgency 0.45 x 200 = 90.0
+[01:48:55.154] INFO  [life]   reason: Meditation 21.9 -> 40.0, gold 386 (fee is quoted on arrival, roughly 300)
+[01:48:55.154] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Magery 50.0 -> 100.0)
+[01:48:55.154] INFO  [life] training: back to a trainer we have used before, 'mage' at 1485,1549
+[01:48:55.154] INFO  [p0gate8] [travel] trainer -> (1485,1549) r=2 from (1485,1549)
+[01:48:55.154] LOG   [p0gate8] event travel_start: label='trainer' target=(1485,1549) radius=2 from=(1485,1549)
+[01:48:55.154] INFO  [p0gate8] [travel] trainer ARRIVED at (1485,1549,35)
+[01:48:55.154] LOG   [p0gate8] event travel_done: label='trainer' ok=1 at=(1485,1549) legs=0 plans=0 why=''
+[01:48:55.154] INFO  [p0gate8] [survival] hp 10/10 (100%) -> fight
+[01:48:55.419] INFO  [p0gate8] [chat ascii] Xanthe: I'm listenin'.
+[01:48:57.168] INFO  [life] training: arrived at 1485,1549 -- asking who is here
+[01:48:57.168] INFO  [p0gate8] [action] scanning nearby mobiles for names
+[01:48:57.183] INFO  [p0gate8] [mobiles] nearby (5):
+[01:48:57.183] INFO  [p0gate8]   Alenne 0x00001145
+[01:48:57.183] INFO  [p0gate8]   Xanthe 0x00001211
+[01:48:57.183] INFO  [p0gate8]   Shunnar 0x0000E14F
+[01:48:57.183] INFO  [p0gate8]   Caedmon 0x000012EE
+[01:48:57.183] INFO  [p0gate8]   Dog 0x00000655
+[01:48:59.668] INFO  [life] training: back to a trainer we have used before, 'mage' at 1485,1549
+[01:48:59.669] INFO  [p0gate8] [travel] trainer -> (1485,1549) r=2 from (1485,1549)
+[01:48:59.669] LOG   [p0gate8] event travel_start: label='trainer' target=(1485,1549) radius=2 from=(1485,1549)
+[01:48:59.669] INFO  [p0gate8] [travel] trainer ARRIVED at (1485,1549,35)
+[01:48:59.669] LOG   [p0gate8] event travel_done: label='trainer' ok=1 at=(1485,1549) legs=0 plans=0 why=''
+[01:49:00.159] INFO  [p0gate8] [survival] hp 10/10 (100%) -> fight
+[01:49:01.707] INFO  [life] training: arrived at 1485,1549 -- asking who is here
+[01:49:01.707] INFO  [p0gate8] [action] scanning nearby mobiles for names
+[01:49:01.722] INFO  [p0gate8] [mobiles] nearby (5):
+[01:49:01.723] INFO  [p0gate8]   Xanthe 0x00001211
+[01:49:01.723] INFO  [p0gate8]   Alenne 0x00001145
+[01:49:01.723] INFO  [p0gate8]   Shunnar 0x0000E14F
+[01:49:01.723] INFO  [p0gate8]   Caedmon 0x000012EE
+[01:49:01.723] INFO  [p0gate8]   Dog 0x00000655
+[01:49:04.224] INFO  [life] training: back to a trainer we have used before, 'mage' at 1485,1549
+[01:49:04.224] INFO  [p0gate8] [travel] trainer -> (1485,1549) r=2 from (1485,1549)
+[01:49:04.224] LOG   [p0gate8] event travel_start: label='trainer' target=(1485,1549) radius=2 from=(1485,1549)
+[01:49:04.224] INFO  [p0gate8] [travel] trainer ARRIVED at (1485,1549,35)
+[01:49:04.224] LOG   [p0gate8] event travel_done: label='trainer' ok=1 at=(1485,1549) legs=0 plans=0 why=''
+[01:49:04.565] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[01:49:05.175] INFO  [p0gate8] [survival] hp 10/10 (100%) -> fight
+[01:49:06.281] INFO  [life] goal_failed=TRAIN_AT_NPC reason="no 'mage' reachable after 3 trips"
+[01:49:06.343] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: no trainer reachable"
+[01:49:06.343] INFO  [life] needs considered: NeedGold(sell surplus 0.55) NeedSkillTraining(Meditation 0.45) NeedSupplies(buy craft inputs 0.44) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Inscription BLOCKED 0.27) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
+[01:49:06.343] INFO  [life]   score=90.0
+[01:49:06.343] INFO  [life]   reason: NeedSkillTraining urgency 0.45 x 200 = 90.0
+[01:49:06.343] INFO  [life]   reason: Meditation 21.9 -> 40.0, gold 386 (fee is quoted on arrival, roughly 300)
+[01:49:06.343] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Magery 50.0 -> 100.0)
+[01:49:06.343] INFO  [life] training: back to a trainer we have used before, 'mage' at 1485,1549
+[01:49:06.343] INFO  [p0gate8] [travel] trainer -> (1485,1549) r=2 from (1485,1549)
+[01:49:06.343] LOG   [p0gate8] event travel_start: label='trainer' target=(1485,1549) radius=2 from=(1485,1549)
+[01:49:06.344] INFO  [p0gate8] [travel] trainer ARRIVED at (1485,1549,35)
+[01:49:06.344] LOG   [p0gate8] event travel_done: label='trainer' ok=1 at=(1485,1549) legs=0 plans=0 why=''
+[01:49:08.382] INFO  [life] training: arrived at 1485,1549 -- asking who is here
+[01:49:08.383] INFO  [p0gate8] [action] scanning nearby mobiles for names
+[01:49:08.398] INFO  [p0gate8] [mobiles] nearby (5):
+[01:49:08.398] INFO  [p0gate8]   Xanthe 0x00001211
+[01:49:08.398] INFO  [p0gate8]   Alenne 0x00001145
+[01:49:08.398] INFO  [p0gate8]   Shunnar 0x0000E14F
+[01:49:08.398] INFO  [p0gate8]   Caedmon 0x000012EE
+[01:49:08.398] INFO  [p0gate8]   Dog 0x00000655
+[01:49:10.184] INFO  [p0gate8] [survival] hp 10/10 (100%) -> fight
+[01:49:10.923] INFO  [life] training: back to a trainer we have used before, 'mage' at 1485,1549
+[01:49:10.923] INFO  [p0gate8] [travel] trainer -> (1485,1549) r=2 from (1485,1549)
+[01:49:10.923] LOG   [p0gate8] event travel_start: label='trainer' target=(1485,1549) radius=2 from=(1485,1549)
+[01:49:10.923] INFO  [p0gate8] [travel] trainer ARRIVED at (1485,1549,35)
+[01:49:10.923] LOG   [p0gate8] event travel_done: label='trainer' ok=1 at=(1485,1549) legs=0 plans=0 why=''
+[01:49:12.979] INFO  [life] training: arrived at 1485,1549 -- asking who is here
+[01:49:12.979] INFO  [p0gate8] [action] scanning nearby mobiles for names
+[01:49:12.994] INFO  [p0gate8] [mobiles] nearby (5):
+[01:49:12.994] INFO  [p0gate8]   Xanthe 0x00001211
+[01:49:12.994] INFO  [p0gate8]   Alenne 0x00001145
+[01:49:12.994] INFO  [p0gate8]   Caedmon 0x000012EE
+[01:49:12.994] INFO  [p0gate8]   Shunnar 0x0000E14F
+[01:49:12.994] INFO  [p0gate8]   Dog 0x00000655
+[01:49:15.230] INFO  [p0gate8] [survival] hp 10/10 (100%) -> fight
+[01:49:15.535] INFO  [life] training: back to a trainer we have used before, 'mage' at 1485,1549
+[01:49:15.535] INFO  [p0gate8] [travel] trainer -> (1485,1549) r=2 from (1485,1549)
+[01:49:15.535] LOG   [p0gate8] event travel_start: label='trainer' target=(1485,1549) radius=2 from=(1485,1549)
+[01:49:15.535] INFO  [p0gate8] [travel] trainer ARRIVED at (1485,1549,35)
+[01:49:15.535] LOG   [p0gate8] event travel_done: label='trainer' ok=1 at=(1485,1549) legs=0 plans=0 why=''
+[01:49:17.574] INFO  [life] goal_failed=TRAIN_AT_NPC reason="no 'mage' reachable after 3 trips"
+[01:49:17.634] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: no trainer reachable"
+[01:49:17.634] INFO  [life] needs considered: NeedGold(sell surplus 0.55) NeedSkillTraining(Meditation 0.45) NeedSupplies(buy craft inputs 0.44) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Inscription BLOCKED 0.27) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
+[01:49:17.634] INFO  [life]   score=90.0
+[01:49:17.634] INFO  [life]   reason: NeedSkillTraining urgency 0.45 x 200 = 90.0
+[01:49:17.634] INFO  [life]   reason: Meditation 21.9 -> 40.0, gold 386 (fee is quoted on arrival, roughly 300)
+[01:49:17.634] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Magery 50.0 -> 100.0)
+[01:49:17.635] INFO  [life] training: back to a trainer we have used before, 'mage' at 1485,1549
+[01:49:17.635] INFO  [p0gate8] [travel] trainer -> (1485,1549) r=2 from (1485,1549)
+[01:49:17.635] LOG   [p0gate8] event travel_start: label='trainer' target=(1485,1549) radius=2 from=(1485,1549)
+[01:49:17.635] INFO  [p0gate8] [travel] trainer ARRIVED at (1485,1549,35)
+[01:49:17.635] LOG   [p0gate8] event travel_done: label='trainer' ok=1 at=(1485,1549) legs=0 plans=0 why=''
+[01:49:19.654] INFO  [life] training: arrived at 1485,1549 -- asking who is here
+[01:49:19.654] INFO  [p0gate8] [action] scanning nearby mobiles for names
+[01:49:19.654] INFO  [p0gate8] [mobiles] nearby (5):
+[01:49:19.654] INFO  [p0gate8]   Xanthe 0x00001211
+[01:49:19.654] INFO  [p0gate8]   Alenne 0x00001145
+[01:49:19.654] INFO  [p0gate8]   Caedmon 0x000012EE
+[01:49:19.654] INFO  [p0gate8]   Shunnar 0x0000E14F
+[01:49:19.654] INFO  [p0gate8]   Dog 0x00000655
+[01:49:20.250] INFO  [p0gate8] [survival] hp 10/10 (100%) -> fight
+[01:49:22.178] INFO  [life] training: back to a trainer we have used before, 'mage' at 1485,1549
+[01:49:22.178] INFO  [p0gate8] [travel] trainer -> (1485,1549) r=2 from (1485,1549)
+[01:49:22.178] LOG   [p0gate8] event travel_start: label='trainer' target=(1485,1549) radius=2 from=(1485,1549)
+[01:49:22.178] INFO  [p0gate8] [travel] trainer ARRIVED at (1485,1549,35)
+[01:49:22.178] LOG   [p0gate8] event travel_done: label='trainer' ok=1 at=(1485,1549) legs=0 plans=0 why=''
+[01:49:24.227] INFO  [life] training: arrived at 1485,1549 -- asking who is here
+[01:49:24.227] INFO  [p0gate8] [action] scanning nearby mobiles for names
+[01:49:24.227] INFO  [p0gate8] [mobiles] nearby (5):
+[01:49:24.227] INFO  [p0gate8]   Alenne 0x00001145
+[01:49:24.227] INFO  [p0gate8]   Xanthe 0x00001211
+[01:49:24.227] INFO  [p0gate8]   Caedmon 0x000012EE
+[01:49:24.227] INFO  [p0gate8]   Shunnar 0x0000E14F
+[01:49:24.227] INFO  [p0gate8]   Dog 0x00000655

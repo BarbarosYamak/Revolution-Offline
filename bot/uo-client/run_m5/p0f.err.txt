@@ -1,0 +1,10 @@
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+[23:07:34.906] WARN  [p0f] [bot] 0x20 resync; aborting path
+[23:07:47.499] WARN  [p0f] [ACTION_RESULT] vendor_sell timeout (no server confirmation)
+[23:07:55.473] WARN  [p0f] [bot] no path to (1485,1545) avoiding 0 block(s); stopping (search 1023338.5us)
+[23:07:55.473] WARN  [p0f] [bot] start (1486,1547,70) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 100 item(s), 4 mobile(s))
+[23:13:38.524] WARN  [p0f] [action] vendor_sell superseded by vendor_sell
+[23:13:38.524] WARN  [p0f] [ACTION_RESULT] vendor_sell invalid_state (2675ms) superseded
+[23:14:15.172] ERROR recv failed: WSA=10054
+[23:14:15.172] WARN  [p0f] [net] socket closed by peer.

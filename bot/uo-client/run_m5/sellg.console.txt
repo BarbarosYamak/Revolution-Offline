@@ -1,0 +1,869 @@
+[18:38:42.932] INFO  session 0: 127.0.0.1:2593 user='RevolutionSoak31' char=Bryn tag='sellg'
+[18:38:42.933] LOG   [sellg] event session_start: text log opened
+[18:38:42.933] LOG   [sellg] event net_connect_begin: connect 127.0.0.1:2593
+[18:38:42.933] INFO  [sellg] [net] connecting to 127.0.0.1:2593 ...
+[18:38:42.934] LOG   [sellg] event net_connected: connect 127.0.0.1:2593
+[18:38:42.934] INFO  [sellg] [net] connected.
+[18:38:42.934] INFO  [sellg] [seed] sent 0x7F000001 (plaintext)
+[18:38:42.934] LOG   [sellg] event seed_out: 0x7F000001 hex=7f000001
+[18:38:42.934] INFO  [life] loaded persistent state for Bryn (1 places, 0 suppliers, 8 events, 0 prior sessions)
+[18:38:42.935] INFO  [life] needs: reading 'fisher' from the profession catalogue
+[18:38:42.935] INFO  [life] build plan 'fisher': 150.0 resolved + 550.0 unresolved = 700.0/700.0, stats 80/50/45 = 175
+[18:38:42.935] INFO  [sellg] [life] autonomous player active for 'Bryn' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 25 min)
+[18:38:42.966] INFO  [sellg] [0xA8] 1 server(s):
+[18:38:42.966] INFO  [sellg]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[18:38:42.982] INFO  [sellg] [0x8C] game server = 127.0.0.1:2593  seed=0x26FC00BA
+[18:38:42.982] LOG   [sellg] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x26FC00BA
+[18:38:42.982] INFO  [sellg] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[18:38:42.982] LOG   [sellg] event relay_same_socket: no seed re-sent; 0x91 follows
+[18:38:42.982] INFO  [sellg] [0xB9] server features = 0x0005
+[18:38:42.982] INFO  [sellg] [0xA9] 5 slot(s) (populated 1):
+[18:38:42.982] INFO  [sellg]   [0] Bryn
+[18:38:42.982] INFO  [sellg]   [1] <empty>
+[18:38:42.982] INFO  [sellg]   [2] <empty>
+[18:38:42.982] INFO  [sellg]   [3] <empty>
+[18:38:42.982] INFO  [sellg]   [4] <empty>
+[18:38:42.982] INFO  [sellg] [ui] playing slot 0 ('Bryn')
+[18:38:42.997] INFO  [sellg] [0x1B] serial=0x00012E10 body=0x0190 pos=(1440,1754,-2)
+[18:38:42.998] LOG   [sellg] event login_confirm: serial=0x00012E10 body=0x0190 pos=(1440,1754,-2)
+[18:38:42.998] INFO  [sellg] [0x20] player @(1440,1754,-2) facing=0
+[18:38:42.998] INFO  [sellg] [0x55] login complete — entering world
+[18:38:42.998] LOG   [sellg] event in_world: 0x55 received
+[18:38:42.998] INFO  [sellg] [backpack] opening 0x40012DD6
+[18:38:42.998] INFO  [sellg] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[18:38:42.998] INFO  [sellg] [chat ascii] System: There is 1 other player here.
+[18:38:42.998] INFO  [sellg] [chat ascii] System: Last logged: 2026/08/28 18:33:00
+[18:38:42.998] INFO  [sellg] [chat ascii] System: You are under the protection of the city guards
+[18:38:43.002] INFO  [sellg] [action] requesting the skill list
+[18:38:43.002] INFO  [life] in world; asked the server for the skill list
+[18:38:43.002] INFO  [sellg] [0x24] open container 0x40012DD6 gump=60
+[18:38:43.002] INFO  [sellg] [0x3C] container contents: 11 item(s)
+[18:38:43.002] LOG   [sellg] event backpack_contents: serial=0x40012DD6 items=11
+[18:38:45.592] INFO  [sellg] [bot] world data loaded (0 blacklisted spot(s)).
+[18:38:45.592] INFO  [life] reconciliation: resuming a life, 0 field(s) differed
+[18:38:45.592] INFO  [life]   gold         persisted=1000       server=1000       -> server value accepted
+[18:38:45.592] INFO  [life]   str          persisted=25         server=25         -> server value accepted
+[18:38:45.592] INFO  [life]   dex          persisted=15         server=15         -> server value accepted
+[18:38:45.592] INFO  [life]   int          persisted=10         server=10         -> server value accepted
+[18:38:45.592] INFO  [life]   skill_18     persisted=50.4       server=50.4       -> server value accepted
+[18:38:45.592] INFO  [life]   skill_13     persisted=50.0       server=50.0       -> server value accepted
+[18:38:45.592] INFO  [life]   position     persisted=1440,1754  server=1440,1754  -> server value accepted
+[18:38:45.592] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[18:38:45.592] INFO  [life]   restored objective KEPT: BANK (progress 13)
+[18:38:45.592] INFO  [sellg] [survival] on
+[18:38:45.592] LOG   [sellg] event survival_mode: on
+[18:38:45.594] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak31.bryn/state.json
+[18:38:45.594] INFO  [sellg] [survival] hp 25/25 (100%) -> fight
+[18:38:45.646] INFO  [life] bank: returning to a remembered bank at 1430,1690 (trip 1)
+[18:38:45.646] INFO  [sellg] [travel] bank -> (1430,1690) r=2 from (1440,1754)
+[18:38:45.646] LOG   [sellg] event travel_start: label='bank' target=(1430,1690) radius=2 from=(1440,1754)
+[18:38:45.646] INFO  [sellg] [travel] mode moongate         usable   <- chosen
+[18:38:45.646] INFO  [sellg] [travel] mode walk             usable
+[18:38:45.646] INFO  [sellg] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:38:45.646] INFO  [sellg] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:38:45.646] LOG   [sellg] event travel_mode: moongate
+[18:38:45.646] INFO  [sellg] [travel] plan bank: ok legs=2 ~72 tiles transit=0 nodes=15
+[18:38:45.706] INFO  [sellg] [action] goto (1448,1718) from (1440,1754,-2)
+[18:38:45.706] LOG   [sellg] event goto_start: target=(1448,1718) from=(1440,1754)
+[18:38:45.706] INFO  [sellg] [bot] running from (1440,1754,-2) to (1448,1718)
+[18:38:45.706] INFO  [sellg] [bot] planning path to (1448,1718) in background
+[18:38:45.721] INFO  [sellg] [bot] replan to (1448,1718): 46 steps in 1333.7us
+[18:38:46.026] INFO  [sellg] [chat ascii] System: Ysolde has arrived in Britain.
+[18:38:46.870] INFO  [sellg] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=44 in 69.4us
+[18:38:50.615] INFO  [sellg] [survival] hp 25/25 (100%) -> fight
+[18:38:55.635] INFO  [sellg] [survival] hp 25/25 (100%) -> fight
+[18:39:00.038] INFO  [sellg] [bot] arrived at (1448,1718,0)
+[18:39:00.038] INFO  [sellg] [action] goto finished at (1448,1718,0); target (1448,1718); ARRIVED (off by 0 tile(s))
+[18:39:00.038] LOG   [sellg] event goto_done: at=(1448,1718) target=(1448,1718) arrived=1 off=0
+[18:39:00.038] INFO  [sellg] [action] goto (1430,1690) from (1448,1718,0)
+[18:39:00.038] LOG   [sellg] event goto_start: target=(1430,1690) from=(1448,1718)
+[18:39:00.038] INFO  [sellg] [bot] running from (1448,1718,0) to (1430,1690)
+[18:39:00.038] INFO  [sellg] [bot] planning path to (1430,1690) in background
+[18:39:00.097] INFO  [sellg] [bot] replan to (1430,1690): 35 steps in 3600.2us
+[18:39:00.648] INFO  [sellg] [survival] hp 25/25 (100%) -> fight
+[18:39:03.974] INFO  [sellg] [chat ascii] System: World save in 10 seconds
+[18:39:05.671] INFO  [sellg] [survival] hp 25/25 (100%) -> fight
+[18:39:07.096] INFO  [sellg] [bot] door ahead at (1438,1692,z0); OpenDoor before step
+[18:39:07.096] INFO  [sellg] [chat ascii] System: Opening door...
+[18:39:10.292] INFO  [sellg] [travel] bank ARRIVED at (1432,1690,0)
+[18:39:10.292] LOG   [sellg] event travel_done: label='bank' ok=1 at=(1432,1690) legs=2 plans=1 why=''
+[18:39:10.354] INFO  [life] bank: arrived at 1432,1690 -- asking who is here
+[18:39:10.354] INFO  [sellg] [action] scanning nearby mobiles for names
+[18:39:10.354] INFO  [sellg] [action] requested 2 paperdoll(s) for trade titles
+[18:39:10.354] INFO  [sellg] [mobiles] nearby (3):
+[18:39:10.354] INFO  [sellg]   Hyman 0x00001033
+[18:39:10.354] INFO  [sellg]   Lyndon 0x0000124E
+[18:39:10.354] INFO  [sellg]   Joelliane 0x00001136
+[18:39:10.354] INFO  [sellg] [0x20] player @(1432,1690,0) facing=7
+[18:39:10.354] INFO  [sellg] [0x88] paperdoll 0x00001033: "Hyman, the banker"
+[18:39:10.354] INFO  [sellg] [world] Hyman, the banker is a banker at (1428,1685)
+[18:39:10.354] INFO  [sellg] [0x20] player @(1432,1690,0) facing=6
+[18:39:10.354] INFO  [sellg] [0x88] paperdoll 0x0000124E: "Lyndon, the minter"
+[18:39:10.354] INFO  [sellg] [world] Lyndon, the minter is a banker at (1424,1691)
+[18:39:10.725] INFO  [sellg] [survival] hp 25/25 (100%) -> fight
+[18:39:12.875] INFO  [sellg] [ACTION] open_bank start
+[18:39:12.875] INFO  [sellg] [ACTION] open_bank banker=0x00001033 phrase='bank'
+[18:39:12.875] INFO  [sellg] [chat uni  ] : bank
+[18:39:12.875] INFO  [sellg] [chat ascii] Lyndon: Keeping the money of others is my job.
+[18:39:12.875] INFO  [sellg] [chat ascii] System: You have 0 stones in your Bank Box
+[18:39:12.875] INFO  [sellg] [0x24] open container 0x40012E05 gump=74
+[18:39:12.875] INFO  [sellg] [STATE] bank container=0x40012E05 gump=0x004A
+[18:39:12.875] LOG   [sellg] event bank_opened: container recognised
+[18:39:12.876] INFO  [sellg] [ACTION_RESULT] open_bank success (0ms) bank container opened
+[18:39:12.876] LOG   [sellg] event action_result: open_bank success took=0ms bank container opened
+[18:39:12.876] INFO  [sellg] [0x3C] container contents: 0 item(s)
+[18:39:13.980] INFO  [sellg] [chat ascii] System: World save has been initiated.
+[18:39:15.397] INFO  [life] banking 15 i_fish_big_3
+[18:39:15.397] INFO  [sellg] [ACTION] move_item start
+[18:39:15.397] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:39:15.397] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:39:15.397] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:39:15.412] INFO  [sellg] [ACTION_RESULT] move_item success (15ms) item is in the destination
+[18:39:15.412] LOG   [sellg] event action_result: move_item success took=15ms item is in the destination
+[18:39:15.458] INFO  [life] goal_changed=EARN_GOLD from=BANK reason="EARN_GOLD 67.5 superseded BANK 0.0"
+[18:39:15.458] INFO  [life] needs considered: NeedGold(sell surplus 0.45) NeedCatch(fish 0.45) NeedTraining(Fishing BLOCKED 0.27) NeedFood(food 0.25)  | tools defined=1 held=[fishing pole,]
+[18:39:15.458] INFO  [life]   score=67.5
+[18:39:15.458] INFO  [life]   reason: NeedGold urgency 0.45 x 150 = 67.5
+[18:39:15.458] INFO  [life]   reason: 15 x i_fish_big_3 spare, a load is 20, buyer: an NPC
+[18:39:15.458] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Fishing 50.4 -> 100.0)
+[18:39:15.766] INFO  [sellg] [survival] hp 25/25 (100%) -> fight
+[18:39:16.931] INFO  [life] earn_gold: withdrawing 15 i_fish_big_3 to sell
+[18:39:18.946] INFO  [life] earn_gold: looking for a 'fisher' to buy 15 i_fish_big_3 (trip 1)
+[18:39:18.946] INFO  [sellg] [travel] Britain fisherman -> (1438,1761) r=6 from (1432,1690)
+[18:39:18.946] LOG   [sellg] event travel_start: label='Britain fisherman' target=(1438,1761) radius=6 from=(1432,1690)
+[18:39:18.946] INFO  [sellg] [travel] mode moongate         usable   <- chosen
+[18:39:18.946] INFO  [sellg] [travel] mode walk             usable
+[18:39:18.946] INFO  [sellg] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:39:18.946] INFO  [sellg] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:39:18.946] LOG   [sellg] event travel_mode: moongate
+[18:39:18.946] INFO  [sellg] [travel] plan Britain fisherman: ok legs=3 ~96 tiles transit=0 nodes=23
+[18:39:19.007] INFO  [sellg] [action] goto finished at (1432,1690,0); target (1430,1690); stopped short (off by 2 tile(s))
+[18:39:19.007] LOG   [sellg] event goto_done: at=(1432,1690) target=(1430,1690) arrived=0 off=2
+[18:39:19.007] INFO  [sellg] [action] goto (1448,1718) from (1432,1690,0)
+[18:39:19.007] LOG   [sellg] event goto_start: target=(1448,1718) from=(1432,1690)
+[18:39:19.007] INFO  [sellg] [bot] running from (1432,1690,0) to (1448,1718)
+[18:39:19.007] INFO  [sellg] [bot] planning path to (1448,1718) in background
+[18:39:19.068] INFO  [sellg] [bot] replan to (1448,1718): 33 steps in 934.1us
+[18:39:20.813] INFO  [sellg] [survival] hp 25/25 (100%) -> fight
+[18:39:22.248] INFO  [sellg] [bot] step (1439,1693,0)->(1440,1694,0) rejected; OpenDoor + retry
+[18:39:22.248] INFO  [sellg] [chat ascii] System: Opening door...
+[18:39:22.248] INFO  [sellg] [0x20] player @(1439,1693,0) facing=2
+[18:39:22.248] INFO  [sellg] [action] goto finished at (1439,1693,0); target (1448,1718); stopped short (off by 34 tile(s))
+[18:39:22.248] LOG   [sellg] event goto_done: at=(1439,1693) target=(1448,1718) arrived=0 off=34
+[18:39:23.466] INFO  [sellg] [action] goto (1448,1718) from (1439,1693,0)
+[18:39:23.466] LOG   [sellg] event goto_start: target=(1448,1718) from=(1439,1693)
+[18:39:23.466] INFO  [sellg] [bot] running from (1439,1693,0) to (1448,1718)
+[18:39:23.466] INFO  [sellg] [bot] planning path to (1448,1718) in background
+[18:39:23.528] INFO  [sellg] [bot] replan to (1448,1718): 25 steps in 740.3us
+[18:39:25.863] INFO  [sellg] [survival] hp 25/25 (100%) -> fight
+[18:39:30.906] INFO  [sellg] [survival] hp 25/25 (100%) -> fight
+[18:39:32.300] INFO  [sellg] [bot] arrived at (1448,1718,0)
+[18:39:32.301] INFO  [sellg] [action] goto finished at (1448,1718,0); target (1448,1718); ARRIVED (off by 0 tile(s))
+[18:39:32.301] LOG   [sellg] event goto_done: at=(1448,1718) target=(1448,1718) arrived=1 off=0
+[18:39:32.301] INFO  [sellg] [action] goto (1440,1754) from (1448,1718,0)
+[18:39:32.301] LOG   [sellg] event goto_start: target=(1440,1754) from=(1448,1718)
+[18:39:32.301] INFO  [sellg] [bot] running from (1448,1718,0) to (1440,1754)
+[18:39:32.301] INFO  [sellg] [bot] planning path to (1440,1754) in background
+[18:39:32.362] INFO  [sellg] [bot] replan to (1440,1754): 46 steps in 4482.2us
+[18:39:35.486] INFO  [life] goal_changed=BANK from=EARN_GOLD reason="BANK 238.1 superseded EARN_GOLD 67.5"
+[18:39:35.486] INFO  [life] needs considered: NeedBank(deposit carried load 0.74) NeedGold(sell surplus 0.45) NeedCatch(fish 0.45) NeedTraining(Fishing BLOCKED 0.27) NeedFood(food 0.25)  | tools defined=1 held=[fishing pole,]
+[18:39:35.486] INFO  [life]   score=238.1
+[18:39:35.486] INFO  [life]   reason: NeedBank urgency 0.74 x 240 = 178.1
+[18:39:35.486] INFO  [life]   reason: weight=126/127 (99%) logs=0
+[18:39:35.486] INFO  [life]   reason: already standing at the bank +60
+[18:39:35.486] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Fishing 50.4 -> 100.0)
+[18:39:35.486] INFO  [life] banking 15 i_fish_big_3
+[18:39:35.486] INFO  [sellg] [ACTION] move_item start
+[18:39:35.486] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:39:35.486] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:39:35.486] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:39:35.487] LOG   [sellg] event action_result: move_item server_failure took=0ms item landed in a different container
+[18:39:35.916] INFO  [sellg] [survival] hp 25/25 (100%) -> fight
+[18:39:37.025] INFO  [life] banking 15 i_fish_big_3
+[18:39:37.025] INFO  [sellg] [ACTION] move_item start
+[18:39:37.025] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:39:37.025] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:39:37.025] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:39:37.041] LOG   [sellg] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:39:38.584] INFO  [life] banking 15 i_fish_big_3
+[18:39:38.584] INFO  [sellg] [ACTION] move_item start
+[18:39:38.584] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:39:38.584] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:39:38.584] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:39:38.584] LOG   [sellg] event action_result: move_item server_failure took=0ms item landed in a different container
+[18:39:40.098] INFO  [life] banking 15 i_fish_big_3
+[18:39:40.098] INFO  [sellg] [ACTION] move_item start
+[18:39:40.098] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:39:40.098] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:39:40.098] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:39:40.114] LOG   [sellg] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:39:40.956] INFO  [sellg] [survival] hp 25/25 (100%) -> fight
+[18:39:41.644] INFO  [life] banking 15 i_fish_big_3
+[18:39:41.644] INFO  [sellg] [ACTION] move_item start
+[18:39:41.644] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:39:41.644] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:39:41.644] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:39:41.660] LOG   [sellg] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:39:43.160] INFO  [life] banking 15 i_fish_big_3
+[18:39:43.160] INFO  [sellg] [ACTION] move_item start
+[18:39:43.160] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:39:43.161] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:39:43.161] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:39:43.161] LOG   [sellg] event action_result: move_item server_failure took=1ms item landed in a different container
+[18:39:43.823] INFO  [sellg] [travel] Britain fisherman ARRIVED at (1435,1756,2)
+[18:39:43.823] LOG   [sellg] event travel_done: label='Britain fisherman' ok=1 at=(1435,1756) legs=3 plans=1 why=''
+[18:39:44.713] INFO  [life] banking 15 i_fish_big_3
+[18:39:44.714] INFO  [sellg] [ACTION] move_item start
+[18:39:44.714] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:39:44.714] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:39:44.714] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:39:44.729] LOG   [sellg] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:39:45.617] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak31.bryn/state.json
+[18:39:45.995] INFO  [sellg] [survival] hp 25/25 (100%) -> fight
+[18:39:46.255] INFO  [life] banking 15 i_fish_big_3
+[18:39:46.255] INFO  [sellg] [ACTION] move_item start
+[18:39:46.255] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:39:46.256] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:39:46.256] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:39:46.271] LOG   [sellg] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:39:46.485] INFO  [sellg] [bot] arrived at (1440,1754,-2)
+[18:39:47.759] INFO  [life] banking 15 i_fish_big_3
+[18:39:47.759] INFO  [sellg] [ACTION] move_item start
+[18:39:47.759] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:39:47.759] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:39:47.759] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:39:47.760] LOG   [sellg] event action_result: move_item server_failure took=0ms item landed in a different container
+[18:39:49.309] INFO  [life] banking 15 i_fish_big_3
+[18:39:49.309] INFO  [sellg] [ACTION] move_item start
+[18:39:49.309] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:39:49.309] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:39:49.309] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:39:49.325] LOG   [sellg] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:39:50.834] INFO  [life] banking 15 i_fish_big_3
+[18:39:50.834] INFO  [sellg] [ACTION] move_item start
+[18:39:50.834] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:39:50.835] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:39:50.835] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:39:50.850] LOG   [sellg] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:39:51.048] INFO  [sellg] [survival] hp 25/25 (100%) -> fight
+[18:39:52.364] INFO  [life] banking 15 i_fish_big_3
+[18:39:52.365] INFO  [sellg] [ACTION] move_item start
+[18:39:52.365] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:39:52.365] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:39:52.365] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:39:52.379] LOG   [sellg] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:39:52.609] INFO  [sellg] [chat ascii] Shika: I'm listenin'.
+[18:39:53.894] INFO  [life] banking 15 i_fish_big_3
+[18:39:53.894] INFO  [sellg] [ACTION] move_item start
+[18:39:53.894] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:39:53.894] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:39:53.894] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:39:53.909] LOG   [sellg] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:39:55.395] INFO  [life] banking 15 i_fish_big_3
+[18:39:55.395] INFO  [sellg] [ACTION] move_item start
+[18:39:55.395] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:39:55.395] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:39:55.395] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:39:55.410] LOG   [sellg] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:39:56.070] INFO  [sellg] [survival] hp 25/25 (100%) -> fight
+[18:39:56.942] INFO  [life] banking 15 i_fish_big_3
+[18:39:56.942] INFO  [sellg] [ACTION] move_item start
+[18:39:56.942] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:39:56.942] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:39:56.942] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:39:56.958] LOG   [sellg] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:39:58.494] INFO  [life] banking 15 i_fish_big_3
+[18:39:58.494] INFO  [sellg] [ACTION] move_item start
+[18:39:58.494] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:39:58.494] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:39:58.494] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:39:58.509] LOG   [sellg] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:40:00.037] INFO  [life] banking 15 i_fish_big_3
+[18:40:00.037] INFO  [sellg] [ACTION] move_item start
+[18:40:00.037] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:40:00.037] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:40:00.037] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:40:00.052] LOG   [sellg] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:40:01.111] INFO  [sellg] [survival] hp 25/25 (100%) -> fight
+[18:40:01.539] INFO  [life] banking 15 i_fish_big_3
+[18:40:01.539] INFO  [sellg] [ACTION] move_item start
+[18:40:01.539] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:40:01.539] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:40:01.539] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:40:01.555] LOG   [sellg] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:40:03.041] INFO  [life] banking 15 i_fish_big_3
+[18:40:03.041] INFO  [sellg] [ACTION] move_item start
+[18:40:03.041] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:40:03.041] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:40:03.041] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:40:03.056] LOG   [sellg] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:40:04.550] INFO  [life] banking 15 i_fish_big_3
+[18:40:04.550] INFO  [sellg] [ACTION] move_item start
+[18:40:04.550] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:40:04.550] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:40:04.550] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:40:04.566] LOG   [sellg] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:40:06.095] INFO  [life] banking 15 i_fish_big_3
+[18:40:06.095] INFO  [sellg] [ACTION] move_item start
+[18:40:06.095] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:40:06.095] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:40:06.095] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:40:06.111] LOG   [sellg] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:40:06.157] INFO  [sellg] [survival] hp 25/25 (100%) -> fight
+[18:40:07.612] INFO  [life] banking 15 i_fish_big_3
+[18:40:07.612] INFO  [sellg] [ACTION] move_item start
+[18:40:07.612] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:40:07.612] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:40:07.612] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:40:07.627] LOG   [sellg] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:40:09.142] INFO  [life] banking 15 i_fish_big_3
+[18:40:09.142] INFO  [sellg] [ACTION] move_item start
+[18:40:09.142] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:40:09.142] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:40:09.142] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:40:09.157] LOG   [sellg] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:40:10.693] INFO  [life] banking 15 i_fish_big_3
+[18:40:10.693] INFO  [sellg] [ACTION] move_item start
+[18:40:10.693] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:40:10.693] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:40:10.693] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:40:10.709] LOG   [sellg] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:40:11.182] INFO  [sellg] [survival] hp 25/25 (100%) -> fight
+[18:40:12.245] INFO  [life] banking 15 i_fish_big_3
+[18:40:12.245] INFO  [sellg] [ACTION] move_item start
+[18:40:12.245] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:40:12.245] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:40:12.245] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:40:12.260] LOG   [sellg] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:40:13.797] INFO  [life] banking 15 i_fish_big_3
+[18:40:13.797] INFO  [sellg] [ACTION] move_item start
+[18:40:13.797] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:40:13.797] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:40:13.798] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:40:13.813] LOG   [sellg] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:40:15.332] INFO  [life] banking 15 i_fish_big_3
+[18:40:15.332] INFO  [sellg] [ACTION] move_item start
+[18:40:15.332] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:40:15.332] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:40:15.332] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:40:15.347] LOG   [sellg] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:40:16.206] INFO  [sellg] [survival] hp 25/25 (100%) -> fight
+[18:40:16.882] INFO  [life] banking 15 i_fish_big_3
+[18:40:16.882] INFO  [sellg] [ACTION] move_item start
+[18:40:16.882] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:40:16.882] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:40:16.882] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:40:16.897] LOG   [sellg] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:40:18.417] INFO  [life] banking 15 i_fish_big_3
+[18:40:18.417] INFO  [sellg] [ACTION] move_item start
+[18:40:18.417] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:40:18.417] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:40:18.417] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:40:18.432] LOG   [sellg] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:40:19.952] INFO  [life] banking 15 i_fish_big_3
+[18:40:19.952] INFO  [sellg] [ACTION] move_item start
+[18:40:19.952] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:40:19.952] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:40:19.952] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:40:19.967] LOG   [sellg] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:40:21.225] INFO  [sellg] [survival] hp 25/25 (100%) -> fight
+[18:40:21.468] INFO  [life] banking 15 i_fish_big_3
+[18:40:21.468] INFO  [sellg] [ACTION] move_item start
+[18:40:21.468] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:40:21.468] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:40:21.468] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:40:21.469] LOG   [sellg] event action_result: move_item server_failure took=0ms item landed in a different container
+[18:40:22.975] INFO  [life] banking 15 i_fish_big_3
+[18:40:22.975] INFO  [sellg] [ACTION] move_item start
+[18:40:22.975] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:40:22.975] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:40:22.975] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:40:22.990] LOG   [sellg] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:40:24.488] INFO  [life] banking 15 i_fish_big_3
+[18:40:24.488] INFO  [sellg] [ACTION] move_item start
+[18:40:24.488] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:40:24.489] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:40:24.489] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:40:24.503] LOG   [sellg] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:40:26.004] INFO  [life] banking 15 i_fish_big_3
+[18:40:26.004] INFO  [sellg] [ACTION] move_item start
+[18:40:26.004] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:40:26.004] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:40:26.004] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:40:26.005] LOG   [sellg] event action_result: move_item server_failure took=1ms item landed in a different container
+[18:40:26.279] INFO  [sellg] [survival] hp 25/25 (100%) -> fight
+[18:40:27.520] INFO  [life] banking 15 i_fish_big_3
+[18:40:27.520] INFO  [sellg] [ACTION] move_item start
+[18:40:27.520] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:40:27.520] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:40:27.520] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:40:27.536] LOG   [sellg] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:40:29.049] INFO  [life] banking 15 i_fish_big_3
+[18:40:29.049] INFO  [sellg] [ACTION] move_item start
+[18:40:29.049] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:40:29.049] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:40:29.049] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:40:29.065] LOG   [sellg] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:40:30.607] INFO  [life] banking 15 i_fish_big_3
+[18:40:30.607] INFO  [sellg] [ACTION] move_item start
+[18:40:30.607] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:40:30.607] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:40:30.608] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:40:30.608] LOG   [sellg] event action_result: move_item server_failure took=1ms item landed in a different container
+[18:40:31.310] INFO  [sellg] [survival] hp 25/25 (100%) -> fight
+[18:40:32.138] INFO  [life] banking 15 i_fish_big_3
+[18:40:32.138] INFO  [sellg] [ACTION] move_item start
+[18:40:32.138] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:40:32.138] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:40:32.138] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:40:32.154] LOG   [sellg] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:40:33.650] INFO  [life] banking 15 i_fish_big_3
+[18:40:33.650] INFO  [sellg] [ACTION] move_item start
+[18:40:33.650] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:40:33.650] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:40:33.650] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:40:33.651] LOG   [sellg] event action_result: move_item server_failure took=1ms item landed in a different container
+[18:40:35.168] INFO  [life] banking 15 i_fish_big_3
+[18:40:35.168] INFO  [sellg] [ACTION] move_item start
+[18:40:35.168] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:40:35.168] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:40:35.168] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:40:35.183] LOG   [sellg] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:40:36.331] INFO  [sellg] [survival] hp 25/25 (100%) -> fight
+[18:40:36.698] INFO  [life] banking 15 i_fish_big_3
+[18:40:36.698] INFO  [sellg] [ACTION] move_item start
+[18:40:36.698] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:40:36.699] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:40:36.699] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:40:36.714] LOG   [sellg] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:40:38.239] INFO  [life] banking 15 i_fish_big_3
+[18:40:38.239] INFO  [sellg] [ACTION] move_item start
+[18:40:38.239] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:40:38.239] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:40:38.239] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:40:38.254] LOG   [sellg] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:40:39.744] INFO  [life] banking 15 i_fish_big_3
+[18:40:39.744] INFO  [sellg] [ACTION] move_item start
+[18:40:39.744] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:40:39.744] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:40:39.744] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:40:39.760] LOG   [sellg] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:40:41.292] INFO  [life] banking 15 i_fish_big_3
+[18:40:41.292] INFO  [sellg] [ACTION] move_item start
+[18:40:41.292] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:40:41.292] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:40:41.292] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:40:41.308] LOG   [sellg] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:40:41.368] INFO  [sellg] [survival] hp 25/25 (100%) -> fight
+[18:40:42.801] INFO  [life] banking 15 i_fish_big_3
+[18:40:42.801] INFO  [sellg] [ACTION] move_item start
+[18:40:42.801] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:40:42.801] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:40:42.801] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:40:42.801] LOG   [sellg] event action_result: move_item server_failure took=0ms item landed in a different container
+[18:40:44.334] INFO  [life] banking 15 i_fish_big_3
+[18:40:44.334] INFO  [sellg] [ACTION] move_item start
+[18:40:44.334] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:40:44.334] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:40:44.334] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:40:44.349] LOG   [sellg] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:40:45.654] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak31.bryn/state.json
+[18:40:45.836] INFO  [life] banking 15 i_fish_big_3
+[18:40:45.836] INFO  [sellg] [ACTION] move_item start
+[18:40:45.836] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:40:45.836] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:40:45.836] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:40:45.852] LOG   [sellg] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:40:46.419] INFO  [sellg] [survival] hp 25/25 (100%) -> fight
+[18:40:47.337] INFO  [life] banking 15 i_fish_big_3
+[18:40:47.337] INFO  [sellg] [ACTION] move_item start
+[18:40:47.337] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:40:47.337] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:40:47.337] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:40:47.337] LOG   [sellg] event action_result: move_item server_failure took=0ms item landed in a different container
+[18:40:48.896] INFO  [life] banking 15 i_fish_big_3
+[18:40:48.896] INFO  [sellg] [ACTION] move_item start
+[18:40:48.896] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:40:48.896] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:40:48.896] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:40:48.912] LOG   [sellg] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:40:50.445] INFO  [life] banking 15 i_fish_big_3
+[18:40:50.445] INFO  [sellg] [ACTION] move_item start
+[18:40:50.445] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:40:50.445] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:40:50.445] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:40:50.460] LOG   [sellg] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:40:51.454] INFO  [sellg] [survival] hp 25/25 (100%) -> fight
+[18:40:51.987] INFO  [life] banking 15 i_fish_big_3
+[18:40:51.987] INFO  [sellg] [ACTION] move_item start
+[18:40:51.987] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:40:51.987] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:40:51.987] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:40:52.003] LOG   [sellg] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:40:53.541] INFO  [life] banking 15 i_fish_big_3
+[18:40:53.541] INFO  [sellg] [ACTION] move_item start
+[18:40:53.541] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:40:53.541] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:40:53.541] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:40:53.557] LOG   [sellg] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:40:55.069] INFO  [life] banking 15 i_fish_big_3
+[18:40:55.069] INFO  [sellg] [ACTION] move_item start
+[18:40:55.069] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:40:55.069] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:40:55.069] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:40:55.084] LOG   [sellg] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:40:56.478] INFO  [sellg] [survival] hp 25/25 (100%) -> fight
+[18:40:56.599] INFO  [life] banking 15 i_fish_big_3
+[18:40:56.599] INFO  [sellg] [ACTION] move_item start
+[18:40:56.599] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:40:56.599] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:40:56.599] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:40:56.614] LOG   [sellg] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:40:58.147] INFO  [life] banking 15 i_fish_big_3
+[18:40:58.147] INFO  [sellg] [ACTION] move_item start
+[18:40:58.147] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:40:58.147] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:40:58.147] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:40:58.163] LOG   [sellg] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:40:59.683] INFO  [life] banking 15 i_fish_big_3
+[18:40:59.683] INFO  [sellg] [ACTION] move_item start
+[18:40:59.683] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:40:59.684] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:40:59.684] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:40:59.699] LOG   [sellg] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:41:01.232] INFO  [life] banking 15 i_fish_big_3
+[18:41:01.233] INFO  [sellg] [ACTION] move_item start
+[18:41:01.233] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:41:01.233] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:41:01.233] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:41:01.248] LOG   [sellg] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:41:01.526] INFO  [sellg] [survival] hp 25/25 (100%) -> fight
+[18:41:02.749] INFO  [life] banking 15 i_fish_big_3
+[18:41:02.749] INFO  [sellg] [ACTION] move_item start
+[18:41:02.749] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:41:02.749] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:41:02.749] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:41:02.749] LOG   [sellg] event action_result: move_item server_failure took=0ms item landed in a different container
+[18:41:04.258] INFO  [life] banking 15 i_fish_big_3
+[18:41:04.258] INFO  [sellg] [ACTION] move_item start
+[18:41:04.258] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:41:04.258] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:41:04.258] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:41:04.276] LOG   [sellg] event action_result: move_item server_failure took=17ms item landed in a different container
+[18:41:05.804] INFO  [life] banking 15 i_fish_big_3
+[18:41:05.804] INFO  [sellg] [ACTION] move_item start
+[18:41:05.804] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:41:05.804] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:41:05.804] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:41:05.819] LOG   [sellg] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:41:06.568] INFO  [sellg] [survival] hp 25/25 (100%) -> fight
+[18:41:07.359] INFO  [life] banking 15 i_fish_big_3
+[18:41:07.360] INFO  [sellg] [ACTION] move_item start
+[18:41:07.360] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:41:07.360] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:41:07.360] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:41:07.374] LOG   [sellg] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:41:08.891] INFO  [life] banking 15 i_fish_big_3
+[18:41:08.891] INFO  [sellg] [ACTION] move_item start
+[18:41:08.891] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:41:08.891] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:41:08.891] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:41:08.906] LOG   [sellg] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:41:10.419] INFO  [life] banking 15 i_fish_big_3
+[18:41:10.419] INFO  [sellg] [ACTION] move_item start
+[18:41:10.419] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:41:10.419] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:41:10.419] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:41:10.435] LOG   [sellg] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:41:11.608] INFO  [sellg] [survival] hp 25/25 (100%) -> fight
+[18:41:11.929] INFO  [life] banking 15 i_fish_big_3
+[18:41:11.929] INFO  [sellg] [ACTION] move_item start
+[18:41:11.929] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:41:11.930] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:41:11.930] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:41:11.930] LOG   [sellg] event action_result: move_item server_failure took=1ms item landed in a different container
+[18:41:13.446] INFO  [life] banking 15 i_fish_big_3
+[18:41:13.446] INFO  [sellg] [ACTION] move_item start
+[18:41:13.446] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:41:13.446] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:41:13.446] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:41:13.462] LOG   [sellg] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:41:14.960] INFO  [life] banking 15 i_fish_big_3
+[18:41:14.960] INFO  [sellg] [ACTION] move_item start
+[18:41:14.960] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:41:14.961] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:41:14.961] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:41:14.961] LOG   [sellg] event action_result: move_item server_failure took=1ms item landed in a different container
+[18:41:16.504] INFO  [life] banking 15 i_fish_big_3
+[18:41:16.505] INFO  [sellg] [ACTION] move_item start
+[18:41:16.505] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:41:16.505] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:41:16.505] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:41:16.520] LOG   [sellg] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:41:16.612] INFO  [sellg] [survival] hp 25/25 (100%) -> fight
+[18:41:18.043] INFO  [life] banking 15 i_fish_big_3
+[18:41:18.043] INFO  [sellg] [ACTION] move_item start
+[18:41:18.043] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:41:18.043] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:41:18.043] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:41:18.059] LOG   [sellg] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:41:19.547] INFO  [life] banking 15 i_fish_big_3
+[18:41:19.547] INFO  [sellg] [ACTION] move_item start
+[18:41:19.547] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:41:19.547] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:41:19.547] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:41:19.563] LOG   [sellg] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:41:21.098] INFO  [life] banking 15 i_fish_big_3
+[18:41:21.098] INFO  [sellg] [ACTION] move_item start
+[18:41:21.098] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:41:21.099] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:41:21.099] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:41:21.115] LOG   [sellg] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:41:21.616] INFO  [sellg] [survival] hp 25/25 (100%) -> fight
+[18:41:22.601] INFO  [life] banking 15 i_fish_big_3
+[18:41:22.601] INFO  [sellg] [ACTION] move_item start
+[18:41:22.601] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:41:22.601] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:41:22.601] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:41:22.617] LOG   [sellg] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:41:24.161] INFO  [life] banking 15 i_fish_big_3
+[18:41:24.161] INFO  [sellg] [ACTION] move_item start
+[18:41:24.161] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:41:24.161] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:41:24.161] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:41:24.176] LOG   [sellg] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:41:25.705] INFO  [life] banking 15 i_fish_big_3
+[18:41:25.705] INFO  [sellg] [ACTION] move_item start
+[18:41:25.705] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:41:25.705] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:41:25.705] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:41:25.720] LOG   [sellg] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:41:26.626] INFO  [sellg] [survival] hp 25/25 (100%) -> fight
+[18:41:27.237] INFO  [life] banking 15 i_fish_big_3
+[18:41:27.237] INFO  [sellg] [ACTION] move_item start
+[18:41:27.237] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:41:27.237] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:41:27.237] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:41:27.237] LOG   [sellg] event action_result: move_item server_failure took=0ms item landed in a different container
+[18:41:28.787] INFO  [life] banking 15 i_fish_big_3
+[18:41:28.788] INFO  [sellg] [ACTION] move_item start
+[18:41:28.788] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:41:28.788] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:41:28.788] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:41:28.803] LOG   [sellg] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:41:30.290] INFO  [life] banking 15 i_fish_big_3
+[18:41:30.290] INFO  [sellg] [ACTION] move_item start
+[18:41:30.290] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:41:30.290] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:41:30.290] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:41:30.306] LOG   [sellg] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:41:31.637] INFO  [sellg] [survival] hp 25/25 (100%) -> fight
+[18:41:31.822] INFO  [life] banking 15 i_fish_big_3
+[18:41:31.822] INFO  [sellg] [ACTION] move_item start
+[18:41:31.822] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:41:31.823] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:41:31.823] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:41:31.837] LOG   [sellg] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:41:33.379] INFO  [life] banking 15 i_fish_big_3
+[18:41:33.379] INFO  [sellg] [ACTION] move_item start
+[18:41:33.379] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:41:33.380] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:41:33.380] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:41:33.380] LOG   [sellg] event action_result: move_item server_failure took=1ms item landed in a different container
+[18:41:34.932] INFO  [life] banking 15 i_fish_big_3
+[18:41:34.932] INFO  [sellg] [ACTION] move_item start
+[18:41:34.932] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:41:34.932] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:41:34.932] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:41:34.947] LOG   [sellg] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:41:36.458] INFO  [life] banking 15 i_fish_big_3
+[18:41:36.458] INFO  [sellg] [ACTION] move_item start
+[18:41:36.458] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:41:36.458] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:41:36.458] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:41:36.474] LOG   [sellg] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:41:36.643] INFO  [sellg] [survival] hp 25/25 (100%) -> fight
+[18:41:38.002] INFO  [life] banking 15 i_fish_big_3
+[18:41:38.002] INFO  [sellg] [ACTION] move_item start
+[18:41:38.002] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:41:38.002] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:41:38.002] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:41:38.017] LOG   [sellg] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:41:39.527] INFO  [life] banking 15 i_fish_big_3
+[18:41:39.527] INFO  [sellg] [ACTION] move_item start
+[18:41:39.527] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:41:39.527] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:41:39.527] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:41:39.527] LOG   [sellg] event action_result: move_item server_failure took=0ms item landed in a different container
+[18:41:41.026] INFO  [life] banking 15 i_fish_big_3
+[18:41:41.026] INFO  [sellg] [ACTION] move_item start
+[18:41:41.026] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:41:41.027] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:41:41.027] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:41:41.042] LOG   [sellg] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:41:41.686] INFO  [sellg] [survival] hp 25/25 (100%) -> fight
+[18:41:42.572] INFO  [life] banking 15 i_fish_big_3
+[18:41:42.572] INFO  [sellg] [ACTION] move_item start
+[18:41:42.572] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:41:42.572] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:41:42.572] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:41:42.587] LOG   [sellg] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:41:44.105] INFO  [life] banking 15 i_fish_big_3
+[18:41:44.105] INFO  [sellg] [ACTION] move_item start
+[18:41:44.105] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:41:44.105] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:41:44.105] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:41:44.121] LOG   [sellg] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:41:45.609] INFO  [life] banking 15 i_fish_big_3
+[18:41:45.609] INFO  [sellg] [ACTION] move_item start
+[18:41:45.609] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:41:45.609] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:41:45.609] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:41:45.625] LOG   [sellg] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:41:45.688] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak31.bryn/state.json
+[18:41:46.730] INFO  [sellg] [survival] hp 25/25 (100%) -> fight
+[18:41:47.161] INFO  [life] banking 15 i_fish_big_3
+[18:41:47.161] INFO  [sellg] [ACTION] move_item start
+[18:41:47.161] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:41:47.161] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:41:47.161] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:41:47.161] LOG   [sellg] event action_result: move_item server_failure took=0ms item landed in a different container
+[18:41:48.668] INFO  [life] banking 15 i_fish_big_3
+[18:41:48.668] INFO  [sellg] [ACTION] move_item start
+[18:41:48.668] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:41:48.668] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:41:48.668] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:41:48.683] LOG   [sellg] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:41:50.171] INFO  [life] banking 15 i_fish_big_3
+[18:41:50.171] INFO  [sellg] [ACTION] move_item start
+[18:41:50.171] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:41:50.171] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:41:50.171] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:41:50.186] LOG   [sellg] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:41:51.701] INFO  [life] banking 15 i_fish_big_3
+[18:41:51.701] INFO  [sellg] [ACTION] move_item start
+[18:41:51.701] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:41:51.701] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:41:51.701] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:41:51.717] LOG   [sellg] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:41:51.778] INFO  [sellg] [survival] hp 25/25 (100%) -> fight
+[18:41:53.252] INFO  [life] banking 15 i_fish_big_3
+[18:41:53.252] INFO  [sellg] [ACTION] move_item start
+[18:41:53.252] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:41:53.253] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:41:53.253] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:41:53.268] LOG   [sellg] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:41:54.802] INFO  [life] banking 15 i_fish_big_3
+[18:41:54.802] INFO  [sellg] [ACTION] move_item start
+[18:41:54.802] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:41:54.802] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:41:54.802] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:41:54.817] LOG   [sellg] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:41:56.308] INFO  [life] banking 15 i_fish_big_3
+[18:41:56.308] INFO  [sellg] [ACTION] move_item start
+[18:41:56.308] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:41:56.308] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:41:56.308] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:41:56.324] LOG   [sellg] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:41:56.801] INFO  [sellg] [survival] hp 25/25 (100%) -> fight
+[18:41:57.841] INFO  [life] banking 15 i_fish_big_3
+[18:41:57.841] INFO  [sellg] [ACTION] move_item start
+[18:41:57.841] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:41:57.841] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:41:57.842] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:41:57.857] LOG   [sellg] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:41:59.373] INFO  [life] banking 15 i_fish_big_3
+[18:41:59.374] INFO  [sellg] [ACTION] move_item start
+[18:41:59.374] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:41:59.374] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:41:59.374] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:41:59.389] LOG   [sellg] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:42:00.907] INFO  [life] banking 15 i_fish_big_3
+[18:42:00.907] INFO  [sellg] [ACTION] move_item start
+[18:42:00.907] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:42:00.907] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:42:00.907] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:42:00.922] LOG   [sellg] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:42:01.823] INFO  [sellg] [survival] hp 25/25 (100%) -> fight
+[18:42:02.437] INFO  [life] banking 15 i_fish_big_3
+[18:42:02.437] INFO  [sellg] [ACTION] move_item start
+[18:42:02.437] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:42:02.437] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:42:02.437] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:42:02.452] LOG   [sellg] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:42:03.971] INFO  [life] banking 15 i_fish_big_3
+[18:42:03.971] INFO  [sellg] [ACTION] move_item start
+[18:42:03.971] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:42:03.971] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:42:03.971] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:42:03.986] LOG   [sellg] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:42:05.508] INFO  [life] banking 15 i_fish_big_3
+[18:42:05.509] INFO  [sellg] [ACTION] move_item start
+[18:42:05.509] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:42:05.509] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:42:05.509] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:42:05.509] LOG   [sellg] event action_result: move_item server_failure took=1ms item landed in a different container
+[18:42:06.827] INFO  [sellg] [survival] hp 25/25 (100%) -> fight
+[18:42:07.010] INFO  [life] banking 15 i_fish_big_3
+[18:42:07.010] INFO  [sellg] [ACTION] move_item start
+[18:42:07.010] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:42:07.010] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:42:07.010] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:42:07.026] LOG   [sellg] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:42:08.546] INFO  [life] banking 15 i_fish_big_3
+[18:42:08.546] INFO  [sellg] [ACTION] move_item start
+[18:42:08.546] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:42:08.546] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:42:08.546] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:42:08.561] LOG   [sellg] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:42:10.082] INFO  [life] banking 15 i_fish_big_3
+[18:42:10.082] INFO  [sellg] [ACTION] move_item start
+[18:42:10.082] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:42:10.082] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:42:10.082] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:42:10.097] LOG   [sellg] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:42:11.603] INFO  [life] banking 15 i_fish_big_3
+[18:42:11.603] INFO  [sellg] [ACTION] move_item start
+[18:42:11.603] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:42:11.603] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:42:11.603] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:42:11.603] LOG   [sellg] event action_result: move_item server_failure took=0ms item landed in a different container
+[18:42:11.863] INFO  [sellg] [survival] hp 25/25 (100%) -> fight
+[18:42:13.162] INFO  [life] banking 15 i_fish_big_3
+[18:42:13.162] INFO  [sellg] [ACTION] move_item start
+[18:42:13.162] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:42:13.162] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:42:13.162] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:42:13.178] LOG   [sellg] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:42:14.677] INFO  [life] banking 15 i_fish_big_3
+[18:42:14.677] INFO  [sellg] [ACTION] move_item start
+[18:42:14.677] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:42:14.677] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:42:14.678] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:42:14.692] LOG   [sellg] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:42:16.179] INFO  [life] banking 15 i_fish_big_3
+[18:42:16.179] INFO  [sellg] [ACTION] move_item start
+[18:42:16.179] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:42:16.179] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:42:16.179] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:42:16.194] LOG   [sellg] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:42:16.905] INFO  [sellg] [survival] hp 25/25 (100%) -> fight
+[18:42:17.701] INFO  [life] banking 15 i_fish_big_3
+[18:42:17.701] INFO  [sellg] [ACTION] move_item start
+[18:42:17.701] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:42:17.701] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:42:17.701] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:42:17.702] LOG   [sellg] event action_result: move_item server_failure took=0ms item landed in a different container
+[18:42:19.206] INFO  [life] banking 15 i_fish_big_3
+[18:42:19.206] INFO  [sellg] [ACTION] move_item start
+[18:42:19.206] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:42:19.206] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:42:19.206] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:42:19.221] LOG   [sellg] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:42:20.743] INFO  [life] banking 15 i_fish_big_3
+[18:42:20.743] INFO  [sellg] [ACTION] move_item start
+[18:42:20.743] INFO  [sellg] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:42:20.743] INFO  [sellg] [ITEM] drag serial=0x4001032F amount=15
+[18:42:20.743] INFO  [sellg] [ITEM] drop container=0x40012E05
+[18:42:20.758] LOG   [sellg] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:42:21.920] INFO  [sellg] [survival] hp 25/25 (100%) -> fight

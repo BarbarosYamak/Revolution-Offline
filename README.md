@@ -1,8 +1,16 @@
 # Revolution Offline
 
 Recreating the gameplay of the Turkish Ultima Online shard **RevolutionUO**
-(target window 2008–2010) as a single-player world, and populating it with
-autonomous simulated players that obey exactly the same rules a human does.
+as it lived from roughly **2008 to 2016**, as a single-player world, and
+populating it with autonomous simulated players that obey exactly the same
+rules a human does -- enough of them, doing enough different things, that the
+world feels inhabited.
+
+The mechanics are currently anchored on the `revolution_2009_2010` ruleset
+profile, because the client data we have is from October 2010
+(`docs/REVOLUTION_RULESET_PROFILE.md`). Later-era rules (2011–2016) are in
+scope, but each one needs its own dated evidence and is recorded as its own
+era, never folded silently into the 2010 profile.
 
 ## The one rule everything else follows
 
@@ -31,7 +39,9 @@ player could have achieved the same way.
 
 ```
 docs/                 the milestone record — see below
-bot/uo-client/        the headless client: src, include, tests, scenarios
+bot/uo-client/        the headless client and its autonomous "life" runner
+                      (merged from revolution-sphere-m1 with full history)
+archive/              superseded prototypes, kept for reference
 runtime/sphere.ini    server configuration, with the reasoning for each change
 runtime/scripts/
   revolution/         this project's own Sphere scripts
@@ -73,9 +83,12 @@ testimony with no dated archive, and says so.
 
 ## Status
 
-Milestones M0–M3.9 are recorded in `docs/`. M4 — autonomous character lifecycles
-— has begun: step 1, the persistence layer, is built and unit-tested
-(`docs/M4_1_PERSISTENCE.md`) and awaits its first live run.
+Milestones M0–M3.9 are recorded in `docs/`. M4 — autonomous character
+lifecycles — is built and unit-tested but not yet proven live: persistence,
+combat, economy, crafting and orders, and 21 archetypes (10 fighters, 8
+crafters, 3 gatherers) from one table, with training toward each character's
+target build (`docs/M4_1` … `docs/M4_6`). Its exit test -- one character
+surviving several consecutive sessions on the shard -- is still to be run.
 
 ## Credits
 

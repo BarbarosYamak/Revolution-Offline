@@ -1,5 +1,6 @@
 #include "world/Atlas.h"
 
+#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
@@ -340,17 +341,92 @@ const Place* Atlas::FindPlace(const char* needle) const {
     return nullptr;
 }
 
+bool Atlas::PlaceIsGuarded(const wm::Place& p) const {
+    if (const wm::Region* r = RegionById(p.regionId.c_str())) {
+        if (r->flags.guarded) return true;
+    }
+    // A place can sit inside a guarded region without being FILED under it,
+    // so fall back to geometry rather than to an optimistic guess.
+    for (const wm::Region& r : regions_) {
+        if (!r.flags.guarded) continue;
+        if (r.Contains(p.position.x, p.position.y)) return true;
+    }
+    return false;
+}
+
 const Place* Atlas::NearestPlaceWithService(wm::Service s, i32 x, i32 y,
                                             i32 maxDist) const {
+    // GUARDED FIRST, then distance. A shop in an unguarded field is not a
+    // cheaper version of the same shop -- it is a different proposition, and
+    // eight 15hp mages walked into one because this function ranked on
+    // distance alone.
+    //
+    // A nearer unguarded shop still wins over NOTHING: the second pass runs
+    // only when no guarded provider exists at all, so a service that simply
+    // has no safe location stays reachable.
     const Place* best = nullptr;
     i32 bestD = 0;
-    for (const Place& p : places_) {
-        if (!p.Offers(s)) continue;
-        const i32 d = Chebyshev(x, y, p.position.x, p.position.y);
-        if (maxDist > 0 && d > maxDist) continue;
-        if (!best || d < bestD) { best = &p; bestD = d; }
+    for (int pass = 0; pass < 2 && !best; ++pass) {
+        const bool wantGuarded = (pass == 0);
+        for (const Place& p : places_) {
+            if (!p.Offers(s)) continue;
+            if (wantGuarded && !PlaceIsGuarded(p)) continue;
+            const i32 d = Chebyshev(x, y, p.position.x, p.position.y);
+            if (maxDist > 0 && d > maxDist) continue;
+            if (!best || d < bestD) { best = &p; bestD = d; }
+        }
     }
     return best;
+}
+
+const Place* Atlas::NearestPlaceWithServiceSkipping(
+    wm::Service s, i32 x, i32 y, const std::vector<std::string>& skipIds,
+    i32 maxDist) const {
+    const Place* best = nullptr;
+    i32 bestD = 0;
+    for (int pass = 0; pass < 2 && !best; ++pass) {
+        const bool wantGuarded = (pass == 0);
+        for (const Place& p : places_) {
+            if (!p.Offers(s)) continue;
+            if (wantGuarded && !PlaceIsGuarded(p)) continue;
+            bool skipped = false;
+            for (const std::string& id : skipIds) {
+                if (p.id == id) { skipped = true; break; }
+            }
+            if (skipped) continue;
+            const i32 d = Chebyshev(x, y, p.position.x, p.position.y);
+            if (maxDist > 0 && d > maxDist) continue;
+            if (!best || d < bestD) { best = &p; bestD = d; }
+        }
+    }
+    return best;
+}
+
+void Atlas::PlacesWithServiceSkipping(wm::Service s, i32 x, i32 y,
+                                      const std::vector<std::string>& skipIds,
+                                      std::vector<const Place*>& out) const {
+    out.clear();
+    // Same two-pass guarded preference as NearestPlaceWithServiceSkipping:
+    // guarded places are not merely nicer, they are a different proposition,
+    // so the unguarded set is only consulted when nothing guarded offers the
+    // service at all.
+    for (int pass = 0; pass < 2 && out.empty(); ++pass) {
+        const bool wantGuarded = (pass == 0);
+        for (const Place& p : places_) {
+            if (!p.Offers(s)) continue;
+            if (wantGuarded && !PlaceIsGuarded(p)) continue;
+            bool skipped = false;
+            for (const std::string& id : skipIds) {
+                if (p.id == id) { skipped = true; break; }
+            }
+            if (skipped) continue;
+            out.push_back(&p);
+        }
+    }
+    std::sort(out.begin(), out.end(), [x, y](const Place* a, const Place* b) {
+        return Chebyshev(x, y, a->position.x, a->position.y) <
+               Chebyshev(x, y, b->position.x, b->position.y);
+    });
 }
 
 const Place* Atlas::NearestPlaceWithResource(wm::ResourceKind r, i32 x, i32 y,
@@ -379,6 +455,145 @@ const Place* Atlas::NearestPlaceOfCategory(wm::PlaceCategory c, i32 x, i32 y,
     return best;
 }
 
+// The generator's whole-yard band row is `<yard>_<category>`; every strong
+// ring is `<yard>_<creature>`. Suffix, not coordinates -- the atlas is
+// regenerated and the ids survive that, the numbers do not.
+HuntTier HuntTierOf(const Place& p) {
+    static const std::string kBand = "_graveyard";
+    const std::string& id = p.id;
+    const bool band = id.size() > kBand.size() &&
+                      id.compare(id.size() - kBand.size(), kBand.size(), kBand) == 0;
+    return band ? HuntTier::Weak : HuntTier::Strong;
+}
+
+const Place* Atlas::NearestHuntingGround(i32 x, i32 y, i32 maxDist) const {
+    return NearestHuntingGroundOfTier(HuntTier::Weak, x, y, maxDist);
+}
+
+const Place* Atlas::NearestHuntingGroundOfTier(HuntTier tier, i32 x, i32 y,
+                                               i32 maxDist) const {
+    const Place* best = nullptr;
+    i32 bestD = 0;
+    for (const Place& p : places_) {
+        if (p.category != wm::PlaceCategory::Graveyard) continue;
+        if (HuntTierOf(p) != tier) continue;
+        const i32 d = Chebyshev(x, y, p.position.x, p.position.y);
+        if (maxDist > 0 && d > maxDist) continue;
+        if (!best || d < bestD) { best = &p; bestD = d; }
+    }
+    return best;
+}
+
+const Place* Atlas::GroupHuntingGround(u32 character, usize rotation) const {
+    std::vector<const Place*> grounds;
+    for (const Place& p : places_) {
+        if (p.category != wm::PlaceCategory::Graveyard || HuntTierOf(p) != HuntTier::Weak)
+            continue;
+        // Transit landmarks inherit the graveyard category but are not yards.
+        if (p.position.map != 0 || p.position.x >= 5120 ||
+            p.id.find("entrance") != std::string::npos ||
+            p.id.find("exit") != std::string::npos ||
+            p.id.find("passage") != std::string::npos) continue;
+        // A weak row means only that it is the whole-yard row; it does not
+        // prove the row is actually separated from hard spawns.  The live
+        // fleet found Moonglow's "weak" patrol standing beside liches and
+        // skeletal knights, while Jhelom's generated row was attached to a
+        // territory region rather than its cemetery.  A shared novice pool
+        // must be stricter: a genuine graveyard region and enough clear space
+        // to patrol its whole weak radius without entering any strong ring.
+        const Region* region = RegionById(p.regionId.c_str());
+        if (!region || region->kind != wm::RegionKind::Graveyard) continue;
+        bool separated = true;
+        for (const Place& ring : places_) {
+            if (ring.category != wm::PlaceCategory::Graveyard ||
+                HuntTierOf(ring) != HuntTier::Strong ||
+                ring.regionId != p.regionId) continue;
+            const i32 edge = Chebyshev(p.position.x, p.position.y,
+                                       ring.position.x, ring.position.y) - ring.radius;
+            if (edge <= p.radius + 2) { separated = false; break; }
+        }
+        if (!separated) continue;
+        if (!HuntingPatrol(p).empty()) grounds.push_back(&p);
+    }
+    std::sort(grounds.begin(), grounds.end(), [](const Place* a, const Place* b) {
+        return a->id < b->id;
+    });
+    return grounds.empty() ? nullptr : grounds[(character / 2 + rotation) % grounds.size()];
+}
+
+std::vector<wm::Point> Atlas::HuntingPatrol(const wm::Place& place) const {
+    std::vector<wm::Point> points;
+    const Region* region = RegionById(place.regionId.c_str());
+    if (!region || region->rects.empty()) return {place.position};
+
+    // A region's AREADEF can bundle ground that has nothing to do with the
+    // selected place. Britain's graveyard is the evidenced case (wave30
+    // triage, 2026-09-07, tools/log_slice.py on Calar/Nairdris/Baelos/Kharos):
+    // the weak band's own anchor (1384,1492) AND its skeletal-knight/lich/
+    // lich-lord rings (y1446-1459) all sit inside the SAME walled RECT
+    // (1336,1443)-(1391,1494) -- the region's other RECT, south of the wall,
+    // has no spawns in it at all. Sweeping every RECT of the region, as this
+    // used to, sent a tier=novice patrol straight through the strong rings.
+    // Scope lanes to (a) the one RECT that actually holds this place -- never
+    // the union -- and (b) that place's own ring size (place.radius, already
+    // the shard's idea of how big this specific spot is; see
+    // DeriveGraveyardStrongTier / ParseVendorSpawns' homeRange convention),
+    // so two places sharing a RECT still get disjoint patrols.
+    const Rect* chosen = nullptr;
+    for (const Rect& r : region->rects) {
+        if (r.Contains(place.position.x, place.position.y)) { chosen = &r; break; }
+    }
+    if (!chosen) {
+        i64 bestD = -1;
+        for (const Rect& r : region->rects) {
+            const i32 cx = std::clamp(place.position.x, r.x1, r.x2);
+            const i32 cy = std::clamp(place.position.y, r.y1, r.y2);
+            const i64 dx = static_cast<i64>(cx) - place.position.x;
+            const i64 dy = static_cast<i64>(cy) - place.position.y;
+            const i64 d = dx * dx + dy * dy;
+            if (bestD < 0 || d < bestD) { bestD = d; chosen = &r; }
+        }
+    }
+    if (!chosen) return {place.position};
+
+    const i32 half = place.radius > 0 ? place.radius : 12;
+    const i32 bx1 = std::max(chosen->x1, place.position.x - half);
+    const i32 bx2 = std::min(chosen->x2, place.position.x + half);
+    const i32 by1 = std::max(chosen->y1, place.position.y - half);
+    const i32 by2 = std::min(chosen->y2, place.position.y + half);
+
+    std::fprintf(stderr,
+                 "hunt: patrol lanes scoped to RECT (%d,%d)-(%d,%d) of %s\n",
+                 bx1, by1, bx2, by2, place.name.c_str());
+
+    // Ten-tile lanes overlap the twelve-tile prey scan. Stay off boundaries,
+    // but a tight ring (e.g. the lich lord's, radius 2) can be smaller than a
+    // 3-tile pull-back on each side -- shrink the margin instead of inverting
+    // the range into an empty loop.
+    const i32 mx = std::min(3, (bx2 - bx1) / 2);
+    const i32 my = std::min(3, (by2 - by1) / 2);
+    int row = 0;
+    for (i32 y = by1 + my; y <= by2 - my; y += 10, ++row) {
+        std::vector<wm::Point> lane;
+        for (i32 x = bx1 + mx; x <= bx2 - mx; x += 10)
+            lane.push_back({x, y, place.position.z, place.position.map});
+        if (row % 2) std::reverse(lane.begin(), lane.end());
+        points.insert(points.end(), lane.begin(), lane.end());
+    }
+    if (points.empty()) points.push_back(place.position);
+    if (HuntTierOf(place) == HuntTier::Weak) {
+        points.erase(std::remove_if(points.begin(), points.end(), [&](const wm::Point& pt) {
+            for (const Place& ring : places_)
+                if (ring.category == wm::PlaceCategory::Graveyard &&
+                    ring.regionId == place.regionId && HuntTierOf(ring) == HuntTier::Strong &&
+                    Chebyshev(pt.x, pt.y, ring.position.x, ring.position.y) <= ring.radius + 2)
+                    return true;
+            return false;
+        }), points.end());
+    }
+    return points;
+}
+
 const Place* Atlas::NearestPlaceWithServiceInRegion(wm::Service s,
                                                     const char* regionId,
                                                     i32 x, i32 y) const {
@@ -386,16 +601,20 @@ const Place* Atlas::NearestPlaceWithServiceInRegion(wm::Service s,
     if (!region) return nullptr;
     const Place* best = nullptr;
     i32 bestD = 0;
-    for (const Place& p : places_) {
-        if (!p.Offers(s)) continue;
-        // Either the generator filed the place under this region, or the place
-        // simply falls inside its rectangles -- a shop just outside the town
-        // AREADEF still belongs to the town for a traveller's purposes.
-        if (!EqualsNoCase(p.regionId, region->id.c_str()) &&
-            !region->Contains(p.position.x, p.position.y))
-            continue;
-        const i32 d = Chebyshev(x, y, p.position.x, p.position.y);
-        if (!best || d < bestD) { best = &p; bestD = d; }
+    for (int pass = 0; pass < 2 && !best; ++pass) {
+        const bool wantGuarded = (pass == 0);
+        for (const Place& p : places_) {
+            if (!p.Offers(s)) continue;
+            // Either the generator filed the place under this region, or the
+            // place simply falls inside its rectangles -- a shop just outside
+            // the town AREADEF still belongs to the town for a traveller.
+            if (!EqualsNoCase(p.regionId, region->id.c_str()) &&
+                !region->Contains(p.position.x, p.position.y))
+                continue;
+            if (wantGuarded && !PlaceIsGuarded(p)) continue;
+            const i32 d = Chebyshev(x, y, p.position.x, p.position.y);
+            if (!best || d < bestD) { best = &p; bestD = d; }
+        }
     }
     return best;
 }
@@ -441,6 +660,13 @@ bool Atlas::AllowsRecallOutOf(i32 x, i32 y) const {
 bool Atlas::AllowsGateAt(i32 x, i32 y) const {
     const Region* r = RegionAt(x, y);
     return !r || !r->flags.BlocksGate();
+}
+
+bool Atlas::AllowsSkillGainAt(i32 x, i32 y) const {
+    const Region* r = RegionAt(x, y);
+    // Unknown ground is assumed to allow gain. The atlas covers the named
+    // regions; everywhere else is ordinary world, where skills do advance.
+    return !r || !r->flags.safe;
 }
 
 usize Atlas::CountPlacesWithService(wm::Service s) const {

@@ -1,0 +1,1181 @@
+[22:35:04.489] INFO  session 0: 127.0.0.1:2593 user='RevolutionFighter03' char=Loradan tag='m6c'
+[22:35:04.490] LOG   [m6c] event session_start: text log opened
+[22:35:04.490] LOG   [m6c] event net_connect_begin: connect 127.0.0.1:2593
+[22:35:04.490] INFO  [m6c] [net] connecting to 127.0.0.1:2593 ...
+[22:35:04.491] LOG   [m6c] event net_connected: connect 127.0.0.1:2593
+[22:35:04.491] INFO  [m6c] [net] connected.
+[22:35:04.491] INFO  [m6c] [seed] sent 0x7F000001 (plaintext)
+[22:35:04.491] LOG   [m6c] event seed_out: 0x7F000001 hex=7f000001
+[22:35:04.492] INFO  [life] loaded persistent state for Loradan (13 places, 0 suppliers, 19 events, 0 prior sessions)
+[22:35:04.492] INFO  [life] needs: reading 'lumberjack_swordsman' from the profession catalogue
+[22:35:04.492] INFO  [life] build plan 'lumberjack_swordsman': 600.0 resolved + 100.0 unresolved = 700.0/700.0, stats 100/100/25 = 225
+[22:35:04.492] INFO  [m6c] [life] autonomous player active for 'Loradan' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 25 min)
+[22:35:04.518] INFO  [m6c] [0xA8] 1 server(s):
+[22:35:04.518] INFO  [m6c]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[22:35:04.533] INFO  [m6c] [0x8C] game server = 127.0.0.1:2593  seed=0xDFA0A29F
+[22:35:04.533] LOG   [m6c] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xDFA0A29F
+[22:35:04.533] INFO  [m6c] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[22:35:04.533] LOG   [m6c] event relay_same_socket: no seed re-sent; 0x91 follows
+[22:35:04.533] INFO  [m6c] [0xB9] server features = 0x0005
+[22:35:04.533] INFO  [m6c] [0xA9] 5 slot(s) (populated 1):
+[22:35:04.533] INFO  [m6c]   [0] Loradan
+[22:35:04.533] INFO  [m6c]   [1] <empty>
+[22:35:04.533] INFO  [m6c]   [2] <empty>
+[22:35:04.533] INFO  [m6c]   [3] <empty>
+[22:35:04.533] INFO  [m6c]   [4] <empty>
+[22:35:04.533] INFO  [m6c] [ui] playing slot 0 ('Loradan')
+[22:35:04.548] INFO  [m6c] [0x1B] serial=0x00017C2B body=0x0190 pos=(647,806,0)
+[22:35:04.548] LOG   [m6c] event login_confirm: serial=0x00017C2B body=0x0190 pos=(647,806,0)
+[22:35:04.548] INFO  [m6c] [0x20] player @(647,806,0) facing=4
+[22:35:04.548] INFO  [m6c] [0x55] login complete — entering world
+[22:35:04.548] LOG   [m6c] event in_world: 0x55 received
+[22:35:04.548] INFO  [m6c] [backpack] opening 0x40017BBB
+[22:35:04.548] INFO  [m6c] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[22:35:04.548] INFO  [m6c] [chat ascii] System: There is 1 other player here.
+[22:35:04.548] INFO  [m6c] [chat ascii] System: Last logged: 2026/08/28 22:26:39
+[22:35:04.548] INFO  [m6c] [chat ascii] System: You are under the protection of the town guards
+[22:35:04.552] INFO  [m6c] [action] requesting the skill list
+[22:35:04.552] INFO  [life] in world; asked the server for the skill list
+[22:35:04.552] INFO  [m6c] [0x24] open container 0x40017BBB gump=60
+[22:35:04.552] INFO  [m6c] [0x3C] container contents: 8 item(s)
+[22:35:04.552] LOG   [m6c] event backpack_contents: serial=0x40017BBB items=8
+[22:35:07.143] INFO  [m6c] [bot] world data loaded (0 blacklisted spot(s)).
+[22:35:07.144] INFO  [life] reconciliation: resuming a life, 0 field(s) differed
+[22:35:07.144] INFO  [life]   gold         persisted=1000       server=1000       -> server value accepted
+[22:35:07.144] INFO  [life]   str          persisted=25         server=25         -> server value accepted
+[22:35:07.144] INFO  [life]   dex          persisted=20         server=20         -> server value accepted
+[22:35:07.144] INFO  [life]   int          persisted=5          server=5          -> server value accepted
+[22:35:07.144] INFO  [life]   skill_44     persisted=51.0       server=51.0       -> server value accepted
+[22:35:07.144] INFO  [life]   skill_40     persisted=50.0       server=50.0       -> server value accepted
+[22:35:07.144] INFO  [life]   skill_27     persisted=18.2       server=18.2       -> server value accepted
+[22:35:07.144] INFO  [life]   skill_1      persisted=11.2       server=11.2       -> server value accepted
+[22:35:07.144] INFO  [life]   skill_17     persisted=8.9        server=8.9        -> server value accepted
+[22:35:07.144] INFO  [life]   skill_11     persisted=2.8        server=2.8        -> server value accepted
+[22:35:07.144] INFO  [life]   position     persisted=647,806    server=647,806    -> server value accepted
+[22:35:07.144] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[22:35:07.144] INFO  [life]   restored objective KEPT: BANK (progress 85)
+[22:35:07.144] INFO  [m6c] [survival] on
+[22:35:07.144] LOG   [m6c] event survival_mode: on
+[22:35:07.146] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfighter03.loradan/state.json
+[22:35:07.146] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:35:07.197] INFO  [life] bank: returning to a remembered bank at 648,822 (trip 1)
+[22:35:07.197] INFO  [m6c] [travel] bank -> (648,822) r=2 from (647,806)
+[22:35:07.197] LOG   [m6c] event travel_start: label='bank' target=(648,822) radius=2 from=(647,806)
+[22:35:07.197] INFO  [m6c] [travel] mode walk             usable   <- chosen
+[22:35:07.197] INFO  [m6c] [travel] mode moongate         usable
+[22:35:07.197] INFO  [m6c] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:35:07.197] INFO  [m6c] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:35:07.197] LOG   [m6c] event travel_mode: walk
+[22:35:07.197] INFO  [m6c] [travel] plan bank: ok legs=1 ~16 tiles transit=0 nodes=0
+[22:35:07.259] INFO  [m6c] [action] goto (648,822) from (647,806,0)
+[22:35:07.259] LOG   [m6c] event goto_start: target=(648,822) from=(647,806)
+[22:35:07.259] INFO  [m6c] [bot] running from (647,806,0) to (648,822)
+[22:35:07.259] INFO  [m6c] [bot] planning path to (648,822) in background
+[22:35:07.443] INFO  [m6c] [bot] replan to (648,822): 148 steps in 151942.0us
+[22:35:12.166] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:35:16.300] INFO  [m6c] [chat ascii] System: You have left the protection of the town guards
+[22:35:17.220] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:35:17.771] INFO  [m6c] [chat ascii] System: You are now under the protection of the town guards
+[22:35:19.505] INFO  [m6c] [chat ascii] System: You have left the protection of the town guards
+[22:35:20.705] INFO  [m6c] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=101 in 66.4us
+[22:35:22.278] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:35:22.844] INFO  [m6c] [chat ascii] System: You are now under the protection of the town guards
+[22:35:27.296] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:35:32.299] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:35:37.332] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:35:41.572] INFO  [m6c] [bot] door ahead at (635,855,z0); OpenDoor before step
+[22:35:41.573] INFO  [m6c] [chat ascii] System: Opening door...
+[22:35:42.372] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:35:47.425] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:35:51.974] INFO  [m6c] [travel] bank ARRIVED at (647,822,0)
+[22:35:51.974] LOG   [m6c] event travel_done: label='bank' ok=1 at=(647,822) legs=1 plans=1 why=''
+[22:35:52.036] INFO  [life] bank: arrived at 647,822 -- asking who is here
+[22:35:52.036] INFO  [m6c] [action] scanning nearby mobiles for names
+[22:35:52.036] INFO  [m6c] [action] requested 2 paperdoll(s) for trade titles
+[22:35:52.037] INFO  [m6c] [mobiles] nearby (3):
+[22:35:52.037] INFO  [m6c]   Basia 0x00001858
+[22:35:52.037] INFO  [m6c]   Filbert 0x0000183F
+[22:35:52.037] INFO  [m6c]   Rat 0x0000151E
+[22:35:52.037] INFO  [m6c] [0x88] paperdoll 0x00001858: "Basia, the banker"
+[22:35:52.037] INFO  [m6c] [world] Basia, the banker is a banker at (651,822)
+[22:35:52.037] INFO  [m6c] [0x88] paperdoll 0x0000183F: "Filbert, the minter"
+[22:35:52.037] INFO  [m6c] [world] Filbert, the minter is a banker at (654,824)
+[22:35:52.112] INFO  [m6c] [chat ascii] Basia: What is it thou wishest?
+[22:35:52.327] INFO  [m6c] [bot] arrived at (648,822,0)
+[22:35:52.452] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:35:54.591] INFO  [m6c] [ACTION] open_bank start
+[22:35:54.591] INFO  [m6c] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[22:35:54.591] INFO  [m6c] [chat uni  ] : bank
+[22:35:54.591] INFO  [m6c] [chat ascii] Basia: My mother wanted me to adventure, but I find banking much more satisfying.
+[22:35:54.591] INFO  [m6c] [chat ascii] System: You have 52 stones in your Bank Box
+[22:35:54.592] INFO  [m6c] [0x24] open container 0x40017C19 gump=74
+[22:35:54.592] INFO  [m6c] [STATE] bank container=0x40017C19 gump=0x004A
+[22:35:54.592] LOG   [m6c] event bank_opened: container recognised
+[22:35:54.592] INFO  [m6c] [ACTION_RESULT] open_bank success (0ms) bank container opened
+[22:35:54.592] LOG   [m6c] event action_result: open_bank success took=0ms bank container opened
+[22:35:54.592] INFO  [m6c] [0x3C] container contents: 1 item(s)
+[22:35:57.110] INFO  [life] banking 31 i_log
+[22:35:57.110] INFO  [m6c] [ACTION] move_item start
+[22:35:57.110] INFO  [m6c] [ACTION] move_item serial=0x40014C68 amount=31 dest=0x40017C19
+[22:35:57.110] INFO  [m6c] [ITEM] drag serial=0x40014C68 amount=31
+[22:35:57.110] INFO  [m6c] [ITEM] drop container=0x40017C19
+[22:35:57.110] INFO  [m6c] [ACTION_RESULT] move_item success (0ms) item is in the destination
+[22:35:57.110] LOG   [m6c] event action_result: move_item success took=0ms item is in the destination
+[22:35:57.185] INFO  [life] goal_changed=GATHER_LOGS from=BANK reason="GATHER_LOGS 97.0 superseded BANK 0.0"
+[22:35:57.185] INFO  [life] needs considered: NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedEquipment(bandages BLOCKED 0.50) NeedLogs(logs 0.40) NeedTraining(Carpentry 0.39) NeedTraining(Healing 0.38) NeedTraining(Anatomy 0.37) NeedTraining(Tactics 0.35) NeedSkillTraining(Carpentry 0.30) NeedTraining(Swordsmanship 0.28) NeedTraining(Lumberjacking 0.27) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,]
+[22:35:57.185] INFO  [life]   score=97.0
+[22:35:57.185] INFO  [life]   reason: NeedLogs urgency 0.40 x 130 = 52.0
+[22:35:57.185] INFO  [life]   reason: proven stand at 660,846 (6 successes, 2 failures)
+[22:35:57.185] INFO  [life]   reason: axe already in hand +20
+[22:35:57.185] INFO  [life]   reason: proven stand at 660,846 (6 successes) +25
+[22:35:57.185] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[22:35:57.185] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (37 x i_log spare, and no buyer known -- on this shard it is a player-market good)
+[22:35:57.185] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[22:35:57.492] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:35:58.648] INFO  [m6c] [action] goto finished at (648,822,0); target (648,822); ARRIVED (off by 0 tile(s))
+[22:35:58.648] LOG   [m6c] event goto_done: at=(648,822) target=(648,822) arrived=1 off=0
+[22:35:58.648] INFO  [m6c] [action] goto (634,809) from (648,822,0)
+[22:35:58.648] LOG   [m6c] event goto_start: target=(634,809) from=(648,822)
+[22:35:58.648] INFO  [m6c] [bot] running from (648,822,0) to (634,809)
+[22:35:58.648] INFO  [m6c] [bot] planning path to (634,809) in background
+[22:35:58.956] INFO  [m6c] [bot] replan to (634,809): 161 steps in 264384.5us
+[22:36:02.496] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:36:07.196] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfighter03.loradan/state.json
+[22:36:07.530] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:36:09.285] INFO  [m6c] [bot] door ahead at (636,856,z0); OpenDoor before step
+[22:36:09.286] INFO  [m6c] [chat ascii] System: Opening door...
+[22:36:12.550] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:36:17.598] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:36:22.660] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:36:25.854] INFO  [m6c] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=73 in 156.3us
+[22:36:27.700] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:36:28.840] INFO  [m6c] [chat ascii] System: You have left the protection of the town guards
+[22:36:31.714] INFO  [m6c] [chat ascii] System: You are now under the protection of the town guards
+[22:36:32.760] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:36:33.270] INFO  [m6c] [chat ascii] System: You have left the protection of the town guards
+[22:36:34.666] INFO  [m6c] [chat ascii] System: You are now under the protection of the town guards
+[22:36:37.803] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:36:42.834] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:36:43.142] INFO  [m6c] [chat ascii] System: World save in 10 seconds
+[22:36:46.814] INFO  [m6c] [ACTION] use_object start
+[22:36:46.814] INFO  [m6c] [ACTION] use_object serial=0x40017BA6
+[22:36:46.827] INFO  [m6c] [chat ascii] System: What do you want to use this on?
+[22:36:46.827] INFO  [m6c] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=1
+[22:36:46.827] LOG   [m6c] event target_requested: id=0x000002CE type=0 subtype=1 gen=1
+[22:36:46.827] INFO  [m6c] [ACTION_RESULT] use_object success (13ms) server armed a target cursor
+[22:36:46.827] LOG   [m6c] event action_result: use_object success took=13ms server armed a target cursor
+[22:36:47.640] INFO  [m6c] [TARGET] reply static=(633,809,0) gfx=0x0CE0 gen=1
+[22:36:47.640] INFO  [m6c] [target] static 0x0CE0 (633,809,0)
+[22:36:47.702] INFO  [m6c] [bot] arrived at (634,809,0)
+[22:36:47.885] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:36:52.928] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:36:53.159] INFO  [m6c] [chat ascii] System: World save has been initiated.
+[22:36:57.686] INFO  [m6c] [ACTION] use_object start
+[22:36:57.686] INFO  [m6c] [ACTION] use_object serial=0x40017BA6
+[22:36:57.686] INFO  [m6c] [chat ascii] System: What do you want to use this on?
+[22:36:57.686] INFO  [m6c] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=2
+[22:36:57.686] LOG   [m6c] event target_requested: id=0x000002CE type=0 subtype=1 gen=2
+[22:36:57.686] INFO  [m6c] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[22:36:57.686] LOG   [m6c] event action_result: use_object success took=0ms server armed a target cursor
+[22:36:57.946] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:36:58.530] INFO  [m6c] [TARGET] reply static=(633,809,0) gfx=0x0CE0 gen=2
+[22:36:58.531] INFO  [m6c] [target] static 0x0CE0 (633,809,0)
+[22:36:58.531] INFO  [m6c] [0x20] player @(634,809,0) facing=6
+[22:36:58.531] INFO  [m6c] [chat ascii] System: You decide not to chop wood for now.
+[22:36:58.963] INFO  [life] tree at 633,809 holds no wood -> next tree (1 tried this stand)
+[22:36:59.026] INFO  [life] gather: every tree within 24 tiles is worked out -> this area is done for now
+[22:36:59.533] INFO  [life] gather: back to a stand that has paid out before at 660,846 (6 successes, 2 failures)
+[22:36:59.534] INFO  [m6c] [travel] proven_stand -> (660,846) r=4 from (634,809)
+[22:36:59.534] LOG   [m6c] event travel_start: label='proven_stand' target=(660,846) radius=4 from=(634,809)
+[22:36:59.534] INFO  [m6c] [travel] mode walk             usable   <- chosen
+[22:36:59.534] INFO  [m6c] [travel] mode moongate         usable
+[22:36:59.534] INFO  [m6c] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:36:59.534] INFO  [m6c] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:36:59.534] LOG   [m6c] event travel_mode: walk
+[22:36:59.534] INFO  [m6c] [travel] plan proven_stand: ok legs=1 ~37 tiles transit=0 nodes=0
+[22:36:59.595] INFO  [m6c] [action] goto finished at (634,809,0); target (634,809); ARRIVED (off by 0 tile(s))
+[22:36:59.595] LOG   [m6c] event goto_done: at=(634,809) target=(634,809) arrived=1 off=0
+[22:36:59.595] INFO  [m6c] [action] goto (660,846) from (634,809,0)
+[22:36:59.595] LOG   [m6c] event goto_start: target=(660,846) from=(634,809)
+[22:36:59.595] INFO  [m6c] [bot] running from (634,809,0) to (660,846)
+[22:36:59.595] INFO  [m6c] [bot] planning path to (660,846) in background
+[22:36:59.718] INFO  [m6c] [action] goto finished at (634,809,0); target (660,846); stopped short (off by 63 tile(s))
+[22:36:59.718] LOG   [m6c] event goto_done: at=(634,809) target=(660,846) arrived=0 off=63
+[22:37:00.968] INFO  [m6c] [action] goto (660,846) from (634,809,0)
+[22:37:00.968] LOG   [m6c] event goto_start: target=(660,846) from=(634,809)
+[22:37:00.968] INFO  [m6c] [bot] running from (634,809,0) to (660,846)
+[22:37:00.968] INFO  [m6c] [bot] planning path to (660,846) in background
+[22:37:01.029] INFO  [m6c] [action] goto finished at (634,809,0); target (660,846); stopped short (off by 63 tile(s))
+[22:37:01.029] LOG   [m6c] event goto_done: at=(634,809) target=(660,846) arrived=0 off=63
+[22:37:02.247] INFO  [m6c] [action] goto (660,846) from (634,809,0)
+[22:37:02.247] LOG   [m6c] event goto_start: target=(660,846) from=(634,809)
+[22:37:02.247] INFO  [m6c] [bot] running from (634,809,0) to (660,846)
+[22:37:02.247] INFO  [m6c] [bot] planning path to (660,846) in background
+[22:37:02.309] INFO  [m6c] [action] goto finished at (634,809,0); target (660,846); stopped short (off by 63 tile(s))
+[22:37:02.309] LOG   [m6c] event goto_done: at=(634,809) target=(660,846) arrived=0 off=63
+[22:37:02.988] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:37:03.370] INFO  [m6c] [chat ascii] System: You put the logs in your pack.
+[22:37:03.526] INFO  [m6c] [travel] mode walk             usable   <- chosen
+[22:37:03.526] INFO  [m6c] [travel] mode moongate         usable
+[22:37:03.527] INFO  [m6c] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:37:03.527] INFO  [m6c] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:37:03.527] LOG   [m6c] event travel_mode: walk
+[22:37:03.527] INFO  [m6c] [travel] plan proven_stand: ok legs=1 ~37 tiles transit=0 nodes=0
+[22:37:05.066] INFO  [m6c] [action] goto (660,846) from (634,809,0)
+[22:37:05.066] LOG   [m6c] event goto_start: target=(660,846) from=(634,809)
+[22:37:05.066] INFO  [m6c] [bot] running from (634,809,0) to (660,846)
+[22:37:05.066] INFO  [m6c] [bot] planning path to (660,846) in background
+[22:37:05.189] INFO  [m6c] [action] goto finished at (634,809,0); target (660,846); stopped short (off by 63 tile(s))
+[22:37:05.189] LOG   [m6c] event goto_done: at=(634,809) target=(660,846) arrived=0 off=63
+[22:37:06.440] INFO  [m6c] [action] goto (660,846) from (634,809,0)
+[22:37:06.440] LOG   [m6c] event goto_start: target=(660,846) from=(634,809)
+[22:37:06.440] INFO  [m6c] [bot] running from (634,809,0) to (660,846)
+[22:37:06.441] INFO  [m6c] [bot] planning path to (660,846) in background
+[22:37:06.502] INFO  [m6c] [action] goto finished at (634,809,0); target (660,846); stopped short (off by 63 tile(s))
+[22:37:06.502] LOG   [m6c] event goto_done: at=(634,809) target=(660,846) arrived=0 off=63
+[22:37:07.199] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfighter03.loradan/state.json
+[22:37:07.718] INFO  [m6c] [action] goto (660,846) from (634,809,0)
+[22:37:07.718] LOG   [m6c] event goto_start: target=(660,846) from=(634,809)
+[22:37:07.718] INFO  [m6c] [bot] running from (634,809,0) to (660,846)
+[22:37:07.718] INFO  [m6c] [bot] planning path to (660,846) in background
+[22:37:07.780] INFO  [m6c] [action] goto finished at (634,809,0); target (660,846); stopped short (off by 63 tile(s))
+[22:37:07.780] LOG   [m6c] event goto_done: at=(634,809) target=(660,846) arrived=0 off=63
+[22:37:08.027] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:37:08.983] INFO  [m6c] [travel] mode walk             usable   <- chosen
+[22:37:08.983] INFO  [m6c] [travel] mode moongate         usable
+[22:37:08.983] INFO  [m6c] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:37:08.983] INFO  [m6c] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:37:08.983] LOG   [m6c] event travel_mode: walk
+[22:37:08.983] INFO  [m6c] [travel] plan proven_stand: ok legs=1 ~37 tiles transit=0 nodes=0
+[22:37:12.021] INFO  [m6c] [action] goto (660,846) from (634,809,0)
+[22:37:12.021] LOG   [m6c] event goto_start: target=(660,846) from=(634,809)
+[22:37:12.021] INFO  [m6c] [bot] running from (634,809,0) to (660,846)
+[22:37:12.021] INFO  [m6c] [bot] planning path to (660,846) in background
+[22:37:12.146] INFO  [m6c] [action] goto finished at (634,809,0); target (660,846); stopped short (off by 63 tile(s))
+[22:37:12.146] LOG   [m6c] event goto_done: at=(634,809) target=(660,846) arrived=0 off=63
+[22:37:13.070] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:37:13.378] INFO  [m6c] [action] goto (660,846) from (634,809,0)
+[22:37:13.378] LOG   [m6c] event goto_start: target=(660,846) from=(634,809)
+[22:37:13.378] INFO  [m6c] [bot] running from (634,809,0) to (660,846)
+[22:37:13.378] INFO  [m6c] [bot] planning path to (660,846) in background
+[22:37:13.500] INFO  [m6c] [action] goto finished at (634,809,0); target (660,846); stopped short (off by 63 tile(s))
+[22:37:13.500] LOG   [m6c] event goto_done: at=(634,809) target=(660,846) arrived=0 off=63
+[22:37:14.733] INFO  [m6c] [action] goto (660,846) from (634,809,0)
+[22:37:14.733] LOG   [m6c] event goto_start: target=(660,846) from=(634,809)
+[22:37:14.733] INFO  [m6c] [bot] running from (634,809,0) to (660,846)
+[22:37:14.733] INFO  [m6c] [bot] planning path to (660,846) in background
+[22:37:14.855] INFO  [m6c] [action] goto finished at (634,809,0); target (660,846); stopped short (off by 63 tile(s))
+[22:37:14.855] LOG   [m6c] event goto_done: at=(634,809) target=(660,846) arrived=0 off=63
+[22:37:16.082] INFO  [m6c] [travel] mode walk             usable   <- chosen
+[22:37:16.082] INFO  [m6c] [travel] mode moongate         usable
+[22:37:16.082] INFO  [m6c] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:37:16.082] INFO  [m6c] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:37:16.082] LOG   [m6c] event travel_mode: walk
+[22:37:16.082] INFO  [m6c] [travel] plan proven_stand: ok legs=1 ~37 tiles transit=0 nodes=0
+[22:37:18.116] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:37:20.588] INFO  [m6c] [action] goto (660,846) from (634,809,0)
+[22:37:20.588] LOG   [m6c] event goto_start: target=(660,846) from=(634,809)
+[22:37:20.588] INFO  [m6c] [bot] running from (634,809,0) to (660,846)
+[22:37:20.588] INFO  [m6c] [bot] planning path to (660,846) in background
+[22:37:20.649] INFO  [m6c] [action] goto finished at (634,809,0); target (660,846); stopped short (off by 63 tile(s))
+[22:37:20.649] LOG   [m6c] event goto_done: at=(634,809) target=(660,846) arrived=0 off=63
+[22:37:21.890] INFO  [m6c] [action] goto (660,846) from (634,809,0)
+[22:37:21.890] LOG   [m6c] event goto_start: target=(660,846) from=(634,809)
+[22:37:21.890] INFO  [m6c] [bot] running from (634,809,0) to (660,846)
+[22:37:21.890] INFO  [m6c] [bot] planning path to (660,846) in background
+[22:37:21.952] INFO  [m6c] [action] goto finished at (634,809,0); target (660,846); stopped short (off by 63 tile(s))
+[22:37:21.952] LOG   [m6c] event goto_done: at=(634,809) target=(660,846) arrived=0 off=63
+[22:37:23.120] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:37:23.182] INFO  [m6c] [action] goto (660,846) from (634,809,0)
+[22:37:23.182] LOG   [m6c] event goto_start: target=(660,846) from=(634,809)
+[22:37:23.182] INFO  [m6c] [bot] running from (634,809,0) to (660,846)
+[22:37:23.182] INFO  [m6c] [bot] planning path to (660,846) in background
+[22:37:23.244] INFO  [m6c] [action] goto finished at (634,809,0); target (660,846); stopped short (off by 63 tile(s))
+[22:37:23.244] LOG   [m6c] event goto_done: at=(634,809) target=(660,846) arrived=0 off=63
+[22:37:23.244] LOG   [m6c] event travel_escape: from=(634,809,0) to=(648,806) attempt=1
+[22:37:23.244] INFO  [m6c] [action] goto (648,806) from (634,809,0)
+[22:37:23.244] LOG   [m6c] event goto_start: target=(648,806) from=(634,809)
+[22:37:23.244] INFO  [m6c] [bot] running from (634,809,0) to (648,806,z0)
+[22:37:23.244] INFO  [m6c] [bot] planning path to (648,806) in background
+[22:37:23.289] INFO  [m6c] [bot] replan to (648,806): 14 steps in 1052.0us
+[22:37:27.723] INFO  [m6c] [bot] arrived at (648,806,0)
+[22:37:27.724] INFO  [m6c] [action] goto finished at (648,806,0); target (648,806); ARRIVED (off by 0 tile(s))
+[22:37:27.724] LOG   [m6c] event goto_done: at=(648,806) target=(648,806) arrived=1 off=0
+[22:37:27.724] INFO  [m6c] [travel] recovery walk reached its anchor at (648,806,0) (off 0); attempt 1/3
+[22:37:27.724] LOG   [m6c] event travel_recovery_done: reached=1 at=(648,806,0) off=0 attempt=1
+[22:37:27.770] INFO  [m6c] [travel] mode walk             usable   <- chosen
+[22:37:27.770] INFO  [m6c] [travel] mode moongate         usable
+[22:37:27.770] INFO  [m6c] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:37:27.770] INFO  [m6c] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:37:27.770] LOG   [m6c] event travel_mode: walk
+[22:37:27.770] INFO  [m6c] [travel] plan proven_stand: ok legs=1 ~40 tiles transit=0 nodes=0
+[22:37:27.832] INFO  [m6c] [action] goto (660,846) from (648,806,0)
+[22:37:27.832] LOG   [m6c] event goto_start: target=(660,846) from=(648,806)
+[22:37:27.832] INFO  [m6c] [bot] running from (648,806,0) to (660,846)
+[22:37:27.832] INFO  [m6c] [bot] planning path to (660,846) in background
+[22:37:27.955] INFO  [m6c] [action] goto finished at (648,806,0); target (660,846); stopped short (off by 52 tile(s))
+[22:37:27.955] LOG   [m6c] event goto_done: at=(648,806) target=(660,846) arrived=0 off=52
+[22:37:28.139] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:37:29.186] INFO  [m6c] [action] goto (660,846) from (648,806,0)
+[22:37:29.186] LOG   [m6c] event goto_start: target=(660,846) from=(648,806)
+[22:37:29.186] INFO  [m6c] [bot] running from (648,806,0) to (660,846)
+[22:37:29.186] INFO  [m6c] [bot] planning path to (660,846) in background
+[22:37:29.309] INFO  [m6c] [action] goto finished at (648,806,0); target (660,846); stopped short (off by 52 tile(s))
+[22:37:29.309] LOG   [m6c] event goto_done: at=(648,806) target=(660,846) arrived=0 off=52
+[22:37:30.542] INFO  [m6c] [action] goto (660,846) from (648,806,0)
+[22:37:30.542] LOG   [m6c] event goto_start: target=(660,846) from=(648,806)
+[22:37:30.542] INFO  [m6c] [bot] running from (648,806,0) to (660,846)
+[22:37:30.542] INFO  [m6c] [bot] planning path to (660,846) in background
+[22:37:30.666] INFO  [m6c] [action] goto finished at (648,806,0); target (660,846); stopped short (off by 52 tile(s))
+[22:37:30.666] LOG   [m6c] event goto_done: at=(648,806) target=(660,846) arrived=0 off=52
+[22:37:31.877] INFO  [m6c] [travel] mode walk             usable   <- chosen
+[22:37:31.877] INFO  [m6c] [travel] mode moongate         usable
+[22:37:31.877] INFO  [m6c] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:37:31.877] INFO  [m6c] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:37:31.877] LOG   [m6c] event travel_mode: walk
+[22:37:31.877] INFO  [m6c] [travel] plan proven_stand: ok legs=1 ~40 tiles transit=0 nodes=0
+[22:37:33.164] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:37:33.414] INFO  [m6c] [action] goto (660,846) from (648,806,0)
+[22:37:33.414] LOG   [m6c] event goto_start: target=(660,846) from=(648,806)
+[22:37:33.414] INFO  [m6c] [bot] running from (648,806,0) to (660,846)
+[22:37:33.414] INFO  [m6c] [bot] planning path to (660,846) in background
+[22:37:33.444] INFO  [m6c] [action] goto finished at (648,806,0); target (660,846); stopped short (off by 52 tile(s))
+[22:37:33.445] LOG   [m6c] event goto_done: at=(648,806) target=(660,846) arrived=0 off=52
+[22:37:34.674] INFO  [m6c] [action] goto (660,846) from (648,806,0)
+[22:37:34.674] LOG   [m6c] event goto_start: target=(660,846) from=(648,806)
+[22:37:34.674] INFO  [m6c] [bot] running from (648,806,0) to (660,846)
+[22:37:34.674] INFO  [m6c] [bot] planning path to (660,846) in background
+[22:37:34.735] INFO  [m6c] [action] goto finished at (648,806,0); target (660,846); stopped short (off by 52 tile(s))
+[22:37:34.735] LOG   [m6c] event goto_done: at=(648,806) target=(660,846) arrived=0 off=52
+[22:37:35.951] INFO  [m6c] [action] goto (660,846) from (648,806,0)
+[22:37:35.951] LOG   [m6c] event goto_start: target=(660,846) from=(648,806)
+[22:37:35.951] INFO  [m6c] [bot] running from (648,806,0) to (660,846)
+[22:37:35.951] INFO  [m6c] [bot] planning path to (660,846) in background
+[22:37:36.072] INFO  [m6c] [action] goto finished at (648,806,0); target (660,846); stopped short (off by 52 tile(s))
+[22:37:36.072] LOG   [m6c] event goto_done: at=(648,806) target=(660,846) arrived=0 off=52
+[22:37:37.299] INFO  [m6c] [travel] mode walk             usable   <- chosen
+[22:37:37.299] INFO  [m6c] [travel] mode moongate         usable
+[22:37:37.299] INFO  [m6c] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:37:37.299] INFO  [m6c] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:37:37.299] LOG   [m6c] event travel_mode: walk
+[22:37:37.299] INFO  [m6c] [travel] plan proven_stand: ok legs=1 ~40 tiles transit=0 nodes=0
+[22:37:38.209] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:37:40.337] INFO  [m6c] [action] goto (660,846) from (648,806,0)
+[22:37:40.337] LOG   [m6c] event goto_start: target=(660,846) from=(648,806)
+[22:37:40.337] INFO  [m6c] [bot] running from (648,806,0) to (660,846)
+[22:37:40.337] INFO  [m6c] [bot] planning path to (660,846) in background
+[22:37:40.464] INFO  [m6c] [action] goto finished at (648,806,0); target (660,846); stopped short (off by 52 tile(s))
+[22:37:40.464] LOG   [m6c] event goto_done: at=(648,806) target=(660,846) arrived=0 off=52
+[22:37:41.694] INFO  [m6c] [action] goto (660,846) from (648,806,0)
+[22:37:41.694] LOG   [m6c] event goto_start: target=(660,846) from=(648,806)
+[22:37:41.694] INFO  [m6c] [bot] running from (648,806,0) to (660,846)
+[22:37:41.694] INFO  [m6c] [bot] planning path to (660,846) in background
+[22:37:41.818] INFO  [m6c] [action] goto finished at (648,806,0); target (660,846); stopped short (off by 52 tile(s))
+[22:37:41.819] LOG   [m6c] event goto_done: at=(648,806) target=(660,846) arrived=0 off=52
+[22:37:43.031] INFO  [m6c] [action] goto (660,846) from (648,806,0)
+[22:37:43.031] LOG   [m6c] event goto_start: target=(660,846) from=(648,806)
+[22:37:43.031] INFO  [m6c] [bot] running from (648,806,0) to (660,846)
+[22:37:43.031] INFO  [m6c] [bot] planning path to (660,846) in background
+[22:37:43.153] INFO  [m6c] [action] goto finished at (648,806,0); target (660,846); stopped short (off by 52 tile(s))
+[22:37:43.153] LOG   [m6c] event goto_done: at=(648,806) target=(660,846) arrived=0 off=52
+[22:37:43.214] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:37:44.381] INFO  [m6c] [travel] mode walk             usable   <- chosen
+[22:37:44.381] INFO  [m6c] [travel] mode moongate         usable
+[22:37:44.381] INFO  [m6c] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:37:44.381] INFO  [m6c] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:37:44.381] LOG   [m6c] event travel_mode: walk
+[22:37:44.381] INFO  [m6c] [travel] plan proven_stand: ok legs=1 ~40 tiles transit=0 nodes=0
+[22:37:48.274] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:37:48.904] INFO  [m6c] [action] goto (660,846) from (648,806,0)
+[22:37:48.904] LOG   [m6c] event goto_start: target=(660,846) from=(648,806)
+[22:37:48.904] INFO  [m6c] [bot] running from (648,806,0) to (660,846)
+[22:37:48.904] INFO  [m6c] [bot] planning path to (660,846) in background
+[22:37:49.027] INFO  [m6c] [action] goto finished at (648,806,0); target (660,846); stopped short (off by 52 tile(s))
+[22:37:49.027] LOG   [m6c] event goto_done: at=(648,806) target=(660,846) arrived=0 off=52
+[22:37:50.228] INFO  [m6c] [action] goto (660,846) from (648,806,0)
+[22:37:50.228] LOG   [m6c] event goto_start: target=(660,846) from=(648,806)
+[22:37:50.228] INFO  [m6c] [bot] running from (648,806,0) to (660,846)
+[22:37:50.228] INFO  [m6c] [bot] planning path to (660,846) in background
+[22:37:50.290] INFO  [m6c] [action] goto finished at (648,806,0); target (660,846); stopped short (off by 52 tile(s))
+[22:37:50.290] LOG   [m6c] event goto_done: at=(648,806) target=(660,846) arrived=0 off=52
+[22:37:51.525] INFO  [m6c] [action] goto (660,846) from (648,806,0)
+[22:37:51.525] LOG   [m6c] event goto_start: target=(660,846) from=(648,806)
+[22:37:51.525] INFO  [m6c] [bot] running from (648,806,0) to (660,846)
+[22:37:51.525] INFO  [m6c] [bot] planning path to (660,846) in background
+[22:37:51.647] INFO  [m6c] [action] goto finished at (648,806,0); target (660,846); stopped short (off by 52 tile(s))
+[22:37:51.647] LOG   [m6c] event goto_done: at=(648,806) target=(660,846) arrived=0 off=52
+[22:37:51.647] LOG   [m6c] event travel_escape: from=(648,806,0) to=(648,792) attempt=2
+[22:37:51.647] INFO  [m6c] [action] goto (648,792) from (648,806,0)
+[22:37:51.647] LOG   [m6c] event goto_start: target=(648,792) from=(648,806)
+[22:37:51.647] INFO  [m6c] [bot] running from (648,806,0) to (648,792,z0)
+[22:37:51.647] INFO  [m6c] [bot] planning path to (648,792) in background
+[22:37:51.707] INFO  [m6c] [bot] replan to (648,792): 14 steps in 1485.2us
+[22:37:53.290] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:37:53.555] INFO  [m6c] [chat ascii] System: You have left the protection of the town guards
+[22:37:55.191] INFO  [m6c] [bot] arrived at (648,792,0)
+[22:37:55.192] INFO  [m6c] [action] goto finished at (648,792,0); target (648,792); ARRIVED (off by 0 tile(s))
+[22:37:55.192] LOG   [m6c] event goto_done: at=(648,792) target=(648,792) arrived=1 off=0
+[22:37:55.192] INFO  [m6c] [travel] recovery walk reached its anchor at (648,792,0) (off 0); attempt 2/3
+[22:37:55.192] LOG   [m6c] event travel_recovery_done: reached=1 at=(648,792,0) off=0 attempt=2
+[22:37:55.253] INFO  [m6c] [travel] mode walk             usable   <- chosen
+[22:37:55.253] INFO  [m6c] [travel] mode moongate         usable
+[22:37:55.253] INFO  [m6c] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:37:55.253] INFO  [m6c] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:37:55.253] LOG   [m6c] event travel_mode: walk
+[22:37:55.261] INFO  [m6c] [travel] plan proven_stand: no world route to the destination legs=0 ~0 tiles transit=0 nodes=23707
+[22:37:55.261] LOG   [m6c] event travel_escape: from=(648,792,0) to=(634,784) attempt=3
+[22:37:55.261] INFO  [m6c] [action] goto (634,784) from (648,792,0)
+[22:37:55.261] LOG   [m6c] event goto_start: target=(634,784) from=(648,792)
+[22:37:55.261] INFO  [m6c] [bot] running from (648,792,0) to (634,784,z0)
+[22:37:55.261] INFO  [m6c] [bot] planning path to (634,784) in background
+[22:37:55.315] INFO  [m6c] [bot] replan to (634,784): 14 steps in 2195.1us
+[22:37:58.302] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:38:01.495] INFO  [m6c] [bot] arrived at (634,784,0)
+[22:38:01.496] INFO  [m6c] [action] goto finished at (634,784,0); target (634,784); ARRIVED (off by 0 tile(s))
+[22:38:01.496] LOG   [m6c] event goto_done: at=(634,784) target=(634,784) arrived=1 off=0
+[22:38:01.496] INFO  [m6c] [travel] recovery walk reached its anchor at (634,784,0) (off 0); attempt 3/3
+[22:38:01.496] LOG   [m6c] event travel_recovery_done: reached=1 at=(634,784,0) off=0 attempt=3
+[22:38:01.556] INFO  [m6c] [travel] mode moongate         usable   <- chosen
+[22:38:01.556] INFO  [m6c] [travel] mode walk             usable
+[22:38:01.556] INFO  [m6c] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:38:01.556] INFO  [m6c] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:38:01.556] LOG   [m6c] event travel_mode: moongate
+[22:38:01.564] INFO  [m6c] [travel] plan proven_stand: no world route to the destination legs=0 ~0 tiles transit=0 nodes=25430
+[22:38:01.564] INFO  [m6c] [travel] proven_stand FAILED at (634,784,0) -- no world route to the destination
+[22:38:01.564] LOG   [m6c] event travel_failed: label='proven_stand' ok=0 at=(634,784) legs=0 plans=1 why='no world route to the destination'
+[22:38:01.679] INFO  [m6c] [action] goto (636,782) from (634,784,0)
+[22:38:01.679] LOG   [m6c] event goto_start: target=(636,782) from=(634,784)
+[22:38:01.679] INFO  [m6c] [bot] running from (634,784,0) to (636,782)
+[22:38:01.679] INFO  [m6c] [bot] planning path to (636,782) in background
+[22:38:01.739] INFO  [m6c] [bot] replan to (636,782): 2 steps in 119.2us
+[22:38:02.386] INFO  [m6c] [bot] arrived at (636,782,0)
+[22:38:02.937] INFO  [m6c] [ACTION] use_object start
+[22:38:02.937] INFO  [m6c] [ACTION] use_object serial=0x40017BA6
+[22:38:02.952] INFO  [m6c] [chat ascii] System: What do you want to use this on?
+[22:38:02.952] INFO  [m6c] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=3
+[22:38:02.952] LOG   [m6c] event target_requested: id=0x000002CE type=0 subtype=1 gen=3
+[22:38:02.952] INFO  [m6c] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
+[22:38:02.952] LOG   [m6c] event action_result: use_object success took=15ms server armed a target cursor
+[22:38:03.323] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:38:03.752] INFO  [m6c] [TARGET] reply static=(637,782,0) gfx=0x0CE0 gen=3
+[22:38:03.752] INFO  [m6c] [target] static 0x0CE0 (637,782,0)
+[22:38:03.752] INFO  [m6c] [0x20] player @(636,782,0) facing=2
+[22:38:07.253] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfighter03.loradan/state.json
+[22:38:08.365] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:38:11.866] INFO  [m6c] [chat ascii] System: You hack at the tree for a while, but fail to produce any useable wood.
+[22:38:11.991] INFO  [m6c] [ACTION] use_object start
+[22:38:11.991] INFO  [m6c] [ACTION] use_object serial=0x40017BA6
+[22:38:11.991] INFO  [m6c] [chat ascii] System: What do you want to use this on?
+[22:38:11.991] INFO  [m6c] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=4
+[22:38:11.991] LOG   [m6c] event target_requested: id=0x000002CE type=0 subtype=1 gen=4
+[22:38:11.991] INFO  [m6c] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[22:38:11.991] LOG   [m6c] event action_result: use_object success took=0ms server armed a target cursor
+[22:38:12.792] INFO  [m6c] [TARGET] reply static=(637,782,0) gfx=0x0CE0 gen=4
+[22:38:12.792] INFO  [m6c] [target] static 0x0CE0 (637,782,0)
+[22:38:13.422] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:38:17.698] INFO  [m6c] [chat ascii] System: You hack at the tree for a while, but fail to produce any useable wood.
+[22:38:18.003] INFO  [life] tree at 637,782 holds no wood -> next tree (1 tried this stand)
+[22:38:18.065] INFO  [m6c] [action] goto finished at (636,782,0); target (636,782); ARRIVED (off by 0 tile(s))
+[22:38:18.065] LOG   [m6c] event goto_done: at=(636,782) target=(636,782) arrived=1 off=0
+[22:38:18.065] INFO  [m6c] [action] goto (636,767) from (636,782,0)
+[22:38:18.065] LOG   [m6c] event goto_start: target=(636,767) from=(636,782)
+[22:38:18.065] INFO  [m6c] [bot] running from (636,782,0) to (636,767)
+[22:38:18.065] INFO  [m6c] [bot] planning path to (636,767) in background
+[22:38:18.125] INFO  [m6c] [bot] replan to (636,767): 15 steps in 2325.8us
+[22:38:18.447] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:38:21.853] INFO  [m6c] [ACTION] use_object start
+[22:38:21.853] INFO  [m6c] [ACTION] use_object serial=0x40017BA6
+[22:38:21.853] INFO  [m6c] [chat ascii] System: What do you want to use this on?
+[22:38:21.853] INFO  [m6c] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=5
+[22:38:21.853] LOG   [m6c] event target_requested: id=0x000002CE type=0 subtype=1 gen=5
+[22:38:21.853] INFO  [m6c] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[22:38:21.853] LOG   [m6c] event action_result: use_object success took=1ms server armed a target cursor
+[22:38:22.711] INFO  [m6c] [TARGET] reply static=(636,766,0) gfx=0x0CCD gen=5
+[22:38:22.711] INFO  [m6c] [target] static 0x0CCD (636,766,0)
+[22:38:22.726] INFO  [m6c] [chat ascii] System: There is nothing here to chop.
+[22:38:22.726] INFO  [m6c] [bot] arrived at (636,767,0)
+[22:38:23.157] INFO  [m6c] [ACTION] use_object start
+[22:38:23.157] INFO  [m6c] [ACTION] use_object serial=0x40017BA6
+[22:38:23.172] INFO  [m6c] [chat ascii] System: What do you want to use this on?
+[22:38:23.173] INFO  [m6c] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=6
+[22:38:23.173] LOG   [m6c] event target_requested: id=0x000002CE type=0 subtype=1 gen=6
+[22:38:23.173] INFO  [m6c] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
+[22:38:23.173] LOG   [m6c] event action_result: use_object success took=15ms server armed a target cursor
+[22:38:23.483] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:38:23.975] INFO  [m6c] [TARGET] reply static=(636,766,0) gfx=0x0CCD gen=6
+[22:38:23.975] INFO  [m6c] [target] static 0x0CCD (636,766,0)
+[22:38:23.990] INFO  [m6c] [chat ascii] System: There is nothing here to chop.
+[22:38:24.420] INFO  [life] tree at 636,766 holds no wood -> next tree (2 tried this stand)
+[22:38:24.482] INFO  [m6c] [action] goto finished at (636,767,0); target (636,767); ARRIVED (off by 0 tile(s))
+[22:38:24.482] LOG   [m6c] event goto_done: at=(636,767) target=(636,767) arrived=1 off=0
+[22:38:24.482] INFO  [m6c] [action] goto (648,755) from (636,767,0)
+[22:38:24.482] LOG   [m6c] event goto_start: target=(648,755) from=(636,767)
+[22:38:24.482] INFO  [m6c] [bot] running from (636,767,0) to (648,755)
+[22:38:24.482] INFO  [m6c] [bot] planning path to (648,755) in background
+[22:38:24.544] INFO  [m6c] [bot] replan to (648,755): 13 steps in 1997.0us
+[22:38:27.369] INFO  [m6c] [ACTION] use_object start
+[22:38:27.369] INFO  [m6c] [ACTION] use_object serial=0x40017BA6
+[22:38:27.369] INFO  [m6c] [chat ascii] System: What do you want to use this on?
+[22:38:27.369] INFO  [m6c] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=7
+[22:38:27.369] LOG   [m6c] event target_requested: id=0x000002CE type=0 subtype=1 gen=7
+[22:38:27.369] INFO  [m6c] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[22:38:27.369] LOG   [m6c] event action_result: use_object success took=0ms server armed a target cursor
+[22:38:28.182] INFO  [m6c] [TARGET] reply static=(649,755,0) gfx=0x0CCD gen=7
+[22:38:28.182] INFO  [m6c] [target] static 0x0CCD (649,755,0)
+[22:38:28.183] INFO  [m6c] [0x20] player @(647,756,0) facing=1
+[22:38:28.183] INFO  [m6c] [chat ascii] System: There is nothing here to chop.
+[22:38:28.488] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:38:28.611] INFO  [m6c] [ACTION] use_object start
+[22:38:28.611] INFO  [m6c] [ACTION] use_object serial=0x40017BA6
+[22:38:28.626] INFO  [m6c] [chat ascii] System: What do you want to use this on?
+[22:38:28.626] INFO  [m6c] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=8
+[22:38:28.626] LOG   [m6c] event target_requested: id=0x000002CE type=0 subtype=1 gen=8
+[22:38:28.626] INFO  [m6c] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
+[22:38:28.626] LOG   [m6c] event action_result: use_object success took=15ms server armed a target cursor
+[22:38:29.444] INFO  [m6c] [TARGET] reply static=(649,755,0) gfx=0x0CCD gen=8
+[22:38:29.444] INFO  [m6c] [target] static 0x0CCD (649,755,0)
+[22:38:29.445] INFO  [m6c] [chat ascii] System: There is nothing here to chop.
+[22:38:29.875] INFO  [life] tree at 649,755 holds no wood -> next tree (3 tried this stand)
+[22:38:29.939] INFO  [m6c] [action] goto finished at (647,756,0); target (648,755); stopped short (off by 2 tile(s))
+[22:38:29.939] LOG   [m6c] event goto_done: at=(647,756) target=(648,755) arrived=0 off=2
+[22:38:29.939] INFO  [m6c] [action] goto (649,753) from (647,756,0)
+[22:38:29.939] LOG   [m6c] event goto_start: target=(649,753) from=(647,756)
+[22:38:29.939] INFO  [m6c] [bot] running from (647,756,0) to (649,753)
+[22:38:29.939] INFO  [m6c] [bot] planning path to (649,753) in background
+[22:38:30.000] INFO  [m6c] [bot] replan to (649,753): 3 steps in 105.5us
+[22:38:31.078] INFO  [m6c] [bot] arrived at (649,753,0)
+[22:38:31.141] INFO  [m6c] [ACTION] use_object start
+[22:38:31.141] INFO  [m6c] [ACTION] use_object serial=0x40017BA6
+[22:38:31.156] INFO  [m6c] [chat ascii] System: What do you want to use this on?
+[22:38:31.156] INFO  [m6c] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=9
+[22:38:31.156] LOG   [m6c] event target_requested: id=0x000002CE type=0 subtype=1 gen=9
+[22:38:31.156] INFO  [m6c] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
+[22:38:31.156] LOG   [m6c] event action_result: use_object success took=15ms server armed a target cursor
+[22:38:31.986] INFO  [m6c] [TARGET] reply static=(649,752,0) gfx=0x0CD8 gen=9
+[22:38:31.986] INFO  [m6c] [target] static 0x0CD8 (649,752,0)
+[22:38:31.986] INFO  [m6c] [0x20] player @(649,753,0) facing=0
+[22:38:31.986] INFO  [m6c] [chat ascii] System: There is nothing here to chop.
+[22:38:32.401] INFO  [m6c] [ACTION] use_object start
+[22:38:32.401] INFO  [m6c] [ACTION] use_object serial=0x40017BA6
+[22:38:32.416] INFO  [m6c] [chat ascii] System: What do you want to use this on?
+[22:38:32.416] INFO  [m6c] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=10
+[22:38:32.416] LOG   [m6c] event target_requested: id=0x000002CE type=0 subtype=1 gen=10
+[22:38:32.416] INFO  [m6c] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
+[22:38:32.416] LOG   [m6c] event action_result: use_object success took=15ms server armed a target cursor
+[22:38:33.230] INFO  [m6c] [TARGET] reply static=(649,752,0) gfx=0x0CD8 gen=10
+[22:38:33.231] INFO  [m6c] [target] static 0x0CD8 (649,752,0)
+[22:38:33.231] INFO  [m6c] [chat ascii] System: There is nothing here to chop.
+[22:38:33.539] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:38:33.665] INFO  [life] tree at 649,752 holds no wood -> next tree (4 tried this stand)
+[22:38:33.697] INFO  [m6c] [action] goto finished at (649,753,0); target (649,753); ARRIVED (off by 0 tile(s))
+[22:38:33.697] LOG   [m6c] event goto_done: at=(649,753) target=(649,753) arrived=1 off=0
+[22:38:33.697] INFO  [m6c] [action] goto (656,755) from (649,753,0)
+[22:38:33.697] LOG   [m6c] event goto_start: target=(656,755) from=(649,753)
+[22:38:33.697] INFO  [m6c] [bot] running from (649,753,0) to (656,755)
+[22:38:33.697] INFO  [m6c] [bot] planning path to (656,755) in background
+[22:38:33.758] INFO  [m6c] [bot] replan to (656,755): 7 steps in 491.1us
+[22:38:35.603] INFO  [m6c] [ACTION] use_object start
+[22:38:35.603] INFO  [m6c] [ACTION] use_object serial=0x40017BA6
+[22:38:35.617] INFO  [m6c] [chat ascii] System: What do you want to use this on?
+[22:38:35.617] INFO  [m6c] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=11
+[22:38:35.617] LOG   [m6c] event target_requested: id=0x000002CE type=0 subtype=1 gen=11
+[22:38:35.617] INFO  [m6c] [ACTION_RESULT] use_object success (14ms) server armed a target cursor
+[22:38:35.617] LOG   [m6c] event action_result: use_object success took=14ms server armed a target cursor
+[22:38:36.433] INFO  [m6c] [TARGET] reply static=(657,755,0) gfx=0x0CE3 gen=11
+[22:38:36.433] INFO  [m6c] [target] static 0x0CE3 (657,755,0)
+[22:38:36.433] INFO  [m6c] [chat ascii] System: There is nothing here to chop.
+[22:38:36.496] INFO  [m6c] [bot] arrived at (656,755,0)
+[22:38:36.850] INFO  [m6c] [ACTION] use_object start
+[22:38:36.850] INFO  [m6c] [ACTION] use_object serial=0x40017BA6
+[22:38:36.851] INFO  [m6c] [chat ascii] System: What do you want to use this on?
+[22:38:36.851] INFO  [m6c] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=12
+[22:38:36.851] LOG   [m6c] event target_requested: id=0x000002CE type=0 subtype=1 gen=12
+[22:38:36.851] INFO  [m6c] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[22:38:36.851] LOG   [m6c] event action_result: use_object success took=1ms server armed a target cursor
+[22:38:37.650] INFO  [m6c] [TARGET] reply static=(657,755,0) gfx=0x0CE3 gen=12
+[22:38:37.651] INFO  [m6c] [target] static 0x0CE3 (657,755,0)
+[22:38:37.665] INFO  [m6c] [0x20] player @(656,755,0) facing=2
+[22:38:37.665] INFO  [m6c] [chat ascii] System: There is nothing here to chop.
+[22:38:38.096] INFO  [life] tree at 657,755 holds no wood -> next tree (5 tried this stand)
+[22:38:38.159] INFO  [m6c] [action] goto finished at (656,755,0); target (656,755); ARRIVED (off by 0 tile(s))
+[22:38:38.159] LOG   [m6c] event goto_done: at=(656,755) target=(656,755) arrived=1 off=0
+[22:38:38.159] INFO  [m6c] [action] goto (660,761) from (656,755,0)
+[22:38:38.159] LOG   [m6c] event goto_start: target=(660,761) from=(656,755)
+[22:38:38.159] INFO  [m6c] [bot] running from (656,755,0) to (660,761)
+[22:38:38.159] INFO  [m6c] [bot] planning path to (660,761) in background
+[22:38:38.221] INFO  [m6c] [bot] replan to (660,761): 7 steps in 343.6us
+[22:38:38.562] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:38:40.299] INFO  [m6c] [ACTION] use_object start
+[22:38:40.299] INFO  [m6c] [ACTION] use_object serial=0x40017BA6
+[22:38:40.299] INFO  [m6c] [chat ascii] System: What do you want to use this on?
+[22:38:40.299] INFO  [m6c] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=13
+[22:38:40.299] LOG   [m6c] event target_requested: id=0x000002CE type=0 subtype=1 gen=13
+[22:38:40.299] INFO  [m6c] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[22:38:40.299] LOG   [m6c] event action_result: use_object success took=0ms server armed a target cursor
+[22:38:41.138] INFO  [m6c] [TARGET] reply static=(660,762,0) gfx=0x0CDD gen=13
+[22:38:41.139] INFO  [m6c] [target] static 0x0CDD (660,762,0)
+[22:38:41.139] INFO  [m6c] [chat ascii] System: There is nothing here to chop.
+[22:38:41.200] INFO  [m6c] [bot] arrived at (660,761,0)
+[22:38:41.572] INFO  [m6c] [ACTION] use_object start
+[22:38:41.572] INFO  [m6c] [ACTION] use_object serial=0x40017BA6
+[22:38:41.572] INFO  [m6c] [chat ascii] System: What do you want to use this on?
+[22:38:41.572] INFO  [m6c] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=14
+[22:38:41.572] LOG   [m6c] event target_requested: id=0x000002CE type=0 subtype=1 gen=14
+[22:38:41.572] INFO  [m6c] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[22:38:41.572] LOG   [m6c] event action_result: use_object success took=0ms server armed a target cursor
+[22:38:42.428] INFO  [m6c] [TARGET] reply static=(660,762,0) gfx=0x0CDD gen=14
+[22:38:42.428] INFO  [m6c] [target] static 0x0CDD (660,762,0)
+[22:38:42.443] INFO  [m6c] [chat ascii] System: There is nothing here to chop.
+[22:38:42.873] INFO  [life] tree at 660,762 holds no wood -> next tree (6 tried this stand)
+[22:38:42.905] INFO  [m6c] [action] goto finished at (660,761,0); target (660,761); ARRIVED (off by 0 tile(s))
+[22:38:42.905] LOG   [m6c] event goto_done: at=(660,761) target=(660,761) arrived=1 off=0
+[22:38:42.905] INFO  [m6c] [action] goto (657,764) from (660,761,0)
+[22:38:42.905] LOG   [m6c] event goto_start: target=(657,764) from=(660,761)
+[22:38:42.905] INFO  [m6c] [bot] running from (660,761,0) to (657,764)
+[22:38:42.905] INFO  [m6c] [bot] planning path to (657,764) in background
+[22:38:42.967] INFO  [m6c] [bot] replan to (657,764): 6 steps in 163.5us
+[22:38:43.581] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:38:44.925] INFO  [m6c] [ACTION] use_object start
+[22:38:44.925] INFO  [m6c] [ACTION] use_object serial=0x40017BA6
+[22:38:44.925] INFO  [m6c] [chat ascii] System: What do you want to use this on?
+[22:38:44.925] INFO  [m6c] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=15
+[22:38:44.926] LOG   [m6c] event target_requested: id=0x000002CE type=0 subtype=1 gen=15
+[22:38:44.926] INFO  [m6c] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[22:38:44.926] LOG   [m6c] event action_result: use_object success took=0ms server armed a target cursor
+[22:38:45.755] INFO  [m6c] [TARGET] reply static=(656,765,0) gfx=0x0CD6 gen=15
+[22:38:45.755] INFO  [m6c] [target] static 0x0CD6 (656,765,0)
+[22:38:45.755] INFO  [m6c] [0x20] player @(656,763,0) facing=4
+[22:38:45.755] INFO  [m6c] [chat ascii] System: There is nothing here to chop.
+[22:38:45.756] INFO  [m6c] [0x21] stale reject seq=10 (block already handled); pose resynced
+[22:38:46.168] INFO  [m6c] [ACTION] use_object start
+[22:38:46.168] INFO  [m6c] [ACTION] use_object serial=0x40017BA6
+[22:38:46.183] INFO  [m6c] [chat ascii] System: What do you want to use this on?
+[22:38:46.183] INFO  [m6c] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=16
+[22:38:46.183] LOG   [m6c] event target_requested: id=0x000002CE type=0 subtype=1 gen=16
+[22:38:46.183] INFO  [m6c] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
+[22:38:46.183] LOG   [m6c] event action_result: use_object success took=15ms server armed a target cursor
+[22:38:47.012] INFO  [m6c] [TARGET] reply static=(656,765,0) gfx=0x0CD6 gen=16
+[22:38:47.012] INFO  [m6c] [target] static 0x0CD6 (656,765,0)
+[22:38:47.012] INFO  [m6c] [chat ascii] System: There is nothing here to chop.
+[22:38:47.442] INFO  [life] tree at 656,765 holds no wood -> next tree (7 tried this stand)
+[22:38:47.503] INFO  [m6c] [action] goto finished at (656,763,0); target (657,764); stopped short (off by 2 tile(s))
+[22:38:47.503] LOG   [m6c] event goto_done: at=(656,763) target=(657,764) arrived=0 off=2
+[22:38:47.503] INFO  [m6c] [action] goto (660,767) from (656,763,0)
+[22:38:47.503] LOG   [m6c] event goto_start: target=(660,767) from=(656,763)
+[22:38:47.503] INFO  [m6c] [bot] running from (656,763,0) to (660,767)
+[22:38:47.503] INFO  [m6c] [bot] planning path to (660,767) in background
+[22:38:47.564] INFO  [m6c] [bot] replan to (660,767): 5 steps in 152.2us
+[22:38:48.637] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:38:48.730] INFO  [m6c] [ACTION] use_object start
+[22:38:48.730] INFO  [m6c] [ACTION] use_object serial=0x40017BA6
+[22:38:48.730] INFO  [m6c] [chat ascii] System: What do you want to use this on?
+[22:38:48.730] INFO  [m6c] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=17
+[22:38:48.730] LOG   [m6c] event target_requested: id=0x000002CE type=0 subtype=1 gen=17
+[22:38:48.730] INFO  [m6c] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[22:38:48.730] LOG   [m6c] event action_result: use_object success took=0ms server armed a target cursor
+[22:38:49.544] INFO  [m6c] [TARGET] reply static=(660,768,0) gfx=0x0CD0 gen=17
+[22:38:49.544] INFO  [m6c] [target] static 0x0CD0 (660,768,0)
+[22:38:49.558] INFO  [m6c] [0x20] player @(659,767,0) facing=3
+[22:38:53.656] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:38:57.673] INFO  [m6c] [chat ascii] System: You put the logs in your pack.
+[22:38:58.077] INFO  [m6c] [ACTION] use_object start
+[22:38:58.077] INFO  [m6c] [ACTION] use_object serial=0x40017BA6
+[22:38:58.077] INFO  [m6c] [chat ascii] System: What do you want to use this on?
+[22:38:58.077] INFO  [m6c] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=18
+[22:38:58.077] LOG   [m6c] event target_requested: id=0x000002CE type=0 subtype=1 gen=18
+[22:38:58.077] INFO  [m6c] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[22:38:58.077] LOG   [m6c] event action_result: use_object success took=0ms server armed a target cursor
+[22:38:58.676] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:38:58.921] INFO  [m6c] [TARGET] reply static=(660,768,0) gfx=0x0CD0 gen=18
+[22:38:58.921] INFO  [m6c] [target] static 0x0CD0 (660,768,0)
+[22:39:03.695] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:39:07.287] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfighter03.loradan/state.json
+[22:39:08.711] INFO  [m6c] [chat ascii] System: You hack at the tree for a while, but fail to produce any useable wood.
+[22:39:08.712] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:39:08.774] INFO  [m6c] [ACTION] use_object start
+[22:39:08.774] INFO  [m6c] [ACTION] use_object serial=0x40017BA6
+[22:39:08.789] INFO  [m6c] [chat ascii] System: What do you want to use this on?
+[22:39:08.789] INFO  [m6c] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=19
+[22:39:08.789] LOG   [m6c] event target_requested: id=0x000002CE type=0 subtype=1 gen=19
+[22:39:08.789] INFO  [m6c] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
+[22:39:08.790] LOG   [m6c] event action_result: use_object success took=15ms server armed a target cursor
+[22:39:09.634] INFO  [m6c] [TARGET] reply static=(660,768,0) gfx=0x0CD0 gen=19
+[22:39:09.634] INFO  [m6c] [target] static 0x0CD0 (660,768,0)
+[22:39:13.745] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:39:14.497] INFO  [m6c] [chat ascii] System: You hack at the tree for a while, but fail to produce any useable wood.
+[22:39:14.867] INFO  [life] tree at 660,768 holds no wood -> next tree (8 tried this stand)
+[22:39:14.930] INFO  [m6c] [action] goto finished at (659,767,0); target (660,767); stopped short (off by 1 tile(s))
+[22:39:14.930] LOG   [m6c] event goto_done: at=(659,767) target=(660,767) arrived=0 off=1
+[22:39:14.930] INFO  [m6c] [action] goto (657,768) from (659,767,0)
+[22:39:14.930] LOG   [m6c] event goto_start: target=(657,768) from=(659,767)
+[22:39:14.930] INFO  [m6c] [bot] running from (659,767,0) to (657,768)
+[22:39:14.930] INFO  [m6c] [bot] planning path to (657,768) in background
+[22:39:14.990] INFO  [m6c] [bot] replan to (657,768): 2 steps in 101.9us
+[22:39:16.055] INFO  [m6c] [bot] arrived at (657,768,0)
+[22:39:16.161] INFO  [m6c] [ACTION] use_object start
+[22:39:16.161] INFO  [m6c] [ACTION] use_object serial=0x40017BA6
+[22:39:16.176] INFO  [m6c] [chat ascii] System: What do you want to use this on?
+[22:39:16.176] INFO  [m6c] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=20
+[22:39:16.176] LOG   [m6c] event target_requested: id=0x000002CE type=0 subtype=1 gen=20
+[22:39:16.176] INFO  [m6c] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
+[22:39:16.176] LOG   [m6c] event action_result: use_object success took=15ms server armed a target cursor
+[22:39:16.991] INFO  [m6c] [TARGET] reply static=(656,768,0) gfx=0x0CD0 gen=20
+[22:39:16.991] INFO  [m6c] [target] static 0x0CD0 (656,768,0)
+[22:39:16.991] INFO  [m6c] [0x20] player @(657,768,0) facing=6
+[22:39:16.991] INFO  [m6c] [chat ascii] System: There is nothing here to chop.
+[22:39:17.421] INFO  [m6c] [ACTION] use_object start
+[22:39:17.421] INFO  [m6c] [ACTION] use_object serial=0x40017BA6
+[22:39:17.437] INFO  [m6c] [chat ascii] System: What do you want to use this on?
+[22:39:17.437] INFO  [m6c] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=21
+[22:39:17.437] LOG   [m6c] event target_requested: id=0x000002CE type=0 subtype=1 gen=21
+[22:39:17.437] INFO  [m6c] [ACTION_RESULT] use_object success (16ms) server armed a target cursor
+[22:39:17.437] LOG   [m6c] event action_result: use_object success took=16ms server armed a target cursor
+[22:39:18.239] INFO  [m6c] [TARGET] reply static=(656,768,0) gfx=0x0CD0 gen=21
+[22:39:18.239] INFO  [m6c] [target] static 0x0CD0 (656,768,0)
+[22:39:18.254] INFO  [m6c] [chat ascii] System: There is nothing here to chop.
+[22:39:18.685] INFO  [life] tree at 656,768 holds no wood -> next tree (9 tried this stand)
+[22:39:18.747] INFO  [m6c] [action] goto finished at (657,768,0); target (657,768); ARRIVED (off by 0 tile(s))
+[22:39:18.748] LOG   [m6c] event goto_done: at=(657,768) target=(657,768) arrived=1 off=0
+[22:39:18.748] INFO  [m6c] [action] goto (663,774) from (657,768,0)
+[22:39:18.748] LOG   [m6c] event goto_start: target=(663,774) from=(657,768)
+[22:39:18.748] INFO  [m6c] [bot] running from (657,768,0) to (663,774)
+[22:39:18.748] INFO  [m6c] [bot] planning path to (663,774) in background
+[22:39:18.748] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:39:18.809] INFO  [m6c] [bot] replan to (663,774): 9 steps in 380.8us
+[22:39:21.562] INFO  [m6c] [ACTION] use_object start
+[22:39:21.562] INFO  [m6c] [ACTION] use_object serial=0x40017BA6
+[22:39:21.562] INFO  [m6c] [chat ascii] System: What do you want to use this on?
+[22:39:21.563] INFO  [m6c] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=22
+[22:39:21.563] LOG   [m6c] event target_requested: id=0x000002CE type=0 subtype=1 gen=22
+[22:39:21.563] INFO  [m6c] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[22:39:21.563] LOG   [m6c] event action_result: use_object success took=0ms server armed a target cursor
+[22:39:21.993] INFO  [m6c] [bot] arrived at (663,774,0)
+[22:39:22.421] INFO  [m6c] [TARGET] reply static=(664,774,0) gfx=0x0CE0 gen=22
+[22:39:22.421] INFO  [m6c] [target] static 0x0CE0 (664,774,0)
+[22:39:23.786] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:39:28.838] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:39:32.121] INFO  [m6c] [chat ascii] System: You hack at the tree for a while, but fail to produce any useable wood.
+[22:39:32.369] INFO  [m6c] [ACTION] use_object start
+[22:39:32.369] INFO  [m6c] [ACTION] use_object serial=0x40017BA6
+[22:39:32.384] INFO  [m6c] [chat ascii] System: What do you want to use this on?
+[22:39:32.385] INFO  [m6c] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=23
+[22:39:32.385] LOG   [m6c] event target_requested: id=0x000002CE type=0 subtype=1 gen=23
+[22:39:32.385] INFO  [m6c] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
+[22:39:32.385] LOG   [m6c] event action_result: use_object success took=15ms server armed a target cursor
+[22:39:33.218] INFO  [m6c] [TARGET] reply static=(664,774,0) gfx=0x0CE0 gen=23
+[22:39:33.218] INFO  [m6c] [target] static 0x0CE0 (664,774,0)
+[22:39:33.859] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:39:38.889] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:39:39.706] INFO  [m6c] [chat ascii] System: You put the logs in your pack.
+[22:39:39.769] INFO  [m6c] [ACTION] use_object start
+[22:39:39.769] INFO  [m6c] [ACTION] use_object serial=0x40017BA6
+[22:39:39.784] INFO  [m6c] [chat ascii] System: What do you want to use this on?
+[22:39:39.784] INFO  [m6c] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=24
+[22:39:39.784] LOG   [m6c] event target_requested: id=0x000002CE type=0 subtype=1 gen=24
+[22:39:39.784] INFO  [m6c] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
+[22:39:39.784] LOG   [m6c] event action_result: use_object success took=15ms server armed a target cursor
+[22:39:40.584] INFO  [m6c] [TARGET] reply static=(664,774,0) gfx=0x0CE0 gen=24
+[22:39:40.584] INFO  [m6c] [target] static 0x0CE0 (664,774,0)
+[22:39:43.918] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:39:47.115] INFO  [m6c] [chat ascii] System: You hack at the tree for a while, but fail to produce any useable wood.
+[22:39:47.424] INFO  [m6c] [ACTION] use_object start
+[22:39:47.424] INFO  [m6c] [ACTION] use_object serial=0x40017BA6
+[22:39:47.424] INFO  [m6c] [chat ascii] System: What do you want to use this on?
+[22:39:47.424] INFO  [m6c] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=25
+[22:39:47.424] LOG   [m6c] event target_requested: id=0x000002CE type=0 subtype=1 gen=25
+[22:39:47.424] INFO  [m6c] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[22:39:47.424] LOG   [m6c] event action_result: use_object success took=0ms server armed a target cursor
+[22:39:48.254] INFO  [m6c] [TARGET] reply static=(664,774,0) gfx=0x0CE0 gen=25
+[22:39:48.254] INFO  [m6c] [target] static 0x0CE0 (664,774,0)
+[22:39:48.960] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:39:53.986] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:39:54.742] INFO  [m6c] [chat ascii] System: You put the logs in your pack.
+[22:39:55.158] INFO  [m6c] [ACTION] use_object start
+[22:39:55.158] INFO  [m6c] [ACTION] use_object serial=0x40017BA6
+[22:39:55.158] INFO  [m6c] [chat ascii] System: What do you want to use this on?
+[22:39:55.158] INFO  [m6c] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=26
+[22:39:55.158] LOG   [m6c] event target_requested: id=0x000002CE type=0 subtype=1 gen=26
+[22:39:55.158] INFO  [m6c] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[22:39:55.158] LOG   [m6c] event action_result: use_object success took=0ms server armed a target cursor
+[22:39:55.977] INFO  [m6c] [TARGET] reply static=(664,774,0) gfx=0x0CE0 gen=26
+[22:39:55.977] INFO  [m6c] [target] static 0x0CE0 (664,774,0)
+[22:39:58.992] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:40:04.017] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:40:05.710] INFO  [m6c] [chat ascii] System: You put the logs in your pack.
+[22:40:05.771] INFO  [m6c] [ACTION] use_object start
+[22:40:05.771] INFO  [m6c] [ACTION] use_object serial=0x40017BA6
+[22:40:05.787] INFO  [m6c] [chat ascii] System: What do you want to use this on?
+[22:40:05.787] INFO  [m6c] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=27
+[22:40:05.787] LOG   [m6c] event target_requested: id=0x000002CE type=0 subtype=1 gen=27
+[22:40:05.787] INFO  [m6c] [ACTION_RESULT] use_object success (16ms) server armed a target cursor
+[22:40:05.787] LOG   [m6c] event action_result: use_object success took=16ms server armed a target cursor
+[22:40:06.630] INFO  [m6c] [TARGET] reply static=(664,774,0) gfx=0x0CE0 gen=27
+[22:40:06.630] INFO  [m6c] [target] static 0x0CE0 (664,774,0)
+[22:40:07.327] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfighter03.loradan/state.json
+[22:40:09.072] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:40:09.867] INFO  [m6c] [chat ascii] System: You put the logs in your pack.
+[22:40:10.127] INFO  [m6c] [ACTION] use_object start
+[22:40:10.127] INFO  [m6c] [ACTION] use_object serial=0x40017BA6
+[22:40:10.127] INFO  [m6c] [chat ascii] System: What do you want to use this on?
+[22:40:10.127] INFO  [m6c] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=28
+[22:40:10.127] LOG   [m6c] event target_requested: id=0x000002CE type=0 subtype=1 gen=28
+[22:40:10.127] INFO  [m6c] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[22:40:10.127] LOG   [m6c] event action_result: use_object success took=0ms server armed a target cursor
+[22:40:10.944] INFO  [m6c] [TARGET] reply static=(664,774,0) gfx=0x0CE0 gen=28
+[22:40:10.944] INFO  [m6c] [target] static 0x0CE0 (664,774,0)
+[22:40:14.083] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:40:17.409] INFO  [m6c] [chat ascii] System: You put the logs in your pack.
+[22:40:17.472] INFO  [m6c] [ACTION] use_object start
+[22:40:17.472] INFO  [m6c] [ACTION] use_object serial=0x40017BA6
+[22:40:17.486] INFO  [m6c] [chat ascii] System: What do you want to use this on?
+[22:40:17.486] INFO  [m6c] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=29
+[22:40:17.486] LOG   [m6c] event target_requested: id=0x000002CE type=0 subtype=1 gen=29
+[22:40:17.486] INFO  [m6c] [ACTION_RESULT] use_object success (14ms) server armed a target cursor
+[22:40:17.487] LOG   [m6c] event action_result: use_object success took=14ms server armed a target cursor
+[22:40:18.272] INFO  [m6c] [TARGET] reply static=(664,774,0) gfx=0x0CE0 gen=29
+[22:40:18.272] INFO  [m6c] [target] static 0x0CE0 (664,774,0)
+[22:40:19.134] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:40:24.158] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:40:24.711] INFO  [m6c] [chat ascii] System: You put the logs in your pack.
+[22:40:25.112] INFO  [m6c] [ACTION] use_object start
+[22:40:25.112] INFO  [m6c] [ACTION] use_object serial=0x40017BA6
+[22:40:25.112] INFO  [m6c] [chat ascii] System: What do you want to use this on?
+[22:40:25.112] INFO  [m6c] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=30
+[22:40:25.112] LOG   [m6c] event target_requested: id=0x000002CE type=0 subtype=1 gen=30
+[22:40:25.112] INFO  [m6c] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[22:40:25.112] LOG   [m6c] event action_result: use_object success took=1ms server armed a target cursor
+[22:40:25.963] INFO  [m6c] [TARGET] reply static=(664,774,0) gfx=0x0CE0 gen=30
+[22:40:25.963] INFO  [m6c] [target] static 0x0CE0 (664,774,0)
+[22:40:25.963] INFO  [m6c] [chat ascii] System: There is nothing here to chop.
+[22:40:26.393] INFO  [m6c] [ACTION] use_object start
+[22:40:26.393] INFO  [m6c] [ACTION] use_object serial=0x40017BA6
+[22:40:26.394] INFO  [m6c] [chat ascii] System: What do you want to use this on?
+[22:40:26.394] INFO  [m6c] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=31
+[22:40:26.394] LOG   [m6c] event target_requested: id=0x000002CE type=0 subtype=1 gen=31
+[22:40:26.394] INFO  [m6c] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[22:40:26.394] LOG   [m6c] event action_result: use_object success took=1ms server armed a target cursor
+[22:40:27.211] INFO  [m6c] [TARGET] reply static=(664,774,0) gfx=0x0CE0 gen=31
+[22:40:27.211] INFO  [m6c] [target] static 0x0CE0 (664,774,0)
+[22:40:27.211] INFO  [m6c] [chat ascii] System: There is nothing here to chop.
+[22:40:27.660] INFO  [life] tree at 664,774 holds no wood -> next tree (10 tried this stand)
+[22:40:27.722] INFO  [m6c] [action] goto finished at (663,774,0); target (663,774); ARRIVED (off by 0 tile(s))
+[22:40:27.722] LOG   [m6c] event goto_done: at=(663,774) target=(663,774) arrived=1 off=0
+[22:40:27.722] INFO  [m6c] [action] goto (661,776) from (663,774,0)
+[22:40:27.722] LOG   [m6c] event goto_start: target=(661,776) from=(663,774)
+[22:40:27.722] INFO  [m6c] [bot] running from (663,774,0) to (661,776)
+[22:40:27.722] INFO  [m6c] [bot] planning path to (661,776) in background
+[22:40:27.784] INFO  [m6c] [bot] replan to (661,776): 3 steps in 107.6us
+[22:40:28.949] INFO  [m6c] [ACTION] use_object start
+[22:40:28.949] INFO  [m6c] [ACTION] use_object serial=0x40017BA6
+[22:40:28.949] INFO  [m6c] [chat ascii] System: What do you want to use this on?
+[22:40:28.949] INFO  [m6c] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=32
+[22:40:28.949] LOG   [m6c] event target_requested: id=0x000002CE type=0 subtype=1 gen=32
+[22:40:28.949] INFO  [m6c] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[22:40:28.949] LOG   [m6c] event action_result: use_object success took=0ms server armed a target cursor
+[22:40:29.209] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:40:29.409] INFO  [m6c] [bot] arrived at (661,776,0)
+[22:40:29.778] INFO  [m6c] [TARGET] reply static=(660,777,0) gfx=0x0CD0 gen=32
+[22:40:29.778] INFO  [m6c] [target] static 0x0CD0 (660,777,0)
+[22:40:29.778] INFO  [m6c] [0x20] player @(661,776,0) facing=5
+[22:40:29.778] INFO  [m6c] [chat ascii] System: There is nothing here to chop.
+[22:40:30.210] INFO  [m6c] [ACTION] use_object start
+[22:40:30.210] INFO  [m6c] [ACTION] use_object serial=0x40017BA6
+[22:40:30.210] INFO  [m6c] [chat ascii] System: What do you want to use this on?
+[22:40:30.210] INFO  [m6c] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=33
+[22:40:30.210] LOG   [m6c] event target_requested: id=0x000002CE type=0 subtype=1 gen=33
+[22:40:30.210] INFO  [m6c] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[22:40:30.210] LOG   [m6c] event action_result: use_object success took=1ms server armed a target cursor
+[22:40:31.026] INFO  [m6c] [TARGET] reply static=(660,777,0) gfx=0x0CD0 gen=33
+[22:40:31.026] INFO  [m6c] [target] static 0x0CD0 (660,777,0)
+[22:40:31.026] INFO  [m6c] [chat ascii] System: There is nothing here to chop.
+[22:40:31.458] INFO  [life] tree at 660,777 holds no wood -> next tree (11 tried this stand)
+[22:40:31.519] INFO  [m6c] [action] goto finished at (661,776,0); target (661,776); ARRIVED (off by 0 tile(s))
+[22:40:31.519] LOG   [m6c] event goto_done: at=(661,776) target=(661,776) arrived=1 off=0
+[22:40:31.519] INFO  [m6c] [action] goto (664,779) from (661,776,0)
+[22:40:31.519] LOG   [m6c] event goto_start: target=(664,779) from=(661,776)
+[22:40:31.519] INFO  [m6c] [bot] running from (661,776,0) to (664,779)
+[22:40:31.519] INFO  [m6c] [bot] planning path to (664,779) in background
+[22:40:31.578] INFO  [m6c] [bot] replan to (664,779): 3 steps in 85.8us
+[22:40:32.528] INFO  [m6c] [bot] arrived at (664,779,0)
+[22:40:32.773] INFO  [m6c] [ACTION] use_object start
+[22:40:32.773] INFO  [m6c] [ACTION] use_object serial=0x40017BA6
+[22:40:32.788] INFO  [m6c] [chat ascii] System: What do you want to use this on?
+[22:40:32.788] INFO  [m6c] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=34
+[22:40:32.788] LOG   [m6c] event target_requested: id=0x000002CE type=0 subtype=1 gen=34
+[22:40:32.788] INFO  [m6c] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
+[22:40:32.788] LOG   [m6c] event action_result: use_object success took=15ms server armed a target cursor
+[22:40:33.586] INFO  [m6c] [TARGET] reply static=(664,780,0) gfx=0x0CDA gen=34
+[22:40:33.586] INFO  [m6c] [target] static 0x0CDA (664,780,0)
+[22:40:33.601] INFO  [m6c] [0x20] player @(664,779,0) facing=4
+[22:40:34.216] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:40:39.221] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:40:41.708] INFO  [m6c] [chat ascii] System: You put the logs in your pack.
+[22:40:41.817] INFO  [m6c] [ACTION] use_object start
+[22:40:41.817] INFO  [m6c] [ACTION] use_object serial=0x40017BA6
+[22:40:41.831] INFO  [m6c] [chat ascii] System: What do you want to use this on?
+[22:40:41.831] INFO  [m6c] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=35
+[22:40:41.831] LOG   [m6c] event target_requested: id=0x000002CE type=0 subtype=1 gen=35
+[22:40:41.831] INFO  [m6c] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
+[22:40:41.831] LOG   [m6c] event action_result: use_object success took=15ms server armed a target cursor
+[22:40:42.648] INFO  [m6c] [TARGET] reply static=(664,780,0) gfx=0x0CDA gen=35
+[22:40:42.648] INFO  [m6c] [target] static 0x0CDA (664,780,0)
+[22:40:44.242] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:40:49.271] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:40:50.703] INFO  [m6c] [chat ascii] System: You put the logs in your pack.
+[22:40:50.796] INFO  [life] goal_changed=TRADE_WITH_PLAYER from=GATHER_LOGS reason="TRADE_WITH_PLAYER 79.8 superseded GATHER_LOGS 57.0"
+[22:40:50.797] INFO  [life] needs considered: NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedEquipment(bandages BLOCKED 0.50) NeedLogs(logs 0.40) NeedTraining(Carpentry BLOCKED 0.39) NeedTraining(Healing BLOCKED 0.38) NeedTraining(Anatomy BLOCKED 0.37) NeedTraining(Tactics BLOCKED 0.35) NeedSkillTraining(Carpentry 0.30) NeedTraining(Swordsmanship BLOCKED 0.28) NeedTraining(Lumberjacking BLOCKED 0.27) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,]
+[22:40:50.797] INFO  [life]   score=79.8
+[22:40:50.797] INFO  [life]   reason: NeedTrade urgency 0.55 x 145 = 79.8
+[22:40:50.797] INFO  [life]   reason: 54 x i_log spare
+[22:40:50.797] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[22:40:50.797] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (54 x i_log spare, and no buyer known -- on this shard it is a player-market good)
+[22:40:50.797] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Carpentry 2.8 -> 100.0)
+[22:40:50.797] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[22:40:50.858] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:40:50.872] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:40:50.872] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:40:52.904] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:40:52.904] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:40:52.918] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:40:54.275] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:40:54.951] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:40:54.952] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:40:54.966] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:40:56.996] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:40:56.996] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:40:57.011] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:40:59.033] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:40:59.034] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:40:59.034] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:40:59.279] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:41:01.078] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:41:01.078] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:41:01.078] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:41:03.127] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:41:03.142] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:41:03.142] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:41:04.310] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:41:05.178] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:41:05.178] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:41:05.179] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:41:07.187] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:41:07.187] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:41:07.187] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:41:07.374] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfighter03.loradan/state.json
+[22:41:09.243] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:41:09.244] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:41:09.244] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:41:09.367] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:41:11.246] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:41:11.261] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:41:11.261] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:41:13.291] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:41:13.291] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:41:13.306] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:41:14.413] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:41:15.335] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:41:15.336] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:41:15.350] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:41:17.346] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:41:17.362] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:41:17.362] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:41:19.364] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:41:19.379] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:41:19.379] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:41:19.440] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:41:21.424] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:41:21.439] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:41:21.439] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:41:23.478] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:41:23.478] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:41:23.479] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:41:24.449] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:41:25.529] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:41:25.529] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:41:25.543] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:41:27.529] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:41:27.529] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:41:27.529] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:41:29.496] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:41:29.557] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:41:29.557] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:41:29.558] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:41:31.566] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:41:31.567] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:41:31.581] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:41:33.608] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:41:33.608] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:41:33.608] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:41:34.498] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:41:35.632] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:41:35.647] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:41:35.647] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:41:37.647] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:41:37.663] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:41:37.663] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:41:39.549] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:41:39.672] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:41:39.673] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:41:39.673] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:41:41.702] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:41:41.703] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:41:41.703] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:41:43.703] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:41:43.703] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:41:43.717] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:41:44.578] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:41:45.729] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:41:45.729] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:41:45.729] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:41:47.746] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:41:47.746] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:41:47.746] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:41:49.605] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:41:49.790] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:41:49.790] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:41:49.791] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:41:51.791] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:41:51.791] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:41:51.791] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:41:53.846] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:41:53.846] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:41:53.847] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:41:54.615] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:41:55.865] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:41:55.865] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:41:55.865] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:41:57.874] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:41:57.875] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:41:57.875] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:41:59.627] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:41:59.873] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:41:59.873] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:41:59.874] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:42:01.898] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:42:01.912] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:42:01.912] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:42:03.926] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:42:03.926] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:42:03.926] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:42:04.669] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:42:05.948] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:42:05.964] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:42:05.964] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:42:07.389] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfighter03.loradan/state.json
+[22:42:08.001] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:42:08.018] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:42:08.018] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:42:09.677] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:42:10.043] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:42:10.043] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:42:10.043] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:42:12.059] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:42:12.059] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:42:12.059] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:42:14.059] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:42:14.075] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:42:14.075] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:42:14.685] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:42:16.101] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:42:16.101] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:42:16.101] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:42:18.159] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:42:18.159] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:42:18.173] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:42:19.741] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:42:20.170] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:42:20.184] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:42:20.184] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:42:22.204] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:42:22.204] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:42:22.214] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:42:24.222] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:42:24.223] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:42:24.223] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:42:24.778] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:42:26.260] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:42:26.260] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:42:26.261] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:42:28.282] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:42:28.283] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:42:28.283] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:42:29.806] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:42:30.301] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:42:30.301] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:42:30.301] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:42:32.317] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:42:32.317] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:42:32.317] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:42:34.345] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:42:34.345] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:42:34.359] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:42:34.808] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:42:36.395] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:42:36.396] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:42:36.396] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:42:38.415] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:42:38.430] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:42:38.430] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:42:39.814] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:42:40.445] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:42:40.445] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:42:40.445] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:42:42.473] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:42:42.474] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:42:42.488] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:42:44.504] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:42:44.504] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:42:44.504] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:42:44.873] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:42:46.549] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:42:46.549] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:42:46.549] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:42:48.551] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:42:48.552] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:42:48.552] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:42:49.905] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:42:50.582] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:42:50.597] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:42:50.597] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:42:52.597] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:42:52.612] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:42:52.612] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:42:54.640] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:42:54.640] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:42:54.655] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:42:54.932] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:42:56.649] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:42:56.649] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:42:56.649] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:42:58.664] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:42:58.664] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:42:58.665] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:42:59.970] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:43:00.706] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:43:00.707] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:43:00.736] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:43:02.759] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:43:02.773] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:43:02.773] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:43:04.802] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:43:04.817] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:43:04.817] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:43:05.002] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:43:06.836] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:43:06.837] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:43:06.838] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:43:07.391] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfighter03.loradan/state.json
+[22:43:08.866] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:43:08.881] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:43:08.881] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:43:10.052] INFO  [m6c] [survival] hp 25/25 (100%) -> fight
+[22:43:10.910] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:43:10.910] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:43:10.925] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:43:12.950] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:43:12.950] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:43:12.951] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:43:14.999] INFO  [life] trade: withdrawing 37 i_log from the bank to sell
+[22:43:14.999] LOG   [m6c] event drag_cancel: reason=0 cannot lift that
+[22:43:15.000] LOG   [m6c] event drag_cancel: reason=5 unspecified
+[22:43:15.059] INFO  [m6c] [survival] hp 25/25 (100%) -> fight

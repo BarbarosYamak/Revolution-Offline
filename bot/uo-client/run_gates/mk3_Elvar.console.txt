@@ -1,0 +1,639 @@
+[00:19:02.257] INFO  session 0: 127.0.0.1:2593 user='RevGen3_03' char=Elvar tag='mk3_Elvar'
+[00:19:02.258] LOG   [mk3_Elvar] event session_start: text log opened
+[00:19:02.258] LOG   [mk3_Elvar] event net_connect_begin: connect 127.0.0.1:2593
+[00:19:02.258] INFO  [mk3_Elvar] [net] connecting to 127.0.0.1:2593 ...
+[00:19:02.259] LOG   [mk3_Elvar] event net_connected: connect 127.0.0.1:2593
+[00:19:02.259] INFO  [mk3_Elvar] [net] connected.
+[00:19:02.259] INFO  [mk3_Elvar] [seed] sent 0x7F000001 (plaintext)
+[00:19:02.259] LOG   [mk3_Elvar] event seed_out: 0x7F000001 hex=7f000001
+[00:19:02.259] INFO  [life] no prior state for revgen3_03.elvar: a new Miner / Blacksmith
+[00:19:02.259] INFO  [life] creation request: Mining 50.0 + Blacksmithing 50.0, stats 56/16/8 = 80
+[00:19:02.259] INFO  [life] needs: reading 'miner_smith' from the profession catalogue
+[00:19:02.259] INFO  [life] home: Elvar lives in Minoc
+[00:19:02.259] INFO  [life] build plan 'miner_smith': 300.0 resolved + 400.0 unresolved = 700.0/700.0, stats 100/45/80 = 225
+[00:19:02.259] INFO  [mk3_Elvar] [life] autonomous player active for 'Elvar' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 3 min)
+[00:19:02.270] INFO  [mk3_Elvar] [0xA8] 1 server(s):
+[00:19:02.270] INFO  [mk3_Elvar]   [0] MyShard                   1.0.0.127  full=1%  tz=0
+[00:19:02.285] INFO  [mk3_Elvar] [0x8C] game server = 127.0.0.1:2593  seed=0x8426135E
+[00:19:02.286] LOG   [mk3_Elvar] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x8426135E
+[00:19:02.286] INFO  [mk3_Elvar] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[00:19:02.286] LOG   [mk3_Elvar] event relay_same_socket: no seed re-sent; 0x91 follows
+[00:19:02.286] INFO  [mk3_Elvar] [0xB9] server features = 0x0005
+[00:19:02.286] INFO  [mk3_Elvar] [0xA9] 5 slot(s) (populated 0):
+[00:19:02.286] INFO  [mk3_Elvar]   [0] <empty>
+[00:19:02.286] INFO  [mk3_Elvar]   [1] <empty>
+[00:19:02.286] INFO  [mk3_Elvar]   [2] <empty>
+[00:19:02.286] INFO  [mk3_Elvar]   [3] <empty>
+[00:19:02.286] INFO  [mk3_Elvar]   [4] <empty>
+[00:19:02.286] INFO  [mk3_Elvar] create: appearance sex=F skin=0x041E hair=0x2044/0x046B shirt=0x01A3 pants=0x0398
+[00:19:02.286] INFO  [mk3_Elvar] [0x00] starting city index 1
+[00:19:02.286] INFO  [mk3_Elvar] [0x00] requested skills 45:50 7:50 37:0
+[00:19:02.286] INFO  [mk3_Elvar] [0x00] requested stats STR 56 DEX 16 INT 8
+[00:19:02.286] INFO  [mk3_Elvar] [0x00] creating character 'Elvar' in slot 0
+[00:19:02.286] LOG   [mk3_Elvar] event char_create_sent: Elvar
+[00:19:02.303] INFO  [mk3_Elvar] [0x1B] serial=0x00016948 body=0x0191 pos=(2476,413,15)
+[00:19:02.303] LOG   [mk3_Elvar] event login_confirm: serial=0x00016948 body=0x0191 pos=(2476,413,15)
+[00:19:02.303] INFO  [mk3_Elvar] [0x20] player @(2476,413,15) facing=3
+[00:19:02.303] INFO  [mk3_Elvar] [0x55] login complete — entering world
+[00:19:02.303] LOG   [mk3_Elvar] event in_world: 0x55 received
+[00:19:02.303] INFO  [mk3_Elvar] [backpack] opening 0x4001693F
+[00:19:02.304] INFO  [mk3_Elvar] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[00:19:02.304] INFO  [mk3_Elvar] [chat ascii] System: There are 2 other players here.
+[00:19:02.304] INFO  [mk3_Elvar] [chat ascii] System: You are under the protection of the town guards
+[00:19:02.307] INFO  [mk3_Elvar] [action] requesting the skill list
+[00:19:02.307] INFO  [life] in world; asked the server for the skill list
+[00:19:02.307] INFO  [mk3_Elvar] [0x24] open container 0x4001693F gump=60
+[00:19:02.307] INFO  [mk3_Elvar] [0x3C] container contents: 9 item(s)
+[00:19:02.307] LOG   [mk3_Elvar] event backpack_contents: serial=0x4001693F items=9
+[00:19:04.916] INFO  [mk3_Elvar] [bot] world data loaded (0 blacklisted spot(s)).
+[00:19:04.916] INFO  [life] common knowledge: The Old Miner's Supplies at 2460,429 (16 tiles away)
+[00:19:04.916] INFO  [life] common knowledge: Minoc Miner's Guild at 2456,493 (80 tiles away)
+[00:19:04.916] INFO  [life] common knowledge: Minoc Mine 1 at 2558,499 (86 tiles away)
+[00:19:04.917] INFO  [life] seeded 3 ore hint(s) of 29 the atlas knows -- everything else is earned
+[00:19:04.917] INFO  [life] reconciliation: first ever login, 7 field(s) differed
+[00:19:04.917] INFO  [life]   gold         persisted=0          server=10000      -> server value accepted
+[00:19:04.917] INFO  [life]   str          persisted=0          server=56         -> server value accepted
+[00:19:04.917] INFO  [life]   dex          persisted=0          server=16         -> server value accepted
+[00:19:04.917] INFO  [life]   int          persisted=0          server=8          -> server value accepted
+[00:19:04.917] INFO  [life]   skill_7      persisted=0.0        server=50.0       -> server value accepted
+[00:19:04.917] INFO  [life]   skill_45     persisted=0.0        server=50.0       -> server value accepted
+[00:19:04.917] INFO  [life]   skill_37     persisted=0.0        server=0.0        -> server value accepted
+[00:19:04.917] INFO  [life]   skill_4      persisted=0.0        server=0.0        -> server value accepted
+[00:19:04.917] INFO  [life]   position     persisted=0,0        server=2476,413   -> server value accepted
+[00:19:04.917] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[00:19:04.917] INFO  [mk3_Elvar] [survival] on
+[00:19:04.917] LOG   [mk3_Elvar] event survival_mode: on
+[00:19:04.918] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_03.elvar/state.json
+[00:19:04.918] INFO  [mk3_Elvar] [survival] hp 56/56 (100%) -> fight
+[00:19:04.970] INFO  [life] goal=BANK reason="no goal was running"
+[00:19:04.970] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedOre(ore 0.60) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedSkillTraining(Tinkering 0.55) NeedEquipment(heal potions 0.50) NeedCraft(make goods to sell 0.50) NeedBank(put unsold stock away 0.40) NeedFood(food 0.25)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=Tinkering (target 50.0)
+[00:19:04.970] INFO  [life]   score=150.0
+[00:19:04.970] INFO  [life]   reason: NeedBank urgency 0.75 x 240 = 180.0
+[00:19:04.970] INFO  [life]   reason: on_hand=10000 (total 10000) reserve=500 carry=1000 spare=9000 risk=1.00
+[00:19:04.970] INFO  [life]   reason: no bank learned yet -30
+[00:19:04.970] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (30 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[00:19:04.970] INFO  [mk3_Elvar] [action] scanning nearby mobiles for names
+[00:19:04.971] INFO  [mk3_Elvar] [action] requested 7 paperdoll(s) for trade titles
+[00:19:04.971] INFO  [life] bank: asking who is standing in the bank
+[00:19:04.985] INFO  [mk3_Elvar] [mobiles] nearby (7):
+[00:19:04.985] INFO  [mk3_Elvar]   Draver 0x00016DBB
+[00:19:04.985] INFO  [mk3_Elvar]   Kharain 0x00016AE8
+[00:19:04.985] INFO  [mk3_Elvar]   Jarvia 0x0000911D
+[00:19:04.985] INFO  [mk3_Elvar]   Einar 0x0000913A
+[00:19:04.985] INFO  [mk3_Elvar]   Gabrielle 0x0000912C
+[00:19:04.985] INFO  [mk3_Elvar]   Bavol 0x0000910D
+[00:19:04.985] INFO  [mk3_Elvar]   Autumn 0x000090E3
+[00:19:04.985] INFO  [mk3_Elvar] [0x20] player @(2476,413,15) facing=0
+[00:19:04.985] INFO  [mk3_Elvar] [0x88] paperdoll 0x0000913A: "Einar, the cook"
+[00:19:04.985] INFO  [mk3_Elvar] [world] Einar, the cook is a cook at (2478,397)
+[00:19:04.985] INFO  [mk3_Elvar] [0x88] paperdoll 0x0000912C: "Gabrielle, the waitress"
+[00:19:04.985] INFO  [mk3_Elvar] [0x20] player @(2476,413,15) facing=4
+[00:19:04.985] INFO  [mk3_Elvar] [0x88] paperdoll 0x0000911D: "Jarvia, the warrior guildmistress"
+[00:19:04.985] INFO  [mk3_Elvar] [0x20] player @(2476,413,15) facing=0
+[00:19:04.985] INFO  [mk3_Elvar] [0x88] paperdoll 0x0000910D: "Bavol, the tavernkeeper"
+[00:19:04.985] INFO  [mk3_Elvar] [world] Bavol, the tavernkeeper is a innkeeper at (2476,397)
+[00:19:04.985] INFO  [mk3_Elvar] [0x88] paperdoll 0x000090E3: "Autumn, the tavernkeeper"
+[00:19:04.985] INFO  [mk3_Elvar] [world] Autumn, the tavernkeeper is a innkeeper at (2475,397)
+[00:19:04.986] INFO  [mk3_Elvar] [0x88] paperdoll 0x00016DBB: "Draver, Apprentice Miner"
+[00:19:04.986] INFO  [mk3_Elvar] [0x88] paperdoll 0x00016AE8: "Kharain, Apprentice Miner"
+[00:19:05.373] INFO  [mk3_Elvar] [chat ascii] System: Zarthal has arrived in Minoc.
+[00:19:06.985] INFO  [life] bank: no banker in sight
+[00:19:06.985] INFO  [life] goal_failed=BANK status=retryable_failure reason="no banker in sight"
+[00:19:07.046] INFO  [life] goal=REPLACE_EQUIPMENT reason="previous goal abandoned: no banker answered"
+[00:19:07.046] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedOre(ore 0.60) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedSkillTraining(Tinkering 0.55) NeedEquipment(heal potions 0.50) NeedCraft(make goods to sell 0.50) NeedBank(put unsold stock away 0.40) NeedFood(food 0.25)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=Tinkering (target 50.0)
+[00:19:07.046] INFO  [life]   score=130.0
+[00:19:07.046] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:19:07.046] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:19:07.046] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 299s after achieving nothing
+[00:19:07.046] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (30 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[00:19:08.432] INFO  [mk3_Elvar] [chat ascii] System: Vorar has arrived in Britain.
+[00:19:09.943] INFO  [mk3_Elvar] [survival] hp 56/56 (100%) -> fight
+[00:19:11.497] INFO  [mk3_Elvar] [chat ascii] System: Halain has arrived in Britain.
+[00:19:11.987] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:19:11.987] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[00:19:11.990] INFO  [mk3_Elvar] [travel] Minoc healer -> (2577,599) r=5 from (2476,413)
+[00:19:11.990] LOG   [mk3_Elvar] event travel_start: label='Minoc healer' target=(2577,599) radius=5 from=(2476,413)
+[00:19:11.990] INFO  [life] potions: walking to a 'healer' (trip 1)
+[00:19:11.990] INFO  [mk3_Elvar] [travel] mode moongate         usable   <- chosen
+[00:19:11.990] INFO  [mk3_Elvar] [travel] mode walk             usable
+[00:19:11.990] INFO  [mk3_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:19:11.990] INFO  [mk3_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:19:11.990] LOG   [mk3_Elvar] event travel_mode: moongate
+[00:19:11.990] INFO  [mk3_Elvar] [travel] plan Minoc healer: ok legs=6 ~248 tiles transit=0 nodes=67
+[00:19:12.049] INFO  [mk3_Elvar] [action] goto (2488,440) from (2476,413,15)
+[00:19:12.049] LOG   [mk3_Elvar] event goto_start: target=(2488,440) from=(2476,413)
+[00:19:12.049] INFO  [mk3_Elvar] [bot] running from (2476,413,15) to (2488,440)
+[00:19:12.049] INFO  [mk3_Elvar] [bot] planning path to (2488,440) in background
+[00:19:12.111] INFO  [mk3_Elvar] [bot] replan to (2488,440): 30 steps in 708.6us
+[00:19:14.637] INFO  [mk3_Elvar] [chat ascii] System: Delras has arrived in Britain.
+[00:19:14.944] INFO  [mk3_Elvar] [survival] hp 56/56 (100%) -> fight
+[00:19:17.703] INFO  [mk3_Elvar] [chat ascii] System: Cyras has arrived in Britain.
+[00:19:19.470] INFO  [mk3_Elvar] [bot] arrived at (2488,440,15)
+[00:19:19.470] INFO  [mk3_Elvar] [action] goto finished at (2488,440,15); target (2488,440); ARRIVED (off by 0 tile(s))
+[00:19:19.470] LOG   [mk3_Elvar] event goto_done: at=(2488,440) target=(2488,440) arrived=1 off=0
+[00:19:19.471] INFO  [mk3_Elvar] [action] goto (2504,472) from (2488,440,15)
+[00:19:19.471] LOG   [mk3_Elvar] event goto_start: target=(2504,472) from=(2488,440)
+[00:19:19.471] INFO  [mk3_Elvar] [bot] running from (2488,440,15) to (2504,472)
+[00:19:19.471] INFO  [mk3_Elvar] [bot] planning path to (2504,472) in background
+[00:19:19.500] INFO  [mk3_Elvar] [bot] replan to (2504,472): 32 steps in 1561.1us
+[00:19:19.962] INFO  [mk3_Elvar] [survival] hp 56/56 (100%) -> fight
+[00:19:20.736] INFO  [mk3_Elvar] [chat ascii] System: Rhaler has arrived in Minoc.
+[00:19:23.783] INFO  [mk3_Elvar] [chat ascii] System: Ghalor has arrived in Minoc.
+[00:19:25.006] INFO  [mk3_Elvar] [survival] hp 56/56 (100%) -> fight
+[00:19:26.825] INFO  [mk3_Elvar] [chat ascii] System: Falen has arrived in Minoc.
+[00:19:29.751] INFO  [mk3_Elvar] [bot] arrived at (2504,472,15)
+[00:19:29.752] INFO  [mk3_Elvar] [action] goto finished at (2504,472,15); target (2504,472); ARRIVED (off by 0 tile(s))
+[00:19:29.752] LOG   [mk3_Elvar] event goto_done: at=(2504,472) target=(2504,472) arrived=1 off=0
+[00:19:29.752] INFO  [mk3_Elvar] [action] goto (2504,502) from (2504,472,15)
+[00:19:29.752] LOG   [mk3_Elvar] event goto_start: target=(2504,502) from=(2504,472)
+[00:19:29.752] INFO  [mk3_Elvar] [bot] running from (2504,472,15) to (2504,502)
+[00:19:29.752] INFO  [mk3_Elvar] [bot] planning path to (2504,502) in background
+[00:19:29.813] INFO  [mk3_Elvar] [bot] replan to (2504,502): 31 steps in 12197.1us
+[00:19:29.908] INFO  [mk3_Elvar] [chat ascii] System: Aelia has arrived in Britain.
+[00:19:30.047] INFO  [mk3_Elvar] [survival] hp 56/56 (100%) -> fight
+[00:19:33.079] INFO  [mk3_Elvar] [chat ascii] System: Amara has arrived in Britain.
+[00:19:35.078] INFO  [mk3_Elvar] [survival] hp 56/56 (100%) -> fight
+[00:19:36.130] INFO  [mk3_Elvar] [chat ascii] System: Elara has arrived in Magincia.
+[00:19:38.329] INFO  [mk3_Elvar] [bot] arrived at (2504,502,15)
+[00:19:38.330] INFO  [mk3_Elvar] [action] goto finished at (2504,502,15); target (2504,502); ARRIVED (off by 0 tile(s))
+[00:19:38.330] LOG   [mk3_Elvar] event goto_done: at=(2504,502) target=(2504,502) arrived=1 off=0
+[00:19:38.330] INFO  [mk3_Elvar] [action] goto (2520,536) from (2504,502,15)
+[00:19:38.330] LOG   [mk3_Elvar] event goto_start: target=(2520,536) from=(2504,502)
+[00:19:38.330] INFO  [mk3_Elvar] [bot] running from (2504,502,15) to (2520,536)
+[00:19:38.330] INFO  [mk3_Elvar] [bot] planning path to (2520,536) in background
+[00:19:38.391] INFO  [mk3_Elvar] [bot] replan to (2520,536): 41 steps in 7356.1us
+[00:19:39.272] INFO  [mk3_Elvar] [chat ascii] System: Selene has arrived in Magincia.
+[00:19:40.110] INFO  [mk3_Elvar] [survival] hp 56/56 (100%) -> fight
+[00:19:42.349] INFO  [mk3_Elvar] [chat ascii] System: Lyra has arrived in Moonglow.
+[00:19:45.137] INFO  [mk3_Elvar] [survival] hp 56/56 (100%) -> fight
+[00:19:45.356] INFO  [mk3_Elvar] [chat ascii] System: Thalia has arrived in Moonglow.
+[00:19:48.421] INFO  [mk3_Elvar] [chat ascii] System: Dorvar has arrived in Skara Brae.
+[00:19:50.194] INFO  [mk3_Elvar] [survival] hp 56/56 (100%) -> fight
+[00:19:51.483] INFO  [mk3_Elvar] [chat ascii] System: Ithion has arrived in Skara Brae.
+[00:19:51.743] INFO  [mk3_Elvar] [bot] arrived at (2520,536,0)
+[00:19:51.743] INFO  [mk3_Elvar] [action] goto finished at (2520,536,0); target (2520,536); ARRIVED (off by 0 tile(s))
+[00:19:51.743] LOG   [mk3_Elvar] event goto_done: at=(2520,536) target=(2520,536) arrived=1 off=0
+[00:19:51.743] INFO  [mk3_Elvar] [action] goto (2552,568) from (2520,536,0)
+[00:19:51.743] LOG   [mk3_Elvar] event goto_start: target=(2552,568) from=(2520,536)
+[00:19:51.743] INFO  [mk3_Elvar] [bot] running from (2520,536,0) to (2552,568)
+[00:19:51.743] INFO  [mk3_Elvar] [bot] planning path to (2552,568) in background
+[00:19:51.805] INFO  [mk3_Elvar] [bot] replan to (2552,568): 52 steps in 9866.1us
+[00:19:54.532] INFO  [mk3_Elvar] [chat ascii] System: Odessa has arrived in Britain.
+[00:19:55.237] INFO  [mk3_Elvar] [survival] hp 56/56 (100%) -> fight
+[00:19:57.598] INFO  [mk3_Elvar] [chat ascii] System: Serena has arrived in Britain.
+[00:20:00.279] INFO  [mk3_Elvar] [survival] hp 56/56 (100%) -> fight
+[00:20:00.645] INFO  [mk3_Elvar] [chat ascii] System: Aurelius has arrived in Moonglow.
+[00:20:03.035] INFO  [mk3_Elvar] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=16 in 301.3us
+[00:20:03.868] INFO  [mk3_Elvar] [chat ascii] System: Leander has arrived in Moonglow.
+[00:20:04.958] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_03.elvar/state.json
+[00:20:05.297] INFO  [mk3_Elvar] [survival] hp 56/56 (100%) -> fight
+[00:20:06.980] INFO  [mk3_Elvar] [chat ascii] System: Illyria has arrived in Britain.
+[00:20:08.482] INFO  [mk3_Elvar] [bot] arrived at (2552,568,0)
+[00:20:08.482] INFO  [mk3_Elvar] [action] goto finished at (2552,568,0); target (2552,568); ARRIVED (off by 0 tile(s))
+[00:20:08.482] LOG   [mk3_Elvar] event goto_done: at=(2552,568) target=(2552,568) arrived=1 off=0
+[00:20:08.482] INFO  [mk3_Elvar] [action] goto (2577,599) from (2552,568,0)
+[00:20:08.482] LOG   [mk3_Elvar] event goto_start: target=(2577,599) from=(2552,568)
+[00:20:08.482] INFO  [mk3_Elvar] [bot] running from (2552,568,0) to (2577,599,z0)
+[00:20:08.482] INFO  [mk3_Elvar] [bot] planning path to (2577,599) in background
+[00:20:08.543] INFO  [mk3_Elvar] [bot] replan to (2577,599): 48 steps in 25843.7us
+[00:20:10.022] INFO  [mk3_Elvar] [chat ascii] System: Hector has arrived in Trinsic.
+[00:20:10.348] INFO  [mk3_Elvar] [survival] hp 56/56 (100%) -> fight
+[00:20:13.076] INFO  [mk3_Elvar] [chat ascii] System: Castor has arrived in Trinsic.
+[00:20:15.409] INFO  [mk3_Elvar] [survival] hp 56/56 (100%) -> fight
+[00:20:16.106] INFO  [mk3_Elvar] [chat ascii] System: Faustus has arrived in Britain.
+[00:20:18.804] INFO  [mk3_Elvar] [bot] lookahead patched around block at step 5: anchor=6 new segment=43 path=54 in 16395.9us
+[00:20:19.161] INFO  [mk3_Elvar] [chat ascii] System: Titus has arrived in Skara Brae.
+[00:20:20.419] INFO  [mk3_Elvar] [survival] hp 56/56 (100%) -> fight
+[00:20:22.309] INFO  [mk3_Elvar] [chat ascii] System: Rhea has arrived in Britain.
+[00:20:24.412] INFO  [mk3_Elvar] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=36 in 199.7us
+[00:20:25.376] INFO  [mk3_Elvar] [chat ascii] System: Xerxes has arrived in Vesper.
+[00:20:25.434] INFO  [mk3_Elvar] [survival] hp 56/56 (100%) -> fight
+[00:20:25.436] INFO  [mk3_Elvar] [chat uni  ] : Erskine buy
+[00:20:25.436] INFO  [mk3_Elvar] [chat ascii] Erskine: Yes?
+[00:20:25.436] INFO  [mk3_Elvar] [chat ascii] Erskine: I'm here to sell thee supplies.
+[00:20:25.512] INFO  [mk3_Elvar] [chat ascii] Erskine: Here you are, Draver That will be 120 gold coins.  I thank thee for thy business.
+[00:20:26.948] INFO  [mk3_Elvar] [travel] Minoc healer ARRIVED at (2581,604,0)
+[00:20:26.948] LOG   [mk3_Elvar] event travel_done: label='Minoc healer' ok=1 at=(2581,604) legs=6 plans=1 why=''
+[00:20:27.010] INFO  [mk3_Elvar] [action] scanning nearby mobiles for names
+[00:20:27.010] INFO  [mk3_Elvar] [action] requested 3 paperdoll(s) for trade titles
+[00:20:27.010] INFO  [life] potions: at the shop, asking who is here (scan 1 of 3)
+[00:20:27.026] INFO  [mk3_Elvar] [mobiles] nearby (6):
+[00:20:27.026] INFO  [mk3_Elvar]   Kharain 0x00016AE8
+[00:20:27.026] INFO  [mk3_Elvar]   Draver 0x00016DBB
+[00:20:27.026] INFO  [mk3_Elvar]   Erskine 0x00009619
+[00:20:27.026] INFO  [mk3_Elvar]   Zarthal 0x000163A2
+[00:20:27.026] INFO  [mk3_Elvar]   Riley 0x0000960A
+[00:20:27.026] INFO  [mk3_Elvar]   Skylark 0x0000A262
+[00:20:27.027] INFO  [mk3_Elvar] [0x20] player @(2581,604,0) facing=2
+[00:20:27.027] INFO  [mk3_Elvar] [0x88] paperdoll 0x000163A2: "Zarthal, Apprentice Miner"
+[00:20:27.027] INFO  [mk3_Elvar] [0x20] player @(2581,604,0) facing=7
+[00:20:27.027] INFO  [mk3_Elvar] [0x88] paperdoll 0x0000960A: "Riley, the healer guildmaster"
+[00:20:27.027] INFO  [mk3_Elvar] [world] Riley, the healer guildmaster is a healer at (2575,599)
+[00:20:27.027] INFO  [mk3_Elvar] [0x20] player @(2581,604,0) facing=0
+[00:20:27.027] INFO  [mk3_Elvar] [0x88] paperdoll 0x00009619: "Erskine, the healer"
+[00:20:27.027] INFO  [mk3_Elvar] [world] Erskine, the healer is a healer at (2579,599)
+[00:20:27.027] INFO  [mk3_Elvar] [0x21] stale reject seq=79 (block already handled); pose resynced
+[00:20:30.063] INFO  [life] potions: found a 'healer'
+[00:20:30.122] INFO  [mk3_Elvar] [travel] mobile 0x00009619 -> (2577,598) r=1 from (2581,604)
+[00:20:30.122] LOG   [mk3_Elvar] event travel_start: label='mobile 0x00009619' target=(2577,598) radius=1 from=(2581,604)
+[00:20:30.122] INFO  [life] potions: the 'healer' is 6 tiles off (dz 0) -- walking into reach (chase 1 of 3)
+[00:20:30.122] INFO  [mk3_Elvar] [travel] mode walk             usable   <- chosen
+[00:20:30.122] INFO  [mk3_Elvar] [travel] mode moongate         usable
+[00:20:30.122] INFO  [mk3_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:30.122] INFO  [mk3_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:30.122] LOG   [mk3_Elvar] event travel_mode: walk
+[00:20:30.122] INFO  [mk3_Elvar] [travel] plan mobile 0x00009619: ok legs=1 ~6 tiles transit=0 nodes=0
+[00:20:30.184] INFO  [mk3_Elvar] [action] goto finished at (2581,604,0); target (2577,599); stopped short (off by 9 tile(s))
+[00:20:30.184] LOG   [mk3_Elvar] event goto_done: at=(2581,604) target=(2577,599) arrived=0 off=9
+[00:20:30.184] INFO  [mk3_Elvar] [action] goto (2577,598) from (2581,604,0)
+[00:20:30.184] LOG   [mk3_Elvar] event goto_start: target=(2577,598) from=(2581,604)
+[00:20:30.184] INFO  [mk3_Elvar] [bot] running from (2581,604,0) to (2577,598,z0)
+[00:20:30.184] INFO  [mk3_Elvar] [bot] planning path to (2577,598) in background
+[00:20:30.444] INFO  [mk3_Elvar] [survival] hp 56/56 (100%) -> fight
+[00:20:31.149] INFO  [mk3_Elvar] [chat uni  ] Kharain: Erskine buy
+[00:20:31.149] INFO  [mk3_Elvar] [chat ascii] Erskine: Good morrow!  How can I help thee?
+[00:20:31.149] INFO  [mk3_Elvar] [chat ascii] Erskine: I'm here to sell thee supplies.
+[00:20:31.164] INFO  [mk3_Elvar] [chat ascii] Erskine: Here you are, Kharain That will be 120 gold coins.  I thank thee for thy business.
+[00:20:33.186] INFO  [mk3_Elvar] [action] goto finished at (2581,604,0); target (2577,598); stopped short (off by 10 tile(s))
+[00:20:33.186] LOG   [mk3_Elvar] event goto_done: at=(2581,604) target=(2577,598) arrived=0 off=10
+[00:20:34.398] INFO  [mk3_Elvar] [action] goto (2577,598) from (2581,604,0)
+[00:20:34.398] LOG   [mk3_Elvar] event goto_start: target=(2577,598) from=(2581,604)
+[00:20:34.398] INFO  [mk3_Elvar] [bot] running from (2581,604,0) to (2577,598,z0)
+[00:20:34.398] INFO  [mk3_Elvar] [bot] planning path to (2577,598) in background
+[00:20:35.485] INFO  [mk3_Elvar] [survival] hp 56/56 (100%) -> fight
+[00:20:37.282] INFO  [mk3_Elvar] [action] goto finished at (2581,604,0); target (2577,598); stopped short (off by 10 tile(s))
+[00:20:37.282] LOG   [mk3_Elvar] event goto_done: at=(2581,604) target=(2577,598) arrived=0 off=10
+[00:20:38.516] INFO  [mk3_Elvar] [travel] mode walk             usable   <- chosen
+[00:20:38.516] INFO  [mk3_Elvar] [travel] mode moongate         usable
+[00:20:38.516] INFO  [mk3_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:38.516] INFO  [mk3_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:38.516] LOG   [mk3_Elvar] event travel_mode: walk
+[00:20:38.516] INFO  [mk3_Elvar] [travel] plan mobile 0x00009619: ok legs=1 ~6 tiles transit=0 nodes=0
+[00:20:39.161] INFO  [mk3_Elvar] [chat ascii] Erskine: Thou wishest to speak with me?
+[00:20:39.423] INFO  [mk3_Elvar] [chat uni  ] Zarthal: Erskine buy
+[00:20:39.423] INFO  [mk3_Elvar] [chat ascii] Erskine: I would gladly sell to thee of my many wares.
+[00:20:39.500] INFO  [mk3_Elvar] [chat ascii] Erskine: Here you are, Zarthal That will be 120 gold coins.  I thank thee for thy business.
+[00:20:40.068] INFO  [mk3_Elvar] [action] goto (2577,598) from (2581,604,0)
+[00:20:40.068] LOG   [mk3_Elvar] event goto_start: target=(2577,598) from=(2581,604)
+[00:20:40.068] INFO  [mk3_Elvar] [bot] running from (2581,604,0) to (2577,598,z0)
+[00:20:40.068] INFO  [mk3_Elvar] [bot] planning path to (2577,598) in background
+[00:20:40.129] INFO  [mk3_Elvar] [bot] replan to (2577,598): 9 steps in 373.6us
+[00:20:40.507] INFO  [mk3_Elvar] [survival] hp 56/56 (100%) -> fight
+[00:20:42.533] INFO  [mk3_Elvar] [travel] mobile 0x00009619 ARRIVED at (2578,598,0)
+[00:20:42.533] LOG   [mk3_Elvar] event travel_done: label='mobile 0x00009619' ok=1 at=(2578,598) legs=1 plans=2 why=''
+[00:20:42.595] INFO  [life] potions: within reach
+[00:20:42.596] INFO  [mk3_Elvar] [ACTION] vendor_buy start
+[00:20:42.596] INFO  [mk3_Elvar] [VENDOR] open vendor=0x00009619 say='Erskine buy'
+[00:20:42.596] INFO  [life] potions: asking the 'healer' to show heal potion (attempt 1)
+[00:20:42.596] INFO  [mk3_Elvar] [chat uni  ] : Erskine buy
+[00:20:42.596] INFO  [mk3_Elvar] [chat ascii] Erskine: Greetings.  What might I do for thee?
+[00:20:42.596] INFO  [mk3_Elvar] [chat ascii] Erskine: My shop sells many things.
+[00:20:42.596] INFO  [mk3_Elvar] [0x3C] container contents: 4 item(s)
+[00:20:42.596] INFO  [mk3_Elvar] [0x74] pairing: straight (straight 4, mirrored 0 of 4 rows)
+[00:20:42.597] INFO  [mk3_Elvar] [0x74] vendor shop data: cont=0x40009613 4 item(s), layer=0x1A
+[00:20:42.597] INFO  [mk3_Elvar] [0x74]   clean bandages               gfx=0x0E21 qty=19   price=1
+[00:20:42.597] INFO  [mk3_Elvar] [0x74]   Ginseng                      gfx=0x0F85 qty=17   price=3
+[00:20:42.597] INFO  [mk3_Elvar] [0x74]   Garlic                       gfx=0x0F84 qty=19   price=3
+[00:20:42.597] INFO  [mk3_Elvar] [0x74]   Refresh                      gfx=0x0F0B qty=24   price=16
+[00:20:42.597] INFO  [mk3_Elvar] [0x3C] container contents: 0 item(s)
+[00:20:42.597] INFO  [mk3_Elvar] [0x74] vendor shop data: cont=0x40009215 0 item(s), layer=0x1B
+[00:20:42.597] INFO  [mk3_Elvar] [VENDOR] offer from 0x00009619: 4 item(s)
+[00:20:42.597] INFO  [mk3_Elvar] [VENDOR]   0x40017161 clean bandages         x19  1 gp
+[00:20:42.597] INFO  [mk3_Elvar] [VENDOR]   0x40017141 Ginseng                x17  3 gp
+[00:20:42.597] INFO  [mk3_Elvar] [VENDOR]   0x4001713E Garlic                 x19  3 gp
+[00:20:42.597] INFO  [mk3_Elvar] [VENDOR]   0x4001713B Refresh                x24  16 gp
+[00:20:42.597] LOG   [mk3_Elvar] event vendor_offer: vendor=0x00009619 items=4
+[00:20:42.597] INFO  [mk3_Elvar] [ACTION_RESULT] vendor_buy success (1ms) vendor offer received
+[00:20:42.597] LOG   [mk3_Elvar] event action_result: vendor_buy success took=1ms vendor offer received
+[00:20:42.597] INFO  [mk3_Elvar] [0x24] vendor buy gump for 0x00009619
+[00:20:42.597] INFO  [life] potions: the shop is open
+[00:20:42.656] INFO  [life] potions: this 'healer' does not stock heal potion
+[00:20:42.656] INFO  [life] potions: none bought (this 'healer' does not stock heal potion)
+[00:20:42.656] INFO  [life] goal_completed=REPLACE_EQUIPMENT progress=0
+[00:20:42.658] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_03.elvar/state.json
+[00:20:42.717] INFO  [life] goal=REPLACE_EQUIPMENT reason="no goal was running"
+[00:20:42.717] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedSkillTraining(Tinkering 0.55) NeedEquipment(heal potions 0.50) NeedCraft(make goods to sell 0.50) NeedOre(ore 0.42) NeedBank(put unsold stock away 0.40) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=Tinkering (target 50.0)
+[00:20:42.717] INFO  [life]   score=130.0
+[00:20:42.717] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:20:42.717] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:20:42.717] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 204s after achieving nothing
+[00:20:42.717] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (30 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[00:20:42.717] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:20:42.717] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[00:20:42.717] INFO  [life] potions: found a 'healer'
+[00:20:42.778] INFO  [life] potions: within reach
+[00:20:42.840] INFO  [life] potions: the shop is open
+[00:20:42.841] INFO  [life] potions: this 'healer' does not stock heal potion
+[00:20:42.841] INFO  [life] potions: none bought (this 'healer' does not stock heal potion)
+[00:20:42.841] INFO  [life] goal_completed=REPLACE_EQUIPMENT progress=0
+[00:20:42.842] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_03.elvar/state.json
+[00:20:42.856] INFO  [life] goal=REPLACE_EQUIPMENT reason="no goal was running"
+[00:20:42.856] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedSkillTraining(Tinkering 0.55) NeedEquipment(heal potions 0.50) NeedCraft(make goods to sell 0.50) NeedOre(ore 0.42) NeedBank(put unsold stock away 0.40) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=Tinkering (target 50.0)
+[00:20:42.856] INFO  [life]   score=114.4
+[00:20:42.856] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:20:42.856] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:20:42.856] INFO  [life]   reason: same errand just now, easing off 12% (130.0 -> 114.4)
+[00:20:42.856] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 204s after achieving nothing
+[00:20:42.856] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (30 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[00:20:42.856] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:20:42.856] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[00:20:42.856] INFO  [life] potions: found a 'healer'
+[00:20:42.918] INFO  [life] potions: within reach
+[00:20:42.980] INFO  [life] potions: the shop is open
+[00:20:43.040] INFO  [life] potions: this 'healer' does not stock heal potion
+[00:20:43.040] INFO  [life] potions: none bought (this 'healer' does not stock heal potion)
+[00:20:43.040] INFO  [life] goal_completed=REPLACE_EQUIPMENT progress=0
+[00:20:43.042] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_03.elvar/state.json
+[00:20:43.042] INFO  [life] goal=REPLACE_EQUIPMENT reason="no goal was running"
+[00:20:43.042] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedSkillTraining(Tinkering 0.55) NeedEquipment(heal potions 0.50) NeedCraft(make goods to sell 0.50) NeedOre(ore 0.42) NeedBank(put unsold stock away 0.40) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=Tinkering (target 50.0)
+[00:20:43.042] INFO  [life]   score=98.8
+[00:20:43.042] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:20:43.042] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:20:43.042] INFO  [life]   reason: same errand just now, easing off 24% (130.0 -> 98.8)
+[00:20:43.042] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 203s after achieving nothing
+[00:20:43.042] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (30 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[00:20:43.042] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:20:43.042] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[00:20:43.042] INFO  [life] potions: found a 'healer'
+[00:20:43.101] INFO  [life] potions: within reach
+[00:20:43.162] INFO  [life] potions: the shop is open
+[00:20:43.222] INFO  [life] potions: this 'healer' does not stock heal potion
+[00:20:43.222] INFO  [life] potions: none bought (this 'healer' does not stock heal potion)
+[00:20:43.222] INFO  [life] goal_completed=REPLACE_EQUIPMENT progress=0
+[00:20:43.225] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_03.elvar/state.json
+[00:20:43.285] INFO  [life] goal=TRADE_WITH_PLAYER reason="no goal was running"
+[00:20:43.285] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedSkillTraining(Tinkering 0.55) NeedEquipment(heal potions 0.50) NeedCraft(make goods to sell 0.50) NeedOre(ore 0.42) NeedBank(put unsold stock away 0.40) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=Tinkering (target 50.0)
+[00:20:43.285] INFO  [life]   score=79.8
+[00:20:43.285] INFO  [life]   reason: NeedTrade urgency 0.55 x 145 = 79.8
+[00:20:43.285] INFO  [life]   reason: 30 x i_ingot_iron spare
+[00:20:43.285] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 203s after achieving nothing
+[00:20:43.285] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (30 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[00:20:43.285] INFO  [life] market: the market is britain_bank_2 (Britain banker) at 1425,1690, radius 5, guarded
+[00:20:43.285] INFO  [life] goal_blocked=TRADE_WITH_PLAYER reason="not enough session left for the trip" left=79s need=800s
+[00:20:43.286] INFO  [life] goal=REPLACE_EQUIPMENT reason="previous goal abandoned: not enough session left for the trip"
+[00:20:43.286] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedGold(sell surplus BLOCKED 0.55) NeedSkillTraining(Tinkering 0.55) NeedEquipment(heal potions 0.50) NeedCraft(make goods to sell 0.50) NeedOre(ore 0.42) NeedBank(put unsold stock away 0.40) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20) NeedTrade(sell to a player BLOCKED 0.00)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=Tinkering (target 50.0)
+[00:20:43.286] INFO  [life]   score=78.0
+[00:20:43.286] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:20:43.286] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:20:43.286] INFO  [life]   reason: upkeep just now, easing off 40% (130.0 -> 78.0)
+[00:20:43.286] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 203s after achieving nothing
+[00:20:43.286] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (30 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[00:20:43.286] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 600s after achieving nothing
+[00:20:43.286] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:20:43.286] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[00:20:43.286] INFO  [life] potions: found a 'healer'
+[00:20:43.300] INFO  [mk3_Elvar] [bot] arrived at (2577,598,0)
+[00:20:43.300] INFO  [life] potions: within reach
+[00:20:43.360] INFO  [life] potions: the shop is open
+[00:20:43.420] INFO  [life] potions: this 'healer' does not stock heal potion
+[00:20:43.420] INFO  [life] potions: none bought (this 'healer' does not stock heal potion)
+[00:20:43.420] INFO  [life] goal_completed=REPLACE_EQUIPMENT progress=0
+[00:20:43.420] INFO  [life] goal_spinning=REPLACE_EQUIPMENT reason="completed 5 times in a row with progress 0 -- cooled off for a minute; this is a bug in that goal, not pacing"
+[00:20:43.422] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_03.elvar/state.json
+[00:20:43.481] INFO  [life] goal=CRAFT reason="no goal was running"
+[00:20:43.482] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedGold(sell surplus BLOCKED 0.55) NeedSkillTraining(Tinkering 0.55) NeedEquipment(heal potions 0.50) NeedCraft(make goods to sell 0.50) NeedOre(ore 0.42) NeedBank(put unsold stock away 0.40) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20) NeedTrade(sell to a player BLOCKED 0.00)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=Tinkering (target 50.0)
+[00:20:43.482] INFO  [life]   score=65.0
+[00:20:43.482] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
+[00:20:43.482] INFO  [life]   reason: i_dagger: every input is in the pack
+[00:20:43.482] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 59s after achieving nothing
+[00:20:43.482] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 203s after achieving nothing
+[00:20:43.482] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (30 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[00:20:43.482] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 599s after achieving nothing
+[00:20:43.482] INFO  [life] craft: i_dagger needs a forge -- going to find a smithy
+[00:20:43.499] INFO  [mk3_Elvar] [travel] Minoc blacksmith -> (2471,564) r=5 from (2577,598)
+[00:20:43.499] LOG   [mk3_Elvar] event travel_start: label='Minoc blacksmith' target=(2471,564) radius=5 from=(2577,598)
+[00:20:43.499] INFO  [mk3_Elvar] [travel] mode moongate         usable   <- chosen
+[00:20:43.499] INFO  [mk3_Elvar] [travel] mode walk             usable
+[00:20:43.499] INFO  [mk3_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:43.499] INFO  [mk3_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:43.499] LOG   [mk3_Elvar] event travel_mode: moongate
+[00:20:43.499] INFO  [mk3_Elvar] [travel] plan Minoc blacksmith: ok legs=4 ~128 tiles transit=0 nodes=33
+[00:20:43.529] INFO  [mk3_Elvar] [action] goto finished at (2577,598,0); target (2577,598); ARRIVED (off by 0 tile(s))
+[00:20:43.529] LOG   [mk3_Elvar] event goto_done: at=(2577,598) target=(2577,598) arrived=1 off=0
+[00:20:43.529] INFO  [mk3_Elvar] [action] goto (2552,598) from (2577,598,0)
+[00:20:43.529] LOG   [mk3_Elvar] event goto_start: target=(2552,598) from=(2577,598)
+[00:20:43.529] INFO  [mk3_Elvar] [bot] running from (2577,598,0) to (2552,598)
+[00:20:43.529] INFO  [mk3_Elvar] [bot] planning path to (2552,598) in background
+[00:20:43.558] INFO  [mk3_Elvar] [bot] replan to (2552,598): 32 steps in 12624.2us
+[00:20:45.523] INFO  [mk3_Elvar] [survival] hp 56/56 (100%) -> fight
+[00:20:50.568] INFO  [mk3_Elvar] [survival] hp 56/56 (100%) -> fight
+[00:20:51.610] INFO  [mk3_Elvar] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=6 in 167.8us
+[00:20:53.835] INFO  [mk3_Elvar] [bot] arrived at (2552,598,0)
+[00:20:53.835] INFO  [mk3_Elvar] [action] goto finished at (2552,598,0); target (2552,598); ARRIVED (off by 0 tile(s))
+[00:20:53.835] LOG   [mk3_Elvar] event goto_done: at=(2552,598) target=(2552,598) arrived=1 off=0
+[00:20:53.835] INFO  [mk3_Elvar] [action] goto (2520,600) from (2552,598,0)
+[00:20:53.835] LOG   [mk3_Elvar] event goto_start: target=(2520,600) from=(2552,598)
+[00:20:53.835] INFO  [mk3_Elvar] [bot] running from (2552,598,0) to (2520,600)
+[00:20:53.835] INFO  [mk3_Elvar] [bot] planning path to (2520,600) in background
+[00:20:53.895] INFO  [mk3_Elvar] [bot] replan to (2520,600): 32 steps in 14882.9us
+[00:20:55.593] INFO  [mk3_Elvar] [survival] hp 56/56 (100%) -> fight
+[00:21:00.619] INFO  [mk3_Elvar] [survival] hp 56/56 (100%) -> fight
+[00:21:03.182] INFO  [mk3_Elvar] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=7 in 417.4us
+[00:21:05.435] INFO  [mk3_Elvar] [bot] arrived at (2520,600,0)
+[00:21:05.435] INFO  [mk3_Elvar] [action] goto finished at (2520,600,0); target (2520,600); ARRIVED (off by 0 tile(s))
+[00:21:05.435] LOG   [mk3_Elvar] event goto_done: at=(2520,600) target=(2520,600) arrived=1 off=0
+[00:21:05.435] INFO  [mk3_Elvar] [action] goto (2488,584) from (2520,600,0)
+[00:21:05.435] LOG   [mk3_Elvar] event goto_start: target=(2488,584) from=(2520,600)
+[00:21:05.435] INFO  [mk3_Elvar] [bot] running from (2520,600,0) to (2488,584)
+[00:21:05.435] INFO  [mk3_Elvar] [bot] planning path to (2488,584) in background
+[00:21:05.496] INFO  [mk3_Elvar] [bot] replan to (2488,584): 35 steps in 17965.7us
+[00:21:05.679] INFO  [mk3_Elvar] [survival] hp 56/56 (100%) -> fight
+[00:21:09.080] INFO  [mk3_Elvar] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=23 in 280.3us
+[00:21:09.327] INFO  [mk3_Elvar] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=23 in 425.2us
+[00:21:10.725] INFO  [mk3_Elvar] [survival] hp 56/56 (100%) -> fight
+[00:21:11.192] INFO  [mk3_Elvar] [chat ascii] System: Observer has arrived in Minoc.
+[00:21:14.370] INFO  [mk3_Elvar] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=9 in 237.6us
+[00:21:14.571] INFO  [mk3_Elvar] [chat ascii] System: Observer has departed from Minoc.
+[00:21:15.784] INFO  [mk3_Elvar] [survival] hp 56/56 (100%) -> fight
+[00:21:17.091] INFO  [mk3_Elvar] [chat ascii] System: You shove Zarthal out of the way.
+[00:21:17.731] INFO  [mk3_Elvar] [bot] reject at (2489,585): mobile in the way — waiting 500ms, retrying (1) [no blacklist]
+[00:21:17.731] INFO  [mk3_Elvar] [bot] planning path to (2488,584) in background
+[00:21:20.845] INFO  [mk3_Elvar] [survival] hp 56/56 (100%) -> fight
+[00:21:20.968] INFO  [mk3_Elvar] [action] goto finished at (2490,586,0); target (2488,584); stopped short (off by 4 tile(s))
+[00:21:20.968] LOG   [mk3_Elvar] event goto_done: at=(2490,586) target=(2488,584) arrived=0 off=4
+[00:21:20.968] INFO  [mk3_Elvar] [action] goto (2471,564) from (2490,586,0)
+[00:21:20.968] LOG   [mk3_Elvar] event goto_start: target=(2471,564) from=(2490,586)
+[00:21:20.968] INFO  [mk3_Elvar] [bot] running from (2490,586,0) to (2471,564,z5)
+[00:21:20.968] INFO  [mk3_Elvar] [bot] planning path to (2471,564) in background
+[00:21:21.030] INFO  [mk3_Elvar] [bot] replan to (2471,564): 44 steps in 14735.2us
+[00:21:25.906] INFO  [mk3_Elvar] [survival] hp 56/56 (100%) -> fight
+[00:21:30.960] INFO  [mk3_Elvar] [survival] hp 56/56 (100%) -> fight
+[00:21:33.720] INFO  [mk3_Elvar] [travel] Minoc blacksmith ARRIVED at (2476,569,5)
+[00:21:33.720] LOG   [mk3_Elvar] event travel_done: label='Minoc blacksmith' ok=1 at=(2476,569) legs=4 plans=1 why=''
+[00:21:33.721] INFO  [life] craft: i_dagger needs a forge -- walking to the one in sight
+[00:21:33.721] INFO  [mk3_Elvar] [travel] forge -> (2466,556) r=0 from (2476,569)
+[00:21:33.721] LOG   [mk3_Elvar] event travel_start: label='forge' target=(2466,556) radius=0 from=(2476,569)
+[00:21:33.721] INFO  [mk3_Elvar] [travel] mode walk             usable   <- chosen
+[00:21:33.721] INFO  [mk3_Elvar] [travel] mode moongate         usable
+[00:21:33.721] INFO  [mk3_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:33.721] INFO  [mk3_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:33.721] LOG   [mk3_Elvar] event travel_mode: walk
+[00:21:33.721] INFO  [mk3_Elvar] [travel] plan forge: ok legs=1 ~13 tiles transit=0 nodes=0
+[00:21:34.122] INFO  [mk3_Elvar] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=7 in 172.3us
+[00:21:35.181] INFO  [mk3_Elvar] [chat ascii] Curtis: What's thee wantin'?
+[00:21:35.181] INFO  [mk3_Elvar] [chat ascii] Curtis: Hmm?
+[00:21:35.994] INFO  [mk3_Elvar] [survival] hp 56/56 (100%) -> fight
+[00:21:36.686] INFO  [mk3_Elvar] [bot] arrived at (2471,564,5)
+[00:21:36.686] INFO  [mk3_Elvar] [action] goto finished at (2471,564,5); target (2471,564); ARRIVED (off by 0 tile(s))
+[00:21:36.686] LOG   [mk3_Elvar] event goto_done: at=(2471,564) target=(2471,564) arrived=1 off=0
+[00:21:36.686] INFO  [mk3_Elvar] [action] goto (2466,556) from (2471,564,5)
+[00:21:36.686] LOG   [mk3_Elvar] event goto_start: target=(2466,556) from=(2471,564)
+[00:21:36.686] INFO  [mk3_Elvar] [bot] running from (2471,564,5) to (2466,556)
+[00:21:36.686] INFO  [mk3_Elvar] [bot] planning path to (2466,556) in background
+[00:21:36.747] INFO  [mk3_Elvar] [bot] replan to (2466,556): 14 steps in 919.5us
+[00:21:39.716] INFO  [life] craft: making i_dagger -- double-clicking the smith hammer
+[00:21:39.716] INFO  [mk3_Elvar] [ACTION] use_object start
+[00:21:39.716] INFO  [mk3_Elvar] [ACTION] use_object serial=0x40016610
+[00:21:39.716] INFO  [mk3_Elvar] [chat ascii] System: What do you want to use this on?
+[00:21:39.716] INFO  [mk3_Elvar] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=1
+[00:21:39.716] LOG   [mk3_Elvar] event target_requested: id=0x000002CE type=0 subtype=1 gen=1
+[00:21:39.716] INFO  [mk3_Elvar] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[00:21:39.716] LOG   [mk3_Elvar] event action_result: use_object success took=1ms server armed a target cursor
+[00:21:39.901] INFO  [life] goal_changed=MINE from=CRAFT reason="MINE 78.6 superseded CRAFT 65.0"
+[00:21:39.901] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedOre(ore 0.60) NeedGold(sell surplus BLOCKED 0.55) NeedSkillTraining(Tinkering 0.55) NeedEquipment(heal potions 0.50) NeedCraft(make goods to sell 0.50) NeedBank(put unsold stock away 0.40) NeedFood(food 0.25) NeedTrade(sell to a player BLOCKED 0.00)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=Tinkering (target 50.0)
+[00:21:39.901] INFO  [life]   score=78.6
+[00:21:39.901] INFO  [life]   reason: NeedOre urgency 0.60 x 130 = 78.6
+[00:21:39.901] INFO  [life]   reason: 50 ore+ingots of the 550 wanted before smith training (smithing 50.0) at_work_site=1
+[00:21:39.901] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 3s after achieving nothing
+[00:21:39.901] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 147s after achieving nothing
+[00:21:39.901] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (30 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[00:21:39.901] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 543s after achieving nothing
+[00:21:41.011] INFO  [mk3_Elvar] [survival] hp 56/56 (100%) -> fight
+[00:21:41.257] INFO  [life] mine: taking the pickaxe in hand -- mining reads SRC.WEAPON
+[00:21:41.257] INFO  [mk3_Elvar] [ACTION] equip start
+[00:21:41.257] INFO  [mk3_Elvar] [ACTION] equip serial=0x40016660 layer=0
+[00:21:41.257] INFO  [mk3_Elvar] [ITEM] drag serial=0x40016660 amount=1
+[00:21:41.273] INFO  [mk3_Elvar] [chat ascii] System: You put the pickaxe in your pack.
+[00:21:41.273] INFO  [mk3_Elvar] [chat ascii] System: Previous targeting cancelled.
+[00:21:41.273] LOG   [mk3_Elvar] event drag_cancel: reason=5 unspecified
+[00:21:41.273] LOG   [mk3_Elvar] event action_result: equip rejected took=17ms unspecified
+[00:21:41.547] INFO  [mk3_Elvar] [bot] reject at (2466,556): mobile in the way — waiting 500ms, retrying (1) [no blacklist]
+[00:21:41.548] INFO  [mk3_Elvar] [bot] planning path to (2466,556) in background
+[00:21:41.672] INFO  [mk3_Elvar] [travel] forge ARRIVED at (2466,557,5)
+[00:21:41.672] LOG   [mk3_Elvar] event travel_done: label='forge' ok=1 at=(2466,557) legs=1 plans=1 why=''
+[00:21:43.318] INFO  [life] mine: taking the pickaxe in hand -- mining reads SRC.WEAPON
+[00:21:43.318] INFO  [mk3_Elvar] [ACTION] equip start
+[00:21:43.318] INFO  [mk3_Elvar] [ACTION] equip serial=0x40016660 layer=0
+[00:21:43.318] INFO  [mk3_Elvar] [ITEM] drag serial=0x40016660 amount=1
+[00:21:43.334] INFO  [mk3_Elvar] [chat ascii] System: You put the smith's hammer in your pack.
+[00:21:43.335] INFO  [mk3_Elvar] [ACTION_RESULT] equip success (17ms) worn on the requested layer
+[00:21:43.335] LOG   [mk3_Elvar] event action_result: equip success took=17ms worn on the requested layer
+[00:21:43.431] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_03.elvar/state.json
+[00:21:45.334] INFO  [mk3_Elvar] [action] goto finished at (2466,557,5); target (2466,556); stopped short (off by 1 tile(s))
+[00:21:45.334] LOG   [mk3_Elvar] event goto_done: at=(2466,557) target=(2466,556) arrived=0 off=1
+[00:21:45.334] INFO  [life] mine: the ore is 44 tiles off -- walking into the mining area first (trip 1)
+[00:21:45.334] INFO  [mk3_Elvar] [travel] Minoc Miner's Guild -> (2456,493) r=20 from (2466,557)
+[00:21:45.334] LOG   [mk3_Elvar] event travel_start: label='Minoc Miner's Guild' target=(2456,493) radius=20 from=(2466,557)
+[00:21:45.334] INFO  [mk3_Elvar] [travel] mode moongate         usable   <- chosen
+[00:21:45.334] INFO  [mk3_Elvar] [travel] mode walk             usable
+[00:21:45.334] INFO  [mk3_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:45.334] INFO  [mk3_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:45.334] LOG   [mk3_Elvar] event travel_mode: moongate
+[00:21:45.335] INFO  [mk3_Elvar] [travel] plan Minoc Miner's Guild: ok legs=2 ~72 tiles transit=0 nodes=18
+[00:21:45.396] INFO  [mk3_Elvar] [action] goto (2456,520) from (2466,557,5)
+[00:21:45.396] LOG   [mk3_Elvar] event goto_start: target=(2456,520) from=(2466,557)
+[00:21:45.396] INFO  [mk3_Elvar] [bot] running from (2466,557,5) to (2456,520)
+[00:21:45.396] INFO  [mk3_Elvar] [bot] planning path to (2456,520) in background
+[00:21:45.472] INFO  [mk3_Elvar] [action] goto finished at (2466,557,5); target (2456,520); stopped short (off by 47 tile(s))
+[00:21:45.472] LOG   [mk3_Elvar] event goto_done: at=(2466,557) target=(2456,520) arrived=0 off=47
+[00:21:46.022] INFO  [mk3_Elvar] [survival] hp 56/56 (100%) -> fight
+[00:21:46.682] INFO  [mk3_Elvar] [action] goto (2456,520) from (2466,557,5)
+[00:21:46.682] LOG   [mk3_Elvar] event goto_start: target=(2456,520) from=(2466,557)
+[00:21:46.682] INFO  [mk3_Elvar] [bot] running from (2466,557,5) to (2456,520)
+[00:21:46.682] INFO  [mk3_Elvar] [bot] planning path to (2456,520) in background
+[00:21:46.744] INFO  [mk3_Elvar] [bot] replan to (2456,520): 85 steps in 38809.7us
+[00:21:49.024] INFO  [mk3_Elvar] [chat ascii] Olin: Aye?
+[00:21:49.024] INFO  [mk3_Elvar] [chat ascii] Olin: I'm listenin'.
+[00:21:49.319] INFO  [mk3_Elvar] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=78 in 242.0us
+[00:21:49.922] INFO  [mk3_Elvar] [bot] lookahead patched around block at step 1: anchor=5 new segment=3 path=75 in 68.7us
+[00:21:50.564] INFO  [mk3_Elvar] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=73 in 447.4us
+[00:21:50.979] INFO  [mk3_Elvar] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=72 in 556.8us
+[00:21:51.041] INFO  [mk3_Elvar] [survival] hp 56/56 (100%) -> fight
+[00:21:51.041] INFO  [mk3_Elvar] [chat ascii] Olin: What's thee wantin'?
+[00:21:51.041] INFO  [mk3_Elvar] [chat ascii] Olin: What's thee wantin'?
+[00:21:52.029] INFO  [mk3_Elvar] [bot] reject at (2472,568): mobile in the way — waiting 500ms, retrying (1) [no blacklist]
+[00:21:52.029] INFO  [mk3_Elvar] [bot] planning path to (2456,520) in background
+[00:21:52.091] INFO  [mk3_Elvar] [action] goto finished at (2472,567,5); target (2456,520); stopped short (off by 63 tile(s))
+[00:21:52.091] LOG   [mk3_Elvar] event goto_done: at=(2472,567) target=(2456,520) arrived=0 off=63
+[00:21:53.325] INFO  [mk3_Elvar] [action] goto (2456,520) from (2472,567,5)
+[00:21:53.325] LOG   [mk3_Elvar] event goto_start: target=(2456,520) from=(2472,567)
+[00:21:53.325] INFO  [mk3_Elvar] [bot] running from (2472,567,5) to (2456,520)
+[00:21:53.325] INFO  [mk3_Elvar] [bot] planning path to (2456,520) in background
+[00:21:53.401] INFO  [mk3_Elvar] [bot] replan to (2456,520): 70 steps in 46059.8us
+[00:21:54.240] INFO  [mk3_Elvar] [chat ascii] Curtis: Aye?
+[00:21:56.076] INFO  [mk3_Elvar] [survival] hp 56/56 (100%) -> fight
+[00:21:58.644] INFO  [mk3_Elvar] [chat ascii] System: Draver has departed from Minoc.
+[00:22:01.112] INFO  [mk3_Elvar] [survival] hp 56/56 (100%) -> fight
+[00:22:02.334] INFO  [life] session_end_requested reason="session time limit reached"
+[00:22:06.162] INFO  [mk3_Elvar] [survival] hp 56/56 (100%) -> fight
+[00:22:11.216] INFO  [mk3_Elvar] [survival] hp 56/56 (100%) -> fight
+[00:22:13.327] INFO  [mk3_Elvar] [bot] arrived at (2456,520,15)
+[00:22:13.327] INFO  [mk3_Elvar] [action] goto finished at (2456,520,15); target (2456,520); ARRIVED (off by 0 tile(s))
+[00:22:13.327] LOG   [mk3_Elvar] event goto_done: at=(2456,520) target=(2456,520) arrived=1 off=0
+[00:22:13.327] INFO  [mk3_Elvar] [action] goto (2456,493) from (2456,520,15)
+[00:22:13.327] LOG   [mk3_Elvar] event goto_start: target=(2456,493) from=(2456,520)
+[00:22:13.327] INFO  [mk3_Elvar] [bot] running from (2456,520,15) to (2456,493)
+[00:22:13.327] INFO  [mk3_Elvar] [bot] planning path to (2456,493) in background
+[00:22:13.388] INFO  [mk3_Elvar] [bot] replan to (2456,493): 28 steps in 4095.8us
+[00:22:14.992] INFO  [mk3_Elvar] [travel] Minoc Miner's Guild ARRIVED at (2456,513,15)
+[00:22:14.992] LOG   [mk3_Elvar] event travel_done: label='Minoc Miner's Guild' ok=1 at=(2456,513) legs=2 plans=1 why=''
+[00:22:15.053] INFO  [life] wind-down: no bank learned yet; asking the world for one (attempt 1)
+[00:22:15.064] INFO  [mk3_Elvar] [travel] Minoc banker -> (2503,552) r=5 from (2456,513)
+[00:22:15.064] LOG   [mk3_Elvar] event travel_start: label='Minoc banker' target=(2503,552) radius=5 from=(2456,513)
+[00:22:15.064] INFO  [mk3_Elvar] [travel] mode walk             usable   <- chosen
+[00:22:15.064] INFO  [mk3_Elvar] [travel] mode moongate         usable
+[00:22:15.064] INFO  [mk3_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:15.064] INFO  [mk3_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:15.064] LOG   [mk3_Elvar] event travel_mode: walk
+[00:22:15.064] INFO  [mk3_Elvar] [travel] plan Minoc banker: ok legs=2 ~64 tiles transit=0 nodes=7
+[00:22:16.257] INFO  [mk3_Elvar] [survival] hp 56/56 (100%) -> fight
+[00:22:18.954] INFO  [mk3_Elvar] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=11 in 519.6us
+[00:22:19.310] INFO  [mk3_Elvar] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=10 in 111.4us
+[00:22:21.315] INFO  [mk3_Elvar] [survival] hp 56/56 (100%) -> fight
+[00:22:21.781] INFO  [mk3_Elvar] [bot] door ahead at (2458,495,z15); OpenDoor before step
+[00:22:21.796] INFO  [mk3_Elvar] [chat ascii] System: Opening door...
+[00:22:23.362] INFO  [mk3_Elvar] [bot] arrived at (2456,493,15)
+[00:22:23.362] INFO  [mk3_Elvar] [action] goto finished at (2456,493,15); target (2456,493); ARRIVED (off by 0 tile(s))
+[00:22:23.362] LOG   [mk3_Elvar] event goto_done: at=(2456,493) target=(2456,493) arrived=1 off=0
+[00:22:23.362] INFO  [mk3_Elvar] [action] goto (2488,552) from (2456,493,15)
+[00:22:23.362] LOG   [mk3_Elvar] event goto_start: target=(2488,552) from=(2456,493)
+[00:22:23.362] INFO  [mk3_Elvar] [bot] running from (2456,493,15) to (2488,552)
+[00:22:23.362] INFO  [mk3_Elvar] [bot] planning path to (2488,552) in background
+[00:22:23.436] INFO  [mk3_Elvar] [bot] replan to (2488,552): 75 steps in 48427.4us
+[00:22:24.688] INFO  [mk3_Elvar] [bot] door ahead at (2459,496,z15); OpenDoor before step
+[00:22:24.703] INFO  [mk3_Elvar] [chat ascii] System: Opening door...
+[00:22:26.368] INFO  [mk3_Elvar] [survival] hp 56/56 (100%) -> fight
+[00:22:26.983] INFO  [mk3_Elvar] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=65 in 318.0us
+[00:22:31.373] INFO  [mk3_Elvar] [survival] hp 56/56 (100%) -> fight
+[00:22:36.414] INFO  [mk3_Elvar] [survival] hp 56/56 (100%) -> fight
+[00:22:38.419] INFO  [mk3_Elvar] [chat ascii] System: Vorar has departed from Britain.
+[00:22:39.439] INFO  [mk3_Elvar] [chat ascii] System: Selene has departed from Magincia.
+[00:22:41.438] INFO  [mk3_Elvar] [survival] hp 56/56 (100%) -> fight
+[00:22:46.064] INFO  [mk3_Elvar] [bot] arrived at (2488,552,0)
+[00:22:46.064] INFO  [mk3_Elvar] [action] goto finished at (2488,552,0); target (2488,552); ARRIVED (off by 0 tile(s))
+[00:22:46.064] LOG   [mk3_Elvar] event goto_done: at=(2488,552) target=(2488,552) arrived=1 off=0
+[00:22:46.064] INFO  [mk3_Elvar] [action] goto (2503,552) from (2488,552,0)
+[00:22:46.064] LOG   [mk3_Elvar] event goto_start: target=(2503,552) from=(2488,552)
+[00:22:46.064] INFO  [mk3_Elvar] [bot] running from (2488,552,0) to (2503,552,z0)
+[00:22:46.065] INFO  [mk3_Elvar] [bot] planning path to (2503,552) in background
+[00:22:46.126] INFO  [mk3_Elvar] [bot] replan to (2503,552): 26 steps in 5812.9us
+[00:22:46.464] INFO  [mk3_Elvar] [survival] hp 56/56 (100%) -> fight
+[00:22:46.897] INFO  [mk3_Elvar] [chat ascii] System: Zarthal has departed from Minoc.
+[00:22:49.377] INFO  [mk3_Elvar] [chat ascii] System: World save in 10 seconds
+[00:22:50.319] INFO  [mk3_Elvar] [chat ascii] System: Thalia has departed from Moonglow.
+[00:22:50.565] INFO  [mk3_Elvar] [bot] door ahead at (2502,560,z0); OpenDoor before step
+[00:22:50.579] INFO  [mk3_Elvar] [chat ascii] System: Opening door...
+[00:22:51.507] INFO  [mk3_Elvar] [survival] hp 56/56 (100%) -> fight
+[00:22:53.045] INFO  [mk3_Elvar] [travel] Minoc banker ARRIVED at (2504,556,0)
+[00:22:53.045] LOG   [mk3_Elvar] event travel_done: label='Minoc banker' ok=1 at=(2504,556) legs=2 plans=1 why=''
+[00:22:53.106] INFO  [life] wind-down: arrived somewhere safe at 2504,556
+[00:22:53.168] INFO  [life] session_summary duration=230s goals=5/9 gold=10000->10000 skills=100.0->100.0 logs=+0 kills=0 deaths=0 places=2 suppliers=0
+[00:22:53.168] INFO  [life] session_goals families=3 picks=9 top=67% varied=0 self_superseded=0 | upkeep=6(67%) work=2(22%) social=1(11%) | REPLACE_EQUIPMENT=5(56%) BANK=1(11%) TRADE_WITH_PLAYER=1(11%) CRAFT=1(11%) MINE=1(11%)
+[00:22:53.170] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_03.elvar/state.json
+[00:22:53.170] INFO  [life] logging out
+[00:22:53.170] INFO  [mk3_Elvar] [action] logout requested
+[00:22:53.170] LOG   [mk3_Elvar] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[00:22:53.184] INFO  [mk3_Elvar] [0xD1] logout acknowledged (accepted=1)
+[00:22:53.184] LOG   [mk3_Elvar] event logout_ack: accepted
+[00:22:53.184] INFO  [mk3_Elvar] [net] closing connection (logout acknowledged)
+[00:22:53.184] LOG   [mk3_Elvar] event logout_complete: acked

@@ -1,0 +1,2478 @@
+[15:21:54.852] INFO  session 0: 127.0.0.1:2593 user='RevolutionFresh11' char=Ysolde tag='f6_Ysolde'
+[15:21:54.854] LOG   [f6_Ysolde] event session_start: text log opened
+[15:21:54.854] LOG   [f6_Ysolde] event net_connect_begin: connect 127.0.0.1:2593
+[15:21:54.854] INFO  [f6_Ysolde] [net] connecting to 127.0.0.1:2593 ...
+[15:21:54.855] LOG   [f6_Ysolde] event net_connected: connect 127.0.0.1:2593
+[15:21:54.855] INFO  [f6_Ysolde] [net] connected.
+[15:21:54.855] INFO  [f6_Ysolde] [seed] sent 0x7F000001 (plaintext)
+[15:21:54.855] LOG   [f6_Ysolde] event seed_out: 0x7F000001 hex=7f000001
+[15:21:54.857] INFO  [life] loaded persistent state for Ysolde (3 places, 1 suppliers, 256 events, 7 prior sessions)
+[15:21:54.857] INFO  [life] needs: reading 'scribe' from the profession catalogue
+[15:21:54.857] INFO  [life] build plan 'scribe': 240.0 resolved + 460.0 unresolved = 700.0/700.0, stats 30/20/100 = 150
+[15:21:54.857] INFO  [f6_Ysolde] [life] autonomous player active for 'Ysolde' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 25 min)
+[15:21:54.858] INFO  [f6_Ysolde] [0xA8] 1 server(s):
+[15:21:54.858] INFO  [f6_Ysolde]   [0] MyShard                   1.0.0.127  full=2%  tz=0
+[15:21:54.863] INFO  [f6_Ysolde] [0x8C] game server = 127.0.0.1:2593  seed=0x2224F3E8
+[15:21:54.863] LOG   [f6_Ysolde] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x2224F3E8
+[15:21:54.863] INFO  [f6_Ysolde] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[15:21:54.863] LOG   [f6_Ysolde] event relay_same_socket: no seed re-sent; 0x91 follows
+[15:21:54.863] INFO  [f6_Ysolde] [0xB9] server features = 0x0005
+[15:21:54.863] INFO  [f6_Ysolde] [0xA9] 5 slot(s) (populated 1):
+[15:21:54.863] INFO  [f6_Ysolde]   [0] Ysolde
+[15:21:54.863] INFO  [f6_Ysolde]   [1] <empty>
+[15:21:54.863] INFO  [f6_Ysolde]   [2] <empty>
+[15:21:54.863] INFO  [f6_Ysolde]   [3] <empty>
+[15:21:54.863] INFO  [f6_Ysolde]   [4] <empty>
+[15:21:54.863] INFO  [f6_Ysolde] [ui] playing slot 0 ('Ysolde')
+[15:21:54.879] INFO  [f6_Ysolde] [0x1B] serial=0x00013C94 body=0x0190 pos=(1429,1690,0)
+[15:21:54.879] LOG   [f6_Ysolde] event login_confirm: serial=0x00013C94 body=0x0190 pos=(1429,1690,0)
+[15:21:54.879] INFO  [f6_Ysolde] [0x20] player @(1429,1690,0) facing=6
+[15:21:54.879] INFO  [f6_Ysolde] [0x55] login complete — entering world
+[15:21:54.879] LOG   [f6_Ysolde] event in_world: 0x55 received
+[15:21:54.879] INFO  [f6_Ysolde] [backpack] opening 0x40013C90
+[15:21:54.879] INFO  [f6_Ysolde] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[15:21:54.879] INFO  [f6_Ysolde] [chat ascii] System: There are 5 other players here.
+[15:21:54.879] INFO  [f6_Ysolde] [chat ascii] System: Last logged: 2026/08/29 15:47:45
+[15:21:54.879] INFO  [f6_Ysolde] [chat ascii] System: You are under the protection of the city guards
+[15:21:54.882] INFO  [f6_Ysolde] [action] requesting the skill list
+[15:21:54.883] INFO  [life] in world; asked the server for the skill list
+[15:21:54.883] INFO  [f6_Ysolde] [0x24] open container 0x40013C90 gump=60
+[15:21:54.883] INFO  [f6_Ysolde] [0x3C] container contents: 18 item(s)
+[15:21:54.883] LOG   [f6_Ysolde] event backpack_contents: serial=0x40013C90 items=18
+[15:21:54.893] INFO  [f6_Ysolde] [chat ascii] System: You are hungry
+[15:21:54.893] INFO  [f6_Ysolde] [chat ascii] Ysolde: *You looks hungry*
+[15:21:55.033] INFO  [f6_Ysolde] [chat ascii] System: Bruin has arrived in Yew.
+[15:21:57.498] INFO  [f6_Ysolde] [bot] world data loaded (0 blacklisted spot(s)).
+[15:21:57.498] INFO  [life] reconciliation: resuming a life, 0 field(s) differed
+[15:21:57.498] INFO  [life]   gold         persisted=101        server=101        -> server value accepted
+[15:21:57.498] INFO  [life]   str          persisted=16         server=16         -> server value accepted
+[15:21:57.498] INFO  [life]   dex          persisted=16         server=16         -> server value accepted
+[15:21:57.498] INFO  [life]   int          persisted=48         server=48         -> server value accepted
+[15:21:57.498] INFO  [life]   skill_23     persisted=50.1       server=50.1       -> server value accepted
+[15:21:57.498] INFO  [life]   skill_25     persisted=50.0       server=50.0       -> server value accepted
+[15:21:57.498] INFO  [life]   skill_46     persisted=30.0       server=30.0       -> server value accepted
+[15:21:57.498] INFO  [life]   position     persisted=1429,1690  server=1429,1690  -> server value accepted
+[15:21:57.498] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[15:21:57.498] INFO  [life]   restored objective KEPT: BUY_SUPPLIES (progress 0)
+[15:21:57.498] INFO  [f6_Ysolde] [survival] on
+[15:21:57.498] LOG   [f6_Ysolde] event survival_mode: on
+[15:21:57.502] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[15:21:57.502] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:21:57.565] INFO  [life] supplies: looking for a 'mage' to sell 5 i_scroll_blank (trip 1)
+[15:21:57.566] INFO  [f6_Ysolde] [travel] Britain mage -> (1485,1550) r=5 from (1429,1690)
+[15:21:57.566] LOG   [f6_Ysolde] event travel_start: label='Britain mage' target=(1485,1550) radius=5 from=(1429,1690)
+[15:21:57.566] INFO  [f6_Ysolde] [travel] mode moongate         usable   <- chosen
+[15:21:57.566] INFO  [f6_Ysolde] [travel] mode walk             usable
+[15:21:57.566] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:21:57.566] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:21:57.566] LOG   [f6_Ysolde] event travel_mode: moongate
+[15:21:57.566] INFO  [f6_Ysolde] [travel] plan Britain mage: ok legs=5 ~168 tiles transit=0 nodes=48
+[15:21:57.625] INFO  [f6_Ysolde] [travel] avoiding 2 teleporter pad(s) on this leg
+[15:21:57.625] INFO  [f6_Ysolde] [action] goto (1448,1656) from (1429,1690,0)
+[15:21:57.626] LOG   [f6_Ysolde] event goto_start: target=(1448,1656) from=(1429,1690)
+[15:21:57.626] INFO  [f6_Ysolde] [bot] running from (1429,1690,0) to (1448,1656)
+[15:21:57.626] INFO  [f6_Ysolde] [bot] planning path to (1448,1656) in background
+[15:21:57.687] INFO  [f6_Ysolde] [bot] replan to (1448,1656): 60 steps in 6184.7us
+[15:22:00.092] INFO  [f6_Ysolde] [bot] door ahead at (1439,1692,z0); OpenDoor before step
+[15:22:00.107] INFO  [f6_Ysolde] [chat ascii] System: Opening door...
+[15:22:01.803] INFO  [f6_Ysolde] [bot] step (1439,1693,0)->(1440,1694,0) rejected; OpenDoor + retry
+[15:22:01.818] INFO  [f6_Ysolde] [chat ascii] System: Opening door...
+[15:22:01.818] INFO  [f6_Ysolde] [0x20] player @(1439,1693,0) facing=2
+[15:22:01.818] INFO  [f6_Ysolde] [action] goto finished at (1439,1693,0); target (1448,1656); stopped short (off by 46 tile(s))
+[15:22:01.818] LOG   [f6_Ysolde] event goto_done: at=(1439,1693) target=(1448,1656) arrived=0 off=46
+[15:22:02.550] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:22:03.041] INFO  [f6_Ysolde] [travel] avoiding 2 teleporter pad(s) on this leg
+[15:22:03.041] INFO  [f6_Ysolde] [action] goto (1448,1656) from (1439,1693,0)
+[15:22:03.041] LOG   [f6_Ysolde] event goto_start: target=(1448,1656) from=(1439,1693)
+[15:22:03.041] INFO  [f6_Ysolde] [bot] running from (1439,1693,0) to (1448,1656)
+[15:22:03.041] INFO  [f6_Ysolde] [bot] planning path to (1448,1656) in background
+[15:22:03.103] INFO  [f6_Ysolde] [bot] replan to (1448,1656): 49 steps in 9240.6us
+[15:22:07.591] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:22:12.616] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:22:17.186] INFO  [f6_Ysolde] [bot] arrived at (1448,1656,10)
+[15:22:17.186] INFO  [f6_Ysolde] [action] goto finished at (1448,1656,10); target (1448,1656); ARRIVED (off by 0 tile(s))
+[15:22:17.186] LOG   [f6_Ysolde] event goto_done: at=(1448,1656) target=(1448,1656) arrived=1 off=0
+[15:22:17.186] INFO  [f6_Ysolde] [travel] avoiding 2 teleporter pad(s) on this leg
+[15:22:17.186] INFO  [f6_Ysolde] [action] goto (1464,1624) from (1448,1656,10)
+[15:22:17.186] LOG   [f6_Ysolde] event goto_start: target=(1464,1624) from=(1448,1656)
+[15:22:17.186] INFO  [f6_Ysolde] [bot] running from (1448,1656,10) to (1464,1624)
+[15:22:17.186] INFO  [f6_Ysolde] [bot] planning path to (1464,1624) in background
+[15:22:17.247] INFO  [f6_Ysolde] [bot] replan to (1464,1624): 43 steps in 5410.1us
+[15:22:17.508] INFO  [life] goal_changed=GET_FOOD from=BUY_SUPPLIES reason="GET_FOOD 112.5 superseded BUY_SUPPLIES 61.6"
+[15:22:17.508] INFO  [life] needs considered: NeedFood(food 0.45) NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.37) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.26)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[15:22:17.508] INFO  [life]   score=112.5
+[15:22:17.508] INFO  [life]   reason: NeedFood urgency 0.45 x 250 = 112.5
+[15:22:17.508] INFO  [life]   reason: food=2 hungry=1
+[15:22:17.508] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:22:17.508] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:22:17.508] INFO  [f6_Ysolde] [ACTION] use_object serial=0x400197BF
+[15:22:17.523] INFO  [f6_Ysolde] [chat ascii] Ysolde: *You eat some bread loaves*
+[15:22:17.523] INFO  [f6_Ysolde] [chat ascii] System: You eat the food, and begin to feel more satiated.
+[15:22:17.631] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:22:21.531] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:22:21.592] INFO  [life] food: eating (hungry=1 starving=0, carrying 1)
+[15:22:21.592] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:22:21.592] INFO  [f6_Ysolde] [ACTION] use_object serial=0x400197BF
+[15:22:21.592] INFO  [f6_Ysolde] [chat ascii] Ysolde: *You eat some bread loaf*
+[15:22:21.592] INFO  [f6_Ysolde] [chat ascii] System: You are nearly stuffed, but manage to eat the food.
+[15:22:22.674] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:22:25.630] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:22:25.691] INFO  [life] food: casting Create Food rather than shopping (magery 50.0, mana 48)
+[15:22:25.692] INFO  [f6_Ysolde] [ACTION] cast_spell start
+[15:22:25.692] INFO  [f6_Ysolde] [ACTION] cast_spell id=2 target=0x00000000 mana=48
+[15:22:25.692] INFO  [f6_Ysolde] [chat ascii] System: The spell is not in your spellbook.
+[15:22:25.692] LOG   [f6_Ysolde] event action_result: cast_spell server_failure took=1ms The spell is not in your spellbook.
+[15:22:27.690] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:22:31.207] INFO  [f6_Ysolde] [bot] arrived at (1464,1624,20)
+[15:22:31.207] INFO  [f6_Ysolde] [action] goto finished at (1464,1624,20); target (1464,1624); ARRIVED (off by 0 tile(s))
+[15:22:31.207] LOG   [f6_Ysolde] event goto_done: at=(1464,1624) target=(1464,1624) arrived=1 off=0
+[15:22:31.207] INFO  [f6_Ysolde] [travel] avoiding 2 teleporter pad(s) on this leg
+[15:22:31.207] INFO  [f6_Ysolde] [action] goto (1464,1592) from (1464,1624,20)
+[15:22:31.207] LOG   [f6_Ysolde] event goto_start: target=(1464,1592) from=(1464,1624)
+[15:22:31.207] INFO  [f6_Ysolde] [bot] running from (1464,1624,20) to (1464,1592)
+[15:22:31.207] INFO  [f6_Ysolde] [bot] planning path to (1464,1592) in background
+[15:22:31.268] INFO  [f6_Ysolde] [bot] replan to (1464,1592): 32 steps in 367.4us
+[15:22:31.742] INFO  [life] food: Create Food is not in this character's spellbook (magery 50.0) -- buying food instead for the rest of the session
+[15:22:32.727] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:22:37.765] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:22:39.157] INFO  [f6_Ysolde] [bot] arrived at (1464,1592,20)
+[15:22:39.157] INFO  [f6_Ysolde] [action] goto finished at (1464,1592,20); target (1464,1592); ARRIVED (off by 0 tile(s))
+[15:22:39.157] LOG   [f6_Ysolde] event goto_done: at=(1464,1592) target=(1464,1592) arrived=1 off=0
+[15:22:39.157] INFO  [f6_Ysolde] [action] goto (1480,1558) from (1464,1592,20)
+[15:22:39.157] LOG   [f6_Ysolde] event goto_start: target=(1480,1558) from=(1464,1592)
+[15:22:39.157] INFO  [f6_Ysolde] [bot] running from (1464,1592,20) to (1480,1558)
+[15:22:39.157] INFO  [f6_Ysolde] [bot] planning path to (1480,1558) in background
+[15:22:39.217] INFO  [f6_Ysolde] [bot] replan to (1480,1558): 41 steps in 7269.0us
+[15:22:42.790] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:22:45.420] INFO  [f6_Ysolde] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=19 in 211.3us
+[15:22:47.819] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:22:52.479] INFO  [f6_Ysolde] [bot] arrived at (1480,1558,30)
+[15:22:52.479] INFO  [f6_Ysolde] [action] goto finished at (1480,1558,30); target (1480,1558); ARRIVED (off by 0 tile(s))
+[15:22:52.479] LOG   [f6_Ysolde] event goto_done: at=(1480,1558) target=(1480,1558) arrived=1 off=0
+[15:22:52.479] INFO  [f6_Ysolde] [action] goto (1485,1550) from (1480,1558,30)
+[15:22:52.479] LOG   [f6_Ysolde] event goto_start: target=(1485,1550) from=(1480,1558)
+[15:22:52.479] INFO  [f6_Ysolde] [bot] running from (1480,1558,30) to (1485,1550,z30)
+[15:22:52.479] INFO  [f6_Ysolde] [bot] planning path to (1485,1550) in background
+[15:22:52.539] INFO  [f6_Ysolde] [bot] replan to (1485,1550): 47 steps in 8160.6us
+[15:22:52.844] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:22:57.530] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[15:22:57.852] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:23:02.904] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:23:04.737] INFO  [f6_Ysolde] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=10 in 376.2us
+[15:23:05.495] INFO  [f6_Ysolde] [travel] Britain mage ARRIVED at (1489,1555,30)
+[15:23:05.495] LOG   [f6_Ysolde] event travel_done: label='Britain mage' ok=1 at=(1489,1555) legs=5 plans=1 why=''
+[15:23:05.556] INFO  [life] food: looking for a baker (trip 1)
+[15:23:05.556] INFO  [f6_Ysolde] [travel] Britain baker -> (1450,1617) r=5 from (1489,1555)
+[15:23:05.556] LOG   [f6_Ysolde] event travel_start: label='Britain baker' target=(1450,1617) radius=5 from=(1489,1555)
+[15:23:05.556] INFO  [f6_Ysolde] [travel] mode moongate         usable   <- chosen
+[15:23:05.556] INFO  [f6_Ysolde] [travel] mode walk             usable
+[15:23:05.556] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:23:05.556] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:23:05.556] LOG   [f6_Ysolde] event travel_mode: moongate
+[15:23:05.556] INFO  [f6_Ysolde] [travel] plan Britain baker: no world route to the destination legs=0 ~0 tiles transit=0 nodes=1
+[15:23:07.612] INFO  [f6_Ysolde] [action] scanning nearby mobiles for names
+[15:23:07.613] INFO  [f6_Ysolde] [action] requested 4 paperdoll(s) for trade titles
+[15:23:07.628] INFO  [f6_Ysolde] [mobiles] nearby (5):
+[15:23:07.628] INFO  [f6_Ysolde]   Xanthe 0x00001211
+[15:23:07.628] INFO  [f6_Ysolde]   Alenne 0x00001145
+[15:23:07.628] INFO  [f6_Ysolde]   Caedmon 0x000012EE
+[15:23:07.628] INFO  [f6_Ysolde]   Shunnar 0x0000E14F
+[15:23:07.628] INFO  [f6_Ysolde]   dark brown horse 0x000006AD
+[15:23:07.628] INFO  [f6_Ysolde] [0x20] player @(1486,1551,30) facing=3
+[15:23:07.628] INFO  [f6_Ysolde] [0x88] paperdoll 0x00001211: "Xanthe, the alchemist"
+[15:23:07.628] INFO  [f6_Ysolde] [world] Xanthe, the alchemist is a alchemist at (1488,1553)
+[15:23:07.628] INFO  [f6_Ysolde] [0x20] player @(1486,1551,30) facing=0
+[15:23:07.628] INFO  [f6_Ysolde] [0x88] paperdoll 0x000012EE: "Caedmon, the mage guildmaster"
+[15:23:07.628] INFO  [f6_Ysolde] [world] Caedmon, the mage guildmaster is a mage at (1487,1547)
+[15:23:07.628] INFO  [f6_Ysolde] [0x20] player @(1486,1551,30) facing=1
+[15:23:07.628] INFO  [f6_Ysolde] [0x88] paperdoll 0x00001145: "Alenne, the mage"
+[15:23:07.628] INFO  [f6_Ysolde] [world] Alenne, the mage is a mage at (1488,1549)
+[15:23:07.628] INFO  [f6_Ysolde] [0x20] player @(1486,1551,30) facing=7
+[15:23:07.628] INFO  [f6_Ysolde] [0x88] paperdoll 0x0000E14F: "Shunnar, the scribe"
+[15:23:07.628] INFO  [f6_Ysolde] [world] Shunnar, the scribe is a scribe at (1484,1547)
+[15:23:07.933] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:23:10.159] INFO  [life] food: looking for a provisioner (trip 2)
+[15:23:10.160] INFO  [f6_Ysolde] [travel] Britain provisioner -> (1469,1668) r=5 from (1486,1551)
+[15:23:10.160] LOG   [f6_Ysolde] event travel_start: label='Britain provisioner' target=(1469,1668) radius=5 from=(1486,1551)
+[15:23:10.160] INFO  [f6_Ysolde] [travel] mode moongate         usable   <- chosen
+[15:23:10.160] INFO  [f6_Ysolde] [travel] mode walk             usable
+[15:23:10.160] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:23:10.160] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:23:10.160] LOG   [f6_Ysolde] event travel_mode: moongate
+[15:23:10.160] INFO  [f6_Ysolde] [travel] plan Britain provisioner: ok legs=5 ~184 tiles transit=0 nodes=71
+[15:23:10.204] INFO  [f6_Ysolde] [action] goto finished at (1486,1551,30); target (1485,1550); stopped short (off by 2 tile(s))
+[15:23:10.204] LOG   [f6_Ysolde] event goto_done: at=(1486,1551) target=(1485,1550) arrived=0 off=2
+[15:23:10.204] INFO  [f6_Ysolde] [action] goto (1480,1574) from (1486,1551,30)
+[15:23:10.204] LOG   [f6_Ysolde] event goto_start: target=(1480,1574) from=(1486,1551)
+[15:23:10.204] INFO  [f6_Ysolde] [bot] running from (1486,1551,30) to (1480,1574)
+[15:23:10.204] INFO  [f6_Ysolde] [bot] planning path to (1480,1574) in background
+[15:23:10.265] INFO  [f6_Ysolde] [bot] replan to (1480,1574): 33 steps in 3814.2us
+[15:23:12.974] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:23:13.220] INFO  [f6_Ysolde] [chat ascii] Xanthe: Aye?
+[15:23:17.985] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:23:19.795] INFO  [f6_Ysolde] [bot] arrived at (1480,1574,30)
+[15:23:19.795] INFO  [f6_Ysolde] [action] goto finished at (1480,1574,30); target (1480,1574); ARRIVED (off by 0 tile(s))
+[15:23:19.795] LOG   [f6_Ysolde] event goto_done: at=(1480,1574) target=(1480,1574) arrived=1 off=0
+[15:23:19.795] INFO  [f6_Ysolde] [travel] avoiding 2 teleporter pad(s) on this leg
+[15:23:19.795] INFO  [f6_Ysolde] [action] goto (1464,1608) from (1480,1574,30)
+[15:23:19.795] LOG   [f6_Ysolde] event goto_start: target=(1464,1608) from=(1480,1574)
+[15:23:19.795] INFO  [f6_Ysolde] [bot] running from (1480,1574,30) to (1464,1608)
+[15:23:19.795] INFO  [f6_Ysolde] [bot] planning path to (1464,1608) in background
+[15:23:19.855] INFO  [f6_Ysolde] [bot] replan to (1464,1608): 48 steps in 1724.3us
+[15:23:22.994] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:23:28.033] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:23:32.658] INFO  [f6_Ysolde] [bot] arrived at (1464,1608,20)
+[15:23:32.658] INFO  [f6_Ysolde] [action] goto finished at (1464,1608,20); target (1464,1608); ARRIVED (off by 0 tile(s))
+[15:23:32.658] LOG   [f6_Ysolde] event goto_done: at=(1464,1608) target=(1464,1608) arrived=1 off=0
+[15:23:32.658] INFO  [f6_Ysolde] [travel] avoiding 2 teleporter pad(s) on this leg
+[15:23:32.659] INFO  [f6_Ysolde] [action] goto (1464,1640) from (1464,1608,20)
+[15:23:32.659] LOG   [f6_Ysolde] event goto_start: target=(1464,1640) from=(1464,1608)
+[15:23:32.659] INFO  [f6_Ysolde] [bot] running from (1464,1608,20) to (1464,1640)
+[15:23:32.659] INFO  [f6_Ysolde] [bot] planning path to (1464,1640) in background
+[15:23:32.719] INFO  [f6_Ysolde] [bot] replan to (1464,1640): 32 steps in 1428.4us
+[15:23:33.082] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:23:38.095] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:23:41.951] INFO  [f6_Ysolde] [bot] arrived at (1464,1640,20)
+[15:23:41.951] INFO  [f6_Ysolde] [action] goto finished at (1464,1640,20); target (1464,1640); ARRIVED (off by 0 tile(s))
+[15:23:41.951] LOG   [f6_Ysolde] event goto_done: at=(1464,1640) target=(1464,1640) arrived=1 off=0
+[15:23:41.951] INFO  [f6_Ysolde] [travel] avoiding 2 teleporter pad(s) on this leg
+[15:23:41.951] INFO  [f6_Ysolde] [action] goto (1448,1672) from (1464,1640,20)
+[15:23:41.951] LOG   [f6_Ysolde] event goto_start: target=(1448,1672) from=(1464,1640)
+[15:23:41.951] INFO  [f6_Ysolde] [bot] running from (1464,1640,20) to (1448,1672)
+[15:23:41.951] INFO  [f6_Ysolde] [bot] planning path to (1448,1672) in background
+[15:23:41.981] INFO  [f6_Ysolde] [bot] replan to (1448,1672): 37 steps in 4774.7us
+[15:23:43.106] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:23:48.153] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:23:53.160] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:23:53.646] INFO  [f6_Ysolde] [bot] arrived at (1448,1672,10)
+[15:23:53.646] INFO  [f6_Ysolde] [action] goto finished at (1448,1672,10); target (1448,1672); ARRIVED (off by 0 tile(s))
+[15:23:53.646] LOG   [f6_Ysolde] event goto_done: at=(1448,1672) target=(1448,1672) arrived=1 off=0
+[15:23:53.646] INFO  [f6_Ysolde] [travel] avoiding 2 teleporter pad(s) on this leg
+[15:23:53.646] INFO  [f6_Ysolde] [action] goto (1469,1668) from (1448,1672,10)
+[15:23:53.646] LOG   [f6_Ysolde] event goto_start: target=(1469,1668) from=(1448,1672)
+[15:23:53.646] INFO  [f6_Ysolde] [bot] running from (1448,1672,10) to (1469,1668,z0)
+[15:23:53.646] INFO  [f6_Ysolde] [bot] planning path to (1469,1668) in background
+[15:23:53.708] INFO  [f6_Ysolde] [bot] replan to (1469,1668): 45 steps in 12149.0us
+[15:23:57.590] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[15:23:58.194] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:24:03.232] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:24:03.844] INFO  [f6_Ysolde] [travel] Britain provisioner ARRIVED at (1473,1673,0)
+[15:24:03.845] LOG   [f6_Ysolde] event travel_done: label='Britain provisioner' ok=1 at=(1473,1673) legs=5 plans=1 why=''
+[15:24:03.906] INFO  [f6_Ysolde] [action] scanning nearby mobiles for names
+[15:24:03.907] INFO  [f6_Ysolde] [action] requested 2 paperdoll(s) for trade titles
+[15:24:03.907] INFO  [f6_Ysolde] [mobiles] nearby (8):
+[15:24:03.907] INFO  [f6_Ysolde]   Jebidiah 0x000011F4
+[15:24:03.907] INFO  [f6_Ysolde]   Taite 0x0000105A
+[15:24:03.907] INFO  [f6_Ysolde]   Desert Ostard 0x00000DFE
+[15:24:03.907] INFO  [f6_Ysolde]   Kyler 0x00001017
+[15:24:03.907] INFO  [f6_Ysolde]   Kaysa 0x000012C5
+[15:24:03.907] INFO  [f6_Ysolde]   Felicite 0x000012B8
+[15:24:03.907] INFO  [f6_Ysolde]   Dog 0x00000655
+[15:24:03.907] INFO  [f6_Ysolde]   Joelliane 0x00001136
+[15:24:03.907] INFO  [f6_Ysolde] [0x20] player @(1473,1673,0) facing=7
+[15:24:03.907] INFO  [f6_Ysolde] [0x88] paperdoll 0x000011F4: "Jebidiah, the cobbler"
+[15:24:03.907] INFO  [f6_Ysolde] [world] Jebidiah, the cobbler is a tailor at (1469,1669)
+[15:24:03.922] INFO  [f6_Ysolde] [0x20] player @(1473,1673,0) facing=0
+[15:24:03.922] INFO  [f6_Ysolde] [0x88] paperdoll 0x0000105A: "Taite, the provisioner"
+[15:24:03.922] INFO  [f6_Ysolde] [world] Taite, the provisioner is a provisioner at (1471,1667)
+[15:24:03.922] INFO  [f6_Ysolde] [0x21] stale reject seq=42 (block already handled); pose resynced
+[15:24:06.465] INFO  [life] food: the provisioner is 7 tiles and 0 z away -- walking up before speaking
+[15:24:06.465] INFO  [f6_Ysolde] [travel] mobile 0x0000105A -> (1472,1666) r=1 from (1473,1673)
+[15:24:06.465] LOG   [f6_Ysolde] event travel_start: label='mobile 0x0000105A' target=(1472,1666) radius=1 from=(1473,1673)
+[15:24:06.465] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[15:24:06.465] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[15:24:06.465] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:24:06.465] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:24:06.465] LOG   [f6_Ysolde] event travel_mode: walk
+[15:24:06.465] INFO  [f6_Ysolde] [travel] plan mobile 0x0000105A: ok legs=1 ~7 tiles transit=0 nodes=0
+[15:24:06.527] INFO  [f6_Ysolde] [action] goto finished at (1473,1673,0); target (1469,1668); stopped short (off by 9 tile(s))
+[15:24:06.527] LOG   [f6_Ysolde] event goto_done: at=(1473,1673) target=(1469,1668) arrived=0 off=9
+[15:24:06.527] INFO  [f6_Ysolde] [travel] avoiding 2 teleporter pad(s) on this leg
+[15:24:06.527] INFO  [f6_Ysolde] [action] goto (1472,1666) from (1473,1673,0)
+[15:24:06.527] LOG   [f6_Ysolde] event goto_start: target=(1472,1666) from=(1473,1673)
+[15:24:06.527] INFO  [f6_Ysolde] [bot] running from (1473,1673,0) to (1472,1666,z0)
+[15:24:06.527] INFO  [f6_Ysolde] [bot] planning path to (1472,1666) in background
+[15:24:08.257] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:24:08.440] INFO  [f6_Ysolde] [action] goto finished at (1473,1673,0); target (1472,1666); stopped short (off by 8 tile(s))
+[15:24:08.440] LOG   [f6_Ysolde] event goto_done: at=(1473,1673) target=(1472,1666) arrived=0 off=8
+[15:24:09.657] INFO  [f6_Ysolde] [travel] avoiding 2 teleporter pad(s) on this leg
+[15:24:09.657] INFO  [f6_Ysolde] [action] goto (1472,1666) from (1473,1673,0)
+[15:24:09.657] LOG   [f6_Ysolde] event goto_start: target=(1472,1666) from=(1473,1673)
+[15:24:09.657] INFO  [f6_Ysolde] [bot] running from (1473,1673,0) to (1472,1666,z0)
+[15:24:09.657] INFO  [f6_Ysolde] [bot] planning path to (1472,1666) in background
+[15:24:09.718] INFO  [f6_Ysolde] [bot] replan to (1472,1666): 8 steps in 552.1us
+[15:24:10.685] INFO  [f6_Ysolde] [bot] door ahead at (1475,1669,z0); OpenDoor before step
+[15:24:10.685] INFO  [f6_Ysolde] [chat ascii] System: Opening door...
+[15:24:10.979] INFO  [f6_Ysolde] [chat ascii] Taite: Hmm?
+[15:24:12.823] INFO  [f6_Ysolde] [travel] mobile 0x0000105A ARRIVED at (1473,1667,0)
+[15:24:12.823] LOG   [f6_Ysolde] event travel_done: label='mobile 0x0000105A' ok=1 at=(1473,1667) legs=1 plans=1 why=''
+[15:24:12.886] INFO  [life] food: nothing to eat -- asking the provisioner
+[15:24:12.886] INFO  [f6_Ysolde] [ACTION] vendor_buy start
+[15:24:12.886] INFO  [f6_Ysolde] [VENDOR] open vendor=0x0000105A say='Taite buy'
+[15:24:12.887] INFO  [f6_Ysolde] [chat uni  ] : Taite buy
+[15:24:12.887] INFO  [f6_Ysolde] [chat ascii] Taite: I got lots to sell!
+[15:24:12.887] INFO  [f6_Ysolde] [0x3C] container contents: 28 item(s)
+[15:24:12.887] INFO  [f6_Ysolde] [0x74] pairing: straight (straight 2, mirrored 0 of 28 rows)
+[15:24:12.887] INFO  [f6_Ysolde] [0x74] vendor shop data: cont=0x40001051 28 item(s), layer=0x1A
+[15:24:12.887] INFO  [f6_Ysolde] [0x74]   bulk order book              gfx=0x2259 qty=5    price=105
+[15:24:12.887] INFO  [f6_Ysolde] [0x74]   spyglass                     gfx=0x14F5 qty=5    price=78
+[15:24:12.887] INFO  [f6_Ysolde] [0x74]   House Placement Tool         gfx=0x14F6 qty=25   price=690
+[15:24:12.887] INFO  [f6_Ysolde] [0x74]   backpack                     gfx=0x0E75 qty=8    price=25
+[15:24:12.887] INFO  [f6_Ysolde] [0x74]   belt pouch                   gfx=0x09B0 qty=48   price=15
+[15:24:12.887] INFO  [f6_Ysolde] [0x74]   bag                          gfx=0x0E76 qty=14   price=13
+[15:24:12.887] INFO  [f6_Ysolde] [0x74]   candles                      gfx=0x0A28 qty=11   price=7
+[15:24:12.887] INFO  [f6_Ysolde] [0x74]   torches                      gfx=0x0F64 qty=21   price=8
+[15:24:12.887] INFO  [f6_Ysolde] [0x74]   lantern                      gfx=0x0A25 qty=35   price=55
+[15:24:12.887] INFO  [f6_Ysolde] [0x74]   oil flasks                   gfx=0x1C18 qty=21   price=15
+[15:24:12.887] INFO  [f6_Ysolde] [0x74]   lockpicks                    gfx=0x14FB qty=26   price=10
+[15:24:12.887] INFO  [f6_Ysolde] [0x74]   bread loaves                 gfx=0x103B qty=37   price=8
+[15:24:12.887] INFO  [f6_Ysolde] [0x74]   legs of lamb                 gfx=0x160A qty=26   price=8
+[15:24:12.887] INFO  [f6_Ysolde] [0x74]   chicken legs                 gfx=0x1608 qty=27   price=6
+[15:24:12.887] INFO  [f6_Ysolde] [0x74]   cooked birds                 gfx=0x09B7 qty=20   price=3
+[15:24:12.887] INFO  [f6_Ysolde] [0x74]   bottle of ale                gfx=0x099F qty=38   price=25
+[15:24:12.887] INFO  [f6_Ysolde] [0x74]   bottle of wine               gfx=0x09C7 qty=22   price=28
+[15:24:12.887] INFO  [f6_Ysolde] [0x74]   bottle of liquor             gfx=0x099B qty=20   price=17
+[15:24:12.887] INFO  [f6_Ysolde] [0x74]   jug of cider                 gfx=0x09C8 qty=28   price=26
+[15:24:12.887] INFO  [f6_Ysolde] [0x74]   empty bottles                gfx=0x0F0E qty=24   price=12
+[15:24:12.887] INFO  [f6_Ysolde] [0x74]   wooden box                   gfx=0x09AA qty=20   price=28
+[15:24:12.887] INFO  [f6_Ysolde] [0x74]   copper key                   gfx=0x100E qty=32   price=51
+[15:24:12.887] INFO  [f6_Ysolde] [0x74]   bedroll                      gfx=0x0A57 qty=7    price=109
+[15:24:12.887] INFO  [f6_Ysolde] [0x74]   kindling                     gfx=0x0DE1 qty=23   price=1
+[15:24:12.887] INFO  [f6_Ysolde] [0x74]   Chessboard                   gfx=0x0FA6 qty=30   price=1825361101
+[15:24:12.887] INFO  [f6_Ysolde] [0x74]   Checkerboard                 gfx=0x0FA6 qty=37   price=1825361101
+[15:24:12.887] INFO  [f6_Ysolde] [0x74]   backgammon board             gfx=0x0E1C qty=8    price=46
+[15:24:12.887] INFO  [f6_Ysolde] [0x74]   dice and cup                 gfx=0x0FA7 qty=6    price=36
+[15:24:12.887] INFO  [f6_Ysolde] [0x3C] container contents: 0 item(s)
+[15:24:12.887] INFO  [f6_Ysolde] [0x74] vendor shop data: cont=0x40000601 0 item(s), layer=0x1B
+[15:24:12.887] INFO  [f6_Ysolde] [VENDOR] offer from 0x0000105A: 28 item(s)
+[15:24:12.887] INFO  [f6_Ysolde] [VENDOR]   0x40013062 bulk order book        x5   105 gp
+[15:24:12.887] INFO  [f6_Ysolde] [VENDOR]   0x4001305F spyglass               x5   78 gp
+[15:24:12.887] INFO  [f6_Ysolde] [VENDOR]   0x4001305E House Placement Tool   x25  690 gp
+[15:24:12.887] INFO  [f6_Ysolde] [VENDOR]   0x4001305D backpack               x8   25 gp
+[15:24:12.887] INFO  [f6_Ysolde] [VENDOR]   0x4001305C belt pouch             x48  15 gp
+[15:24:12.887] INFO  [f6_Ysolde] [VENDOR]   0x4001305B bag                    x14  13 gp
+[15:24:12.887] INFO  [f6_Ysolde] [VENDOR]   0x4001305A candles                x11  7 gp
+[15:24:12.887] INFO  [f6_Ysolde] [VENDOR]   0x40013059 torches                x21  8 gp
+[15:24:12.887] LOG   [f6_Ysolde] event vendor_offer: vendor=0x0000105A items=28
+[15:24:12.887] INFO  [f6_Ysolde] [ACTION_RESULT] vendor_buy success (1ms) vendor offer received
+[15:24:12.887] LOG   [f6_Ysolde] event action_result: vendor_buy success took=1ms vendor offer received
+[15:24:12.887] INFO  [f6_Ysolde] [0x24] vendor buy gump for 0x0000105A
+[15:24:13.055] INFO  [f6_Ysolde] [bot] arrived at (1472,1666,0)
+[15:24:13.299] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:24:18.310] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:24:21.890] INFO  [life] food: buying bread loaves from the provisioner at 8 gold
+[15:24:21.890] INFO  [f6_Ysolde] [ACTION] vendor_buy start
+[15:24:21.890] INFO  [f6_Ysolde] [policy] allowed NPC purchase of i_bread_loaf (0x103B): basic food: a character with hunger enabled must be able to eat, and Revolution's cooking economy shows food was not an income good [BASIC_FOOD]
+[15:24:21.890] INFO  [f6_Ysolde] [VENDOR] buy item=0x4001304D qty=2 from vendor=0x0000105A gold=101
+[15:24:21.906] INFO  [f6_Ysolde] [ACTION_RESULT] vendor_buy success (16ms) purchased item delivered
+[15:24:21.906] LOG   [f6_Ysolde] event action_result: vendor_buy success took=16ms purchased item delivered
+[15:24:21.906] INFO  [f6_Ysolde] [chat ascii] Taite: Here you are, Ysolde That will be 16 gold coins.  I thank thee for thy business.
+[15:24:21.906] INFO  [f6_Ysolde] [0x3B] vendor transaction closed: vendor=0x0000105A flag=0
+[15:24:23.351] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:24:27.422] INFO  [f6_Ysolde] [chat ascii] Jebidiah: What's thee wantin'?
+[15:24:28.354] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:24:29.611] INFO  [f6_Ysolde] [chat ascii] System: Ilyana has arrived in Yew.
+[15:24:29.793] INFO  [f6_Ysolde] [chat ascii] System: World save in 10 seconds
+[15:24:30.913] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:24:30.913] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:24:30.913] INFO  [f6_Ysolde] [ACTION] use_object serial=0x400192DC
+[15:24:30.927] INFO  [f6_Ysolde] [chat ascii] Ysolde: *You eat some bread loaves*
+[15:24:30.927] INFO  [f6_Ysolde] [chat ascii] System: You feel quite full after consuming the food.
+[15:24:33.408] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:24:34.948] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:24:35.012] INFO  [life] food: eating (hungry=1 starving=0, carrying 1)
+[15:24:35.012] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:24:35.012] INFO  [f6_Ysolde] [ACTION] use_object serial=0x400192DC
+[15:24:35.012] INFO  [f6_Ysolde] [chat ascii] Ysolde: *You eat some bread loaf*
+[15:24:35.012] INFO  [f6_Ysolde] [chat ascii] System: You are stuffed!
+[15:24:38.455] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:24:39.067] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:24:39.128] INFO  [life] food: buying bread loaves from the provisioner at 8 gold
+[15:24:39.128] INFO  [f6_Ysolde] [ACTION] vendor_buy start
+[15:24:39.128] INFO  [f6_Ysolde] [policy] allowed NPC purchase of i_bread_loaf (0x103B): basic food: a character with hunger enabled must be able to eat, and Revolution's cooking economy shows food was not an income good [BASIC_FOOD]
+[15:24:39.128] INFO  [f6_Ysolde] [VENDOR] buy item=0x4001304D qty=2 from vendor=0x0000105A gold=85
+[15:24:39.143] INFO  [f6_Ysolde] [ACTION_RESULT] vendor_buy success (14ms) purchased item delivered
+[15:24:39.143] LOG   [f6_Ysolde] event action_result: vendor_buy success took=14ms purchased item delivered
+[15:24:39.143] INFO  [f6_Ysolde] [chat ascii] Taite: Here you are, Ysolde That will be 16 gold coins.  I thank thee for thy business.
+[15:24:39.143] INFO  [f6_Ysolde] [0x3B] vendor transaction closed: vendor=0x0000105A flag=0
+[15:24:39.777] INFO  [f6_Ysolde] [chat ascii] System: World save has been initiated.
+[15:24:43.490] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:24:48.133] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:24:48.133] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:24:48.133] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:24:48.148] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:24:48.518] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:24:51.340] INFO  [f6_Ysolde] [chat ascii] Jebidiah: Observer! Nice to see thee.
+[15:24:52.150] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:24:52.211] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:24:52.211] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:24:52.211] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:24:52.227] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:24:53.528] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:24:56.219] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:24:56.241] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:24:56.241] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:24:56.241] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:24:56.255] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:24:57.604] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[15:24:58.545] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:25:00.254] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:25:00.316] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:25:00.316] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:25:00.316] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:25:00.331] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:25:03.571] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:25:04.352] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:25:04.412] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:25:04.412] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:25:04.412] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:25:04.413] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:25:08.420] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:25:08.483] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:25:08.483] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:25:08.483] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:25:08.483] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:25:08.606] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:25:12.511] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:25:12.573] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:25:12.573] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:25:12.573] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:25:12.573] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:25:13.657] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:25:16.605] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:25:16.666] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:25:16.666] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:25:16.666] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:25:16.666] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:25:18.715] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:25:20.724] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:25:20.785] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:25:20.785] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:25:20.785] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:25:20.800] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:25:23.738] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:25:24.841] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:25:24.902] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:25:24.902] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:25:24.903] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:25:24.903] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:25:28.798] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:25:28.923] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:25:28.983] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:25:28.983] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:25:28.983] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:25:28.983] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:25:33.011] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:25:33.071] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:25:33.072] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:25:33.072] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:25:33.087] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:25:33.822] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:25:33.899] INFO  [f6_Ysolde] [chat ascii] Taite: Well it was nice speaking to you Ysolde but I must go about my business
+[15:25:37.089] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:25:37.122] INFO  [f6_Ysolde] [chat uni  ] : Taite buy
+[15:25:37.122] INFO  [f6_Ysolde] [chat ascii] Taite: Greetings. What can I help thee with?
+[15:25:37.122] INFO  [f6_Ysolde] [chat ascii] Taite: I'm here to sell thee supplies.
+[15:25:37.122] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:25:37.122] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:25:37.122] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:25:37.134] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:25:38.848] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:25:41.174] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:25:41.235] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:25:41.235] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:25:41.235] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:25:41.250] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:25:43.903] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:25:45.263] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:25:45.323] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:25:45.323] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:25:45.323] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:25:45.323] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:25:46.192] INFO  [f6_Ysolde] [chat ascii] Taite: Here you are, Tarath That will be 16 gold coins.  I thank thee for thy business.
+[15:25:48.913] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:25:49.346] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:25:49.406] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:25:49.406] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:25:49.406] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:25:49.422] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:25:53.434] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:25:53.496] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:25:53.496] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:25:53.496] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:25:53.496] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:25:53.925] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:25:54.648] INFO  [f6_Ysolde] [chat ascii] Jebidiah: What's thee wantin'?
+[15:25:55.214] INFO  [f6_Ysolde] [chat ascii] Tarath: *You see Tarath eat some bread loaves*
+[15:25:57.543] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:25:57.604] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:25:57.604] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:25:57.604] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:25:57.607] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[15:25:57.607] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:25:58.982] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:25:59.288] INFO  [f6_Ysolde] [chat ascii] Tarath: *You see Tarath eat some bread loaf*
+[15:26:01.625] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:26:01.685] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:26:01.685] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:26:01.685] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:26:01.701] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:26:03.386] INFO  [f6_Ysolde] [chat ascii] Taite: Here you are, Tarath That will be 16 gold coins.  I thank thee for thy business.
+[15:26:03.998] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:26:05.702] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:26:05.762] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:26:05.762] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:26:05.762] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:26:05.777] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:26:09.024] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:26:09.790] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:26:09.850] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:26:09.850] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:26:09.850] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:26:09.865] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:26:13.879] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:26:13.940] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:26:13.940] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:26:13.940] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:26:13.940] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:26:14.061] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:26:17.994] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:26:18.057] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:26:18.057] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:26:18.057] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:26:18.072] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:26:19.111] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:26:22.079] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:26:22.142] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:26:22.142] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:26:22.142] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:26:22.142] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:26:24.142] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:26:26.165] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:26:26.227] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:26:26.227] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:26:26.227] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:26:26.227] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:26:29.179] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:26:30.283] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:26:30.344] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:26:30.344] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:26:30.344] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:26:30.344] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:26:34.238] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:26:34.361] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:26:34.421] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:26:34.421] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:26:34.421] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:26:34.421] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:26:38.472] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:26:38.534] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:26:38.534] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:26:38.535] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:26:38.535] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:26:39.270] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:26:42.548] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:26:42.608] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:26:42.609] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:26:42.609] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:26:42.624] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:26:44.318] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:26:46.628] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:26:46.689] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:26:46.689] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:26:46.689] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:26:46.690] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:26:49.336] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:26:50.701] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:26:50.763] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:26:50.763] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:26:50.763] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:26:50.763] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:26:54.348] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:26:54.809] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:26:54.869] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:26:54.869] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:26:54.869] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:26:54.870] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:26:55.176] INFO  [f6_Ysolde] [chat ascii] Taite: Well it was nice speaking to you Tarath but I must go about my business
+[15:26:57.630] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[15:26:58.888] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:26:58.949] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:26:58.949] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:26:58.949] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:26:58.949] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:26:59.382] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:27:02.972] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:27:03.033] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:27:03.033] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:27:03.033] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:27:03.048] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:27:04.437] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:27:07.069] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:27:07.130] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:27:07.130] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:27:07.131] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:27:07.131] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:27:09.491] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:27:11.177] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:27:11.238] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:27:11.238] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:27:11.238] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:27:11.253] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:27:14.543] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:27:15.267] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:27:15.328] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:27:15.328] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:27:15.328] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:27:15.328] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:27:17.534] INFO  [life] goal_changed=GET_FOOD from=GET_FOOD reason="previous goal abandoned: ran 300s without finishing (limit 300s)"
+[15:27:17.534] INFO  [life] needs considered: NeedFood(food 0.45) NeedGold(sell surplus 0.37) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedGold(gold 0.30) NeedPractice(Meditation 0.26) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[15:27:17.534] INFO  [life]   score=112.5
+[15:27:17.534] INFO  [life]   reason: NeedFood urgency 0.45 x 250 = 112.5
+[15:27:17.534] INFO  [life]   reason: food=2 hungry=1
+[15:27:17.534] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_scroll_poison needs 5 x i_scroll_blank -- and the purse is empty)
+[15:27:19.345] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:27:19.407] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:27:19.407] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:27:19.407] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:27:19.407] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:27:19.592] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:27:23.431] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:27:23.492] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:27:23.492] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:27:23.492] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:27:23.492] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:27:24.597] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:27:27.542] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:27:27.557] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:27:27.557] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:27:27.557] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:27:27.557] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:27:29.609] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:27:31.614] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:27:31.675] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:27:31.675] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:27:31.675] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:27:31.690] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:27:34.623] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:27:35.724] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:27:35.724] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:27:35.724] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:27:35.724] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:27:35.724] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:27:39.638] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:27:39.760] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:27:39.821] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:27:39.821] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:27:39.821] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:27:39.836] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:27:43.834] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:27:43.894] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:27:43.894] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:27:43.894] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:27:43.894] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:27:44.648] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:27:47.935] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:27:47.997] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:27:47.997] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:27:47.997] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:27:47.998] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:27:49.652] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:27:52.009] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:27:52.069] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:27:52.069] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:27:52.069] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:27:52.084] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:27:54.685] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:27:56.121] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:27:56.181] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:27:56.181] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:27:56.181] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:27:56.197] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:27:57.655] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[15:27:59.688] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:28:00.209] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:28:00.271] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:28:00.271] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:28:00.271] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:28:00.271] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:28:04.317] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:28:04.378] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:28:04.378] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:28:04.378] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:28:04.379] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:28:04.746] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:28:08.409] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:28:08.472] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:28:08.472] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:28:08.472] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:28:08.473] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:28:09.775] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:28:12.523] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:28:12.583] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:28:12.583] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:28:12.583] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:28:12.583] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:28:14.813] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:28:16.613] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:28:16.674] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:28:16.674] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:28:16.674] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:28:16.689] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:28:19.836] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:28:20.693] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:28:20.756] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:28:20.756] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:28:20.756] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:28:20.756] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:28:24.785] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:28:24.816] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:28:24.816] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:28:24.816] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:28:24.816] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:28:24.877] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:28:28.839] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:28:28.899] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:28:28.899] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:28:28.899] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:28:28.915] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:28:29.900] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:28:32.915] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:28:32.976] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:28:32.976] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:28:32.976] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:28:32.976] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:28:34.946] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:28:37.006] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:28:37.066] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:28:37.066] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:28:37.066] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:28:37.066] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:28:39.968] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:28:41.124] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:28:41.186] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:28:41.186] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:28:41.186] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:28:41.201] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:28:44.989] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:28:45.238] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:28:45.299] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:28:45.299] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:28:45.299] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:28:45.299] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:28:49.332] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:28:49.392] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:28:49.392] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:28:49.392] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:28:49.392] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:28:50.006] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:28:53.411] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:28:53.472] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:28:53.472] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:28:53.472] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:28:53.487] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:28:55.022] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:28:57.515] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:28:57.575] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:28:57.575] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:28:57.575] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:28:57.576] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:28:57.702] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[15:29:00.039] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:29:01.633] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:29:01.694] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:29:01.694] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:29:01.694] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:29:01.695] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:29:05.059] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:29:05.735] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:29:05.795] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:29:05.795] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:29:05.795] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:29:05.810] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:29:09.852] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:29:09.913] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:29:09.913] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:29:09.913] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:29:09.929] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:29:10.112] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:29:13.952] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:29:14.013] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:29:14.013] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:29:14.013] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:29:14.013] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:29:15.160] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:29:18.036] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:29:18.097] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:29:18.097] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:29:18.097] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:29:18.097] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:29:20.182] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:29:22.106] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:29:22.167] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:29:22.167] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:29:22.167] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:29:22.168] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:29:25.193] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:29:26.191] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:29:26.252] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:29:26.252] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:29:26.252] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:29:26.252] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:29:30.243] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:29:30.303] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:29:30.365] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:29:30.365] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:29:30.365] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:29:30.365] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:29:34.309] INFO  [f6_Ysolde] [chat ascii] System: World save in 10 seconds
+[15:29:34.370] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:29:34.385] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:29:34.385] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:29:34.385] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:29:34.385] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:29:35.305] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:29:38.443] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:29:38.505] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:29:38.505] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:29:38.505] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:29:38.505] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:29:40.323] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:29:42.564] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:29:42.625] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:29:42.625] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:29:42.625] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:29:42.640] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:29:44.334] INFO  [f6_Ysolde] [chat ascii] System: World save has been initiated.
+[15:29:45.368] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:29:46.662] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:29:46.724] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:29:46.724] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:29:46.724] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:29:46.724] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:29:50.378] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:29:50.747] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:29:50.808] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:29:50.808] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:29:50.808] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:29:50.824] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:29:54.820] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:29:54.879] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:29:54.879] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:29:54.879] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:29:54.880] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:29:55.432] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:29:57.752] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[15:29:58.936] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:29:58.997] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:29:58.997] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:29:58.997] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:29:59.012] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:30:00.460] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:30:03.049] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:30:03.109] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:30:03.109] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:30:03.109] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:30:03.125] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:30:05.508] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:30:07.113] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:30:07.173] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:30:07.173] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:30:07.173] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:30:07.174] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:30:08.115] INFO  [f6_Ysolde] [chat ascii] Taite: Aye?
+[15:30:10.533] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:30:11.210] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:30:11.272] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:30:11.272] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:30:11.272] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:30:11.303] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:30:15.308] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:30:15.327] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:30:15.327] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:30:15.327] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:30:15.327] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:30:15.570] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:30:19.344] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:30:19.406] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:30:19.406] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:30:19.406] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:30:19.406] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:30:20.629] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:30:23.356] INFO  [f6_Ysolde] [chat ascii] Jebidiah: Hmm?
+[15:30:23.418] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:30:23.479] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:30:23.479] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:30:23.479] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:30:23.479] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:30:25.672] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:30:27.521] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:30:27.582] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:30:27.582] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:30:27.582] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:30:27.597] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:30:30.695] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:30:31.632] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:30:31.693] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:30:31.693] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:30:31.693] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:30:31.693] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:30:35.704] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:30:35.704] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:30:35.765] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:30:35.765] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:30:35.765] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:30:35.765] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:30:39.806] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:30:39.869] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:30:39.869] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:30:39.869] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:30:39.885] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:30:40.744] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:30:43.904] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:30:43.965] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:30:43.965] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:30:43.965] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:30:43.965] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:30:45.784] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:30:47.980] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:30:48.041] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:30:48.041] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:30:48.041] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:30:48.041] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:30:50.816] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:30:52.073] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:30:52.134] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:30:52.134] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:30:52.134] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:30:52.134] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:30:55.837] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:30:56.141] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:30:56.201] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:30:56.201] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:30:56.201] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:30:56.217] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:30:57.784] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[15:31:00.203] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:31:00.265] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:31:00.265] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:31:00.266] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:31:00.281] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:31:00.556] INFO  [f6_Ysolde] [chat ascii] Jebidiah: Hmm?
+[15:31:00.847] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:31:04.279] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:31:04.340] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:31:04.340] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:31:04.340] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:31:04.355] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:31:05.855] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:31:08.351] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:31:08.411] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:31:08.411] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:31:08.411] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:31:08.412] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:31:10.899] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:31:11.343] INFO  [f6_Ysolde] [chat ascii] Taite: Aye?
+[15:31:12.451] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:31:12.512] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:31:12.512] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:31:12.512] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:31:12.512] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:31:15.900] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:31:16.515] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:31:16.575] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:31:16.576] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:31:16.576] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:31:16.590] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:31:20.627] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:31:20.689] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:31:20.689] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:31:20.689] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:31:20.689] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:31:20.904] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:31:24.696] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:31:24.758] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:31:24.758] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:31:24.758] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:31:24.773] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:31:25.949] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:31:28.797] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:31:28.858] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:31:28.858] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:31:28.858] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:31:28.874] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:31:30.984] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:31:32.906] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:31:32.967] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:31:32.967] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:31:32.967] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:31:32.967] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:31:35.985] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:31:36.981] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:31:37.042] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:31:37.042] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:31:37.042] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:31:37.043] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:31:40.997] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:31:41.057] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:31:41.057] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:31:41.057] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:31:41.057] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:31:41.058] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:31:45.103] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:31:45.164] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:31:45.164] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:31:45.164] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:31:45.179] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:31:46.026] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:31:49.178] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:31:49.240] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:31:49.240] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:31:49.240] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:31:49.240] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:31:51.038] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:31:53.273] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:31:53.335] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:31:53.335] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:31:53.335] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:31:53.336] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:31:56.100] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:31:57.353] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:31:57.414] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:31:57.414] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:31:57.414] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:31:57.430] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:31:57.803] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[15:32:01.106] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:32:01.475] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:32:01.537] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:32:01.537] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:32:01.537] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:32:01.537] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:32:05.552] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:32:05.613] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:32:05.613] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:32:05.613] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:32:05.613] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:32:06.165] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:32:09.660] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:32:09.721] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:32:09.721] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:32:09.721] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:32:09.721] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:32:11.224] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:32:13.754] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:32:13.815] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:32:13.815] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:32:13.815] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:32:13.831] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:32:16.267] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:32:17.535] INFO  [life] goal_changed=GET_FOOD from=GET_FOOD reason="previous goal abandoned: ran 300s without finishing (limit 300s)"
+[15:32:17.535] INFO  [life] needs considered: NeedFood(food 0.45) NeedGold(sell surplus 0.37) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedGold(gold 0.30) NeedPractice(Meditation 0.26) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[15:32:17.535] INFO  [life]   score=112.5
+[15:32:17.535] INFO  [life]   reason: NeedFood urgency 0.45 x 250 = 112.5
+[15:32:17.535] INFO  [life]   reason: food=2 hungry=1
+[15:32:17.535] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_scroll_poison needs 5 x i_scroll_blank -- and the purse is empty)
+[15:32:17.840] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:32:17.900] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:32:17.900] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:32:17.900] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:32:17.915] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:32:21.300] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:32:21.915] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:32:21.976] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:32:21.976] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:32:21.976] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:32:21.992] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:32:25.989] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:32:26.035] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:32:26.035] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:32:26.035] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:32:26.036] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:32:26.342] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:32:30.047] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:32:30.106] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:32:30.106] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:32:30.106] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:32:30.122] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:32:31.382] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:32:34.140] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:32:34.201] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:32:34.201] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:32:34.201] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:32:34.201] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:32:36.419] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:32:38.245] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:32:38.307] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:32:38.307] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:32:38.307] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:32:38.323] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:32:41.427] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:32:42.348] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:32:42.409] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:32:42.409] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:32:42.409] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:32:42.409] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:32:46.466] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:32:46.467] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:32:46.529] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:32:46.529] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:32:46.529] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:32:46.529] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:32:50.554] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:32:50.616] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:32:50.616] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:32:50.616] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:32:50.616] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:32:51.474] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:32:54.635] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:32:54.698] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:32:54.698] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:32:54.698] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:32:54.698] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:32:56.536] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:32:57.812] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[15:32:58.729] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:32:58.791] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:32:58.791] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:32:58.791] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:32:58.791] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:33:01.581] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:33:02.813] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:33:02.874] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:33:02.874] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:33:02.874] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:33:02.874] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:33:06.614] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:33:06.875] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:33:06.935] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:33:06.935] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:33:06.935] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:33:06.935] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:33:10.975] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:33:11.036] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:33:11.036] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:33:11.036] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:33:11.036] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:33:11.647] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:33:15.079] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:33:15.141] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:33:15.141] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:33:15.141] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:33:15.141] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:33:16.673] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:33:19.186] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:33:19.246] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:33:19.246] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:33:19.246] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:33:19.247] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:33:21.685] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:33:23.305] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:33:23.365] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:33:23.365] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:33:23.365] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:33:23.380] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:33:26.722] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:33:27.400] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:33:27.463] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:33:27.463] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:33:27.463] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:33:27.479] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:33:31.463] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:33:31.523] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:33:31.523] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:33:31.523] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:33:31.538] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:33:31.723] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:33:35.550] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:33:35.611] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:33:35.611] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:33:35.611] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:33:35.611] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:33:36.778] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:33:39.648] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:33:39.709] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:33:39.709] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:33:39.709] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:33:39.709] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:33:41.791] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:33:43.730] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:33:43.792] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:33:43.792] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:33:43.792] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:33:43.792] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:33:46.805] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:33:47.827] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:33:47.888] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:33:47.888] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:33:47.888] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:33:47.888] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:33:51.862] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:33:51.922] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:33:51.984] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:33:51.984] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:33:51.984] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:33:51.984] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:33:55.997] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:33:56.058] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:33:56.058] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:33:56.058] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:33:56.073] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:33:56.901] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:33:57.825] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[15:34:00.060] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:34:00.123] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:34:00.123] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:34:00.123] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:34:00.123] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:34:01.925] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:34:04.146] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:34:04.208] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:34:04.208] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:34:04.208] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:34:04.208] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:34:06.941] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:34:08.256] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:34:08.316] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:34:08.316] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:34:08.316] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:34:08.317] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:34:11.999] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:34:12.321] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:34:12.382] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:34:12.382] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:34:12.382] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:34:12.382] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:34:16.397] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:34:16.459] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:34:16.459] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:34:16.459] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:34:16.459] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:34:17.012] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:34:20.501] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:34:20.563] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:34:20.563] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:34:20.563] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:34:20.563] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:34:22.030] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:34:24.578] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:34:24.638] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:34:24.638] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:34:24.638] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:34:24.654] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:34:27.073] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:34:28.667] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:34:28.728] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:34:28.728] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:34:28.728] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:34:28.744] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:34:32.098] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:34:32.786] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:34:32.848] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:34:32.848] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:34:32.848] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:34:32.848] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:34:34.747] INFO  [f6_Ysolde] [chat ascii] System: World save in 10 seconds
+[15:34:36.887] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:34:36.947] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:34:36.947] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:34:36.947] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:34:36.963] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:34:37.148] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:34:40.950] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:34:41.011] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:34:41.011] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:34:41.011] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:34:41.027] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:34:42.160] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:34:44.737] INFO  [f6_Ysolde] [chat ascii] System: World save has been initiated.
+[15:34:45.044] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:34:45.105] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:34:45.105] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:34:45.105] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:34:45.105] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:34:47.191] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:34:49.122] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:34:49.185] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:34:49.185] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:34:49.185] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:34:49.185] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:34:52.228] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:34:53.216] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:34:53.277] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:34:53.277] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:34:53.277] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:34:53.277] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:34:57.270] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:34:57.332] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:34:57.393] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:34:57.393] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:34:57.393] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:34:57.393] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:34:57.827] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[15:35:01.431] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:35:01.492] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:35:01.492] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:35:01.492] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:35:01.492] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:35:02.271] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:35:05.541] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:35:05.541] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:35:05.541] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:35:05.541] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:35:05.541] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:35:07.322] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:35:09.576] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:35:09.636] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:35:09.636] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:35:09.636] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:35:09.636] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:35:12.373] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:35:13.646] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:35:13.707] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:35:13.707] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:35:13.707] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:35:13.707] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:35:17.402] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:35:17.769] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:35:17.784] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:35:17.784] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:35:17.784] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:35:17.784] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:35:21.817] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:35:21.878] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:35:21.878] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:35:21.878] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:35:21.878] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:35:22.429] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:35:25.909] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:35:25.970] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:35:25.970] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:35:25.970] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:35:25.986] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:35:27.452] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:35:29.996] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:35:30.057] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:35:30.058] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:35:30.058] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:35:30.058] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:35:32.486] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:35:34.082] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:35:34.143] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:35:34.143] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:35:34.143] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:35:34.143] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:35:37.524] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:35:38.061] INFO  [f6_Ysolde] [chat ascii] Jebidiah: Hmm?
+[15:35:38.182] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:35:38.182] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:35:38.182] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:35:38.182] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:35:38.183] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:35:42.222] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:35:42.282] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:35:42.282] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:35:42.282] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:35:42.282] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:35:42.527] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:35:46.301] INFO  [f6_Ysolde] [chat ascii] Taite: I'm listenin'.
+[15:35:46.301] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:35:46.362] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:35:46.362] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:35:46.362] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:35:46.362] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:35:47.553] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:35:50.414] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:35:50.429] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:35:50.429] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:35:50.429] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:35:50.429] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:35:52.588] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:35:54.442] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:35:54.504] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:35:54.504] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:35:54.504] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:35:54.504] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:35:57.647] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:35:57.834] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[15:35:58.562] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:35:58.562] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:35:58.562] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:35:58.562] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:35:58.563] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:36:02.623] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:36:02.685] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:36:02.685] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:36:02.685] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:36:02.685] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:36:02.685] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:36:06.743] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:36:06.805] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:36:06.805] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:36:06.805] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:36:06.821] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:36:07.742] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:36:10.837] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:36:10.898] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:36:10.898] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:36:10.898] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:36:10.913] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:36:12.773] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:36:14.917] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:36:14.977] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:36:14.977] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:36:14.977] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:36:14.992] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:36:17.824] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:36:19.020] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:36:19.080] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:36:19.080] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:36:19.080] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:36:19.081] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:36:22.881] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:36:23.126] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:36:23.186] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:36:23.186] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:36:23.186] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:36:23.186] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:36:27.197] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:36:27.259] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:36:27.259] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:36:27.259] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:36:27.259] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:36:27.929] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:36:31.294] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:36:31.356] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:36:31.356] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:36:31.356] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:36:31.356] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:36:32.986] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:36:35.391] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:36:35.453] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:36:35.453] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:36:35.453] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:36:35.453] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:36:38.005] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:36:39.474] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:36:39.536] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:36:39.536] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:36:39.536] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:36:39.551] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:36:43.052] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:36:43.557] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:36:43.618] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:36:43.618] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:36:43.618] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:36:43.633] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:36:47.663] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:36:47.724] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:36:47.724] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:36:47.724] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:36:47.725] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:36:48.093] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:36:51.735] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:36:51.797] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:36:51.798] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:36:51.798] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:36:51.813] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:36:53.142] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:36:55.830] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:36:55.891] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:36:55.891] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:36:55.891] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:36:55.907] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:36:57.851] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[15:36:58.151] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:36:58.182] INFO  [f6_Ysolde] [chat ascii] Jebidiah: Hmm?
+[15:36:59.914] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:36:59.975] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:36:59.975] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:36:59.975] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:36:59.976] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:37:03.212] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:37:03.976] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:37:04.037] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:37:04.037] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:37:04.037] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:37:04.054] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:37:08.051] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:37:08.114] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:37:08.114] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:37:08.114] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:37:08.114] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:37:08.236] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:37:12.121] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:37:12.184] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:37:12.185] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:37:12.185] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:37:12.185] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:37:13.273] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:37:16.209] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:37:16.209] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:37:16.209] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:37:16.209] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:37:16.224] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:37:17.577] INFO  [life] goal_changed=GET_FOOD from=GET_FOOD reason="previous goal abandoned: ran 300s without finishing (limit 300s)"
+[15:37:17.577] INFO  [life] needs considered: NeedFood(food 0.45) NeedGold(sell surplus 0.37) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedGold(gold 0.30) NeedPractice(Meditation 0.26) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[15:37:17.577] INFO  [life]   score=112.5
+[15:37:17.577] INFO  [life]   reason: NeedFood urgency 0.45 x 250 = 112.5
+[15:37:17.577] INFO  [life]   reason: food=2 hungry=1
+[15:37:17.577] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_scroll_poison needs 5 x i_scroll_blank -- and the purse is empty)
+[15:37:18.312] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:37:20.219] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:37:20.281] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:37:20.281] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:37:20.281] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:37:20.281] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:37:23.354] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:37:24.342] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:37:24.403] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:37:24.403] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:37:24.403] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:37:24.403] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:37:28.367] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:37:28.444] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:37:28.506] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:37:28.506] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:37:28.506] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:37:28.506] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:37:32.556] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:37:32.617] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:37:32.617] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:37:32.617] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:37:32.632] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:37:33.369] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:37:36.629] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:37:36.690] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:37:36.690] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:37:36.690] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:37:36.705] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:37:38.423] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:37:40.708] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:37:40.770] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:37:40.770] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:37:40.770] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:37:40.786] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:37:43.424] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:37:44.781] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:37:44.842] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:37:44.842] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:37:44.842] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:37:44.843] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:37:48.439] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:37:48.855] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:37:48.915] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:37:48.915] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:37:48.915] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:37:48.931] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:37:52.953] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:37:53.013] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:37:53.013] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:37:53.013] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:37:53.014] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:37:53.441] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:37:54.175] INFO  [f6_Ysolde] [chat ascii] Taite: Hmm?
+[15:37:57.039] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:37:57.101] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:37:57.101] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:37:57.101] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:37:57.101] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:37:57.904] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[15:37:58.497] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:38:01.120] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:38:01.180] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:38:01.180] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:38:01.180] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:38:01.195] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:38:03.536] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:38:05.194] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:38:05.240] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:38:05.240] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:38:05.240] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:38:05.240] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:38:08.574] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:38:09.252] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:38:09.314] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:38:09.314] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:38:09.314] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:38:09.329] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:38:13.352] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:38:13.414] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:38:13.414] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:38:13.414] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:38:13.415] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:38:13.597] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:38:17.453] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:38:17.515] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:38:17.515] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:38:17.515] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:38:17.515] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:38:18.604] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:38:21.556] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:38:21.618] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:38:21.618] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:38:21.618] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:38:21.619] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:38:23.633] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:38:25.658] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:38:25.719] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:38:25.719] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:38:25.719] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:38:25.719] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:38:28.638] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:38:29.746] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:38:29.807] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:38:29.807] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:38:29.807] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:38:29.822] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:38:33.684] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:38:33.821] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:38:33.884] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:38:33.884] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:38:33.884] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:38:33.899] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:38:37.918] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:38:37.979] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:38:37.979] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:38:37.979] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:38:37.995] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:38:38.729] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:38:41.992] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:38:42.053] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:38:42.053] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:38:42.053] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:38:42.054] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:38:43.765] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:38:46.079] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:38:46.139] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:38:46.139] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:38:46.139] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:38:46.139] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:38:48.786] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:38:50.181] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:38:50.242] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:38:50.242] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:38:50.242] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:38:50.242] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:38:53.800] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:38:54.242] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:38:54.303] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:38:54.303] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:38:54.303] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:38:54.303] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:38:57.934] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[15:38:58.363] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:38:58.425] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:38:58.425] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:38:58.425] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:38:58.425] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:38:58.854] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:39:02.482] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:39:02.543] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:39:02.543] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:39:02.543] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:39:02.558] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:39:03.905] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:39:06.600] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:39:06.660] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:39:06.660] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:39:06.660] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:39:06.675] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:39:08.929] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:39:10.720] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:39:10.735] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:39:10.735] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:39:10.735] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:39:10.736] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:39:13.949] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:39:14.778] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:39:14.838] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:39:14.838] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:39:14.838] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:39:14.854] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:39:18.855] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:39:18.916] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:39:18.916] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:39:18.916] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:39:18.916] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:39:18.978] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:39:22.927] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:39:22.989] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:39:22.989] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:39:22.990] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:39:23.004] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:39:23.985] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:39:27.005] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:39:27.066] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:39:27.066] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:39:27.066] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:39:27.081] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:39:29.038] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:39:31.072] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:39:31.122] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:39:31.122] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:39:31.122] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:39:31.125] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:39:34.100] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:39:35.041] INFO  [f6_Ysolde] [chat ascii] System: World save in 10 seconds
+[15:39:35.164] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:39:35.226] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:39:35.226] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:39:35.226] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:39:35.226] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:39:39.135] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:39:39.261] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:39:39.322] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:39:39.322] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:39:39.322] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:39:39.322] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:39:43.361] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:39:43.376] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:39:43.376] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:39:43.376] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:39:43.377] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:39:44.176] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:39:45.291] INFO  [f6_Ysolde] [chat ascii] System: World save has been initiated.
+[15:39:47.414] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:39:47.476] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:39:47.476] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:39:47.476] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:39:47.508] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:39:49.178] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:39:51.526] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:39:51.588] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:39:51.588] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:39:51.588] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:39:51.604] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:39:54.184] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:39:55.595] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:39:55.657] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:39:55.657] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:39:55.657] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:39:55.658] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:39:57.963] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[15:39:59.217] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:39:59.707] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:39:59.768] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:39:59.768] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:39:59.768] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:39:59.769] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:40:03.777] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:40:03.839] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:40:03.839] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:40:03.839] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:40:03.839] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:40:04.241] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:40:07.883] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:40:07.944] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:40:07.944] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:40:07.944] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:40:07.944] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:40:09.294] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:40:11.969] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:40:12.032] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:40:12.032] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:40:12.032] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:40:12.047] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:40:14.321] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:40:16.076] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:40:16.137] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:40:16.137] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:40:16.137] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:40:16.137] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:40:19.371] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:40:20.170] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:40:20.230] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:40:20.230] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:40:20.230] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:40:20.231] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:40:24.242] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:40:24.305] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:40:24.305] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:40:24.305] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:40:24.305] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:40:24.427] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:40:28.341] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:40:28.403] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:40:28.403] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:40:28.403] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:40:28.403] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:40:29.442] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:40:32.462] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:40:32.523] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:40:32.524] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:40:32.524] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:40:32.539] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:40:34.460] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:40:36.579] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:40:36.641] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:40:36.641] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:40:36.641] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:40:36.656] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:40:39.514] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:40:40.666] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:40:40.726] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:40:40.726] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:40:40.726] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:40:40.742] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:40:44.522] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:40:44.767] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:40:44.828] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:40:44.828] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:40:44.828] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:40:44.829] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:40:48.829] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:40:48.890] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:40:48.890] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:40:48.890] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:40:48.890] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:40:49.564] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:40:52.902] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:40:52.963] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:40:52.963] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:40:52.963] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:40:52.978] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:40:54.623] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:40:57.015] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:40:57.076] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:40:57.076] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:40:57.076] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:40:57.091] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:40:58.014] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[15:40:59.680] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:41:01.125] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:41:01.155] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:41:01.155] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:41:01.155] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:41:01.155] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:41:04.730] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:41:05.189] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:41:05.250] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:41:05.250] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:41:05.250] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:41:05.251] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:41:09.282] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:41:09.344] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:41:09.345] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:41:09.345] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:41:09.345] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:41:09.789] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:41:13.347] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:41:13.407] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:41:13.407] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:41:13.407] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:41:13.408] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:41:14.007] INFO  [f6_Ysolde] [chat ascii] Jebidiah: Hmm?
+[15:41:14.798] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:41:17.427] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:41:17.489] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:41:17.489] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:41:17.489] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:41:17.504] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:41:19.856] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:41:21.525] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:41:21.587] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:41:21.587] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:41:21.587] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:41:21.588] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:41:24.865] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:41:25.601] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:41:25.662] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:41:25.662] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:41:25.662] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:41:25.677] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:41:29.677] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:41:29.737] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:41:29.737] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:41:29.737] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:41:29.738] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:41:29.921] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:41:33.794] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:41:33.856] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:41:33.856] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:41:33.856] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:41:33.871] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:41:34.979] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:41:37.901] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:41:37.961] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:41:37.961] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:41:37.961] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:41:37.977] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:41:39.993] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:41:41.993] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:41:42.054] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:41:42.054] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:41:42.054] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:41:42.054] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:41:45.046] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:41:46.084] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:41:46.144] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:41:46.144] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:41:46.144] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:41:46.144] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:41:50.049] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:41:50.171] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:41:50.230] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:41:50.230] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:41:50.230] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:41:50.230] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:41:54.254] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:41:54.316] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:41:54.316] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:41:54.316] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:41:54.316] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:41:55.099] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:41:58.034] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[15:41:58.342] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:41:58.403] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:41:58.403] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:41:58.403] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:41:58.403] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:42:00.109] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:42:02.418] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:42:02.434] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:42:02.434] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:42:02.434] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:42:02.434] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:42:04.994] INFO  [f6_Ysolde] [chat ascii] Jebidiah: Aye?
+[15:42:05.118] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:42:06.478] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:42:06.540] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:42:06.540] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:42:06.540] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:42:06.540] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:42:10.156] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:42:10.584] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:42:10.645] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:42:10.645] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:42:10.645] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:42:10.646] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:42:14.667] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:42:14.729] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:42:14.729] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:42:14.729] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:42:14.730] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:42:15.160] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:42:17.619] INFO  [life] goal_changed=GET_FOOD from=GET_FOOD reason="previous goal abandoned: ran 300s without finishing (limit 300s)"
+[15:42:17.619] INFO  [life] needs considered: NeedFood(food 0.45) NeedGold(sell surplus 0.37) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedGold(gold 0.30) NeedPractice(Meditation 0.26) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[15:42:17.619] INFO  [life]   score=112.5
+[15:42:17.619] INFO  [life]   reason: NeedFood urgency 0.45 x 250 = 112.5
+[15:42:17.619] INFO  [life]   reason: food=2 hungry=1
+[15:42:17.619] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_scroll_poison needs 5 x i_scroll_blank -- and the purse is empty)
+[15:42:18.787] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:42:18.849] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:42:18.849] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:42:18.849] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:42:18.849] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:42:20.213] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:42:22.851] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:42:22.912] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:42:22.912] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:42:22.912] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:42:22.912] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:42:25.250] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:42:26.914] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:42:26.975] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:42:26.975] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:42:26.975] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:42:26.991] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:42:30.267] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:42:31.018] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:42:31.081] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:42:31.081] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:42:31.081] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:42:31.926] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:42:35.105] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:42:35.167] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:42:35.167] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:42:35.167] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:42:35.182] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:42:35.305] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:42:39.188] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:42:39.250] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:42:39.250] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:42:39.250] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:42:39.250] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:42:40.347] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:42:43.280] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:42:43.341] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:42:43.341] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:42:43.341] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:42:43.356] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:42:45.407] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:42:47.355] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:42:47.417] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:42:47.417] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:42:47.417] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:42:47.433] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:42:50.432] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:42:51.441] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:42:51.501] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:42:51.501] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:42:51.501] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:42:51.502] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:42:55.477] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:42:55.538] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:42:55.599] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:42:55.599] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:42:55.599] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:42:55.599] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:42:58.057] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[15:42:59.642] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:42:59.702] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:42:59.703] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:42:59.703] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:42:59.703] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:43:00.496] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:43:03.763] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:43:03.825] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:43:03.825] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:43:03.825] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:43:04.630] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:43:05.555] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:43:07.866] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:43:07.925] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:43:07.925] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:43:07.925] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:43:07.925] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:43:10.557] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:43:11.969] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:43:12.032] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:43:12.032] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:43:12.032] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:43:12.032] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:43:15.613] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:43:16.041] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:43:16.103] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:43:16.103] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:43:16.103] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:43:16.119] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:43:20.124] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:43:20.185] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:43:20.185] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:43:20.185] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:43:20.201] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:43:20.628] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:43:24.200] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:43:24.261] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:43:24.261] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:43:24.261] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:43:24.276] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:43:25.671] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:43:28.269] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:43:28.335] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:43:28.335] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:43:28.335] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:43:28.346] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:43:30.706] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:43:32.370] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:43:32.431] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:43:32.431] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:43:32.431] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:43:32.446] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:43:35.761] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:43:36.451] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:43:36.513] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:43:36.513] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:43:36.513] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:43:36.513] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:43:40.564] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:43:40.625] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:43:40.625] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:43:40.625] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:43:40.625] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:43:40.809] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:43:44.632] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:43:44.695] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:43:44.695] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:43:44.695] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:43:44.726] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:43:45.831] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:43:48.749] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:43:48.809] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:43:48.809] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:43:48.809] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:43:48.825] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:43:50.871] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:43:52.827] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:43:52.889] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:43:52.889] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:43:52.889] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:43:52.889] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:43:55.899] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:43:56.943] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:43:56.943] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:43:56.943] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:43:56.943] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:43:56.959] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:43:58.085] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[15:44:00.926] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:44:00.988] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:44:01.049] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:44:01.049] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:44:01.049] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:44:01.064] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:44:05.099] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:44:05.161] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:44:05.161] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:44:05.161] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:44:05.161] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:44:05.954] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:44:09.201] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:44:09.261] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:44:09.261] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:44:09.261] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:44:09.276] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:44:11.015] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:44:13.264] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:44:13.324] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:44:13.324] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:44:13.324] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:44:13.339] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:44:16.034] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:44:17.326] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:44:17.386] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:44:17.386] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:44:17.386] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:44:17.401] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:44:21.045] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:44:21.413] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:44:21.474] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:44:21.474] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:44:21.474] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:44:21.474] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:44:25.476] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:44:25.536] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:44:25.536] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:44:25.536] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:44:25.536] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:44:26.074] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:44:29.584] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:44:29.644] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:44:29.644] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:44:29.644] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:44:29.644] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:44:31.113] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:44:33.688] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:44:33.748] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:44:33.748] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:44:33.748] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:44:33.764] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:44:36.142] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:44:36.902] INFO  [f6_Ysolde] [chat ascii] System: World save in 10 seconds
+[15:44:37.770] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:44:37.832] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:44:37.832] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:44:37.832] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:44:37.847] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:44:41.179] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:44:41.852] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:44:41.912] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:44:41.912] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:44:41.912] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:44:41.912] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:44:45.947] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:44:46.007] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:44:46.007] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:44:46.007] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:44:46.007] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:44:46.191] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:44:46.925] INFO  [f6_Ysolde] [chat ascii] System: World save has been initiated.
+[15:44:50.064] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:44:50.127] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:44:50.127] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:44:50.127] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:44:50.128] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:44:51.212] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:44:54.187] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:44:54.249] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:44:54.249] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:44:54.249] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:44:54.249] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:44:56.268] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:44:58.106] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[15:44:58.285] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:44:58.345] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:44:58.345] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:44:58.345] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:44:58.345] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:45:01.292] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:45:02.394] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:45:02.454] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:45:02.454] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:45:02.454] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:45:02.469] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:45:06.301] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:45:06.485] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:45:06.544] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:45:06.544] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:45:06.544] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:45:06.544] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:45:10.599] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:45:10.660] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:45:10.660] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:45:10.660] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:45:10.660] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:45:11.332] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:45:14.663] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:45:14.725] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:45:14.725] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:45:14.725] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:45:14.725] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:45:16.385] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:45:18.725] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:45:18.786] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:45:18.786] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:45:18.787] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:45:18.787] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:45:21.436] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:45:22.840] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:45:22.902] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:45:22.902] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:45:22.902] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:45:22.917] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:45:26.496] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:45:26.911] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:45:26.972] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:45:26.972] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:45:26.972] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:45:26.987] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:45:30.986] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:45:31.046] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:45:31.046] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:45:31.046] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:45:31.047] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:45:31.533] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:45:35.052] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:45:35.052] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:45:35.052] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:45:35.052] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:45:35.053] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:45:36.595] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:45:39.104] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:45:39.167] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:45:39.167] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:45:39.167] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:45:39.167] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:45:41.611] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:45:43.182] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:45:43.242] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:45:43.242] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:45:43.242] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:45:43.242] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:45:46.641] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:45:47.254] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:45:47.316] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:45:47.316] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:45:47.316] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:45:47.317] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:45:51.359] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:45:51.360] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:45:51.360] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:45:51.360] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:45:51.360] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:45:51.666] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:45:55.378] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:45:55.438] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:45:55.438] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:45:55.438] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:45:55.453] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:45:56.725] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:45:58.165] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[15:45:59.450] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:45:59.451] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:45:59.451] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:45:59.451] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:45:59.451] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:46:01.743] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:46:03.468] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:46:03.514] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:46:03.514] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:46:03.514] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:46:03.514] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:46:06.781] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:46:07.517] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:46:07.579] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:46:07.579] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:46:07.579] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:46:07.579] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:46:11.623] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:46:11.684] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:46:11.684] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:46:11.684] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:46:11.684] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:46:11.808] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:46:15.694] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:46:15.756] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:46:15.756] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:46:15.756] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:46:15.756] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:46:16.812] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:46:19.774] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:46:19.835] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:46:19.835] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:46:19.835] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:46:19.835] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:46:21.859] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:46:23.858] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:46:23.917] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:46:23.917] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:46:23.917] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:46:23.918] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:46:26.892] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:46:27.941] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:46:28.002] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:46:28.002] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:46:28.002] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:46:28.002] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:46:31.922] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:46:32.046] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:46:32.107] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:46:32.107] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:46:32.107] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:46:32.107] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:46:36.166] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:46:36.227] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:46:36.227] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:46:36.227] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:46:36.227] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:46:36.961] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:46:40.271] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:46:40.333] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:46:40.333] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:46:40.333] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:46:40.333] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:46:41.970] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:46:44.364] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:46:44.425] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:46:44.425] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:46:44.425] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:46:44.441] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:46:47.021] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:46:48.437] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:46:48.499] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:46:48.499] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:46:48.499] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:46:48.499] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:46:49.870] INFO  [f6_Ysolde] [chat ascii] Jebidiah: Aye?
+[15:46:52.065] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:46:52.554] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:46:52.617] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:46:52.617] INFO  [f6_Ysolde] [ACTION] use_object start
+[15:46:52.617] INFO  [f6_Ysolde] [ACTION] use_object serial=0x40019050
+[15:46:52.632] INFO  [f6_Ysolde] [chat ascii] System: You are simply too full to eat any more!
+[15:46:54.932] INFO  [life] session_end_requested reason="session time limit reached"
+[15:46:54.992] INFO  [life] wind-down: no bank learned yet; asking the world for one (attempt 1)
+[15:46:54.992] INFO  [f6_Ysolde] [travel] Britain banker -> (1425,1690) r=5 from (1472,1666)
+[15:46:54.992] LOG   [f6_Ysolde] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1472,1666)
+[15:46:54.992] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[15:46:54.992] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[15:46:54.992] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:46:54.992] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:46:54.992] LOG   [f6_Ysolde] event travel_mode: walk
+[15:46:54.992] INFO  [f6_Ysolde] [travel] plan Britain banker: ok legs=2 ~56 tiles transit=0 nodes=7
+[15:46:55.008] INFO  [f6_Ysolde] [action] goto finished at (1472,1666,0); target (1472,1666); ARRIVED (off by 0 tile(s))
+[15:46:55.008] LOG   [f6_Ysolde] event goto_done: at=(1472,1666) target=(1472,1666) arrived=1 off=0
+[15:46:55.008] INFO  [f6_Ysolde] [travel] avoiding 2 teleporter pad(s) on this leg
+[15:46:55.008] INFO  [f6_Ysolde] [action] goto (1432,1688) from (1472,1666,0)
+[15:46:55.008] LOG   [f6_Ysolde] event goto_start: target=(1432,1688) from=(1472,1666)
+[15:46:55.008] INFO  [f6_Ysolde] [bot] running from (1472,1666,0) to (1432,1688)
+[15:46:55.008] INFO  [f6_Ysolde] [bot] planning path to (1432,1688) in background
+[15:46:55.069] INFO  [f6_Ysolde] [bot] replan to (1432,1688): 62 steps in 18783.6us
+[15:46:55.208] INFO  [f6_Ysolde] [bot] lookahead patched around block at step 4: anchor=5 new segment=7 path=64 in 443.3us
+[15:46:55.285] INFO  [f6_Ysolde] [chat ascii] System: Bruin has departed from Yew.
+[15:46:56.173] INFO  [f6_Ysolde] [bot] lookahead patched around block at step 4: anchor=5 new segment=4 path=60 in 163.5us
+[15:46:56.434] INFO  [f6_Ysolde] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=61 in 248.8us
+[15:46:56.678] LOG   [f6_Ysolde] event action_result: use_object timeout
+[15:46:57.106] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:46:57.426] INFO  [f6_Ysolde] [bot] step (1475,1668,0)->(1476,1669,0) rejected; OpenDoor + retry
+[15:46:57.426] INFO  [f6_Ysolde] [chat ascii] System: Opening door...
+[15:46:57.426] INFO  [f6_Ysolde] [0x20] player @(1475,1668,0) facing=4
+[15:46:57.426] INFO  [f6_Ysolde] [action] goto finished at (1475,1668,0); target (1432,1688); stopped short (off by 63 tile(s))
+[15:46:57.426] LOG   [f6_Ysolde] event goto_done: at=(1475,1668) target=(1432,1688) arrived=0 off=63
+[15:46:58.662] INFO  [f6_Ysolde] [travel] avoiding 2 teleporter pad(s) on this leg
+[15:46:58.662] INFO  [f6_Ysolde] [action] goto (1432,1688) from (1475,1668,0)
+[15:46:58.662] LOG   [f6_Ysolde] event goto_start: target=(1432,1688) from=(1475,1668)
+[15:46:58.662] INFO  [f6_Ysolde] [bot] running from (1475,1668,0) to (1432,1688)
+[15:46:58.662] INFO  [f6_Ysolde] [bot] planning path to (1432,1688) in background
+[15:46:58.723] INFO  [f6_Ysolde] [bot] replan to (1432,1688): 58 steps in 12427.5us
+[15:46:58.969] INFO  [f6_Ysolde] [bot] step (1475,1668,0)->(1476,1669,0) rejected; OpenDoor + retry
+[15:46:58.984] INFO  [f6_Ysolde] [chat ascii] System: Opening door...
+[15:46:58.984] INFO  [f6_Ysolde] [0x20] player @(1475,1668,0) facing=4
+[15:46:58.984] INFO  [f6_Ysolde] [action] goto finished at (1475,1668,0); target (1432,1688); stopped short (off by 63 tile(s))
+[15:46:58.984] LOG   [f6_Ysolde] event goto_done: at=(1475,1668) target=(1432,1688) arrived=0 off=63
+[15:47:00.199] INFO  [f6_Ysolde] [travel] avoiding 2 teleporter pad(s) on this leg
+[15:47:00.199] INFO  [f6_Ysolde] [action] goto (1432,1688) from (1475,1668,0)
+[15:47:00.199] LOG   [f6_Ysolde] event goto_start: target=(1432,1688) from=(1475,1668)
+[15:47:00.199] INFO  [f6_Ysolde] [bot] running from (1475,1668,0) to (1432,1688)
+[15:47:00.199] INFO  [f6_Ysolde] [bot] planning path to (1432,1688) in background
+[15:47:00.260] INFO  [f6_Ysolde] [bot] replan to (1432,1688): 58 steps in 12229.8us
+[15:47:00.518] INFO  [f6_Ysolde] [bot] step (1475,1668,0)->(1476,1669,0) rejected; OpenDoor + retry
+[15:47:00.533] INFO  [f6_Ysolde] [chat ascii] System: Opening door...
+[15:47:00.533] INFO  [f6_Ysolde] [0x20] player @(1475,1668,0) facing=4
+[15:47:00.533] INFO  [f6_Ysolde] [action] goto finished at (1475,1668,0); target (1432,1688); stopped short (off by 63 tile(s))
+[15:47:00.533] LOG   [f6_Ysolde] event goto_done: at=(1475,1668) target=(1432,1688) arrived=0 off=63
+[15:47:01.747] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[15:47:01.747] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[15:47:01.747] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:47:01.747] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:47:01.747] LOG   [f6_Ysolde] event travel_mode: walk
+[15:47:01.755] INFO  [f6_Ysolde] [travel] plan Britain banker: no world route to the destination legs=0 ~0 tiles transit=0 nodes=23707
+[15:47:01.756] LOG   [f6_Ysolde] event travel_escape: from=(1475,1668,0) to=(1464,1672) attempt=1
+[15:47:01.756] INFO  [f6_Ysolde] [action] goto (1464,1672) from (1475,1668,0)
+[15:47:01.756] LOG   [f6_Ysolde] event goto_start: target=(1464,1672) from=(1475,1668)
+[15:47:01.756] INFO  [f6_Ysolde] [bot] running from (1475,1668,0) to (1464,1672,z0)
+[15:47:01.756] INFO  [f6_Ysolde] [bot] planning path to (1464,1672) in background
+[15:47:01.807] INFO  [f6_Ysolde] [bot] replan to (1464,1672): 14 steps in 413.8us
+[15:47:02.132] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:47:05.749] INFO  [f6_Ysolde] [bot] arrived at (1464,1672,0)
+[15:47:05.749] INFO  [f6_Ysolde] [action] goto finished at (1464,1672,0); target (1464,1672); ARRIVED (off by 0 tile(s))
+[15:47:05.749] LOG   [f6_Ysolde] event goto_done: at=(1464,1672) target=(1464,1672) arrived=1 off=0
+[15:47:05.749] INFO  [f6_Ysolde] [travel] recovery walk reached its anchor at (1464,1672,0) (off 0); attempt 1/3
+[15:47:05.749] LOG   [f6_Ysolde] event travel_recovery_done: reached=1 at=(1464,1672,0) off=0 attempt=1
+[15:47:05.812] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[15:47:05.812] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[15:47:05.812] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:47:05.812] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:47:05.812] LOG   [f6_Ysolde] event travel_mode: walk
+[15:47:05.812] INFO  [f6_Ysolde] [travel] plan Britain banker: ok legs=1 ~39 tiles transit=0 nodes=0
+[15:47:05.812] INFO  [f6_Ysolde] [travel] avoiding 2 teleporter pad(s) on this leg
+[15:47:05.812] INFO  [f6_Ysolde] [action] goto (1425,1690) from (1464,1672,0)
+[15:47:05.812] LOG   [f6_Ysolde] event goto_start: target=(1425,1690) from=(1464,1672)
+[15:47:05.812] INFO  [f6_Ysolde] [bot] running from (1464,1672,0) to (1425,1690,z0)
+[15:47:05.812] INFO  [f6_Ysolde] [bot] planning path to (1425,1690) in background
+[15:47:05.872] INFO  [f6_Ysolde] [bot] replan to (1425,1690): 79 steps in 11688.6us
+[15:47:07.177] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:47:11.288] INFO  [f6_Ysolde] [bot] step (1475,1670,0)->(1474,1671,0) rejected; OpenDoor + retry
+[15:47:11.304] INFO  [f6_Ysolde] [chat ascii] System: Opening door...
+[15:47:11.304] INFO  [f6_Ysolde] [0x20] player @(1475,1670,0) facing=6
+[15:47:11.304] INFO  [f6_Ysolde] [action] goto finished at (1475,1670,0); target (1425,1690); stopped short (off by 70 tile(s))
+[15:47:11.304] LOG   [f6_Ysolde] event goto_done: at=(1475,1670) target=(1425,1690) arrived=0 off=70
+[15:47:12.206] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:47:12.513] INFO  [f6_Ysolde] [travel] avoiding 2 teleporter pad(s) on this leg
+[15:47:12.513] INFO  [f6_Ysolde] [action] goto (1425,1690) from (1475,1670,0)
+[15:47:12.513] LOG   [f6_Ysolde] event goto_start: target=(1425,1690) from=(1475,1670)
+[15:47:12.513] INFO  [f6_Ysolde] [bot] running from (1475,1670,0) to (1425,1690,z0)
+[15:47:12.513] INFO  [f6_Ysolde] [bot] planning path to (1425,1690) in background
+[15:47:12.529] INFO  [f6_Ysolde] [bot] replan to (1425,1690): 63 steps in 11364.2us
+[15:47:17.267] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:47:22.327] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:47:22.540] INFO  [f6_Ysolde] [chat ascii] System: Tarath has departed from Britain.
+[15:47:24.338] INFO  [f6_Ysolde] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=20 in 239.6us
+[15:47:24.998] INFO  [f6_Ysolde] [bot] lookahead patched around block at step 3: anchor=5 new segment=7 path=21 in 372.0us
+[15:47:26.421] INFO  [f6_Ysolde] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=17 in 262.1us
+[15:47:27.351] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:47:29.108] INFO  [f6_Ysolde] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=10 in 193.4us
+[15:47:30.543] INFO  [f6_Ysolde] [travel] Britain banker ARRIVED at (1430,1690,0)
+[15:47:30.543] LOG   [f6_Ysolde] event travel_done: label='Britain banker' ok=1 at=(1430,1690) legs=1 plans=1 why=''
+[15:47:30.543] INFO  [life] wind-down: arrived somewhere safe at 1430,1690
+[15:47:30.558] INFO  [life] session_summary duration=1535s goals=0/5 gold=101->69 skills=130.1->130.1 logs=+0 deaths=0 places=3 suppliers=1
+[15:47:30.558] INFO  [life] session_goals families=1 picks=5 top=100% varied=0 | upkeep=5(100%) | GET_FOOD=5(100%)
+[15:47:30.561] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[15:47:30.561] INFO  [life] logging out
+[15:47:30.561] INFO  [f6_Ysolde] [action] logout requested
+[15:47:30.561] LOG   [f6_Ysolde] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[15:47:30.562] INFO  [f6_Ysolde] [0xD1] logout acknowledged (accepted=1)
+[15:47:30.562] LOG   [f6_Ysolde] event logout_ack: accepted
+[15:47:30.562] INFO  [f6_Ysolde] [net] closing connection (logout acknowledged)
+[15:47:30.562] LOG   [f6_Ysolde] event logout_complete: acked

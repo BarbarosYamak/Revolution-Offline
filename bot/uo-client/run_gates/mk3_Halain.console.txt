@@ -1,0 +1,1167 @@
+[00:19:11.420] INFO  session 0: 127.0.0.1:2593 user='RevGen3_06' char=Halain tag='mk3_Halain'
+[00:19:11.422] LOG   [mk3_Halain] event session_start: text log opened
+[00:19:11.422] LOG   [mk3_Halain] event net_connect_begin: connect 127.0.0.1:2593
+[00:19:11.422] INFO  [mk3_Halain] [net] connecting to 127.0.0.1:2593 ...
+[00:19:11.423] LOG   [mk3_Halain] event net_connected: connect 127.0.0.1:2593
+[00:19:11.423] INFO  [mk3_Halain] [net] connected.
+[00:19:11.423] INFO  [mk3_Halain] [seed] sent 0x7F000001 (plaintext)
+[00:19:11.423] LOG   [mk3_Halain] event seed_out: 0x7F000001 hex=7f000001
+[00:19:11.423] INFO  [life] no prior state for revgen3_06.halain: a new Lumberjack / Carpenter
+[00:19:11.423] INFO  [life] creation request: Lumberjacking 50.0 + Swordsmanship 50.0, stats 40/32/8 = 80
+[00:19:11.423] INFO  [life] needs: reading 'lumberjack_swordsman' from the profession catalogue
+[00:19:11.423] INFO  [life] home: Halain lives in Britain
+[00:19:11.423] INFO  [life] build plan 'lumberjack_swordsman': 600.0 resolved + 100.0 unresolved = 700.0/700.0, stats 100/100/25 = 225
+[00:19:11.423] INFO  [mk3_Halain] [life] autonomous player active for 'Halain' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 3 min)
+[00:19:11.465] INFO  [mk3_Halain] [0xA8] 1 server(s):
+[00:19:11.465] INFO  [mk3_Halain]   [0] MyShard                   1.0.0.127  full=2%  tz=0
+[00:19:11.481] INFO  [mk3_Halain] [0x8C] game server = 127.0.0.1:2593  seed=0xF44CE7D1
+[00:19:11.481] LOG   [mk3_Halain] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xF44CE7D1
+[00:19:11.481] INFO  [mk3_Halain] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[00:19:11.481] LOG   [mk3_Halain] event relay_same_socket: no seed re-sent; 0x91 follows
+[00:19:11.495] INFO  [mk3_Halain] [0xB9] server features = 0x0005
+[00:19:11.495] INFO  [mk3_Halain] [0xA9] 5 slot(s) (populated 0):
+[00:19:11.495] INFO  [mk3_Halain]   [0] <empty>
+[00:19:11.495] INFO  [mk3_Halain]   [1] <empty>
+[00:19:11.495] INFO  [mk3_Halain]   [2] <empty>
+[00:19:11.495] INFO  [mk3_Halain]   [3] <empty>
+[00:19:11.495] INFO  [mk3_Halain]   [4] <empty>
+[00:19:11.495] INFO  [mk3_Halain] create: appearance sex=M skin=0x0402 hair=0x2048/0x046B shirt=0x0166 pants=0x0332
+[00:19:11.495] INFO  [mk3_Halain] [0x00] starting city index 2
+[00:19:11.495] INFO  [mk3_Halain] [0x00] requested skills 44:50 40:50 48:0
+[00:19:11.495] INFO  [mk3_Halain] [0x00] requested stats STR 40 DEX 32 INT 8
+[00:19:11.495] INFO  [mk3_Halain] [0x00] creating character 'Halain' in slot 0
+[00:19:11.495] LOG   [mk3_Halain] event char_create_sent: Halain
+[00:19:11.497] INFO  [mk3_Halain] [0x1B] serial=0x0001616D body=0x0190 pos=(1496,1628,10)
+[00:19:11.498] LOG   [mk3_Halain] event login_confirm: serial=0x0001616D body=0x0190 pos=(1496,1628,10)
+[00:19:11.498] INFO  [mk3_Halain] [0x20] player @(1496,1628,10) facing=3
+[00:19:11.498] INFO  [mk3_Halain] [0x55] login complete — entering world
+[00:19:11.498] LOG   [mk3_Halain] event in_world: 0x55 received
+[00:19:11.498] INFO  [mk3_Halain] [backpack] opening 0x40016144
+[00:19:11.498] INFO  [mk3_Halain] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[00:19:11.498] INFO  [mk3_Halain] [chat ascii] System: There are 5 other players here.
+[00:19:11.498] INFO  [mk3_Halain] [chat ascii] System: You are under the protection of the city guards
+[00:19:11.502] INFO  [mk3_Halain] [action] requesting the skill list
+[00:19:11.502] INFO  [life] in world; asked the server for the skill list
+[00:19:11.510] INFO  [mk3_Halain] [0x24] open container 0x40016144 gump=60
+[00:19:11.510] INFO  [mk3_Halain] [0x3C] container contents: 6 item(s)
+[00:19:11.510] LOG   [mk3_Halain] event backpack_contents: serial=0x40016144 items=6
+[00:19:14.117] INFO  [mk3_Halain] [bot] world data loaded (0 blacklisted spot(s)).
+[00:19:14.118] INFO  [life] reconciliation: first ever login, 7 field(s) differed
+[00:19:14.118] INFO  [life]   gold         persisted=0          server=10000      -> server value accepted
+[00:19:14.118] INFO  [life]   str          persisted=0          server=40         -> server value accepted
+[00:19:14.118] INFO  [life]   dex          persisted=0          server=32         -> server value accepted
+[00:19:14.118] INFO  [life]   int          persisted=0          server=8          -> server value accepted
+[00:19:14.118] INFO  [life]   skill_44     persisted=0.0        server=50.0       -> server value accepted
+[00:19:14.118] INFO  [life]   skill_40     persisted=0.0        server=50.0       -> server value accepted
+[00:19:14.118] INFO  [life]   skill_27     persisted=0.0        server=0.0        -> server value accepted
+[00:19:14.118] INFO  [life]   skill_1      persisted=0.0        server=0.0        -> server value accepted
+[00:19:14.118] INFO  [life]   skill_17     persisted=0.0        server=0.0        -> server value accepted
+[00:19:14.118] INFO  [life]   skill_11     persisted=0.0        server=0.0        -> server value accepted
+[00:19:14.118] INFO  [life]   position     persisted=0,0        server=1496,1628  -> server value accepted
+[00:19:14.118] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[00:19:14.118] INFO  [mk3_Halain] [survival] on
+[00:19:14.118] LOG   [mk3_Halain] event survival_mode: on
+[00:19:14.119] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_06.halain/state.json
+[00:19:14.119] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:19:14.172] INFO  [life] goal=BANK reason="no goal was running"
+[00:19:14.172] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedMakeBandages(bandages BLOCKED 0.70) NeedSkillTraining(Carpentry 0.55) NeedEquipment(heal potions 0.50) NeedEquipment(bandages 0.50) NeedTraining(Swordsmanship 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedLogs(logs 0.40) NeedFood(food 0.25) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[00:19:14.172] INFO  [life]   score=150.0
+[00:19:14.172] INFO  [life]   reason: NeedBank urgency 0.75 x 240 = 180.0
+[00:19:14.172] INFO  [life]   reason: on_hand=10000 (total 10000) reserve=10000 carry=1300 spare=8700 risk=1.00
+[00:19:14.172] INFO  [life]   reason: no bank learned yet -30
+[00:19:14.172] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[00:19:14.172] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 10000 (buyable at 200))
+[00:19:14.172] INFO  [mk3_Halain] [action] scanning nearby mobiles for names
+[00:19:14.172] INFO  [mk3_Halain] [action] requested 2 paperdoll(s) for trade titles
+[00:19:14.172] INFO  [life] bank: asking who is standing in the bank
+[00:19:14.187] INFO  [mk3_Halain] [mobiles] nearby (3):
+[00:19:14.187] INFO  [mk3_Halain]   Vorar 0x00016305
+[00:19:14.187] INFO  [mk3_Halain]   Audny 0x00001076
+[00:19:14.187] INFO  [mk3_Halain]   Starling 0x000013C5
+[00:19:14.187] INFO  [mk3_Halain] [0x20] player @(1496,1628,10) facing=0
+[00:19:14.187] INFO  [mk3_Halain] [0x88] paperdoll 0x00001076: "Audny, the innkeeper"
+[00:19:14.187] INFO  [mk3_Halain] [world] Audny, the innkeeper is a innkeeper at (1494,1614)
+[00:19:14.187] INFO  [mk3_Halain] [0x88] paperdoll 0x00016305: "Vorar, Apprentice Lumberjack"
+[00:19:14.637] INFO  [mk3_Halain] [chat ascii] System: Delras has arrived in Britain.
+[00:19:16.178] INFO  [life] bank: no banker in sight
+[00:19:16.178] INFO  [life] goal_failed=BANK status=retryable_failure reason="no banker in sight"
+[00:19:16.238] INFO  [life] goal=REPLACE_EQUIPMENT reason="previous goal abandoned: no banker answered"
+[00:19:16.238] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedMakeBandages(bandages BLOCKED 0.70) NeedSkillTraining(Carpentry 0.55) NeedEquipment(heal potions 0.50) NeedEquipment(bandages 0.50) NeedTraining(Swordsmanship 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedLogs(logs 0.40) NeedFood(food 0.25) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[00:19:16.238] INFO  [life]   score=130.0
+[00:19:16.238] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:19:16.238] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:19:16.238] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 299s after achieving nothing
+[00:19:16.238] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[00:19:16.238] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 10000 (buyable at 200))
+[00:19:17.703] INFO  [mk3_Halain] [chat ascii] System: Cyras has arrived in Britain.
+[00:19:19.178] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:19:20.736] INFO  [mk3_Halain] [chat ascii] System: Rhaler has arrived in Minoc.
+[00:19:21.177] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:19:21.177] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:19:21.180] INFO  [mk3_Halain] [travel] place: skipping Cove healer -- 1344 tiles and 1 gate for a service Britain healer offers
+[00:19:21.180] INFO  [mk3_Halain] [travel] place: skipping Minoc healer -- 1704 tiles and 0 gates for a service Britain healer offers
+[00:19:21.180] INFO  [mk3_Halain] [travel] Britain healer -> (1471,1611) r=5 from (1496,1628)
+[00:19:21.180] LOG   [mk3_Halain] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1496,1628)
+[00:19:21.180] INFO  [life] bandages: walking to a 'healer' (trip 1)
+[00:19:21.180] INFO  [mk3_Halain] [travel] mode walk             usable   <- chosen
+[00:19:21.180] INFO  [mk3_Halain] [travel] mode moongate         usable
+[00:19:21.180] INFO  [mk3_Halain] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:19:21.180] INFO  [mk3_Halain] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:19:21.180] LOG   [mk3_Halain] event travel_mode: walk
+[00:19:21.180] INFO  [mk3_Halain] [travel] plan Britain healer: ok legs=1 ~25 tiles transit=0 nodes=0
+[00:19:21.239] INFO  [mk3_Halain] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:19:21.239] INFO  [mk3_Halain] [action] goto (1471,1611) from (1496,1628,10)
+[00:19:21.239] LOG   [mk3_Halain] event goto_start: target=(1471,1611) from=(1496,1628)
+[00:19:21.239] INFO  [mk3_Halain] [bot] running from (1496,1628,10) to (1471,1611,z20)
+[00:19:21.239] INFO  [mk3_Halain] [bot] planning path to (1471,1611) in background
+[00:19:21.302] INFO  [mk3_Halain] [bot] replan to (1471,1611): 33 steps in 5839.0us
+[00:19:23.783] INFO  [mk3_Halain] [chat ascii] System: Ghalor has arrived in Minoc.
+[00:19:24.182] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:19:26.825] INFO  [mk3_Halain] [chat ascii] System: Falen has arrived in Minoc.
+[00:19:27.656] INFO  [mk3_Halain] [bot] door ahead at (1480,1613,z20); OpenDoor before step
+[00:19:27.670] INFO  [mk3_Halain] [chat ascii] System: Opening door...
+[00:19:28.595] INFO  [mk3_Halain] [bot] lookahead patched around block at step 5: anchor=7 new segment=8 path=10 in 143.8us
+[00:19:28.810] INFO  [mk3_Halain] [bot] door ahead at (1479,1612,z20); OpenDoor before step
+[00:19:28.824] INFO  [mk3_Halain] [chat ascii] System: Opening door...
+[00:19:29.226] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:19:29.908] INFO  [mk3_Halain] [chat ascii] System: Aelia has arrived in Britain.
+[00:19:30.586] INFO  [mk3_Halain] [travel] Britain healer ARRIVED at (1476,1611,20)
+[00:19:30.586] LOG   [mk3_Halain] event travel_done: label='Britain healer' ok=1 at=(1476,1611) legs=1 plans=1 why=''
+[00:19:30.648] INFO  [mk3_Halain] [action] scanning nearby mobiles for names
+[00:19:30.648] INFO  [mk3_Halain] [action] requested 5 paperdoll(s) for trade titles
+[00:19:30.648] INFO  [life] bandages: at the shop, asking who is here (scan 1 of 3)
+[00:19:30.663] INFO  [mk3_Halain] [mobiles] nearby (7):
+[00:19:30.663] INFO  [mk3_Halain]   Natasha 0x00001194
+[00:19:30.663] INFO  [mk3_Halain]   Vorar 0x00016305
+[00:19:30.663] INFO  [mk3_Halain]   Dale 0x000010C1
+[00:19:30.663] INFO  [mk3_Halain]   Delras 0x00015A59
+[00:19:30.663] INFO  [mk3_Halain]   Cyras 0x00015725
+[00:19:30.663] INFO  [mk3_Halain]   Caimile 0x00001239
+[00:19:30.663] INFO  [mk3_Halain]   Audny 0x00001076
+[00:19:30.663] INFO  [mk3_Halain] [0x20] player @(1476,1611,20) facing=3
+[00:19:30.663] INFO  [mk3_Halain] [0x88] paperdoll 0x00015A59: "Delras, Apprentice Lumberjack"
+[00:19:30.663] INFO  [mk3_Halain] [0x20] player @(1476,1611,20) facing=5
+[00:19:30.663] INFO  [mk3_Halain] [0x88] paperdoll 0x00001194: "Natasha, the healer guildmistress"
+[00:19:30.663] INFO  [mk3_Halain] [world] Natasha, the healer guildmistress is a healer at (1475,1612)
+[00:19:30.663] INFO  [mk3_Halain] [0x88] paperdoll 0x000010C1: "Dale, the healer"
+[00:19:30.663] INFO  [mk3_Halain] [world] Dale, the healer is a healer at (1470,1614)
+[00:19:30.663] INFO  [mk3_Halain] [0x20] player @(1476,1611,20) facing=0
+[00:19:30.663] INFO  [mk3_Halain] [0x88] paperdoll 0x00001239: "Caimile, the merchant guildmistress"
+[00:19:30.663] INFO  [mk3_Halain] [0x20] player @(1476,1611,20) facing=3
+[00:19:30.663] INFO  [mk3_Halain] [0x88] paperdoll 0x00015725: "Cyras, Apprentice Lumberjack"
+[00:19:30.663] INFO  [mk3_Halain] [0x21] stale reject seq=37 (block already handled); pose resynced
+[00:19:33.079] INFO  [mk3_Halain] [chat ascii] System: Amara has arrived in Britain.
+[00:19:33.678] INFO  [life] bandages: found a 'healer'
+[00:19:33.740] INFO  [mk3_Halain] [travel] mobile 0x000010C1 -> (1470,1614) r=1 from (1476,1611)
+[00:19:33.740] LOG   [mk3_Halain] event travel_start: label='mobile 0x000010C1' target=(1470,1614) radius=1 from=(1476,1611)
+[00:19:33.740] INFO  [life] bandages: the 'healer' is 6 tiles off (dz 0) -- walking into reach (chase 1 of 3)
+[00:19:33.740] INFO  [mk3_Halain] [travel] mode walk             usable   <- chosen
+[00:19:33.740] INFO  [mk3_Halain] [travel] mode moongate         usable
+[00:19:33.740] INFO  [mk3_Halain] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:19:33.740] INFO  [mk3_Halain] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:19:33.740] LOG   [mk3_Halain] event travel_mode: walk
+[00:19:33.740] INFO  [mk3_Halain] [travel] plan mobile 0x000010C1: ok legs=1 ~6 tiles transit=0 nodes=0
+[00:19:33.756] INFO  [mk3_Halain] [action] goto finished at (1476,1611,20); target (1471,1611); stopped short (off by 5 tile(s))
+[00:19:33.756] LOG   [mk3_Halain] event goto_done: at=(1476,1611) target=(1471,1611) arrived=0 off=5
+[00:19:33.756] INFO  [mk3_Halain] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:19:33.756] INFO  [mk3_Halain] [action] goto (1470,1614) from (1476,1611,20)
+[00:19:33.756] LOG   [mk3_Halain] event goto_start: target=(1470,1614) from=(1476,1611)
+[00:19:33.756] INFO  [mk3_Halain] [bot] running from (1476,1611,20) to (1470,1614,z20)
+[00:19:33.756] INFO  [mk3_Halain] [bot] planning path to (1470,1614) in background
+[00:19:34.235] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:19:35.433] INFO  [mk3_Halain] [action] goto finished at (1476,1611,20); target (1470,1614); stopped short (off by 9 tile(s))
+[00:19:35.433] LOG   [mk3_Halain] event goto_done: at=(1476,1611) target=(1470,1614) arrived=0 off=9
+[00:19:36.131] INFO  [mk3_Halain] [chat ascii] System: Elara has arrived in Magincia.
+[00:19:36.252] INFO  [mk3_Halain] [chat ascii] Dale: Thou hast mine attention.
+[00:19:36.638] INFO  [mk3_Halain] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:19:36.638] INFO  [mk3_Halain] [action] goto (1470,1614) from (1476,1611,20)
+[00:19:36.638] LOG   [mk3_Halain] event goto_start: target=(1470,1614) from=(1476,1611)
+[00:19:36.638] INFO  [mk3_Halain] [bot] running from (1476,1611,20) to (1470,1614,z20)
+[00:19:36.638] INFO  [mk3_Halain] [bot] planning path to (1470,1614) in background
+[00:19:38.515] INFO  [mk3_Halain] [action] goto finished at (1476,1611,20); target (1470,1614); stopped short (off by 9 tile(s))
+[00:19:38.515] LOG   [mk3_Halain] event goto_done: at=(1476,1611) target=(1470,1614) arrived=0 off=9
+[00:19:39.272] INFO  [mk3_Halain] [chat ascii] System: Selene has arrived in Magincia.
+[00:19:39.273] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:19:39.760] INFO  [mk3_Halain] [travel] mode walk             usable   <- chosen
+[00:19:39.760] INFO  [mk3_Halain] [travel] mode moongate         usable
+[00:19:39.760] INFO  [mk3_Halain] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:19:39.760] INFO  [mk3_Halain] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:19:39.760] LOG   [mk3_Halain] event travel_mode: walk
+[00:19:39.760] INFO  [mk3_Halain] [travel] plan mobile 0x000010C1: ok legs=1 ~6 tiles transit=0 nodes=0
+[00:19:41.274] INFO  [mk3_Halain] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:19:41.274] INFO  [mk3_Halain] [action] goto (1470,1614) from (1476,1611,20)
+[00:19:41.274] LOG   [mk3_Halain] event goto_start: target=(1470,1614) from=(1476,1611)
+[00:19:41.274] INFO  [mk3_Halain] [bot] running from (1476,1611,20) to (1470,1614,z20)
+[00:19:41.274] INFO  [mk3_Halain] [bot] planning path to (1470,1614) in background
+[00:19:42.349] INFO  [mk3_Halain] [chat ascii] System: Lyra has arrived in Moonglow.
+[00:19:43.188] INFO  [mk3_Halain] [action] goto finished at (1476,1611,20); target (1470,1614); stopped short (off by 9 tile(s))
+[00:19:43.188] LOG   [mk3_Halain] event goto_done: at=(1476,1611) target=(1470,1614) arrived=0 off=9
+[00:19:44.326] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:19:44.403] INFO  [mk3_Halain] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:19:44.403] INFO  [mk3_Halain] [action] goto (1470,1614) from (1476,1611,20)
+[00:19:44.403] LOG   [mk3_Halain] event goto_start: target=(1470,1614) from=(1476,1611)
+[00:19:44.403] INFO  [mk3_Halain] [bot] running from (1476,1611,20) to (1470,1614,z20)
+[00:19:44.403] INFO  [mk3_Halain] [bot] planning path to (1470,1614) in background
+[00:19:44.420] INFO  [mk3_Halain] [bot] replan to (1470,1614): 8 steps in 197.0us
+[00:19:44.543] INFO  [mk3_Halain] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=9 in 101.4us
+[00:19:44.666] INFO  [mk3_Halain] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=10 in 134.5us
+[00:19:45.278] INFO  [mk3_Halain] [chat uni  ] Vorar: Dale buy
+[00:19:45.278] INFO  [mk3_Halain] [chat ascii] Dale: Thou mayst purchase supplies from me.
+[00:19:45.354] INFO  [mk3_Halain] [chat ascii] Dale: Here you are, Vorar That will be 19 gold coins.  I thank thee for thy business.
+[00:19:45.354] INFO  [mk3_Halain] [bot] lookahead patched around block at step 5: anchor=6 new segment=4 path=5 in 33.1us
+[00:19:45.356] INFO  [mk3_Halain] [chat ascii] System: Thalia has arrived in Moonglow.
+[00:19:45.431] INFO  [mk3_Halain] [chat uni  ] Vorar: Dale buy
+[00:19:45.431] INFO  [mk3_Halain] [chat ascii] Dale: Thou mayst purchase supplies from me.
+[00:19:45.493] INFO  [mk3_Halain] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=5 in 45.9us
+[00:19:46.446] INFO  [mk3_Halain] [travel] mobile 0x000010C1 ARRIVED at (1471,1613,20)
+[00:19:46.446] LOG   [mk3_Halain] event travel_done: label='mobile 0x000010C1' ok=1 at=(1471,1613) legs=1 plans=2 why=''
+[00:19:46.507] INFO  [life] bandages: within reach
+[00:19:46.568] INFO  [mk3_Halain] [ACTION] vendor_buy start
+[00:19:46.568] INFO  [mk3_Halain] [VENDOR] open vendor=0x000010C1 say='Dale buy'
+[00:19:46.568] INFO  [life] bandages: asking the 'healer' to show clean bandages (attempt 1)
+[00:19:46.569] INFO  [mk3_Halain] [chat uni  ] : Dale buy
+[00:19:46.569] INFO  [mk3_Halain] [chat ascii] Dale: Excuse me Vorar, but Halain wants to speak to me
+[00:19:46.569] INFO  [mk3_Halain] [chat ascii] Dale: Hello! ?
+[00:19:46.569] INFO  [mk3_Halain] [chat ascii] Dale: I got lots to sell!
+[00:19:46.569] INFO  [mk3_Halain] [0x3C] container contents: 4 item(s)
+[00:19:46.569] INFO  [mk3_Halain] [0x74] pairing: straight (straight 4, mirrored 0 of 4 rows)
+[00:19:46.569] INFO  [mk3_Halain] [0x74] vendor shop data: cont=0x400010BB 4 item(s), layer=0x1A
+[00:19:46.569] INFO  [mk3_Halain] [0x74]   Heal                         gfx=0x0F0C qty=10   price=30
+[00:19:46.569] INFO  [mk3_Halain] [0x74]   Ginseng                      gfx=0x0F85 qty=20   price=3
+[00:19:46.569] INFO  [mk3_Halain] [0x74]   Garlic                       gfx=0x0F84 qty=13   price=3
+[00:19:46.569] INFO  [mk3_Halain] [0x74]   Refresh                      gfx=0x0F0B qty=19   price=16
+[00:19:46.569] INFO  [mk3_Halain] [0x3C] container contents: 0 item(s)
+[00:19:46.569] INFO  [mk3_Halain] [0x74] vendor shop data: cont=0x40000EF5 0 item(s), layer=0x1B
+[00:19:46.569] INFO  [mk3_Halain] [VENDOR] offer from 0x000010C1: 4 item(s)
+[00:19:46.569] INFO  [mk3_Halain] [VENDOR]   0x4001823F Heal                   x10  30 gp
+[00:19:46.569] INFO  [mk3_Halain] [VENDOR]   0x40018237 Ginseng                x20  3 gp
+[00:19:46.569] INFO  [mk3_Halain] [VENDOR]   0x40018236 Garlic                 x13  3 gp
+[00:19:46.569] INFO  [mk3_Halain] [VENDOR]   0x40018232 Refresh                x19  16 gp
+[00:19:46.569] LOG   [mk3_Halain] event vendor_offer: vendor=0x000010C1 items=4
+[00:19:46.569] INFO  [mk3_Halain] [ACTION_RESULT] vendor_buy success (1ms) vendor offer received
+[00:19:46.569] LOG   [mk3_Halain] event action_result: vendor_buy success took=1ms vendor offer received
+[00:19:46.569] INFO  [mk3_Halain] [0x24] vendor buy gump for 0x000010C1
+[00:19:46.570] INFO  [life] bandages: the shop is open
+[00:19:46.629] INFO  [life] bandages: this 'healer' does not stock clean bandages
+[00:19:46.629] INFO  [life] goal_failed=REPLACE_EQUIPMENT status=failed reason="this 'healer' does not stock clean bandages"
+[00:19:46.629] INFO  [life] handoff=REPLACE_EQUIPMENT->MAKE_BANDAGES reason="no bandages bought"
+[00:19:46.630] INFO  [life] goal=GET_FOOD reason="previous goal abandoned: no bandages bought"
+[00:19:46.630] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedMakeBandages(bandages BLOCKED 0.70) NeedSkillTraining(Carpentry 0.55) NeedEquipment(heal potions 0.50) NeedEquipment(bandages 0.50) NeedTraining(Swordsmanship 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedLogs(logs 0.40) NeedFood(food 0.25) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[00:19:46.630] INFO  [life]   score=62.5
+[00:19:46.630] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[00:19:46.630] INFO  [life]   reason: food=0
+[00:19:46.630] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 239s after achieving nothing
+[00:19:46.630] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 269s after achieving nothing
+[00:19:46.630] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[00:19:46.630] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 10000 (buyable at 200))
+[00:19:47.455] INFO  [mk3_Halain] [chat ascii] System: You shove Vorar out of the way.
+[00:19:47.455] INFO  [mk3_Halain] [bot] arrived at (1470,1614,20)
+[00:19:48.176] INFO  [mk3_Halain] [chat uni  ] Delras: Dale buy
+[00:19:48.176] INFO  [mk3_Halain] [chat ascii] Dale: Excuse me Halain, but Delras wants to speak to me
+[00:19:48.176] INFO  [mk3_Halain] [chat ascii] Dale: Greetings. What can I help thee with?
+[00:19:48.176] INFO  [mk3_Halain] [chat ascii] Dale: I'm here to sell thee supplies.
+[00:19:48.190] INFO  [mk3_Halain] [chat uni  ] Cyras: Dale buy
+[00:19:48.190] INFO  [mk3_Halain] [chat ascii] Dale: Excuse me Delras, but Cyras wants to speak to me
+[00:19:48.190] INFO  [mk3_Halain] [chat ascii] Dale: Hello!
+[00:19:48.190] INFO  [mk3_Halain] [chat ascii] Dale: I got lots to sell!
+[00:19:48.422] INFO  [mk3_Halain] [chat ascii] System: Dorvar has arrived in Skara Brae.
+[00:19:48.691] INFO  [mk3_Halain] [travel] Britain baker -> (1450,1617) r=5 from (1470,1614)
+[00:19:48.691] LOG   [mk3_Halain] event travel_start: label='Britain baker' target=(1450,1617) radius=5 from=(1470,1614)
+[00:19:48.691] INFO  [life] food: walking to a 'baker' (trip 1)
+[00:19:48.691] INFO  [mk3_Halain] [travel] mode walk             usable   <- chosen
+[00:19:48.691] INFO  [mk3_Halain] [travel] mode moongate         usable
+[00:19:48.691] INFO  [mk3_Halain] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:19:48.691] INFO  [mk3_Halain] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:19:48.691] LOG   [mk3_Halain] event travel_mode: walk
+[00:19:48.691] INFO  [mk3_Halain] [travel] plan Britain baker: ok legs=1 ~20 tiles transit=0 nodes=0
+[00:19:48.691] INFO  [mk3_Halain] [action] goto finished at (1470,1614,20); target (1470,1614); ARRIVED (off by 0 tile(s))
+[00:19:48.691] LOG   [mk3_Halain] event goto_done: at=(1470,1614) target=(1470,1614) arrived=1 off=0
+[00:19:48.691] INFO  [mk3_Halain] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:19:48.691] INFO  [mk3_Halain] [action] goto (1450,1617) from (1470,1614,20)
+[00:19:48.691] LOG   [mk3_Halain] event goto_start: target=(1450,1617) from=(1470,1614)
+[00:19:48.691] INFO  [mk3_Halain] [bot] running from (1470,1614,20) to (1450,1617,z20)
+[00:19:48.692] INFO  [mk3_Halain] [bot] planning path to (1450,1617) in background
+[00:19:48.756] INFO  [mk3_Halain] [bot] replan to (1450,1617): 47 steps in 2754.2us
+[00:19:49.350] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:19:49.486] INFO  [mk3_Halain] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=46 in 218.4us
+[00:19:50.837] INFO  [mk3_Halain] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=44 in 103.7us
+[00:19:50.914] INFO  [mk3_Halain] [bot] lookahead patched around block at step 1: anchor=5 new segment=5 path=44 in 75.5us
+[00:19:51.483] INFO  [mk3_Halain] [chat ascii] System: Ithion has arrived in Skara Brae.
+[00:19:54.272] INFO  [mk3_Halain] [bot] door ahead at (1480,1610,z20); OpenDoor before step
+[00:19:54.274] INFO  [mk3_Halain] [chat ascii] System: Opening door...
+[00:19:54.411] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:19:54.532] INFO  [mk3_Halain] [chat ascii] System: Odessa has arrived in Britain.
+[00:19:55.037] INFO  [mk3_Halain] [bot] step (1480,1611,20)->(1480,1610,20) rejected; avoiding edge + rerouting
+[00:19:55.037] INFO  [mk3_Halain] [bot] planning path to (1450,1617) in background
+[00:19:55.099] INFO  [mk3_Halain] [bot] replan to (1450,1617): 36 steps in 3256.7us
+[00:19:57.598] INFO  [mk3_Halain] [chat ascii] System: Serena has arrived in Britain.
+[00:19:59.450] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:20:00.645] INFO  [mk3_Halain] [chat ascii] System: Aurelius has arrived in Moonglow.
+[00:20:02.793] INFO  [mk3_Halain] [bot] door ahead at (1459,1612,z20); OpenDoor before step
+[00:20:02.795] INFO  [mk3_Halain] [chat ascii] System: Opening door...
+[00:20:03.868] INFO  [mk3_Halain] [chat ascii] System: Leander has arrived in Moonglow.
+[00:20:04.498] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:20:05.004] INFO  [mk3_Halain] [chat ascii] Dale: Hmm?
+[00:20:05.004] INFO  [mk3_Halain] [chat ascii] Dale: Hmm?
+[00:20:05.545] INFO  [mk3_Halain] [travel] Britain baker ARRIVED at (1454,1614,20)
+[00:20:05.545] LOG   [mk3_Halain] event travel_done: label='Britain baker' ok=1 at=(1454,1614) legs=1 plans=1 why=''
+[00:20:05.606] INFO  [mk3_Halain] [action] scanning nearby mobiles for names
+[00:20:05.606] INFO  [mk3_Halain] [action] requested 1 paperdoll(s) for trade titles
+[00:20:05.606] INFO  [life] food: at the shop, asking who is here (scan 1 of 3)
+[00:20:05.621] INFO  [mk3_Halain] [mobiles] nearby (5):
+[00:20:05.621] INFO  [mk3_Halain]   Delras 0x00015A59
+[00:20:05.621] INFO  [mk3_Halain]   Lionel 0x000010B3
+[00:20:05.621] INFO  [mk3_Halain]   Vorar 0x00016305
+[00:20:05.621] INFO  [mk3_Halain]   Natasha 0x00001194
+[00:20:05.621] INFO  [mk3_Halain]   Dale 0x000010C1
+[00:20:05.621] INFO  [mk3_Halain] [0x20] player @(1454,1614,20) facing=6
+[00:20:05.621] INFO  [mk3_Halain] [0x88] paperdoll 0x000010B3: "Lionel, the baker"
+[00:20:05.621] INFO  [mk3_Halain] [world] Lionel, the baker is a baker at (1449,1616)
+[00:20:06.980] INFO  [mk3_Halain] [chat ascii] System: Illyria has arrived in Britain.
+[00:20:08.623] INFO  [life] food: found a 'baker'
+[00:20:08.640] INFO  [mk3_Halain] [travel] mobile 0x000010B3 -> (1449,1616) r=1 from (1454,1614)
+[00:20:08.640] LOG   [mk3_Halain] event travel_start: label='mobile 0x000010B3' target=(1449,1616) radius=1 from=(1454,1614)
+[00:20:08.640] INFO  [life] food: the 'baker' is 5 tiles off (dz 0) -- walking into reach (chase 1 of 3)
+[00:20:08.640] INFO  [mk3_Halain] [travel] mode walk             usable   <- chosen
+[00:20:08.640] INFO  [mk3_Halain] [travel] mode moongate         usable
+[00:20:08.640] INFO  [mk3_Halain] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:08.640] INFO  [mk3_Halain] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:08.640] LOG   [mk3_Halain] event travel_mode: walk
+[00:20:08.640] INFO  [mk3_Halain] [travel] plan mobile 0x000010B3: ok legs=1 ~5 tiles transit=0 nodes=0
+[00:20:08.698] INFO  [mk3_Halain] [action] goto finished at (1454,1614,20); target (1450,1617); stopped short (off by 7 tile(s))
+[00:20:08.698] LOG   [mk3_Halain] event goto_done: at=(1454,1614) target=(1450,1617) arrived=0 off=7
+[00:20:08.698] INFO  [mk3_Halain] [action] goto (1449,1616) from (1454,1614,20)
+[00:20:08.698] LOG   [mk3_Halain] event goto_start: target=(1449,1616) from=(1454,1614)
+[00:20:08.698] INFO  [mk3_Halain] [bot] running from (1454,1614,20) to (1449,1616,z20)
+[00:20:08.698] INFO  [mk3_Halain] [bot] planning path to (1449,1616) in background
+[00:20:08.761] INFO  [mk3_Halain] [chat uni  ] Delras: Lionel buy
+[00:20:08.761] INFO  [mk3_Halain] [chat ascii] Lionel: Greetings. What can I do for thee?
+[00:20:08.761] INFO  [mk3_Halain] [chat ascii] Lionel: I'm here to sell thee supplies.
+[00:20:08.824] INFO  [mk3_Halain] [chat ascii] Lionel: Here you are, Delras That will be 16 gold coins.  I thank thee for thy business.
+[00:20:09.545] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:20:10.022] INFO  [mk3_Halain] [chat ascii] System: Hector has arrived in Trinsic.
+[00:20:10.612] INFO  [mk3_Halain] [action] goto finished at (1454,1614,20); target (1449,1616); stopped short (off by 7 tile(s))
+[00:20:10.612] LOG   [mk3_Halain] event goto_done: at=(1454,1614) target=(1449,1616) arrived=0 off=7
+[00:20:11.860] INFO  [mk3_Halain] [action] goto (1449,1616) from (1454,1614,20)
+[00:20:11.860] LOG   [mk3_Halain] event goto_start: target=(1449,1616) from=(1454,1614)
+[00:20:11.860] INFO  [mk3_Halain] [bot] running from (1454,1614,20) to (1449,1616,z20)
+[00:20:11.860] INFO  [mk3_Halain] [bot] planning path to (1449,1616) in background
+[00:20:12.186] INFO  [mk3_Halain] [chat uni  ] : Dale buy
+[00:20:12.186] INFO  [mk3_Halain] [chat ascii] Dale: I got lots to sell!
+[00:20:12.262] INFO  [mk3_Halain] [chat ascii] Dale: Here you are, Aelia That will be 120 gold coins.  I thank thee for thy business.
+[00:20:13.076] INFO  [mk3_Halain] [chat ascii] System: Castor has arrived in Trinsic.
+[00:20:13.934] INFO  [mk3_Halain] [action] goto finished at (1454,1614,20); target (1449,1616); stopped short (off by 7 tile(s))
+[00:20:13.934] LOG   [mk3_Halain] event goto_done: at=(1454,1614) target=(1449,1616) arrived=0 off=7
+[00:20:14.119] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_06.halain/state.json
+[00:20:14.564] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:20:15.179] INFO  [mk3_Halain] [travel] mode walk             usable   <- chosen
+[00:20:15.179] INFO  [mk3_Halain] [travel] mode moongate         usable
+[00:20:15.179] INFO  [mk3_Halain] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:15.179] INFO  [mk3_Halain] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:15.179] LOG   [mk3_Halain] event travel_mode: walk
+[00:20:15.179] INFO  [mk3_Halain] [travel] plan mobile 0x000010B3: ok legs=1 ~5 tiles transit=0 nodes=0
+[00:20:16.106] INFO  [mk3_Halain] [chat ascii] System: Faustus has arrived in Britain.
+[00:20:16.736] INFO  [mk3_Halain] [action] goto (1449,1616) from (1454,1614,20)
+[00:20:16.736] LOG   [mk3_Halain] event goto_start: target=(1449,1616) from=(1454,1614)
+[00:20:16.736] INFO  [mk3_Halain] [bot] running from (1454,1614,20) to (1449,1616,z20)
+[00:20:16.736] INFO  [mk3_Halain] [bot] planning path to (1449,1616) in background
+[00:20:18.896] INFO  [mk3_Halain] [action] goto finished at (1454,1614,20); target (1449,1616); stopped short (off by 7 tile(s))
+[00:20:18.896] LOG   [mk3_Halain] event goto_done: at=(1454,1614) target=(1449,1616) arrived=0 off=7
+[00:20:19.161] INFO  [mk3_Halain] [chat ascii] System: Titus has arrived in Skara Brae.
+[00:20:19.589] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:20:20.143] INFO  [mk3_Halain] [action] goto (1449,1616) from (1454,1614,20)
+[00:20:20.144] LOG   [mk3_Halain] event goto_start: target=(1449,1616) from=(1454,1614)
+[00:20:20.144] INFO  [mk3_Halain] [bot] running from (1454,1614,20) to (1449,1616,z20)
+[00:20:20.144] INFO  [mk3_Halain] [bot] planning path to (1449,1616) in background
+[00:20:21.726] INFO  [mk3_Halain] [chat uni  ] : Dale buy
+[00:20:21.726] INFO  [mk3_Halain] [chat ascii] Dale: Greetings. What can I help thee with?
+[00:20:21.726] INFO  [mk3_Halain] [chat ascii] Dale: I'm here to sell thee supplies.
+[00:20:21.803] INFO  [mk3_Halain] [chat ascii] Dale: Here you are, Odessa That will be 120 gold coins.  I thank thee for thy business.
+[00:20:22.309] INFO  [mk3_Halain] [chat ascii] System: Rhea has arrived in Britain.
+[00:20:22.711] INFO  [mk3_Halain] [action] goto finished at (1454,1614,20); target (1449,1616); stopped short (off by 7 tile(s))
+[00:20:22.711] LOG   [mk3_Halain] event goto_done: at=(1454,1614) target=(1449,1616) arrived=0 off=7
+[00:20:23.935] INFO  [mk3_Halain] [travel] mode walk             usable   <- chosen
+[00:20:23.935] INFO  [mk3_Halain] [travel] mode moongate         usable
+[00:20:23.935] INFO  [mk3_Halain] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:23.935] INFO  [mk3_Halain] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:23.935] LOG   [mk3_Halain] event travel_mode: walk
+[00:20:23.935] INFO  [mk3_Halain] [travel] plan mobile 0x000010B3: ok legs=1 ~5 tiles transit=0 nodes=0
+[00:20:24.597] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:20:25.070] INFO  [mk3_Halain] [chat uni  ] : Dale buy
+[00:20:25.070] INFO  [mk3_Halain] [chat ascii] Dale: Thou surely wants all the things that I can sell thee.
+[00:20:25.145] INFO  [mk3_Halain] [chat ascii] Dale: Here you are, Amara That will be 60 gold coins.  I thank thee for thy business.
+[00:20:25.376] INFO  [mk3_Halain] [chat ascii] System: Xerxes has arrived in Vesper.
+[00:20:26.965] INFO  [mk3_Halain] [action] goto (1449,1616) from (1454,1614,20)
+[00:20:26.965] LOG   [mk3_Halain] event goto_start: target=(1449,1616) from=(1454,1614)
+[00:20:26.965] INFO  [mk3_Halain] [bot] running from (1454,1614,20) to (1449,1616,z20)
+[00:20:26.965] INFO  [mk3_Halain] [bot] planning path to (1449,1616) in background
+[00:20:29.326] INFO  [mk3_Halain] [action] goto finished at (1454,1614,20); target (1449,1616); stopped short (off by 7 tile(s))
+[00:20:29.326] LOG   [mk3_Halain] event goto_done: at=(1454,1614) target=(1449,1616) arrived=0 off=7
+[00:20:29.603] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:20:30.584] INFO  [mk3_Halain] [action] goto (1449,1616) from (1454,1614,20)
+[00:20:30.584] LOG   [mk3_Halain] event goto_start: target=(1449,1616) from=(1454,1614)
+[00:20:30.584] INFO  [mk3_Halain] [bot] running from (1454,1614,20) to (1449,1616,z20)
+[00:20:30.584] INFO  [mk3_Halain] [bot] planning path to (1449,1616) in background
+[00:20:33.233] INFO  [mk3_Halain] [action] goto finished at (1454,1614,20); target (1449,1616); stopped short (off by 7 tile(s))
+[00:20:33.233] LOG   [mk3_Halain] event goto_done: at=(1454,1614) target=(1449,1616) arrived=0 off=7
+[00:20:34.461] INFO  [mk3_Halain] [travel] mode walk             usable   <- chosen
+[00:20:34.461] INFO  [mk3_Halain] [travel] mode moongate         usable
+[00:20:34.461] INFO  [mk3_Halain] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:34.461] INFO  [mk3_Halain] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:34.461] LOG   [mk3_Halain] event travel_mode: walk
+[00:20:34.461] INFO  [mk3_Halain] [travel] plan mobile 0x000010B3: ok legs=1 ~5 tiles transit=0 nodes=0
+[00:20:34.660] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:20:38.979] INFO  [mk3_Halain] [action] goto (1449,1616) from (1454,1614,20)
+[00:20:38.979] LOG   [mk3_Halain] event goto_start: target=(1449,1616) from=(1454,1614)
+[00:20:38.979] INFO  [mk3_Halain] [bot] running from (1454,1614,20) to (1449,1616,z20)
+[00:20:38.979] INFO  [mk3_Halain] [bot] planning path to (1449,1616) in background
+[00:20:39.041] INFO  [mk3_Halain] [action] goto finished at (1454,1614,20); target (1449,1616); stopped short (off by 7 tile(s))
+[00:20:39.041] LOG   [mk3_Halain] event goto_done: at=(1454,1614) target=(1449,1616) arrived=0 off=7
+[00:20:39.715] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:20:40.266] INFO  [mk3_Halain] [action] goto (1449,1616) from (1454,1614,20)
+[00:20:40.266] LOG   [mk3_Halain] event goto_start: target=(1449,1616) from=(1454,1614)
+[00:20:40.266] INFO  [mk3_Halain] [bot] running from (1454,1614,20) to (1449,1616,z20)
+[00:20:40.266] INFO  [mk3_Halain] [bot] planning path to (1449,1616) in background
+[00:20:43.119] INFO  [mk3_Halain] [action] goto finished at (1454,1614,20); target (1449,1616); stopped short (off by 7 tile(s))
+[00:20:43.119] LOG   [mk3_Halain] event goto_done: at=(1454,1614) target=(1449,1616) arrived=0 off=7
+[00:20:43.119] LOG   [mk3_Halain] event travel_escape: from=(1454,1614,20) to=(1448,1624) attempt=1
+[00:20:43.119] INFO  [mk3_Halain] [action] goto (1448,1624) from (1454,1614,20)
+[00:20:43.119] LOG   [mk3_Halain] event goto_start: target=(1448,1624) from=(1454,1614)
+[00:20:43.119] INFO  [mk3_Halain] [bot] running from (1454,1614,20) to (1448,1624,z20)
+[00:20:43.119] INFO  [mk3_Halain] [bot] planning path to (1448,1624) in background
+[00:20:43.224] INFO  [mk3_Halain] [action] goto finished at (1454,1614,20); target (1448,1624); stopped short (off by 16 tile(s))
+[00:20:43.224] LOG   [mk3_Halain] event goto_done: at=(1454,1614) target=(1448,1624) arrived=0 off=16
+[00:20:43.224] INFO  [mk3_Halain] [travel] recovery walk fell short at (1454,1614,20) (off 10); attempt 1/3
+[00:20:43.224] LOG   [mk3_Halain] event travel_recovery_done: reached=0 at=(1454,1614,20) off=10 attempt=1
+[00:20:43.224] LOG   [mk3_Halain] event travel_escape: from=(1454,1614,20) to=(1464,1608) attempt=2
+[00:20:43.224] INFO  [mk3_Halain] [action] goto (1464,1608) from (1454,1614,20)
+[00:20:43.224] LOG   [mk3_Halain] event goto_start: target=(1464,1608) from=(1454,1614)
+[00:20:43.224] INFO  [mk3_Halain] [bot] running from (1454,1614,20) to (1464,1608,z20)
+[00:20:43.224] INFO  [mk3_Halain] [bot] planning path to (1464,1608) in background
+[00:20:43.347] INFO  [mk3_Halain] [action] goto finished at (1454,1614,20); target (1464,1608); stopped short (off by 16 tile(s))
+[00:20:43.347] LOG   [mk3_Halain] event goto_done: at=(1454,1614) target=(1464,1608) arrived=0 off=16
+[00:20:43.347] INFO  [mk3_Halain] [travel] recovery walk fell short at (1454,1614,20) (off 10); attempt 1/3
+[00:20:43.347] LOG   [mk3_Halain] event travel_recovery_done: reached=0 at=(1454,1614,20) off=10 attempt=1
+[00:20:43.347] LOG   [mk3_Halain] event travel_escape: from=(1454,1614,20) to=(1464,1624) attempt=3
+[00:20:43.347] INFO  [mk3_Halain] [action] goto (1464,1624) from (1454,1614,20)
+[00:20:43.347] LOG   [mk3_Halain] event goto_start: target=(1464,1624) from=(1454,1614)
+[00:20:43.347] INFO  [mk3_Halain] [bot] running from (1454,1614,20) to (1464,1624,z20)
+[00:20:43.347] INFO  [mk3_Halain] [bot] planning path to (1464,1624) in background
+[00:20:43.409] INFO  [mk3_Halain] [action] goto finished at (1454,1614,20); target (1464,1624); stopped short (off by 20 tile(s))
+[00:20:43.409] LOG   [mk3_Halain] event goto_done: at=(1454,1614) target=(1464,1624) arrived=0 off=20
+[00:20:43.409] INFO  [mk3_Halain] [travel] recovery walk fell short at (1454,1614,20) (off 10); attempt 1/3
+[00:20:43.409] LOG   [mk3_Halain] event travel_recovery_done: reached=0 at=(1454,1614,20) off=10 attempt=1
+[00:20:43.409] INFO  [mk3_Halain] [travel] mobile 0x000010B3 FAILED at (1454,1614,20) -- sealed in; recovery exhausted
+[00:20:43.409] LOG   [mk3_Halain] event travel_failed: label='mobile 0x000010B3' ok=0 at=(1454,1614) legs=1 plans=4 why='sealed in; recovery exhausted'
+[00:20:43.467] INFO  [mk3_Halain] [travel] mobile 0x000010B3 -> (1449,1616) r=1 from (1454,1614)
+[00:20:43.467] LOG   [mk3_Halain] event travel_start: label='mobile 0x000010B3' target=(1449,1616) radius=1 from=(1454,1614)
+[00:20:43.467] INFO  [life] food: the 'baker' is 5 tiles off (dz 0) -- walking into reach (chase 2 of 3)
+[00:20:43.467] INFO  [mk3_Halain] [travel] mode walk             usable   <- chosen
+[00:20:43.467] INFO  [mk3_Halain] [travel] mode moongate         usable
+[00:20:43.467] INFO  [mk3_Halain] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:43.468] INFO  [mk3_Halain] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:43.468] LOG   [mk3_Halain] event travel_mode: walk
+[00:20:43.468] INFO  [mk3_Halain] [travel] plan mobile 0x000010B3: ok legs=1 ~5 tiles transit=0 nodes=0
+[00:20:43.530] INFO  [mk3_Halain] [action] goto (1449,1616) from (1454,1614,20)
+[00:20:43.530] LOG   [mk3_Halain] event goto_start: target=(1449,1616) from=(1454,1614)
+[00:20:43.530] INFO  [mk3_Halain] [bot] running from (1454,1614,20) to (1449,1616,z20)
+[00:20:43.530] INFO  [mk3_Halain] [bot] planning path to (1449,1616) in background
+[00:20:43.652] INFO  [mk3_Halain] [action] goto finished at (1454,1614,20); target (1449,1616); stopped short (off by 7 tile(s))
+[00:20:43.652] LOG   [mk3_Halain] event goto_done: at=(1454,1614) target=(1449,1616) arrived=0 off=7
+[00:20:44.755] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:20:44.894] INFO  [mk3_Halain] [action] goto (1449,1616) from (1454,1614,20)
+[00:20:44.894] LOG   [mk3_Halain] event goto_start: target=(1449,1616) from=(1454,1614)
+[00:20:44.894] INFO  [mk3_Halain] [bot] running from (1454,1614,20) to (1449,1616,z20)
+[00:20:44.894] INFO  [mk3_Halain] [bot] planning path to (1449,1616) in background
+[00:20:44.957] INFO  [mk3_Halain] [bot] replan to (1449,1616): 6 steps in 139.4us
+[00:20:45.865] INFO  [mk3_Halain] [bot] lookahead patched around block at step 1: anchor=4 new segment=4 path=4 in 48.8us
+[00:20:47.107] INFO  [mk3_Halain] [travel] mobile 0x000010B3 ARRIVED at (1450,1616,20)
+[00:20:47.107] LOG   [mk3_Halain] event travel_done: label='mobile 0x000010B3' ok=1 at=(1450,1616) legs=1 plans=1 why=''
+[00:20:47.107] INFO  [mk3_Halain] [chat uni  ] Vorar: Lionel buy
+[00:20:47.109] INFO  [life] food: within reach
+[00:20:47.111] INFO  [mk3_Halain] [ACTION] vendor_buy start
+[00:20:47.111] INFO  [mk3_Halain] [VENDOR] open vendor=0x000010B3 say='Lionel buy'
+[00:20:47.111] INFO  [life] food: asking the 'baker' to show something to eat (attempt 1)
+[00:20:47.120] INFO  [mk3_Halain] [chat uni  ] : Lionel buy
+[00:20:47.120] INFO  [mk3_Halain] [chat ascii] Lionel: Yes?
+[00:20:47.120] INFO  [mk3_Halain] [chat ascii] Lionel: I'm here to sell thee supplies.
+[00:20:47.120] INFO  [mk3_Halain] [0x3C] container contents: 11 item(s)
+[00:20:47.120] INFO  [mk3_Halain] [0x74] pairing: straight (straight 1, mirrored 0 of 11 rows)
+[00:20:47.120] INFO  [mk3_Halain] [0x74] vendor shop data: cont=0x400010A9 11 item(s), layer=0x1A
+[00:20:47.120] INFO  [mk3_Halain] [0x74]   bread loaves                 gfx=0x103B qty=77   price=8
+[00:20:47.120] INFO  [mk3_Halain] [0x74]   baked pie                    gfx=0x1041 qty=23   price=17
+[00:20:47.120] INFO  [mk3_Halain] [0x74]   cake                         gfx=0x09E9 qty=22   price=38
+[00:20:47.120] INFO  [mk3_Halain] [0x74]   muffins                      gfx=0x09EA qty=46   price=8
+[00:20:47.120] INFO  [mk3_Halain] [0x74]   sack of flour                gfx=0x1039 qty=105  price=6
+[00:20:47.120] INFO  [mk3_Halain] [0x74]   french bread                 gfx=0x098C qty=33   price=9
+[00:20:47.120] INFO  [mk3_Halain] [0x74]   pan of cookies               gfx=0x160B qty=64   price=7
+[00:20:47.120] INFO  [mk3_Halain] [0x74]   pizzas                       gfx=0x1040 qty=57   price=15
+[00:20:47.120] INFO  [mk3_Halain] [0x74]   jars of honey                gfx=0x09EC qty=55   price=10
+[00:20:47.120] INFO  [mk3_Halain] [0x74]   dough                        gfx=0x103D qty=45   price=12
+[00:20:47.120] INFO  [mk3_Halain] [0x74]   rolling pin                  gfx=0x1043 qty=5    price=9
+[00:20:47.120] INFO  [mk3_Halain] [0x3C] container contents: 0 item(s)
+[00:20:47.120] INFO  [mk3_Halain] [0x74] vendor shop data: cont=0x40000E04 0 item(s), layer=0x1B
+[00:20:47.120] INFO  [mk3_Halain] [VENDOR] offer from 0x000010B3: 11 item(s)
+[00:20:47.120] INFO  [mk3_Halain] [VENDOR]   0x400193BC bread loaves           x77  8 gp
+[00:20:47.120] INFO  [mk3_Halain] [VENDOR]   0x400193BB baked pie              x23  17 gp
+[00:20:47.120] INFO  [mk3_Halain] [VENDOR]   0x400193B8 cake                   x22  38 gp
+[00:20:47.120] INFO  [mk3_Halain] [VENDOR]   0x400193B7 muffins                x46  8 gp
+[00:20:47.120] INFO  [mk3_Halain] [VENDOR]   0x400193B5 sack of flour          x105 6 gp
+[00:20:47.120] INFO  [mk3_Halain] [VENDOR]   0x400193B4 french bread           x33  9 gp
+[00:20:47.120] INFO  [mk3_Halain] [VENDOR]   0x400193B2 pan of cookies         x64  7 gp
+[00:20:47.120] INFO  [mk3_Halain] [VENDOR]   0x400193AF pizzas                 x57  15 gp
+[00:20:47.120] LOG   [mk3_Halain] event vendor_offer: vendor=0x000010B3 items=11
+[00:20:47.120] INFO  [mk3_Halain] [ACTION_RESULT] vendor_buy success (8ms) vendor offer received
+[00:20:47.120] LOG   [mk3_Halain] event action_result: vendor_buy success took=8ms vendor offer received
+[00:20:47.120] INFO  [mk3_Halain] [0x24] vendor buy gump for 0x000010B3
+[00:20:47.122] INFO  [life] food: the shop is open
+[00:20:47.183] INFO  [life] food: the shop is open; the caller chooses
+[00:20:47.183] INFO  [life] food: buying bread loaves at 8 gold
+[00:20:47.183] INFO  [mk3_Halain] [ACTION] vendor_buy start
+[00:20:47.183] INFO  [mk3_Halain] [policy] allowed NPC purchase of i_bread_loaf (0x103B): basic food: a character with hunger enabled must be able to eat, and Revolution's cooking economy shows food was not an income good [BASIC_FOOD]
+[00:20:47.183] INFO  [mk3_Halain] [VENDOR] buy item=0x400193BC qty=2 from vendor=0x000010B3 gold=10000
+[00:20:47.196] INFO  [mk3_Halain] [ACTION_RESULT] vendor_buy success (14ms) purchased item delivered
+[00:20:47.196] LOG   [mk3_Halain] event action_result: vendor_buy success took=14ms purchased item delivered
+[00:20:47.196] INFO  [mk3_Halain] [chat ascii] Lionel: Here you are, Halain That will be 16 gold coins.  I thank thee for thy business.
+[00:20:47.196] INFO  [mk3_Halain] [0x3B] vendor transaction closed: vendor=0x000010B3 flag=0
+[00:20:47.199] INFO  [life] goal_changed=TRAIN_AT_NPC from=GET_FOOD reason="TRAIN_AT_NPC 60.5 superseded GET_FOOD 0.0"
+[00:20:47.199] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedMakeBandages(bandages BLOCKED 0.70) NeedSkillTraining(Carpentry 0.55) NeedEquipment(heal potions 0.50) NeedEquipment(bandages 0.50) NeedTraining(Swordsmanship 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedLogs(logs 0.40) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[00:20:47.199] INFO  [life]   score=60.5
+[00:20:47.199] INFO  [life]   reason: NeedSkillTraining urgency 0.55 x 110 = 60.5
+[00:20:47.199] INFO  [life]   reason: Carpentry 0.0 -> 100.0, gold 10000 (fee is quoted on arrival, roughly 300)
+[00:20:47.199] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 179s after achieving nothing
+[00:20:47.199] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 208s after achieving nothing
+[00:20:47.199] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[00:20:47.199] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 10000 (buyable at 200))
+[00:20:47.318] INFO  [mk3_Halain] [bot] arrived at (1449,1616,20)
+[00:20:49.773] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:20:50.400] INFO  [mk3_Halain] [chat uni  ] : Lionel buy
+[00:20:50.400] INFO  [mk3_Halain] [chat ascii] Lionel: Excuse me Halain, but Amara wants to speak to me
+[00:20:50.400] INFO  [mk3_Halain] [chat ascii] Lionel: Hello!
+[00:20:50.400] INFO  [mk3_Halain] [chat ascii] Lionel: I'm here to sell thee supplies.
+[00:20:50.448] INFO  [mk3_Halain] [chat ascii] Lionel: Here you are, Amara That will be 16 gold coins.  I thank thee for thy business.
+[00:20:54.830] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:20:56.206] INFO  [life] plan=buy reason="below the ceiling, worth buying, and affordable"
+[00:20:56.206] INFO  [life] training: looking for a 'carpenter' to teach Carpentry (trip 1)
+[00:20:56.210] INFO  [mk3_Halain] [travel] place: skipping Minoc architect -- 1864 tiles and 0 gates for a service Britain carpenter offers
+[00:20:56.210] INFO  [mk3_Halain] [travel] place: skipping Minoc carpenter -- 1864 tiles and 0 gates for a service Britain carpenter offers
+[00:20:56.210] INFO  [mk3_Halain] [travel] place: skipping Vesper carpenter -- 1960 tiles and 0 gates for a service Britain carpenter offers
+[00:20:56.210] INFO  [mk3_Halain] [travel] Britain carpenter -> (1430,1597) r=5 from (1449,1616)
+[00:20:56.210] LOG   [mk3_Halain] event travel_start: label='Britain carpenter' target=(1430,1597) radius=5 from=(1449,1616)
+[00:20:56.210] INFO  [mk3_Halain] [travel] mode walk             usable   <- chosen
+[00:20:56.210] INFO  [mk3_Halain] [travel] mode moongate         usable
+[00:20:56.210] INFO  [mk3_Halain] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:56.210] INFO  [mk3_Halain] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:56.210] LOG   [mk3_Halain] event travel_mode: walk
+[00:20:56.210] INFO  [mk3_Halain] [travel] plan Britain carpenter: ok legs=1 ~19 tiles transit=0 nodes=0
+[00:20:56.267] INFO  [mk3_Halain] [action] goto finished at (1449,1616,20); target (1449,1616); ARRIVED (off by 0 tile(s))
+[00:20:56.267] LOG   [mk3_Halain] event goto_done: at=(1449,1616) target=(1449,1616) arrived=1 off=0
+[00:20:56.267] INFO  [mk3_Halain] [action] goto (1430,1597) from (1449,1616,20)
+[00:20:56.267] LOG   [mk3_Halain] event goto_start: target=(1430,1597) from=(1449,1616)
+[00:20:56.267] INFO  [mk3_Halain] [bot] running from (1449,1616,20) to (1430,1597,z20)
+[00:20:56.267] INFO  [mk3_Halain] [bot] planning path to (1430,1597) in background
+[00:20:56.389] INFO  [mk3_Halain] [action] goto finished at (1449,1616,20); target (1430,1597); stopped short (off by 38 tile(s))
+[00:20:56.389] LOG   [mk3_Halain] event goto_done: at=(1449,1616) target=(1430,1597) arrived=0 off=38
+[00:20:57.212] INFO  [mk3_Halain] [chat uni  ] Vorar: Lionel buy
+[00:20:57.644] INFO  [mk3_Halain] [action] goto (1430,1597) from (1449,1616,20)
+[00:20:57.644] LOG   [mk3_Halain] event goto_start: target=(1430,1597) from=(1449,1616)
+[00:20:57.644] INFO  [mk3_Halain] [bot] running from (1449,1616,20) to (1430,1597,z20)
+[00:20:57.644] INFO  [mk3_Halain] [bot] planning path to (1430,1597) in background
+[00:20:57.704] INFO  [mk3_Halain] [action] goto finished at (1449,1616,20); target (1430,1597); stopped short (off by 38 tile(s))
+[00:20:57.704] LOG   [mk3_Halain] event goto_done: at=(1449,1616) target=(1430,1597) arrived=0 off=38
+[00:20:58.928] INFO  [mk3_Halain] [action] goto (1430,1597) from (1449,1616,20)
+[00:20:58.928] LOG   [mk3_Halain] event goto_start: target=(1430,1597) from=(1449,1616)
+[00:20:58.928] INFO  [mk3_Halain] [bot] running from (1449,1616,20) to (1430,1597,z20)
+[00:20:58.928] INFO  [mk3_Halain] [bot] planning path to (1430,1597) in background
+[00:20:58.989] INFO  [mk3_Halain] [action] goto finished at (1449,1616,20); target (1430,1597); stopped short (off by 38 tile(s))
+[00:20:58.989] LOG   [mk3_Halain] event goto_done: at=(1449,1616) target=(1430,1597) arrived=0 off=38
+[00:20:59.884] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:21:00.238] INFO  [mk3_Halain] [travel] mode walk             usable   <- chosen
+[00:21:00.238] INFO  [mk3_Halain] [travel] mode moongate         usable
+[00:21:00.238] INFO  [mk3_Halain] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:00.238] INFO  [mk3_Halain] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:00.238] LOG   [mk3_Halain] event travel_mode: walk
+[00:21:00.238] INFO  [mk3_Halain] [travel] plan Britain carpenter: ok legs=1 ~19 tiles transit=0 nodes=0
+[00:21:01.769] INFO  [mk3_Halain] [action] goto (1430,1597) from (1449,1616,20)
+[00:21:01.769] LOG   [mk3_Halain] event goto_start: target=(1430,1597) from=(1449,1616)
+[00:21:01.769] INFO  [mk3_Halain] [bot] running from (1449,1616,20) to (1430,1597,z20)
+[00:21:01.769] INFO  [mk3_Halain] [bot] planning path to (1430,1597) in background
+[00:21:01.892] INFO  [mk3_Halain] [action] goto finished at (1449,1616,20); target (1430,1597); stopped short (off by 38 tile(s))
+[00:21:01.892] LOG   [mk3_Halain] event goto_done: at=(1449,1616) target=(1430,1597) arrived=0 off=38
+[00:21:03.107] INFO  [mk3_Halain] [action] goto (1430,1597) from (1449,1616,20)
+[00:21:03.107] LOG   [mk3_Halain] event goto_start: target=(1430,1597) from=(1449,1616)
+[00:21:03.107] INFO  [mk3_Halain] [bot] running from (1449,1616,20) to (1430,1597,z20)
+[00:21:03.107] INFO  [mk3_Halain] [bot] planning path to (1430,1597) in background
+[00:21:03.215] INFO  [mk3_Halain] [action] goto finished at (1449,1616,20); target (1430,1597); stopped short (off by 38 tile(s))
+[00:21:03.215] LOG   [mk3_Halain] event goto_done: at=(1449,1616) target=(1430,1597) arrived=0 off=38
+[00:21:04.439] INFO  [mk3_Halain] [action] goto (1430,1597) from (1449,1616,20)
+[00:21:04.439] LOG   [mk3_Halain] event goto_start: target=(1430,1597) from=(1449,1616)
+[00:21:04.439] INFO  [mk3_Halain] [bot] running from (1449,1616,20) to (1430,1597,z20)
+[00:21:04.439] INFO  [mk3_Halain] [bot] planning path to (1430,1597) in background
+[00:21:04.533] INFO  [mk3_Halain] [action] goto finished at (1449,1616,20); target (1430,1597); stopped short (off by 38 tile(s))
+[00:21:04.533] LOG   [mk3_Halain] event goto_done: at=(1449,1616) target=(1430,1597) arrived=0 off=38
+[00:21:04.903] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:21:05.743] INFO  [mk3_Halain] [travel] mode walk             usable   <- chosen
+[00:21:05.743] INFO  [mk3_Halain] [travel] mode moongate         usable
+[00:21:05.743] INFO  [mk3_Halain] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:05.743] INFO  [mk3_Halain] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:05.743] LOG   [mk3_Halain] event travel_mode: walk
+[00:21:05.743] INFO  [mk3_Halain] [travel] plan Britain carpenter: ok legs=1 ~19 tiles transit=0 nodes=0
+[00:21:07.334] INFO  [mk3_Halain] [chat uni  ] Vorar: Lionel buy
+[00:21:08.743] INFO  [mk3_Halain] [action] goto (1430,1597) from (1449,1616,20)
+[00:21:08.743] LOG   [mk3_Halain] event goto_start: target=(1430,1597) from=(1449,1616)
+[00:21:08.743] INFO  [mk3_Halain] [bot] running from (1449,1616,20) to (1430,1597,z20)
+[00:21:08.743] INFO  [mk3_Halain] [bot] planning path to (1430,1597) in background
+[00:21:08.866] INFO  [mk3_Halain] [action] goto finished at (1449,1616,20); target (1430,1597); stopped short (off by 38 tile(s))
+[00:21:08.866] LOG   [mk3_Halain] event goto_done: at=(1449,1616) target=(1430,1597) arrived=0 off=38
+[00:21:09.019] INFO  [mk3_Halain] [chat uni  ] : Lionel buy
+[00:21:09.927] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:21:10.109] INFO  [mk3_Halain] [action] goto (1430,1597) from (1449,1616,20)
+[00:21:10.109] LOG   [mk3_Halain] event goto_start: target=(1430,1597) from=(1449,1616)
+[00:21:10.110] INFO  [mk3_Halain] [bot] running from (1449,1616,20) to (1430,1597,z20)
+[00:21:10.110] INFO  [mk3_Halain] [bot] planning path to (1430,1597) in background
+[00:21:10.170] INFO  [mk3_Halain] [action] goto finished at (1449,1616,20); target (1430,1597); stopped short (off by 38 tile(s))
+[00:21:10.170] LOG   [mk3_Halain] event goto_done: at=(1449,1616) target=(1430,1597) arrived=0 off=38
+[00:21:11.193] INFO  [mk3_Halain] [chat ascii] System: Observer has arrived in Minoc.
+[00:21:11.372] INFO  [mk3_Halain] [action] goto (1430,1597) from (1449,1616,20)
+[00:21:11.372] LOG   [mk3_Halain] event goto_start: target=(1430,1597) from=(1449,1616)
+[00:21:11.372] INFO  [mk3_Halain] [bot] running from (1449,1616,20) to (1430,1597,z20)
+[00:21:11.372] INFO  [mk3_Halain] [bot] planning path to (1430,1597) in background
+[00:21:11.374] INFO  [mk3_Halain] [action] goto finished at (1449,1616,20); target (1430,1597); stopped short (off by 38 tile(s))
+[00:21:11.374] LOG   [mk3_Halain] event goto_done: at=(1449,1616) target=(1430,1597) arrived=0 off=38
+[00:21:12.586] INFO  [mk3_Halain] [travel] mode walk             usable   <- chosen
+[00:21:12.586] INFO  [mk3_Halain] [travel] mode moongate         usable
+[00:21:12.586] INFO  [mk3_Halain] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:12.586] INFO  [mk3_Halain] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:12.586] LOG   [mk3_Halain] event travel_mode: walk
+[00:21:12.586] INFO  [mk3_Halain] [travel] plan Britain carpenter: ok legs=1 ~19 tiles transit=0 nodes=0
+[00:21:14.156] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_06.halain/state.json
+[00:21:14.571] INFO  [mk3_Halain] [chat ascii] System: Observer has departed from Minoc.
+[00:21:14.943] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:21:17.138] INFO  [mk3_Halain] [action] goto (1430,1597) from (1449,1616,20)
+[00:21:17.138] LOG   [mk3_Halain] event goto_start: target=(1430,1597) from=(1449,1616)
+[00:21:17.138] INFO  [mk3_Halain] [bot] running from (1449,1616,20) to (1430,1597,z20)
+[00:21:17.138] INFO  [mk3_Halain] [bot] planning path to (1430,1597) in background
+[00:21:17.199] INFO  [mk3_Halain] [action] goto finished at (1449,1616,20); target (1430,1597); stopped short (off by 38 tile(s))
+[00:21:17.199] LOG   [mk3_Halain] event goto_done: at=(1449,1616) target=(1430,1597) arrived=0 off=38
+[00:21:18.424] INFO  [mk3_Halain] [action] goto (1430,1597) from (1449,1616,20)
+[00:21:18.424] LOG   [mk3_Halain] event goto_start: target=(1430,1597) from=(1449,1616)
+[00:21:18.424] INFO  [mk3_Halain] [bot] running from (1449,1616,20) to (1430,1597,z20)
+[00:21:18.424] INFO  [mk3_Halain] [bot] planning path to (1430,1597) in background
+[00:21:18.547] INFO  [mk3_Halain] [action] goto finished at (1449,1616,20); target (1430,1597); stopped short (off by 38 tile(s))
+[00:21:18.547] LOG   [mk3_Halain] event goto_done: at=(1449,1616) target=(1430,1597) arrived=0 off=38
+[00:21:19.066] INFO  [mk3_Halain] [chat uni  ] : Lionel buy
+[00:21:19.802] INFO  [mk3_Halain] [action] goto (1430,1597) from (1449,1616,20)
+[00:21:19.802] LOG   [mk3_Halain] event goto_start: target=(1430,1597) from=(1449,1616)
+[00:21:19.802] INFO  [mk3_Halain] [bot] running from (1449,1616,20) to (1430,1597,z20)
+[00:21:19.802] INFO  [mk3_Halain] [bot] planning path to (1430,1597) in background
+[00:21:19.924] INFO  [mk3_Halain] [action] goto finished at (1449,1616,20); target (1430,1597); stopped short (off by 38 tile(s))
+[00:21:19.924] LOG   [mk3_Halain] event goto_done: at=(1449,1616) target=(1430,1597) arrived=0 off=38
+[00:21:19.924] LOG   [mk3_Halain] event travel_escape: from=(1449,1616,20) to=(1448,1608) attempt=1
+[00:21:19.924] INFO  [mk3_Halain] [action] goto (1448,1608) from (1449,1616,20)
+[00:21:19.924] LOG   [mk3_Halain] event goto_start: target=(1448,1608) from=(1449,1616)
+[00:21:19.924] INFO  [mk3_Halain] [bot] running from (1449,1616,20) to (1448,1608,z20)
+[00:21:19.925] INFO  [mk3_Halain] [bot] planning path to (1448,1608) in background
+[00:21:19.987] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:21:20.048] INFO  [mk3_Halain] [action] goto finished at (1449,1616,20); target (1448,1608); stopped short (off by 9 tile(s))
+[00:21:20.048] LOG   [mk3_Halain] event goto_done: at=(1449,1616) target=(1448,1608) arrived=0 off=9
+[00:21:20.048] INFO  [mk3_Halain] [travel] recovery walk fell short at (1449,1616,20) (off 8); attempt 1/3
+[00:21:20.048] LOG   [mk3_Halain] event travel_recovery_done: reached=0 at=(1449,1616,20) off=8 attempt=1
+[00:21:20.048] LOG   [mk3_Halain] event travel_escape: from=(1449,1616,20) to=(1464,1608) attempt=2
+[00:21:20.048] INFO  [mk3_Halain] [action] goto (1464,1608) from (1449,1616,20)
+[00:21:20.048] LOG   [mk3_Halain] event goto_start: target=(1464,1608) from=(1449,1616)
+[00:21:20.048] INFO  [mk3_Halain] [bot] running from (1449,1616,20) to (1464,1608,z20)
+[00:21:20.048] INFO  [mk3_Halain] [bot] planning path to (1464,1608) in background
+[00:21:20.172] INFO  [mk3_Halain] [action] goto finished at (1449,1616,20); target (1464,1608); stopped short (off by 23 tile(s))
+[00:21:20.172] LOG   [mk3_Halain] event goto_done: at=(1449,1616) target=(1464,1608) arrived=0 off=23
+[00:21:20.172] INFO  [mk3_Halain] [travel] recovery walk fell short at (1449,1616,20) (off 15); attempt 1/3
+[00:21:20.172] LOG   [mk3_Halain] event travel_recovery_done: reached=0 at=(1449,1616,20) off=15 attempt=1
+[00:21:20.172] LOG   [mk3_Halain] event travel_escape: from=(1449,1616,20) to=(1464,1624) attempt=3
+[00:21:20.172] INFO  [mk3_Halain] [action] goto (1464,1624) from (1449,1616,20)
+[00:21:20.172] LOG   [mk3_Halain] event goto_start: target=(1464,1624) from=(1449,1616)
+[00:21:20.172] INFO  [mk3_Halain] [bot] running from (1449,1616,20) to (1464,1624,z20)
+[00:21:20.172] INFO  [mk3_Halain] [bot] planning path to (1464,1624) in background
+[00:21:20.172] INFO  [mk3_Halain] [chat uni  ] : Lionel buy
+[00:21:20.233] INFO  [mk3_Halain] [action] goto finished at (1449,1616,20); target (1464,1624); stopped short (off by 23 tile(s))
+[00:21:20.233] LOG   [mk3_Halain] event goto_done: at=(1449,1616) target=(1464,1624) arrived=0 off=23
+[00:21:20.233] INFO  [mk3_Halain] [travel] recovery walk fell short at (1449,1616,20) (off 15); attempt 1/3
+[00:21:20.233] LOG   [mk3_Halain] event travel_recovery_done: reached=0 at=(1449,1616,20) off=15 attempt=1
+[00:21:20.233] INFO  [mk3_Halain] [travel] Britain carpenter FAILED at (1449,1616,20) -- sealed in; recovery exhausted
+[00:21:20.233] LOG   [mk3_Halain] event travel_failed: label='Britain carpenter' ok=0 at=(1449,1616) legs=1 plans=4 why='sealed in; recovery exhausted'
+[00:21:20.294] INFO  [life] training: arrived at 1449,1616 -- asking who is here
+[00:21:20.294] INFO  [mk3_Halain] [action] scanning nearby mobiles for names
+[00:21:20.294] INFO  [mk3_Halain] [action] requested 6 paperdoll(s) for trade titles
+[00:21:20.307] INFO  [mk3_Halain] [mobiles] nearby (11):
+[00:21:20.307] INFO  [mk3_Halain]   Amara 0x00012E70
+[00:21:20.307] INFO  [mk3_Halain]   Lionel 0x000010B3
+[00:21:20.307] INFO  [mk3_Halain]   Aelia 0x00013DA6
+[00:21:20.307] INFO  [mk3_Halain]   Faustus 0x000181F7
+[00:21:20.307] INFO  [mk3_Halain]   Vorar 0x00016305
+[00:21:20.307] INFO  [mk3_Halain]   Odessa 0x000194DE
+[00:21:20.307] INFO  [mk3_Halain]   Serena 0x000193F7
+[00:21:20.307] INFO  [mk3_Halain]   Cyras 0x00015725
+[00:21:20.307] INFO  [mk3_Halain]   Delras 0x00015A59
+[00:21:20.307] INFO  [mk3_Halain]   Jack 0x00001119
+[00:21:20.307] INFO  [mk3_Halain]   Hadi 0x0000110A
+[00:21:20.307] INFO  [mk3_Halain] [0x20] player @(1449,1616,20) facing=1
+[00:21:20.307] INFO  [mk3_Halain] [0x88] paperdoll 0x00013DA6: "Aelia, Apprentice Tailor"
+[00:21:20.307] INFO  [mk3_Halain] [0x88] paperdoll 0x000194DE: "Odessa, Apprentice Miner"
+[00:21:20.307] INFO  [mk3_Halain] [0x20] player @(1449,1616,20) facing=2
+[00:21:20.307] INFO  [mk3_Halain] [0x88] paperdoll 0x00012E70: "Amara, Apprentice Tailor"
+[00:21:20.307] INFO  [mk3_Halain] [0x20] player @(1449,1616,20) facing=6
+[00:21:20.307] INFO  [mk3_Halain] [0x88] paperdoll 0x00001119: "Jack, the tanner"
+[00:21:20.307] INFO  [mk3_Halain] [world] Jack, the tanner is a tanner at (1433,1614)
+[00:21:20.307] INFO  [mk3_Halain] [0x20] player @(1449,1616,20) facing=2
+[00:21:20.307] INFO  [mk3_Halain] [0x88] paperdoll 0x000193F7: "Serena, Apprentice Miner"
+[00:21:20.307] INFO  [mk3_Halain] [0x20] player @(1449,1616,20) facing=1
+[00:21:20.307] INFO  [mk3_Halain] [0x88] paperdoll 0x000181F7: "Faustus, Apprentice Armsman"
+[00:21:20.569] INFO  [mk3_Halain] [chat uni  ] Odessa: Lionel buy
+[00:21:20.569] INFO  [mk3_Halain] [chat ascii] Lionel: Excuse me Amara, but Odessa wants to speak to me
+[00:21:20.569] INFO  [mk3_Halain] [chat ascii] Lionel: Greetings. What can I do for thee?
+[00:21:20.569] INFO  [mk3_Halain] [chat ascii] Lionel: I'm here to sell thee supplies.
+[00:21:22.846] INFO  [life] training: looking for a 'carpenter' to teach Carpentry (trip 2)
+[00:21:22.851] INFO  [mk3_Halain] [travel] place: skipping Minoc architect -- 1864 tiles and 0 gates for a service Jhelom carpenter offers
+[00:21:22.851] INFO  [mk3_Halain] [travel] place: skipping Minoc carpenter -- 1864 tiles and 0 gates for a service Jhelom carpenter offers
+[00:21:22.851] INFO  [mk3_Halain] [travel] place: skipping Vesper carpenter -- 1960 tiles and 0 gates for a service Jhelom carpenter offers
+[00:21:22.851] INFO  [mk3_Halain] [travel] place: skipping The Mage's Seat carpenter -- 1468 tiles and 5 gates for a service Jhelom carpenter offers
+[00:21:22.851] INFO  [mk3_Halain] [travel] Jhelom carpenter -> (1435,3820) r=5 from (1449,1616)
+[00:21:22.851] LOG   [mk3_Halain] event travel_start: label='Jhelom carpenter' target=(1435,3820) radius=5 from=(1449,1616)
+[00:21:22.851] INFO  [mk3_Halain] [travel] mode moongate         usable   <- chosen
+[00:21:22.851] INFO  [mk3_Halain] [travel] mode walk             usable
+[00:21:22.851] INFO  [mk3_Halain] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:22.851] INFO  [mk3_Halain] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:22.851] LOG   [mk3_Halain] event travel_mode: moongate
+[00:21:22.851] INFO  [mk3_Halain] [travel] plan Jhelom carpenter: ok legs=15 ~640 tiles transit=1 nodes=261
+[00:21:22.908] INFO  [mk3_Halain] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:22.908] INFO  [mk3_Halain] [action] goto (1416,1656) from (1449,1616,20)
+[00:21:22.908] LOG   [mk3_Halain] event goto_start: target=(1416,1656) from=(1449,1616)
+[00:21:22.908] INFO  [mk3_Halain] [bot] running from (1449,1616,20) to (1416,1656)
+[00:21:22.908] INFO  [mk3_Halain] [bot] planning path to (1416,1656) in background
+[00:21:23.031] INFO  [mk3_Halain] [action] goto finished at (1449,1616,20); target (1416,1656); stopped short (off by 73 tile(s))
+[00:21:23.031] LOG   [mk3_Halain] event goto_done: at=(1449,1616) target=(1416,1656) arrived=0 off=73
+[00:21:24.275] INFO  [mk3_Halain] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:24.275] INFO  [mk3_Halain] [action] goto (1416,1656) from (1449,1616,20)
+[00:21:24.275] LOG   [mk3_Halain] event goto_start: target=(1416,1656) from=(1449,1616)
+[00:21:24.275] INFO  [mk3_Halain] [bot] running from (1449,1616,20) to (1416,1656)
+[00:21:24.275] INFO  [mk3_Halain] [bot] planning path to (1416,1656) in background
+[00:21:24.383] INFO  [mk3_Halain] [action] goto finished at (1449,1616,20); target (1416,1656); stopped short (off by 73 tile(s))
+[00:21:24.383] LOG   [mk3_Halain] event goto_done: at=(1449,1616) target=(1416,1656) arrived=0 off=73
+[00:21:25.043] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:21:25.598] INFO  [mk3_Halain] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:25.598] INFO  [mk3_Halain] [action] goto (1416,1656) from (1449,1616,20)
+[00:21:25.598] LOG   [mk3_Halain] event goto_start: target=(1416,1656) from=(1449,1616)
+[00:21:25.598] INFO  [mk3_Halain] [bot] running from (1449,1616,20) to (1416,1656)
+[00:21:25.598] INFO  [mk3_Halain] [bot] planning path to (1416,1656) in background
+[00:21:25.722] INFO  [mk3_Halain] [action] goto finished at (1449,1616,20); target (1416,1656); stopped short (off by 73 tile(s))
+[00:21:25.722] LOG   [mk3_Halain] event goto_done: at=(1449,1616) target=(1416,1656) arrived=0 off=73
+[00:21:26.922] INFO  [mk3_Halain] [travel] mode moongate         usable   <- chosen
+[00:21:26.922] INFO  [mk3_Halain] [travel] mode walk             usable
+[00:21:26.922] INFO  [mk3_Halain] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:26.922] INFO  [mk3_Halain] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:26.922] LOG   [mk3_Halain] event travel_mode: moongate
+[00:21:26.922] INFO  [mk3_Halain] [travel] plan Jhelom carpenter: ok legs=16 ~648 tiles transit=1 nodes=257
+[00:21:28.427] INFO  [mk3_Halain] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:28.427] INFO  [mk3_Halain] [action] goto (1464,1656) from (1449,1616,20)
+[00:21:28.427] LOG   [mk3_Halain] event goto_start: target=(1464,1656) from=(1449,1616)
+[00:21:28.427] INFO  [mk3_Halain] [bot] running from (1449,1616,20) to (1464,1656)
+[00:21:28.427] INFO  [mk3_Halain] [bot] planning path to (1464,1656) in background
+[00:21:28.502] INFO  [mk3_Halain] [action] goto finished at (1449,1616,20); target (1464,1656); stopped short (off by 55 tile(s))
+[00:21:28.502] LOG   [mk3_Halain] event goto_done: at=(1449,1616) target=(1464,1656) arrived=0 off=55
+[00:21:29.206] INFO  [mk3_Halain] [chat uni  ] Aelia: Lionel buy
+[00:21:29.729] INFO  [mk3_Halain] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:29.729] INFO  [mk3_Halain] [action] goto (1464,1656) from (1449,1616,20)
+[00:21:29.729] LOG   [mk3_Halain] event goto_start: target=(1464,1656) from=(1449,1616)
+[00:21:29.729] INFO  [mk3_Halain] [bot] running from (1449,1616,20) to (1464,1656)
+[00:21:29.729] INFO  [mk3_Halain] [bot] planning path to (1464,1656) in background
+[00:21:29.853] INFO  [mk3_Halain] [action] goto finished at (1449,1616,20); target (1464,1656); stopped short (off by 55 tile(s))
+[00:21:29.853] LOG   [mk3_Halain] event goto_done: at=(1449,1616) target=(1464,1656) arrived=0 off=55
+[00:21:30.083] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:21:30.269] INFO  [mk3_Halain] [chat uni  ] Faustus: Lionel buy
+[00:21:31.087] INFO  [mk3_Halain] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:31.087] INFO  [mk3_Halain] [action] goto (1464,1656) from (1449,1616,20)
+[00:21:31.087] LOG   [mk3_Halain] event goto_start: target=(1464,1656) from=(1449,1616)
+[00:21:31.087] INFO  [mk3_Halain] [bot] running from (1449,1616,20) to (1464,1656)
+[00:21:31.087] INFO  [mk3_Halain] [bot] planning path to (1464,1656) in background
+[00:21:31.209] INFO  [mk3_Halain] [action] goto finished at (1449,1616,20); target (1464,1656); stopped short (off by 55 tile(s))
+[00:21:31.211] LOG   [mk3_Halain] event goto_done: at=(1449,1616) target=(1464,1656) arrived=0 off=55
+[00:21:32.434] INFO  [mk3_Halain] [travel] mode moongate         usable   <- chosen
+[00:21:32.434] INFO  [mk3_Halain] [travel] mode walk             usable
+[00:21:32.434] INFO  [mk3_Halain] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:32.434] INFO  [mk3_Halain] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:32.434] LOG   [mk3_Halain] event travel_mode: moongate
+[00:21:32.434] INFO  [mk3_Halain] [travel] plan Jhelom carpenter: ok legs=16 ~648 tiles transit=1 nodes=211
+[00:21:35.137] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:21:35.443] INFO  [mk3_Halain] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:35.443] INFO  [mk3_Halain] [action] goto (1448,1656) from (1449,1616,20)
+[00:21:35.443] LOG   [mk3_Halain] event goto_start: target=(1448,1656) from=(1449,1616)
+[00:21:35.443] INFO  [mk3_Halain] [bot] running from (1449,1616,20) to (1448,1656)
+[00:21:35.443] INFO  [mk3_Halain] [bot] planning path to (1448,1656) in background
+[00:21:35.565] INFO  [mk3_Halain] [action] goto finished at (1449,1616,20); target (1448,1656); stopped short (off by 41 tile(s))
+[00:21:35.565] LOG   [mk3_Halain] event goto_done: at=(1449,1616) target=(1448,1656) arrived=0 off=41
+[00:21:36.824] INFO  [mk3_Halain] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:36.824] INFO  [mk3_Halain] [action] goto (1448,1656) from (1449,1616,20)
+[00:21:36.824] LOG   [mk3_Halain] event goto_start: target=(1448,1656) from=(1449,1616)
+[00:21:36.824] INFO  [mk3_Halain] [bot] running from (1449,1616,20) to (1448,1656)
+[00:21:36.824] INFO  [mk3_Halain] [bot] planning path to (1448,1656) in background
+[00:21:36.946] INFO  [mk3_Halain] [action] goto finished at (1449,1616,20); target (1448,1656); stopped short (off by 41 tile(s))
+[00:21:36.946] LOG   [mk3_Halain] event goto_done: at=(1449,1616) target=(1448,1656) arrived=0 off=41
+[00:21:38.179] INFO  [mk3_Halain] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:38.179] INFO  [mk3_Halain] [action] goto (1448,1656) from (1449,1616,20)
+[00:21:38.179] LOG   [mk3_Halain] event goto_start: target=(1448,1656) from=(1449,1616)
+[00:21:38.179] INFO  [mk3_Halain] [bot] running from (1449,1616,20) to (1448,1656)
+[00:21:38.179] INFO  [mk3_Halain] [bot] planning path to (1448,1656) in background
+[00:21:38.304] INFO  [mk3_Halain] [action] goto finished at (1449,1616,20); target (1448,1656); stopped short (off by 41 tile(s))
+[00:21:38.304] LOG   [mk3_Halain] event goto_done: at=(1449,1616) target=(1448,1656) arrived=0 off=41
+[00:21:39.564] INFO  [mk3_Halain] [travel] mode moongate         usable   <- chosen
+[00:21:39.564] INFO  [mk3_Halain] [travel] mode walk             usable
+[00:21:39.564] INFO  [mk3_Halain] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:39.564] INFO  [mk3_Halain] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:39.564] LOG   [mk3_Halain] event travel_mode: moongate
+[00:21:39.564] INFO  [mk3_Halain] [travel] plan Jhelom carpenter: ok legs=17 ~728 tiles transit=1 nodes=328
+[00:21:40.149] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:21:40.412] INFO  [mk3_Halain] [chat uni  ] Faustus: Lionel buy
+[00:21:44.121] INFO  [mk3_Halain] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:44.121] INFO  [mk3_Halain] [action] goto (1480,1624) from (1449,1616,20)
+[00:21:44.121] LOG   [mk3_Halain] event goto_start: target=(1480,1624) from=(1449,1616)
+[00:21:44.121] INFO  [mk3_Halain] [bot] running from (1449,1616,20) to (1480,1624)
+[00:21:44.121] INFO  [mk3_Halain] [bot] planning path to (1480,1624) in background
+[00:21:44.244] INFO  [mk3_Halain] [action] goto finished at (1449,1616,20); target (1480,1624); stopped short (off by 39 tile(s))
+[00:21:44.244] LOG   [mk3_Halain] event goto_done: at=(1449,1616) target=(1480,1624) arrived=0 off=39
+[00:21:45.151] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:21:45.458] INFO  [mk3_Halain] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:45.458] INFO  [mk3_Halain] [action] goto (1480,1624) from (1449,1616,20)
+[00:21:45.458] LOG   [mk3_Halain] event goto_start: target=(1480,1624) from=(1449,1616)
+[00:21:45.458] INFO  [mk3_Halain] [bot] running from (1449,1616,20) to (1480,1624)
+[00:21:45.458] INFO  [mk3_Halain] [bot] planning path to (1480,1624) in background
+[00:21:45.580] INFO  [mk3_Halain] [action] goto finished at (1449,1616,20); target (1480,1624); stopped short (off by 39 tile(s))
+[00:21:45.580] LOG   [mk3_Halain] event goto_done: at=(1449,1616) target=(1480,1624) arrived=0 off=39
+[00:21:46.822] INFO  [mk3_Halain] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:46.822] INFO  [mk3_Halain] [action] goto (1480,1624) from (1449,1616,20)
+[00:21:46.822] LOG   [mk3_Halain] event goto_start: target=(1480,1624) from=(1449,1616)
+[00:21:46.823] INFO  [mk3_Halain] [bot] running from (1449,1616,20) to (1480,1624)
+[00:21:46.823] INFO  [mk3_Halain] [bot] planning path to (1480,1624) in background
+[00:21:46.947] INFO  [mk3_Halain] [action] goto finished at (1449,1616,20); target (1480,1624); stopped short (off by 39 tile(s))
+[00:21:46.947] LOG   [mk3_Halain] event goto_done: at=(1449,1616) target=(1480,1624) arrived=0 off=39
+[00:21:46.948] LOG   [mk3_Halain] event travel_escape: from=(1449,1616,20) to=(1448,1608) attempt=1
+[00:21:46.948] INFO  [mk3_Halain] [action] goto (1448,1608) from (1449,1616,20)
+[00:21:46.948] LOG   [mk3_Halain] event goto_start: target=(1448,1608) from=(1449,1616)
+[00:21:46.948] INFO  [mk3_Halain] [bot] running from (1449,1616,20) to (1448,1608,z20)
+[00:21:46.948] INFO  [mk3_Halain] [bot] planning path to (1448,1608) in background
+[00:21:47.012] INFO  [mk3_Halain] [action] goto finished at (1449,1616,20); target (1448,1608); stopped short (off by 9 tile(s))
+[00:21:47.012] LOG   [mk3_Halain] event goto_done: at=(1449,1616) target=(1448,1608) arrived=0 off=9
+[00:21:47.012] INFO  [mk3_Halain] [travel] recovery walk fell short at (1449,1616,20) (off 8); attempt 1/3
+[00:21:47.012] LOG   [mk3_Halain] event travel_recovery_done: reached=0 at=(1449,1616,20) off=8 attempt=1
+[00:21:47.012] LOG   [mk3_Halain] event travel_escape: from=(1449,1616,20) to=(1464,1608) attempt=2
+[00:21:47.012] INFO  [mk3_Halain] [action] goto (1464,1608) from (1449,1616,20)
+[00:21:47.012] LOG   [mk3_Halain] event goto_start: target=(1464,1608) from=(1449,1616)
+[00:21:47.013] INFO  [mk3_Halain] [bot] running from (1449,1616,20) to (1464,1608,z20)
+[00:21:47.013] INFO  [mk3_Halain] [bot] planning path to (1464,1608) in background
+[00:21:47.134] INFO  [mk3_Halain] [action] goto finished at (1449,1616,20); target (1464,1608); stopped short (off by 23 tile(s))
+[00:21:47.134] LOG   [mk3_Halain] event goto_done: at=(1449,1616) target=(1464,1608) arrived=0 off=23
+[00:21:47.134] INFO  [mk3_Halain] [travel] recovery walk fell short at (1449,1616,20) (off 15); attempt 1/3
+[00:21:47.134] LOG   [mk3_Halain] event travel_recovery_done: reached=0 at=(1449,1616,20) off=15 attempt=1
+[00:21:47.134] LOG   [mk3_Halain] event travel_escape: from=(1449,1616,20) to=(1464,1624) attempt=3
+[00:21:47.134] INFO  [mk3_Halain] [action] goto (1464,1624) from (1449,1616,20)
+[00:21:47.134] LOG   [mk3_Halain] event goto_start: target=(1464,1624) from=(1449,1616)
+[00:21:47.134] INFO  [mk3_Halain] [bot] running from (1449,1616,20) to (1464,1624,z20)
+[00:21:47.134] INFO  [mk3_Halain] [bot] planning path to (1464,1624) in background
+[00:21:47.257] INFO  [mk3_Halain] [action] goto finished at (1449,1616,20); target (1464,1624); stopped short (off by 23 tile(s))
+[00:21:47.257] LOG   [mk3_Halain] event goto_done: at=(1449,1616) target=(1464,1624) arrived=0 off=23
+[00:21:47.257] INFO  [mk3_Halain] [travel] recovery walk fell short at (1449,1616,20) (off 15); attempt 1/3
+[00:21:47.257] LOG   [mk3_Halain] event travel_recovery_done: reached=0 at=(1449,1616,20) off=15 attempt=1
+[00:21:47.257] INFO  [mk3_Halain] [travel] Jhelom carpenter FAILED at (1449,1616,20) -- sealed in; recovery exhausted
+[00:21:47.257] LOG   [mk3_Halain] event travel_failed: label='Jhelom carpenter' ok=0 at=(1449,1616) legs=17 plans=4 why='sealed in; recovery exhausted'
+[00:21:47.259] INFO  [life] training: arrived at 1449,1616 -- asking who is here
+[00:21:47.259] INFO  [mk3_Halain] [action] scanning nearby mobiles for names
+[00:21:47.259] INFO  [mk3_Halain] [action] requested 1 paperdoll(s) for trade titles
+[00:21:47.271] INFO  [mk3_Halain] [mobiles] nearby (11):
+[00:21:47.271] INFO  [mk3_Halain]   Amara 0x00012E70
+[00:21:47.271] INFO  [mk3_Halain]   Lionel 0x000010B3
+[00:21:47.271] INFO  [mk3_Halain]   Aelia 0x00013DA6
+[00:21:47.271] INFO  [mk3_Halain]   Faustus 0x000181F7
+[00:21:47.271] INFO  [mk3_Halain]   Odessa 0x000194DE
+[00:21:47.271] INFO  [mk3_Halain]   Serena 0x000193F7
+[00:21:47.271] INFO  [mk3_Halain]   Cyras 0x00015725
+[00:21:47.271] INFO  [mk3_Halain]   Rhea 0x00017DD9
+[00:21:47.271] INFO  [mk3_Halain]   Delras 0x00015A59
+[00:21:47.271] INFO  [mk3_Halain]   Vorar 0x00016305
+[00:21:47.271] INFO  [mk3_Halain]   Jack 0x00001119
+[00:21:47.271] INFO  [mk3_Halain] [0x20] player @(1449,1616,20) facing=2
+[00:21:47.271] INFO  [mk3_Halain] [0x88] paperdoll 0x00017DD9: "Rhea, Apprentice Tamer"
+[00:21:49.784] INFO  [life] training: looking for a 'carpenter' to teach Carpentry (trip 3)
+[00:21:49.805] INFO  [mk3_Halain] [travel] place: skipping Minoc architect -- 1864 tiles and 0 gates for a service Skara Brae carpenter offers
+[00:21:49.805] INFO  [mk3_Halain] [travel] place: skipping Minoc carpenter -- 1864 tiles and 0 gates for a service Skara Brae carpenter offers
+[00:21:49.805] INFO  [mk3_Halain] [travel] place: skipping Vesper carpenter -- 1960 tiles and 0 gates for a service Skara Brae carpenter offers
+[00:21:49.805] INFO  [mk3_Halain] [travel] place: skipping The Mage's Seat carpenter -- 1468 tiles and 5 gates for a service Skara Brae carpenter offers
+[00:21:49.805] INFO  [mk3_Halain] [travel] Skara Brae carpenter -> (627,2163) r=5 from (1449,1616)
+[00:21:49.805] LOG   [mk3_Halain] event travel_start: label='Skara Brae carpenter' target=(627,2163) radius=5 from=(1449,1616)
+[00:21:49.805] INFO  [mk3_Halain] [travel] mode moongate         usable   <- chosen
+[00:21:49.805] INFO  [mk3_Halain] [travel] mode walk             usable
+[00:21:49.805] INFO  [mk3_Halain] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:49.805] INFO  [mk3_Halain] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:49.805] LOG   [mk3_Halain] event travel_mode: moongate
+[00:21:49.805] INFO  [mk3_Halain] [travel] plan Skara Brae carpenter: ok legs=16 ~680 tiles transit=1 nodes=1373
+[00:21:49.862] INFO  [mk3_Halain] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:49.862] INFO  [mk3_Halain] [action] goto (1416,1656) from (1449,1616,20)
+[00:21:49.862] LOG   [mk3_Halain] event goto_start: target=(1416,1656) from=(1449,1616)
+[00:21:49.862] INFO  [mk3_Halain] [bot] running from (1449,1616,20) to (1416,1656)
+[00:21:49.862] INFO  [mk3_Halain] [bot] planning path to (1416,1656) in background
+[00:21:49.923] INFO  [mk3_Halain] [action] goto finished at (1449,1616,20); target (1416,1656); stopped short (off by 73 tile(s))
+[00:21:49.923] LOG   [mk3_Halain] event goto_done: at=(1449,1616) target=(1416,1656) arrived=0 off=73
+[00:21:50.183] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:21:51.150] INFO  [mk3_Halain] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:51.150] INFO  [mk3_Halain] [action] goto (1416,1656) from (1449,1616,20)
+[00:21:51.150] LOG   [mk3_Halain] event goto_start: target=(1416,1656) from=(1449,1616)
+[00:21:51.150] INFO  [mk3_Halain] [bot] running from (1449,1616,20) to (1416,1656)
+[00:21:51.150] INFO  [mk3_Halain] [bot] planning path to (1416,1656) in background
+[00:21:51.211] INFO  [mk3_Halain] [bot] replan to (1416,1656): 85 steps in 20788.0us
+[00:21:54.440] INFO  [mk3_Halain] [bot] lookahead patched around block at step 5: anchor=6 new segment=9 path=78 in 242.1us
+[00:21:55.222] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:21:55.574] INFO  [mk3_Halain] [bot] lookahead patched around block at step 3: anchor=5 new segment=3 path=71 in 22.2us
+[00:21:58.644] INFO  [mk3_Halain] [chat ascii] System: Draver has departed from Minoc.
+[00:22:00.228] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:22:05.269] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:22:10.291] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:22:11.540] INFO  [life] session_end_requested reason="session time limit reached"
+[00:22:14.625] INFO  [mk3_Halain] [bot] arrived at (1416,1656,10)
+[00:22:14.625] INFO  [mk3_Halain] [action] goto finished at (1416,1656,10); target (1416,1656); ARRIVED (off by 0 tile(s))
+[00:22:14.625] LOG   [mk3_Halain] event goto_done: at=(1416,1656) target=(1416,1656) arrived=1 off=0
+[00:22:14.625] INFO  [mk3_Halain] [action] goto (1416,1688) from (1416,1656,10)
+[00:22:14.625] LOG   [mk3_Halain] event goto_start: target=(1416,1688) from=(1416,1656)
+[00:22:14.626] INFO  [mk3_Halain] [bot] running from (1416,1656,10) to (1416,1688)
+[00:22:14.626] INFO  [mk3_Halain] [bot] planning path to (1416,1688) in background
+[00:22:14.641] INFO  [mk3_Halain] [bot] replan to (1416,1688): 32 steps in 645.5us
+[00:22:15.332] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:22:20.390] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:22:22.500] INFO  [mk3_Halain] [bot] arrived at (1416,1688,0)
+[00:22:22.500] INFO  [mk3_Halain] [action] goto finished at (1416,1688,0); target (1416,1688); ARRIVED (off by 0 tile(s))
+[00:22:22.500] LOG   [mk3_Halain] event goto_done: at=(1416,1688) target=(1416,1688) arrived=1 off=0
+[00:22:22.500] INFO  [mk3_Halain] [action] goto (1386,1728) from (1416,1688,0)
+[00:22:22.500] LOG   [mk3_Halain] event goto_start: target=(1386,1728) from=(1416,1688)
+[00:22:22.500] INFO  [mk3_Halain] [bot] running from (1416,1688,0) to (1386,1728)
+[00:22:22.500] INFO  [mk3_Halain] [bot] planning path to (1386,1728) in background
+[00:22:22.561] INFO  [mk3_Halain] [bot] replan to (1386,1728): 52 steps in 18903.3us
+[00:22:25.427] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:22:30.466] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:22:35.518] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:22:37.922] INFO  [mk3_Halain] [chat ascii] System: You have left the protection of the city guards
+[00:22:38.419] INFO  [mk3_Halain] [chat ascii] System: Vorar has departed from Britain.
+[00:22:38.809] INFO  [mk3_Halain] [bot] arrived at (1386,1728,0)
+[00:22:38.809] INFO  [mk3_Halain] [action] goto finished at (1386,1728,0); target (1386,1728); ARRIVED (off by 0 tile(s))
+[00:22:38.809] LOG   [mk3_Halain] event goto_done: at=(1386,1728) target=(1386,1728) arrived=1 off=0
+[00:22:38.809] INFO  [mk3_Halain] [action] goto (1352,1766) from (1386,1728,0)
+[00:22:38.809] LOG   [mk3_Halain] event goto_start: target=(1352,1766) from=(1386,1728)
+[00:22:38.809] INFO  [mk3_Halain] [bot] running from (1386,1728,0) to (1352,1766)
+[00:22:38.809] INFO  [mk3_Halain] [bot] planning path to (1352,1766) in background
+[00:22:38.868] INFO  [mk3_Halain] [bot] replan to (1352,1766): 69 steps in 28302.7us
+[00:22:39.439] INFO  [mk3_Halain] [chat ascii] System: Selene has departed from Magincia.
+[00:22:39.503] INFO  [mk3_Halain] [chat ascii] System: You are now under the protection of the city guards
+[00:22:40.543] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:22:45.600] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:22:46.897] INFO  [mk3_Halain] [chat ascii] System: Zarthal has departed from Minoc.
+[00:22:49.240] INFO  [mk3_Halain] [chat ascii] System: You have left the protection of the city guards
+[00:22:49.377] INFO  [mk3_Halain] [chat ascii] System: World save in 10 seconds
+[00:22:50.319] INFO  [mk3_Halain] [chat ascii] System: Thalia has departed from Moonglow.
+[00:22:50.626] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:22:53.217] INFO  [mk3_Halain] [chat ascii] System: Elvar has departed from Minoc.
+[00:22:55.655] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:22:57.848] INFO  [mk3_Halain] [chat ascii] System: Falen has departed from Minoc.
+[00:22:59.429] INFO  [mk3_Halain] [chat ascii] System: World save has been initiated.
+[00:23:00.674] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:23:04.484] INFO  [mk3_Halain] [action] goto finished at (1357,1761,13); target (1352,1766); stopped short (off by 10 tile(s))
+[00:23:04.484] LOG   [mk3_Halain] event goto_done: at=(1357,1761) target=(1352,1766) arrived=0 off=10
+[00:23:05.714] INFO  [mk3_Halain] [action] goto (1352,1766) from (1357,1761,13)
+[00:23:05.715] LOG   [mk3_Halain] event goto_start: target=(1352,1766) from=(1357,1761)
+[00:23:05.715] INFO  [mk3_Halain] [bot] running from (1357,1761,13) to (1352,1766)
+[00:23:05.715] INFO  [mk3_Halain] [bot] planning path to (1352,1766) in background
+[00:23:05.715] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:23:05.777] INFO  [mk3_Halain] [bot] replan to (1352,1766): 6 steps in 689.8us
+[00:23:05.777] INFO  [mk3_Halain] [chat ascii] System: Ghalor has departed from Minoc.
+[00:23:07.627] INFO  [mk3_Halain] [chat ascii] System: Cyras has departed from Britain.
+[00:23:08.059] INFO  [mk3_Halain] [bot] arrived at (1352,1766,15)
+[00:23:08.059] INFO  [mk3_Halain] [action] goto finished at (1352,1766,15); target (1352,1766); ARRIVED (off by 0 tile(s))
+[00:23:08.059] LOG   [mk3_Halain] event goto_done: at=(1352,1766) target=(1352,1766) arrived=1 off=0
+[00:23:08.059] INFO  [mk3_Halain] [action] goto (1336,1800) from (1352,1766,15)
+[00:23:08.059] LOG   [mk3_Halain] event goto_start: target=(1336,1800) from=(1352,1766)
+[00:23:08.059] INFO  [mk3_Halain] [bot] running from (1352,1766,15) to (1336,1800)
+[00:23:08.059] INFO  [mk3_Halain] [bot] planning path to (1336,1800) in background
+[00:23:08.120] INFO  [mk3_Halain] [bot] replan to (1336,1800): 49 steps in 53822.1us
+[00:23:10.033] INFO  [mk3_Halain] [chat ascii] System: Kharain has departed from Minoc.
+[00:23:10.726] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:23:12.347] INFO  [mk3_Halain] [chat ascii] System: Leander has departed from Moonglow.
+[00:23:15.756] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:23:20.811] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:23:23.086] INFO  [mk3_Halain] [bot] arrived at (1336,1800,0)
+[00:23:23.086] INFO  [mk3_Halain] [action] goto finished at (1336,1800,0); target (1336,1800); ARRIVED (off by 0 tile(s))
+[00:23:23.086] LOG   [mk3_Halain] event goto_done: at=(1336,1800) target=(1336,1800) arrived=1 off=0
+[00:23:23.086] INFO  [mk3_Halain] [action] goto (1336,1832) from (1336,1800,0)
+[00:23:23.086] LOG   [mk3_Halain] event goto_start: target=(1336,1832) from=(1336,1800)
+[00:23:23.086] INFO  [mk3_Halain] [bot] running from (1336,1800,0) to (1336,1832)
+[00:23:23.086] INFO  [mk3_Halain] [bot] planning path to (1336,1832) in background
+[00:23:23.133] INFO  [mk3_Halain] [bot] replan to (1336,1832): 32 steps in 17998.9us
+[00:23:24.523] INFO  [mk3_Halain] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=27 in 860.3us
+[00:23:25.736] INFO  [mk3_Halain] [chat ascii] System: Elara has departed from Magincia.
+[00:23:25.859] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:23:26.431] INFO  [mk3_Halain] [chat ascii] System: Xerxes has departed from Vesper.
+[00:23:30.864] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:23:33.132] INFO  [mk3_Halain] [chat ascii] System: Dorvar has departed from Skara Brae.
+[00:23:33.764] INFO  [mk3_Halain] [bot] arrived at (1336,1832,0)
+[00:23:33.764] INFO  [mk3_Halain] [action] goto finished at (1336,1832,0); target (1336,1832); ARRIVED (off by 0 tile(s))
+[00:23:33.764] LOG   [mk3_Halain] event goto_done: at=(1336,1832) target=(1336,1832) arrived=1 off=0
+[00:23:33.765] INFO  [mk3_Halain] [action] goto (1336,1864) from (1336,1832,0)
+[00:23:33.765] LOG   [mk3_Halain] event goto_start: target=(1336,1864) from=(1336,1832)
+[00:23:33.765] INFO  [mk3_Halain] [bot] running from (1336,1832,0) to (1336,1864)
+[00:23:33.765] INFO  [mk3_Halain] [bot] planning path to (1336,1864) in background
+[00:23:33.824] INFO  [mk3_Halain] [bot] replan to (1336,1864): 33 steps in 14248.5us
+[00:23:35.902] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:23:37.865] INFO  [mk3_Halain] [chat ascii] System: Odessa has departed from Britain.
+[00:23:38.949] INFO  [mk3_Halain] [chat ascii] System: Rhea has departed from Lord British's Castle.
+[00:23:40.950] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:23:43.199] INFO  [mk3_Halain] [chat ascii] System: Rhaler has departed from Minoc.
+[00:23:45.061] INFO  [mk3_Halain] [chat ascii] System: Ithion has departed from Skara Brae.
+[00:23:45.952] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:23:46.105] INFO  [mk3_Halain] [bot] arrived at (1336,1864,0)
+[00:23:46.105] INFO  [mk3_Halain] [action] goto finished at (1336,1864,0); target (1336,1864); ARRIVED (off by 0 tile(s))
+[00:23:46.105] LOG   [mk3_Halain] event goto_done: at=(1336,1864) target=(1336,1864) arrived=1 off=0
+[00:23:46.105] INFO  [mk3_Halain] [action] goto (1336,1896) from (1336,1864,0)
+[00:23:46.105] LOG   [mk3_Halain] event goto_start: target=(1336,1896) from=(1336,1864)
+[00:23:46.105] INFO  [mk3_Halain] [bot] running from (1336,1864,0) to (1336,1896)
+[00:23:46.105] INFO  [mk3_Halain] [bot] planning path to (1336,1896) in background
+[00:23:46.166] INFO  [mk3_Halain] [bot] replan to (1336,1896): 37 steps in 12251.5us
+[00:23:50.995] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:23:56.045] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:23:59.239] INFO  [mk3_Halain] [bot] arrived at (1336,1896,0)
+[00:23:59.239] INFO  [mk3_Halain] [action] goto finished at (1336,1896,0); target (1336,1896); ARRIVED (off by 0 tile(s))
+[00:23:59.239] LOG   [mk3_Halain] event goto_done: at=(1336,1896) target=(1336,1896) arrived=1 off=0
+[00:23:59.239] INFO  [mk3_Halain] [action] goto (1336,1928) from (1336,1896,0)
+[00:23:59.239] LOG   [mk3_Halain] event goto_start: target=(1336,1928) from=(1336,1896)
+[00:23:59.239] INFO  [mk3_Halain] [bot] running from (1336,1896,0) to (1336,1928)
+[00:23:59.239] INFO  [mk3_Halain] [bot] planning path to (1336,1928) in background
+[00:23:59.286] INFO  [mk3_Halain] [bot] replan to (1336,1928): 32 steps in 16708.7us
+[00:24:00.423] INFO  [mk3_Halain] [chat ascii] System: Faustus has departed from Britain.
+[00:24:01.054] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:24:01.868] INFO  [mk3_Halain] [chat ascii] System: Hector has departed from Bank of Britannia - Trinsic Branch.
+[00:24:02.609] INFO  [mk3_Halain] [chat ascii] System: Titus has departed from Magincia.
+[00:24:06.104] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:24:07.840] INFO  [mk3_Halain] [chat ascii] System: Aurelius has departed from Ocllo.
+[00:24:10.180] INFO  [mk3_Halain] [chat ascii] System: Serena has departed from Britain.
+[00:24:10.596] INFO  [mk3_Halain] [bot] arrived at (1336,1928,0)
+[00:24:10.596] INFO  [mk3_Halain] [action] goto finished at (1336,1928,0); target (1336,1928); ARRIVED (off by 0 tile(s))
+[00:24:10.596] LOG   [mk3_Halain] event goto_done: at=(1336,1928) target=(1336,1928) arrived=1 off=0
+[00:24:10.596] INFO  [mk3_Halain] [action] goto (1336,1960) from (1336,1928,0)
+[00:24:10.596] LOG   [mk3_Halain] event goto_start: target=(1336,1960) from=(1336,1928)
+[00:24:10.596] INFO  [mk3_Halain] [bot] running from (1336,1928,0) to (1336,1960)
+[00:24:10.596] INFO  [mk3_Halain] [bot] planning path to (1336,1960) in background
+[00:24:10.658] INFO  [mk3_Halain] [bot] replan to (1336,1960): 33 steps in 22266.3us
+[00:24:11.163] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:24:16.184] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:24:20.973] INFO  [mk3_Halain] [bot] arrived at (1336,1960,0)
+[00:24:20.973] INFO  [mk3_Halain] [action] goto finished at (1336,1960,0); target (1336,1960); ARRIVED (off by 0 tile(s))
+[00:24:20.973] LOG   [mk3_Halain] event goto_done: at=(1336,1960) target=(1336,1960) arrived=1 off=0
+[00:24:20.973] INFO  [mk3_Halain] [action] goto (1336,1992) from (1336,1960,0)
+[00:24:20.973] LOG   [mk3_Halain] event goto_start: target=(1336,1992) from=(1336,1960)
+[00:24:20.973] INFO  [mk3_Halain] [bot] running from (1336,1960,0) to (1336,1992)
+[00:24:20.973] INFO  [mk3_Halain] [bot] planning path to (1336,1992) in background
+[00:24:21.003] INFO  [mk3_Halain] [bot] replan to (1336,1992): 33 steps in 23076.9us
+[00:24:21.216] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:24:26.261] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:24:31.277] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:24:31.972] INFO  [mk3_Halain] [bot] arrived at (1336,1992,0)
+[00:24:31.972] INFO  [mk3_Halain] [action] goto finished at (1336,1992,0); target (1336,1992); ARRIVED (off by 0 tile(s))
+[00:24:31.972] LOG   [mk3_Halain] event goto_done: at=(1336,1992) target=(1336,1992) arrived=1 off=0
+[00:24:31.972] INFO  [mk3_Halain] [action] goto (1336,1997) from (1336,1992,0)
+[00:24:31.972] LOG   [mk3_Halain] event goto_start: target=(1336,1997) from=(1336,1992)
+[00:24:31.972] INFO  [mk3_Halain] [bot] running from (1336,1992,0) to (1336,1997)
+[00:24:31.972] INFO  [mk3_Halain] [bot] planning path to (1336,1997) in background
+[00:24:32.033] INFO  [mk3_Halain] [bot] replan to (1336,1997): 5 steps in 200.6us
+[00:24:32.879] INFO  [mk3_Halain] [chat ascii] Kitaki: *Kitaki is attacking you!*
+[00:24:33.557] INFO  [mk3_Halain] [gump] 0x400028A0 context=0x80A0040F: 13 option(s), 15 text(s)
+[00:24:33.557] INFO  [mk3_Halain] [gump]   button 1000 = 'OKAY'
+[00:24:33.557] INFO  [mk3_Halain] [gump]   button 0 = 'CANCEL'
+[00:24:33.557] INFO  [mk3_Halain] [gump]   button 1 = 'Felucca'
+[00:24:33.557] INFO  [mk3_Halain] [gump]   choice 1 = 'Moonglow'
+[00:24:33.557] INFO  [mk3_Halain] [gump]   choice 2 = 'Britain'
+[00:24:33.557] INFO  [mk3_Halain] [gump]   choice 3 = 'Jhelom'
+[00:24:33.557] INFO  [mk3_Halain] [gump]   choice 4 = 'Yew'
+[00:24:33.557] INFO  [mk3_Halain] [gump]   choice 5 = 'New Magincia'
+[00:24:33.557] INFO  [mk3_Halain] [gump]   choice 6 = 'Minoc'
+[00:24:33.557] INFO  [mk3_Halain] [gump]   choice 7 = 'Trinsic'
+[00:24:33.557] INFO  [mk3_Halain] [gump]   choice 8 = 'Skara Brae'
+[00:24:33.557] INFO  [mk3_Halain] [gump]   choice 9 = 'Buccaneer's Den'
+[00:24:33.557] INFO  [mk3_Halain] [gump]   choice 10 = 'Ocllo (Newplayers)'
+[00:24:33.557] INFO  [mk3_Halain] [gump]   text 0 = 'Pick your destination:'
+[00:24:33.557] INFO  [mk3_Halain] [gump]   text 1 = 'OKAY'
+[00:24:33.557] INFO  [mk3_Halain] [gump]   text 2 = 'CANCEL'
+[00:24:33.557] INFO  [mk3_Halain] [gump]   text 3 = 'Felucca'
+[00:24:33.557] INFO  [mk3_Halain] [gump]   text 4 = 'Felucca'
+[00:24:33.557] INFO  [mk3_Halain] [gump]   text 5 = 'Moonglow'
+[00:24:33.557] INFO  [mk3_Halain] [gump]   text 6 = 'Britain'
+[00:24:33.557] INFO  [mk3_Halain] [gump]   text 7 = 'Jhelom'
+[00:24:33.557] INFO  [mk3_Halain] [gump]   text 8 = 'Yew'
+[00:24:33.557] INFO  [mk3_Halain] [gump]   text 9 = 'New Magincia'
+[00:24:33.557] INFO  [mk3_Halain] [gump]   text 10 = 'Minoc'
+[00:24:33.557] INFO  [mk3_Halain] [gump]   text 11 = 'Trinsic'
+[00:24:33.557] INFO  [mk3_Halain] [gump]   text 12 = 'Skara Brae'
+[00:24:33.557] INFO  [mk3_Halain] [gump]   text 13 = 'Buccaneer's Den'
+[00:24:33.557] INFO  [mk3_Halain] [gump]   text 14 = 'Ocllo (Newplayers)'
+[00:24:33.557] LOG   [mk3_Halain] event gump_open: serial=0x400028A0 context=0x80A0040F options=13
+[00:24:33.557] INFO  [mk3_Halain] [travel] gate gump: choosing 'Skara Brae' (choice 8, button 1000)
+[00:24:33.557] LOG   [mk3_Halain] event moongate_use: destination='Skara Brae' choice=8 button=1000
+[00:24:33.557] INFO  [mk3_Halain] [bot] arrived at (1336,1997,5)
+[00:24:33.557] INFO  [mk3_Halain] [action] goto finished at (1336,1997,5); target (1336,1997); ARRIVED (off by 0 tile(s))
+[00:24:33.557] LOG   [mk3_Halain] event goto_done: at=(1336,1997) target=(1336,1997) arrived=1 off=0
+[00:24:33.557] INFO  [mk3_Halain] [travel] using moongate 0x400028A0 for 'Skara Brae' (gump active=0 serial=0x00000000)
+[00:24:33.571] INFO  [mk3_Halain] [0x20] player @(643,2067,5) facing=4
+[00:24:33.571] INFO  [mk3_Halain] [0x20] player @(643,2067,5) facing=4
+[00:24:33.571] INFO  [mk3_Halain] [chat ascii] System: You can't see the target
+[00:24:33.939] INFO  [mk3_Halain] [action] goto (648,2104) from (643,2067,5)
+[00:24:33.939] LOG   [mk3_Halain] event goto_start: target=(648,2104) from=(643,2067)
+[00:24:33.939] INFO  [mk3_Halain] [bot] running from (643,2067,5) to (648,2104)
+[00:24:33.939] INFO  [mk3_Halain] [bot] planning path to (648,2104) in background
+[00:24:34.000] INFO  [mk3_Halain] [bot] replan to (648,2104): 39 steps in 18811.7us
+[00:24:34.016] INFO  [mk3_Halain] [chat ascii] System: You have been revealed
+[00:24:36.338] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:24:41.362] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:24:42.578] INFO  [mk3_Halain] [chat ascii] System: Lyra has departed from Moonglow.
+[00:24:46.380] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:24:48.414] INFO  [mk3_Halain] [bot] arrived at (648,2104,0)
+[00:24:48.414] INFO  [mk3_Halain] [action] goto finished at (648,2104,0); target (648,2104); ARRIVED (off by 0 tile(s))
+[00:24:48.414] LOG   [mk3_Halain] event goto_done: at=(648,2104) target=(648,2104) arrived=1 off=0
+[00:24:48.414] INFO  [mk3_Halain] [action] goto (648,2136) from (648,2104,0)
+[00:24:48.414] LOG   [mk3_Halain] event goto_start: target=(648,2136) from=(648,2104)
+[00:24:48.414] INFO  [mk3_Halain] [bot] running from (648,2104,0) to (648,2136)
+[00:24:48.414] INFO  [mk3_Halain] [bot] planning path to (648,2136) in background
+[00:24:48.477] INFO  [mk3_Halain] [bot] replan to (648,2136): 37 steps in 6009.0us
+[00:24:50.957] INFO  [mk3_Halain] [chat ascii] System: You are now under the protection of the town guards
+[00:24:51.436] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:24:56.460] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:25:01.335] INFO  [mk3_Halain] [bot] arrived at (648,2136,0)
+[00:25:01.335] INFO  [mk3_Halain] [action] goto finished at (648,2136,0); target (648,2136); ARRIVED (off by 0 tile(s))
+[00:25:01.335] LOG   [mk3_Halain] event goto_done: at=(648,2136) target=(648,2136) arrived=1 off=0
+[00:25:01.335] INFO  [mk3_Halain] [action] goto (627,2163) from (648,2136,0)
+[00:25:01.335] LOG   [mk3_Halain] event goto_start: target=(627,2163) from=(648,2136)
+[00:25:01.335] INFO  [mk3_Halain] [bot] running from (648,2136,0) to (627,2163,z0)
+[00:25:01.335] INFO  [mk3_Halain] [bot] planning path to (627,2163) in background
+[00:25:01.396] INFO  [mk3_Halain] [bot] replan to (627,2163): 47 steps in 21585.6us
+[00:25:01.519] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:25:01.769] INFO  [mk3_Halain] [chat ascii] System: Aelia has departed from Britain Territory.
+[00:25:06.528] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:25:08.854] INFO  [mk3_Halain] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=22 in 335.6us
+[00:25:11.530] INFO  [mk3_Halain] [survival] hp 40/40 (100%) -> fight
+[00:25:12.561] INFO  [mk3_Halain] [bot] door ahead at (635,2167,z0); OpenDoor before step
+[00:25:12.561] INFO  [mk3_Halain] [chat ascii] System: Opening door...
+[00:25:13.869] INFO  [mk3_Halain] [chat ascii] System: Illyria has departed from Britain.
+[00:25:14.728] INFO  [mk3_Halain] [chat ascii] Amadis: I'm listenin'.
+[00:25:14.895] INFO  [mk3_Halain] [travel] Skara Brae carpenter ARRIVED at (631,2166,0)
+[00:25:14.895] LOG   [mk3_Halain] event travel_done: label='Skara Brae carpenter' ok=1 at=(631,2166) legs=16 plans=1 why=''
+[00:25:14.956] INFO  [life] wind-down: arrived somewhere safe at 631,2166
+[00:25:14.972] INFO  [life] session_summary duration=363s goals=0/4 gold=10000->9984 skills=100.0->100.0 logs=+0 kills=0 deaths=0 places=2 suppliers=0
+[00:25:14.972] INFO  [life] session_goals families=2 picks=4 top=75% varied=0 self_superseded=0 | upkeep=3(75%) training=1(25%) | REPLACE_EQUIPMENT=1(25%) BANK=1(25%) TRAIN_AT_NPC=1(25%) GET_FOOD=1(25%)
+[00:25:14.974] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_06.halain/state.json
+[00:25:14.974] INFO  [life] logging out
+[00:25:14.974] INFO  [mk3_Halain] [action] logout requested
+[00:25:14.974] LOG   [mk3_Halain] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[00:25:14.974] INFO  [mk3_Halain] [0xD1] logout acknowledged (accepted=1)
+[00:25:14.974] LOG   [mk3_Halain] event logout_ack: accepted
+[00:25:14.974] INFO  [mk3_Halain] [net] closing connection (logout acknowledged)
+[00:25:14.974] LOG   [mk3_Halain] event logout_complete: acked

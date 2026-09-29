@@ -83,6 +83,35 @@ enum class VendorClass : u8 {
     // It stays narrow deliberately: staples a character eats, not prepared
     // goods a cook would sell for profit.
     BasicFood,
+    // BASIC HEALING. Permitted, and forced into existence the same way the two
+    // classes above were -- by a character that could not survive without it.
+    //
+    // A crafter has no Healing skill, so a bandage in its pack does close to
+    // nothing; a potion asks nothing of the drinker and is the only self-heal
+    // it has. "you are crafter you dont have heal skill so buy healing potion
+    // 3-4" and "you can buy from same place you buy healer" (project owner,
+    // 2026-08-30).
+    //
+    // The live case: Corwyn walked to Erskine the healer four times in one
+    // session, opened the shop, was quoted 30 gold each with nine on the
+    // shelf, and was refused every time by OUR OWN policy --
+    //
+    //   [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy
+    //   refuses this NPC purchase
+    //
+    // -- because i_potion_heal has no matrix row and Unknown fails safe. The
+    // need never cleared, so the goal re-picked and he walked back. Death on
+    // this shard is full loot, and he had already died three times.
+    //
+    // The permission passes the same test as BasicFood: this undercuts no
+    // player market. The shard's own healer template sells both
+    // (tm_vend.scp VENDOR_S_HEALER_SHOP: i_bandage, i_potion_heal), an
+    // alchemist's craft is the GREATER potions and the volume trade, and
+    // nobody makes a living selling three bandages to a miner.
+    //
+    // Narrow deliberately: what keeps a character alive between fights, not
+    // the potion kegs a real alchemist sells.
+    BasicHealing,
     WorldGathered,        // a gathering skill produces it
     WorldProcessed,       // a station transforms it
     PlayerCrafted,        // a live skill menu makes it
@@ -107,8 +136,64 @@ struct VendorRuling {
 // The classification the audit assigned, or Unknown.
 VendorClass ClassifyForVendor(const char* item);
 
-// May an autonomous Revolution bot buy `item` from an NPC?
+// Historical/economic audit of an NPC purchase.  This is deliberately strict:
+// it records what Revolution evidence says about a good and remains useful for
+// reports and research.  It is NOT the live purchase gate; see
+// CanBuyFromNPC below.
 VendorRuling CanUseNPCVendorFor(const char* item);
+
+// May a bot buy an item an NPC has actually offered for sale?
+//
+// Yes. The owner ruling of 2026-08-31 is that NPC BUYING follows observed
+// stock, while NPC SELLING remains governed by the separate faucet/sale
+// policy. A caller with only a defname has not proved stock exists yet; this
+// answer means it may seek and inspect a vendor offer, never that an NPC will
+// necessarily have one. Unknown classifications remain visible in `klass`
+// for logging/research but do not veto a real offer.
+VendorRuling CanBuyFromNPC(const char* item);
+
+// ---------------------------------------------------------------------------
+// THE NPC PRICE FLOOR (owner ruling, 2026-09-02)
+//
+//   "until bots genuinely need each other's goods, bots MAY sell materials
+//    (ingots, logs, fish, ore, cloth, hides, feathers...) to NPC vendors.
+//    Player-first stays: shout WTS on schedule, sell to a responding player if
+//    one answers. NPC sale is the legitimate fallback, NOT a refusal. If no NPC
+//    class buys the item, bank it and cool the goal down."
+//
+// This is a FLOOR, not the answer. The long-term goal is bot demand outbidding
+// it, so the floor is deliberately conditional on two things at once:
+//
+//   1. the switch below, and
+//   2. `playersDeclined` -- the player-first window having actually CLOSED for
+//      this item, which on this fleet means a complete WTS announce cycle that
+//      nobody answered (life::Runner records `no_player_buyer`).
+//
+// It does NOT make the material sellable in the abstract: market::NpcBuyersFor
+// still has to find a real BUY row on a real vendor template, and if none
+// exists the item banks. See docs/artifacts/npc_floor_2026-09-02.md.
+// ---------------------------------------------------------------------------
+struct SalePolicy {
+    // ON by the ruling. OFF restores the strict M3.7 behaviour exactly: no
+    // material ever reaches an NPC counter, whatever the player market did.
+    bool allowMaterialsToNpc = true;
+};
+
+const SalePolicy& CurrentSalePolicy();
+void SetSalePolicy(const SalePolicy& p);
+
+// Is `item` a raw or processed MATERIAL -- the class the ruling covers?
+//
+// Read off the audit matrix (WorldGathered / WorldProcessed) rather than a
+// second hand-written list, PLUS the two hue families. Ore and the thirteen
+// coloured ingots share one ITEMDEF each (i_ore_iron / i_ingot_iron + COLOR),
+// so their sixteen defnames can never all appear in the matrix and the prefix
+// is the honest test rather than a guess.
+bool IsFloorMaterial(const char* item);
+
+// May the floor be used for `item` right now? Needs BOTH the switch and a
+// closed player-first window. Never true for anything that is not a material.
+bool MaterialFloorOpen(const char* item, bool playersDeclined);
 
 // Every item the audit graded, for tests and for reporting.
 const std::vector<std::pair<const char*, VendorClass>>& VendorMatrix();
@@ -121,9 +206,44 @@ const std::vector<std::pair<const char*, VendorClass>>& VendorMatrix();
 // default as an unlisted defname.
 VendorClass  ClassifyForVendorGraphic(u16 graphic);
 VendorRuling CanUseNPCVendorForGraphic(u16 graphic);
+VendorRuling CanBuyFromNPCGraphic(u16 graphic);
 
 // The defname a graphic maps to, or nullptr. For logging a refusal in words.
 const char*  ItemNameForGraphic(u16 graphic);
+
+// Hue-aware resolution (S1, docs/CRAFTER_RUN_2026_08_30.md #20). Some
+// graphics are shared by every metal -- raw ore is one graphic for iron and
+// every special ore, and the iron ingot is one graphic for iron and the
+// twelve special ingots that never got their own ITEMDEF -- and only the
+// wire hue says which. Hue first, graphic fallback: an unrecognised hue on
+// one of those graphics falls back to ItemNameForGraphic's honest default
+// rather than guessing. Metals that already have their own ingot graphic
+// (copper/gold/silver) ignore hue entirely -- ItemNameForGraphic already
+// tells them apart, and this never disagrees with it for them.
+const char*  ItemNameForGraphicAndHue(u16 graphic, u16 hue);
+
+// True when this graphic is one of the two families that several metals
+// share -- raw ore (019b7..019ba) and the iron ingot (01bef..01bf4) -- so a
+// caller holding only a graphic knows it does NOT yet know what the item is.
+// Every other graphic in the table names itself.
+bool         GraphicNeedsHue(u16 graphic);
+
+// What one ore SMELTS INTO, by defname. This is the ore ITEMDEF's own TDATA1
+// (runtime/scripts/items/i_provisions_ore.scp:45, :80, :90 ... :210), which
+// is what f_craft_blacksmith_smelt_targ hands back, so it is the shard's
+// answer rather than ours. Returns nullptr for anything that is not one of
+// the sixteen ores.
+//
+// Needed because ore and ingot are each ONE graphic for most metals: a
+// smelter that measures its progress as "how many i_ingot_iron do I have
+// now" cannot see a valorite ingot appear at all, and reports NoProgress
+// while melting the rarest thing it owns.
+const char*  IngotNameForOre(const char* oreItem);
+
+// The reverse: every graphic this shard uses for `item`. Several items have
+// more than one (iron ingots are 0x1BEF/0x1BF0/0x1BF1 by stack size), so a
+// caller that checks only the first will miss most of a pack.
+std::vector<u16> GraphicsForItem(const char* item);
 
 // --- acquisition -----------------------------------------------------------
 
@@ -174,8 +294,9 @@ struct AcquisitionPlan {
     bool blocked = false;
 };
 
-// Choose how to obtain one unit of `item`. Only historically legal options are
-// ever returned -- an NPC purchase appears only if CanUseNPCVendorFor allows it.
+// Choose how to obtain one unit of `item`. An NPC purchase means the life may
+// inspect a real shop offer; the live buy action still requires that offer to
+// exist and never assumes stock from this planning result.
 AcquisitionPlan ChooseAcquisitionMethod(const char* item,
                                         const AcquisitionContext& ctx);
 

@@ -39,6 +39,7 @@ namespace uo::pet {
 
 enum class Command : u8 {
     Come,        // follow the speaker
+    FollowMe,    // explicit synonym for Come; no target cursor
     FollowTarget,// follow a targeted thing
     Stay,
     Stop,        // identical effect to Stay in the engine
@@ -57,8 +58,9 @@ const char* CommandWords(Command c);
 //
 // kill / attack / follow / guard / friend / transfer / go are spoken-THEN-
 // targeted: addTarget(CLIMODE_TARG_PET_CMD, ...) at CCharNPCPet.cpp:360-368,
-// answered into OnTarg_Pet_Command (CClientTarg.cpp:1549). come / stay / stop /
-// "guard me" act immediately with no cursor, so waiting for one would hang.
+// answered into OnTarg_Pet_Command (CClientTarg.cpp:1549). come / "follow me" /
+// stay / stop / "guard me" act immediately with no cursor, so waiting for one
+// would hang.
 bool NeedsTarget(Command c);
 
 // The broadcast prefix. Commands every owned pet in earshot.

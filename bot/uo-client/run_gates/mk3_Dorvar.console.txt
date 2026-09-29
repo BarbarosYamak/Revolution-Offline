@@ -1,0 +1,820 @@
+[00:19:48.375] INFO  session 0: 127.0.0.1:2593 user='RevGen3_18' char=Dorvar tag='mk3_Dorvar'
+[00:19:48.377] LOG   [mk3_Dorvar] event session_start: text log opened
+[00:19:48.377] LOG   [mk3_Dorvar] event net_connect_begin: connect 127.0.0.1:2593
+[00:19:48.377] INFO  [mk3_Dorvar] [net] connecting to 127.0.0.1:2593 ...
+[00:19:48.378] LOG   [mk3_Dorvar] event net_connected: connect 127.0.0.1:2593
+[00:19:48.378] INFO  [mk3_Dorvar] [net] connected.
+[00:19:48.378] INFO  [mk3_Dorvar] [seed] sent 0x7F000001 (plaintext)
+[00:19:48.378] LOG   [mk3_Dorvar] event seed_out: 0x7F000001 hex=7f000001
+[00:19:48.378] INFO  [life] no prior state for revgen3_18.dorvar: a new Fisher
+[00:19:48.378] INFO  [life] creation request: Fishing 50.0 + Cooking 50.0, stats 40/24/16 = 80
+[00:19:48.378] INFO  [life] needs: reading 'fisher' from the profession catalogue
+[00:19:48.378] INFO  [life] home: Dorvar lives in Skara Brae
+[00:19:48.378] INFO  [life] build plan 'fisher': 150.0 resolved + 550.0 unresolved = 700.0/700.0, stats 80/50/45 = 175
+[00:19:48.378] INFO  [mk3_Dorvar] [life] autonomous player active for 'Dorvar' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 3 min)
+[00:19:48.390] INFO  [mk3_Dorvar] [0xA8] 1 server(s):
+[00:19:48.390] INFO  [mk3_Dorvar]   [0] MyShard                   1.0.0.127  full=7%  tz=0
+[00:19:48.405] INFO  [mk3_Dorvar] [0x8C] game server = 127.0.0.1:2593  seed=0x0AEFFB97
+[00:19:48.405] LOG   [mk3_Dorvar] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x0AEFFB97
+[00:19:48.405] INFO  [mk3_Dorvar] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[00:19:48.405] LOG   [mk3_Dorvar] event relay_same_socket: no seed re-sent; 0x91 follows
+[00:19:48.405] INFO  [mk3_Dorvar] [0xB9] server features = 0x0005
+[00:19:48.405] INFO  [mk3_Dorvar] [0xA9] 5 slot(s) (populated 0):
+[00:19:48.405] INFO  [mk3_Dorvar]   [0] <empty>
+[00:19:48.405] INFO  [mk3_Dorvar]   [1] <empty>
+[00:19:48.405] INFO  [mk3_Dorvar]   [2] <empty>
+[00:19:48.405] INFO  [mk3_Dorvar]   [3] <empty>
+[00:19:48.405] INFO  [mk3_Dorvar]   [4] <empty>
+[00:19:48.405] INFO  [mk3_Dorvar] create: appearance sex=M skin=0x0408 hair=0x2045/0x047C shirt=0x00FB pants=0x0339
+[00:19:48.405] INFO  [mk3_Dorvar] [0x00] starting city index 7
+[00:19:48.405] INFO  [mk3_Dorvar] [0x00] requested skills 18:50 13:50 48:0
+[00:19:48.405] INFO  [mk3_Dorvar] [0x00] requested stats STR 40 DEX 24 INT 16
+[00:19:48.405] INFO  [mk3_Dorvar] [0x00] creating character 'Dorvar' in slot 0
+[00:19:48.405] LOG   [mk3_Dorvar] event char_create_sent: Dorvar
+[00:19:48.422] INFO  [mk3_Dorvar] [0x1B] serial=0x00019D4B body=0x0190 pos=(618,2234,0)
+[00:19:48.422] LOG   [mk3_Dorvar] event login_confirm: serial=0x00019D4B body=0x0190 pos=(618,2234,0)
+[00:19:48.422] INFO  [mk3_Dorvar] [0x20] player @(618,2234,0) facing=3
+[00:19:48.422] INFO  [mk3_Dorvar] [0x55] login complete — entering world
+[00:19:48.422] LOG   [mk3_Dorvar] event in_world: 0x55 received
+[00:19:48.422] INFO  [mk3_Dorvar] [backpack] opening 0x40019D35
+[00:19:48.422] INFO  [mk3_Dorvar] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[00:19:48.422] INFO  [mk3_Dorvar] [chat ascii] System: There are 17 other players here.
+[00:19:48.422] INFO  [mk3_Dorvar] [chat ascii] System: You are under the protection of the town guards
+[00:19:48.427] INFO  [mk3_Dorvar] [action] requesting the skill list
+[00:19:48.427] INFO  [life] in world; asked the server for the skill list
+[00:19:48.427] INFO  [mk3_Dorvar] [0x24] open container 0x40019D35 gump=60
+[00:19:48.427] INFO  [mk3_Dorvar] [0x3C] container contents: 12 item(s)
+[00:19:48.427] LOG   [mk3_Dorvar] event backpack_contents: serial=0x40019D35 items=12
+[00:19:51.014] INFO  [mk3_Dorvar] [bot] world data loaded (0 blacklisted spot(s)).
+[00:19:51.014] INFO  [life] common knowledge: Skara Brae Docks E at 638,2227 (20 tiles away)
+[00:19:51.014] INFO  [life] common knowledge: Skara Brae Docks S at 617,2276 (42 tiles away)
+[00:19:51.014] INFO  [life] common knowledge: Skara Brae Ferry Dock at 726,2236 (108 tiles away)
+[00:19:51.014] INFO  [life] seeded 3 fish hint(s) of 17 the atlas knows -- everything else is earned
+[00:19:51.014] INFO  [life] reconciliation: first ever login, 7 field(s) differed
+[00:19:51.014] INFO  [life]   gold         persisted=0          server=10000      -> server value accepted
+[00:19:51.014] INFO  [life]   str          persisted=0          server=40         -> server value accepted
+[00:19:51.014] INFO  [life]   dex          persisted=0          server=24         -> server value accepted
+[00:19:51.014] INFO  [life]   int          persisted=0          server=16         -> server value accepted
+[00:19:51.014] INFO  [life]   skill_18     persisted=0.0        server=50.0       -> server value accepted
+[00:19:51.014] INFO  [life]   skill_13     persisted=0.0        server=50.0       -> server value accepted
+[00:19:51.014] INFO  [life]   position     persisted=0,0        server=618,2234   -> server value accepted
+[00:19:51.014] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[00:19:51.014] INFO  [mk3_Dorvar] [survival] on
+[00:19:51.014] LOG   [mk3_Dorvar] event survival_mode: on
+[00:19:51.016] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_18.dorvar/state.json
+[00:19:51.016] INFO  [mk3_Dorvar] [survival] hp 40/40 (100%) -> fight
+[00:19:51.068] INFO  [life] goal=BANK reason="no goal was running"
+[00:19:51.068] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedEquipment(heal potions 0.50) NeedCraft(make goods to sell 0.50) NeedCatch(fish 0.45) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20)  | tools defined=2 held=[fishing pole,rolling pin,] want_train=nothing (target 0.0)
+[00:19:51.068] INFO  [life]   score=150.0
+[00:19:51.068] INFO  [life]   reason: NeedBank urgency 0.75 x 240 = 180.0
+[00:19:51.068] INFO  [life]   reason: on_hand=10000 (total 10000) reserve=150 carry=650 spare=9350 risk=1.00
+[00:19:51.068] INFO  [life]   reason: no bank learned yet -30
+[00:19:51.068] INFO  [mk3_Dorvar] [action] scanning nearby mobiles for names
+[00:19:51.068] INFO  [mk3_Dorvar] [action] requested 2 paperdoll(s) for trade titles
+[00:19:51.068] INFO  [life] bank: asking who is standing in the bank
+[00:19:51.083] INFO  [mk3_Dorvar] [mobiles] nearby (9):
+[00:19:51.083] INFO  [mk3_Dorvar]   Cat 0x00014BAA
+[00:19:51.083] INFO  [mk3_Dorvar]   jungle bird 0x0000D6AF
+[00:19:51.083] INFO  [mk3_Dorvar]   jungle bird 0x00011AA9
+[00:19:51.083] INFO  [mk3_Dorvar]   Rat 0x00015CD6
+[00:19:51.083] INFO  [mk3_Dorvar]   Aiken 0x000027DC
+[00:19:51.083] INFO  [mk3_Dorvar]   Cat 0x0000D0F8
+[00:19:51.083] INFO  [mk3_Dorvar]   Li 0x00002822
+[00:19:51.083] INFO  [mk3_Dorvar]   Iolana 0x000027ED
+[00:19:51.083] INFO  [mk3_Dorvar]   Rat 0x00010AC3
+[00:19:51.083] INFO  [mk3_Dorvar] [0x20] player @(618,2234,0) facing=0
+[00:19:51.083] INFO  [mk3_Dorvar] [0x88] paperdoll 0x000027DC: "Aiken, the healer guildmaster"
+[00:19:51.083] INFO  [mk3_Dorvar] [world] Aiken, the healer guildmaster is a healer at (625,2218)
+[00:19:51.083] INFO  [mk3_Dorvar] [0x20] player @(618,2234,0) facing=6
+[00:19:51.083] INFO  [mk3_Dorvar] [0x88] paperdoll 0x00002822: "Li, the innkeeper"
+[00:19:51.083] INFO  [mk3_Dorvar] [world] Li, the innkeeper is a innkeeper at (602,2236)
+[00:19:51.484] INFO  [mk3_Dorvar] [chat ascii] System: Ithion has arrived in Skara Brae.
+[00:19:53.070] INFO  [life] bank: no banker in sight
+[00:19:53.070] INFO  [life] goal_failed=BANK status=retryable_failure reason="no banker in sight"
+[00:19:53.132] INFO  [life] goal=REPLACE_EQUIPMENT reason="previous goal abandoned: no banker answered"
+[00:19:53.132] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedEquipment(heal potions 0.50) NeedCraft(make goods to sell 0.50) NeedCatch(fish 0.45) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20)  | tools defined=2 held=[fishing pole,rolling pin,] want_train=nothing (target 0.0)
+[00:19:53.132] INFO  [life]   score=130.0
+[00:19:53.132] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:19:53.132] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:19:53.132] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 299s after achieving nothing
+[00:19:54.532] INFO  [mk3_Dorvar] [chat ascii] System: Odessa has arrived in Britain.
+[00:19:56.053] INFO  [mk3_Dorvar] [survival] hp 40/40 (100%) -> fight
+[00:19:57.599] INFO  [mk3_Dorvar] [chat ascii] System: Serena has arrived in Britain.
+[00:19:58.102] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:19:58.102] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[00:19:58.102] INFO  [mk3_Dorvar] [travel] healer (seen) -> (625,2218) r=2 from (618,2234)
+[00:19:58.102] LOG   [mk3_Dorvar] event travel_start: label='healer (seen)' target=(625,2218) radius=2 from=(618,2234)
+[00:19:58.102] INFO  [life] potions: walking to a 'healer' (trip 1)
+[00:19:58.102] INFO  [mk3_Dorvar] [travel] mode walk             usable   <- chosen
+[00:19:58.102] INFO  [mk3_Dorvar] [travel] mode moongate         usable
+[00:19:58.102] INFO  [mk3_Dorvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:19:58.102] INFO  [mk3_Dorvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:19:58.102] LOG   [mk3_Dorvar] event travel_mode: walk
+[00:19:58.102] INFO  [mk3_Dorvar] [travel] plan healer (seen): ok legs=1 ~13 tiles transit=0 nodes=0
+[00:19:58.164] INFO  [mk3_Dorvar] [action] goto (618,2221) from (618,2234,0)
+[00:19:58.164] LOG   [mk3_Dorvar] event goto_start: target=(618,2221) from=(618,2234)
+[00:19:58.164] INFO  [mk3_Dorvar] [bot] running from (618,2234,0) to (618,2221,z0)
+[00:19:58.164] INFO  [mk3_Dorvar] [bot] planning path to (618,2221) in background
+[00:19:58.714] INFO  [mk3_Dorvar] [action] goto finished at (618,2234,0); target (618,2221); stopped short (off by 13 tile(s))
+[00:19:58.714] LOG   [mk3_Dorvar] event goto_done: at=(618,2234) target=(618,2221) arrived=0 off=13
+[00:19:59.941] INFO  [mk3_Dorvar] [action] goto (618,2221) from (618,2234,0)
+[00:19:59.941] LOG   [mk3_Dorvar] event goto_start: target=(618,2221) from=(618,2234)
+[00:19:59.941] INFO  [mk3_Dorvar] [bot] running from (618,2234,0) to (618,2221,z0)
+[00:19:59.941] INFO  [mk3_Dorvar] [bot] planning path to (618,2221) in background
+[00:20:00.003] INFO  [mk3_Dorvar] [bot] replan to (618,2221): 17 steps in 1720.6us
+[00:20:00.645] INFO  [mk3_Dorvar] [chat ascii] System: Aurelius has arrived in Moonglow.
+[00:20:01.074] INFO  [mk3_Dorvar] [survival] hp 40/40 (100%) -> fight
+[00:20:02.853] INFO  [mk3_Dorvar] [bot] door ahead at (623,2223,z0); OpenDoor before step
+[00:20:02.854] INFO  [mk3_Dorvar] [chat ascii] System: Opening door...
+[00:20:03.869] INFO  [mk3_Dorvar] [chat ascii] System: Leander has arrived in Moonglow.
+[00:20:05.004] INFO  [mk3_Dorvar] [travel] healer (seen) ARRIVED at (619,2222,0)
+[00:20:05.004] LOG   [mk3_Dorvar] event travel_done: label='healer (seen)' ok=1 at=(619,2222) legs=1 plans=1 why=''
+[00:20:05.004] INFO  [mk3_Dorvar] [action] scanning nearby mobiles for names
+[00:20:05.005] INFO  [mk3_Dorvar] [action] requested 2 paperdoll(s) for trade titles
+[00:20:05.005] INFO  [life] potions: at the shop, asking who is here (scan 1 of 3)
+[00:20:05.019] INFO  [mk3_Dorvar] [mobiles] nearby (9):
+[00:20:05.019] INFO  [mk3_Dorvar]   Aiken 0x000027DC
+[00:20:05.019] INFO  [mk3_Dorvar]   Ithion 0x00019837
+[00:20:05.019] INFO  [mk3_Dorvar]   Rat 0x00015CD6
+[00:20:05.019] INFO  [mk3_Dorvar]   Iolana 0x000027ED
+[00:20:05.019] INFO  [mk3_Dorvar]   Rat 0x00010AC3
+[00:20:05.019] INFO  [mk3_Dorvar]   jungle bird 0x0000D6AF
+[00:20:05.019] INFO  [mk3_Dorvar]   Cat 0x0000D0F8
+[00:20:05.019] INFO  [mk3_Dorvar]   Cat 0x00014BAA
+[00:20:05.019] INFO  [mk3_Dorvar]   Li 0x00002822
+[00:20:05.020] INFO  [mk3_Dorvar] [0x20] player @(619,2222,0) facing=7
+[00:20:05.020] INFO  [mk3_Dorvar] [0x88] paperdoll 0x000027ED: "Iolana, the healer"
+[00:20:05.020] INFO  [mk3_Dorvar] [world] Iolana, the healer is a healer at (616,2216)
+[00:20:05.020] INFO  [mk3_Dorvar] [0x20] player @(619,2222,0) facing=3
+[00:20:05.020] INFO  [mk3_Dorvar] [0x88] paperdoll 0x00019837: "Ithion, Apprentice Fisherman"
+[00:20:06.113] INFO  [mk3_Dorvar] [survival] hp 40/40 (100%) -> fight
+[00:20:06.980] INFO  [mk3_Dorvar] [chat ascii] System: Illyria has arrived in Britain.
+[00:20:08.034] INFO  [life] potions: found a 'healer'
+[00:20:08.034] INFO  [mk3_Dorvar] [travel] mobile 0x000027ED -> (616,2216) r=1 from (619,2222)
+[00:20:08.034] LOG   [mk3_Dorvar] event travel_start: label='mobile 0x000027ED' target=(616,2216) radius=1 from=(619,2222)
+[00:20:08.034] INFO  [life] potions: the 'healer' is 6 tiles off (dz 0) -- walking into reach (chase 1 of 3)
+[00:20:08.034] INFO  [mk3_Dorvar] [travel] mode walk             usable   <- chosen
+[00:20:08.034] INFO  [mk3_Dorvar] [travel] mode moongate         usable
+[00:20:08.034] INFO  [mk3_Dorvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:08.034] INFO  [mk3_Dorvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:08.034] LOG   [mk3_Dorvar] event travel_mode: walk
+[00:20:08.034] INFO  [mk3_Dorvar] [travel] plan mobile 0x000027ED: ok legs=1 ~6 tiles transit=0 nodes=0
+[00:20:08.050] INFO  [mk3_Dorvar] [action] goto finished at (619,2222,0); target (618,2221); stopped short (off by 2 tile(s))
+[00:20:08.050] LOG   [mk3_Dorvar] event goto_done: at=(619,2222) target=(618,2221) arrived=0 off=2
+[00:20:08.050] INFO  [mk3_Dorvar] [action] goto (616,2216) from (619,2222,0)
+[00:20:08.050] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(619,2222)
+[00:20:08.050] INFO  [mk3_Dorvar] [bot] running from (619,2222,0) to (616,2216,z0)
+[00:20:08.050] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:20:08.745] INFO  [mk3_Dorvar] [action] goto finished at (619,2222,0); target (616,2216); stopped short (off by 9 tile(s))
+[00:20:08.745] LOG   [mk3_Dorvar] event goto_done: at=(619,2222) target=(616,2216) arrived=0 off=9
+[00:20:09.988] INFO  [mk3_Dorvar] [action] goto (616,2216) from (619,2222,0)
+[00:20:09.989] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(619,2222)
+[00:20:09.989] INFO  [mk3_Dorvar] [bot] running from (619,2222,0) to (616,2216,z0)
+[00:20:09.989] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:20:10.022] INFO  [mk3_Dorvar] [chat ascii] System: Hector has arrived in Trinsic.
+[00:20:10.673] INFO  [mk3_Dorvar] [action] goto finished at (619,2222,0); target (616,2216); stopped short (off by 9 tile(s))
+[00:20:10.674] LOG   [mk3_Dorvar] event goto_done: at=(619,2222) target=(616,2216) arrived=0 off=9
+[00:20:11.167] INFO  [mk3_Dorvar] [survival] hp 40/40 (100%) -> fight
+[00:20:11.907] INFO  [mk3_Dorvar] [action] goto (616,2216) from (619,2222,0)
+[00:20:11.907] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(619,2222)
+[00:20:11.907] INFO  [mk3_Dorvar] [bot] running from (619,2222,0) to (616,2216,z0)
+[00:20:11.907] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:20:12.660] INFO  [mk3_Dorvar] [action] goto finished at (619,2222,0); target (616,2216); stopped short (off by 9 tile(s))
+[00:20:12.660] LOG   [mk3_Dorvar] event goto_done: at=(619,2222) target=(616,2216) arrived=0 off=9
+[00:20:13.077] INFO  [mk3_Dorvar] [chat ascii] System: Castor has arrived in Trinsic.
+[00:20:13.903] INFO  [mk3_Dorvar] [travel] mode walk             usable   <- chosen
+[00:20:13.903] INFO  [mk3_Dorvar] [travel] mode moongate         usable
+[00:20:13.903] INFO  [mk3_Dorvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:13.903] INFO  [mk3_Dorvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:13.903] LOG   [mk3_Dorvar] event travel_mode: walk
+[00:20:13.903] INFO  [mk3_Dorvar] [travel] plan mobile 0x000027ED: ok legs=1 ~6 tiles transit=0 nodes=0
+[00:20:15.409] INFO  [mk3_Dorvar] [action] goto (616,2216) from (619,2222,0)
+[00:20:15.409] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(619,2222)
+[00:20:15.409] INFO  [mk3_Dorvar] [bot] running from (619,2222,0) to (616,2216,z0)
+[00:20:15.409] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:20:16.089] INFO  [mk3_Dorvar] [action] goto finished at (619,2222,0); target (616,2216); stopped short (off by 9 tile(s))
+[00:20:16.089] LOG   [mk3_Dorvar] event goto_done: at=(619,2222) target=(616,2216) arrived=0 off=9
+[00:20:16.106] INFO  [mk3_Dorvar] [chat ascii] System: Faustus has arrived in Britain.
+[00:20:16.229] INFO  [mk3_Dorvar] [survival] hp 40/40 (100%) -> fight
+[00:20:17.336] INFO  [mk3_Dorvar] [action] goto (616,2216) from (619,2222,0)
+[00:20:17.336] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(619,2222)
+[00:20:17.336] INFO  [mk3_Dorvar] [bot] running from (619,2222,0) to (616,2216,z0)
+[00:20:17.336] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:20:18.139] INFO  [mk3_Dorvar] [action] goto finished at (619,2222,0); target (616,2216); stopped short (off by 9 tile(s))
+[00:20:18.139] LOG   [mk3_Dorvar] event goto_done: at=(619,2222) target=(616,2216) arrived=0 off=9
+[00:20:19.161] INFO  [mk3_Dorvar] [chat ascii] System: Titus has arrived in Skara Brae.
+[00:20:19.345] INFO  [mk3_Dorvar] [action] goto (616,2216) from (619,2222,0)
+[00:20:19.345] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(619,2222)
+[00:20:19.345] INFO  [mk3_Dorvar] [bot] running from (619,2222,0) to (616,2216,z0)
+[00:20:19.345] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:20:20.173] INFO  [mk3_Dorvar] [action] goto finished at (619,2222,0); target (616,2216); stopped short (off by 9 tile(s))
+[00:20:20.173] LOG   [mk3_Dorvar] event goto_done: at=(619,2222) target=(616,2216) arrived=0 off=9
+[00:20:21.264] INFO  [mk3_Dorvar] [survival] hp 40/40 (100%) -> fight
+[00:20:21.389] INFO  [mk3_Dorvar] [travel] mode walk             usable   <- chosen
+[00:20:21.389] INFO  [mk3_Dorvar] [travel] mode moongate         usable
+[00:20:21.389] INFO  [mk3_Dorvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:21.389] INFO  [mk3_Dorvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:21.389] LOG   [mk3_Dorvar] event travel_mode: walk
+[00:20:21.389] INFO  [mk3_Dorvar] [travel] plan mobile 0x000027ED: ok legs=1 ~6 tiles transit=0 nodes=0
+[00:20:22.309] INFO  [mk3_Dorvar] [chat ascii] System: Rhea has arrived in Britain.
+[00:20:24.427] INFO  [mk3_Dorvar] [action] goto (616,2216) from (619,2222,0)
+[00:20:24.427] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(619,2222)
+[00:20:24.427] INFO  [mk3_Dorvar] [bot] running from (619,2222,0) to (616,2216,z0)
+[00:20:24.427] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:20:24.549] INFO  [mk3_Dorvar] [action] goto finished at (619,2222,0); target (616,2216); stopped short (off by 9 tile(s))
+[00:20:24.549] LOG   [mk3_Dorvar] event goto_done: at=(619,2222) target=(616,2216) arrived=0 off=9
+[00:20:25.377] INFO  [mk3_Dorvar] [chat ascii] System: Xerxes has arrived in Vesper.
+[00:20:25.802] INFO  [mk3_Dorvar] [action] goto (616,2216) from (619,2222,0)
+[00:20:25.802] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(619,2222)
+[00:20:25.802] INFO  [mk3_Dorvar] [bot] running from (619,2222,0) to (616,2216,z0)
+[00:20:25.802] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:20:25.925] INFO  [mk3_Dorvar] [action] goto finished at (619,2222,0); target (616,2216); stopped short (off by 9 tile(s))
+[00:20:25.925] LOG   [mk3_Dorvar] event goto_done: at=(619,2222) target=(616,2216) arrived=0 off=9
+[00:20:26.292] INFO  [mk3_Dorvar] [survival] hp 40/40 (100%) -> fight
+[00:20:27.149] INFO  [mk3_Dorvar] [action] goto (616,2216) from (619,2222,0)
+[00:20:27.149] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(619,2222)
+[00:20:27.149] INFO  [mk3_Dorvar] [bot] running from (619,2222,0) to (616,2216,z0)
+[00:20:27.149] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:20:27.271] INFO  [mk3_Dorvar] [action] goto finished at (619,2222,0); target (616,2216); stopped short (off by 9 tile(s))
+[00:20:27.271] LOG   [mk3_Dorvar] event goto_done: at=(619,2222) target=(616,2216) arrived=0 off=9
+[00:20:28.482] INFO  [mk3_Dorvar] [travel] mode walk             usable   <- chosen
+[00:20:28.482] INFO  [mk3_Dorvar] [travel] mode moongate         usable
+[00:20:28.482] INFO  [mk3_Dorvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:28.482] INFO  [mk3_Dorvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:28.482] LOG   [mk3_Dorvar] event travel_mode: walk
+[00:20:28.482] INFO  [mk3_Dorvar] [travel] plan mobile 0x000027ED: ok legs=1 ~6 tiles transit=0 nodes=0
+[00:20:31.332] INFO  [mk3_Dorvar] [survival] hp 40/40 (100%) -> fight
+[00:20:33.003] INFO  [mk3_Dorvar] [action] goto (616,2216) from (619,2222,0)
+[00:20:33.003] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(619,2222)
+[00:20:33.003] INFO  [mk3_Dorvar] [bot] running from (619,2222,0) to (616,2216,z0)
+[00:20:33.003] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:20:33.893] INFO  [mk3_Dorvar] [action] goto finished at (619,2222,0); target (616,2216); stopped short (off by 9 tile(s))
+[00:20:33.893] LOG   [mk3_Dorvar] event goto_done: at=(619,2222) target=(616,2216) arrived=0 off=9
+[00:20:35.147] INFO  [mk3_Dorvar] [action] goto (616,2216) from (619,2222,0)
+[00:20:35.147] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(619,2222)
+[00:20:35.147] INFO  [mk3_Dorvar] [bot] running from (619,2222,0) to (616,2216,z0)
+[00:20:35.147] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:20:36.005] INFO  [mk3_Dorvar] [action] goto finished at (619,2222,0); target (616,2216); stopped short (off by 9 tile(s))
+[00:20:36.005] LOG   [mk3_Dorvar] event goto_done: at=(619,2222) target=(616,2216) arrived=0 off=9
+[00:20:36.340] INFO  [mk3_Dorvar] [survival] hp 40/40 (100%) -> fight
+[00:20:37.252] INFO  [mk3_Dorvar] [action] goto (616,2216) from (619,2222,0)
+[00:20:37.252] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(619,2222)
+[00:20:37.252] INFO  [mk3_Dorvar] [bot] running from (619,2222,0) to (616,2216,z0)
+[00:20:37.252] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:20:38.105] INFO  [mk3_Dorvar] [action] goto finished at (619,2222,0); target (616,2216); stopped short (off by 9 tile(s))
+[00:20:38.105] LOG   [mk3_Dorvar] event goto_done: at=(619,2222) target=(616,2216) arrived=0 off=9
+[00:20:38.105] LOG   [mk3_Dorvar] event travel_escape: from=(619,2222,0) to=(616,2232) attempt=1
+[00:20:38.105] INFO  [mk3_Dorvar] [action] goto (616,2232) from (619,2222,0)
+[00:20:38.105] LOG   [mk3_Dorvar] event goto_start: target=(616,2232) from=(619,2222)
+[00:20:38.105] INFO  [mk3_Dorvar] [bot] running from (619,2222,0) to (616,2232,z0)
+[00:20:38.105] INFO  [mk3_Dorvar] [bot] planning path to (616,2232) in background
+[00:20:38.165] INFO  [mk3_Dorvar] [bot] replan to (616,2232): 16 steps in 437.6us
+[00:20:39.315] INFO  [mk3_Dorvar] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=15 in 205.3us
+[00:20:40.205] INFO  [mk3_Dorvar] [bot] door ahead at (623,2223,z0); OpenDoor before step
+[00:20:40.219] INFO  [mk3_Dorvar] [chat ascii] System: Opening door...
+[00:20:41.387] INFO  [mk3_Dorvar] [survival] hp 40/40 (100%) -> fight
+[00:20:45.262] INFO  [mk3_Dorvar] [bot] arrived at (616,2232,0)
+[00:20:45.263] INFO  [mk3_Dorvar] [action] goto finished at (616,2232,0); target (616,2232); ARRIVED (off by 0 tile(s))
+[00:20:45.263] LOG   [mk3_Dorvar] event goto_done: at=(616,2232) target=(616,2232) arrived=1 off=0
+[00:20:45.263] INFO  [mk3_Dorvar] [travel] recovery walk reached its anchor at (616,2232,0) (off 0); attempt 1/3
+[00:20:45.263] LOG   [mk3_Dorvar] event travel_recovery_done: reached=1 at=(616,2232,0) off=0 attempt=1
+[00:20:45.263] INFO  [mk3_Dorvar] [travel] mode walk             usable   <- chosen
+[00:20:45.263] INFO  [mk3_Dorvar] [travel] mode moongate         usable
+[00:20:45.263] INFO  [mk3_Dorvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:45.263] INFO  [mk3_Dorvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:45.263] LOG   [mk3_Dorvar] event travel_mode: walk
+[00:20:45.263] INFO  [mk3_Dorvar] [travel] plan mobile 0x000027ED: ok legs=1 ~16 tiles transit=0 nodes=0
+[00:20:45.324] INFO  [mk3_Dorvar] [action] goto (616,2216) from (616,2232,0)
+[00:20:45.324] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(616,2232)
+[00:20:45.324] INFO  [mk3_Dorvar] [bot] running from (616,2232,0) to (616,2216,z0)
+[00:20:45.324] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:20:46.398] INFO  [mk3_Dorvar] [action] goto finished at (616,2232,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:20:46.398] LOG   [mk3_Dorvar] event goto_done: at=(616,2232) target=(616,2216) arrived=0 off=16
+[00:20:46.398] INFO  [mk3_Dorvar] [survival] hp 40/40 (100%) -> fight
+[00:20:47.656] INFO  [mk3_Dorvar] [action] goto (616,2216) from (616,2232,0)
+[00:20:47.656] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(616,2232)
+[00:20:47.656] INFO  [mk3_Dorvar] [bot] running from (616,2232,0) to (616,2216,z0)
+[00:20:47.656] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:20:48.514] INFO  [mk3_Dorvar] [action] goto finished at (616,2232,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:20:48.514] LOG   [mk3_Dorvar] event goto_done: at=(616,2232) target=(616,2216) arrived=0 off=16
+[00:20:49.772] INFO  [mk3_Dorvar] [action] goto (616,2216) from (616,2232,0)
+[00:20:49.772] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(616,2232)
+[00:20:49.772] INFO  [mk3_Dorvar] [bot] running from (616,2232,0) to (616,2216,z0)
+[00:20:49.772] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:20:50.080] INFO  [mk3_Dorvar] [chat uni  ] : Iolana buy
+[00:20:50.080] INFO  [mk3_Dorvar] [chat ascii] Iolana: Greetings. What can I help thee with?
+[00:20:50.080] INFO  [mk3_Dorvar] [chat ascii] Iolana: I'm here to sell thee supplies.
+[00:20:50.141] INFO  [mk3_Dorvar] [chat ascii] Iolana: Here you are, Titus That will be 16 gold coins.  I thank thee for thy business.
+[00:20:50.263] INFO  [mk3_Dorvar] [chat uni  ] : Iolana buy
+[00:20:50.263] INFO  [mk3_Dorvar] [chat ascii] Iolana: Thou surely wants all the things that I can sell thee.
+[00:20:50.630] INFO  [mk3_Dorvar] [action] goto finished at (616,2232,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:20:50.630] LOG   [mk3_Dorvar] event goto_done: at=(616,2232) target=(616,2216) arrived=0 off=16
+[00:20:51.044] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_18.dorvar/state.json
+[00:20:51.453] INFO  [mk3_Dorvar] [survival] hp 40/40 (100%) -> fight
+[00:20:51.887] INFO  [mk3_Dorvar] [travel] mode walk             usable   <- chosen
+[00:20:51.887] INFO  [mk3_Dorvar] [travel] mode moongate         usable
+[00:20:51.887] INFO  [mk3_Dorvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:51.887] INFO  [mk3_Dorvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:51.887] LOG   [mk3_Dorvar] event travel_mode: walk
+[00:20:51.887] INFO  [mk3_Dorvar] [travel] plan mobile 0x000027ED: ok legs=1 ~16 tiles transit=0 nodes=0
+[00:20:52.347] INFO  [mk3_Dorvar] [chat ascii] Titus: *Titus is attacking Rat!*
+[00:20:53.388] INFO  [mk3_Dorvar] [action] goto (616,2216) from (616,2232,0)
+[00:20:53.388] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(616,2232)
+[00:20:53.388] INFO  [mk3_Dorvar] [bot] running from (616,2232,0) to (616,2216,z0)
+[00:20:53.388] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:20:54.079] INFO  [mk3_Dorvar] [action] goto finished at (616,2232,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:20:54.079] LOG   [mk3_Dorvar] event goto_done: at=(616,2232) target=(616,2216) arrived=0 off=16
+[00:20:55.332] INFO  [mk3_Dorvar] [action] goto (616,2216) from (616,2232,0)
+[00:20:55.332] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(616,2232)
+[00:20:55.332] INFO  [mk3_Dorvar] [bot] running from (616,2232,0) to (616,2216,z0)
+[00:20:55.332] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:20:56.281] INFO  [mk3_Dorvar] [action] goto finished at (616,2232,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:20:56.281] LOG   [mk3_Dorvar] event goto_done: at=(616,2232) target=(616,2216) arrived=0 off=16
+[00:20:56.463] INFO  [mk3_Dorvar] [survival] hp 40/40 (100%) -> fight
+[00:20:57.473] INFO  [mk3_Dorvar] [chat ascii] Titus: *Titus is attacking Rat!*
+[00:20:57.535] INFO  [mk3_Dorvar] [action] goto (616,2216) from (616,2232,0)
+[00:20:57.535] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(616,2232)
+[00:20:57.535] INFO  [mk3_Dorvar] [bot] running from (616,2232,0) to (616,2216,z0)
+[00:20:57.535] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:20:58.573] INFO  [mk3_Dorvar] [action] goto finished at (616,2232,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:20:58.574] LOG   [mk3_Dorvar] event goto_done: at=(616,2232) target=(616,2216) arrived=0 off=16
+[00:20:59.805] INFO  [mk3_Dorvar] [travel] mode walk             usable   <- chosen
+[00:20:59.805] INFO  [mk3_Dorvar] [travel] mode moongate         usable
+[00:20:59.805] INFO  [mk3_Dorvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:59.805] INFO  [mk3_Dorvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:59.805] LOG   [mk3_Dorvar] event travel_mode: walk
+[00:20:59.805] INFO  [mk3_Dorvar] [travel] plan mobile 0x000027ED: ok legs=1 ~16 tiles transit=0 nodes=0
+[00:21:01.506] INFO  [mk3_Dorvar] [survival] hp 40/40 (100%) -> fight
+[00:21:02.847] INFO  [mk3_Dorvar] [action] goto (616,2216) from (616,2232,0)
+[00:21:02.847] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(616,2232)
+[00:21:02.847] INFO  [mk3_Dorvar] [bot] running from (616,2232,0) to (616,2216,z0)
+[00:21:02.847] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:21:04.102] INFO  [mk3_Dorvar] [action] goto finished at (616,2232,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:21:04.102] LOG   [mk3_Dorvar] event goto_done: at=(616,2232) target=(616,2216) arrived=0 off=16
+[00:21:05.344] INFO  [mk3_Dorvar] [action] goto (616,2216) from (616,2232,0)
+[00:21:05.344] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(616,2232)
+[00:21:05.344] INFO  [mk3_Dorvar] [bot] running from (616,2232,0) to (616,2216,z0)
+[00:21:05.344] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:21:06.307] INFO  [mk3_Dorvar] [action] goto finished at (616,2232,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:21:06.307] LOG   [mk3_Dorvar] event goto_done: at=(616,2232) target=(616,2216) arrived=0 off=16
+[00:21:06.567] INFO  [mk3_Dorvar] [survival] hp 40/40 (100%) -> fight
+[00:21:07.516] INFO  [mk3_Dorvar] [action] goto (616,2216) from (616,2232,0)
+[00:21:07.516] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(616,2232)
+[00:21:07.516] INFO  [mk3_Dorvar] [bot] running from (616,2232,0) to (616,2216,z0)
+[00:21:07.516] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:21:08.758] INFO  [mk3_Dorvar] [action] goto finished at (616,2232,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:21:08.758] LOG   [mk3_Dorvar] event goto_done: at=(616,2232) target=(616,2216) arrived=0 off=16
+[00:21:09.987] INFO  [mk3_Dorvar] [travel] mode walk             usable   <- chosen
+[00:21:09.987] INFO  [mk3_Dorvar] [travel] mode moongate         usable
+[00:21:09.987] INFO  [mk3_Dorvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:09.987] INFO  [mk3_Dorvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:09.987] LOG   [mk3_Dorvar] event travel_mode: walk
+[00:21:09.987] INFO  [mk3_Dorvar] [travel] plan mobile 0x000027ED: ok legs=1 ~16 tiles transit=0 nodes=0
+[00:21:11.193] INFO  [mk3_Dorvar] [chat ascii] System: Observer has arrived in Minoc.
+[00:21:11.618] INFO  [mk3_Dorvar] [survival] hp 40/40 (100%) -> fight
+[00:21:14.539] INFO  [mk3_Dorvar] [action] goto (616,2216) from (616,2232,0)
+[00:21:14.539] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(616,2232)
+[00:21:14.539] INFO  [mk3_Dorvar] [bot] running from (616,2232,0) to (616,2216,z0)
+[00:21:14.539] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:21:14.571] INFO  [mk3_Dorvar] [chat ascii] System: Observer has departed from Minoc.
+[00:21:15.186] INFO  [mk3_Dorvar] [chat ascii] Rat: *Rat is attacking Titus!*
+[00:21:15.815] INFO  [mk3_Dorvar] [action] goto finished at (616,2232,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:21:15.815] LOG   [mk3_Dorvar] event goto_done: at=(616,2232) target=(616,2216) arrived=0 off=16
+[00:21:16.674] INFO  [mk3_Dorvar] [survival] hp 40/40 (100%) -> fight
+[00:21:17.076] INFO  [mk3_Dorvar] [action] goto (616,2216) from (616,2232,0)
+[00:21:17.076] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(616,2232)
+[00:21:17.076] INFO  [mk3_Dorvar] [bot] running from (616,2232,0) to (616,2216,z0)
+[00:21:17.076] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:21:18.041] INFO  [mk3_Dorvar] [action] goto finished at (616,2232,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:21:18.041] LOG   [mk3_Dorvar] event goto_done: at=(616,2232) target=(616,2216) arrived=0 off=16
+[00:21:19.295] INFO  [mk3_Dorvar] [action] goto (616,2216) from (616,2232,0)
+[00:21:19.295] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(616,2232)
+[00:21:19.295] INFO  [mk3_Dorvar] [bot] running from (616,2232,0) to (616,2216,z0)
+[00:21:19.295] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:21:20.308] INFO  [mk3_Dorvar] [action] goto finished at (616,2232,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:21:20.308] LOG   [mk3_Dorvar] event goto_done: at=(616,2232) target=(616,2216) arrived=0 off=16
+[00:21:20.308] LOG   [mk3_Dorvar] event travel_escape: from=(616,2232,0) to=(600,2216) attempt=2
+[00:21:20.308] INFO  [mk3_Dorvar] [action] goto (600,2216) from (616,2232,0)
+[00:21:20.308] LOG   [mk3_Dorvar] event goto_start: target=(600,2216) from=(616,2232)
+[00:21:20.308] INFO  [mk3_Dorvar] [bot] running from (616,2232,0) to (600,2216,z0)
+[00:21:20.308] INFO  [mk3_Dorvar] [bot] planning path to (600,2216) in background
+[00:21:20.369] INFO  [mk3_Dorvar] [bot] replan to (600,2216): 20 steps in 1104.8us
+[00:21:21.676] INFO  [mk3_Dorvar] [survival] hp 40/40 (100%) -> fight
+[00:21:26.687] INFO  [mk3_Dorvar] [survival] hp 40/40 (100%) -> fight
+[00:21:27.134] INFO  [mk3_Dorvar] [bot] arrived at (600,2216,0)
+[00:21:27.135] INFO  [mk3_Dorvar] [action] goto finished at (600,2216,0); target (600,2216); ARRIVED (off by 0 tile(s))
+[00:21:27.135] LOG   [mk3_Dorvar] event goto_done: at=(600,2216) target=(600,2216) arrived=1 off=0
+[00:21:27.135] INFO  [mk3_Dorvar] [travel] recovery walk reached its anchor at (600,2216,0) (off 0); attempt 2/3
+[00:21:27.135] LOG   [mk3_Dorvar] event travel_recovery_done: reached=1 at=(600,2216,0) off=0 attempt=2
+[00:21:27.196] INFO  [mk3_Dorvar] [travel] mode walk             usable   <- chosen
+[00:21:27.196] INFO  [mk3_Dorvar] [travel] mode moongate         usable
+[00:21:27.196] INFO  [mk3_Dorvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:27.196] INFO  [mk3_Dorvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:27.196] LOG   [mk3_Dorvar] event travel_mode: walk
+[00:21:27.196] INFO  [mk3_Dorvar] [travel] plan mobile 0x000027ED: ok legs=1 ~16 tiles transit=0 nodes=0
+[00:21:27.255] INFO  [mk3_Dorvar] [action] goto (616,2216) from (600,2216,0)
+[00:21:27.255] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(600,2216)
+[00:21:27.255] INFO  [mk3_Dorvar] [bot] running from (600,2216,0) to (616,2216,z0)
+[00:21:27.255] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:21:28.530] INFO  [mk3_Dorvar] [action] goto finished at (600,2216,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:21:28.530] LOG   [mk3_Dorvar] event goto_done: at=(600,2216) target=(616,2216) arrived=0 off=16
+[00:21:29.790] INFO  [mk3_Dorvar] [action] goto (616,2216) from (600,2216,0)
+[00:21:29.790] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(600,2216)
+[00:21:29.790] INFO  [mk3_Dorvar] [bot] running from (600,2216,0) to (616,2216,z0)
+[00:21:29.790] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:21:30.668] INFO  [mk3_Dorvar] [action] goto finished at (600,2216,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:21:30.668] LOG   [mk3_Dorvar] event goto_done: at=(600,2216) target=(616,2216) arrived=0 off=16
+[00:21:31.742] INFO  [mk3_Dorvar] [survival] hp 40/40 (100%) -> fight
+[00:21:31.926] INFO  [mk3_Dorvar] [action] goto (616,2216) from (600,2216,0)
+[00:21:31.926] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(600,2216)
+[00:21:31.926] INFO  [mk3_Dorvar] [bot] running from (600,2216,0) to (616,2216,z0)
+[00:21:31.926] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:21:33.151] INFO  [mk3_Dorvar] [action] goto finished at (600,2216,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:21:33.151] LOG   [mk3_Dorvar] event goto_done: at=(600,2216) target=(616,2216) arrived=0 off=16
+[00:21:34.383] INFO  [mk3_Dorvar] [travel] mode walk             usable   <- chosen
+[00:21:34.383] INFO  [mk3_Dorvar] [travel] mode moongate         usable
+[00:21:34.383] INFO  [mk3_Dorvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:34.383] INFO  [mk3_Dorvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:34.383] LOG   [mk3_Dorvar] event travel_mode: walk
+[00:21:34.383] INFO  [mk3_Dorvar] [travel] plan mobile 0x000027ED: ok legs=1 ~16 tiles transit=0 nodes=0
+[00:21:35.903] INFO  [mk3_Dorvar] [action] goto (616,2216) from (600,2216,0)
+[00:21:35.903] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(600,2216)
+[00:21:35.903] INFO  [mk3_Dorvar] [bot] running from (600,2216,0) to (616,2216,z0)
+[00:21:35.903] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:21:36.763] INFO  [mk3_Dorvar] [action] goto finished at (600,2216,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:21:36.763] LOG   [mk3_Dorvar] event goto_done: at=(600,2216) target=(616,2216) arrived=0 off=16
+[00:21:36.763] INFO  [mk3_Dorvar] [survival] hp 40/40 (100%) -> fight
+[00:21:37.992] INFO  [mk3_Dorvar] [action] goto (616,2216) from (600,2216,0)
+[00:21:37.992] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(600,2216)
+[00:21:37.992] INFO  [mk3_Dorvar] [bot] running from (600,2216,0) to (616,2216,z0)
+[00:21:37.992] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:21:39.040] INFO  [mk3_Dorvar] [action] goto finished at (600,2216,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:21:39.040] LOG   [mk3_Dorvar] event goto_done: at=(600,2216) target=(616,2216) arrived=0 off=16
+[00:21:40.256] INFO  [mk3_Dorvar] [action] goto (616,2216) from (600,2216,0)
+[00:21:40.256] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(600,2216)
+[00:21:40.256] INFO  [mk3_Dorvar] [bot] running from (600,2216,0) to (616,2216,z0)
+[00:21:40.256] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:21:41.118] INFO  [mk3_Dorvar] [action] goto finished at (600,2216,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:21:41.118] LOG   [mk3_Dorvar] event goto_done: at=(600,2216) target=(616,2216) arrived=0 off=16
+[00:21:41.794] INFO  [mk3_Dorvar] [survival] hp 40/40 (100%) -> fight
+[00:21:42.348] INFO  [mk3_Dorvar] [travel] mode walk             usable   <- chosen
+[00:21:42.348] INFO  [mk3_Dorvar] [travel] mode moongate         usable
+[00:21:42.348] INFO  [mk3_Dorvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:42.348] INFO  [mk3_Dorvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:42.348] LOG   [mk3_Dorvar] event travel_mode: walk
+[00:21:42.348] INFO  [mk3_Dorvar] [travel] plan mobile 0x000027ED: ok legs=1 ~16 tiles transit=0 nodes=0
+[00:21:45.396] INFO  [mk3_Dorvar] [action] goto (616,2216) from (600,2216,0)
+[00:21:45.396] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(600,2216)
+[00:21:45.396] INFO  [mk3_Dorvar] [bot] running from (600,2216,0) to (616,2216,z0)
+[00:21:45.396] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:21:46.069] INFO  [mk3_Dorvar] [action] goto finished at (600,2216,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:21:46.069] LOG   [mk3_Dorvar] event goto_done: at=(600,2216) target=(616,2216) arrived=0 off=16
+[00:21:46.806] INFO  [mk3_Dorvar] [survival] hp 40/40 (100%) -> fight
+[00:21:47.301] INFO  [mk3_Dorvar] [action] goto (616,2216) from (600,2216,0)
+[00:21:47.301] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(600,2216)
+[00:21:47.301] INFO  [mk3_Dorvar] [bot] running from (600,2216,0) to (616,2216,z0)
+[00:21:47.301] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:21:48.273] INFO  [mk3_Dorvar] [action] goto finished at (600,2216,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:21:48.273] LOG   [mk3_Dorvar] event goto_done: at=(600,2216) target=(616,2216) arrived=0 off=16
+[00:21:49.520] INFO  [mk3_Dorvar] [action] goto (616,2216) from (600,2216,0)
+[00:21:49.520] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(600,2216)
+[00:21:49.520] INFO  [mk3_Dorvar] [bot] running from (600,2216,0) to (616,2216,z0)
+[00:21:49.520] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:21:50.597] INFO  [mk3_Dorvar] [action] goto finished at (600,2216,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:21:50.597] LOG   [mk3_Dorvar] event goto_done: at=(600,2216) target=(616,2216) arrived=0 off=16
+[00:21:51.089] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_18.dorvar/state.json
+[00:21:51.810] INFO  [mk3_Dorvar] [travel] mode walk             usable   <- chosen
+[00:21:51.811] INFO  [mk3_Dorvar] [travel] mode moongate         usable
+[00:21:51.811] INFO  [mk3_Dorvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:51.811] INFO  [mk3_Dorvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:51.811] LOG   [mk3_Dorvar] event travel_mode: walk
+[00:21:51.811] INFO  [mk3_Dorvar] [travel] plan mobile 0x000027ED: ok legs=1 ~16 tiles transit=0 nodes=0
+[00:21:51.811] INFO  [mk3_Dorvar] [survival] hp 40/40 (100%) -> fight
+[00:21:56.093] INFO  [mk3_Dorvar] [chat ascii] Iolana: Hello! ?
+[00:21:56.093] INFO  [mk3_Dorvar] [chat ascii] Iolana: I'm here to sell thee supplies.
+[00:21:56.337] INFO  [mk3_Dorvar] [action] goto (616,2216) from (600,2216,0)
+[00:21:56.337] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(600,2216)
+[00:21:56.337] INFO  [mk3_Dorvar] [bot] running from (600,2216,0) to (616,2216,z0)
+[00:21:56.337] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:21:56.841] INFO  [mk3_Dorvar] [survival] hp 40/40 (100%) -> fight
+[00:21:57.089] INFO  [mk3_Dorvar] [action] goto finished at (600,2216,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:21:57.089] LOG   [mk3_Dorvar] event goto_done: at=(600,2216) target=(616,2216) arrived=0 off=16
+[00:21:58.319] INFO  [mk3_Dorvar] [action] goto (616,2216) from (600,2216,0)
+[00:21:58.319] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(600,2216)
+[00:21:58.319] INFO  [mk3_Dorvar] [bot] running from (600,2216,0) to (616,2216,z0)
+[00:21:58.319] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:21:58.644] INFO  [mk3_Dorvar] [chat ascii] System: Draver has departed from Minoc.
+[00:21:59.138] INFO  [mk3_Dorvar] [action] goto finished at (600,2216,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:21:59.138] LOG   [mk3_Dorvar] event goto_done: at=(600,2216) target=(616,2216) arrived=0 off=16
+[00:22:00.364] INFO  [mk3_Dorvar] [action] goto (616,2216) from (600,2216,0)
+[00:22:00.364] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(600,2216)
+[00:22:00.364] INFO  [mk3_Dorvar] [bot] running from (600,2216,0) to (616,2216,z0)
+[00:22:00.365] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:22:01.158] INFO  [mk3_Dorvar] [action] goto finished at (600,2216,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:22:01.158] LOG   [mk3_Dorvar] event goto_done: at=(600,2216) target=(616,2216) arrived=0 off=16
+[00:22:01.158] LOG   [mk3_Dorvar] event travel_escape: from=(600,2216,0) to=(584,2200) attempt=3
+[00:22:01.158] INFO  [mk3_Dorvar] [action] goto (584,2200) from (600,2216,0)
+[00:22:01.158] LOG   [mk3_Dorvar] event goto_start: target=(584,2200) from=(600,2216)
+[00:22:01.158] INFO  [mk3_Dorvar] [bot] running from (600,2216,0) to (584,2200,z0)
+[00:22:01.158] INFO  [mk3_Dorvar] [bot] planning path to (584,2200) in background
+[00:22:01.901] INFO  [mk3_Dorvar] [survival] hp 40/40 (100%) -> fight
+[00:22:02.025] INFO  [mk3_Dorvar] [action] goto finished at (600,2216,0); target (584,2200); stopped short (off by 32 tile(s))
+[00:22:02.025] LOG   [mk3_Dorvar] event goto_done: at=(600,2216) target=(584,2200) arrived=0 off=32
+[00:22:02.025] INFO  [mk3_Dorvar] [travel] recovery walk fell short at (600,2216,0) (off 16); attempt 3/3
+[00:22:02.025] LOG   [mk3_Dorvar] event travel_recovery_done: reached=0 at=(600,2216,0) off=16 attempt=3
+[00:22:02.087] INFO  [mk3_Dorvar] [travel] mobile 0x000027ED -> (616,2216) r=1 from (600,2216)
+[00:22:02.087] LOG   [mk3_Dorvar] event travel_start: label='mobile 0x000027ED' target=(616,2216) radius=1 from=(600,2216)
+[00:22:02.087] INFO  [life] potions: the 'healer' is 16 tiles off (dz 0) -- walking into reach (chase 2 of 3)
+[00:22:02.087] INFO  [mk3_Dorvar] [travel] mode walk             usable   <- chosen
+[00:22:02.087] INFO  [mk3_Dorvar] [travel] mode moongate         usable
+[00:22:02.087] INFO  [mk3_Dorvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:02.087] INFO  [mk3_Dorvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:02.087] LOG   [mk3_Dorvar] event travel_mode: walk
+[00:22:02.087] INFO  [mk3_Dorvar] [travel] plan mobile 0x000027ED: ok legs=1 ~16 tiles transit=0 nodes=0
+[00:22:02.147] INFO  [mk3_Dorvar] [action] goto (616,2216) from (600,2216,0)
+[00:22:02.147] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(600,2216)
+[00:22:02.147] INFO  [mk3_Dorvar] [bot] running from (600,2216,0) to (616,2216,z0)
+[00:22:02.147] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:22:03.076] INFO  [mk3_Dorvar] [action] goto finished at (600,2216,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:22:03.076] LOG   [mk3_Dorvar] event goto_done: at=(600,2216) target=(616,2216) arrived=0 off=16
+[00:22:04.281] INFO  [mk3_Dorvar] [action] goto (616,2216) from (600,2216,0)
+[00:22:04.281] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(600,2216)
+[00:22:04.281] INFO  [mk3_Dorvar] [bot] running from (600,2216,0) to (616,2216,z0)
+[00:22:04.281] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:22:05.268] INFO  [mk3_Dorvar] [action] goto finished at (600,2216,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:22:05.268] LOG   [mk3_Dorvar] event goto_done: at=(600,2216) target=(616,2216) arrived=0 off=16
+[00:22:06.503] INFO  [mk3_Dorvar] [action] goto (616,2216) from (600,2216,0)
+[00:22:06.503] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(600,2216)
+[00:22:06.503] INFO  [mk3_Dorvar] [bot] running from (600,2216,0) to (616,2216,z0)
+[00:22:06.503] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:22:06.953] INFO  [mk3_Dorvar] [survival] hp 40/40 (100%) -> fight
+[00:22:07.125] INFO  [mk3_Dorvar] [action] goto finished at (600,2216,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:22:07.125] LOG   [mk3_Dorvar] event goto_done: at=(600,2216) target=(616,2216) arrived=0 off=16
+[00:22:08.333] INFO  [mk3_Dorvar] [travel] mode walk             usable   <- chosen
+[00:22:08.333] INFO  [mk3_Dorvar] [travel] mode moongate         usable
+[00:22:08.333] INFO  [mk3_Dorvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:08.333] INFO  [mk3_Dorvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:08.333] LOG   [mk3_Dorvar] event travel_mode: walk
+[00:22:08.333] INFO  [mk3_Dorvar] [travel] plan mobile 0x000027ED: ok legs=1 ~16 tiles transit=0 nodes=0
+[00:22:09.891] INFO  [mk3_Dorvar] [action] goto (616,2216) from (600,2216,0)
+[00:22:09.891] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(600,2216)
+[00:22:09.891] INFO  [mk3_Dorvar] [bot] running from (600,2216,0) to (616,2216,z0)
+[00:22:09.891] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:22:10.862] INFO  [mk3_Dorvar] [action] goto finished at (600,2216,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:22:10.862] LOG   [mk3_Dorvar] event goto_done: at=(600,2216) target=(616,2216) arrived=0 off=16
+[00:22:11.984] INFO  [mk3_Dorvar] [survival] hp 40/40 (100%) -> fight
+[00:22:12.109] INFO  [mk3_Dorvar] [action] goto (616,2216) from (600,2216,0)
+[00:22:12.109] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(600,2216)
+[00:22:12.109] INFO  [mk3_Dorvar] [bot] running from (600,2216,0) to (616,2216,z0)
+[00:22:12.109] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:22:12.957] INFO  [mk3_Dorvar] [action] goto finished at (600,2216,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:22:12.957] LOG   [mk3_Dorvar] event goto_done: at=(600,2216) target=(616,2216) arrived=0 off=16
+[00:22:14.204] INFO  [mk3_Dorvar] [action] goto (616,2216) from (600,2216,0)
+[00:22:14.204] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(600,2216)
+[00:22:14.204] INFO  [mk3_Dorvar] [bot] running from (600,2216,0) to (616,2216,z0)
+[00:22:14.204] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:22:15.318] INFO  [mk3_Dorvar] [action] goto finished at (600,2216,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:22:15.318] LOG   [mk3_Dorvar] event goto_done: at=(600,2216) target=(616,2216) arrived=0 off=16
+[00:22:16.563] INFO  [mk3_Dorvar] [travel] mode walk             usable   <- chosen
+[00:22:16.563] INFO  [mk3_Dorvar] [travel] mode moongate         usable
+[00:22:16.563] INFO  [mk3_Dorvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:16.563] INFO  [mk3_Dorvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:16.563] LOG   [mk3_Dorvar] event travel_mode: walk
+[00:22:16.563] INFO  [mk3_Dorvar] [travel] plan mobile 0x000027ED: ok legs=1 ~16 tiles transit=0 nodes=0
+[00:22:16.990] INFO  [mk3_Dorvar] [survival] hp 40/40 (100%) -> fight
+[00:22:19.619] INFO  [mk3_Dorvar] [action] goto (616,2216) from (600,2216,0)
+[00:22:19.619] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(600,2216)
+[00:22:19.619] INFO  [mk3_Dorvar] [bot] running from (600,2216,0) to (616,2216,z0)
+[00:22:19.619] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:22:20.421] INFO  [mk3_Dorvar] [action] goto finished at (600,2216,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:22:20.421] LOG   [mk3_Dorvar] event goto_done: at=(600,2216) target=(616,2216) arrived=0 off=16
+[00:22:21.623] INFO  [mk3_Dorvar] [action] goto (616,2216) from (600,2216,0)
+[00:22:21.623] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(600,2216)
+[00:22:21.623] INFO  [mk3_Dorvar] [bot] running from (600,2216,0) to (616,2216,z0)
+[00:22:21.623] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:22:22.010] INFO  [mk3_Dorvar] [survival] hp 40/40 (100%) -> fight
+[00:22:22.194] INFO  [mk3_Dorvar] [action] goto finished at (600,2216,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:22:22.194] LOG   [mk3_Dorvar] event goto_done: at=(600,2216) target=(616,2216) arrived=0 off=16
+[00:22:23.437] INFO  [mk3_Dorvar] [action] goto (616,2216) from (600,2216,0)
+[00:22:23.437] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(600,2216)
+[00:22:23.437] INFO  [mk3_Dorvar] [bot] running from (600,2216,0) to (616,2216,z0)
+[00:22:23.437] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:22:24.316] INFO  [mk3_Dorvar] [action] goto finished at (600,2216,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:22:24.316] LOG   [mk3_Dorvar] event goto_done: at=(600,2216) target=(616,2216) arrived=0 off=16
+[00:22:25.520] INFO  [mk3_Dorvar] [travel] mode walk             usable   <- chosen
+[00:22:25.520] INFO  [mk3_Dorvar] [travel] mode moongate         usable
+[00:22:25.520] INFO  [mk3_Dorvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:25.520] INFO  [mk3_Dorvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:25.520] LOG   [mk3_Dorvar] event travel_mode: walk
+[00:22:25.520] INFO  [mk3_Dorvar] [travel] plan mobile 0x000027ED: ok legs=1 ~16 tiles transit=0 nodes=0
+[00:22:27.045] INFO  [mk3_Dorvar] [survival] hp 40/40 (100%) -> fight
+[00:22:30.034] INFO  [mk3_Dorvar] [action] goto (616,2216) from (600,2216,0)
+[00:22:30.034] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(600,2216)
+[00:22:30.034] INFO  [mk3_Dorvar] [bot] running from (600,2216,0) to (616,2216,z0)
+[00:22:30.034] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:22:30.777] INFO  [mk3_Dorvar] [action] goto finished at (600,2216,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:22:30.777] LOG   [mk3_Dorvar] event goto_done: at=(600,2216) target=(616,2216) arrived=0 off=16
+[00:22:32.007] INFO  [mk3_Dorvar] [action] goto (616,2216) from (600,2216,0)
+[00:22:32.007] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(600,2216)
+[00:22:32.007] INFO  [mk3_Dorvar] [bot] running from (600,2216,0) to (616,2216,z0)
+[00:22:32.007] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:22:32.068] INFO  [mk3_Dorvar] [survival] hp 40/40 (100%) -> fight
+[00:22:32.882] INFO  [mk3_Dorvar] [action] goto finished at (600,2216,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:22:32.882] LOG   [mk3_Dorvar] event goto_done: at=(600,2216) target=(616,2216) arrived=0 off=16
+[00:22:34.131] INFO  [mk3_Dorvar] [action] goto (616,2216) from (600,2216,0)
+[00:22:34.131] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(600,2216)
+[00:22:34.131] INFO  [mk3_Dorvar] [bot] running from (600,2216,0) to (616,2216,z0)
+[00:22:34.131] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:22:34.746] INFO  [mk3_Dorvar] [action] goto finished at (600,2216,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:22:34.746] LOG   [mk3_Dorvar] event goto_done: at=(600,2216) target=(616,2216) arrived=0 off=16
+[00:22:34.746] LOG   [mk3_Dorvar] event travel_escape: from=(600,2216,0) to=(584,2200) attempt=1
+[00:22:34.746] INFO  [mk3_Dorvar] [action] goto (584,2200) from (600,2216,0)
+[00:22:34.746] LOG   [mk3_Dorvar] event goto_start: target=(584,2200) from=(600,2216)
+[00:22:34.746] INFO  [mk3_Dorvar] [bot] running from (600,2216,0) to (584,2200,z0)
+[00:22:34.746] INFO  [mk3_Dorvar] [bot] planning path to (584,2200) in background
+[00:22:35.488] INFO  [mk3_Dorvar] [action] goto finished at (600,2216,0); target (584,2200); stopped short (off by 32 tile(s))
+[00:22:35.488] LOG   [mk3_Dorvar] event goto_done: at=(600,2216) target=(584,2200) arrived=0 off=32
+[00:22:35.488] INFO  [mk3_Dorvar] [travel] recovery walk fell short at (600,2216,0) (off 16); attempt 1/3
+[00:22:35.488] LOG   [mk3_Dorvar] event travel_recovery_done: reached=0 at=(600,2216,0) off=16 attempt=1
+[00:22:35.488] LOG   [mk3_Dorvar] event travel_escape: from=(600,2216,0) to=(600,2200) attempt=2
+[00:22:35.488] INFO  [mk3_Dorvar] [action] goto (600,2200) from (600,2216,0)
+[00:22:35.488] LOG   [mk3_Dorvar] event goto_start: target=(600,2200) from=(600,2216)
+[00:22:35.488] INFO  [mk3_Dorvar] [bot] running from (600,2216,0) to (600,2200,z0)
+[00:22:35.488] INFO  [mk3_Dorvar] [bot] planning path to (600,2200) in background
+[00:22:36.353] INFO  [mk3_Dorvar] [action] goto finished at (600,2216,0); target (600,2200); stopped short (off by 16 tile(s))
+[00:22:36.353] LOG   [mk3_Dorvar] event goto_done: at=(600,2216) target=(600,2200) arrived=0 off=16
+[00:22:36.353] INFO  [mk3_Dorvar] [travel] recovery walk fell short at (600,2216,0) (off 16); attempt 1/3
+[00:22:36.353] LOG   [mk3_Dorvar] event travel_recovery_done: reached=0 at=(600,2216,0) off=16 attempt=1
+[00:22:36.353] LOG   [mk3_Dorvar] event travel_escape: from=(600,2216,0) to=(616,2200) attempt=3
+[00:22:36.353] INFO  [mk3_Dorvar] [action] goto (616,2200) from (600,2216,0)
+[00:22:36.353] LOG   [mk3_Dorvar] event goto_start: target=(616,2200) from=(600,2216)
+[00:22:36.353] INFO  [mk3_Dorvar] [bot] running from (600,2216,0) to (616,2200,z0)
+[00:22:36.353] INFO  [mk3_Dorvar] [bot] planning path to (616,2200) in background
+[00:22:36.415] INFO  [mk3_Dorvar] [bot] replan to (616,2200): 17 steps in 632.0us
+[00:22:37.076] INFO  [mk3_Dorvar] [survival] hp 40/40 (100%) -> fight
+[00:22:38.419] INFO  [mk3_Dorvar] [chat ascii] System: Vorar has departed from Britain.
+[00:22:39.439] INFO  [mk3_Dorvar] [chat ascii] System: Selene has departed from Magincia.
+[00:22:41.578] INFO  [mk3_Dorvar] [bot] arrived at (616,2200,0)
+[00:22:41.578] INFO  [mk3_Dorvar] [action] goto finished at (616,2200,0); target (616,2200); ARRIVED (off by 0 tile(s))
+[00:22:41.578] LOG   [mk3_Dorvar] event goto_done: at=(616,2200) target=(616,2200) arrived=1 off=0
+[00:22:41.578] INFO  [mk3_Dorvar] [travel] recovery walk reached its anchor at (616,2200,0) (off 0); attempt 1/3
+[00:22:41.579] LOG   [mk3_Dorvar] event travel_recovery_done: reached=1 at=(616,2200,0) off=0 attempt=1
+[00:22:41.639] INFO  [mk3_Dorvar] [travel] mode walk             usable   <- chosen
+[00:22:41.639] INFO  [mk3_Dorvar] [travel] mode moongate         usable
+[00:22:41.639] INFO  [mk3_Dorvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:41.639] INFO  [mk3_Dorvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:41.639] LOG   [mk3_Dorvar] event travel_mode: walk
+[00:22:41.639] INFO  [mk3_Dorvar] [travel] plan mobile 0x000027ED: ok legs=1 ~16 tiles transit=0 nodes=0
+[00:22:41.701] INFO  [mk3_Dorvar] [action] goto (616,2216) from (616,2200,0)
+[00:22:41.701] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(616,2200)
+[00:22:41.701] INFO  [mk3_Dorvar] [bot] running from (616,2200,0) to (616,2216,z0)
+[00:22:41.701] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:22:42.134] INFO  [mk3_Dorvar] [survival] hp 40/40 (100%) -> fight
+[00:22:42.501] INFO  [mk3_Dorvar] [action] goto finished at (616,2200,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:22:42.501] LOG   [mk3_Dorvar] event goto_done: at=(616,2200) target=(616,2216) arrived=0 off=16
+[00:22:43.732] INFO  [mk3_Dorvar] [action] goto (616,2216) from (616,2200,0)
+[00:22:43.732] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(616,2200)
+[00:22:43.732] INFO  [mk3_Dorvar] [bot] running from (616,2200,0) to (616,2216,z0)
+[00:22:43.732] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:22:44.413] INFO  [mk3_Dorvar] [action] goto finished at (616,2200,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:22:44.413] LOG   [mk3_Dorvar] event goto_done: at=(616,2200) target=(616,2216) arrived=0 off=16
+[00:22:45.648] INFO  [mk3_Dorvar] [action] goto (616,2216) from (616,2200,0)
+[00:22:45.648] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(616,2200)
+[00:22:45.648] INFO  [mk3_Dorvar] [bot] running from (616,2200,0) to (616,2216,z0)
+[00:22:45.648] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:22:46.526] INFO  [mk3_Dorvar] [action] goto finished at (616,2200,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:22:46.527] LOG   [mk3_Dorvar] event goto_done: at=(616,2200) target=(616,2216) arrived=0 off=16
+[00:22:46.897] INFO  [mk3_Dorvar] [chat ascii] System: Zarthal has departed from Minoc.
+[00:22:47.175] INFO  [mk3_Dorvar] [survival] hp 40/40 (100%) -> fight
+[00:22:47.733] INFO  [mk3_Dorvar] [travel] mode walk             usable   <- chosen
+[00:22:47.733] INFO  [mk3_Dorvar] [travel] mode moongate         usable
+[00:22:47.733] INFO  [mk3_Dorvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:47.733] INFO  [mk3_Dorvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:47.733] LOG   [mk3_Dorvar] event travel_mode: walk
+[00:22:47.733] INFO  [mk3_Dorvar] [travel] plan mobile 0x000027ED: ok legs=1 ~16 tiles transit=0 nodes=0
+[00:22:48.441] INFO  [life] session_end_requested reason="session time limit reached"
+[00:22:49.239] INFO  [mk3_Dorvar] [action] goto (616,2216) from (616,2200,0)
+[00:22:49.239] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(616,2200)
+[00:22:49.239] INFO  [mk3_Dorvar] [bot] running from (616,2200,0) to (616,2216,z0)
+[00:22:49.239] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:22:49.378] INFO  [mk3_Dorvar] [chat ascii] System: World save in 10 seconds
+[00:22:50.072] INFO  [mk3_Dorvar] [action] goto finished at (616,2200,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:22:50.072] LOG   [mk3_Dorvar] event goto_done: at=(616,2200) target=(616,2216) arrived=0 off=16
+[00:22:50.319] INFO  [mk3_Dorvar] [chat ascii] System: Thalia has departed from Moonglow.
+[00:22:51.321] INFO  [mk3_Dorvar] [action] goto (616,2216) from (616,2200,0)
+[00:22:51.321] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(616,2200)
+[00:22:51.321] INFO  [mk3_Dorvar] [bot] running from (616,2200,0) to (616,2216,z0)
+[00:22:51.321] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:22:52.214] INFO  [mk3_Dorvar] [survival] hp 40/40 (100%) -> fight
+[00:22:52.274] INFO  [mk3_Dorvar] [action] goto finished at (616,2200,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:22:52.274] LOG   [mk3_Dorvar] event goto_done: at=(616,2200) target=(616,2216) arrived=0 off=16
+[00:22:53.217] INFO  [mk3_Dorvar] [chat ascii] System: Elvar has departed from Minoc.
+[00:22:53.519] INFO  [mk3_Dorvar] [action] goto (616,2216) from (616,2200,0)
+[00:22:53.519] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(616,2200)
+[00:22:53.519] INFO  [mk3_Dorvar] [bot] running from (616,2200,0) to (616,2216,z0)
+[00:22:53.519] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:22:54.259] INFO  [mk3_Dorvar] [action] goto finished at (616,2200,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:22:54.259] LOG   [mk3_Dorvar] event goto_done: at=(616,2200) target=(616,2216) arrived=0 off=16
+[00:22:55.503] INFO  [mk3_Dorvar] [travel] mode walk             usable   <- chosen
+[00:22:55.503] INFO  [mk3_Dorvar] [travel] mode moongate         usable
+[00:22:55.503] INFO  [mk3_Dorvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:55.503] INFO  [mk3_Dorvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:55.503] LOG   [mk3_Dorvar] event travel_mode: walk
+[00:22:55.503] INFO  [mk3_Dorvar] [travel] plan mobile 0x000027ED: ok legs=1 ~16 tiles transit=0 nodes=0
+[00:22:57.229] INFO  [mk3_Dorvar] [survival] hp 40/40 (100%) -> fight
+[00:22:57.848] INFO  [mk3_Dorvar] [chat ascii] System: Falen has departed from Minoc.
+[00:22:58.525] INFO  [mk3_Dorvar] [action] goto (616,2216) from (616,2200,0)
+[00:22:58.525] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(616,2200)
+[00:22:58.525] INFO  [mk3_Dorvar] [bot] running from (616,2200,0) to (616,2216,z0)
+[00:22:58.525] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:22:59.323] INFO  [mk3_Dorvar] [action] goto finished at (616,2200,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:22:59.324] LOG   [mk3_Dorvar] event goto_done: at=(616,2200) target=(616,2216) arrived=0 off=16
+[00:22:59.430] INFO  [mk3_Dorvar] [chat ascii] System: World save has been initiated.
+[00:23:00.549] INFO  [mk3_Dorvar] [action] goto (616,2216) from (616,2200,0)
+[00:23:00.549] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(616,2200)
+[00:23:00.549] INFO  [mk3_Dorvar] [bot] running from (616,2200,0) to (616,2216,z0)
+[00:23:00.550] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:23:01.424] INFO  [mk3_Dorvar] [action] goto finished at (616,2200,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:23:01.424] LOG   [mk3_Dorvar] event goto_done: at=(616,2200) target=(616,2216) arrived=0 off=16
+[00:23:02.237] INFO  [mk3_Dorvar] [survival] hp 40/40 (100%) -> fight
+[00:23:02.669] INFO  [mk3_Dorvar] [action] goto (616,2216) from (616,2200,0)
+[00:23:02.669] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(616,2200)
+[00:23:02.669] INFO  [mk3_Dorvar] [bot] running from (616,2200,0) to (616,2216,z0)
+[00:23:02.669] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:23:03.483] INFO  [mk3_Dorvar] [action] goto finished at (616,2200,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:23:03.483] LOG   [mk3_Dorvar] event goto_done: at=(616,2200) target=(616,2216) arrived=0 off=16
+[00:23:04.685] INFO  [mk3_Dorvar] [travel] mode walk             usable   <- chosen
+[00:23:04.686] INFO  [mk3_Dorvar] [travel] mode moongate         usable
+[00:23:04.686] INFO  [mk3_Dorvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:23:04.686] INFO  [mk3_Dorvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:23:04.686] LOG   [mk3_Dorvar] event travel_mode: walk
+[00:23:04.686] INFO  [mk3_Dorvar] [travel] plan mobile 0x000027ED: ok legs=1 ~16 tiles transit=0 nodes=0
+[00:23:05.777] INFO  [mk3_Dorvar] [chat ascii] System: Ghalor has departed from Minoc.
+[00:23:07.255] INFO  [mk3_Dorvar] [survival] hp 40/40 (100%) -> fight
+[00:23:07.627] INFO  [mk3_Dorvar] [chat ascii] System: Cyras has departed from Britain.
+[00:23:09.228] INFO  [mk3_Dorvar] [action] goto (616,2216) from (616,2200,0)
+[00:23:09.228] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(616,2200)
+[00:23:09.228] INFO  [mk3_Dorvar] [bot] running from (616,2200,0) to (616,2216,z0)
+[00:23:09.228] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:23:09.986] INFO  [mk3_Dorvar] [action] goto finished at (616,2200,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:23:09.986] LOG   [mk3_Dorvar] event goto_done: at=(616,2200) target=(616,2216) arrived=0 off=16
+[00:23:10.033] INFO  [mk3_Dorvar] [chat ascii] System: Kharain has departed from Minoc.
+[00:23:11.236] INFO  [mk3_Dorvar] [action] goto (616,2216) from (616,2200,0)
+[00:23:11.236] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(616,2200)
+[00:23:11.237] INFO  [mk3_Dorvar] [bot] running from (616,2200,0) to (616,2216,z0)
+[00:23:11.237] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:23:12.133] INFO  [mk3_Dorvar] [action] goto finished at (616,2200,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:23:12.133] LOG   [mk3_Dorvar] event goto_done: at=(616,2200) target=(616,2216) arrived=0 off=16
+[00:23:12.316] INFO  [mk3_Dorvar] [survival] hp 40/40 (100%) -> fight
+[00:23:12.347] INFO  [mk3_Dorvar] [chat ascii] System: Leander has departed from Moonglow.
+[00:23:13.364] INFO  [mk3_Dorvar] [action] goto (616,2216) from (616,2200,0)
+[00:23:13.364] LOG   [mk3_Dorvar] event goto_start: target=(616,2216) from=(616,2200)
+[00:23:13.364] INFO  [mk3_Dorvar] [bot] running from (616,2200,0) to (616,2216,z0)
+[00:23:13.364] INFO  [mk3_Dorvar] [bot] planning path to (616,2216) in background
+[00:23:13.982] INFO  [mk3_Dorvar] [action] goto finished at (616,2200,0); target (616,2216); stopped short (off by 16 tile(s))
+[00:23:13.982] LOG   [mk3_Dorvar] event goto_done: at=(616,2200) target=(616,2216) arrived=0 off=16
+[00:23:13.982] INFO  [mk3_Dorvar] [travel] mobile 0x000027ED FAILED at (616,2200,0) -- tile route stopped short
+[00:23:13.982] LOG   [mk3_Dorvar] event travel_failed: label='mobile 0x000027ED' ok=0 at=(616,2200) legs=1 plans=4 why='tile route stopped short'
+[00:23:14.044] INFO  [life] wind-down: no bank learned yet; asking the world for one (attempt 1)
+[00:23:14.045] INFO  [mk3_Dorvar] [travel] Skara Brae banker -> (587,2146) r=5 from (616,2200)
+[00:23:14.045] LOG   [mk3_Dorvar] event travel_start: label='Skara Brae banker' target=(587,2146) radius=5 from=(616,2200)
+[00:23:14.045] INFO  [mk3_Dorvar] [travel] mode walk             usable   <- chosen
+[00:23:14.045] INFO  [mk3_Dorvar] [travel] mode moongate         usable
+[00:23:14.045] INFO  [mk3_Dorvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:23:14.045] INFO  [mk3_Dorvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:23:14.045] LOG   [mk3_Dorvar] event travel_mode: walk
+[00:23:14.045] INFO  [mk3_Dorvar] [travel] plan Skara Brae banker: ok legs=2 ~64 tiles transit=0 nodes=12
+[00:23:14.106] INFO  [mk3_Dorvar] [action] goto (600,2168) from (616,2200,0)
+[00:23:14.106] LOG   [mk3_Dorvar] event goto_start: target=(600,2168) from=(616,2200)
+[00:23:14.106] INFO  [mk3_Dorvar] [bot] running from (616,2200,0) to (600,2168)
+[00:23:14.106] INFO  [mk3_Dorvar] [bot] planning path to (600,2168) in background
+[00:23:14.167] INFO  [mk3_Dorvar] [bot] replan to (600,2168): 42 steps in 3696.3us
+[00:23:17.369] INFO  [mk3_Dorvar] [survival] hp 40/40 (100%) -> fight
+[00:23:22.422] INFO  [mk3_Dorvar] [survival] hp 40/40 (100%) -> fight
+[00:23:24.966] INFO  [mk3_Dorvar] [bot] arrived at (600,2168,0)
+[00:23:24.967] INFO  [mk3_Dorvar] [action] goto finished at (600,2168,0); target (600,2168); ARRIVED (off by 0 tile(s))
+[00:23:24.967] LOG   [mk3_Dorvar] event goto_done: at=(600,2168) target=(600,2168) arrived=1 off=0
+[00:23:24.967] INFO  [mk3_Dorvar] [action] goto (587,2146) from (600,2168,0)
+[00:23:24.967] LOG   [mk3_Dorvar] event goto_start: target=(587,2146) from=(600,2168)
+[00:23:24.967] INFO  [mk3_Dorvar] [bot] running from (600,2168,0) to (587,2146,z0)
+[00:23:24.967] INFO  [mk3_Dorvar] [bot] planning path to (587,2146) in background
+[00:23:25.028] INFO  [mk3_Dorvar] [bot] replan to (587,2146): 31 steps in 3850.3us
+[00:23:25.736] INFO  [mk3_Dorvar] [chat ascii] System: Elara has departed from Magincia.
+[00:23:26.431] INFO  [mk3_Dorvar] [chat ascii] System: Xerxes has departed from Vesper.
+[00:23:27.477] INFO  [mk3_Dorvar] [survival] hp 40/40 (100%) -> fight
+[00:23:30.160] INFO  [mk3_Dorvar] [bot] door ahead at (597,2151,z0); OpenDoor before step
+[00:23:30.175] INFO  [mk3_Dorvar] [chat ascii] System: Opening door...
+[00:23:32.483] INFO  [mk3_Dorvar] [survival] hp 40/40 (100%) -> fight
+[00:23:33.009] INFO  [mk3_Dorvar] [travel] Skara Brae banker ARRIVED at (591,2149,0)
+[00:23:33.009] LOG   [mk3_Dorvar] event travel_done: label='Skara Brae banker' ok=1 at=(591,2149) legs=2 plans=1 why=''
+[00:23:33.025] INFO  [life] wind-down: arrived somewhere safe at 591,2149
+[00:23:33.086] INFO  [life] session_summary duration=224s goals=0/2 gold=10000->10000 skills=100.0->100.0 logs=+0 kills=0 deaths=0 places=3 suppliers=0
+[00:23:33.086] INFO  [life] session_goals families=1 picks=2 top=100% varied=0 self_superseded=0 | upkeep=2(100%) | REPLACE_EQUIPMENT=1(50%) BANK=1(50%)
+[00:23:33.088] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_18.dorvar/state.json
+[00:23:33.088] INFO  [life] logging out
+[00:23:33.088] INFO  [mk3_Dorvar] [action] logout requested
+[00:23:33.088] LOG   [mk3_Dorvar] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[00:23:33.102] INFO  [mk3_Dorvar] [0xD1] logout acknowledged (accepted=1)
+[00:23:33.102] LOG   [mk3_Dorvar] event logout_ack: accepted
+[00:23:33.102] INFO  [mk3_Dorvar] [net] closing connection (logout acknowledged)
+[00:23:33.102] LOG   [mk3_Dorvar] event logout_complete: acked

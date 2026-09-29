@@ -1,0 +1,533 @@
+[01:38:36.148] INFO  session 0: 127.0.0.1:2593 user='RevolutionFresh07' char=Kaelen tag='v_Kaelen'
+[01:38:36.149] LOG   [v_Kaelen] event session_start: text log opened
+[01:38:36.149] LOG   [v_Kaelen] event net_connect_begin: connect 127.0.0.1:2593
+[01:38:36.149] INFO  [v_Kaelen] [net] connecting to 127.0.0.1:2593 ...
+[01:38:36.150] LOG   [v_Kaelen] event net_connected: connect 127.0.0.1:2593
+[01:38:36.151] INFO  [v_Kaelen] [net] connected.
+[01:38:36.151] INFO  [v_Kaelen] [seed] sent 0x7F000001 (plaintext)
+[01:38:36.151] LOG   [v_Kaelen] event seed_out: 0x7F000001 hex=7f000001
+[01:38:36.152] INFO  [life] loaded persistent state for Kaelen (32 places, 1 suppliers, 18 events, 9 prior sessions)
+[01:38:36.152] INFO  [life] needs: reading 'fencer' from the profession catalogue
+[01:38:36.152] INFO  [life] build plan 'fencer': 600.0 resolved + 100.0 unresolved = 700.0/700.0, stats 100/100/25 = 225
+[01:38:36.152] INFO  [v_Kaelen] [life] autonomous player active for 'Kaelen' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 14 min)
+[01:38:36.173] INFO  [v_Kaelen] [0xA8] 1 server(s):
+[01:38:36.173] INFO  [v_Kaelen]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[01:38:36.177] INFO  [v_Kaelen] [0x8C] game server = 127.0.0.1:2593  seed=0xD25C679C
+[01:38:36.178] LOG   [v_Kaelen] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xD25C679C
+[01:38:36.178] INFO  [v_Kaelen] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[01:38:36.178] LOG   [v_Kaelen] event relay_same_socket: no seed re-sent; 0x91 follows
+[01:38:36.188] INFO  [v_Kaelen] [0xB9] server features = 0x0005
+[01:38:36.189] INFO  [v_Kaelen] [0xA9] 5 slot(s) (populated 1):
+[01:38:36.189] INFO  [v_Kaelen]   [0] Kaelen
+[01:38:36.189] INFO  [v_Kaelen]   [1] <empty>
+[01:38:36.189] INFO  [v_Kaelen]   [2] <empty>
+[01:38:36.189] INFO  [v_Kaelen]   [3] <empty>
+[01:38:36.189] INFO  [v_Kaelen]   [4] <empty>
+[01:38:36.190] INFO  [v_Kaelen] [ui] playing slot 0 ('Kaelen')
+[01:38:36.205] INFO  [v_Kaelen] [0x1B] serial=0x00013DF0 body=0x0190 pos=(1473,1624,20)
+[01:38:36.205] LOG   [v_Kaelen] event login_confirm: serial=0x00013DF0 body=0x0190 pos=(1473,1624,20)
+[01:38:36.205] INFO  [v_Kaelen] [0x20] player @(1473,1624,20) facing=6
+[01:38:36.205] INFO  [v_Kaelen] [0x55] login complete — entering world
+[01:38:36.205] LOG   [v_Kaelen] event in_world: 0x55 received
+[01:38:36.205] INFO  [v_Kaelen] [backpack] opening 0x40013DED
+[01:38:36.206] INFO  [v_Kaelen] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[01:38:36.206] INFO  [v_Kaelen] [chat ascii] System: There are 2 other players here.
+[01:38:36.206] INFO  [v_Kaelen] [chat ascii] System: Last logged: 2026/08/30 01:30:08
+[01:38:36.206] INFO  [v_Kaelen] [chat ascii] System: You are under the protection of the city guards
+[01:38:36.206] INFO  [v_Kaelen] [chat ascii] System: Voris has arrived in Britain.
+[01:38:36.213] INFO  [v_Kaelen] [action] requesting the skill list
+[01:38:36.213] INFO  [life] in world; asked the server for the skill list
+[01:38:36.213] INFO  [v_Kaelen] [0x24] open container 0x40013DED gump=60
+[01:38:36.213] INFO  [v_Kaelen] [0x3C] container contents: 6 item(s)
+[01:38:36.214] LOG   [v_Kaelen] event backpack_contents: serial=0x40013DED items=6
+[01:38:38.781] INFO  [v_Kaelen] [bot] world data loaded (0 blacklisted spot(s)).
+[01:38:38.781] INFO  [life] reconciliation: resuming a life, 2 field(s) differed
+[01:38:38.781] INFO  [life]   gold         persisted=0          server=0          -> server value accepted
+[01:38:38.781] INFO  [life]   str          persisted=32         server=32         -> server value accepted
+[01:38:38.781] INFO  [life]   dex          persisted=40         server=40         -> server value accepted
+[01:38:38.781] INFO  [life]   int          persisted=8          server=8          -> server value accepted
+[01:38:38.781] INFO  [life]   skill_42     persisted=50.0       server=50.0       -> server value accepted
+[01:38:38.782] INFO  [life]   skill_27     persisted=50.0       server=50.0       -> server value accepted
+[01:38:38.782] INFO  [life]   skill_1      persisted=30.0       server=30.0       -> server value accepted
+[01:38:38.782] INFO  [life]   skill_17     persisted=30.0       server=30.0       -> server value accepted
+[01:38:38.782] INFO  [life]   skill_30     persisted=13.9       server=13.9       -> server value accepted
+[01:38:38.782] INFO  [life]   skill_5      persisted=17.1       server=17.1       -> server value accepted
+[01:38:38.782] INFO  [life]   position     persisted=1471,1611  server=1473,1624  -> server value accepted
+[01:38:38.782] INFO  [life]   alive        persisted=dead       server=alive      -> server value accepted
+[01:38:38.782] INFO  [life]   restored objective KEPT: SURVIVE (progress 0)
+[01:38:38.782] INFO  [v_Kaelen] [survival] on
+[01:38:38.783] LOG   [v_Kaelen] event survival_mode: on
+[01:38:38.785] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[01:38:38.785] INFO  [v_Kaelen] [survival] hp 7/32 (21%) -> rest
+[01:38:38.836] INFO  [life] goal_completed=SURVIVE progress=0
+[01:38:38.838] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[01:38:38.899] INFO  [life] goal=MAKE_BANDAGES reason="no goal was running"
+[01:38:38.899] INFO  [life] needs considered: Heal(bandage BLOCKED 0.98) NeedMakeBandages(bandages 0.70) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[01:38:38.899] INFO  [life]   score=101.5
+[01:38:38.899] INFO  [life]   reason: NeedMakeBandages urgency 0.70 x 145 = 101.5
+[01:38:38.899] INFO  [life]   reason: bandages 0/8 gold 0 (buyable at 200)
+[01:38:38.899] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=7/32 bandages=0)
+[01:38:38.900] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage REVOLUTION_NPC_VERIFIED)
+[01:38:38.900] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[01:38:38.900] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[01:38:38.900] INFO  [life] goal_failed=MAKE_BANDAGES reason="no scissors and only 0 gold to buy a pair with"
+[01:38:38.961] INFO  [life] goal=GET_FOOD reason="previous goal abandoned: no scissors and no money"
+[01:38:38.961] INFO  [life] needs considered: Heal(bandage BLOCKED 0.98) NeedMakeBandages(bandages 0.70) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[01:38:38.961] INFO  [life]   score=62.5
+[01:38:38.961] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[01:38:38.962] INFO  [life]   reason: food=0
+[01:38:38.962] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=7/32 bandages=0)
+[01:38:38.962] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage REVOLUTION_NPC_VERIFIED)
+[01:38:38.962] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[01:38:38.962] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[01:38:38.962] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: on cooldown for another 179s after achieving nothing
+[01:38:38.962] INFO  [life] food: hungry with 0 gold -- nothing to eat and nothing to buy with; standing down to go and earn
+[01:38:39.007] INFO  [life] goal=EARN_GOLD reason="previous goal abandoned: no food and no money"
+[01:38:39.007] INFO  [life] needs considered: Heal(bandage BLOCKED 0.98) NeedMakeBandages(bandages 0.70) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[01:38:39.007] INFO  [life]   score=45.0
+[01:38:39.008] INFO  [life]   reason: NeedGold urgency 0.30 x 150 = 45.0
+[01:38:39.008] INFO  [life]   reason: gold=0 floor=100
+[01:38:39.008] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=7/32 bandages=0)
+[01:38:39.008] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage REVOLUTION_NPC_VERIFIED)
+[01:38:39.008] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 179s after achieving nothing
+[01:38:39.008] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[01:38:39.008] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[01:38:39.008] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: on cooldown for another 179s after achieving nothing
+[01:38:43.972] INFO  [life] earn_gold: nothing spare to sell (neither the pack nor the bank holds a surplus of what this life makes) -- standing down so something that CAN earn gets a turn
+[01:38:44.035] INFO  [life] goal=UPGRADE_GEAR reason="previous goal abandoned: nothing to sell"
+[01:38:44.035] INFO  [life] needs considered: Heal(bandage BLOCKED 0.98) NeedMakeBandages(bandages 0.70) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[01:38:44.035] INFO  [life]   score=22.0
+[01:38:44.035] INFO  [life]   reason: NeedGear urgency 0.22 x 100 = 22.0
+[01:38:44.036] INFO  [life]   reason: str 32 gold 0 reserve 350
+[01:38:44.036] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=7/32 bandages=0)
+[01:38:44.036] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage REVOLUTION_NPC_VERIFIED)
+[01:38:44.036] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 174s after achieving nothing
+[01:38:44.036] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 179s after achieving nothing
+[01:38:44.036] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[01:38:44.036] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[01:38:44.036] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: on cooldown for another 174s after achieving nothing
+[01:38:44.837] INFO  [v_Kaelen] [survival] hp 7/32 (21%) -> rest
+[01:38:48.982] INFO  [life] gear: nothing carried is an upgrade, and 0 gold is not clear of the 350 reserve -- earning first
+[01:38:49.043] INFO  [life] goal=EXPLORE reason="previous goal abandoned: no upgrade and no spare money"
+[01:38:49.044] INFO  [life] needs considered: Heal(bandage BLOCKED 0.95) NeedMakeBandages(bandages 0.70) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[01:38:49.044] INFO  [life]   score=15.0
+[01:38:49.044] INFO  [life]   reason: fallback: nothing else is actionable, so go and learn the world
+[01:38:49.044] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=8/32 bandages=0)
+[01:38:49.044] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage REVOLUTION_NPC_VERIFIED)
+[01:38:49.044] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 169s after achieving nothing
+[01:38:49.044] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 174s after achieving nothing
+[01:38:49.045] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[01:38:49.045] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[01:38:49.045] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: on cooldown for another 169s after achieving nothing
+[01:38:49.045] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 239s after achieving nothing
+[01:38:49.045] INFO  [v_Kaelen] [travel] Britain tinkerguildmaster -> (1422,1654) r=5 from (1473,1624)
+[01:38:49.045] LOG   [v_Kaelen] event travel_start: label='Britain tinkerguildmaster' target=(1422,1654) radius=5 from=(1473,1624)
+[01:38:49.045] INFO  [life] explore: nothing else to do, so going to 'britain_tinkerguildmaster' -- somewhere new (32 place(s) known so far)
+[01:38:49.046] INFO  [v_Kaelen] [travel] mode walk             usable   <- chosen
+[01:38:49.046] INFO  [v_Kaelen] [travel] mode moongate         usable
+[01:38:49.046] INFO  [v_Kaelen] [travel] mode loose_rune_recall no: no rune marked at that destination
+[01:38:49.046] INFO  [v_Kaelen] [travel] mode runebook_recall  no: no runebook page for that destination
+[01:38:49.046] LOG   [v_Kaelen] event travel_mode: walk
+[01:38:49.046] INFO  [v_Kaelen] [travel] plan Britain tinkerguildmaster: ok legs=2 ~80 tiles transit=0 nodes=16
+[01:38:49.105] INFO  [v_Kaelen] [travel] avoiding 2 teleporter pad(s) on this leg
+[01:38:49.106] INFO  [v_Kaelen] [action] goto (1448,1656) from (1473,1624,20)
+[01:38:49.106] LOG   [v_Kaelen] event goto_start: target=(1448,1656) from=(1473,1624)
+[01:38:49.106] INFO  [v_Kaelen] [bot] running from (1473,1624,20) to (1448,1656)
+[01:38:49.106] INFO  [v_Kaelen] [bot] planning path to (1448,1656) in background
+[01:38:49.166] INFO  [v_Kaelen] [bot] replan to (1448,1656): 42 steps in 2690.5us
+[01:38:50.870] INFO  [v_Kaelen] [survival] hp 8/32 (25%) -> rest
+[01:38:56.952] INFO  [v_Kaelen] [survival] hp 8/32 (25%) -> rest
+[01:38:57.153] INFO  [v_Kaelen] [bot] step (1463,1650,10)->(1462,1651,10) rejected; OpenDoor + retry
+[01:38:57.860] INFO  [v_Kaelen] [bot] step (1463,1650,10)->(1462,1651,10) rejected; avoiding edge + rerouting
+[01:38:57.860] INFO  [v_Kaelen] [bot] planning path to (1448,1656) in background
+[01:38:57.923] INFO  [v_Kaelen] [bot] replan to (1448,1656): 19 steps in 395.9us
+[01:39:03.021] INFO  [v_Kaelen] [survival] hp 8/32 (25%) -> rest
+[01:39:04.299] INFO  [v_Kaelen] [bot] arrived at (1448,1656,10)
+[01:39:04.300] INFO  [v_Kaelen] [action] goto finished at (1448,1656,10); target (1448,1656); ARRIVED (off by 0 tile(s))
+[01:39:04.300] LOG   [v_Kaelen] event goto_done: at=(1448,1656) target=(1448,1656) arrived=1 off=0
+[01:39:04.300] INFO  [v_Kaelen] [action] goto (1422,1654) from (1448,1656,10)
+[01:39:04.300] LOG   [v_Kaelen] event goto_start: target=(1422,1654) from=(1448,1656)
+[01:39:04.300] INFO  [v_Kaelen] [bot] running from (1448,1656,10) to (1422,1654,z10)
+[01:39:04.300] INFO  [v_Kaelen] [bot] planning path to (1422,1654) in background
+[01:39:04.362] INFO  [v_Kaelen] [bot] replan to (1422,1654): 28 steps in 1356.8us
+[01:39:08.384] INFO  [v_Kaelen] [bot] door ahead at (1431,1658,z10); OpenDoor before step
+[01:39:08.384] INFO  [v_Kaelen] [chat ascii] System: Opening door...
+[01:39:08.874] INFO  [v_Kaelen] [chat ascii] System: World save in 10 seconds
+[01:39:09.122] INFO  [v_Kaelen] [survival] hp 8/32 (25%) -> rest
+[01:39:10.331] INFO  [v_Kaelen] [travel] Britain tinkerguildmaster ARRIVED at (1426,1658,10)
+[01:39:10.332] LOG   [v_Kaelen] event travel_done: label='Britain tinkerguildmaster' ok=1 at=(1426,1658) legs=2 plans=1 why=''
+[01:39:10.393] INFO  [life] explore: arrived at 1426,1658 -- reading who is here
+[01:39:10.393] INFO  [v_Kaelen] [action] scanning nearby mobiles for names
+[01:39:10.393] INFO  [v_Kaelen] [action] requested 1 paperdoll(s) for trade titles
+[01:39:10.393] INFO  [life] goal_completed=EXPLORE progress=1
+[01:39:10.396] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[01:39:10.396] INFO  [v_Kaelen] [mobiles] nearby (2):
+[01:39:10.396] INFO  [v_Kaelen]   Justine 0x00001080
+[01:39:10.396] INFO  [v_Kaelen]   Rudd 0x000011DA
+[01:39:10.396] INFO  [life] goal=EXPLORE reason="no goal was running"
+[01:39:10.397] INFO  [life] needs considered: Heal(bandage BLOCKED 0.95) NeedMakeBandages(bandages 0.70) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[01:39:10.397] INFO  [life]   score=15.0
+[01:39:10.397] INFO  [life]   reason: fallback: nothing else is actionable, so go and learn the world
+[01:39:10.397] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=8/32 bandages=0)
+[01:39:10.397] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage REVOLUTION_NPC_VERIFIED)
+[01:39:10.397] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 148s after achieving nothing
+[01:39:10.397] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 153s after achieving nothing
+[01:39:10.397] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[01:39:10.397] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[01:39:10.398] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: on cooldown for another 148s after achieving nothing
+[01:39:10.398] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 218s after achieving nothing
+[01:39:10.408] INFO  [v_Kaelen] [0x20] player @(1426,1658,10) facing=0
+[01:39:10.408] INFO  [v_Kaelen] [0x88] paperdoll 0x00001080: "Justine, the engineer guildmistress"
+[01:39:13.447] INFO  [v_Kaelen] [travel] Lord British's Castle animaltrainer -> (1388,1655) r=5 from (1426,1658)
+[01:39:13.447] LOG   [v_Kaelen] event travel_start: label='Lord British's Castle animaltrainer' target=(1388,1655) radius=5 from=(1426,1658)
+[01:39:13.447] INFO  [life] explore: nothing else to do, so going to 'lord_british_s_castle_stable' -- somewhere new (33 place(s) known so far)
+[01:39:13.448] INFO  [v_Kaelen] [travel] mode walk             usable   <- chosen
+[01:39:13.448] INFO  [v_Kaelen] [travel] mode moongate         usable
+[01:39:13.448] INFO  [v_Kaelen] [travel] mode loose_rune_recall no: no rune marked at that destination
+[01:39:13.448] INFO  [v_Kaelen] [travel] mode runebook_recall  no: no runebook page for that destination
+[01:39:13.448] LOG   [v_Kaelen] event travel_mode: walk
+[01:39:13.448] INFO  [v_Kaelen] [travel] plan Lord British's Castle animaltrainer: ok legs=1 ~38 tiles transit=0 nodes=0
+[01:39:13.508] INFO  [v_Kaelen] [action] goto finished at (1426,1658,10); target (1422,1654); stopped short (off by 8 tile(s))
+[01:39:13.508] LOG   [v_Kaelen] event goto_done: at=(1426,1658) target=(1422,1654) arrived=0 off=8
+[01:39:13.508] INFO  [v_Kaelen] [action] goto (1388,1655) from (1426,1658,10)
+[01:39:13.508] LOG   [v_Kaelen] event goto_start: target=(1388,1655) from=(1426,1658)
+[01:39:13.509] INFO  [v_Kaelen] [bot] running from (1426,1658,10) to (1388,1655,z30)
+[01:39:13.509] INFO  [v_Kaelen] [bot] planning path to (1388,1655) in background
+[01:39:13.568] INFO  [v_Kaelen] [bot] replan to (1388,1655): 130 steps in 42539.3us
+[01:39:15.169] INFO  [v_Kaelen] [survival] hp 8/32 (25%) -> rest
+[01:39:15.430] INFO  [v_Kaelen] [bot] door ahead at (1432,1660,z10); OpenDoor before step
+[01:39:15.445] INFO  [v_Kaelen] [chat ascii] System: Opening door...
+[01:39:18.907] INFO  [v_Kaelen] [chat ascii] System: World save has been initiated.
+[01:39:21.238] INFO  [v_Kaelen] [survival] hp 8/32 (25%) -> rest
+[01:39:27.274] INFO  [v_Kaelen] [survival] hp 8/32 (25%) -> rest
+[01:39:29.624] INFO  [v_Kaelen] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=72 in 125.2us
+[01:39:33.359] INFO  [v_Kaelen] [survival] hp 9/32 (28%) -> rest
+[01:39:34.422] INFO  [v_Kaelen] [chat ascii] System: You have left the protection of the city guards
+[01:39:34.422] INFO  [v_Kaelen] [chat ascii] System: You have a feeling of complete safety
+[01:39:39.401] INFO  [v_Kaelen] [survival] hp 9/32 (28%) -> rest
+[01:39:45.451] INFO  [v_Kaelen] [survival] hp 9/32 (28%) -> rest
+[01:39:50.194] INFO  [v_Kaelen] [travel] Lord British's Castle animaltrainer ARRIVED at (1388,1650,30)
+[01:39:50.194] LOG   [v_Kaelen] event travel_done: label='Lord British's Castle animaltrainer' ok=1 at=(1388,1650) legs=1 plans=1 why=''
+[01:39:50.254] INFO  [life] explore: arrived at 1388,1650 -- reading who is here
+[01:39:50.255] INFO  [v_Kaelen] [action] scanning nearby mobiles for names
+[01:39:50.255] INFO  [v_Kaelen] [action] requested 1 paperdoll(s) for trade titles
+[01:39:50.255] INFO  [life] goal_completed=EXPLORE progress=1
+[01:39:50.257] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[01:39:50.258] INFO  [v_Kaelen] [mobiles] nearby (1):
+[01:39:50.258] INFO  [v_Kaelen]   Emmett 0x0000261C
+[01:39:50.258] INFO  [v_Kaelen] [0x88] paperdoll 0x0000261C: "Emmett, the animal trainer"
+[01:39:50.258] INFO  [v_Kaelen] [world] Emmett, the animal trainer is a stablemaster at (1391,1658)
+[01:39:50.258] INFO  [life] goal=EXPLORE reason="no goal was running"
+[01:39:50.258] INFO  [life] needs considered: Heal(bandage BLOCKED 0.92) NeedMakeBandages(bandages 0.70) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[01:39:50.259] INFO  [life]   score=15.0
+[01:39:50.259] INFO  [life]   reason: fallback: nothing else is actionable, so go and learn the world
+[01:39:50.259] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=9/32 bandages=0)
+[01:39:50.259] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage REVOLUTION_NPC_VERIFIED)
+[01:39:50.259] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 108s after achieving nothing
+[01:39:50.259] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 113s after achieving nothing
+[01:39:50.259] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[01:39:50.259] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[01:39:50.259] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: on cooldown for another 108s after achieving nothing
+[01:39:50.260] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 178s after achieving nothing
+[01:39:51.407] INFO  [v_Kaelen] [bot] arrived at (1388,1655,30)
+[01:39:51.530] INFO  [v_Kaelen] [survival] hp 9/32 (28%) -> rest
+[01:39:53.294] INFO  [v_Kaelen] [travel] Britain Territory blacksmithguildmaster -> (1349,1778) r=5 from (1388,1655)
+[01:39:53.294] LOG   [v_Kaelen] event travel_start: label='Britain Territory blacksmithguildmaster' target=(1349,1778) radius=5 from=(1388,1655)
+[01:39:53.294] INFO  [life] explore: nothing else to do, so going to 'britain_territory_blacksmithguildmaster' -- somewhere new (34 place(s) known so far)
+[01:39:53.294] INFO  [v_Kaelen] [travel] mode moongate         usable   <- chosen
+[01:39:53.294] INFO  [v_Kaelen] [travel] mode walk             usable
+[01:39:53.294] INFO  [v_Kaelen] [travel] mode loose_rune_recall no: no rune marked at that destination
+[01:39:53.294] INFO  [v_Kaelen] [travel] mode runebook_recall  no: no runebook page for that destination
+[01:39:53.295] LOG   [v_Kaelen] event travel_mode: moongate
+[01:39:53.295] INFO  [v_Kaelen] [travel] plan Britain Territory blacksmithguildmaster: ok legs=4 ~240 tiles transit=0 nodes=64
+[01:39:53.356] INFO  [v_Kaelen] [action] goto finished at (1388,1655,30); target (1388,1655); ARRIVED (off by 0 tile(s))
+[01:39:53.356] LOG   [v_Kaelen] event goto_done: at=(1388,1655) target=(1388,1655) arrived=1 off=0
+[01:39:53.356] INFO  [v_Kaelen] [action] goto (1416,1688) from (1388,1655,30)
+[01:39:53.356] LOG   [v_Kaelen] event goto_start: target=(1416,1688) from=(1388,1655)
+[01:39:53.356] INFO  [v_Kaelen] [bot] running from (1388,1655,30) to (1416,1688)
+[01:39:53.356] INFO  [v_Kaelen] [bot] planning path to (1416,1688) in background
+[01:39:53.417] INFO  [v_Kaelen] [bot] replan to (1416,1688): 127 steps in 56620.4us
+[01:39:57.626] INFO  [v_Kaelen] [survival] hp 9/32 (28%) -> rest
+[01:40:03.670] INFO  [v_Kaelen] [survival] hp 9/32 (28%) -> rest
+[01:40:09.703] INFO  [v_Kaelen] [survival] hp 10/32 (31%) -> rest
+[01:40:10.087] INFO  [v_Kaelen] [chat ascii] System: You are now under the protection of the city guards
+[01:40:10.088] INFO  [v_Kaelen] [chat ascii] System: You lose your feeling of safety
+[01:40:15.779] INFO  [v_Kaelen] [survival] hp 10/32 (31%) -> rest
+[01:40:21.837] INFO  [v_Kaelen] [survival] hp 10/32 (31%) -> rest
+[01:40:27.874] INFO  [v_Kaelen] [survival] hp 10/32 (31%) -> rest
+[01:40:28.137] INFO  [v_Kaelen] [bot] arrived at (1416,1688,0)
+[01:40:28.137] INFO  [v_Kaelen] [action] goto finished at (1416,1688,0); target (1416,1688); ARRIVED (off by 0 tile(s))
+[01:40:28.137] LOG   [v_Kaelen] event goto_done: at=(1416,1688) target=(1416,1688) arrived=1 off=0
+[01:40:28.137] INFO  [v_Kaelen] [action] goto (1416,1720) from (1416,1688,0)
+[01:40:28.138] LOG   [v_Kaelen] event goto_start: target=(1416,1720) from=(1416,1688)
+[01:40:28.138] INFO  [v_Kaelen] [bot] running from (1416,1688,0) to (1416,1720)
+[01:40:28.138] INFO  [v_Kaelen] [bot] planning path to (1416,1720) in background
+[01:40:28.198] INFO  [v_Kaelen] [bot] replan to (1416,1720): 32 steps in 362.1us
+[01:40:33.917] INFO  [v_Kaelen] [survival] hp 10/32 (31%) -> rest
+[01:40:36.197] INFO  [v_Kaelen] [bot] arrived at (1416,1720,20)
+[01:40:36.198] INFO  [v_Kaelen] [action] goto finished at (1416,1720,20); target (1416,1720); ARRIVED (off by 0 tile(s))
+[01:40:36.198] LOG   [v_Kaelen] event goto_done: at=(1416,1720) target=(1416,1720) arrived=1 off=0
+[01:40:36.198] INFO  [v_Kaelen] [action] goto (1378,1752) from (1416,1720,20)
+[01:40:36.198] LOG   [v_Kaelen] event goto_start: target=(1378,1752) from=(1416,1720)
+[01:40:36.198] INFO  [v_Kaelen] [bot] running from (1416,1720,20) to (1378,1752)
+[01:40:36.198] INFO  [v_Kaelen] [bot] planning path to (1378,1752) in background
+[01:40:36.257] INFO  [v_Kaelen] [bot] replan to (1378,1752): 43 steps in 3881.6us
+[01:40:39.955] INFO  [v_Kaelen] [survival] hp 10/32 (31%) -> rest
+[01:40:40.095] INFO  [v_Kaelen] [bot] lookahead patched around block at step 5: anchor=7 new segment=9 path=30 in 483.5us
+[01:40:45.983] INFO  [v_Kaelen] [survival] hp 10/32 (31%) -> rest
+[01:40:47.226] INFO  [v_Kaelen] [chat ascii] System: You have left the protection of the city guards
+[01:40:49.523] INFO  [v_Kaelen] [bot] arrived at (1378,1752,1)
+[01:40:49.523] INFO  [v_Kaelen] [action] goto finished at (1378,1752,1); target (1378,1752); ARRIVED (off by 0 tile(s))
+[01:40:49.523] LOG   [v_Kaelen] event goto_done: at=(1378,1752) target=(1378,1752) arrived=1 off=0
+[01:40:49.524] INFO  [v_Kaelen] [action] goto (1349,1778) from (1378,1752,1)
+[01:40:49.524] LOG   [v_Kaelen] event goto_start: target=(1349,1778) from=(1378,1752)
+[01:40:49.524] INFO  [v_Kaelen] [bot] running from (1378,1752,1) to (1349,1778,z15)
+[01:40:49.524] INFO  [v_Kaelen] [bot] planning path to (1349,1778) in background
+[01:40:49.584] INFO  [v_Kaelen] [bot] replan to (1349,1778): 47 steps in 10656.6us
+[01:40:50.287] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[01:40:52.023] INFO  [v_Kaelen] [survival] hp 11/32 (34%) -> rest
+[01:40:58.084] INFO  [v_Kaelen] [survival] hp 11/32 (34%) -> rest
+[01:40:59.749] INFO  [v_Kaelen] [bot] step (1361,1772,15)->(1360,1773,15) rejected; OpenDoor + retry
+[01:41:00.500] INFO  [v_Kaelen] [bot] step (1361,1772,15)->(1360,1773,15) rejected; avoiding edge + rerouting
+[01:41:00.500] INFO  [v_Kaelen] [bot] planning path to (1349,1778) in background
+[01:41:00.561] INFO  [v_Kaelen] [bot] replan to (1349,1778): 17 steps in 496.2us
+[01:41:03.086] INFO  [v_Kaelen] [bot] door ahead at (1359,1778,z15); OpenDoor before step
+[01:41:03.086] INFO  [v_Kaelen] [chat ascii] System: Opening door...
+[01:41:04.159] INFO  [v_Kaelen] [survival] hp 11/32 (34%) -> rest
+[01:41:05.051] INFO  [v_Kaelen] [travel] Britain Territory blacksmithguildmaster ARRIVED at (1354,1778,15)
+[01:41:05.052] LOG   [v_Kaelen] event travel_done: label='Britain Territory blacksmithguildmaster' ok=1 at=(1354,1778) legs=4 plans=1 why=''
+[01:41:05.113] INFO  [life] explore: arrived at 1354,1778 -- reading who is here
+[01:41:05.113] INFO  [v_Kaelen] [action] scanning nearby mobiles for names
+[01:41:05.113] INFO  [life] goal_completed=EXPLORE progress=1
+[01:41:05.116] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[01:41:05.116] INFO  [v_Kaelen] [mobiles] nearby (1):
+[01:41:05.116] INFO  [v_Kaelen]   Dog 0x00000856
+[01:41:05.117] INFO  [life] goal=EXPLORE reason="no goal was running"
+[01:41:05.117] INFO  [life] needs considered: Heal(bandage BLOCKED 0.86) NeedMakeBandages(bandages 0.70) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[01:41:05.117] INFO  [life]   score=15.0
+[01:41:05.117] INFO  [life]   reason: fallback: nothing else is actionable, so go and learn the world
+[01:41:05.117] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=11/32 bandages=0)
+[01:41:05.117] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage REVOLUTION_NPC_VERIFIED)
+[01:41:05.117] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 33s after achieving nothing
+[01:41:05.117] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 38s after achieving nothing
+[01:41:05.117] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[01:41:05.117] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[01:41:05.118] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: on cooldown for another 33s after achieving nothing
+[01:41:05.118] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 103s after achieving nothing
+[01:41:06.431] INFO  [v_Kaelen] [bot] arrived at (1349,1778,15)
+[01:41:08.147] INFO  [v_Kaelen] [travel] Britain Territory animaltrainer -> (1296,1759) r=5 from (1349,1778)
+[01:41:08.148] LOG   [v_Kaelen] event travel_start: label='Britain Territory animaltrainer' target=(1296,1759) radius=5 from=(1349,1778)
+[01:41:08.148] INFO  [life] explore: nothing else to do, so going to 'britain_territory_stable' -- somewhere new (35 place(s) known so far)
+[01:41:08.148] INFO  [v_Kaelen] [travel] mode walk             usable   <- chosen
+[01:41:08.148] INFO  [v_Kaelen] [travel] mode moongate         usable
+[01:41:08.148] INFO  [v_Kaelen] [travel] mode loose_rune_recall no: no rune marked at that destination
+[01:41:08.148] INFO  [v_Kaelen] [travel] mode runebook_recall  no: no runebook page for that destination
+[01:41:08.149] LOG   [v_Kaelen] event travel_mode: walk
+[01:41:08.149] INFO  [v_Kaelen] [travel] plan Britain Territory animaltrainer: ok legs=2 ~72 tiles transit=0 nodes=17
+[01:41:08.208] INFO  [v_Kaelen] [action] goto finished at (1349,1778,15); target (1349,1778); ARRIVED (off by 0 tile(s))
+[01:41:08.209] LOG   [v_Kaelen] event goto_done: at=(1349,1778) target=(1349,1778) arrived=1 off=0
+[01:41:08.209] INFO  [v_Kaelen] [action] goto (1320,1768) from (1349,1778,15)
+[01:41:08.209] LOG   [v_Kaelen] event goto_start: target=(1320,1768) from=(1349,1778)
+[01:41:08.209] INFO  [v_Kaelen] [bot] running from (1349,1778,15) to (1320,1768)
+[01:41:08.209] INFO  [v_Kaelen] [bot] planning path to (1320,1768) in background
+[01:41:08.270] INFO  [v_Kaelen] [bot] replan to (1320,1768): 63 steps in 28292.4us
+[01:41:10.219] INFO  [v_Kaelen] [survival] hp 11/32 (34%) -> rest
+[01:41:16.235] INFO  [v_Kaelen] [survival] hp 11/32 (34%) -> rest
+[01:41:22.345] INFO  [v_Kaelen] [survival] hp 11/32 (34%) -> rest
+[01:41:28.316] INFO  [v_Kaelen] [bot] arrived at (1320,1768,17)
+[01:41:28.317] INFO  [v_Kaelen] [action] goto finished at (1320,1768,17); target (1320,1768); ARRIVED (off by 0 tile(s))
+[01:41:28.317] LOG   [v_Kaelen] event goto_done: at=(1320,1768) target=(1320,1768) arrived=1 off=0
+[01:41:28.317] INFO  [v_Kaelen] [action] goto (1296,1759) from (1320,1768,17)
+[01:41:28.317] LOG   [v_Kaelen] event goto_start: target=(1296,1759) from=(1320,1768)
+[01:41:28.317] INFO  [v_Kaelen] [bot] running from (1320,1768,17) to (1296,1759,z10)
+[01:41:28.318] INFO  [v_Kaelen] [bot] planning path to (1296,1759) in background
+[01:41:28.376] INFO  [v_Kaelen] [survival] hp 11/32 (34%) -> rest
+[01:41:28.376] INFO  [v_Kaelen] [bot] replan to (1296,1759): 25 steps in 1345.7us
+[01:41:31.435] INFO  [v_Kaelen] [survival] hp 12/32 (37%) -> fight
+[01:41:34.970] INFO  [v_Kaelen] [chat ascii] Kenan: Hmm?
+[01:41:35.768] INFO  [v_Kaelen] [travel] Britain Territory animaltrainer ARRIVED at (1301,1760,10)
+[01:41:35.768] LOG   [v_Kaelen] event travel_done: label='Britain Territory animaltrainer' ok=1 at=(1301,1760) legs=2 plans=1 why=''
+[01:41:35.829] INFO  [life] explore: arrived at 1301,1760 -- reading who is here
+[01:41:35.829] INFO  [v_Kaelen] [action] scanning nearby mobiles for names
+[01:41:35.830] INFO  [v_Kaelen] [action] requested 3 paperdoll(s) for trade titles
+[01:41:35.830] INFO  [life] goal_completed=EXPLORE progress=1
+[01:41:35.832] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[01:41:35.832] INFO  [v_Kaelen] [mobiles] nearby (4):
+[01:41:35.832] INFO  [v_Kaelen]   Kenan 0x0000075B
+[01:41:35.833] INFO  [v_Kaelen]   Zachary 0x00000796
+[01:41:35.833] INFO  [v_Kaelen]   Brendon 0x0000084D
+[01:41:35.833] INFO  [v_Kaelen]   Orion 0x000005C1
+[01:41:35.833] INFO  [v_Kaelen] [0x20] player @(1301,1760,10) facing=3
+[01:41:35.833] INFO  [v_Kaelen] [0x88] paperdoll 0x00000796: "Zachary, sword fighter"
+[01:41:35.833] INFO  [v_Kaelen] [0x20] player @(1301,1760,10) facing=7
+[01:41:35.833] INFO  [v_Kaelen] [0x88] paperdoll 0x0000075B: "Kenan, the animal trainer"
+[01:41:35.834] INFO  [v_Kaelen] [world] Kenan, the animal trainer is a stablemaster at (1299,1757)
+[01:41:35.834] INFO  [v_Kaelen] [0x20] player @(1301,1760,10) facing=5
+[01:41:35.834] INFO  [v_Kaelen] [0x88] paperdoll 0x0000084D: "Brendon, swordsman"
+[01:41:35.834] INFO  [life] goal=EXPLORE reason="no goal was running"
+[01:41:35.834] INFO  [life] needs considered: Heal(bandage BLOCKED 0.83) NeedMakeBandages(bandages 0.70) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[01:41:35.834] INFO  [life]   score=15.0
+[01:41:35.834] INFO  [life]   reason: fallback: nothing else is actionable, so go and learn the world
+[01:41:35.834] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=12/32 bandages=0)
+[01:41:35.835] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage REVOLUTION_NPC_VERIFIED)
+[01:41:35.835] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 3s after achieving nothing
+[01:41:35.835] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 8s after achieving nothing
+[01:41:35.835] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[01:41:35.835] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[01:41:35.835] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: on cooldown for another 3s after achieving nothing
+[01:41:35.835] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 73s after achieving nothing
+[01:41:35.844] INFO  [v_Kaelen] [0x21] stale reject seq=31 (block already handled); pose resynced
+[01:41:36.462] INFO  [v_Kaelen] [survival] hp 12/32 (37%) -> fight
+[01:41:38.889] INFO  [v_Kaelen] [travel] Britain Fields mage -> (1405,1810) r=6 from (1301,1760)
+[01:41:38.889] LOG   [v_Kaelen] event travel_start: label='Britain Fields mage' target=(1405,1810) radius=6 from=(1301,1760)
+[01:41:38.889] INFO  [life] explore: nothing else to do, so going to 'britain_fields_mage' -- somewhere new (36 place(s) known so far)
+[01:41:38.889] INFO  [v_Kaelen] [travel] mode moongate         usable   <- chosen
+[01:41:38.890] INFO  [v_Kaelen] [travel] mode walk             usable
+[01:41:38.890] INFO  [v_Kaelen] [travel] mode loose_rune_recall no: no rune marked at that destination
+[01:41:38.890] INFO  [v_Kaelen] [travel] mode runebook_recall  no: no runebook page for that destination
+[01:41:38.890] LOG   [v_Kaelen] event travel_mode: moongate
+[01:41:38.890] INFO  [v_Kaelen] [travel] plan Britain Fields mage: ok legs=3 ~136 tiles transit=0 nodes=44
+[01:41:38.949] INFO  [v_Kaelen] [action] goto finished at (1301,1760,10); target (1296,1759); stopped short (off by 6 tile(s))
+[01:41:38.949] LOG   [v_Kaelen] event goto_done: at=(1301,1760) target=(1296,1759) arrived=0 off=6
+[01:41:38.949] INFO  [v_Kaelen] [action] goto (1336,1784) from (1301,1760,10)
+[01:41:38.949] LOG   [v_Kaelen] event goto_start: target=(1336,1784) from=(1301,1760)
+[01:41:38.949] INFO  [v_Kaelen] [bot] running from (1301,1760,10) to (1336,1784)
+[01:41:38.950] INFO  [v_Kaelen] [bot] planning path to (1336,1784) in background
+[01:41:39.010] INFO  [v_Kaelen] [bot] replan to (1336,1784): 40 steps in 11541.7us
+[01:41:41.471] INFO  [v_Kaelen] [survival] hp 12/32 (37%) -> fight
+[01:41:46.517] INFO  [v_Kaelen] [survival] hp 12/32 (37%) -> fight
+[01:41:51.543] INFO  [v_Kaelen] [survival] hp 12/32 (37%) -> fight
+[01:41:51.605] INFO  [v_Kaelen] [bot] arrived at (1336,1784,15)
+[01:41:51.605] INFO  [v_Kaelen] [action] goto finished at (1336,1784,15); target (1336,1784); ARRIVED (off by 0 tile(s))
+[01:41:51.605] LOG   [v_Kaelen] event goto_done: at=(1336,1784) target=(1336,1784) arrived=1 off=0
+[01:41:51.605] INFO  [v_Kaelen] [action] goto (1368,1816) from (1336,1784,15)
+[01:41:51.606] LOG   [v_Kaelen] event goto_start: target=(1368,1816) from=(1336,1784)
+[01:41:51.606] INFO  [v_Kaelen] [bot] running from (1336,1784,15) to (1368,1816)
+[01:41:51.606] INFO  [v_Kaelen] [bot] planning path to (1368,1816) in background
+[01:41:51.650] INFO  [v_Kaelen] [bot] replan to (1368,1816): 38 steps in 9678.0us
+[01:41:55.862] INFO  [life] goal_changed=MAKE_BANDAGES from=EXPLORE reason="MAKE_BANDAGES 101.5 superseded EXPLORE 15.0"
+[01:41:55.862] INFO  [life] needs considered: Heal(bandage BLOCKED 0.83) NeedMakeBandages(bandages 0.70) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[01:41:55.862] INFO  [life]   score=101.5
+[01:41:55.862] INFO  [life]   reason: NeedMakeBandages urgency 0.70 x 145 = 101.5
+[01:41:55.863] INFO  [life]   reason: bandages 0/8 gold 0 (buyable at 200)
+[01:41:55.863] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=12/32 bandages=0)
+[01:41:55.863] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage REVOLUTION_NPC_VERIFIED)
+[01:41:55.863] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[01:41:55.863] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[01:41:55.863] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 53s after achieving nothing
+[01:41:55.864] INFO  [life] goal_failed=MAKE_BANDAGES reason="no scissors and only 0 gold to buy a pair with"
+[01:41:55.865] INFO  [life] goal=GET_FOOD reason="previous goal abandoned: no scissors and no money"
+[01:41:55.865] INFO  [life] needs considered: Heal(bandage BLOCKED 0.83) NeedMakeBandages(bandages 0.70) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[01:41:55.865] INFO  [life]   score=62.5
+[01:41:55.865] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[01:41:55.865] INFO  [life]   reason: food=0
+[01:41:55.866] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=12/32 bandages=0)
+[01:41:55.866] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage REVOLUTION_NPC_VERIFIED)
+[01:41:55.866] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[01:41:55.866] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[01:41:55.866] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: on cooldown for another 179s after achieving nothing
+[01:41:55.866] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 53s after achieving nothing
+[01:41:55.867] INFO  [life] food: hungry with 0 gold -- nothing to eat and nothing to buy with; standing down to go and earn
+[01:41:55.923] INFO  [life] goal=EARN_GOLD reason="previous goal abandoned: no food and no money"
+[01:41:55.924] INFO  [life] needs considered: Heal(bandage BLOCKED 0.83) NeedMakeBandages(bandages 0.70) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[01:41:55.924] INFO  [life]   score=45.0
+[01:41:55.924] INFO  [life]   reason: NeedGold urgency 0.30 x 150 = 45.0
+[01:41:55.924] INFO  [life]   reason: gold=0 floor=100
+[01:41:55.924] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=12/32 bandages=0)
+[01:41:55.924] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage REVOLUTION_NPC_VERIFIED)
+[01:41:55.924] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 179s after achieving nothing
+[01:41:55.925] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[01:41:55.925] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[01:41:55.925] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: on cooldown for another 179s after achieving nothing
+[01:41:55.925] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 53s after achieving nothing
+[01:41:56.555] INFO  [v_Kaelen] [survival] hp 12/32 (37%) -> fight
+[01:42:00.879] INFO  [life] earn_gold: nothing spare to sell (neither the pack nor the bank holds a surplus of what this life makes) -- standing down so something that CAN earn gets a turn
+[01:42:00.941] INFO  [life] goal=EXPLORE reason="previous goal abandoned: nothing to sell"
+[01:42:00.941] INFO  [life] needs considered: Heal(bandage BLOCKED 0.83) NeedMakeBandages(bandages 0.70) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[01:42:00.941] INFO  [life]   score=15.0
+[01:42:00.941] INFO  [life]   reason: fallback: nothing else is actionable, so go and learn the world
+[01:42:00.941] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=12/32 bandages=0)
+[01:42:00.941] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage REVOLUTION_NPC_VERIFIED)
+[01:42:00.942] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 174s after achieving nothing
+[01:42:00.942] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 179s after achieving nothing
+[01:42:00.942] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[01:42:00.942] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[01:42:00.942] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: on cooldown for another 174s after achieving nothing
+[01:42:00.942] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 48s after achieving nothing
+[01:42:01.584] INFO  [v_Kaelen] [survival] hp 12/32 (37%) -> fight
+[01:42:02.978] INFO  [v_Kaelen] [bot] arrived at (1368,1816,0)
+[01:42:02.978] INFO  [v_Kaelen] [action] goto finished at (1368,1816,0); target (1368,1816); ARRIVED (off by 0 tile(s))
+[01:42:02.978] LOG   [v_Kaelen] event goto_done: at=(1368,1816) target=(1368,1816) arrived=1 off=0
+[01:42:02.979] INFO  [v_Kaelen] [action] goto (1405,1810) from (1368,1816,0)
+[01:42:02.979] LOG   [v_Kaelen] event goto_start: target=(1405,1810) from=(1368,1816)
+[01:42:02.979] INFO  [v_Kaelen] [bot] running from (1368,1816,0) to (1405,1810,z0)
+[01:42:02.979] INFO  [v_Kaelen] [bot] planning path to (1405,1810) in background
+[01:42:03.039] INFO  [v_Kaelen] [bot] replan to (1405,1810): 37 steps in 776.9us
+[01:42:06.601] INFO  [v_Kaelen] [survival] hp 12/32 (37%) -> fight
+[01:42:11.123] INFO  [v_Kaelen] [travel] Britain Fields mage ARRIVED at (1400,1810,0)
+[01:42:11.123] LOG   [v_Kaelen] event travel_done: label='Britain Fields mage' ok=1 at=(1400,1810) legs=3 plans=1 why=''
+[01:42:11.184] INFO  [v_Kaelen] [travel] Britain Fields mage -> (1405,1810) r=6 from (1400,1810)
+[01:42:11.185] LOG   [v_Kaelen] event travel_start: label='Britain Fields mage' target=(1405,1810) radius=6 from=(1400,1810)
+[01:42:11.185] INFO  [life] explore: nothing else to do, so going to 'britain_fields_mage' -- somewhere new (36 place(s) known so far)
+[01:42:11.185] INFO  [v_Kaelen] [travel] Britain Fields mage ARRIVED at (1400,1810,0)
+[01:42:11.185] LOG   [v_Kaelen] event travel_done: label='Britain Fields mage' ok=1 at=(1400,1810) legs=0 plans=0 why=''
+[01:42:11.246] INFO  [v_Kaelen] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=6 in 571.0us
+[01:42:11.630] INFO  [v_Kaelen] [survival] hp 13/32 (40%) -> fight
+[01:42:13.564] INFO  [v_Kaelen] [bot] arrived at (1405,1810,0)
+[01:42:13.702] INFO  [life] explore: arrived at 1405,1810 -- reading who is here
+[01:42:13.702] INFO  [v_Kaelen] [action] scanning nearby mobiles for names
+[01:42:13.702] INFO  [v_Kaelen] [action] requested 1 paperdoll(s) for trade titles
+[01:42:13.702] INFO  [life] goal_completed=EXPLORE progress=1
+[01:42:13.705] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[01:42:13.717] INFO  [v_Kaelen] [mobiles] nearby (4):
+[01:42:13.717] INFO  [v_Kaelen]   Dog 0x000017A7
+[01:42:13.718] INFO  [v_Kaelen]   Beaumont 0x0000E125
+[01:42:13.718] INFO  [v_Kaelen]   Rat 0x00000857
+[01:42:13.718] INFO  [v_Kaelen]   Alek 0x00000B02
+[01:42:13.718] INFO  [v_Kaelen] [0x20] player @(1405,1810,0) facing=0
+[01:42:13.718] INFO  [v_Kaelen] [0x88] paperdoll 0x0000E125: "Beaumont, the scribe"
+[01:42:13.718] INFO  [v_Kaelen] [world] Beaumont, the scribe is a scribe at (1404,1804)
+[01:42:13.718] INFO  [life] goal=EXPLORE reason="no goal was running"
+[01:42:13.718] INFO  [life] needs considered: Heal(bandage BLOCKED 0.79) NeedMakeBandages(bandages 0.70) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[01:42:13.719] INFO  [life]   score=15.0
+[01:42:13.719] INFO  [life]   reason: fallback: nothing else is actionable, so go and learn the world
+[01:42:13.719] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=13/32 bandages=0)
+[01:42:13.719] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage REVOLUTION_NPC_VERIFIED)
+[01:42:13.719] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 162s after achieving nothing
+[01:42:13.719] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 167s after achieving nothing
+[01:42:13.719] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[01:42:13.719] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[01:42:13.719] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: on cooldown for another 162s after achieving nothing
+[01:42:13.720] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 35s after achieving nothing
+[01:42:16.663] INFO  [v_Kaelen] [survival] hp 13/32 (40%) -> fight
+[01:42:16.725] INFO  [v_Kaelen] [travel] Britain tavernkeeper -> (1547,1768) r=5 from (1405,1810)
+[01:42:16.725] LOG   [v_Kaelen] event travel_start: label='Britain tavernkeeper' target=(1547,1768) radius=5 from=(1405,1810)
+[01:42:16.725] INFO  [life] explore: nothing else to do, so going to 'britain_inn_3' -- somewhere new (37 place(s) known so far)
+[01:42:16.725] INFO  [v_Kaelen] [travel] mode moongate         usable   <- chosen
+[01:42:16.725] INFO  [v_Kaelen] [travel] mode walk             usable
+[01:42:16.726] INFO  [v_Kaelen] [travel] mode loose_rune_recall no: no rune marked at that destination
+[01:42:16.726] INFO  [v_Kaelen] [travel] mode runebook_recall  no: no runebook page for that destination
+[01:42:16.726] LOG   [v_Kaelen] event travel_mode: moongate
+[01:42:16.726] INFO  [v_Kaelen] [travel] plan Britain tavernkeeper: ok legs=7 ~336 tiles transit=0 nodes=213
+[01:42:16.785] INFO  [v_Kaelen] [action] goto finished at (1405,1810,0); target (1405,1810); ARRIVED (off by 0 tile(s))
+[01:42:16.786] LOG   [v_Kaelen] event goto_done: at=(1405,1810) target=(1405,1810) arrived=1 off=0
+[01:42:16.786] INFO  [v_Kaelen] [action] goto (1384,1784) from (1405,1810,0)
+[01:42:16.786] LOG   [v_Kaelen] event goto_start: target=(1384,1784) from=(1405,1810)
+[01:42:16.786] INFO  [v_Kaelen] [bot] running from (1405,1810,0) to (1384,1784)
+[01:42:16.787] INFO  [v_Kaelen] [bot] planning path to (1384,1784) in background
+[01:42:16.846] INFO  [v_Kaelen] [bot] replan to (1384,1784): 33 steps in 10658.0us
+[01:42:21.691] INFO  [v_Kaelen] [survival] hp 13/32 (40%) -> fight
+[01:42:26.698] INFO  [v_Kaelen] [survival] hp 13/32 (40%) -> fight
+[01:42:27.081] INFO  [v_Kaelen] [bot] arrived at (1384,1784,13)
+[01:42:27.082] INFO  [v_Kaelen] [action] goto finished at (1384,1784,13); target (1384,1784); ARRIVED (off by 0 tile(s))
+[01:42:27.082] LOG   [v_Kaelen] event goto_done: at=(1384,1784) target=(1384,1784) arrived=1 off=0
+[01:42:27.082] INFO  [v_Kaelen] [action] goto (1416,1752) from (1384,1784,13)
+[01:42:27.082] LOG   [v_Kaelen] event goto_start: target=(1416,1752) from=(1384,1784)
+[01:42:27.082] INFO  [v_Kaelen] [bot] running from (1384,1784,13) to (1416,1752)
+[01:42:27.083] INFO  [v_Kaelen] [bot] planning path to (1416,1752) in background
+[01:42:27.205] INFO  [v_Kaelen] [bot] replan to (1416,1752): 97 steps in 85455.0us
+[01:42:31.746] INFO  [v_Kaelen] [survival] hp 13/32 (40%) -> fight
+[01:42:36.757] INFO  [v_Kaelen] [survival] hp 13/32 (40%) -> fight
+[01:42:40.505] INFO  [v_Kaelen] [chat ascii] System: You are now under the protection of the city guards
+[01:42:41.758] INFO  [v_Kaelen] [survival] hp 13/32 (40%) -> fight
+[01:42:46.773] INFO  [v_Kaelen] [survival] hp 13/32 (40%) -> fight

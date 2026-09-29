@@ -1,0 +1,1301 @@
+[00:19:14.583] INFO  session 0: 127.0.0.1:2593 user='RevGen3_07' char=Delras tag='mk3_Delras'
+[00:19:14.585] LOG   [mk3_Delras] event session_start: text log opened
+[00:19:14.585] LOG   [mk3_Delras] event net_connect_begin: connect 127.0.0.1:2593
+[00:19:14.585] INFO  [mk3_Delras] [net] connecting to 127.0.0.1:2593 ...
+[00:19:14.586] LOG   [mk3_Delras] event net_connected: connect 127.0.0.1:2593
+[00:19:14.586] INFO  [mk3_Delras] [net] connected.
+[00:19:14.586] INFO  [mk3_Delras] [seed] sent 0x7F000001 (plaintext)
+[00:19:14.586] LOG   [mk3_Delras] event seed_out: 0x7F000001 hex=7f000001
+[00:19:14.586] INFO  [life] no prior state for revgen3_07.delras: a new Lumberjack / Carpenter
+[00:19:14.586] INFO  [life] creation request: Lumberjacking 50.0 + Swordsmanship 50.0, stats 40/32/8 = 80
+[00:19:14.586] INFO  [life] needs: reading 'lumberjack_swordsman' from the profession catalogue
+[00:19:14.586] INFO  [life] home: Delras lives in Britain
+[00:19:14.586] INFO  [life] build plan 'lumberjack_swordsman': 600.0 resolved + 100.0 unresolved = 700.0/700.0, stats 100/100/25 = 225
+[00:19:14.586] INFO  [mk3_Delras] [life] autonomous player active for 'Delras' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 3 min)
+[00:19:14.604] INFO  [mk3_Delras] [0xA8] 1 server(s):
+[00:19:14.604] INFO  [mk3_Delras]   [0] MyShard                   1.0.0.127  full=2%  tz=0
+[00:19:14.620] INFO  [mk3_Delras] [0x8C] game server = 127.0.0.1:2593  seed=0x834BD747
+[00:19:14.620] LOG   [mk3_Delras] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x834BD747
+[00:19:14.620] INFO  [mk3_Delras] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[00:19:14.620] LOG   [mk3_Delras] event relay_same_socket: no seed re-sent; 0x91 follows
+[00:19:14.620] INFO  [mk3_Delras] [0xB9] server features = 0x0005
+[00:19:14.620] INFO  [mk3_Delras] [0xA9] 5 slot(s) (populated 0):
+[00:19:14.620] INFO  [mk3_Delras]   [0] <empty>
+[00:19:14.620] INFO  [mk3_Delras]   [1] <empty>
+[00:19:14.620] INFO  [mk3_Delras]   [2] <empty>
+[00:19:14.620] INFO  [mk3_Delras]   [3] <empty>
+[00:19:14.620] INFO  [mk3_Delras]   [4] <empty>
+[00:19:14.620] INFO  [mk3_Delras] create: appearance sex=F skin=0x03EF hair=0x2049/0x046B shirt=0x003E pants=0x0114
+[00:19:14.620] INFO  [mk3_Delras] [0x00] starting city index 2
+[00:19:14.620] INFO  [mk3_Delras] [0x00] requested skills 44:50 40:50 48:0
+[00:19:14.620] INFO  [mk3_Delras] [0x00] requested stats STR 40 DEX 32 INT 8
+[00:19:14.620] INFO  [mk3_Delras] [0x00] creating character 'Delras' in slot 0
+[00:19:14.620] LOG   [mk3_Delras] event char_create_sent: Delras
+[00:19:14.637] INFO  [mk3_Delras] [0x1B] serial=0x00015A59 body=0x0191 pos=(1496,1628,10)
+[00:19:14.637] LOG   [mk3_Delras] event login_confirm: serial=0x00015A59 body=0x0191 pos=(1496,1628,10)
+[00:19:14.637] INFO  [mk3_Delras] [0x20] player @(1496,1628,10) facing=3
+[00:19:14.637] INFO  [mk3_Delras] [0x55] login complete — entering world
+[00:19:14.637] LOG   [mk3_Delras] event in_world: 0x55 received
+[00:19:14.637] INFO  [mk3_Delras] [backpack] opening 0x4001591B
+[00:19:14.637] INFO  [mk3_Delras] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[00:19:14.637] INFO  [mk3_Delras] [chat ascii] System: There are 6 other players here.
+[00:19:14.637] INFO  [mk3_Delras] [chat ascii] System: You are under the protection of the city guards
+[00:19:14.641] INFO  [mk3_Delras] [action] requesting the skill list
+[00:19:14.641] INFO  [life] in world; asked the server for the skill list
+[00:19:14.641] INFO  [mk3_Delras] [0x24] open container 0x4001591B gump=60
+[00:19:14.641] INFO  [mk3_Delras] [0x3C] container contents: 6 item(s)
+[00:19:14.641] LOG   [mk3_Delras] event backpack_contents: serial=0x4001591B items=6
+[00:19:17.213] INFO  [mk3_Delras] [bot] world data loaded (0 blacklisted spot(s)).
+[00:19:17.214] INFO  [life] reconciliation: first ever login, 7 field(s) differed
+[00:19:17.214] INFO  [life]   gold         persisted=0          server=10000      -> server value accepted
+[00:19:17.214] INFO  [life]   str          persisted=0          server=40         -> server value accepted
+[00:19:17.214] INFO  [life]   dex          persisted=0          server=32         -> server value accepted
+[00:19:17.214] INFO  [life]   int          persisted=0          server=8          -> server value accepted
+[00:19:17.214] INFO  [life]   skill_44     persisted=0.0        server=50.0       -> server value accepted
+[00:19:17.214] INFO  [life]   skill_40     persisted=0.0        server=50.0       -> server value accepted
+[00:19:17.214] INFO  [life]   skill_27     persisted=0.0        server=0.0        -> server value accepted
+[00:19:17.214] INFO  [life]   skill_1      persisted=0.0        server=0.0        -> server value accepted
+[00:19:17.214] INFO  [life]   skill_17     persisted=0.0        server=0.0        -> server value accepted
+[00:19:17.214] INFO  [life]   skill_11     persisted=0.0        server=0.0        -> server value accepted
+[00:19:17.214] INFO  [life]   position     persisted=0,0        server=1496,1628  -> server value accepted
+[00:19:17.214] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[00:19:17.214] INFO  [mk3_Delras] [survival] on
+[00:19:17.214] LOG   [mk3_Delras] event survival_mode: on
+[00:19:17.216] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_07.delras/state.json
+[00:19:17.216] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:19:17.268] INFO  [life] goal=BANK reason="no goal was running"
+[00:19:17.268] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedMakeBandages(bandages BLOCKED 0.70) NeedSkillTraining(Carpentry 0.55) NeedEquipment(heal potions 0.50) NeedEquipment(bandages 0.50) NeedTraining(Swordsmanship 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedLogs(logs 0.40) NeedFood(food 0.25) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[00:19:17.268] INFO  [life]   score=150.0
+[00:19:17.268] INFO  [life]   reason: NeedBank urgency 0.75 x 240 = 180.0
+[00:19:17.268] INFO  [life]   reason: on_hand=10000 (total 10000) reserve=10000 carry=1300 spare=8700 risk=1.00
+[00:19:17.268] INFO  [life]   reason: no bank learned yet -30
+[00:19:17.268] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[00:19:17.268] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 10000 (buyable at 200))
+[00:19:17.268] INFO  [mk3_Delras] [action] scanning nearby mobiles for names
+[00:19:17.268] INFO  [mk3_Delras] [action] requested 3 paperdoll(s) for trade titles
+[00:19:17.268] INFO  [life] bank: asking who is standing in the bank
+[00:19:17.269] INFO  [mk3_Delras] [mobiles] nearby (4):
+[00:19:17.269] INFO  [mk3_Delras]   Vorar 0x00016305
+[00:19:17.269] INFO  [mk3_Delras]   Halain 0x0001616D
+[00:19:17.269] INFO  [mk3_Delras]   Audny 0x00001076
+[00:19:17.269] INFO  [mk3_Delras]   Starling 0x000013C5
+[00:19:17.269] INFO  [mk3_Delras] [0x20] player @(1496,1628,10) facing=0
+[00:19:17.269] INFO  [mk3_Delras] [0x88] paperdoll 0x00001076: "Audny, the innkeeper"
+[00:19:17.269] INFO  [mk3_Delras] [world] Audny, the innkeeper is a innkeeper at (1494,1614)
+[00:19:17.269] INFO  [mk3_Delras] [0x88] paperdoll 0x00016305: "Vorar, Apprentice Lumberjack"
+[00:19:17.269] INFO  [mk3_Delras] [0x88] paperdoll 0x0001616D: "Halain, Apprentice Lumberjack"
+[00:19:17.703] INFO  [mk3_Delras] [chat ascii] System: Cyras has arrived in Britain.
+[00:19:19.302] INFO  [life] bank: no banker in sight
+[00:19:19.302] INFO  [life] goal_failed=BANK status=retryable_failure reason="no banker in sight"
+[00:19:19.363] INFO  [life] goal=REPLACE_EQUIPMENT reason="previous goal abandoned: no banker answered"
+[00:19:19.363] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedMakeBandages(bandages BLOCKED 0.70) NeedSkillTraining(Carpentry 0.55) NeedEquipment(heal potions 0.50) NeedEquipment(bandages 0.50) NeedTraining(Swordsmanship 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedLogs(logs 0.40) NeedFood(food 0.25) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[00:19:19.363] INFO  [life]   score=130.0
+[00:19:19.363] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:19:19.363] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:19:19.363] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 299s after achieving nothing
+[00:19:19.363] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[00:19:19.363] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 10000 (buyable at 200))
+[00:19:20.736] INFO  [mk3_Delras] [chat ascii] System: Rhaler has arrived in Minoc.
+[00:19:22.275] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:19:23.783] INFO  [mk3_Delras] [chat ascii] System: Ghalor has arrived in Minoc.
+[00:19:24.303] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:19:24.303] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:19:24.306] INFO  [mk3_Delras] [travel] place: skipping Cove healer -- 1344 tiles and 1 gate for a service Britain healer offers
+[00:19:24.306] INFO  [mk3_Delras] [travel] place: skipping Minoc healer -- 1704 tiles and 0 gates for a service Britain healer offers
+[00:19:24.306] INFO  [mk3_Delras] [travel] Britain healer -> (1471,1611) r=5 from (1496,1628)
+[00:19:24.306] LOG   [mk3_Delras] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1496,1628)
+[00:19:24.306] INFO  [life] bandages: walking to a 'healer' (trip 1)
+[00:19:24.306] INFO  [mk3_Delras] [travel] mode walk             usable   <- chosen
+[00:19:24.306] INFO  [mk3_Delras] [travel] mode moongate         usable
+[00:19:24.306] INFO  [mk3_Delras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:19:24.306] INFO  [mk3_Delras] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:19:24.306] LOG   [mk3_Delras] event travel_mode: walk
+[00:19:24.306] INFO  [mk3_Delras] [travel] plan Britain healer: ok legs=1 ~25 tiles transit=0 nodes=0
+[00:19:24.306] INFO  [mk3_Delras] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:19:24.306] INFO  [mk3_Delras] [action] goto (1471,1611) from (1496,1628,10)
+[00:19:24.306] LOG   [mk3_Delras] event goto_start: target=(1471,1611) from=(1496,1628)
+[00:19:24.306] INFO  [mk3_Delras] [bot] running from (1496,1628,10) to (1471,1611,z20)
+[00:19:24.307] INFO  [mk3_Delras] [bot] planning path to (1471,1611) in background
+[00:19:24.364] INFO  [mk3_Delras] [bot] replan to (1471,1611): 35 steps in 4241.0us
+[00:19:26.825] INFO  [mk3_Delras] [chat ascii] System: Falen has arrived in Minoc.
+[00:19:27.318] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:19:29.908] INFO  [mk3_Delras] [chat ascii] System: Aelia has arrived in Britain.
+[00:19:31.571] INFO  [mk3_Delras] [bot] door ahead at (1480,1613,z20); OpenDoor before step
+[00:19:31.572] INFO  [mk3_Delras] [chat ascii] System: Opening door...
+[00:19:32.323] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:19:32.738] INFO  [mk3_Delras] [bot] door ahead at (1479,1612,z20); OpenDoor before step
+[00:19:32.753] INFO  [mk3_Delras] [chat ascii] System: Opening door...
+[00:19:33.079] INFO  [mk3_Delras] [chat ascii] System: Amara has arrived in Britain.
+[00:19:33.508] INFO  [mk3_Delras] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=10 in 147.7us
+[00:19:34.374] INFO  [mk3_Delras] [travel] Britain healer ARRIVED at (1476,1612,20)
+[00:19:34.374] LOG   [mk3_Delras] event travel_done: label='Britain healer' ok=1 at=(1476,1612) legs=1 plans=1 why=''
+[00:19:34.376] INFO  [mk3_Delras] [action] scanning nearby mobiles for names
+[00:19:34.377] INFO  [mk3_Delras] [action] requested 4 paperdoll(s) for trade titles
+[00:19:34.377] INFO  [life] bandages: at the shop, asking who is here (scan 1 of 3)
+[00:19:34.388] INFO  [mk3_Delras] [mobiles] nearby (7):
+[00:19:34.388] INFO  [mk3_Delras]   Halain 0x0001616D
+[00:19:34.388] INFO  [mk3_Delras]   Vorar 0x00016305
+[00:19:34.388] INFO  [mk3_Delras]   Natasha 0x00001194
+[00:19:34.388] INFO  [mk3_Delras]   Cyras 0x00015725
+[00:19:34.388] INFO  [mk3_Delras]   Dale 0x000010C1
+[00:19:34.388] INFO  [mk3_Delras]   Caimile 0x00001239
+[00:19:34.388] INFO  [mk3_Delras]   Audny 0x00001076
+[00:19:34.388] INFO  [mk3_Delras] [0x20] player @(1476,1612,20) facing=2
+[00:19:34.388] INFO  [mk3_Delras] [0x88] paperdoll 0x00015725: "Cyras, Apprentice Lumberjack"
+[00:19:34.388] INFO  [mk3_Delras] [0x20] player @(1476,1612,20) facing=7
+[00:19:34.388] INFO  [mk3_Delras] [0x88] paperdoll 0x00001194: "Natasha, the healer guildmistress"
+[00:19:34.388] INFO  [mk3_Delras] [world] Natasha, the healer guildmistress is a healer at (1472,1610)
+[00:19:34.388] INFO  [mk3_Delras] [0x20] player @(1476,1612,20) facing=6
+[00:19:34.388] INFO  [mk3_Delras] [0x88] paperdoll 0x000010C1: "Dale, the healer"
+[00:19:34.388] INFO  [mk3_Delras] [world] Dale, the healer is a healer at (1470,1614)
+[00:19:34.390] INFO  [mk3_Delras] [0x20] player @(1476,1612,20) facing=0
+[00:19:34.390] INFO  [mk3_Delras] [0x88] paperdoll 0x00001239: "Caimile, the merchant guildmistress"
+[00:19:36.131] INFO  [mk3_Delras] [chat ascii] System: Elara has arrived in Magincia.
+[00:19:36.252] INFO  [mk3_Delras] [chat ascii] Dale: Thou hast mine attention.
+[00:19:37.359] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:19:37.421] INFO  [life] bandages: found a 'healer'
+[00:19:37.483] INFO  [mk3_Delras] [travel] mobile 0x000010C1 -> (1470,1614) r=1 from (1476,1612)
+[00:19:37.483] LOG   [mk3_Delras] event travel_start: label='mobile 0x000010C1' target=(1470,1614) radius=1 from=(1476,1612)
+[00:19:37.484] INFO  [life] bandages: the 'healer' is 6 tiles off (dz 0) -- walking into reach (chase 1 of 3)
+[00:19:37.484] INFO  [mk3_Delras] [travel] mode walk             usable   <- chosen
+[00:19:37.484] INFO  [mk3_Delras] [travel] mode moongate         usable
+[00:19:37.484] INFO  [mk3_Delras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:19:37.484] INFO  [mk3_Delras] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:19:37.484] LOG   [mk3_Delras] event travel_mode: walk
+[00:19:37.484] INFO  [mk3_Delras] [travel] plan mobile 0x000010C1: ok legs=1 ~6 tiles transit=0 nodes=0
+[00:19:37.545] INFO  [mk3_Delras] [action] goto finished at (1476,1612,20); target (1471,1611); stopped short (off by 6 tile(s))
+[00:19:37.545] LOG   [mk3_Delras] event goto_done: at=(1476,1612) target=(1471,1611) arrived=0 off=6
+[00:19:37.545] INFO  [mk3_Delras] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:19:37.545] INFO  [mk3_Delras] [action] goto (1470,1614) from (1476,1612,20)
+[00:19:37.545] LOG   [mk3_Delras] event goto_start: target=(1470,1614) from=(1476,1612)
+[00:19:37.545] INFO  [mk3_Delras] [bot] running from (1476,1612,20) to (1470,1614,z20)
+[00:19:37.545] INFO  [mk3_Delras] [bot] planning path to (1470,1614) in background
+[00:19:39.272] INFO  [mk3_Delras] [chat ascii] System: Selene has arrived in Magincia.
+[00:19:39.273] INFO  [mk3_Delras] [action] goto finished at (1476,1612,20); target (1470,1614); stopped short (off by 8 tile(s))
+[00:19:39.273] LOG   [mk3_Delras] event goto_done: at=(1476,1612) target=(1470,1614) arrived=0 off=8
+[00:19:40.493] INFO  [mk3_Delras] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:19:40.493] INFO  [mk3_Delras] [action] goto (1470,1614) from (1476,1612,20)
+[00:19:40.493] LOG   [mk3_Delras] event goto_start: target=(1470,1614) from=(1476,1612)
+[00:19:40.493] INFO  [mk3_Delras] [bot] running from (1476,1612,20) to (1470,1614,z20)
+[00:19:40.493] INFO  [mk3_Delras] [bot] planning path to (1470,1614) in background
+[00:19:42.349] INFO  [mk3_Delras] [chat ascii] System: Lyra has arrived in Moonglow.
+[00:19:42.363] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:19:42.485] INFO  [mk3_Delras] [action] goto finished at (1476,1612,20); target (1470,1614); stopped short (off by 8 tile(s))
+[00:19:42.485] LOG   [mk3_Delras] event goto_done: at=(1476,1612) target=(1470,1614) arrived=0 off=8
+[00:19:43.711] INFO  [mk3_Delras] [travel] mode walk             usable   <- chosen
+[00:19:43.711] INFO  [mk3_Delras] [travel] mode moongate         usable
+[00:19:43.711] INFO  [mk3_Delras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:19:43.711] INFO  [mk3_Delras] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:19:43.711] LOG   [mk3_Delras] event travel_mode: walk
+[00:19:43.711] INFO  [mk3_Delras] [travel] plan mobile 0x000010C1: ok legs=1 ~6 tiles transit=0 nodes=0
+[00:19:45.246] INFO  [mk3_Delras] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:19:45.246] INFO  [mk3_Delras] [action] goto (1470,1614) from (1476,1612,20)
+[00:19:45.246] LOG   [mk3_Delras] event goto_start: target=(1470,1614) from=(1476,1612)
+[00:19:45.246] INFO  [mk3_Delras] [bot] running from (1476,1612,20) to (1470,1614,z20)
+[00:19:45.246] INFO  [mk3_Delras] [bot] planning path to (1470,1614) in background
+[00:19:45.262] INFO  [mk3_Delras] [bot] replan to (1470,1614): 8 steps in 108.7us
+[00:19:45.278] INFO  [mk3_Delras] [chat uni  ] Vorar: Dale buy
+[00:19:45.278] INFO  [mk3_Delras] [chat ascii] Dale: Thou mayst purchase supplies from me.
+[00:19:45.354] INFO  [mk3_Delras] [chat ascii] Dale: Here you are, Vorar That will be 19 gold coins.  I thank thee for thy business.
+[00:19:45.356] INFO  [mk3_Delras] [chat ascii] System: Thalia has arrived in Moonglow.
+[00:19:45.431] INFO  [mk3_Delras] [chat uni  ] Vorar: Dale buy
+[00:19:45.431] INFO  [mk3_Delras] [chat ascii] Dale: Thou mayst purchase supplies from me.
+[00:19:45.737] INFO  [mk3_Delras] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=6 in 67.6us
+[00:19:45.798] INFO  [mk3_Delras] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=7 in 96.2us
+[00:19:46.569] INFO  [mk3_Delras] [chat uni  ] Halain: Dale buy
+[00:19:46.569] INFO  [mk3_Delras] [chat ascii] Dale: Excuse me Vorar, but Halain wants to speak to me
+[00:19:46.569] INFO  [mk3_Delras] [chat ascii] Dale: Hello! ?
+[00:19:46.569] INFO  [mk3_Delras] [chat ascii] Dale: I got lots to sell!
+[00:19:47.365] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:19:48.053] INFO  [mk3_Delras] [travel] mobile 0x000010C1 ARRIVED at (1470,1613,20)
+[00:19:48.053] LOG   [mk3_Delras] event travel_done: label='mobile 0x000010C1' ok=1 at=(1470,1613) legs=1 plans=2 why=''
+[00:19:48.114] INFO  [life] bandages: within reach
+[00:19:48.175] INFO  [mk3_Delras] [ACTION] vendor_buy start
+[00:19:48.175] INFO  [mk3_Delras] [VENDOR] open vendor=0x000010C1 say='Dale buy'
+[00:19:48.175] INFO  [life] bandages: asking the 'healer' to show clean bandages (attempt 1)
+[00:19:48.176] INFO  [mk3_Delras] [chat uni  ] : Dale buy
+[00:19:48.176] INFO  [mk3_Delras] [chat ascii] Dale: Excuse me Halain, but Delras wants to speak to me
+[00:19:48.176] INFO  [mk3_Delras] [chat ascii] Dale: Greetings. What can I help thee with?
+[00:19:48.176] INFO  [mk3_Delras] [chat ascii] Dale: I'm here to sell thee supplies.
+[00:19:48.176] INFO  [mk3_Delras] [0x3C] container contents: 4 item(s)
+[00:19:48.176] INFO  [mk3_Delras] [0x74] pairing: straight (straight 4, mirrored 0 of 4 rows)
+[00:19:48.176] INFO  [mk3_Delras] [0x74] vendor shop data: cont=0x400010BB 4 item(s), layer=0x1A
+[00:19:48.176] INFO  [mk3_Delras] [0x74]   Heal                         gfx=0x0F0C qty=10   price=30
+[00:19:48.176] INFO  [mk3_Delras] [0x74]   Ginseng                      gfx=0x0F85 qty=20   price=3
+[00:19:48.176] INFO  [mk3_Delras] [0x74]   Garlic                       gfx=0x0F84 qty=13   price=3
+[00:19:48.176] INFO  [mk3_Delras] [0x74]   Refresh                      gfx=0x0F0B qty=19   price=16
+[00:19:48.176] INFO  [mk3_Delras] [0x3C] container contents: 0 item(s)
+[00:19:48.176] INFO  [mk3_Delras] [0x74] vendor shop data: cont=0x40000EF5 0 item(s), layer=0x1B
+[00:19:48.176] INFO  [mk3_Delras] [VENDOR] offer from 0x000010C1: 4 item(s)
+[00:19:48.176] INFO  [mk3_Delras] [VENDOR]   0x4001823F Heal                   x10  30 gp
+[00:19:48.176] INFO  [mk3_Delras] [VENDOR]   0x40018237 Ginseng                x20  3 gp
+[00:19:48.176] INFO  [mk3_Delras] [VENDOR]   0x40018236 Garlic                 x13  3 gp
+[00:19:48.176] INFO  [mk3_Delras] [VENDOR]   0x40018232 Refresh                x19  16 gp
+[00:19:48.176] LOG   [mk3_Delras] event vendor_offer: vendor=0x000010C1 items=4
+[00:19:48.176] INFO  [mk3_Delras] [ACTION_RESULT] vendor_buy success (1ms) vendor offer received
+[00:19:48.176] LOG   [mk3_Delras] event action_result: vendor_buy success took=1ms vendor offer received
+[00:19:48.176] INFO  [mk3_Delras] [0x24] vendor buy gump for 0x000010C1
+[00:19:48.176] INFO  [life] bandages: the shop is open
+[00:19:48.190] INFO  [mk3_Delras] [chat ascii] System: You shove Vorar out of the way.
+[00:19:48.190] INFO  [mk3_Delras] [bot] arrived at (1470,1614,20)
+[00:19:48.190] INFO  [mk3_Delras] [chat uni  ] Cyras: Dale buy
+[00:19:48.190] INFO  [mk3_Delras] [chat ascii] Dale: Excuse me Delras, but Cyras wants to speak to me
+[00:19:48.190] INFO  [mk3_Delras] [chat ascii] Dale: Hello!
+[00:19:48.190] INFO  [mk3_Delras] [chat ascii] Dale: I got lots to sell!
+[00:19:48.191] INFO  [life] bandages: this 'healer' does not stock clean bandages
+[00:19:48.191] INFO  [life] goal_failed=REPLACE_EQUIPMENT status=failed reason="this 'healer' does not stock clean bandages"
+[00:19:48.191] INFO  [life] handoff=REPLACE_EQUIPMENT->MAKE_BANDAGES reason="no bandages bought"
+[00:19:48.192] INFO  [life] goal=GET_FOOD reason="previous goal abandoned: no bandages bought"
+[00:19:48.192] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedMakeBandages(bandages BLOCKED 0.70) NeedSkillTraining(Carpentry 0.55) NeedEquipment(heal potions 0.50) NeedEquipment(bandages 0.50) NeedTraining(Swordsmanship 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedLogs(logs 0.40) NeedFood(food 0.25) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[00:19:48.192] INFO  [life]   score=62.5
+[00:19:48.192] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[00:19:48.192] INFO  [life]   reason: food=0
+[00:19:48.192] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 239s after achieving nothing
+[00:19:48.192] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 271s after achieving nothing
+[00:19:48.192] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[00:19:48.192] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 10000 (buyable at 200))
+[00:19:48.422] INFO  [mk3_Delras] [chat ascii] System: Dorvar has arrived in Skara Brae.
+[00:19:50.205] INFO  [mk3_Delras] [travel] Britain baker -> (1450,1617) r=5 from (1470,1614)
+[00:19:50.205] LOG   [mk3_Delras] event travel_start: label='Britain baker' target=(1450,1617) radius=5 from=(1470,1614)
+[00:19:50.205] INFO  [life] food: walking to a 'baker' (trip 1)
+[00:19:50.205] INFO  [mk3_Delras] [travel] mode walk             usable   <- chosen
+[00:19:50.205] INFO  [mk3_Delras] [travel] mode moongate         usable
+[00:19:50.205] INFO  [mk3_Delras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:19:50.205] INFO  [mk3_Delras] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:19:50.205] LOG   [mk3_Delras] event travel_mode: walk
+[00:19:50.205] INFO  [mk3_Delras] [travel] plan Britain baker: ok legs=1 ~20 tiles transit=0 nodes=0
+[00:19:50.211] INFO  [mk3_Delras] [action] goto finished at (1470,1614,20); target (1470,1614); ARRIVED (off by 0 tile(s))
+[00:19:50.211] LOG   [mk3_Delras] event goto_done: at=(1470,1614) target=(1470,1614) arrived=1 off=0
+[00:19:50.211] INFO  [mk3_Delras] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:19:50.211] INFO  [mk3_Delras] [action] goto (1450,1617) from (1470,1614,20)
+[00:19:50.211] LOG   [mk3_Delras] event goto_start: target=(1450,1617) from=(1470,1614)
+[00:19:50.211] INFO  [mk3_Delras] [bot] running from (1470,1614,20) to (1450,1617,z20)
+[00:19:50.211] INFO  [mk3_Delras] [bot] planning path to (1450,1617) in background
+[00:19:50.271] INFO  [mk3_Delras] [bot] replan to (1450,1617): 50 steps in 1604.6us
+[00:19:51.483] INFO  [mk3_Delras] [chat ascii] System: Ithion has arrived in Skara Brae.
+[00:19:51.831] INFO  [mk3_Delras] [bot] lookahead patched around block at step 4: anchor=7 new segment=10 path=48 in 364.1us
+[00:19:52.400] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:19:54.119] INFO  [mk3_Delras] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=41 in 150.9us
+[00:19:54.470] INFO  [mk3_Delras] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=42 in 108.4us
+[00:19:54.532] INFO  [mk3_Delras] [chat ascii] System: Odessa has arrived in Britain.
+[00:19:55.652] INFO  [mk3_Delras] [bot] lookahead patched around block at step 2: anchor=5 new segment=3 path=36 in 18.0us
+[00:19:56.006] INFO  [mk3_Delras] [bot] door ahead at (1480,1610,z20); OpenDoor before step
+[00:19:56.007] INFO  [mk3_Delras] [chat ascii] System: Opening door...
+[00:19:56.816] INFO  [mk3_Delras] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=34 in 31.0us
+[00:19:57.460] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:19:57.475] INFO  [mk3_Delras] [bot] lookahead patched around block at step 3: anchor=5 new segment=7 path=35 in 63.1us
+[00:19:57.598] INFO  [mk3_Delras] [chat ascii] System: Serena has arrived in Britain.
+[00:19:58.180] INFO  [mk3_Delras] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=32 in 39.4us
+[00:19:58.440] INFO  [mk3_Delras] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=32 in 56.2us
+[00:19:58.700] INFO  [mk3_Delras] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=31 in 92.9us
+[00:19:58.899] INFO  [mk3_Delras] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=30 in 55.0us
+[00:19:59.113] INFO  [mk3_Delras] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=29 in 59.8us
+[00:19:59.328] INFO  [mk3_Delras] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=28 in 35.5us
+[00:19:59.528] INFO  [mk3_Delras] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=27 in 41.7us
+[00:19:59.742] INFO  [mk3_Delras] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=26 in 61.8us
+[00:19:59.959] INFO  [mk3_Delras] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=25 in 35.4us
+[00:20:00.173] INFO  [mk3_Delras] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=24 in 36.3us
+[00:20:00.422] INFO  [mk3_Delras] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=23 in 93.0us
+[00:20:00.645] INFO  [mk3_Delras] [chat ascii] System: Aurelius has arrived in Moonglow.
+[00:20:00.661] INFO  [mk3_Delras] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=22 in 99.5us
+[00:20:00.922] INFO  [mk3_Delras] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=22 in 64.1us
+[00:20:01.382] INFO  [mk3_Delras] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=20 in 69.3us
+[00:20:01.585] INFO  [mk3_Delras] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=19 in 105.2us
+[00:20:01.842] INFO  [mk3_Delras] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=18 in 152.6us
+[00:20:02.210] INFO  [mk3_Delras] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=17 in 184.3us
+[00:20:02.410] INFO  [mk3_Delras] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=16 in 92.4us
+[00:20:02.470] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:20:02.670] INFO  [mk3_Delras] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=14 in 150.7us
+[00:20:03.515] INFO  [mk3_Delras] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=12 in 95.8us
+[00:20:03.774] INFO  [mk3_Delras] [bot] lookahead patched around block at step 3: anchor=5 new segment=6 path=12 in 112.9us
+[00:20:03.868] INFO  [mk3_Delras] [chat ascii] System: Leander has arrived in Moonglow.
+[00:20:04.250] INFO  [mk3_Delras] [bot] lookahead patched around block at step 2: anchor=5 new segment=3 path=7 in 24.5us
+[00:20:05.004] INFO  [mk3_Delras] [chat ascii] Dale: Hmm?
+[00:20:05.004] INFO  [mk3_Delras] [chat ascii] Dale: Hmm?
+[00:20:05.204] INFO  [mk3_Delras] [bot] reject at (1454,1614): mobile in the way — waiting 500ms, retrying (1) [no blacklist]
+[00:20:05.204] INFO  [mk3_Delras] [bot] planning path to (1450,1617) in background
+[00:20:05.206] INFO  [mk3_Delras] [bot] replan to (1450,1617): 7 steps in 161.9us
+[00:20:05.545] INFO  [mk3_Delras] [travel] Britain baker ARRIVED at (1455,1613,20)
+[00:20:05.545] LOG   [mk3_Delras] event travel_done: label='Britain baker' ok=1 at=(1455,1613) legs=1 plans=1 why=''
+[00:20:05.606] INFO  [mk3_Delras] [action] scanning nearby mobiles for names
+[00:20:05.606] INFO  [mk3_Delras] [action] requested 1 paperdoll(s) for trade titles
+[00:20:05.606] INFO  [life] food: at the shop, asking who is here (scan 1 of 3)
+[00:20:05.621] INFO  [mk3_Delras] [mobiles] nearby (5):
+[00:20:05.621] INFO  [mk3_Delras]   Halain 0x0001616D
+[00:20:05.621] INFO  [mk3_Delras]   Vorar 0x00016305
+[00:20:05.621] INFO  [mk3_Delras]   Lionel 0x000010B3
+[00:20:05.621] INFO  [mk3_Delras]   Natasha 0x00001194
+[00:20:05.621] INFO  [mk3_Delras]   Dale 0x000010C1
+[00:20:05.621] INFO  [mk3_Delras] [0x88] paperdoll 0x000010B3: "Lionel, the baker"
+[00:20:05.621] INFO  [mk3_Delras] [world] Lionel, the baker is a baker at (1449,1616)
+[00:20:06.980] INFO  [mk3_Delras] [chat ascii] System: Illyria has arrived in Britain.
+[00:20:07.499] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:20:08.375] INFO  [mk3_Delras] [bot] arrived at (1450,1617,20)
+[00:20:08.623] INFO  [life] food: found a 'baker'
+[00:20:08.683] INFO  [life] food: within reach
+[00:20:08.746] INFO  [mk3_Delras] [ACTION] vendor_buy start
+[00:20:08.746] INFO  [mk3_Delras] [VENDOR] open vendor=0x000010B3 say='Lionel buy'
+[00:20:08.746] INFO  [life] food: asking the 'baker' to show something to eat (attempt 1)
+[00:20:08.761] INFO  [mk3_Delras] [chat uni  ] : Lionel buy
+[00:20:08.761] INFO  [mk3_Delras] [chat ascii] Lionel: Greetings. What can I do for thee?
+[00:20:08.761] INFO  [mk3_Delras] [chat ascii] Lionel: I'm here to sell thee supplies.
+[00:20:08.761] INFO  [mk3_Delras] [0x3C] container contents: 11 item(s)
+[00:20:08.761] INFO  [mk3_Delras] [0x74] pairing: straight (straight 1, mirrored 0 of 11 rows)
+[00:20:08.761] INFO  [mk3_Delras] [0x74] vendor shop data: cont=0x400010A9 11 item(s), layer=0x1A
+[00:20:08.761] INFO  [mk3_Delras] [0x74]   bread loaves                 gfx=0x103B qty=79   price=8
+[00:20:08.761] INFO  [mk3_Delras] [0x74]   baked pie                    gfx=0x1041 qty=23   price=17
+[00:20:08.761] INFO  [mk3_Delras] [0x74]   cake                         gfx=0x09E9 qty=22   price=38
+[00:20:08.761] INFO  [mk3_Delras] [0x74]   muffins                      gfx=0x09EA qty=46   price=8
+[00:20:08.761] INFO  [mk3_Delras] [0x74]   sack of flour                gfx=0x1039 qty=105  price=6
+[00:20:08.761] INFO  [mk3_Delras] [0x74]   french bread                 gfx=0x098C qty=33   price=9
+[00:20:08.761] INFO  [mk3_Delras] [0x74]   pan of cookies               gfx=0x160B qty=64   price=7
+[00:20:08.761] INFO  [mk3_Delras] [0x74]   pizzas                       gfx=0x1040 qty=57   price=15
+[00:20:08.761] INFO  [mk3_Delras] [0x74]   jars of honey                gfx=0x09EC qty=55   price=10
+[00:20:08.761] INFO  [mk3_Delras] [0x74]   dough                        gfx=0x103D qty=45   price=12
+[00:20:08.761] INFO  [mk3_Delras] [0x74]   rolling pin                  gfx=0x1043 qty=5    price=9
+[00:20:08.761] INFO  [mk3_Delras] [0x3C] container contents: 0 item(s)
+[00:20:08.761] INFO  [mk3_Delras] [0x74] vendor shop data: cont=0x40000E04 0 item(s), layer=0x1B
+[00:20:08.761] INFO  [mk3_Delras] [VENDOR] offer from 0x000010B3: 11 item(s)
+[00:20:08.761] INFO  [mk3_Delras] [VENDOR]   0x400193BC bread loaves           x79  8 gp
+[00:20:08.761] INFO  [mk3_Delras] [VENDOR]   0x400193BB baked pie              x23  17 gp
+[00:20:08.761] INFO  [mk3_Delras] [VENDOR]   0x400193B8 cake                   x22  38 gp
+[00:20:08.761] INFO  [mk3_Delras] [VENDOR]   0x400193B7 muffins                x46  8 gp
+[00:20:08.761] INFO  [mk3_Delras] [VENDOR]   0x400193B5 sack of flour          x105 6 gp
+[00:20:08.761] INFO  [mk3_Delras] [VENDOR]   0x400193B4 french bread           x33  9 gp
+[00:20:08.761] INFO  [mk3_Delras] [VENDOR]   0x400193B2 pan of cookies         x64  7 gp
+[00:20:08.761] INFO  [mk3_Delras] [VENDOR]   0x400193AF pizzas                 x57  15 gp
+[00:20:08.761] LOG   [mk3_Delras] event vendor_offer: vendor=0x000010B3 items=11
+[00:20:08.761] INFO  [mk3_Delras] [ACTION_RESULT] vendor_buy success (15ms) vendor offer received
+[00:20:08.761] LOG   [mk3_Delras] event action_result: vendor_buy success took=15ms vendor offer received
+[00:20:08.761] INFO  [mk3_Delras] [0x24] vendor buy gump for 0x000010B3
+[00:20:08.762] INFO  [life] food: the shop is open
+[00:20:08.823] INFO  [life] food: the shop is open; the caller chooses
+[00:20:08.823] INFO  [life] food: buying bread loaves at 8 gold
+[00:20:08.823] INFO  [mk3_Delras] [ACTION] vendor_buy start
+[00:20:08.823] INFO  [mk3_Delras] [policy] allowed NPC purchase of i_bread_loaf (0x103B): basic food: a character with hunger enabled must be able to eat, and Revolution's cooking economy shows food was not an income good [BASIC_FOOD]
+[00:20:08.823] INFO  [mk3_Delras] [VENDOR] buy item=0x400193BC qty=2 from vendor=0x000010B3 gold=10000
+[00:20:08.824] INFO  [mk3_Delras] [ACTION_RESULT] vendor_buy success (1ms) purchased item delivered
+[00:20:08.824] LOG   [mk3_Delras] event action_result: vendor_buy success took=1ms purchased item delivered
+[00:20:08.824] INFO  [mk3_Delras] [chat ascii] Lionel: Here you are, Delras That will be 16 gold coins.  I thank thee for thy business.
+[00:20:08.824] INFO  [mk3_Delras] [0x3B] vendor transaction closed: vendor=0x000010B3 flag=0
+[00:20:08.825] INFO  [life] goal_changed=TRAIN_AT_NPC from=GET_FOOD reason="TRAIN_AT_NPC 60.5 superseded GET_FOOD 0.0"
+[00:20:08.825] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedMakeBandages(bandages BLOCKED 0.70) NeedSkillTraining(Carpentry 0.55) NeedEquipment(heal potions 0.50) NeedEquipment(bandages 0.50) NeedTraining(Swordsmanship 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedLogs(logs 0.40) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[00:20:08.825] INFO  [life]   score=60.5
+[00:20:08.825] INFO  [life]   reason: NeedSkillTraining urgency 0.55 x 110 = 60.5
+[00:20:08.825] INFO  [life]   reason: Carpentry 0.0 -> 100.0, gold 10000 (fee is quoted on arrival, roughly 300)
+[00:20:08.825] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 219s after achieving nothing
+[00:20:08.825] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 250s after achieving nothing
+[00:20:08.825] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[00:20:08.825] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 10000 (buyable at 200))
+[00:20:10.022] INFO  [mk3_Delras] [chat ascii] System: Hector has arrived in Trinsic.
+[00:20:12.506] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:20:13.076] INFO  [mk3_Delras] [chat ascii] System: Castor has arrived in Trinsic.
+[00:20:16.106] INFO  [mk3_Delras] [chat ascii] System: Faustus has arrived in Britain.
+[00:20:17.214] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_07.delras/state.json
+[00:20:17.522] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:20:17.831] INFO  [life] plan=buy reason="below the ceiling, worth buying, and affordable"
+[00:20:17.831] INFO  [life] training: looking for a 'carpenter' to teach Carpentry (trip 1)
+[00:20:17.836] INFO  [mk3_Delras] [travel] place: skipping Minoc architect -- 1864 tiles and 0 gates for a service Britain carpenter offers
+[00:20:17.837] INFO  [mk3_Delras] [travel] place: skipping Minoc carpenter -- 1864 tiles and 0 gates for a service Britain carpenter offers
+[00:20:17.837] INFO  [mk3_Delras] [travel] place: skipping Vesper carpenter -- 1960 tiles and 0 gates for a service Britain carpenter offers
+[00:20:17.837] INFO  [mk3_Delras] [travel] Britain carpenter -> (1430,1597) r=5 from (1450,1617)
+[00:20:17.837] LOG   [mk3_Delras] event travel_start: label='Britain carpenter' target=(1430,1597) radius=5 from=(1450,1617)
+[00:20:17.837] INFO  [mk3_Delras] [travel] mode walk             usable   <- chosen
+[00:20:17.837] INFO  [mk3_Delras] [travel] mode moongate         usable
+[00:20:17.837] INFO  [mk3_Delras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:17.837] INFO  [mk3_Delras] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:17.837] LOG   [mk3_Delras] event travel_mode: walk
+[00:20:17.837] INFO  [mk3_Delras] [travel] plan Britain carpenter: ok legs=1 ~20 tiles transit=0 nodes=0
+[00:20:17.894] INFO  [mk3_Delras] [action] goto finished at (1450,1617,20); target (1450,1617); ARRIVED (off by 0 tile(s))
+[00:20:17.894] LOG   [mk3_Delras] event goto_done: at=(1450,1617) target=(1450,1617) arrived=1 off=0
+[00:20:17.894] INFO  [mk3_Delras] [action] goto (1430,1597) from (1450,1617,20)
+[00:20:17.894] LOG   [mk3_Delras] event goto_start: target=(1430,1597) from=(1450,1617)
+[00:20:17.894] INFO  [mk3_Delras] [bot] running from (1450,1617,20) to (1430,1597,z20)
+[00:20:17.894] INFO  [mk3_Delras] [bot] planning path to (1430,1597) in background
+[00:20:18.016] INFO  [mk3_Delras] [action] goto finished at (1450,1617,20); target (1430,1597); stopped short (off by 40 tile(s))
+[00:20:18.016] LOG   [mk3_Delras] event goto_done: at=(1450,1617) target=(1430,1597) arrived=0 off=40
+[00:20:19.161] INFO  [mk3_Delras] [chat ascii] System: Titus has arrived in Skara Brae.
+[00:20:19.221] INFO  [mk3_Delras] [action] goto (1430,1597) from (1450,1617,20)
+[00:20:19.221] LOG   [mk3_Delras] event goto_start: target=(1430,1597) from=(1450,1617)
+[00:20:19.222] INFO  [mk3_Delras] [bot] running from (1450,1617,20) to (1430,1597,z20)
+[00:20:19.222] INFO  [mk3_Delras] [bot] planning path to (1430,1597) in background
+[00:20:19.284] INFO  [mk3_Delras] [action] goto finished at (1450,1617,20); target (1430,1597); stopped short (off by 40 tile(s))
+[00:20:19.284] LOG   [mk3_Delras] event goto_done: at=(1450,1617) target=(1430,1597) arrived=0 off=40
+[00:20:20.512] INFO  [mk3_Delras] [action] goto (1430,1597) from (1450,1617,20)
+[00:20:20.512] LOG   [mk3_Delras] event goto_start: target=(1430,1597) from=(1450,1617)
+[00:20:20.512] INFO  [mk3_Delras] [bot] running from (1450,1617,20) to (1430,1597,z20)
+[00:20:20.512] INFO  [mk3_Delras] [bot] planning path to (1430,1597) in background
+[00:20:20.574] INFO  [mk3_Delras] [action] goto finished at (1450,1617,20); target (1430,1597); stopped short (off by 40 tile(s))
+[00:20:20.574] LOG   [mk3_Delras] event goto_done: at=(1450,1617) target=(1430,1597) arrived=0 off=40
+[00:20:21.804] INFO  [mk3_Delras] [travel] mode walk             usable   <- chosen
+[00:20:21.804] INFO  [mk3_Delras] [travel] mode moongate         usable
+[00:20:21.804] INFO  [mk3_Delras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:21.804] INFO  [mk3_Delras] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:21.804] LOG   [mk3_Delras] event travel_mode: walk
+[00:20:21.804] INFO  [mk3_Delras] [travel] plan Britain carpenter: ok legs=1 ~20 tiles transit=0 nodes=0
+[00:20:22.309] INFO  [mk3_Delras] [chat ascii] System: Rhea has arrived in Britain.
+[00:20:22.571] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:20:23.327] INFO  [mk3_Delras] [action] goto (1430,1597) from (1450,1617,20)
+[00:20:23.327] LOG   [mk3_Delras] event goto_start: target=(1430,1597) from=(1450,1617)
+[00:20:23.327] INFO  [mk3_Delras] [bot] running from (1450,1617,20) to (1430,1597,z20)
+[00:20:23.327] INFO  [mk3_Delras] [bot] planning path to (1430,1597) in background
+[00:20:23.387] INFO  [mk3_Delras] [action] goto finished at (1450,1617,20); target (1430,1597); stopped short (off by 40 tile(s))
+[00:20:23.387] LOG   [mk3_Delras] event goto_done: at=(1450,1617) target=(1430,1597) arrived=0 off=40
+[00:20:24.597] INFO  [mk3_Delras] [action] goto (1430,1597) from (1450,1617,20)
+[00:20:24.597] LOG   [mk3_Delras] event goto_start: target=(1430,1597) from=(1450,1617)
+[00:20:24.597] INFO  [mk3_Delras] [bot] running from (1450,1617,20) to (1430,1597,z20)
+[00:20:24.597] INFO  [mk3_Delras] [bot] planning path to (1430,1597) in background
+[00:20:24.614] INFO  [mk3_Delras] [action] goto finished at (1450,1617,20); target (1430,1597); stopped short (off by 40 tile(s))
+[00:20:24.614] LOG   [mk3_Delras] event goto_done: at=(1450,1617) target=(1430,1597) arrived=0 off=40
+[00:20:25.376] INFO  [mk3_Delras] [chat ascii] System: Xerxes has arrived in Vesper.
+[00:20:25.834] INFO  [mk3_Delras] [action] goto (1430,1597) from (1450,1617,20)
+[00:20:25.835] LOG   [mk3_Delras] event goto_start: target=(1430,1597) from=(1450,1617)
+[00:20:25.835] INFO  [mk3_Delras] [bot] running from (1450,1617,20) to (1430,1597,z20)
+[00:20:25.835] INFO  [mk3_Delras] [bot] planning path to (1430,1597) in background
+[00:20:25.895] INFO  [mk3_Delras] [action] goto finished at (1450,1617,20); target (1430,1597); stopped short (off by 40 tile(s))
+[00:20:25.895] LOG   [mk3_Delras] event goto_done: at=(1450,1617) target=(1430,1597) arrived=0 off=40
+[00:20:27.118] INFO  [mk3_Delras] [travel] mode walk             usable   <- chosen
+[00:20:27.118] INFO  [mk3_Delras] [travel] mode moongate         usable
+[00:20:27.118] INFO  [mk3_Delras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:27.118] INFO  [mk3_Delras] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:27.118] LOG   [mk3_Delras] event travel_mode: walk
+[00:20:27.118] INFO  [mk3_Delras] [travel] plan Britain carpenter: ok legs=1 ~20 tiles transit=0 nodes=0
+[00:20:27.606] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:20:30.155] INFO  [mk3_Delras] [action] goto (1430,1597) from (1450,1617,20)
+[00:20:30.155] LOG   [mk3_Delras] event goto_start: target=(1430,1597) from=(1450,1617)
+[00:20:30.155] INFO  [mk3_Delras] [bot] running from (1450,1617,20) to (1430,1597,z20)
+[00:20:30.155] INFO  [mk3_Delras] [bot] planning path to (1430,1597) in background
+[00:20:30.217] INFO  [mk3_Delras] [action] goto finished at (1450,1617,20); target (1430,1597); stopped short (off by 40 tile(s))
+[00:20:30.217] LOG   [mk3_Delras] event goto_done: at=(1450,1617) target=(1430,1597) arrived=0 off=40
+[00:20:31.473] INFO  [mk3_Delras] [action] goto (1430,1597) from (1450,1617,20)
+[00:20:31.473] LOG   [mk3_Delras] event goto_start: target=(1430,1597) from=(1450,1617)
+[00:20:31.473] INFO  [mk3_Delras] [bot] running from (1450,1617,20) to (1430,1597,z20)
+[00:20:31.473] INFO  [mk3_Delras] [bot] planning path to (1430,1597) in background
+[00:20:31.533] INFO  [mk3_Delras] [action] goto finished at (1450,1617,20); target (1430,1597); stopped short (off by 40 tile(s))
+[00:20:31.533] LOG   [mk3_Delras] event goto_done: at=(1450,1617) target=(1430,1597) arrived=0 off=40
+[00:20:32.621] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:20:32.743] INFO  [mk3_Delras] [action] goto (1430,1597) from (1450,1617,20)
+[00:20:32.743] LOG   [mk3_Delras] event goto_start: target=(1430,1597) from=(1450,1617)
+[00:20:32.743] INFO  [mk3_Delras] [bot] running from (1450,1617,20) to (1430,1597,z20)
+[00:20:32.743] INFO  [mk3_Delras] [bot] planning path to (1430,1597) in background
+[00:20:32.821] INFO  [mk3_Delras] [action] goto finished at (1450,1617,20); target (1430,1597); stopped short (off by 40 tile(s))
+[00:20:32.821] LOG   [mk3_Delras] event goto_done: at=(1450,1617) target=(1430,1597) arrived=0 off=40
+[00:20:34.076] INFO  [mk3_Delras] [travel] mode walk             usable   <- chosen
+[00:20:34.076] INFO  [mk3_Delras] [travel] mode moongate         usable
+[00:20:34.076] INFO  [mk3_Delras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:34.076] INFO  [mk3_Delras] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:34.076] LOG   [mk3_Delras] event travel_mode: walk
+[00:20:34.076] INFO  [mk3_Delras] [travel] plan Britain carpenter: ok legs=1 ~20 tiles transit=0 nodes=0
+[00:20:37.671] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:20:38.626] INFO  [mk3_Delras] [action] goto (1430,1597) from (1450,1617,20)
+[00:20:38.626] LOG   [mk3_Delras] event goto_start: target=(1430,1597) from=(1450,1617)
+[00:20:38.626] INFO  [mk3_Delras] [bot] running from (1450,1617,20) to (1430,1597,z20)
+[00:20:38.626] INFO  [mk3_Delras] [bot] planning path to (1430,1597) in background
+[00:20:38.735] INFO  [mk3_Delras] [action] goto finished at (1450,1617,20); target (1430,1597); stopped short (off by 40 tile(s))
+[00:20:38.735] LOG   [mk3_Delras] event goto_done: at=(1450,1617) target=(1430,1597) arrived=0 off=40
+[00:20:39.962] INFO  [mk3_Delras] [action] goto (1430,1597) from (1450,1617,20)
+[00:20:39.962] LOG   [mk3_Delras] event goto_start: target=(1430,1597) from=(1450,1617)
+[00:20:39.962] INFO  [mk3_Delras] [bot] running from (1450,1617,20) to (1430,1597,z20)
+[00:20:39.962] INFO  [mk3_Delras] [bot] planning path to (1430,1597) in background
+[00:20:40.085] INFO  [mk3_Delras] [action] goto finished at (1450,1617,20); target (1430,1597); stopped short (off by 40 tile(s))
+[00:20:40.085] LOG   [mk3_Delras] event goto_done: at=(1450,1617) target=(1430,1597) arrived=0 off=40
+[00:20:41.326] INFO  [mk3_Delras] [action] goto (1430,1597) from (1450,1617,20)
+[00:20:41.326] LOG   [mk3_Delras] event goto_start: target=(1430,1597) from=(1450,1617)
+[00:20:41.326] INFO  [mk3_Delras] [bot] running from (1450,1617,20) to (1430,1597,z20)
+[00:20:41.326] INFO  [mk3_Delras] [bot] planning path to (1430,1597) in background
+[00:20:41.389] INFO  [mk3_Delras] [action] goto finished at (1450,1617,20); target (1430,1597); stopped short (off by 40 tile(s))
+[00:20:41.389] LOG   [mk3_Delras] event goto_done: at=(1450,1617) target=(1430,1597) arrived=0 off=40
+[00:20:41.389] LOG   [mk3_Delras] event travel_escape: from=(1450,1617,20) to=(1448,1608) attempt=1
+[00:20:41.389] INFO  [mk3_Delras] [action] goto (1448,1608) from (1450,1617,20)
+[00:20:41.389] LOG   [mk3_Delras] event goto_start: target=(1448,1608) from=(1450,1617)
+[00:20:41.389] INFO  [mk3_Delras] [bot] running from (1450,1617,20) to (1448,1608,z20)
+[00:20:41.389] INFO  [mk3_Delras] [bot] planning path to (1448,1608) in background
+[00:20:41.449] INFO  [mk3_Delras] [bot] replan to (1448,1608): 10 steps in 234.2us
+[00:20:42.703] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:20:44.971] INFO  [mk3_Delras] [bot] arrived at (1448,1608,20)
+[00:20:44.973] INFO  [mk3_Delras] [action] goto finished at (1448,1608,20); target (1448,1608); ARRIVED (off by 0 tile(s))
+[00:20:44.973] LOG   [mk3_Delras] event goto_done: at=(1448,1608) target=(1448,1608) arrived=1 off=0
+[00:20:44.973] INFO  [mk3_Delras] [travel] recovery walk reached its anchor at (1448,1608,20) (off 0); attempt 1/3
+[00:20:44.973] LOG   [mk3_Delras] event travel_recovery_done: reached=1 at=(1448,1608,20) off=0 attempt=1
+[00:20:45.034] INFO  [mk3_Delras] [travel] mode walk             usable   <- chosen
+[00:20:45.034] INFO  [mk3_Delras] [travel] mode moongate         usable
+[00:20:45.034] INFO  [mk3_Delras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:45.034] INFO  [mk3_Delras] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:45.034] LOG   [mk3_Delras] event travel_mode: walk
+[00:20:45.034] INFO  [mk3_Delras] [travel] plan Britain carpenter: ok legs=1 ~18 tiles transit=0 nodes=0
+[00:20:45.095] INFO  [mk3_Delras] [action] goto (1430,1597) from (1448,1608,20)
+[00:20:45.095] LOG   [mk3_Delras] event goto_start: target=(1430,1597) from=(1448,1608)
+[00:20:45.095] INFO  [mk3_Delras] [bot] running from (1448,1608,20) to (1430,1597,z20)
+[00:20:45.095] INFO  [mk3_Delras] [bot] planning path to (1430,1597) in background
+[00:20:45.217] INFO  [mk3_Delras] [action] goto finished at (1448,1608,20); target (1430,1597); stopped short (off by 29 tile(s))
+[00:20:45.217] LOG   [mk3_Delras] event goto_done: at=(1448,1608) target=(1430,1597) arrived=0 off=29
+[00:20:46.446] INFO  [mk3_Delras] [action] goto (1430,1597) from (1448,1608,20)
+[00:20:46.446] LOG   [mk3_Delras] event goto_start: target=(1430,1597) from=(1448,1608)
+[00:20:46.446] INFO  [mk3_Delras] [bot] running from (1448,1608,20) to (1430,1597,z20)
+[00:20:46.446] INFO  [mk3_Delras] [bot] planning path to (1430,1597) in background
+[00:20:46.462] INFO  [mk3_Delras] [action] goto finished at (1448,1608,20); target (1430,1597); stopped short (off by 29 tile(s))
+[00:20:46.462] LOG   [mk3_Delras] event goto_done: at=(1448,1608) target=(1430,1597) arrived=0 off=29
+[00:20:47.107] INFO  [mk3_Delras] [chat uni  ] Vorar: Lionel buy
+[00:20:47.120] INFO  [mk3_Delras] [chat uni  ] Halain: Lionel buy
+[00:20:47.120] INFO  [mk3_Delras] [chat ascii] Lionel: Yes?
+[00:20:47.120] INFO  [mk3_Delras] [chat ascii] Lionel: I'm here to sell thee supplies.
+[00:20:47.196] INFO  [mk3_Delras] [chat ascii] Lionel: Here you are, Halain That will be 16 gold coins.  I thank thee for thy business.
+[00:20:47.719] INFO  [mk3_Delras] [action] goto (1430,1597) from (1448,1608,20)
+[00:20:47.719] LOG   [mk3_Delras] event goto_start: target=(1430,1597) from=(1448,1608)
+[00:20:47.719] INFO  [mk3_Delras] [bot] running from (1448,1608,20) to (1430,1597,z20)
+[00:20:47.719] INFO  [mk3_Delras] [bot] planning path to (1430,1597) in background
+[00:20:47.719] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:20:47.781] INFO  [mk3_Delras] [action] goto finished at (1448,1608,20); target (1430,1597); stopped short (off by 29 tile(s))
+[00:20:47.781] LOG   [mk3_Delras] event goto_done: at=(1448,1608) target=(1430,1597) arrived=0 off=29
+[00:20:48.992] INFO  [mk3_Delras] [travel] mode walk             usable   <- chosen
+[00:20:48.992] INFO  [mk3_Delras] [travel] mode moongate         usable
+[00:20:48.992] INFO  [mk3_Delras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:48.992] INFO  [mk3_Delras] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:48.992] LOG   [mk3_Delras] event travel_mode: walk
+[00:20:48.992] INFO  [mk3_Delras] [travel] plan Britain carpenter: ok legs=1 ~18 tiles transit=0 nodes=0
+[00:20:50.400] INFO  [mk3_Delras] [chat uni  ] : Lionel buy
+[00:20:50.400] INFO  [mk3_Delras] [chat ascii] Lionel: Excuse me Halain, but Amara wants to speak to me
+[00:20:50.400] INFO  [mk3_Delras] [chat ascii] Lionel: Hello!
+[00:20:50.400] INFO  [mk3_Delras] [chat ascii] Lionel: I'm here to sell thee supplies.
+[00:20:50.448] INFO  [mk3_Delras] [chat ascii] Lionel: Here you are, Amara That will be 16 gold coins.  I thank thee for thy business.
+[00:20:50.508] INFO  [mk3_Delras] [action] goto (1430,1597) from (1448,1608,20)
+[00:20:50.508] LOG   [mk3_Delras] event goto_start: target=(1430,1597) from=(1448,1608)
+[00:20:50.508] INFO  [mk3_Delras] [bot] running from (1448,1608,20) to (1430,1597,z20)
+[00:20:50.508] INFO  [mk3_Delras] [bot] planning path to (1430,1597) in background
+[00:20:50.631] INFO  [mk3_Delras] [action] goto finished at (1448,1608,20); target (1430,1597); stopped short (off by 29 tile(s))
+[00:20:50.631] LOG   [mk3_Delras] event goto_done: at=(1448,1608) target=(1430,1597) arrived=0 off=29
+[00:20:51.841] INFO  [mk3_Delras] [action] goto (1430,1597) from (1448,1608,20)
+[00:20:51.841] LOG   [mk3_Delras] event goto_start: target=(1430,1597) from=(1448,1608)
+[00:20:51.841] INFO  [mk3_Delras] [bot] running from (1448,1608,20) to (1430,1597,z20)
+[00:20:51.841] INFO  [mk3_Delras] [bot] planning path to (1430,1597) in background
+[00:20:51.843] INFO  [mk3_Delras] [action] goto finished at (1448,1608,20); target (1430,1597); stopped short (off by 29 tile(s))
+[00:20:51.843] LOG   [mk3_Delras] event goto_done: at=(1448,1608) target=(1430,1597) arrived=0 off=29
+[00:20:52.730] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:20:53.066] INFO  [mk3_Delras] [action] goto (1430,1597) from (1448,1608,20)
+[00:20:53.066] LOG   [mk3_Delras] event goto_start: target=(1430,1597) from=(1448,1608)
+[00:20:53.066] INFO  [mk3_Delras] [bot] running from (1448,1608,20) to (1430,1597,z20)
+[00:20:53.066] INFO  [mk3_Delras] [bot] planning path to (1430,1597) in background
+[00:20:53.128] INFO  [mk3_Delras] [action] goto finished at (1448,1608,20); target (1430,1597); stopped short (off by 29 tile(s))
+[00:20:53.128] LOG   [mk3_Delras] event goto_done: at=(1448,1608) target=(1430,1597) arrived=0 off=29
+[00:20:54.337] INFO  [mk3_Delras] [travel] mode walk             usable   <- chosen
+[00:20:54.337] INFO  [mk3_Delras] [travel] mode moongate         usable
+[00:20:54.337] INFO  [mk3_Delras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:54.337] INFO  [mk3_Delras] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:54.337] LOG   [mk3_Delras] event travel_mode: walk
+[00:20:54.337] INFO  [mk3_Delras] [travel] plan Britain carpenter: ok legs=1 ~18 tiles transit=0 nodes=0
+[00:20:57.212] INFO  [mk3_Delras] [chat uni  ] Vorar: Lionel buy
+[00:20:57.394] INFO  [mk3_Delras] [action] goto (1430,1597) from (1448,1608,20)
+[00:20:57.394] LOG   [mk3_Delras] event goto_start: target=(1430,1597) from=(1448,1608)
+[00:20:57.394] INFO  [mk3_Delras] [bot] running from (1448,1608,20) to (1430,1597,z20)
+[00:20:57.394] INFO  [mk3_Delras] [bot] planning path to (1430,1597) in background
+[00:20:57.521] INFO  [mk3_Delras] [action] goto finished at (1448,1608,20); target (1430,1597); stopped short (off by 29 tile(s))
+[00:20:57.521] LOG   [mk3_Delras] event goto_done: at=(1448,1608) target=(1430,1597) arrived=0 off=29
+[00:20:57.778] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:20:58.774] INFO  [mk3_Delras] [action] goto (1430,1597) from (1448,1608,20)
+[00:20:58.774] LOG   [mk3_Delras] event goto_start: target=(1430,1597) from=(1448,1608)
+[00:20:58.774] INFO  [mk3_Delras] [bot] running from (1448,1608,20) to (1430,1597,z20)
+[00:20:58.774] INFO  [mk3_Delras] [bot] planning path to (1430,1597) in background
+[00:20:58.803] INFO  [mk3_Delras] [action] goto finished at (1448,1608,20); target (1430,1597); stopped short (off by 29 tile(s))
+[00:20:58.803] LOG   [mk3_Delras] event goto_done: at=(1448,1608) target=(1430,1597) arrived=0 off=29
+[00:21:00.054] INFO  [mk3_Delras] [action] goto (1430,1597) from (1448,1608,20)
+[00:21:00.054] LOG   [mk3_Delras] event goto_start: target=(1430,1597) from=(1448,1608)
+[00:21:00.054] INFO  [mk3_Delras] [bot] running from (1448,1608,20) to (1430,1597,z20)
+[00:21:00.054] INFO  [mk3_Delras] [bot] planning path to (1430,1597) in background
+[00:21:00.176] INFO  [mk3_Delras] [action] goto finished at (1448,1608,20); target (1430,1597); stopped short (off by 29 tile(s))
+[00:21:00.176] LOG   [mk3_Delras] event goto_done: at=(1448,1608) target=(1430,1597) arrived=0 off=29
+[00:21:01.401] INFO  [mk3_Delras] [travel] mode walk             usable   <- chosen
+[00:21:01.401] INFO  [mk3_Delras] [travel] mode moongate         usable
+[00:21:01.401] INFO  [mk3_Delras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:01.401] INFO  [mk3_Delras] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:01.401] LOG   [mk3_Delras] event travel_mode: walk
+[00:21:01.401] INFO  [mk3_Delras] [travel] plan Britain carpenter: ok legs=1 ~18 tiles transit=0 nodes=0
+[00:21:02.801] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:21:05.926] INFO  [mk3_Delras] [action] goto (1430,1597) from (1448,1608,20)
+[00:21:05.926] LOG   [mk3_Delras] event goto_start: target=(1430,1597) from=(1448,1608)
+[00:21:05.926] INFO  [mk3_Delras] [bot] running from (1448,1608,20) to (1430,1597,z20)
+[00:21:05.926] INFO  [mk3_Delras] [bot] planning path to (1430,1597) in background
+[00:21:06.048] INFO  [mk3_Delras] [action] goto finished at (1448,1608,20); target (1430,1597); stopped short (off by 29 tile(s))
+[00:21:06.048] LOG   [mk3_Delras] event goto_done: at=(1448,1608) target=(1430,1597) arrived=0 off=29
+[00:21:07.257] INFO  [mk3_Delras] [action] goto (1430,1597) from (1448,1608,20)
+[00:21:07.257] LOG   [mk3_Delras] event goto_start: target=(1430,1597) from=(1448,1608)
+[00:21:07.257] INFO  [mk3_Delras] [bot] running from (1448,1608,20) to (1430,1597,z20)
+[00:21:07.257] INFO  [mk3_Delras] [bot] planning path to (1430,1597) in background
+[00:21:07.318] INFO  [mk3_Delras] [action] goto finished at (1448,1608,20); target (1430,1597); stopped short (off by 29 tile(s))
+[00:21:07.318] LOG   [mk3_Delras] event goto_done: at=(1448,1608) target=(1430,1597) arrived=0 off=29
+[00:21:07.332] INFO  [mk3_Delras] [chat uni  ] Vorar: Lionel buy
+[00:21:07.824] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:21:08.559] INFO  [mk3_Delras] [action] goto (1430,1597) from (1448,1608,20)
+[00:21:08.559] LOG   [mk3_Delras] event goto_start: target=(1430,1597) from=(1448,1608)
+[00:21:08.559] INFO  [mk3_Delras] [bot] running from (1448,1608,20) to (1430,1597,z20)
+[00:21:08.559] INFO  [mk3_Delras] [bot] planning path to (1430,1597) in background
+[00:21:08.621] INFO  [mk3_Delras] [action] goto finished at (1448,1608,20); target (1430,1597); stopped short (off by 29 tile(s))
+[00:21:08.621] LOG   [mk3_Delras] event goto_done: at=(1448,1608) target=(1430,1597) arrived=0 off=29
+[00:21:08.621] LOG   [mk3_Delras] event travel_escape: from=(1448,1608,20) to=(1432,1592) attempt=2
+[00:21:08.621] INFO  [mk3_Delras] [action] goto (1432,1592) from (1448,1608,20)
+[00:21:08.621] LOG   [mk3_Delras] event goto_start: target=(1432,1592) from=(1448,1608)
+[00:21:08.621] INFO  [mk3_Delras] [bot] running from (1448,1608,20) to (1432,1592,z20)
+[00:21:08.621] INFO  [mk3_Delras] [bot] planning path to (1432,1592) in background
+[00:21:08.743] INFO  [mk3_Delras] [action] goto finished at (1448,1608,20); target (1432,1592); stopped short (off by 32 tile(s))
+[00:21:08.743] LOG   [mk3_Delras] event goto_done: at=(1448,1608) target=(1432,1592) arrived=0 off=32
+[00:21:08.743] INFO  [mk3_Delras] [travel] recovery walk fell short at (1448,1608,20) (off 16); attempt 2/3
+[00:21:08.743] LOG   [mk3_Delras] event travel_recovery_done: reached=0 at=(1448,1608,20) off=16 attempt=2
+[00:21:08.743] LOG   [mk3_Delras] event travel_escape: from=(1448,1608,20) to=(1448,1592) attempt=3
+[00:21:08.743] INFO  [mk3_Delras] [action] goto (1448,1592) from (1448,1608,20)
+[00:21:08.743] LOG   [mk3_Delras] event goto_start: target=(1448,1592) from=(1448,1608)
+[00:21:08.743] INFO  [mk3_Delras] [bot] running from (1448,1608,20) to (1448,1592,z20)
+[00:21:08.743] INFO  [mk3_Delras] [bot] planning path to (1448,1592) in background
+[00:21:08.866] INFO  [mk3_Delras] [action] goto finished at (1448,1608,20); target (1448,1592); stopped short (off by 16 tile(s))
+[00:21:08.866] LOG   [mk3_Delras] event goto_done: at=(1448,1608) target=(1448,1592) arrived=0 off=16
+[00:21:08.866] INFO  [mk3_Delras] [travel] recovery walk fell short at (1448,1608,20) (off 16); attempt 2/3
+[00:21:08.866] LOG   [mk3_Delras] event travel_recovery_done: reached=0 at=(1448,1608,20) off=16 attempt=2
+[00:21:08.866] INFO  [mk3_Delras] [travel] Britain carpenter FAILED at (1448,1608,20) -- sealed in; recovery exhausted
+[00:21:08.866] LOG   [mk3_Delras] event travel_failed: label='Britain carpenter' ok=0 at=(1448,1608) legs=1 plans=4 why='sealed in; recovery exhausted'
+[00:21:08.927] INFO  [life] training: arrived at 1448,1608 -- asking who is here
+[00:21:08.927] INFO  [mk3_Delras] [action] scanning nearby mobiles for names
+[00:21:08.927] INFO  [mk3_Delras] [action] requested 5 paperdoll(s) for trade titles
+[00:21:08.941] INFO  [mk3_Delras] [mobiles] nearby (10):
+[00:21:08.941] INFO  [mk3_Delras]   Aelia 0x00013DA6
+[00:21:08.941] INFO  [mk3_Delras]   Vorar 0x00016305
+[00:21:08.941] INFO  [mk3_Delras]   Odessa 0x000194DE
+[00:21:08.941] INFO  [mk3_Delras]   Lionel 0x000010B3
+[00:21:08.941] INFO  [mk3_Delras]   Serena 0x000193F7
+[00:21:08.941] INFO  [mk3_Delras]   Halain 0x0001616D
+[00:21:08.941] INFO  [mk3_Delras]   Cyras 0x00015725
+[00:21:08.941] INFO  [mk3_Delras]   Amara 0x00012E70
+[00:21:08.941] INFO  [mk3_Delras]   Jack 0x00001119
+[00:21:08.941] INFO  [mk3_Delras]   Hadi 0x0000110A
+[00:21:08.941] INFO  [mk3_Delras] [0x88] paperdoll 0x00001119: "Jack, the tanner"
+[00:21:08.941] INFO  [mk3_Delras] [world] Jack, the tanner is a tanner at (1433,1610)
+[00:21:08.941] INFO  [mk3_Delras] [0x20] player @(1448,1608,20) facing=3
+[00:21:08.941] INFO  [mk3_Delras] [0x88] paperdoll 0x00013DA6: "Aelia, Apprentice Tailor"
+[00:21:08.941] INFO  [mk3_Delras] [0x88] paperdoll 0x000194DE: "Odessa, Apprentice Miner"
+[00:21:08.941] INFO  [mk3_Delras] [0x20] player @(1448,1608,20) facing=4
+[00:21:08.941] INFO  [mk3_Delras] [0x88] paperdoll 0x00012E70: "Amara, Apprentice Tailor"
+[00:21:08.941] INFO  [mk3_Delras] [0x20] player @(1448,1608,20) facing=3
+[00:21:08.941] INFO  [mk3_Delras] [0x88] paperdoll 0x000193F7: "Serena, Apprentice Miner"
+[00:21:09.019] INFO  [mk3_Delras] [chat uni  ] Aelia: Lionel buy
+[00:21:11.193] INFO  [mk3_Delras] [chat ascii] System: Observer has arrived in Minoc.
+[00:21:11.434] INFO  [life] training: looking for a 'carpenter' to teach Carpentry (trip 2)
+[00:21:11.441] INFO  [mk3_Delras] [travel] place: skipping Minoc architect -- 1856 tiles and 0 gates for a service Jhelom carpenter offers
+[00:21:11.441] INFO  [mk3_Delras] [travel] place: skipping Minoc carpenter -- 1856 tiles and 0 gates for a service Jhelom carpenter offers
+[00:21:11.441] INFO  [mk3_Delras] [travel] place: skipping Vesper carpenter -- 1952 tiles and 0 gates for a service Jhelom carpenter offers
+[00:21:11.441] INFO  [mk3_Delras] [travel] place: skipping The Mage's Seat carpenter -- 1476 tiles and 5 gates for a service Jhelom carpenter offers
+[00:21:11.441] INFO  [mk3_Delras] [travel] Jhelom carpenter -> (1435,3820) r=5 from (1448,1608)
+[00:21:11.441] LOG   [mk3_Delras] event travel_start: label='Jhelom carpenter' target=(1435,3820) radius=5 from=(1448,1608)
+[00:21:11.441] INFO  [mk3_Delras] [travel] mode moongate         usable   <- chosen
+[00:21:11.441] INFO  [mk3_Delras] [travel] mode walk             usable
+[00:21:11.441] INFO  [mk3_Delras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:11.441] INFO  [mk3_Delras] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:11.441] LOG   [mk3_Delras] event travel_mode: moongate
+[00:21:11.441] INFO  [mk3_Delras] [travel] plan Jhelom carpenter: ok legs=16 ~648 tiles transit=1 nodes=283
+[00:21:11.497] INFO  [mk3_Delras] [action] goto (1416,1640) from (1448,1608,20)
+[00:21:11.497] LOG   [mk3_Delras] event goto_start: target=(1416,1640) from=(1448,1608)
+[00:21:11.497] INFO  [mk3_Delras] [bot] running from (1448,1608,20) to (1416,1640)
+[00:21:11.497] INFO  [mk3_Delras] [bot] planning path to (1416,1640) in background
+[00:21:11.619] INFO  [mk3_Delras] [action] goto finished at (1448,1608,20); target (1416,1640); stopped short (off by 64 tile(s))
+[00:21:11.619] LOG   [mk3_Delras] event goto_done: at=(1448,1608) target=(1416,1640) arrived=0 off=64
+[00:21:12.866] INFO  [mk3_Delras] [action] goto (1416,1640) from (1448,1608,20)
+[00:21:12.866] LOG   [mk3_Delras] event goto_start: target=(1416,1640) from=(1448,1608)
+[00:21:12.866] INFO  [mk3_Delras] [bot] running from (1448,1608,20) to (1416,1640)
+[00:21:12.866] INFO  [mk3_Delras] [bot] planning path to (1416,1640) in background
+[00:21:12.866] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:21:12.928] INFO  [mk3_Delras] [action] goto finished at (1448,1608,20); target (1416,1640); stopped short (off by 64 tile(s))
+[00:21:12.928] LOG   [mk3_Delras] event goto_done: at=(1448,1608) target=(1416,1640) arrived=0 off=64
+[00:21:14.154] INFO  [mk3_Delras] [action] goto (1416,1640) from (1448,1608,20)
+[00:21:14.154] LOG   [mk3_Delras] event goto_start: target=(1416,1640) from=(1448,1608)
+[00:21:14.154] INFO  [mk3_Delras] [bot] running from (1448,1608,20) to (1416,1640)
+[00:21:14.154] INFO  [mk3_Delras] [bot] planning path to (1416,1640) in background
+[00:21:14.278] INFO  [mk3_Delras] [action] goto finished at (1448,1608,20); target (1416,1640); stopped short (off by 64 tile(s))
+[00:21:14.278] LOG   [mk3_Delras] event goto_done: at=(1448,1608) target=(1416,1640) arrived=0 off=64
+[00:21:14.571] INFO  [mk3_Delras] [chat ascii] System: Observer has departed from Minoc.
+[00:21:15.526] INFO  [mk3_Delras] [travel] mode moongate         usable   <- chosen
+[00:21:15.526] INFO  [mk3_Delras] [travel] mode walk             usable
+[00:21:15.526] INFO  [mk3_Delras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:15.526] INFO  [mk3_Delras] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:15.526] LOG   [mk3_Delras] event travel_mode: moongate
+[00:21:15.526] INFO  [mk3_Delras] [travel] plan Jhelom carpenter: ok legs=16 ~664 tiles transit=1 nodes=300
+[00:21:17.077] INFO  [mk3_Delras] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:17.077] INFO  [mk3_Delras] [action] goto (1464,1640) from (1448,1608,20)
+[00:21:17.077] LOG   [mk3_Delras] event goto_start: target=(1464,1640) from=(1448,1608)
+[00:21:17.077] INFO  [mk3_Delras] [bot] running from (1448,1608,20) to (1464,1640)
+[00:21:17.077] INFO  [mk3_Delras] [bot] planning path to (1464,1640) in background
+[00:21:17.199] INFO  [mk3_Delras] [action] goto finished at (1448,1608,20); target (1464,1640); stopped short (off by 48 tile(s))
+[00:21:17.199] LOG   [mk3_Delras] event goto_done: at=(1448,1608) target=(1464,1640) arrived=0 off=48
+[00:21:17.262] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_07.delras/state.json
+[00:21:17.872] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:21:18.424] INFO  [mk3_Delras] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:18.424] INFO  [mk3_Delras] [action] goto (1464,1640) from (1448,1608,20)
+[00:21:18.424] LOG   [mk3_Delras] event goto_start: target=(1464,1640) from=(1448,1608)
+[00:21:18.424] INFO  [mk3_Delras] [bot] running from (1448,1608,20) to (1464,1640)
+[00:21:18.424] INFO  [mk3_Delras] [bot] planning path to (1464,1640) in background
+[00:21:18.547] INFO  [mk3_Delras] [action] goto finished at (1448,1608,20); target (1464,1640); stopped short (off by 48 tile(s))
+[00:21:18.547] LOG   [mk3_Delras] event goto_done: at=(1448,1608) target=(1464,1640) arrived=0 off=48
+[00:21:19.066] INFO  [mk3_Delras] [chat uni  ] Aelia: Lionel buy
+[00:21:19.802] INFO  [mk3_Delras] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:19.802] INFO  [mk3_Delras] [action] goto (1464,1640) from (1448,1608,20)
+[00:21:19.802] LOG   [mk3_Delras] event goto_start: target=(1464,1640) from=(1448,1608)
+[00:21:19.802] INFO  [mk3_Delras] [bot] running from (1448,1608,20) to (1464,1640)
+[00:21:19.802] INFO  [mk3_Delras] [bot] planning path to (1464,1640) in background
+[00:21:19.924] INFO  [mk3_Delras] [action] goto finished at (1448,1608,20); target (1464,1640); stopped short (off by 48 tile(s))
+[00:21:19.924] LOG   [mk3_Delras] event goto_done: at=(1448,1608) target=(1464,1640) arrived=0 off=48
+[00:21:20.172] INFO  [mk3_Delras] [chat uni  ] : Lionel buy
+[00:21:20.569] INFO  [mk3_Delras] [chat uni  ] Odessa: Lionel buy
+[00:21:20.569] INFO  [mk3_Delras] [chat ascii] Lionel: Excuse me Amara, but Odessa wants to speak to me
+[00:21:20.569] INFO  [mk3_Delras] [chat ascii] Lionel: Greetings. What can I do for thee?
+[00:21:20.569] INFO  [mk3_Delras] [chat ascii] Lionel: I'm here to sell thee supplies.
+[00:21:21.123] INFO  [mk3_Delras] [travel] mode moongate         usable   <- chosen
+[00:21:21.124] INFO  [mk3_Delras] [travel] mode walk             usable
+[00:21:21.124] INFO  [mk3_Delras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:21.124] INFO  [mk3_Delras] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:21.124] LOG   [mk3_Delras] event travel_mode: moongate
+[00:21:21.124] INFO  [mk3_Delras] [travel] plan Jhelom carpenter: ok legs=16 ~680 tiles transit=1 nodes=316
+[00:21:22.908] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:21:24.153] INFO  [mk3_Delras] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:24.153] INFO  [mk3_Delras] [action] goto (1480,1640) from (1448,1608,20)
+[00:21:24.153] LOG   [mk3_Delras] event goto_start: target=(1480,1640) from=(1448,1608)
+[00:21:24.153] INFO  [mk3_Delras] [bot] running from (1448,1608,20) to (1480,1640)
+[00:21:24.153] INFO  [mk3_Delras] [bot] planning path to (1480,1640) in background
+[00:21:24.275] INFO  [mk3_Delras] [action] goto finished at (1448,1608,20); target (1480,1640); stopped short (off by 64 tile(s))
+[00:21:24.275] LOG   [mk3_Delras] event goto_done: at=(1448,1608) target=(1480,1640) arrived=0 off=64
+[00:21:25.475] INFO  [mk3_Delras] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:25.475] INFO  [mk3_Delras] [action] goto (1480,1640) from (1448,1608,20)
+[00:21:25.475] LOG   [mk3_Delras] event goto_start: target=(1480,1640) from=(1448,1608)
+[00:21:25.475] INFO  [mk3_Delras] [bot] running from (1448,1608,20) to (1480,1640)
+[00:21:25.475] INFO  [mk3_Delras] [bot] planning path to (1480,1640) in background
+[00:21:25.598] INFO  [mk3_Delras] [action] goto finished at (1448,1608,20); target (1480,1640); stopped short (off by 64 tile(s))
+[00:21:25.598] LOG   [mk3_Delras] event goto_done: at=(1448,1608) target=(1480,1640) arrived=0 off=64
+[00:21:26.798] INFO  [mk3_Delras] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:26.798] INFO  [mk3_Delras] [action] goto (1480,1640) from (1448,1608,20)
+[00:21:26.798] LOG   [mk3_Delras] event goto_start: target=(1480,1640) from=(1448,1608)
+[00:21:26.798] INFO  [mk3_Delras] [bot] running from (1448,1608,20) to (1480,1640)
+[00:21:26.798] INFO  [mk3_Delras] [bot] planning path to (1480,1640) in background
+[00:21:26.922] INFO  [mk3_Delras] [action] goto finished at (1448,1608,20); target (1480,1640); stopped short (off by 64 tile(s))
+[00:21:26.922] LOG   [mk3_Delras] event goto_done: at=(1448,1608) target=(1480,1640) arrived=0 off=64
+[00:21:27.963] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:21:28.178] INFO  [mk3_Delras] [travel] mode moongate         usable   <- chosen
+[00:21:28.178] INFO  [mk3_Delras] [travel] mode walk             usable
+[00:21:28.178] INFO  [mk3_Delras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:28.178] INFO  [mk3_Delras] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:28.178] LOG   [mk3_Delras] event travel_mode: moongate
+[00:21:28.178] INFO  [mk3_Delras] [travel] plan Jhelom carpenter: ok legs=17 ~736 tiles transit=1 nodes=287
+[00:21:29.207] INFO  [mk3_Delras] [chat uni  ] Aelia: Lionel buy
+[00:21:30.269] INFO  [mk3_Delras] [chat uni  ] : Lionel buy
+[00:21:32.739] INFO  [mk3_Delras] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:32.739] INFO  [mk3_Delras] [action] goto (1480,1624) from (1448,1608,20)
+[00:21:32.739] LOG   [mk3_Delras] event goto_start: target=(1480,1624) from=(1448,1608)
+[00:21:32.739] INFO  [mk3_Delras] [bot] running from (1448,1608,20) to (1480,1624)
+[00:21:32.739] INFO  [mk3_Delras] [bot] planning path to (1480,1624) in background
+[00:21:32.801] INFO  [mk3_Delras] [action] goto finished at (1448,1608,20); target (1480,1624); stopped short (off by 48 tile(s))
+[00:21:32.801] LOG   [mk3_Delras] event goto_done: at=(1448,1608) target=(1480,1624) arrived=0 off=48
+[00:21:32.985] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:21:34.031] INFO  [mk3_Delras] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:34.031] INFO  [mk3_Delras] [action] goto (1480,1624) from (1448,1608,20)
+[00:21:34.031] LOG   [mk3_Delras] event goto_start: target=(1480,1624) from=(1448,1608)
+[00:21:34.031] INFO  [mk3_Delras] [bot] running from (1448,1608,20) to (1480,1624)
+[00:21:34.031] INFO  [mk3_Delras] [bot] planning path to (1480,1624) in background
+[00:21:34.153] INFO  [mk3_Delras] [action] goto finished at (1448,1608,20); target (1480,1624); stopped short (off by 48 tile(s))
+[00:21:34.153] LOG   [mk3_Delras] event goto_done: at=(1448,1608) target=(1480,1624) arrived=0 off=48
+[00:21:35.396] INFO  [mk3_Delras] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:35.396] INFO  [mk3_Delras] [action] goto (1480,1624) from (1448,1608,20)
+[00:21:35.396] LOG   [mk3_Delras] event goto_start: target=(1480,1624) from=(1448,1608)
+[00:21:35.396] INFO  [mk3_Delras] [bot] running from (1448,1608,20) to (1480,1624)
+[00:21:35.396] INFO  [mk3_Delras] [bot] planning path to (1480,1624) in background
+[00:21:35.519] INFO  [mk3_Delras] [action] goto finished at (1448,1608,20); target (1480,1624); stopped short (off by 48 tile(s))
+[00:21:35.519] LOG   [mk3_Delras] event goto_done: at=(1448,1608) target=(1480,1624) arrived=0 off=48
+[00:21:35.519] LOG   [mk3_Delras] event travel_escape: from=(1448,1608,20) to=(1432,1592) attempt=1
+[00:21:35.519] INFO  [mk3_Delras] [action] goto (1432,1592) from (1448,1608,20)
+[00:21:35.519] LOG   [mk3_Delras] event goto_start: target=(1432,1592) from=(1448,1608)
+[00:21:35.519] INFO  [mk3_Delras] [bot] running from (1448,1608,20) to (1432,1592,z20)
+[00:21:35.519] INFO  [mk3_Delras] [bot] planning path to (1432,1592) in background
+[00:21:35.641] INFO  [mk3_Delras] [action] goto finished at (1448,1608,20); target (1432,1592); stopped short (off by 32 tile(s))
+[00:21:35.641] LOG   [mk3_Delras] event goto_done: at=(1448,1608) target=(1432,1592) arrived=0 off=32
+[00:21:35.641] INFO  [mk3_Delras] [travel] recovery walk fell short at (1448,1608,20) (off 16); attempt 1/3
+[00:21:35.641] LOG   [mk3_Delras] event travel_recovery_done: reached=0 at=(1448,1608,20) off=16 attempt=1
+[00:21:35.641] LOG   [mk3_Delras] event travel_escape: from=(1448,1608,20) to=(1448,1592) attempt=2
+[00:21:35.641] INFO  [mk3_Delras] [action] goto (1448,1592) from (1448,1608,20)
+[00:21:35.641] LOG   [mk3_Delras] event goto_start: target=(1448,1592) from=(1448,1608)
+[00:21:35.641] INFO  [mk3_Delras] [bot] running from (1448,1608,20) to (1448,1592,z20)
+[00:21:35.641] INFO  [mk3_Delras] [bot] planning path to (1448,1592) in background
+[00:21:35.763] INFO  [mk3_Delras] [action] goto finished at (1448,1608,20); target (1448,1592); stopped short (off by 16 tile(s))
+[00:21:35.763] LOG   [mk3_Delras] event goto_done: at=(1448,1608) target=(1448,1592) arrived=0 off=16
+[00:21:35.763] INFO  [mk3_Delras] [travel] recovery walk fell short at (1448,1608,20) (off 16); attempt 1/3
+[00:21:35.763] LOG   [mk3_Delras] event travel_recovery_done: reached=0 at=(1448,1608,20) off=16 attempt=1
+[00:21:35.763] LOG   [mk3_Delras] event travel_escape: from=(1448,1608,20) to=(1464,1592) attempt=3
+[00:21:35.763] INFO  [mk3_Delras] [action] goto (1464,1592) from (1448,1608,20)
+[00:21:35.763] LOG   [mk3_Delras] event goto_start: target=(1464,1592) from=(1448,1608)
+[00:21:35.763] INFO  [mk3_Delras] [bot] running from (1448,1608,20) to (1464,1592,z20)
+[00:21:35.763] INFO  [mk3_Delras] [bot] planning path to (1464,1592) in background
+[00:21:35.887] INFO  [mk3_Delras] [action] goto finished at (1448,1608,20); target (1464,1592); stopped short (off by 32 tile(s))
+[00:21:35.887] LOG   [mk3_Delras] event goto_done: at=(1448,1608) target=(1464,1592) arrived=0 off=32
+[00:21:35.887] INFO  [mk3_Delras] [travel] recovery walk fell short at (1448,1608,20) (off 16); attempt 1/3
+[00:21:35.887] LOG   [mk3_Delras] event travel_recovery_done: reached=0 at=(1448,1608,20) off=16 attempt=1
+[00:21:35.887] INFO  [mk3_Delras] [travel] Jhelom carpenter FAILED at (1448,1608,20) -- sealed in; recovery exhausted
+[00:21:35.887] LOG   [mk3_Delras] event travel_failed: label='Jhelom carpenter' ok=0 at=(1448,1608) legs=17 plans=4 why='sealed in; recovery exhausted'
+[00:21:35.950] INFO  [life] training: arrived at 1448,1608 -- asking who is here
+[00:21:35.950] INFO  [mk3_Delras] [action] scanning nearby mobiles for names
+[00:21:35.950] INFO  [mk3_Delras] [action] requested 2 paperdoll(s) for trade titles
+[00:21:35.964] INFO  [mk3_Delras] [mobiles] nearby (12):
+[00:21:35.964] INFO  [mk3_Delras]   Aelia 0x00013DA6
+[00:21:35.964] INFO  [mk3_Delras]   Faustus 0x000181F7
+[00:21:35.964] INFO  [mk3_Delras]   Vorar 0x00016305
+[00:21:35.964] INFO  [mk3_Delras]   Odessa 0x000194DE
+[00:21:35.964] INFO  [mk3_Delras]   Lionel 0x000010B3
+[00:21:35.964] INFO  [mk3_Delras]   Serena 0x000193F7
+[00:21:35.964] INFO  [mk3_Delras]   Halain 0x0001616D
+[00:21:35.964] INFO  [mk3_Delras]   Cyras 0x00015725
+[00:21:35.964] INFO  [mk3_Delras]   Amara 0x00012E70
+[00:21:35.964] INFO  [mk3_Delras]   Rhea 0x00017DD9
+[00:21:35.964] INFO  [mk3_Delras]   Jack 0x00001119
+[00:21:35.964] INFO  [mk3_Delras]   Hadi 0x0000110A
+[00:21:35.964] INFO  [mk3_Delras] [0x88] paperdoll 0x000181F7: "Faustus, Apprentice Armsman"
+[00:21:35.964] INFO  [mk3_Delras] [0x88] paperdoll 0x00017DD9: "Rhea, Apprentice Tamer"
+[00:21:37.993] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:21:38.487] INFO  [life] training: looking for a 'carpenter' to teach Carpentry (trip 3)
+[00:21:38.500] INFO  [mk3_Delras] [travel] place: skipping Minoc architect -- 1856 tiles and 0 gates for a service Skara Brae carpenter offers
+[00:21:38.500] INFO  [mk3_Delras] [travel] place: skipping Minoc carpenter -- 1856 tiles and 0 gates for a service Skara Brae carpenter offers
+[00:21:38.500] INFO  [mk3_Delras] [travel] place: skipping Vesper carpenter -- 1952 tiles and 0 gates for a service Skara Brae carpenter offers
+[00:21:38.500] INFO  [mk3_Delras] [travel] place: skipping The Mage's Seat carpenter -- 1476 tiles and 5 gates for a service Skara Brae carpenter offers
+[00:21:38.500] INFO  [mk3_Delras] [travel] Skara Brae carpenter -> (627,2163) r=5 from (1448,1608)
+[00:21:38.500] LOG   [mk3_Delras] event travel_start: label='Skara Brae carpenter' target=(627,2163) radius=5 from=(1448,1608)
+[00:21:38.500] INFO  [mk3_Delras] [travel] mode moongate         usable   <- chosen
+[00:21:38.500] INFO  [mk3_Delras] [travel] mode walk             usable
+[00:21:38.500] INFO  [mk3_Delras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:38.500] INFO  [mk3_Delras] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:38.500] LOG   [mk3_Delras] event travel_mode: moongate
+[00:21:38.501] INFO  [mk3_Delras] [travel] plan Skara Brae carpenter: ok legs=17 ~688 tiles transit=1 nodes=1404
+[00:21:38.563] INFO  [mk3_Delras] [action] goto (1416,1640) from (1448,1608,20)
+[00:21:38.563] LOG   [mk3_Delras] event goto_start: target=(1416,1640) from=(1448,1608)
+[00:21:38.563] INFO  [mk3_Delras] [bot] running from (1448,1608,20) to (1416,1640)
+[00:21:38.563] INFO  [mk3_Delras] [bot] planning path to (1416,1640) in background
+[00:21:38.687] INFO  [mk3_Delras] [action] goto finished at (1448,1608,20); target (1416,1640); stopped short (off by 64 tile(s))
+[00:21:38.687] LOG   [mk3_Delras] event goto_done: at=(1448,1608) target=(1416,1640) arrived=0 off=64
+[00:21:39.887] INFO  [mk3_Delras] [action] goto (1416,1640) from (1448,1608,20)
+[00:21:39.887] LOG   [mk3_Delras] event goto_start: target=(1416,1640) from=(1448,1608)
+[00:21:39.887] INFO  [mk3_Delras] [bot] running from (1448,1608,20) to (1416,1640)
+[00:21:39.887] INFO  [mk3_Delras] [bot] planning path to (1416,1640) in background
+[00:21:40.011] INFO  [mk3_Delras] [action] goto finished at (1448,1608,20); target (1416,1640); stopped short (off by 64 tile(s))
+[00:21:40.011] LOG   [mk3_Delras] event goto_done: at=(1448,1608) target=(1416,1640) arrived=0 off=64
+[00:21:40.412] INFO  [mk3_Delras] [chat uni  ] Faustus: Lionel buy
+[00:21:41.212] INFO  [mk3_Delras] [action] goto (1416,1640) from (1448,1608,20)
+[00:21:41.212] LOG   [mk3_Delras] event goto_start: target=(1416,1640) from=(1448,1608)
+[00:21:41.212] INFO  [mk3_Delras] [bot] running from (1448,1608,20) to (1416,1640)
+[00:21:41.212] INFO  [mk3_Delras] [bot] planning path to (1416,1640) in background
+[00:21:41.276] INFO  [mk3_Delras] [action] goto finished at (1448,1608,20); target (1416,1640); stopped short (off by 64 tile(s))
+[00:21:41.276] LOG   [mk3_Delras] event goto_done: at=(1448,1608) target=(1416,1640) arrived=0 off=64
+[00:21:42.504] INFO  [mk3_Delras] [travel] mode moongate         usable   <- chosen
+[00:21:42.504] INFO  [mk3_Delras] [travel] mode walk             usable
+[00:21:42.504] INFO  [mk3_Delras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:42.504] INFO  [mk3_Delras] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:42.504] LOG   [mk3_Delras] event travel_mode: moongate
+[00:21:42.505] INFO  [mk3_Delras] [travel] plan Skara Brae carpenter: ok legs=17 ~704 tiles transit=1 nodes=1417
+[00:21:42.999] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:21:44.060] INFO  [mk3_Delras] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:44.060] INFO  [mk3_Delras] [action] goto (1464,1640) from (1448,1608,20)
+[00:21:44.060] LOG   [mk3_Delras] event goto_start: target=(1464,1640) from=(1448,1608)
+[00:21:44.060] INFO  [mk3_Delras] [bot] running from (1448,1608,20) to (1464,1640)
+[00:21:44.060] INFO  [mk3_Delras] [bot] planning path to (1464,1640) in background
+[00:21:44.183] INFO  [mk3_Delras] [action] goto finished at (1448,1608,20); target (1464,1640); stopped short (off by 48 tile(s))
+[00:21:44.183] LOG   [mk3_Delras] event goto_done: at=(1448,1608) target=(1464,1640) arrived=0 off=48
+[00:21:45.397] INFO  [mk3_Delras] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:45.397] INFO  [mk3_Delras] [action] goto (1464,1640) from (1448,1608,20)
+[00:21:45.397] LOG   [mk3_Delras] event goto_start: target=(1464,1640) from=(1448,1608)
+[00:21:45.397] INFO  [mk3_Delras] [bot] running from (1448,1608,20) to (1464,1640)
+[00:21:45.397] INFO  [mk3_Delras] [bot] planning path to (1464,1640) in background
+[00:21:45.520] INFO  [mk3_Delras] [action] goto finished at (1448,1608,20); target (1464,1640); stopped short (off by 48 tile(s))
+[00:21:45.520] LOG   [mk3_Delras] event goto_done: at=(1448,1608) target=(1464,1640) arrived=0 off=48
+[00:21:46.761] INFO  [mk3_Delras] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:46.761] INFO  [mk3_Delras] [action] goto (1464,1640) from (1448,1608,20)
+[00:21:46.761] LOG   [mk3_Delras] event goto_start: target=(1464,1640) from=(1448,1608)
+[00:21:46.761] INFO  [mk3_Delras] [bot] running from (1448,1608,20) to (1464,1640)
+[00:21:46.761] INFO  [mk3_Delras] [bot] planning path to (1464,1640) in background
+[00:21:46.823] INFO  [mk3_Delras] [action] goto finished at (1448,1608,20); target (1464,1640); stopped short (off by 48 tile(s))
+[00:21:46.823] LOG   [mk3_Delras] event goto_done: at=(1448,1608) target=(1464,1640) arrived=0 off=48
+[00:21:48.011] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:21:48.026] INFO  [mk3_Delras] [travel] mode moongate         usable   <- chosen
+[00:21:48.026] INFO  [mk3_Delras] [travel] mode walk             usable
+[00:21:48.026] INFO  [mk3_Delras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:48.026] INFO  [mk3_Delras] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:48.026] LOG   [mk3_Delras] event travel_mode: moongate
+[00:21:48.027] INFO  [mk3_Delras] [travel] plan Skara Brae carpenter: ok legs=17 ~720 tiles transit=1 nodes=1443
+[00:21:51.072] INFO  [mk3_Delras] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:51.072] INFO  [mk3_Delras] [action] goto (1480,1640) from (1448,1608,20)
+[00:21:51.072] LOG   [mk3_Delras] event goto_start: target=(1480,1640) from=(1448,1608)
+[00:21:51.072] INFO  [mk3_Delras] [bot] running from (1448,1608,20) to (1480,1640)
+[00:21:51.072] INFO  [mk3_Delras] [bot] planning path to (1480,1640) in background
+[00:21:51.088] INFO  [mk3_Delras] [action] goto finished at (1448,1608,20); target (1480,1640); stopped short (off by 64 tile(s))
+[00:21:51.088] LOG   [mk3_Delras] event goto_done: at=(1448,1608) target=(1480,1640) arrived=0 off=64
+[00:21:52.291] INFO  [mk3_Delras] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:52.291] INFO  [mk3_Delras] [action] goto (1480,1640) from (1448,1608,20)
+[00:21:52.291] LOG   [mk3_Delras] event goto_start: target=(1480,1640) from=(1448,1608)
+[00:21:52.291] INFO  [mk3_Delras] [bot] running from (1448,1608,20) to (1480,1640)
+[00:21:52.291] INFO  [mk3_Delras] [bot] planning path to (1480,1640) in background
+[00:21:52.353] INFO  [mk3_Delras] [bot] replan to (1480,1640): 56 steps in 2647.7us
+[00:21:53.019] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:21:55.650] INFO  [mk3_Delras] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=45 in 194.4us
+[00:21:57.120] INFO  [mk3_Delras] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=42 in 80.1us
+[00:21:58.028] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:21:58.644] INFO  [mk3_Delras] [chat ascii] System: Draver has departed from Minoc.
+[00:21:58.860] INFO  [mk3_Delras] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=36 in 44.2us
+[00:22:03.030] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:22:07.730] INFO  [life] goal_changed=TRAIN_COMBAT from=TRAIN_AT_NPC reason="TRAIN_COMBAT 84.5 superseded TRAIN_AT_NPC 60.5"
+[00:22:07.730] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedMakeBandages(bandages BLOCKED 0.70) NeedTraining(Swordsmanship 0.65) NeedTraining(Tactics 0.65) NeedTraining(Anatomy 0.65) NeedSkillTraining(Carpentry 0.55) NeedEquipment(heal potions 0.50) NeedEquipment(bandages 0.50) NeedLogs(logs 0.40) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[00:22:07.730] INFO  [life]   score=84.5
+[00:22:07.730] INFO  [life]   reason: NeedTraining urgency 0.65 x 130 = 84.5
+[00:22:07.730] INFO  [life]   reason: Swordsmanship 50.0 -> 100.0
+[00:22:07.730] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 100s after achieving nothing
+[00:22:07.730] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 131s after achieving nothing
+[00:22:07.730] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[00:22:07.730] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 9984 (buyable at 200))
+[00:22:07.730] INFO  [life] hunt: 1 hostile(s) in sight and none worth starting on
+[00:22:07.730] INFO  [life] engaging a hostile (noto 3) at 1491,1638
+[00:22:07.730] INFO  [mk3_Delras] [war] entering war mode
+[00:22:07.730] INFO  [mk3_Delras] [ACTION] attack start
+[00:22:07.730] INFO  [mk3_Delras] [ACTION] attack serial=0x000013C5
+[00:22:07.744] INFO  [mk3_Delras] [0xAA] attacking 0x000013C5
+[00:22:07.744] INFO  [mk3_Delras] [ACTION_RESULT] attack success (14ms) server accepted the target
+[00:22:07.744] LOG   [mk3_Delras] event action_result: attack success took=14ms server accepted the target
+[00:22:08.070] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:22:08.847] INFO  [mk3_Delras] [bot] arrived at (1480,1640,20)
+[00:22:08.849] INFO  [mk3_Delras] [action] goto finished at (1480,1640,20); target (1480,1640); ARRIVED (off by 0 tile(s))
+[00:22:08.849] LOG   [mk3_Delras] event goto_done: at=(1480,1640) target=(1480,1640) arrived=1 off=0
+[00:22:08.849] INFO  [mk3_Delras] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:22:08.849] INFO  [mk3_Delras] [action] goto (1448,1672) from (1480,1640,20)
+[00:22:08.849] LOG   [mk3_Delras] event goto_start: target=(1448,1672) from=(1480,1640)
+[00:22:08.849] INFO  [mk3_Delras] [bot] running from (1480,1640,20) to (1448,1672)
+[00:22:08.849] INFO  [mk3_Delras] [bot] planning path to (1448,1672) in background
+[00:22:08.910] INFO  [mk3_Delras] [bot] replan to (1448,1672): 41 steps in 5427.6us
+[00:22:08.971] INFO  [mk3_Delras] [ACTION] attack start
+[00:22:08.971] INFO  [mk3_Delras] [ACTION] attack serial=0x000013C5
+[00:22:08.971] INFO  [mk3_Delras] [0xAA] attacking 0x000013C5
+[00:22:08.971] INFO  [mk3_Delras] [ACTION_RESULT] attack success (0ms) server accepted the target
+[00:22:08.971] LOG   [mk3_Delras] event action_result: attack success took=0ms server accepted the target
+[00:22:10.200] INFO  [mk3_Delras] [war] leaving war mode
+[00:22:10.200] INFO  [life] goal_completed=TRAIN_COMBAT progress=0
+[00:22:10.202] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_07.delras/state.json
+[00:22:10.203] INFO  [life] goal=SURVIVE reason="no goal was running"
+[00:22:10.203] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedMakeBandages(bandages BLOCKED 0.70) StayAlive(a fight already started 0.55) NeedSkillTraining(Carpentry 0.55) NeedEquipment(heal potions 0.50) NeedEquipment(bandages 0.50) NeedLogs(logs 0.40) NeedTraining(Tactics 0.40) NeedTraining(Anatomy 0.40) NeedTraining(Swordsmanship 0.28) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[00:22:10.203] INFO  [life]   score=550.0
+[00:22:10.203] INFO  [life]   reason: StayAlive urgency 0.55 x 1000 = 550.0
+[00:22:10.203] INFO  [life]   reason: attackers=1 hostiles_seen=1 hp=100%
+[00:22:10.203] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 97s after achieving nothing
+[00:22:10.203] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 129s after achieving nothing
+[00:22:10.203] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[00:22:10.203] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 9984 (buyable at 200))
+[00:22:10.203] INFO  [life] engaging a hostile (noto 3) at 1490,1637
+[00:22:10.203] INFO  [mk3_Delras] [war] entering war mode
+[00:22:10.204] INFO  [mk3_Delras] [ACTION] attack start
+[00:22:10.204] INFO  [mk3_Delras] [ACTION] attack serial=0x000013C5
+[00:22:10.215] INFO  [mk3_Delras] [0xAA] attacking 0x000013C5
+[00:22:10.215] INFO  [mk3_Delras] [ACTION_RESULT] attack success (11ms) server accepted the target
+[00:22:10.215] LOG   [mk3_Delras] event action_result: attack success took=11ms server accepted the target
+[00:22:11.403] INFO  [mk3_Delras] [war] leaving war mode
+[00:22:11.403] INFO  [life] goal_completed=SURVIVE progress=0
+[00:22:11.405] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_07.delras/state.json
+[00:22:11.406] INFO  [life] goal=TRAIN_AT_NPC reason="no goal was running"
+[00:22:11.407] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedMakeBandages(bandages BLOCKED 0.70) NeedSkillTraining(Carpentry 0.55) NeedEquipment(heal potions 0.50) NeedEquipment(bandages 0.50) NeedTraining(Swordsmanship 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedLogs(logs 0.40) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[00:22:11.407] INFO  [life]   score=60.5
+[00:22:11.407] INFO  [life]   reason: NeedSkillTraining urgency 0.55 x 110 = 60.5
+[00:22:11.407] INFO  [life]   reason: Carpentry 0.0 -> 100.0, gold 9984 (fee is quoted on arrival, roughly 300)
+[00:22:11.407] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 96s after achieving nothing
+[00:22:11.407] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 127s after achieving nothing
+[00:22:11.407] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[00:22:11.407] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 9984 (buyable at 200))
+[00:22:11.407] INFO  [life] plan=buy reason="below the ceiling, worth buying, and affordable"
+[00:22:13.112] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:22:14.673] INFO  [life] session_end_requested reason="session time limit reached"
+[00:22:18.117] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:22:21.269] INFO  [mk3_Delras] [bot] arrived at (1448,1672,10)
+[00:22:21.269] INFO  [mk3_Delras] [action] goto finished at (1448,1672,10); target (1448,1672); ARRIVED (off by 0 tile(s))
+[00:22:21.269] LOG   [mk3_Delras] event goto_done: at=(1448,1672) target=(1448,1672) arrived=1 off=0
+[00:22:21.269] INFO  [mk3_Delras] [action] goto (1416,1704) from (1448,1672,10)
+[00:22:21.269] LOG   [mk3_Delras] event goto_start: target=(1416,1704) from=(1448,1672)
+[00:22:21.269] INFO  [mk3_Delras] [bot] running from (1448,1672,10) to (1416,1704)
+[00:22:21.269] INFO  [mk3_Delras] [bot] planning path to (1416,1704) in background
+[00:22:21.330] INFO  [mk3_Delras] [bot] replan to (1416,1704): 49 steps in 3782.1us
+[00:22:23.130] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:22:26.447] INFO  [mk3_Delras] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=32 in 211.4us
+[00:22:28.184] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:22:32.789] INFO  [mk3_Delras] [bot] step (1426,1701,1)->(1425,1702,4) rejected; OpenDoor + retry
+[00:22:33.191] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:22:33.515] INFO  [mk3_Delras] [bot] step (1426,1701,1)->(1425,1702,4) rejected; avoiding edge + rerouting
+[00:22:33.515] INFO  [mk3_Delras] [bot] planning path to (1416,1704) in background
+[00:22:33.546] INFO  [mk3_Delras] [bot] replan to (1416,1704): 12 steps in 306.5us
+[00:22:37.275] INFO  [mk3_Delras] [bot] arrived at (1416,1704,8)
+[00:22:37.275] INFO  [mk3_Delras] [action] goto finished at (1416,1704,8); target (1416,1704); ARRIVED (off by 0 tile(s))
+[00:22:37.275] LOG   [mk3_Delras] event goto_done: at=(1416,1704) target=(1416,1704) arrived=1 off=0
+[00:22:37.275] INFO  [mk3_Delras] [action] goto (1386,1728) from (1416,1704,8)
+[00:22:37.275] LOG   [mk3_Delras] event goto_start: target=(1386,1728) from=(1416,1704)
+[00:22:37.275] INFO  [mk3_Delras] [bot] running from (1416,1704,8) to (1386,1728)
+[00:22:37.275] INFO  [mk3_Delras] [bot] planning path to (1386,1728) in background
+[00:22:37.336] INFO  [mk3_Delras] [bot] replan to (1386,1728): 36 steps in 26734.1us
+[00:22:37.753] INFO  [mk3_Delras] [chat ascii] System: You have retreated from the battle with Starling
+[00:22:38.217] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:22:38.419] INFO  [mk3_Delras] [chat ascii] System: Vorar has departed from Britain.
+[00:22:39.439] INFO  [mk3_Delras] [chat ascii] System: Selene has departed from Magincia.
+[00:22:43.254] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:22:46.897] INFO  [mk3_Delras] [chat ascii] System: Zarthal has departed from Minoc.
+[00:22:48.255] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:22:49.039] INFO  [mk3_Delras] [chat ascii] System: You have left the protection of the city guards
+[00:22:49.377] INFO  [mk3_Delras] [chat ascii] System: World save in 10 seconds
+[00:22:49.872] INFO  [mk3_Delras] [bot] arrived at (1386,1728,0)
+[00:22:49.872] INFO  [mk3_Delras] [action] goto finished at (1386,1728,0); target (1386,1728); ARRIVED (off by 0 tile(s))
+[00:22:49.872] LOG   [mk3_Delras] event goto_done: at=(1386,1728) target=(1386,1728) arrived=1 off=0
+[00:22:49.872] INFO  [mk3_Delras] [action] goto (1352,1766) from (1386,1728,0)
+[00:22:49.872] LOG   [mk3_Delras] event goto_start: target=(1352,1766) from=(1386,1728)
+[00:22:49.872] INFO  [mk3_Delras] [bot] running from (1386,1728,0) to (1352,1766)
+[00:22:49.872] INFO  [mk3_Delras] [bot] planning path to (1352,1766) in background
+[00:22:49.933] INFO  [mk3_Delras] [bot] replan to (1352,1766): 69 steps in 40707.1us
+[00:22:50.319] INFO  [mk3_Delras] [chat ascii] System: Thalia has departed from Moonglow.
+[00:22:50.565] INFO  [mk3_Delras] [chat ascii] System: You are now under the protection of the city guards
+[00:22:53.217] INFO  [mk3_Delras] [chat ascii] System: Elvar has departed from Minoc.
+[00:22:53.275] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:22:57.848] INFO  [mk3_Delras] [chat ascii] System: Falen has departed from Minoc.
+[00:22:58.293] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:22:59.429] INFO  [mk3_Delras] [chat ascii] System: World save has been initiated.
+[00:23:03.294] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:23:04.484] INFO  [mk3_Delras] [action] goto finished at (1389,1748,1); target (1352,1766); stopped short (off by 55 tile(s))
+[00:23:04.484] LOG   [mk3_Delras] event goto_done: at=(1389,1748) target=(1352,1766) arrived=0 off=55
+[00:23:05.698] INFO  [mk3_Delras] [action] goto (1352,1766) from (1389,1748,1)
+[00:23:05.698] LOG   [mk3_Delras] event goto_start: target=(1352,1766) from=(1389,1748)
+[00:23:05.698] INFO  [mk3_Delras] [bot] running from (1389,1748,1) to (1352,1766)
+[00:23:05.698] INFO  [mk3_Delras] [bot] planning path to (1352,1766) in background
+[00:23:05.762] INFO  [mk3_Delras] [bot] replan to (1352,1766): 40 steps in 18685.5us
+[00:23:05.777] INFO  [mk3_Delras] [chat ascii] System: Ghalor has departed from Minoc.
+[00:23:05.979] INFO  [mk3_Delras] [chat ascii] System: You have left the protection of the city guards
+[00:23:07.627] INFO  [mk3_Delras] [chat ascii] System: Cyras has departed from Britain.
+[00:23:08.305] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:23:10.033] INFO  [mk3_Delras] [chat ascii] System: Kharain has departed from Minoc.
+[00:23:12.347] INFO  [mk3_Delras] [chat ascii] System: Leander has departed from Moonglow.
+[00:23:13.334] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:23:17.817] INFO  [mk3_Delras] [bot] arrived at (1352,1766,15)
+[00:23:17.817] INFO  [mk3_Delras] [action] goto finished at (1352,1766,15); target (1352,1766); ARRIVED (off by 0 tile(s))
+[00:23:17.817] LOG   [mk3_Delras] event goto_done: at=(1352,1766) target=(1352,1766) arrived=1 off=0
+[00:23:17.817] INFO  [mk3_Delras] [action] goto (1336,1800) from (1352,1766,15)
+[00:23:17.817] LOG   [mk3_Delras] event goto_start: target=(1336,1800) from=(1352,1766)
+[00:23:17.817] INFO  [mk3_Delras] [bot] running from (1352,1766,15) to (1336,1800)
+[00:23:17.817] INFO  [mk3_Delras] [bot] planning path to (1336,1800) in background
+[00:23:17.877] INFO  [mk3_Delras] [bot] replan to (1336,1800): 49 steps in 56678.6us
+[00:23:18.340] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:23:23.364] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:23:25.736] INFO  [mk3_Delras] [chat ascii] System: Elara has departed from Magincia.
+[00:23:26.431] INFO  [mk3_Delras] [chat ascii] System: Xerxes has departed from Vesper.
+[00:23:28.404] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:23:31.942] INFO  [mk3_Delras] [bot] arrived at (1336,1800,0)
+[00:23:31.942] INFO  [mk3_Delras] [action] goto finished at (1336,1800,0); target (1336,1800); ARRIVED (off by 0 tile(s))
+[00:23:31.942] LOG   [mk3_Delras] event goto_done: at=(1336,1800) target=(1336,1800) arrived=1 off=0
+[00:23:31.942] INFO  [mk3_Delras] [action] goto (1336,1832) from (1336,1800,0)
+[00:23:31.942] LOG   [mk3_Delras] event goto_start: target=(1336,1832) from=(1336,1800)
+[00:23:31.942] INFO  [mk3_Delras] [bot] running from (1336,1800,0) to (1336,1832)
+[00:23:31.942] INFO  [mk3_Delras] [bot] planning path to (1336,1832) in background
+[00:23:32.003] INFO  [mk3_Delras] [bot] replan to (1336,1832): 32 steps in 9872.0us
+[00:23:33.132] INFO  [mk3_Delras] [chat ascii] System: Dorvar has departed from Skara Brae.
+[00:23:33.454] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:23:37.865] INFO  [mk3_Delras] [chat ascii] System: Odessa has departed from Britain.
+[00:23:38.483] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:23:38.949] INFO  [mk3_Delras] [chat ascii] System: Rhea has departed from Lord British's Castle.
+[00:23:41.705] INFO  [mk3_Delras] [bot] arrived at (1336,1832,0)
+[00:23:41.705] INFO  [mk3_Delras] [action] goto finished at (1336,1832,0); target (1336,1832); ARRIVED (off by 0 tile(s))
+[00:23:41.705] LOG   [mk3_Delras] event goto_done: at=(1336,1832) target=(1336,1832) arrived=1 off=0
+[00:23:41.705] INFO  [mk3_Delras] [action] goto (1336,1864) from (1336,1832,0)
+[00:23:41.705] LOG   [mk3_Delras] event goto_start: target=(1336,1864) from=(1336,1832)
+[00:23:41.705] INFO  [mk3_Delras] [bot] running from (1336,1832,0) to (1336,1864)
+[00:23:41.705] INFO  [mk3_Delras] [bot] planning path to (1336,1864) in background
+[00:23:41.766] INFO  [mk3_Delras] [bot] replan to (1336,1864): 33 steps in 23068.9us
+[00:23:43.199] INFO  [mk3_Delras] [chat ascii] System: Rhaler has departed from Minoc.
+[00:23:43.505] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:23:45.061] INFO  [mk3_Delras] [chat ascii] System: Ithion has departed from Skara Brae.
+[00:23:48.520] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:23:53.565] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:23:53.952] INFO  [mk3_Delras] [bot] arrived at (1336,1864,0)
+[00:23:53.952] INFO  [mk3_Delras] [action] goto finished at (1336,1864,0); target (1336,1864); ARRIVED (off by 0 tile(s))
+[00:23:53.952] LOG   [mk3_Delras] event goto_done: at=(1336,1864) target=(1336,1864) arrived=1 off=0
+[00:23:53.952] INFO  [mk3_Delras] [action] goto (1336,1896) from (1336,1864,0)
+[00:23:53.952] LOG   [mk3_Delras] event goto_start: target=(1336,1896) from=(1336,1864)
+[00:23:53.952] INFO  [mk3_Delras] [bot] running from (1336,1864,0) to (1336,1896)
+[00:23:53.952] INFO  [mk3_Delras] [bot] planning path to (1336,1896) in background
+[00:23:54.013] INFO  [mk3_Delras] [bot] replan to (1336,1896): 37 steps in 22950.6us
+[00:23:58.610] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:24:00.423] INFO  [mk3_Delras] [chat ascii] System: Faustus has departed from Britain.
+[00:24:01.868] INFO  [mk3_Delras] [chat ascii] System: Hector has departed from Bank of Britannia - Trinsic Branch.
+[00:24:02.609] INFO  [mk3_Delras] [chat ascii] System: Titus has departed from Magincia.
+[00:24:03.613] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:24:07.593] INFO  [mk3_Delras] [bot] arrived at (1336,1896,0)
+[00:24:07.593] INFO  [mk3_Delras] [action] goto finished at (1336,1896,0); target (1336,1896); ARRIVED (off by 0 tile(s))
+[00:24:07.593] LOG   [mk3_Delras] event goto_done: at=(1336,1896) target=(1336,1896) arrived=1 off=0
+[00:24:07.593] INFO  [mk3_Delras] [action] goto (1336,1928) from (1336,1896,0)
+[00:24:07.593] LOG   [mk3_Delras] event goto_start: target=(1336,1928) from=(1336,1896)
+[00:24:07.593] INFO  [mk3_Delras] [bot] running from (1336,1896,0) to (1336,1928)
+[00:24:07.593] INFO  [mk3_Delras] [bot] planning path to (1336,1928) in background
+[00:24:07.655] INFO  [mk3_Delras] [bot] replan to (1336,1928): 32 steps in 10176.3us
+[00:24:07.840] INFO  [mk3_Delras] [chat ascii] System: Aurelius has departed from Ocllo.
+[00:24:08.673] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:24:10.180] INFO  [mk3_Delras] [chat ascii] System: Serena has departed from Britain.
+[00:24:13.709] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:24:18.769] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:24:19.031] INFO  [mk3_Delras] [bot] arrived at (1336,1928,0)
+[00:24:19.031] INFO  [mk3_Delras] [action] goto finished at (1336,1928,0); target (1336,1928); ARRIVED (off by 0 tile(s))
+[00:24:19.031] LOG   [mk3_Delras] event goto_done: at=(1336,1928) target=(1336,1928) arrived=1 off=0
+[00:24:19.031] INFO  [mk3_Delras] [action] goto (1336,1960) from (1336,1928,0)
+[00:24:19.031] LOG   [mk3_Delras] event goto_start: target=(1336,1960) from=(1336,1928)
+[00:24:19.031] INFO  [mk3_Delras] [bot] running from (1336,1928,0) to (1336,1960)
+[00:24:19.031] INFO  [mk3_Delras] [bot] planning path to (1336,1960) in background
+[00:24:19.093] INFO  [mk3_Delras] [bot] replan to (1336,1960): 33 steps in 24074.1us
+[00:24:23.799] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:24:24.384] INFO  [mk3_Delras] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=17 in 389.8us
+[00:24:28.833] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:24:29.833] INFO  [mk3_Delras] [bot] arrived at (1336,1960,0)
+[00:24:29.833] INFO  [mk3_Delras] [action] goto finished at (1336,1960,0); target (1336,1960); ARRIVED (off by 0 tile(s))
+[00:24:29.833] LOG   [mk3_Delras] event goto_done: at=(1336,1960) target=(1336,1960) arrived=1 off=0
+[00:24:29.833] INFO  [mk3_Delras] [action] goto (1336,1992) from (1336,1960,0)
+[00:24:29.833] LOG   [mk3_Delras] event goto_start: target=(1336,1992) from=(1336,1960)
+[00:24:29.833] INFO  [mk3_Delras] [bot] running from (1336,1960,0) to (1336,1992)
+[00:24:29.833] INFO  [mk3_Delras] [bot] planning path to (1336,1992) in background
+[00:24:29.893] INFO  [mk3_Delras] [bot] replan to (1336,1992): 33 steps in 31218.2us
+[00:24:33.848] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:24:38.896] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:24:40.592] INFO  [mk3_Delras] [chat ascii] Kitaki: *Kitaki is attacking you!*
+[00:24:40.763] INFO  [mk3_Delras] [bot] arrived at (1336,1992,0)
+[00:24:40.763] INFO  [mk3_Delras] [action] goto finished at (1336,1992,0); target (1336,1992); ARRIVED (off by 0 tile(s))
+[00:24:40.763] LOG   [mk3_Delras] event goto_done: at=(1336,1992) target=(1336,1992) arrived=1 off=0
+[00:24:40.763] INFO  [mk3_Delras] [action] goto (1336,1997) from (1336,1992,0)
+[00:24:40.763] LOG   [mk3_Delras] event goto_start: target=(1336,1997) from=(1336,1992)
+[00:24:40.763] INFO  [mk3_Delras] [bot] running from (1336,1992,0) to (1336,1997)
+[00:24:40.763] INFO  [mk3_Delras] [bot] planning path to (1336,1997) in background
+[00:24:40.824] INFO  [mk3_Delras] [bot] replan to (1336,1997): 5 steps in 236.8us
+[00:24:42.316] INFO  [mk3_Delras] [gump] 0x400028A0 context=0x80A0040F: 13 option(s), 15 text(s)
+[00:24:42.316] INFO  [mk3_Delras] [gump]   button 1000 = 'OKAY'
+[00:24:42.316] INFO  [mk3_Delras] [gump]   button 0 = 'CANCEL'
+[00:24:42.316] INFO  [mk3_Delras] [gump]   button 1 = 'Felucca'
+[00:24:42.316] INFO  [mk3_Delras] [gump]   choice 1 = 'Moonglow'
+[00:24:42.316] INFO  [mk3_Delras] [gump]   choice 2 = 'Britain'
+[00:24:42.316] INFO  [mk3_Delras] [gump]   choice 3 = 'Jhelom'
+[00:24:42.316] INFO  [mk3_Delras] [gump]   choice 4 = 'Yew'
+[00:24:42.316] INFO  [mk3_Delras] [gump]   choice 5 = 'New Magincia'
+[00:24:42.316] INFO  [mk3_Delras] [gump]   choice 6 = 'Minoc'
+[00:24:42.316] INFO  [mk3_Delras] [gump]   choice 7 = 'Trinsic'
+[00:24:42.316] INFO  [mk3_Delras] [gump]   choice 8 = 'Skara Brae'
+[00:24:42.316] INFO  [mk3_Delras] [gump]   choice 9 = 'Buccaneer's Den'
+[00:24:42.316] INFO  [mk3_Delras] [gump]   choice 10 = 'Ocllo (Newplayers)'
+[00:24:42.316] INFO  [mk3_Delras] [gump]   text 0 = 'Pick your destination:'
+[00:24:42.316] INFO  [mk3_Delras] [gump]   text 1 = 'OKAY'
+[00:24:42.316] INFO  [mk3_Delras] [gump]   text 2 = 'CANCEL'
+[00:24:42.316] INFO  [mk3_Delras] [gump]   text 3 = 'Felucca'
+[00:24:42.316] INFO  [mk3_Delras] [gump]   text 4 = 'Felucca'
+[00:24:42.316] INFO  [mk3_Delras] [gump]   text 5 = 'Moonglow'
+[00:24:42.316] INFO  [mk3_Delras] [gump]   text 6 = 'Britain'
+[00:24:42.316] INFO  [mk3_Delras] [gump]   text 7 = 'Jhelom'
+[00:24:42.316] INFO  [mk3_Delras] [gump]   text 8 = 'Yew'
+[00:24:42.316] INFO  [mk3_Delras] [gump]   text 9 = 'New Magincia'
+[00:24:42.316] INFO  [mk3_Delras] [gump]   text 10 = 'Minoc'
+[00:24:42.316] INFO  [mk3_Delras] [gump]   text 11 = 'Trinsic'
+[00:24:42.316] INFO  [mk3_Delras] [gump]   text 12 = 'Skara Brae'
+[00:24:42.316] INFO  [mk3_Delras] [gump]   text 13 = 'Buccaneer's Den'
+[00:24:42.316] INFO  [mk3_Delras] [gump]   text 14 = 'Ocllo (Newplayers)'
+[00:24:42.316] LOG   [mk3_Delras] event gump_open: serial=0x400028A0 context=0x80A0040F options=13
+[00:24:42.316] INFO  [mk3_Delras] [travel] gate gump: choosing 'Skara Brae' (choice 8, button 1000)
+[00:24:42.316] LOG   [mk3_Delras] event moongate_use: destination='Skara Brae' choice=8 button=1000
+[00:24:42.316] INFO  [mk3_Delras] [bot] arrived at (1336,1997,5)
+[00:24:42.316] INFO  [mk3_Delras] [action] goto finished at (1336,1997,5); target (1336,1997); ARRIVED (off by 0 tile(s))
+[00:24:42.316] LOG   [mk3_Delras] event goto_done: at=(1336,1997) target=(1336,1997) arrived=1 off=0
+[00:24:42.316] INFO  [mk3_Delras] [travel] using moongate 0x400028A0 for 'Skara Brae' (gump active=0 serial=0x00000000)
+[00:24:42.316] INFO  [mk3_Delras] [0x20] player @(643,2067,5) facing=4
+[00:24:42.316] INFO  [mk3_Delras] [0x20] player @(643,2067,5) facing=4
+[00:24:42.330] INFO  [mk3_Delras] [chat ascii] System: You can't see the target
+[00:24:42.578] INFO  [mk3_Delras] [chat ascii] System: Lyra has departed from Moonglow.
+[00:24:42.640] INFO  [mk3_Delras] [action] goto (648,2104) from (643,2067,5)
+[00:24:42.640] LOG   [mk3_Delras] event goto_start: target=(648,2104) from=(643,2067)
+[00:24:42.640] INFO  [mk3_Delras] [bot] running from (643,2067,5) to (648,2104)
+[00:24:42.641] INFO  [mk3_Delras] [bot] planning path to (648,2104) in background
+[00:24:42.703] INFO  [mk3_Delras] [bot] replan to (648,2104): 39 steps in 19745.9us
+[00:24:42.719] INFO  [mk3_Delras] [chat ascii] System: You have been revealed
+[00:24:43.903] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:24:48.908] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:24:53.966] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:24:56.922] INFO  [mk3_Delras] [bot] arrived at (648,2104,0)
+[00:24:56.923] INFO  [mk3_Delras] [action] goto finished at (648,2104,0); target (648,2104); ARRIVED (off by 0 tile(s))
+[00:24:56.923] LOG   [mk3_Delras] event goto_done: at=(648,2104) target=(648,2104) arrived=1 off=0
+[00:24:56.923] INFO  [mk3_Delras] [action] goto (648,2136) from (648,2104,0)
+[00:24:56.923] LOG   [mk3_Delras] event goto_start: target=(648,2136) from=(648,2104)
+[00:24:56.923] INFO  [mk3_Delras] [bot] running from (648,2104,0) to (648,2136)
+[00:24:56.923] INFO  [mk3_Delras] [bot] planning path to (648,2136) in background
+[00:24:56.983] INFO  [mk3_Delras] [bot] replan to (648,2136): 37 steps in 12989.5us
+[00:24:59.027] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:24:59.535] INFO  [mk3_Delras] [chat ascii] System: You are now under the protection of the town guards
+[00:25:01.769] INFO  [mk3_Delras] [chat ascii] System: Aelia has departed from Britain Territory.
+[00:25:04.045] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:25:09.069] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:25:09.945] INFO  [mk3_Delras] [bot] arrived at (648,2136,0)
+[00:25:09.945] INFO  [mk3_Delras] [action] goto finished at (648,2136,0); target (648,2136); ARRIVED (off by 0 tile(s))
+[00:25:09.945] LOG   [mk3_Delras] event goto_done: at=(648,2136) target=(648,2136) arrived=1 off=0
+[00:25:09.945] INFO  [mk3_Delras] [action] goto (627,2163) from (648,2136,0)
+[00:25:09.945] LOG   [mk3_Delras] event goto_start: target=(627,2163) from=(648,2136)
+[00:25:09.945] INFO  [mk3_Delras] [bot] running from (648,2136,0) to (627,2163,z0)
+[00:25:09.945] INFO  [mk3_Delras] [bot] planning path to (627,2163) in background
+[00:25:10.006] INFO  [mk3_Delras] [bot] replan to (627,2163): 47 steps in 15947.7us
+[00:25:13.869] INFO  [mk3_Delras] [chat ascii] System: Illyria has departed from Britain.
+[00:25:14.069] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:25:14.728] INFO  [mk3_Delras] [chat ascii] Amadis: I'm listenin'.
+[00:25:15.033] INFO  [mk3_Delras] [chat ascii] System: Halain has departed from Skara Brae.
+[00:25:15.481] INFO  [mk3_Delras] [chat ascii] Aine: Hmm?
+[00:25:17.206] INFO  [mk3_Delras] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=22 in 426.0us
+[00:25:19.085] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:25:22.640] INFO  [mk3_Delras] [chat ascii] System: Amara has departed from Magincia.
+[00:25:22.762] INFO  [mk3_Delras] [travel] Skara Brae carpenter ARRIVED at (632,2166,0)
+[00:25:22.762] LOG   [mk3_Delras] event travel_done: label='Skara Brae carpenter' ok=1 at=(632,2166) legs=17 plans=3 why=''
+[00:25:22.824] INFO  [life] wind-down: no bank learned yet; asking the world for one (attempt 1)
+[00:25:22.825] INFO  [mk3_Delras] [travel] Skara Brae banker -> (587,2146) r=5 from (632,2166)
+[00:25:22.825] LOG   [mk3_Delras] event travel_start: label='Skara Brae banker' target=(587,2146) radius=5 from=(632,2166)
+[00:25:22.825] INFO  [mk3_Delras] [travel] mode walk             usable   <- chosen
+[00:25:22.825] INFO  [mk3_Delras] [travel] mode moongate         usable
+[00:25:22.825] INFO  [mk3_Delras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:25:22.825] INFO  [mk3_Delras] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:25:22.825] LOG   [mk3_Delras] event travel_mode: walk
+[00:25:22.825] INFO  [mk3_Delras] [travel] plan Skara Brae banker: ok legs=2 ~56 tiles transit=0 nodes=10
+[00:25:24.115] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:25:24.517] INFO  [mk3_Delras] [bot] arrived at (627,2163,0)
+[00:25:24.517] INFO  [mk3_Delras] [action] goto finished at (627,2163,0); target (627,2163); ARRIVED (off by 0 tile(s))
+[00:25:24.517] LOG   [mk3_Delras] event goto_done: at=(627,2163) target=(627,2163) arrived=1 off=0
+[00:25:24.517] INFO  [mk3_Delras] [action] goto (600,2152) from (627,2163,0)
+[00:25:24.517] LOG   [mk3_Delras] event goto_start: target=(600,2152) from=(627,2163)
+[00:25:24.517] INFO  [mk3_Delras] [bot] running from (627,2163,0) to (600,2152)
+[00:25:24.517] INFO  [mk3_Delras] [bot] planning path to (600,2152) in background
+[00:25:24.579] INFO  [mk3_Delras] [bot] replan to (600,2152): 60 steps in 9936.0us
+[00:25:28.205] INFO  [mk3_Delras] [bot] step (635,2168,0)->(634,2169,0) rejected; OpenDoor + retry
+[00:25:28.220] INFO  [mk3_Delras] [chat ascii] System: Opening door...
+[00:25:28.220] INFO  [mk3_Delras] [0x20] player @(635,2168,0) facing=6
+[00:25:28.220] INFO  [mk3_Delras] [action] goto finished at (635,2168,0); target (600,2152); stopped short (off by 51 tile(s))
+[00:25:28.220] LOG   [mk3_Delras] event goto_done: at=(635,2168) target=(600,2152) arrived=0 off=51
+[00:25:29.173] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:25:29.439] INFO  [mk3_Delras] [action] goto (600,2152) from (635,2168,0)
+[00:25:29.439] LOG   [mk3_Delras] event goto_start: target=(600,2152) from=(635,2168)
+[00:25:29.439] INFO  [mk3_Delras] [bot] running from (635,2168,0) to (600,2152)
+[00:25:29.439] INFO  [mk3_Delras] [bot] planning path to (600,2152) in background
+[00:25:29.485] INFO  [mk3_Delras] [bot] replan to (600,2152): 50 steps in 19481.0us
+[00:25:34.189] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:25:39.233] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:25:43.656] INFO  [mk3_Delras] [bot] arrived at (600,2152,0)
+[00:25:43.656] INFO  [mk3_Delras] [action] goto finished at (600,2152,0); target (600,2152); ARRIVED (off by 0 tile(s))
+[00:25:43.656] LOG   [mk3_Delras] event goto_done: at=(600,2152) target=(600,2152) arrived=1 off=0
+[00:25:43.656] INFO  [mk3_Delras] [action] goto (587,2146) from (600,2152,0)
+[00:25:43.656] LOG   [mk3_Delras] event goto_start: target=(587,2146) from=(600,2152)
+[00:25:43.656] INFO  [mk3_Delras] [bot] running from (600,2152,0) to (587,2146,z0)
+[00:25:43.656] INFO  [mk3_Delras] [bot] planning path to (587,2146) in background
+[00:25:43.718] INFO  [mk3_Delras] [bot] replan to (587,2146): 17 steps in 1805.0us
+[00:25:44.289] INFO  [mk3_Delras] [survival] hp 40/40 (100%) -> fight
+[00:25:44.845] INFO  [mk3_Delras] [bot] door ahead at (597,2151,z0); OpenDoor before step
+[00:25:44.845] INFO  [mk3_Delras] [chat ascii] System: Opening door...
+[00:25:46.934] INFO  [mk3_Delras] [bot] lookahead patched around block at step 5: anchor=6 new segment=9 path=11 in 395.6us
+[00:25:47.134] INFO  [mk3_Delras] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=9 in 210.8us
+[00:25:47.455] INFO  [mk3_Delras] [travel] Skara Brae banker ARRIVED at (591,2150,0)
+[00:25:47.455] LOG   [mk3_Delras] event travel_done: label='Skara Brae banker' ok=1 at=(591,2150) legs=2 plans=1 why=''
+[00:25:47.517] INFO  [life] wind-down: arrived somewhere safe at 591,2150
+[00:25:47.578] INFO  [life] session_summary duration=392s goals=2/7 gold=10000->9984 skills=100.0->100.0 logs=+0 kills=0 deaths=0 places=2 suppliers=0
+[00:25:47.578] INFO  [life] session_goals families=3 picks=7 top=43% varied=0 self_superseded=0 | emergency=1(14%) upkeep=3(43%) training=3(43%) | SURVIVE=1(14%) REPLACE_EQUIPMENT=1(14%) BANK=1(14%) TRAIN_COMBAT=1(14%) TRAIN_AT_NPC=2(29%) GET_FOOD=1(14%)
+[00:25:47.580] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_07.delras/state.json
+[00:25:47.580] INFO  [life] logging out
+[00:25:47.580] INFO  [mk3_Delras] [action] logout requested
+[00:25:47.580] LOG   [mk3_Delras] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[00:25:47.593] INFO  [mk3_Delras] [0xD1] logout acknowledged (accepted=1)
+[00:25:47.593] LOG   [mk3_Delras] event logout_ack: accepted
+[00:25:47.593] INFO  [mk3_Delras] [net] closing connection (logout acknowledged)
+[00:25:47.593] LOG   [mk3_Delras] event logout_complete: acked

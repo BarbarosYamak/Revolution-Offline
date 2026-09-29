@@ -1,0 +1,910 @@
+[17:29:34.688] LOG   [wave10_RevGen3_06_Halai] event session_start: text log opened
+[17:29:34.689] LOG   [wave10_RevGen3_06_Halai] event net_connect_begin: connect 127.0.0.1:2593
+[17:29:34.690] INFO  [wave10_RevGen3_06_Halai] [net] connecting to 127.0.0.1:2593 ...
+[17:29:34.692] LOG   [wave10_RevGen3_06_Halai] event net_connected: connect 127.0.0.1:2593
+[17:29:34.693] INFO  [wave10_RevGen3_06_Halai] [net] connected.
+[17:29:34.694] INFO  [wave10_RevGen3_06_Halai] [seed] sent 0x7F000001 (plaintext)
+[17:29:34.695] LOG   [wave10_RevGen3_06_Halai] event seed_out: 0x7F000001 hex=7f000001
+[17:29:34.696] INFO  [wave10_RevGen3_06_Halai] [life] autonomous player active for 'Halain' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 30 min)
+[17:29:34.710] INFO  [wave10_RevGen3_06_Halai] [0xA8] 1 server(s):
+[17:29:34.710] INFO  [wave10_RevGen3_06_Halai]   [0] MyShard                   1.0.0.127  full=2%  tz=0
+[17:29:34.721] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Elvar has arrived in Britain.
+[17:29:34.722] INFO  [wave10_RevGen3_06_Halai] [0x8C] game server = 127.0.0.1:2593  seed=0xF44CE7D1
+[17:29:34.722] LOG   [wave10_RevGen3_06_Halai] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xF44CE7D1
+[17:29:34.722] INFO  [wave10_RevGen3_06_Halai] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[17:29:34.722] LOG   [wave10_RevGen3_06_Halai] event relay_same_socket: no seed re-sent; 0x91 follows
+[17:29:34.737] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Zarthal has arrived in Britain.
+[17:29:34.737] INFO  [wave10_RevGen3_06_Halai] [0xB9] server features = 0x0005
+[17:29:34.737] INFO  [wave10_RevGen3_06_Halai] [0xA9] 5 slot(s) (populated 1):
+[17:29:34.738] INFO  [wave10_RevGen3_06_Halai]   [0] Halain
+[17:29:34.738] INFO  [wave10_RevGen3_06_Halai]   [1] <empty>
+[17:29:34.738] INFO  [wave10_RevGen3_06_Halai]   [2] <empty>
+[17:29:34.738] INFO  [wave10_RevGen3_06_Halai]   [3] <empty>
+[17:29:34.738] INFO  [wave10_RevGen3_06_Halai]   [4] <empty>
+[17:29:34.738] INFO  [wave10_RevGen3_06_Halai] [ui] playing slot 0 ('Halain')
+[17:29:34.753] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Vorar has arrived in Britain.
+[17:29:34.753] INFO  [wave10_RevGen3_06_Halai] [0x1B] serial=0x0001616D body=0x0190 pos=(1381,1522,5)
+[17:29:34.754] LOG   [wave10_RevGen3_06_Halai] event login_confirm: serial=0x0001616D body=0x0190 pos=(1381,1522,5)
+[17:29:34.754] INFO  [wave10_RevGen3_06_Halai] [0x20] player @(1381,1522,5) facing=5
+[17:29:34.754] INFO  [wave10_RevGen3_06_Halai] [0x55] login complete — entering world
+[17:29:34.754] LOG   [wave10_RevGen3_06_Halai] event in_world: 0x55 received
+[17:29:34.754] INFO  [wave10_RevGen3_06_Halai] [backpack] opening 0x40016144
+[17:29:34.754] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[17:29:34.754] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: There are 6 other players here.
+[17:29:34.755] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Last logged: 2026/08/31 18:12:43
+[17:29:34.759] INFO  [wave10_RevGen3_06_Halai] [action] requesting the skill list
+[17:29:34.768] INFO  [wave10_RevGen3_06_Halai] [0x24] open container 0x40016144 gump=60
+[17:29:34.769] INFO  [wave10_RevGen3_06_Halai] [0x3C] container contents: 10 item(s)
+[17:29:34.769] LOG   [wave10_RevGen3_06_Halai] event backpack_contents: serial=0x40016144 items=10
+[17:29:34.876] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Delras has arrived in Skara Brae.
+[17:29:35.006] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Cyras has arrived in Skara Brae.
+[17:29:35.027] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Rhaler has arrived in Britain.
+[17:29:35.076] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Ghalor has arrived in Britain Fields.
+[17:29:35.092] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Falen has arrived in Britain.
+[17:29:35.115] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Aelia has arrived in Britain.
+[17:29:35.131] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Amara has arrived in Jhelom.
+[17:29:35.164] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Elara has arrived in Britain Fields.
+[17:29:35.201] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Selene has arrived in Britain.
+[17:29:35.202] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Lyra has arrived in Moonglow.
+[17:29:35.216] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Thalia has arrived in Jhelom Territory.
+[17:29:35.235] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Dorvar has arrived in Magincia.
+[17:29:35.247] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Ithion has arrived in Magincia.
+[17:29:35.253] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Odessa has arrived in Britain.
+[17:29:35.278] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Serena has arrived in Britain.
+[17:29:35.306] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Aurelius has arrived in Britain.
+[17:29:35.325] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Leander has arrived in Britain.
+[17:29:35.326] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Illyria has arrived in Britain.
+[17:29:35.340] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Hector has arrived in Trinsic.
+[17:29:35.360] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Castor has arrived in The Rusty Anchor.
+[17:29:35.370] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Faustus has arrived in Britain.
+[17:29:35.385] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Titus has arrived in Britain Territory.
+[17:29:35.402] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Rhea has arrived in Yew.
+[17:29:35.402] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Xerxes has arrived in Ocllo Island.
+[17:29:35.433] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Thane has arrived in Britain.
+[17:29:35.434] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Varek has arrived in Britain Territory.
+[17:29:35.449] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Nyx has arrived in Trinsic.
+[17:29:37.359] INFO  [wave10_RevGen3_06_Halai] [bot] world data loaded (0 blacklisted spot(s)).
+[17:29:37.361] INFO  [wave10_RevGen3_06_Halai] [survival] on
+[17:29:37.362] LOG   [wave10_RevGen3_06_Halai] event survival_mode: on
+[17:29:37.365] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:29:37.428] INFO  [wave10_RevGen3_06_Halai] [travel] Britain banker -> (1425,1690) r=5 from (1381,1522)
+[17:29:37.429] LOG   [wave10_RevGen3_06_Halai] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1381,1522)
+[17:29:37.429] INFO  [wave10_RevGen3_06_Halai] [travel] mode moongate         usable   <- chosen
+[17:29:37.429] INFO  [wave10_RevGen3_06_Halai] [travel] mode walk             usable
+[17:29:37.429] INFO  [wave10_RevGen3_06_Halai] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:37.429] INFO  [wave10_RevGen3_06_Halai] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:37.430] LOG   [wave10_RevGen3_06_Halai] event travel_mode: moongate
+[17:29:37.430] INFO  [wave10_RevGen3_06_Halai] [travel] plan Britain banker: ok legs=6 ~216 tiles transit=0 nodes=362
+[17:29:37.489] INFO  [wave10_RevGen3_06_Halai] [action] goto (1416,1528) from (1381,1522,5)
+[17:29:37.490] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1416,1528) from=(1381,1522)
+[17:29:37.490] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1381,1522,5) to (1416,1528)
+[17:29:37.490] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1416,1528) in background
+[17:29:37.550] INFO  [wave10_RevGen3_06_Halai] [bot] replan to (1416,1528): 39 steps in 5535.7us
+[17:29:38.042] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: You must use an axe.
+[17:29:38.043] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: You decide not to chop wood for now.
+[17:29:42.384] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:29:46.754] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: You are now under the protection of the city guards
+[17:29:47.445] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:29:50.490] INFO  [wave10_RevGen3_06_Halai] [bot] arrived at (1416,1528,28)
+[17:29:50.492] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1416,1528,28); target (1416,1528); ARRIVED (off by 0 tile(s))
+[17:29:50.492] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1416,1528) target=(1416,1528) arrived=1 off=0
+[17:29:50.493] INFO  [wave10_RevGen3_06_Halai] [action] goto (1432,1560) from (1416,1528,28)
+[17:29:50.493] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1432,1560) from=(1416,1528)
+[17:29:50.493] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1416,1528,28) to (1432,1560)
+[17:29:50.493] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1432,1560) in background
+[17:29:50.553] INFO  [wave10_RevGen3_06_Halai] [bot] replan to (1432,1560): 36 steps in 1880.9us
+[17:29:52.496] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:29:57.555] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:30:01.554] INFO  [wave10_RevGen3_06_Halai] [bot] arrived at (1432,1560,30)
+[17:30:01.556] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1432,1560,30); target (1432,1560); ARRIVED (off by 0 tile(s))
+[17:30:01.556] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1432,1560) target=(1432,1560) arrived=1 off=0
+[17:30:01.556] INFO  [wave10_RevGen3_06_Halai] [action] goto (1408,1525) from (1432,1560,30)
+[17:30:01.557] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1408,1525) from=(1432,1560)
+[17:30:01.557] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1432,1560,30) to (1408,1525)
+[17:30:01.557] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1408,1525) in background
+[17:30:01.617] INFO  [wave10_RevGen3_06_Halai] [bot] replan to (1408,1525): 51 steps in 22589.5us
+[17:30:02.617] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:30:07.667] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:30:12.715] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:30:15.527] INFO  [wave10_RevGen3_06_Halai] [ACTION] use_object start
+[17:30:15.528] INFO  [wave10_RevGen3_06_Halai] [ACTION] use_object serial=0x40015F7B
+[17:30:15.528] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: What do you want to use this on?
+[17:30:15.528] INFO  [wave10_RevGen3_06_Halai] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=1
+[17:30:15.528] LOG   [wave10_RevGen3_06_Halai] event target_requested: id=0x000002CE type=0 subtype=1 gen=1
+[17:30:15.528] INFO  [wave10_RevGen3_06_Halai] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[17:30:15.528] LOG   [wave10_RevGen3_06_Halai] event action_result: use_object success took=1ms server armed a target cursor
+[17:30:16.376] INFO  [wave10_RevGen3_06_Halai] [TARGET] reply static=(1408,1524,5) gfx=0x0CCD gen=1
+[17:30:16.377] INFO  [wave10_RevGen3_06_Halai] [target] static 0x0CCD (1408,1524,5)
+[17:30:16.391] WARN  [wave10_RevGen3_06_Halai] [bot] 0x20 resync; aborting path
+[17:30:16.392] INFO  [wave10_RevGen3_06_Halai] [0x20] player @(1410,1524,14) facing=6
+[17:30:16.392] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: There is nothing here to chop.
+[17:30:16.392] INFO  [wave10_RevGen3_06_Halai] [0x21] stale reject seq=65 (block already handled); pose resynced
+[17:30:16.393] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1410,1524,14); target (1408,1525); stopped short (off by 3 tile(s))
+[17:30:16.393] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1410,1524) target=(1408,1525) arrived=0 off=3
+[17:30:16.822] INFO  [wave10_RevGen3_06_Halai] [ACTION] use_object start
+[17:30:16.823] INFO  [wave10_RevGen3_06_Halai] [ACTION] use_object serial=0x40015F7B
+[17:30:16.837] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: What do you want to use this on?
+[17:30:16.837] INFO  [wave10_RevGen3_06_Halai] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=2
+[17:30:16.837] LOG   [wave10_RevGen3_06_Halai] event target_requested: id=0x000002CE type=0 subtype=1 gen=2
+[17:30:16.837] INFO  [wave10_RevGen3_06_Halai] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
+[17:30:16.837] LOG   [wave10_RevGen3_06_Halai] event action_result: use_object success took=15ms server armed a target cursor
+[17:30:17.645] INFO  [wave10_RevGen3_06_Halai] [TARGET] reply static=(1408,1524,5) gfx=0x0CCD gen=2
+[17:30:17.645] INFO  [wave10_RevGen3_06_Halai] [target] static 0x0CCD (1408,1524,5)
+[17:30:17.645] INFO  [wave10_RevGen3_06_Halai] [action] goto (1432,1560) from (1410,1524,14)
+[17:30:17.645] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1432,1560) from=(1410,1524)
+[17:30:17.645] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1410,1524,14) to (1432,1560)
+[17:30:17.646] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1432,1560) in background
+[17:30:17.661] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: There is nothing here to chop.
+[17:30:17.662] INFO  [wave10_RevGen3_06_Halai] [bot] replan to (1432,1560): 49 steps in 3357.4us
+[17:30:17.724] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:30:22.761] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:30:27.774] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:30:32.043] INFO  [wave10_RevGen3_06_Halai] [bot] arrived at (1432,1560,30)
+[17:30:32.044] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1432,1560,30); target (1432,1560); ARRIVED (off by 0 tile(s))
+[17:30:32.044] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1432,1560) target=(1432,1560) arrived=1 off=0
+[17:30:32.044] INFO  [wave10_RevGen3_06_Halai] [action] goto (1404,1525) from (1432,1560,30)
+[17:30:32.045] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1404,1525) from=(1432,1560)
+[17:30:32.045] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1432,1560,30) to (1404,1525)
+[17:30:32.045] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1404,1525) in background
+[17:30:32.105] INFO  [wave10_RevGen3_06_Halai] [bot] replan to (1404,1525): 54 steps in 12355.4us
+[17:30:32.784] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:30:37.794] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:30:39.919] INFO  [wave10_RevGen3_06_Halai] [travel] mode moongate         usable   <- chosen
+[17:30:39.919] INFO  [wave10_RevGen3_06_Halai] [travel] mode walk             usable
+[17:30:39.920] INFO  [wave10_RevGen3_06_Halai] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:39.920] INFO  [wave10_RevGen3_06_Halai] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:39.920] LOG   [wave10_RevGen3_06_Halai] event travel_mode: moongate
+[17:30:39.920] INFO  [wave10_RevGen3_06_Halai] [travel] plan Britain banker: ok legs=5 ~192 tiles transit=0 nodes=276
+[17:30:42.806] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:30:46.295] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: You have left the protection of the city guards
+[17:30:47.144] INFO  [wave10_RevGen3_06_Halai] [ACTION] use_object start
+[17:30:47.144] INFO  [wave10_RevGen3_06_Halai] [ACTION] use_object serial=0x40015F7B
+[17:30:47.144] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: What do you want to use this on?
+[17:30:47.144] INFO  [wave10_RevGen3_06_Halai] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=3
+[17:30:47.144] LOG   [wave10_RevGen3_06_Halai] event target_requested: id=0x000002CE type=0 subtype=1 gen=3
+[17:30:47.145] INFO  [wave10_RevGen3_06_Halai] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[17:30:47.145] LOG   [wave10_RevGen3_06_Halai] event action_result: use_object success took=0ms server armed a target cursor
+[17:30:47.850] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:30:47.973] INFO  [wave10_RevGen3_06_Halai] [TARGET] reply static=(1404,1524,0) gfx=0x0CD3 gen=3
+[17:30:47.973] INFO  [wave10_RevGen3_06_Halai] [target] static 0x0CD3 (1404,1524,0)
+[17:30:47.973] WARN  [wave10_RevGen3_06_Halai] [bot] 0x20 resync; aborting path
+[17:30:47.974] INFO  [wave10_RevGen3_06_Halai] [0x20] player @(1405,1525,0) facing=7
+[17:30:47.974] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: There is nothing here to chop.
+[17:30:47.975] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1405,1525,0); target (1404,1525); stopped short (off by 1 tile(s))
+[17:30:47.975] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1405,1525) target=(1404,1525) arrived=0 off=1
+[17:30:48.403] INFO  [wave10_RevGen3_06_Halai] [ACTION] use_object start
+[17:30:48.403] INFO  [wave10_RevGen3_06_Halai] [ACTION] use_object serial=0x40015F7B
+[17:30:48.403] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: What do you want to use this on?
+[17:30:48.403] INFO  [wave10_RevGen3_06_Halai] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=4
+[17:30:48.404] LOG   [wave10_RevGen3_06_Halai] event target_requested: id=0x000002CE type=0 subtype=1 gen=4
+[17:30:48.404] INFO  [wave10_RevGen3_06_Halai] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[17:30:48.404] LOG   [wave10_RevGen3_06_Halai] event action_result: use_object success took=1ms server armed a target cursor
+[17:30:49.198] INFO  [wave10_RevGen3_06_Halai] [action] goto (1416,1558) from (1405,1525,0)
+[17:30:49.198] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1416,1558) from=(1405,1525)
+[17:30:49.198] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1405,1525,0) to (1416,1558)
+[17:30:49.198] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1416,1558) in background
+[17:30:49.259] INFO  [wave10_RevGen3_06_Halai] [TARGET] reply static=(1404,1524,0) gfx=0x0CD3 gen=4
+[17:30:49.259] INFO  [wave10_RevGen3_06_Halai] [target] static 0x0CD3 (1404,1524,0)
+[17:30:49.273] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: There is nothing here to chop.
+[17:30:49.768] INFO  [wave10_RevGen3_06_Halai] [ACTION] use_object start
+[17:30:49.768] INFO  [wave10_RevGen3_06_Halai] [ACTION] use_object serial=0x40015F7B
+[17:30:49.768] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: What do you want to use this on?
+[17:30:49.769] INFO  [wave10_RevGen3_06_Halai] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=5
+[17:30:49.769] LOG   [wave10_RevGen3_06_Halai] event target_requested: id=0x000002CE type=0 subtype=1 gen=5
+[17:30:49.769] INFO  [wave10_RevGen3_06_Halai] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[17:30:49.769] LOG   [wave10_RevGen3_06_Halai] event action_result: use_object success took=1ms server armed a target cursor
+[17:30:50.385] WARN  [wave10_RevGen3_06_Halai] [bot] no path to (1416,1558) avoiding 0 block(s); stopping (search 1165210.7us)
+[17:30:50.385] WARN  [wave10_RevGen3_06_Halai] [bot] start (1405,1525,0) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 112 item(s), 0 mobile(s))
+[17:30:50.445] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1405,1525,0); target (1416,1558); stopped short (off by 44 tile(s))
+[17:30:50.446] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1405,1525) target=(1416,1558) arrived=0 off=44
+[17:30:50.569] INFO  [wave10_RevGen3_06_Halai] [TARGET] reply static=(1404,1527,0) gfx=0x0CD3 gen=5
+[17:30:50.569] INFO  [wave10_RevGen3_06_Halai] [target] static 0x0CD3 (1404,1527,0)
+[17:30:50.583] INFO  [wave10_RevGen3_06_Halai] [0x20] player @(1405,1525,0) facing=5
+[17:30:50.583] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: There is nothing here to chop.
+[17:30:51.020] INFO  [wave10_RevGen3_06_Halai] [ACTION] use_object start
+[17:30:51.020] INFO  [wave10_RevGen3_06_Halai] [ACTION] use_object serial=0x40015F7B
+[17:30:51.020] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: What do you want to use this on?
+[17:30:51.020] INFO  [wave10_RevGen3_06_Halai] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=6
+[17:30:51.021] LOG   [wave10_RevGen3_06_Halai] event target_requested: id=0x000002CE type=0 subtype=1 gen=6
+[17:30:51.021] INFO  [wave10_RevGen3_06_Halai] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[17:30:51.021] LOG   [wave10_RevGen3_06_Halai] event action_result: use_object success took=1ms server armed a target cursor
+[17:30:51.699] INFO  [wave10_RevGen3_06_Halai] [action] goto (1416,1558) from (1405,1525,0)
+[17:30:51.699] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1416,1558) from=(1405,1525)
+[17:30:51.699] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1405,1525,0) to (1416,1558)
+[17:30:51.699] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1416,1558) in background
+[17:30:51.823] INFO  [wave10_RevGen3_06_Halai] [TARGET] reply static=(1404,1527,0) gfx=0x0CD3 gen=6
+[17:30:51.823] INFO  [wave10_RevGen3_06_Halai] [target] static 0x0CD3 (1404,1527,0)
+[17:30:51.837] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: There is nothing here to chop.
+[17:30:52.882] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:30:53.127] WARN  [wave10_RevGen3_06_Halai] [bot] no path to (1416,1558) avoiding 0 block(s); stopping (search 1398086.7us)
+[17:30:53.127] WARN  [wave10_RevGen3_06_Halai] [bot] start (1405,1525,0) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 112 item(s), 0 mobile(s))
+[17:30:53.188] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1405,1525,0); target (1416,1558); stopped short (off by 44 tile(s))
+[17:30:53.189] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1405,1525) target=(1416,1558) arrived=0 off=44
+[17:30:53.189] INFO  [wave10_RevGen3_06_Halai] [action] goto (1404,1522) from (1405,1525,0)
+[17:30:53.189] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1404,1522) from=(1405,1525)
+[17:30:53.189] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1405,1525,0) to (1404,1522)
+[17:30:53.189] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1404,1522) in background
+[17:30:53.249] INFO  [wave10_RevGen3_06_Halai] [bot] replan to (1404,1522): 3 steps in 116.0us
+[17:30:54.406] INFO  [wave10_RevGen3_06_Halai] [ACTION] use_object start
+[17:30:54.406] INFO  [wave10_RevGen3_06_Halai] [ACTION] use_object serial=0x40015F7B
+[17:30:54.421] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: What do you want to use this on?
+[17:30:54.421] INFO  [wave10_RevGen3_06_Halai] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=7
+[17:30:54.422] LOG   [wave10_RevGen3_06_Halai] event target_requested: id=0x000002CE type=0 subtype=1 gen=7
+[17:30:54.422] INFO  [wave10_RevGen3_06_Halai] [ACTION_RESULT] use_object success (16ms) server armed a target cursor
+[17:30:54.422] LOG   [wave10_RevGen3_06_Halai] event action_result: use_object success took=16ms server armed a target cursor
+[17:30:54.621] INFO  [wave10_RevGen3_06_Halai] [bot] arrived at (1404,1522,0)
+[17:30:54.623] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1404,1522,0); target (1404,1522); ARRIVED (off by 0 tile(s))
+[17:30:54.623] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1404,1522) target=(1404,1522) arrived=1 off=0
+[17:30:54.623] INFO  [wave10_RevGen3_06_Halai] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:30:54.623] INFO  [wave10_RevGen3_06_Halai] [action] goto (1416,1592) from (1404,1522,0)
+[17:30:54.623] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1416,1592) from=(1404,1522)
+[17:30:54.623] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1404,1522,0) to (1416,1592)
+[17:30:54.623] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1416,1592) in background
+[17:30:54.684] INFO  [wave10_RevGen3_06_Halai] [bot] replan to (1416,1592): 101 steps in 37007.7us
+[17:30:55.225] INFO  [wave10_RevGen3_06_Halai] [TARGET] reply static=(1404,1521,1) gfx=0x0CE0 gen=7
+[17:30:55.225] INFO  [wave10_RevGen3_06_Halai] [target] static 0x0CE0 (1404,1521,1)
+[17:30:55.240] WARN  [wave10_RevGen3_06_Halai] [bot] 0x20 resync; aborting path
+[17:30:55.240] INFO  [wave10_RevGen3_06_Halai] [0x20] player @(1405,1522,0) facing=7
+[17:30:55.240] INFO  [wave10_RevGen3_06_Halai] [0x21] stale reject seq=2 (block already handled); pose resynced
+[17:30:55.241] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1405,1522,0); target (1416,1592); stopped short (off by 81 tile(s))
+[17:30:55.241] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1405,1522) target=(1416,1592) arrived=0 off=81
+[17:30:56.468] INFO  [wave10_RevGen3_06_Halai] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:30:56.468] INFO  [wave10_RevGen3_06_Halai] [action] goto (1416,1592) from (1405,1522,0)
+[17:30:56.468] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1416,1592) from=(1405,1522)
+[17:30:56.468] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1405,1522,0) to (1416,1592)
+[17:30:56.468] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1416,1592) in background
+[17:30:56.529] INFO  [wave10_RevGen3_06_Halai] [bot] replan to (1416,1592): 100 steps in 34296.6us
+[17:30:57.745] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: You are now under the protection of the city guards
+[17:30:57.932] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:31:02.948] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:31:03.317] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: That is too far away.
+[17:31:07.965] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:31:12.979] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:31:18.007] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:31:19.332] INFO  [wave10_RevGen3_06_Halai] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=15 in 184.3us
+[17:31:23.017] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:31:24.280] WARN  [wave10_RevGen3_06_Halai] [0x21] move REJECTED seq=119; server says (1417,1593,30) facing=7
+[17:31:24.280] INFO  [wave10_RevGen3_06_Halai] [bot] dynamic item blocks (1416,1592,30); rerouting
+[17:31:24.280] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1416,1592) in background
+[17:31:26.373] WARN  [wave10_RevGen3_06_Halai] [bot] no path to (1416,1592) avoiding 0 block(s); stopping (search 2087114.2us)
+[17:31:26.373] WARN  [wave10_RevGen3_06_Halai] [bot] start (1417,1593,30) exits: open=5 terrain=0 mobile=0 dynamic=3 door=0 blacklist=0 (overlay saw 283 item(s), 5 mobile(s))
+[17:31:26.433] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1417,1593,30); target (1416,1592); stopped short (off by 2 tile(s))
+[17:31:26.434] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1417,1593) target=(1416,1592) arrived=0 off=2
+[17:31:26.434] INFO  [wave10_RevGen3_06_Halai] [action] goto (1404,1522) from (1417,1593,30)
+[17:31:26.434] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1404,1522) from=(1417,1593)
+[17:31:26.434] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1417,1593,30) to (1404,1522)
+[17:31:26.434] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1404,1522) in background
+[17:31:26.494] INFO  [wave10_RevGen3_06_Halai] [bot] replan to (1404,1522): 101 steps in 26514.5us
+[17:31:28.042] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:31:33.087] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:31:38.109] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:31:43.150] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:31:48.187] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:31:52.747] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: You have left the protection of the city guards
+[17:31:53.240] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:31:53.488] INFO  [wave10_RevGen3_06_Halai] [ACTION] use_object start
+[17:31:53.488] INFO  [wave10_RevGen3_06_Halai] [ACTION] use_object serial=0x40015F7B
+[17:31:53.500] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: What do you want to use this on?
+[17:31:53.500] INFO  [wave10_RevGen3_06_Halai] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=8
+[17:31:53.501] LOG   [wave10_RevGen3_06_Halai] event target_requested: id=0x000002CE type=0 subtype=1 gen=8
+[17:31:53.501] INFO  [wave10_RevGen3_06_Halai] [ACTION_RESULT] use_object success (14ms) server armed a target cursor
+[17:31:53.501] LOG   [wave10_RevGen3_06_Halai] event action_result: use_object success took=14ms server armed a target cursor
+[17:31:54.180] INFO  [wave10_RevGen3_06_Halai] [bot] arrived at (1404,1522,0)
+[17:31:54.181] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1404,1522,0); target (1404,1522); ARRIVED (off by 0 tile(s))
+[17:31:54.182] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1404,1522) target=(1404,1522) arrived=1 off=0
+[17:31:54.182] INFO  [wave10_RevGen3_06_Halai] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:31:54.182] INFO  [wave10_RevGen3_06_Halai] [action] goto (1416,1624) from (1404,1522,0)
+[17:31:54.182] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1416,1624) from=(1404,1522)
+[17:31:54.182] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1404,1522,0) to (1416,1624)
+[17:31:54.182] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1416,1624) in background
+[17:31:54.240] INFO  [wave10_RevGen3_06_Halai] [bot] replan to (1416,1624): 121 steps in 35963.8us
+[17:31:54.301] INFO  [wave10_RevGen3_06_Halai] [TARGET] reply static=(1404,1521,1) gfx=0x0CE0 gen=8
+[17:31:54.301] INFO  [wave10_RevGen3_06_Halai] [target] static 0x0CE0 (1404,1521,1)
+[17:31:54.316] WARN  [wave10_RevGen3_06_Halai] [bot] 0x20 resync; aborting path
+[17:31:54.317] INFO  [wave10_RevGen3_06_Halai] [0x20] player @(1404,1522,0) facing=0
+[17:31:54.318] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1404,1522,0); target (1416,1624); stopped short (off by 114 tile(s))
+[17:31:54.318] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1404,1522) target=(1416,1624) arrived=0 off=114
+[17:31:55.564] INFO  [wave10_RevGen3_06_Halai] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:31:55.564] INFO  [wave10_RevGen3_06_Halai] [action] goto (1416,1624) from (1404,1522,0)
+[17:31:55.565] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1416,1624) from=(1404,1522)
+[17:31:55.565] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1404,1522,0) to (1416,1624)
+[17:31:55.565] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1416,1624) in background
+[17:31:55.626] INFO  [wave10_RevGen3_06_Halai] [bot] replan to (1416,1624): 121 steps in 40962.3us
+[17:31:56.953] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: You are now under the protection of the city guards
+[17:31:58.246] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:32:03.250] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:32:03.999] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: You hack at the tree for a while, but fail to produce any useable wood.
+[17:32:08.253] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:32:13.277] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:32:18.285] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:32:23.304] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:32:25.661] INFO  [wave10_RevGen3_06_Halai] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=8 in 247.6us
+[17:32:28.274] INFO  [wave10_RevGen3_06_Halai] [bot] arrived at (1416,1624,22)
+[17:32:28.275] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1416,1624,22); target (1416,1624); ARRIVED (off by 0 tile(s))
+[17:32:28.276] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1416,1624) target=(1416,1624) arrived=1 off=0
+[17:32:28.276] INFO  [wave10_RevGen3_06_Halai] [action] goto (1416,1656) from (1416,1624,22)
+[17:32:28.276] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1416,1656) from=(1416,1624)
+[17:32:28.276] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1416,1624,22) to (1416,1656)
+[17:32:28.276] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1416,1656) in background
+[17:32:28.334] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:32:28.334] INFO  [wave10_RevGen3_06_Halai] [bot] replan to (1416,1656): 32 steps in 810.1us
+[17:32:33.377] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:32:37.393] INFO  [wave10_RevGen3_06_Halai] [bot] arrived at (1416,1656,10)
+[17:32:37.395] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1416,1656,10); target (1416,1656); ARRIVED (off by 0 tile(s))
+[17:32:37.395] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1416,1656) target=(1416,1656) arrived=1 off=0
+[17:32:37.395] INFO  [wave10_RevGen3_06_Halai] [action] goto (1425,1690) from (1416,1656,10)
+[17:32:37.395] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1425,1690) from=(1416,1656)
+[17:32:37.396] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1416,1656,10) to (1425,1690,z0)
+[17:32:37.396] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1425,1690) in background
+[17:32:37.426] INFO  [wave10_RevGen3_06_Halai] [bot] replan to (1425,1690): 68 steps in 18199.7us
+[17:32:38.396] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:32:43.400] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:32:46.489] INFO  [wave10_RevGen3_06_Halai] [travel] Britain banker ARRIVED at (1422,1685,0)
+[17:32:46.490] LOG   [wave10_RevGen3_06_Halai] event travel_done: label='Britain banker' ok=1 at=(1422,1685) legs=5 plans=2 why=''
+[17:32:46.551] INFO  [wave10_RevGen3_06_Halai] [action] scanning nearby mobiles for names
+[17:32:46.552] INFO  [wave10_RevGen3_06_Halai] [action] requested 8 paperdoll(s) for trade titles
+[17:32:46.567] INFO  [wave10_RevGen3_06_Halai] [mobiles] nearby (15):
+[17:32:46.567] INFO  [wave10_RevGen3_06_Halai]   Hyman 0x00001033
+[17:32:46.567] INFO  [wave10_RevGen3_06_Halai]   Elvar 0x00016948
+[17:32:46.568] INFO  [wave10_RevGen3_06_Halai]   Lyndon 0x0000124E
+[17:32:46.568] INFO  [wave10_RevGen3_06_Halai]   Zarthal 0x000163A2
+[17:32:46.568] INFO  [wave10_RevGen3_06_Halai]   Selene 0x00010BC9
+[17:32:46.568] INFO  [wave10_RevGen3_06_Halai]   Elara 0x00011030
+[17:32:46.568] INFO  [wave10_RevGen3_06_Halai]   Kharain 0x00016AE8
+[17:32:46.568] INFO  [wave10_RevGen3_06_Halai]   Odessa 0x000194DE
+[17:32:46.569] INFO  [wave10_RevGen3_06_Halai]   Serena 0x000193F7
+[17:32:46.569] INFO  [wave10_RevGen3_06_Halai]   Leander 0x0001921F
+[17:32:46.569] INFO  [wave10_RevGen3_06_Halai]   Falen 0x0001478E
+[17:32:46.569] INFO  [wave10_RevGen3_06_Halai]   Aurelius 0x00019331
+[17:32:46.569] INFO  [wave10_RevGen3_06_Halai]   Rhaler 0x0001569C
+[17:32:46.569] INFO  [wave10_RevGen3_06_Halai]   Ghalor 0x00014D61
+[17:32:46.569] INFO  [wave10_RevGen3_06_Halai]   Titus 0x000180D0
+[17:32:46.570] INFO  [wave10_RevGen3_06_Halai] [0x20] player @(1422,1685,0) facing=3
+[17:32:46.570] INFO  [wave10_RevGen3_06_Halai] [0x88] paperdoll 0x00001033: "Hyman, the banker"
+[17:32:46.570] INFO  [wave10_RevGen3_06_Halai] [world] Hyman, the banker is a banker at (1425,1687)
+[17:32:46.570] INFO  [wave10_RevGen3_06_Halai] [0x88] paperdoll 0x00016948: "Elvar, Apprentice Miner"
+[17:32:46.570] INFO  [wave10_RevGen3_06_Halai] [0x20] player @(1422,1685,0) facing=2
+[17:32:46.570] INFO  [wave10_RevGen3_06_Halai] [0x88] paperdoll 0x000163A2: "Zarthal, Apprentice Miner"
+[17:32:46.570] INFO  [wave10_RevGen3_06_Halai] [0x88] paperdoll 0x00016AE8: "Kharain, Apprentice Miner"
+[17:32:46.570] INFO  [wave10_RevGen3_06_Halai] [0x88] paperdoll 0x00019331: "Aurelius, Apprentice Stoic"
+[17:32:46.571] INFO  [wave10_RevGen3_06_Halai] [0x20] player @(1422,1685,0) facing=3
+[17:32:46.571] INFO  [wave10_RevGen3_06_Halai] [0x88] paperdoll 0x00010BC9: "Selene, Apprentice Mage"
+[17:32:46.571] INFO  [wave10_RevGen3_06_Halai] [0x88] paperdoll 0x0000124E: "Lyndon, the minter"
+[17:32:46.571] INFO  [wave10_RevGen3_06_Halai] [world] Lyndon, the minter is a banker at (1426,1690)
+[17:32:46.571] INFO  [wave10_RevGen3_06_Halai] [0x88] paperdoll 0x000194DE: "Odessa, Apprentice Miner"
+[17:32:48.460] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:32:48.660] INFO  [wave10_RevGen3_06_Halai] [travel] mobile 0x00001033 -> (1425,1687) r=1 from (1422,1685)
+[17:32:48.661] LOG   [wave10_RevGen3_06_Halai] event travel_start: label='mobile 0x00001033' target=(1425,1687) radius=1 from=(1422,1685)
+[17:32:48.661] INFO  [wave10_RevGen3_06_Halai] [travel] mode walk             usable   <- chosen
+[17:32:48.661] INFO  [wave10_RevGen3_06_Halai] [travel] mode moongate         usable
+[17:32:48.661] INFO  [wave10_RevGen3_06_Halai] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:48.662] INFO  [wave10_RevGen3_06_Halai] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:48.662] LOG   [wave10_RevGen3_06_Halai] event travel_mode: walk
+[17:32:48.662] INFO  [wave10_RevGen3_06_Halai] [travel] plan mobile 0x00001033: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:32:48.722] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1422,1685,0); target (1425,1690); stopped short (off by 8 tile(s))
+[17:32:48.722] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1422,1685) target=(1425,1690) arrived=0 off=8
+[17:32:48.722] INFO  [wave10_RevGen3_06_Halai] [action] goto (1425,1687) from (1422,1685,0)
+[17:32:48.723] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1425,1687) from=(1422,1685)
+[17:32:48.723] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1422,1685,0) to (1425,1687,z0)
+[17:32:48.723] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1425,1687) in background
+[17:32:50.892] WARN  [wave10_RevGen3_06_Halai] [bot] no path to (1425,1687) avoiding 0 block(s); stopping (search 2143869.6us)
+[17:32:50.892] WARN  [wave10_RevGen3_06_Halai] [bot] start (1422,1685,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 388 item(s), 15 mobile(s))
+[17:32:50.953] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1422,1685,0); target (1425,1687); stopped short (off by 5 tile(s))
+[17:32:50.953] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1422,1685) target=(1425,1687) arrived=0 off=5
+[17:32:52.192] INFO  [wave10_RevGen3_06_Halai] [travel] mode walk             usable   <- chosen
+[17:32:52.192] INFO  [wave10_RevGen3_06_Halai] [travel] mode moongate         usable
+[17:32:52.192] INFO  [wave10_RevGen3_06_Halai] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:52.192] INFO  [wave10_RevGen3_06_Halai] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:52.192] LOG   [wave10_RevGen3_06_Halai] event travel_mode: walk
+[17:32:52.192] INFO  [wave10_RevGen3_06_Halai] [travel] plan mobile 0x00001033: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:32:52.207] INFO  [wave10_RevGen3_06_Halai] [chat uni  ] Titus: bank
+[17:32:52.207] INFO  [wave10_RevGen3_06_Halai] [chat ascii] Lyndon: Good morrow!  How can I help thee?
+[17:32:52.207] INFO  [wave10_RevGen3_06_Halai] [chat ascii] Lyndon: Yes, banking is my unfortunate lot in life.
+[17:32:53.515] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:32:53.748] INFO  [wave10_RevGen3_06_Halai] [action] goto (1425,1687) from (1422,1685,0)
+[17:32:53.748] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1425,1687) from=(1422,1685)
+[17:32:53.748] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1422,1685,0) to (1425,1687,z0)
+[17:32:53.748] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1425,1687) in background
+[17:32:56.040] WARN  [wave10_RevGen3_06_Halai] [bot] no path to (1425,1687) avoiding 0 block(s); stopping (search 2245029.2us)
+[17:32:56.040] WARN  [wave10_RevGen3_06_Halai] [bot] start (1422,1685,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 388 item(s), 13 mobile(s))
+[17:32:56.102] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1422,1685,0); target (1425,1687); stopped short (off by 5 tile(s))
+[17:32:56.103] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1422,1685) target=(1425,1687) arrived=0 off=5
+[17:32:57.338] INFO  [wave10_RevGen3_06_Halai] [travel] mode walk             usable   <- chosen
+[17:32:57.338] INFO  [wave10_RevGen3_06_Halai] [travel] mode moongate         usable
+[17:32:57.338] INFO  [wave10_RevGen3_06_Halai] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:57.338] INFO  [wave10_RevGen3_06_Halai] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:57.339] LOG   [wave10_RevGen3_06_Halai] event travel_mode: walk
+[17:32:57.339] INFO  [wave10_RevGen3_06_Halai] [travel] plan mobile 0x00001033: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:32:58.538] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:33:00.361] INFO  [wave10_RevGen3_06_Halai] [action] goto (1425,1687) from (1422,1685,0)
+[17:33:00.361] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1425,1687) from=(1422,1685)
+[17:33:00.361] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1422,1685,0) to (1425,1687,z0)
+[17:33:00.362] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1425,1687) in background
+[17:33:00.421] INFO  [wave10_RevGen3_06_Halai] [bot] replan to (1425,1687): 42 steps in 16850.3us
+[17:33:03.551] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:33:05.540] INFO  [wave10_RevGen3_06_Halai] [bot] door ahead at (1437,1693,z0); OpenDoor before step
+[17:33:05.541] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Opening door...
+[17:33:06.900] INFO  [wave10_RevGen3_06_Halai] [bot] door ahead at (1439,1692,z0); OpenDoor before step
+[17:33:06.901] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Opening door...
+[17:33:08.578] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:33:10.414] INFO  [wave10_RevGen3_06_Halai] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=8 in 144.4us
+[17:33:12.633] INFO  [wave10_RevGen3_06_Halai] [travel] mobile 0x00001033 ARRIVED at (1426,1688,0)
+[17:33:12.633] LOG   [wave10_RevGen3_06_Halai] event travel_done: label='mobile 0x00001033' ok=1 at=(1426,1688) legs=1 plans=3 why=''
+[17:33:12.695] INFO  [wave10_RevGen3_06_Halai] [travel] mobile 0x00001033 -> (1424,1687) r=1 from (1426,1688)
+[17:33:12.696] LOG   [wave10_RevGen3_06_Halai] event travel_start: label='mobile 0x00001033' target=(1424,1687) radius=1 from=(1426,1688)
+[17:33:12.696] INFO  [wave10_RevGen3_06_Halai] [travel] mode walk             usable   <- chosen
+[17:33:12.696] INFO  [wave10_RevGen3_06_Halai] [travel] mode moongate         usable
+[17:33:12.696] INFO  [wave10_RevGen3_06_Halai] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:12.696] INFO  [wave10_RevGen3_06_Halai] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:12.696] LOG   [wave10_RevGen3_06_Halai] event travel_mode: walk
+[17:33:12.697] INFO  [wave10_RevGen3_06_Halai] [travel] plan mobile 0x00001033: ok legs=1 ~2 tiles transit=0 nodes=0
+[17:33:12.757] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1426,1688,0); target (1425,1687); stopped short (off by 2 tile(s))
+[17:33:12.757] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1426,1688) target=(1425,1687) arrived=0 off=2
+[17:33:12.757] INFO  [wave10_RevGen3_06_Halai] [action] goto (1424,1687) from (1426,1688,0)
+[17:33:12.757] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1424,1687) from=(1426,1688)
+[17:33:12.757] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1426,1688,0) to (1424,1687,z0)
+[17:33:12.758] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1424,1687) in background
+[17:33:12.849] INFO  [wave10_RevGen3_06_Halai] [chat ascii] Lyndon: What's thee wantin'?
+[17:33:12.849] INFO  [wave10_RevGen3_06_Halai] [chat ascii] Lyndon: Aye?
+[17:33:12.850] INFO  [wave10_RevGen3_06_Halai] [chat ascii] Lyndon: I'm listenin'.
+[17:33:13.618] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:33:14.758] WARN  [wave10_RevGen3_06_Halai] [bot] no path to (1424,1687) avoiding 0 block(s); stopping (search 1939921.3us)
+[17:33:14.758] WARN  [wave10_RevGen3_06_Halai] [bot] start (1426,1688,0) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 422 item(s), 11 mobile(s))
+[17:33:14.820] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1426,1688,0); target (1424,1687); stopped short (off by 3 tile(s))
+[17:33:14.820] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1426,1688) target=(1424,1687) arrived=0 off=3
+[17:33:16.039] INFO  [wave10_RevGen3_06_Halai] [travel] mode walk             usable   <- chosen
+[17:33:16.039] INFO  [wave10_RevGen3_06_Halai] [travel] mode moongate         usable
+[17:33:16.039] INFO  [wave10_RevGen3_06_Halai] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:16.039] INFO  [wave10_RevGen3_06_Halai] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:16.040] LOG   [wave10_RevGen3_06_Halai] event travel_mode: walk
+[17:33:16.040] INFO  [wave10_RevGen3_06_Halai] [travel] plan mobile 0x00001033: ok legs=1 ~2 tiles transit=0 nodes=0
+[17:33:17.601] INFO  [wave10_RevGen3_06_Halai] [action] goto (1424,1687) from (1426,1688,0)
+[17:33:17.601] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1424,1687) from=(1426,1688)
+[17:33:17.601] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1426,1688,0) to (1424,1687,z0)
+[17:33:17.601] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1424,1687) in background
+[17:33:18.621] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:33:19.455] WARN  [wave10_RevGen3_06_Halai] [bot] no path to (1424,1687) avoiding 0 block(s); stopping (search 1805625.5us)
+[17:33:19.456] WARN  [wave10_RevGen3_06_Halai] [bot] start (1426,1688,0) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 422 item(s), 11 mobile(s))
+[17:33:19.457] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1426,1688,0); target (1424,1687); stopped short (off by 3 tile(s))
+[17:33:19.457] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1426,1688) target=(1424,1687) arrived=0 off=3
+[17:33:20.661] INFO  [wave10_RevGen3_06_Halai] [travel] mode walk             usable   <- chosen
+[17:33:20.662] INFO  [wave10_RevGen3_06_Halai] [travel] mode moongate         usable
+[17:33:20.662] INFO  [wave10_RevGen3_06_Halai] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:20.662] INFO  [wave10_RevGen3_06_Halai] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:20.662] LOG   [wave10_RevGen3_06_Halai] event travel_mode: walk
+[17:33:20.662] INFO  [wave10_RevGen3_06_Halai] [travel] plan mobile 0x00001033: ok legs=1 ~2 tiles transit=0 nodes=0
+[17:33:23.633] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:33:23.679] INFO  [wave10_RevGen3_06_Halai] [action] goto (1424,1687) from (1426,1688,0)
+[17:33:23.679] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1424,1687) from=(1426,1688)
+[17:33:23.679] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1426,1688,0) to (1424,1687,z0)
+[17:33:23.679] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1424,1687) in background
+[17:33:26.050] WARN  [wave10_RevGen3_06_Halai] [bot] no path to (1424,1687) avoiding 0 block(s); stopping (search 2318438.4us)
+[17:33:26.051] WARN  [wave10_RevGen3_06_Halai] [bot] start (1426,1688,0) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 422 item(s), 11 mobile(s))
+[17:33:26.052] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1426,1688,0); target (1424,1687); stopped short (off by 3 tile(s))
+[17:33:26.052] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1426,1688) target=(1424,1687) arrived=0 off=3
+[17:33:27.292] INFO  [wave10_RevGen3_06_Halai] [travel] mode walk             usable   <- chosen
+[17:33:27.292] INFO  [wave10_RevGen3_06_Halai] [travel] mode moongate         usable
+[17:33:27.293] INFO  [wave10_RevGen3_06_Halai] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:27.293] INFO  [wave10_RevGen3_06_Halai] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:27.293] LOG   [wave10_RevGen3_06_Halai] event travel_mode: walk
+[17:33:27.293] INFO  [wave10_RevGen3_06_Halai] [travel] plan mobile 0x00001033: ok legs=1 ~2 tiles transit=0 nodes=0
+[17:33:28.649] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:33:31.814] INFO  [wave10_RevGen3_06_Halai] [action] goto (1424,1687) from (1426,1688,0)
+[17:33:31.814] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1424,1687) from=(1426,1688)
+[17:33:31.815] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1426,1688,0) to (1424,1687,z0)
+[17:33:31.815] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1424,1687) in background
+[17:33:33.662] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:33:33.924] WARN  [wave10_RevGen3_06_Halai] [bot] no path to (1424,1687) avoiding 0 block(s); stopping (search 2057347.3us)
+[17:33:33.924] WARN  [wave10_RevGen3_06_Halai] [bot] start (1426,1688,0) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 422 item(s), 9 mobile(s))
+[17:33:33.940] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1426,1688,0); target (1424,1687); stopped short (off by 3 tile(s))
+[17:33:33.940] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1426,1688) target=(1424,1687) arrived=0 off=3
+[17:33:33.940] INFO  [wave10_RevGen3_06_Halai] [travel] mobile 0x00001033 ARRIVED at (1426,1688,0) -- arrived nearby; the destination tile was not free
+[17:33:33.941] LOG   [wave10_RevGen3_06_Halai] event travel_done: label='mobile 0x00001033' ok=1 at=(1426,1688) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:33:34.002] INFO  [wave10_RevGen3_06_Halai] [travel] mobile 0x00001033 -> (1424,1687) r=1 from (1426,1688)
+[17:33:34.002] LOG   [wave10_RevGen3_06_Halai] event travel_start: label='mobile 0x00001033' target=(1424,1687) radius=1 from=(1426,1688)
+[17:33:34.002] INFO  [wave10_RevGen3_06_Halai] [travel] mode walk             usable   <- chosen
+[17:33:34.003] INFO  [wave10_RevGen3_06_Halai] [travel] mode moongate         usable
+[17:33:34.003] INFO  [wave10_RevGen3_06_Halai] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:34.003] INFO  [wave10_RevGen3_06_Halai] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:34.003] LOG   [wave10_RevGen3_06_Halai] event travel_mode: walk
+[17:33:34.003] INFO  [wave10_RevGen3_06_Halai] [travel] plan mobile 0x00001033: ok legs=1 ~2 tiles transit=0 nodes=0
+[17:33:34.068] INFO  [wave10_RevGen3_06_Halai] [action] goto (1424,1687) from (1426,1688,0)
+[17:33:34.068] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1424,1687) from=(1426,1688)
+[17:33:34.068] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1426,1688,0) to (1424,1687,z0)
+[17:33:34.068] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1424,1687) in background
+[17:33:34.400] INFO  [wave10_RevGen3_06_Halai] [chat ascii] Hyman: Hmm?
+[17:33:36.183] WARN  [wave10_RevGen3_06_Halai] [bot] no path to (1424,1687) avoiding 0 block(s); stopping (search 2067575.0us)
+[17:33:36.183] WARN  [wave10_RevGen3_06_Halai] [bot] start (1426,1688,0) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 422 item(s), 6 mobile(s))
+[17:33:36.246] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1426,1688,0); target (1424,1687); stopped short (off by 3 tile(s))
+[17:33:36.246] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1426,1688) target=(1424,1687) arrived=0 off=3
+[17:33:37.473] INFO  [wave10_RevGen3_06_Halai] [travel] mode walk             usable   <- chosen
+[17:33:37.473] INFO  [wave10_RevGen3_06_Halai] [travel] mode moongate         usable
+[17:33:37.473] INFO  [wave10_RevGen3_06_Halai] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:37.473] INFO  [wave10_RevGen3_06_Halai] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:37.473] LOG   [wave10_RevGen3_06_Halai] event travel_mode: walk
+[17:33:37.474] INFO  [wave10_RevGen3_06_Halai] [travel] plan mobile 0x00001033: ok legs=1 ~2 tiles transit=0 nodes=0
+[17:33:38.707] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:33:39.017] INFO  [wave10_RevGen3_06_Halai] [action] goto (1424,1687) from (1426,1688,0)
+[17:33:39.017] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1424,1687) from=(1426,1688)
+[17:33:39.017] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1426,1688,0) to (1424,1687,z0)
+[17:33:39.017] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1424,1687) in background
+[17:33:40.383] WARN  [wave10_RevGen3_06_Halai] [bot] no path to (1424,1687) avoiding 0 block(s); stopping (search 1334538.5us)
+[17:33:40.383] WARN  [wave10_RevGen3_06_Halai] [bot] start (1426,1688,0) exits: open=6 terrain=0 mobile=2 dynamic=0 door=0 blacklist=0 (overlay saw 422 item(s), 7 mobile(s))
+[17:33:40.399] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1426,1688,0); target (1424,1687); stopped short (off by 3 tile(s))
+[17:33:40.399] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1426,1688) target=(1424,1687) arrived=0 off=3
+[17:33:41.412] INFO  [wave10_RevGen3_06_Halai] [travel] mobile 0x00001033 ARRIVED at (1426,1688,0)
+[17:33:41.412] LOG   [wave10_RevGen3_06_Halai] event travel_done: label='mobile 0x00001033' ok=1 at=(1426,1688) legs=0 plans=0 why=''
+[17:33:41.473] INFO  [wave10_RevGen3_06_Halai] [travel] proven_stand -> (1408,1536) r=4 from (1426,1688)
+[17:33:41.473] LOG   [wave10_RevGen3_06_Halai] event travel_start: label='proven_stand' target=(1408,1536) radius=4 from=(1426,1688)
+[17:33:41.473] INFO  [wave10_RevGen3_06_Halai] [travel] mode moongate         usable   <- chosen
+[17:33:41.473] INFO  [wave10_RevGen3_06_Halai] [travel] mode walk             usable
+[17:33:41.473] INFO  [wave10_RevGen3_06_Halai] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:41.473] INFO  [wave10_RevGen3_06_Halai] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:41.474] LOG   [wave10_RevGen3_06_Halai] event travel_mode: moongate
+[17:33:41.474] INFO  [wave10_RevGen3_06_Halai] [travel] plan proven_stand: ok legs=5 ~168 tiles transit=0 nodes=218
+[17:33:41.475] INFO  [wave10_RevGen3_06_Halai] [action] goto (1416,1656) from (1426,1688,0)
+[17:33:41.475] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1416,1656) from=(1426,1688)
+[17:33:41.475] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1426,1688,0) to (1416,1656)
+[17:33:41.475] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1416,1656) in background
+[17:33:41.534] INFO  [wave10_RevGen3_06_Halai] [bot] replan to (1416,1656): 68 steps in 6533.1us
+[17:33:43.748] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:33:45.809] INFO  [wave10_RevGen3_06_Halai] [bot] door ahead at (1437,1693,z0); OpenDoor before step
+[17:33:45.810] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Opening door...
+[17:33:48.784] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:33:53.803] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:33:54.567] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: World save in 10 seconds
+[17:33:58.820] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:34:01.857] INFO  [wave10_RevGen3_06_Halai] [bot] arrived at (1416,1656,10)
+[17:34:01.859] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1416,1656,10); target (1416,1656); ARRIVED (off by 0 tile(s))
+[17:34:01.859] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1416,1656) target=(1416,1656) arrived=1 off=0
+[17:34:01.859] INFO  [wave10_RevGen3_06_Halai] [action] goto (1416,1624) from (1416,1656,10)
+[17:34:01.859] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1416,1624) from=(1416,1656)
+[17:34:01.859] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1416,1656,10) to (1416,1624)
+[17:34:01.859] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1416,1624) in background
+[17:34:01.918] INFO  [wave10_RevGen3_06_Halai] [bot] replan to (1416,1624): 32 steps in 2611.0us
+[17:34:03.874] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:34:04.598] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: World save has been initiated.
+[17:34:08.898] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:34:09.826] WARN  [wave10_RevGen3_06_Halai] [bot] watchdog: oldest move unacked 5s; aborting path
+[17:34:09.888] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1416,1644,19); target (1416,1624); stopped short (off by 20 tile(s))
+[17:34:09.889] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1416,1644) target=(1416,1624) arrived=0 off=20
+[17:34:09.906] WARN  [wave10_RevGen3_06_Halai] [0x22] unsolicited ack seq=12
+[17:34:11.136] INFO  [wave10_RevGen3_06_Halai] [action] goto (1416,1624) from (1416,1644,19)
+[17:34:11.136] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1416,1624) from=(1416,1644)
+[17:34:11.136] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1416,1644,19) to (1416,1624)
+[17:34:11.136] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1416,1624) in background
+[17:34:11.197] INFO  [wave10_RevGen3_06_Halai] [bot] replan to (1416,1624): 20 steps in 729.5us
+[17:34:13.909] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:34:16.364] INFO  [wave10_RevGen3_06_Halai] [bot] arrived at (1416,1624,22)
+[17:34:16.365] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1416,1624,22); target (1416,1624); ARRIVED (off by 0 tile(s))
+[17:34:16.365] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1416,1624) target=(1416,1624) arrived=1 off=0
+[17:34:16.365] INFO  [wave10_RevGen3_06_Halai] [action] goto (1416,1592) from (1416,1624,22)
+[17:34:16.366] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1416,1592) from=(1416,1624)
+[17:34:16.366] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1416,1624,22) to (1416,1592)
+[17:34:16.366] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1416,1592) in background
+[17:34:18.458] WARN  [wave10_RevGen3_06_Halai] [bot] no path to (1416,1592) avoiding 0 block(s); stopping (search 2051993.9us)
+[17:34:18.458] WARN  [wave10_RevGen3_06_Halai] [bot] start (1416,1624,22) exits: open=7 terrain=0 mobile=0 dynamic=1 door=0 blacklist=0 (overlay saw 423 item(s), 2 mobile(s))
+[17:34:18.520] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1416,1624,22); target (1416,1592); stopped short (off by 32 tile(s))
+[17:34:18.521] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1416,1624) target=(1416,1592) arrived=0 off=32
+[17:34:18.953] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:34:19.756] INFO  [wave10_RevGen3_06_Halai] [action] goto (1416,1592) from (1416,1624,22)
+[17:34:19.756] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1416,1592) from=(1416,1624)
+[17:34:19.757] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1416,1624,22) to (1416,1592)
+[17:34:19.757] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1416,1592) in background
+[17:34:22.410] WARN  [wave10_RevGen3_06_Halai] [bot] no path to (1416,1592) avoiding 0 block(s); stopping (search 2629043.2us)
+[17:34:22.410] WARN  [wave10_RevGen3_06_Halai] [bot] start (1416,1624,22) exits: open=7 terrain=0 mobile=0 dynamic=1 door=0 blacklist=0 (overlay saw 423 item(s), 2 mobile(s))
+[17:34:22.471] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1416,1624,22); target (1416,1592); stopped short (off by 32 tile(s))
+[17:34:22.471] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1416,1624) target=(1416,1592) arrived=0 off=32
+[17:34:23.708] INFO  [wave10_RevGen3_06_Halai] [travel] mode moongate         usable   <- chosen
+[17:34:23.709] INFO  [wave10_RevGen3_06_Halai] [travel] mode walk             usable
+[17:34:23.709] INFO  [wave10_RevGen3_06_Halai] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:23.709] INFO  [wave10_RevGen3_06_Halai] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:23.709] LOG   [wave10_RevGen3_06_Halai] event travel_mode: moongate
+[17:34:23.709] INFO  [wave10_RevGen3_06_Halai] [travel] plan proven_stand: ok legs=3 ~112 tiles transit=0 nodes=98
+[17:34:24.016] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:34:25.235] INFO  [wave10_RevGen3_06_Halai] [action] goto (1448,1592) from (1416,1624,22)
+[17:34:25.235] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1448,1592) from=(1416,1624)
+[17:34:25.235] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1416,1624,22) to (1448,1592)
+[17:34:25.236] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1448,1592) in background
+[17:34:25.299] INFO  [wave10_RevGen3_06_Halai] [bot] replan to (1448,1592): 51 steps in 16935.2us
+[17:34:29.041] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:34:34.101] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:34:37.268] INFO  [wave10_RevGen3_06_Halai] [bot] door ahead at (1450,1599,z20); OpenDoor before step
+[17:34:37.269] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Opening door...
+[17:34:39.130] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:34:40.161] INFO  [wave10_RevGen3_06_Halai] [bot] arrived at (1448,1592,20)
+[17:34:40.162] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1448,1592,20); target (1448,1592); ARRIVED (off by 0 tile(s))
+[17:34:40.162] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1448,1592) target=(1448,1592) arrived=1 off=0
+[17:34:40.162] INFO  [wave10_RevGen3_06_Halai] [action] goto (1432,1560) from (1448,1592,20)
+[17:34:40.162] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1432,1560) from=(1448,1592)
+[17:34:40.163] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1448,1592,20) to (1432,1560)
+[17:34:40.163] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1432,1560) in background
+[17:34:40.222] INFO  [wave10_RevGen3_06_Halai] [bot] replan to (1432,1560): 46 steps in 8592.7us
+[17:34:44.174] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:34:45.051] INFO  [wave10_RevGen3_06_Halai] [bot] door ahead at (1443,1583,z20); OpenDoor before step
+[17:34:45.065] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Opening door...
+[17:34:46.550] INFO  [wave10_RevGen3_06_Halai] [bot] door ahead at (1442,1584,z20); OpenDoor before step
+[17:34:46.552] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Opening door...
+[17:34:49.204] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:34:54.208] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:34:55.719] INFO  [wave10_RevGen3_06_Halai] [bot] arrived at (1432,1560,30)
+[17:34:55.721] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1432,1560,30); target (1432,1560); ARRIVED (off by 0 tile(s))
+[17:34:55.721] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1432,1560) target=(1432,1560) arrived=1 off=0
+[17:34:55.721] INFO  [wave10_RevGen3_06_Halai] [action] goto (1408,1536) from (1432,1560,30)
+[17:34:55.721] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1408,1536) from=(1432,1560)
+[17:34:55.721] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1432,1560,30) to (1408,1536)
+[17:34:55.721] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1408,1536) in background
+[17:34:55.722] WARN  [wave10_RevGen3_06_Halai] [bot] goal (1408,1536) is not walkable; skipping A* and stopping
+[17:34:55.782] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1432,1560,30); target (1408,1536); stopped short (off by 48 tile(s))
+[17:34:55.782] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1432,1560) target=(1408,1536) arrived=0 off=48
+[17:34:56.987] INFO  [wave10_RevGen3_06_Halai] [action] goto (1408,1536) from (1432,1560,30)
+[17:34:56.987] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1408,1536) from=(1432,1560)
+[17:34:56.987] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1432,1560,30) to (1408,1536)
+[17:34:56.988] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1408,1536) in background
+[17:34:56.988] WARN  [wave10_RevGen3_06_Halai] [bot] goal (1408,1536) is not walkable; skipping A* and stopping
+[17:34:57.047] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1432,1560,30); target (1408,1536); stopped short (off by 48 tile(s))
+[17:34:57.048] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1432,1560) target=(1408,1536) arrived=0 off=48
+[17:34:58.263] INFO  [wave10_RevGen3_06_Halai] [action] goto (1408,1536) from (1432,1560,30)
+[17:34:58.263] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1408,1536) from=(1432,1560)
+[17:34:58.263] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1432,1560,30) to (1408,1536)
+[17:34:58.263] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1408,1536) in background
+[17:34:58.263] WARN  [wave10_RevGen3_06_Halai] [bot] goal (1408,1536) is not walkable; skipping A* and stopping
+[17:34:58.324] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1432,1560,30); target (1408,1536); stopped short (off by 48 tile(s))
+[17:34:58.324] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1432,1560) target=(1408,1536) arrived=0 off=48
+[17:34:59.248] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:34:59.553] INFO  [wave10_RevGen3_06_Halai] [travel] mode walk             usable   <- chosen
+[17:34:59.553] INFO  [wave10_RevGen3_06_Halai] [travel] mode moongate         usable
+[17:34:59.554] INFO  [wave10_RevGen3_06_Halai] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:59.554] INFO  [wave10_RevGen3_06_Halai] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:59.554] LOG   [wave10_RevGen3_06_Halai] event travel_mode: walk
+[17:34:59.554] INFO  [wave10_RevGen3_06_Halai] [travel] plan proven_stand: ok legs=1 ~24 tiles transit=0 nodes=0
+[17:35:02.590] INFO  [wave10_RevGen3_06_Halai] [action] goto (1408,1536) from (1432,1560,30)
+[17:35:02.590] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1408,1536) from=(1432,1560)
+[17:35:02.590] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1432,1560,30) to (1408,1536)
+[17:35:02.591] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1408,1536) in background
+[17:35:02.591] WARN  [wave10_RevGen3_06_Halai] [bot] goal (1408,1536) is not walkable; skipping A* and stopping
+[17:35:02.652] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1432,1560,30); target (1408,1536); stopped short (off by 48 tile(s))
+[17:35:02.652] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1432,1560) target=(1408,1536) arrived=0 off=48
+[17:35:03.905] INFO  [wave10_RevGen3_06_Halai] [action] goto (1408,1536) from (1432,1560,30)
+[17:35:03.905] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1408,1536) from=(1432,1560)
+[17:35:03.906] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1432,1560,30) to (1408,1536)
+[17:35:03.906] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1408,1536) in background
+[17:35:03.906] WARN  [wave10_RevGen3_06_Halai] [bot] goal (1408,1536) is not walkable; skipping A* and stopping
+[17:35:03.965] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1432,1560,30); target (1408,1536); stopped short (off by 48 tile(s))
+[17:35:03.966] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1432,1560) target=(1408,1536) arrived=0 off=48
+[17:35:04.272] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:35:05.211] INFO  [wave10_RevGen3_06_Halai] [action] goto (1408,1536) from (1432,1560,30)
+[17:35:05.211] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1408,1536) from=(1432,1560)
+[17:35:05.211] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1432,1560,30) to (1408,1536)
+[17:35:05.212] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1408,1536) in background
+[17:35:05.212] WARN  [wave10_RevGen3_06_Halai] [bot] goal (1408,1536) is not walkable; skipping A* and stopping
+[17:35:05.272] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1432,1560,30); target (1408,1536); stopped short (off by 48 tile(s))
+[17:35:05.273] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1432,1560) target=(1408,1536) arrived=0 off=48
+[17:35:06.503] INFO  [wave10_RevGen3_06_Halai] [travel] mode walk             usable   <- chosen
+[17:35:06.503] INFO  [wave10_RevGen3_06_Halai] [travel] mode moongate         usable
+[17:35:06.504] INFO  [wave10_RevGen3_06_Halai] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:06.504] INFO  [wave10_RevGen3_06_Halai] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:06.504] LOG   [wave10_RevGen3_06_Halai] event travel_mode: walk
+[17:35:06.504] INFO  [wave10_RevGen3_06_Halai] [travel] plan proven_stand: ok legs=1 ~24 tiles transit=0 nodes=0
+[17:35:09.042] INFO  [wave10_RevGen3_06_Halai] [chat ascii] Thora: Nice speaking to you Varek
+[17:35:09.274] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:35:11.042] INFO  [wave10_RevGen3_06_Halai] [action] goto (1408,1536) from (1432,1560,30)
+[17:35:11.043] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1408,1536) from=(1432,1560)
+[17:35:11.043] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1432,1560,30) to (1408,1536)
+[17:35:11.043] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1408,1536) in background
+[17:35:11.043] WARN  [wave10_RevGen3_06_Halai] [bot] goal (1408,1536) is not walkable; skipping A* and stopping
+[17:35:11.104] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1432,1560,30); target (1408,1536); stopped short (off by 48 tile(s))
+[17:35:11.104] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1432,1560) target=(1408,1536) arrived=0 off=48
+[17:35:12.336] INFO  [wave10_RevGen3_06_Halai] [action] goto (1408,1536) from (1432,1560,30)
+[17:35:12.336] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1408,1536) from=(1432,1560)
+[17:35:12.336] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1432,1560,30) to (1408,1536)
+[17:35:12.336] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1408,1536) in background
+[17:35:12.336] WARN  [wave10_RevGen3_06_Halai] [bot] goal (1408,1536) is not walkable; skipping A* and stopping
+[17:35:12.397] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1432,1560,30); target (1408,1536); stopped short (off by 48 tile(s))
+[17:35:12.397] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1432,1560) target=(1408,1536) arrived=0 off=48
+[17:35:13.644] INFO  [wave10_RevGen3_06_Halai] [action] goto (1408,1536) from (1432,1560,30)
+[17:35:13.645] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1408,1536) from=(1432,1560)
+[17:35:13.645] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1432,1560,30) to (1408,1536)
+[17:35:13.645] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1408,1536) in background
+[17:35:13.645] WARN  [wave10_RevGen3_06_Halai] [bot] goal (1408,1536) is not walkable; skipping A* and stopping
+[17:35:13.706] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1432,1560,30); target (1408,1536); stopped short (off by 48 tile(s))
+[17:35:13.707] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1432,1560) target=(1408,1536) arrived=0 off=48
+[17:35:13.707] WARN  [wave10_RevGen3_06_Halai] [travel] route exhausted at (1432,1560,30); trying to reach (1416,1544,30) to get somewhere routable (escape 1/3)
+[17:35:13.707] LOG   [wave10_RevGen3_06_Halai] event travel_escape: from=(1432,1560,30) to=(1416,1544) attempt=1
+[17:35:13.707] INFO  [wave10_RevGen3_06_Halai] [action] goto (1416,1544) from (1432,1560,30)
+[17:35:13.707] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1416,1544) from=(1432,1560)
+[17:35:13.707] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1432,1560,30) to (1416,1544,z30)
+[17:35:13.707] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1416,1544) in background
+[17:35:14.323] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:35:15.067] WARN  [wave10_RevGen3_06_Halai] [bot] no path to (1416,1544) avoiding 0 block(s); stopping (search 1354860.9us)
+[17:35:15.067] WARN  [wave10_RevGen3_06_Halai] [bot] start (1432,1560,30) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 486 item(s), 5 mobile(s))
+[17:35:15.068] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1432,1560,30); target (1416,1544); stopped short (off by 32 tile(s))
+[17:35:15.068] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1432,1560) target=(1416,1544) arrived=0 off=32
+[17:35:15.068] INFO  [wave10_RevGen3_06_Halai] [travel] recovery walk fell short at (1432,1560,30) (off 16); attempt 1/3
+[17:35:15.068] LOG   [wave10_RevGen3_06_Halai] event travel_recovery_done: reached=0 at=(1432,1560,30) off=16 attempt=1
+[17:35:15.068] WARN  [wave10_RevGen3_06_Halai] [travel] route exhausted at (1432,1560,30); trying to reach (1432,1544,30) to get somewhere routable (escape 2/3)
+[17:35:15.069] LOG   [wave10_RevGen3_06_Halai] event travel_escape: from=(1432,1560,30) to=(1432,1544) attempt=2
+[17:35:15.069] INFO  [wave10_RevGen3_06_Halai] [action] goto (1432,1544) from (1432,1560,30)
+[17:35:15.069] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1432,1544) from=(1432,1560)
+[17:35:15.069] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1432,1560,30) to (1432,1544,z30)
+[17:35:15.069] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1432,1544) in background
+[17:35:15.111] INFO  [wave10_RevGen3_06_Halai] [bot] replan to (1432,1544): 16 steps in 332.7us
+[17:35:15.587] INFO  [wave10_RevGen3_06_Halai] [chat uni  ] : Rhett train Tactics
+[17:35:15.587] INFO  [wave10_RevGen3_06_Halai] [chat ascii] Rhett: Hello!
+[17:35:15.588] INFO  [wave10_RevGen3_06_Halai] [chat ascii] Rhett: For 77 gold I will train you in all I know of Tactics. For less gold I will teach you less
+[17:35:18.886] INFO  [wave10_RevGen3_06_Halai] [bot] arrived at (1432,1544,30)
+[17:35:18.888] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1432,1544,30); target (1432,1544); ARRIVED (off by 0 tile(s))
+[17:35:18.888] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1432,1544) target=(1432,1544) arrived=1 off=0
+[17:35:18.888] INFO  [wave10_RevGen3_06_Halai] [travel] recovery walk reached its anchor at (1432,1544,30) (off 0); attempt 1/3
+[17:35:18.889] LOG   [wave10_RevGen3_06_Halai] event travel_recovery_done: reached=1 at=(1432,1544,30) off=0 attempt=1
+[17:35:18.950] INFO  [wave10_RevGen3_06_Halai] [travel] mode walk             usable   <- chosen
+[17:35:18.950] INFO  [wave10_RevGen3_06_Halai] [travel] mode moongate         usable
+[17:35:18.950] INFO  [wave10_RevGen3_06_Halai] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:18.950] INFO  [wave10_RevGen3_06_Halai] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:18.951] LOG   [wave10_RevGen3_06_Halai] event travel_mode: walk
+[17:35:18.951] INFO  [wave10_RevGen3_06_Halai] [travel] plan proven_stand: ok legs=1 ~24 tiles transit=0 nodes=0
+[17:35:19.013] INFO  [wave10_RevGen3_06_Halai] [action] goto (1408,1536) from (1432,1544,30)
+[17:35:19.014] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1408,1536) from=(1432,1544)
+[17:35:19.015] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1432,1544,30) to (1408,1536)
+[17:35:19.015] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1408,1536) in background
+[17:35:19.016] WARN  [wave10_RevGen3_06_Halai] [bot] goal (1408,1536) is not walkable; skipping A* and stopping
+[17:35:19.074] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1432,1544,30); target (1408,1536); stopped short (off by 32 tile(s))
+[17:35:19.074] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1432,1544) target=(1408,1536) arrived=0 off=32
+[17:35:19.335] INFO  [wave10_RevGen3_06_Halai] [chat ascii] Rhett: Let me show you something of how this is done
+[17:35:19.335] INFO  [wave10_RevGen3_06_Halai] [chat ascii] Rhett: That is all I can teach.
+[17:35:19.336] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:35:20.283] INFO  [wave10_RevGen3_06_Halai] [action] goto (1408,1536) from (1432,1544,30)
+[17:35:20.283] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1408,1536) from=(1432,1544)
+[17:35:20.283] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1432,1544,30) to (1408,1536)
+[17:35:20.283] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1408,1536) in background
+[17:35:20.283] WARN  [wave10_RevGen3_06_Halai] [bot] goal (1408,1536) is not walkable; skipping A* and stopping
+[17:35:20.345] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1432,1544,30); target (1408,1536); stopped short (off by 32 tile(s))
+[17:35:20.345] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1432,1544) target=(1408,1536) arrived=0 off=32
+[17:35:21.570] INFO  [wave10_RevGen3_06_Halai] [action] goto (1408,1536) from (1432,1544,30)
+[17:35:21.570] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1408,1536) from=(1432,1544)
+[17:35:21.571] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1432,1544,30) to (1408,1536)
+[17:35:21.571] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1408,1536) in background
+[17:35:21.571] WARN  [wave10_RevGen3_06_Halai] [bot] goal (1408,1536) is not walkable; skipping A* and stopping
+[17:35:21.631] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1432,1544,30); target (1408,1536); stopped short (off by 32 tile(s))
+[17:35:21.633] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1432,1544) target=(1408,1536) arrived=0 off=32
+[17:35:22.835] INFO  [wave10_RevGen3_06_Halai] [travel] mode walk             usable   <- chosen
+[17:35:22.836] INFO  [wave10_RevGen3_06_Halai] [travel] mode moongate         usable
+[17:35:22.836] INFO  [wave10_RevGen3_06_Halai] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:22.836] INFO  [wave10_RevGen3_06_Halai] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:22.836] LOG   [wave10_RevGen3_06_Halai] event travel_mode: walk
+[17:35:22.836] INFO  [wave10_RevGen3_06_Halai] [travel] plan proven_stand: ok legs=1 ~24 tiles transit=0 nodes=0
+[17:35:24.359] INFO  [wave10_RevGen3_06_Halai] [action] goto (1408,1536) from (1432,1544,30)
+[17:35:24.362] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1408,1536) from=(1432,1544)
+[17:35:24.362] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1432,1544,30) to (1408,1536)
+[17:35:24.362] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1408,1536) in background
+[17:35:24.363] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:35:24.363] WARN  [wave10_RevGen3_06_Halai] [bot] goal (1408,1536) is not walkable; skipping A* and stopping
+[17:35:24.420] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1432,1544,30); target (1408,1536); stopped short (off by 32 tile(s))
+[17:35:24.424] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1432,1544) target=(1408,1536) arrived=0 off=32
+[17:35:25.629] INFO  [wave10_RevGen3_06_Halai] [action] goto (1408,1536) from (1432,1544,30)
+[17:35:25.630] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1408,1536) from=(1432,1544)
+[17:35:25.630] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1432,1544,30) to (1408,1536)
+[17:35:25.631] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1408,1536) in background
+[17:35:25.631] WARN  [wave10_RevGen3_06_Halai] [bot] goal (1408,1536) is not walkable; skipping A* and stopping
+[17:35:25.691] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1432,1544,30); target (1408,1536); stopped short (off by 32 tile(s))
+[17:35:25.693] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1432,1544) target=(1408,1536) arrived=0 off=32
+[17:35:26.951] INFO  [wave10_RevGen3_06_Halai] [action] goto (1408,1536) from (1432,1544,30)
+[17:35:26.951] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1408,1536) from=(1432,1544)
+[17:35:26.951] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1432,1544,30) to (1408,1536)
+[17:35:26.951] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1408,1536) in background
+[17:35:26.951] WARN  [wave10_RevGen3_06_Halai] [bot] goal (1408,1536) is not walkable; skipping A* and stopping
+[17:35:27.013] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1432,1544,30); target (1408,1536); stopped short (off by 32 tile(s))
+[17:35:27.013] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1432,1544) target=(1408,1536) arrived=0 off=32
+[17:35:28.259] INFO  [wave10_RevGen3_06_Halai] [travel] mode walk             usable   <- chosen
+[17:35:28.260] INFO  [wave10_RevGen3_06_Halai] [travel] mode moongate         usable
+[17:35:28.260] INFO  [wave10_RevGen3_06_Halai] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:28.260] INFO  [wave10_RevGen3_06_Halai] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:28.260] LOG   [wave10_RevGen3_06_Halai] event travel_mode: walk
+[17:35:28.260] INFO  [wave10_RevGen3_06_Halai] [travel] plan proven_stand: ok legs=1 ~24 tiles transit=0 nodes=0
+[17:35:29.415] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:35:31.318] INFO  [wave10_RevGen3_06_Halai] [action] goto (1408,1536) from (1432,1544,30)
+[17:35:31.318] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1408,1536) from=(1432,1544)
+[17:35:31.319] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1432,1544,30) to (1408,1536)
+[17:35:31.319] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1408,1536) in background
+[17:35:31.319] WARN  [wave10_RevGen3_06_Halai] [bot] goal (1408,1536) is not walkable; skipping A* and stopping
+[17:35:31.379] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1432,1544,30); target (1408,1536); stopped short (off by 32 tile(s))
+[17:35:31.380] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1432,1544) target=(1408,1536) arrived=0 off=32
+[17:35:32.617] INFO  [wave10_RevGen3_06_Halai] [action] goto (1408,1536) from (1432,1544,30)
+[17:35:32.620] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1408,1536) from=(1432,1544)
+[17:35:32.621] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1432,1544,30) to (1408,1536)
+[17:35:32.621] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1408,1536) in background
+[17:35:32.621] WARN  [wave10_RevGen3_06_Halai] [bot] goal (1408,1536) is not walkable; skipping A* and stopping
+[17:35:32.679] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1432,1544,30); target (1408,1536); stopped short (off by 32 tile(s))
+[17:35:32.679] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1432,1544) target=(1408,1536) arrived=0 off=32
+[17:35:33.321] INFO  [wave10_RevGen3_06_Halai] [chat ascii] Thora: I'm listenin'.
+[17:35:33.908] INFO  [wave10_RevGen3_06_Halai] [action] goto (1408,1536) from (1432,1544,30)
+[17:35:33.909] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1408,1536) from=(1432,1544)
+[17:35:33.909] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1432,1544,30) to (1408,1536)
+[17:35:33.909] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1408,1536) in background
+[17:35:33.909] WARN  [wave10_RevGen3_06_Halai] [bot] goal (1408,1536) is not walkable; skipping A* and stopping
+[17:35:33.970] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1432,1544,30); target (1408,1536); stopped short (off by 32 tile(s))
+[17:35:33.971] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1432,1544) target=(1408,1536) arrived=0 off=32
+[17:35:34.465] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:35:35.170] INFO  [wave10_RevGen3_06_Halai] [travel] mode walk             usable   <- chosen
+[17:35:35.170] INFO  [wave10_RevGen3_06_Halai] [travel] mode moongate         usable
+[17:35:35.170] INFO  [wave10_RevGen3_06_Halai] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:35.170] INFO  [wave10_RevGen3_06_Halai] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:35.171] LOG   [wave10_RevGen3_06_Halai] event travel_mode: walk
+[17:35:35.171] INFO  [wave10_RevGen3_06_Halai] [travel] plan proven_stand: ok legs=1 ~24 tiles transit=0 nodes=0
+[17:35:39.328] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.344] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.345] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.361] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.361] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Lyra has departed from Moonglow.
+[17:35:39.376] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Zarthal has departed from Britain.
+[17:35:39.377] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Castor has departed from Trinsic Healer.
+[17:35:39.391] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Odessa has departed from Britain.
+[17:35:39.406] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Illyria has departed from Britain.
+[17:35:39.406] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Thane has departed from Lord British's Castle.
+[17:35:39.421] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Ithion has departed from Magincia.
+[17:35:39.422] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Rhea has departed from Yew.
+[17:35:39.437] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Aelia has departed from Britain.
+[17:35:39.438] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Titus has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Kharain has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Falen has departed from Britain.
+[17:35:39.469] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Elvar has departed from Britain.
+[17:35:39.470] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Selene has departed from Britain Fields.
+[17:35:39.471] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:35:39.486] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Delras has departed from Skara Brae.
+[17:35:39.486] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Ghalor has departed from Britain.
+[17:35:39.500] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Leander has departed from Britain.
+[17:35:39.501] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Xerxes has departed from Ocllo.
+[17:35:39.516] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Cyras has departed from Skara Brae.
+[17:35:39.516] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Amara has departed from Yew Territory.
+[17:35:39.530] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Dorvar has departed from Skara Brae.
+[17:35:39.530] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Varek has departed from Britain.
+[17:35:39.545] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Draver has departed from Minoc Mine 1.
+[17:35:39.545] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Nyx has departed from The Pearl of Trinsic.
+[17:35:39.559] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Elara has departed from Britain.
+[17:35:39.560] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Thalia has departed from Britain.
+o_done: at=(1432,1544) target=(1408,1536) arrived=0 off=32
+[17:35:33.321] INFO  [wave10_RevGen3_06_Halai] [chat ascii] Thora: I'm listenin'.
+[17:35:33.908] INFO  [wave10_RevGen3_06_Halai] [action] goto (1408,1536) from (1432,1544,30)
+[17:35:33.909] LOG   [wave10_RevGen3_06_Halai] event goto_start: target=(1408,1536) from=(1432,1544)
+[17:35:33.909] INFO  [wave10_RevGen3_06_Halai] [bot] running from (1432,1544,30) to (1408,1536)
+[17:35:33.909] INFO  [wave10_RevGen3_06_Halai] [bot] planning path to (1408,1536) in background
+[17:35:33.970] INFO  [wave10_RevGen3_06_Halai] [action] goto finished at (1432,1544,30); target (1408,1536); stopped short (off by 32 tile(s))
+[17:35:33.971] LOG   [wave10_RevGen3_06_Halai] event goto_done: at=(1432,1544) target=(1408,1536) arrived=0 off=32
+[17:35:34.465] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:35:35.170] INFO  [wave10_RevGen3_06_Halai] [travel] mode walk             usable   <- chosen
+[17:35:35.170] INFO  [wave10_RevGen3_06_Halai] [travel] mode moongate         usable
+[17:35:35.170] INFO  [wave10_RevGen3_06_Halai] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:35.170] INFO  [wave10_RevGen3_06_Halai] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:35.171] LOG   [wave10_RevGen3_06_Halai] event travel_mode: walk
+[17:35:35.171] INFO  [wave10_RevGen3_06_Halai] [travel] plan proven_stand: ok legs=1 ~24 tiles transit=0 nodes=0
+[17:35:39.328] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.344] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.345] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.361] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.361] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Lyra has departed from Moonglow.
+[17:35:39.376] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Zarthal has departed from Britain.
+[17:35:39.377] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Castor has departed from Trinsic Healer.
+[17:35:39.391] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Odessa has departed from Britain.
+[17:35:39.406] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Illyria has departed from Britain.
+[17:35:39.406] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Thane has departed from Lord British's Castle.
+[17:35:39.421] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Ithion has departed from Magincia.
+[17:35:39.422] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Rhea has departed from Yew.
+[17:35:39.437] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Aelia has departed from Britain.
+[17:35:39.438] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Titus has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Kharain has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Falen has departed from Britain.
+[17:35:39.469] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Elvar has departed from Britain.
+[17:35:39.470] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Selene has departed from Britain Fields.
+[17:35:39.471] INFO  [wave10_RevGen3_06_Halai] [survival] hp 41/41 (100%) -> fight
+[17:35:39.486] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Delras has departed from Skara Brae.
+[17:35:39.486] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Ghalor has departed from Britain.
+[17:35:39.500] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Leander has departed from Britain.
+[17:35:39.501] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Xerxes has departed from Ocllo.
+[17:35:39.516] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Cyras has departed from Skara Brae.
+[17:35:39.516] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Amara has departed from Yew Territory.
+[17:35:39.530] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Dorvar has departed from Skara Brae.
+[17:35:39.530] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Varek has departed from Britain.
+[17:35:39.545] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Draver has departed from Minoc Mine 1.
+[17:35:39.545] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Nyx has departed from The Pearl of Trinsic.
+[17:35:39.559] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Elara has departed from Britain.
+[17:35:39.560] INFO  [wave10_RevGen3_06_Halai] [chat ascii] System: Thalia has departed from Britain.

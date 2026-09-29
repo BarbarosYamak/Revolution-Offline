@@ -1,0 +1,23 @@
+LIFE-GATE  family=lumberjack_swordsman  console=C:/Projects/RevolutionOffline/bot/uo-client\run_gates/wave10\wave10_RevGen3_07_Delras.console.txt
+------------------------------------------------------------------------------------------------
+FARM-1   FAIL  guard-line refusals 19 (cap 3)                              lines: 922,928,934,940,946
+FARM-2   FAIL  logs=+0, 'first logs' x0                                    lines: -
+FARM-3   PASS  no GET_TOOL pick -- nothing to return from                  lines: -
+FARM-4   PASS  pack never reached the carry limit                          lines: -
+FARM-5   PASS  coords with x>=5120: 0                                      lines: -
+TRAIN-1  FAIL  skills 0.0->0.0                                             lines: -
+TRAIN-2  PASS  verified training events 2                                  lines: 1612,1614
+TRAIN-3  PASS  training-family goal_spinning 0                             lines: -
+TRAIN-4  PASS  N/A -- no Blacksmithing in this build                       lines: -
+STOCK-1  FAIL  bank 0->0, produce banked: none                             lines: -
+STOCK-2  FAIL  consumable lines 12 (cap 5/min = 0)                         lines: 447,462,470,482,633
+STOCK-3  FAIL  gold 0->0, upkeep 0%, no-coin 0                             lines: -
+STOCK-4  PASS  durable re-buys: none                                       lines: -
+LIVE-1   FAIL  varied=0 families=0 top=100%                                lines: -
+LIVE-2   FAIL  self_superseded=999 (cap 3)                                 lines: -
+LIVE-3   FAIL  goal_spinning lines 1                                       lines: 1610
+LIVE-4   FAIL  logout_complete=0 safe_end=0                                lines: -
+LIVE-5   FAIL  wander picks 0                                              lines: -
+------------------------------------------------------------------------------------------------
+7/18 PASS
+FAILING RULES: FARM-1 FARM-2 TRAIN-1 STOCK-1 STOCK-2 STOCK-3 LIVE-1 LIVE-2 LIVE-3 LIVE-4 LIVE-5

@@ -1,5 +1,8 @@
 #include "Client.h"
 
+#include "uo/professions.h"
+#include "uo/rules.h"
+
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
@@ -34,6 +37,11 @@ void PrintUsage() {
         "\n"
         "Behaviour:\n"
         "  --scenario <file>  run a scripted action list once in world\n"
+        "  --autonomous       play as a persistent character: decide goals from\n"
+        "                     observation, not from a script (M4)\n"
+        "  --bot-data <dir>   where persistent character state lives (bot_data)\n"
+        "  --life-minutes <n> autonomous session length before a clean logout (30)\n"
+        "  --life-goals <n>   end the session after N completed goals (0 = off)\n"
         "  --run              always run (default: auto, which runs unless\n"
         "                     stamina or encumbrance say otherwise)\n"
         "  --walk             always walk (400ms cadence, no 0x80 run bit)\n"
@@ -52,13 +60,6 @@ void PrintUsage() {
         "                     Generate with uo_atlasgen; without it the client\n"
         "                     still walks with `goto` but has no semantic\n"
         "                     destinations.\n"
-        "  --life-dir <dir>   M4: keep each character's persistent life in\n"
-        "                     <dir>/<Name>.life (created if missing). Loaded on\n"
-        "                     login, saved on logout, death and every minute.\n"
-        "  --archetype <id>   M4.5: what a NEW life begins as (swordsman, archer,\n"
-        "                     pure_mage, blacksmith, tailor, alchemist, ... -- see\n"
-        "                     data/revolution_archetypes.tsv). Pair it with the\n"
-        "                     matching scripts/js/<id>.js.\n"
         "  -h, --help         this text\n"
         "\n"
         "Multiple sessions in one process:\n"
@@ -81,7 +82,7 @@ bool ArgIs(const char* a, const char* name) { return std::strcmp(a, name) == 0; 
 // buffer for MUL paths, which aliased as soon as a second config existed --
 // M1.5 state audit item 10.)
 struct SessionStrings {
-    std::string user, pass, charName, scenario, tag, logFile;
+    std::string user, pass, charName, scenario, tag, logFile, profession;
     std::vector<std::string> mulPaths;
 
     const char* Mul(const std::string& dir, const char* name) {
@@ -162,7 +163,7 @@ int main(int argc, char** argv) {
 
     std::string mulDir;
     std::string dataDir = "data";
-    std::string atlasPath, navgridPath, archetypesPath;
+    std::string atlasPath, navgridPath;
     std::string baseLog = "uo-client.log";
     std::vector<std::string> sessionSpecs;
 
@@ -216,18 +217,75 @@ int main(int argc, char** argv) {
             ++i;
         }
         else if (ArgIs(a, "--scenario"))  { base.scenarioPath = next; ++i; }
+        // --- M4: the autonomous player ------------------------------------
+        // No script. The character decides what to do from what it can see,
+        // and its identity, build and learned knowledge persist under
+        // --bot-data across logouts and host restarts.
+        else if (ArgIs(a, "--autonomous")) base.autonomous = true;
+        else if (ArgIs(a, "--bot-data"))   { base.botDataRoot = next; ++i; }
+        else if (ArgIs(a, "--profession")) { base.professionId = next; ++i; }
+        else if (ArgIs(a, "--life-minutes")) { base.lifeMinutes = std::atoi(next); ++i; }
+        else if (ArgIs(a, "--life-goals"))   { base.lifeGoalLimit = std::atoi(next); ++i; }
         else if (ArgIs(a, "--keepalive")) { base.keepaliveIntervalMs = static_cast<uo::u32>(std::atoi(next)); ++i; }
         else if (ArgIs(a, "--tag"))       { base.sessionTag = next; ++i; }
         else if (ArgIs(a, "--log"))       { baseLog = next; ++i; }
         else if (ArgIs(a, "--mul-dir"))   { mulDir = next; ++i; }
         else if (ArgIs(a, "--data-dir"))  { dataDir = next; ++i; }
-        else if (ArgIs(a, "--life-dir"))  { base.lifeDir = next; ++i; }
-        else if (ArgIs(a, "--archetype")) { base.archetype = next; ++i; }
         else if (ArgIs(a, "--session"))   { sessionSpecs.push_back(next); ++i; }
         else {
             std::fprintf(stderr, "unknown option: %s\n", a);
             PrintUsage();
             return 64;
+        }
+    }
+
+    // --profession IS the creation request. The catalogue holds Revolution's
+    // rule -- exactly two skills at 50.0, about 50 stat points -- and that is
+    // what goes on the wire, so there is one place a character's opening hand
+    // is decided. An explicit --create-skills still wins, for probes.
+    if (base.professionId && base.professionId[0]) {
+        const uo::prof::Profession* pr = uo::prof::Find(base.professionId);
+        if (!pr) {
+            std::fprintf(stderr, "error: unknown --profession '%s'. Known:",
+                         base.professionId);
+            for (const uo::prof::Profession& q : uo::prof::All()) {
+                std::fprintf(stderr, " %s", q.id.c_str());
+            }
+            std::fprintf(stderr, "\n");
+            return 64;
+        }
+        // Tested on the VALUE, not the id: skill id 0 is Alchemy, so an
+        // alchemist's first skill is a legitimate 0 and an id test would
+        // silently overwrite an explicit --create-skills.
+        if (base.createSkillVal[0] == 0) {
+            base.createSkill[0]    = pr->startSkillA;
+            base.createSkillVal[0] = uo::prof::kRevolutionStartSkillEach / 10;
+            base.createSkill[1]    = pr->startSkillB;
+            base.createSkillVal[1] = uo::prof::kRevolutionStartSkillEach / 10;
+            // THE THIRD SLOT IS NOT OPTIONAL, and 0 is not "none".
+            //
+            // Source-X loops skSkill1..4 and looks up [NEWBIE <skill>] for
+            // each WITHOUT checking its value (CChar.cpp:2117-2143). Skill id
+            // 0 is ALCHEMY, so sending 0 as a filler silently granted the
+            // alchemy kit -- a mortar and bottles -- to every character this
+            // project has ever created. A live fisher's pack held them and no
+            // fishing pole, which is how it was finally caught.
+            //
+            // Remove Trap has no [NEWBIE ...] section on this shard, so the
+            // ResourceLock fails and Sphere skips the slot entirely. It is
+            // also INACTIVE on Revolution (M3.6), so it can never be mistaken
+            // for a real third choice at a glance.
+            // A build may claim this slot for a skill it means to learn from
+            // nothing (professions.h, startZeroSkill). Remove Trap otherwise.
+            base.createSkill[2]    = (pr->startZeroSkill >= 0)
+                                         ? pr->startZeroSkill
+                                         : uo::rules::kRemoveTrap;
+            base.createSkillVal[2] = 0;
+        }
+        if (base.createStr == 0) {
+            base.createStr = pr->startStr;
+            base.createDex = pr->startDex;
+            base.createInt = pr->startInt;
         }
     }
 
@@ -238,8 +296,6 @@ int main(int argc, char** argv) {
         navgridPath = dataDir + "/revolution_navgrid.bin";
         base.atlasPath   = atlasPath.c_str();
         base.navgridPath = navgridPath.c_str();
-        archetypesPath = dataDir + "/revolution_archetypes.tsv";
-        base.archetypesPath = archetypesPath.c_str();
     }
 
     // A bare invocation is just the one-session case of the same code path.
@@ -279,12 +335,17 @@ int main(int argc, char** argv) {
         st->charName = field(2);
         st->scenario = field(3);
         st->tag      = field(4);
+        // Field 5: the profession, so ONE process can run a mixed population.
+        // Without it every session in a process shares --profession, and a
+        // fleet of sixteen identical lumberjacks is not an economy.
+        st->profession = field(5);
 
         uo::Client::Config cfg = base;
 
         if (!st->user.empty()) cfg.username = st->user.c_str();
         if (!st->charName.empty()) cfg.charName = st->charName.c_str();
         if (!st->scenario.empty()) cfg.scenarioPath = st->scenario.c_str();
+        if (!st->profession.empty()) cfg.professionId = st->profession.c_str();
 
         // Tag defaults to the account name, so logs are attributable even
         // when --tag is not given.
@@ -316,6 +377,113 @@ int main(int argc, char** argv) {
                 "--session user:pass:..., or UO_BOT_USER / UO_BOT_PASS "
                 "(per session: UO_BOT_PASS_<TAG>).\n", si);
             return 64;
+        }
+
+        // The creation request follows the SESSION's profession, not the
+        // process-wide one. Resolved here rather than in Client so an unknown
+        // id fails at startup with a list of the real ones, instead of at
+        // character creation on a live shard.
+        if (cfg.professionId && cfg.professionId[0]) {
+            const uo::prof::Profession* pr = uo::prof::Find(cfg.professionId);
+            if (!pr) {
+                std::fprintf(stderr,
+                    "error: session %zu names unknown profession '%s'. Known:",
+                    si, cfg.professionId);
+                for (const uo::prof::Profession& q : uo::prof::All()) {
+                    std::fprintf(stderr, " %s", q.id.c_str());
+                }
+                std::fprintf(stderr, "\n");
+                return 64;
+            }
+            // BE BORN WHERE YOU MEAN TO LIVE.
+            //
+            // startLoc defaulted to 0, so every character on this shard was
+            // created in Yew and then walked across the map to wherever its
+            // profession actually lives -- "lol they all started yew again"
+            // (project owner, 2026-08-29). The home city is already decided
+            // deterministically from the identity id, so it can be computed
+            // here, before creation, and the character simply begins there.
+            //
+            // The same hash as Runner::Start uses, so the city chosen at
+            // creation is the city the life then calls home. If a profession's
+            // home is not one of the shard's nine starting cities the default
+            // stands, which is the honest fallback rather than a guess.
+            if (cfg.startCity == 0) {
+                std::string ident;
+                auto append = [&ident](const char* t) {
+                    for (const char* c = t; c && *c; ++c) {
+                        const unsigned char u = static_cast<unsigned char>(*c);
+                        if (std::isalnum(u))
+                            ident.push_back(static_cast<char>(std::tolower(u)));
+                        else if (*c == '-' || *c == '_') ident.push_back(*c);
+                        else ident.push_back('_');
+                    }
+                };
+                append(cfg.username);
+                ident.push_back('.');
+                append(cfg.charName);
+                uo::usize h = 0;
+                for (char c : ident)
+                    h = h * 131 + static_cast<unsigned char>(c);
+                // Same rule the life layer uses: a gatherer lives where the
+                // work is, everyone else spreads. An empty list means Britain.
+                const std::string home =
+                    pr->homeCities.empty()
+                        ? std::string("Britain")
+                        : (!pr->gathers.empty()
+                               ? pr->homeCities.front()
+                               : pr->homeCities[h % pr->homeCities.size()]);
+                // maps/map0/map0_starts.scp, in its own order.
+                static const char* kStarts[] = {
+                    "Yew", "Minoc", "Britain", "Moonglow", "Trinsic",
+                    "Magincia", "Jhelom", "Skara Brae", "Vesper",
+                };
+                // BRITAIN IS THE DEFAULT, NOT YEW. Index 0 is Yew, so any
+                // profession whose home did not resolve was born inland --
+                // "if it is empty it is britain not yew" (project owner,
+                // 2026-08-29). A fisher with no homeCities at all came into
+                // the world in the Empath Abbey.
+                //
+                // The kStarts ORDER is the shard's own (map0_starts.scp), so
+                // Yew keeps its index and must not be removed from this list.
+                // Yew is excluded by not naming it in any profession's
+                // homeCities instead -- "we dont use yew as starting or
+                // hometown" (project owner, 2026-08-30) -- and the guard below
+                // is the backstop if one is ever added back by accident.
+                cfg.startCity = 2;                    // Britain
+                for (int i = 0; i < 9; ++i) {
+                    if (home == kStarts[i]) { cfg.startCity = i; break; }
+                }
+                if (cfg.startCity == 0) {             // Yew
+                    std::fprintf(stderr, "start: %s resolved to Yew, which "
+                                         "this shard does not use as a home "
+                                         "-- starting in Britain instead\n",
+                                 cfg.charName);
+                    cfg.startCity = 2;
+                }
+                std::fprintf(stderr, "start: %s is a %s and lives in %s -> "
+                                     "starting city index %d\n",
+                             cfg.charName, pr->id.c_str(), home.c_str(),
+                             cfg.startCity);
+            }
+            if (cfg.createSkillVal[0] == 0) {
+                cfg.createSkill[0]    = pr->startSkillA;
+                cfg.createSkillVal[0] = uo::prof::kRevolutionStartSkillEach / 10;
+                cfg.createSkill[1]    = pr->startSkillB;
+                cfg.createSkillVal[1] = uo::prof::kRevolutionStartSkillEach / 10;
+                // Same trap as above: 0 is Alchemy, not "none".
+                // A build may claim this slot for a skill it means to learn from
+                // nothing (professions.h, startZeroSkill). Remove Trap otherwise.
+                cfg.createSkill[2]    = (pr->startZeroSkill >= 0)
+                                             ? pr->startZeroSkill
+                                             : uo::rules::kRemoveTrap;
+                cfg.createSkillVal[2] = 0;
+            }
+            if (cfg.createStr == 0) {
+                cfg.createStr = pr->startStr;
+                cfg.createDex = pr->startDex;
+                cfg.createInt = pr->startInt;
+            }
         }
 
         // One log file per session so two sessions never interleave.

@@ -1,0 +1,488 @@
+[17:29:34.995] LOG   [wave10_RevGen3_09_Rhale] event session_start: text log opened
+[17:29:34.997] LOG   [wave10_RevGen3_09_Rhale] event net_connect_begin: connect 127.0.0.1:2593
+[17:29:34.999] INFO  [wave10_RevGen3_09_Rhale] [net] connecting to 127.0.0.1:2593 ...
+[17:29:35.001] LOG   [wave10_RevGen3_09_Rhale] event net_connected: connect 127.0.0.1:2593
+[17:29:35.003] INFO  [wave10_RevGen3_09_Rhale] [net] connected.
+[17:29:35.004] INFO  [wave10_RevGen3_09_Rhale] [seed] sent 0x7F000001 (plaintext)
+[17:29:35.004] LOG   [wave10_RevGen3_09_Rhale] event seed_out: 0x7F000001 hex=7f000001
+[17:29:35.006] INFO  [wave10_RevGen3_09_Rhale] [life] autonomous player active for 'Rhaler' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 30 min)
+[17:29:35.007] INFO  [wave10_RevGen3_09_Rhale] [0xA8] 1 server(s):
+[17:29:35.007] INFO  [wave10_RevGen3_09_Rhale]   [0] MyShard                   1.0.0.127  full=3%  tz=0
+[17:29:35.015] INFO  [wave10_RevGen3_09_Rhale] [0x8C] game server = 127.0.0.1:2593  seed=0x64F3FA40
+[17:29:35.015] LOG   [wave10_RevGen3_09_Rhale] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x64F3FA40
+[17:29:35.015] INFO  [wave10_RevGen3_09_Rhale] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[17:29:35.016] LOG   [wave10_RevGen3_09_Rhale] event relay_same_socket: no seed re-sent; 0x91 follows
+[17:29:35.016] INFO  [wave10_RevGen3_09_Rhale] [0xB9] server features = 0x0005
+[17:29:35.021] INFO  [wave10_RevGen3_09_Rhale] [0xA9] 5 slot(s) (populated 1):
+[17:29:35.022] INFO  [wave10_RevGen3_09_Rhale]   [0] Rhaler
+[17:29:35.023] INFO  [wave10_RevGen3_09_Rhale]   [1] <empty>
+[17:29:35.025] INFO  [wave10_RevGen3_09_Rhale]   [2] <empty>
+[17:29:35.025] INFO  [wave10_RevGen3_09_Rhale]   [3] <empty>
+[17:29:35.025] INFO  [wave10_RevGen3_09_Rhale]   [4] <empty>
+[17:29:35.025] INFO  [wave10_RevGen3_09_Rhale] [ui] playing slot 0 ('Rhaler')
+[17:29:35.028] INFO  [wave10_RevGen3_09_Rhale] [0x1B] serial=0x0001569C body=0x0190 pos=(1427,1695,0)
+[17:29:35.029] LOG   [wave10_RevGen3_09_Rhale] event login_confirm: serial=0x0001569C body=0x0190 pos=(1427,1695,0)
+[17:29:35.031] INFO  [wave10_RevGen3_09_Rhale] [0x20] player @(1427,1695,0) facing=2
+[17:29:35.031] INFO  [wave10_RevGen3_09_Rhale] [0x55] login complete — entering world
+[17:29:35.031] LOG   [wave10_RevGen3_09_Rhale] event in_world: 0x55 received
+[17:29:35.031] INFO  [wave10_RevGen3_09_Rhale] [backpack] opening 0x4001569A
+[17:29:35.032] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[17:29:35.032] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: There are 10 other players here.
+[17:29:35.032] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: Last logged: 2026/08/31 18:12:43
+[17:29:35.032] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: You are under the protection of the city guards
+[17:29:35.040] INFO  [wave10_RevGen3_09_Rhale] [action] requesting the skill list
+[17:29:35.045] INFO  [wave10_RevGen3_09_Rhale] [0x24] open container 0x4001569A gump=60
+[17:29:35.045] INFO  [wave10_RevGen3_09_Rhale] [0x3C] container contents: 15 item(s)
+[17:29:35.045] LOG   [wave10_RevGen3_09_Rhale] event backpack_contents: serial=0x4001569A items=15
+[17:29:35.077] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: Ghalor has arrived in Britain Fields.
+[17:29:35.092] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: Falen has arrived in Britain.
+[17:29:35.115] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: Aelia has arrived in Britain.
+[17:29:35.131] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: Amara has arrived in Jhelom.
+[17:29:35.165] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: Elara has arrived in Britain Fields.
+[17:29:35.201] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: Selene has arrived in Britain.
+[17:29:35.202] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: Lyra has arrived in Moonglow.
+[17:29:35.216] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: Thalia has arrived in Jhelom Territory.
+[17:29:35.235] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: Dorvar has arrived in Magincia.
+[17:29:35.247] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: Ithion has arrived in Magincia.
+[17:29:35.253] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: Odessa has arrived in Britain.
+[17:29:35.278] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: Serena has arrived in Britain.
+[17:29:35.306] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: Aurelius has arrived in Britain.
+[17:29:35.326] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: Leander has arrived in Britain.
+[17:29:35.327] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: Illyria has arrived in Britain.
+[17:29:35.340] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: Hector has arrived in Trinsic.
+[17:29:35.360] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: Castor has arrived in The Rusty Anchor.
+[17:29:35.370] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: Faustus has arrived in Britain.
+[17:29:35.385] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: Titus has arrived in Britain Territory.
+[17:29:35.402] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: Rhea has arrived in Yew.
+[17:29:35.402] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: Xerxes has arrived in Ocllo Island.
+[17:29:35.433] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: Thane has arrived in Britain.
+[17:29:35.434] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: Varek has arrived in Britain Territory.
+[17:29:35.449] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: Nyx has arrived in Trinsic.
+[17:29:37.260] INFO  [wave10_RevGen3_09_Rhale] [chat uni  ] : WTS 10 i_ingot_iron 35gp
+[17:29:37.260] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] Hyman: What?
+[17:29:37.666] INFO  [wave10_RevGen3_09_Rhale] [bot] world data loaded (0 blacklisted spot(s)).
+[17:29:37.668] INFO  [wave10_RevGen3_09_Rhale] [survival] on
+[17:29:37.668] LOG   [wave10_RevGen3_09_Rhale] event survival_mode: on
+[17:29:37.671] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:29:37.933] INFO  [wave10_RevGen3_09_Rhale] [chat uni  ] : WTB i_ingot_iron
+[17:29:37.933] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] Hyman: Huh?
+[17:29:42.722] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:29:47.768] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:29:52.818] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:29:57.876] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:30:02.936] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:30:07.978] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:30:09.818] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] Hyman: I'm listenin'.
+[17:30:09.819] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] Hyman: Hmm?
+[17:30:09.819] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] Hyman: Hmm?
+[17:30:13.038] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:30:18.093] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:30:23.115] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:30:28.158] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:30:33.168] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:30:38.209] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:30:43.253] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:30:48.294] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:30:53.309] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:30:58.331] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:31:03.378] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:31:08.423] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:31:13.444] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:31:18.501] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:31:20.791] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] Hyman: I'm listenin'.
+[17:31:20.792] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] Hyman: What's thee wantin'?
+[17:31:23.507] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:31:28.515] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:31:33.564] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:31:38.617] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:31:43.659] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:31:48.668] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:31:53.684] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:31:58.735] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:32:03.740] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:32:08.776] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:32:13.783] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:32:15.833] INFO  [wave10_RevGen3_09_Rhale] [chat uni  ] : bank
+[17:32:15.833] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] Lyndon: What's thou need?
+[17:32:15.834] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] Lyndon: Keeping the money of others is my job.
+[17:32:18.811] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:32:23.827] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:32:28.882] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:32:33.885] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:32:37.812] INFO  [wave10_RevGen3_09_Rhale] [ACTION] equip start
+[17:32:37.812] INFO  [wave10_RevGen3_09_Rhale] [ACTION] equip serial=0x40013C00 layer=2
+[17:32:37.813] INFO  [wave10_RevGen3_09_Rhale] [ITEM] drag serial=0x40013C00 amount=1
+[17:32:37.826] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: You put the pickaxe in your pack.
+[17:32:37.827] INFO  [wave10_RevGen3_09_Rhale] [ACTION_RESULT] equip success (15ms) worn on the requested layer
+[17:32:37.827] LOG   [wave10_RevGen3_09_Rhale] event action_result: equip success took=15ms worn on the requested layer
+[17:32:38.936] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:32:39.063] INFO  [wave10_RevGen3_09_Rhale] [ACTION] equip start
+[17:32:39.063] INFO  [wave10_RevGen3_09_Rhale] [ACTION] equip serial=0x40014D9C layer=1
+[17:32:39.064] INFO  [wave10_RevGen3_09_Rhale] [ITEM] drag serial=0x40014D9C amount=1
+[17:32:39.078] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: You put the hatchet in your pack.
+[17:32:39.078] INFO  [wave10_RevGen3_09_Rhale] [ACTION_RESULT] equip success (15ms) worn on the requested layer
+[17:32:39.078] LOG   [wave10_RevGen3_09_Rhale] event action_result: equip success took=15ms worn on the requested layer
+[17:32:40.298] INFO  [wave10_RevGen3_09_Rhale] [ACTION] equip start
+[17:32:40.298] INFO  [wave10_RevGen3_09_Rhale] [ACTION] equip serial=0x40013C00 layer=2
+[17:32:40.298] INFO  [wave10_RevGen3_09_Rhale] [ITEM] drag serial=0x40013C00 amount=1
+[17:32:40.299] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: You put the pickaxe in your pack.
+[17:32:40.300] INFO  [wave10_RevGen3_09_Rhale] [ACTION_RESULT] equip success (1ms) worn on the requested layer
+[17:32:40.300] LOG   [wave10_RevGen3_09_Rhale] event action_result: equip success took=1ms worn on the requested layer
+[17:32:41.510] INFO  [wave10_RevGen3_09_Rhale] [ACTION] equip start
+[17:32:41.510] INFO  [wave10_RevGen3_09_Rhale] [ACTION] equip serial=0x40014D9C layer=1
+[17:32:41.510] INFO  [wave10_RevGen3_09_Rhale] [ITEM] drag serial=0x40014D9C amount=1
+[17:32:41.524] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: You put the hatchet in your pack.
+[17:32:41.524] INFO  [wave10_RevGen3_09_Rhale] [ACTION_RESULT] equip success (15ms) worn on the requested layer
+[17:32:41.524] LOG   [wave10_RevGen3_09_Rhale] event action_result: equip success took=15ms worn on the requested layer
+[17:32:42.736] INFO  [wave10_RevGen3_09_Rhale] [ACTION] equip start
+[17:32:42.736] INFO  [wave10_RevGen3_09_Rhale] [ACTION] equip serial=0x40013C00 layer=2
+[17:32:42.737] INFO  [wave10_RevGen3_09_Rhale] [ITEM] drag serial=0x40013C00 amount=1
+[17:32:42.739] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: You put the pickaxe in your pack.
+[17:32:42.739] INFO  [wave10_RevGen3_09_Rhale] [ACTION_RESULT] equip success (3ms) worn on the requested layer
+[17:32:42.739] LOG   [wave10_RevGen3_09_Rhale] event action_result: equip success took=3ms worn on the requested layer
+[17:32:43.979] INFO  [wave10_RevGen3_09_Rhale] [ACTION] equip start
+[17:32:43.980] INFO  [wave10_RevGen3_09_Rhale] [ACTION] equip serial=0x40014D9C layer=1
+[17:32:43.980] INFO  [wave10_RevGen3_09_Rhale] [ITEM] drag serial=0x40014D9C amount=1
+[17:32:43.980] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:32:43.995] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: You put the hatchet in your pack.
+[17:32:43.995] INFO  [wave10_RevGen3_09_Rhale] [ACTION_RESULT] equip success (16ms) worn on the requested layer
+[17:32:43.996] LOG   [wave10_RevGen3_09_Rhale] event action_result: equip success took=16ms worn on the requested layer
+[17:32:50.274] INFO  [wave10_RevGen3_09_Rhale] [travel] Britain Territory blacksmithguildmaster -> (1349,1778) r=5 from (1427,1695)
+[17:32:50.274] LOG   [wave10_RevGen3_09_Rhale] event travel_start: label='Britain Territory blacksmithguildmaster' target=(1349,1778) radius=5 from=(1427,1695)
+[17:32:50.275] INFO  [wave10_RevGen3_09_Rhale] [travel] mode moongate         usable   <- chosen
+[17:32:50.275] INFO  [wave10_RevGen3_09_Rhale] [travel] mode walk             usable
+[17:32:50.275] INFO  [wave10_RevGen3_09_Rhale] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:50.275] INFO  [wave10_RevGen3_09_Rhale] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:50.275] LOG   [wave10_RevGen3_09_Rhale] event travel_mode: moongate
+[17:32:50.276] INFO  [wave10_RevGen3_09_Rhale] [travel] plan Britain Territory blacksmithguildmaster: ok legs=3 ~136 tiles transit=0 nodes=136
+[17:32:50.276] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:32:50.276] INFO  [wave10_RevGen3_09_Rhale] [action] goto (1416,1720) from (1427,1695,0)
+[17:32:50.276] LOG   [wave10_RevGen3_09_Rhale] event goto_start: target=(1416,1720) from=(1427,1695)
+[17:32:50.277] INFO  [wave10_RevGen3_09_Rhale] [bot] running from (1427,1695,0) to (1416,1720)
+[17:32:50.277] INFO  [wave10_RevGen3_09_Rhale] [bot] planning path to (1416,1720) in background
+[17:32:50.339] INFO  [wave10_RevGen3_09_Rhale] [bot] replan to (1416,1720): 25 steps in 465.7us
+[17:32:52.207] INFO  [wave10_RevGen3_09_Rhale] [chat uni  ] : bank
+[17:32:52.207] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] Lyndon: Good morrow!  How can I help thee?
+[17:32:52.207] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] Lyndon: Yes, banking is my unfortunate lot in life.
+[17:32:55.298] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:32:57.292] INFO  [wave10_RevGen3_09_Rhale] [bot] arrived at (1416,1720,20)
+[17:32:57.292] INFO  [wave10_RevGen3_09_Rhale] [action] goto finished at (1416,1720,20); target (1416,1720); ARRIVED (off by 0 tile(s))
+[17:32:57.293] LOG   [wave10_RevGen3_09_Rhale] event goto_done: at=(1416,1720) target=(1416,1720) arrived=1 off=0
+[17:32:57.293] INFO  [wave10_RevGen3_09_Rhale] [action] goto (1378,1752) from (1416,1720,20)
+[17:32:57.293] LOG   [wave10_RevGen3_09_Rhale] event goto_start: target=(1378,1752) from=(1416,1720)
+[17:32:57.293] INFO  [wave10_RevGen3_09_Rhale] [bot] running from (1416,1720,20) to (1378,1752)
+[17:32:57.293] INFO  [wave10_RevGen3_09_Rhale] [bot] planning path to (1378,1752) in background
+[17:32:57.353] INFO  [wave10_RevGen3_09_Rhale] [bot] replan to (1378,1752): 43 steps in 4600.1us
+[17:33:00.328] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:33:00.910] INFO  [wave10_RevGen3_09_Rhale] [bot] lookahead patched around block at step 5: anchor=7 new segment=9 path=30 in 309.9us
+[17:33:05.369] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:33:08.067] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: You have left the protection of the city guards
+[17:33:10.411] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:33:11.230] INFO  [wave10_RevGen3_09_Rhale] [bot] arrived at (1378,1752,1)
+[17:33:11.230] INFO  [wave10_RevGen3_09_Rhale] [action] goto finished at (1378,1752,1); target (1378,1752); ARRIVED (off by 0 tile(s))
+[17:33:11.230] LOG   [wave10_RevGen3_09_Rhale] event goto_done: at=(1378,1752) target=(1378,1752) arrived=1 off=0
+[17:33:11.230] INFO  [wave10_RevGen3_09_Rhale] [action] goto (1349,1778) from (1378,1752,1)
+[17:33:11.231] LOG   [wave10_RevGen3_09_Rhale] event goto_start: target=(1349,1778) from=(1378,1752)
+[17:33:11.231] INFO  [wave10_RevGen3_09_Rhale] [bot] running from (1378,1752,1) to (1349,1778,z15)
+[17:33:11.231] INFO  [wave10_RevGen3_09_Rhale] [bot] planning path to (1349,1778) in background
+[17:33:11.292] INFO  [wave10_RevGen3_09_Rhale] [bot] replan to (1349,1778): 47 steps in 9358.5us
+[17:33:15.467] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:33:20.491] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:33:21.045] WARN  [wave10_RevGen3_09_Rhale] [0x21] move REJECTED seq=40; server says (1361,1772,15) facing=5
+[17:33:21.046] INFO  [wave10_RevGen3_09_Rhale] [bot] step (1361,1772,15)->(1360,1773,15) rejected; OpenDoor + retry
+[17:33:21.800] WARN  [wave10_RevGen3_09_Rhale] [0x21] move REJECTED seq=0; server says (1361,1772,15) facing=5
+[17:33:21.801] INFO  [wave10_RevGen3_09_Rhale] [bot] step (1361,1772,15)->(1360,1773,15) rejected; avoiding edge + rerouting
+[17:33:21.802] INFO  [wave10_RevGen3_09_Rhale] [bot] planning path to (1349,1778) in background
+[17:33:21.860] INFO  [wave10_RevGen3_09_Rhale] [bot] replan to (1349,1778): 17 steps in 394.9us
+[17:33:24.395] INFO  [wave10_RevGen3_09_Rhale] [bot] door ahead at (1359,1778,z15); OpenDoor before step
+[17:33:24.396] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: Opening door...
+[17:33:25.505] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:33:25.633] INFO  [wave10_RevGen3_09_Rhale] [ACTION] unequip start
+[17:33:25.633] INFO  [wave10_RevGen3_09_Rhale] [ACTION] unequip serial=0x40014D9C -> backpack 0x4001569A
+[17:33:25.633] INFO  [wave10_RevGen3_09_Rhale] [ITEM] drag serial=0x40014D9C amount=1
+[17:33:25.633] INFO  [wave10_RevGen3_09_Rhale] [ITEM] drop container=0x4001569A
+[17:33:25.646] INFO  [wave10_RevGen3_09_Rhale] [ACTION_RESULT] unequip success (13ms) item is in the destination
+[17:33:25.646] LOG   [wave10_RevGen3_09_Rhale] event action_result: unequip success took=13ms item is in the destination
+[17:33:26.524] INFO  [wave10_RevGen3_09_Rhale] [travel] Britain Territory blacksmithguildmaster ARRIVED at (1354,1778,15)
+[17:33:26.525] LOG   [wave10_RevGen3_09_Rhale] event travel_done: label='Britain Territory blacksmithguildmaster' ok=1 at=(1354,1778) legs=3 plans=1 why=''
+[17:33:28.678] INFO  [wave10_RevGen3_09_Rhale] [ACTION] equip start
+[17:33:28.678] INFO  [wave10_RevGen3_09_Rhale] [ACTION] equip serial=0x40013C00 layer=0
+[17:33:28.679] INFO  [wave10_RevGen3_09_Rhale] [ITEM] drag serial=0x40013C00 amount=1
+[17:33:28.693] INFO  [wave10_RevGen3_09_Rhale] [ACTION_RESULT] equip success (15ms) worn on the requested layer
+[17:33:28.694] LOG   [wave10_RevGen3_09_Rhale] event action_result: equip success took=15ms worn on the requested layer
+[17:33:30.364] INFO  [wave10_RevGen3_09_Rhale] [travel] place: skipping Delucia healer -- 1724 tiles and 4 gates for a service Britain healer offers
+[17:33:30.365] INFO  [wave10_RevGen3_09_Rhale] [travel] place: skipping Wind healer -- 1252 tiles and 1 gate for a service Britain healer offers
+[17:33:30.365] INFO  [wave10_RevGen3_09_Rhale] [travel] Britain healer -> (1471,1611) r=5 from (1354,1778)
+[17:33:30.365] LOG   [wave10_RevGen3_09_Rhale] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1354,1778)
+[17:33:30.365] INFO  [wave10_RevGen3_09_Rhale] [travel] mode moongate         usable   <- chosen
+[17:33:30.366] INFO  [wave10_RevGen3_09_Rhale] [travel] mode walk             usable
+[17:33:30.366] INFO  [wave10_RevGen3_09_Rhale] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:30.366] INFO  [wave10_RevGen3_09_Rhale] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:30.366] LOG   [wave10_RevGen3_09_Rhale] event travel_mode: moongate
+[17:33:30.366] INFO  [wave10_RevGen3_09_Rhale] [travel] plan Britain healer: ok legs=6 ~232 tiles transit=0 nodes=439
+[17:33:30.419] INFO  [wave10_RevGen3_09_Rhale] [action] goto finished at (1354,1778,15); target (1349,1778); stopped short (off by 5 tile(s))
+[17:33:30.420] LOG   [wave10_RevGen3_09_Rhale] event goto_done: at=(1354,1778) target=(1349,1778) arrived=0 off=5
+[17:33:30.420] INFO  [wave10_RevGen3_09_Rhale] [action] goto (1368,1752) from (1354,1778,15)
+[17:33:30.420] LOG   [wave10_RevGen3_09_Rhale] event goto_start: target=(1368,1752) from=(1354,1778)
+[17:33:30.420] INFO  [wave10_RevGen3_09_Rhale] [bot] running from (1354,1778,15) to (1368,1752)
+[17:33:30.421] INFO  [wave10_RevGen3_09_Rhale] [bot] planning path to (1368,1752) in background
+[17:33:30.482] INFO  [wave10_RevGen3_09_Rhale] [bot] replan to (1368,1752): 32 steps in 2528.7us
+[17:33:30.559] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:33:35.565] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:33:40.291] INFO  [wave10_RevGen3_09_Rhale] [bot] arrived at (1368,1752,5)
+[17:33:40.291] INFO  [wave10_RevGen3_09_Rhale] [action] goto finished at (1368,1752,5); target (1368,1752); ARRIVED (off by 0 tile(s))
+[17:33:40.291] LOG   [wave10_RevGen3_09_Rhale] event goto_done: at=(1368,1752) target=(1368,1752) arrived=1 off=0
+[17:33:40.291] INFO  [wave10_RevGen3_09_Rhale] [action] goto (1384,1720) from (1368,1752,5)
+[17:33:40.291] LOG   [wave10_RevGen3_09_Rhale] event goto_start: target=(1384,1720) from=(1368,1752)
+[17:33:40.292] INFO  [wave10_RevGen3_09_Rhale] [bot] running from (1368,1752,5) to (1384,1720)
+[17:33:40.292] INFO  [wave10_RevGen3_09_Rhale] [bot] planning path to (1384,1720) in background
+[17:33:40.351] INFO  [wave10_RevGen3_09_Rhale] [bot] replan to (1384,1720): 58 steps in 22892.9us
+[17:33:40.598] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:33:45.011] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: You are now under the protection of the city guards
+[17:33:45.627] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:33:50.650] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:33:54.568] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: World save in 10 seconds
+[17:33:55.232] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: You have left the protection of the city guards
+[17:33:55.667] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:33:57.218] INFO  [wave10_RevGen3_09_Rhale] [bot] arrived at (1384,1720,10)
+[17:33:57.219] INFO  [wave10_RevGen3_09_Rhale] [action] goto finished at (1384,1720,10); target (1384,1720); ARRIVED (off by 0 tile(s))
+[17:33:57.219] LOG   [wave10_RevGen3_09_Rhale] event goto_done: at=(1384,1720) target=(1384,1720) arrived=1 off=0
+[17:33:57.219] INFO  [wave10_RevGen3_09_Rhale] [action] goto (1416,1688) from (1384,1720,10)
+[17:33:57.219] LOG   [wave10_RevGen3_09_Rhale] event goto_start: target=(1416,1688) from=(1384,1720)
+[17:33:57.220] INFO  [wave10_RevGen3_09_Rhale] [bot] running from (1384,1720,10) to (1416,1688)
+[17:33:57.220] INFO  [wave10_RevGen3_09_Rhale] [bot] planning path to (1416,1688) in background
+[17:33:57.278] INFO  [wave10_RevGen3_09_Rhale] [bot] replan to (1416,1688): 51 steps in 8982.0us
+[17:33:58.712] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: You are now under the protection of the city guards
+[17:34:00.678] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:34:04.598] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: World save has been initiated.
+[17:34:05.719] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:34:09.700] WARN  [wave10_RevGen3_09_Rhale] [bot] watchdog: oldest move unacked 5s; aborting path
+[17:34:09.762] INFO  [wave10_RevGen3_09_Rhale] [action] goto finished at (1403,1714,20); target (1416,1688); stopped short (off by 39 tile(s))
+[17:34:09.763] LOG   [wave10_RevGen3_09_Rhale] event goto_done: at=(1403,1714) target=(1416,1688) arrived=0 off=39
+[17:34:09.906] WARN  [wave10_RevGen3_09_Rhale] [0x22] unsolicited ack seq=31
+[17:34:10.733] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:34:10.980] INFO  [wave10_RevGen3_09_Rhale] [action] goto (1416,1688) from (1403,1714,20)
+[17:34:10.980] LOG   [wave10_RevGen3_09_Rhale] event goto_start: target=(1416,1688) from=(1403,1714)
+[17:34:10.980] INFO  [wave10_RevGen3_09_Rhale] [bot] running from (1403,1714,20) to (1416,1688)
+[17:34:10.980] INFO  [wave10_RevGen3_09_Rhale] [bot] planning path to (1416,1688) in background
+[17:34:11.043] INFO  [wave10_RevGen3_09_Rhale] [bot] replan to (1416,1688): 30 steps in 1019.8us
+[17:34:15.746] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:34:19.909] INFO  [wave10_RevGen3_09_Rhale] [bot] arrived at (1416,1688,0)
+[17:34:19.909] INFO  [wave10_RevGen3_09_Rhale] [action] goto finished at (1416,1688,0); target (1416,1688); ARRIVED (off by 0 tile(s))
+[17:34:19.909] LOG   [wave10_RevGen3_09_Rhale] event goto_done: at=(1416,1688) target=(1416,1688) arrived=1 off=0
+[17:34:19.909] INFO  [wave10_RevGen3_09_Rhale] [action] goto (1448,1656) from (1416,1688,0)
+[17:34:19.909] LOG   [wave10_RevGen3_09_Rhale] event goto_start: target=(1448,1656) from=(1416,1688)
+[17:34:19.910] INFO  [wave10_RevGen3_09_Rhale] [bot] running from (1416,1688,0) to (1448,1656)
+[17:34:19.910] INFO  [wave10_RevGen3_09_Rhale] [bot] planning path to (1448,1656) in background
+[17:34:19.939] INFO  [wave10_RevGen3_09_Rhale] [bot] replan to (1448,1656): 46 steps in 4762.5us
+[17:34:20.787] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:34:21.602] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] Hyman: Hmm?
+[17:34:21.602] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] Hyman: What's thee wantin'?
+[17:34:21.603] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] Hyman: Aye?
+[17:34:21.603] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] Hyman: Aye?
+[17:34:25.837] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:34:28.331] WARN  [wave10_RevGen3_09_Rhale] [0x21] move REJECTED seq=35; server says (1432,1666,10) facing=1
+[17:34:28.331] INFO  [wave10_RevGen3_09_Rhale] [bot] step (1432,1666,10)->(1433,1665,10) rejected; OpenDoor + retry
+[17:34:29.072] WARN  [wave10_RevGen3_09_Rhale] [0x21] move REJECTED seq=0; server says (1432,1666,10) facing=1
+[17:34:29.073] INFO  [wave10_RevGen3_09_Rhale] [bot] step (1432,1666,10)->(1433,1665,10) rejected; avoiding edge + rerouting
+[17:34:29.073] INFO  [wave10_RevGen3_09_Rhale] [bot] planning path to (1448,1656) in background
+[17:34:29.134] INFO  [wave10_RevGen3_09_Rhale] [bot] replan to (1448,1656): 20 steps in 1099.0us
+[17:34:30.859] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:34:35.918] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:34:35.934] INFO  [wave10_RevGen3_09_Rhale] [bot] arrived at (1448,1656,10)
+[17:34:35.935] INFO  [wave10_RevGen3_09_Rhale] [action] goto finished at (1448,1656,10); target (1448,1656); ARRIVED (off by 0 tile(s))
+[17:34:35.935] LOG   [wave10_RevGen3_09_Rhale] event goto_done: at=(1448,1656) target=(1448,1656) arrived=1 off=0
+[17:34:35.935] INFO  [wave10_RevGen3_09_Rhale] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:34:35.935] INFO  [wave10_RevGen3_09_Rhale] [action] goto (1464,1624) from (1448,1656,10)
+[17:34:35.935] LOG   [wave10_RevGen3_09_Rhale] event goto_start: target=(1464,1624) from=(1448,1656)
+[17:34:35.936] INFO  [wave10_RevGen3_09_Rhale] [bot] running from (1448,1656,10) to (1464,1624)
+[17:34:35.936] INFO  [wave10_RevGen3_09_Rhale] [bot] planning path to (1464,1624) in background
+[17:34:35.995] INFO  [wave10_RevGen3_09_Rhale] [bot] replan to (1464,1624): 43 steps in 4152.5us
+[17:34:40.928] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:34:42.971] INFO  [wave10_RevGen3_09_Rhale] [ACTION] equip start
+[17:34:42.971] INFO  [wave10_RevGen3_09_Rhale] [ACTION] equip serial=0x40014D9C layer=0
+[17:34:42.972] INFO  [wave10_RevGen3_09_Rhale] [ITEM] drag serial=0x40014D9C amount=1
+[17:34:42.985] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: You put the hatchet in your pack.
+[17:34:42.986] INFO  [wave10_RevGen3_09_Rhale] [ACTION_RESULT] equip success (14ms) worn on the requested layer
+[17:34:42.986] LOG   [wave10_RevGen3_09_Rhale] event action_result: equip success took=14ms worn on the requested layer
+[17:34:45.960] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:34:49.081] INFO  [wave10_RevGen3_09_Rhale] [bot] arrived at (1464,1624,20)
+[17:34:49.081] INFO  [wave10_RevGen3_09_Rhale] [action] goto finished at (1464,1624,20); target (1464,1624); ARRIVED (off by 0 tile(s))
+[17:34:49.081] LOG   [wave10_RevGen3_09_Rhale] event goto_done: at=(1464,1624) target=(1464,1624) arrived=1 off=0
+[17:34:49.081] INFO  [wave10_RevGen3_09_Rhale] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:34:49.082] INFO  [wave10_RevGen3_09_Rhale] [action] goto (1471,1611) from (1464,1624,20)
+[17:34:49.082] LOG   [wave10_RevGen3_09_Rhale] event goto_start: target=(1471,1611) from=(1464,1624)
+[17:34:49.082] INFO  [wave10_RevGen3_09_Rhale] [bot] running from (1464,1624,20) to (1471,1611,z20)
+[17:34:49.082] INFO  [wave10_RevGen3_09_Rhale] [bot] planning path to (1471,1611) in background
+[17:34:49.141] INFO  [wave10_RevGen3_09_Rhale] [bot] replan to (1471,1611): 31 steps in 11671.7us
+[17:34:50.989] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:34:56.031] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:34:56.047] INFO  [wave10_RevGen3_09_Rhale] [bot] door ahead at (1479,1612,z20); OpenDoor before step
+[17:34:56.047] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: Opening door...
+[17:34:57.569] INFO  [wave10_RevGen3_09_Rhale] [travel] Britain healer ARRIVED at (1476,1612,20)
+[17:34:57.569] LOG   [wave10_RevGen3_09_Rhale] event travel_done: label='Britain healer' ok=1 at=(1476,1612) legs=6 plans=1 why=''
+[17:34:57.630] INFO  [wave10_RevGen3_09_Rhale] [action] goto finished at (1476,1612,20); target (1471,1611); stopped short (off by 6 tile(s))
+[17:34:57.631] LOG   [wave10_RevGen3_09_Rhale] event goto_done: at=(1476,1612) target=(1471,1611) arrived=0 off=6
+[17:34:57.631] INFO  [wave10_RevGen3_09_Rhale] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (1476,1612)
+[17:34:57.631] LOG   [wave10_RevGen3_09_Rhale] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(1476,1612)
+[17:34:57.631] INFO  [wave10_RevGen3_09_Rhale] [travel] mode moongate         usable   <- chosen
+[17:34:57.631] INFO  [wave10_RevGen3_09_Rhale] [travel] mode walk             usable
+[17:34:57.631] INFO  [wave10_RevGen3_09_Rhale] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:57.631] INFO  [wave10_RevGen3_09_Rhale] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:57.632] LOG   [wave10_RevGen3_09_Rhale] event travel_mode: moongate
+[17:34:57.634] INFO  [wave10_RevGen3_09_Rhale] [travel] plan Minoc Mine 1 interior: ok legs=21 ~896 tiles transit=1 nodes=8855
+[17:34:57.677] INFO  [wave10_RevGen3_09_Rhale] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:34:57.677] INFO  [wave10_RevGen3_09_Rhale] [action] goto (1480,1640) from (1476,1612,20)
+[17:34:57.677] LOG   [wave10_RevGen3_09_Rhale] event goto_start: target=(1480,1640) from=(1476,1612)
+[17:34:57.677] INFO  [wave10_RevGen3_09_Rhale] [bot] running from (1476,1612,20) to (1480,1640)
+[17:34:57.677] INFO  [wave10_RevGen3_09_Rhale] [bot] planning path to (1480,1640) in background
+[17:34:57.738] INFO  [wave10_RevGen3_09_Rhale] [bot] replan to (1480,1640): 32 steps in 563.7us
+[17:34:58.908] INFO  [wave10_RevGen3_09_Rhale] [bot] door ahead at (1480,1613,z20); OpenDoor before step
+[17:34:58.909] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: Opening door...
+[17:34:59.263] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] Dale: I'm listenin'.
+[17:35:01.046] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:35:06.025] INFO  [wave10_RevGen3_09_Rhale] [bot] arrived at (1480,1640,20)
+[17:35:06.026] INFO  [wave10_RevGen3_09_Rhale] [action] goto finished at (1480,1640,20); target (1480,1640); ARRIVED (off by 0 tile(s))
+[17:35:06.026] LOG   [wave10_RevGen3_09_Rhale] event goto_done: at=(1480,1640) target=(1480,1640) arrived=1 off=0
+[17:35:06.026] INFO  [wave10_RevGen3_09_Rhale] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:35:06.026] INFO  [wave10_RevGen3_09_Rhale] [action] goto (1448,1672) from (1480,1640,20)
+[17:35:06.026] LOG   [wave10_RevGen3_09_Rhale] event goto_start: target=(1448,1672) from=(1480,1640)
+[17:35:06.027] INFO  [wave10_RevGen3_09_Rhale] [bot] running from (1480,1640,20) to (1448,1672)
+[17:35:06.027] INFO  [wave10_RevGen3_09_Rhale] [bot] planning path to (1448,1672) in background
+[17:35:06.087] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:35:06.087] INFO  [wave10_RevGen3_09_Rhale] [bot] replan to (1448,1672): 41 steps in 7541.3us
+[17:35:11.103] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:35:16.140] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:35:18.593] INFO  [wave10_RevGen3_09_Rhale] [bot] arrived at (1448,1672,10)
+[17:35:18.594] INFO  [wave10_RevGen3_09_Rhale] [action] goto finished at (1448,1672,10); target (1448,1672); ARRIVED (off by 0 tile(s))
+[17:35:18.594] LOG   [wave10_RevGen3_09_Rhale] event goto_done: at=(1448,1672) target=(1448,1672) arrived=1 off=0
+[17:35:18.594] INFO  [wave10_RevGen3_09_Rhale] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:35:18.594] INFO  [wave10_RevGen3_09_Rhale] [action] goto (1448,1702) from (1448,1672,10)
+[17:35:18.594] LOG   [wave10_RevGen3_09_Rhale] event goto_start: target=(1448,1702) from=(1448,1672)
+[17:35:18.594] INFO  [wave10_RevGen3_09_Rhale] [bot] running from (1448,1672,10) to (1448,1702)
+[17:35:18.594] INFO  [wave10_RevGen3_09_Rhale] [bot] planning path to (1448,1702) in background
+[17:35:18.654] INFO  [wave10_RevGen3_09_Rhale] [bot] replan to (1448,1702): 32 steps in 944.1us
+[17:35:21.172] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:35:26.182] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:35:27.890] INFO  [wave10_RevGen3_09_Rhale] [bot] arrived at (1448,1702,0)
+[17:35:27.890] INFO  [wave10_RevGen3_09_Rhale] [action] goto finished at (1448,1702,0); target (1448,1702); ARRIVED (off by 0 tile(s))
+[17:35:27.890] LOG   [wave10_RevGen3_09_Rhale] event goto_done: at=(1448,1702) target=(1448,1702) arrived=1 off=0
+[17:35:27.890] INFO  [wave10_RevGen3_09_Rhale] [action] goto (1432,1736) from (1448,1702,0)
+[17:35:27.890] LOG   [wave10_RevGen3_09_Rhale] event goto_start: target=(1432,1736) from=(1448,1702)
+[17:35:27.891] INFO  [wave10_RevGen3_09_Rhale] [bot] running from (1448,1702,0) to (1432,1736)
+[17:35:27.891] INFO  [wave10_RevGen3_09_Rhale] [bot] planning path to (1432,1736) in background
+[17:35:27.951] INFO  [wave10_RevGen3_09_Rhale] [bot] replan to (1432,1736): 36 steps in 890.3us
+[17:35:31.227] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:35:36.230] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:35:37.757] INFO  [wave10_RevGen3_09_Rhale] [bot] arrived at (1432,1736,20)
+[17:35:37.757] INFO  [wave10_RevGen3_09_Rhale] [action] goto finished at (1432,1736,20); target (1432,1736); ARRIVED (off by 0 tile(s))
+[17:35:37.757] LOG   [wave10_RevGen3_09_Rhale] event goto_done: at=(1432,1736) target=(1432,1736) arrived=1 off=0
+[17:35:37.757] INFO  [wave10_RevGen3_09_Rhale] [action] goto (1402,1760) from (1432,1736,20)
+[17:35:37.758] LOG   [wave10_RevGen3_09_Rhale] event goto_start: target=(1402,1760) from=(1432,1736)
+[17:35:37.758] INFO  [wave10_RevGen3_09_Rhale] [bot] running from (1432,1736,20) to (1402,1760)
+[17:35:37.758] INFO  [wave10_RevGen3_09_Rhale] [bot] planning path to (1402,1760) in background
+[17:35:37.817] INFO  [wave10_RevGen3_09_Rhale] [bot] replan to (1402,1760): 43 steps in 24317.0us
+[17:35:39.328] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: Serena has departed from Britain.
+[life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_09.rhaler/state.json
+[17:34:40.928] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:34:42.970] INFO  [life] goal_changed=MINE from=CRAFT reason="MINE 80.5 superseded CRAFT 65.0"
+[17:34:42.970] INFO  [life] needs considered: NeedTool(saw 0.90) NeedTool(mortar 0.90) NeedOre(ore 0.62) NeedSkillTraining(Tinkering 0.55) NeedCraft(make goods to sell 0.50) NeedFood(food 0.25) NeedGold(sell surplus 0.25) NeedTrade(buy from a player BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,smith hammer,] want_train=Tinkering (target 70.0)
+[17:34:42.970] INFO  [life]   score=80.5
+[17:34:42.970] INFO  [life]   reason: NeedOre urgency 0.62 x 130 = 80.5
+[17:34:42.971] INFO  [life]   reason: 34 ore+ingots of the 550 wanted before smith training (smithing 50.1) at_work_site=1
+[17:34:42.971] INFO  [life]   BLOCKED_NEED GET_TOOL: on cooldown for another 122s after achieving nothing
+[17:34:42.971] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 474s after achieving nothing
+[17:34:42.971] INFO  [life] mine: taking the pickaxe in hand -- mining reads SRC.WEAPON
+[17:34:42.971] INFO  [wave10_RevGen3_09_Rhale] [ACTION] equip start
+[17:34:42.971] INFO  [wave10_RevGen3_09_Rhale] [ACTION] equip serial=0x40014D9C layer=0
+[17:34:42.972] INFO  [wave10_RevGen3_09_Rhale] [ITEM] drag serial=0x40014D9C amount=1
+[17:34:42.985] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: You put the hatchet in your pack.
+[17:34:42.986] INFO  [wave10_RevGen3_09_Rhale] [ACTION_RESULT] equip success (14ms) worn on the requested layer
+[17:34:42.986] LOG   [wave10_RevGen3_09_Rhale] event action_result: equip success took=14ms worn on the requested layer
+[17:34:45.960] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:34:49.081] INFO  [wave10_RevGen3_09_Rhale] [bot] arrived at (1464,1624,20)
+[17:34:49.081] INFO  [wave10_RevGen3_09_Rhale] [action] goto finished at (1464,1624,20); target (1464,1624); ARRIVED (off by 0 tile(s))
+[17:34:49.081] LOG   [wave10_RevGen3_09_Rhale] event goto_done: at=(1464,1624) target=(1464,1624) arrived=1 off=0
+[17:34:49.081] INFO  [wave10_RevGen3_09_Rhale] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:34:49.082] INFO  [wave10_RevGen3_09_Rhale] [action] goto (1471,1611) from (1464,1624,20)
+[17:34:49.082] LOG   [wave10_RevGen3_09_Rhale] event goto_start: target=(1471,1611) from=(1464,1624)
+[17:34:49.082] INFO  [wave10_RevGen3_09_Rhale] [bot] running from (1464,1624,20) to (1471,1611,z20)
+[17:34:49.082] INFO  [wave10_RevGen3_09_Rhale] [bot] planning path to (1471,1611) in background
+[17:34:49.141] INFO  [wave10_RevGen3_09_Rhale] [bot] replan to (1471,1611): 31 steps in 11671.7us
+[17:34:50.989] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:34:56.031] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:34:56.047] INFO  [wave10_RevGen3_09_Rhale] [bot] door ahead at (1479,1612,z20); OpenDoor before step
+[17:34:56.047] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: Opening door...
+[17:34:57.569] INFO  [wave10_RevGen3_09_Rhale] [travel] Britain healer ARRIVED at (1476,1612,20)
+[17:34:57.569] LOG   [wave10_RevGen3_09_Rhale] event travel_done: label='Britain healer' ok=1 at=(1476,1612) legs=6 plans=1 why=''
+[17:34:57.630] INFO  [wave10_RevGen3_09_Rhale] [action] goto finished at (1476,1612,20); target (1471,1611); stopped short (off by 6 tile(s))
+[17:34:57.631] LOG   [wave10_RevGen3_09_Rhale] event goto_done: at=(1476,1612) target=(1471,1611) arrived=0 off=6
+[17:34:57.631] INFO  [life] mine: Minoc resident going directly to the interior of Minoc Mine 1 at 2568,487 (trip 1)
+[17:34:57.631] INFO  [wave10_RevGen3_09_Rhale] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (1476,1612)
+[17:34:57.631] LOG   [wave10_RevGen3_09_Rhale] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(1476,1612)
+[17:34:57.631] INFO  [wave10_RevGen3_09_Rhale] [travel] mode moongate         usable   <- chosen
+[17:34:57.631] INFO  [wave10_RevGen3_09_Rhale] [travel] mode walk             usable
+[17:34:57.631] INFO  [wave10_RevGen3_09_Rhale] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:57.631] INFO  [wave10_RevGen3_09_Rhale] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:57.632] LOG   [wave10_RevGen3_09_Rhale] event travel_mode: moongate
+[17:34:57.634] INFO  [wave10_RevGen3_09_Rhale] [travel] plan Minoc Mine 1 interior: ok legs=21 ~896 tiles transit=1 nodes=8855
+[17:34:57.677] INFO  [wave10_RevGen3_09_Rhale] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:34:57.677] INFO  [wave10_RevGen3_09_Rhale] [action] goto (1480,1640) from (1476,1612,20)
+[17:34:57.677] LOG   [wave10_RevGen3_09_Rhale] event goto_start: target=(1480,1640) from=(1476,1612)
+[17:34:57.677] INFO  [wave10_RevGen3_09_Rhale] [bot] running from (1476,1612,20) to (1480,1640)
+[17:34:57.677] INFO  [wave10_RevGen3_09_Rhale] [bot] planning path to (1480,1640) in background
+[17:34:57.738] INFO  [wave10_RevGen3_09_Rhale] [bot] replan to (1480,1640): 32 steps in 563.7us
+[17:34:58.908] INFO  [wave10_RevGen3_09_Rhale] [bot] door ahead at (1480,1613,z20); OpenDoor before step
+[17:34:58.909] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: Opening door...
+[17:34:59.263] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] Dale: I'm listenin'.
+[17:35:01.046] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:35:06.025] INFO  [wave10_RevGen3_09_Rhale] [bot] arrived at (1480,1640,20)
+[17:35:06.026] INFO  [wave10_RevGen3_09_Rhale] [action] goto finished at (1480,1640,20); target (1480,1640); ARRIVED (off by 0 tile(s))
+[17:35:06.026] LOG   [wave10_RevGen3_09_Rhale] event goto_done: at=(1480,1640) target=(1480,1640) arrived=1 off=0
+[17:35:06.026] INFO  [wave10_RevGen3_09_Rhale] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:35:06.026] INFO  [wave10_RevGen3_09_Rhale] [action] goto (1448,1672) from (1480,1640,20)
+[17:35:06.026] LOG   [wave10_RevGen3_09_Rhale] event goto_start: target=(1448,1672) from=(1480,1640)
+[17:35:06.027] INFO  [wave10_RevGen3_09_Rhale] [bot] running from (1480,1640,20) to (1448,1672)
+[17:35:06.027] INFO  [wave10_RevGen3_09_Rhale] [bot] planning path to (1448,1672) in background
+[17:35:06.087] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:35:06.087] INFO  [wave10_RevGen3_09_Rhale] [bot] replan to (1448,1672): 41 steps in 7541.3us
+[17:35:09.889] INFO  [life] goal_changed=CRAFT from=MINE reason="CRAFT 65.0 superseded MINE 56.1"
+[17:35:09.890] INFO  [life] needs considered: NeedTool(saw 0.90) NeedTool(mortar 0.90) NeedSkillTraining(Tinkering 0.55) NeedCraft(make goods to sell 0.50) NeedOre(ore 0.43) NeedFood(food 0.25) NeedGold(sell surplus 0.25) NeedTravel(a place where work is possible 0.20) NeedTrade(buy from a player BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,smith hammer,] want_train=Tinkering (target 70.0)
+[17:35:09.890] INFO  [life]   score=65.0
+[17:35:09.890] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
+[17:35:09.890] INFO  [life]   reason: i_dagger: every input is in the pack
+[17:35:09.890] INFO  [life]   BLOCKED_NEED GET_TOOL: on cooldown for another 95s after achieving nothing
+[17:35:09.890] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 447s after achieving nothing
+[17:35:11.103] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:35:16.140] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:35:18.593] INFO  [wave10_RevGen3_09_Rhale] [bot] arrived at (1448,1672,10)
+[17:35:18.594] INFO  [wave10_RevGen3_09_Rhale] [action] goto finished at (1448,1672,10); target (1448,1672); ARRIVED (off by 0 tile(s))
+[17:35:18.594] LOG   [wave10_RevGen3_09_Rhale] event goto_done: at=(1448,1672) target=(1448,1672) arrived=1 off=0
+[17:35:18.594] INFO  [wave10_RevGen3_09_Rhale] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:35:18.594] INFO  [wave10_RevGen3_09_Rhale] [action] goto (1448,1702) from (1448,1672,10)
+[17:35:18.594] LOG   [wave10_RevGen3_09_Rhale] event goto_start: target=(1448,1702) from=(1448,1672)
+[17:35:18.594] INFO  [wave10_RevGen3_09_Rhale] [bot] running from (1448,1672,10) to (1448,1702)
+[17:35:18.594] INFO  [wave10_RevGen3_09_Rhale] [bot] planning path to (1448,1702) in background
+[17:35:18.654] INFO  [wave10_RevGen3_09_Rhale] [bot] replan to (1448,1702): 32 steps in 944.1us
+[17:35:21.172] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:35:26.182] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:35:27.890] INFO  [wave10_RevGen3_09_Rhale] [bot] arrived at (1448,1702,0)
+[17:35:27.890] INFO  [wave10_RevGen3_09_Rhale] [action] goto finished at (1448,1702,0); target (1448,1702); ARRIVED (off by 0 tile(s))
+[17:35:27.890] LOG   [wave10_RevGen3_09_Rhale] event goto_done: at=(1448,1702) target=(1448,1702) arrived=1 off=0
+[17:35:27.890] INFO  [wave10_RevGen3_09_Rhale] [action] goto (1432,1736) from (1448,1702,0)
+[17:35:27.890] LOG   [wave10_RevGen3_09_Rhale] event goto_start: target=(1432,1736) from=(1448,1702)
+[17:35:27.891] INFO  [wave10_RevGen3_09_Rhale] [bot] running from (1448,1702,0) to (1432,1736)
+[17:35:27.891] INFO  [wave10_RevGen3_09_Rhale] [bot] planning path to (1432,1736) in background
+[17:35:27.951] INFO  [wave10_RevGen3_09_Rhale] [bot] replan to (1432,1736): 36 steps in 890.3us
+[17:35:31.227] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:35:36.230] INFO  [wave10_RevGen3_09_Rhale] [survival] hp 50/50 (100%) -> fight
+[17:35:37.757] INFO  [wave10_RevGen3_09_Rhale] [bot] arrived at (1432,1736,20)
+[17:35:37.757] INFO  [wave10_RevGen3_09_Rhale] [action] goto finished at (1432,1736,20); target (1432,1736); ARRIVED (off by 0 tile(s))
+[17:35:37.757] LOG   [wave10_RevGen3_09_Rhale] event goto_done: at=(1432,1736) target=(1432,1736) arrived=1 off=0
+[17:35:37.757] INFO  [wave10_RevGen3_09_Rhale] [action] goto (1402,1760) from (1432,1736,20)
+[17:35:37.758] LOG   [wave10_RevGen3_09_Rhale] event goto_start: target=(1402,1760) from=(1432,1736)
+[17:35:37.758] INFO  [wave10_RevGen3_09_Rhale] [bot] running from (1432,1736,20) to (1402,1760)
+[17:35:37.758] INFO  [wave10_RevGen3_09_Rhale] [bot] planning path to (1402,1760) in background
+[17:35:37.817] INFO  [wave10_RevGen3_09_Rhale] [bot] replan to (1402,1760): 43 steps in 24317.0us
+[17:35:37.944] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_09.rhaler/state.json
+[17:35:39.328] INFO  [wave10_RevGen3_09_Rhale] [chat ascii] System: Serena has departed from Britain.

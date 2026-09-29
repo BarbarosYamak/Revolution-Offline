@@ -1,0 +1,28 @@
+start: Faustus is a macer and lives in Britain -> starting city index 2
+map: verdata 'C:\Projects\RevolutionOffline\local\revolution-client/verdata.mul' applied (685 patch block(s))
+map: verdata 'C:\Projects\RevolutionOffline\local\revolution-client/verdata.mul' applied (685 patch block(s))
+[17:30:23.084] WARN  [wave10_RevGen3_27_Faust] [0x21] move REJECTED seq=50; server says (1463,1705,0) facing=1
+[17:30:24.441] WARN  [wave10_RevGen3_27_Faust] [bot] no path to (1464,1704) avoiding 0 block(s); stopping (search 1327682.5us)
+[17:30:24.443] WARN  [wave10_RevGen3_27_Faust] [bot] start (1463,1705,0) exits: open=5 terrain=2 mobile=0 dynamic=1 door=0 blacklist=0 (overlay saw 330 item(s), 2 mobile(s))
+[17:30:26.943] WARN  [wave10_RevGen3_27_Faust] [0x21] move REJECTED seq=11; server says (1462,1712,0) facing=5
+[17:30:26.958] WARN  [wave10_RevGen3_27_Faust] [bot] 0x20 resync; aborting path
+[17:31:06.576] WARN  [wave10_RevGen3_27_Faust] [0x21] move REJECTED seq=29; server says (1376,1756,0) facing=3
+[17:31:07.315] WARN  [wave10_RevGen3_27_Faust] [0x21] move REJECTED seq=0; server says (1376,1756,0) facing=3
+[17:32:36.695] WARN  [wave10_RevGen3_27_Faust] [0x21] move REJECTED seq=9; server says (1476,1670,0) facing=3
+[17:32:36.696] WARN  [wave10_RevGen3_27_Faust] [bot] 0x20 resync; aborting path
+[17:32:43.029] WARN  [wave10_RevGen3_27_Faust] [0x21] move REJECTED seq=22; server says (1487,1676,2) facing=2
+[17:32:43.734] WARN  [wave10_RevGen3_27_Faust] [0x21] move REJECTED seq=0; server says (1487,1676,2) facing=2
+[17:34:09.762] WARN  [wave10_RevGen3_27_Faust] [bot] watchdog: oldest move unacked 5s; aborting path
+[17:34:09.907] WARN  [wave10_RevGen3_27_Faust] [0x22] unsolicited ack seq=25
+[17:34:29.259] WARN  [wave10_RevGen3_27_Faust] [0x21] move REJECTED seq=46; server says (1503,1561,30) facing=1
+[17:34:29.997] WARN  [wave10_RevGen3_27_Faust] [0x21] move REJECTED seq=0; server says (1503,1561,30) facing=1
+[17:34:42.534] WARN  [wave10_RevGen3_27_Faust] [0x21] move REJECTED seq=8; server says (1516,1552,25) facing=5
+[17:34:42.535] WARN  [wave10_RevGen3_27_Faust] [bot] 0x20 resync; aborting path
+[17:35:11.810] WARN  [wave10_RevGen3_27_Faust] [0x21] move REJECTED seq=20; server says (1475,1520,20) facing=5
+[17:35:11.811] WARN  [wave10_RevGen3_27_Faust] [bot] 0x20 resync; aborting path
+[17:35:28.934] WARN  [wave10_RevGen3_27_Faust] [bot] no path to (1418,1547) avoiding 0 block(s); stopping (search 2249410.4us)
+[17:35:28.934] WARN  [wave10_RevGen3_27_Faust] [bot] start (1432,1544,30) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1298 item(s), 5 mobile(s))
+[17:35:32.430] WARN  [wave10_RevGen3_27_Faust] [bot] no path to (1418,1547) avoiding 0 block(s); stopping (search 2165966.3us)
+[17:35:32.436] WARN  [wave10_RevGen3_27_Faust] [bot] start (1432,1544,30) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1298 item(s), 5 mobile(s))
+[17:35:37.232] WARN  [wave10_RevGen3_27_Faust] [bot] no path to (1418,1547) avoiding 0 block(s); stopping (search 1939766.5us)
+[17:35:37.232] WARN  [wave10_RevGen3_27_Faust] [bot] start (1432,1544,30) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1298 item(s), 5 mobile(s))

@@ -1,0 +1,1582 @@
+[11:16:01.777] INFO  session 0: 127.0.0.1:2593 user='RevolutionFresh07' char=Kaelen tag='r2c'
+[11:16:01.778] LOG   [r2c] event session_start: text log opened
+[11:16:01.779] LOG   [r2c] event net_connect_begin: connect 127.0.0.1:2593
+[11:16:01.779] INFO  [r2c] [net] connecting to 127.0.0.1:2593 ...
+[11:16:01.780] LOG   [r2c] event net_connected: connect 127.0.0.1:2593
+[11:16:01.780] INFO  [r2c] [net] connected.
+[11:16:01.780] INFO  [r2c] [seed] sent 0x7F000001 (plaintext)
+[11:16:01.780] LOG   [r2c] event seed_out: 0x7F000001 hex=7f000001
+[11:16:01.780] INFO  [life] loaded persistent state for Kaelen (1 places, 0 suppliers, 0 events, 1 prior sessions)
+[11:16:01.780] INFO  [life] needs: reading 'fencer' from the profession catalogue
+[11:16:01.780] INFO  [life] build plan 'fencer': 600.0 resolved + 100.0 unresolved = 700.0/700.0, stats 100/100/25 = 225
+[11:16:01.780] INFO  [r2c] [life] autonomous player active for 'Kaelen' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 30 min)
+[11:16:01.806] INFO  [r2c] [0xA8] 1 server(s):
+[11:16:01.807] INFO  [r2c]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[11:16:01.822] INFO  [r2c] [0x8C] game server = 127.0.0.1:2593  seed=0xD25C679C
+[11:16:01.822] LOG   [r2c] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xD25C679C
+[11:16:01.822] INFO  [r2c] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[11:16:01.822] LOG   [r2c] event relay_same_socket: no seed re-sent; 0x91 follows
+[11:16:01.822] INFO  [r2c] [0xB9] server features = 0x0005
+[11:16:01.822] INFO  [r2c] [0xA9] 5 slot(s) (populated 1):
+[11:16:01.822] INFO  [r2c]   [0] Kaelen
+[11:16:01.822] INFO  [r2c]   [1] <empty>
+[11:16:01.822] INFO  [r2c]   [2] <empty>
+[11:16:01.822] INFO  [r2c]   [3] <empty>
+[11:16:01.822] INFO  [r2c]   [4] <empty>
+[11:16:01.822] INFO  [r2c] [ui] playing slot 0 ('Kaelen')
+[11:16:01.838] INFO  [r2c] [0x1B] serial=0x00013DF0 body=0x0190 pos=(1475,1612,20)
+[11:16:01.838] LOG   [r2c] event login_confirm: serial=0x00013DF0 body=0x0190 pos=(1475,1612,20)
+[11:16:01.838] INFO  [r2c] [0x20] player @(1475,1612,20) facing=6
+[11:16:01.838] INFO  [r2c] [0x55] login complete — entering world
+[11:16:01.838] LOG   [r2c] event in_world: 0x55 received
+[11:16:01.838] INFO  [r2c] [backpack] opening 0x40013DED
+[11:16:01.838] INFO  [r2c] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[11:16:01.838] INFO  [r2c] [chat ascii] System: There is 1 other player here.
+[11:16:01.838] INFO  [r2c] [chat ascii] System: Last logged: 1970/01/01 01:00:00
+[11:16:01.838] INFO  [r2c] [chat ascii] System: You are under the protection of the city guards
+[11:16:01.842] INFO  [r2c] [action] requesting the skill list
+[11:16:01.842] INFO  [life] in world; asked the server for the skill list
+[11:16:01.842] INFO  [r2c] [0x24] open container 0x40013DED gump=60
+[11:16:01.842] INFO  [r2c] [0x3C] container contents: 5 item(s)
+[11:16:01.842] LOG   [r2c] event backpack_contents: serial=0x40013DED items=5
+[11:16:04.449] INFO  [r2c] [bot] world data loaded (0 blacklisted spot(s)).
+[11:16:04.449] INFO  [life] reconciliation: resuming a life, 0 field(s) differed
+[11:16:04.449] INFO  [life]   gold         persisted=1000       server=1000       -> server value accepted
+[11:16:04.449] INFO  [life]   str          persisted=32         server=32         -> server value accepted
+[11:16:04.449] INFO  [life]   dex          persisted=40         server=40         -> server value accepted
+[11:16:04.449] INFO  [life]   int          persisted=8          server=8          -> server value accepted
+[11:16:04.449] INFO  [life]   skill_42     persisted=50.0       server=50.0       -> server value accepted
+[11:16:04.449] INFO  [life]   skill_27     persisted=50.0       server=50.0       -> server value accepted
+[11:16:04.449] INFO  [life]   skill_1      persisted=11.6       server=11.6       -> server value accepted
+[11:16:04.449] INFO  [life]   skill_17     persisted=0.3        server=0.3        -> server value accepted
+[11:16:04.449] INFO  [life]   skill_30     persisted=13.9       server=13.9       -> server value accepted
+[11:16:04.449] INFO  [life]   skill_5      persisted=17.1       server=17.1       -> server value accepted
+[11:16:04.449] INFO  [life]   position     persisted=1475,1612  server=1475,1612  -> server value accepted
+[11:16:04.449] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[11:16:04.449] INFO  [life]   restored objective KEPT: TRAIN_AT_NPC (progress 0)
+[11:16:04.449] INFO  [r2c] [survival] on
+[11:16:04.449] LOG   [r2c] event survival_mode: on
+[11:16:04.451] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[11:16:04.451] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:16:04.502] INFO  [life] training: looking for a 'healer' to teach Anatomy (trip 1)
+[11:16:04.502] INFO  [r2c] [travel] Britain healer -> (1471,1611) r=5 from (1475,1612)
+[11:16:04.502] LOG   [r2c] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1475,1612)
+[11:16:04.502] INFO  [r2c] [travel] Britain healer ARRIVED at (1475,1612,20)
+[11:16:04.502] LOG   [r2c] event travel_done: label='Britain healer' ok=1 at=(1475,1612) legs=0 plans=0 why=''
+[11:16:06.523] INFO  [life] training: arrived at 1475,1612 -- asking who is here
+[11:16:06.523] INFO  [r2c] [action] scanning nearby mobiles for names
+[11:16:06.523] INFO  [r2c] [action] requested 2 paperdoll(s) for trade titles
+[11:16:06.538] INFO  [r2c] [mobiles] nearby (3):
+[11:16:06.538] INFO  [r2c]   Dale 0x000010C1
+[11:16:06.538] INFO  [r2c]   Natasha 0x00001194
+[11:16:06.538] INFO  [r2c]   Audny 0x00001076
+[11:16:06.538] INFO  [r2c] [0x20] player @(1475,1612,20) facing=7
+[11:16:06.538] INFO  [r2c] [0x88] paperdoll 0x000010C1: "Dale, the healer"
+[11:16:06.538] INFO  [r2c] [world] Dale, the healer is a healer at (1472,1608)
+[11:16:06.538] INFO  [r2c] [0x20] player @(1475,1612,20) facing=6
+[11:16:06.538] INFO  [r2c] [0x88] paperdoll 0x00001194: "Natasha, the healer guildmistress"
+[11:16:06.538] INFO  [r2c] [world] Natasha, the healer guildmistress is a healer at (1468,1609)
+[11:16:09.043] INFO  [life] training: a 'healer guildmaster' is here -- asking them rather than the shopkeeper
+[11:16:09.043] INFO  [life] training: 'healer' is 7 tiles and 0 z away -- walking to them before speaking (approach 1 of 3)
+[11:16:09.043] INFO  [r2c] [travel] mobile 0x00001194 -> (1468,1609) r=1 from (1475,1612)
+[11:16:09.043] LOG   [r2c] event travel_start: label='mobile 0x00001194' target=(1468,1609) radius=1 from=(1475,1612)
+[11:16:09.044] INFO  [r2c] [travel] mode walk             usable   <- chosen
+[11:16:09.044] INFO  [r2c] [travel] mode moongate         usable
+[11:16:09.044] INFO  [r2c] [travel] mode loose_rune_recall no: no rune marked at that destination
+[11:16:09.044] INFO  [r2c] [travel] mode runebook_recall  no: no runebook page for that destination
+[11:16:09.044] LOG   [r2c] event travel_mode: walk
+[11:16:09.044] INFO  [r2c] [travel] plan mobile 0x00001194: ok legs=1 ~7 tiles transit=0 nodes=0
+[11:16:09.105] INFO  [r2c] [travel] avoiding 1 teleporter pad(s) on this leg
+[11:16:09.105] INFO  [r2c] [action] goto (1468,1609) from (1475,1612,20)
+[11:16:09.105] LOG   [r2c] event goto_start: target=(1468,1609) from=(1475,1612)
+[11:16:09.105] INFO  [r2c] [bot] running from (1475,1612,20) to (1468,1609,z20)
+[11:16:09.105] INFO  [r2c] [bot] planning path to (1468,1609) in background
+[11:16:09.475] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:16:10.276] INFO  [r2c] [action] goto finished at (1475,1612,20); target (1468,1609); stopped short (off by 10 tile(s))
+[11:16:10.276] LOG   [r2c] event goto_done: at=(1475,1612) target=(1468,1609) arrived=0 off=10
+[11:16:11.517] INFO  [r2c] [travel] avoiding 1 teleporter pad(s) on this leg
+[11:16:11.517] INFO  [r2c] [action] goto (1468,1609) from (1475,1612,20)
+[11:16:11.517] LOG   [r2c] event goto_start: target=(1468,1609) from=(1475,1612)
+[11:16:11.518] INFO  [r2c] [bot] running from (1475,1612,20) to (1468,1609,z20)
+[11:16:11.518] INFO  [r2c] [bot] planning path to (1468,1609) in background
+[11:16:12.924] INFO  [r2c] [action] goto finished at (1475,1612,20); target (1468,1609); stopped short (off by 10 tile(s))
+[11:16:12.924] LOG   [r2c] event goto_done: at=(1475,1612) target=(1468,1609) arrived=0 off=10
+[11:16:14.176] INFO  [r2c] [travel] avoiding 1 teleporter pad(s) on this leg
+[11:16:14.176] INFO  [r2c] [action] goto (1468,1609) from (1475,1612,20)
+[11:16:14.176] LOG   [r2c] event goto_start: target=(1468,1609) from=(1475,1612)
+[11:16:14.176] INFO  [r2c] [bot] running from (1475,1612,20) to (1468,1609,z20)
+[11:16:14.176] INFO  [r2c] [bot] planning path to (1468,1609) in background
+[11:16:14.513] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:16:15.452] INFO  [r2c] [action] goto finished at (1475,1612,20); target (1468,1609); stopped short (off by 10 tile(s))
+[11:16:15.452] LOG   [r2c] event goto_done: at=(1475,1612) target=(1468,1609) arrived=0 off=10
+[11:16:16.676] INFO  [r2c] [travel] mode walk             usable   <- chosen
+[11:16:16.676] INFO  [r2c] [travel] mode moongate         usable
+[11:16:16.676] INFO  [r2c] [travel] mode loose_rune_recall no: no rune marked at that destination
+[11:16:16.676] INFO  [r2c] [travel] mode runebook_recall  no: no runebook page for that destination
+[11:16:16.676] LOG   [r2c] event travel_mode: walk
+[11:16:16.676] INFO  [r2c] [travel] plan mobile 0x00001194: ok legs=1 ~7 tiles transit=0 nodes=0
+[11:16:18.177] INFO  [r2c] [travel] avoiding 1 teleporter pad(s) on this leg
+[11:16:18.177] INFO  [r2c] [action] goto (1468,1609) from (1475,1612,20)
+[11:16:18.177] LOG   [r2c] event goto_start: target=(1468,1609) from=(1475,1612)
+[11:16:18.177] INFO  [r2c] [bot] running from (1475,1612,20) to (1468,1609,z20)
+[11:16:18.177] INFO  [r2c] [bot] planning path to (1468,1609) in background
+[11:16:19.349] INFO  [r2c] [action] goto finished at (1475,1612,20); target (1468,1609); stopped short (off by 10 tile(s))
+[11:16:19.349] LOG   [r2c] event goto_done: at=(1475,1612) target=(1468,1609) arrived=0 off=10
+[11:16:19.534] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:16:20.572] INFO  [r2c] [travel] avoiding 1 teleporter pad(s) on this leg
+[11:16:20.572] INFO  [r2c] [action] goto (1468,1609) from (1475,1612,20)
+[11:16:20.572] LOG   [r2c] event goto_start: target=(1468,1609) from=(1475,1612)
+[11:16:20.572] INFO  [r2c] [bot] running from (1475,1612,20) to (1468,1609,z20)
+[11:16:20.572] INFO  [r2c] [bot] planning path to (1468,1609) in background
+[11:16:21.713] INFO  [r2c] [action] goto finished at (1475,1612,20); target (1468,1609); stopped short (off by 10 tile(s))
+[11:16:21.713] LOG   [r2c] event goto_done: at=(1475,1612) target=(1468,1609) arrived=0 off=10
+[11:16:22.932] INFO  [r2c] [travel] avoiding 1 teleporter pad(s) on this leg
+[11:16:22.932] INFO  [r2c] [action] goto (1468,1609) from (1475,1612,20)
+[11:16:22.932] LOG   [r2c] event goto_start: target=(1468,1609) from=(1475,1612)
+[11:16:22.932] INFO  [r2c] [bot] running from (1475,1612,20) to (1468,1609,z20)
+[11:16:22.932] INFO  [r2c] [bot] planning path to (1468,1609) in background
+[11:16:24.097] INFO  [r2c] [action] goto finished at (1475,1612,20); target (1468,1609); stopped short (off by 10 tile(s))
+[11:16:24.097] LOG   [r2c] event goto_done: at=(1475,1612) target=(1468,1609) arrived=0 off=10
+[11:16:24.589] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:16:25.313] INFO  [r2c] [travel] mode walk             usable   <- chosen
+[11:16:25.313] INFO  [r2c] [travel] mode moongate         usable
+[11:16:25.313] INFO  [r2c] [travel] mode loose_rune_recall no: no rune marked at that destination
+[11:16:25.313] INFO  [r2c] [travel] mode runebook_recall  no: no runebook page for that destination
+[11:16:25.313] LOG   [r2c] event travel_mode: walk
+[11:16:25.313] INFO  [r2c] [travel] plan mobile 0x00001194: ok legs=1 ~7 tiles transit=0 nodes=0
+[11:16:28.361] INFO  [r2c] [travel] avoiding 1 teleporter pad(s) on this leg
+[11:16:28.361] INFO  [r2c] [action] goto (1468,1609) from (1475,1612,20)
+[11:16:28.361] LOG   [r2c] event goto_start: target=(1468,1609) from=(1475,1612)
+[11:16:28.361] INFO  [r2c] [bot] running from (1475,1612,20) to (1468,1609,z20)
+[11:16:28.361] INFO  [r2c] [bot] planning path to (1468,1609) in background
+[11:16:29.577] INFO  [r2c] [action] goto finished at (1475,1612,20); target (1468,1609); stopped short (off by 10 tile(s))
+[11:16:29.577] LOG   [r2c] event goto_done: at=(1475,1612) target=(1468,1609) arrived=0 off=10
+[11:16:29.638] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:16:30.813] INFO  [r2c] [travel] avoiding 1 teleporter pad(s) on this leg
+[11:16:30.813] INFO  [r2c] [action] goto (1468,1609) from (1475,1612,20)
+[11:16:30.813] LOG   [r2c] event goto_start: target=(1468,1609) from=(1475,1612)
+[11:16:30.813] INFO  [r2c] [bot] running from (1475,1612,20) to (1468,1609,z20)
+[11:16:30.814] INFO  [r2c] [bot] planning path to (1468,1609) in background
+[11:16:32.043] INFO  [r2c] [action] goto finished at (1475,1612,20); target (1468,1609); stopped short (off by 10 tile(s))
+[11:16:32.043] LOG   [r2c] event goto_done: at=(1475,1612) target=(1468,1609) arrived=0 off=10
+[11:16:33.302] INFO  [r2c] [travel] avoiding 1 teleporter pad(s) on this leg
+[11:16:33.302] INFO  [r2c] [action] goto (1468,1609) from (1475,1612,20)
+[11:16:33.302] LOG   [r2c] event goto_start: target=(1468,1609) from=(1475,1612)
+[11:16:33.302] INFO  [r2c] [bot] running from (1475,1612,20) to (1468,1609,z20)
+[11:16:33.302] INFO  [r2c] [bot] planning path to (1468,1609) in background
+[11:16:34.658] INFO  [r2c] [action] goto finished at (1475,1612,20); target (1468,1609); stopped short (off by 10 tile(s))
+[11:16:34.658] LOG   [r2c] event goto_done: at=(1475,1612) target=(1468,1609) arrived=0 off=10
+[11:16:34.658] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:16:35.893] INFO  [r2c] [travel] mode walk             usable   <- chosen
+[11:16:35.893] INFO  [r2c] [travel] mode moongate         usable
+[11:16:35.893] INFO  [r2c] [travel] mode loose_rune_recall no: no rune marked at that destination
+[11:16:35.893] INFO  [r2c] [travel] mode runebook_recall  no: no runebook page for that destination
+[11:16:35.893] LOG   [r2c] event travel_mode: walk
+[11:16:35.893] INFO  [r2c] [travel] plan mobile 0x00001194: ok legs=1 ~7 tiles transit=0 nodes=0
+[11:16:39.700] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:16:40.440] INFO  [r2c] [travel] avoiding 1 teleporter pad(s) on this leg
+[11:16:40.440] INFO  [r2c] [action] goto (1468,1609) from (1475,1612,20)
+[11:16:40.440] LOG   [r2c] event goto_start: target=(1468,1609) from=(1475,1612)
+[11:16:40.440] INFO  [r2c] [bot] running from (1475,1612,20) to (1468,1609,z20)
+[11:16:40.440] INFO  [r2c] [bot] planning path to (1468,1609) in background
+[11:16:41.671] INFO  [r2c] [action] goto finished at (1475,1612,20); target (1468,1609); stopped short (off by 10 tile(s))
+[11:16:41.671] LOG   [r2c] event goto_done: at=(1475,1612) target=(1468,1609) arrived=0 off=10
+[11:16:42.903] INFO  [r2c] [travel] avoiding 1 teleporter pad(s) on this leg
+[11:16:42.903] INFO  [r2c] [action] goto (1468,1609) from (1475,1612,20)
+[11:16:42.903] LOG   [r2c] event goto_start: target=(1468,1609) from=(1475,1612)
+[11:16:42.903] INFO  [r2c] [bot] running from (1475,1612,20) to (1468,1609,z20)
+[11:16:42.903] INFO  [r2c] [bot] planning path to (1468,1609) in background
+[11:16:44.074] INFO  [r2c] [action] goto finished at (1475,1612,20); target (1468,1609); stopped short (off by 10 tile(s))
+[11:16:44.074] LOG   [r2c] event goto_done: at=(1475,1612) target=(1468,1609) arrived=0 off=10
+[11:16:44.722] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:16:45.276] INFO  [r2c] [travel] avoiding 1 teleporter pad(s) on this leg
+[11:16:45.276] INFO  [r2c] [action] goto (1468,1609) from (1475,1612,20)
+[11:16:45.276] LOG   [r2c] event goto_start: target=(1468,1609) from=(1475,1612)
+[11:16:45.276] INFO  [r2c] [bot] running from (1475,1612,20) to (1468,1609,z20)
+[11:16:45.276] INFO  [r2c] [bot] planning path to (1468,1609) in background
+[11:16:46.532] INFO  [r2c] [action] goto finished at (1475,1612,20); target (1468,1609); stopped short (off by 10 tile(s))
+[11:16:46.532] LOG   [r2c] event goto_done: at=(1475,1612) target=(1468,1609) arrived=0 off=10
+[11:16:46.532] LOG   [r2c] event travel_escape: from=(1475,1612,20) to=(1464,1608) attempt=1
+[11:16:46.532] INFO  [r2c] [action] goto (1464,1608) from (1475,1612,20)
+[11:16:46.532] LOG   [r2c] event goto_start: target=(1464,1608) from=(1475,1612)
+[11:16:46.532] INFO  [r2c] [bot] running from (1475,1612,20) to (1464,1608,z20)
+[11:16:46.532] INFO  [r2c] [bot] planning path to (1464,1608) in background
+[11:16:46.593] INFO  [r2c] [bot] replan to (1464,1608): 26 steps in 554.7us
+[11:16:47.561] INFO  [r2c] [bot] door ahead at (1479,1611,z20); OpenDoor before step
+[11:16:47.562] INFO  [r2c] [chat ascii] System: Opening door...
+[11:16:49.050] INFO  [r2c] [bot] door ahead at (1480,1610,z20); OpenDoor before step
+[11:16:49.050] INFO  [r2c] [chat ascii] System: Opening door...
+[11:16:49.722] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:16:54.777] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:16:55.300] INFO  [r2c] [bot] arrived at (1464,1608,20)
+[11:16:55.300] INFO  [r2c] [action] goto finished at (1464,1608,20); target (1464,1608); ARRIVED (off by 0 tile(s))
+[11:16:55.300] LOG   [r2c] event goto_done: at=(1464,1608) target=(1464,1608) arrived=1 off=0
+[11:16:55.300] INFO  [r2c] [travel] recovery walk reached its anchor at (1464,1608,20) (off 0); attempt 1/3
+[11:16:55.300] LOG   [r2c] event travel_recovery_done: reached=1 at=(1464,1608,20) off=0 attempt=1
+[11:16:55.362] INFO  [r2c] [travel] mode walk             usable   <- chosen
+[11:16:55.362] INFO  [r2c] [travel] mode moongate         usable
+[11:16:55.362] INFO  [r2c] [travel] mode loose_rune_recall no: no rune marked at that destination
+[11:16:55.362] INFO  [r2c] [travel] mode runebook_recall  no: no runebook page for that destination
+[11:16:55.362] LOG   [r2c] event travel_mode: walk
+[11:16:55.362] INFO  [r2c] [travel] plan mobile 0x00001194: ok legs=1 ~4 tiles transit=0 nodes=0
+[11:16:55.424] INFO  [r2c] [action] goto (1468,1609) from (1464,1608,20)
+[11:16:55.424] LOG   [r2c] event goto_start: target=(1468,1609) from=(1464,1608)
+[11:16:55.424] INFO  [r2c] [bot] running from (1464,1608,20) to (1468,1609,z20)
+[11:16:55.424] INFO  [r2c] [bot] planning path to (1468,1609) in background
+[11:16:56.595] INFO  [r2c] [action] goto finished at (1464,1608,20); target (1468,1609); stopped short (off by 5 tile(s))
+[11:16:56.595] LOG   [r2c] event goto_done: at=(1464,1608) target=(1468,1609) arrived=0 off=5
+[11:16:57.804] INFO  [r2c] [action] goto (1468,1609) from (1464,1608,20)
+[11:16:57.804] LOG   [r2c] event goto_start: target=(1468,1609) from=(1464,1608)
+[11:16:57.804] INFO  [r2c] [bot] running from (1464,1608,20) to (1468,1609,z20)
+[11:16:57.804] INFO  [r2c] [bot] planning path to (1468,1609) in background
+[11:16:58.927] INFO  [r2c] [action] goto finished at (1464,1608,20); target (1468,1609); stopped short (off by 5 tile(s))
+[11:16:58.927] LOG   [r2c] event goto_done: at=(1464,1608) target=(1468,1609) arrived=0 off=5
+[11:16:59.788] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:17:00.152] INFO  [r2c] [action] goto (1468,1609) from (1464,1608,20)
+[11:17:00.152] LOG   [r2c] event goto_start: target=(1468,1609) from=(1464,1608)
+[11:17:00.152] INFO  [r2c] [bot] running from (1464,1608,20) to (1468,1609,z20)
+[11:17:00.152] INFO  [r2c] [bot] planning path to (1468,1609) in background
+[11:17:01.322] INFO  [r2c] [action] goto finished at (1464,1608,20); target (1468,1609); stopped short (off by 5 tile(s))
+[11:17:01.322] LOG   [r2c] event goto_done: at=(1464,1608) target=(1468,1609) arrived=0 off=5
+[11:17:02.551] INFO  [r2c] [travel] mode walk             usable   <- chosen
+[11:17:02.552] INFO  [r2c] [travel] mode moongate         usable
+[11:17:02.552] INFO  [r2c] [travel] mode loose_rune_recall no: no rune marked at that destination
+[11:17:02.552] INFO  [r2c] [travel] mode runebook_recall  no: no runebook page for that destination
+[11:17:02.552] LOG   [r2c] event travel_mode: walk
+[11:17:02.552] INFO  [r2c] [travel] plan mobile 0x00001194: ok legs=1 ~4 tiles transit=0 nodes=0
+[11:17:04.052] INFO  [r2c] [action] goto (1468,1609) from (1464,1608,20)
+[11:17:04.052] LOG   [r2c] event goto_start: target=(1468,1609) from=(1464,1608)
+[11:17:04.052] INFO  [r2c] [bot] running from (1464,1608,20) to (1468,1609,z20)
+[11:17:04.052] INFO  [r2c] [bot] planning path to (1468,1609) in background
+[11:17:04.484] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[11:17:04.838] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:17:05.207] INFO  [r2c] [action] goto finished at (1464,1608,20); target (1468,1609); stopped short (off by 5 tile(s))
+[11:17:05.207] LOG   [r2c] event goto_done: at=(1464,1608) target=(1468,1609) arrived=0 off=5
+[11:17:06.458] INFO  [r2c] [action] goto (1468,1609) from (1464,1608,20)
+[11:17:06.458] LOG   [r2c] event goto_start: target=(1468,1609) from=(1464,1608)
+[11:17:06.458] INFO  [r2c] [bot] running from (1464,1608,20) to (1468,1609,z20)
+[11:17:06.458] INFO  [r2c] [bot] planning path to (1468,1609) in background
+[11:17:07.659] INFO  [r2c] [action] goto finished at (1464,1608,20); target (1468,1609); stopped short (off by 5 tile(s))
+[11:17:07.659] LOG   [r2c] event goto_done: at=(1464,1608) target=(1468,1609) arrived=0 off=5
+[11:17:08.868] INFO  [r2c] [action] goto (1468,1609) from (1464,1608,20)
+[11:17:08.868] LOG   [r2c] event goto_start: target=(1468,1609) from=(1464,1608)
+[11:17:08.868] INFO  [r2c] [bot] running from (1464,1608,20) to (1468,1609,z20)
+[11:17:08.868] INFO  [r2c] [bot] planning path to (1468,1609) in background
+[11:17:09.880] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:17:10.065] INFO  [r2c] [action] goto finished at (1464,1608,20); target (1468,1609); stopped short (off by 5 tile(s))
+[11:17:10.065] LOG   [r2c] event goto_done: at=(1464,1608) target=(1468,1609) arrived=0 off=5
+[11:17:11.283] INFO  [r2c] [travel] mode walk             usable   <- chosen
+[11:17:11.283] INFO  [r2c] [travel] mode moongate         usable
+[11:17:11.283] INFO  [r2c] [travel] mode loose_rune_recall no: no rune marked at that destination
+[11:17:11.283] INFO  [r2c] [travel] mode runebook_recall  no: no runebook page for that destination
+[11:17:11.283] LOG   [r2c] event travel_mode: walk
+[11:17:11.283] INFO  [r2c] [travel] plan mobile 0x00001194: ok legs=1 ~4 tiles transit=0 nodes=0
+[11:17:14.287] INFO  [r2c] [action] goto (1468,1609) from (1464,1608,20)
+[11:17:14.287] LOG   [r2c] event goto_start: target=(1468,1609) from=(1464,1608)
+[11:17:14.287] INFO  [r2c] [bot] running from (1464,1608,20) to (1468,1609,z20)
+[11:17:14.287] INFO  [r2c] [bot] planning path to (1468,1609) in background
+[11:17:14.931] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:17:15.578] INFO  [r2c] [action] goto finished at (1464,1608,20); target (1468,1609); stopped short (off by 5 tile(s))
+[11:17:15.578] LOG   [r2c] event goto_done: at=(1464,1608) target=(1468,1609) arrived=0 off=5
+[11:17:16.778] INFO  [r2c] [action] goto (1468,1609) from (1464,1608,20)
+[11:17:16.778] LOG   [r2c] event goto_start: target=(1468,1609) from=(1464,1608)
+[11:17:16.778] INFO  [r2c] [bot] running from (1464,1608,20) to (1468,1609,z20)
+[11:17:16.778] INFO  [r2c] [bot] planning path to (1468,1609) in background
+[11:17:17.935] INFO  [r2c] [action] goto finished at (1464,1608,20); target (1468,1609); stopped short (off by 5 tile(s))
+[11:17:17.935] LOG   [r2c] event goto_done: at=(1464,1608) target=(1468,1609) arrived=0 off=5
+[11:17:19.190] INFO  [r2c] [action] goto (1468,1609) from (1464,1608,20)
+[11:17:19.190] LOG   [r2c] event goto_start: target=(1468,1609) from=(1464,1608)
+[11:17:19.190] INFO  [r2c] [bot] running from (1464,1608,20) to (1468,1609,z20)
+[11:17:19.190] INFO  [r2c] [bot] planning path to (1468,1609) in background
+[11:17:19.990] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:17:20.404] INFO  [r2c] [action] goto finished at (1464,1608,20); target (1468,1609); stopped short (off by 5 tile(s))
+[11:17:20.404] LOG   [r2c] event goto_done: at=(1464,1608) target=(1468,1609) arrived=0 off=5
+[11:17:21.616] INFO  [r2c] [travel] mode walk             usable   <- chosen
+[11:17:21.616] INFO  [r2c] [travel] mode moongate         usable
+[11:17:21.616] INFO  [r2c] [travel] mode loose_rune_recall no: no rune marked at that destination
+[11:17:21.616] INFO  [r2c] [travel] mode runebook_recall  no: no runebook page for that destination
+[11:17:21.616] LOG   [r2c] event travel_mode: walk
+[11:17:21.616] INFO  [r2c] [travel] plan mobile 0x00001194: ok legs=1 ~4 tiles transit=0 nodes=0
+[11:17:25.036] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:17:26.136] INFO  [r2c] [action] goto (1468,1609) from (1464,1608,20)
+[11:17:26.136] LOG   [r2c] event goto_start: target=(1468,1609) from=(1464,1608)
+[11:17:26.136] INFO  [r2c] [bot] running from (1464,1608,20) to (1468,1609,z20)
+[11:17:26.136] INFO  [r2c] [bot] planning path to (1468,1609) in background
+[11:17:27.352] INFO  [r2c] [action] goto finished at (1464,1608,20); target (1468,1609); stopped short (off by 5 tile(s))
+[11:17:27.352] LOG   [r2c] event goto_done: at=(1464,1608) target=(1468,1609) arrived=0 off=5
+[11:17:28.599] INFO  [r2c] [action] goto (1468,1609) from (1464,1608,20)
+[11:17:28.599] LOG   [r2c] event goto_start: target=(1468,1609) from=(1464,1608)
+[11:17:28.599] INFO  [r2c] [bot] running from (1464,1608,20) to (1468,1609,z20)
+[11:17:28.599] INFO  [r2c] [bot] planning path to (1468,1609) in background
+[11:17:29.802] INFO  [r2c] [action] goto finished at (1464,1608,20); target (1468,1609); stopped short (off by 5 tile(s))
+[11:17:29.802] LOG   [r2c] event goto_done: at=(1464,1608) target=(1468,1609) arrived=0 off=5
+[11:17:30.047] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:17:31.031] INFO  [r2c] [action] goto (1468,1609) from (1464,1608,20)
+[11:17:31.031] LOG   [r2c] event goto_start: target=(1468,1609) from=(1464,1608)
+[11:17:31.031] INFO  [r2c] [bot] running from (1464,1608,20) to (1468,1609,z20)
+[11:17:31.031] INFO  [r2c] [bot] planning path to (1468,1609) in background
+[11:17:32.264] INFO  [r2c] [action] goto finished at (1464,1608,20); target (1468,1609); stopped short (off by 5 tile(s))
+[11:17:32.264] LOG   [r2c] event goto_done: at=(1464,1608) target=(1468,1609) arrived=0 off=5
+[11:17:32.264] INFO  [r2c] [travel] mobile 0x00001194 ARRIVED at (1464,1608,20) -- arrived nearby; the destination tile was not free
+[11:17:32.264] LOG   [r2c] event travel_done: label='mobile 0x00001194' ok=1 at=(1464,1608) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[11:17:32.325] INFO  [life] training: 'healer' is 4 tiles and 0 z away -- walking to them before speaking (approach 2 of 3)
+[11:17:32.325] INFO  [r2c] [travel] mobile 0x00001194 -> (1468,1609) r=1 from (1464,1608)
+[11:17:32.325] LOG   [r2c] event travel_start: label='mobile 0x00001194' target=(1468,1609) radius=1 from=(1464,1608)
+[11:17:32.325] INFO  [r2c] [travel] mode walk             usable   <- chosen
+[11:17:32.325] INFO  [r2c] [travel] mode moongate         usable
+[11:17:32.325] INFO  [r2c] [travel] mode loose_rune_recall no: no rune marked at that destination
+[11:17:32.325] INFO  [r2c] [travel] mode runebook_recall  no: no runebook page for that destination
+[11:17:32.325] LOG   [r2c] event travel_mode: walk
+[11:17:32.325] INFO  [r2c] [travel] plan mobile 0x00001194: ok legs=1 ~4 tiles transit=0 nodes=0
+[11:17:32.356] INFO  [r2c] [action] goto (1468,1609) from (1464,1608,20)
+[11:17:32.356] LOG   [r2c] event goto_start: target=(1468,1609) from=(1464,1608)
+[11:17:32.356] INFO  [r2c] [bot] running from (1464,1608,20) to (1468,1609,z20)
+[11:17:32.356] INFO  [r2c] [bot] planning path to (1468,1609) in background
+[11:17:33.497] INFO  [r2c] [action] goto finished at (1464,1608,20); target (1468,1609); stopped short (off by 5 tile(s))
+[11:17:33.497] LOG   [r2c] event goto_done: at=(1464,1608) target=(1468,1609) arrived=0 off=5
+[11:17:34.753] INFO  [r2c] [action] goto (1468,1609) from (1464,1608,20)
+[11:17:34.754] LOG   [r2c] event goto_start: target=(1468,1609) from=(1464,1608)
+[11:17:34.754] INFO  [r2c] [bot] running from (1464,1608,20) to (1468,1609,z20)
+[11:17:34.754] INFO  [r2c] [bot] planning path to (1468,1609) in background
+[11:17:35.061] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:17:35.924] INFO  [r2c] [action] goto finished at (1464,1608,20); target (1468,1609); stopped short (off by 5 tile(s))
+[11:17:35.924] LOG   [r2c] event goto_done: at=(1464,1608) target=(1468,1609) arrived=0 off=5
+[11:17:37.153] INFO  [r2c] [action] goto (1468,1609) from (1464,1608,20)
+[11:17:37.153] LOG   [r2c] event goto_start: target=(1468,1609) from=(1464,1608)
+[11:17:37.153] INFO  [r2c] [bot] running from (1464,1608,20) to (1468,1609,z20)
+[11:17:37.153] INFO  [r2c] [bot] planning path to (1468,1609) in background
+[11:17:38.332] INFO  [r2c] [action] goto finished at (1464,1608,20); target (1468,1609); stopped short (off by 5 tile(s))
+[11:17:38.332] LOG   [r2c] event goto_done: at=(1464,1608) target=(1468,1609) arrived=0 off=5
+[11:17:39.556] INFO  [r2c] [travel] mode walk             usable   <- chosen
+[11:17:39.556] INFO  [r2c] [travel] mode moongate         usable
+[11:17:39.556] INFO  [r2c] [travel] mode loose_rune_recall no: no rune marked at that destination
+[11:17:39.556] INFO  [r2c] [travel] mode runebook_recall  no: no runebook page for that destination
+[11:17:39.556] LOG   [r2c] event travel_mode: walk
+[11:17:39.556] INFO  [r2c] [travel] plan mobile 0x00001194: ok legs=1 ~4 tiles transit=0 nodes=0
+[11:17:40.111] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:17:41.070] INFO  [r2c] [action] goto (1468,1609) from (1464,1608,20)
+[11:17:41.071] LOG   [r2c] event goto_start: target=(1468,1609) from=(1464,1608)
+[11:17:41.071] INFO  [r2c] [bot] running from (1464,1608,20) to (1468,1609,z20)
+[11:17:41.071] INFO  [r2c] [bot] planning path to (1468,1609) in background
+[11:17:42.256] INFO  [r2c] [action] goto finished at (1464,1608,20); target (1468,1609); stopped short (off by 5 tile(s))
+[11:17:42.257] LOG   [r2c] event goto_done: at=(1464,1608) target=(1468,1609) arrived=0 off=5
+[11:17:43.511] INFO  [r2c] [action] goto (1468,1609) from (1464,1608,20)
+[11:17:43.511] LOG   [r2c] event goto_start: target=(1468,1609) from=(1464,1608)
+[11:17:43.511] INFO  [r2c] [bot] running from (1464,1608,20) to (1468,1609,z20)
+[11:17:43.511] INFO  [r2c] [bot] planning path to (1468,1609) in background
+[11:17:44.753] INFO  [r2c] [action] goto finished at (1464,1608,20); target (1468,1609); stopped short (off by 5 tile(s))
+[11:17:44.753] LOG   [r2c] event goto_done: at=(1464,1608) target=(1468,1609) arrived=0 off=5
+[11:17:45.121] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:17:45.981] INFO  [r2c] [action] goto (1468,1609) from (1464,1608,20)
+[11:17:45.981] LOG   [r2c] event goto_start: target=(1468,1609) from=(1464,1608)
+[11:17:45.981] INFO  [r2c] [bot] running from (1464,1608,20) to (1468,1609,z20)
+[11:17:45.981] INFO  [r2c] [bot] planning path to (1468,1609) in background
+[11:17:47.195] INFO  [r2c] [action] goto finished at (1464,1608,20); target (1468,1609); stopped short (off by 5 tile(s))
+[11:17:47.195] LOG   [r2c] event goto_done: at=(1464,1608) target=(1468,1609) arrived=0 off=5
+[11:17:48.455] INFO  [r2c] [travel] mode walk             usable   <- chosen
+[11:17:48.455] INFO  [r2c] [travel] mode moongate         usable
+[11:17:48.455] INFO  [r2c] [travel] mode loose_rune_recall no: no rune marked at that destination
+[11:17:48.455] INFO  [r2c] [travel] mode runebook_recall  no: no runebook page for that destination
+[11:17:48.455] LOG   [r2c] event travel_mode: walk
+[11:17:48.455] INFO  [r2c] [travel] plan mobile 0x00001194: ok legs=1 ~4 tiles transit=0 nodes=0
+[11:17:50.171] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:17:51.467] INFO  [r2c] [action] goto (1468,1609) from (1464,1608,20)
+[11:17:51.467] LOG   [r2c] event goto_start: target=(1468,1609) from=(1464,1608)
+[11:17:51.467] INFO  [r2c] [bot] running from (1464,1608,20) to (1468,1609,z20)
+[11:17:51.467] INFO  [r2c] [bot] planning path to (1468,1609) in background
+[11:17:52.636] INFO  [r2c] [action] goto finished at (1464,1608,20); target (1468,1609); stopped short (off by 5 tile(s))
+[11:17:52.636] LOG   [r2c] event goto_done: at=(1464,1608) target=(1468,1609) arrived=0 off=5
+[11:17:53.861] INFO  [r2c] [action] goto (1468,1609) from (1464,1608,20)
+[11:17:53.861] LOG   [r2c] event goto_start: target=(1468,1609) from=(1464,1608)
+[11:17:53.861] INFO  [r2c] [bot] running from (1464,1608,20) to (1468,1609,z20)
+[11:17:53.861] INFO  [r2c] [bot] planning path to (1468,1609) in background
+[11:17:54.983] INFO  [r2c] [action] goto finished at (1464,1608,20); target (1468,1609); stopped short (off by 5 tile(s))
+[11:17:54.983] LOG   [r2c] event goto_done: at=(1464,1608) target=(1468,1609) arrived=0 off=5
+[11:17:55.228] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:17:56.240] INFO  [r2c] [action] goto (1468,1609) from (1464,1608,20)
+[11:17:56.240] LOG   [r2c] event goto_start: target=(1468,1609) from=(1464,1608)
+[11:17:56.240] INFO  [r2c] [bot] running from (1464,1608,20) to (1468,1609,z20)
+[11:17:56.240] INFO  [r2c] [bot] planning path to (1468,1609) in background
+[11:17:57.486] INFO  [r2c] [action] goto finished at (1464,1608,20); target (1468,1609); stopped short (off by 5 tile(s))
+[11:17:57.486] LOG   [r2c] event goto_done: at=(1464,1608) target=(1468,1609) arrived=0 off=5
+[11:17:58.746] INFO  [r2c] [travel] mode walk             usable   <- chosen
+[11:17:58.746] INFO  [r2c] [travel] mode moongate         usable
+[11:17:58.746] INFO  [r2c] [travel] mode loose_rune_recall no: no rune marked at that destination
+[11:17:58.746] INFO  [r2c] [travel] mode runebook_recall  no: no runebook page for that destination
+[11:17:58.746] LOG   [r2c] event travel_mode: walk
+[11:17:58.746] INFO  [r2c] [travel] plan mobile 0x00001194: ok legs=1 ~4 tiles transit=0 nodes=0
+[11:18:00.275] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:18:03.265] INFO  [r2c] [action] goto (1468,1609) from (1464,1608,20)
+[11:18:03.265] LOG   [r2c] event goto_start: target=(1468,1609) from=(1464,1608)
+[11:18:03.265] INFO  [r2c] [bot] running from (1464,1608,20) to (1468,1609,z20)
+[11:18:03.265] INFO  [r2c] [bot] planning path to (1468,1609) in background
+[11:18:04.403] INFO  [r2c] [action] goto finished at (1464,1608,20); target (1468,1609); stopped short (off by 5 tile(s))
+[11:18:04.403] LOG   [r2c] event goto_done: at=(1464,1608) target=(1468,1609) arrived=0 off=5
+[11:18:04.526] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[11:18:05.290] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:18:05.657] INFO  [r2c] [action] goto (1468,1609) from (1464,1608,20)
+[11:18:05.657] LOG   [r2c] event goto_start: target=(1468,1609) from=(1464,1608)
+[11:18:05.657] INFO  [r2c] [bot] running from (1464,1608,20) to (1468,1609,z20)
+[11:18:05.657] INFO  [r2c] [bot] planning path to (1468,1609) in background
+[11:18:06.846] INFO  [r2c] [action] goto finished at (1464,1608,20); target (1468,1609); stopped short (off by 5 tile(s))
+[11:18:06.846] LOG   [r2c] event goto_done: at=(1464,1608) target=(1468,1609) arrived=0 off=5
+[11:18:08.060] INFO  [r2c] [action] goto (1468,1609) from (1464,1608,20)
+[11:18:08.060] LOG   [r2c] event goto_start: target=(1468,1609) from=(1464,1608)
+[11:18:08.060] INFO  [r2c] [bot] running from (1464,1608,20) to (1468,1609,z20)
+[11:18:08.060] INFO  [r2c] [bot] planning path to (1468,1609) in background
+[11:18:09.230] INFO  [r2c] [action] goto finished at (1464,1608,20); target (1468,1609); stopped short (off by 5 tile(s))
+[11:18:09.230] LOG   [r2c] event goto_done: at=(1464,1608) target=(1468,1609) arrived=0 off=5
+[11:18:09.230] INFO  [r2c] [travel] mobile 0x00001194 ARRIVED at (1464,1608,20) -- arrived nearby; the destination tile was not free
+[11:18:09.230] LOG   [r2c] event travel_done: label='mobile 0x00001194' ok=1 at=(1464,1608) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[11:18:09.293] INFO  [life] training: 'healer' is 4 tiles and 0 z away -- walking to them before speaking (approach 3 of 3)
+[11:18:09.293] INFO  [r2c] [travel] mobile 0x00001194 -> (1468,1609) r=1 from (1464,1608)
+[11:18:09.293] LOG   [r2c] event travel_start: label='mobile 0x00001194' target=(1468,1609) radius=1 from=(1464,1608)
+[11:18:09.293] INFO  [r2c] [travel] mode walk             usable   <- chosen
+[11:18:09.293] INFO  [r2c] [travel] mode moongate         usable
+[11:18:09.293] INFO  [r2c] [travel] mode loose_rune_recall no: no rune marked at that destination
+[11:18:09.293] INFO  [r2c] [travel] mode runebook_recall  no: no runebook page for that destination
+[11:18:09.293] LOG   [r2c] event travel_mode: walk
+[11:18:09.293] INFO  [r2c] [travel] plan mobile 0x00001194: ok legs=1 ~4 tiles transit=0 nodes=0
+[11:18:09.353] INFO  [r2c] [action] goto (1468,1609) from (1464,1608,20)
+[11:18:09.354] LOG   [r2c] event goto_start: target=(1468,1609) from=(1464,1608)
+[11:18:09.354] INFO  [r2c] [bot] running from (1464,1608,20) to (1468,1609,z20)
+[11:18:09.354] INFO  [r2c] [bot] planning path to (1468,1609) in background
+[11:18:10.351] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:18:10.594] INFO  [r2c] [action] goto finished at (1464,1608,20); target (1468,1609); stopped short (off by 5 tile(s))
+[11:18:10.594] LOG   [r2c] event goto_done: at=(1464,1608) target=(1468,1609) arrived=0 off=5
+[11:18:11.822] INFO  [r2c] [action] goto (1468,1609) from (1464,1608,20)
+[11:18:11.822] LOG   [r2c] event goto_start: target=(1468,1609) from=(1464,1608)
+[11:18:11.822] INFO  [r2c] [bot] running from (1464,1608,20) to (1468,1609,z20)
+[11:18:11.822] INFO  [r2c] [bot] planning path to (1468,1609) in background
+[11:18:12.992] INFO  [r2c] [action] goto finished at (1464,1608,20); target (1468,1609); stopped short (off by 5 tile(s))
+[11:18:12.992] LOG   [r2c] event goto_done: at=(1464,1608) target=(1468,1609) arrived=0 off=5
+[11:18:13.619] INFO  [r2c] [travel] mode walk             usable   <- chosen
+[11:18:13.619] INFO  [r2c] [travel] mode moongate         usable
+[11:18:13.620] INFO  [r2c] [travel] mode loose_rune_recall no: no rune marked at that destination
+[11:18:13.620] INFO  [r2c] [travel] mode runebook_recall  no: no runebook page for that destination
+[11:18:13.620] LOG   [r2c] event travel_mode: walk
+[11:18:13.620] INFO  [r2c] [travel] plan mobile 0x00001194: ok legs=1 ~7 tiles transit=0 nodes=0
+[11:18:13.681] INFO  [r2c] [travel] avoiding 1 teleporter pad(s) on this leg
+[11:18:13.681] INFO  [r2c] [action] goto (1471,1610) from (1464,1608,20)
+[11:18:13.681] LOG   [r2c] event goto_start: target=(1471,1610) from=(1464,1608)
+[11:18:13.681] INFO  [r2c] [bot] running from (1464,1608,20) to (1471,1610,z20)
+[11:18:13.681] INFO  [r2c] [bot] planning path to (1471,1610) in background
+[11:18:14.911] INFO  [r2c] [action] goto finished at (1464,1608,20); target (1471,1610); stopped short (off by 9 tile(s))
+[11:18:14.911] LOG   [r2c] event goto_done: at=(1464,1608) target=(1471,1610) arrived=0 off=9
+[11:18:15.387] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:18:16.169] INFO  [r2c] [travel] avoiding 1 teleporter pad(s) on this leg
+[11:18:16.169] INFO  [r2c] [action] goto (1471,1610) from (1464,1608,20)
+[11:18:16.169] LOG   [r2c] event goto_start: target=(1471,1610) from=(1464,1608)
+[11:18:16.169] INFO  [r2c] [bot] running from (1464,1608,20) to (1471,1610,z20)
+[11:18:16.169] INFO  [r2c] [bot] planning path to (1471,1610) in background
+[11:18:16.231] INFO  [r2c] [bot] replan to (1471,1610): 30 steps in 7279.4us
+[11:18:17.995] INFO  [r2c] [travel] mode walk             usable   <- chosen
+[11:18:17.995] INFO  [r2c] [travel] mode moongate         usable
+[11:18:17.995] INFO  [r2c] [travel] mode loose_rune_recall no: no rune marked at that destination
+[11:18:17.995] INFO  [r2c] [travel] mode runebook_recall  no: no runebook page for that destination
+[11:18:17.995] LOG   [r2c] event travel_mode: walk
+[11:18:17.995] INFO  [r2c] [travel] plan mobile 0x00001194: ok legs=1 ~5 tiles transit=0 nodes=0
+[11:18:18.057] INFO  [r2c] [action] goto finished at (1470,1606,20); target (1471,1610); stopped short (off by 5 tile(s))
+[11:18:18.057] LOG   [r2c] event goto_done: at=(1470,1606) target=(1471,1610) arrived=0 off=5
+[11:18:18.057] INFO  [r2c] [action] goto (1474,1611) from (1470,1606,20)
+[11:18:18.057] LOG   [r2c] event goto_start: target=(1474,1611) from=(1470,1606)
+[11:18:18.057] INFO  [r2c] [bot] running from (1470,1606,20) to (1474,1611,z20)
+[11:18:18.057] INFO  [r2c] [bot] planning path to (1474,1611) in background
+[11:18:19.347] INFO  [r2c] [action] goto finished at (1470,1606,20); target (1474,1611); stopped short (off by 9 tile(s))
+[11:18:19.347] LOG   [r2c] event goto_done: at=(1470,1606) target=(1474,1611) arrived=0 off=9
+[11:18:20.434] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:18:20.556] INFO  [r2c] [action] goto (1474,1611) from (1470,1606,20)
+[11:18:20.556] LOG   [r2c] event goto_start: target=(1474,1611) from=(1470,1606)
+[11:18:20.557] INFO  [r2c] [bot] running from (1470,1606,20) to (1474,1611,z20)
+[11:18:20.557] INFO  [r2c] [bot] planning path to (1474,1611) in background
+[11:18:20.618] INFO  [r2c] [bot] replan to (1474,1611): 21 steps in 1265.1us
+[11:18:22.196] INFO  [r2c] [travel] mode walk             usable   <- chosen
+[11:18:22.196] INFO  [r2c] [travel] mode moongate         usable
+[11:18:22.196] INFO  [r2c] [travel] mode loose_rune_recall no: no rune marked at that destination
+[11:18:22.196] INFO  [r2c] [travel] mode runebook_recall  no: no runebook page for that destination
+[11:18:22.196] LOG   [r2c] event travel_mode: walk
+[11:18:22.196] INFO  [r2c] [travel] plan mobile 0x00001194: ok legs=1 ~2 tiles transit=0 nodes=0
+[11:18:22.259] INFO  [r2c] [action] goto finished at (1477,1606,20); target (1474,1611); stopped short (off by 8 tile(s))
+[11:18:22.259] LOG   [r2c] event goto_done: at=(1477,1606) target=(1474,1611) arrived=0 off=8
+[11:18:22.259] INFO  [r2c] [action] goto (1475,1608) from (1477,1606,20)
+[11:18:22.259] LOG   [r2c] event goto_start: target=(1475,1608) from=(1477,1606)
+[11:18:22.259] INFO  [r2c] [bot] running from (1477,1606,20) to (1475,1608,z20)
+[11:18:22.259] INFO  [r2c] [bot] planning path to (1475,1608) in background
+[11:18:23.455] INFO  [r2c] [action] goto finished at (1477,1606,20); target (1475,1608); stopped short (off by 4 tile(s))
+[11:18:23.456] LOG   [r2c] event goto_done: at=(1477,1606) target=(1475,1608) arrived=0 off=4
+[11:18:24.710] INFO  [r2c] [travel] mode walk             usable   <- chosen
+[11:18:24.710] INFO  [r2c] [travel] mode moongate         usable
+[11:18:24.710] INFO  [r2c] [travel] mode loose_rune_recall no: no rune marked at that destination
+[11:18:24.710] INFO  [r2c] [travel] mode runebook_recall  no: no runebook page for that destination
+[11:18:24.710] LOG   [r2c] event travel_mode: walk
+[11:18:24.710] INFO  [r2c] [travel] plan mobile 0x00001194: ok legs=1 ~2 tiles transit=0 nodes=0
+[11:18:25.444] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:18:26.244] INFO  [r2c] [action] goto (1475,1608) from (1477,1606,20)
+[11:18:26.244] LOG   [r2c] event goto_start: target=(1475,1608) from=(1477,1606)
+[11:18:26.244] INFO  [r2c] [bot] running from (1477,1606,20) to (1475,1608,z20)
+[11:18:26.244] INFO  [r2c] [bot] planning path to (1475,1608) in background
+[11:18:26.305] INFO  [r2c] [bot] replan to (1475,1608): 15 steps in 1042.5us
+[11:18:28.111] INFO  [r2c] [travel] mode walk             usable   <- chosen
+[11:18:28.111] INFO  [r2c] [travel] mode moongate         usable
+[11:18:28.111] INFO  [r2c] [travel] mode loose_rune_recall no: no rune marked at that destination
+[11:18:28.111] INFO  [r2c] [travel] mode runebook_recall  no: no runebook page for that destination
+[11:18:28.111] LOG   [r2c] event travel_mode: walk
+[11:18:28.111] INFO  [r2c] [travel] plan mobile 0x00001194: ok legs=1 ~6 tiles transit=0 nodes=0
+[11:18:28.171] INFO  [r2c] [action] goto finished at (1480,1609,20); target (1475,1608); stopped short (off by 6 tile(s))
+[11:18:28.171] LOG   [r2c] event goto_done: at=(1480,1609) target=(1475,1608) arrived=0 off=6
+[11:18:28.171] INFO  [r2c] [travel] avoiding 1 teleporter pad(s) on this leg
+[11:18:28.171] INFO  [r2c] [action] goto (1474,1611) from (1480,1609,20)
+[11:18:28.171] LOG   [r2c] event goto_start: target=(1474,1611) from=(1480,1609)
+[11:18:28.171] INFO  [r2c] [bot] running from (1480,1609,20) to (1474,1611,z20)
+[11:18:28.171] INFO  [r2c] [bot] planning path to (1474,1611) in background
+[11:18:29.347] INFO  [r2c] [action] goto finished at (1480,1609,20); target (1474,1611); stopped short (off by 8 tile(s))
+[11:18:29.347] LOG   [r2c] event goto_done: at=(1480,1609) target=(1474,1611) arrived=0 off=8
+[11:18:30.484] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:18:30.607] INFO  [r2c] [travel] avoiding 1 teleporter pad(s) on this leg
+[11:18:30.607] INFO  [r2c] [action] goto (1474,1611) from (1480,1609,20)
+[11:18:30.607] LOG   [r2c] event goto_start: target=(1474,1611) from=(1480,1609)
+[11:18:30.607] INFO  [r2c] [bot] running from (1480,1609,20) to (1474,1611,z20)
+[11:18:30.607] INFO  [r2c] [bot] planning path to (1474,1611) in background
+[11:18:30.668] INFO  [r2c] [bot] replan to (1474,1611): 8 steps in 89.3us
+[11:18:31.170] INFO  [r2c] [bot] door ahead at (1479,1611,z20); OpenDoor before step
+[11:18:31.171] INFO  [r2c] [chat ascii] System: Opening door...
+[11:18:32.884] INFO  [r2c] [travel] mode walk             usable   <- chosen
+[11:18:32.884] INFO  [r2c] [travel] mode moongate         usable
+[11:18:32.885] INFO  [r2c] [travel] mode loose_rune_recall no: no rune marked at that destination
+[11:18:32.885] INFO  [r2c] [travel] mode runebook_recall  no: no runebook page for that destination
+[11:18:32.885] LOG   [r2c] event travel_mode: walk
+[11:18:32.885] INFO  [r2c] [travel] plan mobile 0x00001194: ok legs=1 ~3 tiles transit=0 nodes=0
+[11:18:32.946] INFO  [r2c] [action] goto finished at (1475,1611,20); target (1474,1611); stopped short (off by 1 tile(s))
+[11:18:32.946] LOG   [r2c] event goto_done: at=(1475,1611) target=(1474,1611) arrived=0 off=1
+[11:18:32.946] INFO  [r2c] [action] goto (1474,1614) from (1475,1611,20)
+[11:18:32.946] LOG   [r2c] event goto_start: target=(1474,1614) from=(1475,1611)
+[11:18:32.946] INFO  [r2c] [bot] running from (1475,1611,20) to (1474,1614,z20)
+[11:18:32.946] INFO  [r2c] [bot] planning path to (1474,1614) in background
+[11:18:34.080] INFO  [r2c] [action] goto finished at (1475,1611,20); target (1474,1614); stopped short (off by 4 tile(s))
+[11:18:34.080] LOG   [r2c] event goto_done: at=(1475,1611) target=(1474,1614) arrived=0 off=4
+[11:18:35.312] INFO  [r2c] [travel] mode walk             usable   <- chosen
+[11:18:35.312] INFO  [r2c] [travel] mode moongate         usable
+[11:18:35.312] INFO  [r2c] [travel] mode loose_rune_recall no: no rune marked at that destination
+[11:18:35.312] INFO  [r2c] [travel] mode runebook_recall  no: no runebook page for that destination
+[11:18:35.312] LOG   [r2c] event travel_mode: walk
+[11:18:35.312] INFO  [r2c] [travel] plan mobile 0x00001194: ok legs=1 ~3 tiles transit=0 nodes=0
+[11:18:35.544] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:18:36.817] INFO  [r2c] [action] goto (1474,1614) from (1475,1611,20)
+[11:18:36.818] LOG   [r2c] event goto_start: target=(1474,1614) from=(1475,1611)
+[11:18:36.818] INFO  [r2c] [bot] running from (1475,1611,20) to (1474,1614,z20)
+[11:18:36.818] INFO  [r2c] [bot] planning path to (1474,1614) in background
+[11:18:36.879] INFO  [r2c] [bot] replan to (1474,1614): 3 steps in 89.3us
+[11:18:38.104] INFO  [r2c] [bot] arrived at (1474,1614,20)
+[11:18:38.104] INFO  [r2c] [action] goto finished at (1474,1614,20); target (1474,1614); ARRIVED (off by 0 tile(s))
+[11:18:38.104] LOG   [r2c] event goto_done: at=(1474,1614) target=(1474,1614) arrived=1 off=0
+[11:18:38.104] INFO  [r2c] [travel] mobile 0x00001194 ARRIVED at (1474,1614,20)
+[11:18:38.104] LOG   [r2c] event travel_done: label='mobile 0x00001194' ok=1 at=(1474,1614) legs=1 plans=2 why=''
+[11:18:38.165] INFO  [life] training: asking the trainer about Anatomy
+[11:18:38.165] INFO  [r2c] [ACTION] npc_train start
+[11:18:38.165] INFO  [r2c] [TRAIN] ask 0x00001194 say='Natasha train Anatomy'
+[11:18:38.165] LOG   [r2c] event npc_train_ask: Natasha train Anatomy
+[11:18:38.180] INFO  [r2c] [chat uni  ] : Natasha train Anatomy
+[11:18:38.180] INFO  [r2c] [chat ascii] Natasha: For 184 gold I will train you in all I know of Anatomy. For less gold I will teach you less
+[11:18:38.180] INFO  [r2c] [ACTION_RESULT] npc_train success (15ms) For 184 gold I will train you in all I know of Anatomy. For less gold I will teach you less
+[11:18:38.180] LOG   [r2c] event action_result: npc_train success took=15ms For 184 gold I will train you in all I know of Anatomy. For less gold I will teach you less
+[11:18:40.561] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:18:40.682] INFO  [r2c] [action] open backpack
+[11:18:40.683] INFO  [r2c] [backpack] opening 0x40013DED
+[11:18:40.683] INFO  [r2c] [0x24] open container 0x40013DED gump=60
+[11:18:40.683] INFO  [r2c] [0x3C] container contents: 5 item(s)
+[11:18:41.898] INFO  [life] training: paying the quoted 184 gold for Anatomy (purse 1000)
+[11:18:41.898] INFO  [r2c] [GIVE] 0x40013D6D x184 -> 0x00001194 (gold 1000)
+[11:18:41.898] INFO  [r2c] [ITEM] drag serial=0x40013D6D amount=184
+[11:18:41.898] INFO  [r2c] [ITEM] drop container=0x00001194
+[11:18:41.898] LOG   [r2c] event npc_give: item=0x40013D6D amount=184 to=0x00001194
+[11:18:41.913] INFO  [r2c] [chat ascii] Natasha: Let me show you something of how this is done
+[11:18:41.913] INFO  [r2c] [chat ascii] Natasha: That is all I can teach.
+[11:18:45.578] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:18:45.947] INFO  [r2c] [action] requesting the skill list
+[11:18:50.626] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:18:55.671] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:18:58.127] INFO  [life] training: paid 184 for Healing but the server still reports 0.3 after 15s
+[11:18:59.688] INFO  [life] training: asking the trainer about Healing
+[11:18:59.688] INFO  [r2c] [ACTION] npc_train start
+[11:18:59.688] INFO  [r2c] [TRAIN] ask 0x00001194 say='Natasha train Healing'
+[11:18:59.688] LOG   [r2c] event npc_train_ask: Natasha train Healing
+[11:18:59.703] INFO  [r2c] [chat uni  ] : Natasha train Healing
+[11:18:59.703] INFO  [r2c] [chat ascii] Natasha: For 297 gold I will train you in all I know of Healing. For less gold I will teach you less
+[11:18:59.703] INFO  [r2c] [ACTION_RESULT] npc_train success (16ms) For 297 gold I will train you in all I know of Healing. For less gold I will teach you less
+[11:18:59.703] LOG   [r2c] event action_result: npc_train success took=16ms For 297 gold I will train you in all I know of Healing. For less gold I will teach you less
+[11:19:00.719] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:19:02.205] INFO  [r2c] [action] open backpack
+[11:19:02.205] INFO  [r2c] [backpack] opening 0x40013DED
+[11:19:02.220] INFO  [r2c] [0x24] open container 0x40013DED gump=60
+[11:19:02.220] INFO  [r2c] [0x3C] container contents: 5 item(s)
+[11:19:03.437] INFO  [life] training: paying the quoted 297 gold for Healing (purse 816)
+[11:19:03.437] INFO  [r2c] [GIVE] 0x400160E7 x297 -> 0x00001194 (gold 816)
+[11:19:03.437] INFO  [r2c] [ITEM] drag serial=0x400160E7 amount=297
+[11:19:03.437] INFO  [r2c] [ITEM] drop container=0x00001194
+[11:19:03.437] LOG   [r2c] event npc_give: item=0x400160E7 amount=297 to=0x00001194
+[11:19:04.581] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[11:19:05.777] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:19:07.484] INFO  [r2c] [action] requesting the skill list
+[11:19:10.811] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:19:15.821] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:19:19.732] INFO  [life] training: paid 297 for Healing but the server still reports 0.3 after 15s
+[11:19:20.880] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:19:21.250] INFO  [life] training: asking the trainer about Healing
+[11:19:21.250] INFO  [r2c] [ACTION] npc_train start
+[11:19:21.250] INFO  [r2c] [TRAIN] ask 0x00001194 say='Natasha train Healing'
+[11:19:21.250] LOG   [r2c] event npc_train_ask: Natasha train Healing
+[11:19:21.250] INFO  [r2c] [chat uni  ] : Natasha train Healing
+[11:19:25.902] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:19:29.299] LOG   [r2c] event action_result: npc_train timeout
+[11:19:30.961] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:19:34.397] INFO  [life] training: no quote and no refusal after 12s (ask 1 of 3)
+[11:19:35.916] INFO  [life] training: asking the trainer about Healing
+[11:19:35.916] INFO  [r2c] [ACTION] npc_train start
+[11:19:35.916] INFO  [r2c] [TRAIN] ask 0x00001194 say='Natasha train Healing'
+[11:19:35.916] LOG   [r2c] event npc_train_ask: Natasha train Healing
+[11:19:35.916] INFO  [r2c] [chat uni  ] : Natasha train Healing
+[11:19:35.976] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:19:41.025] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:19:43.924] LOG   [r2c] event action_result: npc_train timeout
+[11:19:46.044] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:19:49.179] INFO  [life] training: no quote and no refusal after 12s (ask 2 of 3)
+[11:19:50.715] INFO  [life] training: 'healer' is 4 tiles and 0 z away -- walking to them before speaking (approach 1 of 3)
+[11:19:50.715] INFO  [r2c] [travel] mobile 0x00001194 -> (1474,1610) r=1 from (1474,1614)
+[11:19:50.715] LOG   [r2c] event travel_start: label='mobile 0x00001194' target=(1474,1610) radius=1 from=(1474,1614)
+[11:19:50.715] INFO  [r2c] [travel] mode walk             usable   <- chosen
+[11:19:50.715] INFO  [r2c] [travel] mode moongate         usable
+[11:19:50.715] INFO  [r2c] [travel] mode loose_rune_recall no: no rune marked at that destination
+[11:19:50.715] INFO  [r2c] [travel] mode runebook_recall  no: no runebook page for that destination
+[11:19:50.715] LOG   [r2c] event travel_mode: walk
+[11:19:50.715] INFO  [r2c] [travel] plan mobile 0x00001194: ok legs=1 ~4 tiles transit=0 nodes=0
+[11:19:50.777] INFO  [r2c] [travel] avoiding 1 teleporter pad(s) on this leg
+[11:19:50.777] INFO  [r2c] [action] goto (1474,1610) from (1474,1614,20)
+[11:19:50.777] LOG   [r2c] event goto_start: target=(1474,1610) from=(1474,1614)
+[11:19:50.777] INFO  [r2c] [bot] running from (1474,1614,20) to (1474,1610,z20)
+[11:19:50.777] INFO  [r2c] [bot] planning path to (1474,1610) in background
+[11:19:51.085] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:19:52.043] INFO  [r2c] [action] goto finished at (1474,1614,20); target (1474,1610); stopped short (off by 4 tile(s))
+[11:19:52.043] LOG   [r2c] event goto_done: at=(1474,1614) target=(1474,1610) arrived=0 off=4
+[11:19:53.286] INFO  [r2c] [travel] avoiding 1 teleporter pad(s) on this leg
+[11:19:53.286] INFO  [r2c] [action] goto (1474,1610) from (1474,1614,20)
+[11:19:53.286] LOG   [r2c] event goto_start: target=(1474,1610) from=(1474,1614)
+[11:19:53.286] INFO  [r2c] [bot] running from (1474,1614,20) to (1474,1610,z20)
+[11:19:53.286] INFO  [r2c] [bot] planning path to (1474,1610) in background
+[11:19:53.347] INFO  [r2c] [bot] replan to (1474,1610): 4 steps in 84.9us
+[11:19:54.404] INFO  [r2c] [bot] arrived at (1474,1610,20)
+[11:19:54.404] INFO  [r2c] [action] goto finished at (1474,1610,20); target (1474,1610); ARRIVED (off by 0 tile(s))
+[11:19:54.404] LOG   [r2c] event goto_done: at=(1474,1610) target=(1474,1610) arrived=1 off=0
+[11:19:54.404] INFO  [r2c] [travel] mobile 0x00001194 ARRIVED at (1474,1610,20)
+[11:19:54.404] LOG   [r2c] event travel_done: label='mobile 0x00001194' ok=1 at=(1474,1610) legs=1 plans=1 why=''
+[11:19:54.464] INFO  [life] training: asking the trainer about Healing
+[11:19:54.464] INFO  [r2c] [ACTION] npc_train start
+[11:19:54.464] INFO  [r2c] [TRAIN] ask 0x00001194 say='Natasha train Healing'
+[11:19:54.464] LOG   [r2c] event npc_train_ask: Natasha train Healing
+[11:19:54.480] INFO  [r2c] [chat uni  ] : Natasha train Healing
+[11:19:54.480] INFO  [r2c] [chat ascii] Natasha: For 297 gold I will train you in all I know of Healing. For less gold I will teach you less
+[11:19:54.480] INFO  [r2c] [ACTION_RESULT] npc_train success (16ms) For 297 gold I will train you in all I know of Healing. For less gold I will teach you less
+[11:19:54.480] LOG   [r2c] event action_result: npc_train success took=16ms For 297 gold I will train you in all I know of Healing. For less gold I will teach you less
+[11:19:56.102] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:19:57.007] INFO  [r2c] [action] open backpack
+[11:19:57.007] INFO  [r2c] [backpack] opening 0x40013DED
+[11:19:57.008] INFO  [r2c] [0x24] open container 0x40013DED gump=60
+[11:19:57.008] INFO  [r2c] [0x3C] container contents: 6 item(s)
+[11:19:58.264] INFO  [life] training: paying the quoted 297 gold for Healing (purse 816)
+[11:19:58.264] INFO  [r2c] [GIVE] 0x40015EF4 x297 -> 0x00001194 (gold 816)
+[11:19:58.264] INFO  [r2c] [ITEM] drag serial=0x40015EF4 amount=297
+[11:19:58.264] INFO  [r2c] [ITEM] drop container=0x00001194
+[11:19:58.264] LOG   [r2c] event npc_give: item=0x40015EF4 amount=297 to=0x00001194
+[11:19:58.264] INFO  [r2c] [chat ascii] Natasha: Let me show you something of how this is done
+[11:19:58.264] INFO  [r2c] [chat ascii] Natasha: That is all I can teach.
+[11:20:01.154] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:20:02.285] INFO  [r2c] [action] requesting the skill list
+[11:20:03.791] INFO  [life] training: skill 5 0.3 -> 17.1, bought from a trainer
+[11:20:03.793] INFO  [life] checkpoint (skill bought from a trainer) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[11:20:03.793] INFO  [life] goal_completed=TRAIN_AT_NPC progress=0
+[11:20:03.795] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[11:20:03.852] INFO  [life] goal=TRAIN_AT_NPC reason="no goal was running"
+[11:20:03.852] INFO  [life] needs considered: NeedEquipment(bandages BLOCKED 0.50) NeedSkillTraining(skill 5 0.45) NeedTraining(skill 5 0.36) NeedTraining(Anatomy 0.32) NeedTraining(skill 42 0.28) NeedTraining(Tactics 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[11:20:03.852] INFO  [life]   score=90.0
+[11:20:03.852] INFO  [life]   reason: NeedSkillTraining urgency 0.45 x 200 = 90.0
+[11:20:03.852] INFO  [life]   reason: skill 5 17.1 -> 100.0, gold 519 (fee is quoted on arrival, roughly 300)
+[11:20:03.852] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[11:20:03.852] INFO  [life] training: asking the trainer about skill 5
+[11:20:03.852] INFO  [r2c] [ACTION] npc_train start
+[11:20:03.852] INFO  [r2c] [TRAIN] ask 0x00001194 say='Natasha train '
+[11:20:03.852] LOG   [r2c] event npc_train_ask: Natasha train 
+[11:20:03.853] INFO  [r2c] [chat uni  ] : Natasha train 
+[11:20:03.853] INFO  [r2c] [chat ascii] Natasha: For a fee I can teach thee of Forensics, SpiritSpeak and Wrestling.
+[11:20:04.066] INFO  [r2c] [chat ascii] System: World save in 10 seconds
+[11:20:06.198] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:20:11.208] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:20:11.902] LOG   [r2c] event action_result: npc_train timeout
+[11:20:14.065] INFO  [r2c] [chat ascii] System: World save has been initiated.
+[11:20:16.268] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:20:17.101] INFO  [life] training: no quote and no refusal after 12s (ask 3 of 3)
+[11:20:17.101] INFO  [life] goal_failed=TRAIN_AT_NPC reason="'healer' never answered about skill 5"
+[11:20:17.163] INFO  [life] goal=GET_FOOD reason="previous goal abandoned: the trainer never answered"
+[11:20:17.163] INFO  [life] needs considered: NeedEquipment(bandages BLOCKED 0.50) NeedSkillTraining(skill 5 0.45) NeedTraining(skill 5 0.36) NeedTraining(Anatomy 0.32) NeedTraining(skill 42 0.28) NeedTraining(Tactics 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[11:20:17.163] INFO  [life]   score=62.5
+[11:20:17.163] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[11:20:17.163] INFO  [life]   reason: food=0
+[11:20:17.163] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[11:20:17.163] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: on cooldown for another 179s after achieving nothing
+[11:20:18.629] INFO  [life] food: looking for a provisioner (trip 1)
+[11:20:18.629] INFO  [r2c] [travel] Britain provisioner -> (1469,1668) r=5 from (1474,1610)
+[11:20:18.629] LOG   [r2c] event travel_start: label='Britain provisioner' target=(1469,1668) radius=5 from=(1474,1610)
+[11:20:18.630] INFO  [r2c] [travel] mode moongate         usable   <- chosen
+[11:20:18.630] INFO  [r2c] [travel] mode walk             usable
+[11:20:18.630] INFO  [r2c] [travel] mode loose_rune_recall no: no rune marked at that destination
+[11:20:18.630] INFO  [r2c] [travel] mode runebook_recall  no: no runebook page for that destination
+[11:20:18.630] LOG   [r2c] event travel_mode: moongate
+[11:20:18.630] INFO  [r2c] [travel] plan Britain provisioner: ok legs=3 ~120 tiles transit=0 nodes=40
+[11:20:18.689] INFO  [r2c] [travel] avoiding 2 teleporter pad(s) on this leg
+[11:20:18.689] INFO  [r2c] [action] goto (1512,1640) from (1474,1610,20)
+[11:20:18.689] LOG   [r2c] event goto_start: target=(1512,1640) from=(1474,1610)
+[11:20:18.689] INFO  [r2c] [bot] running from (1474,1610,20) to (1512,1640)
+[11:20:18.689] INFO  [r2c] [bot] planning path to (1512,1640) in background
+[11:20:18.751] INFO  [r2c] [bot] replan to (1512,1640): 49 steps in 8873.8us
+[11:20:20.708] INFO  [r2c] [bot] door ahead at (1479,1612,z20); OpenDoor before step
+[11:20:20.708] INFO  [r2c] [chat ascii] System: Opening door...
+[11:20:21.306] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:20:22.150] INFO  [r2c] [bot] step (1480,1612,20)->(1481,1613,20) rejected; OpenDoor + retry
+[11:20:22.150] INFO  [r2c] [chat ascii] System: Opening door...
+[11:20:22.150] INFO  [r2c] [0x20] player @(1480,1612,20) facing=4
+[11:20:22.150] INFO  [r2c] [action] goto finished at (1480,1612,20); target (1512,1640); stopped short (off by 60 tile(s))
+[11:20:22.150] LOG   [r2c] event goto_done: at=(1480,1612) target=(1512,1640) arrived=0 off=60
+[11:20:23.360] INFO  [r2c] [travel] avoiding 2 teleporter pad(s) on this leg
+[11:20:23.360] INFO  [r2c] [action] goto (1512,1640) from (1480,1612,20)
+[11:20:23.360] LOG   [r2c] event goto_start: target=(1512,1640) from=(1480,1612)
+[11:20:23.360] INFO  [r2c] [bot] running from (1480,1612,20) to (1512,1640)
+[11:20:23.360] INFO  [r2c] [bot] planning path to (1512,1640) in background
+[11:20:23.423] INFO  [r2c] [bot] replan to (1512,1640): 42 steps in 6944.7us
+[11:20:26.323] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:20:31.344] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:20:36.344] INFO  [r2c] [bot] arrived at (1512,1640,20)
+[11:20:36.345] INFO  [r2c] [action] goto finished at (1512,1640,20); target (1512,1640); ARRIVED (off by 0 tile(s))
+[11:20:36.345] LOG   [r2c] event goto_done: at=(1512,1640) target=(1512,1640) arrived=1 off=0
+[11:20:36.345] INFO  [r2c] [travel] avoiding 2 teleporter pad(s) on this leg
+[11:20:36.345] INFO  [r2c] [action] goto (1480,1672) from (1512,1640,20)
+[11:20:36.345] LOG   [r2c] event goto_start: target=(1480,1672) from=(1512,1640)
+[11:20:36.345] INFO  [r2c] [bot] running from (1512,1640,20) to (1480,1672)
+[11:20:36.345] INFO  [r2c] [bot] planning path to (1480,1672) in background
+[11:20:36.406] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:20:36.406] INFO  [r2c] [bot] replan to (1480,1672): 79 steps in 38797.0us
+[11:20:41.457] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:20:46.461] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:20:48.714] INFO  [r2c] [bot] step (1489,1675,9)->(1488,1676,0) rejected; OpenDoor + retry
+[11:20:49.452] INFO  [r2c] [bot] step (1489,1675,9)->(1488,1676,0) rejected; avoiding edge + rerouting
+[11:20:49.452] INFO  [r2c] [bot] planning path to (1480,1672) in background
+[11:20:49.514] INFO  [r2c] [bot] replan to (1480,1672): 38 steps in 7174.3us
+[11:20:51.479] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:20:55.500] INFO  [r2c] [bot] door ahead at (1476,1669,z0); OpenDoor before step
+[11:20:55.500] INFO  [r2c] [chat ascii] System: Opening door...
+[11:20:56.495] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:21:01.498] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:21:01.743] INFO  [r2c] [bot] arrived at (1480,1672,0)
+[11:21:01.744] INFO  [r2c] [action] goto finished at (1480,1672,0); target (1480,1672); ARRIVED (off by 0 tile(s))
+[11:21:01.744] LOG   [r2c] event goto_done: at=(1480,1672) target=(1480,1672) arrived=1 off=0
+[11:21:01.744] INFO  [r2c] [travel] avoiding 2 teleporter pad(s) on this leg
+[11:21:01.744] INFO  [r2c] [action] goto (1469,1668) from (1480,1672,0)
+[11:21:01.744] LOG   [r2c] event goto_start: target=(1469,1668) from=(1480,1672)
+[11:21:01.744] INFO  [r2c] [bot] running from (1480,1672,0) to (1469,1668,z0)
+[11:21:01.744] INFO  [r2c] [bot] planning path to (1469,1668) in background
+[11:21:01.805] INFO  [r2c] [bot] replan to (1469,1668): 23 steps in 340.2us
+[11:21:03.844] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[11:21:06.558] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:21:07.504] INFO  [r2c] [travel] Britain provisioner ARRIVED at (1473,1668,0)
+[11:21:07.504] LOG   [r2c] event travel_done: label='Britain provisioner' ok=1 at=(1473,1668) legs=3 plans=1 why=''
+[11:21:07.565] INFO  [r2c] [action] scanning nearby mobiles for names
+[11:21:07.565] INFO  [r2c] [action] requested 2 paperdoll(s) for trade titles
+[11:21:07.580] INFO  [r2c] [mobiles] nearby (3):
+[11:21:07.580] INFO  [r2c]   Jebidiah 0x000011F4
+[11:21:07.580] INFO  [r2c]   Taite 0x0000105A
+[11:21:07.580] INFO  [r2c]   Kyler 0x00001017
+[11:21:07.580] INFO  [r2c] [0x20] player @(1473,1668,0) facing=7
+[11:21:07.580] INFO  [r2c] [0x88] paperdoll 0x000011F4: "Jebidiah, the cobbler"
+[11:21:07.580] INFO  [r2c] [world] Jebidiah, the cobbler is a tailor at (1471,1665)
+[11:21:07.580] INFO  [r2c] [0x20] player @(1473,1668,0) facing=6
+[11:21:07.580] INFO  [r2c] [0x88] paperdoll 0x0000105A: "Taite, the provisioner"
+[11:21:07.580] INFO  [r2c] [world] Taite, the provisioner is a provisioner at (1465,1670)
+[11:21:10.086] INFO  [life] food: nothing to eat -- asking a provisioner
+[11:21:10.086] INFO  [r2c] [ACTION] vendor_buy start
+[11:21:10.086] INFO  [r2c] [VENDOR] open vendor=0x0000105A say='Taite buy'
+[11:21:10.087] INFO  [r2c] [chat uni  ] : Taite buy
+[11:21:10.087] INFO  [r2c] [chat ascii] Taite: Hello! ?
+[11:21:10.087] INFO  [r2c] [chat ascii] Taite: I'm here to sell thee supplies.
+[11:21:10.087] INFO  [r2c] [0x3C] container contents: 24 item(s)
+[11:21:10.088] INFO  [r2c] [0x74] pairing: straight (straight 2, mirrored 0 of 24 rows)
+[11:21:10.088] INFO  [r2c] [0x74] vendor shop data: cont=0x40001051 24 item(s), layer=0x1A
+[11:21:10.088] INFO  [r2c] [0x74]   bulk order book              gfx=0x2259 qty=5    price=105
+[11:21:10.088] INFO  [r2c] [0x74]   spyglass                     gfx=0x14F5 qty=5    price=78
+[11:21:10.088] INFO  [r2c] [0x74]   House Placement Tool         gfx=0x14F6 qty=25   price=690
+[11:21:10.088] INFO  [r2c] [0x74]   backpack                     gfx=0x0E75 qty=32   price=25
+[11:21:10.088] INFO  [r2c] [0x74]   belt pouch                   gfx=0x09B0 qty=15   price=15
+[11:21:10.088] INFO  [r2c] [0x74]   bag                          gfx=0x0E76 qty=32   price=13
+[11:21:10.088] INFO  [r2c] [0x74]   candles                      gfx=0x0A28 qty=14   price=7
+[11:21:10.088] INFO  [r2c] [0x74]   torches                      gfx=0x0F64 qty=18   price=8
+[11:21:10.088] INFO  [r2c] [0x74]   lantern                      gfx=0x0A25 qty=36   price=55
+[11:21:10.088] INFO  [r2c] [0x74]   oil flasks                   gfx=0x1C18 qty=17   price=15
+[11:21:10.088] INFO  [r2c] [0x74]   lockpicks                    gfx=0x14FB qty=62   price=10
+[11:21:10.088] INFO  [r2c] [0x74]   bottle of ale                gfx=0x099F qty=20   price=25
+[11:21:10.088] INFO  [r2c] [0x74]   bottle of wine               gfx=0x09C7 qty=36   price=28
+[11:21:10.088] INFO  [r2c] [0x74]   bottle of liquor             gfx=0x099B qty=14   price=17
+[11:21:10.088] INFO  [r2c] [0x74]   jug of cider                 gfx=0x09C8 qty=12   price=26
+[11:21:10.088] INFO  [r2c] [0x74]   empty bottles                gfx=0x0F0E qty=27   price=12
+[11:21:10.088] INFO  [r2c] [0x74]   wooden box                   gfx=0x09AA qty=27   price=28
+[11:21:10.088] INFO  [r2c] [0x74]   copper key                   gfx=0x100E qty=13   price=51
+[11:21:10.088] INFO  [r2c] [0x74]   bedroll                      gfx=0x0A57 qty=11   price=109
+[11:21:10.088] INFO  [r2c] [0x74]   kindling                     gfx=0x0DE1 qty=36   price=1
+[11:21:10.088] INFO  [r2c] [0x74]   Chessboard                   gfx=0x0FA6 qty=31   price=1825361101
+[11:21:10.088] INFO  [r2c] [0x74]   Checkerboard                 gfx=0x0FA6 qty=30   price=1825361101
+[11:21:10.088] INFO  [r2c] [0x74]   backgammon board             gfx=0x0E1C qty=38   price=46
+[11:21:10.088] INFO  [r2c] [0x74]   dice and cup                 gfx=0x0FA7 qty=26   price=36
+[11:21:10.088] INFO  [r2c] [0x3C] container contents: 0 item(s)
+[11:21:10.088] INFO  [r2c] [0x74] vendor shop data: cont=0x40000601 0 item(s), layer=0x1B
+[11:21:10.088] INFO  [r2c] [VENDOR] offer from 0x0000105A: 24 item(s)
+[11:21:10.088] INFO  [r2c] [VENDOR]   0x40011CB8 bulk order book        x5   105 gp
+[11:21:10.088] INFO  [r2c] [VENDOR]   0x40011CB7 spyglass               x5   78 gp
+[11:21:10.088] INFO  [r2c] [VENDOR]   0x40011CB5 House Placement Tool   x25  690 gp
+[11:21:10.088] INFO  [r2c] [VENDOR]   0x40011CB4 backpack               x32  25 gp
+[11:21:10.088] INFO  [r2c] [VENDOR]   0x40011CB3 belt pouch             x15  15 gp
+[11:21:10.088] INFO  [r2c] [VENDOR]   0x40011CB1 bag                    x32  13 gp
+[11:21:10.088] INFO  [r2c] [VENDOR]   0x40011CAF candles                x14  7 gp
+[11:21:10.088] INFO  [r2c] [VENDOR]   0x40011CAE torches                x18  8 gp
+[11:21:10.088] LOG   [r2c] event vendor_offer: vendor=0x0000105A items=24
+[11:21:10.088] INFO  [r2c] [ACTION_RESULT] vendor_buy success (2ms) vendor offer received
+[11:21:10.088] LOG   [r2c] event action_result: vendor_buy success took=2ms vendor offer received
+[11:21:10.088] INFO  [r2c] [0x24] vendor buy gump for 0x0000105A
+[11:21:11.561] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:21:16.562] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:21:19.102] INFO  [life] food: nothing to eat -- asking a provisioner
+[11:21:19.102] INFO  [r2c] [ACTION] vendor_buy start
+[11:21:19.102] INFO  [r2c] [VENDOR] open vendor=0x0000105A say='Taite buy'
+[11:21:19.118] INFO  [r2c] [chat uni  ] : Taite buy
+[11:21:19.118] INFO  [r2c] [chat ascii] Taite: I got lots to sell!
+[11:21:19.118] INFO  [r2c] [0x3C] container contents: 24 item(s)
+[11:21:19.118] INFO  [r2c] [0x74] pairing: straight (straight 2, mirrored 0 of 24 rows)
+[11:21:19.118] INFO  [r2c] [0x74] vendor shop data: cont=0x40001051 24 item(s), layer=0x1A
+[11:21:19.118] INFO  [r2c] [0x74]   bulk order book              gfx=0x2259 qty=5    price=105
+[11:21:19.118] INFO  [r2c] [0x74]   spyglass                     gfx=0x14F5 qty=5    price=78
+[11:21:19.118] INFO  [r2c] [0x74]   House Placement Tool         gfx=0x14F6 qty=25   price=690
+[11:21:19.118] INFO  [r2c] [0x74]   backpack                     gfx=0x0E75 qty=32   price=25
+[11:21:19.118] INFO  [r2c] [0x74]   belt pouch                   gfx=0x09B0 qty=15   price=15
+[11:21:19.118] INFO  [r2c] [0x74]   bag                          gfx=0x0E76 qty=32   price=13
+[11:21:19.118] INFO  [r2c] [0x74]   candles                      gfx=0x0A28 qty=14   price=7
+[11:21:19.118] INFO  [r2c] [0x74]   torches                      gfx=0x0F64 qty=18   price=8
+[11:21:19.118] INFO  [r2c] [0x74]   lantern                      gfx=0x0A25 qty=36   price=55
+[11:21:19.118] INFO  [r2c] [0x74]   oil flasks                   gfx=0x1C18 qty=17   price=15
+[11:21:19.118] INFO  [r2c] [0x74]   lockpicks                    gfx=0x14FB qty=62   price=10
+[11:21:19.118] INFO  [r2c] [0x74]   bottle of ale                gfx=0x099F qty=20   price=25
+[11:21:19.118] INFO  [r2c] [0x74]   bottle of wine               gfx=0x09C7 qty=36   price=28
+[11:21:19.118] INFO  [r2c] [0x74]   bottle of liquor             gfx=0x099B qty=14   price=17
+[11:21:19.118] INFO  [r2c] [0x74]   jug of cider                 gfx=0x09C8 qty=12   price=26
+[11:21:19.118] INFO  [r2c] [0x74]   empty bottles                gfx=0x0F0E qty=27   price=12
+[11:21:19.118] INFO  [r2c] [0x74]   wooden box                   gfx=0x09AA qty=27   price=28
+[11:21:19.118] INFO  [r2c] [0x74]   copper key                   gfx=0x100E qty=13   price=51
+[11:21:19.118] INFO  [r2c] [0x74]   bedroll                      gfx=0x0A57 qty=11   price=109
+[11:21:19.118] INFO  [r2c] [0x74]   kindling                     gfx=0x0DE1 qty=36   price=1
+[11:21:19.118] INFO  [r2c] [0x74]   Chessboard                   gfx=0x0FA6 qty=31   price=1825361101
+[11:21:19.118] INFO  [r2c] [0x74]   Checkerboard                 gfx=0x0FA6 qty=30   price=1825361101
+[11:21:19.119] INFO  [r2c] [0x74]   backgammon board             gfx=0x0E1C qty=38   price=46
+[11:21:19.119] INFO  [r2c] [0x74]   dice and cup                 gfx=0x0FA7 qty=26   price=36
+[11:21:19.119] INFO  [r2c] [0x3C] container contents: 0 item(s)
+[11:21:19.119] INFO  [r2c] [0x74] vendor shop data: cont=0x40000601 0 item(s), layer=0x1B
+[11:21:19.119] INFO  [r2c] [VENDOR] offer from 0x0000105A: 24 item(s)
+[11:21:19.119] INFO  [r2c] [VENDOR]   0x40011CB8 bulk order book        x5   105 gp
+[11:21:19.119] INFO  [r2c] [VENDOR]   0x40011CB7 spyglass               x5   78 gp
+[11:21:19.119] INFO  [r2c] [VENDOR]   0x40011CB5 House Placement Tool   x25  690 gp
+[11:21:19.119] INFO  [r2c] [VENDOR]   0x40011CB4 backpack               x32  25 gp
+[11:21:19.119] INFO  [r2c] [VENDOR]   0x40011CB3 belt pouch             x15  15 gp
+[11:21:19.119] INFO  [r2c] [VENDOR]   0x40011CB1 bag                    x32  13 gp
+[11:21:19.119] INFO  [r2c] [VENDOR]   0x40011CAF candles                x14  7 gp
+[11:21:19.119] INFO  [r2c] [VENDOR]   0x40011CAE torches                x18  8 gp
+[11:21:19.119] LOG   [r2c] event vendor_offer: vendor=0x0000105A items=24
+[11:21:19.119] INFO  [r2c] [ACTION_RESULT] vendor_buy success (16ms) vendor offer received
+[11:21:19.119] LOG   [r2c] event action_result: vendor_buy success took=16ms vendor offer received
+[11:21:19.119] INFO  [r2c] [0x24] vendor buy gump for 0x0000105A
+[11:21:21.593] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:21:26.630] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:21:28.118] INFO  [life] food: nothing to eat -- asking a provisioner
+[11:21:28.118] INFO  [r2c] [ACTION] vendor_buy start
+[11:21:28.118] INFO  [r2c] [VENDOR] open vendor=0x0000105A say='Taite buy'
+[11:21:28.119] INFO  [r2c] [chat uni  ] : Taite buy
+[11:21:28.119] INFO  [r2c] [chat ascii] Taite: I got lots to sell!
+[11:21:28.119] INFO  [r2c] [0x3C] container contents: 24 item(s)
+[11:21:28.119] INFO  [r2c] [0x74] pairing: straight (straight 2, mirrored 0 of 24 rows)
+[11:21:28.119] INFO  [r2c] [0x74] vendor shop data: cont=0x40001051 24 item(s), layer=0x1A
+[11:21:28.119] INFO  [r2c] [0x74]   bulk order book              gfx=0x2259 qty=5    price=105
+[11:21:28.119] INFO  [r2c] [0x74]   spyglass                     gfx=0x14F5 qty=5    price=78
+[11:21:28.119] INFO  [r2c] [0x74]   House Placement Tool         gfx=0x14F6 qty=25   price=690
+[11:21:28.119] INFO  [r2c] [0x74]   backpack                     gfx=0x0E75 qty=32   price=25
+[11:21:28.119] INFO  [r2c] [0x74]   belt pouch                   gfx=0x09B0 qty=15   price=15
+[11:21:28.119] INFO  [r2c] [0x74]   bag                          gfx=0x0E76 qty=32   price=13
+[11:21:28.119] INFO  [r2c] [0x74]   candles                      gfx=0x0A28 qty=14   price=7
+[11:21:28.119] INFO  [r2c] [0x74]   torches                      gfx=0x0F64 qty=18   price=8
+[11:21:28.119] INFO  [r2c] [0x74]   lantern                      gfx=0x0A25 qty=36   price=55
+[11:21:28.119] INFO  [r2c] [0x74]   oil flasks                   gfx=0x1C18 qty=17   price=15
+[11:21:28.119] INFO  [r2c] [0x74]   lockpicks                    gfx=0x14FB qty=62   price=10
+[11:21:28.119] INFO  [r2c] [0x74]   bottle of ale                gfx=0x099F qty=20   price=25
+[11:21:28.119] INFO  [r2c] [0x74]   bottle of wine               gfx=0x09C7 qty=36   price=28
+[11:21:28.119] INFO  [r2c] [0x74]   bottle of liquor             gfx=0x099B qty=14   price=17
+[11:21:28.119] INFO  [r2c] [0x74]   jug of cider                 gfx=0x09C8 qty=12   price=26
+[11:21:28.119] INFO  [r2c] [0x74]   empty bottles                gfx=0x0F0E qty=27   price=12
+[11:21:28.119] INFO  [r2c] [0x74]   wooden box                   gfx=0x09AA qty=27   price=28
+[11:21:28.119] INFO  [r2c] [0x74]   copper key                   gfx=0x100E qty=13   price=51
+[11:21:28.119] INFO  [r2c] [0x74]   bedroll                      gfx=0x0A57 qty=11   price=109
+[11:21:28.119] INFO  [r2c] [0x74]   kindling                     gfx=0x0DE1 qty=36   price=1
+[11:21:28.119] INFO  [r2c] [0x74]   Chessboard                   gfx=0x0FA6 qty=31   price=1825361101
+[11:21:28.119] INFO  [r2c] [0x74]   Checkerboard                 gfx=0x0FA6 qty=30   price=1825361101
+[11:21:28.119] INFO  [r2c] [0x74]   backgammon board             gfx=0x0E1C qty=38   price=46
+[11:21:28.119] INFO  [r2c] [0x74]   dice and cup                 gfx=0x0FA7 qty=26   price=36
+[11:21:28.119] INFO  [r2c] [0x3C] container contents: 0 item(s)
+[11:21:28.119] INFO  [r2c] [0x74] vendor shop data: cont=0x40000601 0 item(s), layer=0x1B
+[11:21:28.119] INFO  [r2c] [VENDOR] offer from 0x0000105A: 24 item(s)
+[11:21:28.119] INFO  [r2c] [VENDOR]   0x40011CB8 bulk order book        x5   105 gp
+[11:21:28.119] INFO  [r2c] [VENDOR]   0x40011CB7 spyglass               x5   78 gp
+[11:21:28.119] INFO  [r2c] [VENDOR]   0x40011CB5 House Placement Tool   x25  690 gp
+[11:21:28.119] INFO  [r2c] [VENDOR]   0x40011CB4 backpack               x32  25 gp
+[11:21:28.119] INFO  [r2c] [VENDOR]   0x40011CB3 belt pouch             x15  15 gp
+[11:21:28.119] INFO  [r2c] [VENDOR]   0x40011CB1 bag                    x32  13 gp
+[11:21:28.119] INFO  [r2c] [VENDOR]   0x40011CAF candles                x14  7 gp
+[11:21:28.119] INFO  [r2c] [VENDOR]   0x40011CAE torches                x18  8 gp
+[11:21:28.119] LOG   [r2c] event vendor_offer: vendor=0x0000105A items=24
+[11:21:28.119] INFO  [r2c] [ACTION_RESULT] vendor_buy success (1ms) vendor offer received
+[11:21:28.119] LOG   [r2c] event action_result: vendor_buy success took=1ms vendor offer received
+[11:21:28.119] INFO  [r2c] [0x24] vendor buy gump for 0x0000105A
+[11:21:31.649] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:21:36.701] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:21:37.129] INFO  [life] food: nothing to eat -- asking a provisioner
+[11:21:37.129] INFO  [r2c] [ACTION] vendor_buy start
+[11:21:37.129] INFO  [r2c] [VENDOR] open vendor=0x0000105A say='Taite buy'
+[11:21:37.130] INFO  [r2c] [chat uni  ] : Taite buy
+[11:21:37.130] INFO  [r2c] [chat ascii] Taite: I got lots to sell!
+[11:21:37.130] INFO  [r2c] [0x3C] container contents: 24 item(s)
+[11:21:37.130] INFO  [r2c] [0x74] pairing: straight (straight 2, mirrored 0 of 24 rows)
+[11:21:37.130] INFO  [r2c] [0x74] vendor shop data: cont=0x40001051 24 item(s), layer=0x1A
+[11:21:37.130] INFO  [r2c] [0x74]   bulk order book              gfx=0x2259 qty=5    price=105
+[11:21:37.130] INFO  [r2c] [0x74]   spyglass                     gfx=0x14F5 qty=5    price=78
+[11:21:37.130] INFO  [r2c] [0x74]   House Placement Tool         gfx=0x14F6 qty=25   price=690
+[11:21:37.130] INFO  [r2c] [0x74]   backpack                     gfx=0x0E75 qty=32   price=25
+[11:21:37.130] INFO  [r2c] [0x74]   belt pouch                   gfx=0x09B0 qty=15   price=15
+[11:21:37.130] INFO  [r2c] [0x74]   bag                          gfx=0x0E76 qty=32   price=13
+[11:21:37.130] INFO  [r2c] [0x74]   candles                      gfx=0x0A28 qty=14   price=7
+[11:21:37.130] INFO  [r2c] [0x74]   torches                      gfx=0x0F64 qty=18   price=8
+[11:21:37.130] INFO  [r2c] [0x74]   lantern                      gfx=0x0A25 qty=36   price=55
+[11:21:37.130] INFO  [r2c] [0x74]   oil flasks                   gfx=0x1C18 qty=17   price=15
+[11:21:37.130] INFO  [r2c] [0x74]   lockpicks                    gfx=0x14FB qty=62   price=10
+[11:21:37.130] INFO  [r2c] [0x74]   bottle of ale                gfx=0x099F qty=20   price=25
+[11:21:37.130] INFO  [r2c] [0x74]   bottle of wine               gfx=0x09C7 qty=36   price=28
+[11:21:37.130] INFO  [r2c] [0x74]   bottle of liquor             gfx=0x099B qty=14   price=17
+[11:21:37.130] INFO  [r2c] [0x74]   jug of cider                 gfx=0x09C8 qty=12   price=26
+[11:21:37.130] INFO  [r2c] [0x74]   empty bottles                gfx=0x0F0E qty=27   price=12
+[11:21:37.130] INFO  [r2c] [0x74]   wooden box                   gfx=0x09AA qty=27   price=28
+[11:21:37.130] INFO  [r2c] [0x74]   copper key                   gfx=0x100E qty=13   price=51
+[11:21:37.130] INFO  [r2c] [0x74]   bedroll                      gfx=0x0A57 qty=11   price=109
+[11:21:37.130] INFO  [r2c] [0x74]   kindling                     gfx=0x0DE1 qty=36   price=1
+[11:21:37.130] INFO  [r2c] [0x74]   Chessboard                   gfx=0x0FA6 qty=31   price=1825361101
+[11:21:37.130] INFO  [r2c] [0x74]   Checkerboard                 gfx=0x0FA6 qty=30   price=1825361101
+[11:21:37.130] INFO  [r2c] [0x74]   backgammon board             gfx=0x0E1C qty=38   price=46
+[11:21:37.130] INFO  [r2c] [0x74]   dice and cup                 gfx=0x0FA7 qty=26   price=36
+[11:21:37.130] INFO  [r2c] [0x3C] container contents: 0 item(s)
+[11:21:37.130] INFO  [r2c] [0x74] vendor shop data: cont=0x40000601 0 item(s), layer=0x1B
+[11:21:37.130] INFO  [r2c] [VENDOR] offer from 0x0000105A: 24 item(s)
+[11:21:37.130] INFO  [r2c] [VENDOR]   0x40011CB8 bulk order book        x5   105 gp
+[11:21:37.130] INFO  [r2c] [VENDOR]   0x40011CB7 spyglass               x5   78 gp
+[11:21:37.130] INFO  [r2c] [VENDOR]   0x40011CB5 House Placement Tool   x25  690 gp
+[11:21:37.130] INFO  [r2c] [VENDOR]   0x40011CB4 backpack               x32  25 gp
+[11:21:37.130] INFO  [r2c] [VENDOR]   0x40011CB3 belt pouch             x15  15 gp
+[11:21:37.130] INFO  [r2c] [VENDOR]   0x40011CB1 bag                    x32  13 gp
+[11:21:37.130] INFO  [r2c] [VENDOR]   0x40011CAF candles                x14  7 gp
+[11:21:37.130] INFO  [r2c] [VENDOR]   0x40011CAE torches                x18  8 gp
+[11:21:37.130] LOG   [r2c] event vendor_offer: vendor=0x0000105A items=24
+[11:21:37.130] INFO  [r2c] [ACTION_RESULT] vendor_buy success (1ms) vendor offer received
+[11:21:37.130] LOG   [r2c] event action_result: vendor_buy success took=1ms vendor offer received
+[11:21:37.131] INFO  [r2c] [0x24] vendor buy gump for 0x0000105A
+[11:21:41.728] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:21:46.165] INFO  [life] food: nothing to eat -- asking a provisioner
+[11:21:46.165] INFO  [r2c] [ACTION] vendor_buy start
+[11:21:46.165] INFO  [r2c] [VENDOR] open vendor=0x0000105A say='Taite buy'
+[11:21:46.166] INFO  [r2c] [chat uni  ] : Taite buy
+[11:21:46.166] INFO  [r2c] [chat ascii] Taite: I got lots to sell!
+[11:21:46.166] INFO  [r2c] [0x3C] container contents: 24 item(s)
+[11:21:46.166] INFO  [r2c] [0x74] pairing: straight (straight 2, mirrored 0 of 24 rows)
+[11:21:46.166] INFO  [r2c] [0x74] vendor shop data: cont=0x40001051 24 item(s), layer=0x1A
+[11:21:46.166] INFO  [r2c] [0x74]   bulk order book              gfx=0x2259 qty=5    price=105
+[11:21:46.166] INFO  [r2c] [0x74]   spyglass                     gfx=0x14F5 qty=5    price=78
+[11:21:46.166] INFO  [r2c] [0x74]   House Placement Tool         gfx=0x14F6 qty=25   price=690
+[11:21:46.166] INFO  [r2c] [0x74]   backpack                     gfx=0x0E75 qty=32   price=25
+[11:21:46.166] INFO  [r2c] [0x74]   belt pouch                   gfx=0x09B0 qty=15   price=15
+[11:21:46.166] INFO  [r2c] [0x74]   bag                          gfx=0x0E76 qty=32   price=13
+[11:21:46.166] INFO  [r2c] [0x74]   candles                      gfx=0x0A28 qty=14   price=7
+[11:21:46.166] INFO  [r2c] [0x74]   torches                      gfx=0x0F64 qty=18   price=8
+[11:21:46.166] INFO  [r2c] [0x74]   lantern                      gfx=0x0A25 qty=36   price=55
+[11:21:46.166] INFO  [r2c] [0x74]   oil flasks                   gfx=0x1C18 qty=17   price=15
+[11:21:46.166] INFO  [r2c] [0x74]   lockpicks                    gfx=0x14FB qty=62   price=10
+[11:21:46.166] INFO  [r2c] [0x74]   bottle of ale                gfx=0x099F qty=20   price=25
+[11:21:46.166] INFO  [r2c] [0x74]   bottle of wine               gfx=0x09C7 qty=36   price=28
+[11:21:46.166] INFO  [r2c] [0x74]   bottle of liquor             gfx=0x099B qty=14   price=17
+[11:21:46.166] INFO  [r2c] [0x74]   jug of cider                 gfx=0x09C8 qty=12   price=26
+[11:21:46.166] INFO  [r2c] [0x74]   empty bottles                gfx=0x0F0E qty=27   price=12
+[11:21:46.166] INFO  [r2c] [0x74]   wooden box                   gfx=0x09AA qty=27   price=28
+[11:21:46.166] INFO  [r2c] [0x74]   copper key                   gfx=0x100E qty=13   price=51
+[11:21:46.167] INFO  [r2c] [0x74]   bedroll                      gfx=0x0A57 qty=11   price=109
+[11:21:46.167] INFO  [r2c] [0x74]   kindling                     gfx=0x0DE1 qty=36   price=1
+[11:21:46.167] INFO  [r2c] [0x74]   Chessboard                   gfx=0x0FA6 qty=31   price=1825361101
+[11:21:46.167] INFO  [r2c] [0x74]   Checkerboard                 gfx=0x0FA6 qty=30   price=1825361101
+[11:21:46.167] INFO  [r2c] [0x74]   backgammon board             gfx=0x0E1C qty=38   price=46
+[11:21:46.167] INFO  [r2c] [0x74]   dice and cup                 gfx=0x0FA7 qty=26   price=36
+[11:21:46.167] INFO  [r2c] [0x3C] container contents: 0 item(s)
+[11:21:46.167] INFO  [r2c] [0x74] vendor shop data: cont=0x40000601 0 item(s), layer=0x1B
+[11:21:46.167] INFO  [r2c] [VENDOR] offer from 0x0000105A: 24 item(s)
+[11:21:46.167] INFO  [r2c] [VENDOR]   0x40011CB8 bulk order book        x5   105 gp
+[11:21:46.167] INFO  [r2c] [VENDOR]   0x40011CB7 spyglass               x5   78 gp
+[11:21:46.167] INFO  [r2c] [VENDOR]   0x40011CB5 House Placement Tool   x25  690 gp
+[11:21:46.167] INFO  [r2c] [VENDOR]   0x40011CB4 backpack               x32  25 gp
+[11:21:46.167] INFO  [r2c] [VENDOR]   0x40011CB3 belt pouch             x15  15 gp
+[11:21:46.167] INFO  [r2c] [VENDOR]   0x40011CB1 bag                    x32  13 gp
+[11:21:46.167] INFO  [r2c] [VENDOR]   0x40011CAF candles                x14  7 gp
+[11:21:46.167] INFO  [r2c] [VENDOR]   0x40011CAE torches                x18  8 gp
+[11:21:46.167] LOG   [r2c] event vendor_offer: vendor=0x0000105A items=24
+[11:21:46.167] INFO  [r2c] [ACTION_RESULT] vendor_buy success (1ms) vendor offer received
+[11:21:46.167] LOG   [r2c] event action_result: vendor_buy success took=1ms vendor offer received
+[11:21:46.167] INFO  [r2c] [0x24] vendor buy gump for 0x0000105A
+[11:21:46.748] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:21:50.148] INFO  [r2c] [chat ascii] Jebidiah: Can I help thee?
+[11:21:50.148] INFO  [r2c] [chat uni  ] enu: buy
+[11:21:50.148] INFO  [r2c] [chat ascii] Taite: Excuse me Kaelen, but Observer wants to speak to me
+[11:21:50.148] INFO  [r2c] [chat ascii] Taite: Hello!  How may I help thee?
+[11:21:50.148] INFO  [r2c] [chat ascii] Taite: I'm here to sell thee supplies.
+[11:21:51.802] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:21:55.217] INFO  [life] food: nothing to eat -- asking a provisioner
+[11:21:55.217] INFO  [r2c] [ACTION] vendor_buy start
+[11:21:55.217] INFO  [r2c] [VENDOR] open vendor=0x0000105A say='Taite buy'
+[11:21:55.234] INFO  [r2c] [chat uni  ] : Taite buy
+[11:21:55.234] INFO  [r2c] [chat ascii] Taite: Excuse me Observer, but Kaelen wants to speak to me
+[11:21:55.234] INFO  [r2c] [chat ascii] Taite: I got lots to sell!
+[11:21:55.234] INFO  [r2c] [0x3C] container contents: 24 item(s)
+[11:21:55.234] INFO  [r2c] [0x74] pairing: straight (straight 2, mirrored 0 of 24 rows)
+[11:21:55.234] INFO  [r2c] [0x74] vendor shop data: cont=0x40001051 24 item(s), layer=0x1A
+[11:21:55.234] INFO  [r2c] [0x74]   bulk order book              gfx=0x2259 qty=5    price=105
+[11:21:55.234] INFO  [r2c] [0x74]   spyglass                     gfx=0x14F5 qty=5    price=78
+[11:21:55.234] INFO  [r2c] [0x74]   House Placement Tool         gfx=0x14F6 qty=25   price=690
+[11:21:55.234] INFO  [r2c] [0x74]   backpack                     gfx=0x0E75 qty=32   price=25
+[11:21:55.234] INFO  [r2c] [0x74]   belt pouch                   gfx=0x09B0 qty=15   price=15
+[11:21:55.234] INFO  [r2c] [0x74]   bag                          gfx=0x0E76 qty=32   price=13
+[11:21:55.234] INFO  [r2c] [0x74]   candles                      gfx=0x0A28 qty=14   price=7
+[11:21:55.234] INFO  [r2c] [0x74]   torches                      gfx=0x0F64 qty=18   price=8
+[11:21:55.234] INFO  [r2c] [0x74]   lantern                      gfx=0x0A25 qty=36   price=55
+[11:21:55.234] INFO  [r2c] [0x74]   oil flasks                   gfx=0x1C18 qty=17   price=15
+[11:21:55.234] INFO  [r2c] [0x74]   lockpicks                    gfx=0x14FB qty=62   price=10
+[11:21:55.234] INFO  [r2c] [0x74]   bottle of ale                gfx=0x099F qty=20   price=25
+[11:21:55.234] INFO  [r2c] [0x74]   bottle of wine               gfx=0x09C7 qty=36   price=28
+[11:21:55.234] INFO  [r2c] [0x74]   bottle of liquor             gfx=0x099B qty=14   price=17
+[11:21:55.234] INFO  [r2c] [0x74]   jug of cider                 gfx=0x09C8 qty=12   price=26
+[11:21:55.234] INFO  [r2c] [0x74]   empty bottles                gfx=0x0F0E qty=27   price=12
+[11:21:55.234] INFO  [r2c] [0x74]   wooden box                   gfx=0x09AA qty=27   price=28
+[11:21:55.234] INFO  [r2c] [0x74]   copper key                   gfx=0x100E qty=13   price=51
+[11:21:55.234] INFO  [r2c] [0x74]   bedroll                      gfx=0x0A57 qty=11   price=109
+[11:21:55.234] INFO  [r2c] [0x74]   kindling                     gfx=0x0DE1 qty=36   price=1
+[11:21:55.234] INFO  [r2c] [0x74]   Chessboard                   gfx=0x0FA6 qty=31   price=1825361101
+[11:21:55.234] INFO  [r2c] [0x74]   Checkerboard                 gfx=0x0FA6 qty=30   price=1825361101
+[11:21:55.234] INFO  [r2c] [0x74]   backgammon board             gfx=0x0E1C qty=38   price=46
+[11:21:55.234] INFO  [r2c] [0x74]   dice and cup                 gfx=0x0FA7 qty=26   price=36
+[11:21:55.234] INFO  [r2c] [0x3C] container contents: 0 item(s)
+[11:21:55.234] INFO  [r2c] [0x74] vendor shop data: cont=0x40000601 0 item(s), layer=0x1B
+[11:21:55.234] INFO  [r2c] [VENDOR] offer from 0x0000105A: 24 item(s)
+[11:21:55.234] INFO  [r2c] [VENDOR]   0x40011CB8 bulk order book        x5   105 gp
+[11:21:55.234] INFO  [r2c] [VENDOR]   0x40011CB7 spyglass               x5   78 gp
+[11:21:55.234] INFO  [r2c] [VENDOR]   0x40011CB5 House Placement Tool   x25  690 gp
+[11:21:55.234] INFO  [r2c] [VENDOR]   0x40011CB4 backpack               x32  25 gp
+[11:21:55.234] INFO  [r2c] [VENDOR]   0x40011CB3 belt pouch             x15  15 gp
+[11:21:55.234] INFO  [r2c] [VENDOR]   0x40011CB1 bag                    x32  13 gp
+[11:21:55.234] INFO  [r2c] [VENDOR]   0x40011CAF candles                x14  7 gp
+[11:21:55.234] INFO  [r2c] [VENDOR]   0x40011CAE torches                x18  8 gp
+[11:21:55.234] LOG   [r2c] event vendor_offer: vendor=0x0000105A items=24
+[11:21:55.234] INFO  [r2c] [ACTION_RESULT] vendor_buy success (17ms) vendor offer received
+[11:21:55.234] LOG   [r2c] event action_result: vendor_buy success took=17ms vendor offer received
+[11:21:55.234] INFO  [r2c] [0x24] vendor buy gump for 0x0000105A
+[11:21:56.821] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:22:01.864] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:22:03.855] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[11:22:04.253] INFO  [life] food: nothing to eat -- asking a provisioner
+[11:22:04.253] INFO  [r2c] [ACTION] vendor_buy start
+[11:22:04.253] INFO  [r2c] [VENDOR] open vendor=0x0000105A say='Taite buy'
+[11:22:04.254] INFO  [r2c] [chat uni  ] : Taite buy
+[11:22:04.254] INFO  [r2c] [chat ascii] Taite: Thou surely wants all the things that I can sell thee.
+[11:22:04.254] INFO  [r2c] [0x3C] container contents: 24 item(s)
+[11:22:04.254] INFO  [r2c] [0x74] pairing: straight (straight 2, mirrored 0 of 24 rows)
+[11:22:04.254] INFO  [r2c] [0x74] vendor shop data: cont=0x40001051 24 item(s), layer=0x1A
+[11:22:04.254] INFO  [r2c] [0x74]   bulk order book              gfx=0x2259 qty=5    price=105
+[11:22:04.254] INFO  [r2c] [0x74]   spyglass                     gfx=0x14F5 qty=5    price=78
+[11:22:04.254] INFO  [r2c] [0x74]   House Placement Tool         gfx=0x14F6 qty=25   price=690
+[11:22:04.254] INFO  [r2c] [0x74]   backpack                     gfx=0x0E75 qty=32   price=25
+[11:22:04.254] INFO  [r2c] [0x74]   belt pouch                   gfx=0x09B0 qty=15   price=15
+[11:22:04.254] INFO  [r2c] [0x74]   bag                          gfx=0x0E76 qty=32   price=13
+[11:22:04.254] INFO  [r2c] [0x74]   candles                      gfx=0x0A28 qty=14   price=7
+[11:22:04.254] INFO  [r2c] [0x74]   torches                      gfx=0x0F64 qty=18   price=8
+[11:22:04.254] INFO  [r2c] [0x74]   lantern                      gfx=0x0A25 qty=36   price=55
+[11:22:04.254] INFO  [r2c] [0x74]   oil flasks                   gfx=0x1C18 qty=17   price=15
+[11:22:04.254] INFO  [r2c] [0x74]   lockpicks                    gfx=0x14FB qty=62   price=10
+[11:22:04.254] INFO  [r2c] [0x74]   bottle of ale                gfx=0x099F qty=20   price=25
+[11:22:04.254] INFO  [r2c] [0x74]   bottle of wine               gfx=0x09C7 qty=36   price=28
+[11:22:04.254] INFO  [r2c] [0x74]   bottle of liquor             gfx=0x099B qty=14   price=17
+[11:22:04.254] INFO  [r2c] [0x74]   jug of cider                 gfx=0x09C8 qty=12   price=26
+[11:22:04.254] INFO  [r2c] [0x74]   empty bottles                gfx=0x0F0E qty=27   price=12
+[11:22:04.254] INFO  [r2c] [0x74]   wooden box                   gfx=0x09AA qty=27   price=28
+[11:22:04.254] INFO  [r2c] [0x74]   copper key                   gfx=0x100E qty=13   price=51
+[11:22:04.254] INFO  [r2c] [0x74]   bedroll                      gfx=0x0A57 qty=11   price=109
+[11:22:04.254] INFO  [r2c] [0x74]   kindling                     gfx=0x0DE1 qty=36   price=1
+[11:22:04.254] INFO  [r2c] [0x74]   Chessboard                   gfx=0x0FA6 qty=31   price=1825361101
+[11:22:04.254] INFO  [r2c] [0x74]   Checkerboard                 gfx=0x0FA6 qty=30   price=1825361101
+[11:22:04.254] INFO  [r2c] [0x74]   backgammon board             gfx=0x0E1C qty=38   price=46
+[11:22:04.254] INFO  [r2c] [0x74]   dice and cup                 gfx=0x0FA7 qty=26   price=36
+[11:22:04.254] INFO  [r2c] [0x3C] container contents: 0 item(s)
+[11:22:04.254] INFO  [r2c] [0x74] vendor shop data: cont=0x40000601 0 item(s), layer=0x1B
+[11:22:04.254] INFO  [r2c] [VENDOR] offer from 0x0000105A: 24 item(s)
+[11:22:04.254] INFO  [r2c] [VENDOR]   0x40011CB8 bulk order book        x5   105 gp
+[11:22:04.254] INFO  [r2c] [VENDOR]   0x40011CB7 spyglass               x5   78 gp
+[11:22:04.254] INFO  [r2c] [VENDOR]   0x40011CB5 House Placement Tool   x25  690 gp
+[11:22:04.254] INFO  [r2c] [VENDOR]   0x40011CB4 backpack               x32  25 gp
+[11:22:04.254] INFO  [r2c] [VENDOR]   0x40011CB3 belt pouch             x15  15 gp
+[11:22:04.254] INFO  [r2c] [VENDOR]   0x40011CB1 bag                    x32  13 gp
+[11:22:04.254] INFO  [r2c] [VENDOR]   0x40011CAF candles                x14  7 gp
+[11:22:04.254] INFO  [r2c] [VENDOR]   0x40011CAE torches                x18  8 gp
+[11:22:04.254] LOG   [r2c] event vendor_offer: vendor=0x0000105A items=24
+[11:22:04.254] INFO  [r2c] [ACTION_RESULT] vendor_buy success (1ms) vendor offer received
+[11:22:04.254] LOG   [r2c] event action_result: vendor_buy success took=1ms vendor offer received
+[11:22:04.254] INFO  [r2c] [0x24] vendor buy gump for 0x0000105A
+[11:22:06.908] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:22:11.948] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:22:13.295] INFO  [life] food: nothing to eat -- asking a provisioner
+[11:22:13.295] INFO  [r2c] [ACTION] vendor_buy start
+[11:22:13.295] INFO  [r2c] [VENDOR] open vendor=0x0000105A say='Taite buy'
+[11:22:13.312] INFO  [r2c] [chat uni  ] : Taite buy
+[11:22:13.312] INFO  [r2c] [chat ascii] Taite: I got lots to sell!
+[11:22:13.312] INFO  [r2c] [0x3C] container contents: 24 item(s)
+[11:22:13.312] INFO  [r2c] [0x74] pairing: straight (straight 2, mirrored 0 of 24 rows)
+[11:22:13.312] INFO  [r2c] [0x74] vendor shop data: cont=0x40001051 24 item(s), layer=0x1A
+[11:22:13.312] INFO  [r2c] [0x74]   bulk order book              gfx=0x2259 qty=5    price=105
+[11:22:13.312] INFO  [r2c] [0x74]   spyglass                     gfx=0x14F5 qty=5    price=78
+[11:22:13.312] INFO  [r2c] [0x74]   House Placement Tool         gfx=0x14F6 qty=25   price=690
+[11:22:13.312] INFO  [r2c] [0x74]   backpack                     gfx=0x0E75 qty=32   price=25
+[11:22:13.312] INFO  [r2c] [0x74]   belt pouch                   gfx=0x09B0 qty=15   price=15
+[11:22:13.312] INFO  [r2c] [0x74]   bag                          gfx=0x0E76 qty=32   price=13
+[11:22:13.312] INFO  [r2c] [0x74]   candles                      gfx=0x0A28 qty=14   price=7
+[11:22:13.312] INFO  [r2c] [0x74]   torches                      gfx=0x0F64 qty=18   price=8
+[11:22:13.312] INFO  [r2c] [0x74]   lantern                      gfx=0x0A25 qty=36   price=55
+[11:22:13.312] INFO  [r2c] [0x74]   oil flasks                   gfx=0x1C18 qty=17   price=15
+[11:22:13.312] INFO  [r2c] [0x74]   lockpicks                    gfx=0x14FB qty=62   price=10
+[11:22:13.312] INFO  [r2c] [0x74]   bottle of ale                gfx=0x099F qty=20   price=25
+[11:22:13.312] INFO  [r2c] [0x74]   bottle of wine               gfx=0x09C7 qty=36   price=28
+[11:22:13.312] INFO  [r2c] [0x74]   bottle of liquor             gfx=0x099B qty=14   price=17
+[11:22:13.312] INFO  [r2c] [0x74]   jug of cider                 gfx=0x09C8 qty=12   price=26
+[11:22:13.312] INFO  [r2c] [0x74]   empty bottles                gfx=0x0F0E qty=27   price=12
+[11:22:13.312] INFO  [r2c] [0x74]   wooden box                   gfx=0x09AA qty=27   price=28
+[11:22:13.312] INFO  [r2c] [0x74]   copper key                   gfx=0x100E qty=13   price=51
+[11:22:13.312] INFO  [r2c] [0x74]   bedroll                      gfx=0x0A57 qty=11   price=109
+[11:22:13.312] INFO  [r2c] [0x74]   kindling                     gfx=0x0DE1 qty=36   price=1
+[11:22:13.312] INFO  [r2c] [0x74]   Chessboard                   gfx=0x0FA6 qty=31   price=1825361101
+[11:22:13.312] INFO  [r2c] [0x74]   Checkerboard                 gfx=0x0FA6 qty=30   price=1825361101
+[11:22:13.312] INFO  [r2c] [0x74]   backgammon board             gfx=0x0E1C qty=38   price=46
+[11:22:13.312] INFO  [r2c] [0x74]   dice and cup                 gfx=0x0FA7 qty=26   price=36
+[11:22:13.312] INFO  [r2c] [0x3C] container contents: 0 item(s)
+[11:22:13.312] INFO  [r2c] [0x74] vendor shop data: cont=0x40000601 0 item(s), layer=0x1B
+[11:22:13.312] INFO  [r2c] [VENDOR] offer from 0x0000105A: 24 item(s)
+[11:22:13.312] INFO  [r2c] [VENDOR]   0x40011CB8 bulk order book        x5   105 gp
+[11:22:13.312] INFO  [r2c] [VENDOR]   0x40011CB7 spyglass               x5   78 gp
+[11:22:13.312] INFO  [r2c] [VENDOR]   0x40011CB5 House Placement Tool   x25  690 gp
+[11:22:13.312] INFO  [r2c] [VENDOR]   0x40011CB4 backpack               x32  25 gp
+[11:22:13.312] INFO  [r2c] [VENDOR]   0x40011CB3 belt pouch             x15  15 gp
+[11:22:13.312] INFO  [r2c] [VENDOR]   0x40011CB1 bag                    x32  13 gp
+[11:22:13.312] INFO  [r2c] [VENDOR]   0x40011CAF candles                x14  7 gp
+[11:22:13.312] INFO  [r2c] [VENDOR]   0x40011CAE torches                x18  8 gp
+[11:22:13.312] LOG   [r2c] event vendor_offer: vendor=0x0000105A items=24
+[11:22:13.312] INFO  [r2c] [ACTION_RESULT] vendor_buy success (17ms) vendor offer received
+[11:22:13.312] LOG   [r2c] event action_result: vendor_buy success took=17ms vendor offer received
+[11:22:13.312] INFO  [r2c] [0x24] vendor buy gump for 0x0000105A
+[11:22:16.999] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:22:22.042] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:22:22.348] INFO  [life] food: nothing to eat -- asking a provisioner
+[11:22:22.348] INFO  [r2c] [ACTION] vendor_buy start
+[11:22:22.348] INFO  [r2c] [VENDOR] open vendor=0x0000105A say='Taite buy'
+[11:22:22.349] INFO  [r2c] [chat uni  ] : Taite buy
+[11:22:22.349] INFO  [r2c] [chat ascii] Taite: I'm here to sell thee supplies.
+[11:22:22.349] INFO  [r2c] [0x3C] container contents: 24 item(s)
+[11:22:22.349] INFO  [r2c] [0x74] pairing: straight (straight 2, mirrored 0 of 24 rows)
+[11:22:22.349] INFO  [r2c] [0x74] vendor shop data: cont=0x40001051 24 item(s), layer=0x1A
+[11:22:22.349] INFO  [r2c] [0x74]   bulk order book              gfx=0x2259 qty=5    price=105
+[11:22:22.349] INFO  [r2c] [0x74]   spyglass                     gfx=0x14F5 qty=5    price=78
+[11:22:22.349] INFO  [r2c] [0x74]   House Placement Tool         gfx=0x14F6 qty=25   price=690
+[11:22:22.349] INFO  [r2c] [0x74]   backpack                     gfx=0x0E75 qty=32   price=25
+[11:22:22.349] INFO  [r2c] [0x74]   belt pouch                   gfx=0x09B0 qty=15   price=15
+[11:22:22.349] INFO  [r2c] [0x74]   bag                          gfx=0x0E76 qty=32   price=13
+[11:22:22.349] INFO  [r2c] [0x74]   candles                      gfx=0x0A28 qty=14   price=7
+[11:22:22.349] INFO  [r2c] [0x74]   torches                      gfx=0x0F64 qty=18   price=8
+[11:22:22.349] INFO  [r2c] [0x74]   lantern                      gfx=0x0A25 qty=36   price=55
+[11:22:22.349] INFO  [r2c] [0x74]   oil flasks                   gfx=0x1C18 qty=17   price=15
+[11:22:22.349] INFO  [r2c] [0x74]   lockpicks                    gfx=0x14FB qty=62   price=10
+[11:22:22.349] INFO  [r2c] [0x74]   bottle of ale                gfx=0x099F qty=20   price=25
+[11:22:22.349] INFO  [r2c] [0x74]   bottle of wine               gfx=0x09C7 qty=36   price=28
+[11:22:22.349] INFO  [r2c] [0x74]   bottle of liquor             gfx=0x099B qty=14   price=17
+[11:22:22.349] INFO  [r2c] [0x74]   jug of cider                 gfx=0x09C8 qty=12   price=26
+[11:22:22.349] INFO  [r2c] [0x74]   empty bottles                gfx=0x0F0E qty=27   price=12
+[11:22:22.349] INFO  [r2c] [0x74]   wooden box                   gfx=0x09AA qty=27   price=28
+[11:22:22.349] INFO  [r2c] [0x74]   copper key                   gfx=0x100E qty=13   price=51
+[11:22:22.349] INFO  [r2c] [0x74]   bedroll                      gfx=0x0A57 qty=11   price=109
+[11:22:22.349] INFO  [r2c] [0x74]   kindling                     gfx=0x0DE1 qty=36   price=1
+[11:22:22.349] INFO  [r2c] [0x74]   Chessboard                   gfx=0x0FA6 qty=31   price=1825361101
+[11:22:22.349] INFO  [r2c] [0x74]   Checkerboard                 gfx=0x0FA6 qty=30   price=1825361101
+[11:22:22.349] INFO  [r2c] [0x74]   backgammon board             gfx=0x0E1C qty=38   price=46
+[11:22:22.349] INFO  [r2c] [0x74]   dice and cup                 gfx=0x0FA7 qty=26   price=36
+[11:22:22.349] INFO  [r2c] [0x3C] container contents: 0 item(s)
+[11:22:22.349] INFO  [r2c] [0x74] vendor shop data: cont=0x40000601 0 item(s), layer=0x1B
+[11:22:22.349] INFO  [r2c] [VENDOR] offer from 0x0000105A: 24 item(s)
+[11:22:22.349] INFO  [r2c] [VENDOR]   0x40011CB8 bulk order book        x5   105 gp
+[11:22:22.349] INFO  [r2c] [VENDOR]   0x40011CB7 spyglass               x5   78 gp
+[11:22:22.349] INFO  [r2c] [VENDOR]   0x40011CB5 House Placement Tool   x25  690 gp
+[11:22:22.349] INFO  [r2c] [VENDOR]   0x40011CB4 backpack               x32  25 gp
+[11:22:22.349] INFO  [r2c] [VENDOR]   0x40011CB3 belt pouch             x15  15 gp
+[11:22:22.349] INFO  [r2c] [VENDOR]   0x40011CB1 bag                    x32  13 gp
+[11:22:22.349] INFO  [r2c] [VENDOR]   0x40011CAF candles                x14  7 gp
+[11:22:22.349] INFO  [r2c] [VENDOR]   0x40011CAE torches                x18  8 gp
+[11:22:22.349] LOG   [r2c] event vendor_offer: vendor=0x0000105A items=24
+[11:22:22.349] INFO  [r2c] [ACTION_RESULT] vendor_buy success (1ms) vendor offer received
+[11:22:22.349] LOG   [r2c] event action_result: vendor_buy success took=1ms vendor offer received
+[11:22:22.349] INFO  [r2c] [0x24] vendor buy gump for 0x0000105A
+[11:22:26.623] INFO  [r2c] [chat ascii] Jebidiah: What's thee wantin'?
+[11:22:27.068] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:22:31.386] INFO  [life] food: nothing to eat -- asking a provisioner
+[11:22:31.386] INFO  [r2c] [ACTION] vendor_buy start
+[11:22:31.386] INFO  [r2c] [VENDOR] open vendor=0x0000105A say='Taite buy'
+[11:22:31.402] INFO  [r2c] [chat uni  ] : Taite buy
+[11:22:31.402] INFO  [r2c] [chat ascii] Taite: Thou surely wants all the things that I can sell thee.
+[11:22:31.402] INFO  [r2c] [0x3C] container contents: 24 item(s)
+[11:22:31.402] INFO  [r2c] [0x74] pairing: straight (straight 2, mirrored 0 of 24 rows)
+[11:22:31.402] INFO  [r2c] [0x74] vendor shop data: cont=0x40001051 24 item(s), layer=0x1A
+[11:22:31.402] INFO  [r2c] [0x74]   bulk order book              gfx=0x2259 qty=5    price=105
+[11:22:31.402] INFO  [r2c] [0x74]   spyglass                     gfx=0x14F5 qty=5    price=78
+[11:22:31.402] INFO  [r2c] [0x74]   House Placement Tool         gfx=0x14F6 qty=25   price=690
+[11:22:31.402] INFO  [r2c] [0x74]   backpack                     gfx=0x0E75 qty=32   price=25
+[11:22:31.402] INFO  [r2c] [0x74]   belt pouch                   gfx=0x09B0 qty=15   price=15
+[11:22:31.402] INFO  [r2c] [0x74]   bag                          gfx=0x0E76 qty=32   price=13
+[11:22:31.402] INFO  [r2c] [0x74]   candles                      gfx=0x0A28 qty=14   price=7
+[11:22:31.402] INFO  [r2c] [0x74]   torches                      gfx=0x0F64 qty=18   price=8
+[11:22:31.402] INFO  [r2c] [0x74]   lantern                      gfx=0x0A25 qty=36   price=55
+[11:22:31.402] INFO  [r2c] [0x74]   oil flasks                   gfx=0x1C18 qty=17   price=15
+[11:22:31.402] INFO  [r2c] [0x74]   lockpicks                    gfx=0x14FB qty=62   price=10
+[11:22:31.403] INFO  [r2c] [0x74]   bottle of ale                gfx=0x099F qty=20   price=25
+[11:22:31.403] INFO  [r2c] [0x74]   bottle of wine               gfx=0x09C7 qty=36   price=28
+[11:22:31.403] INFO  [r2c] [0x74]   bottle of liquor             gfx=0x099B qty=14   price=17
+[11:22:31.403] INFO  [r2c] [0x74]   jug of cider                 gfx=0x09C8 qty=12   price=26
+[11:22:31.403] INFO  [r2c] [0x74]   empty bottles                gfx=0x0F0E qty=27   price=12
+[11:22:31.403] INFO  [r2c] [0x74]   wooden box                   gfx=0x09AA qty=27   price=28
+[11:22:31.403] INFO  [r2c] [0x74]   copper key                   gfx=0x100E qty=13   price=51
+[11:22:31.403] INFO  [r2c] [0x74]   bedroll                      gfx=0x0A57 qty=11   price=109
+[11:22:31.403] INFO  [r2c] [0x74]   kindling                     gfx=0x0DE1 qty=36   price=1
+[11:22:31.403] INFO  [r2c] [0x74]   Chessboard                   gfx=0x0FA6 qty=31   price=1825361101
+[11:22:31.403] INFO  [r2c] [0x74]   Checkerboard                 gfx=0x0FA6 qty=30   price=1825361101
+[11:22:31.403] INFO  [r2c] [0x74]   backgammon board             gfx=0x0E1C qty=38   price=46
+[11:22:31.403] INFO  [r2c] [0x74]   dice and cup                 gfx=0x0FA7 qty=26   price=36
+[11:22:31.403] INFO  [r2c] [0x3C] container contents: 0 item(s)
+[11:22:31.403] INFO  [r2c] [0x74] vendor shop data: cont=0x40000601 0 item(s), layer=0x1B
+[11:22:31.403] INFO  [r2c] [VENDOR] offer from 0x0000105A: 24 item(s)
+[11:22:31.403] INFO  [r2c] [VENDOR]   0x40011CB8 bulk order book        x5   105 gp
+[11:22:31.403] INFO  [r2c] [VENDOR]   0x40011CB7 spyglass               x5   78 gp
+[11:22:31.403] INFO  [r2c] [VENDOR]   0x40011CB5 House Placement Tool   x25  690 gp
+[11:22:31.403] INFO  [r2c] [VENDOR]   0x40011CB4 backpack               x32  25 gp
+[11:22:31.403] INFO  [r2c] [VENDOR]   0x40011CB3 belt pouch             x15  15 gp
+[11:22:31.403] INFO  [r2c] [VENDOR]   0x40011CB1 bag                    x32  13 gp
+[11:22:31.403] INFO  [r2c] [VENDOR]   0x40011CAF candles                x14  7 gp
+[11:22:31.403] INFO  [r2c] [VENDOR]   0x40011CAE torches                x18  8 gp
+[11:22:31.403] LOG   [r2c] event vendor_offer: vendor=0x0000105A items=24
+[11:22:31.403] INFO  [r2c] [ACTION_RESULT] vendor_buy success (16ms) vendor offer received
+[11:22:31.403] LOG   [r2c] event action_result: vendor_buy success took=16ms vendor offer received
+[11:22:31.403] INFO  [r2c] [0x24] vendor buy gump for 0x0000105A
+[11:22:32.108] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:22:37.145] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:22:40.426] INFO  [life] food: nothing to eat -- asking a provisioner
+[11:22:40.426] INFO  [r2c] [ACTION] vendor_buy start
+[11:22:40.426] INFO  [r2c] [VENDOR] open vendor=0x0000105A say='Taite buy'
+[11:22:40.442] INFO  [r2c] [chat uni  ] : Taite buy
+[11:22:40.442] INFO  [r2c] [chat ascii] Taite: I'm here to sell thee supplies.
+[11:22:40.442] INFO  [r2c] [0x3C] container contents: 24 item(s)
+[11:22:40.442] INFO  [r2c] [0x74] pairing: straight (straight 2, mirrored 0 of 24 rows)
+[11:22:40.442] INFO  [r2c] [0x74] vendor shop data: cont=0x40001051 24 item(s), layer=0x1A
+[11:22:40.442] INFO  [r2c] [0x74]   bulk order book              gfx=0x2259 qty=5    price=105
+[11:22:40.442] INFO  [r2c] [0x74]   spyglass                     gfx=0x14F5 qty=5    price=78
+[11:22:40.442] INFO  [r2c] [0x74]   House Placement Tool         gfx=0x14F6 qty=25   price=690
+[11:22:40.442] INFO  [r2c] [0x74]   backpack                     gfx=0x0E75 qty=32   price=25
+[11:22:40.442] INFO  [r2c] [0x74]   belt pouch                   gfx=0x09B0 qty=15   price=15
+[11:22:40.442] INFO  [r2c] [0x74]   bag                          gfx=0x0E76 qty=32   price=13
+[11:22:40.442] INFO  [r2c] [0x74]   candles                      gfx=0x0A28 qty=14   price=7
+[11:22:40.442] INFO  [r2c] [0x74]   torches                      gfx=0x0F64 qty=18   price=8
+[11:22:40.442] INFO  [r2c] [0x74]   lantern                      gfx=0x0A25 qty=36   price=55
+[11:22:40.442] INFO  [r2c] [0x74]   oil flasks                   gfx=0x1C18 qty=17   price=15
+[11:22:40.442] INFO  [r2c] [0x74]   lockpicks                    gfx=0x14FB qty=62   price=10
+[11:22:40.442] INFO  [r2c] [0x74]   bottle of ale                gfx=0x099F qty=20   price=25
+[11:22:40.442] INFO  [r2c] [0x74]   bottle of wine               gfx=0x09C7 qty=36   price=28
+[11:22:40.442] INFO  [r2c] [0x74]   bottle of liquor             gfx=0x099B qty=14   price=17
+[11:22:40.442] INFO  [r2c] [0x74]   jug of cider                 gfx=0x09C8 qty=12   price=26
+[11:22:40.442] INFO  [r2c] [0x74]   empty bottles                gfx=0x0F0E qty=27   price=12
+[11:22:40.442] INFO  [r2c] [0x74]   wooden box                   gfx=0x09AA qty=27   price=28
+[11:22:40.442] INFO  [r2c] [0x74]   copper key                   gfx=0x100E qty=13   price=51
+[11:22:40.442] INFO  [r2c] [0x74]   bedroll                      gfx=0x0A57 qty=11   price=109
+[11:22:40.442] INFO  [r2c] [0x74]   kindling                     gfx=0x0DE1 qty=36   price=1
+[11:22:40.442] INFO  [r2c] [0x74]   Chessboard                   gfx=0x0FA6 qty=31   price=1825361101
+[11:22:40.442] INFO  [r2c] [0x74]   Checkerboard                 gfx=0x0FA6 qty=30   price=1825361101
+[11:22:40.442] INFO  [r2c] [0x74]   backgammon board             gfx=0x0E1C qty=38   price=46
+[11:22:40.442] INFO  [r2c] [0x74]   dice and cup                 gfx=0x0FA7 qty=26   price=36
+[11:22:40.442] INFO  [r2c] [0x3C] container contents: 0 item(s)
+[11:22:40.442] INFO  [r2c] [0x74] vendor shop data: cont=0x40000601 0 item(s), layer=0x1B
+[11:22:40.442] INFO  [r2c] [VENDOR] offer from 0x0000105A: 24 item(s)
+[11:22:40.442] INFO  [r2c] [VENDOR]   0x40011CB8 bulk order book        x5   105 gp
+[11:22:40.442] INFO  [r2c] [VENDOR]   0x40011CB7 spyglass               x5   78 gp
+[11:22:40.442] INFO  [r2c] [VENDOR]   0x40011CB5 House Placement Tool   x25  690 gp
+[11:22:40.442] INFO  [r2c] [VENDOR]   0x40011CB4 backpack               x32  25 gp
+[11:22:40.442] INFO  [r2c] [VENDOR]   0x40011CB3 belt pouch             x15  15 gp
+[11:22:40.442] INFO  [r2c] [VENDOR]   0x40011CB1 bag                    x32  13 gp
+[11:22:40.442] INFO  [r2c] [VENDOR]   0x40011CAF candles                x14  7 gp
+[11:22:40.442] INFO  [r2c] [VENDOR]   0x40011CAE torches                x18  8 gp
+[11:22:40.442] LOG   [r2c] event vendor_offer: vendor=0x0000105A items=24
+[11:22:40.442] INFO  [r2c] [ACTION_RESULT] vendor_buy success (16ms) vendor offer received
+[11:22:40.442] LOG   [r2c] event action_result: vendor_buy success took=16ms vendor offer received
+[11:22:40.442] INFO  [r2c] [0x24] vendor buy gump for 0x0000105A
+[11:22:42.163] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:22:47.178] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:22:49.449] INFO  [life] food: nothing to eat -- asking a provisioner
+[11:22:49.449] INFO  [r2c] [ACTION] vendor_buy start
+[11:22:49.450] INFO  [r2c] [VENDOR] open vendor=0x0000105A say='Taite buy'
+[11:22:49.450] INFO  [r2c] [chat uni  ] : Taite buy
+[11:22:49.450] INFO  [r2c] [chat ascii] Taite: I got lots to sell!
+[11:22:49.450] INFO  [r2c] [0x3C] container contents: 24 item(s)
+[11:22:49.450] INFO  [r2c] [0x74] pairing: straight (straight 2, mirrored 0 of 24 rows)
+[11:22:49.450] INFO  [r2c] [0x74] vendor shop data: cont=0x40001051 24 item(s), layer=0x1A
+[11:22:49.450] INFO  [r2c] [0x74]   bulk order book              gfx=0x2259 qty=5    price=105
+[11:22:49.450] INFO  [r2c] [0x74]   spyglass                     gfx=0x14F5 qty=5    price=78
+[11:22:49.450] INFO  [r2c] [0x74]   House Placement Tool         gfx=0x14F6 qty=25   price=690
+[11:22:49.450] INFO  [r2c] [0x74]   backpack                     gfx=0x0E75 qty=32   price=25
+[11:22:49.450] INFO  [r2c] [0x74]   belt pouch                   gfx=0x09B0 qty=15   price=15
+[11:22:49.450] INFO  [r2c] [0x74]   bag                          gfx=0x0E76 qty=32   price=13
+[11:22:49.450] INFO  [r2c] [0x74]   candles                      gfx=0x0A28 qty=14   price=7
+[11:22:49.450] INFO  [r2c] [0x74]   torches                      gfx=0x0F64 qty=18   price=8
+[11:22:49.450] INFO  [r2c] [0x74]   lantern                      gfx=0x0A25 qty=36   price=55
+[11:22:49.450] INFO  [r2c] [0x74]   oil flasks                   gfx=0x1C18 qty=17   price=15
+[11:22:49.450] INFO  [r2c] [0x74]   lockpicks                    gfx=0x14FB qty=62   price=10
+[11:22:49.450] INFO  [r2c] [0x74]   bottle of ale                gfx=0x099F qty=20   price=25
+[11:22:49.450] INFO  [r2c] [0x74]   bottle of wine               gfx=0x09C7 qty=36   price=28
+[11:22:49.450] INFO  [r2c] [0x74]   bottle of liquor             gfx=0x099B qty=14   price=17
+[11:22:49.450] INFO  [r2c] [0x74]   jug of cider                 gfx=0x09C8 qty=12   price=26
+[11:22:49.450] INFO  [r2c] [0x74]   empty bottles                gfx=0x0F0E qty=27   price=12
+[11:22:49.450] INFO  [r2c] [0x74]   wooden box                   gfx=0x09AA qty=27   price=28
+[11:22:49.450] INFO  [r2c] [0x74]   copper key                   gfx=0x100E qty=13   price=51
+[11:22:49.450] INFO  [r2c] [0x74]   bedroll                      gfx=0x0A57 qty=11   price=109
+[11:22:49.450] INFO  [r2c] [0x74]   kindling                     gfx=0x0DE1 qty=36   price=1
+[11:22:49.450] INFO  [r2c] [0x74]   Chessboard                   gfx=0x0FA6 qty=31   price=1825361101
+[11:22:49.450] INFO  [r2c] [0x74]   Checkerboard                 gfx=0x0FA6 qty=30   price=1825361101
+[11:22:49.450] INFO  [r2c] [0x74]   backgammon board             gfx=0x0E1C qty=38   price=46
+[11:22:49.450] INFO  [r2c] [0x74]   dice and cup                 gfx=0x0FA7 qty=26   price=36
+[11:22:49.451] INFO  [r2c] [0x3C] container contents: 0 item(s)
+[11:22:49.451] INFO  [r2c] [0x74] vendor shop data: cont=0x40000601 0 item(s), layer=0x1B
+[11:22:49.451] INFO  [r2c] [VENDOR] offer from 0x0000105A: 24 item(s)
+[11:22:49.451] INFO  [r2c] [VENDOR]   0x40011CB8 bulk order book        x5   105 gp
+[11:22:49.451] INFO  [r2c] [VENDOR]   0x40011CB7 spyglass               x5   78 gp
+[11:22:49.451] INFO  [r2c] [VENDOR]   0x40011CB5 House Placement Tool   x25  690 gp
+[11:22:49.451] INFO  [r2c] [VENDOR]   0x40011CB4 backpack               x32  25 gp
+[11:22:49.451] INFO  [r2c] [VENDOR]   0x40011CB3 belt pouch             x15  15 gp
+[11:22:49.451] INFO  [r2c] [VENDOR]   0x40011CB1 bag                    x32  13 gp
+[11:22:49.451] INFO  [r2c] [VENDOR]   0x40011CAF candles                x14  7 gp
+[11:22:49.451] INFO  [r2c] [VENDOR]   0x40011CAE torches                x18  8 gp
+[11:22:49.451] LOG   [r2c] event vendor_offer: vendor=0x0000105A items=24
+[11:22:49.451] INFO  [r2c] [ACTION_RESULT] vendor_buy success (1ms) vendor offer received
+[11:22:49.451] LOG   [r2c] event action_result: vendor_buy success took=1ms vendor offer received
+[11:22:49.451] INFO  [r2c] [0x24] vendor buy gump for 0x0000105A
+[11:22:52.202] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:22:57.238] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:22:58.450] INFO  [life] food: nothing to eat -- asking a provisioner
+[11:22:58.450] INFO  [r2c] [ACTION] vendor_buy start
+[11:22:58.450] INFO  [r2c] [VENDOR] open vendor=0x0000105A say='Taite buy'
+[11:22:58.466] INFO  [r2c] [chat uni  ] : Taite buy
+[11:22:58.466] INFO  [r2c] [chat ascii] Taite: Thou surely wants all the things that I can sell thee.
+[11:22:58.466] INFO  [r2c] [0x3C] container contents: 24 item(s)
+[11:22:58.466] INFO  [r2c] [0x74] pairing: straight (straight 2, mirrored 0 of 24 rows)
+[11:22:58.466] INFO  [r2c] [0x74] vendor shop data: cont=0x40001051 24 item(s), layer=0x1A
+[11:22:58.466] INFO  [r2c] [0x74]   bulk order book              gfx=0x2259 qty=5    price=105
+[11:22:58.466] INFO  [r2c] [0x74]   spyglass                     gfx=0x14F5 qty=5    price=78
+[11:22:58.466] INFO  [r2c] [0x74]   House Placement Tool         gfx=0x14F6 qty=25   price=690
+[11:22:58.466] INFO  [r2c] [0x74]   backpack                     gfx=0x0E75 qty=32   price=25
+[11:22:58.466] INFO  [r2c] [0x74]   belt pouch                   gfx=0x09B0 qty=15   price=15
+[11:22:58.466] INFO  [r2c] [0x74]   bag                          gfx=0x0E76 qty=32   price=13
+[11:22:58.466] INFO  [r2c] [0x74]   candles                      gfx=0x0A28 qty=14   price=7
+[11:22:58.466] INFO  [r2c] [0x74]   torches                      gfx=0x0F64 qty=18   price=8
+[11:22:58.466] INFO  [r2c] [0x74]   lantern                      gfx=0x0A25 qty=36   price=55
+[11:22:58.466] INFO  [r2c] [0x74]   oil flasks                   gfx=0x1C18 qty=17   price=15
+[11:22:58.466] INFO  [r2c] [0x74]   lockpicks                    gfx=0x14FB qty=62   price=10
+[11:22:58.466] INFO  [r2c] [0x74]   bottle of ale                gfx=0x099F qty=20   price=25
+[11:22:58.466] INFO  [r2c] [0x74]   bottle of wine               gfx=0x09C7 qty=36   price=28
+[11:22:58.466] INFO  [r2c] [0x74]   bottle of liquor             gfx=0x099B qty=14   price=17
+[11:22:58.466] INFO  [r2c] [0x74]   jug of cider                 gfx=0x09C8 qty=12   price=26
+[11:22:58.466] INFO  [r2c] [0x74]   empty bottles                gfx=0x0F0E qty=27   price=12
+[11:22:58.466] INFO  [r2c] [0x74]   wooden box                   gfx=0x09AA qty=27   price=28
+[11:22:58.466] INFO  [r2c] [0x74]   copper key                   gfx=0x100E qty=13   price=51
+[11:22:58.466] INFO  [r2c] [0x74]   bedroll                      gfx=0x0A57 qty=11   price=109
+[11:22:58.466] INFO  [r2c] [0x74]   kindling                     gfx=0x0DE1 qty=36   price=1
+[11:22:58.466] INFO  [r2c] [0x74]   Chessboard                   gfx=0x0FA6 qty=31   price=1825361101
+[11:22:58.466] INFO  [r2c] [0x74]   Checkerboard                 gfx=0x0FA6 qty=30   price=1825361101
+[11:22:58.466] INFO  [r2c] [0x74]   backgammon board             gfx=0x0E1C qty=38   price=46
+[11:22:58.466] INFO  [r2c] [0x74]   dice and cup                 gfx=0x0FA7 qty=26   price=36
+[11:22:58.466] INFO  [r2c] [0x3C] container contents: 0 item(s)
+[11:22:58.466] INFO  [r2c] [0x74] vendor shop data: cont=0x40000601 0 item(s), layer=0x1B
+[11:22:58.466] INFO  [r2c] [VENDOR] offer from 0x0000105A: 24 item(s)
+[11:22:58.466] INFO  [r2c] [VENDOR]   0x40011CB8 bulk order book        x5   105 gp
+[11:22:58.466] INFO  [r2c] [VENDOR]   0x40011CB7 spyglass               x5   78 gp
+[11:22:58.466] INFO  [r2c] [VENDOR]   0x40011CB5 House Placement Tool   x25  690 gp
+[11:22:58.466] INFO  [r2c] [VENDOR]   0x40011CB4 backpack               x32  25 gp
+[11:22:58.466] INFO  [r2c] [VENDOR]   0x40011CB3 belt pouch             x15  15 gp
+[11:22:58.466] INFO  [r2c] [VENDOR]   0x40011CB1 bag                    x32  13 gp
+[11:22:58.466] INFO  [r2c] [VENDOR]   0x40011CAF candles                x14  7 gp
+[11:22:58.466] INFO  [r2c] [VENDOR]   0x40011CAE torches                x18  8 gp
+[11:22:58.466] LOG   [r2c] event vendor_offer: vendor=0x0000105A items=24
+[11:22:58.466] INFO  [r2c] [ACTION_RESULT] vendor_buy success (16ms) vendor offer received
+[11:22:58.466] LOG   [r2c] event action_result: vendor_buy success took=16ms vendor offer received
+[11:22:58.467] INFO  [r2c] [0x24] vendor buy gump for 0x0000105A
+[11:23:02.264] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:23:03.880] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[11:23:07.284] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:23:07.468] INFO  [life] food: nothing to eat -- asking a provisioner
+[11:23:07.468] INFO  [r2c] [ACTION] vendor_buy start
+[11:23:07.468] INFO  [r2c] [VENDOR] open vendor=0x0000105A say='Taite buy'
+[11:23:07.469] INFO  [r2c] [chat uni  ] : Taite buy
+[11:23:07.469] INFO  [r2c] [chat ascii] Taite: I got lots to sell!
+[11:23:07.469] INFO  [r2c] [0x3C] container contents: 24 item(s)
+[11:23:07.469] INFO  [r2c] [0x74] pairing: straight (straight 2, mirrored 0 of 24 rows)
+[11:23:07.469] INFO  [r2c] [0x74] vendor shop data: cont=0x40001051 24 item(s), layer=0x1A
+[11:23:07.469] INFO  [r2c] [0x74]   bulk order book              gfx=0x2259 qty=5    price=105
+[11:23:07.469] INFO  [r2c] [0x74]   spyglass                     gfx=0x14F5 qty=5    price=78
+[11:23:07.469] INFO  [r2c] [0x74]   House Placement Tool         gfx=0x14F6 qty=25   price=690
+[11:23:07.469] INFO  [r2c] [0x74]   backpack                     gfx=0x0E75 qty=32   price=25
+[11:23:07.469] INFO  [r2c] [0x74]   belt pouch                   gfx=0x09B0 qty=15   price=15
+[11:23:07.469] INFO  [r2c] [0x74]   bag                          gfx=0x0E76 qty=32   price=13
+[11:23:07.469] INFO  [r2c] [0x74]   candles                      gfx=0x0A28 qty=14   price=7
+[11:23:07.469] INFO  [r2c] [0x74]   torches                      gfx=0x0F64 qty=18   price=8
+[11:23:07.469] INFO  [r2c] [0x74]   lantern                      gfx=0x0A25 qty=36   price=55
+[11:23:07.469] INFO  [r2c] [0x74]   oil flasks                   gfx=0x1C18 qty=17   price=15
+[11:23:07.469] INFO  [r2c] [0x74]   lockpicks                    gfx=0x14FB qty=62   price=10
+[11:23:07.469] INFO  [r2c] [0x74]   bottle of ale                gfx=0x099F qty=20   price=25
+[11:23:07.469] INFO  [r2c] [0x74]   bottle of wine               gfx=0x09C7 qty=36   price=28
+[11:23:07.469] INFO  [r2c] [0x74]   bottle of liquor             gfx=0x099B qty=14   price=17
+[11:23:07.469] INFO  [r2c] [0x74]   jug of cider                 gfx=0x09C8 qty=12   price=26
+[11:23:07.469] INFO  [r2c] [0x74]   empty bottles                gfx=0x0F0E qty=27   price=12
+[11:23:07.469] INFO  [r2c] [0x74]   wooden box                   gfx=0x09AA qty=27   price=28
+[11:23:07.469] INFO  [r2c] [0x74]   copper key                   gfx=0x100E qty=13   price=51
+[11:23:07.469] INFO  [r2c] [0x74]   bedroll                      gfx=0x0A57 qty=11   price=109
+[11:23:07.469] INFO  [r2c] [0x74]   kindling                     gfx=0x0DE1 qty=36   price=1
+[11:23:07.469] INFO  [r2c] [0x74]   Chessboard                   gfx=0x0FA6 qty=31   price=1825361101
+[11:23:07.469] INFO  [r2c] [0x74]   Checkerboard                 gfx=0x0FA6 qty=30   price=1825361101
+[11:23:07.469] INFO  [r2c] [0x74]   backgammon board             gfx=0x0E1C qty=38   price=46
+[11:23:07.469] INFO  [r2c] [0x74]   dice and cup                 gfx=0x0FA7 qty=26   price=36
+[11:23:07.469] INFO  [r2c] [0x3C] container contents: 0 item(s)
+[11:23:07.469] INFO  [r2c] [0x74] vendor shop data: cont=0x40000601 0 item(s), layer=0x1B
+[11:23:07.469] INFO  [r2c] [VENDOR] offer from 0x0000105A: 24 item(s)
+[11:23:07.469] INFO  [r2c] [VENDOR]   0x40011CB8 bulk order book        x5   105 gp
+[11:23:07.469] INFO  [r2c] [VENDOR]   0x40011CB7 spyglass               x5   78 gp
+[11:23:07.469] INFO  [r2c] [VENDOR]   0x40011CB5 House Placement Tool   x25  690 gp
+[11:23:07.469] INFO  [r2c] [VENDOR]   0x40011CB4 backpack               x32  25 gp
+[11:23:07.469] INFO  [r2c] [VENDOR]   0x40011CB3 belt pouch             x15  15 gp
+[11:23:07.469] INFO  [r2c] [VENDOR]   0x40011CB1 bag                    x32  13 gp
+[11:23:07.469] INFO  [r2c] [VENDOR]   0x40011CAF candles                x14  7 gp
+[11:23:07.469] INFO  [r2c] [VENDOR]   0x40011CAE torches                x18  8 gp
+[11:23:07.469] LOG   [r2c] event vendor_offer: vendor=0x0000105A items=24
+[11:23:07.469] INFO  [r2c] [ACTION_RESULT] vendor_buy success (1ms) vendor offer received
+[11:23:07.469] LOG   [r2c] event action_result: vendor_buy success took=1ms vendor offer received
+[11:23:07.469] INFO  [r2c] [0x24] vendor buy gump for 0x0000105A
+[11:23:12.339] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:23:16.506] INFO  [life] food: nothing to eat -- asking a provisioner
+[11:23:16.506] INFO  [r2c] [ACTION] vendor_buy start
+[11:23:16.506] INFO  [r2c] [VENDOR] open vendor=0x0000105A say='Taite buy'
+[11:23:16.522] INFO  [r2c] [chat uni  ] : Taite buy
+[11:23:16.522] INFO  [r2c] [chat ascii] Taite: Thou surely wants all the things that I can sell thee.
+[11:23:16.522] INFO  [r2c] [0x3C] container contents: 24 item(s)
+[11:23:16.522] INFO  [r2c] [0x74] pairing: straight (straight 2, mirrored 0 of 24 rows)
+[11:23:16.522] INFO  [r2c] [0x74] vendor shop data: cont=0x40001051 24 item(s), layer=0x1A
+[11:23:16.522] INFO  [r2c] [0x74]   bulk order book              gfx=0x2259 qty=5    price=105
+[11:23:16.522] INFO  [r2c] [0x74]   spyglass                     gfx=0x14F5 qty=5    price=78
+[11:23:16.522] INFO  [r2c] [0x74]   House Placement Tool         gfx=0x14F6 qty=25   price=690
+[11:23:16.522] INFO  [r2c] [0x74]   backpack                     gfx=0x0E75 qty=32   price=25
+[11:23:16.522] INFO  [r2c] [0x74]   belt pouch                   gfx=0x09B0 qty=15   price=15
+[11:23:16.522] INFO  [r2c] [0x74]   bag                          gfx=0x0E76 qty=32   price=13
+[11:23:16.522] INFO  [r2c] [0x74]   candles                      gfx=0x0A28 qty=14   price=7
+[11:23:16.522] INFO  [r2c] [0x74]   torches                      gfx=0x0F64 qty=18   price=8
+[11:23:16.522] INFO  [r2c] [0x74]   lantern                      gfx=0x0A25 qty=36   price=55
+[11:23:16.522] INFO  [r2c] [0x74]   oil flasks                   gfx=0x1C18 qty=17   price=15
+[11:23:16.522] INFO  [r2c] [0x74]   lockpicks                    gfx=0x14FB qty=62   price=10
+[11:23:16.522] INFO  [r2c] [0x74]   bottle of ale                gfx=0x099F qty=20   price=25
+[11:23:16.522] INFO  [r2c] [0x74]   bottle of wine               gfx=0x09C7 qty=36   price=28
+[11:23:16.522] INFO  [r2c] [0x74]   bottle of liquor             gfx=0x099B qty=14   price=17
+[11:23:16.522] INFO  [r2c] [0x74]   jug of cider                 gfx=0x09C8 qty=12   price=26
+[11:23:16.522] INFO  [r2c] [0x74]   empty bottles                gfx=0x0F0E qty=27   price=12
+[11:23:16.522] INFO  [r2c] [0x74]   wooden box                   gfx=0x09AA qty=27   price=28
+[11:23:16.522] INFO  [r2c] [0x74]   copper key                   gfx=0x100E qty=13   price=51
+[11:23:16.522] INFO  [r2c] [0x74]   bedroll                      gfx=0x0A57 qty=11   price=109
+[11:23:16.522] INFO  [r2c] [0x74]   kindling                     gfx=0x0DE1 qty=36   price=1
+[11:23:16.522] INFO  [r2c] [0x74]   Chessboard                   gfx=0x0FA6 qty=31   price=1825361101
+[11:23:16.522] INFO  [r2c] [0x74]   Checkerboard                 gfx=0x0FA6 qty=30   price=1825361101
+[11:23:16.522] INFO  [r2c] [0x74]   backgammon board             gfx=0x0E1C qty=38   price=46
+[11:23:16.522] INFO  [r2c] [0x74]   dice and cup                 gfx=0x0FA7 qty=26   price=36
+[11:23:16.522] INFO  [r2c] [0x3C] container contents: 0 item(s)
+[11:23:16.522] INFO  [r2c] [0x74] vendor shop data: cont=0x40000601 0 item(s), layer=0x1B
+[11:23:16.522] INFO  [r2c] [VENDOR] offer from 0x0000105A: 24 item(s)
+[11:23:16.522] INFO  [r2c] [VENDOR]   0x40011CB8 bulk order book        x5   105 gp
+[11:23:16.523] INFO  [r2c] [VENDOR]   0x40011CB7 spyglass               x5   78 gp
+[11:23:16.523] INFO  [r2c] [VENDOR]   0x40011CB5 House Placement Tool   x25  690 gp
+[11:23:16.523] INFO  [r2c] [VENDOR]   0x40011CB4 backpack               x32  25 gp
+[11:23:16.523] INFO  [r2c] [VENDOR]   0x40011CB3 belt pouch             x15  15 gp
+[11:23:16.523] INFO  [r2c] [VENDOR]   0x40011CB1 bag                    x32  13 gp
+[11:23:16.523] INFO  [r2c] [VENDOR]   0x40011CAF candles                x14  7 gp
+[11:23:16.523] INFO  [r2c] [VENDOR]   0x40011CAE torches                x18  8 gp
+[11:23:16.523] LOG   [r2c] event vendor_offer: vendor=0x0000105A items=24
+[11:23:16.523] INFO  [r2c] [ACTION_RESULT] vendor_buy success (16ms) vendor offer received
+[11:23:16.523] LOG   [r2c] event action_result: vendor_buy success took=16ms vendor offer received
+[11:23:16.523] INFO  [r2c] [0x24] vendor buy gump for 0x0000105A
+[11:23:17.134] INFO  [life] goal_changed=TRAIN_AT_NPC from=GET_FOOD reason="TRAIN_AT_NPC 90.0 superseded GET_FOOD 62.5"
+[11:23:17.134] INFO  [life] needs considered: NeedEquipment(bandages BLOCKED 0.50) NeedSkillTraining(skill 5 0.45) NeedTraining(skill 5 0.36) NeedTraining(Anatomy 0.32) NeedTraining(skill 42 0.28) NeedTraining(Tactics 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[11:23:17.134] INFO  [life]   score=90.0
+[11:23:17.134] INFO  [life]   reason: NeedSkillTraining urgency 0.45 x 200 = 90.0
+[11:23:17.134] INFO  [life]   reason: skill 5 17.1 -> 100.0, gold 519 (fee is quoted on arrival, roughly 300)
+[11:23:17.134] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[11:23:17.367] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:23:22.394] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:23:25.532] INFO  [life] training: back to a trainer we have used before, 'healer' at 1474,1610
+[11:23:25.532] INFO  [r2c] [travel] trainer -> (1474,1610) r=2 from (1473,1668)
+[11:23:25.532] LOG   [r2c] event travel_start: label='trainer' target=(1474,1610) radius=2 from=(1473,1668)
+[11:23:25.533] INFO  [r2c] [travel] mode moongate         usable   <- chosen
+[11:23:25.533] INFO  [r2c] [travel] mode walk             usable
+[11:23:25.533] INFO  [r2c] [travel] mode loose_rune_recall no: no rune marked at that destination
+[11:23:25.533] INFO  [r2c] [travel] mode runebook_recall  no: no runebook page for that destination
+[11:23:25.533] LOG   [r2c] event travel_mode: moongate
+[11:23:25.533] INFO  [r2c] [travel] plan trainer: ok legs=2 ~104 tiles transit=0 nodes=25
+[11:23:25.592] INFO  [r2c] [action] goto finished at (1473,1668,0); target (1469,1668); stopped short (off by 4 tile(s))
+[11:23:25.592] LOG   [r2c] event goto_done: at=(1473,1668) target=(1469,1668) arrived=0 off=4
+[11:23:25.592] INFO  [r2c] [travel] avoiding 2 teleporter pad(s) on this leg
+[11:23:25.592] INFO  [r2c] [action] goto (1512,1640) from (1473,1668,0)
+[11:23:25.592] LOG   [r2c] event goto_start: target=(1512,1640) from=(1473,1668)
+[11:23:25.592] INFO  [r2c] [bot] running from (1473,1668,0) to (1512,1640)
+[11:23:25.592] INFO  [r2c] [bot] planning path to (1512,1640) in background
+[11:23:25.654] INFO  [r2c] [bot] replan to (1512,1640): 65 steps in 8439.9us
+[11:23:27.453] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:23:27.728] INFO  [r2c] [bot] step (1476,1670,0)->(1477,1671,0) rejected; OpenDoor + retry
+[11:23:27.728] INFO  [r2c] [chat ascii] System: Opening door...
+[11:23:27.728] INFO  [r2c] [0x20] player @(1476,1670,0) facing=2
+[11:23:27.728] INFO  [r2c] [action] goto finished at (1476,1670,0); target (1512,1640); stopped short (off by 66 tile(s))
+[11:23:27.728] LOG   [r2c] event goto_done: at=(1476,1670) target=(1512,1640) arrived=0 off=66
+[11:23:28.941] INFO  [r2c] [travel] avoiding 2 teleporter pad(s) on this leg
+[11:23:28.941] INFO  [r2c] [action] goto (1512,1640) from (1476,1670,0)
+[11:23:28.941] LOG   [r2c] event goto_start: target=(1512,1640) from=(1476,1670)
+[11:23:28.941] INFO  [r2c] [bot] running from (1476,1670,0) to (1512,1640)
+[11:23:28.941] INFO  [r2c] [bot] planning path to (1512,1640) in background
+[11:23:29.000] INFO  [r2c] [bot] replan to (1512,1640): 61 steps in 10655.0us
+[11:23:32.477] INFO  [r2c] [survival] hp 32/32 (100%) -> fight
+[11:23:34.314] INFO  [r2c] [bot] step (1487,1676,2)->(1488,1676,0) rejected; OpenDoor + retry
+[11:23:35.019] INFO  [r2c] [bot] step (1487,1676,2)->(1488,1676,0) rejected; avoiding edge + rerouting
+[11:23:35.019] INFO  [r2c] [bot] planning path to (1512,1640) in background
+[11:23:35.080] INFO  [r2c] [bot] replan to (1512,1640): 46 steps in 5775.9us

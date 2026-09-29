@@ -1,0 +1,854 @@
+{
+  "bank": [
+    {
+      "item": "i_scissors",
+      "qty": 1
+    },
+    {
+      "item": "i_dagger",
+      "qty": 1
+    },
+    {
+      "item": "i_bottle_empty",
+      "qty": 1
+    },
+    {
+      "item": "i_reag_mandrake_root",
+      "qty": 88
+    },
+    {
+      "item": "i_reag_garlic",
+      "qty": 95
+    },
+    {
+      "item": "i_reag_ginseng",
+      "qty": 95
+    },
+    {
+      "item": "i_reag_spider_silk",
+      "qty": 96
+    }
+  ],
+  "bank_seen_ms": 2102150050,
+  "build_plan": {
+    "create_dex": 5,
+    "create_int": 25,
+    "create_skills": [
+      {
+        "skill": 25,
+        "tenths": 500
+      },
+      {
+        "skill": 46,
+        "tenths": 500
+      }
+    ],
+    "create_str": 50,
+    "family": "mage",
+    "skills": [
+      {
+        "skill": 25,
+        "tenths": 1000
+      },
+      {
+        "skill": 46,
+        "tenths": 1000
+      },
+      {
+        "skill": 16,
+        "tenths": 1000
+      }
+    ],
+    "target_dex": 35,
+    "target_int": 90,
+    "target_str": 100,
+    "unresolved_tenths": 4000
+  },
+  "checkpoint_ms": 2103518357,
+  "death_count": 0,
+  "goal": {
+    "active": true,
+    "attempts": 0,
+    "failure_reason": "",
+    "kind": "FILL_SPELLBOOK",
+    "progress": 0,
+    "started_at_ms": 2103405037
+  },
+  "home_city": "Moonglow",
+  "hunt_return_pending": false,
+  "identity": {
+    "account_name": "RevGen3_22",
+    "character_name": "Aurelius",
+    "created_at_ms": 0,
+    "first_seen_at_ms": 1942890640,
+    "identity_id": "revgen3_22.aurelius",
+    "last_seen_at_ms": 2103198225,
+    "sessions": 11,
+    "total_play_time_ms": 7585054
+  },
+  "known_spells": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    11,
+    12,
+    15,
+    16,
+    18,
+    20,
+    22,
+    23,
+    28,
+    29,
+    30
+  ],
+  "known_spells_seen_ms": 2103495662,
+  "last_death_ms": 0,
+  "last_server_report": {
+    "dead": false,
+    "dex": 5,
+    "gold": 6624,
+    "int": 25,
+    "skills": [
+      {
+        "skill": 25,
+        "tenths": 500
+      },
+      {
+        "skill": 46,
+        "tenths": 500
+      },
+      {
+        "skill": 16,
+        "tenths": 300
+      }
+    ],
+    "str": 50,
+    "x": 1489,
+    "y": 1555
+  },
+  "ledger": [
+    {
+      "amount": 450,
+      "detail": "i_reag_garlic",
+      "flow": 6,
+      "when_ms": 2031828234
+    },
+    {
+      "amount": 450,
+      "detail": "i_reag_ginseng",
+      "flow": 6,
+      "when_ms": 2031839805
+    },
+    {
+      "amount": 450,
+      "detail": "i_reag_mandrake_root",
+      "flow": 6,
+      "when_ms": 2031851390
+    },
+    {
+      "amount": 568,
+      "detail": "riding horse",
+      "flow": 6,
+      "when_ms": 2064407494
+    }
+  ],
+  "memory": {
+    "creatures": [
+      {
+        "at_ms": 2103295660,
+        "fights": 5,
+        "heat": 3.038036314,
+        "name": "Skeleton"
+      }
+    ],
+    "danger": [
+      {
+        "at_ms": 2103282981,
+        "heat": 1.549291991,
+        "radius": 14,
+        "threat": "Skeleton",
+        "x": 1385,
+        "y": 1493
+      }
+    ],
+    "events": [
+      {
+        "at_ms": 1942890640,
+        "detail": "Moonglow",
+        "kind": "newbie_knowledge_seeded",
+        "place": "",
+        "x": 4408,
+        "y": 1168
+      },
+      {
+        "at_ms": 1942890839,
+        "detail": "session=1",
+        "kind": "mount_unavailable",
+        "place": "",
+        "x": 4408,
+        "y": 1168
+      },
+      {
+        "at_ms": 1942927052,
+        "detail": "opened a bank box",
+        "kind": "bank_learned",
+        "place": "bank",
+        "x": 4467,
+        "y": 1160
+      },
+      {
+        "at_ms": 2029821120,
+        "detail": "began farming STR by wrestling",
+        "kind": "stat_farm_started",
+        "place": "",
+        "x": 3630,
+        "y": 2543
+      },
+      {
+        "at_ms": 2030397028,
+        "detail": "i_scroll_blank",
+        "kind": "no_player_seller",
+        "place": "",
+        "x": 1430,
+        "y": 1689
+      },
+      {
+        "at_ms": 2031391434,
+        "detail": "i_scroll_blank",
+        "kind": "no_player_seller",
+        "place": "",
+        "x": 1429,
+        "y": 1689
+      },
+      {
+        "at_ms": 2064959638,
+        "detail": "went hunting",
+        "kind": "first_hunt",
+        "place": "graveyard",
+        "x": 1430,
+        "y": 1691
+      },
+      {
+        "at_ms": 2065203893,
+        "detail": "",
+        "kind": "confirmed_kill",
+        "place": "",
+        "x": 1387,
+        "y": 1504
+      },
+      {
+        "at_ms": 2097044781,
+        "detail": "logs",
+        "kind": "first_bank_deposit",
+        "place": "bank",
+        "x": 4467,
+        "y": 1159
+      },
+      {
+        "at_ms": 2097044781,
+        "detail": "loot secured; ready to restock",
+        "kind": "hunt_banked",
+        "place": "bank",
+        "x": 4467,
+        "y": 1159
+      },
+      {
+        "at_ms": 2101983135,
+        "detail": "recover after resurrection",
+        "kind": "corpse_pending",
+        "place": "",
+        "x": 1411,
+        "y": 1520
+      },
+      {
+        "at_ms": 2102133644,
+        "detail": "i_scissors",
+        "kind": "no_scissors_for_robe",
+        "place": "",
+        "x": 1430,
+        "y": 1691
+      },
+      {
+        "at_ms": 2102653987,
+        "detail": "decayed before this session",
+        "kind": "corpse_abandoned",
+        "place": "",
+        "x": 1411,
+        "y": 1520
+      },
+      {
+        "at_ms": 2102814576,
+        "detail": "Skeleton",
+        "kind": "first_near_death",
+        "place": "",
+        "x": 1385,
+        "y": 1493
+      },
+      {
+        "at_ms": 2102949275,
+        "detail": "session=10",
+        "kind": "mount_unavailable",
+        "place": "",
+        "x": 1464,
+        "y": 1686
+      },
+      {
+        "at_ms": 2103295660,
+        "detail": "Skeleton",
+        "kind": "confirmed_kill",
+        "place": "",
+        "x": 1385,
+        "y": 1497
+      }
+    ],
+    "places": [
+      {
+        "kind": "common_knowledge_bank",
+        "last_verified_ms": 1942890640,
+        "learned_ms": 1942890640,
+        "name": "Moonglow Bank banker",
+        "visits": 1,
+        "x": 4471,
+        "y": 1156,
+        "z": 0
+      },
+      {
+        "kind": "common_knowledge_healer",
+        "last_verified_ms": 1942890640,
+        "learned_ms": 1942890640,
+        "name": "Moonglow Healer healer",
+        "visits": 1,
+        "x": 4394,
+        "y": 1083,
+        "z": 0
+      },
+      {
+        "kind": "common_knowledge_provisioner",
+        "last_verified_ms": 1942890640,
+        "learned_ms": 1942890640,
+        "name": "The Scholar's Goods provisioner",
+        "visits": 1,
+        "x": 4417,
+        "y": 1064,
+        "z": 0
+      },
+      {
+        "kind": "healer",
+        "last_verified_ms": 1943008067,
+        "learned_ms": 1942978143,
+        "name": "Xanthe, the healer guildmistress",
+        "visits": 602,
+        "x": 4391,
+        "y": 1080,
+        "z": 0
+      },
+      {
+        "kind": "safe",
+        "last_verified_ms": 1943125506,
+        "learned_ms": 1943125506,
+        "name": "logout point",
+        "visits": 1,
+        "x": 3610,
+        "y": 2470,
+        "z": 0
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2030764409,
+        "learned_ms": 2030764409,
+        "name": "the_fatted_calf_butcher",
+        "visits": 1,
+        "x": 4400,
+        "y": 1137,
+        "z": 0
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2030774345,
+        "learned_ms": 2030774345,
+        "name": "herbal_splendar_herbalist",
+        "visits": 1,
+        "x": 4421,
+        "y": 1136,
+        "z": 0
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2030788417,
+        "learned_ms": 2030788417,
+        "name": "moonglow_reagent_shop_herbalist",
+        "visits": 1,
+        "x": 4414,
+        "y": 1114,
+        "z": 0
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2030806306,
+        "learned_ms": 2030806306,
+        "name": "the_mighty_axe_armorer",
+        "visits": 1,
+        "x": 4397,
+        "y": 1117,
+        "z": 0
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2030819898,
+        "learned_ms": 2030819898,
+        "name": "moonglow_healer_healer",
+        "visits": 1,
+        "x": 4397,
+        "y": 1088,
+        "z": 0
+      },
+      {
+        "kind": "healer",
+        "last_verified_ms": 2033419323,
+        "learned_ms": 2030819914,
+        "name": "Ayuna, the healer",
+        "visits": 49730,
+        "x": 4398,
+        "y": 1086,
+        "z": 0
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2030831991,
+        "learned_ms": 2030831991,
+        "name": "the_mage_s_seat_carpenter",
+        "visits": 1,
+        "x": 4415,
+        "y": 1088,
+        "z": 0
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2030850337,
+        "learned_ms": 2030850337,
+        "name": "the_scholar_s_goods_provisioner",
+        "visits": 1,
+        "x": 4421,
+        "y": 1064,
+        "z": 0
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2030865521,
+        "learned_ms": 2030865521,
+        "name": "the_mages_bread_baker",
+        "visits": 1,
+        "x": 4391,
+        "y": 1072,
+        "z": 0
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2030879773,
+        "learned_ms": 2030879773,
+        "name": "moonglow_fisherman",
+        "visits": 1,
+        "x": 4405,
+        "y": 1043,
+        "z": -2
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2030902794,
+        "learned_ms": 2030902794,
+        "name": "scholar_s_cut_tailory_tailor",
+        "visits": 1,
+        "x": 4458,
+        "y": 1065,
+        "z": 0
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2030918473,
+        "learned_ms": 2030918473,
+        "name": "moonglow_student_hostel_inn",
+        "visits": 1,
+        "x": 4485,
+        "y": 1069,
+        "z": 0
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2030936980,
+        "learned_ms": 2030936980,
+        "name": "fruits_vegetables_butcher",
+        "visits": 1,
+        "x": 4479,
+        "y": 1089,
+        "z": 0
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2030950619,
+        "learned_ms": 2030950619,
+        "name": "guild_of_arcane_arts_mage",
+        "visits": 1,
+        "x": 4452,
+        "y": 1086,
+        "z": 0
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2031924506,
+        "learned_ms": 2031924506,
+        "name": "moonglow_bank_bank",
+        "visits": 1,
+        "x": 4456,
+        "y": 1128,
+        "z": 0
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2031943212,
+        "learned_ms": 2031943212,
+        "name": "second_defense_armory_armorer",
+        "visits": 1,
+        "x": 4440,
+        "y": 1165,
+        "z": 0
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2031954646,
+        "learned_ms": 2031954646,
+        "name": "moonglow_start",
+        "visits": 1,
+        "x": 4412,
+        "y": 1168,
+        "z": 0
+      },
+      {
+        "kind": "explored",
+        "last_verified_ms": 2031977234,
+        "learned_ms": 2031977234,
+        "name": "the_scholar_s_inn_inn",
+        "visits": 1,
+        "x": 4405,
+        "y": 1168,
+        "z": 0
+      },
+      {
+        "kind": "safe",
+        "last_verified_ms": 2065352092,
+        "learned_ms": 2065352092,
+        "name": "logout point",
+        "visits": 1,
+        "x": 4467,
+        "y": 1159,
+        "z": 0
+      },
+      {
+        "kind": "safe",
+        "last_verified_ms": 2097386531,
+        "learned_ms": 2097386531,
+        "name": "logout point",
+        "visits": 1,
+        "x": 1387,
+        "y": 1504,
+        "z": 10
+      },
+      {
+        "kind": "safe",
+        "last_verified_ms": 2103116744,
+        "learned_ms": 2098278929,
+        "name": "logout point",
+        "visits": 3,
+        "x": 1429,
+        "y": 1691,
+        "z": 0
+      },
+      {
+        "kind": "healer",
+        "last_verified_ms": 2102280579,
+        "learned_ms": 2102023319,
+        "name": "Dale, the healer",
+        "visits": 4844,
+        "x": 1468,
+        "y": 1613,
+        "z": 20
+      },
+      {
+        "kind": "safe",
+        "last_verified_ms": 2103028625,
+        "learned_ms": 2102280639,
+        "name": "logout point",
+        "visits": 2,
+        "x": 1385,
+        "y": 1493,
+        "z": 10
+      },
+      {
+        "kind": "safe",
+        "last_verified_ms": 2103518295,
+        "learned_ms": 2103518295,
+        "name": "logout point",
+        "visits": 1,
+        "x": 1489,
+        "y": 1555,
+        "z": 30
+      }
+    ],
+    "resources": [],
+    "suppliers": [],
+    "trainers": []
+  },
+  "prices": [
+    {
+      "item": "i_reag_garlic",
+      "price": 3,
+      "source": 0,
+      "when_ms": 2031819207,
+      "who": "Garlic",
+      "x": 4454,
+      "y": 1088
+    },
+    {
+      "item": "i_reag_ginseng",
+      "price": 3,
+      "source": 0,
+      "when_ms": 2031830751,
+      "who": "Ginseng",
+      "x": 4454,
+      "y": 1088
+    },
+    {
+      "item": "i_reag_mandrake_root",
+      "price": 3,
+      "source": 0,
+      "when_ms": 2031842351,
+      "who": "Mandrake Roots",
+      "x": 4454,
+      "y": 1088
+    },
+    {
+      "item": "i_reag_spider_silk",
+      "price": 3,
+      "source": 0,
+      "when_ms": 2031853891,
+      "who": "Spider's Silk",
+      "x": 4454,
+      "y": 1088
+    },
+    {
+      "item": "riding horse",
+      "price": 568,
+      "source": 0,
+      "when_ms": 2064407494,
+      "who": "tan horse",
+      "x": 569,
+      "y": 2121
+    },
+    {
+      "item": "i_reag_sulfur_ash",
+      "price": 3,
+      "source": 0,
+      "when_ms": 2097075798,
+      "who": "Sulfurous Ash",
+      "x": 4444,
+      "y": 1095
+    }
+  ],
+  "recent_deaths": 0,
+  "schema_version": 2,
+  "sessions": [
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 1943125568,
+      "goals_attempted": 5,
+      "goals_completed": 0,
+      "goals_failed": 0,
+      "gold_end": 9940,
+      "gold_start": 10000,
+      "logs_gathered": 0,
+      "places_learned": 5,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1000,
+      "skill_tenths_start": 1000,
+      "started_ms": 1942890640,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2029856564,
+      "goals_attempted": 9,
+      "goals_completed": 2,
+      "goals_failed": 0,
+      "gold_end": 9581,
+      "gold_start": 9940,
+      "logs_gathered": 0,
+      "places_learned": 5,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1300,
+      "skill_tenths_start": 1000,
+      "started_ms": 2029559082,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2033444852,
+      "goals_attempted": 124,
+      "goals_completed": 94,
+      "goals_failed": 0,
+      "gold_end": 7551,
+      "gold_start": 9581,
+      "logs_gathered": 0,
+      "places_learned": 23,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1300,
+      "skill_tenths_start": 1300,
+      "started_ms": 2029945234,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2063878602,
+      "goals_attempted": 15,
+      "goals_completed": 11,
+      "goals_failed": 0,
+      "gold_end": 7487,
+      "gold_start": 7551,
+      "logs_gathered": 0,
+      "places_learned": 23,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1300,
+      "skill_tenths_start": 1300,
+      "started_ms": 2063581110,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2065352154,
+      "goals_attempted": 15,
+      "goals_completed": 3,
+      "goals_failed": 0,
+      "gold_end": 6900,
+      "gold_start": 7487,
+      "logs_gathered": 0,
+      "places_learned": 24,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1300,
+      "skill_tenths_start": 1300,
+      "started_ms": 2064317929,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2097386593,
+      "goals_attempted": 4,
+      "goals_completed": 1,
+      "goals_failed": 0,
+      "gold_end": 6840,
+      "gold_start": 6900,
+      "logs_gathered": 0,
+      "places_learned": 25,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1300,
+      "skill_tenths_start": 1300,
+      "started_ms": 2097012586,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2098278991,
+      "goals_attempted": 9,
+      "goals_completed": 3,
+      "goals_failed": 0,
+      "gold_end": 6816,
+      "gold_start": 6840,
+      "logs_gathered": 0,
+      "places_learned": 26,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1300,
+      "skill_tenths_start": 1300,
+      "started_ms": 2097926822,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2099246216,
+      "goals_attempted": 12,
+      "goals_completed": 3,
+      "goals_failed": 0,
+      "gold_end": 6816,
+      "gold_start": 6816,
+      "logs_gathered": 0,
+      "places_learned": 26,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1300,
+      "skill_tenths_start": 1300,
+      "started_ms": 2098948761,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2102369363,
+      "goals_attempted": 7,
+      "goals_completed": 1,
+      "goals_failed": 0,
+      "gold_end": 6576,
+      "gold_start": 6816,
+      "logs_gathered": 0,
+      "places_learned": 28,
+      "self_supersessions": 1,
+      "skill_tenths_end": 1300,
+      "skill_tenths_start": 1300,
+      "started_ms": 2101983124,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2103116804,
+      "goals_attempted": 11,
+      "goals_completed": 3,
+      "goals_failed": 0,
+      "gold_end": 6576,
+      "gold_start": 6576,
+      "logs_gathered": 0,
+      "places_learned": 28,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1300,
+      "skill_tenths_start": 1300,
+      "started_ms": 2102653987,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2103518357,
+      "goals_attempted": 9,
+      "goals_completed": 3,
+      "goals_failed": 0,
+      "gold_end": 6624,
+      "gold_start": 6576,
+      "logs_gathered": 0,
+      "places_learned": 29,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1300,
+      "skill_tenths_start": 1300,
+      "started_ms": 2103198225,
+      "suppliers_learned": 0
+    }
+  ]
+}

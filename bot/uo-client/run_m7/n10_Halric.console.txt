@@ -1,0 +1,2016 @@
+[17:30:02.888] INFO  session 0: 127.0.0.1:2593 user='RevolutionNew04' char=Halric tag='n10_Halric'
+[17:30:02.889] LOG   [n10_Halric] event session_start: text log opened
+[17:30:02.889] LOG   [n10_Halric] event net_connect_begin: connect 127.0.0.1:2593
+[17:30:02.889] INFO  [n10_Halric] [net] connecting to 127.0.0.1:2593 ...
+[17:30:02.890] LOG   [n10_Halric] event net_connected: connect 127.0.0.1:2593
+[17:30:02.890] INFO  [n10_Halric] [net] connected.
+[17:30:02.890] INFO  [n10_Halric] [seed] sent 0x7F000001 (plaintext)
+[17:30:02.890] LOG   [n10_Halric] event seed_out: 0x7F000001 hex=7f000001
+[17:30:02.891] INFO  [life] loaded persistent state for Halric (1 places, 0 suppliers, 11 events, 2 prior sessions)
+[17:30:02.891] INFO  [life] needs: reading 'macer' from the profession catalogue
+[17:30:02.891] INFO  [life] build plan 'macer': 550.0 resolved + 150.0 unresolved = 700.0/700.0, stats 100/75/50 = 225
+[17:30:02.891] INFO  [n10_Halric] [life] autonomous player active for 'Halric' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 25 min)
+[17:30:02.891] INFO  [n10_Halric] [0xA8] 1 server(s):
+[17:30:02.891] INFO  [n10_Halric]   [0] MyShard                   1.0.0.127  full=1%  tz=0
+[17:30:02.898] INFO  [n10_Halric] [0x8C] game server = 127.0.0.1:2593  seed=0x02171B8E
+[17:30:02.898] LOG   [n10_Halric] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x02171B8E
+[17:30:02.898] INFO  [n10_Halric] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[17:30:02.898] LOG   [n10_Halric] event relay_same_socket: no seed re-sent; 0x91 follows
+[17:30:02.898] INFO  [n10_Halric] [0xB9] server features = 0x0005
+[17:30:02.898] INFO  [n10_Halric] [0xA9] 5 slot(s) (populated 1):
+[17:30:02.898] INFO  [n10_Halric]   [0] Halric
+[17:30:02.898] INFO  [n10_Halric]   [1] <empty>
+[17:30:02.898] INFO  [n10_Halric]   [2] <empty>
+[17:30:02.898] INFO  [n10_Halric]   [3] <empty>
+[17:30:02.898] INFO  [n10_Halric]   [4] <empty>
+[17:30:02.898] INFO  [n10_Halric] [ui] playing slot 0 ('Halric')
+[17:30:02.913] INFO  [n10_Halric] [0x1B] serial=0x00013411 body=0x0190 pos=(2570,1011,0)
+[17:30:02.913] LOG   [n10_Halric] event login_confirm: serial=0x00013411 body=0x0190 pos=(2570,1011,0)
+[17:30:02.913] INFO  [n10_Halric] [0x20] player @(2570,1011,0) facing=0
+[17:30:02.913] INFO  [n10_Halric] [0x55] login complete — entering world
+[17:30:02.913] LOG   [n10_Halric] event in_world: 0x55 received
+[17:30:02.913] INFO  [n10_Halric] [backpack] opening 0x4001340F
+[17:30:02.913] INFO  [n10_Halric] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[17:30:02.913] INFO  [n10_Halric] [chat ascii] System: There are 4 other players here.
+[17:30:02.913] INFO  [n10_Halric] [chat ascii] System: Last logged: 2026/08/29 16:37:23
+[17:30:02.917] INFO  [n10_Halric] [action] requesting the skill list
+[17:30:02.917] INFO  [life] in world; asked the server for the skill list
+[17:30:02.917] INFO  [n10_Halric] [0x24] open container 0x4001340F gump=60
+[17:30:02.917] INFO  [n10_Halric] [0x3C] container contents: 7 item(s)
+[17:30:02.917] LOG   [n10_Halric] event backpack_contents: serial=0x4001340F items=7
+[17:30:02.957] INFO  [n10_Halric] [chat ascii] System: Sianna has arrived in Jhelom Territory.
+[17:30:02.975] INFO  [n10_Halric] [chat ascii] System: Ovid has arrived in Moonglow.
+[17:30:02.990] INFO  [n10_Halric] [chat ascii] System: Thessaly has arrived in Britain.
+[17:30:03.020] INFO  [n10_Halric] [chat ascii] System: Wystan has arrived in Britain.
+[17:30:03.045] INFO  [n10_Halric] [chat ascii] System: Delwyn has arrived in The Rusty Anchor.
+[17:30:03.066] INFO  [n10_Halric] [chat ascii] System: Rowan has arrived in Vesper Territory.
+[17:30:05.514] INFO  [n10_Halric] [bot] world data loaded (0 blacklisted spot(s)).
+[17:30:05.514] INFO  [life] reconciliation: resuming a life, 0 field(s) differed
+[17:30:05.514] INFO  [life]   gold         persisted=9850       server=9850       -> server value accepted
+[17:30:05.514] INFO  [life]   str          persisted=48         server=48         -> server value accepted
+[17:30:05.514] INFO  [life]   dex          persisted=24         server=24         -> server value accepted
+[17:30:05.514] INFO  [life]   int          persisted=8          server=8          -> server value accepted
+[17:30:05.514] INFO  [life]   skill_41     persisted=50.0       server=50.0       -> server value accepted
+[17:30:05.514] INFO  [life]   skill_27     persisted=22.4       server=22.4       -> server value accepted
+[17:30:05.514] INFO  [life]   skill_1      persisted=50.0       server=50.0       -> server value accepted
+[17:30:05.514] INFO  [life]   skill_17     persisted=10.0       server=10.0       -> server value accepted
+[17:30:05.514] INFO  [life]   skill_5      persisted=13.5       server=13.5       -> server value accepted
+[17:30:05.514] INFO  [life]   skill_30     persisted=13.8       server=13.8       -> server value accepted
+[17:30:05.514] INFO  [life]   position     persisted=2570,1011  server=2570,1011  -> server value accepted
+[17:30:05.514] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[17:30:05.514] INFO  [life]   restored objective KEPT: TRAIN_COMBAT (progress 0)
+[17:30:05.514] INFO  [n10_Halric] [survival] on
+[17:30:05.514] LOG   [n10_Halric] event survival_mode: on
+[17:30:05.516] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew04.halric/state.json
+[17:30:05.516] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:30:05.576] INFO  [life] hunt: picked '' at 7 tiles -- verdict=lawful threat=0.10 learned_danger=0.00 (neutral: lawful to attack)
+[17:30:05.576] INFO  [n10_Halric] [ACTION] attack start
+[17:30:05.576] INFO  [n10_Halric] [ACTION] attack serial=0x0000A5F7
+[17:30:05.576] INFO  [n10_Halric] [0xAA] attacking 0x0000A5F7
+[17:30:05.576] INFO  [n10_Halric] [ACTION_RESULT] attack success (0ms) server accepted the target
+[17:30:05.576] LOG   [n10_Halric] event action_result: attack success took=0ms server accepted the target
+[17:30:08.109] INFO  [life] engaging a hostile (noto 3) at 2576,1019
+[17:30:08.110] INFO  [n10_Halric] [ACTION] attack start
+[17:30:08.110] INFO  [n10_Halric] [ACTION] attack serial=0x0000A5FC
+[17:30:08.110] INFO  [n10_Halric] [action] goto_mobile 0x0000A5FC at (2576,1019)
+[17:30:08.110] INFO  [n10_Halric] [action] goto (2575,1019) from (2570,1011,0)
+[17:30:08.110] LOG   [n10_Halric] event goto_start: target=(2575,1019) from=(2570,1011)
+[17:30:08.110] INFO  [n10_Halric] [bot] running from (2570,1011,0) to (2575,1019)
+[17:30:08.110] INFO  [n10_Halric] [bot] planning path to (2575,1019) in background
+[17:30:08.125] INFO  [n10_Halric] [0xAA] attacking 0x0000A5FC
+[17:30:08.125] INFO  [n10_Halric] [ACTION_RESULT] attack success (16ms) server accepted the target
+[17:30:08.125] LOG   [n10_Halric] event action_result: attack success took=16ms server accepted the target
+[17:30:08.125] INFO  [n10_Halric] [bot] replan to (2575,1019): 9 steps in 124.9us
+[17:30:09.365] INFO  [n10_Halric] [ACTION] attack start
+[17:30:09.365] INFO  [n10_Halric] [ACTION] attack serial=0x0000A5FC
+[17:30:09.381] INFO  [n10_Halric] [0xAA] attacking 0x0000A5FC
+[17:30:09.381] INFO  [n10_Halric] [ACTION_RESULT] attack success (16ms) server accepted the target
+[17:30:09.381] LOG   [n10_Halric] event action_result: attack success took=16ms server accepted the target
+[17:30:10.547] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:30:10.609] INFO  [life] engaging a hostile (noto 3) at 2574,1020
+[17:30:10.609] INFO  [n10_Halric] [ACTION] attack start
+[17:30:10.609] INFO  [n10_Halric] [ACTION] attack serial=0x0000A5F7
+[17:30:10.609] INFO  [n10_Halric] [0xAA] attacking 0x0000A5F7
+[17:30:10.609] INFO  [n10_Halric] [ACTION_RESULT] attack success (1ms) server accepted the target
+[17:30:10.609] LOG   [n10_Halric] event action_result: attack success took=1ms server accepted the target
+[17:30:11.685] INFO  [n10_Halric] [bot] arrived at (2575,1019,0)
+[17:30:11.870] INFO  [n10_Halric] [ACTION] attack start
+[17:30:11.870] INFO  [n10_Halric] [ACTION] attack serial=0x0000A5F7
+[17:30:11.870] INFO  [n10_Halric] [action] goto finished at (2575,1019,0); target (2575,1019); ARRIVED (off by 0 tile(s))
+[17:30:11.870] LOG   [n10_Halric] event goto_done: at=(2575,1019) target=(2575,1019) arrived=1 off=0
+[17:30:11.870] INFO  [n10_Halric] [action] goto_mobile 0x0000A5F7 at (2575,1021)
+[17:30:11.870] INFO  [n10_Halric] [action] goto (2575,1021) from (2575,1019,0)
+[17:30:11.870] LOG   [n10_Halric] event goto_start: target=(2575,1021) from=(2575,1019)
+[17:30:11.870] INFO  [n10_Halric] [bot] running from (2575,1019,0) to (2575,1021)
+[17:30:11.870] INFO  [n10_Halric] [bot] planning path to (2575,1021) in background
+[17:30:11.885] INFO  [n10_Halric] [0xAA] attacking 0x0000A5F7
+[17:30:11.885] INFO  [n10_Halric] [ACTION_RESULT] attack success (16ms) server accepted the target
+[17:30:11.885] LOG   [n10_Halric] event action_result: attack success took=16ms server accepted the target
+[17:30:13.130] INFO  [n10_Halric] [ACTION] attack start
+[17:30:13.130] INFO  [n10_Halric] [ACTION] attack serial=0x0000A5F7
+[17:30:13.130] INFO  [n10_Halric] [0xAA] attacking 0x0000A5F7
+[17:30:13.130] INFO  [n10_Halric] [ACTION_RESULT] attack success (1ms) server accepted the target
+[17:30:13.130] LOG   [n10_Halric] event action_result: attack success took=1ms server accepted the target
+[17:30:14.360] INFO  [n10_Halric] [ACTION] attack start
+[17:30:14.360] INFO  [n10_Halric] [ACTION] attack serial=0x0000A5F7
+[17:30:14.360] INFO  [n10_Halric] [action] goto finished at (2575,1019,0); target (2575,1021); stopped short (off by 2 tile(s))
+[17:30:14.360] LOG   [n10_Halric] event goto_done: at=(2575,1019) target=(2575,1021) arrived=0 off=2
+[17:30:14.360] INFO  [n10_Halric] [action] goto_mobile 0x0000A5F7 at (2576,1022)
+[17:30:14.360] INFO  [n10_Halric] [action] goto (2575,1022) from (2575,1019,0)
+[17:30:14.360] LOG   [n10_Halric] event goto_start: target=(2575,1022) from=(2575,1019)
+[17:30:14.360] INFO  [n10_Halric] [bot] running from (2575,1019,0) to (2575,1022)
+[17:30:14.360] INFO  [n10_Halric] [bot] planning path to (2575,1022) in background
+[17:30:14.360] INFO  [n10_Halric] [0xAA] attacking 0x0000A5F7
+[17:30:14.360] INFO  [n10_Halric] [ACTION_RESULT] attack success (1ms) server accepted the target
+[17:30:14.360] LOG   [n10_Halric] event action_result: attack success took=1ms server accepted the target
+[17:30:14.360] INFO  [n10_Halric] [bot] replan to (2575,1022): 3 steps in 78.8us
+[17:30:15.570] INFO  [n10_Halric] [ACTION] attack start
+[17:30:15.570] INFO  [n10_Halric] [ACTION] attack serial=0x0000A5F7
+[17:30:15.570] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:30:15.570] INFO  [n10_Halric] [0xAA] attacking 0x0000A5F7
+[17:30:15.570] INFO  [n10_Halric] [ACTION_RESULT] attack success (0ms) server accepted the target
+[17:30:15.570] LOG   [n10_Halric] event action_result: attack success took=0ms server accepted the target
+[17:30:15.941] INFO  [n10_Halric] [bot] arrived at (2575,1022,0)
+[17:30:16.434] INFO  [n10_Halric] [0x20] player @(2575,1022,0) facing=2
+[17:30:16.830] INFO  [n10_Halric] [ACTION] attack start
+[17:30:16.830] INFO  [n10_Halric] [ACTION] attack serial=0x0000A5F7
+[17:30:16.845] INFO  [n10_Halric] [0xAA] attacking 0x0000A5F7
+[17:30:16.845] INFO  [n10_Halric] [ACTION_RESULT] attack success (15ms) server accepted the target
+[17:30:16.845] LOG   [n10_Halric] event action_result: attack success took=15ms server accepted the target
+[17:30:18.087] INFO  [n10_Halric] [ACTION] attack start
+[17:30:18.088] INFO  [n10_Halric] [ACTION] attack serial=0x0000A5F7
+[17:30:18.088] INFO  [n10_Halric] [0xAA] attacking 0x0000A5F7
+[17:30:18.088] INFO  [n10_Halric] [ACTION_RESULT] attack success (1ms) server accepted the target
+[17:30:18.088] LOG   [n10_Halric] event action_result: attack success took=1ms server accepted the target
+[17:30:19.332] INFO  [n10_Halric] [ACTION] attack start
+[17:30:19.332] INFO  [n10_Halric] [ACTION] attack serial=0x0000A5F7
+[17:30:19.333] INFO  [n10_Halric] [0xAA] attacking 0x0000A5F7
+[17:30:19.333] INFO  [n10_Halric] [ACTION_RESULT] attack success (0ms) server accepted the target
+[17:30:19.333] LOG   [n10_Halric] event action_result: attack success took=0ms server accepted the target
+[17:30:20.592] INFO  [n10_Halric] [ACTION] attack start
+[17:30:20.592] INFO  [n10_Halric] [ACTION] attack serial=0x0000A5F7
+[17:30:20.592] INFO  [n10_Halric] [action] goto finished at (2575,1022,0); target (2575,1022); ARRIVED (off by 0 tile(s))
+[17:30:20.592] LOG   [n10_Halric] event goto_done: at=(2575,1022) target=(2575,1022) arrived=1 off=0
+[17:30:20.592] INFO  [n10_Halric] [action] goto_mobile 0x0000A5F7 at (2577,1022)
+[17:30:20.592] INFO  [n10_Halric] [action] goto (2576,1022) from (2575,1022,0)
+[17:30:20.592] LOG   [n10_Halric] event goto_start: target=(2576,1022) from=(2575,1022)
+[17:30:20.592] INFO  [n10_Halric] [bot] running from (2575,1022,0) to (2576,1022)
+[17:30:20.592] INFO  [n10_Halric] [bot] planning path to (2576,1022) in background
+[17:30:20.592] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:30:20.592] INFO  [n10_Halric] [0xAA] attacking 0x0000A5F7
+[17:30:20.592] INFO  [n10_Halric] [ACTION_RESULT] attack success (0ms) server accepted the target
+[17:30:20.592] LOG   [n10_Halric] event action_result: attack success took=0ms server accepted the target
+[17:30:20.654] INFO  [n10_Halric] [bot] replan to (2576,1022): 1 steps in 85.4us
+[17:30:20.655] INFO  [n10_Halric] [bot] arrived at (2576,1022,0)
+[17:30:21.822] INFO  [n10_Halric] [ACTION] attack start
+[17:30:21.822] INFO  [n10_Halric] [ACTION] attack serial=0x0000A5F7
+[17:30:21.823] INFO  [n10_Halric] [0xAA] attacking 0x0000A5F7
+[17:30:21.823] INFO  [n10_Halric] [ACTION_RESULT] attack success (1ms) server accepted the target
+[17:30:21.823] LOG   [n10_Halric] event action_result: attack success took=1ms server accepted the target
+[17:30:21.930] INFO  [n10_Halric] [chat ascii] Great Hart: *Great Hart is attacking you!*
+[17:30:23.048] INFO  [n10_Halric] [ACTION] attack start
+[17:30:23.048] INFO  [n10_Halric] [ACTION] attack serial=0x0000A5F7
+[17:30:23.048] INFO  [n10_Halric] [0xAA] attacking 0x0000A5F7
+[17:30:23.048] INFO  [n10_Halric] [ACTION_RESULT] attack success (0ms) server accepted the target
+[17:30:23.048] LOG   [n10_Halric] event action_result: attack success took=0ms server accepted the target
+[17:30:24.258] INFO  [n10_Halric] [ACTION] attack start
+[17:30:24.258] INFO  [n10_Halric] [ACTION] attack serial=0x0000A5F7
+[17:30:24.258] INFO  [n10_Halric] [0xAA] attacking 0x0000A5F7
+[17:30:24.258] INFO  [n10_Halric] [ACTION_RESULT] attack success (1ms) server accepted the target
+[17:30:24.258] LOG   [n10_Halric] event action_result: attack success took=1ms server accepted the target
+[17:30:25.469] INFO  [n10_Halric] [ACTION] attack start
+[17:30:25.469] INFO  [n10_Halric] [ACTION] attack serial=0x0000A5F7
+[17:30:25.469] INFO  [n10_Halric] [0xAA] attacking 0x0000A5F7
+[17:30:25.469] INFO  [n10_Halric] [ACTION_RESULT] attack success (1ms) server accepted the target
+[17:30:25.469] LOG   [n10_Halric] event action_result: attack success took=1ms server accepted the target
+[17:30:25.529] INFO  [life] goal_changed=SURVIVE from=TRAIN_COMBAT reason="SURVIVE 550.0 superseded TRAIN_COMBAT 10.3"
+[17:30:25.529] INFO  [life] needs considered: StayAlive(a fight already started 0.55) NeedMakeBandages(bandages BLOCKED 0.53) NeedEquipment(bandages BLOCKED 0.50) NeedSkillTraining(Healing 0.45) NeedTraining(skill 5 0.37) NeedTraining(Tactics 0.34) NeedTraining(skill 41 0.28) NeedTraining(Anatomy 0.28) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=Healing (target 100.0)
+[17:30:25.529] INFO  [life]   score=550.0
+[17:30:25.529] INFO  [life]   reason: StayAlive urgency 0.55 x 1000 = 550.0
+[17:30:25.529] INFO  [life]   reason: attackers=1 hostiles_seen=3 hp=90%
+[17:30:25.529] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=3 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[17:30:25.529] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 3/8 gold 9850 (buyable at 200))
+[17:30:25.650] INFO  [n10_Halric] [survival] hp 43/48 (89%) -> fight
+[17:30:26.721] INFO  [n10_Halric] [ACTION] attack start
+[17:30:26.721] INFO  [n10_Halric] [ACTION] attack serial=0x0000A5F7
+[17:30:26.736] INFO  [n10_Halric] [0xAA] attacking 0x0000A5F7
+[17:30:26.736] INFO  [n10_Halric] [ACTION_RESULT] attack success (15ms) server accepted the target
+[17:30:26.736] LOG   [n10_Halric] event action_result: attack success took=15ms server accepted the target
+[17:30:27.952] INFO  [n10_Halric] [ACTION] attack start
+[17:30:27.952] INFO  [n10_Halric] [ACTION] attack serial=0x0000A5F7
+[17:30:27.952] INFO  [n10_Halric] [0xAA] attacking 0x0000A5F7
+[17:30:27.952] INFO  [n10_Halric] [ACTION_RESULT] attack success (0ms) server accepted the target
+[17:30:27.952] LOG   [n10_Halric] event action_result: attack success took=0ms server accepted the target
+[17:30:29.194] INFO  [n10_Halric] [ACTION] attack start
+[17:30:29.194] INFO  [n10_Halric] [ACTION] attack serial=0x0000A5F7
+[17:30:29.194] INFO  [n10_Halric] [0xAA] attacking 0x0000A5F7
+[17:30:29.194] INFO  [n10_Halric] [ACTION_RESULT] attack success (0ms) server accepted the target
+[17:30:29.194] LOG   [n10_Halric] event action_result: attack success took=0ms server accepted the target
+[17:30:30.421] INFO  [n10_Halric] [ACTION] attack start
+[17:30:30.421] INFO  [n10_Halric] [ACTION] attack serial=0x0000A5F7
+[17:30:30.421] INFO  [n10_Halric] [0xAA] attacking 0x0000A5F7
+[17:30:30.421] INFO  [n10_Halric] [ACTION_RESULT] attack success (0ms) server accepted the target
+[17:30:30.421] LOG   [n10_Halric] event action_result: attack success took=0ms server accepted the target
+[17:30:30.654] INFO  [n10_Halric] [survival] hp 43/48 (89%) -> fight
+[17:30:31.650] INFO  [life] interrupt=DISENGAGE reason="21s of fighting and Great Hart is still at the same health; this is a stalemate"
+[17:30:31.650] INFO  [n10_Halric] [war] leaving war mode
+[17:30:31.651] INFO  [life] goal_completed=SURVIVE progress=0
+[17:30:31.653] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew04.halric/state.json
+[17:30:31.667] INFO  [life] goal=TRAIN_AT_NPC reason="no goal was running"
+[17:30:31.667] INFO  [life] needs considered: NeedMakeBandages(bandages BLOCKED 0.53) NeedEquipment(bandages BLOCKED 0.50) NeedSkillTraining(Healing 0.45) NeedTraining(skill 5 0.37) NeedTraining(Tactics 0.34) NeedTraining(skill 41 0.28) NeedTraining(Anatomy 0.28) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=Healing (target 100.0)
+[17:30:31.667] INFO  [life]   score=90.0
+[17:30:31.667] INFO  [life]   reason: NeedSkillTraining urgency 0.45 x 200 = 90.0
+[17:30:31.667] INFO  [life]   reason: Healing 10.0 -> 100.0, gold 9850 (fee is quoted on arrival, roughly 300)
+[17:30:31.667] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=3 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[17:30:31.667] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 3/8 gold 9850 (buyable at 200))
+[17:30:31.667] INFO  [life] training: looking for a 'healer' to teach Healing (trip 1)
+[17:30:31.667] INFO  [n10_Halric] [travel] Vesper healer -> (2920,856) r=5 from (2576,1022)
+[17:30:31.667] LOG   [n10_Halric] event travel_start: label='Vesper healer' target=(2920,856) radius=5 from=(2576,1022)
+[17:30:31.667] INFO  [n10_Halric] [travel] mode moongate         usable   <- chosen
+[17:30:31.667] INFO  [n10_Halric] [travel] mode walk             usable
+[17:30:31.667] INFO  [n10_Halric] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:31.667] INFO  [n10_Halric] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:31.667] LOG   [n10_Halric] event travel_mode: moongate
+[17:30:31.667] INFO  [n10_Halric] [travel] plan Vesper healer: ok legs=11 ~424 tiles transit=0 nodes=253
+[17:30:31.727] INFO  [n10_Halric] [action] goto finished at (2576,1022,0); target (2576,1022); ARRIVED (off by 0 tile(s))
+[17:30:31.727] LOG   [n10_Halric] event goto_done: at=(2576,1022) target=(2576,1022) arrived=1 off=0
+[17:30:31.727] INFO  [n10_Halric] [action] goto (2616,1016) from (2576,1022,0)
+[17:30:31.727] LOG   [n10_Halric] event goto_start: target=(2616,1016) from=(2576,1022)
+[17:30:31.727] INFO  [n10_Halric] [bot] running from (2576,1022,0) to (2616,1016)
+[17:30:31.727] INFO  [n10_Halric] [bot] planning path to (2616,1016) in background
+[17:30:31.788] INFO  [n10_Halric] [bot] replan to (2616,1016): 44 steps in 15878.9us
+[17:30:35.685] INFO  [n10_Halric] [survival] hp 43/48 (89%) -> fight
+[17:30:40.704] INFO  [n10_Halric] [survival] hp 43/48 (89%) -> fight
+[17:30:45.709] INFO  [n10_Halric] [survival] hp 44/48 (91%) -> fight
+[17:30:48.117] INFO  [n10_Halric] [bot] arrived at (2616,1016,0)
+[17:30:48.117] INFO  [n10_Halric] [action] goto finished at (2616,1016,0); target (2616,1016); ARRIVED (off by 0 tile(s))
+[17:30:48.117] LOG   [n10_Halric] event goto_done: at=(2616,1016) target=(2616,1016) arrived=1 off=0
+[17:30:48.117] INFO  [n10_Halric] [action] goto (2648,1016) from (2616,1016,0)
+[17:30:48.117] LOG   [n10_Halric] event goto_start: target=(2648,1016) from=(2616,1016)
+[17:30:48.117] INFO  [n10_Halric] [bot] running from (2616,1016,0) to (2648,1016)
+[17:30:48.117] INFO  [n10_Halric] [bot] planning path to (2648,1016) in background
+[17:30:48.178] INFO  [n10_Halric] [bot] replan to (2648,1016): 33 steps in 5346.8us
+[17:30:50.758] INFO  [n10_Halric] [survival] hp 44/48 (91%) -> fight
+[17:30:53.993] INFO  [n10_Halric] [chat ascii] System: You have retreated from the battle with Great Hart
+[17:30:55.803] INFO  [n10_Halric] [survival] hp 44/48 (91%) -> fight
+[17:30:57.915] INFO  [n10_Halric] [chat ascii] System: Nessa has arrived in Britain.
+[17:30:57.977] INFO  [n10_Halric] [bot] arrived at (2648,1016,0)
+[17:30:57.978] INFO  [n10_Halric] [action] goto finished at (2648,1016,0); target (2648,1016); ARRIVED (off by 0 tile(s))
+[17:30:57.978] LOG   [n10_Halric] event goto_done: at=(2648,1016) target=(2648,1016) arrived=1 off=0
+[17:30:57.978] INFO  [n10_Halric] [action] goto (2680,1016) from (2648,1016,0)
+[17:30:57.978] LOG   [n10_Halric] event goto_start: target=(2680,1016) from=(2648,1016)
+[17:30:57.978] INFO  [n10_Halric] [bot] running from (2648,1016,0) to (2680,1016)
+[17:30:57.978] INFO  [n10_Halric] [bot] planning path to (2680,1016) in background
+[17:30:58.009] INFO  [n10_Halric] [chat ascii] System: Cassia has arrived in Britain.
+[17:30:58.009] INFO  [n10_Halric] [bot] replan to (2680,1016): 32 steps in 12236.4us
+[17:31:00.825] INFO  [n10_Halric] [survival] hp 44/48 (91%) -> fight
+[17:31:05.848] INFO  [n10_Halric] [survival] hp 44/48 (91%) -> fight
+[17:31:08.896] INFO  [n10_Halric] [bot] arrived at (2680,1016,0)
+[17:31:08.896] INFO  [n10_Halric] [action] goto finished at (2680,1016,0); target (2680,1016); ARRIVED (off by 0 tile(s))
+[17:31:08.896] LOG   [n10_Halric] event goto_done: at=(2680,1016) target=(2680,1016) arrived=1 off=0
+[17:31:08.896] INFO  [n10_Halric] [action] goto (2712,1016) from (2680,1016,0)
+[17:31:08.896] LOG   [n10_Halric] event goto_start: target=(2712,1016) from=(2680,1016)
+[17:31:08.896] INFO  [n10_Halric] [bot] running from (2680,1016,0) to (2712,1016)
+[17:31:08.896] INFO  [n10_Halric] [bot] planning path to (2712,1016) in background
+[17:31:08.957] INFO  [n10_Halric] [bot] replan to (2712,1016): 32 steps in 8235.2us
+[17:31:10.876] INFO  [n10_Halric] [survival] hp 44/48 (91%) -> fight
+[17:31:15.928] INFO  [n10_Halric] [survival] hp 44/48 (91%) -> fight
+[17:31:20.791] INFO  [n10_Halric] [bot] arrived at (2712,1016,0)
+[17:31:20.791] INFO  [n10_Halric] [action] goto finished at (2712,1016,0); target (2712,1016); ARRIVED (off by 0 tile(s))
+[17:31:20.791] LOG   [n10_Halric] event goto_done: at=(2712,1016) target=(2712,1016) arrived=1 off=0
+[17:31:20.791] INFO  [n10_Halric] [action] goto (2744,1016) from (2712,1016,0)
+[17:31:20.791] LOG   [n10_Halric] event goto_start: target=(2744,1016) from=(2712,1016)
+[17:31:20.791] INFO  [n10_Halric] [bot] running from (2712,1016,0) to (2744,1016)
+[17:31:20.791] INFO  [n10_Halric] [bot] planning path to (2744,1016) in background
+[17:31:20.851] INFO  [n10_Halric] [bot] replan to (2744,1016): 32 steps in 13966.6us
+[17:31:20.988] INFO  [n10_Halric] [survival] hp 44/48 (91%) -> fight
+[17:31:26.005] INFO  [n10_Halric] [survival] hp 45/48 (93%) -> fight
+[17:31:28.661] INFO  [n10_Halric] [bot] arrived at (2744,1016,0)
+[17:31:28.661] INFO  [n10_Halric] [action] goto finished at (2744,1016,0); target (2744,1016); ARRIVED (off by 0 tile(s))
+[17:31:28.661] LOG   [n10_Halric] event goto_done: at=(2744,1016) target=(2744,1016) arrived=1 off=0
+[17:31:28.661] INFO  [n10_Halric] [action] goto (2776,984) from (2744,1016,0)
+[17:31:28.661] LOG   [n10_Halric] event goto_start: target=(2776,984) from=(2744,1016)
+[17:31:28.661] INFO  [n10_Halric] [bot] running from (2744,1016,0) to (2776,984)
+[17:31:28.661] INFO  [n10_Halric] [bot] planning path to (2776,984) in background
+[17:31:28.722] INFO  [n10_Halric] [bot] replan to (2776,984): 36 steps in 4399.9us
+[17:31:31.056] INFO  [n10_Halric] [survival] hp 45/48 (93%) -> fight
+[17:31:31.670] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew04.halric/state.json
+[17:31:33.475] INFO  [n10_Halric] [chat ascii] System: You are now under the protection of the town guards
+[17:31:36.067] INFO  [n10_Halric] [survival] hp 45/48 (93%) -> fight
+[17:31:38.909] INFO  [n10_Halric] [bot] arrived at (2776,984,0)
+[17:31:38.909] INFO  [n10_Halric] [action] goto finished at (2776,984,0); target (2776,984); ARRIVED (off by 0 tile(s))
+[17:31:38.909] LOG   [n10_Halric] event goto_done: at=(2776,984) target=(2776,984) arrived=1 off=0
+[17:31:38.909] INFO  [n10_Halric] [action] goto (2802,952) from (2776,984,0)
+[17:31:38.909] LOG   [n10_Halric] event goto_start: target=(2802,952) from=(2776,984)
+[17:31:38.909] INFO  [n10_Halric] [bot] running from (2776,984,0) to (2802,952)
+[17:31:38.909] INFO  [n10_Halric] [bot] planning path to (2802,952) in background
+[17:31:38.970] INFO  [n10_Halric] [bot] replan to (2802,952): 49 steps in 2870.0us
+[17:31:41.073] INFO  [n10_Halric] [survival] hp 45/48 (93%) -> fight
+[17:31:46.118] INFO  [n10_Halric] [survival] hp 45/48 (93%) -> fight
+[17:31:51.172] INFO  [n10_Halric] [survival] hp 45/48 (93%) -> fight
+[17:31:53.385] INFO  [n10_Halric] [bot] step (2801,953,2)->(2802,952,0) rejected; OpenDoor + retry
+[17:31:54.134] INFO  [n10_Halric] [bot] step (2801,953,2)->(2802,952,0) rejected; avoiding edge + rerouting
+[17:31:54.134] INFO  [n10_Halric] [bot] planning path to (2802,952) in background
+[17:31:55.734] INFO  [n10_Halric] [action] goto finished at (2801,953,2); target (2802,952); stopped short (off by 2 tile(s))
+[17:31:55.734] LOG   [n10_Halric] event goto_done: at=(2801,953) target=(2802,952) arrived=0 off=2
+[17:31:55.734] INFO  [n10_Halric] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:31:55.734] INFO  [n10_Halric] [action] goto (2840,920) from (2801,953,2)
+[17:31:55.734] LOG   [n10_Halric] event goto_start: target=(2840,920) from=(2801,953)
+[17:31:55.734] INFO  [n10_Halric] [bot] running from (2801,953,2) to (2840,920)
+[17:31:55.734] INFO  [n10_Halric] [bot] planning path to (2840,920) in background
+[17:31:55.796] INFO  [n10_Halric] [bot] replan to (2840,920): 57 steps in 5394.3us
+[17:31:56.176] INFO  [n10_Halric] [survival] hp 45/48 (93%) -> fight
+[17:32:01.188] INFO  [n10_Halric] [survival] hp 45/48 (93%) -> fight
+[17:32:06.221] INFO  [n10_Halric] [survival] hp 46/48 (95%) -> fight
+[17:32:11.260] INFO  [n10_Halric] [survival] hp 46/48 (95%) -> fight
+[17:32:11.778] INFO  [n10_Halric] [bot] arrived at (2840,920,0)
+[17:32:11.778] INFO  [n10_Halric] [action] goto finished at (2840,920,0); target (2840,920); ARRIVED (off by 0 tile(s))
+[17:32:11.778] LOG   [n10_Halric] event goto_done: at=(2840,920) target=(2840,920) arrived=1 off=0
+[17:32:11.778] INFO  [n10_Halric] [action] goto (2870,888) from (2840,920,0)
+[17:32:11.778] LOG   [n10_Halric] event goto_start: target=(2870,888) from=(2840,920)
+[17:32:11.778] INFO  [n10_Halric] [bot] running from (2840,920,0) to (2870,888)
+[17:32:11.778] INFO  [n10_Halric] [bot] planning path to (2870,888) in background
+[17:32:11.840] INFO  [n10_Halric] [bot] replan to (2870,888): 42 steps in 1331.9us
+[17:32:16.316] INFO  [n10_Halric] [survival] hp 46/48 (95%) -> fight
+[17:32:21.343] INFO  [n10_Halric] [survival] hp 46/48 (95%) -> fight
+[17:32:25.014] INFO  [n10_Halric] [bot] arrived at (2870,888,0)
+[17:32:25.014] INFO  [n10_Halric] [action] goto finished at (2870,888,0); target (2870,888); ARRIVED (off by 0 tile(s))
+[17:32:25.014] LOG   [n10_Halric] event goto_done: at=(2870,888) target=(2870,888) arrived=1 off=0
+[17:32:25.014] INFO  [n10_Halric] [action] goto (2904,856) from (2870,888,0)
+[17:32:25.014] LOG   [n10_Halric] event goto_start: target=(2904,856) from=(2870,888)
+[17:32:25.014] INFO  [n10_Halric] [bot] running from (2870,888,0) to (2904,856)
+[17:32:25.014] INFO  [n10_Halric] [bot] planning path to (2904,856) in background
+[17:32:25.075] INFO  [n10_Halric] [bot] replan to (2904,856): 62 steps in 5681.7us
+[17:32:26.347] INFO  [n10_Halric] [survival] hp 46/48 (95%) -> fight
+[17:32:31.395] INFO  [n10_Halric] [survival] hp 46/48 (95%) -> fight
+[17:32:31.671] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew04.halric/state.json
+[17:32:36.420] INFO  [n10_Halric] [survival] hp 46/48 (95%) -> fight
+[17:32:41.478] INFO  [n10_Halric] [survival] hp 46/48 (95%) -> fight
+[17:32:44.855] INFO  [n10_Halric] [bot] arrived at (2904,856,5)
+[17:32:44.855] INFO  [n10_Halric] [action] goto finished at (2904,856,5); target (2904,856); ARRIVED (off by 0 tile(s))
+[17:32:44.855] LOG   [n10_Halric] event goto_done: at=(2904,856) target=(2904,856) arrived=1 off=0
+[17:32:44.855] INFO  [n10_Halric] [action] goto (2920,856) from (2904,856,5)
+[17:32:44.855] LOG   [n10_Halric] event goto_start: target=(2920,856) from=(2904,856)
+[17:32:44.855] INFO  [n10_Halric] [bot] running from (2904,856,5) to (2920,856,z0)
+[17:32:44.855] INFO  [n10_Halric] [bot] planning path to (2920,856) in background
+[17:32:44.916] INFO  [n10_Halric] [bot] replan to (2920,856): 44 steps in 6083.0us
+[17:32:46.495] INFO  [n10_Halric] [survival] hp 47/48 (97%) -> fight
+[17:32:51.533] INFO  [n10_Halric] [survival] hp 47/48 (97%) -> fight
+[17:32:54.366] INFO  [n10_Halric] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=9 in 244.8us
+[17:32:54.614] INFO  [n10_Halric] [bot] door ahead at (2927,854,z0); OpenDoor before step
+[17:32:54.630] INFO  [n10_Halric] [chat ascii] System: Opening door...
+[17:32:56.305] INFO  [n10_Halric] [travel] Vesper healer ARRIVED at (2924,855,0)
+[17:32:56.305] LOG   [n10_Halric] event travel_done: label='Vesper healer' ok=1 at=(2924,855) legs=11 plans=1 why=''
+[17:32:56.366] INFO  [life] training: arrived at 2924,855 -- asking who is here
+[17:32:56.366] INFO  [n10_Halric] [action] scanning nearby mobiles for names
+[17:32:56.366] INFO  [n10_Halric] [action] requested 2 paperdoll(s) for trade titles
+[17:32:56.382] INFO  [n10_Halric] [mobiles] nearby (3):
+[17:32:56.382] INFO  [n10_Halric]   Melvin 0x000022B8
+[17:32:56.382] INFO  [n10_Halric]   Barnaby 0x000022C5
+[17:32:56.382] INFO  [n10_Halric]   magpie 0x00012620
+[17:32:56.382] INFO  [n10_Halric] [0x20] player @(2924,855,0) facing=6
+[17:32:56.382] INFO  [n10_Halric] [0x88] paperdoll 0x000022C5: "Barnaby, the healer"
+[17:32:56.382] INFO  [n10_Halric] [world] Barnaby, the healer is a healer at (2916,857)
+[17:32:56.382] INFO  [n10_Halric] [0x20] player @(2924,855,0) facing=4
+[17:32:56.382] INFO  [n10_Halric] [0x88] paperdoll 0x000022B8: "Melvin, the healer guildmaster"
+[17:32:56.382] INFO  [n10_Halric] [world] Melvin, the healer guildmaster is a healer at (2924,858)
+[17:32:56.566] INFO  [n10_Halric] [survival] hp 47/48 (97%) -> fight
+[17:32:58.870] INFO  [life] training: a 'healer guildmaster' is here -- asking them rather than the shopkeeper
+[17:32:58.870] INFO  [life] training: 'healer' is 5 tiles and 0 z away -- walking to them before speaking (approach 1 of 3)
+[17:32:58.870] INFO  [n10_Halric] [travel] mobile 0x000022B8 -> (2925,860) r=1 from (2924,855)
+[17:32:58.870] LOG   [n10_Halric] event travel_start: label='mobile 0x000022B8' target=(2925,860) radius=1 from=(2924,855)
+[17:32:58.870] INFO  [n10_Halric] [travel] mode walk             usable   <- chosen
+[17:32:58.870] INFO  [n10_Halric] [travel] mode moongate         usable
+[17:32:58.870] INFO  [n10_Halric] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:58.870] INFO  [n10_Halric] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:58.870] LOG   [n10_Halric] event travel_mode: walk
+[17:32:58.870] INFO  [n10_Halric] [travel] plan mobile 0x000022B8: ok legs=1 ~5 tiles transit=0 nodes=0
+[17:32:58.931] INFO  [n10_Halric] [action] goto finished at (2924,855,0); target (2920,856); stopped short (off by 5 tile(s))
+[17:32:58.931] LOG   [n10_Halric] event goto_done: at=(2924,855) target=(2920,856) arrived=0 off=5
+[17:32:58.931] INFO  [n10_Halric] [action] goto (2925,860) from (2924,855,0)
+[17:32:58.931] LOG   [n10_Halric] event goto_start: target=(2925,860) from=(2924,855)
+[17:32:58.931] INFO  [n10_Halric] [bot] running from (2924,855,0) to (2925,860,z0)
+[17:32:58.931] INFO  [n10_Halric] [bot] planning path to (2925,860) in background
+[17:33:00.068] INFO  [n10_Halric] [action] goto finished at (2924,855,0); target (2925,860); stopped short (off by 6 tile(s))
+[17:33:00.068] LOG   [n10_Halric] event goto_done: at=(2924,855) target=(2925,860) arrived=0 off=6
+[17:33:01.296] INFO  [n10_Halric] [action] goto (2925,860) from (2924,855,0)
+[17:33:01.296] LOG   [n10_Halric] event goto_start: target=(2925,860) from=(2924,855)
+[17:33:01.296] INFO  [n10_Halric] [bot] running from (2924,855,0) to (2925,860,z0)
+[17:33:01.296] INFO  [n10_Halric] [bot] planning path to (2925,860) in background
+[17:33:01.357] INFO  [n10_Halric] [bot] replan to (2925,860): 5 steps in 118.9us
+[17:33:01.599] INFO  [n10_Halric] [survival] hp 47/48 (97%) -> fight
+[17:33:02.584] INFO  [n10_Halric] [travel] mobile 0x000022B8 ARRIVED at (2925,859,0)
+[17:33:02.584] LOG   [n10_Halric] event travel_done: label='mobile 0x000022B8' ok=1 at=(2925,859) legs=1 plans=1 why=''
+[17:33:02.646] INFO  [life] training: asking the trainer about Healing
+[17:33:02.646] INFO  [n10_Halric] [ACTION] npc_train start
+[17:33:02.646] INFO  [n10_Halric] [TRAIN] ask 0x000022B8 say='Melvin train Healing'
+[17:33:02.646] LOG   [n10_Halric] event npc_train_ask: Melvin train Healing
+[17:33:02.647] INFO  [n10_Halric] [chat uni  ] : Melvin train Healing
+[17:33:02.647] INFO  [n10_Halric] [chat ascii] Melvin: For 200 gold I will train you in all I know of Healing. For less gold I will teach you less
+[17:33:02.647] INFO  [n10_Halric] [ACTION_RESULT] npc_train success (1ms) For 200 gold I will train you in all I know of Healing. For less gold I will teach you less
+[17:33:02.647] LOG   [n10_Halric] event action_result: npc_train success took=1ms For 200 gold I will train you in all I know of Healing. For less gold I will teach you less
+[17:33:02.970] INFO  [n10_Halric] [bot] arrived at (2925,860,0)
+[17:33:05.163] INFO  [n10_Halric] [action] open backpack
+[17:33:05.163] INFO  [n10_Halric] [backpack] opening 0x4001340F
+[17:33:05.179] INFO  [n10_Halric] [0x24] open container 0x4001340F gump=60
+[17:33:05.179] INFO  [n10_Halric] [0x3C] container contents: 7 item(s)
+[17:33:06.422] INFO  [life] training: paying the quoted 200 gold for Healing (purse 9850)
+[17:33:06.422] INFO  [n10_Halric] [GIVE] 0x4001331D x200 -> 0x000022B8 (gold 9850)
+[17:33:06.422] INFO  [n10_Halric] [ITEM] drag serial=0x4001331D amount=200
+[17:33:06.422] INFO  [n10_Halric] [ITEM] drop container=0x000022B8
+[17:33:06.422] LOG   [n10_Halric] event npc_give: item=0x4001331D amount=200 to=0x000022B8
+[17:33:06.622] INFO  [n10_Halric] [survival] hp 47/48 (97%) -> fight
+[17:33:10.467] INFO  [n10_Halric] [action] requesting the skill list
+[17:33:11.668] INFO  [n10_Halric] [survival] hp 47/48 (97%) -> fight
+[17:33:16.709] INFO  [n10_Halric] [survival] hp 47/48 (97%) -> fight
+[17:33:21.748] INFO  [n10_Halric] [survival] hp 47/48 (97%) -> fight
+[17:33:22.744] INFO  [life] training: paid 200 for Healing but the server still reports 10.0 after 15s
+[17:33:24.291] INFO  [life] training: asking the trainer about Healing
+[17:33:24.291] INFO  [n10_Halric] [ACTION] npc_train start
+[17:33:24.291] INFO  [n10_Halric] [TRAIN] ask 0x000022B8 say='Melvin train Healing'
+[17:33:24.291] LOG   [n10_Halric] event npc_train_ask: Melvin train Healing
+[17:33:24.306] INFO  [n10_Halric] [chat uni  ] : Melvin train Healing
+[17:33:24.306] INFO  [n10_Halric] [chat ascii] Melvin: For 200 gold I will train you in all I know of Healing. For less gold I will teach you less
+[17:33:24.306] INFO  [n10_Halric] [ACTION_RESULT] npc_train success (16ms) For 200 gold I will train you in all I know of Healing. For less gold I will teach you less
+[17:33:24.306] LOG   [n10_Halric] event action_result: npc_train success took=16ms For 200 gold I will train you in all I know of Healing. For less gold I will teach you less
+[17:33:26.752] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:33:26.813] INFO  [n10_Halric] [action] open backpack
+[17:33:26.813] INFO  [n10_Halric] [backpack] opening 0x4001340F
+[17:33:26.813] INFO  [n10_Halric] [0x24] open container 0x4001340F gump=60
+[17:33:26.813] INFO  [n10_Halric] [0x3C] container contents: 7 item(s)
+[17:33:28.039] INFO  [life] training: paying the quoted 200 gold for Healing (purse 9850)
+[17:33:28.039] INFO  [n10_Halric] [GIVE] 0x4000C531 x200 -> 0x000022B8 (gold 9850)
+[17:33:28.039] INFO  [n10_Halric] [ITEM] drag serial=0x4000C531 amount=200
+[17:33:28.039] INFO  [n10_Halric] [ITEM] drop container=0x000022B8
+[17:33:28.039] LOG   [n10_Halric] event npc_give: item=0x4000C531 amount=200 to=0x000022B8
+[17:33:28.040] INFO  [n10_Halric] [chat ascii] Melvin: Let me show you something of how this is done
+[17:33:28.040] INFO  [n10_Halric] [chat ascii] Melvin: That is all I can teach.
+[17:33:31.677] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew04.halric/state.json
+[17:33:31.798] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:33:32.044] INFO  [n10_Halric] [action] requesting the skill list
+[17:33:33.595] INFO  [life] training: skill 5 10.0 -> 13.5, bought from a trainer
+[17:33:33.599] INFO  [life] checkpoint (skill bought from a trainer) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew04.halric/state.json
+[17:33:33.599] INFO  [life] goal_completed=TRAIN_AT_NPC progress=0
+[17:33:33.603] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew04.halric/state.json
+[17:33:33.655] INFO  [life] goal=TRAIN_AT_NPC reason="no goal was running"
+[17:33:33.655] INFO  [life] needs considered: NeedMakeBandages(bandages BLOCKED 0.53) NeedEquipment(bandages BLOCKED 0.50) NeedSkillTraining(skill 5 0.45) NeedTraining(skill 5 0.37) NeedTraining(Tactics 0.34) NeedTraining(skill 41 0.28) NeedTraining(Anatomy 0.28) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[17:33:33.655] INFO  [life]   score=90.0
+[17:33:33.655] INFO  [life]   reason: NeedSkillTraining urgency 0.45 x 200 = 90.0
+[17:33:33.655] INFO  [life]   reason: skill 5 13.5 -> 100.0, gold 9650 (fee is quoted on arrival, roughly 300)
+[17:33:33.655] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=3 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[17:33:33.655] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 3/8 gold 9650 (buyable at 200))
+[17:33:33.655] INFO  [life] training: no 'armorer' where we remembered one at 2925,860 -- forgetting it and looking properly
+[17:33:33.655] INFO  [n10_Halric] [action] scanning nearby mobiles for names
+[17:33:33.703] INFO  [n10_Halric] [mobiles] nearby (4):
+[17:33:33.703] INFO  [n10_Halric]   Melvin 0x000022B8
+[17:33:33.703] INFO  [n10_Halric]   Barnaby 0x000022C5
+[17:33:33.703] INFO  [n10_Halric]   magpie 0x00012620
+[17:33:33.703] INFO  [n10_Halric]   magpie 0x0000C42F
+[17:33:35.684] INFO  [life] training: looking for a 'armorer' to teach skill 5 (trip 1)
+[17:33:35.684] INFO  [n10_Halric] [travel] Vesper armorer -> (2865,852) r=5 from (2925,860)
+[17:33:35.684] LOG   [n10_Halric] event travel_start: label='Vesper armorer' target=(2865,852) radius=5 from=(2925,860)
+[17:33:35.684] INFO  [n10_Halric] [travel] mode moongate         usable   <- chosen
+[17:33:35.684] INFO  [n10_Halric] [travel] mode walk             usable
+[17:33:35.684] INFO  [n10_Halric] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:35.684] INFO  [n10_Halric] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:35.684] LOG   [n10_Halric] event travel_mode: moongate
+[17:33:35.684] INFO  [n10_Halric] [travel] plan Vesper armorer: ok legs=2 ~48 tiles transit=0 nodes=4
+[17:33:35.745] INFO  [n10_Halric] [action] goto finished at (2925,860,0); target (2925,860); ARRIVED (off by 0 tile(s))
+[17:33:35.745] LOG   [n10_Halric] event goto_done: at=(2925,860) target=(2925,860) arrived=1 off=0
+[17:33:35.745] INFO  [n10_Halric] [action] goto (2904,856) from (2925,860,0)
+[17:33:35.745] LOG   [n10_Halric] event goto_start: target=(2904,856) from=(2925,860)
+[17:33:35.745] INFO  [n10_Halric] [bot] running from (2925,860,0) to (2904,856)
+[17:33:35.745] INFO  [n10_Halric] [bot] planning path to (2904,856) in background
+[17:33:35.808] INFO  [n10_Halric] [bot] replan to (2904,856): 43 steps in 14142.0us
+[17:33:36.845] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:33:38.270] INFO  [n10_Halric] [bot] door ahead at (2928,853,z0); OpenDoor before step
+[17:33:38.285] INFO  [n10_Halric] [chat ascii] System: Opening door...
+[17:33:41.888] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:33:46.898] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:33:48.838] INFO  [n10_Halric] [bot] arrived at (2904,856,5)
+[17:33:48.838] INFO  [n10_Halric] [action] goto finished at (2904,856,5); target (2904,856); ARRIVED (off by 0 tile(s))
+[17:33:48.838] LOG   [n10_Halric] event goto_done: at=(2904,856) target=(2904,856) arrived=1 off=0
+[17:33:48.838] INFO  [n10_Halric] [action] goto (2865,852) from (2904,856,5)
+[17:33:48.838] LOG   [n10_Halric] event goto_start: target=(2865,852) from=(2904,856)
+[17:33:48.838] INFO  [n10_Halric] [bot] running from (2904,856,5) to (2865,852,z0)
+[17:33:48.838] INFO  [n10_Halric] [bot] planning path to (2865,852) in background
+[17:33:48.898] INFO  [n10_Halric] [bot] replan to (2865,852): 60 steps in 8537.8us
+[17:33:51.932] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:33:56.970] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:34:02.029] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:34:04.128] INFO  [n10_Halric] [travel] Vesper armorer ARRIVED at (2860,857,0)
+[17:34:04.128] LOG   [n10_Halric] event travel_done: label='Vesper armorer' ok=1 at=(2860,857) legs=2 plans=1 why=''
+[17:34:04.128] INFO  [life] training: arrived at 2859,856 -- asking who is here
+[17:34:04.128] INFO  [n10_Halric] [action] scanning nearby mobiles for names
+[17:34:04.129] INFO  [n10_Halric] [action] requested 1 paperdoll(s) for trade titles
+[17:34:04.143] INFO  [n10_Halric] [mobiles] nearby (4):
+[17:34:04.143] INFO  [n10_Halric]   Cam 0x0000A7A1
+[17:34:04.143] INFO  [n10_Halric]   Savanna 0x0000A7AE
+[17:34:04.143] INFO  [n10_Halric]   Cat 0x0001271F
+[17:34:04.143] INFO  [n10_Halric]   Cat 0x0000D709
+[17:34:04.143] INFO  [n10_Halric] [0x20] player @(2859,856,0) facing=1
+[17:34:04.143] INFO  [n10_Halric] [0x88] paperdoll 0x0000A7A1: "Cam, the weaponsmith"
+[17:34:04.143] INFO  [n10_Halric] [world] Cam, the weaponsmith is a blacksmith at (2864,853)
+[17:34:06.650] INFO  [life] training: 'armorer' is 5 tiles and 0 z away -- walking to them before speaking (approach 1 of 3)
+[17:34:06.650] INFO  [n10_Halric] [travel] mobile 0x0000A7A1 -> (2864,853) r=1 from (2859,856)
+[17:34:06.650] LOG   [n10_Halric] event travel_start: label='mobile 0x0000A7A1' target=(2864,853) radius=1 from=(2859,856)
+[17:34:06.650] INFO  [n10_Halric] [travel] mode walk             usable   <- chosen
+[17:34:06.650] INFO  [n10_Halric] [travel] mode moongate         usable
+[17:34:06.650] INFO  [n10_Halric] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:06.650] INFO  [n10_Halric] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:06.650] LOG   [n10_Halric] event travel_mode: walk
+[17:34:06.650] INFO  [n10_Halric] [travel] plan mobile 0x0000A7A1: ok legs=1 ~5 tiles transit=0 nodes=0
+[17:34:06.711] INFO  [n10_Halric] [action] goto finished at (2859,856,0); target (2865,852); stopped short (off by 10 tile(s))
+[17:34:06.711] LOG   [n10_Halric] event goto_done: at=(2859,856) target=(2865,852) arrived=0 off=10
+[17:34:06.711] INFO  [n10_Halric] [action] goto (2864,853) from (2859,856,0)
+[17:34:06.711] LOG   [n10_Halric] event goto_start: target=(2864,853) from=(2859,856)
+[17:34:06.711] INFO  [n10_Halric] [bot] running from (2859,856,0) to (2864,853,z0)
+[17:34:06.711] INFO  [n10_Halric] [bot] planning path to (2864,853) in background
+[17:34:07.079] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:34:08.016] INFO  [n10_Halric] [action] goto finished at (2859,856,0); target (2864,853); stopped short (off by 8 tile(s))
+[17:34:08.016] LOG   [n10_Halric] event goto_done: at=(2859,856) target=(2864,853) arrived=0 off=8
+[17:34:09.226] INFO  [n10_Halric] [action] goto (2864,853) from (2859,856,0)
+[17:34:09.227] LOG   [n10_Halric] event goto_start: target=(2864,853) from=(2859,856)
+[17:34:09.227] INFO  [n10_Halric] [bot] running from (2859,856,0) to (2864,853,z0)
+[17:34:09.227] INFO  [n10_Halric] [bot] planning path to (2864,853) in background
+[17:34:09.287] INFO  [n10_Halric] [bot] replan to (2864,853): 7 steps in 267.5us
+[17:34:09.303] INFO  [n10_Halric] [bot] door ahead at (2859,855,z0); OpenDoor before step
+[17:34:09.303] INFO  [n10_Halric] [chat ascii] System: Opening door...
+[17:34:12.019] INFO  [n10_Halric] [travel] mobile 0x0000A7A1 ARRIVED at (2863,853,0)
+[17:34:12.019] LOG   [n10_Halric] event travel_done: label='mobile 0x0000A7A1' ok=1 at=(2863,853) legs=1 plans=1 why=''
+[17:34:12.080] INFO  [life] training: 'armorer' is 3 tiles and 0 z away -- walking to them before speaking (approach 2 of 3)
+[17:34:12.080] INFO  [n10_Halric] [travel] mobile 0x0000A7A1 -> (2866,854) r=1 from (2863,853)
+[17:34:12.080] LOG   [n10_Halric] event travel_start: label='mobile 0x0000A7A1' target=(2866,854) radius=1 from=(2863,853)
+[17:34:12.080] INFO  [n10_Halric] [travel] mode walk             usable   <- chosen
+[17:34:12.080] INFO  [n10_Halric] [travel] mode moongate         usable
+[17:34:12.080] INFO  [n10_Halric] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:12.080] INFO  [n10_Halric] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:12.080] LOG   [n10_Halric] event travel_mode: walk
+[17:34:12.080] INFO  [n10_Halric] [travel] plan mobile 0x0000A7A1: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:34:12.080] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:34:12.143] INFO  [n10_Halric] [bot] arrived at (2864,853,0)
+[17:34:12.143] INFO  [n10_Halric] [action] goto finished at (2864,853,0); target (2864,853); ARRIVED (off by 0 tile(s))
+[17:34:12.143] LOG   [n10_Halric] event goto_done: at=(2864,853) target=(2864,853) arrived=1 off=0
+[17:34:12.143] INFO  [n10_Halric] [action] goto (2866,854) from (2864,853,0)
+[17:34:12.143] LOG   [n10_Halric] event goto_start: target=(2866,854) from=(2864,853)
+[17:34:12.143] INFO  [n10_Halric] [bot] running from (2864,853,0) to (2866,854,z0)
+[17:34:12.143] INFO  [n10_Halric] [bot] planning path to (2866,854) in background
+[17:34:13.297] INFO  [n10_Halric] [action] goto finished at (2864,853,0); target (2866,854); stopped short (off by 3 tile(s))
+[17:34:13.297] LOG   [n10_Halric] event goto_done: at=(2864,853) target=(2866,854) arrived=0 off=3
+[17:34:14.541] INFO  [n10_Halric] [travel] mode walk             usable   <- chosen
+[17:34:14.541] INFO  [n10_Halric] [travel] mode moongate         usable
+[17:34:14.541] INFO  [n10_Halric] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:14.541] INFO  [n10_Halric] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:14.541] LOG   [n10_Halric] event travel_mode: walk
+[17:34:14.541] INFO  [n10_Halric] [travel] plan mobile 0x0000A7A1: ok legs=1 ~2 tiles transit=0 nodes=0
+[17:34:16.070] INFO  [n10_Halric] [action] goto (2866,854) from (2864,853,0)
+[17:34:16.070] LOG   [n10_Halric] event goto_start: target=(2866,854) from=(2864,853)
+[17:34:16.070] INFO  [n10_Halric] [bot] running from (2864,853,0) to (2866,854,z0)
+[17:34:16.071] INFO  [n10_Halric] [bot] planning path to (2866,854) in background
+[17:34:17.123] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:34:17.184] INFO  [n10_Halric] [action] goto finished at (2864,853,0); target (2866,854); stopped short (off by 3 tile(s))
+[17:34:17.184] LOG   [n10_Halric] event goto_done: at=(2864,853) target=(2866,854) arrived=0 off=3
+[17:34:18.414] INFO  [n10_Halric] [travel] mode walk             usable   <- chosen
+[17:34:18.414] INFO  [n10_Halric] [travel] mode moongate         usable
+[17:34:18.414] INFO  [n10_Halric] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:18.414] INFO  [n10_Halric] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:18.414] LOG   [n10_Halric] event travel_mode: walk
+[17:34:18.414] INFO  [n10_Halric] [travel] plan mobile 0x0000A7A1: ok legs=1 ~2 tiles transit=0 nodes=0
+[17:34:20.219] INFO  [n10_Halric] [travel] mode walk             usable   <- chosen
+[17:34:20.219] INFO  [n10_Halric] [travel] mode moongate         usable
+[17:34:20.219] INFO  [n10_Halric] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:20.219] INFO  [n10_Halric] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:20.219] LOG   [n10_Halric] event travel_mode: walk
+[17:34:20.219] INFO  [n10_Halric] [travel] plan mobile 0x0000A7A1: ok legs=1 ~5 tiles transit=0 nodes=0
+[17:34:20.281] INFO  [n10_Halric] [action] goto (2869,854) from (2864,853,0)
+[17:34:20.281] LOG   [n10_Halric] event goto_start: target=(2869,854) from=(2864,853)
+[17:34:20.281] INFO  [n10_Halric] [bot] running from (2864,853,0) to (2869,854,z0)
+[17:34:20.281] INFO  [n10_Halric] [bot] planning path to (2869,854) in background
+[17:34:21.572] INFO  [n10_Halric] [action] goto finished at (2864,853,0); target (2869,854); stopped short (off by 6 tile(s))
+[17:34:21.572] LOG   [n10_Halric] event goto_done: at=(2864,853) target=(2869,854) arrived=0 off=6
+[17:34:22.139] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:34:22.817] INFO  [n10_Halric] [action] goto (2869,854) from (2864,853,0)
+[17:34:22.817] LOG   [n10_Halric] event goto_start: target=(2869,854) from=(2864,853)
+[17:34:22.817] INFO  [n10_Halric] [bot] running from (2864,853,0) to (2869,854,z0)
+[17:34:22.817] INFO  [n10_Halric] [bot] planning path to (2869,854) in background
+[17:34:23.985] INFO  [n10_Halric] [action] goto finished at (2864,853,0); target (2869,854); stopped short (off by 6 tile(s))
+[17:34:23.985] LOG   [n10_Halric] event goto_done: at=(2864,853) target=(2869,854) arrived=0 off=6
+[17:34:24.430] INFO  [n10_Halric] [chat ascii] Savanna: Hmm?
+[17:34:25.206] INFO  [n10_Halric] [action] goto (2869,854) from (2864,853,0)
+[17:34:25.206] LOG   [n10_Halric] event goto_start: target=(2869,854) from=(2864,853)
+[17:34:25.206] INFO  [n10_Halric] [bot] running from (2864,853,0) to (2869,854,z0)
+[17:34:25.206] INFO  [n10_Halric] [bot] planning path to (2869,854) in background
+[17:34:26.344] INFO  [n10_Halric] [action] goto finished at (2864,853,0); target (2869,854); stopped short (off by 6 tile(s))
+[17:34:26.344] LOG   [n10_Halric] event goto_done: at=(2864,853) target=(2869,854) arrived=0 off=6
+[17:34:27.198] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:34:27.562] INFO  [n10_Halric] [travel] mode walk             usable   <- chosen
+[17:34:27.562] INFO  [n10_Halric] [travel] mode moongate         usable
+[17:34:27.562] INFO  [n10_Halric] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:27.562] INFO  [n10_Halric] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:27.562] LOG   [n10_Halric] event travel_mode: walk
+[17:34:27.562] INFO  [n10_Halric] [travel] plan mobile 0x0000A7A1: ok legs=1 ~5 tiles transit=0 nodes=0
+[17:34:29.072] INFO  [n10_Halric] [action] goto (2869,854) from (2864,853,0)
+[17:34:29.072] LOG   [n10_Halric] event goto_start: target=(2869,854) from=(2864,853)
+[17:34:29.072] INFO  [n10_Halric] [bot] running from (2864,853,0) to (2869,854,z0)
+[17:34:29.072] INFO  [n10_Halric] [bot] planning path to (2869,854) in background
+[17:34:30.335] INFO  [n10_Halric] [action] goto finished at (2864,853,0); target (2869,854); stopped short (off by 6 tile(s))
+[17:34:30.335] LOG   [n10_Halric] event goto_done: at=(2864,853) target=(2869,854) arrived=0 off=6
+[17:34:31.543] INFO  [n10_Halric] [action] goto (2869,854) from (2864,853,0)
+[17:34:31.543] LOG   [n10_Halric] event goto_start: target=(2869,854) from=(2864,853)
+[17:34:31.543] INFO  [n10_Halric] [bot] running from (2864,853,0) to (2869,854,z0)
+[17:34:31.543] INFO  [n10_Halric] [bot] planning path to (2869,854) in background
+[17:34:31.606] INFO  [n10_Halric] [bot] replan to (2869,854): 6 steps in 105.5us
+[17:34:32.096] INFO  [n10_Halric] [chat ascii] Cam: What's thee wantin'?
+[17:34:32.219] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:34:32.723] INFO  [n10_Halric] [travel] mobile 0x0000A7A1 ARRIVED at (2868,853,0)
+[17:34:32.723] LOG   [n10_Halric] event travel_done: label='mobile 0x0000A7A1' ok=1 at=(2868,853) legs=1 plans=2 why=''
+[17:34:32.784] INFO  [life] training: asking the trainer about skill 5
+[17:34:32.784] INFO  [n10_Halric] [ACTION] npc_train start
+[17:34:32.784] INFO  [n10_Halric] [TRAIN] ask 0x0000A7A1 say='Cam train '
+[17:34:32.784] LOG   [n10_Halric] event npc_train_ask: Cam train 
+[17:34:32.800] INFO  [n10_Halric] [chat uni  ] : Cam train 
+[17:34:32.800] INFO  [n10_Halric] [chat ascii] Cam: For a fee I can teach thee of ArmsLore, Blacksmithing, MagicResistance, Swordsmanship, Fencing, Wrestling and more.
+[17:34:33.621] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew04.halric/state.json
+[17:34:33.680] INFO  [n10_Halric] [bot] arrived at (2869,854,0)
+[17:34:37.262] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:34:40.825] LOG   [n10_Halric] event action_result: npc_train timeout
+[17:34:42.292] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:34:45.917] INFO  [n10_Halric] [chat ascii] System: World save in 10 seconds
+[17:34:45.976] INFO  [life] training: no quote and no refusal after 12s (ask 1 of 3)
+[17:34:47.298] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:34:47.482] INFO  [life] training: 'armorer' is 4 tiles and 0 z away -- walking to them before speaking (approach 1 of 3)
+[17:34:47.482] INFO  [n10_Halric] [travel] mobile 0x0000A7A1 -> (2868,850) r=1 from (2869,854)
+[17:34:47.482] LOG   [n10_Halric] event travel_start: label='mobile 0x0000A7A1' target=(2868,850) radius=1 from=(2869,854)
+[17:34:47.482] INFO  [n10_Halric] [travel] mode walk             usable   <- chosen
+[17:34:47.482] INFO  [n10_Halric] [travel] mode moongate         usable
+[17:34:47.482] INFO  [n10_Halric] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:47.482] INFO  [n10_Halric] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:47.482] LOG   [n10_Halric] event travel_mode: walk
+[17:34:47.482] INFO  [n10_Halric] [travel] plan mobile 0x0000A7A1: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:34:47.544] INFO  [n10_Halric] [action] goto finished at (2869,854,0); target (2869,854); ARRIVED (off by 0 tile(s))
+[17:34:47.544] LOG   [n10_Halric] event goto_done: at=(2869,854) target=(2869,854) arrived=1 off=0
+[17:34:47.544] INFO  [n10_Halric] [action] goto (2868,850) from (2869,854,0)
+[17:34:47.544] LOG   [n10_Halric] event goto_start: target=(2868,850) from=(2869,854)
+[17:34:47.544] INFO  [n10_Halric] [bot] running from (2869,854,0) to (2868,850,z0)
+[17:34:47.544] INFO  [n10_Halric] [bot] planning path to (2868,850) in background
+[17:34:48.684] INFO  [n10_Halric] [action] goto finished at (2869,854,0); target (2868,850); stopped short (off by 5 tile(s))
+[17:34:48.684] LOG   [n10_Halric] event goto_done: at=(2869,854) target=(2868,850) arrived=0 off=5
+[17:34:49.912] INFO  [n10_Halric] [action] goto (2868,850) from (2869,854,0)
+[17:34:49.912] LOG   [n10_Halric] event goto_start: target=(2868,850) from=(2869,854)
+[17:34:49.912] INFO  [n10_Halric] [bot] running from (2869,854,0) to (2868,850,z0)
+[17:34:49.912] INFO  [n10_Halric] [bot] planning path to (2868,850) in background
+[17:34:51.496] INFO  [n10_Halric] [action] goto finished at (2869,854,0); target (2868,850); stopped short (off by 5 tile(s))
+[17:34:51.496] LOG   [n10_Halric] event goto_done: at=(2869,854) target=(2868,850) arrived=0 off=5
+[17:34:52.334] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:34:52.731] INFO  [n10_Halric] [action] goto (2868,850) from (2869,854,0)
+[17:34:52.731] LOG   [n10_Halric] event goto_start: target=(2868,850) from=(2869,854)
+[17:34:52.731] INFO  [n10_Halric] [bot] running from (2869,854,0) to (2868,850,z0)
+[17:34:52.731] INFO  [n10_Halric] [bot] planning path to (2868,850) in background
+[17:34:52.792] INFO  [n10_Halric] [bot] replan to (2868,850): 5 steps in 98.5us
+[17:34:54.241] INFO  [n10_Halric] [travel] mobile 0x0000A7A1 ARRIVED at (2868,851,0)
+[17:34:54.241] LOG   [n10_Halric] event travel_done: label='mobile 0x0000A7A1' ok=1 at=(2868,851) legs=1 plans=1 why=''
+[17:34:54.301] INFO  [life] training: asking the trainer about skill 5
+[17:34:54.302] INFO  [n10_Halric] [ACTION] npc_train start
+[17:34:54.302] INFO  [n10_Halric] [TRAIN] ask 0x0000A7A1 say='Cam train '
+[17:34:54.302] LOG   [n10_Halric] event npc_train_ask: Cam train 
+[17:34:54.318] INFO  [n10_Halric] [chat uni  ] : Cam train 
+[17:34:54.318] INFO  [n10_Halric] [chat ascii] Cam: For a fee I can teach thee of ArmsLore, Blacksmithing, MagicResistance, Swordsmanship, Fencing, Wrestling and more.
+[17:34:54.517] INFO  [n10_Halric] [bot] arrived at (2868,850,0)
+[17:34:55.963] INFO  [n10_Halric] [chat ascii] System: World save has been initiated.
+[17:34:57.378] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:35:02.316] LOG   [n10_Halric] event action_result: npc_train timeout
+[17:35:02.407] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:35:07.412] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:35:07.535] INFO  [life] training: no quote and no refusal after 12s (ask 2 of 3)
+[17:35:09.068] INFO  [life] training: asking the trainer about skill 5
+[17:35:09.068] INFO  [n10_Halric] [ACTION] npc_train start
+[17:35:09.068] INFO  [n10_Halric] [TRAIN] ask 0x0000A7A1 say='Cam train '
+[17:35:09.068] LOG   [n10_Halric] event npc_train_ask: Cam train 
+[17:35:09.084] INFO  [n10_Halric] [chat uni  ] : Cam train 
+[17:35:09.084] INFO  [n10_Halric] [chat ascii] Cam: For a fee I can teach thee of ArmsLore, Blacksmithing, MagicResistance, Swordsmanship, Fencing, Wrestling and more.
+[17:35:12.448] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:35:17.105] LOG   [n10_Halric] event action_result: npc_train timeout
+[17:35:17.475] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:35:22.302] INFO  [life] training: no quote and no refusal after 12s (ask 3 of 3)
+[17:35:22.302] INFO  [life] goal_failed=TRAIN_AT_NPC reason="'armorer' never answered about skill 5"
+[17:35:22.362] INFO  [life] goal=GET_FOOD reason="previous goal abandoned: the trainer never answered"
+[17:35:22.362] INFO  [life] needs considered: NeedMakeBandages(bandages BLOCKED 0.53) NeedEquipment(bandages BLOCKED 0.50) NeedSkillTraining(skill 5 0.45) NeedTraining(skill 5 0.37) NeedTraining(Tactics 0.34) NeedTraining(skill 41 0.28) NeedTraining(Anatomy 0.28) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[17:35:22.362] INFO  [life]   score=62.5
+[17:35:22.362] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[17:35:22.362] INFO  [life]   reason: food=0
+[17:35:22.362] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=3 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[17:35:22.362] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: on cooldown for another 179s after achieving nothing
+[17:35:22.362] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 3/8 gold 9650 (buyable at 200))
+[17:35:22.485] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:35:23.832] INFO  [life] food: looking for a baker (trip 1)
+[17:35:23.832] INFO  [n10_Halric] [travel] Vesper baker -> (2998,760) r=5 from (2868,850)
+[17:35:23.832] LOG   [n10_Halric] event travel_start: label='Vesper baker' target=(2998,760) radius=5 from=(2868,850)
+[17:35:23.832] INFO  [n10_Halric] [travel] mode moongate         usable   <- chosen
+[17:35:23.832] INFO  [n10_Halric] [travel] mode walk             usable
+[17:35:23.832] INFO  [n10_Halric] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:23.832] INFO  [n10_Halric] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:23.832] LOG   [n10_Halric] event travel_mode: moongate
+[17:35:23.840] INFO  [n10_Halric] [travel] plan Vesper baker: no world route to the destination legs=0 ~0 tiles transit=0 nodes=25431
+[17:35:23.840] INFO  [n10_Halric] [action] goto finished at (2868,850,0); target (2868,850); ARRIVED (off by 0 tile(s))
+[17:35:23.840] LOG   [n10_Halric] event goto_done: at=(2868,850) target=(2868,850) arrived=1 off=0
+[17:35:23.840] LOG   [n10_Halric] event travel_escape: from=(2868,850,0) to=(2858,840) attempt=1
+[17:35:23.840] INFO  [n10_Halric] [action] goto (2858,840) from (2868,850,0)
+[17:35:23.840] LOG   [n10_Halric] event goto_start: target=(2858,840) from=(2868,850)
+[17:35:23.840] INFO  [n10_Halric] [bot] running from (2868,850,0) to (2858,840,z1)
+[17:35:23.840] INFO  [n10_Halric] [bot] planning path to (2858,840) in background
+[17:35:23.895] INFO  [n10_Halric] [bot] replan to (2858,840): 33 steps in 4582.0us
+[17:35:24.141] INFO  [n10_Halric] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=33 in 163.0us
+[17:35:27.225] INFO  [n10_Halric] [bot] door ahead at (2859,855,z0); OpenDoor before step
+[17:35:27.226] INFO  [n10_Halric] [chat ascii] System: Opening door...
+[17:35:27.534] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:35:28.393] INFO  [n10_Halric] [bot] door ahead at (2858,856,z0); OpenDoor before step
+[17:35:28.393] INFO  [n10_Halric] [chat ascii] System: Opening door...
+[17:35:32.581] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:35:33.639] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew04.halric/state.json
+[17:35:35.949] INFO  [n10_Halric] [bot] arrived at (2858,840,1)
+[17:35:35.949] INFO  [n10_Halric] [action] goto finished at (2858,840,1); target (2858,840); ARRIVED (off by 0 tile(s))
+[17:35:35.949] LOG   [n10_Halric] event goto_done: at=(2858,840) target=(2858,840) arrived=1 off=0
+[17:35:35.949] INFO  [n10_Halric] [travel] recovery walk reached its anchor at (2858,840,1) (off 0); attempt 1/3
+[17:35:35.949] LOG   [n10_Halric] event travel_recovery_done: reached=1 at=(2858,840,1) off=0 attempt=1
+[17:35:36.008] INFO  [n10_Halric] [travel] mode moongate         usable   <- chosen
+[17:35:36.009] INFO  [n10_Halric] [travel] mode walk             usable
+[17:35:36.009] INFO  [n10_Halric] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:36.009] INFO  [n10_Halric] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:36.009] LOG   [n10_Halric] event travel_mode: moongate
+[17:35:36.016] INFO  [n10_Halric] [travel] plan Vesper baker: no world route to the destination legs=0 ~0 tiles transit=0 nodes=25431
+[17:35:36.016] LOG   [n10_Halric] event travel_escape: from=(2858,840,1) to=(2872,838) attempt=2
+[17:35:36.016] INFO  [n10_Halric] [action] goto (2872,838) from (2858,840,1)
+[17:35:36.016] LOG   [n10_Halric] event goto_start: target=(2872,838) from=(2858,840)
+[17:35:36.016] INFO  [n10_Halric] [bot] running from (2858,840,1) to (2872,838,z1)
+[17:35:36.016] INFO  [n10_Halric] [bot] planning path to (2872,838) in background
+[17:35:36.069] INFO  [n10_Halric] [bot] replan to (2872,838): 14 steps in 906.3us
+[17:35:37.641] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:35:40.557] INFO  [n10_Halric] [bot] arrived at (2872,838,1)
+[17:35:40.557] INFO  [n10_Halric] [action] goto finished at (2872,838,1); target (2872,838); ARRIVED (off by 0 tile(s))
+[17:35:40.557] LOG   [n10_Halric] event goto_done: at=(2872,838) target=(2872,838) arrived=1 off=0
+[17:35:40.557] INFO  [n10_Halric] [travel] recovery walk reached its anchor at (2872,838,1) (off 0); attempt 2/3
+[17:35:40.557] LOG   [n10_Halric] event travel_recovery_done: reached=1 at=(2872,838,1) off=0 attempt=2
+[17:35:40.617] INFO  [n10_Halric] [travel] mode moongate         usable   <- chosen
+[17:35:40.617] INFO  [n10_Halric] [travel] mode walk             usable
+[17:35:40.617] INFO  [n10_Halric] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:40.617] INFO  [n10_Halric] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:40.617] LOG   [n10_Halric] event travel_mode: moongate
+[17:35:40.625] INFO  [n10_Halric] [travel] plan Vesper baker: no world route to the destination legs=0 ~0 tiles transit=0 nodes=25431
+[17:35:40.625] LOG   [n10_Halric] event travel_escape: from=(2872,838,1) to=(2882,848) attempt=3
+[17:35:40.625] INFO  [n10_Halric] [action] goto (2882,848) from (2872,838,1)
+[17:35:40.625] LOG   [n10_Halric] event goto_start: target=(2882,848) from=(2872,838)
+[17:35:40.625] INFO  [n10_Halric] [bot] running from (2872,838,1) to (2882,848,z0)
+[17:35:40.626] INFO  [n10_Halric] [bot] planning path to (2882,848) in background
+[17:35:40.677] INFO  [n10_Halric] [bot] replan to (2882,848): 14 steps in 1344.6us
+[17:35:42.656] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:35:45.182] INFO  [n10_Halric] [bot] arrived at (2882,848,0)
+[17:35:45.182] INFO  [n10_Halric] [action] goto finished at (2882,848,0); target (2882,848); ARRIVED (off by 0 tile(s))
+[17:35:45.182] LOG   [n10_Halric] event goto_done: at=(2882,848) target=(2882,848) arrived=1 off=0
+[17:35:45.182] INFO  [n10_Halric] [travel] recovery walk reached its anchor at (2882,848,0) (off 0); attempt 3/3
+[17:35:45.182] LOG   [n10_Halric] event travel_recovery_done: reached=1 at=(2882,848,0) off=0 attempt=3
+[17:35:45.242] INFO  [n10_Halric] [travel] mode moongate         usable   <- chosen
+[17:35:45.242] INFO  [n10_Halric] [travel] mode walk             usable
+[17:35:45.242] INFO  [n10_Halric] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:45.242] INFO  [n10_Halric] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:45.242] LOG   [n10_Halric] event travel_mode: moongate
+[17:35:45.250] INFO  [n10_Halric] [travel] plan Vesper baker: no world route to the destination legs=0 ~0 tiles transit=0 nodes=25431
+[17:35:45.250] INFO  [n10_Halric] [travel] Vesper baker FAILED at (2882,848,0) -- no world route to the destination
+[17:35:45.250] LOG   [n10_Halric] event travel_failed: label='Vesper baker' ok=0 at=(2882,848) legs=0 plans=1 why='no world route to the destination'
+[17:35:45.303] INFO  [n10_Halric] [action] scanning nearby mobiles for names
+[17:35:45.318] INFO  [n10_Halric] [mobiles] nearby (4):
+[17:35:45.318] INFO  [n10_Halric]   Dog 0x000178C2
+[17:35:45.318] INFO  [n10_Halric]   Savanna 0x0000A7AE
+[17:35:45.318] INFO  [n10_Halric]   Cam 0x0000A7A1
+[17:35:45.318] INFO  [n10_Halric]   Cat 0x0000D709
+[17:35:47.696] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:35:47.820] INFO  [life] food: looking for a provisioner (trip 2)
+[17:35:47.820] INFO  [n10_Halric] [travel] Vesper provisioner -> (2986,637) r=5 from (2882,848)
+[17:35:47.820] LOG   [n10_Halric] event travel_start: label='Vesper provisioner' target=(2986,637) radius=5 from=(2882,848)
+[17:35:47.820] INFO  [n10_Halric] [travel] mode moongate         usable   <- chosen
+[17:35:47.820] INFO  [n10_Halric] [travel] mode walk             usable
+[17:35:47.820] INFO  [n10_Halric] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:47.820] INFO  [n10_Halric] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:47.820] LOG   [n10_Halric] event travel_mode: moongate
+[17:35:47.821] INFO  [n10_Halric] [travel] plan Vesper provisioner: ok legs=28 ~1232 tiles transit=0 nodes=1415
+[17:35:47.851] INFO  [n10_Halric] [action] goto (2870,888) from (2882,848,0)
+[17:35:47.851] LOG   [n10_Halric] event goto_start: target=(2870,888) from=(2882,848)
+[17:35:47.851] INFO  [n10_Halric] [bot] running from (2882,848,0) to (2870,888)
+[17:35:47.851] INFO  [n10_Halric] [bot] planning path to (2870,888) in background
+[17:35:47.913] INFO  [n10_Halric] [bot] replan to (2870,888): 46 steps in 3816.3us
+[17:35:52.748] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:35:57.753] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:36:02.266] INFO  [n10_Halric] [bot] arrived at (2870,888,0)
+[17:36:02.266] INFO  [n10_Halric] [action] goto finished at (2870,888,0); target (2870,888); ARRIVED (off by 0 tile(s))
+[17:36:02.266] LOG   [n10_Halric] event goto_done: at=(2870,888) target=(2870,888) arrived=1 off=0
+[17:36:02.266] INFO  [n10_Halric] [action] goto (2840,920) from (2870,888,0)
+[17:36:02.266] LOG   [n10_Halric] event goto_start: target=(2840,920) from=(2870,888)
+[17:36:02.266] INFO  [n10_Halric] [bot] running from (2870,888,0) to (2840,920)
+[17:36:02.267] INFO  [n10_Halric] [bot] planning path to (2840,920) in background
+[17:36:02.328] INFO  [n10_Halric] [bot] replan to (2840,920): 42 steps in 5122.1us
+[17:36:02.800] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:36:07.806] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:36:12.822] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:36:15.481] INFO  [n10_Halric] [bot] arrived at (2840,920,0)
+[17:36:15.481] INFO  [n10_Halric] [action] goto finished at (2840,920,0); target (2840,920); ARRIVED (off by 0 tile(s))
+[17:36:15.481] LOG   [n10_Halric] event goto_done: at=(2840,920) target=(2840,920) arrived=1 off=0
+[17:36:15.481] INFO  [n10_Halric] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:36:15.481] INFO  [n10_Halric] [action] goto (2804,888) from (2840,920,0)
+[17:36:15.481] LOG   [n10_Halric] event goto_start: target=(2804,888) from=(2840,920)
+[17:36:15.481] INFO  [n10_Halric] [bot] running from (2840,920,0) to (2804,888)
+[17:36:15.481] INFO  [n10_Halric] [bot] planning path to (2804,888) in background
+[17:36:15.603] INFO  [n10_Halric] [bot] replan to (2804,888): 125 steps in 80822.9us
+[17:36:17.839] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:36:22.855] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:36:27.910] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:36:32.939] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:36:33.650] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew04.halric/state.json
+[17:36:34.943] INFO  [n10_Halric] [chat ascii] System: You have left the protection of the town guards
+[17:36:37.955] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:36:42.996] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:36:48.011] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:36:52.496] INFO  [n10_Halric] [bot] arrived at (2804,888,0)
+[17:36:52.496] INFO  [n10_Halric] [action] goto finished at (2804,888,0); target (2804,888); ARRIVED (off by 0 tile(s))
+[17:36:52.496] LOG   [n10_Halric] event goto_done: at=(2804,888) target=(2804,888) arrived=1 off=0
+[17:36:52.496] INFO  [n10_Halric] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:36:52.496] INFO  [n10_Halric] [action] goto (2804,856) from (2804,888,0)
+[17:36:52.496] LOG   [n10_Halric] event goto_start: target=(2804,856) from=(2804,888)
+[17:36:52.496] INFO  [n10_Halric] [bot] running from (2804,888,0) to (2804,856)
+[17:36:52.497] INFO  [n10_Halric] [bot] planning path to (2804,856) in background
+[17:36:52.557] INFO  [n10_Halric] [bot] replan to (2804,856): 39 steps in 6793.7us
+[17:36:53.049] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:36:58.055] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:37:03.066] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:37:03.450] INFO  [n10_Halric] [bot] arrived at (2804,856,0)
+[17:37:03.450] INFO  [n10_Halric] [action] goto finished at (2804,856,0); target (2804,856); ARRIVED (off by 0 tile(s))
+[17:37:03.450] LOG   [n10_Halric] event goto_done: at=(2804,856) target=(2804,856) arrived=1 off=0
+[17:37:03.450] INFO  [n10_Halric] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:37:03.450] INFO  [n10_Halric] [action] goto (2804,824) from (2804,856,0)
+[17:37:03.450] LOG   [n10_Halric] event goto_start: target=(2804,824) from=(2804,856)
+[17:37:03.450] INFO  [n10_Halric] [bot] running from (2804,856,0) to (2804,824)
+[17:37:03.450] INFO  [n10_Halric] [bot] planning path to (2804,824) in background
+[17:37:03.510] INFO  [n10_Halric] [bot] replan to (2804,824): 38 steps in 4362.6us
+[17:37:08.119] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:37:13.138] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:37:15.288] INFO  [n10_Halric] [bot] arrived at (2804,824,0)
+[17:37:15.288] INFO  [n10_Halric] [action] goto finished at (2804,824,0); target (2804,824); ARRIVED (off by 0 tile(s))
+[17:37:15.288] LOG   [n10_Halric] event goto_done: at=(2804,824) target=(2804,824) arrived=1 off=0
+[17:37:15.288] INFO  [n10_Halric] [action] goto (2776,790) from (2804,824,0)
+[17:37:15.288] LOG   [n10_Halric] event goto_start: target=(2776,790) from=(2804,824)
+[17:37:15.288] INFO  [n10_Halric] [bot] running from (2804,824,0) to (2776,790)
+[17:37:15.288] INFO  [n10_Halric] [bot] planning path to (2776,790) in background
+[17:37:15.349] INFO  [n10_Halric] [bot] replan to (2776,790): 43 steps in 8668.8us
+[17:37:18.146] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:37:23.179] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:37:28.233] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:37:31.221] INFO  [n10_Halric] [bot] arrived at (2776,790,0)
+[17:37:31.221] INFO  [n10_Halric] [action] goto finished at (2776,790,0); target (2776,790); ARRIVED (off by 0 tile(s))
+[17:37:31.221] LOG   [n10_Halric] event goto_done: at=(2776,790) target=(2776,790) arrived=1 off=0
+[17:37:31.221] INFO  [n10_Halric] [action] goto (2744,760) from (2776,790,0)
+[17:37:31.221] LOG   [n10_Halric] event goto_start: target=(2744,760) from=(2776,790)
+[17:37:31.221] INFO  [n10_Halric] [bot] running from (2776,790,0) to (2744,760)
+[17:37:31.221] INFO  [n10_Halric] [bot] planning path to (2744,760) in background
+[17:37:31.282] INFO  [n10_Halric] [bot] replan to (2744,760): 40 steps in 23278.1us
+[17:37:33.243] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:37:33.321] INFO  [n10_Halric] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=34 in 123.2us
+[17:37:33.708] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew04.halric/state.json
+[17:37:38.300] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:37:43.330] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:37:45.318] INFO  [n10_Halric] [bot] arrived at (2744,760,0)
+[17:37:45.319] INFO  [n10_Halric] [action] goto finished at (2744,760,0); target (2744,760); ARRIVED (off by 0 tile(s))
+[17:37:45.319] LOG   [n10_Halric] event goto_done: at=(2744,760) target=(2744,760) arrived=1 off=0
+[17:37:45.319] INFO  [n10_Halric] [action] goto (2712,728) from (2744,760,0)
+[17:37:45.319] LOG   [n10_Halric] event goto_start: target=(2712,728) from=(2744,760)
+[17:37:45.319] INFO  [n10_Halric] [bot] running from (2744,760,0) to (2712,728)
+[17:37:45.319] INFO  [n10_Halric] [bot] planning path to (2712,728) in background
+[17:37:45.380] INFO  [n10_Halric] [bot] replan to (2712,728): 41 steps in 4986.3us
+[17:37:48.390] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:37:53.407] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:37:58.427] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:38:01.363] INFO  [n10_Halric] [bot] arrived at (2712,728,0)
+[17:38:01.363] INFO  [n10_Halric] [action] goto finished at (2712,728,0); target (2712,728); ARRIVED (off by 0 tile(s))
+[17:38:01.363] LOG   [n10_Halric] event goto_done: at=(2712,728) target=(2712,728) arrived=1 off=0
+[17:38:01.363] INFO  [n10_Halric] [action] goto (2680,694) from (2712,728,0)
+[17:38:01.363] LOG   [n10_Halric] event goto_start: target=(2680,694) from=(2712,728)
+[17:38:01.363] INFO  [n10_Halric] [bot] running from (2712,728,0) to (2680,694)
+[17:38:01.364] INFO  [n10_Halric] [bot] planning path to (2680,694) in background
+[17:38:01.425] INFO  [n10_Halric] [bot] replan to (2680,694): 41 steps in 7281.5us
+[17:38:03.434] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:38:08.485] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:38:13.516] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:38:15.265] INFO  [n10_Halric] [bot] lookahead patched around block at step 2: anchor=3 new segment=8 path=8 in 399.1us
+[17:38:18.553] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:38:18.614] INFO  [n10_Halric] [bot] arrived at (2680,694,0)
+[17:38:18.614] INFO  [n10_Halric] [action] goto finished at (2680,694,0); target (2680,694); ARRIVED (off by 0 tile(s))
+[17:38:18.614] LOG   [n10_Halric] event goto_done: at=(2680,694) target=(2680,694) arrived=1 off=0
+[17:38:18.614] INFO  [n10_Halric] [action] goto (2648,664) from (2680,694,0)
+[17:38:18.614] LOG   [n10_Halric] event goto_start: target=(2648,664) from=(2680,694)
+[17:38:18.614] INFO  [n10_Halric] [bot] running from (2680,694,0) to (2648,664)
+[17:38:18.614] INFO  [n10_Halric] [bot] planning path to (2648,664) in background
+[17:38:18.677] INFO  [n10_Halric] [bot] replan to (2648,664): 38 steps in 3756.9us
+[17:38:22.344] INFO  [life] goal_changed=TRAIN_AT_NPC from=GET_FOOD reason="TRAIN_AT_NPC 90.0 superseded GET_FOOD 62.5"
+[17:38:22.344] INFO  [life] needs considered: NeedMakeBandages(bandages BLOCKED 0.53) NeedEquipment(bandages BLOCKED 0.50) NeedSkillTraining(skill 5 0.45) NeedTraining(skill 5 0.37) NeedTraining(Tactics 0.34) NeedTraining(skill 41 0.28) NeedTraining(Anatomy 0.28) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[17:38:22.344] INFO  [life]   score=90.0
+[17:38:22.344] INFO  [life]   reason: NeedSkillTraining urgency 0.45 x 200 = 90.0
+[17:38:22.344] INFO  [life]   reason: skill 5 13.5 -> 100.0, gold 9650 (fee is quoted on arrival, roughly 300)
+[17:38:22.344] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=3 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[17:38:22.344] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 3/8 gold 9650 (buyable at 200))
+[17:38:23.604] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:38:28.653] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:38:31.266] INFO  [n10_Halric] [bot] arrived at (2648,664,0)
+[17:38:31.266] INFO  [n10_Halric] [action] goto finished at (2648,664,0); target (2648,664); ARRIVED (off by 0 tile(s))
+[17:38:31.266] LOG   [n10_Halric] event goto_done: at=(2648,664) target=(2648,664) arrived=1 off=0
+[17:38:31.266] INFO  [n10_Halric] [action] goto (2616,632) from (2648,664,0)
+[17:38:31.266] LOG   [n10_Halric] event goto_start: target=(2616,632) from=(2648,664)
+[17:38:31.266] INFO  [n10_Halric] [bot] running from (2648,664,0) to (2616,632)
+[17:38:31.266] INFO  [n10_Halric] [bot] planning path to (2616,632) in background
+[17:38:31.327] INFO  [n10_Halric] [bot] replan to (2616,632): 42 steps in 13670.8us
+[17:38:33.713] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew04.halric/state.json
+[17:38:33.713] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:38:38.714] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:38:43.715] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:38:47.297] INFO  [n10_Halric] [bot] arrived at (2616,632,0)
+[17:38:47.297] INFO  [n10_Halric] [action] goto finished at (2616,632,0); target (2616,632); ARRIVED (off by 0 tile(s))
+[17:38:47.297] LOG   [n10_Halric] event goto_done: at=(2616,632) target=(2616,632) arrived=1 off=0
+[17:38:47.297] INFO  [n10_Halric] [action] goto (2584,600) from (2616,632,0)
+[17:38:47.297] LOG   [n10_Halric] event goto_start: target=(2584,600) from=(2616,632)
+[17:38:47.297] INFO  [n10_Halric] [bot] running from (2616,632,0) to (2584,600)
+[17:38:47.297] INFO  [n10_Halric] [bot] planning path to (2584,600) in background
+[17:38:47.359] INFO  [n10_Halric] [bot] replan to (2584,600): 53 steps in 25277.1us
+[17:38:48.725] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:38:51.056] INFO  [n10_Halric] [chat ascii] System: You are now under the protection of the town guards
+[17:38:53.761] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:38:58.799] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:39:03.815] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:39:05.076] INFO  [n10_Halric] [bot] arrived at (2584,600,0)
+[17:39:05.076] INFO  [n10_Halric] [action] goto finished at (2584,600,0); target (2584,600); ARRIVED (off by 0 tile(s))
+[17:39:05.076] LOG   [n10_Halric] event goto_done: at=(2584,600) target=(2584,600) arrived=1 off=0
+[17:39:05.076] INFO  [n10_Halric] [action] goto (2552,568) from (2584,600,0)
+[17:39:05.076] LOG   [n10_Halric] event goto_start: target=(2552,568) from=(2584,600)
+[17:39:05.076] INFO  [n10_Halric] [bot] running from (2584,600,0) to (2552,568)
+[17:39:05.076] INFO  [n10_Halric] [bot] planning path to (2552,568) in background
+[17:39:05.137] INFO  [n10_Halric] [bot] replan to (2552,568): 52 steps in 13349.0us
+[17:39:08.818] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:39:13.825] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:39:18.862] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:39:22.789] INFO  [n10_Halric] [bot] arrived at (2552,568,0)
+[17:39:22.789] INFO  [n10_Halric] [action] goto finished at (2552,568,0); target (2552,568); ARRIVED (off by 0 tile(s))
+[17:39:22.789] LOG   [n10_Halric] event goto_done: at=(2552,568) target=(2552,568) arrived=1 off=0
+[17:39:22.789] INFO  [n10_Halric] [action] goto (2532,536) from (2552,568,0)
+[17:39:22.789] LOG   [n10_Halric] event goto_start: target=(2532,536) from=(2552,568)
+[17:39:22.789] INFO  [n10_Halric] [bot] running from (2552,568,0) to (2532,536)
+[17:39:22.789] INFO  [n10_Halric] [bot] planning path to (2532,536) in background
+[17:39:22.820] INFO  [n10_Halric] [bot] replan to (2532,536): 41 steps in 10837.5us
+[17:39:23.897] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:39:28.951] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:39:33.721] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew04.halric/state.json
+[17:39:33.979] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:39:35.437] INFO  [n10_Halric] [bot] arrived at (2532,536,0)
+[17:39:35.437] INFO  [n10_Halric] [action] goto finished at (2532,536,0); target (2532,536); ARRIVED (off by 0 tile(s))
+[17:39:35.437] LOG   [n10_Halric] event goto_done: at=(2532,536) target=(2532,536) arrived=1 off=0
+[17:39:35.437] INFO  [n10_Halric] [action] goto (2568,518) from (2532,536,0)
+[17:39:35.437] LOG   [n10_Halric] event goto_start: target=(2568,518) from=(2532,536)
+[17:39:35.437] INFO  [n10_Halric] [bot] running from (2532,536,0) to (2568,518)
+[17:39:35.437] INFO  [n10_Halric] [bot] planning path to (2568,518) in background
+[17:39:35.563] INFO  [n10_Halric] [bot] replan to (2568,518): 74 steps in 64936.6us
+[17:39:39.010] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:39:44.014] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:39:46.261] INFO  [n10_Halric] [chat ascii] System: World save in 10 seconds
+[17:39:47.364] INFO  [n10_Halric] [chat uni  ] enu: bank
+[17:39:49.066] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:39:51.425] INFO  [n10_Halric] [chat ascii] System: You have left the protection of the guards
+[17:39:54.107] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:39:56.309] INFO  [n10_Halric] [chat ascii] System: World save has been initiated.
+[17:39:57.516] INFO  [n10_Halric] [bot] arrived at (2568,518,15)
+[17:39:57.516] INFO  [n10_Halric] [action] goto finished at (2568,518,15); target (2568,518); ARRIVED (off by 0 tile(s))
+[17:39:57.516] LOG   [n10_Halric] event goto_done: at=(2568,518) target=(2568,518) arrived=1 off=0
+[17:39:57.516] INFO  [n10_Halric] [action] goto (2600,502) from (2568,518,15)
+[17:39:57.516] LOG   [n10_Halric] event goto_start: target=(2600,502) from=(2568,518)
+[17:39:57.516] INFO  [n10_Halric] [bot] running from (2568,518,15) to (2600,502)
+[17:39:57.516] INFO  [n10_Halric] [bot] planning path to (2600,502) in background
+[17:39:57.578] INFO  [n10_Halric] [bot] replan to (2600,502): 43 steps in 10329.2us
+[17:39:59.129] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:40:04.159] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:40:09.170] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:40:09.542] INFO  [n10_Halric] [chat ascii] System: You are now under the protection of the guards
+[17:40:11.982] INFO  [n10_Halric] [bot] arrived at (2600,502,0)
+[17:40:11.982] INFO  [n10_Halric] [action] goto finished at (2600,502,0); target (2600,502); ARRIVED (off by 0 tile(s))
+[17:40:11.982] LOG   [n10_Halric] event goto_done: at=(2600,502) target=(2600,502) arrived=1 off=0
+[17:40:11.982] INFO  [n10_Halric] [action] goto (2632,472) from (2600,502,0)
+[17:40:11.982] LOG   [n10_Halric] event goto_start: target=(2632,472) from=(2600,502)
+[17:40:11.982] INFO  [n10_Halric] [bot] running from (2600,502,0) to (2632,472)
+[17:40:11.982] INFO  [n10_Halric] [bot] planning path to (2632,472) in background
+[17:40:12.044] INFO  [n10_Halric] [bot] replan to (2632,472): 45 steps in 29991.7us
+[17:40:14.185] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:40:19.228] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:40:24.239] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:40:24.670] INFO  [n10_Halric] [chat ascii] System: You have left the protection of the guards
+[17:40:27.517] INFO  [n10_Halric] [bot] arrived at (2632,472,15)
+[17:40:27.517] INFO  [n10_Halric] [action] goto finished at (2632,472,15); target (2632,472); ARRIVED (off by 0 tile(s))
+[17:40:27.517] LOG   [n10_Halric] event goto_done: at=(2632,472) target=(2632,472) arrived=1 off=0
+[17:40:27.517] INFO  [n10_Halric] [action] goto (2664,488) from (2632,472,15)
+[17:40:27.517] LOG   [n10_Halric] event goto_start: target=(2664,488) from=(2632,472)
+[17:40:27.517] INFO  [n10_Halric] [bot] running from (2632,472,15) to (2664,488)
+[17:40:27.517] INFO  [n10_Halric] [bot] planning path to (2664,488) in background
+[17:40:27.579] INFO  [n10_Halric] [bot] replan to (2664,488): 50 steps in 7382.5us
+[17:40:29.271] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:40:33.721] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew04.halric/state.json
+[17:40:34.289] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:40:39.348] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:40:41.822] INFO  [n10_Halric] [bot] arrived at (2664,488,15)
+[17:40:41.822] INFO  [n10_Halric] [action] goto finished at (2664,488,15); target (2664,488); ARRIVED (off by 0 tile(s))
+[17:40:41.822] LOG   [n10_Halric] event goto_done: at=(2664,488) target=(2664,488) arrived=1 off=0
+[17:40:41.822] INFO  [n10_Halric] [action] goto (2696,488) from (2664,488,15)
+[17:40:41.822] LOG   [n10_Halric] event goto_start: target=(2696,488) from=(2664,488)
+[17:40:41.822] INFO  [n10_Halric] [bot] running from (2664,488,15) to (2696,488)
+[17:40:41.822] INFO  [n10_Halric] [bot] planning path to (2696,488) in background
+[17:40:41.884] INFO  [n10_Halric] [bot] replan to (2696,488): 32 steps in 8257.4us
+[17:40:44.390] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:40:49.414] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:40:52.696] INFO  [n10_Halric] [bot] arrived at (2696,488,15)
+[17:40:52.696] INFO  [n10_Halric] [action] goto finished at (2696,488,15); target (2696,488); ARRIVED (off by 0 tile(s))
+[17:40:52.696] LOG   [n10_Halric] event goto_done: at=(2696,488) target=(2696,488) arrived=1 off=0
+[17:40:52.696] INFO  [n10_Halric] [action] goto (2728,488) from (2696,488,15)
+[17:40:52.696] LOG   [n10_Halric] event goto_start: target=(2728,488) from=(2696,488)
+[17:40:52.696] INFO  [n10_Halric] [bot] running from (2696,488,15) to (2728,488)
+[17:40:52.696] INFO  [n10_Halric] [bot] planning path to (2728,488) in background
+[17:40:52.756] INFO  [n10_Halric] [bot] replan to (2728,488): 32 steps in 2459.2us
+[17:40:54.427] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:40:59.480] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:41:04.506] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:41:04.522] INFO  [n10_Halric] [bot] arrived at (2728,488,15)
+[17:41:04.522] INFO  [n10_Halric] [action] goto finished at (2728,488,15); target (2728,488); ARRIVED (off by 0 tile(s))
+[17:41:04.522] LOG   [n10_Halric] event goto_done: at=(2728,488) target=(2728,488) arrived=1 off=0
+[17:41:04.522] INFO  [n10_Halric] [action] goto (2760,488) from (2728,488,15)
+[17:41:04.522] LOG   [n10_Halric] event goto_start: target=(2760,488) from=(2728,488)
+[17:41:04.522] INFO  [n10_Halric] [bot] running from (2728,488,15) to (2760,488)
+[17:41:04.522] INFO  [n10_Halric] [bot] planning path to (2760,488) in background
+[17:41:04.584] INFO  [n10_Halric] [bot] replan to (2760,488): 32 steps in 4980.2us
+[17:41:09.532] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:41:14.550] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:41:16.776] INFO  [n10_Halric] [bot] arrived at (2760,488,15)
+[17:41:16.777] INFO  [n10_Halric] [action] goto finished at (2760,488,15); target (2760,488); ARRIVED (off by 0 tile(s))
+[17:41:16.777] LOG   [n10_Halric] event goto_done: at=(2760,488) target=(2760,488) arrived=1 off=0
+[17:41:16.777] INFO  [n10_Halric] [action] goto (2792,488) from (2760,488,15)
+[17:41:16.777] LOG   [n10_Halric] event goto_start: target=(2792,488) from=(2760,488)
+[17:41:16.777] INFO  [n10_Halric] [bot] running from (2760,488,15) to (2792,488)
+[17:41:16.777] INFO  [n10_Halric] [bot] planning path to (2792,488) in background
+[17:41:16.822] INFO  [n10_Halric] [bot] replan to (2792,488): 33 steps in 2983.5us
+[17:41:19.563] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:41:24.595] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:41:29.493] INFO  [n10_Halric] [bot] arrived at (2792,488,15)
+[17:41:29.493] INFO  [n10_Halric] [action] goto finished at (2792,488,15); target (2792,488); ARRIVED (off by 0 tile(s))
+[17:41:29.493] LOG   [n10_Halric] event goto_done: at=(2792,488) target=(2792,488) arrived=1 off=0
+[17:41:29.493] INFO  [n10_Halric] [action] goto (2824,504) from (2792,488,15)
+[17:41:29.493] LOG   [n10_Halric] event goto_start: target=(2824,504) from=(2792,488)
+[17:41:29.493] INFO  [n10_Halric] [bot] running from (2792,488,15) to (2824,504)
+[17:41:29.493] INFO  [n10_Halric] [bot] planning path to (2824,504) in background
+[17:41:29.555] INFO  [n10_Halric] [bot] replan to (2824,504): 32 steps in 29211.3us
+[17:41:29.618] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:41:33.782] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew04.halric/state.json
+[17:41:34.621] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:41:39.080] INFO  [n10_Halric] [bot] arrived at (2824,504,15)
+[17:41:39.080] INFO  [n10_Halric] [action] goto finished at (2824,504,15); target (2824,504); ARRIVED (off by 0 tile(s))
+[17:41:39.080] LOG   [n10_Halric] event goto_done: at=(2824,504) target=(2824,504) arrived=1 off=0
+[17:41:39.080] INFO  [n10_Halric] [action] goto (2856,536) from (2824,504,15)
+[17:41:39.080] LOG   [n10_Halric] event goto_start: target=(2856,536) from=(2824,504)
+[17:41:39.080] INFO  [n10_Halric] [bot] running from (2824,504,15) to (2856,536)
+[17:41:39.080] INFO  [n10_Halric] [bot] planning path to (2856,536) in background
+[17:41:39.143] INFO  [n10_Halric] [bot] replan to (2856,536): 41 steps in 20986.2us
+[17:41:39.635] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:41:44.644] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:41:49.670] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:41:52.793] INFO  [n10_Halric] [bot] arrived at (2856,536,0)
+[17:41:52.793] INFO  [n10_Halric] [action] goto finished at (2856,536,0); target (2856,536); ARRIVED (off by 0 tile(s))
+[17:41:52.793] LOG   [n10_Halric] event goto_done: at=(2856,536) target=(2856,536) arrived=1 off=0
+[17:41:52.793] INFO  [n10_Halric] [action] goto (2888,568) from (2856,536,0)
+[17:41:52.793] LOG   [n10_Halric] event goto_start: target=(2888,568) from=(2856,536)
+[17:41:52.793] INFO  [n10_Halric] [bot] running from (2856,536,0) to (2888,568)
+[17:41:52.793] INFO  [n10_Halric] [bot] planning path to (2888,568) in background
+[17:41:52.853] INFO  [n10_Halric] [bot] replan to (2888,568): 39 steps in 27794.2us
+[17:41:54.678] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:41:59.704] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:42:04.741] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:42:06.767] INFO  [n10_Halric] [bot] arrived at (2888,568,0)
+[17:42:06.767] INFO  [n10_Halric] [action] goto finished at (2888,568,0); target (2888,568); ARRIVED (off by 0 tile(s))
+[17:42:06.767] LOG   [n10_Halric] event goto_done: at=(2888,568) target=(2888,568) arrived=1 off=0
+[17:42:06.767] INFO  [n10_Halric] [action] goto (2920,600) from (2888,568,0)
+[17:42:06.767] LOG   [n10_Halric] event goto_start: target=(2920,600) from=(2888,568)
+[17:42:06.767] INFO  [n10_Halric] [bot] running from (2888,568,0) to (2920,600)
+[17:42:06.767] INFO  [n10_Halric] [bot] planning path to (2920,600) in background
+[17:42:06.828] INFO  [n10_Halric] [bot] replan to (2920,600): 41 steps in 9462.0us
+[17:42:09.747] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:42:14.778] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:42:19.829] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:42:20.984] INFO  [n10_Halric] [bot] arrived at (2920,600,0)
+[17:42:20.984] INFO  [n10_Halric] [action] goto finished at (2920,600,0); target (2920,600); ARRIVED (off by 0 tile(s))
+[17:42:20.984] LOG   [n10_Halric] event goto_done: at=(2920,600) target=(2920,600) arrived=1 off=0
+[17:42:20.984] INFO  [n10_Halric] [action] goto (2952,632) from (2920,600,0)
+[17:42:20.984] LOG   [n10_Halric] event goto_start: target=(2952,632) from=(2920,600)
+[17:42:20.984] INFO  [n10_Halric] [bot] running from (2920,600,0) to (2952,632)
+[17:42:20.984] INFO  [n10_Halric] [bot] planning path to (2952,632) in background
+[17:42:21.045] INFO  [n10_Halric] [bot] replan to (2952,632): 34 steps in 2486.1us
+[17:42:23.120] INFO  [n10_Halric] [chat ascii] System: You are now under the protection of the town guards
+[17:42:24.840] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:42:26.705] INFO  [n10_Halric] [bot] step (2943,623,0)->(2944,624,0) rejected; OpenDoor + retry
+[17:42:27.444] INFO  [n10_Halric] [bot] step (2943,623,0)->(2944,624,0) rejected; avoiding edge + rerouting
+[17:42:27.444] INFO  [n10_Halric] [bot] planning path to (2952,632) in background
+[17:42:27.505] INFO  [n10_Halric] [bot] replan to (2952,632): 13 steps in 896.1us
+[17:42:29.864] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:42:32.645] INFO  [n10_Halric] [bot] arrived at (2952,632,0)
+[17:42:32.645] INFO  [n10_Halric] [action] goto finished at (2952,632,0); target (2952,632); ARRIVED (off by 0 tile(s))
+[17:42:32.645] LOG   [n10_Halric] event goto_done: at=(2952,632) target=(2952,632) arrived=1 off=0
+[17:42:32.645] INFO  [n10_Halric] [action] goto (2986,637) from (2952,632,0)
+[17:42:32.646] LOG   [n10_Halric] event goto_start: target=(2986,637) from=(2952,632)
+[17:42:32.646] INFO  [n10_Halric] [bot] running from (2952,632,0) to (2986,637,z0)
+[17:42:32.646] INFO  [n10_Halric] [bot] planning path to (2986,637) in background
+[17:42:32.706] INFO  [n10_Halric] [bot] replan to (2986,637): 35 steps in 6389.3us
+[17:42:33.829] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew04.halric/state.json
+[17:42:34.871] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:42:39.881] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:42:41.764] INFO  [n10_Halric] [bot] door ahead at (2980,639,z0); OpenDoor before step
+[17:42:41.764] INFO  [n10_Halric] [chat ascii] System: Opening door...
+[17:42:41.764] INFO  [n10_Halric] [0x20] player @(2979,640,0) facing=0
+[17:42:41.764] INFO  [n10_Halric] [action] goto finished at (2979,640,0); target (2986,637); stopped short (off by 10 tile(s))
+[17:42:41.764] LOG   [n10_Halric] event goto_done: at=(2979,640) target=(2986,637) arrived=0 off=10
+[17:42:43.009] INFO  [n10_Halric] [action] goto (2986,637) from (2979,640,0)
+[17:42:43.009] LOG   [n10_Halric] event goto_start: target=(2986,637) from=(2979,640)
+[17:42:43.009] INFO  [n10_Halric] [bot] running from (2979,640,0) to (2986,637,z0)
+[17:42:43.009] INFO  [n10_Halric] [bot] planning path to (2986,637) in background
+[17:42:43.069] INFO  [n10_Halric] [bot] replan to (2986,637): 8 steps in 573.6us
+[17:42:44.332] INFO  [n10_Halric] [travel] Vesper provisioner ARRIVED at (2981,637,0)
+[17:42:44.333] LOG   [n10_Halric] event travel_done: label='Vesper provisioner' ok=1 at=(2981,637) legs=28 plans=1 why=''
+[17:42:44.394] INFO  [life] training: looking for a 'armorer' to teach skill 5 (trip 2)
+[17:42:44.395] INFO  [n10_Halric] [travel] Vesper armorer -> (2835,805) r=5 from (2981,637)
+[17:42:44.395] LOG   [n10_Halric] event travel_start: label='Vesper armorer' target=(2835,805) radius=5 from=(2981,637)
+[17:42:44.395] INFO  [n10_Halric] [travel] mode moongate         usable   <- chosen
+[17:42:44.395] INFO  [n10_Halric] [travel] mode walk             usable
+[17:42:44.395] INFO  [n10_Halric] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:42:44.395] INFO  [n10_Halric] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:42:44.395] LOG   [n10_Halric] event travel_mode: moongate
+[17:42:44.395] INFO  [n10_Halric] [travel] plan Vesper armorer: ok legs=29 ~1256 tiles transit=0 nodes=2118
+[17:42:44.899] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:42:45.817] INFO  [n10_Halric] [bot] arrived at (2986,637,0)
+[17:42:45.818] INFO  [n10_Halric] [action] goto finished at (2986,637,0); target (2986,637); ARRIVED (off by 0 tile(s))
+[17:42:45.818] LOG   [n10_Halric] event goto_done: at=(2986,637) target=(2986,637) arrived=1 off=0
+[17:42:45.818] INFO  [n10_Halric] [action] goto (2952,632) from (2986,637,0)
+[17:42:45.818] LOG   [n10_Halric] event goto_start: target=(2952,632) from=(2986,637)
+[17:42:45.818] INFO  [n10_Halric] [bot] running from (2986,637,0) to (2952,632)
+[17:42:45.818] INFO  [n10_Halric] [bot] planning path to (2952,632) in background
+[17:42:45.877] INFO  [n10_Halric] [bot] replan to (2952,632): 35 steps in 2322.2us
+[17:42:48.748] INFO  [n10_Halric] [bot] door ahead at (2978,640,z0); OpenDoor before step
+[17:42:48.763] INFO  [n10_Halric] [chat ascii] System: Opening door...
+[17:42:49.945] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:42:54.997] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:42:58.072] INFO  [n10_Halric] [bot] arrived at (2952,632,0)
+[17:42:58.072] INFO  [n10_Halric] [action] goto finished at (2952,632,0); target (2952,632); ARRIVED (off by 0 tile(s))
+[17:42:58.072] LOG   [n10_Halric] event goto_done: at=(2952,632) target=(2952,632) arrived=1 off=0
+[17:42:58.072] INFO  [n10_Halric] [action] goto (2924,624) from (2952,632,0)
+[17:42:58.072] LOG   [n10_Halric] event goto_start: target=(2924,624) from=(2952,632)
+[17:42:58.072] INFO  [n10_Halric] [bot] running from (2952,632,0) to (2924,624)
+[17:42:58.072] INFO  [n10_Halric] [bot] planning path to (2924,624) in background
+[17:42:58.133] INFO  [n10_Halric] [bot] replan to (2924,624): 31 steps in 8691.5us
+[17:43:00.030] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:43:05.076] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:43:07.850] INFO  [n10_Halric] [bot] arrived at (2924,624,0)
+[17:43:07.850] INFO  [n10_Halric] [action] goto finished at (2924,624,0); target (2924,624); ARRIVED (off by 0 tile(s))
+[17:43:07.850] LOG   [n10_Halric] event goto_done: at=(2924,624) target=(2924,624) arrived=1 off=0
+[17:43:07.850] INFO  [n10_Halric] [action] goto (2888,600) from (2924,624,0)
+[17:43:07.850] LOG   [n10_Halric] event goto_start: target=(2888,600) from=(2924,624)
+[17:43:07.850] INFO  [n10_Halric] [bot] running from (2924,624,0) to (2888,600)
+[17:43:07.850] INFO  [n10_Halric] [bot] planning path to (2888,600) in background
+[17:43:07.912] INFO  [n10_Halric] [bot] replan to (2888,600): 46 steps in 14550.2us
+[17:43:10.088] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:43:12.915] INFO  [n10_Halric] [chat ascii] System: You have left the protection of the town guards
+[17:43:15.134] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:43:20.192] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:43:22.358] INFO  [life] goal_changed=TRAIN_AT_NPC from=TRAIN_AT_NPC reason="previous goal abandoned: ran 300s without finishing (limit 300s)"
+[17:43:22.358] INFO  [life] needs considered: NeedMakeBandages(bandages BLOCKED 0.53) NeedEquipment(bandages BLOCKED 0.50) NeedSkillTraining(skill 5 0.45) NeedTraining(skill 5 0.37) NeedTraining(Tactics 0.34) NeedTraining(skill 41 0.28) NeedTraining(Anatomy 0.28) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[17:43:22.358] INFO  [life]   score=90.0
+[17:43:22.358] INFO  [life]   reason: NeedSkillTraining urgency 0.45 x 200 = 90.0
+[17:43:22.358] INFO  [life]   reason: skill 5 13.5 -> 100.0, gold 9650 (fee is quoted on arrival, roughly 300)
+[17:43:22.358] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=3 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[17:43:22.358] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 3/8 gold 9650 (buyable at 200))
+[17:43:22.497] INFO  [n10_Halric] [bot] arrived at (2888,600,0)
+[17:43:22.497] INFO  [n10_Halric] [action] goto finished at (2888,600,0); target (2888,600); ARRIVED (off by 0 tile(s))
+[17:43:22.497] LOG   [n10_Halric] event goto_done: at=(2888,600) target=(2888,600) arrived=1 off=0
+[17:43:22.497] INFO  [n10_Halric] [action] goto (2856,584) from (2888,600,0)
+[17:43:22.497] LOG   [n10_Halric] event goto_start: target=(2856,584) from=(2888,600)
+[17:43:22.497] INFO  [n10_Halric] [bot] running from (2888,600,0) to (2856,584)
+[17:43:22.497] INFO  [n10_Halric] [bot] planning path to (2856,584) in background
+[17:43:22.559] INFO  [n10_Halric] [bot] replan to (2856,584): 32 steps in 6174.6us
+[17:43:25.239] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:43:30.284] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:43:32.218] INFO  [n10_Halric] [bot] arrived at (2856,584,0)
+[17:43:32.218] INFO  [n10_Halric] [action] goto finished at (2856,584,0); target (2856,584); ARRIVED (off by 0 tile(s))
+[17:43:32.218] LOG   [n10_Halric] event goto_done: at=(2856,584) target=(2856,584) arrived=1 off=0
+[17:43:32.218] INFO  [n10_Halric] [action] goto (2824,568) from (2856,584,0)
+[17:43:32.218] LOG   [n10_Halric] event goto_start: target=(2824,568) from=(2856,584)
+[17:43:32.218] INFO  [n10_Halric] [bot] running from (2856,584,0) to (2824,568)
+[17:43:32.218] INFO  [n10_Halric] [bot] planning path to (2824,568) in background
+[17:43:32.280] INFO  [n10_Halric] [bot] replan to (2824,568): 32 steps in 2750.5us
+[17:43:33.887] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew04.halric/state.json
+[17:43:35.338] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:43:40.375] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:43:44.286] INFO  [n10_Halric] [bot] arrived at (2824,568,0)
+[17:43:44.286] INFO  [n10_Halric] [action] goto finished at (2824,568,0); target (2824,568); ARRIVED (off by 0 tile(s))
+[17:43:44.286] LOG   [n10_Halric] event goto_done: at=(2824,568) target=(2824,568) arrived=1 off=0
+[17:43:44.286] INFO  [n10_Halric] [action] goto (2798,550) from (2824,568,0)
+[17:43:44.286] LOG   [n10_Halric] event goto_start: target=(2798,550) from=(2824,568)
+[17:43:44.286] INFO  [n10_Halric] [bot] running from (2824,568,0) to (2798,550)
+[17:43:44.286] INFO  [n10_Halric] [bot] planning path to (2798,550) in background
+[17:43:44.346] INFO  [n10_Halric] [bot] replan to (2798,550): 28 steps in 8256.9us
+[17:43:45.426] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:43:50.434] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:43:53.510] INFO  [n10_Halric] [bot] arrived at (2798,550,0)
+[17:43:53.510] INFO  [n10_Halric] [action] goto finished at (2798,550,0); target (2798,550); ARRIVED (off by 0 tile(s))
+[17:43:53.510] LOG   [n10_Halric] event goto_done: at=(2798,550) target=(2798,550) arrived=1 off=0
+[17:43:53.510] INFO  [n10_Halric] [action] goto (2766,512) from (2798,550,0)
+[17:43:53.510] LOG   [n10_Halric] event goto_start: target=(2766,512) from=(2798,550)
+[17:43:53.510] INFO  [n10_Halric] [bot] running from (2798,550,0) to (2766,512)
+[17:43:53.510] INFO  [n10_Halric] [bot] planning path to (2766,512) in background
+[17:43:53.571] INFO  [n10_Halric] [bot] replan to (2766,512): 48 steps in 18415.9us
+[17:43:55.448] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:44:00.480] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:44:05.511] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:44:07.246] INFO  [n10_Halric] [bot] arrived at (2766,512,1)
+[17:44:07.246] INFO  [n10_Halric] [action] goto finished at (2766,512,1); target (2766,512); ARRIVED (off by 0 tile(s))
+[17:44:07.246] LOG   [n10_Halric] event goto_done: at=(2766,512) target=(2766,512) arrived=1 off=0
+[17:44:07.246] INFO  [n10_Halric] [action] goto (2728,520) from (2766,512,1)
+[17:44:07.246] LOG   [n10_Halric] event goto_start: target=(2728,520) from=(2766,512)
+[17:44:07.246] INFO  [n10_Halric] [bot] running from (2766,512,1) to (2728,520)
+[17:44:07.246] INFO  [n10_Halric] [bot] planning path to (2728,520) in background
+[17:44:07.309] INFO  [n10_Halric] [bot] replan to (2728,520): 53 steps in 9685.4us
+[17:44:10.560] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:44:15.614] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:44:20.673] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:44:24.561] INFO  [n10_Halric] [bot] arrived at (2728,520,8)
+[17:44:24.561] INFO  [n10_Halric] [action] goto finished at (2728,520,8); target (2728,520); ARRIVED (off by 0 tile(s))
+[17:44:24.561] LOG   [n10_Halric] event goto_done: at=(2728,520) target=(2728,520) arrived=1 off=0
+[17:44:24.561] INFO  [n10_Halric] [action] goto (2696,520) from (2728,520,8)
+[17:44:24.561] LOG   [n10_Halric] event goto_start: target=(2696,520) from=(2728,520)
+[17:44:24.561] INFO  [n10_Halric] [bot] running from (2728,520,8) to (2696,520)
+[17:44:24.561] INFO  [n10_Halric] [bot] planning path to (2696,520) in background
+[17:44:24.621] INFO  [n10_Halric] [bot] replan to (2696,520): 32 steps in 2093.3us
+[17:44:25.677] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:44:30.734] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:44:33.251] INFO  [n10_Halric] [bot] arrived at (2696,520,14)
+[17:44:33.251] INFO  [n10_Halric] [action] goto finished at (2696,520,14); target (2696,520); ARRIVED (off by 0 tile(s))
+[17:44:33.251] LOG   [n10_Halric] event goto_done: at=(2696,520) target=(2696,520) arrived=1 off=0
+[17:44:33.251] INFO  [n10_Halric] [action] goto (2664,504) from (2696,520,14)
+[17:44:33.251] LOG   [n10_Halric] event goto_start: target=(2664,504) from=(2696,520)
+[17:44:33.251] INFO  [n10_Halric] [bot] running from (2696,520,14) to (2664,504)
+[17:44:33.251] INFO  [n10_Halric] [bot] planning path to (2664,504) in background
+[17:44:33.313] INFO  [n10_Halric] [bot] replan to (2664,504): 35 steps in 2763.8us
+[17:44:33.913] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew04.halric/state.json
+[17:44:35.753] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:44:40.782] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:44:43.111] INFO  [n10_Halric] [bot] arrived at (2664,504,15)
+[17:44:43.111] INFO  [n10_Halric] [action] goto finished at (2664,504,15); target (2664,504); ARRIVED (off by 0 tile(s))
+[17:44:43.111] LOG   [n10_Halric] event goto_done: at=(2664,504) target=(2664,504) arrived=1 off=0
+[17:44:43.111] INFO  [n10_Halric] [action] goto (2632,472) from (2664,504,15)
+[17:44:43.111] LOG   [n10_Halric] event goto_start: target=(2632,472) from=(2664,504)
+[17:44:43.111] INFO  [n10_Halric] [bot] running from (2664,504,15) to (2632,472)
+[17:44:43.111] INFO  [n10_Halric] [bot] planning path to (2632,472) in background
+[17:44:43.173] INFO  [n10_Halric] [bot] replan to (2632,472): 66 steps in 25856.4us
+[17:44:45.838] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:44:46.671] INFO  [n10_Halric] [chat ascii] System: World save in 10 seconds
+[17:44:50.850] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:44:55.891] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:44:56.690] INFO  [n10_Halric] [chat ascii] System: World save has been initiated.
+[17:45:00.949] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:45:02.441] INFO  [n10_Halric] [bot] arrived at (2632,472,15)
+[17:45:02.441] INFO  [n10_Halric] [action] goto finished at (2632,472,15); target (2632,472); ARRIVED (off by 0 tile(s))
+[17:45:02.441] LOG   [n10_Halric] event goto_done: at=(2632,472) target=(2632,472) arrived=1 off=0
+[17:45:02.441] INFO  [n10_Halric] [action] goto (2600,502) from (2632,472,15)
+[17:45:02.441] LOG   [n10_Halric] event goto_start: target=(2600,502) from=(2632,472)
+[17:45:02.441] INFO  [n10_Halric] [bot] running from (2632,472,15) to (2600,502)
+[17:45:02.441] INFO  [n10_Halric] [bot] planning path to (2600,502) in background
+[17:45:02.502] INFO  [n10_Halric] [bot] replan to (2600,502): 45 steps in 8524.3us
+[17:45:05.529] INFO  [n10_Halric] [chat ascii] System: You are now under the protection of the guards
+[17:45:05.961] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:45:10.983] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:45:15.990] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:45:17.753] INFO  [n10_Halric] [bot] arrived at (2600,502,0)
+[17:45:17.753] INFO  [n10_Halric] [action] goto finished at (2600,502,0); target (2600,502); ARRIVED (off by 0 tile(s))
+[17:45:17.753] LOG   [n10_Halric] event goto_done: at=(2600,502) target=(2600,502) arrived=1 off=0
+[17:45:17.753] INFO  [n10_Halric] [action] goto (2568,518) from (2600,502,0)
+[17:45:17.753] LOG   [n10_Halric] event goto_start: target=(2568,518) from=(2600,502)
+[17:45:17.753] INFO  [n10_Halric] [bot] running from (2600,502,0) to (2568,518)
+[17:45:17.753] INFO  [n10_Halric] [bot] planning path to (2568,518) in background
+[17:45:17.814] INFO  [n10_Halric] [bot] replan to (2568,518): 43 steps in 9933.2us
+[17:45:20.373] INFO  [n10_Halric] [chat ascii] System: You have left the protection of the guards
+[17:45:21.001] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:45:26.048] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:45:31.073] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:45:31.335] INFO  [n10_Halric] [bot] arrived at (2568,518,15)
+[17:45:31.335] INFO  [n10_Halric] [action] goto finished at (2568,518,15); target (2568,518); ARRIVED (off by 0 tile(s))
+[17:45:31.335] LOG   [n10_Halric] event goto_done: at=(2568,518) target=(2568,518) arrived=1 off=0
+[17:45:31.335] INFO  [n10_Halric] [action] goto (2544,554) from (2568,518,15)
+[17:45:31.335] LOG   [n10_Halric] event goto_start: target=(2544,554) from=(2568,518)
+[17:45:31.335] INFO  [n10_Halric] [bot] running from (2568,518,15) to (2544,554)
+[17:45:31.335] INFO  [n10_Halric] [bot] planning path to (2544,554) in background
+[17:45:31.458] INFO  [n10_Halric] [bot] replan to (2544,554): 93 steps in 99026.0us
+[17:45:33.915] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew04.halric/state.json
+[17:45:36.089] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:45:36.335] INFO  [n10_Halric] [chat ascii] System: You are now under the protection of the guards
+[17:45:41.146] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:45:46.190] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:45:51.215] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:45:56.274] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:45:59.732] INFO  [n10_Halric] [bot] arrived at (2544,554,0)
+[17:45:59.733] INFO  [n10_Halric] [action] goto finished at (2544,554,0); target (2544,554); ARRIVED (off by 0 tile(s))
+[17:45:59.733] LOG   [n10_Halric] event goto_done: at=(2544,554) target=(2544,554) arrived=1 off=0
+[17:45:59.733] INFO  [n10_Halric] [action] goto (2568,584) from (2544,554,0)
+[17:45:59.733] LOG   [n10_Halric] event goto_start: target=(2568,584) from=(2544,554)
+[17:45:59.733] INFO  [n10_Halric] [bot] running from (2544,554,0) to (2568,584)
+[17:45:59.733] INFO  [n10_Halric] [bot] planning path to (2568,584) in background
+[17:45:59.794] INFO  [n10_Halric] [bot] replan to (2568,584): 36 steps in 9315.1us
+[17:46:01.283] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:46:06.291] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:46:11.315] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:46:11.500] INFO  [n10_Halric] [bot] arrived at (2568,584,0)
+[17:46:11.500] INFO  [n10_Halric] [action] goto finished at (2568,584,0); target (2568,584); ARRIVED (off by 0 tile(s))
+[17:46:11.500] LOG   [n10_Halric] event goto_done: at=(2568,584) target=(2568,584) arrived=1 off=0
+[17:46:11.500] INFO  [n10_Halric] [action] goto (2602,616) from (2568,584,0)
+[17:46:11.500] LOG   [n10_Halric] event goto_start: target=(2602,616) from=(2568,584)
+[17:46:11.500] INFO  [n10_Halric] [bot] running from (2568,584,0) to (2602,616)
+[17:46:11.500] INFO  [n10_Halric] [bot] planning path to (2602,616) in background
+[17:46:11.563] INFO  [n10_Halric] [bot] replan to (2602,616): 49 steps in 11566.4us
+[17:46:16.328] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:46:21.334] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:46:26.382] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:46:28.503] INFO  [n10_Halric] [bot] arrived at (2602,616,0)
+[17:46:28.504] INFO  [n10_Halric] [action] goto finished at (2602,616,0); target (2602,616); ARRIVED (off by 0 tile(s))
+[17:46:28.504] LOG   [n10_Halric] event goto_done: at=(2602,616) target=(2602,616) arrived=1 off=0
+[17:46:28.504] INFO  [n10_Halric] [action] goto (2632,646) from (2602,616,0)
+[17:46:28.504] LOG   [n10_Halric] event goto_start: target=(2632,646) from=(2602,616)
+[17:46:28.504] INFO  [n10_Halric] [bot] running from (2602,616,0) to (2632,646)
+[17:46:28.504] INFO  [n10_Halric] [bot] planning path to (2632,646) in background
+[17:46:28.565] INFO  [n10_Halric] [bot] replan to (2632,646): 39 steps in 13148.0us
+[17:46:31.436] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:46:33.975] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew04.halric/state.json
+[17:46:35.444] INFO  [n10_Halric] [chat ascii] System: You have left the protection of the town guards
+[17:46:36.489] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:46:41.545] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:46:42.238] INFO  [n10_Halric] [bot] arrived at (2632,646,0)
+[17:46:42.238] INFO  [n10_Halric] [action] goto finished at (2632,646,0); target (2632,646); ARRIVED (off by 0 tile(s))
+[17:46:42.238] LOG   [n10_Halric] event goto_done: at=(2632,646) target=(2632,646) arrived=1 off=0
+[17:46:42.238] INFO  [n10_Halric] [action] goto (2664,680) from (2632,646,0)
+[17:46:42.238] LOG   [n10_Halric] event goto_start: target=(2664,680) from=(2632,646)
+[17:46:42.238] INFO  [n10_Halric] [bot] running from (2632,646,0) to (2664,680)
+[17:46:42.238] INFO  [n10_Halric] [bot] planning path to (2664,680) in background
+[17:46:42.300] INFO  [n10_Halric] [bot] replan to (2664,680): 47 steps in 7056.5us
+[17:46:46.572] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:46:51.574] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:46:56.613] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:46:58.984] INFO  [n10_Halric] [bot] arrived at (2664,680,0)
+[17:46:58.984] INFO  [n10_Halric] [action] goto finished at (2664,680,0); target (2664,680); ARRIVED (off by 0 tile(s))
+[17:46:58.984] LOG   [n10_Halric] event goto_done: at=(2664,680) target=(2664,680) arrived=1 off=0
+[17:46:58.984] INFO  [n10_Halric] [action] goto (2696,712) from (2664,680,0)
+[17:46:58.984] LOG   [n10_Halric] event goto_start: target=(2696,712) from=(2664,680)
+[17:46:58.984] INFO  [n10_Halric] [bot] running from (2664,680,0) to (2696,712)
+[17:46:58.984] INFO  [n10_Halric] [bot] planning path to (2696,712) in background
+[17:46:59.047] INFO  [n10_Halric] [bot] replan to (2696,712): 37 steps in 5341.7us
+[17:47:01.648] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:47:06.700] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:47:10.809] INFO  [n10_Halric] [bot] arrived at (2696,712,0)
+[17:47:10.809] INFO  [n10_Halric] [action] goto finished at (2696,712,0); target (2696,712); ARRIVED (off by 0 tile(s))
+[17:47:10.809] LOG   [n10_Halric] event goto_done: at=(2696,712) target=(2696,712) arrived=1 off=0
+[17:47:10.809] INFO  [n10_Halric] [action] goto (2728,744) from (2696,712,0)
+[17:47:10.809] LOG   [n10_Halric] event goto_start: target=(2728,744) from=(2696,712)
+[17:47:10.809] INFO  [n10_Halric] [bot] running from (2696,712,0) to (2728,744)
+[17:47:10.809] INFO  [n10_Halric] [bot] planning path to (2728,744) in background
+[17:47:10.869] INFO  [n10_Halric] [bot] replan to (2728,744): 41 steps in 5775.9us
+[17:47:11.730] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:47:16.773] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:47:21.804] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:47:26.041] INFO  [n10_Halric] [bot] arrived at (2728,744,0)
+[17:47:26.041] INFO  [n10_Halric] [action] goto finished at (2728,744,0); target (2728,744); ARRIVED (off by 0 tile(s))
+[17:47:26.041] LOG   [n10_Halric] event goto_done: at=(2728,744) target=(2728,744) arrived=1 off=0
+[17:47:26.041] INFO  [n10_Halric] [action] goto (2760,776) from (2728,744,0)
+[17:47:26.041] LOG   [n10_Halric] event goto_start: target=(2760,776) from=(2728,744)
+[17:47:26.041] INFO  [n10_Halric] [bot] running from (2728,744,0) to (2760,776)
+[17:47:26.041] INFO  [n10_Halric] [bot] planning path to (2760,776) in background
+[17:47:26.103] INFO  [n10_Halric] [bot] replan to (2760,776): 41 steps in 32778.2us
+[17:47:26.859] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:47:31.869] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:47:34.022] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew04.halric/state.json
+[17:47:34.601] INFO  [n10_Halric] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=18 in 197.6us
+[17:47:34.848] INFO  [n10_Halric] [bot] step (2747,764,0)->(2748,765,0) rejected; OpenDoor + retry
+[17:47:35.607] INFO  [n10_Halric] [bot] lookahead patched around block at step 1: anchor=5 new segment=5 path=18 in 147.4us
+[17:47:36.899] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:47:39.767] INFO  [n10_Halric] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=7 in 484.7us
+[17:47:41.924] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:47:42.801] INFO  [n10_Halric] [bot] arrived at (2761,777,0)
+[17:47:42.801] INFO  [n10_Halric] [action] goto finished at (2761,777,0); target (2760,776); stopped short (off by 2 tile(s))
+[17:47:42.801] LOG   [n10_Halric] event goto_done: at=(2761,777) target=(2760,776) arrived=0 off=2
+[17:47:42.801] INFO  [n10_Halric] [action] goto (2792,808) from (2761,777,0)
+[17:47:42.801] LOG   [n10_Halric] event goto_start: target=(2792,808) from=(2761,777)
+[17:47:42.801] INFO  [n10_Halric] [bot] running from (2761,777,0) to (2792,808)
+[17:47:42.801] INFO  [n10_Halric] [bot] planning path to (2792,808) in background
+[17:47:42.862] INFO  [n10_Halric] [bot] replan to (2792,808): 41 steps in 12071.2us
+[17:47:46.972] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:47:51.985] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:47:57.046] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:47:57.864] INFO  [n10_Halric] [bot] arrived at (2792,808,0)
+[17:47:57.864] INFO  [n10_Halric] [action] goto finished at (2792,808,0); target (2792,808); ARRIVED (off by 0 tile(s))
+[17:47:57.864] LOG   [n10_Halric] event goto_done: at=(2792,808) target=(2792,808) arrived=1 off=0
+[17:47:57.864] INFO  [n10_Halric] [action] goto (2792,840) from (2792,808,0)
+[17:47:57.864] LOG   [n10_Halric] event goto_start: target=(2792,840) from=(2792,808)
+[17:47:57.864] INFO  [n10_Halric] [bot] running from (2792,808,0) to (2792,840)
+[17:47:57.864] INFO  [n10_Halric] [bot] planning path to (2792,840) in background
+[17:47:57.924] INFO  [n10_Halric] [bot] replan to (2792,840): 32 steps in 5519.7us
+[17:48:02.089] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:48:07.135] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:48:07.382] INFO  [n10_Halric] [bot] arrived at (2792,840,0)
+[17:48:07.382] INFO  [n10_Halric] [action] goto finished at (2792,840,0); target (2792,840); ARRIVED (off by 0 tile(s))
+[17:48:07.382] LOG   [n10_Halric] event goto_done: at=(2792,840) target=(2792,840) arrived=1 off=0
+[17:48:07.382] INFO  [n10_Halric] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:48:07.382] INFO  [n10_Halric] [action] goto (2792,872) from (2792,840,0)
+[17:48:07.382] LOG   [n10_Halric] event goto_start: target=(2792,872) from=(2792,840)
+[17:48:07.382] INFO  [n10_Halric] [bot] running from (2792,840,0) to (2792,872)
+[17:48:07.382] INFO  [n10_Halric] [bot] planning path to (2792,872) in background
+[17:48:07.444] INFO  [n10_Halric] [bot] replan to (2792,872): 32 steps in 1113.0us
+[17:48:12.172] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:48:16.050] INFO  [n10_Halric] [bot] arrived at (2792,872,0)
+[17:48:16.050] INFO  [n10_Halric] [action] goto finished at (2792,872,0); target (2792,872); ARRIVED (off by 0 tile(s))
+[17:48:16.050] LOG   [n10_Halric] event goto_done: at=(2792,872) target=(2792,872) arrived=1 off=0
+[17:48:16.050] INFO  [n10_Halric] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:48:16.050] INFO  [n10_Halric] [action] goto (2792,904) from (2792,872,0)
+[17:48:16.050] LOG   [n10_Halric] event goto_start: target=(2792,904) from=(2792,872)
+[17:48:16.050] INFO  [n10_Halric] [bot] running from (2792,872,0) to (2792,904)
+[17:48:16.050] INFO  [n10_Halric] [bot] planning path to (2792,904) in background
+[17:48:16.112] INFO  [n10_Halric] [bot] replan to (2792,904): 32 steps in 1708.5us
+[17:48:17.221] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:48:22.274] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:48:22.396] INFO  [life] goal_changed=TRAIN_AT_NPC from=TRAIN_AT_NPC reason="previous goal abandoned: ran 300s without finishing (limit 300s)"
+[17:48:22.396] INFO  [life] needs considered: NeedMakeBandages(bandages BLOCKED 0.53) NeedEquipment(bandages BLOCKED 0.50) NeedSkillTraining(skill 5 0.45) NeedTraining(skill 5 0.37) NeedTraining(Tactics 0.34) NeedTraining(skill 41 0.28) NeedTraining(Anatomy 0.28) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[17:48:22.396] INFO  [life]   score=90.0
+[17:48:22.396] INFO  [life]   reason: NeedSkillTraining urgency 0.45 x 200 = 90.0
+[17:48:22.397] INFO  [life]   reason: skill 5 13.5 -> 100.0, gold 9650 (fee is quoted on arrival, roughly 300)
+[17:48:22.397] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=3 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[17:48:22.397] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 3/8 gold 9650 (buyable at 200))
+[17:48:25.865] INFO  [n10_Halric] [bot] arrived at (2792,904,0)
+[17:48:25.865] INFO  [n10_Halric] [action] goto finished at (2792,904,0); target (2792,904); ARRIVED (off by 0 tile(s))
+[17:48:25.865] LOG   [n10_Halric] event goto_done: at=(2792,904) target=(2792,904) arrived=1 off=0
+[17:48:25.865] INFO  [n10_Halric] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:48:25.865] INFO  [n10_Halric] [action] goto (2826,888) from (2792,904,0)
+[17:48:25.865] LOG   [n10_Halric] event goto_start: target=(2826,888) from=(2792,904)
+[17:48:25.865] INFO  [n10_Halric] [bot] running from (2792,904,0) to (2826,888)
+[17:48:25.865] INFO  [n10_Halric] [bot] planning path to (2826,888) in background
+[17:48:25.989] INFO  [n10_Halric] [bot] replan to (2826,888): 138 steps in 111232.3us
+[17:48:27.289] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:48:32.291] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:48:34.040] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew04.halric/state.json
+[17:48:37.336] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:48:38.226] INFO  [n10_Halric] [chat ascii] System: You are now under the protection of the town guards
+[17:48:42.378] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:48:47.385] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:48:51.353] INFO  [n10_Halric] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=46 in 385.3us
+[17:48:52.399] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:48:53.074] INFO  [n10_Halric] [bot] lookahead patched around block at step 1: anchor=5 new segment=5 path=41 in 86.6us
+[17:48:57.438] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:49:02.454] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:49:03.676] INFO  [n10_Halric] [bot] step (2828,890,0)->(2827,889,5) rejected; OpenDoor + retry
+[17:49:04.413] INFO  [n10_Halric] [bot] step (2828,890,0)->(2827,889,5) rejected; avoiding edge + rerouting
+[17:49:04.413] INFO  [n10_Halric] [bot] planning path to (2826,888) in background
+[17:49:04.474] INFO  [n10_Halric] [bot] replan to (2826,888): 6 steps in 617.5us
+[17:49:06.818] INFO  [n10_Halric] [bot] arrived at (2826,888,-2)
+[17:49:06.818] INFO  [n10_Halric] [action] goto finished at (2826,888,-2); target (2826,888); ARRIVED (off by 0 tile(s))
+[17:49:06.818] LOG   [n10_Halric] event goto_done: at=(2826,888) target=(2826,888) arrived=1 off=0
+[17:49:06.818] INFO  [n10_Halric] [action] goto (2840,856) from (2826,888,-2)
+[17:49:06.818] LOG   [n10_Halric] event goto_start: target=(2840,856) from=(2826,888)
+[17:49:06.818] INFO  [n10_Halric] [bot] running from (2826,888,-2) to (2840,856)
+[17:49:06.818] INFO  [n10_Halric] [bot] planning path to (2840,856) in background
+[17:49:06.879] INFO  [n10_Halric] [bot] replan to (2840,856): 60 steps in 9467.0us
+[17:49:07.510] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:49:12.539] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:49:17.556] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:49:22.608] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:49:24.291] INFO  [n10_Halric] [bot] arrived at (2840,856,0)
+[17:49:24.291] INFO  [n10_Halric] [action] goto finished at (2840,856,0); target (2840,856); ARRIVED (off by 0 tile(s))
+[17:49:24.291] LOG   [n10_Halric] event goto_done: at=(2840,856) target=(2840,856) arrived=1 off=0
+[17:49:24.291] INFO  [n10_Halric] [action] goto (2840,824) from (2840,856,0)
+[17:49:24.291] LOG   [n10_Halric] event goto_start: target=(2840,824) from=(2840,856)
+[17:49:24.291] INFO  [n10_Halric] [bot] running from (2840,856,0) to (2840,824)
+[17:49:24.291] INFO  [n10_Halric] [bot] planning path to (2840,824) in background
+[17:49:24.351] INFO  [n10_Halric] [bot] replan to (2840,824): 50 steps in 7534.4us
+[17:49:27.649] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:49:32.665] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:49:34.065] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew04.halric/state.json
+[17:49:37.696] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:49:38.555] INFO  [n10_Halric] [bot] arrived at (2840,824,2)
+[17:49:38.555] INFO  [n10_Halric] [action] goto finished at (2840,824,2); target (2840,824); ARRIVED (off by 0 tile(s))
+[17:49:38.555] LOG   [n10_Halric] event goto_done: at=(2840,824) target=(2840,824) arrived=1 off=0
+[17:49:38.555] INFO  [n10_Halric] [action] goto (2835,805) from (2840,824,2)
+[17:49:38.555] LOG   [n10_Halric] event goto_start: target=(2835,805) from=(2840,824)
+[17:49:38.555] INFO  [n10_Halric] [bot] running from (2840,824,2) to (2835,805,z0)
+[17:49:38.555] INFO  [n10_Halric] [bot] planning path to (2835,805) in background
+[17:49:38.616] INFO  [n10_Halric] [bot] replan to (2835,805): 34 steps in 6159.4us
+[17:49:42.730] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:49:47.029] INFO  [n10_Halric] [chat ascii] System: World save in 10 seconds
+[17:49:47.089] INFO  [n10_Halric] [bot] step (2841,804,0)->(2840,803,0) rejected; OpenDoor + retry
+[17:49:47.105] INFO  [n10_Halric] [chat ascii] System: Opening door...
+[17:49:47.105] INFO  [n10_Halric] [0x20] player @(2841,804,0) facing=6
+[17:49:47.105] INFO  [n10_Halric] [action] goto finished at (2841,804,0); target (2835,805); stopped short (off by 7 tile(s))
+[17:49:47.105] LOG   [n10_Halric] event goto_done: at=(2841,804) target=(2835,805) arrived=0 off=7
+[17:49:47.750] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:49:48.364] INFO  [n10_Halric] [action] goto (2835,805) from (2841,804,0)
+[17:49:48.364] LOG   [n10_Halric] event goto_start: target=(2835,805) from=(2841,804)
+[17:49:48.364] INFO  [n10_Halric] [bot] running from (2841,804,0) to (2835,805,z0)
+[17:49:48.364] INFO  [n10_Halric] [bot] planning path to (2835,805) in background
+[17:49:48.426] INFO  [n10_Halric] [bot] replan to (2835,805): 6 steps in 248.5us
+[17:49:48.766] INFO  [n10_Halric] [travel] Vesper armorer ARRIVED at (2840,803,0)
+[17:49:48.766] LOG   [n10_Halric] event travel_done: label='Vesper armorer' ok=1 at=(2840,803) legs=29 plans=1 why=''
+[17:49:48.825] INFO  [life] training: looking for a 'armorer' to teach skill 5 (trip 3)
+[17:49:48.825] INFO  [n10_Halric] [travel] Minoc armorer -> (2533,572) r=5 from (2840,803)
+[17:49:48.825] LOG   [n10_Halric] event travel_start: label='Minoc armorer' target=(2533,572) radius=5 from=(2840,803)
+[17:49:48.825] INFO  [n10_Halric] [travel] mode moongate         usable   <- chosen
+[17:49:48.825] INFO  [n10_Halric] [travel] mode walk             usable
+[17:49:48.825] INFO  [n10_Halric] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:49:48.825] INFO  [n10_Halric] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:49:48.825] LOG   [n10_Halric] event travel_mode: moongate
+[17:49:48.825] INFO  [n10_Halric] [travel] plan Minoc armorer: ok legs=14 ~656 tiles transit=0 nodes=502
+[17:49:48.887] INFO  [n10_Halric] [bot] door ahead at (2839,803,z0); OpenDoor before step
+[17:49:48.887] INFO  [n10_Halric] [chat ascii] System: Opening door...
+[17:49:51.414] INFO  [n10_Halric] [bot] arrived at (2835,805,0)
+[17:49:51.415] INFO  [n10_Halric] [action] goto finished at (2835,805,0); target (2835,805); ARRIVED (off by 0 tile(s))
+[17:49:51.415] LOG   [n10_Halric] event goto_done: at=(2835,805) target=(2835,805) arrived=1 off=0
+[17:49:51.415] INFO  [n10_Halric] [action] goto (2834,832) from (2835,805,0)
+[17:49:51.415] LOG   [n10_Halric] event goto_start: target=(2834,832) from=(2835,805)
+[17:49:51.415] INFO  [n10_Halric] [bot] running from (2835,805,0) to (2834,832)
+[17:49:51.415] INFO  [n10_Halric] [bot] planning path to (2834,832) in background
+[17:49:51.477] INFO  [n10_Halric] [bot] replan to (2834,832): 41 steps in 11072.8us
+[17:49:52.718] INFO  [n10_Halric] [chat ascii] Aquene: I'd ask thee to stand away some.
+[17:49:52.718] INFO  [n10_Halric] [chat ascii] System: You shove Aquene out of the way.
+[17:49:52.771] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:49:53.725] INFO  [n10_Halric] [bot] step (2840,803,0)->(2841,804,0) rejected; OpenDoor + retry
+[17:49:53.725] INFO  [n10_Halric] [chat ascii] System: Opening door...
+[17:49:53.725] INFO  [n10_Halric] [0x20] player @(2840,803,0) facing=4
+[17:49:53.725] INFO  [n10_Halric] [action] goto finished at (2840,803,0); target (2834,832); stopped short (off by 35 tile(s))
+[17:49:53.725] LOG   [n10_Halric] event goto_done: at=(2840,803) target=(2834,832) arrived=0 off=35
+[17:49:54.956] INFO  [n10_Halric] [action] goto (2834,832) from (2840,803,0)
+[17:49:54.956] LOG   [n10_Halric] event goto_start: target=(2834,832) from=(2840,803)
+[17:49:54.956] INFO  [n10_Halric] [bot] running from (2840,803,0) to (2834,832)
+[17:49:54.956] INFO  [n10_Halric] [bot] planning path to (2834,832) in background
+[17:49:55.017] INFO  [n10_Halric] [bot] replan to (2834,832): 36 steps in 10055.0us
+[17:49:57.051] INFO  [n10_Halric] [chat ascii] System: World save has been initiated.
+[17:49:57.774] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:50:02.826] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:50:05.713] INFO  [n10_Halric] [bot] arrived at (2834,832,1)
+[17:50:05.713] INFO  [n10_Halric] [action] goto finished at (2834,832,1); target (2834,832); ARRIVED (off by 0 tile(s))
+[17:50:05.713] LOG   [n10_Halric] event goto_done: at=(2834,832) target=(2834,832) arrived=1 off=0
+[17:50:05.713] INFO  [n10_Halric] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:50:05.713] INFO  [n10_Halric] [action] goto (2840,872) from (2834,832,1)
+[17:50:05.713] LOG   [n10_Halric] event goto_start: target=(2840,872) from=(2834,832)
+[17:50:05.713] INFO  [n10_Halric] [bot] running from (2834,832,1) to (2840,872)
+[17:50:05.713] INFO  [n10_Halric] [bot] planning path to (2840,872) in background
+[17:50:05.773] INFO  [n10_Halric] [bot] replan to (2840,872): 79 steps in 12244.1us
+[17:50:07.853] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:50:12.874] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:50:17.921] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:50:22.923] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:50:27.918] INFO  [n10_Halric] [bot] arrived at (2840,872,0)
+[17:50:27.919] INFO  [n10_Halric] [action] goto finished at (2840,872,0); target (2840,872); ARRIVED (off by 0 tile(s))
+[17:50:27.919] LOG   [n10_Halric] event goto_done: at=(2840,872) target=(2840,872) arrived=1 off=0
+[17:50:27.919] INFO  [n10_Halric] [action] goto (2826,904) from (2840,872,0)
+[17:50:27.919] LOG   [n10_Halric] event goto_start: target=(2826,904) from=(2840,872)
+[17:50:27.919] INFO  [n10_Halric] [bot] running from (2840,872,0) to (2826,904)
+[17:50:27.919] INFO  [n10_Halric] [bot] planning path to (2826,904) in background
+[17:50:27.979] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:50:27.979] INFO  [n10_Halric] [bot] replan to (2826,904): 46 steps in 9140.8us
+[17:50:32.990] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:50:34.112] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew04.halric/state.json
+[17:50:38.007] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:50:42.168] INFO  [n10_Halric] [bot] arrived at (2826,904,-2)
+[17:50:42.169] INFO  [n10_Halric] [action] goto finished at (2826,904,-2); target (2826,904); ARRIVED (off by 0 tile(s))
+[17:50:42.169] LOG   [n10_Halric] event goto_done: at=(2826,904) target=(2826,904) arrived=1 off=0
+[17:50:42.169] INFO  [n10_Halric] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:50:42.169] INFO  [n10_Halric] [action] goto (2804,872) from (2826,904,-2)
+[17:50:42.169] LOG   [n10_Halric] event goto_start: target=(2804,872) from=(2826,904)
+[17:50:42.169] INFO  [n10_Halric] [bot] running from (2826,904,-2) to (2804,872)
+[17:50:42.169] INFO  [n10_Halric] [bot] planning path to (2804,872) in background
+[17:50:42.355] INFO  [n10_Halric] [bot] replan to (2804,872): 160 steps in 170080.9us
+[17:50:43.032] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:50:48.079] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:50:53.095] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:50:58.117] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:51:03.165] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:51:04.196] INFO  [n10_Halric] [chat ascii] System: You have left the protection of the town guards
+[17:51:08.168] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:51:13.221] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:51:18.223] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:51:23.249] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:51:28.070] INFO  [n10_Halric] [bot] arrived at (2804,872,0)
+[17:51:28.070] INFO  [n10_Halric] [action] goto finished at (2804,872,0); target (2804,872); ARRIVED (off by 0 tile(s))
+[17:51:28.070] LOG   [n10_Halric] event goto_done: at=(2804,872) target=(2804,872) arrived=1 off=0
+[17:51:28.070] INFO  [n10_Halric] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:51:28.070] INFO  [n10_Halric] [action] goto (2804,840) from (2804,872,0)
+[17:51:28.070] LOG   [n10_Halric] event goto_start: target=(2804,840) from=(2804,872)
+[17:51:28.070] INFO  [n10_Halric] [bot] running from (2804,872,0) to (2804,840)
+[17:51:28.070] INFO  [n10_Halric] [bot] planning path to (2804,840) in background
+[17:51:28.132] INFO  [n10_Halric] [bot] replan to (2804,840): 38 steps in 9217.4us
+[17:51:28.257] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:51:33.279] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:51:34.171] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew04.halric/state.json
+[17:51:38.335] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:51:38.584] INFO  [n10_Halric] [bot] arrived at (2804,840,0)
+[17:51:38.584] INFO  [n10_Halric] [action] goto finished at (2804,840,0); target (2804,840); ARRIVED (off by 0 tile(s))
+[17:51:38.584] LOG   [n10_Halric] event goto_done: at=(2804,840) target=(2804,840) arrived=1 off=0
+[17:51:38.584] INFO  [n10_Halric] [action] goto (2776,808) from (2804,840,0)
+[17:51:38.584] LOG   [n10_Halric] event goto_start: target=(2776,808) from=(2804,840)
+[17:51:38.584] INFO  [n10_Halric] [bot] running from (2804,840,0) to (2776,808)
+[17:51:38.584] INFO  [n10_Halric] [bot] planning path to (2776,808) in background
+[17:51:38.645] INFO  [n10_Halric] [bot] replan to (2776,808): 42 steps in 17362.8us
+[17:51:43.385] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:51:48.420] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:51:53.255] INFO  [n10_Halric] [bot] arrived at (2776,808,0)
+[17:51:53.255] INFO  [n10_Halric] [action] goto finished at (2776,808,0); target (2776,808); ARRIVED (off by 0 tile(s))
+[17:51:53.255] LOG   [n10_Halric] event goto_done: at=(2776,808) target=(2776,808) arrived=1 off=0
+[17:51:53.255] INFO  [n10_Halric] [action] goto (2744,776) from (2776,808,0)
+[17:51:53.255] LOG   [n10_Halric] event goto_start: target=(2744,776) from=(2776,808)
+[17:51:53.255] INFO  [n10_Halric] [bot] running from (2776,808,0) to (2744,776)
+[17:51:53.255] INFO  [n10_Halric] [bot] planning path to (2744,776) in background
+[17:51:53.317] INFO  [n10_Halric] [bot] replan to (2744,776): 43 steps in 27007.3us
+[17:51:53.441] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:51:58.446] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:52:03.480] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:52:07.908] INFO  [n10_Halric] [bot] arrived at (2744,776,0)
+[17:52:07.908] INFO  [n10_Halric] [action] goto finished at (2744,776,0); target (2744,776); ARRIVED (off by 0 tile(s))
+[17:52:07.908] LOG   [n10_Halric] event goto_done: at=(2744,776) target=(2744,776) arrived=1 off=0
+[17:52:07.908] INFO  [n10_Halric] [action] goto (2712,744) from (2744,776,0)
+[17:52:07.908] LOG   [n10_Halric] event goto_start: target=(2712,744) from=(2744,776)
+[17:52:07.908] INFO  [n10_Halric] [bot] running from (2744,776,0) to (2712,744)
+[17:52:07.908] INFO  [n10_Halric] [bot] planning path to (2712,744) in background
+[17:52:07.969] INFO  [n10_Halric] [bot] replan to (2712,744): 43 steps in 8942.6us
+[17:52:08.524] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:52:13.564] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:52:18.616] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:52:23.626] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:52:23.870] INFO  [n10_Halric] [bot] arrived at (2712,744,0)
+[17:52:23.870] INFO  [n10_Halric] [action] goto finished at (2712,744,0); target (2712,744); ARRIVED (off by 0 tile(s))
+[17:52:23.870] LOG   [n10_Halric] event goto_done: at=(2712,744) target=(2712,744) arrived=1 off=0
+[17:52:23.870] INFO  [n10_Halric] [action] goto (2680,712) from (2712,744,0)
+[17:52:23.870] LOG   [n10_Halric] event goto_start: target=(2680,712) from=(2712,744)
+[17:52:23.870] INFO  [n10_Halric] [bot] running from (2712,744,0) to (2680,712)
+[17:52:23.871] INFO  [n10_Halric] [bot] planning path to (2680,712) in background
+[17:52:23.931] INFO  [n10_Halric] [bot] replan to (2680,712): 41 steps in 16600.5us
+[17:52:28.670] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:52:33.716] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:52:34.224] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew04.halric/state.json
+[17:52:38.763] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:52:39.498] INFO  [n10_Halric] [bot] arrived at (2680,712,0)
+[17:52:39.498] INFO  [n10_Halric] [action] goto finished at (2680,712,0); target (2680,712); ARRIVED (off by 0 tile(s))
+[17:52:39.498] LOG   [n10_Halric] event goto_done: at=(2680,712) target=(2680,712) arrived=1 off=0
+[17:52:39.498] INFO  [n10_Halric] [action] goto (2648,680) from (2680,712,0)
+[17:52:39.498] LOG   [n10_Halric] event goto_start: target=(2648,680) from=(2680,712)
+[17:52:39.498] INFO  [n10_Halric] [bot] running from (2680,712,0) to (2648,680)
+[17:52:39.498] INFO  [n10_Halric] [bot] planning path to (2648,680) in background
+[17:52:39.560] INFO  [n10_Halric] [bot] replan to (2648,680): 43 steps in 8517.2us
+[17:52:43.806] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:52:48.816] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:52:53.832] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:52:56.686] INFO  [n10_Halric] [bot] arrived at (2648,680,0)
+[17:52:56.686] INFO  [n10_Halric] [action] goto finished at (2648,680,0); target (2648,680); ARRIVED (off by 0 tile(s))
+[17:52:56.686] LOG   [n10_Halric] event goto_done: at=(2648,680) target=(2648,680) arrived=1 off=0
+[17:52:56.687] INFO  [n10_Halric] [action] goto (2616,648) from (2648,680,0)
+[17:52:56.687] LOG   [n10_Halric] event goto_start: target=(2616,648) from=(2648,680)
+[17:52:56.687] INFO  [n10_Halric] [bot] running from (2648,680,0) to (2616,648)
+[17:52:56.687] INFO  [n10_Halric] [bot] planning path to (2616,648) in background
+[17:52:56.749] INFO  [n10_Halric] [bot] replan to (2616,648): 47 steps in 12414.2us
+[17:52:58.856] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:53:03.902] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:53:08.912] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:53:13.962] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:53:14.148] INFO  [n10_Halric] [bot] arrived at (2616,648,0)
+[17:53:14.148] INFO  [n10_Halric] [action] goto finished at (2616,648,0); target (2616,648); ARRIVED (off by 0 tile(s))
+[17:53:14.148] LOG   [n10_Halric] event goto_done: at=(2616,648) target=(2616,648) arrived=1 off=0
+[17:53:14.148] INFO  [n10_Halric] [action] goto (2584,616) from (2616,648,0)
+[17:53:14.148] LOG   [n10_Halric] event goto_start: target=(2584,616) from=(2616,648)
+[17:53:14.148] INFO  [n10_Halric] [bot] running from (2616,648,0) to (2584,616)
+[17:53:14.148] INFO  [n10_Halric] [bot] planning path to (2584,616) in background
+[17:53:14.207] INFO  [n10_Halric] [bot] replan to (2584,616): 48 steps in 19172.4us
+[17:53:18.999] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:53:21.449] INFO  [n10_Halric] [chat ascii] System: You are now under the protection of the town guards
+[17:53:22.449] INFO  [life] goal_changed=TRAIN_AT_NPC from=TRAIN_AT_NPC reason="previous goal abandoned: ran 300s without finishing (limit 300s)"
+[17:53:22.449] INFO  [life] needs considered: NeedMakeBandages(bandages BLOCKED 0.53) NeedEquipment(bandages BLOCKED 0.50) NeedSkillTraining(skill 5 0.45) NeedTraining(skill 5 0.37) NeedTraining(Tactics 0.34) NeedTraining(skill 41 0.28) NeedTraining(Anatomy 0.28) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[17:53:22.449] INFO  [life]   score=90.0
+[17:53:22.449] INFO  [life]   reason: NeedSkillTraining urgency 0.45 x 200 = 90.0
+[17:53:22.449] INFO  [life]   reason: skill 5 13.5 -> 100.0, gold 9650 (fee is quoted on arrival, roughly 300)
+[17:53:22.449] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=3 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[17:53:22.449] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 3/8 gold 9650 (buyable at 200))
+[17:53:24.059] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:53:29.070] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:53:29.892] INFO  [n10_Halric] [bot] arrived at (2584,616,0)
+[17:53:29.893] INFO  [n10_Halric] [action] goto finished at (2584,616,0); target (2584,616); ARRIVED (off by 0 tile(s))
+[17:53:29.893] LOG   [n10_Halric] event goto_done: at=(2584,616) target=(2584,616) arrived=1 off=0
+[17:53:29.893] INFO  [n10_Halric] [action] goto (2552,584) from (2584,616,0)
+[17:53:29.893] LOG   [n10_Halric] event goto_start: target=(2552,584) from=(2584,616)
+[17:53:29.893] INFO  [n10_Halric] [bot] running from (2584,616,0) to (2552,584)
+[17:53:29.893] INFO  [n10_Halric] [bot] planning path to (2552,584) in background
+[17:53:29.953] INFO  [n10_Halric] [bot] replan to (2552,584): 46 steps in 41867.1us
+[17:53:34.125] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:53:34.266] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew04.halric/state.json
+[17:53:39.176] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:53:39.376] INFO  [n10_Halric] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=15 in 383.8us
+[17:53:44.232] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:53:45.596] INFO  [n10_Halric] [bot] arrived at (2552,584,0)
+[17:53:45.596] INFO  [n10_Halric] [action] goto finished at (2552,584,0); target (2552,584); ARRIVED (off by 0 tile(s))
+[17:53:45.596] LOG   [n10_Halric] event goto_done: at=(2552,584) target=(2552,584) arrived=1 off=0
+[17:53:45.596] INFO  [n10_Halric] [action] goto (2533,572) from (2552,584,0)
+[17:53:45.596] LOG   [n10_Halric] event goto_start: target=(2533,572) from=(2552,584)
+[17:53:45.596] INFO  [n10_Halric] [bot] running from (2552,584,0) to (2533,572,z0)
+[17:53:45.597] INFO  [n10_Halric] [bot] planning path to (2533,572) in background
+[17:53:45.658] INFO  [n10_Halric] [bot] replan to (2533,572): 41 steps in 14763.2us
+[17:53:49.277] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:53:54.319] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:53:55.620] INFO  [n10_Halric] [bot] door ahead at (2527,577,z0); OpenDoor before step
+[17:53:55.635] INFO  [n10_Halric] [chat ascii] System: Opening door...
+[17:53:55.635] INFO  [n10_Halric] [0x20] player @(2526,578,0) facing=1
+[17:53:55.635] INFO  [n10_Halric] [action] goto finished at (2526,578,0); target (2533,572); stopped short (off by 13 tile(s))
+[17:53:55.635] LOG   [n10_Halric] event goto_done: at=(2526,578) target=(2533,572) arrived=0 off=13
+[17:53:56.873] INFO  [n10_Halric] [action] goto (2533,572) from (2526,578,0)
+[17:53:56.873] LOG   [n10_Halric] event goto_start: target=(2533,572) from=(2526,578)
+[17:53:56.873] INFO  [n10_Halric] [bot] running from (2526,578,0) to (2533,572,z0)
+[17:53:56.873] INFO  [n10_Halric] [bot] planning path to (2533,572) in background
+[17:53:56.934] INFO  [n10_Halric] [bot] replan to (2533,572): 9 steps in 175.3us
+[17:53:58.537] INFO  [n10_Halric] [travel] Minoc armorer ARRIVED at (2528,575,0)
+[17:53:58.537] LOG   [n10_Halric] event travel_done: label='Minoc armorer' ok=1 at=(2528,575) legs=14 plans=1 why=''
+[17:53:58.597] INFO  [life] goal_failed=TRAIN_AT_NPC reason="no 'armorer' reachable after 3 trips"
+[17:53:58.598] INFO  [life] goal=GET_FOOD reason="previous goal abandoned: no trainer reachable"
+[17:53:58.598] INFO  [life] needs considered: NeedMakeBandages(bandages BLOCKED 0.53) NeedEquipment(bandages BLOCKED 0.50) NeedSkillTraining(skill 5 0.45) NeedTraining(skill 5 0.37) NeedTraining(Tactics 0.34) NeedTraining(skill 41 0.28) NeedTraining(Anatomy 0.28) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[17:53:58.598] INFO  [life]   score=62.5
+[17:53:58.598] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[17:53:58.598] INFO  [life]   reason: food=0
+[17:53:58.598] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=3 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[17:53:58.598] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: on cooldown for another 179s after achieving nothing
+[17:53:58.598] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 3/8 gold 9650 (buyable at 200))
+[17:53:59.349] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:54:00.501] INFO  [n10_Halric] [bot] arrived at (2533,572,0)
+[17:54:03.642] INFO  [life] food: looking for a baker (trip 3)
+[17:54:03.643] INFO  [n10_Halric] [travel] Vesper baker -> (2998,760) r=5 from (2533,572)
+[17:54:03.643] LOG   [n10_Halric] event travel_start: label='Vesper baker' target=(2998,760) radius=5 from=(2533,572)
+[17:54:03.643] INFO  [n10_Halric] [travel] mode moongate         usable   <- chosen
+[17:54:03.643] INFO  [n10_Halric] [travel] mode walk             usable
+[17:54:03.643] INFO  [n10_Halric] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:54:03.643] INFO  [n10_Halric] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:54:03.643] LOG   [n10_Halric] event travel_mode: moongate
+[17:54:03.650] INFO  [n10_Halric] [travel] plan Vesper baker: no world route to the destination legs=0 ~0 tiles transit=0 nodes=25431
+[17:54:03.650] INFO  [n10_Halric] [action] goto finished at (2533,572,0); target (2533,572); ARRIVED (off by 0 tile(s))
+[17:54:03.650] LOG   [n10_Halric] event goto_done: at=(2533,572) target=(2533,572) arrived=1 off=0
+[17:54:03.650] LOG   [n10_Halric] event travel_escape: from=(2533,572,0) to=(2536,584) attempt=1
+[17:54:03.650] INFO  [n10_Halric] [action] goto (2536,584) from (2533,572,0)
+[17:54:03.650] LOG   [n10_Halric] event goto_start: target=(2536,584) from=(2533,572)
+[17:54:03.650] INFO  [n10_Halric] [bot] running from (2533,572,0) to (2536,584,z0)
+[17:54:03.650] INFO  [n10_Halric] [bot] planning path to (2536,584) in background
+[17:54:03.704] INFO  [n10_Halric] [bot] replan to (2536,584): 12 steps in 899.4us
+[17:54:04.352] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:54:04.814] INFO  [n10_Halric] [bot] door ahead at (2534,577,z0); OpenDoor before step
+[17:54:04.814] INFO  [n10_Halric] [chat ascii] System: Opening door...
+[17:54:07.861] INFO  [n10_Halric] [bot] arrived at (2536,584,0)
+[17:54:07.861] INFO  [n10_Halric] [action] goto finished at (2536,584,0); target (2536,584); ARRIVED (off by 0 tile(s))
+[17:54:07.861] LOG   [n10_Halric] event goto_done: at=(2536,584) target=(2536,584) arrived=1 off=0
+[17:54:07.861] INFO  [n10_Halric] [travel] recovery walk reached its anchor at (2536,584,0) (off 0); attempt 1/3
+[17:54:07.861] LOG   [n10_Halric] event travel_recovery_done: reached=1 at=(2536,584,0) off=0 attempt=1
+[17:54:07.922] INFO  [n10_Halric] [travel] mode moongate         usable   <- chosen
+[17:54:07.922] INFO  [n10_Halric] [travel] mode walk             usable
+[17:54:07.922] INFO  [n10_Halric] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:54:07.922] INFO  [n10_Halric] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:54:07.922] LOG   [n10_Halric] event travel_mode: moongate
+[17:54:07.931] INFO  [n10_Halric] [travel] plan Vesper baker: no world route to the destination legs=0 ~0 tiles transit=0 nodes=25431
+[17:54:07.931] LOG   [n10_Halric] event travel_escape: from=(2536,584,0) to=(2520,568) attempt=2
+[17:54:07.931] INFO  [n10_Halric] [action] goto (2520,568) from (2536,584,0)
+[17:54:07.931] LOG   [n10_Halric] event goto_start: target=(2520,568) from=(2536,584)
+[17:54:07.931] INFO  [n10_Halric] [bot] running from (2536,584,0) to (2520,568,z0)
+[17:54:07.931] INFO  [n10_Halric] [bot] planning path to (2520,568) in background
+[17:54:07.984] INFO  [n10_Halric] [bot] replan to (2520,568): 35 steps in 3012.1us
+[17:54:09.370] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:54:13.838] INFO  [n10_Halric] [bot] door ahead at (2526,578,z0); OpenDoor before step
+[17:54:13.853] INFO  [n10_Halric] [chat ascii] System: Opening door...
+[17:54:14.408] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:54:18.747] INFO  [n10_Halric] [bot] arrived at (2520,568,0)
+[17:54:18.747] INFO  [n10_Halric] [action] goto finished at (2520,568,0); target (2520,568); ARRIVED (off by 0 tile(s))
+[17:54:18.747] LOG   [n10_Halric] event goto_done: at=(2520,568) target=(2520,568) arrived=1 off=0
+[17:54:18.747] INFO  [n10_Halric] [travel] recovery walk reached its anchor at (2520,568,0) (off 0); attempt 2/3
+[17:54:18.747] LOG   [n10_Halric] event travel_recovery_done: reached=1 at=(2520,568,0) off=0 attempt=2
+[17:54:18.808] INFO  [n10_Halric] [travel] mode moongate         usable   <- chosen
+[17:54:18.808] INFO  [n10_Halric] [travel] mode walk             usable
+[17:54:18.808] INFO  [n10_Halric] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:54:18.808] INFO  [n10_Halric] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:54:18.808] LOG   [n10_Halric] event travel_mode: moongate
+[17:54:18.815] INFO  [n10_Halric] [travel] plan Vesper baker: no world route to the destination legs=0 ~0 tiles transit=0 nodes=25431
+[17:54:18.815] LOG   [n10_Halric] event travel_escape: from=(2520,568,0) to=(2504,552) attempt=3
+[17:54:18.815] INFO  [n10_Halric] [action] goto (2504,552) from (2520,568,0)
+[17:54:18.815] LOG   [n10_Halric] event goto_start: target=(2504,552) from=(2520,568)
+[17:54:18.815] INFO  [n10_Halric] [bot] running from (2520,568,0) to (2504,552,z0)
+[17:54:18.815] INFO  [n10_Halric] [bot] planning path to (2504,552) in background
+[17:54:18.869] INFO  [n10_Halric] [bot] replan to (2504,552): 24 steps in 3591.3us
+[17:54:19.410] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:54:23.173] INFO  [n10_Halric] [bot] door ahead at (2504,559,z0); OpenDoor before step
+[17:54:23.173] INFO  [n10_Halric] [chat ascii] System: Opening door...
+[17:54:24.435] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:54:25.728] INFO  [n10_Halric] [bot] arrived at (2504,552,0)
+[17:54:25.728] INFO  [n10_Halric] [action] goto finished at (2504,552,0); target (2504,552); ARRIVED (off by 0 tile(s))
+[17:54:25.728] LOG   [n10_Halric] event goto_done: at=(2504,552) target=(2504,552) arrived=1 off=0
+[17:54:25.728] INFO  [n10_Halric] [travel] recovery walk reached its anchor at (2504,552,0) (off 0); attempt 3/3
+[17:54:25.728] LOG   [n10_Halric] event travel_recovery_done: reached=1 at=(2504,552,0) off=0 attempt=3
+[17:54:25.788] INFO  [n10_Halric] [travel] mode moongate         usable   <- chosen
+[17:54:25.788] INFO  [n10_Halric] [travel] mode walk             usable
+[17:54:25.788] INFO  [n10_Halric] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:54:25.788] INFO  [n10_Halric] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:54:25.788] LOG   [n10_Halric] event travel_mode: moongate
+[17:54:25.797] INFO  [n10_Halric] [travel] plan Vesper baker: no world route to the destination legs=0 ~0 tiles transit=0 nodes=25431
+[17:54:25.798] INFO  [n10_Halric] [travel] Vesper baker FAILED at (2504,552,0) -- no world route to the destination
+[17:54:25.798] LOG   [n10_Halric] event travel_failed: label='Vesper baker' ok=0 at=(2504,552) legs=0 plans=1 why='no world route to the destination'
+[17:54:25.850] INFO  [n10_Halric] [action] scanning nearby mobiles for names
+[17:54:25.850] INFO  [n10_Halric] [action] requested 2 paperdoll(s) for trade titles
+[17:54:25.866] INFO  [n10_Halric] [mobiles] nearby (4):
+[17:54:25.866] INFO  [n10_Halric]   Jarvinia 0x000096B1
+[17:54:25.866] INFO  [n10_Halric]   Aolani 0x0000965E
+[17:54:25.866] INFO  [n10_Halric]   Dog 0x0000A005
+[17:54:25.866] INFO  [n10_Halric]   Colton 0x00009652
+[17:54:25.866] INFO  [n10_Halric] [0x20] player @(2504,552,0) facing=7
+[17:54:25.866] INFO  [n10_Halric] [0x88] paperdoll 0x000096B1: "Jarvinia, the banker"
+[17:54:25.866] INFO  [n10_Halric] [world] Jarvinia, the banker is a banker at (2502,550)
+[17:54:25.866] INFO  [n10_Halric] [0x20] player @(2504,552,0) facing=0
+[17:54:25.866] INFO  [n10_Halric] [0x88] paperdoll 0x0000965E: "Aolani, the minter"
+[17:54:25.866] INFO  [n10_Halric] [world] Aolani, the minter is a banker at (2506,547)
+[17:54:27.176] INFO  [n10_Halric] [chat ascii] Aolani: Hmm?
+[17:54:28.407] INFO  [life] goal_failed=GET_FOOD reason="3 trips and no baker or provisioner in reach"
+[17:54:28.468] INFO  [life] goal=TRAIN_COMBAT reason="previous goal abandoned: no food seller reachable"
+[17:54:28.468] INFO  [life] needs considered: NeedMakeBandages(bandages BLOCKED 0.53) NeedEquipment(bandages BLOCKED 0.50) NeedSkillTraining(skill 5 0.45) NeedTraining(skill 5 0.37) NeedTraining(Tactics 0.34) NeedTraining(skill 41 0.28) NeedTraining(Anatomy 0.28) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[17:54:28.468] INFO  [life]   score=40.3
+[17:54:28.468] INFO  [life]   reason: NeedTraining urgency 0.37 x 110 = 40.3
+[17:54:28.468] INFO  [life]   reason: skill 5 13.5 -> 100.0
+[17:54:28.468] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=3 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[17:54:28.468] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 179s after achieving nothing
+[17:54:28.468] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: on cooldown for another 150s after achieving nothing
+[17:54:28.468] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 3/8 gold 9650 (buyable at 200))
+[17:54:29.470] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:54:33.429] INFO  [life] hunt: no fight in reach -- going to the nearest graveyard (trip 1)
+[17:54:33.429] INFO  [n10_Halric] [travel] Vesper Cemetary -> (2781,867) r=8 from (2504,552)
+[17:54:33.429] LOG   [n10_Halric] event travel_start: label='Vesper Cemetary' target=(2781,867) radius=8 from=(2504,552)
+[17:54:33.429] INFO  [n10_Halric] [travel] mode moongate         usable   <- chosen
+[17:54:33.429] INFO  [n10_Halric] [travel] mode walk             usable
+[17:54:33.429] INFO  [n10_Halric] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:54:33.429] INFO  [n10_Halric] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:54:33.429] LOG   [n10_Halric] event travel_mode: moongate
+[17:54:33.429] INFO  [n10_Halric] [travel] plan Vesper Cemetary: ok legs=11 ~480 tiles transit=0 nodes=295
+[17:54:33.490] INFO  [n10_Halric] [action] goto (2520,584) from (2504,552,0)
+[17:54:33.490] LOG   [n10_Halric] event goto_start: target=(2520,584) from=(2504,552)
+[17:54:33.490] INFO  [n10_Halric] [bot] running from (2504,552,0) to (2520,584)
+[17:54:33.490] INFO  [n10_Halric] [bot] planning path to (2520,584) in background
+[17:54:33.550] INFO  [n10_Halric] [bot] replan to (2520,584): 40 steps in 5992.8us
+[17:54:34.293] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew04.halric/state.json
+[17:54:34.474] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:54:35.996] INFO  [n10_Halric] [bot] step (2504,560,0)->(2505,561,0) rejected; OpenDoor + retry
+[17:54:35.997] INFO  [n10_Halric] [chat ascii] System: Opening door...
+[17:54:35.997] INFO  [n10_Halric] [0x20] player @(2504,560,0) facing=2
+[17:54:35.997] INFO  [n10_Halric] [action] goto finished at (2504,560,0); target (2520,584); stopped short (off by 40 tile(s))
+[17:54:35.997] LOG   [n10_Halric] event goto_done: at=(2504,560) target=(2520,584) arrived=0 off=40
+[17:54:37.215] INFO  [n10_Halric] [action] goto (2520,584) from (2504,560,0)
+[17:54:37.215] LOG   [n10_Halric] event goto_start: target=(2520,584) from=(2504,560)
+[17:54:37.215] INFO  [n10_Halric] [bot] running from (2504,560,0) to (2520,584)
+[17:54:37.215] INFO  [n10_Halric] [bot] planning path to (2520,584) in background
+[17:54:37.277] INFO  [n10_Halric] [bot] replan to (2520,584): 32 steps in 3542.0us
+[17:54:39.500] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:54:44.507] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:54:46.992] INFO  [n10_Halric] [bot] arrived at (2520,584,5)
+[17:54:46.993] INFO  [n10_Halric] [action] goto finished at (2520,584,5); target (2520,584); ARRIVED (off by 0 tile(s))
+[17:54:46.993] LOG   [n10_Halric] event goto_done: at=(2520,584) target=(2520,584) arrived=1 off=0
+[17:54:46.993] INFO  [n10_Halric] [action] goto (2552,616) from (2520,584,5)
+[17:54:46.993] LOG   [n10_Halric] event goto_start: target=(2552,616) from=(2520,584)
+[17:54:46.993] INFO  [n10_Halric] [bot] running from (2520,584,5) to (2552,616)
+[17:54:46.993] INFO  [n10_Halric] [bot] planning path to (2552,616) in background
+[17:54:47.054] INFO  [n10_Halric] [bot] replan to (2552,616): 45 steps in 21201.1us
+[17:54:47.423] INFO  [n10_Halric] [chat ascii] System: World save in 10 seconds
+[17:54:49.512] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:54:54.513] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:54:57.451] INFO  [n10_Halric] [chat ascii] System: World save has been initiated.
+[17:54:59.530] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:55:00.023] INFO  [n10_Halric] [bot] step (2552,611,0)->(2551,612,0) rejected; OpenDoor + retry
+[17:55:00.776] INFO  [n10_Halric] [bot] step (2552,611,0)->(2551,612,0) rejected; avoiding edge + rerouting
+[17:55:00.776] INFO  [n10_Halric] [bot] planning path to (2552,616) in background
+[17:55:00.836] INFO  [n10_Halric] [bot] replan to (2552,616): 9 steps in 845.4us
+[17:55:02.973] INFO  [life] session_end_requested reason="session time limit reached"
+[17:55:04.583] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:55:04.645] INFO  [n10_Halric] [bot] arrived at (2552,616,0)
+[17:55:04.645] INFO  [n10_Halric] [action] goto finished at (2552,616,0); target (2552,616); ARRIVED (off by 0 tile(s))
+[17:55:04.645] LOG   [n10_Halric] event goto_done: at=(2552,616) target=(2552,616) arrived=1 off=0
+[17:55:04.645] INFO  [n10_Halric] [action] goto (2584,648) from (2552,616,0)
+[17:55:04.645] LOG   [n10_Halric] event goto_start: target=(2584,648) from=(2552,616)
+[17:55:04.645] INFO  [n10_Halric] [bot] running from (2552,616,0) to (2584,648)
+[17:55:04.645] INFO  [n10_Halric] [bot] planning path to (2584,648) in background
+[17:55:04.706] INFO  [n10_Halric] [bot] replan to (2584,648): 41 steps in 17462.4us
+[17:55:09.267] INFO  [n10_Halric] [chat ascii] System: You have left the protection of the town guards
+[17:55:09.635] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:55:11.070] INFO  [n10_Halric] [chat ascii] System: Wystan has departed from Britain.
+[17:55:14.676] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:55:17.291] INFO  [n10_Halric] [chat ascii] System: You are now under the protection of the town guards
+[17:55:18.186] INFO  [n10_Halric] [chat ascii] System: You have left the protection of the town guards
+[17:55:18.186] INFO  [n10_Halric] [bot] arrived at (2584,648,0)
+[17:55:18.186] INFO  [n10_Halric] [action] goto finished at (2584,648,0); target (2584,648); ARRIVED (off by 0 tile(s))
+[17:55:18.186] LOG   [n10_Halric] event goto_done: at=(2584,648) target=(2584,648) arrived=1 off=0
+[17:55:18.186] INFO  [n10_Halric] [action] goto (2616,680) from (2584,648,0)
+[17:55:18.186] LOG   [n10_Halric] event goto_start: target=(2616,680) from=(2584,648)
+[17:55:18.186] INFO  [n10_Halric] [bot] running from (2584,648,0) to (2616,680)
+[17:55:18.186] INFO  [n10_Halric] [bot] planning path to (2616,680) in background
+[17:55:18.246] INFO  [n10_Halric] [bot] replan to (2616,680): 38 steps in 15632.9us
+[17:55:19.698] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:55:24.741] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:55:29.767] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:55:30.137] INFO  [n10_Halric] [bot] arrived at (2616,680,0)
+[17:55:30.138] INFO  [n10_Halric] [action] goto finished at (2616,680,0); target (2616,680); ARRIVED (off by 0 tile(s))
+[17:55:30.138] LOG   [n10_Halric] event goto_done: at=(2616,680) target=(2616,680) arrived=1 off=0
+[17:55:30.138] INFO  [n10_Halric] [action] goto (2648,712) from (2616,680,0)
+[17:55:30.138] LOG   [n10_Halric] event goto_start: target=(2648,712) from=(2616,680)
+[17:55:30.138] INFO  [n10_Halric] [bot] running from (2616,680,0) to (2648,712)
+[17:55:30.138] INFO  [n10_Halric] [bot] planning path to (2648,712) in background
+[17:55:30.199] INFO  [n10_Halric] [bot] replan to (2648,712): 41 steps in 5035.8us
+[17:55:34.828] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:55:38.986] INFO  [n10_Halric] [bot] step (2634,701,0)->(2635,702,0) rejected; OpenDoor + retry
+[17:55:39.723] INFO  [n10_Halric] [bot] step (2634,701,0)->(2635,702,0) rejected; avoiding edge + rerouting
+[17:55:39.723] INFO  [n10_Halric] [bot] planning path to (2648,712) in background
+[17:55:39.786] INFO  [n10_Halric] [bot] replan to (2648,712): 19 steps in 691.0us
+[17:55:39.846] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:55:44.857] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:55:46.231] INFO  [n10_Halric] [bot] arrived at (2648,712,0)
+[17:55:46.231] INFO  [n10_Halric] [action] goto finished at (2648,712,0); target (2648,712); ARRIVED (off by 0 tile(s))
+[17:55:46.231] LOG   [n10_Halric] event goto_done: at=(2648,712) target=(2648,712) arrived=1 off=0
+[17:55:46.231] INFO  [n10_Halric] [action] goto (2680,742) from (2648,712,0)
+[17:55:46.231] LOG   [n10_Halric] event goto_start: target=(2680,742) from=(2648,712)
+[17:55:46.231] INFO  [n10_Halric] [bot] running from (2648,712,0) to (2680,742)
+[17:55:46.231] INFO  [n10_Halric] [bot] planning path to (2680,742) in background
+[17:55:46.292] INFO  [n10_Halric] [bot] replan to (2680,742): 44 steps in 18578.0us
+[17:55:49.885] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:55:54.915] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:55:59.928] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:56:01.419] INFO  [n10_Halric] [bot] arrived at (2680,742,0)
+[17:56:01.419] INFO  [n10_Halric] [action] goto finished at (2680,742,0); target (2680,742); ARRIVED (off by 0 tile(s))
+[17:56:01.419] LOG   [n10_Halric] event goto_done: at=(2680,742) target=(2680,742) arrived=1 off=0
+[17:56:01.419] INFO  [n10_Halric] [action] goto (2712,776) from (2680,742,0)
+[17:56:01.419] LOG   [n10_Halric] event goto_start: target=(2712,776) from=(2680,742)
+[17:56:01.419] INFO  [n10_Halric] [bot] running from (2680,742,0) to (2712,776)
+[17:56:01.419] INFO  [n10_Halric] [bot] planning path to (2712,776) in background
+[17:56:01.481] INFO  [n10_Halric] [bot] replan to (2712,776): 49 steps in 22543.4us
+[17:56:03.098] INFO  [n10_Halric] [chat ascii] System: Thessaly has departed from Britain.
+[17:56:04.939] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:56:09.981] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:56:10.119] INFO  [n10_Halric] [chat ascii] System: Maribel has departed from Britain.
+[17:56:15.039] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:56:18.055] INFO  [n10_Halric] [bot] arrived at (2712,776,0)
+[17:56:18.055] INFO  [n10_Halric] [action] goto finished at (2712,776,0); target (2712,776); ARRIVED (off by 0 tile(s))
+[17:56:18.055] LOG   [n10_Halric] event goto_done: at=(2712,776) target=(2712,776) arrived=1 off=0
+[17:56:18.055] INFO  [n10_Halric] [action] goto (2744,808) from (2712,776,0)
+[17:56:18.055] LOG   [n10_Halric] event goto_start: target=(2744,808) from=(2712,776)
+[17:56:18.055] INFO  [n10_Halric] [bot] running from (2712,776,0) to (2744,808)
+[17:56:18.055] INFO  [n10_Halric] [bot] planning path to (2744,808) in background
+[17:56:18.116] INFO  [n10_Halric] [bot] replan to (2744,808): 41 steps in 20418.4us
+[17:56:20.083] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:56:25.087] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:56:30.096] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:56:31.697] INFO  [n10_Halric] [bot] arrived at (2744,808,0)
+[17:56:31.697] INFO  [n10_Halric] [action] goto finished at (2744,808,0); target (2744,808); ARRIVED (off by 0 tile(s))
+[17:56:31.697] LOG   [n10_Halric] event goto_done: at=(2744,808) target=(2744,808) arrived=1 off=0
+[17:56:31.697] INFO  [n10_Halric] [action] goto (2776,824) from (2744,808,0)
+[17:56:31.697] LOG   [n10_Halric] event goto_start: target=(2776,824) from=(2744,808)
+[17:56:31.697] INFO  [n10_Halric] [bot] running from (2744,808,0) to (2776,824)
+[17:56:31.697] INFO  [n10_Halric] [bot] planning path to (2776,824) in background
+[17:56:31.758] INFO  [n10_Halric] [bot] replan to (2776,824): 35 steps in 24781.3us
+[17:56:35.096] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:56:40.145] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:56:43.800] INFO  [n10_Halric] [bot] arrived at (2776,824,0)
+[17:56:43.800] INFO  [n10_Halric] [action] goto finished at (2776,824,0); target (2776,824); ARRIVED (off by 0 tile(s))
+[17:56:43.800] LOG   [n10_Halric] event goto_done: at=(2776,824) target=(2776,824) arrived=1 off=0
+[17:56:43.800] INFO  [n10_Halric] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:56:43.800] INFO  [n10_Halric] [action] goto (2792,856) from (2776,824,0)
+[17:56:43.800] LOG   [n10_Halric] event goto_start: target=(2792,856) from=(2776,824)
+[17:56:43.800] INFO  [n10_Halric] [bot] running from (2776,824,0) to (2792,856)
+[17:56:43.800] INFO  [n10_Halric] [bot] planning path to (2792,856) in background
+[17:56:43.860] INFO  [n10_Halric] [bot] replan to (2792,856): 43 steps in 20101.0us
+[17:56:45.181] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:56:50.183] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:56:54.784] INFO  [n10_Halric] [chat ascii] System: Cassia has departed from Britain.
+[17:56:55.230] INFO  [n10_Halric] [survival] hp 48/48 (100%) -> fight
+[17:56:56.469] INFO  [n10_Halric] [bot] arrived at (2792,856,0)
+[17:56:56.469] INFO  [n10_Halric] [action] goto finished at (2792,856,0); target (2792,856); ARRIVED (off by 0 tile(s))
+[17:56:56.469] LOG   [n10_Halric] event goto_done: at=(2792,856) target=(2792,856) arrived=1 off=0
+[17:56:56.469] INFO  [n10_Halric] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:56:56.469] INFO  [n10_Halric] [action] goto (2781,867) from (2792,856,0)
+[17:56:56.469] LOG   [n10_Halric] event goto_start: target=(2781,867) from=(2792,856)
+[17:56:56.469] INFO  [n10_Halric] [bot] running from (2792,856,0) to (2781,867,z0)
+[17:56:56.469] INFO  [n10_Halric] [bot] planning path to (2781,867) in background
+[17:56:56.530] INFO  [n10_Halric] [bot] replan to (2781,867): 17 steps in 1084.9us
+[17:56:59.534] INFO  [n10_Halric] [travel] Vesper Cemetary ARRIVED at (2789,865,0)
+[17:56:59.534] LOG   [n10_Halric] event travel_done: label='Vesper Cemetary' ok=1 at=(2789,865) legs=11 plans=1 why=''
+[17:56:59.597] INFO  [life] wind-down: arrived somewhere safe at 2789,865
+[17:56:59.657] INFO  [life] session_summary duration=1616s goals=2/10 gold=9850->9650 skills=159.7->179.7 logs=+0 deaths=0 places=2 suppliers=0
+[17:56:59.658] INFO  [life] session_goals families=3 picks=10 top=70% varied=0 | emergency=1(10%) upkeep=2(20%) training=7(70%) | SURVIVE=1(10%) TRAIN_COMBAT=1(10%) TRAIN_AT_NPC=6(60%) GET_FOOD=2(20%)
+[17:56:59.660] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew04.halric/state.json
+[17:56:59.660] INFO  [life] logging out
+[17:56:59.660] INFO  [n10_Halric] [action] logout requested
+[17:56:59.660] LOG   [n10_Halric] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[17:56:59.672] INFO  [n10_Halric] [0xD1] logout acknowledged (accepted=1)
+[17:56:59.672] LOG   [n10_Halric] event logout_ack: accepted
+[17:56:59.672] INFO  [n10_Halric] [net] closing connection (logout acknowledged)
+[17:56:59.672] LOG   [n10_Halric] event logout_complete: acked

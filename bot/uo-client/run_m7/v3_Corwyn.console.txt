@@ -1,0 +1,1457 @@
+[15:03:34.717] INFO  session 0: 127.0.0.1:2593 user='reva01' char=Corwyn tag='v3_Corwyn'
+[15:03:34.719] LOG   [v3_Corwyn] event session_start: text log opened
+[15:03:34.719] LOG   [v3_Corwyn] event net_connect_begin: connect 127.0.0.1:2593
+[15:03:34.719] INFO  [v3_Corwyn] [net] connecting to 127.0.0.1:2593 ...
+[15:03:34.720] LOG   [v3_Corwyn] event net_connected: connect 127.0.0.1:2593
+[15:03:34.720] INFO  [v3_Corwyn] [net] connected.
+[15:03:34.720] INFO  [v3_Corwyn] [seed] sent 0x7F000001 (plaintext)
+[15:03:34.720] LOG   [v3_Corwyn] event seed_out: 0x7F000001 hex=7f000001
+[15:03:34.721] INFO  [life] loaded persistent state for Corwyn (7 places, 4 suppliers, 26 events, 6 prior sessions)
+[15:03:34.721] INFO  [life] needs: reading 'miner_smith' from the profession catalogue
+[15:03:34.721] INFO  [life] build plan 'miner_smith': 300.0 resolved + 400.0 unresolved = 700.0/700.0, stats 100/45/80 = 225
+[15:03:34.721] INFO  [v3_Corwyn] [life] autonomous player active for 'Corwyn' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 10 min)
+[15:03:34.759] INFO  [v3_Corwyn] [0xA8] 1 server(s):
+[15:03:34.759] INFO  [v3_Corwyn]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[15:03:34.774] INFO  [v3_Corwyn] [0x8C] game server = 127.0.0.1:2593  seed=0x14CEE7D0
+[15:03:34.775] LOG   [v3_Corwyn] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x14CEE7D0
+[15:03:34.775] INFO  [v3_Corwyn] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[15:03:34.775] LOG   [v3_Corwyn] event relay_same_socket: no seed re-sent; 0x91 follows
+[15:03:34.775] INFO  [v3_Corwyn] [0xB9] server features = 0x0005
+[15:03:34.775] INFO  [v3_Corwyn] [0xA9] 5 slot(s) (populated 1):
+[15:03:34.775] INFO  [v3_Corwyn]   [0] Corwyn
+[15:03:34.775] INFO  [v3_Corwyn]   [1] <empty>
+[15:03:34.775] INFO  [v3_Corwyn]   [2] <empty>
+[15:03:34.775] INFO  [v3_Corwyn]   [3] <empty>
+[15:03:34.775] INFO  [v3_Corwyn]   [4] <empty>
+[15:03:34.775] INFO  [v3_Corwyn] [ui] playing slot 0 ('Corwyn')
+[15:03:34.790] INFO  [v3_Corwyn] [0x1B] serial=0x00014DDF body=0x0190 pos=(2503,553,0)
+[15:03:34.790] LOG   [v3_Corwyn] event login_confirm: serial=0x00014DDF body=0x0190 pos=(2503,553,0)
+[15:03:34.790] INFO  [v3_Corwyn] [0x20] player @(2503,553,0) facing=0
+[15:03:34.790] INFO  [v3_Corwyn] [0x55] login complete — entering world
+[15:03:34.790] LOG   [v3_Corwyn] event in_world: 0x55 received
+[15:03:34.790] INFO  [v3_Corwyn] [backpack] opening 0x40014DDB
+[15:03:34.790] INFO  [v3_Corwyn] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[15:03:34.790] INFO  [v3_Corwyn] [chat ascii] System: There is 1 other player here.
+[15:03:34.790] INFO  [v3_Corwyn] [chat ascii] System: Last logged: 2026/08/30 14:58:53
+[15:03:34.790] INFO  [v3_Corwyn] [chat ascii] System: You are under the protection of the town guards
+[15:03:34.793] INFO  [v3_Corwyn] [action] requesting the skill list
+[15:03:34.793] INFO  [life] in world; asked the server for the skill list
+[15:03:34.793] INFO  [v3_Corwyn] [0x24] open container 0x40014DDB gump=60
+[15:03:34.793] INFO  [v3_Corwyn] [0x3C] container contents: 20 item(s)
+[15:03:34.793] LOG   [v3_Corwyn] event backpack_contents: serial=0x40014DDB items=20
+[15:03:37.377] INFO  [v3_Corwyn] [bot] world data loaded (0 blacklisted spot(s)).
+[15:03:37.378] INFO  [life] reconciliation: resuming a life, 0 field(s) differed
+[15:03:37.378] INFO  [life]   gold         persisted=9294       server=9294       -> server value accepted
+[15:03:37.378] INFO  [life]   str          persisted=56         server=56         -> server value accepted
+[15:03:37.378] INFO  [life]   dex          persisted=16         server=16         -> server value accepted
+[15:03:37.378] INFO  [life]   int          persisted=8          server=8          -> server value accepted
+[15:03:37.378] INFO  [life]   skill_7      persisted=50.5       server=50.5       -> server value accepted
+[15:03:37.378] INFO  [life]   skill_45     persisted=51.2       server=51.2       -> server value accepted
+[15:03:37.378] INFO  [life]   skill_37     persisted=19.9       server=19.9       -> server value accepted
+[15:03:37.378] INFO  [life]   skill_4      persisted=19.3       server=19.3       -> server value accepted
+[15:03:37.378] INFO  [life]   position     persisted=2503,553   server=2503,553   -> server value accepted
+[15:03:37.378] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[15:03:37.378] INFO  [life]   restored objective KEPT: EARN_GOLD (progress 0)
+[15:03:37.378] INFO  [v3_Corwyn] [survival] on
+[15:03:37.378] LOG   [v3_Corwyn] event survival_mode: on
+[15:03:37.380] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/reva01.corwyn/state.json
+[15:03:37.380] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:03:37.432] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- going to fetch it (trip 1)
+[15:03:37.432] INFO  [v3_Corwyn] [travel] bank -> (2502,552) r=2 from (2503,553)
+[15:03:37.432] LOG   [v3_Corwyn] event travel_start: label='bank' target=(2502,552) radius=2 from=(2503,553)
+[15:03:37.432] INFO  [v3_Corwyn] [travel] bank ARRIVED at (2503,553,0)
+[15:03:37.432] LOG   [v3_Corwyn] event travel_done: label='bank' ok=1 at=(2503,553) legs=0 plans=0 why=''
+[15:03:39.452] INFO  [v3_Corwyn] [action] scanning nearby mobiles for names
+[15:03:39.453] INFO  [v3_Corwyn] [action] requested 3 paperdoll(s) for trade titles
+[15:03:39.468] INFO  [v3_Corwyn] [mobiles] nearby (4):
+[15:03:39.468] INFO  [v3_Corwyn]   Aolani 0x0000965E
+[15:03:39.468] INFO  [v3_Corwyn]   Jarvinia 0x000096B1
+[15:03:39.468] INFO  [v3_Corwyn]   Observer 0x0000063C
+[15:03:39.468] INFO  [v3_Corwyn]   Dog 0x000096C3
+[15:03:39.468] INFO  [v3_Corwyn] [0x20] player @(2503,553,0) facing=7
+[15:03:39.468] INFO  [v3_Corwyn] [0x88] paperdoll 0x000096B1: "Jarvinia, the banker"
+[15:03:39.468] INFO  [v3_Corwyn] [world] Jarvinia, the banker is a banker at (2499,547)
+[15:03:39.468] INFO  [v3_Corwyn] [0x20] player @(2503,553,0) facing=0
+[15:03:39.468] INFO  [v3_Corwyn] [0x88] paperdoll 0x0000965E: "Aolani, the minter"
+[15:03:39.468] INFO  [v3_Corwyn] [world] Aolani, the minter is a banker at (2501,548)
+[15:03:39.468] INFO  [v3_Corwyn] [0x20] player @(2503,553,0) facing=5
+[15:03:39.468] INFO  [v3_Corwyn] [0x88] paperdoll 0x0000063C: "The Eminent Owner Observer, Grandmaster Bladeweaver"
+[15:03:41.967] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:03:41.967] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:03:41.967] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x0000965E say='bank'
+[15:03:41.983] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:03:42.412] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:03:44.497] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:03:44.497] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2530ms superseded
+[15:03:44.497] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:03:44.497] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x0000965E say='bank'
+[15:03:44.498] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:03:47.056] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:03:47.056] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2558ms superseded
+[15:03:47.056] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:03:47.056] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x0000965E say='bank'
+[15:03:47.071] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:03:47.436] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:03:49.558] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:03:49.559] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2502ms superseded
+[15:03:49.559] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:03:49.559] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x0000965E say='bank'
+[15:03:49.559] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:03:52.100] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:03:52.101] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2542ms superseded
+[15:03:52.101] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:03:52.101] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x0000965E say='bank'
+[15:03:52.101] INFO  [v3_Corwyn] [chat ascii] System: World save in 10 seconds
+[15:03:52.101] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:03:52.466] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:03:54.611] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:03:54.611] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2510ms superseded
+[15:03:54.611] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:03:54.611] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x0000965E say='bank'
+[15:03:54.612] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:03:57.148] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:03:57.148] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2537ms superseded
+[15:03:57.148] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:03:57.148] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x0000965E say='bank'
+[15:03:57.164] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:03:57.412] INFO  [life] goal_changed=MINE from=EARN_GOLD reason="MINE 78.0 superseded EARN_GOLD 37.5"
+[15:03:57.412] INFO  [life] needs considered: NeedOre(ore 0.60) NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.25) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[15:03:57.412] INFO  [life]   score=78.0
+[15:03:57.412] INFO  [life]   reason: NeedOre urgency 0.60 x 130 = 78.0
+[15:03:57.412] INFO  [life]   reason: carrying 2 ore+ingots at_work_site=1
+[15:03:57.473] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:04:02.145] INFO  [v3_Corwyn] [chat ascii] System: World save has been initiated.
+[15:04:02.510] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:04:03.182] LOG   [v3_Corwyn] event action_result: open_bank timeout
+[15:04:03.243] INFO  [life] mine: the ore is 35 tiles off -- walking into the mining area first (trip 1)
+[15:04:03.243] INFO  [v3_Corwyn] [travel] Minoc Mine 1 -> (2558,499) r=20 from (2503,553)
+[15:04:03.243] LOG   [v3_Corwyn] event travel_start: label='Minoc Mine 1' target=(2558,499) radius=20 from=(2503,553)
+[15:04:03.243] INFO  [v3_Corwyn] [travel] mode walk             usable   <- chosen
+[15:04:03.244] INFO  [v3_Corwyn] [travel] mode moongate         usable
+[15:04:03.244] INFO  [v3_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:04:03.244] INFO  [v3_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:04:03.244] LOG   [v3_Corwyn] event travel_mode: walk
+[15:04:03.244] INFO  [v3_Corwyn] [travel] plan Minoc Mine 1: ok legs=2 ~80 tiles transit=0 nodes=13
+[15:04:03.303] INFO  [v3_Corwyn] [action] goto (2530,520) from (2503,553,0)
+[15:04:03.303] LOG   [v3_Corwyn] event goto_start: target=(2530,520) from=(2503,553)
+[15:04:03.303] INFO  [v3_Corwyn] [bot] running from (2503,553,0) to (2530,520)
+[15:04:03.303] INFO  [v3_Corwyn] [bot] planning path to (2530,520) in background
+[15:04:03.365] INFO  [v3_Corwyn] [bot] replan to (2530,520): 60 steps in 23216.5us
+[15:04:04.821] INFO  [v3_Corwyn] [bot] door ahead at (2504,559,z0); OpenDoor before step
+[15:04:04.821] INFO  [v3_Corwyn] [chat ascii] System: Opening door...
+[15:04:06.267] INFO  [v3_Corwyn] [bot] door ahead at (2505,560,z0); OpenDoor before step
+[15:04:06.267] INFO  [v3_Corwyn] [chat ascii] System: Opening door...
+[15:04:07.564] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:04:12.570] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:04:15.386] INFO  [v3_Corwyn] [bot] step (2523,536,0)->(2524,535,0) rejected; OpenDoor + retry
+[15:04:16.106] INFO  [v3_Corwyn] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=23 in 48.4us
+[15:04:17.593] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:04:22.604] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:04:23.512] INFO  [v3_Corwyn] [bot] step (2530,520,0)->(2531,519,0) rejected; OpenDoor + retry
+[15:04:24.259] INFO  [v3_Corwyn] [bot] step (2530,520,0)->(2531,519,0) rejected; avoiding edge + rerouting
+[15:04:24.260] INFO  [v3_Corwyn] [bot] planning path to (2530,520) in background
+[15:04:24.384] INFO  [v3_Corwyn] [action] goto finished at (2530,520,0); target (2530,520); ARRIVED (off by 0 tile(s))
+[15:04:24.384] LOG   [v3_Corwyn] event goto_done: at=(2530,520) target=(2530,520) arrived=1 off=0
+[15:04:24.384] INFO  [v3_Corwyn] [action] goto (2558,499) from (2530,520,0)
+[15:04:24.384] LOG   [v3_Corwyn] event goto_start: target=(2558,499) from=(2530,520)
+[15:04:24.384] INFO  [v3_Corwyn] [bot] running from (2530,520,0) to (2558,499)
+[15:04:24.384] INFO  [v3_Corwyn] [bot] planning path to (2558,499) in background
+[15:04:24.444] INFO  [v3_Corwyn] [bot] replan to (2558,499): 47 steps in 3191.0us
+[15:04:27.644] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:04:32.348] INFO  [v3_Corwyn] [travel] Minoc Mine 1 ARRIVED at (2539,502,31)
+[15:04:32.348] LOG   [v3_Corwyn] event travel_done: label='Minoc Mine 1' ok=1 at=(2539,502) legs=2 plans=1 why=''
+[15:04:32.654] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:04:36.626] INFO  [v3_Corwyn] [bot] step (2555,501,1)->(2556,500,0) rejected; OpenDoor + retry
+[15:04:37.381] INFO  [v3_Corwyn] [bot] step (2555,501,1)->(2556,500,0) rejected; avoiding edge + rerouting
+[15:04:37.381] INFO  [v3_Corwyn] [bot] planning path to (2558,499) in background
+[15:04:37.383] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/reva01.corwyn/state.json
+[15:04:37.383] INFO  [v3_Corwyn] [bot] replan to (2558,499): 4 steps in 43.2us
+[15:04:37.687] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:04:38.086] INFO  [v3_Corwyn] [chat ascii] System: You have left the protection of the guards
+[15:04:39.666] INFO  [v3_Corwyn] [bot] arrived at (2558,499,0)
+[15:04:39.666] INFO  [v3_Corwyn] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[15:04:39.666] LOG   [v3_Corwyn] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[15:04:39.666] INFO  [life] mine: striking the rock at 2557,500,0 (cave floor, 1 tiles)
+[15:04:39.666] INFO  [v3_Corwyn] [ACTION] use_object start
+[15:04:39.666] INFO  [v3_Corwyn] [ACTION] use_object serial=0x40014DC7
+[15:04:39.666] INFO  [v3_Corwyn] [chat ascii] System: Where do you want to use the pickaxe?
+[15:04:39.666] INFO  [v3_Corwyn] [0x6C] TARGET requested id=0x000002CE type=ground subtype=1 gen=1
+[15:04:39.666] LOG   [v3_Corwyn] event target_requested: id=0x000002CE type=1 subtype=1 gen=1
+[15:04:39.666] INFO  [v3_Corwyn] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[15:04:39.666] LOG   [v3_Corwyn] event action_result: use_object success took=0ms server armed a target cursor
+[15:04:42.180] INFO  [v3_Corwyn] [TARGET] reply static=(2557,500,0) gfx=0x053C gen=1
+[15:04:42.181] INFO  [v3_Corwyn] [target] static 0x053C (2557,500,0)
+[15:04:42.181] INFO  [v3_Corwyn] [0x20] player @(2558,499,0) facing=5
+[15:04:42.181] INFO  [v3_Corwyn] [chat ascii] System: There is nothing here to mine for.
+[15:04:42.733] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:04:43.711] INFO  [life] mine: 2557,500 refused ("there is nothing here to mine") -- marking it dead
+[15:04:43.711] INFO  [life] mine: the rock is at 2554,500, 4 tiles off -- standing at 2553,501 to reach it
+[15:04:43.711] INFO  [v3_Corwyn] [action] goto (2553,501) from (2558,499,0)
+[15:04:43.711] LOG   [v3_Corwyn] event goto_start: target=(2553,501) from=(2558,499)
+[15:04:43.711] INFO  [v3_Corwyn] [bot] running from (2558,499,0) to (2553,501)
+[15:04:43.711] INFO  [v3_Corwyn] [bot] planning path to (2553,501) in background
+[15:04:43.771] INFO  [v3_Corwyn] [bot] replan to (2553,501): 5 steps in 158.2us
+[15:04:44.015] INFO  [v3_Corwyn] [bot] step (2557,500,0)->(2556,501,0) rejected; OpenDoor + retry
+[15:04:44.764] INFO  [v3_Corwyn] [bot] step (2557,500,0)->(2556,501,0) rejected; avoiding edge + rerouting
+[15:04:44.764] INFO  [v3_Corwyn] [bot] planning path to (2553,501) in background
+[15:04:44.825] INFO  [v3_Corwyn] [bot] replan to (2553,501): 5 steps in 187.7us
+[15:04:45.283] INFO  [v3_Corwyn] [bot] step (2557,500,0)->(2556,500,0) rejected; OpenDoor + retry
+[15:04:46.039] INFO  [v3_Corwyn] [bot] step (2557,500,0)->(2556,500,0) rejected; avoiding edge + rerouting
+[15:04:46.039] INFO  [v3_Corwyn] [bot] planning path to (2553,501) in background
+[15:04:46.100] INFO  [v3_Corwyn] [bot] replan to (2553,501): 6 steps in 152.8us
+[15:04:47.671] INFO  [v3_Corwyn] [chat ascii] System: You are now under the protection of the guards
+[15:04:47.792] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:04:48.992] INFO  [v3_Corwyn] [bot] arrived at (2553,501,14)
+[15:04:48.992] INFO  [v3_Corwyn] [action] goto finished at (2553,501,14); target (2553,501); ARRIVED (off by 0 tile(s))
+[15:04:48.992] LOG   [v3_Corwyn] event goto_done: at=(2553,501) target=(2553,501) arrived=1 off=0
+[15:04:48.992] INFO  [life] mine: striking the rock at 2554,500,11 (rock face, 1 tiles)
+[15:04:48.992] INFO  [v3_Corwyn] [ACTION] use_object start
+[15:04:48.992] INFO  [v3_Corwyn] [ACTION] use_object serial=0x40014DC7
+[15:04:48.992] INFO  [v3_Corwyn] [chat ascii] System: Where do you want to use the pickaxe?
+[15:04:48.992] INFO  [v3_Corwyn] [0x6C] TARGET requested id=0x000002CE type=ground subtype=1 gen=2
+[15:04:48.992] LOG   [v3_Corwyn] event target_requested: id=0x000002CE type=1 subtype=1 gen=2
+[15:04:48.992] INFO  [v3_Corwyn] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[15:04:48.992] LOG   [v3_Corwyn] event action_result: use_object success took=0ms server armed a target cursor
+[15:04:51.502] INFO  [v3_Corwyn] [TARGET] reply ground=(2554,500,11) gen=2
+[15:04:51.502] INFO  [v3_Corwyn] [target] ground (2554,500,11)
+[15:04:51.503] INFO  [v3_Corwyn] [0x20] player @(2553,501,11) facing=1
+[15:04:51.503] INFO  [v3_Corwyn] [chat ascii] System: Try mining elsewhere.
+[15:04:52.850] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:04:53.033] INFO  [life] mine: 2554,500 refused ("try mining elsewhere") -- marking it dead
+[15:04:53.034] INFO  [life] mine: striking the rock at 2555,500,10 (rock face, 2 tiles)
+[15:04:53.034] INFO  [v3_Corwyn] [ACTION] use_object start
+[15:04:53.034] INFO  [v3_Corwyn] [ACTION] use_object serial=0x40014DC7
+[15:04:53.034] INFO  [v3_Corwyn] [chat ascii] System: Where do you want to use the pickaxe?
+[15:04:53.034] INFO  [v3_Corwyn] [0x6C] TARGET requested id=0x000002CE type=ground subtype=1 gen=3
+[15:04:53.034] LOG   [v3_Corwyn] event target_requested: id=0x000002CE type=1 subtype=1 gen=3
+[15:04:53.034] INFO  [v3_Corwyn] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[15:04:53.034] LOG   [v3_Corwyn] event action_result: use_object success took=1ms server armed a target cursor
+[15:04:55.560] INFO  [v3_Corwyn] [TARGET] reply ground=(2555,500,10) gen=3
+[15:04:55.560] INFO  [v3_Corwyn] [target] ground (2555,500,10)
+[15:04:55.576] INFO  [v3_Corwyn] [chat ascii] System: You have no line of sight to that location
+[15:04:57.102] INFO  [life] mine: 2555,500 refused ("no line of sight to that location") -- marking it dead
+[15:04:57.102] INFO  [life] mine: the rock is at 2558,493, 8 tiles off -- standing at 2559,493 to reach it
+[15:04:57.102] INFO  [v3_Corwyn] [action] goto (2559,493) from (2553,501,11)
+[15:04:57.102] LOG   [v3_Corwyn] event goto_start: target=(2559,493) from=(2553,501)
+[15:04:57.102] INFO  [v3_Corwyn] [bot] running from (2553,501,11) to (2559,493)
+[15:04:57.103] INFO  [v3_Corwyn] [bot] planning path to (2559,493) in background
+[15:04:57.164] INFO  [v3_Corwyn] [bot] replan to (2559,493): 10 steps in 203.5us
+[15:04:57.854] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:04:58.117] INFO  [v3_Corwyn] [bot] step (2555,501,1)->(2555,500,0) rejected; OpenDoor + retry
+[15:04:58.869] INFO  [v3_Corwyn] [bot] step (2555,501,1)->(2555,500,0) rejected; avoiding edge + rerouting
+[15:04:58.869] INFO  [v3_Corwyn] [bot] planning path to (2559,493) in background
+[15:04:58.930] INFO  [v3_Corwyn] [bot] replan to (2559,493): 9 steps in 255.2us
+[15:04:59.482] INFO  [v3_Corwyn] [chat ascii] System: You have left the protection of the guards
+[15:04:59.930] INFO  [v3_Corwyn] [bot] step (2556,501,0)->(2556,500,0) rejected; OpenDoor + retry
+[15:05:00.671] INFO  [v3_Corwyn] [bot] step (2556,501,0)->(2556,500,0) rejected; avoiding edge + rerouting
+[15:05:00.671] INFO  [v3_Corwyn] [bot] planning path to (2559,493) in background
+[15:05:00.733] INFO  [v3_Corwyn] [bot] replan to (2559,493): 9 steps in 91.5us
+[15:05:02.878] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:05:04.671] INFO  [v3_Corwyn] [bot] arrived at (2559,493,0)
+[15:05:04.672] INFO  [v3_Corwyn] [action] goto finished at (2559,493,0); target (2559,493); ARRIVED (off by 0 tile(s))
+[15:05:04.672] LOG   [v3_Corwyn] event goto_done: at=(2559,493) target=(2559,493) arrived=1 off=0
+[15:05:04.672] INFO  [life] mine: striking the rock at 2557,494,13 (rock face, 2 tiles)
+[15:05:04.672] INFO  [v3_Corwyn] [ACTION] use_object start
+[15:05:04.672] INFO  [v3_Corwyn] [ACTION] use_object serial=0x40014DC7
+[15:05:04.672] INFO  [v3_Corwyn] [chat ascii] System: Where do you want to use the pickaxe?
+[15:05:04.672] INFO  [v3_Corwyn] [0x6C] TARGET requested id=0x000002CE type=ground subtype=1 gen=4
+[15:05:04.672] LOG   [v3_Corwyn] event target_requested: id=0x000002CE type=1 subtype=1 gen=4
+[15:05:04.672] INFO  [v3_Corwyn] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[15:05:04.672] LOG   [v3_Corwyn] event action_result: use_object success took=0ms server armed a target cursor
+[15:05:07.188] INFO  [v3_Corwyn] [TARGET] reply ground=(2557,494,13) gen=4
+[15:05:07.188] INFO  [v3_Corwyn] [target] ground (2557,494,13)
+[15:05:07.188] INFO  [v3_Corwyn] [0x20] player @(2559,493,0) facing=5
+[15:05:07.920] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:05:12.980] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:05:16.937] INFO  [v3_Corwyn] [chat ascii] System: You put the Iron Ore in your pack.
+[15:05:17.904] INFO  [life] mine: ORE at 2557,494
+[15:05:17.904] INFO  [life] mine: striking the rock at 2557,494,13 (rock face, 2 tiles)
+[15:05:17.904] INFO  [v3_Corwyn] [ACTION] use_object start
+[15:05:17.904] INFO  [v3_Corwyn] [ACTION] use_object serial=0x40014DC7
+[15:05:17.904] INFO  [v3_Corwyn] [chat ascii] System: Where do you want to use the pickaxe?
+[15:05:17.905] INFO  [v3_Corwyn] [0x6C] TARGET requested id=0x000002CE type=ground subtype=1 gen=5
+[15:05:17.905] LOG   [v3_Corwyn] event target_requested: id=0x000002CE type=1 subtype=1 gen=5
+[15:05:17.905] INFO  [v3_Corwyn] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[15:05:17.905] LOG   [v3_Corwyn] event action_result: use_object success took=0ms server armed a target cursor
+[15:05:18.027] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:05:20.421] INFO  [v3_Corwyn] [TARGET] reply ground=(2557,494,13) gen=5
+[15:05:20.421] INFO  [v3_Corwyn] [target] ground (2557,494,13)
+[15:05:23.068] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:05:28.088] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:05:30.081] INFO  [v3_Corwyn] [chat ascii] System: You put the Iron Ore in your pack.
+[15:05:31.250] INFO  [life] mine: ORE at 2557,494
+[15:05:31.250] INFO  [life] mine: striking the rock at 2557,494,13 (rock face, 2 tiles)
+[15:05:31.250] INFO  [v3_Corwyn] [ACTION] use_object start
+[15:05:31.250] INFO  [v3_Corwyn] [ACTION] use_object serial=0x40014DC7
+[15:05:31.266] INFO  [v3_Corwyn] [chat ascii] System: Where do you want to use the pickaxe?
+[15:05:31.266] INFO  [v3_Corwyn] [0x6C] TARGET requested id=0x000002CE type=ground subtype=1 gen=6
+[15:05:31.266] LOG   [v3_Corwyn] event target_requested: id=0x000002CE type=1 subtype=1 gen=6
+[15:05:31.266] INFO  [v3_Corwyn] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
+[15:05:31.266] LOG   [v3_Corwyn] event action_result: use_object success took=15ms server armed a target cursor
+[15:05:33.110] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:05:33.786] INFO  [v3_Corwyn] [TARGET] reply ground=(2557,494,13) gen=6
+[15:05:33.786] INFO  [v3_Corwyn] [target] ground (2557,494,13)
+[15:05:37.410] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/reva01.corwyn/state.json
+[15:05:38.146] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:05:38.655] INFO  [v3_Corwyn] [chat ascii] System: You put the Iron Ore in your pack.
+[15:05:39.975] INFO  [life] mine: ORE at 2557,494
+[15:05:39.975] INFO  [life] mine: striking the rock at 2557,494,13 (rock face, 2 tiles)
+[15:05:39.975] INFO  [v3_Corwyn] [ACTION] use_object start
+[15:05:39.975] INFO  [v3_Corwyn] [ACTION] use_object serial=0x40014DC7
+[15:05:39.975] INFO  [v3_Corwyn] [chat ascii] System: Where do you want to use the pickaxe?
+[15:05:39.975] INFO  [v3_Corwyn] [0x6C] TARGET requested id=0x000002CE type=ground subtype=1 gen=7
+[15:05:39.975] LOG   [v3_Corwyn] event target_requested: id=0x000002CE type=1 subtype=1 gen=7
+[15:05:39.975] INFO  [v3_Corwyn] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[15:05:39.975] LOG   [v3_Corwyn] event action_result: use_object success took=0ms server armed a target cursor
+[15:05:42.488] INFO  [v3_Corwyn] [TARGET] reply ground=(2557,494,13) gen=7
+[15:05:42.488] INFO  [v3_Corwyn] [target] ground (2557,494,13)
+[15:05:43.162] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:05:48.181] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:05:52.208] INFO  [v3_Corwyn] [chat ascii] System: You put the Iron Ore in your pack.
+[15:05:52.208] INFO  [life] goal_changed=SMELT from=MINE reason="SMELT 63.0 superseded MINE 52.0"
+[15:05:52.208] INFO  [life] needs considered: NeedSmelt(ingots 0.45) NeedSupplies(buy craft inputs 0.44) NeedOre(ore 0.40) NeedGold(sell surplus 0.25) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[15:05:52.208] INFO  [life]   score=63.0
+[15:05:52.208] INFO  [life]   reason: NeedSmelt urgency 0.45 x 140 = 63.0
+[15:05:52.208] INFO  [life]   reason: carrying 8 ore
+[15:05:53.194] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:05:53.316] INFO  [life] smelt: forge at 2561,501 is 8 tiles off -- standing at 2560,500
+[15:05:53.316] INFO  [v3_Corwyn] [travel] forge -> (2560,500) r=0 from (2559,493)
+[15:05:53.316] LOG   [v3_Corwyn] event travel_start: label='forge' target=(2560,500) radius=0 from=(2559,493)
+[15:05:53.316] INFO  [v3_Corwyn] [travel] mode walk             usable   <- chosen
+[15:05:53.316] INFO  [v3_Corwyn] [travel] mode moongate         usable
+[15:05:53.316] INFO  [v3_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:05:53.316] INFO  [v3_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:05:53.316] LOG   [v3_Corwyn] event travel_mode: walk
+[15:05:53.316] INFO  [v3_Corwyn] [travel] plan forge: ok legs=1 ~7 tiles transit=0 nodes=0
+[15:05:53.377] INFO  [v3_Corwyn] [action] goto (2560,500) from (2559,493,0)
+[15:05:53.377] LOG   [v3_Corwyn] event goto_start: target=(2560,500) from=(2559,493)
+[15:05:53.377] INFO  [v3_Corwyn] [bot] running from (2559,493,0) to (2560,500)
+[15:05:53.377] INFO  [v3_Corwyn] [bot] planning path to (2560,500) in background
+[15:05:53.439] INFO  [v3_Corwyn] [bot] replan to (2560,500): 7 steps in 70.0us
+[15:05:55.356] INFO  [v3_Corwyn] [travel] forge ARRIVED at (2560,499,0)
+[15:05:55.356] LOG   [v3_Corwyn] event travel_done: label='forge' ok=1 at=(2560,499) legs=1 plans=1 why=''
+[15:05:55.418] INFO  [life] smelt: forge at 2561,501 is 2 tiles off -- standing at 2560,500
+[15:05:55.418] INFO  [v3_Corwyn] [travel] forge -> (2560,500) r=0 from (2560,499)
+[15:05:55.418] LOG   [v3_Corwyn] event travel_start: label='forge' target=(2560,500) radius=0 from=(2560,499)
+[15:05:55.418] INFO  [v3_Corwyn] [travel] forge ARRIVED at (2560,499,0)
+[15:05:55.418] LOG   [v3_Corwyn] event travel_done: label='forge' ok=1 at=(2560,499) legs=0 plans=0 why=''
+[15:05:55.557] INFO  [v3_Corwyn] [bot] arrived at (2560,500,0)
+[15:05:57.459] INFO  [life] smelt: opening the forge at 2561,501
+[15:05:57.459] INFO  [v3_Corwyn] [ACTION] use_object start
+[15:05:57.459] INFO  [v3_Corwyn] [ACTION] use_object serial=0x40007506
+[15:05:57.475] INFO  [v3_Corwyn] [0x20] player @(2560,500,0) facing=3
+[15:05:57.475] INFO  [v3_Corwyn] [chat ascii] System: You can't reach that.
+[15:05:57.475] LOG   [v3_Corwyn] event action_result: use_object rejected took=16ms You can't reach that.
+[15:05:58.214] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:06:03.244] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:06:03.553] INFO  [life] smelt: "you can't reach that" from 2560,500 -- walking onto the forge itself (try 1 of 3)
+[15:06:05.575] INFO  [life] smelt: "you can't reach that" from 2560,500 -- walking onto the forge itself (try 2 of 3)
+[15:06:07.592] INFO  [life] smelt: "you can't reach that" from 2560,500 -- walking onto the forge itself (try 3 of 3)
+[15:06:08.270] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:06:09.617] INFO  [life] goal_failed=SMELT reason="the forge at 2561,501 refused every approach after 3 tries"
+[15:06:09.678] INFO  [life] goal=BUY_SUPPLIES reason="previous goal abandoned: the forge cannot be reached"
+[15:06:09.678] INFO  [life] needs considered: NeedSmelt(ingots 0.45) NeedSupplies(buy craft inputs 0.44) NeedOre(ore 0.40) NeedGold(sell surplus 0.25) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[15:06:09.678] INFO  [life]   score=61.6
+[15:06:09.678] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[15:06:09.678] INFO  [life]   reason: i_dagger needs 18 x i_ingot_iron
+[15:06:09.678] INFO  [life]   BLOCKED_NEED SMELT: on cooldown for another 239s after achieving nothing
+[15:06:09.678] INFO  [life] goal_failed=BUY_SUPPLIES reason="REFUSE_NO_KNOWN_BUYER" item=i_ingot_iron
+[15:06:09.739] INFO  [life] goal=BUY_SUPPLIES reason="previous goal abandoned: no trade known to sell it"
+[15:06:09.739] INFO  [life] needs considered: NeedSmelt(ingots 0.45) NeedSupplies(buy craft inputs 0.44) NeedOre(ore 0.40) NeedGold(sell surplus 0.25) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[15:06:09.739] INFO  [life]   score=61.6
+[15:06:09.739] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[15:06:09.739] INFO  [life]   reason: i_dagger needs 18 x i_ingot_iron
+[15:06:09.739] INFO  [life]   BLOCKED_NEED SMELT: on cooldown for another 239s after achieving nothing
+[15:06:09.739] INFO  [life] goal_failed=BUY_SUPPLIES reason="REFUSE_NO_KNOWN_BUYER" item=i_ingot_iron
+[15:06:09.801] INFO  [life] goal=BUY_SUPPLIES reason="previous goal abandoned: no trade known to sell it"
+[15:06:09.801] INFO  [life] needs considered: NeedSmelt(ingots 0.45) NeedSupplies(buy craft inputs 0.44) NeedOre(ore 0.40) NeedGold(sell surplus 0.25) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[15:06:09.801] INFO  [life]   score=61.6
+[15:06:09.801] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[15:06:09.801] INFO  [life]   reason: i_dagger needs 18 x i_ingot_iron
+[15:06:09.801] INFO  [life]   BLOCKED_NEED SMELT: on cooldown for another 239s after achieving nothing
+[15:06:09.801] INFO  [life] goal_failed=BUY_SUPPLIES reason="REFUSE_NO_KNOWN_BUYER" item=i_ingot_iron
+[15:06:09.864] INFO  [life] goal=BUY_SUPPLIES reason="previous goal abandoned: no trade known to sell it"
+[15:06:09.864] INFO  [life] needs considered: NeedSmelt(ingots 0.45) NeedSupplies(buy craft inputs 0.44) NeedOre(ore 0.40) NeedGold(sell surplus 0.25) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[15:06:09.864] INFO  [life]   score=61.6
+[15:06:09.864] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[15:06:09.864] INFO  [life]   reason: i_dagger needs 18 x i_ingot_iron
+[15:06:09.864] INFO  [life]   BLOCKED_NEED SMELT: on cooldown for another 239s after achieving nothing
+[15:06:09.864] INFO  [life] goal_failed=BUY_SUPPLIES reason="REFUSE_NO_KNOWN_BUYER" item=i_ingot_iron
+[15:06:09.925] INFO  [life] goal=BUY_SUPPLIES reason="previous goal abandoned: no trade known to sell it"
+[15:06:09.925] INFO  [life] needs considered: NeedSmelt(ingots 0.45) NeedSupplies(buy craft inputs 0.44) NeedOre(ore 0.40) NeedGold(sell surplus 0.25) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[15:06:09.925] INFO  [life]   score=61.6
+[15:06:09.925] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[15:06:09.925] INFO  [life]   reason: i_dagger needs 18 x i_ingot_iron
+[15:06:09.925] INFO  [life]   BLOCKED_NEED SMELT: on cooldown for another 239s after achieving nothing
+[15:06:09.925] INFO  [life] goal_failed=BUY_SUPPLIES reason="REFUSE_NO_KNOWN_BUYER" item=i_ingot_iron
+[15:06:09.988] INFO  [life] goal=MINE reason="previous goal abandoned: no trade known to sell it"
+[15:06:09.988] INFO  [life] needs considered: NeedSmelt(ingots 0.45) NeedSupplies(buy craft inputs 0.44) NeedOre(ore 0.40) NeedGold(sell surplus 0.25) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[15:06:09.988] INFO  [life]   score=52.0
+[15:06:09.988] INFO  [life]   reason: NeedOre urgency 0.40 x 130 = 52.0
+[15:06:09.988] INFO  [life]   reason: carrying 10 ore+ingots at_work_site=1
+[15:06:09.988] INFO  [life]   BLOCKED_NEED SMELT: on cooldown for another 239s after achieving nothing
+[15:06:09.988] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 59s after achieving nothing
+[15:06:09.988] INFO  [life] mine: ORE at 2557,494
+[15:06:09.988] INFO  [v3_Corwyn] [action] goto finished at (2560,500,0); target (2560,500); ARRIVED (off by 0 tile(s))
+[15:06:09.988] LOG   [v3_Corwyn] event goto_done: at=(2560,500) target=(2560,500) arrived=1 off=0
+[15:06:09.988] INFO  [life] mine: striking the rock at 2559,500,0 (cave floor, 1 tiles)
+[15:06:09.988] INFO  [v3_Corwyn] [ACTION] use_object start
+[15:06:09.988] INFO  [v3_Corwyn] [ACTION] use_object serial=0x40014DC7
+[15:06:10.003] INFO  [v3_Corwyn] [chat ascii] System: Where do you want to use the pickaxe?
+[15:06:10.003] INFO  [v3_Corwyn] [0x6C] TARGET requested id=0x000002CE type=ground subtype=1 gen=8
+[15:06:10.003] LOG   [v3_Corwyn] event target_requested: id=0x000002CE type=1 subtype=1 gen=8
+[15:06:10.003] INFO  [v3_Corwyn] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
+[15:06:10.003] LOG   [v3_Corwyn] event action_result: use_object success took=15ms server armed a target cursor
+[15:06:12.510] INFO  [v3_Corwyn] [TARGET] reply static=(2559,500,0) gfx=0x053B gen=8
+[15:06:12.511] INFO  [v3_Corwyn] [target] static 0x053B (2559,500,0)
+[15:06:12.511] INFO  [v3_Corwyn] [0x20] player @(2560,500,0) facing=6
+[15:06:13.311] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:06:18.327] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:06:19.036] INFO  [v3_Corwyn] [chat ascii] System: You put the Iron Ore in your pack.
+[15:06:20.122] INFO  [life] mine: ORE at 2559,500
+[15:06:20.122] INFO  [life] mine: striking the rock at 2559,500,0 (cave floor, 1 tiles)
+[15:06:20.122] INFO  [v3_Corwyn] [ACTION] use_object start
+[15:06:20.122] INFO  [v3_Corwyn] [ACTION] use_object serial=0x40014DC7
+[15:06:20.122] INFO  [v3_Corwyn] [chat ascii] System: Where do you want to use the pickaxe?
+[15:06:20.122] INFO  [v3_Corwyn] [0x6C] TARGET requested id=0x000002CE type=ground subtype=1 gen=9
+[15:06:20.122] LOG   [v3_Corwyn] event target_requested: id=0x000002CE type=1 subtype=1 gen=9
+[15:06:20.122] INFO  [v3_Corwyn] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[15:06:20.122] LOG   [v3_Corwyn] event action_result: use_object success took=1ms server armed a target cursor
+[15:06:22.638] INFO  [v3_Corwyn] [TARGET] reply static=(2559,500,0) gfx=0x053B gen=9
+[15:06:22.638] INFO  [v3_Corwyn] [target] static 0x053B (2559,500,0)
+[15:06:23.374] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:06:28.387] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:06:29.133] INFO  [v3_Corwyn] [chat ascii] System: You put the Iron Ore in your pack.
+[15:06:30.359] INFO  [life] mine: ORE at 2559,500
+[15:06:30.359] INFO  [life] mine: striking the rock at 2559,500,0 (cave floor, 1 tiles)
+[15:06:30.359] INFO  [v3_Corwyn] [ACTION] use_object start
+[15:06:30.359] INFO  [v3_Corwyn] [ACTION] use_object serial=0x40014DC7
+[15:06:30.359] INFO  [v3_Corwyn] [chat ascii] System: Where do you want to use the pickaxe?
+[15:06:30.359] INFO  [v3_Corwyn] [0x6C] TARGET requested id=0x000002CE type=ground subtype=1 gen=10
+[15:06:30.359] LOG   [v3_Corwyn] event target_requested: id=0x000002CE type=1 subtype=1 gen=10
+[15:06:30.359] INFO  [v3_Corwyn] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[15:06:30.359] LOG   [v3_Corwyn] event action_result: use_object success took=0ms server armed a target cursor
+[15:06:32.876] INFO  [v3_Corwyn] [TARGET] reply static=(2559,500,0) gfx=0x053B gen=10
+[15:06:32.876] INFO  [v3_Corwyn] [target] static 0x053B (2559,500,0)
+[15:06:33.432] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:06:37.443] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/reva01.corwyn/state.json
+[15:06:38.440] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:06:40.987] INFO  [v3_Corwyn] [chat ascii] System: You put the Iron Ore in your pack.
+[15:06:42.058] INFO  [life] mine: ORE at 2559,500
+[15:06:42.058] INFO  [life] mine: striking the rock at 2559,500,0 (cave floor, 1 tiles)
+[15:06:42.058] INFO  [v3_Corwyn] [ACTION] use_object start
+[15:06:42.058] INFO  [v3_Corwyn] [ACTION] use_object serial=0x40014DC7
+[15:06:42.073] INFO  [v3_Corwyn] [chat ascii] System: Where do you want to use the pickaxe?
+[15:06:42.073] INFO  [v3_Corwyn] [0x6C] TARGET requested id=0x000002CE type=ground subtype=1 gen=11
+[15:06:42.073] LOG   [v3_Corwyn] event target_requested: id=0x000002CE type=1 subtype=1 gen=11
+[15:06:42.073] INFO  [v3_Corwyn] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
+[15:06:42.073] LOG   [v3_Corwyn] event action_result: use_object success took=15ms server armed a target cursor
+[15:06:43.487] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:06:44.589] INFO  [v3_Corwyn] [TARGET] reply static=(2559,500,0) gfx=0x053B gen=11
+[15:06:44.589] INFO  [v3_Corwyn] [target] static 0x053B (2559,500,0)
+[15:06:48.503] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:06:51.047] INFO  [v3_Corwyn] [chat ascii] System: You put the Iron Ore in your pack.
+[15:06:51.047] INFO  [life] goal_changed=EARN_GOLD from=MINE reason="EARN_GOLD 37.5 superseded MINE 29.3"
+[15:06:51.047] INFO  [life] needs considered: NeedSmelt(ingots 0.62) NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.25) NeedOre(ore 0.23) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[15:06:51.048] INFO  [life]   score=37.5
+[15:06:51.048] INFO  [life]   reason: NeedGold urgency 0.25 x 150 = 37.5
+[15:06:51.048] INFO  [life]   reason: 5 x i_dagger spare, a load is 20, buyer: an NPC
+[15:06:51.048] INFO  [life]   BLOCKED_NEED SMELT: on cooldown for another 198s after achieving nothing
+[15:06:51.048] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 18s after achieving nothing
+[15:06:52.254] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- going to fetch it (trip 2)
+[15:06:52.254] INFO  [v3_Corwyn] [travel] bank -> (2502,552) r=2 from (2560,500)
+[15:06:52.254] LOG   [v3_Corwyn] event travel_start: label='bank' target=(2502,552) radius=2 from=(2560,500)
+[15:06:52.254] INFO  [v3_Corwyn] [travel] mode moongate         usable   <- chosen
+[15:06:52.254] INFO  [v3_Corwyn] [travel] mode walk             usable
+[15:06:52.254] INFO  [v3_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:06:52.254] INFO  [v3_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:06:52.254] LOG   [v3_Corwyn] event travel_mode: moongate
+[15:06:52.254] INFO  [v3_Corwyn] [travel] plan bank: ok legs=2 ~96 tiles transit=0 nodes=17
+[15:06:52.315] INFO  [v3_Corwyn] [action] goto (2532,536) from (2560,500,0)
+[15:06:52.315] LOG   [v3_Corwyn] event goto_start: target=(2532,536) from=(2560,500)
+[15:06:52.315] INFO  [v3_Corwyn] [bot] running from (2560,500,0) to (2532,536)
+[15:06:52.315] INFO  [v3_Corwyn] [bot] planning path to (2532,536) in background
+[15:06:52.375] INFO  [v3_Corwyn] [bot] replan to (2532,536): 65 steps in 22961.1us
+[15:06:53.527] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:06:53.838] INFO  [v3_Corwyn] [chat ascii] System: You are now under the protection of the guards
+[15:06:58.533] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:07:03.564] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:07:08.615] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:07:10.628] INFO  [v3_Corwyn] [bot] arrived at (2532,536,0)
+[15:07:10.628] INFO  [v3_Corwyn] [action] goto finished at (2532,536,0); target (2532,536); ARRIVED (off by 0 tile(s))
+[15:07:10.628] LOG   [v3_Corwyn] event goto_done: at=(2532,536) target=(2532,536) arrived=1 off=0
+[15:07:10.628] INFO  [v3_Corwyn] [action] goto (2502,552) from (2532,536,0)
+[15:07:10.628] LOG   [v3_Corwyn] event goto_start: target=(2502,552) from=(2532,536)
+[15:07:10.628] INFO  [v3_Corwyn] [bot] running from (2532,536,0) to (2502,552)
+[15:07:10.628] INFO  [v3_Corwyn] [bot] planning path to (2502,552) in background
+[15:07:10.688] INFO  [v3_Corwyn] [bot] replan to (2502,552): 49 steps in 8333.4us
+[15:07:11.071] INFO  [life] goal_changed=BUY_SUPPLIES from=EARN_GOLD reason="BUY_SUPPLIES 61.6 superseded EARN_GOLD 37.5"
+[15:07:11.071] INFO  [life] needs considered: NeedSmelt(ingots 0.62) NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.25) NeedOre(ore 0.23) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[15:07:11.071] INFO  [life]   score=61.6
+[15:07:11.071] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[15:07:11.071] INFO  [life]   reason: i_dagger needs 18 x i_ingot_iron
+[15:07:11.071] INFO  [life]   BLOCKED_NEED SMELT: on cooldown for another 178s after achieving nothing
+[15:07:11.071] INFO  [life] goal_failed=BUY_SUPPLIES reason="REFUSE_NO_KNOWN_BUYER" item=i_ingot_iron
+[15:07:11.072] INFO  [life] goal=BUY_SUPPLIES reason="previous goal abandoned: no trade known to sell it"
+[15:07:11.072] INFO  [life] needs considered: NeedSmelt(ingots 0.62) NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.25) NeedOre(ore 0.23) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[15:07:11.072] INFO  [life]   score=61.6
+[15:07:11.072] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[15:07:11.072] INFO  [life]   reason: i_dagger needs 18 x i_ingot_iron
+[15:07:11.072] INFO  [life]   BLOCKED_NEED SMELT: on cooldown for another 178s after achieving nothing
+[15:07:11.072] INFO  [life] goal_failed=BUY_SUPPLIES reason="REFUSE_NO_KNOWN_BUYER" item=i_ingot_iron
+[15:07:11.133] INFO  [life] goal=BUY_SUPPLIES reason="previous goal abandoned: no trade known to sell it"
+[15:07:11.133] INFO  [life] needs considered: NeedSmelt(ingots 0.62) NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.25) NeedOre(ore 0.23) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[15:07:11.133] INFO  [life]   score=61.6
+[15:07:11.133] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[15:07:11.133] INFO  [life]   reason: i_dagger needs 18 x i_ingot_iron
+[15:07:11.133] INFO  [life]   BLOCKED_NEED SMELT: on cooldown for another 178s after achieving nothing
+[15:07:11.133] INFO  [life] goal_failed=BUY_SUPPLIES reason="REFUSE_NO_KNOWN_BUYER" item=i_ingot_iron
+[15:07:11.194] INFO  [life] goal=BUY_SUPPLIES reason="previous goal abandoned: no trade known to sell it"
+[15:07:11.194] INFO  [life] needs considered: NeedSmelt(ingots 0.62) NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.25) NeedOre(ore 0.23) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[15:07:11.194] INFO  [life]   score=61.6
+[15:07:11.194] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[15:07:11.194] INFO  [life]   reason: i_dagger needs 18 x i_ingot_iron
+[15:07:11.194] INFO  [life]   BLOCKED_NEED SMELT: on cooldown for another 178s after achieving nothing
+[15:07:11.194] INFO  [life] goal_failed=BUY_SUPPLIES reason="REFUSE_NO_KNOWN_BUYER" item=i_ingot_iron
+[15:07:11.241] INFO  [life] goal=BUY_SUPPLIES reason="previous goal abandoned: no trade known to sell it"
+[15:07:11.241] INFO  [life] needs considered: NeedSmelt(ingots 0.62) NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.25) NeedOre(ore 0.23) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[15:07:11.241] INFO  [life]   score=61.6
+[15:07:11.241] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[15:07:11.241] INFO  [life]   reason: i_dagger needs 18 x i_ingot_iron
+[15:07:11.241] INFO  [life]   BLOCKED_NEED SMELT: on cooldown for another 178s after achieving nothing
+[15:07:11.241] INFO  [life] goal_failed=BUY_SUPPLIES reason="REFUSE_NO_KNOWN_BUYER" item=i_ingot_iron
+[15:07:11.302] INFO  [life] goal=EARN_GOLD reason="previous goal abandoned: no trade known to sell it"
+[15:07:11.302] INFO  [life] needs considered: NeedSmelt(ingots 0.62) NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.25) NeedOre(ore 0.23) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[15:07:11.302] INFO  [life]   score=37.5
+[15:07:11.302] INFO  [life]   reason: NeedGold urgency 0.25 x 150 = 37.5
+[15:07:11.302] INFO  [life]   reason: 5 x i_dagger spare, a load is 20, buyer: an NPC
+[15:07:11.302] INFO  [life]   BLOCKED_NEED SMELT: on cooldown for another 178s after achieving nothing
+[15:07:11.302] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 59s after achieving nothing
+[15:07:13.629] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:07:18.671] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:07:23.334] INFO  [v3_Corwyn] [bot] door ahead at (2504,559,z0); OpenDoor before step
+[15:07:23.348] INFO  [v3_Corwyn] [chat ascii] System: Opening door...
+[15:07:23.718] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:07:25.593] INFO  [v3_Corwyn] [travel] bank ARRIVED at (2503,554,0)
+[15:07:25.593] LOG   [v3_Corwyn] event travel_done: label='bank' ok=1 at=(2503,554) legs=2 plans=1 why=''
+[15:07:25.653] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:07:25.653] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:07:25.653] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:07:25.669] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:07:26.599] INFO  [v3_Corwyn] [bot] arrived at (2502,552,0)
+[15:07:28.166] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:07:28.166] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2513ms superseded
+[15:07:28.166] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:07:28.166] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:07:28.166] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:07:28.762] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:07:30.726] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:07:30.727] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2561ms superseded
+[15:07:30.727] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:07:30.727] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:07:30.742] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:07:33.236] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:07:33.236] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2509ms superseded
+[15:07:33.236] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:07:33.236] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:07:33.253] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:07:33.803] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:07:35.738] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:07:35.738] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2502ms superseded
+[15:07:35.738] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:07:35.738] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:07:35.754] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:07:37.493] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/reva01.corwyn/state.json
+[15:07:38.282] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:07:38.282] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2544ms superseded
+[15:07:38.282] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:07:38.282] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:07:38.283] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:07:38.816] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:07:40.812] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:07:40.812] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2531ms superseded
+[15:07:40.812] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:07:40.813] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:07:40.829] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:07:43.365] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:07:43.365] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2552ms superseded
+[15:07:43.365] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:07:43.365] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:07:43.380] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:07:43.873] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:07:45.895] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:07:45.895] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2530ms superseded
+[15:07:45.895] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:07:45.895] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:07:45.895] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:07:48.455] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:07:48.455] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2560ms superseded
+[15:07:48.455] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:07:48.455] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:07:48.455] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:07:48.883] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:07:50.970] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:07:50.970] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2515ms superseded
+[15:07:50.970] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:07:50.970] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:07:50.971] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:07:53.484] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:07:53.484] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2514ms superseded
+[15:07:53.484] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:07:53.484] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:07:53.485] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:07:53.917] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:07:56.020] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:07:56.020] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2536ms superseded
+[15:07:56.020] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:07:56.020] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:07:56.036] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:07:58.539] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:07:58.539] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2519ms superseded
+[15:07:58.539] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:07:58.539] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:07:58.555] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:07:58.922] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:08:01.083] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:08:01.083] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2544ms superseded
+[15:08:01.083] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:08:01.083] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:08:01.083] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:08:03.604] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:08:03.604] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2521ms superseded
+[15:08:03.604] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:08:03.604] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:08:03.605] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:08:03.972] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:08:06.115] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:08:06.115] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2511ms superseded
+[15:08:06.115] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:08:06.115] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:08:06.115] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:08:08.630] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:08:08.630] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2516ms superseded
+[15:08:08.630] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:08:08.630] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:08:08.631] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:08:09.000] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:08:11.146] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:08:11.146] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2515ms superseded
+[15:08:11.146] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:08:11.146] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:08:11.146] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:08:11.270] INFO  [life] goal_changed=BUY_SUPPLIES from=EARN_GOLD reason="BUY_SUPPLIES 61.6 superseded EARN_GOLD 37.5"
+[15:08:11.270] INFO  [life] needs considered: NeedSmelt(ingots 0.62) NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.25) NeedOre(ore 0.23) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[15:08:11.270] INFO  [life]   score=61.6
+[15:08:11.270] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[15:08:11.270] INFO  [life]   reason: i_dagger needs 18 x i_ingot_iron
+[15:08:11.270] INFO  [life]   BLOCKED_NEED SMELT: on cooldown for another 118s after achieving nothing
+[15:08:13.686] INFO  [life] goal_failed=BUY_SUPPLIES reason="REFUSE_NO_KNOWN_BUYER" item=i_ingot_iron
+[15:08:13.746] INFO  [life] goal=BUY_SUPPLIES reason="previous goal abandoned: no trade known to sell it"
+[15:08:13.746] INFO  [life] needs considered: NeedSmelt(ingots 0.62) NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.25) NeedOre(ore 0.23) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[15:08:13.746] INFO  [life]   score=61.6
+[15:08:13.746] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[15:08:13.747] INFO  [life]   reason: i_dagger needs 18 x i_ingot_iron
+[15:08:13.747] INFO  [life]   BLOCKED_NEED SMELT: on cooldown for another 115s after achieving nothing
+[15:08:13.747] INFO  [life] goal_failed=BUY_SUPPLIES reason="REFUSE_NO_KNOWN_BUYER" item=i_ingot_iron
+[15:08:13.807] INFO  [life] goal=BUY_SUPPLIES reason="previous goal abandoned: no trade known to sell it"
+[15:08:13.807] INFO  [life] needs considered: NeedSmelt(ingots 0.62) NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.25) NeedOre(ore 0.23) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[15:08:13.807] INFO  [life]   score=61.6
+[15:08:13.807] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[15:08:13.807] INFO  [life]   reason: i_dagger needs 18 x i_ingot_iron
+[15:08:13.807] INFO  [life]   BLOCKED_NEED SMELT: on cooldown for another 115s after achieving nothing
+[15:08:13.807] INFO  [life] goal_failed=BUY_SUPPLIES reason="REFUSE_NO_KNOWN_BUYER" item=i_ingot_iron
+[15:08:13.868] INFO  [life] goal=BUY_SUPPLIES reason="previous goal abandoned: no trade known to sell it"
+[15:08:13.868] INFO  [life] needs considered: NeedSmelt(ingots 0.62) NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.25) NeedOre(ore 0.23) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[15:08:13.868] INFO  [life]   score=61.6
+[15:08:13.868] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[15:08:13.868] INFO  [life]   reason: i_dagger needs 18 x i_ingot_iron
+[15:08:13.868] INFO  [life]   BLOCKED_NEED SMELT: on cooldown for another 115s after achieving nothing
+[15:08:13.868] INFO  [life] goal_failed=BUY_SUPPLIES reason="REFUSE_NO_KNOWN_BUYER" item=i_ingot_iron
+[15:08:13.930] INFO  [life] goal=BUY_SUPPLIES reason="previous goal abandoned: no trade known to sell it"
+[15:08:13.930] INFO  [life] needs considered: NeedSmelt(ingots 0.62) NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.25) NeedOre(ore 0.23) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[15:08:13.930] INFO  [life]   score=61.6
+[15:08:13.930] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[15:08:13.930] INFO  [life]   reason: i_dagger needs 18 x i_ingot_iron
+[15:08:13.930] INFO  [life]   BLOCKED_NEED SMELT: on cooldown for another 115s after achieving nothing
+[15:08:13.930] INFO  [life] goal_failed=BUY_SUPPLIES reason="REFUSE_NO_KNOWN_BUYER" item=i_ingot_iron
+[15:08:13.991] INFO  [life] goal=EARN_GOLD reason="previous goal abandoned: no trade known to sell it"
+[15:08:13.991] INFO  [life] needs considered: NeedSmelt(ingots 0.62) NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.25) NeedOre(ore 0.23) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[15:08:13.991] INFO  [life]   score=37.5
+[15:08:13.991] INFO  [life]   reason: NeedGold urgency 0.25 x 150 = 37.5
+[15:08:13.991] INFO  [life]   reason: 5 x i_dagger spare, a load is 20, buyer: an NPC
+[15:08:13.991] INFO  [life]   BLOCKED_NEED SMELT: on cooldown for another 115s after achieving nothing
+[15:08:13.991] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 59s after achieving nothing
+[15:08:13.991] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:08:13.991] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2846ms superseded
+[15:08:13.991] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:08:13.991] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:08:14.007] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:08:14.007] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:08:16.507] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:08:16.507] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2516ms superseded
+[15:08:16.507] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:08:16.507] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:08:16.522] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:08:19.009] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:08:19.009] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2502ms superseded
+[15:08:19.009] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:08:19.009] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:08:19.010] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:08:19.010] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:08:21.546] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:08:21.546] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2537ms superseded
+[15:08:21.546] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:08:21.546] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:08:21.562] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:08:24.018] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:08:24.080] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:08:24.080] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2533ms superseded
+[15:08:24.080] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:08:24.080] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:08:24.080] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:08:26.628] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:08:26.628] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2549ms superseded
+[15:08:26.628] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:08:26.628] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:08:26.629] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:08:29.065] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:08:29.189] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:08:29.189] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2560ms superseded
+[15:08:29.189] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:08:29.189] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:08:29.204] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:08:31.707] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:08:31.708] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2519ms superseded
+[15:08:31.708] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:08:31.708] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x0000965E say='bank'
+[15:08:31.723] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:08:34.073] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:08:34.257] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:08:34.257] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2549ms superseded
+[15:08:34.257] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:08:34.257] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x0000965E say='bank'
+[15:08:34.257] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:08:36.770] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:08:36.770] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2513ms superseded
+[15:08:36.770] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:08:36.770] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x0000965E say='bank'
+[15:08:36.786] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:08:37.523] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/reva01.corwyn/state.json
+[15:08:39.114] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:08:39.299] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:08:39.299] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2529ms superseded
+[15:08:39.299] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:08:39.299] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x0000965E say='bank'
+[15:08:39.299] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:08:41.830] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:08:41.831] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2532ms superseded
+[15:08:41.831] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:08:41.831] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:08:41.831] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:08:44.135] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:08:44.365] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:08:44.366] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2535ms superseded
+[15:08:44.366] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:08:44.366] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:08:44.382] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:08:46.885] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:08:46.885] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2519ms superseded
+[15:08:46.885] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:08:46.885] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:08:46.900] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:08:49.163] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:08:49.408] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:08:49.408] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2523ms superseded
+[15:08:49.408] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:08:49.408] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:08:49.424] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:08:51.933] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:08:51.933] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2525ms superseded
+[15:08:51.933] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:08:51.933] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:08:51.934] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:08:52.488] INFO  [v3_Corwyn] [chat ascii] System: World save in 10 seconds
+[15:08:54.205] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:08:54.452] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:08:54.452] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2519ms superseded
+[15:08:54.452] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:08:54.452] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:08:54.467] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:08:56.971] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:08:56.971] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2519ms superseded
+[15:08:56.971] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:08:56.971] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:08:56.972] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:08:59.256] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:08:59.501] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:08:59.502] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2531ms superseded
+[15:08:59.502] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:08:59.502] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:08:59.502] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:09:02.030] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:09:02.030] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2528ms superseded
+[15:09:02.030] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:09:02.030] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:09:02.046] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:09:02.478] INFO  [v3_Corwyn] [chat ascii] System: World save has been initiated.
+[15:09:04.292] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:09:04.535] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:09:04.535] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2505ms superseded
+[15:09:04.535] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:09:04.535] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:09:04.536] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:09:07.056] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:09:07.056] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2521ms superseded
+[15:09:07.056] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:09:07.056] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:09:07.056] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:09:09.340] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:09:09.587] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:09:09.587] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2531ms superseded
+[15:09:09.587] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:09:09.587] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:09:09.587] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:09:12.096] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:09:12.096] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2509ms superseded
+[15:09:12.096] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:09:12.096] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:09:12.096] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:09:13.938] INFO  [life] goal_changed=BUY_SUPPLIES from=EARN_GOLD reason="BUY_SUPPLIES 61.6 superseded EARN_GOLD 37.5"
+[15:09:13.938] INFO  [life] needs considered: NeedSmelt(ingots 0.62) NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.25) NeedOre(ore 0.23) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[15:09:13.938] INFO  [life]   score=61.6
+[15:09:13.938] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[15:09:13.938] INFO  [life]   reason: i_dagger needs 18 x i_ingot_iron
+[15:09:13.938] INFO  [life]   BLOCKED_NEED SMELT: on cooldown for another 55s after achieving nothing
+[15:09:14.354] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:09:14.600] INFO  [life] goal_failed=BUY_SUPPLIES reason="REFUSE_NO_KNOWN_BUYER" item=i_ingot_iron
+[15:09:14.662] INFO  [life] goal=BUY_SUPPLIES reason="previous goal abandoned: no trade known to sell it"
+[15:09:14.662] INFO  [life] needs considered: NeedSmelt(ingots 0.62) NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.25) NeedOre(ore 0.23) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[15:09:14.662] INFO  [life]   score=61.6
+[15:09:14.662] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[15:09:14.662] INFO  [life]   reason: i_dagger needs 18 x i_ingot_iron
+[15:09:14.662] INFO  [life]   BLOCKED_NEED SMELT: on cooldown for another 54s after achieving nothing
+[15:09:14.662] INFO  [life] goal_failed=BUY_SUPPLIES reason="REFUSE_NO_KNOWN_BUYER" item=i_ingot_iron
+[15:09:14.724] INFO  [life] goal=BUY_SUPPLIES reason="previous goal abandoned: no trade known to sell it"
+[15:09:14.724] INFO  [life] needs considered: NeedSmelt(ingots 0.62) NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.25) NeedOre(ore 0.23) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[15:09:14.724] INFO  [life]   score=61.6
+[15:09:14.724] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[15:09:14.724] INFO  [life]   reason: i_dagger needs 18 x i_ingot_iron
+[15:09:14.724] INFO  [life]   BLOCKED_NEED SMELT: on cooldown for another 54s after achieving nothing
+[15:09:14.724] INFO  [life] goal_failed=BUY_SUPPLIES reason="REFUSE_NO_KNOWN_BUYER" item=i_ingot_iron
+[15:09:14.785] INFO  [life] goal=BUY_SUPPLIES reason="previous goal abandoned: no trade known to sell it"
+[15:09:14.785] INFO  [life] needs considered: NeedSmelt(ingots 0.62) NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.25) NeedOre(ore 0.23) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[15:09:14.785] INFO  [life]   score=61.6
+[15:09:14.785] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[15:09:14.785] INFO  [life]   reason: i_dagger needs 18 x i_ingot_iron
+[15:09:14.785] INFO  [life]   BLOCKED_NEED SMELT: on cooldown for another 54s after achieving nothing
+[15:09:14.785] INFO  [life] goal_failed=BUY_SUPPLIES reason="REFUSE_NO_KNOWN_BUYER" item=i_ingot_iron
+[15:09:14.847] INFO  [life] goal=BUY_SUPPLIES reason="previous goal abandoned: no trade known to sell it"
+[15:09:14.847] INFO  [life] needs considered: NeedSmelt(ingots 0.62) NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.25) NeedOre(ore 0.23) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[15:09:14.847] INFO  [life]   score=61.6
+[15:09:14.847] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[15:09:14.847] INFO  [life]   reason: i_dagger needs 18 x i_ingot_iron
+[15:09:14.847] INFO  [life]   BLOCKED_NEED SMELT: on cooldown for another 54s after achieving nothing
+[15:09:14.847] INFO  [life] goal_failed=BUY_SUPPLIES reason="REFUSE_NO_KNOWN_BUYER" item=i_ingot_iron
+[15:09:14.908] INFO  [life] goal=EARN_GOLD reason="previous goal abandoned: no trade known to sell it"
+[15:09:14.909] INFO  [life] needs considered: NeedSmelt(ingots 0.62) NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.25) NeedOre(ore 0.23) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[15:09:14.909] INFO  [life]   score=37.5
+[15:09:14.909] INFO  [life]   reason: NeedGold urgency 0.25 x 150 = 37.5
+[15:09:14.909] INFO  [life]   reason: 5 x i_dagger spare, a load is 20, buyer: an NPC
+[15:09:14.909] INFO  [life]   BLOCKED_NEED SMELT: on cooldown for another 54s after achieving nothing
+[15:09:14.909] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 59s after achieving nothing
+[15:09:14.909] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:09:14.909] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2813ms superseded
+[15:09:14.909] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:09:14.909] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:09:14.909] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:09:17.436] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:09:17.436] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2527ms superseded
+[15:09:17.436] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:09:17.436] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:09:17.436] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:09:19.385] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:09:19.939] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:09:19.939] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2504ms superseded
+[15:09:19.939] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:09:19.939] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:09:19.940] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:09:22.457] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:09:22.457] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2518ms superseded
+[15:09:22.457] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:09:22.457] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x0000965E say='bank'
+[15:09:22.458] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:09:24.416] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:09:25.002] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:09:25.002] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2544ms superseded
+[15:09:25.002] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:09:25.002] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x0000965E say='bank'
+[15:09:25.017] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:09:27.511] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:09:27.512] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2510ms superseded
+[15:09:27.512] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:09:27.512] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:09:27.527] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:09:29.444] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:09:30.056] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:09:30.056] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2544ms superseded
+[15:09:30.056] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:09:30.056] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:09:30.056] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:09:32.580] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:09:32.580] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2525ms superseded
+[15:09:32.580] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:09:32.580] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:09:32.596] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:09:34.472] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:09:35.084] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:09:35.084] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2503ms superseded
+[15:09:35.084] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:09:35.084] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:09:35.084] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:09:37.523] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/reva01.corwyn/state.json
+[15:09:37.645] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:09:37.645] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2561ms superseded
+[15:09:37.645] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:09:37.645] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:09:37.645] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:09:39.486] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:09:40.161] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:09:40.161] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2516ms superseded
+[15:09:40.161] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:09:40.161] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:09:40.161] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:09:42.697] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:09:42.697] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2537ms superseded
+[15:09:42.697] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:09:42.697] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:09:42.698] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:09:44.506] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:09:45.238] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:09:45.238] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2541ms superseded
+[15:09:45.238] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:09:45.238] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:09:45.239] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:09:47.793] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:09:47.793] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2554ms superseded
+[15:09:47.793] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:09:47.793] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:09:47.793] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:09:49.554] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:09:50.353] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:09:50.353] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2561ms superseded
+[15:09:50.353] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:09:50.353] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x0000965E say='bank'
+[15:09:50.369] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:09:52.877] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:09:52.877] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2524ms superseded
+[15:09:52.877] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:09:52.877] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:09:52.878] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:09:54.608] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:09:55.426] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:09:55.426] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2548ms superseded
+[15:09:55.426] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:09:55.426] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:09:55.426] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:09:57.983] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:09:57.983] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2557ms superseded
+[15:09:57.983] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:09:57.983] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:09:57.984] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:09:59.661] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:10:00.537] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:10:00.537] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2555ms superseded
+[15:10:00.538] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:10:00.538] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:10:00.538] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:10:03.047] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:10:03.047] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2510ms superseded
+[15:10:03.047] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:10:03.047] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:10:03.048] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:10:04.707] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:10:05.568] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:10:05.568] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2520ms superseded
+[15:10:05.568] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:10:05.568] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:10:05.568] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:10:08.111] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:10:08.111] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2544ms superseded
+[15:10:08.111] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:10:08.111] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:10:08.127] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:10:09.660] INFO  [life] goal_changed=SMELT from=EARN_GOLD reason="SMELT 87.5 superseded EARN_GOLD 37.5"
+[15:10:09.660] INFO  [life] needs considered: NeedSmelt(ingots 0.62) NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.25) NeedOre(ore 0.23) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[15:10:09.660] INFO  [life]   score=87.5
+[15:10:09.660] INFO  [life]   reason: NeedSmelt urgency 0.62 x 140 = 87.5
+[15:10:09.660] INFO  [life]   reason: carrying 15 ore
+[15:10:09.660] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 5s after achieving nothing
+[15:10:09.722] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:10:14.143] LOG   [v3_Corwyn] event action_result: open_bank timeout
+[15:10:14.204] INFO  [life] smelt: carrying 15 ore with no forge in reach -- walking to a smithy (0 already tried)
+[15:10:14.204] INFO  [v3_Corwyn] [travel] Minoc blacksmith -> (2471,564) r=5 from (2502,552)
+[15:10:14.204] LOG   [v3_Corwyn] event travel_start: label='Minoc blacksmith' target=(2471,564) radius=5 from=(2502,552)
+[15:10:14.204] INFO  [v3_Corwyn] [travel] mode walk             usable   <- chosen
+[15:10:14.204] INFO  [v3_Corwyn] [travel] mode moongate         usable
+[15:10:14.204] INFO  [v3_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:10:14.204] INFO  [v3_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:10:14.204] LOG   [v3_Corwyn] event travel_mode: walk
+[15:10:14.204] INFO  [v3_Corwyn] [travel] plan Minoc blacksmith: ok legs=1 ~31 tiles transit=0 nodes=0
+[15:10:14.265] INFO  [v3_Corwyn] [action] goto finished at (2502,552,0); target (2502,552); ARRIVED (off by 0 tile(s))
+[15:10:14.265] LOG   [v3_Corwyn] event goto_done: at=(2502,552) target=(2502,552) arrived=1 off=0
+[15:10:14.265] INFO  [v3_Corwyn] [action] goto (2471,564) from (2502,552,0)
+[15:10:14.265] LOG   [v3_Corwyn] event goto_start: target=(2471,564) from=(2502,552)
+[15:10:14.265] INFO  [v3_Corwyn] [bot] running from (2502,552,0) to (2471,564,z5)
+[15:10:14.265] INFO  [v3_Corwyn] [bot] planning path to (2471,564) in background
+[15:10:14.325] INFO  [v3_Corwyn] [bot] replan to (2471,564): 48 steps in 8608.6us
+[15:10:14.773] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:10:16.235] INFO  [v3_Corwyn] [bot] door ahead at (2503,559,z0); OpenDoor before step
+[15:10:16.251] INFO  [v3_Corwyn] [chat ascii] System: Opening door...
+[15:10:17.680] INFO  [v3_Corwyn] [bot] step (2503,560,0)->(2502,561,0) rejected; OpenDoor + retry
+[15:10:17.695] INFO  [v3_Corwyn] [chat ascii] System: Opening door...
+[15:10:17.696] INFO  [v3_Corwyn] [0x20] player @(2503,560,0) facing=6
+[15:10:17.696] INFO  [v3_Corwyn] [action] goto finished at (2503,560,0); target (2471,564); stopped short (off by 36 tile(s))
+[15:10:17.696] LOG   [v3_Corwyn] event goto_done: at=(2503,560) target=(2471,564) arrived=0 off=36
+[15:10:18.928] INFO  [v3_Corwyn] [action] goto (2471,564) from (2503,560,0)
+[15:10:18.928] LOG   [v3_Corwyn] event goto_start: target=(2471,564) from=(2503,560)
+[15:10:18.928] INFO  [v3_Corwyn] [bot] running from (2503,560,0) to (2471,564,z5)
+[15:10:18.928] INFO  [v3_Corwyn] [bot] planning path to (2471,564) in background
+[15:10:18.989] INFO  [v3_Corwyn] [bot] replan to (2471,564): 40 steps in 5660.8us
+[15:10:19.802] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:10:24.813] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:10:28.298] INFO  [v3_Corwyn] [travel] Minoc blacksmith ARRIVED at (2476,569,5)
+[15:10:28.298] LOG   [v3_Corwyn] event travel_done: label='Minoc blacksmith' ok=1 at=(2476,569) legs=1 plans=1 why=''
+[15:10:28.360] INFO  [life] smelt: forge at 2469,557 is 12 tiles off -- standing at 2468,556
+[15:10:28.360] INFO  [v3_Corwyn] [travel] forge -> (2468,556) r=0 from (2476,569)
+[15:10:28.360] LOG   [v3_Corwyn] event travel_start: label='forge' target=(2468,556) radius=0 from=(2476,569)
+[15:10:28.360] INFO  [v3_Corwyn] [travel] mode walk             usable   <- chosen
+[15:10:28.360] INFO  [v3_Corwyn] [travel] mode moongate         usable
+[15:10:28.360] INFO  [v3_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:10:28.360] INFO  [v3_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:10:28.360] LOG   [v3_Corwyn] event travel_mode: walk
+[15:10:28.360] INFO  [v3_Corwyn] [travel] plan forge: ok legs=1 ~13 tiles transit=0 nodes=0
+[15:10:29.823] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:10:30.786] INFO  [v3_Corwyn] [bot] arrived at (2471,564,5)
+[15:10:30.786] INFO  [v3_Corwyn] [action] goto finished at (2471,564,5); target (2471,564); ARRIVED (off by 0 tile(s))
+[15:10:30.786] LOG   [v3_Corwyn] event goto_done: at=(2471,564) target=(2471,564) arrived=1 off=0
+[15:10:30.786] INFO  [v3_Corwyn] [action] goto (2468,556) from (2471,564,5)
+[15:10:30.786] LOG   [v3_Corwyn] event goto_start: target=(2468,556) from=(2471,564)
+[15:10:30.786] INFO  [v3_Corwyn] [bot] running from (2471,564,5) to (2468,556)
+[15:10:30.787] INFO  [v3_Corwyn] [bot] planning path to (2468,556) in background
+[15:10:30.849] INFO  [v3_Corwyn] [bot] replan to (2468,556): 13 steps in 491.5us
+[15:10:34.830] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:10:35.766] INFO  [v3_Corwyn] [travel] forge ARRIVED at (2469,556,5)
+[15:10:35.766] LOG   [v3_Corwyn] event travel_done: label='forge' ok=1 at=(2469,556) legs=1 plans=1 why=''
+[15:10:35.828] INFO  [life] smelt: opening the forge at 2469,557
+[15:10:35.829] INFO  [v3_Corwyn] [ACTION] use_object start
+[15:10:35.829] INFO  [v3_Corwyn] [ACTION] use_object serial=0x4000742D
+[15:10:35.829] INFO  [v3_Corwyn] [0x20] player @(2469,556,5) facing=4
+[15:10:35.829] INFO  [v3_Corwyn] [0x6C] TARGET requested id=0x000002C3 type=object subtype=0 gen=12
+[15:10:35.829] LOG   [v3_Corwyn] event target_requested: id=0x000002C3 type=0 subtype=0 gen=12
+[15:10:35.829] INFO  [v3_Corwyn] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[15:10:35.829] LOG   [v3_Corwyn] event action_result: use_object success took=0ms server armed a target cursor
+[15:10:37.363] INFO  [life] smelt: giving the forge's cursor the ore (15 ore, 2 ingots so far)
+[15:10:37.363] INFO  [v3_Corwyn] [TARGET] reply serial=0x4001720E gen=12
+[15:10:37.363] INFO  [v3_Corwyn] [target] object 0x4001720E (0,0,0) model 0x0000
+[15:10:37.363] INFO  [v3_Corwyn] [0x20] player @(2469,556,5) facing=0
+[15:10:37.363] INFO  [v3_Corwyn] [chat ascii] Corwyn: *You smelt Iron Ore*
+[15:10:37.363] INFO  [v3_Corwyn] [chat ascii] System: You put the iron ingots in your pack.
+[15:10:37.364] INFO  [life] goal_changed=EARN_GOLD from=SMELT reason="EARN_GOLD 73.5 superseded SMELT 0.0"
+[15:10:37.364] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedGold(sell surplus 0.49) NeedOre(ore 0.23) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[15:10:37.364] INFO  [life]   score=73.5
+[15:10:37.364] INFO  [life]   reason: NeedGold urgency 0.49 x 150 = 73.5
+[15:10:37.364] INFO  [life]   reason: 17 x i_dagger spare, a load is 20, buyer: an NPC
+[15:10:37.564] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/reva01.corwyn/state.json
+[15:10:39.834] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:10:39.896] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- going to fetch it (trip 3)
+[15:10:39.896] INFO  [v3_Corwyn] [travel] bank -> (2502,552) r=2 from (2469,556)
+[15:10:39.896] LOG   [v3_Corwyn] event travel_start: label='bank' target=(2502,552) radius=2 from=(2469,556)
+[15:10:39.896] INFO  [v3_Corwyn] [travel] mode walk             usable   <- chosen
+[15:10:39.896] INFO  [v3_Corwyn] [travel] mode moongate         usable
+[15:10:39.896] INFO  [v3_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:10:39.896] INFO  [v3_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:10:39.896] LOG   [v3_Corwyn] event travel_mode: walk
+[15:10:39.896] INFO  [v3_Corwyn] [travel] plan bank: ok legs=1 ~33 tiles transit=0 nodes=0
+[15:10:39.957] INFO  [v3_Corwyn] [action] goto finished at (2469,556,5); target (2468,556); stopped short (off by 1 tile(s))
+[15:10:39.957] LOG   [v3_Corwyn] event goto_done: at=(2469,556) target=(2468,556) arrived=0 off=1
+[15:10:39.957] INFO  [v3_Corwyn] [action] goto (2502,552) from (2469,556,5)
+[15:10:39.957] LOG   [v3_Corwyn] event goto_start: target=(2502,552) from=(2469,556)
+[15:10:39.957] INFO  [v3_Corwyn] [bot] running from (2469,556,5) to (2502,552)
+[15:10:39.957] INFO  [v3_Corwyn] [bot] planning path to (2502,552) in background
+[15:10:40.019] INFO  [v3_Corwyn] [bot] replan to (2502,552): 53 steps in 6856.8us
+[15:10:41.461] INFO  [v3_Corwyn] [chat ascii] Olin: Hmm?
+[15:10:44.851] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:10:49.887] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:10:50.655] INFO  [v3_Corwyn] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=19 in 116.6us
+[15:10:51.899] INFO  [v3_Corwyn] [bot] lookahead patched around block at step 2: anchor=5 new segment=4 path=13 in 31.7us
+[15:10:52.100] INFO  [v3_Corwyn] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=12 in 99.4us
+[15:10:52.293] INFO  [v3_Corwyn] [bot] lookahead patched around block at step 3: anchor=5 new segment=7 path=13 in 107.7us
+[15:10:52.383] INFO  [v3_Corwyn] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=12 in 46.5us
+[15:10:53.558] INFO  [v3_Corwyn] [bot] door ahead at (2503,559,z0); OpenDoor before step
+[15:10:53.573] INFO  [v3_Corwyn] [chat ascii] System: Opening door...
+[15:10:54.893] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:10:56.536] INFO  [v3_Corwyn] [travel] bank ARRIVED at (2503,554,0)
+[15:10:56.536] LOG   [v3_Corwyn] event travel_done: label='bank' ok=1 at=(2503,554) legs=1 plans=1 why=''
+[15:10:56.537] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:10:56.537] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:10:56.537] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:10:56.537] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:10:57.413] INFO  [v3_Corwyn] [bot] arrived at (2502,552,0)
+[15:10:59.064] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:10:59.065] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2528ms superseded
+[15:10:59.065] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:10:59.065] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:10:59.065] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:10:59.920] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:11:01.606] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:11:01.606] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2541ms superseded
+[15:11:01.606] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:11:01.606] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:11:01.622] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:11:04.148] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:11:04.148] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2542ms superseded
+[15:11:04.148] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:11:04.148] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:11:04.148] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:11:04.943] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:11:06.687] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:11:06.687] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2539ms superseded
+[15:11:06.687] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:11:06.687] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:11:06.688] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:11:09.192] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:11:09.192] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2505ms superseded
+[15:11:09.192] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:11:09.192] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:11:09.192] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:11:09.990] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:11:11.722] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:11:11.722] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2530ms superseded
+[15:11:11.722] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:11:11.722] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:11:11.722] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:11:14.230] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:11:14.230] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2508ms superseded
+[15:11:14.230] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:11:14.230] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:11:14.230] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:11:15.024] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:11:16.777] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:11:16.777] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2547ms superseded
+[15:11:16.777] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:11:16.777] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:11:16.777] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:11:19.320] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:11:19.320] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2544ms superseded
+[15:11:19.320] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:11:19.321] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:11:19.321] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:11:20.028] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:11:21.842] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:11:21.842] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2521ms superseded
+[15:11:21.842] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:11:21.842] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:11:21.858] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:11:24.358] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:11:24.358] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2517ms superseded
+[15:11:24.358] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:11:24.358] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:11:24.374] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:11:25.043] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:11:26.871] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:11:26.871] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2512ms superseded
+[15:11:26.871] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:11:26.871] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:11:26.886] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:11:29.388] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:11:29.389] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2518ms superseded
+[15:11:29.389] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:11:29.389] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:11:29.404] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:11:30.077] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:11:31.904] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:11:31.904] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2515ms superseded
+[15:11:31.904] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:11:31.904] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:11:31.920] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:11:34.428] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:11:34.428] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2524ms superseded
+[15:11:34.428] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:11:34.428] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:11:34.429] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:11:35.102] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:11:36.942] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:11:36.942] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2515ms superseded
+[15:11:36.942] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:11:36.942] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:11:36.943] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:11:37.586] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/reva01.corwyn/state.json
+[15:11:39.502] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:11:39.502] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2560ms superseded
+[15:11:39.502] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:11:39.502] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:11:39.503] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:11:40.135] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:11:42.039] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:11:42.039] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2536ms superseded
+[15:11:42.039] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:11:42.039] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:11:42.039] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:11:44.583] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:11:44.583] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2544ms superseded
+[15:11:44.583] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:11:44.583] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:11:44.583] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:11:45.193] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:11:47.124] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:11:47.124] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2541ms superseded
+[15:11:47.124] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:11:47.124] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:11:47.139] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:11:49.638] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:11:49.638] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2514ms superseded
+[15:11:49.638] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:11:49.638] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:11:49.653] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:11:50.207] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:11:52.166] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:11:52.166] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2529ms superseded
+[15:11:52.166] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:11:52.166] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x0000965E say='bank'
+[15:11:52.182] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:11:54.719] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:11:54.719] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2552ms superseded
+[15:11:54.719] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:11:54.719] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:11:54.719] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:11:55.269] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:11:57.266] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:11:57.266] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2547ms superseded
+[15:11:57.266] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:11:57.266] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:11:57.267] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:11:59.774] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:11:59.774] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2508ms superseded
+[15:11:59.774] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:11:59.774] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:11:59.775] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:12:00.326] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:12:02.287] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:12:02.288] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2514ms superseded
+[15:12:02.288] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:12:02.288] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:12:02.288] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:12:04.831] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:12:04.832] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2544ms superseded
+[15:12:04.832] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:12:04.832] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:12:04.847] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:12:05.337] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:12:07.373] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:12:07.373] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2541ms superseded
+[15:12:07.373] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:12:07.373] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:12:07.373] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:12:09.873] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:12:09.873] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2500ms superseded
+[15:12:09.873] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:12:09.873] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x0000965E say='bank'
+[15:12:09.874] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:12:10.368] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:12:12.391] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:12:12.391] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2518ms superseded
+[15:12:12.391] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:12:12.391] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x0000965E say='bank'
+[15:12:12.391] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:12:14.909] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:12:14.909] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2519ms superseded
+[15:12:14.909] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:12:14.909] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x0000965E say='bank'
+[15:12:14.910] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:12:15.399] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:12:17.469] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:12:17.469] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2560ms superseded
+[15:12:17.469] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:12:17.469] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x0000965E say='bank'
+[15:12:17.485] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:12:20.001] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:12:20.001] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2531ms superseded
+[15:12:20.001] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:12:20.001] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x0000965E say='bank'
+[15:12:20.017] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:12:20.447] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:12:22.519] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:12:22.519] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2519ms superseded
+[15:12:22.519] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:12:22.519] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x0000965E say='bank'
+[15:12:22.535] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:12:25.045] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:12:25.046] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2526ms superseded
+[15:12:25.046] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:12:25.046] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x0000965E say='bank'
+[15:12:25.046] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:12:25.474] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:12:27.581] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:12:27.581] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2535ms superseded
+[15:12:27.581] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:12:27.581] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x0000965E say='bank'
+[15:12:27.581] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:12:30.138] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:12:30.138] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2557ms superseded
+[15:12:30.138] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:12:30.138] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x0000965E say='bank'
+[15:12:30.139] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:12:30.506] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:12:32.647] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:12:32.647] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2509ms superseded
+[15:12:32.647] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:12:32.647] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:12:32.647] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:12:35.202] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:12:35.202] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2555ms superseded
+[15:12:35.202] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:12:35.202] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:12:35.202] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:12:35.507] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:12:37.595] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/reva01.corwyn/state.json
+[15:12:37.715] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:12:37.715] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2513ms superseded
+[15:12:37.715] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:12:37.715] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:12:37.715] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:12:40.228] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:12:40.228] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2513ms superseded
+[15:12:40.228] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:12:40.228] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:12:40.229] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:12:40.535] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:12:42.731] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:12:42.731] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2503ms superseded
+[15:12:42.731] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:12:42.731] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:12:42.732] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:12:45.251] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:12:45.251] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2521ms superseded
+[15:12:45.251] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:12:45.251] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:12:45.252] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:12:45.558] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:12:47.801] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:12:47.801] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2550ms superseded
+[15:12:47.801] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:12:47.801] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:12:47.802] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:12:50.315] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:12:50.315] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2513ms superseded
+[15:12:50.315] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:12:50.315] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:12:50.315] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:12:50.559] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:12:52.828] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:12:52.828] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2513ms superseded
+[15:12:52.828] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:12:52.828] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:12:52.828] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:12:55.346] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:12:55.346] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2518ms superseded
+[15:12:55.346] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:12:55.346] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:12:55.346] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:12:55.592] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:12:57.877] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:12:57.878] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2532ms superseded
+[15:12:57.878] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:12:57.878] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:12:57.878] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:13:00.386] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:13:00.386] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2508ms superseded
+[15:13:00.386] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:13:00.386] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x0000965E say='bank'
+[15:13:00.401] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:13:00.650] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:13:02.895] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:13:02.895] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2509ms superseded
+[15:13:02.895] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:13:02.895] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x0000965E say='bank'
+[15:13:02.895] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:13:05.439] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:13:05.439] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2545ms superseded
+[15:13:05.439] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:13:05.439] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x0000965E say='bank'
+[15:13:05.440] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:13:05.684] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:13:07.959] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:13:07.959] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2520ms superseded
+[15:13:07.960] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:13:07.960] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x0000965E say='bank'
+[15:13:07.960] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:13:10.462] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:13:10.462] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2502ms superseded
+[15:13:10.462] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:13:10.462] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x0000965E say='bank'
+[15:13:10.462] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:13:10.711] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:13:13.016] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:13:13.016] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2554ms superseded
+[15:13:13.016] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:13:13.016] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x0000965E say='bank'
+[15:13:13.016] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:13:15.536] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:13:15.536] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2520ms superseded
+[15:13:15.536] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:13:15.536] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x0000965E say='bank'
+[15:13:15.536] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:13:15.662] INFO  [v3_Corwyn] [chat ascii] System: Observer has arrived in Minoc.
+[15:13:15.737] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:13:18.041] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:13:18.041] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2505ms superseded
+[15:13:18.041] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:13:18.041] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:13:18.041] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:13:18.089] INFO  [v3_Corwyn] [chat uni  ] enu: bank
+[15:13:20.576] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:13:20.576] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2536ms superseded
+[15:13:20.577] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:13:20.577] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:13:20.577] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:13:20.761] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:13:20.914] INFO  [v3_Corwyn] [chat uni  ] enu: bank
+[15:13:23.123] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:13:23.123] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2546ms superseded
+[15:13:23.123] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:13:23.123] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:13:23.123] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:13:25.632] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:13:25.632] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2509ms superseded
+[15:13:25.632] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:13:25.632] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x000096B1 say='bank'
+[15:13:25.633] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:13:25.816] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:13:28.164] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:13:28.164] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2532ms superseded
+[15:13:28.164] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:13:28.164] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x0000965E say='bank'
+[15:13:28.164] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:13:30.675] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:13:30.675] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2511ms superseded
+[15:13:30.675] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:13:30.675] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x0000965E say='bank'
+[15:13:30.676] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:13:30.860] INFO  [v3_Corwyn] [survival] hp 56/56 (100%) -> fight
+[15:13:33.191] INFO  [life] earn_gold: the stock is in the bank (1 i_dagger) -- opening the box
+[15:13:33.191] LOG   [v3_Corwyn] event action_result: open_bank invalid_state took=2516ms superseded
+[15:13:33.191] INFO  [v3_Corwyn] [ACTION] open_bank start
+[15:13:33.191] INFO  [v3_Corwyn] [ACTION] open_bank banker=0x0000965E say='bank'
+[15:13:33.191] INFO  [v3_Corwyn] [chat uni  ] : bank
+[15:13:34.847] INFO  [life] session_end_requested reason="session time limit reached"
+[15:13:34.908] INFO  [life] wind-down: arrived somewhere safe at 2502,552
+[15:13:34.969] INFO  [life] session_summary duration=600s goals=0/29 gold=9294->9294 skills=140.9->140.9 logs=+0 kills=0 deaths=0 places=7 suppliers=4
+[15:13:34.969] INFO  [life] session_goals families=1 picks=29 top=100% varied=0 | work=29(100%) | EARN_GOLD=5(17%) BUY_SUPPLIES=20(69%) MINE=2(7%) SMELT=2(7%)
+[15:13:34.971] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/reva01.corwyn/state.json
+[15:13:34.971] INFO  [life] logging out
+[15:13:34.971] INFO  [v3_Corwyn] [action] logout requested
+[15:13:34.971] LOG   [v3_Corwyn] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[15:13:34.971] INFO  [v3_Corwyn] [0xD1] logout acknowledged (accepted=1)
+[15:13:34.971] LOG   [v3_Corwyn] event logout_ack: accepted
+[15:13:34.971] INFO  [v3_Corwyn] [net] closing connection (logout acknowledged)
+[15:13:34.971] LOG   [v3_Corwyn] event logout_complete: acked

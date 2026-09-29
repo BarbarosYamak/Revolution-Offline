@@ -1,0 +1,358 @@
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+[15:25:35.606] WARN  [ilyana] [0x21] move REJECTED seq=4; server says (775,757,0) facing=0
+[15:27:50.954] WARN  [ilyana] [0x21] move REJECTED seq=35; server says (1432,1666,10) facing=1
+[15:27:51.705] WARN  [ilyana] [0x21] move REJECTED seq=0; server says (1432,1666,10) facing=1
+[15:28:47.444] WARN  [ilyana] [bot] 0x20 resync; aborting path
+[15:28:51.859] WARN  [ilyana] [bot] no path to (1484,1549) avoiding 0 block(s); stopping (search 1784285.3us)
+[15:28:51.862] WARN  [ilyana] [bot] start (1490,1554,30) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 836 item(s), 6 mobile(s))
+[15:28:56.465] WARN  [ilyana] [bot] no path to (1485,1546) avoiding 0 block(s); stopping (search 1558159.3us)
+[15:28:56.465] WARN  [ilyana] [bot] start (1488,1551,30) exits: open=5 terrain=1 mobile=2 dynamic=0 door=0 blacklist=0 (overlay saw 836 item(s), 6 mobile(s))
+[15:28:56.527] WARN  [ilyana] [travel] reached (1488,1551,30) but the target is on another floor; not arrived
+[15:28:59.379] WARN  [ilyana] [bot] no path to (1485,1546) avoiding 0 block(s); stopping (search 1568950.2us)
+[15:28:59.379] WARN  [ilyana] [bot] start (1488,1551,30) exits: open=6 terrain=1 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 836 item(s), 6 mobile(s))
+[15:29:00.743] WARN  [ilyana] [bot] goal (1485,1546) is not walkable; skipping A* and stopping
+[15:29:03.618] WARN  [ilyana] [bot] goal (1485,1546) is not walkable; skipping A* and stopping
+[15:29:05.886] WARN  [ilyana] [bot] no path to (1484,1549) avoiding 0 block(s); stopping (search 1957821.9us)
+[15:29:05.886] WARN  [ilyana] [bot] start (1488,1551,30) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 836 item(s), 6 mobile(s))
+[15:29:07.149] WARN  [ilyana] [bot] goal (1484,1549) is not walkable; skipping A* and stopping
+[15:29:10.850] WARN  [ilyana] [bot] no path to (1487,1548) avoiding 0 block(s); stopping (search 1595193.7us)
+[15:29:10.850] WARN  [ilyana] [bot] start (1486,1551,30) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 836 item(s), 6 mobile(s))
+[15:29:30.930] WARN  [ilyana] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[15:29:33.852] WARN  [ilyana] [bot] no path to (1486,1547) avoiding 0 block(s); stopping (search 1890718.0us)
+[15:29:33.852] WARN  [ilyana] [bot] start (1486,1551,30) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 836 item(s), 6 mobile(s))
+[15:29:38.368] WARN  [ilyana] [bot] no path to (1489,1548) avoiding 0 block(s); stopping (search 1626844.0us)
+[15:29:38.368] WARN  [ilyana] [bot] start (1486,1551,30) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 836 item(s), 5 mobile(s))
+[15:29:42.886] WARN  [ilyana] [bot] no path to (1488,1551) avoiding 0 block(s); stopping (search 1761065.9us)
+[15:29:42.887] WARN  [ilyana] [bot] start (1486,1551,30) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 836 item(s), 5 mobile(s))
+[15:29:46.418] WARN  [ilyana] [bot] no path to (1490,1554) avoiding 0 block(s); stopping (search 2084972.6us)
+[15:29:46.418] WARN  [ilyana] [bot] start (1486,1551,30) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 836 item(s), 5 mobile(s))
+[15:29:57.793] WARN  [ilyana] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[15:30:04.362] WARN  [ilyana] [bot] no path to (1490,1547) avoiding 0 block(s); stopping (search 3329692.1us)
+[15:30:04.363] WARN  [ilyana] [bot] start (1490,1554,30) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 836 item(s), 6 mobile(s))
+[15:30:16.018] WARN  [ilyana] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[15:30:25.044] WARN  [ilyana] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[15:30:34.094] WARN  [ilyana] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[15:30:43.045] WARN  [ilyana] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[15:30:52.103] WARN  [ilyana] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[15:30:54.812] WARN  [ilyana] [bot] no path to (1485,1548) avoiding 0 block(s); stopping (search 1569434.6us)
+[15:30:54.812] WARN  [ilyana] [bot] start (1490,1547,35) exits: open=7 terrain=0 mobile=0 dynamic=1 door=0 blacklist=0 (overlay saw 838 item(s), 6 mobile(s))
+[15:30:54.874] WARN  [ilyana] [travel] reached (1490,1547,35) but the target is on another floor; not arrived
+[15:31:05.948] WARN  [ilyana] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[15:31:15.992] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:31:15.992] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:31:15.992] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:31:25.018] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:31:25.018] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:31:25.018] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:31:34.037] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:31:34.037] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:31:34.037] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:31:43.058] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:31:43.058] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:31:43.058] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:32:00.065] WARN  [ilyana] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[15:32:01.091] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:32:01.091] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:32:01.091] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (1ms) Revolution vendor policy refuses this NPC purchase
+[15:32:10.119] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:32:10.119] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:32:10.119] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:32:19.155] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:32:19.155] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:32:19.155] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:32:28.193] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:32:28.193] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:32:28.194] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:32:45.303] WARN  [ilyana] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[15:32:54.268] WARN  [ilyana] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[15:33:03.321] WARN  [ilyana] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[15:33:04.334] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:33:04.334] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:33:04.334] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:33:21.395] WARN  [ilyana] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[15:33:30.402] WARN  [ilyana] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[15:33:31.401] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:33:31.401] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:33:31.401] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:33:40.429] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:33:40.429] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:33:40.429] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:33:57.468] WARN  [ilyana] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[15:34:06.530] WARN  [ilyana] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[15:34:07.555] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:34:07.555] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:34:07.555] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:34:24.638] WARN  [ilyana] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[15:34:25.618] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:34:25.618] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:34:25.618] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:34:42.667] WARN  [ilyana] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[15:34:43.679] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:34:43.679] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:34:43.679] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:34:52.737] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:34:52.737] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:34:52.737] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:35:01.740] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:35:01.740] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:35:01.740] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:35:10.784] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:35:10.784] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:35:10.784] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:35:19.822] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:35:19.822] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:35:19.822] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:35:36.924] WARN  [ilyana] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[15:35:37.924] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:35:37.924] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:35:37.924] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:35:46.958] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:35:46.958] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:35:46.958] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:35:56.008] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:35:56.008] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:35:56.008] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:36:05.047] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:36:05.047] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:36:05.047] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:36:14.107] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:36:14.107] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:36:14.107] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:36:23.127] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:36:23.127] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:36:23.127] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:36:32.152] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:36:32.152] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:36:32.152] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:36:41.163] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:36:41.163] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:36:41.163] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:36:50.222] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:36:50.222] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:36:50.222] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:36:59.271] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:36:59.271] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:36:59.271] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:37:08.299] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:37:08.299] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:37:08.299] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:37:25.311] WARN  [ilyana] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[15:37:34.409] WARN  [ilyana] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[15:37:43.424] WARN  [ilyana] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[15:37:46.074] WARN  [ilyana] [bot] no path to (1489,1548) avoiding 0 block(s); stopping (search 1567149.4us)
+[15:37:46.074] WARN  [ilyana] [bot] start (1485,1548,70) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 842 item(s), 6 mobile(s))
+[15:37:46.137] WARN  [ilyana] [travel] reached (1485,1548,70) but the target is on another floor; not arrived
+[15:37:48.931] WARN  [ilyana] [bot] no path to (1489,1548) avoiding 0 block(s); stopping (search 1517565.4us)
+[15:37:48.931] WARN  [ilyana] [bot] start (1485,1548,70) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 842 item(s), 6 mobile(s))
+[15:37:48.993] WARN  [ilyana] [travel] reached (1485,1548,70) but the target is on another floor; not arrived
+[15:37:52.028] WARN  [ilyana] [bot] no path to (1488,1551) avoiding 0 block(s); stopping (search 1690879.5us)
+[15:37:52.028] WARN  [ilyana] [bot] start (1485,1548,70) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 842 item(s), 6 mobile(s))
+[15:37:52.090] WARN  [ilyana] [travel] reached (1485,1548,70) but the target is on another floor; not arrived
+[15:37:56.122] WARN  [ilyana] [bot] no path to (1490,1554) avoiding 0 block(s); stopping (search 1606642.0us)
+[15:37:56.122] WARN  [ilyana] [bot] start (1489,1548,70) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 842 item(s), 6 mobile(s))
+[15:37:56.183] WARN  [ilyana] [travel] reached (1489,1548,70) but the target is on another floor; not arrived
+[15:37:59.989] WARN  [ilyana] [bot] no path to (1490,1551) avoiding 0 block(s); stopping (search 1746969.9us)
+[15:37:59.989] WARN  [ilyana] [bot] start (1491,1547,70) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 842 item(s), 6 mobile(s))
+[15:38:00.050] WARN  [ilyana] [travel] reached (1491,1547,70) but the target is on another floor; not arrived
+[15:38:03.082] WARN  [ilyana] [bot] no path to (1489,1548) avoiding 0 block(s); stopping (search 1752822.3us)
+[15:38:03.082] WARN  [ilyana] [bot] start (1491,1547,70) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 842 item(s), 6 mobile(s))
+[15:38:03.144] WARN  [ilyana] [travel] reached (1491,1547,70) but the target is on another floor; not arrived
+[15:38:08.698] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:38:08.698] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:38:08.698] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:38:25.735] WARN  [ilyana] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[15:38:28.701] WARN  [ilyana] [bot] no path to (1485,1550) avoiding 0 block(s); stopping (search 1832786.6us)
+[15:38:28.701] WARN  [ilyana] [bot] start (1489,1548,35) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 842 item(s), 6 mobile(s))
+[15:38:31.414] WARN  [ilyana] [bot] no path to (1484,1547) avoiding 0 block(s); stopping (search 1855039.2us)
+[15:38:31.414] WARN  [ilyana] [bot] start (1489,1548,35) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 842 item(s), 6 mobile(s))
+[15:38:42.313] WARN  [ilyana] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[15:38:51.301] WARN  [ilyana] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[15:39:00.344] WARN  [ilyana] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[15:39:09.440] WARN  [ilyana] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[15:39:12.326] WARN  [ilyana] [bot] no path to (1489,1547) avoiding 0 block(s); stopping (search 1833377.2us)
+[15:39:12.326] WARN  [ilyana] [bot] start (1484,1547,45) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 842 item(s), 5 mobile(s))
+[15:39:12.387] WARN  [ilyana] [travel] reached (1484,1547,45) but the target is on another floor; not arrived
+[15:39:25.488] WARN  [ilyana] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[15:39:26.470] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:39:26.470] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:39:26.470] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:39:35.472] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:39:35.472] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:39:35.472] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:39:44.530] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:39:44.530] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:39:44.530] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:39:53.536] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:39:53.536] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:39:53.536] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:40:02.583] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:40:02.583] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:40:02.583] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:40:11.633] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:40:11.633] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:40:11.633] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (1ms) Revolution vendor policy refuses this NPC purchase
+[15:40:20.641] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:40:20.641] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:40:20.641] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:40:29.690] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:40:29.690] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:40:29.690] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:40:46.728] WARN  [ilyana] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[15:40:47.771] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:40:47.771] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:40:47.771] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:40:56.801] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:40:56.801] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:40:56.801] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:41:05.801] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:41:05.801] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:41:05.801] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:41:14.844] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:41:14.844] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:41:14.844] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:41:23.855] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:41:23.855] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:41:23.856] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:41:32.858] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:41:32.858] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:41:32.858] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:41:41.886] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:41:41.886] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:41:41.886] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:41:50.919] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:41:50.919] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:41:50.919] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:41:59.970] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:41:59.970] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:41:59.970] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:42:17.036] WARN  [ilyana] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[15:42:18.031] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:42:18.031] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:42:18.031] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:42:27.052] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:42:27.052] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:42:27.052] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:42:36.062] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:42:36.062] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:42:36.062] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:42:45.103] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:42:45.103] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:42:45.103] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:42:54.158] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:42:54.158] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:42:54.158] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:43:03.190] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:43:03.190] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:43:03.190] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:43:20.262] WARN  [ilyana] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[15:43:21.303] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:43:21.303] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:43:21.303] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:43:30.322] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:43:30.322] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:43:30.322] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:43:47.360] WARN  [ilyana] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[15:43:48.367] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:43:48.367] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:43:48.367] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (1ms) Revolution vendor policy refuses this NPC purchase
+[15:43:57.392] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:43:57.392] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:43:57.392] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:44:06.411] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:44:06.411] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:44:06.411] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:44:15.422] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:44:15.422] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:44:15.422] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:44:24.424] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:44:24.424] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:44:24.424] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:44:33.485] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:44:33.485] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:44:33.485] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:44:42.524] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:44:42.524] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:44:42.524] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:44:51.563] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:44:51.563] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:44:51.563] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:45:00.586] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:45:00.586] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:45:00.586] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:45:09.636] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:45:09.636] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:45:09.636] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:45:20.595] WARN  [ilyana] [bot] no path to (1485,1547) avoiding 0 block(s); stopping (search 1812410.5us)
+[15:45:20.596] WARN  [ilyana] [bot] start (1489,1547,70) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 842 item(s), 5 mobile(s))
+[15:45:23.621] WARN  [ilyana] [bot] no path to (1485,1547) avoiding 0 block(s); stopping (search 1683754.9us)
+[15:45:23.621] WARN  [ilyana] [bot] start (1489,1547,70) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 842 item(s), 5 mobile(s))
+[15:45:26.787] WARN  [ilyana] [bot] no path to (1485,1547) avoiding 0 block(s); stopping (search 1797555.1us)
+[15:45:26.787] WARN  [ilyana] [bot] start (1489,1547,70) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 842 item(s), 5 mobile(s))
+[15:45:30.525] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:45:30.525] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:45:30.525] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:45:39.537] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:45:39.537] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:45:39.537] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:45:48.554] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:45:48.554] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:45:48.554] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:45:57.597] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:45:57.597] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:45:57.597] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:46:14.669] WARN  [ilyana] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[15:46:15.648] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:46:15.648] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:46:15.648] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:46:24.670] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:46:24.670] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:46:24.670] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:46:33.698] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:46:33.698] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:46:33.698] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:46:42.701] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:46:42.701] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:46:42.701] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:46:51.758] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:46:51.758] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:46:51.758] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:47:00.780] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:47:00.780] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:47:00.780] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:47:17.882] WARN  [ilyana] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[15:47:26.894] WARN  [ilyana] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[15:47:27.886] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:47:27.887] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:47:27.887] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:47:36.946] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:47:36.946] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:47:36.947] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:47:45.968] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:47:45.968] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:47:45.969] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:47:54.991] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:47:54.991] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:47:54.992] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:48:04.040] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:48:04.040] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:48:04.040] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:48:13.060] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:48:13.060] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:48:13.060] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:48:30.102] WARN  [ilyana] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[15:48:39.154] WARN  [ilyana] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[15:48:40.134] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:48:40.134] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:48:40.134] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:48:49.144] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:48:49.144] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:48:49.144] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:49:06.196] WARN  [ilyana] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[15:49:07.201] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:49:07.201] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:49:07.201] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:49:16.207] WARN  [ilyana] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:49:16.207] WARN  [ilyana] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:49:16.207] WARN  [ilyana] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:49:33.282] WARN  [ilyana] [ACTION_RESULT] vendor_buy timeout (no server confirmation)

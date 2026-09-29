@@ -1,0 +1,13 @@
+start: Elara is a alchemist and lives in Magincia -> starting city index 5
+map: verdata 'C:\Projects\RevolutionOffline\local\revolution-client/verdata.mul' applied (685 patch block(s))
+map: verdata 'C:\Projects\RevolutionOffline\local\revolution-client/verdata.mul' applied (685 patch block(s))
+[17:33:16.238] WARN  [wave10_RevGen3_14_Elara] [ACTION_RESULT] move_item server_failure (16ms) item 0x40010DEF landed in 0x40011013, not the destination 0x40010EB3
+[17:33:21.248] WARN  [wave10_RevGen3_14_Elara] [ACTION_RESULT] move_item server_failure (1ms) item 0x40010DEE landed in 0x40011013, not the destination 0x40010EB3
+[17:33:30.683] WARN  [wave10_RevGen3_14_Elara] [0x21] move REJECTED seq=17; server says (1439,1693,0) facing=3
+[17:33:30.698] WARN  [wave10_RevGen3_14_Elara] [bot] 0x20 resync; aborting path
+[17:33:37.877] WARN  [wave10_RevGen3_14_Elara] [bot] 13 lookahead repairs without movement; abandoning this trip instead of remaining trapped
+[17:33:40.397] WARN  [wave10_RevGen3_14_Elara] [bot] no path to (1464,1688) avoiding 0 block(s); stopping (search 1205083.0us)
+[17:33:40.398] WARN  [wave10_RevGen3_14_Elara] [bot] start (1461,1693,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 250 item(s), 5 mobile(s))
+[17:34:09.636] WARN  [wave10_RevGen3_14_Elara] [bot] watchdog: oldest move unacked 5s; aborting path
+[17:34:09.906] WARN  [wave10_RevGen3_14_Elara] [0x22] unsolicited ack seq=30
+[17:35:02.589] WARN  [wave10_RevGen3_14_Elara] [0x21] move REJECTED seq=92; server says (1417,1607,30) facing=5

@@ -1,0 +1,2032 @@
+[22:04:57.346] INFO  session 0: 127.0.0.1:2593 user='RevolutionFresh13' char=Ilyandra tag='w_Ilyandra'
+[22:04:57.347] LOG   [w_Ilyandra] event session_start: text log opened
+[22:04:57.347] LOG   [w_Ilyandra] event net_connect_begin: connect 127.0.0.1:2593
+[22:04:57.347] INFO  [w_Ilyandra] [net] connecting to 127.0.0.1:2593 ...
+[22:04:57.348] LOG   [w_Ilyandra] event net_connected: connect 127.0.0.1:2593
+[22:04:57.349] INFO  [w_Ilyandra] [net] connected.
+[22:04:57.349] INFO  [w_Ilyandra] [seed] sent 0x7F000001 (plaintext)
+[22:04:57.349] LOG   [w_Ilyandra] event seed_out: 0x7F000001 hex=7f000001
+[22:04:57.349] INFO  [life] loaded persistent state for Ilyandra (1 places, 0 suppliers, 2 events, 2 prior sessions)
+[22:04:57.349] INFO  [life] needs: reading 'mage' from the profession catalogue
+[22:04:57.349] INFO  [life] build plan 'mage': 300.0 resolved + 400.0 unresolved = 700.0/700.0, stats 25/25/100 = 150
+[22:04:57.349] INFO  [w_Ilyandra] [life] autonomous player active for 'Ilyandra' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 12 min)
+[22:04:57.359] INFO  [w_Ilyandra] [0xA8] 1 server(s):
+[22:04:57.359] INFO  [w_Ilyandra]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[22:04:57.375] INFO  [w_Ilyandra] [0x8C] game server = 127.0.0.1:2593  seed=0xCC2A92C4
+[22:04:57.375] LOG   [w_Ilyandra] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xCC2A92C4
+[22:04:57.375] INFO  [w_Ilyandra] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[22:04:57.375] LOG   [w_Ilyandra] event relay_same_socket: no seed re-sent; 0x91 follows
+[22:04:57.375] INFO  [w_Ilyandra] [0xB9] server features = 0x0005
+[22:04:57.375] INFO  [w_Ilyandra] [0xA9] 5 slot(s) (populated 1):
+[22:04:57.375] INFO  [w_Ilyandra]   [0] Ilyandra
+[22:04:57.375] INFO  [w_Ilyandra]   [1] <empty>
+[22:04:57.375] INFO  [w_Ilyandra]   [2] <empty>
+[22:04:57.375] INFO  [w_Ilyandra]   [3] <empty>
+[22:04:57.375] INFO  [w_Ilyandra]   [4] <empty>
+[22:04:57.375] INFO  [w_Ilyandra] [ui] playing slot 0 ('Ilyandra')
+[22:04:57.390] INFO  [w_Ilyandra] [0x1B] serial=0x00013A77 body=0x0190 pos=(1486,1549,70)
+[22:04:57.391] LOG   [w_Ilyandra] event login_confirm: serial=0x00013A77 body=0x0190 pos=(1486,1549,70)
+[22:04:57.391] INFO  [w_Ilyandra] [0x20] player @(1486,1549,70) facing=4
+[22:04:57.391] INFO  [w_Ilyandra] [0x55] login complete — entering world
+[22:04:57.391] LOG   [w_Ilyandra] event in_world: 0x55 received
+[22:04:57.391] INFO  [w_Ilyandra] [backpack] opening 0x40013A74
+[22:04:57.391] INFO  [w_Ilyandra] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[22:04:57.391] INFO  [w_Ilyandra] [chat ascii] System: There is 1 other player here.
+[22:04:57.391] INFO  [w_Ilyandra] [chat ascii] System: Last logged: 2026/08/30 05:47:38
+[22:04:57.391] INFO  [w_Ilyandra] [chat ascii] System: You are under the protection of the city guards
+[22:04:57.395] INFO  [w_Ilyandra] [action] requesting the skill list
+[22:04:57.395] INFO  [life] in world; asked the server for the skill list
+[22:04:57.395] INFO  [w_Ilyandra] [0x24] open container 0x40013A74 gump=60
+[22:04:57.395] INFO  [w_Ilyandra] [0x3C] container contents: 9 item(s)
+[22:04:57.395] LOG   [w_Ilyandra] event backpack_contents: serial=0x40013A74 items=9
+[22:04:57.684] INFO  [w_Ilyandra] [chat ascii] Alenne: I am listening to thee.
+[22:05:00.013] INFO  [w_Ilyandra] [bot] world data loaded (0 blacklisted spot(s)).
+[22:05:00.013] INFO  [life] reconciliation: resuming a life, 0 field(s) differed
+[22:05:00.013] INFO  [life]   gold         persisted=684        server=684        -> server value accepted
+[22:05:00.013] INFO  [life]   str          persisted=20         server=20         -> server value accepted
+[22:05:00.013] INFO  [life]   dex          persisted=12         server=12         -> server value accepted
+[22:05:00.013] INFO  [life]   int          persisted=48         server=48         -> server value accepted
+[22:05:00.013] INFO  [life]   skill_25     persisted=50.0       server=50.0       -> server value accepted
+[22:05:00.013] INFO  [life]   skill_46     persisted=50.0       server=50.0       -> server value accepted
+[22:05:00.013] INFO  [life]   skill_16     persisted=30.0       server=30.0       -> server value accepted
+[22:05:00.013] INFO  [life]   position     persisted=1486,1549  server=1486,1549  -> server value accepted
+[22:05:00.013] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[22:05:00.013] INFO  [life]   restored objective KEPT: FILL_SPELLBOOK (progress 0)
+[22:05:00.013] INFO  [w_Ilyandra] [survival] on
+[22:05:00.013] LOG   [w_Ilyandra] event survival_mode: on
+[22:05:00.015] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh13.ilyandra/state.json
+[22:05:00.016] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:05:00.080] INFO  [life] spellbook: opening the book to see what is already in it
+[22:05:00.080] INFO  [w_Ilyandra] [ACTION] use_object start
+[22:05:00.080] INFO  [w_Ilyandra] [ACTION] use_object serial=0x40013A6B
+[22:05:00.081] INFO  [w_Ilyandra] [0x3C] container contents: 12 item(s)
+[22:05:00.081] INFO  [w_Ilyandra] [ACTION_RESULT] use_object success (0ms) contents received
+[22:05:00.081] LOG   [w_Ilyandra] event action_result: use_object success took=0ms contents received
+[22:05:00.468] INFO  [w_Ilyandra] [chat ascii] System: Kaelen has arrived in Britain.
+[22:05:02.632] INFO  [life] spellbook: adding scroll 0x1F2F to the book (12 spells so far)
+[22:05:02.632] INFO  [w_Ilyandra] [ACTION] move_item start
+[22:05:02.632] INFO  [w_Ilyandra] [ACTION] move_item serial=0x40013A68 amount=1 dest=0x40013A6B
+[22:05:02.632] INFO  [w_Ilyandra] [ITEM] drag serial=0x40013A68 amount=1
+[22:05:02.632] INFO  [w_Ilyandra] [ITEM] drop container=0x40013A6B
+[22:05:03.507] INFO  [w_Ilyandra] [chat ascii] System: Bruin has arrived in Yew.
+[22:05:05.025] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:05:06.687] LOG   [w_Ilyandra] event action_result: move_item timeout
+[22:05:06.748] INFO  [life] spellbook: opening the book to see what is already in it
+[22:05:06.748] INFO  [w_Ilyandra] [ACTION] use_object start
+[22:05:06.748] INFO  [w_Ilyandra] [ACTION] use_object serial=0x40013A6B
+[22:05:06.748] INFO  [w_Ilyandra] [0x3C] container contents: 13 item(s)
+[22:05:06.748] INFO  [w_Ilyandra] [ACTION_RESULT] use_object success (0ms) contents received
+[22:05:06.748] LOG   [w_Ilyandra] event action_result: use_object success took=0ms contents received
+[22:05:09.299] INFO  [life] spellbook: adding scroll 0x1F38 to the book (13 spells so far)
+[22:05:09.299] INFO  [w_Ilyandra] [ACTION] move_item start
+[22:05:09.299] INFO  [w_Ilyandra] [ACTION] move_item serial=0x40013A67 amount=1 dest=0x40013A6B
+[22:05:09.299] INFO  [w_Ilyandra] [ITEM] drag serial=0x40013A67 amount=1
+[22:05:09.299] INFO  [w_Ilyandra] [ITEM] drop container=0x40013A6B
+[22:05:09.299] INFO  [w_Ilyandra] [chat ascii] System: Can't add this to the spellbook
+[22:05:09.299] LOG   [w_Ilyandra] event action_result: move_item server_failure took=1ms item 0x40013A67 landed in 0x40013A74, not the destination 0x40013A6B
+[22:05:10.049] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:05:11.845] INFO  [life] spellbook: the book would not take scroll 0x1F38 (still 13 spells) -- it already knows that one; not offering it again
+[22:05:11.845] INFO  [life] spellbook: opening the book to see what is already in it
+[22:05:11.845] INFO  [w_Ilyandra] [ACTION] use_object start
+[22:05:11.845] INFO  [w_Ilyandra] [ACTION] use_object serial=0x40013A6B
+[22:05:11.845] INFO  [w_Ilyandra] [0x3C] container contents: 13 item(s)
+[22:05:11.845] INFO  [w_Ilyandra] [ACTION_RESULT] use_object success (0ms) contents received
+[22:05:11.845] LOG   [w_Ilyandra] event action_result: use_object success took=0ms contents received
+[22:05:14.365] INFO  [life] spellbook: adding scroll 0x1F42 to the book (13 spells so far)
+[22:05:14.365] INFO  [w_Ilyandra] [ACTION] move_item start
+[22:05:14.365] INFO  [w_Ilyandra] [ACTION] move_item serial=0x40013A65 amount=1 dest=0x40013A6B
+[22:05:14.365] INFO  [w_Ilyandra] [ITEM] drag serial=0x40013A65 amount=1
+[22:05:14.365] INFO  [w_Ilyandra] [ITEM] drop container=0x40013A6B
+[22:05:14.380] INFO  [w_Ilyandra] [chat ascii] System: Can't add this to the spellbook
+[22:05:14.380] LOG   [w_Ilyandra] event action_result: move_item server_failure took=15ms item 0x40013A65 landed in 0x40013A74, not the destination 0x40013A6B
+[22:05:15.054] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:05:16.883] INFO  [life] spellbook: the book would not take scroll 0x1F42 (still 13 spells) -- it already knows that one; not offering it again
+[22:05:16.883] INFO  [life] spellbook: opening the book to see what is already in it
+[22:05:16.883] INFO  [w_Ilyandra] [ACTION] use_object start
+[22:05:16.883] INFO  [w_Ilyandra] [ACTION] use_object serial=0x40013A6B
+[22:05:16.883] INFO  [w_Ilyandra] [0x3C] container contents: 13 item(s)
+[22:05:16.883] INFO  [w_Ilyandra] [ACTION_RESULT] use_object success (0ms) contents received
+[22:05:16.883] LOG   [w_Ilyandra] event action_result: use_object success took=0ms contents received
+[22:05:19.436] INFO  [life] FILL_SPELLBOOK: looking for a 'scribe' to sell a spell this book lacks (trip 1)
+[22:05:19.447] INFO  [w_Ilyandra] [travel] Lord British's Castle scribe -> (1409,1590) r=5 from (1486,1549)
+[22:05:19.447] LOG   [w_Ilyandra] event travel_start: label='Lord British's Castle scribe' target=(1409,1590) radius=5 from=(1486,1549)
+[22:05:19.447] INFO  [w_Ilyandra] [travel] mode moongate         usable   <- chosen
+[22:05:19.447] INFO  [w_Ilyandra] [travel] mode walk             usable
+[22:05:19.447] INFO  [w_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:05:19.447] INFO  [w_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:05:19.447] LOG   [w_Ilyandra] event travel_mode: moongate
+[22:05:19.447] INFO  [w_Ilyandra] [travel] plan Lord British's Castle scribe: ok legs=2 ~96 tiles transit=0 nodes=16
+[22:05:19.498] INFO  [w_Ilyandra] [action] goto (1448,1576) from (1486,1549,70)
+[22:05:19.498] LOG   [w_Ilyandra] event goto_start: target=(1448,1576) from=(1486,1549)
+[22:05:19.498] INFO  [w_Ilyandra] [bot] running from (1486,1549,70) to (1448,1576)
+[22:05:19.498] INFO  [w_Ilyandra] [bot] planning path to (1448,1576) in background
+[22:05:19.559] INFO  [w_Ilyandra] [bot] replan to (1448,1576): 117 steps in 30982.2us
+[22:05:20.004] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=FILL_SPELLBOOK reason="REPLACE_EQUIPMENT 130.0 superseded FILL_SPELLBOOK 23.6"
+[22:05:20.004] INFO  [life] needs considered: NeedEquipment(heal potions 0.50) NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:05:20.004] INFO  [life]   score=130.0
+[22:05:20.004] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[22:05:20.004] INFO  [life]   reason: potions=0 low=2 gold=684
+[22:05:20.065] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:05:21.478] INFO  [life] plan=buy reason="none held, and it may be bought"
+[22:05:25.111] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:05:30.133] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:05:35.187] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:05:40.195] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:05:45.228] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:05:48.716] INFO  [w_Ilyandra] [bot] door ahead at (1443,1583,z20); OpenDoor before step
+[22:05:48.716] INFO  [w_Ilyandra] [chat ascii] System: Opening door...
+[22:05:50.288] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:05:52.561] INFO  [w_Ilyandra] [bot] arrived at (1448,1576,30)
+[22:05:52.561] INFO  [w_Ilyandra] [action] goto finished at (1448,1576,30); target (1448,1576); ARRIVED (off by 0 tile(s))
+[22:05:52.561] LOG   [w_Ilyandra] event goto_done: at=(1448,1576) target=(1448,1576) arrived=1 off=0
+[22:05:52.561] INFO  [w_Ilyandra] [travel] avoiding 2 teleporter pad(s) on this leg
+[22:05:52.561] INFO  [w_Ilyandra] [action] goto (1409,1590) from (1448,1576,30)
+[22:05:52.561] LOG   [w_Ilyandra] event goto_start: target=(1409,1590) from=(1448,1576)
+[22:05:52.561] INFO  [w_Ilyandra] [bot] running from (1448,1576,30) to (1409,1590,z42)
+[22:05:52.561] INFO  [w_Ilyandra] [bot] planning path to (1409,1590) in background
+[22:05:52.623] INFO  [w_Ilyandra] [bot] replan to (1409,1590): 47 steps in 5597.2us
+[22:05:55.320] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:05:56.845] INFO  [w_Ilyandra] [bot] step (1443,1584,20)->(1442,1585,20) rejected; OpenDoor + retry
+[22:05:56.845] INFO  [w_Ilyandra] [chat ascii] System: Opening door...
+[22:05:56.845] INFO  [w_Ilyandra] [0x20] player @(1443,1584,20) facing=6
+[22:05:56.845] INFO  [w_Ilyandra] [action] goto finished at (1443,1584,20); target (1409,1590); stopped short (off by 40 tile(s))
+[22:05:56.845] LOG   [w_Ilyandra] event goto_done: at=(1443,1584) target=(1409,1590) arrived=0 off=40
+[22:05:58.079] INFO  [w_Ilyandra] [action] goto (1409,1590) from (1443,1584,20)
+[22:05:58.079] LOG   [w_Ilyandra] event goto_start: target=(1409,1590) from=(1443,1584)
+[22:05:58.079] INFO  [w_Ilyandra] [bot] running from (1443,1584,20) to (1409,1590,z42)
+[22:05:58.079] INFO  [w_Ilyandra] [bot] planning path to (1409,1590) in background
+[22:05:58.140] INFO  [w_Ilyandra] [bot] replan to (1409,1590): 37 steps in 3489.5us
+[22:06:00.039] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh13.ilyandra/state.json
+[22:06:00.359] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:06:05.404] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:06:05.940] INFO  [w_Ilyandra] [bot] lookahead patched around block at step 5: anchor=6 new segment=10 path=14 in 430.0us
+[22:06:07.490] INFO  [w_Ilyandra] [chat ascii] Raisa: I'm listenin'.
+[22:06:07.925] INFO  [w_Ilyandra] [travel] Lord British's Castle scribe ARRIVED at (1413,1593,30)
+[22:06:07.925] LOG   [w_Ilyandra] event travel_done: label='Lord British's Castle scribe' ok=1 at=(1413,1593) legs=2 plans=1 why=''
+[22:06:07.985] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 8
+[22:06:07.988] INFO  [w_Ilyandra] [travel] place: skipping Cove healer -- 1336 tiles and 1 gate for a service Britain healer offers
+[22:06:07.988] INFO  [w_Ilyandra] [travel] place: skipping Minoc healer -- 1744 tiles and 0 gates for a service Britain healer offers
+[22:06:07.988] INFO  [w_Ilyandra] [travel] Britain healer -> (1471,1611) r=5 from (1413,1593)
+[22:06:07.988] LOG   [w_Ilyandra] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1413,1593)
+[22:06:07.988] INFO  [life] potions: walking to a 'healer' (trip 1)
+[22:06:07.988] INFO  [w_Ilyandra] [travel] mode moongate         usable   <- chosen
+[22:06:07.988] INFO  [w_Ilyandra] [travel] mode walk             usable
+[22:06:07.988] INFO  [w_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:06:07.988] INFO  [w_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:06:07.988] LOG   [w_Ilyandra] event travel_mode: moongate
+[22:06:07.989] INFO  [w_Ilyandra] [travel] plan Britain healer: ok legs=2 ~56 tiles transit=0 nodes=6
+[22:06:10.414] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:06:11.385] INFO  [w_Ilyandra] [chat ascii] System: You have left the protection of the city guards
+[22:06:11.385] INFO  [w_Ilyandra] [chat ascii] System: You have a feeling of complete safety
+[22:06:11.385] INFO  [w_Ilyandra] [bot] arrived at (1409,1590,45)
+[22:06:11.385] INFO  [w_Ilyandra] [action] goto finished at (1409,1590,45); target (1409,1590); ARRIVED (off by 0 tile(s))
+[22:06:11.385] LOG   [w_Ilyandra] event goto_done: at=(1409,1590) target=(1409,1590) arrived=1 off=0
+[22:06:11.385] INFO  [w_Ilyandra] [travel] avoiding 2 teleporter pad(s) on this leg
+[22:06:11.385] INFO  [w_Ilyandra] [action] goto (1448,1592) from (1409,1590,45)
+[22:06:11.385] LOG   [w_Ilyandra] event goto_start: target=(1448,1592) from=(1409,1590)
+[22:06:11.385] INFO  [w_Ilyandra] [bot] running from (1409,1590,45) to (1448,1592)
+[22:06:11.385] INFO  [w_Ilyandra] [bot] planning path to (1448,1592) in background
+[22:06:11.446] INFO  [w_Ilyandra] [bot] replan to (1448,1592): 51 steps in 19079.5us
+[22:06:12.321] INFO  [w_Ilyandra] [chat ascii] System: You are now under the protection of the city guards
+[22:06:12.321] INFO  [w_Ilyandra] [chat ascii] System: You lose your feeling of safety
+[22:06:15.427] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:06:19.554] INFO  [w_Ilyandra] [bot] door ahead at (1434,1600,z20); OpenDoor before step
+[22:06:19.554] INFO  [w_Ilyandra] [chat ascii] System: Opening door...
+[22:06:20.460] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:06:20.756] INFO  [w_Ilyandra] [bot] door ahead at (1437,1600,z20); OpenDoor before step
+[22:06:20.756] INFO  [w_Ilyandra] [chat ascii] System: Opening door...
+[22:06:24.688] INFO  [w_Ilyandra] [bot] door ahead at (1450,1599,z20); OpenDoor before step
+[22:06:24.703] INFO  [w_Ilyandra] [chat ascii] System: Opening door...
+[22:06:25.501] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:06:27.680] INFO  [w_Ilyandra] [bot] arrived at (1448,1592,20)
+[22:06:27.680] INFO  [w_Ilyandra] [action] goto finished at (1448,1592,20); target (1448,1592); ARRIVED (off by 0 tile(s))
+[22:06:27.680] LOG   [w_Ilyandra] event goto_done: at=(1448,1592) target=(1448,1592) arrived=1 off=0
+[22:06:27.680] INFO  [w_Ilyandra] [travel] avoiding 2 teleporter pad(s) on this leg
+[22:06:27.680] INFO  [w_Ilyandra] [action] goto (1471,1611) from (1448,1592,20)
+[22:06:27.680] LOG   [w_Ilyandra] event goto_start: target=(1471,1611) from=(1448,1592)
+[22:06:27.680] INFO  [w_Ilyandra] [bot] running from (1448,1592,20) to (1471,1611,z20)
+[22:06:27.680] INFO  [w_Ilyandra] [bot] planning path to (1471,1611) in background
+[22:06:27.742] INFO  [w_Ilyandra] [bot] replan to (1471,1611): 47 steps in 22763.6us
+[22:06:30.538] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:06:30.539] INFO  [w_Ilyandra] [bot] door ahead at (1457,1599,z20); OpenDoor before step
+[22:06:30.554] INFO  [w_Ilyandra] [chat ascii] System: Opening door...
+[22:06:31.981] INFO  [w_Ilyandra] [bot] door ahead at (1458,1600,z20); OpenDoor before step
+[22:06:31.996] INFO  [w_Ilyandra] [chat ascii] System: Opening door...
+[22:06:35.550] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:06:40.087] INFO  [w_Ilyandra] [bot] door ahead at (1480,1610,z20); OpenDoor before step
+[22:06:40.088] INFO  [w_Ilyandra] [chat ascii] System: Opening door...
+[22:06:40.592] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:06:41.331] INFO  [w_Ilyandra] [bot] door ahead at (1479,1611,z20); OpenDoor before step
+[22:06:41.347] INFO  [w_Ilyandra] [chat ascii] System: Opening door...
+[22:06:42.897] INFO  [w_Ilyandra] [travel] Britain healer ARRIVED at (1476,1611,20)
+[22:06:42.897] LOG   [w_Ilyandra] event travel_done: label='Britain healer' ok=1 at=(1476,1611) legs=2 plans=1 why=''
+[22:06:42.959] INFO  [w_Ilyandra] [action] scanning nearby mobiles for names
+[22:06:42.959] INFO  [w_Ilyandra] [action] requested 3 paperdoll(s) for trade titles
+[22:06:42.959] INFO  [life] potions: at the shop, asking who is here (scan 1 of 3)
+[22:06:42.973] INFO  [w_Ilyandra] [mobiles] nearby (4):
+[22:06:42.973] INFO  [w_Ilyandra]   Kaelen 0x00013DF0
+[22:06:42.973] INFO  [w_Ilyandra]   Natasha 0x00001194
+[22:06:42.973] INFO  [w_Ilyandra]   Dale 0x000010C1
+[22:06:42.973] INFO  [w_Ilyandra]   Caimile 0x00001239
+[22:06:42.973] INFO  [w_Ilyandra] [0x88] paperdoll 0x000010C1: "Dale, the healer"
+[22:06:42.973] INFO  [w_Ilyandra] [world] Dale, the healer is a healer at (1468,1611)
+[22:06:42.974] INFO  [w_Ilyandra] [0x20] player @(1476,1611,20) facing=7
+[22:06:42.974] INFO  [w_Ilyandra] [0x88] paperdoll 0x00001194: "Natasha, the healer guildmistress"
+[22:06:42.974] INFO  [w_Ilyandra] [world] Natasha, the healer guildmistress is a healer at (1470,1608)
+[22:06:42.974] INFO  [w_Ilyandra] [0x20] player @(1476,1611,20) facing=4
+[22:06:42.974] INFO  [w_Ilyandra] [0x88] paperdoll 0x00013DF0: "Kaelen, Apprentice Fencer"
+[22:06:45.621] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:06:45.989] INFO  [life] potions: found a 'healer'
+[22:06:46.051] INFO  [w_Ilyandra] [travel] mobile 0x000010C1 -> (1468,1611) r=1 from (1476,1611)
+[22:06:46.051] LOG   [w_Ilyandra] event travel_start: label='mobile 0x000010C1' target=(1468,1611) radius=1 from=(1476,1611)
+[22:06:46.051] INFO  [life] potions: the 'healer' is 8 tiles off (dz 0) -- walking into reach (chase 1 of 3)
+[22:06:46.051] INFO  [w_Ilyandra] [travel] mode walk             usable   <- chosen
+[22:06:46.051] INFO  [w_Ilyandra] [travel] mode moongate         usable
+[22:06:46.051] INFO  [w_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:06:46.051] INFO  [w_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:06:46.051] LOG   [w_Ilyandra] event travel_mode: walk
+[22:06:46.051] INFO  [w_Ilyandra] [travel] plan mobile 0x000010C1: ok legs=1 ~8 tiles transit=0 nodes=0
+[22:06:46.112] INFO  [w_Ilyandra] [action] goto finished at (1476,1611,20); target (1471,1611); stopped short (off by 5 tile(s))
+[22:06:46.112] LOG   [w_Ilyandra] event goto_done: at=(1476,1611) target=(1471,1611) arrived=0 off=5
+[22:06:46.112] INFO  [w_Ilyandra] [travel] avoiding 2 teleporter pad(s) on this leg
+[22:06:46.112] INFO  [w_Ilyandra] [action] goto (1468,1611) from (1476,1611,20)
+[22:06:46.112] LOG   [w_Ilyandra] event goto_start: target=(1468,1611) from=(1476,1611)
+[22:06:46.112] INFO  [w_Ilyandra] [bot] running from (1476,1611,20) to (1468,1611,z20)
+[22:06:46.113] INFO  [w_Ilyandra] [bot] planning path to (1468,1611) in background
+[22:06:47.839] INFO  [w_Ilyandra] [action] goto finished at (1476,1611,20); target (1468,1611); stopped short (off by 8 tile(s))
+[22:06:47.839] LOG   [w_Ilyandra] event goto_done: at=(1476,1611) target=(1468,1611) arrived=0 off=8
+[22:06:49.070] INFO  [w_Ilyandra] [travel] avoiding 2 teleporter pad(s) on this leg
+[22:06:49.070] INFO  [w_Ilyandra] [action] goto (1468,1611) from (1476,1611,20)
+[22:06:49.070] LOG   [w_Ilyandra] event goto_start: target=(1468,1611) from=(1476,1611)
+[22:06:49.070] INFO  [w_Ilyandra] [bot] running from (1476,1611,20) to (1468,1611,z20)
+[22:06:49.070] INFO  [w_Ilyandra] [bot] planning path to (1468,1611) in background
+[22:06:50.624] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:06:51.070] INFO  [w_Ilyandra] [action] goto finished at (1476,1611,20); target (1468,1611); stopped short (off by 8 tile(s))
+[22:06:51.070] LOG   [w_Ilyandra] event goto_done: at=(1476,1611) target=(1468,1611) arrived=0 off=8
+[22:06:52.310] INFO  [w_Ilyandra] [travel] mode walk             usable   <- chosen
+[22:06:52.310] INFO  [w_Ilyandra] [travel] mode moongate         usable
+[22:06:52.310] INFO  [w_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:06:52.310] INFO  [w_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:06:52.310] LOG   [w_Ilyandra] event travel_mode: walk
+[22:06:52.310] INFO  [w_Ilyandra] [travel] plan mobile 0x000010C1: ok legs=1 ~8 tiles transit=0 nodes=0
+[22:06:53.845] INFO  [w_Ilyandra] [travel] avoiding 2 teleporter pad(s) on this leg
+[22:06:53.845] INFO  [w_Ilyandra] [action] goto (1468,1611) from (1476,1611,20)
+[22:06:53.845] LOG   [w_Ilyandra] event goto_start: target=(1468,1611) from=(1476,1611)
+[22:06:53.845] INFO  [w_Ilyandra] [bot] running from (1476,1611,20) to (1468,1611,z20)
+[22:06:53.845] INFO  [w_Ilyandra] [bot] planning path to (1468,1611) in background
+[22:06:55.675] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:06:55.735] INFO  [w_Ilyandra] [action] goto finished at (1476,1611,20); target (1468,1611); stopped short (off by 8 tile(s))
+[22:06:55.735] LOG   [w_Ilyandra] event goto_done: at=(1476,1611) target=(1468,1611) arrived=0 off=8
+[22:06:56.978] INFO  [w_Ilyandra] [travel] avoiding 2 teleporter pad(s) on this leg
+[22:06:56.978] INFO  [w_Ilyandra] [action] goto (1468,1611) from (1476,1611,20)
+[22:06:56.978] LOG   [w_Ilyandra] event goto_start: target=(1468,1611) from=(1476,1611)
+[22:06:56.978] INFO  [w_Ilyandra] [bot] running from (1476,1611,20) to (1468,1611,z20)
+[22:06:56.978] INFO  [w_Ilyandra] [bot] planning path to (1468,1611) in background
+[22:06:58.550] INFO  [w_Ilyandra] [action] goto finished at (1476,1611,20); target (1468,1611); stopped short (off by 8 tile(s))
+[22:06:58.550] LOG   [w_Ilyandra] event goto_done: at=(1476,1611) target=(1468,1611) arrived=0 off=8
+[22:06:59.777] INFO  [w_Ilyandra] [travel] avoiding 2 teleporter pad(s) on this leg
+[22:06:59.777] INFO  [w_Ilyandra] [action] goto (1468,1611) from (1476,1611,20)
+[22:06:59.777] LOG   [w_Ilyandra] event goto_start: target=(1468,1611) from=(1476,1611)
+[22:06:59.777] INFO  [w_Ilyandra] [bot] running from (1476,1611,20) to (1468,1611,z20)
+[22:06:59.777] INFO  [w_Ilyandra] [bot] planning path to (1468,1611) in background
+[22:07:00.088] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh13.ilyandra/state.json
+[22:07:00.717] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:07:01.688] INFO  [w_Ilyandra] [action] goto finished at (1476,1611,20); target (1468,1611); stopped short (off by 8 tile(s))
+[22:07:01.688] LOG   [w_Ilyandra] event goto_done: at=(1476,1611) target=(1468,1611) arrived=0 off=8
+[22:07:02.947] INFO  [w_Ilyandra] [travel] mode walk             usable   <- chosen
+[22:07:02.947] INFO  [w_Ilyandra] [travel] mode moongate         usable
+[22:07:02.947] INFO  [w_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:07:02.947] INFO  [w_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:07:02.947] LOG   [w_Ilyandra] event travel_mode: walk
+[22:07:02.947] INFO  [w_Ilyandra] [travel] plan mobile 0x000010C1: ok legs=1 ~8 tiles transit=0 nodes=0
+[22:07:05.742] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:07:05.987] INFO  [w_Ilyandra] [travel] avoiding 2 teleporter pad(s) on this leg
+[22:07:05.987] INFO  [w_Ilyandra] [action] goto (1468,1611) from (1476,1611,20)
+[22:07:05.987] LOG   [w_Ilyandra] event goto_start: target=(1468,1611) from=(1476,1611)
+[22:07:05.987] INFO  [w_Ilyandra] [bot] running from (1476,1611,20) to (1468,1611,z20)
+[22:07:05.987] INFO  [w_Ilyandra] [bot] planning path to (1468,1611) in background
+[22:07:07.510] INFO  [w_Ilyandra] [action] goto finished at (1476,1611,20); target (1468,1611); stopped short (off by 8 tile(s))
+[22:07:07.510] LOG   [w_Ilyandra] event goto_done: at=(1476,1611) target=(1468,1611) arrived=0 off=8
+[22:07:08.770] INFO  [w_Ilyandra] [travel] avoiding 2 teleporter pad(s) on this leg
+[22:07:08.770] INFO  [w_Ilyandra] [action] goto (1468,1611) from (1476,1611,20)
+[22:07:08.770] LOG   [w_Ilyandra] event goto_start: target=(1468,1611) from=(1476,1611)
+[22:07:08.770] INFO  [w_Ilyandra] [bot] running from (1476,1611,20) to (1468,1611,z20)
+[22:07:08.770] INFO  [w_Ilyandra] [bot] planning path to (1468,1611) in background
+[22:07:10.686] INFO  [w_Ilyandra] [action] goto finished at (1476,1611,20); target (1468,1611); stopped short (off by 8 tile(s))
+[22:07:10.686] LOG   [w_Ilyandra] event goto_done: at=(1476,1611) target=(1468,1611) arrived=0 off=8
+[22:07:10.747] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:07:11.914] INFO  [w_Ilyandra] [travel] mode walk             usable   <- chosen
+[22:07:11.914] INFO  [w_Ilyandra] [travel] mode moongate         usable
+[22:07:11.914] INFO  [w_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:07:11.914] INFO  [w_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:07:11.914] LOG   [w_Ilyandra] event travel_mode: walk
+[22:07:11.914] INFO  [w_Ilyandra] [travel] plan mobile 0x000010C1: ok legs=1 ~8 tiles transit=0 nodes=0
+[22:07:15.785] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:07:16.460] INFO  [w_Ilyandra] [travel] avoiding 2 teleporter pad(s) on this leg
+[22:07:16.460] INFO  [w_Ilyandra] [action] goto (1468,1611) from (1476,1611,20)
+[22:07:16.460] LOG   [w_Ilyandra] event goto_start: target=(1468,1611) from=(1476,1611)
+[22:07:16.460] INFO  [w_Ilyandra] [bot] running from (1476,1611,20) to (1468,1611,z20)
+[22:07:16.460] INFO  [w_Ilyandra] [bot] planning path to (1468,1611) in background
+[22:07:17.967] INFO  [w_Ilyandra] [action] goto finished at (1476,1611,20); target (1468,1611); stopped short (off by 8 tile(s))
+[22:07:17.967] LOG   [w_Ilyandra] event goto_done: at=(1476,1611) target=(1468,1611) arrived=0 off=8
+[22:07:19.169] INFO  [w_Ilyandra] [travel] avoiding 2 teleporter pad(s) on this leg
+[22:07:19.169] INFO  [w_Ilyandra] [action] goto (1468,1611) from (1476,1611,20)
+[22:07:19.169] LOG   [w_Ilyandra] event goto_start: target=(1468,1611) from=(1476,1611)
+[22:07:19.169] INFO  [w_Ilyandra] [bot] running from (1476,1611,20) to (1468,1611,z20)
+[22:07:19.169] INFO  [w_Ilyandra] [bot] planning path to (1468,1611) in background
+[22:07:20.842] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:07:21.104] INFO  [w_Ilyandra] [action] goto finished at (1476,1611,20); target (1468,1611); stopped short (off by 8 tile(s))
+[22:07:21.104] LOG   [w_Ilyandra] event goto_done: at=(1476,1611) target=(1468,1611) arrived=0 off=8
+[22:07:22.352] INFO  [w_Ilyandra] [travel] avoiding 2 teleporter pad(s) on this leg
+[22:07:22.352] INFO  [w_Ilyandra] [action] goto (1468,1611) from (1476,1611,20)
+[22:07:22.352] LOG   [w_Ilyandra] event goto_start: target=(1468,1611) from=(1476,1611)
+[22:07:22.352] INFO  [w_Ilyandra] [bot] running from (1476,1611,20) to (1468,1611,z20)
+[22:07:22.352] INFO  [w_Ilyandra] [bot] planning path to (1468,1611) in background
+[22:07:24.209] INFO  [w_Ilyandra] [action] goto finished at (1476,1611,20); target (1468,1611); stopped short (off by 8 tile(s))
+[22:07:24.209] LOG   [w_Ilyandra] event goto_done: at=(1476,1611) target=(1468,1611) arrived=0 off=8
+[22:07:24.209] LOG   [w_Ilyandra] event travel_escape: from=(1476,1611,20) to=(1464,1608) attempt=1
+[22:07:24.209] INFO  [w_Ilyandra] [action] goto (1464,1608) from (1476,1611,20)
+[22:07:24.209] LOG   [w_Ilyandra] event goto_start: target=(1464,1608) from=(1476,1611)
+[22:07:24.209] INFO  [w_Ilyandra] [bot] running from (1476,1611,20) to (1464,1608,z20)
+[22:07:24.209] INFO  [w_Ilyandra] [bot] planning path to (1464,1608) in background
+[22:07:24.270] INFO  [w_Ilyandra] [bot] replan to (1464,1608): 25 steps in 985.7us
+[22:07:25.522] INFO  [w_Ilyandra] [bot] door ahead at (1480,1610,z20); OpenDoor before step
+[22:07:25.522] INFO  [w_Ilyandra] [chat ascii] System: Opening door...
+[22:07:25.843] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:07:30.890] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:07:31.762] INFO  [w_Ilyandra] [bot] arrived at (1464,1608,20)
+[22:07:31.762] INFO  [w_Ilyandra] [action] goto finished at (1464,1608,20); target (1464,1608); ARRIVED (off by 0 tile(s))
+[22:07:31.762] LOG   [w_Ilyandra] event goto_done: at=(1464,1608) target=(1464,1608) arrived=1 off=0
+[22:07:31.762] INFO  [w_Ilyandra] [travel] recovery walk reached its anchor at (1464,1608,20) (off 0); attempt 1/3
+[22:07:31.762] LOG   [w_Ilyandra] event travel_recovery_done: reached=1 at=(1464,1608,20) off=0 attempt=1
+[22:07:31.824] INFO  [w_Ilyandra] [travel] mode walk             usable   <- chosen
+[22:07:31.824] INFO  [w_Ilyandra] [travel] mode moongate         usable
+[22:07:31.824] INFO  [w_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:07:31.824] INFO  [w_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:07:31.824] LOG   [w_Ilyandra] event travel_mode: walk
+[22:07:31.824] INFO  [w_Ilyandra] [travel] plan mobile 0x000010C1: ok legs=1 ~4 tiles transit=0 nodes=0
+[22:07:31.886] INFO  [w_Ilyandra] [action] goto (1468,1611) from (1464,1608,20)
+[22:07:31.886] LOG   [w_Ilyandra] event goto_start: target=(1468,1611) from=(1464,1608)
+[22:07:31.886] INFO  [w_Ilyandra] [bot] running from (1464,1608,20) to (1468,1611,z20)
+[22:07:31.886] INFO  [w_Ilyandra] [bot] planning path to (1468,1611) in background
+[22:07:33.731] INFO  [w_Ilyandra] [action] goto finished at (1464,1608,20); target (1468,1611); stopped short (off by 7 tile(s))
+[22:07:33.731] LOG   [w_Ilyandra] event goto_done: at=(1464,1608) target=(1468,1611) arrived=0 off=7
+[22:07:34.962] INFO  [w_Ilyandra] [action] goto (1468,1611) from (1464,1608,20)
+[22:07:34.962] LOG   [w_Ilyandra] event goto_start: target=(1468,1611) from=(1464,1608)
+[22:07:34.962] INFO  [w_Ilyandra] [bot] running from (1464,1608,20) to (1468,1611,z20)
+[22:07:34.962] INFO  [w_Ilyandra] [bot] planning path to (1468,1611) in background
+[22:07:35.946] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:07:36.871] INFO  [w_Ilyandra] [action] goto finished at (1464,1608,20); target (1468,1611); stopped short (off by 7 tile(s))
+[22:07:36.871] LOG   [w_Ilyandra] event goto_done: at=(1464,1608) target=(1468,1611) arrived=0 off=7
+[22:07:38.101] INFO  [w_Ilyandra] [travel] mode walk             usable   <- chosen
+[22:07:38.101] INFO  [w_Ilyandra] [travel] mode moongate         usable
+[22:07:38.101] INFO  [w_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:07:38.101] INFO  [w_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:07:38.101] LOG   [w_Ilyandra] event travel_mode: walk
+[22:07:38.101] INFO  [w_Ilyandra] [travel] plan mobile 0x000010C1: ok legs=1 ~4 tiles transit=0 nodes=0
+[22:07:39.641] INFO  [w_Ilyandra] [action] goto (1468,1611) from (1464,1608,20)
+[22:07:39.641] LOG   [w_Ilyandra] event goto_start: target=(1468,1611) from=(1464,1608)
+[22:07:39.641] INFO  [w_Ilyandra] [bot] running from (1464,1608,20) to (1468,1611,z20)
+[22:07:39.641] INFO  [w_Ilyandra] [bot] planning path to (1468,1611) in background
+[22:07:40.994] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:07:41.397] INFO  [w_Ilyandra] [action] goto finished at (1464,1608,20); target (1468,1611); stopped short (off by 7 tile(s))
+[22:07:41.397] LOG   [w_Ilyandra] event goto_done: at=(1464,1608) target=(1468,1611) arrived=0 off=7
+[22:07:42.625] INFO  [w_Ilyandra] [action] goto (1468,1611) from (1464,1608,20)
+[22:07:42.625] LOG   [w_Ilyandra] event goto_start: target=(1468,1611) from=(1464,1608)
+[22:07:42.625] INFO  [w_Ilyandra] [bot] running from (1464,1608,20) to (1468,1611,z20)
+[22:07:42.626] INFO  [w_Ilyandra] [bot] planning path to (1468,1611) in background
+[22:07:44.218] INFO  [w_Ilyandra] [action] goto finished at (1464,1608,20); target (1468,1611); stopped short (off by 7 tile(s))
+[22:07:44.218] LOG   [w_Ilyandra] event goto_done: at=(1464,1608) target=(1468,1611) arrived=0 off=7
+[22:07:45.431] INFO  [w_Ilyandra] [action] goto (1468,1611) from (1464,1608,20)
+[22:07:45.431] LOG   [w_Ilyandra] event goto_start: target=(1468,1611) from=(1464,1608)
+[22:07:45.431] INFO  [w_Ilyandra] [bot] running from (1464,1608,20) to (1468,1611,z20)
+[22:07:45.431] INFO  [w_Ilyandra] [bot] planning path to (1468,1611) in background
+[22:07:46.014] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:07:46.942] INFO  [w_Ilyandra] [action] goto finished at (1464,1608,20); target (1468,1611); stopped short (off by 7 tile(s))
+[22:07:46.942] LOG   [w_Ilyandra] event goto_done: at=(1464,1608) target=(1468,1611) arrived=0 off=7
+[22:07:48.164] INFO  [w_Ilyandra] [travel] mode walk             usable   <- chosen
+[22:07:48.164] INFO  [w_Ilyandra] [travel] mode moongate         usable
+[22:07:48.164] INFO  [w_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:07:48.164] INFO  [w_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:07:48.164] LOG   [w_Ilyandra] event travel_mode: walk
+[22:07:48.164] INFO  [w_Ilyandra] [travel] plan mobile 0x000010C1: ok legs=1 ~4 tiles transit=0 nodes=0
+[22:07:51.024] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:07:51.209] INFO  [w_Ilyandra] [action] goto (1468,1611) from (1464,1608,20)
+[22:07:51.209] LOG   [w_Ilyandra] event goto_start: target=(1468,1611) from=(1464,1608)
+[22:07:51.209] INFO  [w_Ilyandra] [bot] running from (1464,1608,20) to (1468,1611,z20)
+[22:07:51.209] INFO  [w_Ilyandra] [bot] planning path to (1468,1611) in background
+[22:07:52.587] INFO  [w_Ilyandra] [travel] mode walk             usable   <- chosen
+[22:07:52.587] INFO  [w_Ilyandra] [travel] mode moongate         usable
+[22:07:52.587] INFO  [w_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:07:52.587] INFO  [w_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:07:52.587] LOG   [w_Ilyandra] event travel_mode: walk
+[22:07:52.587] INFO  [w_Ilyandra] [travel] plan mobile 0x000010C1: ok legs=1 ~7 tiles transit=0 nodes=0
+[22:07:52.650] INFO  [w_Ilyandra] [action] goto finished at (1464,1608,20); target (1468,1611); stopped short (off by 7 tile(s))
+[22:07:52.650] LOG   [w_Ilyandra] event goto_done: at=(1464,1608) target=(1468,1611) arrived=0 off=7
+[22:07:52.650] INFO  [w_Ilyandra] [travel] avoiding 1 teleporter pad(s) on this leg
+[22:07:52.650] INFO  [w_Ilyandra] [action] goto (1471,1612) from (1464,1608,20)
+[22:07:52.650] LOG   [w_Ilyandra] event goto_start: target=(1471,1612) from=(1464,1608)
+[22:07:52.650] INFO  [w_Ilyandra] [bot] running from (1464,1608,20) to (1471,1612,z20)
+[22:07:52.650] INFO  [w_Ilyandra] [bot] planning path to (1471,1612) in background
+[22:07:55.111] INFO  [w_Ilyandra] [action] goto finished at (1464,1608,20); target (1471,1612); stopped short (off by 11 tile(s))
+[22:07:55.112] LOG   [w_Ilyandra] event goto_done: at=(1464,1608) target=(1471,1612) arrived=0 off=11
+[22:07:56.034] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:07:56.371] INFO  [w_Ilyandra] [travel] avoiding 1 teleporter pad(s) on this leg
+[22:07:56.371] INFO  [w_Ilyandra] [action] goto (1471,1612) from (1464,1608,20)
+[22:07:56.371] LOG   [w_Ilyandra] event goto_start: target=(1471,1612) from=(1464,1608)
+[22:07:56.371] INFO  [w_Ilyandra] [bot] running from (1464,1608,20) to (1471,1612,z20)
+[22:07:56.371] INFO  [w_Ilyandra] [bot] planning path to (1471,1612) in background
+[22:07:56.388] INFO  [w_Ilyandra] [bot] replan to (1471,1612): 30 steps in 11984.6us
+[22:07:56.988] INFO  [w_Ilyandra] [chat uni  ] Kaelen: Dale buy
+[22:07:56.988] INFO  [w_Ilyandra] [chat ascii] Dale: Greetings. What can I help thee with?
+[22:07:56.988] INFO  [w_Ilyandra] [chat ascii] Dale: I'm here to sell thee supplies.
+[22:08:00.117] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh13.ilyandra/state.json
+[22:08:01.039] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:08:01.101] INFO  [w_Ilyandra] [bot] door ahead at (1480,1610,z20); OpenDoor before step
+[22:08:01.101] INFO  [w_Ilyandra] [chat ascii] System: Opening door...
+[22:08:02.343] INFO  [w_Ilyandra] [bot] door ahead at (1479,1611,z20); OpenDoor before step
+[22:08:02.359] INFO  [w_Ilyandra] [chat ascii] System: Opening door...
+[22:08:05.319] INFO  [w_Ilyandra] [travel] mobile 0x000010C1 ARRIVED at (1472,1612,20)
+[22:08:05.319] LOG   [w_Ilyandra] event travel_done: label='mobile 0x000010C1' ok=1 at=(1472,1612) legs=1 plans=1 why=''
+[22:08:05.380] INFO  [life] potions: within reach
+[22:08:05.442] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[22:08:05.443] INFO  [life] needs considered: NeedEquipment(heal potions 0.50) NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:08:05.443] INFO  [life]   score=130.0
+[22:08:05.443] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[22:08:05.443] INFO  [life]   reason: potions=0 low=2 gold=684
+[22:08:05.443] INFO  [w_Ilyandra] [ACTION] vendor_buy start
+[22:08:05.443] INFO  [w_Ilyandra] [VENDOR] open vendor=0x000010C1 say='Dale buy'
+[22:08:05.443] INFO  [life] potions: asking the 'healer' to show heal potion (attempt 1)
+[22:08:05.443] INFO  [w_Ilyandra] [chat uni  ] Ilyandra: Dale buy
+[22:08:05.443] INFO  [w_Ilyandra] [chat ascii] Dale: Excuse me Kaelen, but Ilyandra wants to speak to me
+[22:08:05.443] INFO  [w_Ilyandra] [chat ascii] Dale: Greetings.  What might I help thee with?
+[22:08:05.444] INFO  [w_Ilyandra] [chat ascii] Dale: Thou mayst purchase supplies from me.
+[22:08:05.444] INFO  [w_Ilyandra] [0x3C] container contents: 5 item(s)
+[22:08:05.444] INFO  [w_Ilyandra] [0x74] pairing: straight (straight 5, mirrored 1 of 5 rows)
+[22:08:05.444] INFO  [w_Ilyandra] [0x74] vendor shop data: cont=0x400010BB 5 item(s), layer=0x1A
+[22:08:05.444] INFO  [w_Ilyandra] [0x74]   clean bandages               gfx=0x0E21 qty=6    price=1
+[22:08:05.444] INFO  [w_Ilyandra] [0x74]   Heal                         gfx=0x0F0C qty=9    price=30
+[22:08:05.444] INFO  [w_Ilyandra] [0x74]   Ginseng                      gfx=0x0F85 qty=17   price=3
+[22:08:05.444] INFO  [w_Ilyandra] [0x74]   Garlic                       gfx=0x0F84 qty=19   price=3
+[22:08:05.444] INFO  [w_Ilyandra] [0x74]   Refresh                      gfx=0x0F0B qty=29   price=16
+[22:08:05.444] INFO  [w_Ilyandra] [0x3C] container contents: 0 item(s)
+[22:08:05.444] INFO  [w_Ilyandra] [0x74] vendor shop data: cont=0x40000EF5 0 item(s), layer=0x1B
+[22:08:05.444] INFO  [w_Ilyandra] [VENDOR] offer from 0x000010C1: 5 item(s)
+[22:08:05.444] INFO  [w_Ilyandra] [VENDOR]   0x40014CC0 clean bandages         x6   1 gp
+[22:08:05.444] INFO  [w_Ilyandra] [VENDOR]   0x40014CBF Heal                   x9   30 gp
+[22:08:05.444] INFO  [w_Ilyandra] [VENDOR]   0x40014CBC Ginseng                x17  3 gp
+[22:08:05.444] INFO  [w_Ilyandra] [VENDOR]   0x40014CBB Garlic                 x19  3 gp
+[22:08:05.444] INFO  [w_Ilyandra] [VENDOR]   0x40014CBA Refresh                x29  16 gp
+[22:08:05.444] LOG   [w_Ilyandra] event vendor_offer: vendor=0x000010C1 items=5
+[22:08:05.444] INFO  [w_Ilyandra] [ACTION_RESULT] vendor_buy success (1ms) vendor offer received
+[22:08:05.444] LOG   [w_Ilyandra] event action_result: vendor_buy success took=1ms vendor offer received
+[22:08:05.444] INFO  [w_Ilyandra] [0x24] vendor buy gump for 0x000010C1
+[22:08:05.444] INFO  [life] potions: the shop is open
+[22:08:05.444] INFO  [w_Ilyandra] [ACTION] vendor_buy start
+[22:08:05.444] INFO  [w_Ilyandra] [policy] allowed NPC purchase of i_potion_heal (0x0F0C): basic healing: a life with no Healing skill has no other way to treat itself, and the shard's own healer sells it [BASIC_HEALING]
+[22:08:05.444] INFO  [w_Ilyandra] [VENDOR] buy item=0x40014CBF qty=8 from vendor=0x000010C1 gold=684
+[22:08:05.444] INFO  [life] potions: buying 8 heal potion at 30 each from the 'healer' (shelf holds 9) -- waiting for the pack
+[22:08:05.457] INFO  [w_Ilyandra] [ACTION_RESULT] vendor_buy success (14ms) purchased item delivered
+[22:08:05.458] LOG   [w_Ilyandra] event action_result: vendor_buy success took=14ms purchased item delivered
+[22:08:05.458] INFO  [w_Ilyandra] [chat ascii] Dale: Here you are, Ilyandra That will be 240 gold coins.  I thank thee for thy business.
+[22:08:05.458] INFO  [w_Ilyandra] [0x3B] vendor transaction closed: vendor=0x000010C1 flag=0
+[22:08:05.458] INFO  [life] plan=done reason="this life already holds as many as it wanted"
+[22:08:05.458] INFO  [life] goal_completed=REPLACE_EQUIPMENT progress=0
+[22:08:05.460] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh13.ilyandra/state.json
+[22:08:05.518] INFO  [life] goal=PRACTICE_SKILL reason="no goal was running"
+[22:08:05.518] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:08:05.518] INFO  [life]   score=45.0
+[22:08:05.518] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[22:08:05.518] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[22:08:05.519] INFO  [life] practice: the book holds 13 item(s), spells [1,1,1,1,1,1,1,1,1,1,1,1,1] -- none of them is one of the twelve safe to cast at oneself
+[22:08:05.519] INFO  [life] practice: nothing safe to cast at myself is in this book -- Magery cannot be practised until it holds one
+[22:08:05.580] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no self-safe spell in book"
+[22:08:05.580] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:08:05.580] INFO  [life]   score=45.0
+[22:08:05.580] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[22:08:05.580] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[22:08:05.904] INFO  [w_Ilyandra] [chat ascii] System: You shove Kaelen out of the way.
+[22:08:06.041] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:08:06.348] INFO  [w_Ilyandra] [bot] arrived at (1471,1612,20)
+[22:08:10.566] INFO  [life] practice: the book holds 13 item(s), spells [1,1,1,1,1,1,1,1,1,1,1,1,1] -- none of them is one of the twelve safe to cast at oneself
+[22:08:10.566] INFO  [life] practice: nothing safe to cast at myself is in this book -- Magery cannot be practised until it holds one
+[22:08:10.628] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no self-safe spell in book"
+[22:08:10.628] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:08:10.628] INFO  [life]   score=45.0
+[22:08:10.628] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[22:08:10.628] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[22:08:11.059] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:08:15.598] INFO  [life] practice: the book holds 13 item(s), spells [1,1,1,1,1,1,1,1,1,1,1,1,1] -- none of them is one of the twelve safe to cast at oneself
+[22:08:15.598] INFO  [life] practice: nothing safe to cast at myself is in this book -- Magery cannot be practised until it holds one
+[22:08:15.660] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no self-safe spell in book"
+[22:08:15.660] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:08:15.660] INFO  [life]   score=45.0
+[22:08:15.660] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[22:08:15.660] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[22:08:16.119] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:08:20.639] INFO  [life] practice: the book holds 13 item(s), spells [1,1,1,1,1,1,1,1,1,1,1,1,1] -- none of them is one of the twelve safe to cast at oneself
+[22:08:20.639] INFO  [life] practice: nothing safe to cast at myself is in this book -- Magery cannot be practised until it holds one
+[22:08:20.700] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no self-safe spell in book"
+[22:08:20.700] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:08:20.700] INFO  [life]   score=45.0
+[22:08:20.700] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[22:08:20.700] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[22:08:21.143] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:08:25.649] INFO  [life] practice: the book holds 13 item(s), spells [1,1,1,1,1,1,1,1,1,1,1,1,1] -- none of them is one of the twelve safe to cast at oneself
+[22:08:25.649] INFO  [life] practice: nothing safe to cast at myself is in this book -- Magery cannot be practised until it holds one
+[22:08:25.710] INFO  [life] goal=FILL_SPELLBOOK reason="previous goal abandoned: no self-safe spell in book"
+[22:08:25.710] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:08:25.710] INFO  [life]   score=23.6
+[22:08:25.710] INFO  [life]   reason: NeedSpells urgency 0.21 x 110 = 23.6
+[22:08:25.710] INFO  [life]   reason: spells 13/24 book=carried magery 50.0 gold 444 reserve 800 spare -356 wealth 0.00
+[22:08:25.710] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 59s after achieving nothing
+[22:08:26.185] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:08:30.708] INFO  [life] FILL_SPELLBOOK: looking for a 'scribe' to sell a spell this book lacks (trip 2)
+[22:08:30.718] INFO  [w_Ilyandra] [travel] Lord British's Castle scribe -> (1409,1590) r=5 from (1471,1612)
+[22:08:30.718] LOG   [w_Ilyandra] event travel_start: label='Lord British's Castle scribe' target=(1409,1590) radius=5 from=(1471,1612)
+[22:08:30.718] INFO  [w_Ilyandra] [travel] mode moongate         usable   <- chosen
+[22:08:30.718] INFO  [w_Ilyandra] [travel] mode walk             usable
+[22:08:30.718] INFO  [w_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:08:30.718] INFO  [w_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:08:30.718] LOG   [w_Ilyandra] event travel_mode: moongate
+[22:08:30.718] INFO  [w_Ilyandra] [travel] plan Lord British's Castle scribe: ok legs=2 ~56 tiles transit=0 nodes=6
+[22:08:30.783] INFO  [w_Ilyandra] [action] goto finished at (1471,1612,20); target (1471,1612); ARRIVED (off by 0 tile(s))
+[22:08:30.783] LOG   [w_Ilyandra] event goto_done: at=(1471,1612) target=(1471,1612) arrived=1 off=0
+[22:08:30.783] INFO  [w_Ilyandra] [travel] avoiding 2 teleporter pad(s) on this leg
+[22:08:30.783] INFO  [w_Ilyandra] [action] goto (1432,1592) from (1471,1612,20)
+[22:08:30.783] LOG   [w_Ilyandra] event goto_start: target=(1432,1592) from=(1471,1612)
+[22:08:30.783] INFO  [w_Ilyandra] [bot] running from (1471,1612,20) to (1432,1592)
+[22:08:30.783] INFO  [w_Ilyandra] [bot] planning path to (1432,1592) in background
+[22:08:31.214] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:08:32.592] INFO  [w_Ilyandra] [action] goto finished at (1471,1612,20); target (1432,1592); stopped short (off by 59 tile(s))
+[22:08:32.592] LOG   [w_Ilyandra] event goto_done: at=(1471,1612) target=(1432,1592) arrived=0 off=59
+[22:08:33.823] INFO  [w_Ilyandra] [travel] avoiding 2 teleporter pad(s) on this leg
+[22:08:33.824] INFO  [w_Ilyandra] [action] goto (1432,1592) from (1471,1612,20)
+[22:08:33.824] LOG   [w_Ilyandra] event goto_start: target=(1432,1592) from=(1471,1612)
+[22:08:33.824] INFO  [w_Ilyandra] [bot] running from (1471,1612,20) to (1432,1592)
+[22:08:33.824] INFO  [w_Ilyandra] [bot] planning path to (1432,1592) in background
+[22:08:35.471] INFO  [w_Ilyandra] [action] goto finished at (1471,1612,20); target (1432,1592); stopped short (off by 59 tile(s))
+[22:08:35.471] LOG   [w_Ilyandra] event goto_done: at=(1471,1612) target=(1432,1592) arrived=0 off=59
+[22:08:36.272] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:08:36.703] INFO  [w_Ilyandra] [travel] avoiding 2 teleporter pad(s) on this leg
+[22:08:36.703] INFO  [w_Ilyandra] [action] goto (1432,1592) from (1471,1612,20)
+[22:08:36.703] LOG   [w_Ilyandra] event goto_start: target=(1432,1592) from=(1471,1612)
+[22:08:36.703] INFO  [w_Ilyandra] [bot] running from (1471,1612,20) to (1432,1592)
+[22:08:36.703] INFO  [w_Ilyandra] [bot] planning path to (1432,1592) in background
+[22:08:38.381] INFO  [w_Ilyandra] [action] goto finished at (1471,1612,20); target (1432,1592); stopped short (off by 59 tile(s))
+[22:08:38.381] LOG   [w_Ilyandra] event goto_done: at=(1471,1612) target=(1432,1592) arrived=0 off=59
+[22:08:39.607] INFO  [w_Ilyandra] [travel] mode moongate         usable   <- chosen
+[22:08:39.607] INFO  [w_Ilyandra] [travel] mode walk             usable
+[22:08:39.607] INFO  [w_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:08:39.607] INFO  [w_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:08:39.607] LOG   [w_Ilyandra] event travel_mode: moongate
+[22:08:39.607] INFO  [w_Ilyandra] [travel] plan Lord British's Castle scribe: ok legs=2 ~72 tiles transit=0 nodes=12
+[22:08:41.137] INFO  [w_Ilyandra] [travel] avoiding 2 teleporter pad(s) on this leg
+[22:08:41.137] INFO  [w_Ilyandra] [action] goto (1432,1606) from (1471,1612,20)
+[22:08:41.137] LOG   [w_Ilyandra] event goto_start: target=(1432,1606) from=(1471,1612)
+[22:08:41.137] INFO  [w_Ilyandra] [bot] running from (1471,1612,20) to (1432,1606)
+[22:08:41.137] INFO  [w_Ilyandra] [bot] planning path to (1432,1606) in background
+[22:08:41.198] INFO  [w_Ilyandra] [bot] replan to (1432,1606): 62 steps in 3271.1us
+[22:08:41.322] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:08:44.037] INFO  [w_Ilyandra] [bot] door ahead at (1480,1610,z20); OpenDoor before step
+[22:08:44.037] INFO  [w_Ilyandra] [chat ascii] System: Opening door...
+[22:08:44.037] INFO  [w_Ilyandra] [0x20] player @(1479,1611,20) facing=1
+[22:08:44.037] INFO  [w_Ilyandra] [action] goto finished at (1479,1611,20); target (1432,1606); stopped short (off by 52 tile(s))
+[22:08:44.037] LOG   [w_Ilyandra] event goto_done: at=(1479,1611) target=(1432,1606) arrived=0 off=52
+[22:08:45.266] INFO  [w_Ilyandra] [travel] avoiding 2 teleporter pad(s) on this leg
+[22:08:45.266] INFO  [w_Ilyandra] [action] goto (1432,1606) from (1479,1611,20)
+[22:08:45.266] LOG   [w_Ilyandra] event goto_start: target=(1432,1606) from=(1479,1611)
+[22:08:45.266] INFO  [w_Ilyandra] [bot] running from (1479,1611,20) to (1432,1606)
+[22:08:45.266] INFO  [w_Ilyandra] [bot] planning path to (1432,1606) in background
+[22:08:45.327] INFO  [w_Ilyandra] [bot] replan to (1432,1606): 54 steps in 2084.8us
+[22:08:46.345] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:08:51.359] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:08:51.360] INFO  [w_Ilyandra] [chat ascii] System: World save in 10 seconds
+[22:08:56.387] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:08:59.564] INFO  [w_Ilyandra] [bot] arrived at (1432,1606,20)
+[22:08:59.564] INFO  [w_Ilyandra] [action] goto finished at (1432,1606,20); target (1432,1606); ARRIVED (off by 0 tile(s))
+[22:08:59.564] LOG   [w_Ilyandra] event goto_done: at=(1432,1606) target=(1432,1606) arrived=1 off=0
+[22:08:59.564] INFO  [w_Ilyandra] [action] goto (1409,1590) from (1432,1606,20)
+[22:08:59.564] LOG   [w_Ilyandra] event goto_start: target=(1409,1590) from=(1432,1606)
+[22:08:59.564] INFO  [w_Ilyandra] [bot] running from (1432,1606,20) to (1409,1590,z42)
+[22:08:59.564] INFO  [w_Ilyandra] [bot] planning path to (1409,1590) in background
+[22:08:59.625] INFO  [w_Ilyandra] [bot] replan to (1409,1590): 26 steps in 4592.6us
+[22:09:01.399] INFO  [w_Ilyandra] [chat ascii] System: World save has been initiated.
+[22:09:01.399] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:09:05.498] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh13.ilyandra/state.json
+[22:09:05.819] INFO  [w_Ilyandra] [travel] Lord British's Castle scribe ARRIVED at (1413,1594,30)
+[22:09:05.819] LOG   [w_Ilyandra] event travel_done: label='Lord British's Castle scribe' ok=1 at=(1413,1594) legs=2 plans=2 why=''
+[22:09:05.834] INFO  [life] FILL_SPELLBOOK: looking for a 'scribe' to sell a spell this book lacks (trip 3)
+[22:09:05.845] INFO  [w_Ilyandra] [travel] Lord British's Castle scribe -> (1409,1590) r=5 from (1413,1594)
+[22:09:05.845] LOG   [w_Ilyandra] event travel_start: label='Lord British's Castle scribe' target=(1409,1590) radius=5 from=(1413,1594)
+[22:09:05.845] INFO  [w_Ilyandra] [travel] Lord British's Castle scribe ARRIVED at (1413,1594,30)
+[22:09:05.845] LOG   [w_Ilyandra] event travel_done: label='Lord British's Castle scribe' ok=1 at=(1413,1594) legs=0 plans=0 why=''
+[22:09:06.445] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:09:07.892] INFO  [life] spellbook: no scribe reachable after 3 trips -- falling back to a mage shop, where the scroll is random rather than chosen
+[22:09:08.629] INFO  [w_Ilyandra] [chat ascii] System: You have left the protection of the city guards
+[22:09:08.629] INFO  [w_Ilyandra] [chat ascii] System: You have a feeling of complete safety
+[22:09:08.629] INFO  [w_Ilyandra] [bot] arrived at (1409,1590,45)
+[22:09:09.949] INFO  [life] FILL_SPELLBOOK: looking for a 'mage' to sell a scroll (trip 1)
+[22:09:09.953] INFO  [w_Ilyandra] [travel] place: skipping Vesper mage -- 2112 tiles and 0 gates for a service Britain mage offers
+[22:09:09.953] INFO  [w_Ilyandra] [travel] place: skipping Vesper mage -- 2080 tiles and 0 gates for a service Britain mage offers
+[22:09:09.953] INFO  [w_Ilyandra] [travel] Britain mage -> (1485,1550) r=5 from (1409,1590)
+[22:09:09.953] LOG   [w_Ilyandra] event travel_start: label='Britain mage' target=(1485,1550) radius=5 from=(1409,1590)
+[22:09:09.953] INFO  [w_Ilyandra] [travel] mode moongate         usable   <- chosen
+[22:09:09.953] INFO  [w_Ilyandra] [travel] mode walk             usable
+[22:09:09.953] INFO  [w_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:09:09.953] INFO  [w_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:09:09.953] LOG   [w_Ilyandra] event travel_mode: moongate
+[22:09:09.953] INFO  [w_Ilyandra] [travel] plan Britain mage: ok legs=3 ~96 tiles transit=0 nodes=23
+[22:09:10.011] INFO  [w_Ilyandra] [action] goto finished at (1409,1590,45); target (1409,1590); ARRIVED (off by 0 tile(s))
+[22:09:10.011] LOG   [w_Ilyandra] event goto_done: at=(1409,1590) target=(1409,1590) arrived=1 off=0
+[22:09:10.011] INFO  [w_Ilyandra] [travel] avoiding 2 teleporter pad(s) on this leg
+[22:09:10.011] INFO  [w_Ilyandra] [action] goto (1448,1592) from (1409,1590,45)
+[22:09:10.011] LOG   [w_Ilyandra] event goto_start: target=(1448,1592) from=(1409,1590)
+[22:09:10.011] INFO  [w_Ilyandra] [bot] running from (1409,1590,45) to (1448,1592)
+[22:09:10.011] INFO  [w_Ilyandra] [bot] planning path to (1448,1592) in background
+[22:09:10.073] INFO  [w_Ilyandra] [bot] replan to (1448,1592): 51 steps in 10621.7us
+[22:09:10.811] INFO  [w_Ilyandra] [chat ascii] System: You are now under the protection of the city guards
+[22:09:10.811] INFO  [w_Ilyandra] [chat ascii] System: You lose your feeling of safety
+[22:09:11.505] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:09:16.537] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:09:21.550] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:09:22.154] INFO  [w_Ilyandra] [bot] door ahead at (1450,1599,z20); OpenDoor before step
+[22:09:22.168] INFO  [w_Ilyandra] [chat ascii] System: Opening door...
+[22:09:24.983] INFO  [w_Ilyandra] [bot] arrived at (1448,1592,20)
+[22:09:24.983] INFO  [w_Ilyandra] [action] goto finished at (1448,1592,20); target (1448,1592); ARRIVED (off by 0 tile(s))
+[22:09:24.983] LOG   [w_Ilyandra] event goto_done: at=(1448,1592) target=(1448,1592) arrived=1 off=0
+[22:09:24.983] INFO  [w_Ilyandra] [action] goto (1480,1558) from (1448,1592,20)
+[22:09:24.983] LOG   [w_Ilyandra] event goto_start: target=(1480,1558) from=(1448,1592)
+[22:09:24.983] INFO  [w_Ilyandra] [bot] running from (1448,1592,20) to (1480,1558)
+[22:09:24.983] INFO  [w_Ilyandra] [bot] planning path to (1480,1558) in background
+[22:09:25.043] INFO  [w_Ilyandra] [bot] replan to (1480,1558): 65 steps in 17445.7us
+[22:09:25.687] INFO  [life] goal_changed=PRACTICE_SKILL from=FILL_SPELLBOOK reason="PRACTICE_SKILL 45.0 superseded FILL_SPELLBOOK 23.6"
+[22:09:25.687] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:09:25.687] INFO  [life]   score=45.0
+[22:09:25.687] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[22:09:25.687] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[22:09:25.687] INFO  [life] practice: the book holds 13 item(s), spells [1,1,1,1,1,1,1,1,1,1,1,1,1] -- none of them is one of the twelve safe to cast at oneself
+[22:09:25.687] INFO  [life] practice: nothing safe to cast at myself is in this book -- Magery cannot be practised until it holds one
+[22:09:25.749] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no self-safe spell in book"
+[22:09:25.749] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:09:25.749] INFO  [life]   score=45.0
+[22:09:25.749] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[22:09:25.749] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[22:09:26.563] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:09:27.490] INFO  [w_Ilyandra] [bot] door ahead at (1456,1599,z20); OpenDoor before step
+[22:09:27.505] INFO  [w_Ilyandra] [chat ascii] System: Opening door...
+[22:09:28.892] INFO  [w_Ilyandra] [bot] door ahead at (1458,1600,z20); OpenDoor before step
+[22:09:28.893] INFO  [w_Ilyandra] [chat ascii] System: Opening door...
+[22:09:30.703] INFO  [life] practice: the book holds 13 item(s), spells [1,1,1,1,1,1,1,1,1,1,1,1,1] -- none of them is one of the twelve safe to cast at oneself
+[22:09:30.703] INFO  [life] practice: nothing safe to cast at myself is in this book -- Magery cannot be practised until it holds one
+[22:09:30.764] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no self-safe spell in book"
+[22:09:30.764] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:09:30.764] INFO  [life]   score=45.0
+[22:09:30.764] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[22:09:30.764] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[22:09:31.608] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:09:35.725] INFO  [life] practice: the book holds 13 item(s), spells [1,1,1,1,1,1,1,1,1,1,1,1,1] -- none of them is one of the twelve safe to cast at oneself
+[22:09:35.725] INFO  [life] practice: nothing safe to cast at myself is in this book -- Magery cannot be practised until it holds one
+[22:09:35.786] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no self-safe spell in book"
+[22:09:35.786] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:09:35.786] INFO  [life]   score=45.0
+[22:09:35.786] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[22:09:35.786] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[22:09:36.647] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:09:40.760] INFO  [life] practice: the book holds 13 item(s), spells [1,1,1,1,1,1,1,1,1,1,1,1,1] -- none of them is one of the twelve safe to cast at oneself
+[22:09:40.760] INFO  [life] practice: nothing safe to cast at myself is in this book -- Magery cannot be practised until it holds one
+[22:09:40.774] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no self-safe spell in book"
+[22:09:40.774] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:09:40.775] INFO  [life]   score=45.0
+[22:09:40.775] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[22:09:40.775] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[22:09:41.661] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:09:45.807] INFO  [life] practice: the book holds 13 item(s), spells [1,1,1,1,1,1,1,1,1,1,1,1,1] -- none of them is one of the twelve safe to cast at oneself
+[22:09:45.807] INFO  [life] practice: nothing safe to cast at myself is in this book -- Magery cannot be practised until it holds one
+[22:09:45.868] INFO  [life] goal=FILL_SPELLBOOK reason="previous goal abandoned: no self-safe spell in book"
+[22:09:45.868] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:09:45.868] INFO  [life]   score=23.6
+[22:09:45.868] INFO  [life]   reason: NeedSpells urgency 0.21 x 110 = 23.6
+[22:09:45.868] INFO  [life]   reason: spells 13/24 book=carried magery 50.0 gold 444 reserve 800 spare -356 wealth 0.00
+[22:09:45.868] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 59s after achieving nothing
+[22:09:46.697] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:09:47.083] INFO  [w_Ilyandra] [bot] arrived at (1480,1558,30)
+[22:09:47.083] INFO  [w_Ilyandra] [action] goto finished at (1480,1558,30); target (1480,1558); ARRIVED (off by 0 tile(s))
+[22:09:47.083] LOG   [w_Ilyandra] event goto_done: at=(1480,1558) target=(1480,1558) arrived=1 off=0
+[22:09:47.083] INFO  [w_Ilyandra] [action] goto (1485,1550) from (1480,1558,30)
+[22:09:47.083] LOG   [w_Ilyandra] event goto_start: target=(1485,1550) from=(1480,1558)
+[22:09:47.083] INFO  [w_Ilyandra] [bot] running from (1480,1558,30) to (1485,1550,z30)
+[22:09:47.083] INFO  [w_Ilyandra] [bot] planning path to (1485,1550) in background
+[22:09:47.144] INFO  [w_Ilyandra] [bot] replan to (1485,1550): 48 steps in 14410.8us
+[22:09:51.725] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:09:56.783] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:09:58.907] INFO  [w_Ilyandra] [chat ascii] Xanthe: What's thee wantin'?
+[22:09:59.384] INFO  [w_Ilyandra] [travel] Britain mage ARRIVED at (1490,1555,30)
+[22:09:59.384] LOG   [w_Ilyandra] event travel_done: label='Britain mage' ok=1 at=(1490,1555) legs=3 plans=1 why=''
+[22:09:59.447] INFO  [life] FILL_SPELLBOOK: looking for a 'mage' to sell a scroll (trip 2)
+[22:09:59.447] INFO  [w_Ilyandra] [travel] Britain mage -> (1485,1550) r=5 from (1490,1555)
+[22:09:59.447] LOG   [w_Ilyandra] event travel_start: label='Britain mage' target=(1485,1550) radius=5 from=(1490,1555)
+[22:09:59.447] INFO  [w_Ilyandra] [travel] Britain mage ARRIVED at (1490,1555,30)
+[22:09:59.447] LOG   [w_Ilyandra] event travel_done: label='Britain mage' ok=1 at=(1490,1555) legs=0 plans=0 why=''
+[22:09:59.756] INFO  [w_Ilyandra] [chat ascii] Shunnar: Aye?
+[22:10:01.448] INFO  [life] FILL_SPELLBOOK: looking for a 'mage' to sell a scroll (trip 3)
+[22:10:01.451] INFO  [w_Ilyandra] [travel] place: skipping Vesper mage -- 2016 tiles and 0 gates for a service Britain mage offers
+[22:10:01.451] INFO  [w_Ilyandra] [travel] place: skipping Vesper mage -- 1984 tiles and 0 gates for a service Britain mage offers
+[22:10:01.451] INFO  [w_Ilyandra] [travel] Britain mage -> (1485,1550) r=5 from (1487,1551)
+[22:10:01.451] LOG   [w_Ilyandra] event travel_start: label='Britain mage' target=(1485,1550) radius=5 from=(1487,1551)
+[22:10:01.451] INFO  [w_Ilyandra] [travel] Britain mage ARRIVED at (1487,1551,30)
+[22:10:01.451] LOG   [w_Ilyandra] event travel_done: label='Britain mage' ok=1 at=(1487,1551) legs=0 plans=0 why=''
+[22:10:01.803] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:10:02.753] INFO  [w_Ilyandra] [bot] arrived at (1485,1550,30)
+[22:10:03.487] INFO  [life] goal_failed=FILL_SPELLBOOK reason="no 'mage' reachable after 3 trips"
+[22:10:03.549] INFO  [life] goal=UPGRADE_GEAR reason="previous goal abandoned: no seller reachable"
+[22:10:03.549] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:10:03.549] INFO  [life]   score=22.0
+[22:10:03.549] INFO  [life]   reason: NeedGear urgency 0.22 x 100 = 22.0
+[22:10:03.549] INFO  [life]   reason: str 20 gold 444 reserve 800
+[22:10:03.549] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 42s after achieving nothing
+[22:10:03.549] INFO  [life]   BLOCKED_NEED FILL_SPELLBOOK: on cooldown for another 239s after achieving nothing
+[22:10:03.549] INFO  [life] gear: nothing carried is an upgrade, and this life does not fight -- ordinary clothes will do, so no armour shopping
+[22:10:03.549] INFO  [life] goal_completed=UPGRADE_GEAR progress=0
+[22:10:03.549] INFO  [life] goal_spinning=PRACTICE_SKILL reason="completed 5 times in a row with progress 0 -- cooled off for a minute; this is a bug in that goal, not pacing"
+[22:10:03.551] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh13.ilyandra/state.json
+[22:10:03.611] INFO  [life] goal=UPGRADE_GEAR reason="no goal was running"
+[22:10:03.611] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:10:03.611] INFO  [life]   score=22.0
+[22:10:03.611] INFO  [life]   reason: NeedGear urgency 0.22 x 100 = 22.0
+[22:10:03.611] INFO  [life]   reason: str 20 gold 444 reserve 800
+[22:10:03.611] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 42s after achieving nothing
+[22:10:03.611] INFO  [life]   BLOCKED_NEED FILL_SPELLBOOK: on cooldown for another 239s after achieving nothing
+[22:10:03.611] INFO  [life] gear: nothing carried is an upgrade, and this life does not fight -- ordinary clothes will do, so no armour shopping
+[22:10:03.611] INFO  [life] goal_completed=UPGRADE_GEAR progress=0
+[22:10:03.613] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh13.ilyandra/state.json
+[22:10:03.672] INFO  [life] goal=UPGRADE_GEAR reason="no goal was running"
+[22:10:03.672] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:10:03.672] INFO  [life]   score=17.6
+[22:10:03.672] INFO  [life]   reason: NeedGear urgency 0.22 x 100 = 22.0
+[22:10:03.672] INFO  [life]   reason: str 20 gold 444 reserve 800
+[22:10:03.672] INFO  [life]   reason: upkeep just now, easing off 20% (22.0 -> 17.6)
+[22:10:03.672] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 42s after achieving nothing
+[22:10:03.672] INFO  [life]   BLOCKED_NEED FILL_SPELLBOOK: on cooldown for another 239s after achieving nothing
+[22:10:03.672] INFO  [life] gear: nothing carried is an upgrade, and this life does not fight -- ordinary clothes will do, so no armour shopping
+[22:10:03.672] INFO  [life] goal_completed=UPGRADE_GEAR progress=0
+[22:10:03.672] INFO  [life] goal_spinning=UPGRADE_GEAR reason="completed 5 times in a row with progress 0 -- cooled off for a minute; this is a bug in that goal, not pacing"
+[22:10:03.674] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh13.ilyandra/state.json
+[22:10:03.734] INFO  [life] goal=EXPLORE reason="no goal was running"
+[22:10:03.734] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:10:03.734] INFO  [life]   score=15.0
+[22:10:03.734] INFO  [life]   reason: fallback: nothing else is actionable, so go and learn the world
+[22:10:03.734] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 42s after achieving nothing
+[22:10:03.734] INFO  [life]   BLOCKED_NEED FILL_SPELLBOOK: on cooldown for another 239s after achieving nothing
+[22:10:03.734] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 59s after achieving nothing
+[22:10:03.734] INFO  [life] plan=explore reason="blocked for want of knowing where things are"
+[22:10:03.734] INFO  [w_Ilyandra] [travel] Britain mage -> (1485,1550) r=5 from (1485,1550)
+[22:10:03.734] LOG   [w_Ilyandra] event travel_start: label='Britain mage' target=(1485,1550) radius=5 from=(1485,1550)
+[22:10:03.734] INFO  [life] explore: nothing else to do, so going to 'britain_mage' -- somewhere new (2 place(s) known so far)
+[22:10:03.734] INFO  [w_Ilyandra] [travel] Britain mage ARRIVED at (1485,1550,30)
+[22:10:03.734] LOG   [w_Ilyandra] event travel_done: label='Britain mage' ok=1 at=(1485,1550) legs=0 plans=0 why=''
+[22:10:06.254] INFO  [life] explore: arrived at 1485,1550 -- reading who is here
+[22:10:06.254] INFO  [w_Ilyandra] [action] scanning nearby mobiles for names
+[22:10:06.255] INFO  [w_Ilyandra] [action] requested 4 paperdoll(s) for trade titles
+[22:10:06.255] INFO  [life] goal_completed=EXPLORE progress=1
+[22:10:06.257] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh13.ilyandra/state.json
+[22:10:06.257] INFO  [w_Ilyandra] [mobiles] nearby (4):
+[22:10:06.257] INFO  [w_Ilyandra]   Shunnar 0x0000E14F
+[22:10:06.257] INFO  [w_Ilyandra]   Xanthe 0x00001211
+[22:10:06.257] INFO  [w_Ilyandra]   Caedmon 0x000012EE
+[22:10:06.257] INFO  [w_Ilyandra]   Alenne 0x00001145
+[22:10:06.257] INFO  [w_Ilyandra] [0x20] player @(1485,1550,30) facing=3
+[22:10:06.257] INFO  [w_Ilyandra] [0x88] paperdoll 0x00001211: "Xanthe, the alchemist"
+[22:10:06.257] INFO  [w_Ilyandra] [world] Xanthe, the alchemist is a alchemist at (1489,1554)
+[22:10:06.257] INFO  [life] goal=EXPLORE reason="no goal was running"
+[22:10:06.257] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:10:06.257] INFO  [life]   score=15.0
+[22:10:06.257] INFO  [life]   reason: fallback: nothing else is actionable, so go and learn the world
+[22:10:06.257] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 39s after achieving nothing
+[22:10:06.257] INFO  [life]   BLOCKED_NEED FILL_SPELLBOOK: on cooldown for another 237s after achieving nothing
+[22:10:06.257] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 57s after achieving nothing
+[22:10:06.269] INFO  [w_Ilyandra] [0x20] player @(1485,1550,30) facing=2
+[22:10:06.269] INFO  [w_Ilyandra] [0x88] paperdoll 0x000012EE: "Caedmon, the mage guildmaster"
+[22:10:06.269] INFO  [w_Ilyandra] [world] Caedmon, the mage guildmaster is a mage at (1489,1550)
+[22:10:06.269] INFO  [w_Ilyandra] [0x88] paperdoll 0x00001145: "Alenne, the mage"
+[22:10:06.269] INFO  [w_Ilyandra] [world] Alenne, the mage is a mage at (1490,1548)
+[22:10:06.269] INFO  [w_Ilyandra] [0x88] paperdoll 0x0000E14F: "Shunnar, the scribe"
+[22:10:06.269] INFO  [w_Ilyandra] [world] Shunnar, the scribe is a scribe at (1488,1551)
+[22:10:06.823] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:10:09.288] INFO  [life] plan=explore reason="blocked for want of knowing where things are"
+[22:10:09.289] INFO  [w_Ilyandra] [travel] Britain animaltrainer -> (1510,1543) r=5 from (1485,1550)
+[22:10:09.289] LOG   [w_Ilyandra] event travel_start: label='Britain animaltrainer' target=(1510,1543) radius=5 from=(1485,1550)
+[22:10:09.289] INFO  [life] explore: nothing else to do, so going to 'britain_stable' -- somewhere new (3 place(s) known so far)
+[22:10:09.289] INFO  [w_Ilyandra] [travel] mode walk             usable   <- chosen
+[22:10:09.289] INFO  [w_Ilyandra] [travel] mode moongate         usable
+[22:10:09.289] INFO  [w_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:10:09.289] INFO  [w_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:10:09.289] LOG   [w_Ilyandra] event travel_mode: walk
+[22:10:09.289] INFO  [w_Ilyandra] [travel] plan Britain animaltrainer: ok legs=1 ~25 tiles transit=0 nodes=0
+[22:10:09.350] INFO  [w_Ilyandra] [action] goto finished at (1485,1550,30); target (1485,1550); ARRIVED (off by 0 tile(s))
+[22:10:09.350] LOG   [w_Ilyandra] event goto_done: at=(1485,1550) target=(1485,1550) arrived=1 off=0
+[22:10:09.350] INFO  [w_Ilyandra] [action] goto (1510,1543) from (1485,1550,30)
+[22:10:09.350] LOG   [w_Ilyandra] event goto_start: target=(1510,1543) from=(1485,1550)
+[22:10:09.350] INFO  [w_Ilyandra] [bot] running from (1485,1550,30) to (1510,1543,z25)
+[22:10:09.350] INFO  [w_Ilyandra] [bot] planning path to (1510,1543) in background
+[22:10:09.411] INFO  [w_Ilyandra] [bot] replan to (1510,1543): 69 steps in 27951.5us
+[22:10:11.870] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:10:16.888] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:10:21.877] INFO  [w_Ilyandra] [bot] step (1503,1561,30)->(1504,1560,28) rejected; OpenDoor + retry
+[22:10:21.939] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:10:22.616] INFO  [w_Ilyandra] [bot] step (1503,1561,30)->(1504,1560,28) rejected; avoiding edge + rerouting
+[22:10:22.616] INFO  [w_Ilyandra] [bot] planning path to (1510,1543) in background
+[22:10:22.679] INFO  [w_Ilyandra] [bot] replan to (1510,1543): 27 steps in 6299.1us
+[22:10:26.981] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:10:27.802] INFO  [w_Ilyandra] [bot] door ahead at (1516,1551,z25); OpenDoor before step
+[22:10:27.817] INFO  [w_Ilyandra] [chat ascii] System: Opening door...
+[22:10:29.694] INFO  [w_Ilyandra] [travel] Britain animaltrainer ARRIVED at (1514,1548,25)
+[22:10:29.695] LOG   [w_Ilyandra] event travel_done: label='Britain animaltrainer' ok=1 at=(1514,1548) legs=1 plans=1 why=''
+[22:10:29.695] INFO  [life] explore: arrived at 1513,1547 -- reading who is here
+[22:10:29.695] INFO  [w_Ilyandra] [action] scanning nearby mobiles for names
+[22:10:29.695] INFO  [w_Ilyandra] [action] requested 1 paperdoll(s) for trade titles
+[22:10:29.695] INFO  [life] goal_completed=EXPLORE progress=1
+[22:10:29.697] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh13.ilyandra/state.json
+[22:10:29.697] INFO  [w_Ilyandra] [mobiles] nearby (1):
+[22:10:29.697] INFO  [w_Ilyandra]   Feridwyn 0x000010DE
+[22:10:29.697] INFO  [life] goal=EXPLORE reason="no goal was running"
+[22:10:29.697] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:10:29.697] INFO  [life]   score=15.0
+[22:10:29.697] INFO  [life]   reason: fallback: nothing else is actionable, so go and learn the world
+[22:10:29.697] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 16s after achieving nothing
+[22:10:29.697] INFO  [life]   BLOCKED_NEED FILL_SPELLBOOK: on cooldown for another 213s after achieving nothing
+[22:10:29.697] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 33s after achieving nothing
+[22:10:29.710] INFO  [w_Ilyandra] [0x20] player @(1513,1547,25) facing=0
+[22:10:29.710] INFO  [w_Ilyandra] [0x88] paperdoll 0x000010DE: "Feridwyn, the animal trainer"
+[22:10:29.710] INFO  [w_Ilyandra] [world] Feridwyn, the animal trainer is a stablemaster at (1513,1543)
+[22:10:31.992] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:10:32.732] INFO  [life] plan=explore reason="blocked for want of knowing where things are"
+[22:10:32.732] INFO  [w_Ilyandra] [travel] Britain armorer -> (1481,1584) r=5 from (1513,1547)
+[22:10:32.732] LOG   [w_Ilyandra] event travel_start: label='Britain armorer' target=(1481,1584) radius=5 from=(1513,1547)
+[22:10:32.732] INFO  [life] explore: nothing else to do, so going to 'britain_armorer' -- somewhere new (4 place(s) known so far)
+[22:10:32.732] INFO  [w_Ilyandra] [travel] mode walk             usable   <- chosen
+[22:10:32.732] INFO  [w_Ilyandra] [travel] mode moongate         usable
+[22:10:32.732] INFO  [w_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:10:32.732] INFO  [w_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:10:32.732] LOG   [w_Ilyandra] event travel_mode: walk
+[22:10:32.732] INFO  [w_Ilyandra] [travel] plan Britain armorer: ok legs=1 ~37 tiles transit=0 nodes=0
+[22:10:32.794] INFO  [w_Ilyandra] [action] goto finished at (1513,1547,25); target (1510,1543); stopped short (off by 7 tile(s))
+[22:10:32.794] LOG   [w_Ilyandra] event goto_done: at=(1513,1547) target=(1510,1543) arrived=0 off=7
+[22:10:32.794] INFO  [w_Ilyandra] [action] goto (1481,1584) from (1513,1547,25)
+[22:10:32.794] LOG   [w_Ilyandra] event goto_start: target=(1481,1584) from=(1513,1547)
+[22:10:32.794] INFO  [w_Ilyandra] [bot] running from (1513,1547,25) to (1481,1584,z20)
+[22:10:32.794] INFO  [w_Ilyandra] [bot] planning path to (1481,1584) in background
+[22:10:32.856] INFO  [w_Ilyandra] [bot] replan to (1481,1584): 56 steps in 22707.9us
+[22:10:34.662] INFO  [w_Ilyandra] [bot] step (1516,1552,25)->(1515,1553,25) rejected; OpenDoor + retry
+[22:10:34.662] INFO  [w_Ilyandra] [chat ascii] System: Opening door...
+[22:10:34.662] INFO  [w_Ilyandra] [0x20] player @(1516,1552,25) facing=6
+[22:10:34.662] INFO  [w_Ilyandra] [action] goto finished at (1516,1552,25); target (1481,1584); stopped short (off by 67 tile(s))
+[22:10:34.662] LOG   [w_Ilyandra] event goto_done: at=(1516,1552) target=(1481,1584) arrived=0 off=67
+[22:10:35.871] INFO  [w_Ilyandra] [action] goto (1481,1584) from (1516,1552,25)
+[22:10:35.871] LOG   [w_Ilyandra] event goto_start: target=(1481,1584) from=(1516,1552)
+[22:10:35.871] INFO  [w_Ilyandra] [bot] running from (1516,1552,25) to (1481,1584,z20)
+[22:10:35.871] INFO  [w_Ilyandra] [bot] planning path to (1481,1584) in background
+[22:10:35.933] INFO  [w_Ilyandra] [bot] replan to (1481,1584): 51 steps in 19588.4us
+[22:10:37.036] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:10:42.060] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:10:47.087] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:10:49.455] INFO  [w_Ilyandra] [bot] door ahead at (1487,1588,z20); OpenDoor before step
+[22:10:49.456] INFO  [w_Ilyandra] [chat ascii] System: Opening door...
+[22:10:49.701] INFO  [life] goal_changed=PRACTICE_SKILL from=EXPLORE reason="PRACTICE_SKILL 45.0 superseded EXPLORE 15.0"
+[22:10:49.701] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:10:49.701] INFO  [life]   score=45.0
+[22:10:49.701] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[22:10:49.701] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[22:10:49.701] INFO  [life]   BLOCKED_NEED FILL_SPELLBOOK: on cooldown for another 193s after achieving nothing
+[22:10:49.701] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 13s after achieving nothing
+[22:10:49.701] INFO  [life] practice: the book holds 13 item(s), spells [1,1,1,1,1,1,1,1,1,1,1,1,1] -- none of them is one of the twelve safe to cast at oneself
+[22:10:49.701] INFO  [life] practice: nothing safe to cast at myself is in this book -- Magery cannot be practised until it holds one
+[22:10:49.764] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no self-safe spell in book"
+[22:10:49.764] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:10:49.764] INFO  [life]   score=45.0
+[22:10:49.764] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[22:10:49.764] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[22:10:49.764] INFO  [life]   BLOCKED_NEED FILL_SPELLBOOK: on cooldown for another 193s after achieving nothing
+[22:10:49.764] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 13s after achieving nothing
+[22:10:50.413] INFO  [w_Ilyandra] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=6 in 231.5us
+[22:10:50.717] INFO  [w_Ilyandra] [travel] Britain armorer ARRIVED at (1486,1588,20)
+[22:10:50.717] LOG   [w_Ilyandra] event travel_done: label='Britain armorer' ok=1 at=(1486,1588) legs=1 plans=1 why=''
+[22:10:52.121] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:10:52.934] INFO  [w_Ilyandra] [bot] arrived at (1481,1584,20)
+[22:10:54.734] INFO  [life] practice: the book holds 13 item(s), spells [1,1,1,1,1,1,1,1,1,1,1,1,1] -- none of them is one of the twelve safe to cast at oneself
+[22:10:54.734] INFO  [life] practice: nothing safe to cast at myself is in this book -- Magery cannot be practised until it holds one
+[22:10:54.795] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no self-safe spell in book"
+[22:10:54.795] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:10:54.795] INFO  [life]   score=45.0
+[22:10:54.795] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[22:10:54.795] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[22:10:54.795] INFO  [life]   BLOCKED_NEED FILL_SPELLBOOK: on cooldown for another 188s after achieving nothing
+[22:10:54.795] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 8s after achieving nothing
+[22:10:57.138] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:10:59.766] INFO  [life] practice: the book holds 13 item(s), spells [1,1,1,1,1,1,1,1,1,1,1,1,1] -- none of them is one of the twelve safe to cast at oneself
+[22:10:59.766] INFO  [life] practice: nothing safe to cast at myself is in this book -- Magery cannot be practised until it holds one
+[22:10:59.828] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no self-safe spell in book"
+[22:10:59.829] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:10:59.829] INFO  [life]   score=45.0
+[22:10:59.829] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[22:10:59.829] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[22:10:59.829] INFO  [life]   BLOCKED_NEED FILL_SPELLBOOK: on cooldown for another 183s after achieving nothing
+[22:10:59.829] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 3s after achieving nothing
+[22:11:02.195] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:11:04.786] INFO  [life] practice: the book holds 13 item(s), spells [1,1,1,1,1,1,1,1,1,1,1,1,1] -- none of them is one of the twelve safe to cast at oneself
+[22:11:04.786] INFO  [life] practice: nothing safe to cast at myself is in this book -- Magery cannot be practised until it holds one
+[22:11:04.848] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no self-safe spell in book"
+[22:11:04.848] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:11:04.848] INFO  [life]   score=45.0
+[22:11:04.848] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[22:11:04.848] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[22:11:04.848] INFO  [life]   BLOCKED_NEED FILL_SPELLBOOK: on cooldown for another 178s after achieving nothing
+[22:11:07.244] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:11:09.833] INFO  [life] practice: the book holds 13 item(s), spells [1,1,1,1,1,1,1,1,1,1,1,1,1] -- none of them is one of the twelve safe to cast at oneself
+[22:11:09.833] INFO  [life] practice: nothing safe to cast at myself is in this book -- Magery cannot be practised until it holds one
+[22:11:09.894] INFO  [life] goal=UPGRADE_GEAR reason="previous goal abandoned: no self-safe spell in book"
+[22:11:09.894] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:11:09.894] INFO  [life]   score=22.0
+[22:11:09.894] INFO  [life]   reason: NeedGear urgency 0.22 x 100 = 22.0
+[22:11:09.894] INFO  [life]   reason: str 20 gold 444 reserve 800
+[22:11:09.894] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 59s after achieving nothing
+[22:11:09.894] INFO  [life]   BLOCKED_NEED FILL_SPELLBOOK: on cooldown for another 173s after achieving nothing
+[22:11:12.261] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:11:14.893] INFO  [life] gear: nothing carried is an upgrade, and this life does not fight -- ordinary clothes will do, so no armour shopping
+[22:11:14.893] INFO  [life] goal_completed=UPGRADE_GEAR progress=0
+[22:11:14.893] INFO  [life] goal_spinning=PRACTICE_SKILL reason="completed 5 times in a row with progress 0 -- cooled off for a minute; this is a bug in that goal, not pacing"
+[22:11:14.896] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh13.ilyandra/state.json
+[22:11:14.955] INFO  [life] goal=UPGRADE_GEAR reason="no goal was running"
+[22:11:14.955] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:11:14.955] INFO  [life]   score=22.0
+[22:11:14.955] INFO  [life]   reason: NeedGear urgency 0.22 x 100 = 22.0
+[22:11:14.955] INFO  [life]   reason: str 20 gold 444 reserve 800
+[22:11:14.955] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 54s after achieving nothing
+[22:11:14.955] INFO  [life]   BLOCKED_NEED FILL_SPELLBOOK: on cooldown for another 168s after achieving nothing
+[22:11:14.955] INFO  [life] gear: nothing carried is an upgrade, and this life does not fight -- ordinary clothes will do, so no armour shopping
+[22:11:14.955] INFO  [life] goal_completed=UPGRADE_GEAR progress=0
+[22:11:14.955] INFO  [life] goal_spinning=UPGRADE_GEAR reason="completed 5 times in a row with progress 0 -- cooled off for a minute; this is a bug in that goal, not pacing"
+[22:11:14.957] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh13.ilyandra/state.json
+[22:11:15.016] INFO  [life] goal=EXPLORE reason="no goal was running"
+[22:11:15.016] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:11:15.016] INFO  [life]   score=15.0
+[22:11:15.016] INFO  [life]   reason: fallback: nothing else is actionable, so go and learn the world
+[22:11:15.016] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 54s after achieving nothing
+[22:11:15.016] INFO  [life]   BLOCKED_NEED FILL_SPELLBOOK: on cooldown for another 168s after achieving nothing
+[22:11:15.016] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 59s after achieving nothing
+[22:11:15.016] INFO  [life] plan=explore reason="blocked for want of knowing where things are"
+[22:11:15.016] INFO  [w_Ilyandra] [travel] Britain armorer -> (1481,1584) r=5 from (1481,1584)
+[22:11:15.016] LOG   [w_Ilyandra] event travel_start: label='Britain armorer' target=(1481,1584) radius=5 from=(1481,1584)
+[22:11:15.016] INFO  [life] explore: nothing else to do, so going to 'britain_armorer' -- somewhere new (4 place(s) known so far)
+[22:11:15.016] INFO  [w_Ilyandra] [travel] Britain armorer ARRIVED at (1481,1584,20)
+[22:11:15.016] LOG   [w_Ilyandra] event travel_done: label='Britain armorer' ok=1 at=(1481,1584) legs=0 plans=0 why=''
+[22:11:17.278] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:11:17.524] INFO  [life] explore: arrived at 1481,1584 -- reading who is here
+[22:11:17.525] INFO  [w_Ilyandra] [action] scanning nearby mobiles for names
+[22:11:17.525] INFO  [w_Ilyandra] [action] requested 2 paperdoll(s) for trade titles
+[22:11:17.525] INFO  [life] goal_completed=EXPLORE progress=1
+[22:11:17.527] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh13.ilyandra/state.json
+[22:11:17.527] INFO  [w_Ilyandra] [mobiles] nearby (4):
+[22:11:17.527] INFO  [w_Ilyandra]   Howrence 0x00001286
+[22:11:17.527] INFO  [w_Ilyandra]   Frederick 0x00001221
+[22:11:17.527] INFO  [w_Ilyandra]   Amelina 0x000012AC
+[22:11:17.527] INFO  [w_Ilyandra]   Caimile 0x00001239
+[22:11:17.527] INFO  [w_Ilyandra] [0x20] player @(1481,1584,20) facing=7
+[22:11:17.527] INFO  [w_Ilyandra] [0x88] paperdoll 0x00001286: "Howrence, the armorer"
+[22:11:17.527] INFO  [w_Ilyandra] [world] Howrence, the armorer is a blacksmith at (1480,1582)
+[22:11:17.527] INFO  [w_Ilyandra] [0x20] player @(1481,1584,20) facing=0
+[22:11:17.527] INFO  [w_Ilyandra] [0x88] paperdoll 0x00001221: "Frederick, the weaponsmith"
+[22:11:17.527] INFO  [w_Ilyandra] [world] Frederick, the weaponsmith is a blacksmith at (1480,1581)
+[22:11:17.527] INFO  [life] goal=EXPLORE reason="no goal was running"
+[22:11:17.527] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:11:17.527] INFO  [life]   score=15.0
+[22:11:17.527] INFO  [life]   reason: fallback: nothing else is actionable, so go and learn the world
+[22:11:17.527] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 52s after achieving nothing
+[22:11:17.527] INFO  [life]   BLOCKED_NEED FILL_SPELLBOOK: on cooldown for another 165s after achieving nothing
+[22:11:17.527] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 57s after achieving nothing
+[22:11:20.585] INFO  [life] plan=explore reason="blocked for want of knowing where things are"
+[22:11:20.585] INFO  [w_Ilyandra] [travel] Britain bowyer -> (1470,1578) r=5 from (1481,1584)
+[22:11:20.585] LOG   [w_Ilyandra] event travel_start: label='Britain bowyer' target=(1470,1578) radius=5 from=(1481,1584)
+[22:11:20.585] INFO  [life] explore: nothing else to do, so going to 'britain_bowyer' -- somewhere new (5 place(s) known so far)
+[22:11:20.585] INFO  [w_Ilyandra] [travel] mode walk             usable   <- chosen
+[22:11:20.585] INFO  [w_Ilyandra] [travel] mode moongate         usable
+[22:11:20.585] INFO  [w_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:11:20.585] INFO  [w_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:11:20.585] LOG   [w_Ilyandra] event travel_mode: walk
+[22:11:20.585] INFO  [w_Ilyandra] [travel] plan Britain bowyer: ok legs=1 ~11 tiles transit=0 nodes=0
+[22:11:20.647] INFO  [w_Ilyandra] [action] goto finished at (1481,1584,20); target (1481,1584); ARRIVED (off by 0 tile(s))
+[22:11:20.647] LOG   [w_Ilyandra] event goto_done: at=(1481,1584) target=(1481,1584) arrived=1 off=0
+[22:11:20.647] INFO  [w_Ilyandra] [action] goto (1470,1578) from (1481,1584,20)
+[22:11:20.647] LOG   [w_Ilyandra] event goto_start: target=(1470,1578) from=(1481,1584)
+[22:11:20.647] INFO  [w_Ilyandra] [bot] running from (1481,1584,20) to (1470,1578,z20)
+[22:11:20.647] INFO  [w_Ilyandra] [bot] planning path to (1470,1578) in background
+[22:11:20.709] INFO  [w_Ilyandra] [bot] replan to (1470,1578): 67 steps in 35468.4us
+[22:11:22.340] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:11:23.847] INFO  [w_Ilyandra] [bot] door ahead at (1488,1587,z20); OpenDoor before step
+[22:11:23.862] INFO  [w_Ilyandra] [chat ascii] System: Opening door...
+[22:11:27.365] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:11:31.596] INFO  [w_Ilyandra] [travel] Britain bowyer ARRIVED at (1474,1574,30)
+[22:11:31.596] LOG   [w_Ilyandra] event travel_done: label='Britain bowyer' ok=1 at=(1474,1574) legs=1 plans=1 why=''
+[22:11:31.657] INFO  [life] explore: arrived at 1474,1574 -- reading who is here
+[22:11:31.657] INFO  [w_Ilyandra] [action] scanning nearby mobiles for names
+[22:11:31.657] INFO  [w_Ilyandra] [action] requested 1 paperdoll(s) for trade titles
+[22:11:31.657] INFO  [life] goal_completed=EXPLORE progress=1
+[22:11:31.659] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh13.ilyandra/state.json
+[22:11:31.659] INFO  [life] goal=EXPLORE reason="no goal was running"
+[22:11:31.659] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:11:31.659] INFO  [life]   score=15.0
+[22:11:31.659] INFO  [life]   reason: fallback: nothing else is actionable, so go and learn the world
+[22:11:31.659] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 38s after achieving nothing
+[22:11:31.659] INFO  [life]   BLOCKED_NEED FILL_SPELLBOOK: on cooldown for another 151s after achieving nothing
+[22:11:31.659] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 43s after achieving nothing
+[22:11:31.673] INFO  [w_Ilyandra] [mobiles] nearby (3):
+[22:11:31.673] INFO  [w_Ilyandra]   Amelina 0x000012AC
+[22:11:31.673] INFO  [w_Ilyandra]   Frederick 0x00001221
+[22:11:31.673] INFO  [w_Ilyandra]   Howrence 0x00001286
+[22:11:31.673] INFO  [w_Ilyandra] [0x20] player @(1474,1574,27) facing=5
+[22:11:31.673] INFO  [w_Ilyandra] [0x88] paperdoll 0x000012AC: "Amelina, the bowyer"
+[22:11:31.673] INFO  [w_Ilyandra] [world] Amelina, the bowyer is a bowyer at (1472,1576)
+[22:11:31.673] INFO  [w_Ilyandra] [0x21] stale reject seq=44 (block already handled); pose resynced
+[22:11:32.409] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:11:34.689] INFO  [life] plan=explore reason="blocked for want of knowing where things are"
+[22:11:34.689] INFO  [w_Ilyandra] [travel] Britain healer -> (1471,1611) r=5 from (1474,1574)
+[22:11:34.689] LOG   [w_Ilyandra] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1474,1574)
+[22:11:34.689] INFO  [life] explore: nothing else to do, so going to 'britain_healer' -- somewhere new (6 place(s) known so far)
+[22:11:34.689] INFO  [w_Ilyandra] [travel] mode walk             usable   <- chosen
+[22:11:34.689] INFO  [w_Ilyandra] [travel] mode moongate         usable
+[22:11:34.689] INFO  [w_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:11:34.689] INFO  [w_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:11:34.689] LOG   [w_Ilyandra] event travel_mode: walk
+[22:11:34.690] INFO  [w_Ilyandra] [travel] plan Britain healer: ok legs=1 ~37 tiles transit=0 nodes=0
+[22:11:34.752] INFO  [w_Ilyandra] [action] goto finished at (1474,1574,27); target (1470,1578); stopped short (off by 8 tile(s))
+[22:11:34.752] LOG   [w_Ilyandra] event goto_done: at=(1474,1574) target=(1470,1578) arrived=0 off=8
+[22:11:34.752] INFO  [w_Ilyandra] [travel] avoiding 2 teleporter pad(s) on this leg
+[22:11:34.752] INFO  [w_Ilyandra] [action] goto (1471,1611) from (1474,1574,27)
+[22:11:34.752] LOG   [w_Ilyandra] event goto_start: target=(1471,1611) from=(1474,1574)
+[22:11:34.752] INFO  [w_Ilyandra] [bot] running from (1474,1574,27) to (1471,1611,z20)
+[22:11:34.752] INFO  [w_Ilyandra] [bot] planning path to (1471,1611) in background
+[22:11:34.813] INFO  [w_Ilyandra] [bot] replan to (1471,1611): 57 steps in 18714.0us
+[22:11:37.442] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:11:39.243] INFO  [w_Ilyandra] [bot] step (1488,1579,27)->(1488,1580,20) rejected; OpenDoor + retry
+[22:11:39.982] INFO  [w_Ilyandra] [bot] step (1488,1579,27)->(1488,1580,20) rejected; avoiding edge + rerouting
+[22:11:39.982] INFO  [w_Ilyandra] [bot] planning path to (1471,1611) in background
+[22:11:40.043] INFO  [w_Ilyandra] [bot] replan to (1471,1611): 42 steps in 8371.5us
+[22:11:42.446] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:11:47.469] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:11:50.130] INFO  [w_Ilyandra] [bot] door ahead at (1479,1611,z20); OpenDoor before step
+[22:11:50.130] INFO  [w_Ilyandra] [chat ascii] System: Opening door...
+[22:11:51.095] INFO  [w_Ilyandra] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=8 in 309.6us
+[22:11:52.133] INFO  [w_Ilyandra] [travel] Britain healer ARRIVED at (1475,1611,20)
+[22:11:52.133] LOG   [w_Ilyandra] event travel_done: label='Britain healer' ok=1 at=(1475,1611) legs=1 plans=1 why=''
+[22:11:52.195] INFO  [life] explore: arrived at 1475,1611 -- reading who is here
+[22:11:52.195] INFO  [w_Ilyandra] [action] scanning nearby mobiles for names
+[22:11:52.195] INFO  [life] goal_completed=EXPLORE progress=1
+[22:11:52.197] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh13.ilyandra/state.json
+[22:11:52.198] INFO  [life] goal=EXPLORE reason="no goal was running"
+[22:11:52.198] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:11:52.198] INFO  [life]   score=15.0
+[22:11:52.198] INFO  [life]   reason: fallback: nothing else is actionable, so go and learn the world
+[22:11:52.198] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 17s after achieving nothing
+[22:11:52.198] INFO  [life]   BLOCKED_NEED FILL_SPELLBOOK: on cooldown for another 131s after achieving nothing
+[22:11:52.198] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 22s after achieving nothing
+[22:11:52.210] INFO  [w_Ilyandra] [mobiles] nearby (3):
+[22:11:52.210] INFO  [w_Ilyandra]   Natasha 0x00001194
+[22:11:52.210] INFO  [w_Ilyandra]   Dale 0x000010C1
+[22:11:52.210] INFO  [w_Ilyandra]   Caimile 0x00001239
+[22:11:52.471] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:11:52.793] INFO  [w_Ilyandra] [bot] lookahead patched around block at step 1: anchor=3 new segment=3 path=3 in 76.8us
+[22:11:54.167] INFO  [w_Ilyandra] [bot] arrived at (1471,1611,20)
+[22:11:55.249] INFO  [life] plan=explore reason="blocked for want of knowing where things are"
+[22:11:55.249] INFO  [w_Ilyandra] [travel] Britain baker -> (1450,1617) r=5 from (1471,1611)
+[22:11:55.249] LOG   [w_Ilyandra] event travel_start: label='Britain baker' target=(1450,1617) radius=5 from=(1471,1611)
+[22:11:55.249] INFO  [life] explore: nothing else to do, so going to 'britain_baker' -- somewhere new (7 place(s) known so far)
+[22:11:55.249] INFO  [w_Ilyandra] [travel] mode walk             usable   <- chosen
+[22:11:55.249] INFO  [w_Ilyandra] [travel] mode moongate         usable
+[22:11:55.249] INFO  [w_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:11:55.249] INFO  [w_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:11:55.249] LOG   [w_Ilyandra] event travel_mode: walk
+[22:11:55.249] INFO  [w_Ilyandra] [travel] plan Britain baker: ok legs=1 ~21 tiles transit=0 nodes=0
+[22:11:55.309] INFO  [w_Ilyandra] [action] goto finished at (1471,1611,20); target (1471,1611); ARRIVED (off by 0 tile(s))
+[22:11:55.310] LOG   [w_Ilyandra] event goto_done: at=(1471,1611) target=(1471,1611) arrived=1 off=0
+[22:11:55.310] INFO  [w_Ilyandra] [travel] avoiding 2 teleporter pad(s) on this leg
+[22:11:55.310] INFO  [w_Ilyandra] [action] goto (1450,1617) from (1471,1611,20)
+[22:11:55.310] LOG   [w_Ilyandra] event goto_start: target=(1450,1617) from=(1471,1611)
+[22:11:55.310] INFO  [w_Ilyandra] [bot] running from (1471,1611,20) to (1450,1617,z20)
+[22:11:55.310] INFO  [w_Ilyandra] [bot] planning path to (1450,1617) in background
+[22:11:55.355] INFO  [w_Ilyandra] [bot] replan to (1450,1617): 44 steps in 4498.4us
+[22:11:57.480] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:11:57.788] INFO  [w_Ilyandra] [bot] door ahead at (1480,1610,z20); OpenDoor before step
+[22:11:57.788] INFO  [w_Ilyandra] [chat ascii] System: Opening door...
+[22:12:02.504] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:12:05.003] INFO  [w_Ilyandra] [bot] door ahead at (1459,1612,z20); OpenDoor before step
+[22:12:05.003] INFO  [w_Ilyandra] [chat ascii] System: Opening door...
+[22:12:07.475] INFO  [w_Ilyandra] [travel] Britain baker ARRIVED at (1454,1614,20)
+[22:12:07.475] LOG   [w_Ilyandra] event travel_done: label='Britain baker' ok=1 at=(1454,1614) legs=1 plans=1 why=''
+[22:12:07.537] INFO  [life] explore: arrived at 1454,1614 -- reading who is here
+[22:12:07.537] INFO  [w_Ilyandra] [action] scanning nearby mobiles for names
+[22:12:07.537] INFO  [w_Ilyandra] [action] requested 1 paperdoll(s) for trade titles
+[22:12:07.537] INFO  [life] goal_completed=EXPLORE progress=1
+[22:12:07.540] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh13.ilyandra/state.json
+[22:12:07.540] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:12:07.540] INFO  [w_Ilyandra] [mobiles] nearby (2):
+[22:12:07.540] INFO  [w_Ilyandra]   Lionel 0x000010B3
+[22:12:07.540] INFO  [w_Ilyandra]   Natasha 0x00001194
+[22:12:07.540] INFO  [w_Ilyandra] [0x20] player @(1454,1614,20) facing=5
+[22:12:07.540] INFO  [w_Ilyandra] [0x88] paperdoll 0x000010B3: "Lionel, the baker"
+[22:12:07.540] INFO  [w_Ilyandra] [world] Lionel, the baker is a baker at (1452,1617)
+[22:12:07.540] INFO  [life] goal=EXPLORE reason="no goal was running"
+[22:12:07.540] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:12:07.540] INFO  [life]   score=15.0
+[22:12:07.540] INFO  [life]   reason: fallback: nothing else is actionable, so go and learn the world
+[22:12:07.540] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 2s after achieving nothing
+[22:12:07.540] INFO  [life]   BLOCKED_NEED FILL_SPELLBOOK: on cooldown for another 115s after achieving nothing
+[22:12:07.540] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 7s after achieving nothing
+[22:12:10.538] INFO  [life] plan=explore reason="blocked for want of knowing where things are"
+[22:12:10.538] INFO  [w_Ilyandra] [travel] Britain tanner -> (1431,1612) r=5 from (1454,1614)
+[22:12:10.538] LOG   [w_Ilyandra] event travel_start: label='Britain tanner' target=(1431,1612) radius=5 from=(1454,1614)
+[22:12:10.538] INFO  [life] explore: nothing else to do, so going to 'britain_tanner' -- somewhere new (8 place(s) known so far)
+[22:12:10.538] INFO  [w_Ilyandra] [travel] mode walk             usable   <- chosen
+[22:12:10.538] INFO  [w_Ilyandra] [travel] mode moongate         usable
+[22:12:10.538] INFO  [w_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:12:10.538] INFO  [w_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:12:10.538] LOG   [w_Ilyandra] event travel_mode: walk
+[22:12:10.538] INFO  [w_Ilyandra] [travel] plan Britain tanner: ok legs=1 ~23 tiles transit=0 nodes=0
+[22:12:10.599] INFO  [w_Ilyandra] [action] goto finished at (1454,1614,20); target (1450,1617); stopped short (off by 7 tile(s))
+[22:12:10.599] LOG   [w_Ilyandra] event goto_done: at=(1454,1614) target=(1450,1617) arrived=0 off=7
+[22:12:10.599] INFO  [w_Ilyandra] [action] goto (1431,1612) from (1454,1614,20)
+[22:12:10.599] LOG   [w_Ilyandra] event goto_start: target=(1431,1612) from=(1454,1614)
+[22:12:10.599] INFO  [w_Ilyandra] [bot] running from (1454,1614,20) to (1431,1612,z20)
+[22:12:10.599] INFO  [w_Ilyandra] [bot] planning path to (1431,1612) in background
+[22:12:10.661] INFO  [w_Ilyandra] [bot] replan to (1431,1612): 41 steps in 4435.8us
+[22:12:12.580] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:12:13.176] INFO  [w_Ilyandra] [bot] door ahead at (1460,1610,z20); OpenDoor before step
+[22:12:13.176] INFO  [w_Ilyandra] [chat ascii] System: Opening door...
+[22:12:17.585] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:12:20.481] INFO  [w_Ilyandra] [bot] door ahead at (1439,1612,z20); OpenDoor before step
+[22:12:20.481] INFO  [w_Ilyandra] [chat ascii] System: Opening door...
+[22:12:22.144] INFO  [w_Ilyandra] [travel] Britain tanner ARRIVED at (1436,1612,20)
+[22:12:22.144] LOG   [w_Ilyandra] event travel_done: label='Britain tanner' ok=1 at=(1436,1612) legs=1 plans=1 why=''
+[22:12:22.206] INFO  [life] explore: arrived at 1436,1612 -- reading who is here
+[22:12:22.206] INFO  [w_Ilyandra] [action] scanning nearby mobiles for names
+[22:12:22.206] INFO  [w_Ilyandra] [action] requested 2 paperdoll(s) for trade titles
+[22:12:22.206] INFO  [life] goal_completed=EXPLORE progress=1
+[22:12:22.208] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh13.ilyandra/state.json
+[22:12:22.222] INFO  [w_Ilyandra] [mobiles] nearby (6):
+[22:12:22.222] INFO  [w_Ilyandra]   Jack 0x00001119
+[22:12:22.222] INFO  [w_Ilyandra]   Hadi 0x0000110A
+[22:12:22.223] INFO  [w_Ilyandra]   Lionel 0x000010B3
+[22:12:22.223] INFO  [w_Ilyandra]   Coleen 0x00001099
+[22:12:22.223] INFO  [w_Ilyandra]   Shandy 0x0000108C
+[22:12:22.223] INFO  [w_Ilyandra]   Grear 0x00001126
+[22:12:22.223] INFO  [w_Ilyandra] [0x88] paperdoll 0x00001119: "Jack, the tanner"
+[22:12:22.223] INFO  [w_Ilyandra] [world] Jack, the tanner is a tanner at (1428,1614)
+[22:12:22.223] INFO  [w_Ilyandra] [0x88] paperdoll 0x0000110A: "Hadi, the fur trader"
+[22:12:22.223] INFO  [life] goal=PRACTICE_SKILL reason="no goal was running"
+[22:12:22.223] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:12:22.223] INFO  [life]   score=45.0
+[22:12:22.223] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[22:12:22.223] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[22:12:22.223] INFO  [life]   BLOCKED_NEED FILL_SPELLBOOK: on cooldown for another 101s after achieving nothing
+[22:12:22.606] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:12:24.530] INFO  [w_Ilyandra] [bot] arrived at (1431,1612,20)
+[22:12:25.219] INFO  [life] practice: the book holds 13 item(s), spells [1,1,1,1,1,1,1,1,1,1,1,1,1] -- none of them is one of the twelve safe to cast at oneself
+[22:12:25.219] INFO  [life] practice: nothing safe to cast at myself is in this book -- Magery cannot be practised until it holds one
+[22:12:25.280] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no self-safe spell in book"
+[22:12:25.280] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:12:25.280] INFO  [life]   score=45.0
+[22:12:25.280] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[22:12:25.280] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[22:12:25.280] INFO  [life]   BLOCKED_NEED FILL_SPELLBOOK: on cooldown for another 98s after achieving nothing
+[22:12:27.638] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:12:30.276] INFO  [life] practice: the book holds 13 item(s), spells [1,1,1,1,1,1,1,1,1,1,1,1,1] -- none of them is one of the twelve safe to cast at oneself
+[22:12:30.276] INFO  [life] practice: nothing safe to cast at myself is in this book -- Magery cannot be practised until it holds one
+[22:12:30.339] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no self-safe spell in book"
+[22:12:30.339] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:12:30.339] INFO  [life]   score=45.0
+[22:12:30.339] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[22:12:30.339] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[22:12:30.339] INFO  [life]   BLOCKED_NEED FILL_SPELLBOOK: on cooldown for another 93s after achieving nothing
+[22:12:32.668] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:12:35.330] INFO  [life] practice: the book holds 13 item(s), spells [1,1,1,1,1,1,1,1,1,1,1,1,1] -- none of them is one of the twelve safe to cast at oneself
+[22:12:35.330] INFO  [life] practice: nothing safe to cast at myself is in this book -- Magery cannot be practised until it holds one
+[22:12:35.390] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no self-safe spell in book"
+[22:12:35.390] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:12:35.391] INFO  [life]   score=45.0
+[22:12:35.391] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[22:12:35.391] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[22:12:35.391] INFO  [life]   BLOCKED_NEED FILL_SPELLBOOK: on cooldown for another 88s after achieving nothing
+[22:12:37.685] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:12:40.332] INFO  [life] practice: the book holds 13 item(s), spells [1,1,1,1,1,1,1,1,1,1,1,1,1] -- none of them is one of the twelve safe to cast at oneself
+[22:12:40.332] INFO  [life] practice: nothing safe to cast at myself is in this book -- Magery cannot be practised until it holds one
+[22:12:40.394] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no self-safe spell in book"
+[22:12:40.394] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:12:40.394] INFO  [life]   score=45.0
+[22:12:40.394] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[22:12:40.395] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[22:12:40.395] INFO  [life]   BLOCKED_NEED FILL_SPELLBOOK: on cooldown for another 83s after achieving nothing
+[22:12:42.700] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:12:45.338] INFO  [life] practice: the book holds 13 item(s), spells [1,1,1,1,1,1,1,1,1,1,1,1,1] -- none of them is one of the twelve safe to cast at oneself
+[22:12:45.338] INFO  [life] practice: nothing safe to cast at myself is in this book -- Magery cannot be practised until it holds one
+[22:12:45.399] INFO  [life] goal=UPGRADE_GEAR reason="previous goal abandoned: no self-safe spell in book"
+[22:12:45.399] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:12:45.399] INFO  [life]   score=19.0
+[22:12:45.399] INFO  [life]   reason: NeedGear urgency 0.22 x 100 = 22.0
+[22:12:45.399] INFO  [life]   reason: str 20 gold 444 reserve 800
+[22:12:45.399] INFO  [life]   reason: most of the day already just now, easing off 14% (22.0 -> 19.0)
+[22:12:45.399] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 59s after achieving nothing
+[22:12:45.399] INFO  [life]   BLOCKED_NEED FILL_SPELLBOOK: on cooldown for another 78s after achieving nothing
+[22:12:47.738] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:12:50.384] INFO  [life] gear: nothing carried is an upgrade, and this life does not fight -- ordinary clothes will do, so no armour shopping
+[22:12:50.384] INFO  [life] goal_completed=UPGRADE_GEAR progress=0
+[22:12:50.384] INFO  [life] goal_spinning=PRACTICE_SKILL reason="completed 5 times in a row with progress 0 -- cooled off for a minute; this is a bug in that goal, not pacing"
+[22:12:50.386] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh13.ilyandra/state.json
+[22:12:50.444] INFO  [life] goal=UPGRADE_GEAR reason="no goal was running"
+[22:12:50.444] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:12:50.444] INFO  [life]   score=18.2
+[22:12:50.444] INFO  [life]   reason: NeedGear urgency 0.22 x 100 = 22.0
+[22:12:50.444] INFO  [life]   reason: str 20 gold 444 reserve 800
+[22:12:50.444] INFO  [life]   reason: most of the day already just now, easing off 17% (22.0 -> 18.2)
+[22:12:50.444] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 54s after achieving nothing
+[22:12:50.444] INFO  [life]   BLOCKED_NEED FILL_SPELLBOOK: on cooldown for another 73s after achieving nothing
+[22:12:50.444] INFO  [life] gear: nothing carried is an upgrade, and this life does not fight -- ordinary clothes will do, so no armour shopping
+[22:12:50.444] INFO  [life] goal_completed=UPGRADE_GEAR progress=0
+[22:12:50.446] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh13.ilyandra/state.json
+[22:12:50.506] INFO  [life] goal=UPGRADE_GEAR reason="no goal was running"
+[22:12:50.506] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:12:50.506] INFO  [life]   score=17.6
+[22:12:50.506] INFO  [life]   reason: NeedGear urgency 0.22 x 100 = 22.0
+[22:12:50.506] INFO  [life]   reason: str 20 gold 444 reserve 800
+[22:12:50.506] INFO  [life]   reason: most of the day already just now, easing off 20% (22.0 -> 17.6)
+[22:12:50.506] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 54s after achieving nothing
+[22:12:50.506] INFO  [life]   BLOCKED_NEED FILL_SPELLBOOK: on cooldown for another 72s after achieving nothing
+[22:12:50.506] INFO  [life] gear: nothing carried is an upgrade, and this life does not fight -- ordinary clothes will do, so no armour shopping
+[22:12:50.506] INFO  [life] goal_completed=UPGRADE_GEAR progress=0
+[22:12:50.506] INFO  [life] goal_spinning=UPGRADE_GEAR reason="completed 5 times in a row with progress 0 -- cooled off for a minute; this is a bug in that goal, not pacing"
+[22:12:50.508] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh13.ilyandra/state.json
+[22:12:50.568] INFO  [life] goal=EXPLORE reason="no goal was running"
+[22:12:50.568] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:12:50.568] INFO  [life]   score=15.0
+[22:12:50.568] INFO  [life]   reason: fallback: nothing else is actionable, so go and learn the world
+[22:12:50.568] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 54s after achieving nothing
+[22:12:50.568] INFO  [life]   BLOCKED_NEED FILL_SPELLBOOK: on cooldown for another 72s after achieving nothing
+[22:12:50.568] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 59s after achieving nothing
+[22:12:50.568] INFO  [life] plan=explore reason="blocked for want of knowing where things are"
+[22:12:50.568] INFO  [w_Ilyandra] [travel] Britain carpenter -> (1430,1597) r=5 from (1431,1612)
+[22:12:50.568] LOG   [w_Ilyandra] event travel_start: label='Britain carpenter' target=(1430,1597) radius=5 from=(1431,1612)
+[22:12:50.568] INFO  [life] explore: nothing else to do, so going to 'britain_carpenter' -- somewhere new (9 place(s) known so far)
+[22:12:50.568] INFO  [w_Ilyandra] [travel] mode walk             usable   <- chosen
+[22:12:50.568] INFO  [w_Ilyandra] [travel] mode moongate         usable
+[22:12:50.568] INFO  [w_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:12:50.568] INFO  [w_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:12:50.568] LOG   [w_Ilyandra] event travel_mode: walk
+[22:12:50.568] INFO  [w_Ilyandra] [travel] plan Britain carpenter: ok legs=1 ~15 tiles transit=0 nodes=0
+[22:12:50.630] INFO  [w_Ilyandra] [action] goto finished at (1431,1612,20); target (1431,1612); ARRIVED (off by 0 tile(s))
+[22:12:50.630] LOG   [w_Ilyandra] event goto_done: at=(1431,1612) target=(1431,1612) arrived=1 off=0
+[22:12:50.630] INFO  [w_Ilyandra] [action] goto (1430,1597) from (1431,1612,20)
+[22:12:50.630] LOG   [w_Ilyandra] event goto_start: target=(1430,1597) from=(1431,1612)
+[22:12:50.630] INFO  [w_Ilyandra] [bot] running from (1431,1612,20) to (1430,1597,z20)
+[22:12:50.630] INFO  [w_Ilyandra] [bot] planning path to (1430,1597) in background
+[22:12:50.752] INFO  [w_Ilyandra] [action] goto finished at (1431,1612,20); target (1430,1597); stopped short (off by 16 tile(s))
+[22:12:50.752] LOG   [w_Ilyandra] event goto_done: at=(1431,1612) target=(1430,1597) arrived=0 off=16
+[22:12:51.987] INFO  [w_Ilyandra] [action] goto (1430,1597) from (1431,1612,20)
+[22:12:51.988] LOG   [w_Ilyandra] event goto_start: target=(1430,1597) from=(1431,1612)
+[22:12:51.988] INFO  [w_Ilyandra] [bot] running from (1431,1612,20) to (1430,1597,z20)
+[22:12:51.988] INFO  [w_Ilyandra] [bot] planning path to (1430,1597) in background
+[22:12:52.110] INFO  [w_Ilyandra] [action] goto finished at (1431,1612,20); target (1430,1597); stopped short (off by 16 tile(s))
+[22:12:52.110] LOG   [w_Ilyandra] event goto_done: at=(1431,1612) target=(1430,1597) arrived=0 off=16
+[22:12:52.786] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:12:53.341] INFO  [w_Ilyandra] [action] goto (1430,1597) from (1431,1612,20)
+[22:12:53.341] LOG   [w_Ilyandra] event goto_start: target=(1430,1597) from=(1431,1612)
+[22:12:53.341] INFO  [w_Ilyandra] [bot] running from (1431,1612,20) to (1430,1597,z20)
+[22:12:53.342] INFO  [w_Ilyandra] [bot] planning path to (1430,1597) in background
+[22:12:53.464] INFO  [w_Ilyandra] [action] goto finished at (1431,1612,20); target (1430,1597); stopped short (off by 16 tile(s))
+[22:12:53.464] LOG   [w_Ilyandra] event goto_done: at=(1431,1612) target=(1430,1597) arrived=0 off=16
+[22:12:54.683] INFO  [w_Ilyandra] [travel] mode walk             usable   <- chosen
+[22:12:54.683] INFO  [w_Ilyandra] [travel] mode moongate         usable
+[22:12:54.683] INFO  [w_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:12:54.683] INFO  [w_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:12:54.683] LOG   [w_Ilyandra] event travel_mode: walk
+[22:12:54.683] INFO  [w_Ilyandra] [travel] plan Britain carpenter: ok legs=1 ~15 tiles transit=0 nodes=0
+[22:12:56.231] INFO  [w_Ilyandra] [action] goto (1430,1597) from (1431,1612,20)
+[22:12:56.231] LOG   [w_Ilyandra] event goto_start: target=(1430,1597) from=(1431,1612)
+[22:12:56.232] INFO  [w_Ilyandra] [bot] running from (1431,1612,20) to (1430,1597,z20)
+[22:12:56.232] INFO  [w_Ilyandra] [bot] planning path to (1430,1597) in background
+[22:12:56.354] INFO  [w_Ilyandra] [action] goto finished at (1431,1612,20); target (1430,1597); stopped short (off by 16 tile(s))
+[22:12:56.354] LOG   [w_Ilyandra] event goto_done: at=(1431,1612) target=(1430,1597) arrived=0 off=16
+[22:12:57.565] INFO  [w_Ilyandra] [action] goto (1430,1597) from (1431,1612,20)
+[22:12:57.565] LOG   [w_Ilyandra] event goto_start: target=(1430,1597) from=(1431,1612)
+[22:12:57.565] INFO  [w_Ilyandra] [bot] running from (1431,1612,20) to (1430,1597,z20)
+[22:12:57.565] INFO  [w_Ilyandra] [bot] planning path to (1430,1597) in background
+[22:12:57.626] INFO  [w_Ilyandra] [action] goto finished at (1431,1612,20); target (1430,1597); stopped short (off by 16 tile(s))
+[22:12:57.626] LOG   [w_Ilyandra] event goto_done: at=(1431,1612) target=(1430,1597) arrived=0 off=16
+[22:12:57.810] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:12:58.859] INFO  [w_Ilyandra] [action] goto (1430,1597) from (1431,1612,20)
+[22:12:58.859] LOG   [w_Ilyandra] event goto_start: target=(1430,1597) from=(1431,1612)
+[22:12:58.859] INFO  [w_Ilyandra] [bot] running from (1431,1612,20) to (1430,1597,z20)
+[22:12:58.859] INFO  [w_Ilyandra] [bot] planning path to (1430,1597) in background
+[22:12:58.983] INFO  [w_Ilyandra] [action] goto finished at (1431,1612,20); target (1430,1597); stopped short (off by 16 tile(s))
+[22:12:58.983] LOG   [w_Ilyandra] event goto_done: at=(1431,1612) target=(1430,1597) arrived=0 off=16
+[22:13:00.211] INFO  [w_Ilyandra] [travel] mode walk             usable   <- chosen
+[22:13:00.211] INFO  [w_Ilyandra] [travel] mode moongate         usable
+[22:13:00.211] INFO  [w_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:13:00.211] INFO  [w_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:13:00.211] LOG   [w_Ilyandra] event travel_mode: walk
+[22:13:00.211] INFO  [w_Ilyandra] [travel] plan Britain carpenter: ok legs=1 ~15 tiles transit=0 nodes=0
+[22:13:01.340] INFO  [w_Ilyandra] [chat ascii] Hadi: I am listening to thee.
+[22:13:02.811] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:13:03.238] INFO  [w_Ilyandra] [action] goto (1430,1597) from (1431,1612,20)
+[22:13:03.238] LOG   [w_Ilyandra] event goto_start: target=(1430,1597) from=(1431,1612)
+[22:13:03.238] INFO  [w_Ilyandra] [bot] running from (1431,1612,20) to (1430,1597,z20)
+[22:13:03.238] INFO  [w_Ilyandra] [bot] planning path to (1430,1597) in background
+[22:13:03.361] INFO  [w_Ilyandra] [action] goto finished at (1431,1612,20); target (1430,1597); stopped short (off by 16 tile(s))
+[22:13:03.361] LOG   [w_Ilyandra] event goto_done: at=(1431,1612) target=(1430,1597) arrived=0 off=16
+[22:13:04.592] INFO  [w_Ilyandra] [action] goto (1430,1597) from (1431,1612,20)
+[22:13:04.592] LOG   [w_Ilyandra] event goto_start: target=(1430,1597) from=(1431,1612)
+[22:13:04.592] INFO  [w_Ilyandra] [bot] running from (1431,1612,20) to (1430,1597,z20)
+[22:13:04.592] INFO  [w_Ilyandra] [bot] planning path to (1430,1597) in background
+[22:13:04.714] INFO  [w_Ilyandra] [action] goto finished at (1431,1612,20); target (1430,1597); stopped short (off by 16 tile(s))
+[22:13:04.714] LOG   [w_Ilyandra] event goto_done: at=(1431,1612) target=(1430,1597) arrived=0 off=16
+[22:13:05.938] INFO  [w_Ilyandra] [action] goto (1430,1597) from (1431,1612,20)
+[22:13:05.938] LOG   [w_Ilyandra] event goto_start: target=(1430,1597) from=(1431,1612)
+[22:13:05.938] INFO  [w_Ilyandra] [bot] running from (1431,1612,20) to (1430,1597,z20)
+[22:13:05.939] INFO  [w_Ilyandra] [bot] planning path to (1430,1597) in background
+[22:13:05.999] INFO  [w_Ilyandra] [action] goto finished at (1431,1612,20); target (1430,1597); stopped short (off by 16 tile(s))
+[22:13:05.999] LOG   [w_Ilyandra] event goto_done: at=(1431,1612) target=(1430,1597) arrived=0 off=16
+[22:13:07.233] INFO  [w_Ilyandra] [travel] mode walk             usable   <- chosen
+[22:13:07.233] INFO  [w_Ilyandra] [travel] mode moongate         usable
+[22:13:07.233] INFO  [w_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:13:07.233] INFO  [w_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:13:07.233] LOG   [w_Ilyandra] event travel_mode: walk
+[22:13:07.233] INFO  [w_Ilyandra] [travel] plan Britain carpenter: ok legs=1 ~15 tiles transit=0 nodes=0
+[22:13:07.848] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:13:11.793] INFO  [w_Ilyandra] [action] goto (1430,1597) from (1431,1612,20)
+[22:13:11.793] LOG   [w_Ilyandra] event goto_start: target=(1430,1597) from=(1431,1612)
+[22:13:11.793] INFO  [w_Ilyandra] [bot] running from (1431,1612,20) to (1430,1597,z20)
+[22:13:11.793] INFO  [w_Ilyandra] [bot] planning path to (1430,1597) in background
+[22:13:11.916] INFO  [w_Ilyandra] [action] goto finished at (1431,1612,20); target (1430,1597); stopped short (off by 16 tile(s))
+[22:13:11.916] LOG   [w_Ilyandra] event goto_done: at=(1431,1612) target=(1430,1597) arrived=0 off=16
+[22:13:12.853] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:13:13.162] INFO  [w_Ilyandra] [action] goto (1430,1597) from (1431,1612,20)
+[22:13:13.162] LOG   [w_Ilyandra] event goto_start: target=(1430,1597) from=(1431,1612)
+[22:13:13.162] INFO  [w_Ilyandra] [bot] running from (1431,1612,20) to (1430,1597,z20)
+[22:13:13.162] INFO  [w_Ilyandra] [bot] planning path to (1430,1597) in background
+[22:13:13.255] INFO  [w_Ilyandra] [action] goto finished at (1431,1612,20); target (1430,1597); stopped short (off by 16 tile(s))
+[22:13:13.256] LOG   [w_Ilyandra] event goto_done: at=(1431,1612) target=(1430,1597) arrived=0 off=16
+[22:13:14.493] INFO  [w_Ilyandra] [action] goto (1430,1597) from (1431,1612,20)
+[22:13:14.493] LOG   [w_Ilyandra] event goto_start: target=(1430,1597) from=(1431,1612)
+[22:13:14.493] INFO  [w_Ilyandra] [bot] running from (1431,1612,20) to (1430,1597,z20)
+[22:13:14.493] INFO  [w_Ilyandra] [bot] planning path to (1430,1597) in background
+[22:13:14.616] INFO  [w_Ilyandra] [action] goto finished at (1431,1612,20); target (1430,1597); stopped short (off by 16 tile(s))
+[22:13:14.616] LOG   [w_Ilyandra] event goto_done: at=(1431,1612) target=(1430,1597) arrived=0 off=16
+[22:13:14.616] LOG   [w_Ilyandra] event travel_escape: from=(1431,1612,20) to=(1432,1624) attempt=1
+[22:13:14.616] INFO  [w_Ilyandra] [action] goto (1432,1624) from (1431,1612,20)
+[22:13:14.616] LOG   [w_Ilyandra] event goto_start: target=(1432,1624) from=(1431,1612)
+[22:13:14.616] INFO  [w_Ilyandra] [bot] running from (1431,1612,20) to (1432,1624,z20)
+[22:13:14.616] INFO  [w_Ilyandra] [bot] planning path to (1432,1624) in background
+[22:13:14.678] INFO  [w_Ilyandra] [bot] replan to (1432,1624): 24 steps in 2068.5us
+[22:13:17.909] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:13:18.496] INFO  [w_Ilyandra] [bot] door ahead at (1440,1614,z20); OpenDoor before step
+[22:13:18.496] INFO  [w_Ilyandra] [chat ascii] System: Opening door...
+[22:13:22.929] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:13:23.482] INFO  [w_Ilyandra] [bot] arrived at (1432,1624,20)
+[22:13:23.482] INFO  [w_Ilyandra] [action] goto finished at (1432,1624,20); target (1432,1624); ARRIVED (off by 0 tile(s))
+[22:13:23.482] LOG   [w_Ilyandra] event goto_done: at=(1432,1624) target=(1432,1624) arrived=1 off=0
+[22:13:23.482] INFO  [w_Ilyandra] [travel] recovery walk reached its anchor at (1432,1624,20) (off 0); attempt 1/3
+[22:13:23.482] LOG   [w_Ilyandra] event travel_recovery_done: reached=1 at=(1432,1624,20) off=0 attempt=1
+[22:13:23.544] INFO  [w_Ilyandra] [travel] mode walk             usable   <- chosen
+[22:13:23.544] INFO  [w_Ilyandra] [travel] mode moongate         usable
+[22:13:23.544] INFO  [w_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:13:23.544] INFO  [w_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:13:23.544] LOG   [w_Ilyandra] event travel_mode: walk
+[22:13:23.544] INFO  [w_Ilyandra] [travel] plan Britain carpenter: ok legs=1 ~27 tiles transit=0 nodes=0
+[22:13:23.604] INFO  [w_Ilyandra] [action] goto (1430,1597) from (1432,1624,20)
+[22:13:23.604] LOG   [w_Ilyandra] event goto_start: target=(1430,1597) from=(1432,1624)
+[22:13:23.604] INFO  [w_Ilyandra] [bot] running from (1432,1624,20) to (1430,1597,z20)
+[22:13:23.604] INFO  [w_Ilyandra] [bot] planning path to (1430,1597) in background
+[22:13:23.727] INFO  [w_Ilyandra] [action] goto finished at (1432,1624,20); target (1430,1597); stopped short (off by 29 tile(s))
+[22:13:23.727] LOG   [w_Ilyandra] event goto_done: at=(1432,1624) target=(1430,1597) arrived=0 off=29
+[22:13:24.957] INFO  [w_Ilyandra] [action] goto (1430,1597) from (1432,1624,20)
+[22:13:24.957] LOG   [w_Ilyandra] event goto_start: target=(1430,1597) from=(1432,1624)
+[22:13:24.957] INFO  [w_Ilyandra] [bot] running from (1432,1624,20) to (1430,1597,z20)
+[22:13:24.957] INFO  [w_Ilyandra] [bot] planning path to (1430,1597) in background
+[22:13:25.019] INFO  [w_Ilyandra] [action] goto finished at (1432,1624,20); target (1430,1597); stopped short (off by 29 tile(s))
+[22:13:25.019] LOG   [w_Ilyandra] event goto_done: at=(1432,1624) target=(1430,1597) arrived=0 off=29
+[22:13:26.248] INFO  [w_Ilyandra] [action] goto (1430,1597) from (1432,1624,20)
+[22:13:26.248] LOG   [w_Ilyandra] event goto_start: target=(1430,1597) from=(1432,1624)
+[22:13:26.248] INFO  [w_Ilyandra] [bot] running from (1432,1624,20) to (1430,1597,z20)
+[22:13:26.248] INFO  [w_Ilyandra] [bot] planning path to (1430,1597) in background
+[22:13:26.370] INFO  [w_Ilyandra] [action] goto finished at (1432,1624,20); target (1430,1597); stopped short (off by 29 tile(s))
+[22:13:26.370] LOG   [w_Ilyandra] event goto_done: at=(1432,1624) target=(1430,1597) arrived=0 off=29
+[22:13:27.601] INFO  [w_Ilyandra] [travel] mode walk             usable   <- chosen
+[22:13:27.601] INFO  [w_Ilyandra] [travel] mode moongate         usable
+[22:13:27.601] INFO  [w_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:13:27.601] INFO  [w_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:13:27.602] LOG   [w_Ilyandra] event travel_mode: walk
+[22:13:27.602] INFO  [w_Ilyandra] [travel] plan Britain carpenter: ok legs=1 ~27 tiles transit=0 nodes=0
+[22:13:27.971] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:13:29.139] INFO  [w_Ilyandra] [action] goto (1430,1597) from (1432,1624,20)
+[22:13:29.139] LOG   [w_Ilyandra] event goto_start: target=(1430,1597) from=(1432,1624)
+[22:13:29.139] INFO  [w_Ilyandra] [bot] running from (1432,1624,20) to (1430,1597,z20)
+[22:13:29.139] INFO  [w_Ilyandra] [bot] planning path to (1430,1597) in background
+[22:13:29.201] INFO  [w_Ilyandra] [action] goto finished at (1432,1624,20); target (1430,1597); stopped short (off by 29 tile(s))
+[22:13:29.201] LOG   [w_Ilyandra] event goto_done: at=(1432,1624) target=(1430,1597) arrived=0 off=29
+[22:13:30.431] INFO  [w_Ilyandra] [action] goto (1430,1597) from (1432,1624,20)
+[22:13:30.431] LOG   [w_Ilyandra] event goto_start: target=(1430,1597) from=(1432,1624)
+[22:13:30.431] INFO  [w_Ilyandra] [bot] running from (1432,1624,20) to (1430,1597,z20)
+[22:13:30.431] INFO  [w_Ilyandra] [bot] planning path to (1430,1597) in background
+[22:13:30.492] INFO  [w_Ilyandra] [action] goto finished at (1432,1624,20); target (1430,1597); stopped short (off by 29 tile(s))
+[22:13:30.492] LOG   [w_Ilyandra] event goto_done: at=(1432,1624) target=(1430,1597) arrived=0 off=29
+[22:13:31.727] INFO  [w_Ilyandra] [action] goto (1430,1597) from (1432,1624,20)
+[22:13:31.727] LOG   [w_Ilyandra] event goto_start: target=(1430,1597) from=(1432,1624)
+[22:13:31.727] INFO  [w_Ilyandra] [bot] running from (1432,1624,20) to (1430,1597,z20)
+[22:13:31.727] INFO  [w_Ilyandra] [bot] planning path to (1430,1597) in background
+[22:13:31.789] INFO  [w_Ilyandra] [action] goto finished at (1432,1624,20); target (1430,1597); stopped short (off by 29 tile(s))
+[22:13:31.789] LOG   [w_Ilyandra] event goto_done: at=(1432,1624) target=(1430,1597) arrived=0 off=29
+[22:13:33.023] INFO  [w_Ilyandra] [travel] mode walk             usable   <- chosen
+[22:13:33.023] INFO  [w_Ilyandra] [travel] mode moongate         usable
+[22:13:33.023] INFO  [w_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:13:33.023] INFO  [w_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:13:33.023] LOG   [w_Ilyandra] event travel_mode: walk
+[22:13:33.023] INFO  [w_Ilyandra] [travel] plan Britain carpenter: ok legs=1 ~27 tiles transit=0 nodes=0
+[22:13:33.023] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:13:36.034] INFO  [w_Ilyandra] [action] goto (1430,1597) from (1432,1624,20)
+[22:13:36.034] LOG   [w_Ilyandra] event goto_start: target=(1430,1597) from=(1432,1624)
+[22:13:36.035] INFO  [w_Ilyandra] [bot] running from (1432,1624,20) to (1430,1597,z20)
+[22:13:36.035] INFO  [w_Ilyandra] [bot] planning path to (1430,1597) in background
+[22:13:36.158] INFO  [w_Ilyandra] [action] goto finished at (1432,1624,20); target (1430,1597); stopped short (off by 29 tile(s))
+[22:13:36.158] LOG   [w_Ilyandra] event goto_done: at=(1432,1624) target=(1430,1597) arrived=0 off=29
+[22:13:37.387] INFO  [w_Ilyandra] [action] goto (1430,1597) from (1432,1624,20)
+[22:13:37.387] LOG   [w_Ilyandra] event goto_start: target=(1430,1597) from=(1432,1624)
+[22:13:37.387] INFO  [w_Ilyandra] [bot] running from (1432,1624,20) to (1430,1597,z20)
+[22:13:37.387] INFO  [w_Ilyandra] [bot] planning path to (1430,1597) in background
+[22:13:37.510] INFO  [w_Ilyandra] [action] goto finished at (1432,1624,20); target (1430,1597); stopped short (off by 29 tile(s))
+[22:13:37.510] LOG   [w_Ilyandra] event goto_done: at=(1432,1624) target=(1430,1597) arrived=0 off=29
+[22:13:38.083] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:13:38.713] INFO  [w_Ilyandra] [action] goto (1430,1597) from (1432,1624,20)
+[22:13:38.713] LOG   [w_Ilyandra] event goto_start: target=(1430,1597) from=(1432,1624)
+[22:13:38.713] INFO  [w_Ilyandra] [bot] running from (1432,1624,20) to (1430,1597,z20)
+[22:13:38.713] INFO  [w_Ilyandra] [bot] planning path to (1430,1597) in background
+[22:13:38.836] INFO  [w_Ilyandra] [action] goto finished at (1432,1624,20); target (1430,1597); stopped short (off by 29 tile(s))
+[22:13:38.837] LOG   [w_Ilyandra] event goto_done: at=(1432,1624) target=(1430,1597) arrived=0 off=29
+[22:13:40.071] INFO  [w_Ilyandra] [travel] mode walk             usable   <- chosen
+[22:13:40.071] INFO  [w_Ilyandra] [travel] mode moongate         usable
+[22:13:40.071] INFO  [w_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:13:40.071] INFO  [w_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:13:40.071] LOG   [w_Ilyandra] event travel_mode: walk
+[22:13:40.071] INFO  [w_Ilyandra] [travel] plan Britain carpenter: ok legs=1 ~27 tiles transit=0 nodes=0
+[22:13:43.129] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:13:44.588] INFO  [w_Ilyandra] [action] goto (1430,1597) from (1432,1624,20)
+[22:13:44.588] LOG   [w_Ilyandra] event goto_start: target=(1430,1597) from=(1432,1624)
+[22:13:44.588] INFO  [w_Ilyandra] [bot] running from (1432,1624,20) to (1430,1597,z20)
+[22:13:44.588] INFO  [w_Ilyandra] [bot] planning path to (1430,1597) in background
+[22:13:44.650] INFO  [w_Ilyandra] [action] goto finished at (1432,1624,20); target (1430,1597); stopped short (off by 29 tile(s))
+[22:13:44.651] LOG   [w_Ilyandra] event goto_done: at=(1432,1624) target=(1430,1597) arrived=0 off=29
+[22:13:45.392] INFO  [life] goal_changed=PRACTICE_SKILL from=EXPLORE reason="PRACTICE_SKILL 45.0 superseded EXPLORE 15.0"
+[22:13:45.392] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:13:45.392] INFO  [life]   score=45.0
+[22:13:45.392] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[22:13:45.392] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[22:13:45.392] INFO  [life]   BLOCKED_NEED FILL_SPELLBOOK: on cooldown for another 18s after achieving nothing
+[22:13:45.392] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 5s after achieving nothing
+[22:13:45.392] INFO  [life] practice: the book holds 13 item(s), spells [1,1,1,1,1,1,1,1,1,1,1,1,1] -- none of them is one of the twelve safe to cast at oneself
+[22:13:45.392] INFO  [life] practice: nothing safe to cast at myself is in this book -- Magery cannot be practised until it holds one
+[22:13:45.452] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no self-safe spell in book"
+[22:13:45.452] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:13:45.452] INFO  [life]   score=45.0
+[22:13:45.452] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[22:13:45.452] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[22:13:45.452] INFO  [life]   BLOCKED_NEED FILL_SPELLBOOK: on cooldown for another 18s after achieving nothing
+[22:13:45.452] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 5s after achieving nothing
+[22:13:45.883] INFO  [w_Ilyandra] [action] goto (1430,1597) from (1432,1624,20)
+[22:13:45.884] LOG   [w_Ilyandra] event goto_start: target=(1430,1597) from=(1432,1624)
+[22:13:45.884] INFO  [w_Ilyandra] [bot] running from (1432,1624,20) to (1430,1597,z20)
+[22:13:45.884] INFO  [w_Ilyandra] [bot] planning path to (1430,1597) in background
+[22:13:46.006] INFO  [w_Ilyandra] [action] goto finished at (1432,1624,20); target (1430,1597); stopped short (off by 29 tile(s))
+[22:13:46.006] LOG   [w_Ilyandra] event goto_done: at=(1432,1624) target=(1430,1597) arrived=0 off=29
+[22:13:47.238] INFO  [w_Ilyandra] [action] goto (1430,1597) from (1432,1624,20)
+[22:13:47.238] LOG   [w_Ilyandra] event goto_start: target=(1430,1597) from=(1432,1624)
+[22:13:47.238] INFO  [w_Ilyandra] [bot] running from (1432,1624,20) to (1430,1597,z20)
+[22:13:47.238] INFO  [w_Ilyandra] [bot] planning path to (1430,1597) in background
+[22:13:47.361] INFO  [w_Ilyandra] [action] goto finished at (1432,1624,20); target (1430,1597); stopped short (off by 29 tile(s))
+[22:13:47.361] LOG   [w_Ilyandra] event goto_done: at=(1432,1624) target=(1430,1597) arrived=0 off=29
+[22:13:47.361] LOG   [w_Ilyandra] event travel_escape: from=(1432,1624,20) to=(1416,1608) attempt=2
+[22:13:47.361] INFO  [w_Ilyandra] [action] goto (1416,1608) from (1432,1624,20)
+[22:13:47.361] LOG   [w_Ilyandra] event goto_start: target=(1416,1608) from=(1432,1624)
+[22:13:47.361] INFO  [w_Ilyandra] [bot] running from (1432,1624,20) to (1416,1608,z30)
+[22:13:47.361] INFO  [w_Ilyandra] [bot] planning path to (1416,1608) in background
+[22:13:48.163] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:13:48.961] INFO  [w_Ilyandra] [action] goto finished at (1432,1624,20); target (1416,1608); stopped short (off by 32 tile(s))
+[22:13:48.961] LOG   [w_Ilyandra] event goto_done: at=(1432,1624) target=(1416,1608) arrived=0 off=32
+[22:13:48.961] INFO  [w_Ilyandra] [travel] recovery walk fell short at (1432,1624,20) (off 16); attempt 2/3
+[22:13:48.961] LOG   [w_Ilyandra] event travel_recovery_done: reached=0 at=(1432,1624,20) off=16 attempt=2
+[22:13:48.961] LOG   [w_Ilyandra] event travel_escape: from=(1432,1624,20) to=(1448,1608) attempt=3
+[22:13:48.961] INFO  [w_Ilyandra] [action] goto (1448,1608) from (1432,1624,20)
+[22:13:48.961] LOG   [w_Ilyandra] event goto_start: target=(1448,1608) from=(1432,1624)
+[22:13:48.961] INFO  [w_Ilyandra] [bot] running from (1432,1624,20) to (1448,1608,z20)
+[22:13:48.961] INFO  [w_Ilyandra] [bot] planning path to (1448,1608) in background
+[22:13:49.022] INFO  [w_Ilyandra] [bot] replan to (1448,1608): 52 steps in 28233.7us
+[22:13:50.417] INFO  [life] practice: the book holds 13 item(s), spells [1,1,1,1,1,1,1,1,1,1,1,1,1] -- none of them is one of the twelve safe to cast at oneself
+[22:13:50.417] INFO  [life] practice: nothing safe to cast at myself is in this book -- Magery cannot be practised until it holds one
+[22:13:50.478] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no self-safe spell in book"
+[22:13:50.478] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:13:50.478] INFO  [life]   score=45.0
+[22:13:50.478] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[22:13:50.478] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[22:13:50.478] INFO  [life]   BLOCKED_NEED FILL_SPELLBOOK: on cooldown for another 13s after achieving nothing
+[22:13:50.478] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 0s after achieving nothing
+[22:13:50.541] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh13.ilyandra/state.json
+[22:13:51.709] INFO  [w_Ilyandra] [chat ascii] System: World save in 10 seconds
+[22:13:53.170] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:13:55.426] INFO  [life] practice: the book holds 13 item(s), spells [1,1,1,1,1,1,1,1,1,1,1,1,1] -- none of them is one of the twelve safe to cast at oneself
+[22:13:55.426] INFO  [life] practice: nothing safe to cast at myself is in this book -- Magery cannot be practised until it holds one
+[22:13:55.488] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no self-safe spell in book"
+[22:13:55.488] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:13:55.488] INFO  [life]   score=45.0
+[22:13:55.488] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[22:13:55.488] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[22:13:55.488] INFO  [life]   BLOCKED_NEED FILL_SPELLBOOK: on cooldown for another 7s after achieving nothing
+[22:13:58.179] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:13:58.947] INFO  [w_Ilyandra] [bot] door ahead at (1459,1612,z20); OpenDoor before step
+[22:13:58.947] INFO  [w_Ilyandra] [chat ascii] System: Opening door...
+[22:14:00.471] INFO  [life] practice: the book holds 13 item(s), spells [1,1,1,1,1,1,1,1,1,1,1,1,1] -- none of them is one of the twelve safe to cast at oneself
+[22:14:00.472] INFO  [life] practice: nothing safe to cast at myself is in this book -- Magery cannot be practised until it holds one
+[22:14:00.534] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no self-safe spell in book"
+[22:14:00.534] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:14:00.534] INFO  [life]   score=45.0
+[22:14:00.534] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[22:14:00.534] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[22:14:00.534] INFO  [life]   BLOCKED_NEED FILL_SPELLBOOK: on cooldown for another 2s after achieving nothing
+[22:14:01.760] INFO  [w_Ilyandra] [chat ascii] System: World save has been initiated.
+[22:14:03.232] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:14:05.383] INFO  [w_Ilyandra] [bot] arrived at (1448,1608,20)
+[22:14:05.383] INFO  [w_Ilyandra] [action] goto finished at (1448,1608,20); target (1448,1608); ARRIVED (off by 0 tile(s))
+[22:14:05.383] LOG   [w_Ilyandra] event goto_done: at=(1448,1608) target=(1448,1608) arrived=1 off=0
+[22:14:05.383] INFO  [w_Ilyandra] [travel] recovery walk reached its anchor at (1448,1608,20) (off 0); attempt 2/3
+[22:14:05.383] LOG   [w_Ilyandra] event travel_recovery_done: reached=1 at=(1448,1608,20) off=0 attempt=2
+[22:14:05.444] INFO  [w_Ilyandra] [travel] mode walk             usable   <- chosen
+[22:14:05.444] INFO  [w_Ilyandra] [travel] mode moongate         usable
+[22:14:05.444] INFO  [w_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:14:05.444] INFO  [w_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:14:05.444] LOG   [w_Ilyandra] event travel_mode: walk
+[22:14:05.444] INFO  [w_Ilyandra] [travel] plan Britain carpenter: ok legs=1 ~18 tiles transit=0 nodes=0
+[22:14:05.507] INFO  [life] practice: the book holds 13 item(s), spells [1,1,1,1,1,1,1,1,1,1,1,1,1] -- none of them is one of the twelve safe to cast at oneself
+[22:14:05.507] INFO  [life] practice: nothing safe to cast at myself is in this book -- Magery cannot be practised until it holds one
+[22:14:05.507] INFO  [w_Ilyandra] [action] goto (1430,1597) from (1448,1608,20)
+[22:14:05.507] LOG   [w_Ilyandra] event goto_start: target=(1430,1597) from=(1448,1608)
+[22:14:05.507] INFO  [w_Ilyandra] [bot] running from (1448,1608,20) to (1430,1597,z20)
+[22:14:05.507] INFO  [w_Ilyandra] [bot] planning path to (1430,1597) in background
+[22:14:05.568] INFO  [life] goal=FILL_SPELLBOOK reason="previous goal abandoned: no self-safe spell in book"
+[22:14:05.568] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:14:05.568] INFO  [life]   score=18.3
+[22:14:05.568] INFO  [life]   reason: NeedSpells urgency 0.21 x 110 = 23.6
+[22:14:05.568] INFO  [life]   reason: spells 13/24 book=carried magery 50.0 gold 444 reserve 800 spare -356 wealth 0.00
+[22:14:05.568] INFO  [life]   reason: most of the day already just now, easing off 23% (23.6 -> 18.3)
+[22:14:05.568] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 59s after achieving nothing
+[22:14:05.630] INFO  [w_Ilyandra] [action] goto finished at (1448,1608,20); target (1430,1597); stopped short (off by 29 tile(s))
+[22:14:05.630] LOG   [w_Ilyandra] event goto_done: at=(1448,1608) target=(1430,1597) arrived=0 off=29
+[22:14:06.861] INFO  [w_Ilyandra] [action] goto (1430,1597) from (1448,1608,20)
+[22:14:06.861] LOG   [w_Ilyandra] event goto_start: target=(1430,1597) from=(1448,1608)
+[22:14:06.861] INFO  [w_Ilyandra] [bot] running from (1448,1608,20) to (1430,1597,z20)
+[22:14:06.862] INFO  [w_Ilyandra] [bot] planning path to (1430,1597) in background
+[22:14:06.923] INFO  [w_Ilyandra] [action] goto finished at (1448,1608,20); target (1430,1597); stopped short (off by 29 tile(s))
+[22:14:06.924] LOG   [w_Ilyandra] event goto_done: at=(1448,1608) target=(1430,1597) arrived=0 off=29
+[22:14:08.152] INFO  [w_Ilyandra] [action] goto (1430,1597) from (1448,1608,20)
+[22:14:08.152] LOG   [w_Ilyandra] event goto_start: target=(1430,1597) from=(1448,1608)
+[22:14:08.152] INFO  [w_Ilyandra] [bot] running from (1448,1608,20) to (1430,1597,z20)
+[22:14:08.152] INFO  [w_Ilyandra] [bot] planning path to (1430,1597) in background
+[22:14:08.213] INFO  [w_Ilyandra] [action] goto finished at (1448,1608,20); target (1430,1597); stopped short (off by 29 tile(s))
+[22:14:08.213] LOG   [w_Ilyandra] event goto_done: at=(1448,1608) target=(1430,1597) arrived=0 off=29
+[22:14:08.274] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:14:09.443] INFO  [w_Ilyandra] [travel] mode walk             usable   <- chosen
+[22:14:09.443] INFO  [w_Ilyandra] [travel] mode moongate         usable
+[22:14:09.443] INFO  [w_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:14:09.443] INFO  [w_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:14:09.443] LOG   [w_Ilyandra] event travel_mode: walk
+[22:14:09.443] INFO  [w_Ilyandra] [travel] plan Britain carpenter: ok legs=1 ~18 tiles transit=0 nodes=0
+[22:14:11.003] INFO  [w_Ilyandra] [action] goto (1430,1597) from (1448,1608,20)
+[22:14:11.003] LOG   [w_Ilyandra] event goto_start: target=(1430,1597) from=(1448,1608)
+[22:14:11.003] INFO  [w_Ilyandra] [bot] running from (1448,1608,20) to (1430,1597,z20)
+[22:14:11.003] INFO  [w_Ilyandra] [bot] planning path to (1430,1597) in background
+[22:14:11.125] INFO  [w_Ilyandra] [action] goto finished at (1448,1608,20); target (1430,1597); stopped short (off by 29 tile(s))
+[22:14:11.125] LOG   [w_Ilyandra] event goto_done: at=(1448,1608) target=(1430,1597) arrived=0 off=29
+[22:14:12.358] INFO  [w_Ilyandra] [action] goto (1430,1597) from (1448,1608,20)
+[22:14:12.358] LOG   [w_Ilyandra] event goto_start: target=(1430,1597) from=(1448,1608)
+[22:14:12.358] INFO  [w_Ilyandra] [bot] running from (1448,1608,20) to (1430,1597,z20)
+[22:14:12.358] INFO  [w_Ilyandra] [bot] planning path to (1430,1597) in background
+[22:14:12.419] INFO  [w_Ilyandra] [action] goto finished at (1448,1608,20); target (1430,1597); stopped short (off by 29 tile(s))
+[22:14:12.420] LOG   [w_Ilyandra] event goto_done: at=(1448,1608) target=(1430,1597) arrived=0 off=29
+[22:14:13.335] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:14:13.642] INFO  [w_Ilyandra] [action] goto (1430,1597) from (1448,1608,20)
+[22:14:13.642] LOG   [w_Ilyandra] event goto_start: target=(1430,1597) from=(1448,1608)
+[22:14:13.642] INFO  [w_Ilyandra] [bot] running from (1448,1608,20) to (1430,1597,z20)
+[22:14:13.642] INFO  [w_Ilyandra] [bot] planning path to (1430,1597) in background
+[22:14:13.766] INFO  [w_Ilyandra] [action] goto finished at (1448,1608,20); target (1430,1597); stopped short (off by 29 tile(s))
+[22:14:13.766] LOG   [w_Ilyandra] event goto_done: at=(1448,1608) target=(1430,1597) arrived=0 off=29
+[22:14:15.002] INFO  [w_Ilyandra] [travel] mode walk             usable   <- chosen
+[22:14:15.002] INFO  [w_Ilyandra] [travel] mode moongate         usable
+[22:14:15.002] INFO  [w_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:14:15.002] INFO  [w_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:14:15.002] LOG   [w_Ilyandra] event travel_mode: walk
+[22:14:15.002] INFO  [w_Ilyandra] [travel] plan Britain carpenter: ok legs=1 ~18 tiles transit=0 nodes=0
+[22:14:18.045] INFO  [w_Ilyandra] [action] goto (1430,1597) from (1448,1608,20)
+[22:14:18.045] LOG   [w_Ilyandra] event goto_start: target=(1430,1597) from=(1448,1608)
+[22:14:18.045] INFO  [w_Ilyandra] [bot] running from (1448,1608,20) to (1430,1597,z20)
+[22:14:18.045] INFO  [w_Ilyandra] [bot] planning path to (1430,1597) in background
+[22:14:18.169] INFO  [w_Ilyandra] [action] goto finished at (1448,1608,20); target (1430,1597); stopped short (off by 29 tile(s))
+[22:14:18.169] LOG   [w_Ilyandra] event goto_done: at=(1448,1608) target=(1430,1597) arrived=0 off=29
+[22:14:18.370] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:14:19.426] INFO  [w_Ilyandra] [action] goto (1430,1597) from (1448,1608,20)
+[22:14:19.426] LOG   [w_Ilyandra] event goto_start: target=(1430,1597) from=(1448,1608)
+[22:14:19.426] INFO  [w_Ilyandra] [bot] running from (1448,1608,20) to (1430,1597,z20)
+[22:14:19.426] INFO  [w_Ilyandra] [bot] planning path to (1430,1597) in background
+[22:14:19.549] INFO  [w_Ilyandra] [action] goto finished at (1448,1608,20); target (1430,1597); stopped short (off by 29 tile(s))
+[22:14:19.549] LOG   [w_Ilyandra] event goto_done: at=(1448,1608) target=(1430,1597) arrived=0 off=29
+[22:14:20.786] INFO  [w_Ilyandra] [action] goto (1430,1597) from (1448,1608,20)
+[22:14:20.786] LOG   [w_Ilyandra] event goto_start: target=(1430,1597) from=(1448,1608)
+[22:14:20.786] INFO  [w_Ilyandra] [bot] running from (1448,1608,20) to (1430,1597,z20)
+[22:14:20.786] INFO  [w_Ilyandra] [bot] planning path to (1430,1597) in background
+[22:14:20.847] INFO  [w_Ilyandra] [action] goto finished at (1448,1608,20); target (1430,1597); stopped short (off by 29 tile(s))
+[22:14:20.847] LOG   [w_Ilyandra] event goto_done: at=(1448,1608) target=(1430,1597) arrived=0 off=29
+[22:14:22.095] INFO  [w_Ilyandra] [travel] mode walk             usable   <- chosen
+[22:14:22.095] INFO  [w_Ilyandra] [travel] mode moongate         usable
+[22:14:22.095] INFO  [w_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:14:22.095] INFO  [w_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:14:22.095] LOG   [w_Ilyandra] event travel_mode: walk
+[22:14:22.095] INFO  [w_Ilyandra] [travel] plan Britain carpenter: ok legs=1 ~18 tiles transit=0 nodes=0
+[22:14:23.384] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:14:26.602] INFO  [w_Ilyandra] [action] goto (1430,1597) from (1448,1608,20)
+[22:14:26.602] LOG   [w_Ilyandra] event goto_start: target=(1430,1597) from=(1448,1608)
+[22:14:26.602] INFO  [w_Ilyandra] [bot] running from (1448,1608,20) to (1430,1597,z20)
+[22:14:26.602] INFO  [w_Ilyandra] [bot] planning path to (1430,1597) in background
+[22:14:26.726] INFO  [w_Ilyandra] [action] goto finished at (1448,1608,20); target (1430,1597); stopped short (off by 29 tile(s))
+[22:14:26.726] LOG   [w_Ilyandra] event goto_done: at=(1448,1608) target=(1430,1597) arrived=0 off=29
+[22:14:27.937] INFO  [w_Ilyandra] [action] goto (1430,1597) from (1448,1608,20)
+[22:14:27.937] LOG   [w_Ilyandra] event goto_start: target=(1430,1597) from=(1448,1608)
+[22:14:27.937] INFO  [w_Ilyandra] [bot] running from (1448,1608,20) to (1430,1597,z20)
+[22:14:27.937] INFO  [w_Ilyandra] [bot] planning path to (1430,1597) in background
+[22:14:28.058] INFO  [w_Ilyandra] [action] goto finished at (1448,1608,20); target (1430,1597); stopped short (off by 29 tile(s))
+[22:14:28.058] LOG   [w_Ilyandra] event goto_done: at=(1448,1608) target=(1430,1597) arrived=0 off=29
+[22:14:28.428] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:14:29.291] INFO  [w_Ilyandra] [action] goto (1430,1597) from (1448,1608,20)
+[22:14:29.291] LOG   [w_Ilyandra] event goto_start: target=(1430,1597) from=(1448,1608)
+[22:14:29.291] INFO  [w_Ilyandra] [bot] running from (1448,1608,20) to (1430,1597,z20)
+[22:14:29.291] INFO  [w_Ilyandra] [bot] planning path to (1430,1597) in background
+[22:14:29.415] INFO  [w_Ilyandra] [action] goto finished at (1448,1608,20); target (1430,1597); stopped short (off by 29 tile(s))
+[22:14:29.415] LOG   [w_Ilyandra] event goto_done: at=(1448,1608) target=(1430,1597) arrived=0 off=29
+[22:14:29.415] INFO  [w_Ilyandra] [travel] Britain carpenter FAILED at (1448,1608,20) -- tile route stopped short
+[22:14:29.415] LOG   [w_Ilyandra] event travel_failed: label='Britain carpenter' ok=0 at=(1448,1608) legs=1 plans=4 why='tile route stopped short'
+[22:14:29.476] INFO  [life] FILL_SPELLBOOK: looking for a 'mage' to sell a scroll (trip 1)
+[22:14:29.480] INFO  [w_Ilyandra] [travel] place: skipping Vesper mage -- 2096 tiles and 0 gates for a service Britain mage offers
+[22:14:29.480] INFO  [w_Ilyandra] [travel] place: skipping Vesper mage -- 2064 tiles and 0 gates for a service Britain mage offers
+[22:14:29.480] INFO  [w_Ilyandra] [travel] Britain mage -> (1485,1550) r=5 from (1448,1608)
+[22:14:29.480] LOG   [w_Ilyandra] event travel_start: label='Britain mage' target=(1485,1550) radius=5 from=(1448,1608)
+[22:14:29.480] INFO  [w_Ilyandra] [travel] mode moongate         usable   <- chosen
+[22:14:29.480] INFO  [w_Ilyandra] [travel] mode walk             usable
+[22:14:29.480] INFO  [w_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:14:29.480] INFO  [w_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:14:29.480] LOG   [w_Ilyandra] event travel_mode: moongate
+[22:14:29.480] INFO  [w_Ilyandra] [travel] plan Britain mage: ok legs=2 ~88 tiles transit=0 nodes=18
+[22:14:29.538] INFO  [w_Ilyandra] [travel] avoiding 2 teleporter pad(s) on this leg
+[22:14:29.538] INFO  [w_Ilyandra] [action] goto (1480,1574) from (1448,1608,20)
+[22:14:29.538] LOG   [w_Ilyandra] event goto_start: target=(1480,1574) from=(1448,1608)
+[22:14:29.538] INFO  [w_Ilyandra] [bot] running from (1448,1608,20) to (1480,1574)
+[22:14:29.538] INFO  [w_Ilyandra] [bot] planning path to (1480,1574) in background
+[22:14:29.600] INFO  [w_Ilyandra] [bot] replan to (1480,1574): 69 steps in 14085.3us
+[22:14:33.451] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:14:36.138] INFO  [w_Ilyandra] [bot] door ahead at (1460,1610,z20); OpenDoor before step
+[22:14:36.153] INFO  [w_Ilyandra] [chat ascii] System: Opening door...
+[22:14:38.481] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:14:43.505] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:14:48.544] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:14:50.541] INFO  [w_Ilyandra] [bot] arrived at (1480,1574,30)
+[22:14:50.543] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh13.ilyandra/state.json
+[22:14:50.543] INFO  [w_Ilyandra] [action] goto finished at (1480,1574,30); target (1480,1574); ARRIVED (off by 0 tile(s))
+[22:14:50.543] LOG   [w_Ilyandra] event goto_done: at=(1480,1574) target=(1480,1574) arrived=1 off=0
+[22:14:50.543] INFO  [w_Ilyandra] [action] goto (1485,1550) from (1480,1574,30)
+[22:14:50.543] LOG   [w_Ilyandra] event goto_start: target=(1485,1550) from=(1480,1574)
+[22:14:50.543] INFO  [w_Ilyandra] [bot] running from (1480,1574,30) to (1485,1550,z30)
+[22:14:50.543] INFO  [w_Ilyandra] [bot] planning path to (1485,1550) in background
+[22:14:50.603] INFO  [w_Ilyandra] [bot] replan to (1485,1550): 34 steps in 5243.9us
+[22:14:53.557] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:14:57.915] INFO  [w_Ilyandra] [travel] Britain mage ARRIVED at (1490,1555,30)
+[22:14:57.915] LOG   [w_Ilyandra] event travel_done: label='Britain mage' ok=1 at=(1490,1555) legs=2 plans=1 why=''
+[22:14:57.976] INFO  [life] FILL_SPELLBOOK: the mage is 8 tiles away -- walking up
+[22:14:57.976] INFO  [w_Ilyandra] [travel] mobile 0x00001145 -> (1487,1547) r=1 from (1490,1555)
+[22:14:57.976] LOG   [w_Ilyandra] event travel_start: label='mobile 0x00001145' target=(1487,1547) radius=1 from=(1490,1555)
+[22:14:57.976] INFO  [w_Ilyandra] [travel] mode walk             usable   <- chosen
+[22:14:57.976] INFO  [w_Ilyandra] [travel] mode moongate         usable
+[22:14:57.976] INFO  [w_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:14:57.976] INFO  [w_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:14:57.976] LOG   [w_Ilyandra] event travel_mode: walk
+[22:14:57.976] INFO  [w_Ilyandra] [travel] plan mobile 0x00001145: ok legs=1 ~8 tiles transit=0 nodes=0
+[22:14:58.564] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:15:00.664] INFO  [w_Ilyandra] [bot] arrived at (1485,1550,30)
+[22:15:00.664] INFO  [w_Ilyandra] [action] goto finished at (1485,1550,30); target (1485,1550); ARRIVED (off by 0 tile(s))
+[22:15:00.664] LOG   [w_Ilyandra] event goto_done: at=(1485,1550) target=(1485,1550) arrived=1 off=0
+[22:15:00.664] INFO  [w_Ilyandra] [action] goto (1487,1547) from (1485,1550,30)
+[22:15:00.664] LOG   [w_Ilyandra] event goto_start: target=(1487,1547) from=(1485,1550)
+[22:15:00.664] INFO  [w_Ilyandra] [bot] running from (1485,1550,30) to (1487,1547,z70)
+[22:15:00.664] INFO  [w_Ilyandra] [bot] planning path to (1487,1547) in background
+[22:15:01.587] INFO  [w_Ilyandra] [chat ascii] Xanthe: I am listening to thee.
+[22:15:02.450] INFO  [w_Ilyandra] [action] goto finished at (1485,1550,30); target (1487,1547); stopped short (off by 5 tile(s))
+[22:15:02.450] LOG   [w_Ilyandra] event goto_done: at=(1485,1550) target=(1487,1547) arrived=0 off=5
+[22:15:03.622] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:15:03.683] INFO  [w_Ilyandra] [action] goto (1487,1547) from (1485,1550,30)
+[22:15:03.683] LOG   [w_Ilyandra] event goto_start: target=(1487,1547) from=(1485,1550)
+[22:15:03.683] INFO  [w_Ilyandra] [bot] running from (1485,1550,30) to (1487,1547,z70)
+[22:15:03.683] INFO  [w_Ilyandra] [bot] planning path to (1487,1547) in background
+[22:15:03.714] INFO  [w_Ilyandra] [chat ascii] Shunnar: I am listening to thee.
+[22:15:05.446] INFO  [w_Ilyandra] [action] goto finished at (1485,1550,30); target (1487,1547); stopped short (off by 5 tile(s))
+[22:15:05.446] LOG   [w_Ilyandra] event goto_done: at=(1485,1550) target=(1487,1547) arrived=0 off=5
+[22:15:05.509] INFO  [life] goal_changed=PRACTICE_SKILL from=FILL_SPELLBOOK reason="PRACTICE_SKILL 45.0 superseded FILL_SPELLBOOK 18.3"
+[22:15:05.509] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:15:05.509] INFO  [life]   score=45.0
+[22:15:05.509] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[22:15:05.509] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[22:15:05.509] INFO  [life] practice: the book holds 13 item(s), spells [1,1,1,1,1,1,1,1,1,1,1,1,1] -- none of them is one of the twelve safe to cast at oneself
+[22:15:05.509] INFO  [life] practice: nothing safe to cast at myself is in this book -- Magery cannot be practised until it holds one
+[22:15:05.571] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no self-safe spell in book"
+[22:15:05.571] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:15:05.571] INFO  [life]   score=45.0
+[22:15:05.571] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[22:15:05.571] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[22:15:06.662] INFO  [w_Ilyandra] [action] goto (1487,1547) from (1485,1550,30)
+[22:15:06.662] LOG   [w_Ilyandra] event goto_start: target=(1487,1547) from=(1485,1550)
+[22:15:06.662] INFO  [w_Ilyandra] [bot] running from (1485,1550,30) to (1487,1547,z70)
+[22:15:06.662] INFO  [w_Ilyandra] [bot] planning path to (1487,1547) in background
+[22:15:08.269] INFO  [w_Ilyandra] [action] goto finished at (1485,1550,30); target (1487,1547); stopped short (off by 5 tile(s))
+[22:15:08.269] LOG   [w_Ilyandra] event goto_done: at=(1485,1550) target=(1487,1547) arrived=0 off=5
+[22:15:08.638] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:15:09.501] INFO  [w_Ilyandra] [travel] mode walk             usable   <- chosen
+[22:15:09.501] INFO  [w_Ilyandra] [travel] mode moongate         usable
+[22:15:09.501] INFO  [w_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:15:09.501] INFO  [w_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:15:09.501] LOG   [w_Ilyandra] event travel_mode: walk
+[22:15:09.501] INFO  [w_Ilyandra] [travel] plan mobile 0x00001145: ok legs=1 ~3 tiles transit=0 nodes=0
+[22:15:10.548] INFO  [life] practice: the book holds 13 item(s), spells [1,1,1,1,1,1,1,1,1,1,1,1,1] -- none of them is one of the twelve safe to cast at oneself
+[22:15:10.548] INFO  [life] practice: nothing safe to cast at myself is in this book -- Magery cannot be practised until it holds one
+[22:15:10.610] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no self-safe spell in book"
+[22:15:10.610] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:15:10.610] INFO  [life]   score=45.0
+[22:15:10.610] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[22:15:10.610] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[22:15:11.011] INFO  [w_Ilyandra] [action] goto (1487,1547) from (1485,1550,30)
+[22:15:11.011] LOG   [w_Ilyandra] event goto_start: target=(1487,1547) from=(1485,1550)
+[22:15:11.011] INFO  [w_Ilyandra] [bot] running from (1485,1550,30) to (1487,1547,z70)
+[22:15:11.011] INFO  [w_Ilyandra] [bot] planning path to (1487,1547) in background
+[22:15:11.073] INFO  [w_Ilyandra] [bot] replan to (1487,1547): 19 steps in 2480.7us
+[22:15:12.191] INFO  [w_Ilyandra] [travel] mobile 0x00001145 FAILED at (1486,1548,35) -- arrived above or below the destination's floor
+[22:15:12.191] LOG   [w_Ilyandra] event travel_failed: label='mobile 0x00001145' ok=0 at=(1486,1548) legs=1 plans=2 why='arrived above or below the destination's floor'
+[22:15:13.673] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:15:15.606] INFO  [life] practice: the book holds 13 item(s), spells [1,1,1,1,1,1,1,1,1,1,1,1,1] -- none of them is one of the twelve safe to cast at oneself
+[22:15:15.606] INFO  [life] practice: nothing safe to cast at myself is in this book -- Magery cannot be practised until it holds one
+[22:15:15.621] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no self-safe spell in book"
+[22:15:15.621] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:15:15.621] INFO  [life]   score=45.0
+[22:15:15.621] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[22:15:15.621] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[22:15:17.172] INFO  [w_Ilyandra] [bot] arrived at (1487,1547,70)
+[22:15:18.691] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:15:20.665] INFO  [life] practice: the book holds 13 item(s), spells [1,1,1,1,1,1,1,1,1,1,1,1,1] -- none of them is one of the twelve safe to cast at oneself
+[22:15:20.665] INFO  [life] practice: nothing safe to cast at myself is in this book -- Magery cannot be practised until it holds one
+[22:15:20.727] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no self-safe spell in book"
+[22:15:20.727] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:15:20.727] INFO  [life]   score=45.0
+[22:15:20.727] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[22:15:20.727] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[22:15:23.704] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:15:25.689] INFO  [life] practice: the book holds 13 item(s), spells [1,1,1,1,1,1,1,1,1,1,1,1,1] -- none of them is one of the twelve safe to cast at oneself
+[22:15:25.689] INFO  [life] practice: nothing safe to cast at myself is in this book -- Magery cannot be practised until it holds one
+[22:15:25.750] INFO  [life] goal=FILL_SPELLBOOK reason="previous goal abandoned: no self-safe spell in book"
+[22:15:25.750] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:15:25.750] INFO  [life]   score=18.3
+[22:15:25.750] INFO  [life]   reason: NeedSpells urgency 0.21 x 110 = 23.6
+[22:15:25.750] INFO  [life]   reason: spells 13/24 book=carried magery 50.0 gold 444 reserve 800 spare -356 wealth 0.00
+[22:15:25.750] INFO  [life]   reason: most of the day already just now, easing off 23% (23.6 -> 18.3)
+[22:15:25.750] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 59s after achieving nothing
+[22:15:28.753] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:15:30.726] INFO  [life] FILL_SPELLBOOK: asking the mage to show a scroll
+[22:15:30.726] INFO  [w_Ilyandra] [ACTION] vendor_buy start
+[22:15:30.726] INFO  [w_Ilyandra] [VENDOR] open vendor=0x00001145 say='Alenne buy'
+[22:15:30.727] INFO  [w_Ilyandra] [chat uni  ] Ilyandra: Alenne buy
+[22:15:30.727] INFO  [w_Ilyandra] [chat ascii] Alenne: Good morrow!  How might I help thee?
+[22:15:30.727] INFO  [w_Ilyandra] [chat ascii] Alenne: My shop sells many things.
+[22:15:30.727] INFO  [w_Ilyandra] [0x3C] container contents: 17 item(s)
+[22:15:30.727] INFO  [w_Ilyandra] [0x74] pairing: straight (straight 12, mirrored 1 of 17 rows)
+[22:15:30.727] INFO  [w_Ilyandra] [0x74] vendor shop data: cont=0x4000113C 17 item(s), layer=0x1A
+[22:15:30.727] INFO  [w_Ilyandra] [0x74]   Feeblemind Scroll            gfx=0x1F30 qty=17   price=20
+[22:15:30.727] INFO  [w_Ilyandra] [0x74]   Strength Scroll              gfx=0x1F3C qty=4    price=21
+[22:15:30.727] INFO  [w_Ilyandra] [0x74]   Poison Scroll                gfx=0x1F40 qty=24   price=35
+[22:15:30.727] INFO  [w_Ilyandra] [0x74]   Lightning Scroll             gfx=0x1F4A qty=15   price=29
+[22:15:30.727] INFO  [w_Ilyandra] [0x74]   Bones                        gfx=0x0F7E qty=66   price=3
+[22:15:30.727] INFO  [w_Ilyandra] [0x74]   pen and ink                  gfx=0x0FBF qty=10   price=13
+[22:15:30.727] INFO  [w_Ilyandra] [0x74]   recall rune                  gfx=0x1F14 qty=6    price=22
+[22:15:30.727] INFO  [w_Ilyandra] [0x74]   blank scrolls                gfx=0x0E34 qty=250  price=6
+[22:15:30.727] INFO  [w_Ilyandra] [0x74]   Black Pearls                 gfx=0x0F7A qty=250  price=3
+[22:15:30.727] INFO  [w_Ilyandra] [0x74]   Blood Moss                   gfx=0x0F7B qty=250  price=3
+[22:15:30.727] INFO  [w_Ilyandra] [0x74]   Garlic                       gfx=0x0F84 qty=250  price=3
+[22:15:30.727] INFO  [w_Ilyandra] [0x74]   Ginseng                      gfx=0x0F85 qty=250  price=3
+[22:15:30.727] INFO  [w_Ilyandra] [0x74]   Mandrake Roots               gfx=0x0F86 qty=250  price=3
+[22:15:30.727] INFO  [w_Ilyandra] [0x74]   Nightshade                   gfx=0x0F88 qty=250  price=3
+[22:15:30.727] INFO  [w_Ilyandra] [0x74]   Sulfurous Ash                gfx=0x0F8C qty=250  price=3
+[22:15:30.727] INFO  [w_Ilyandra] [0x74]   Spider's Silk                gfx=0x0F8D qty=250  price=3
+[22:15:30.727] INFO  [w_Ilyandra] [0x74]   Spellbook                    gfx=0x0EFA qty=4    price=18
+[22:15:30.727] INFO  [w_Ilyandra] [0x3C] container contents: 0 item(s)
+[22:15:30.727] INFO  [w_Ilyandra] [0x74] vendor shop data: cont=0x40000841 0 item(s), layer=0x1B
+[22:15:30.727] INFO  [w_Ilyandra] [VENDOR] offer from 0x00001145: 17 item(s)
+[22:15:30.727] INFO  [w_Ilyandra] [VENDOR]   0x4000EDA2 Feeblemind Scroll      x17  20 gp
+[22:15:30.727] INFO  [w_Ilyandra] [VENDOR]   0x4000EDA1 Strength Scroll        x4   21 gp
+[22:15:30.727] INFO  [w_Ilyandra] [VENDOR]   0x4000ED9E Poison Scroll          x24  35 gp
+[22:15:30.727] INFO  [w_Ilyandra] [VENDOR]   0x4000ED9D Lightning Scroll       x15  29 gp
+[22:15:30.727] INFO  [w_Ilyandra] [VENDOR]   0x4000ED9C Bones                  x66  3 gp
+[22:15:30.727] INFO  [w_Ilyandra] [VENDOR]   0x4000ED88 pen and ink            x10  13 gp
+[22:15:30.727] INFO  [w_Ilyandra] [VENDOR]   0x4000ED87 recall rune            x6   22 gp
+[22:15:30.727] INFO  [w_Ilyandra] [VENDOR]   0x4000ED86 blank scrolls          x250 6 gp
+[22:15:30.727] LOG   [w_Ilyandra] event vendor_offer: vendor=0x00001145 items=17
+[22:15:30.727] INFO  [w_Ilyandra] [ACTION_RESULT] vendor_buy success (1ms) vendor offer received
+[22:15:30.727] LOG   [w_Ilyandra] event action_result: vendor_buy success took=1ms vendor offer received
+[22:15:30.727] INFO  [w_Ilyandra] [0x24] vendor buy gump for 0x00001145
+[22:15:33.759] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:15:38.807] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:15:39.763] INFO  [life] spellbook: buying a scroll ('Feeblemind Scroll', 0x1F30, spell 3) at 20 gold -- 0 of this shop's scrolls were already in the book
+[22:15:39.763] INFO  [w_Ilyandra] [ACTION] vendor_buy start
+[22:15:39.763] LOG   [w_Ilyandra] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[22:15:43.815] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:15:48.789] INFO  [life] spellbook: opening the book to see what is already in it
+[22:15:48.789] INFO  [w_Ilyandra] [ACTION] use_object start
+[22:15:48.789] INFO  [w_Ilyandra] [ACTION] use_object serial=0x40013A6B
+[22:15:48.805] INFO  [w_Ilyandra] [0x3C] container contents: 13 item(s)
+[22:15:48.805] INFO  [w_Ilyandra] [ACTION_RESULT] use_object success (16ms) contents received
+[22:15:48.805] LOG   [w_Ilyandra] event action_result: use_object success took=16ms contents received
+[22:15:48.864] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:15:50.604] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh13.ilyandra/state.json
+[22:15:50.604] INFO  [life] session_goals families=3 picks=53 top=57% varied=0 self_superseded=1 | upkeep=14(26%) training=30(57%) wander=9(17%) | REPLACE_EQUIPMENT=2(4%) PRACTICE_SKILL=30(57%) FILL_SPELLBOOK=4(8%) EXPLORE=9(17%) UPGRADE_GEAR=8(15%)
+[22:15:51.337] INFO  [life] spellbook: buying a scroll ('Feeblemind Scroll', 0x1F30, spell 3) at 20 gold -- 0 of this shop's scrolls were already in the book
+[22:15:51.337] INFO  [w_Ilyandra] [ACTION] vendor_buy start
+[22:15:51.338] LOG   [w_Ilyandra] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[22:15:53.887] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:15:58.901] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:16:00.346] INFO  [life] spellbook: opening the book to see what is already in it
+[22:16:00.346] INFO  [w_Ilyandra] [ACTION] use_object start
+[22:16:00.347] INFO  [w_Ilyandra] [ACTION] use_object serial=0x40013A6B
+[22:16:00.362] INFO  [w_Ilyandra] [0x3C] container contents: 13 item(s)
+[22:16:00.362] INFO  [w_Ilyandra] [ACTION_RESULT] use_object success (15ms) contents received
+[22:16:00.362] LOG   [w_Ilyandra] event action_result: use_object success took=15ms contents received
+[22:16:02.867] INFO  [life] spellbook: buying a scroll ('Feeblemind Scroll', 0x1F30, spell 3) at 20 gold -- 0 of this shop's scrolls were already in the book
+[22:16:02.867] INFO  [w_Ilyandra] [ACTION] vendor_buy start
+[22:16:02.867] LOG   [w_Ilyandra] event action_result: vendor_buy rejected took=1ms Revolution vendor policy refuses this NPC purchase
+[22:16:03.929] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:16:08.977] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:16:11.873] INFO  [life] spellbook: opening the book to see what is already in it
+[22:16:11.873] INFO  [w_Ilyandra] [ACTION] use_object start
+[22:16:11.873] INFO  [w_Ilyandra] [ACTION] use_object serial=0x40013A6B
+[22:16:11.874] INFO  [w_Ilyandra] [0x3C] container contents: 13 item(s)
+[22:16:11.874] INFO  [w_Ilyandra] [ACTION_RESULT] use_object success (0ms) contents received
+[22:16:11.874] LOG   [w_Ilyandra] event action_result: use_object success took=0ms contents received
+[22:16:14.007] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:16:14.406] INFO  [life] spellbook: buying a scroll ('Feeblemind Scroll', 0x1F30, spell 3) at 20 gold -- 0 of this shop's scrolls were already in the book
+[22:16:14.406] INFO  [w_Ilyandra] [ACTION] vendor_buy start
+[22:16:14.406] LOG   [w_Ilyandra] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[22:16:19.043] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:16:23.443] INFO  [life] spellbook: opening the book to see what is already in it
+[22:16:23.443] INFO  [w_Ilyandra] [ACTION] use_object start
+[22:16:23.443] INFO  [w_Ilyandra] [ACTION] use_object serial=0x40013A6B
+[22:16:23.459] INFO  [w_Ilyandra] [0x3C] container contents: 13 item(s)
+[22:16:23.459] INFO  [w_Ilyandra] [ACTION_RESULT] use_object success (16ms) contents received
+[22:16:23.459] LOG   [w_Ilyandra] event action_result: use_object success took=16ms contents received
+[22:16:24.072] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:16:25.689] INFO  [life] goal_changed=PRACTICE_SKILL from=FILL_SPELLBOOK reason="PRACTICE_SKILL 45.0 superseded FILL_SPELLBOOK 18.3"
+[22:16:25.689] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:16:25.689] INFO  [life]   score=45.0
+[22:16:25.689] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[22:16:25.689] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[22:16:25.996] INFO  [life] practice: the book holds 13 item(s), spells [1,1,1,1,1,1,1,1,1,1,1,1,1] -- none of them is one of the twelve safe to cast at oneself
+[22:16:25.996] INFO  [life] practice: nothing safe to cast at myself is in this book -- Magery cannot be practised until it holds one
+[22:16:26.058] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no self-safe spell in book"
+[22:16:26.058] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:16:26.058] INFO  [life]   score=45.0
+[22:16:26.058] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[22:16:26.058] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[22:16:29.119] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:16:31.010] INFO  [life] practice: the book holds 13 item(s), spells [1,1,1,1,1,1,1,1,1,1,1,1,1] -- none of them is one of the twelve safe to cast at oneself
+[22:16:31.010] INFO  [life] practice: nothing safe to cast at myself is in this book -- Magery cannot be practised until it holds one
+[22:16:31.071] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no self-safe spell in book"
+[22:16:31.071] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:16:31.071] INFO  [life]   score=45.0
+[22:16:31.071] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[22:16:31.071] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[22:16:34.122] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:16:36.024] INFO  [life] practice: the book holds 13 item(s), spells [1,1,1,1,1,1,1,1,1,1,1,1,1] -- none of them is one of the twelve safe to cast at oneself
+[22:16:36.024] INFO  [life] practice: nothing safe to cast at myself is in this book -- Magery cannot be practised until it holds one
+[22:16:36.086] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no self-safe spell in book"
+[22:16:36.086] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:16:36.086] INFO  [life]   score=45.0
+[22:16:36.086] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[22:16:36.086] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[22:16:39.154] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:16:41.077] INFO  [life] practice: the book holds 13 item(s), spells [1,1,1,1,1,1,1,1,1,1,1,1,1] -- none of them is one of the twelve safe to cast at oneself
+[22:16:41.077] INFO  [life] practice: nothing safe to cast at myself is in this book -- Magery cannot be practised until it holds one
+[22:16:41.138] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no self-safe spell in book"
+[22:16:41.139] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:16:41.139] INFO  [life]   score=45.0
+[22:16:41.139] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[22:16:41.139] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[22:16:44.169] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:16:46.079] INFO  [life] practice: the book holds 13 item(s), spells [1,1,1,1,1,1,1,1,1,1,1,1,1] -- none of them is one of the twelve safe to cast at oneself
+[22:16:46.079] INFO  [life] practice: nothing safe to cast at myself is in this book -- Magery cannot be practised until it holds one
+[22:16:46.141] INFO  [life] goal=FILL_SPELLBOOK reason="previous goal abandoned: no self-safe spell in book"
+[22:16:46.141] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22) NeedSpells(spells 0.21)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[22:16:46.141] INFO  [life]   score=18.3
+[22:16:46.141] INFO  [life]   reason: NeedSpells urgency 0.21 x 110 = 23.6
+[22:16:46.141] INFO  [life]   reason: spells 13/24 book=carried magery 50.0 gold 444 reserve 800 spare -356 wealth 0.00
+[22:16:46.141] INFO  [life]   reason: most of the day already just now, easing off 23% (23.6 -> 18.3)
+[22:16:46.141] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 59s after achieving nothing
+[22:16:48.427] INFO  [w_Ilyandra] [chat ascii] Alenne: Nice speaking to you Ilyandra
+[22:16:49.225] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:16:50.625] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh13.ilyandra/state.json
+[22:16:51.101] INFO  [life] spellbook: buying a scroll ('Feeblemind Scroll', 0x1F30, spell 3) at 20 gold -- 0 of this shop's scrolls were already in the book
+[22:16:51.101] INFO  [w_Ilyandra] [ACTION] vendor_buy start
+[22:16:51.101] LOG   [w_Ilyandra] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[22:16:54.275] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:16:57.455] INFO  [life] session_end_requested reason="session time limit reached"
+[22:16:57.518] INFO  [life] wind-down: no bank learned yet; asking the world for one (attempt 1)
+[22:16:57.520] INFO  [w_Ilyandra] [travel] place: skipping Minoc banker -- 1704 tiles and 0 gates for a service Britain banker offers
+[22:16:57.521] INFO  [w_Ilyandra] [travel] Britain banker -> (1425,1690) r=5 from (1487,1547)
+[22:16:57.521] LOG   [w_Ilyandra] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1487,1547)
+[22:16:57.521] INFO  [w_Ilyandra] [travel] mode moongate         usable   <- chosen
+[22:16:57.521] INFO  [w_Ilyandra] [travel] mode walk             usable
+[22:16:57.521] INFO  [w_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:16:57.521] INFO  [w_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:16:57.521] LOG   [w_Ilyandra] event travel_mode: moongate
+[22:16:57.521] INFO  [w_Ilyandra] [travel] plan Britain banker: ok legs=5 ~168 tiles transit=0 nodes=28
+[22:16:57.580] INFO  [w_Ilyandra] [action] goto finished at (1487,1547,70); target (1487,1547); ARRIVED (off by 0 tile(s))
+[22:16:57.580] LOG   [w_Ilyandra] event goto_done: at=(1487,1547) target=(1487,1547) arrived=1 off=0
+[22:16:57.580] INFO  [w_Ilyandra] [action] goto (1480,1574) from (1487,1547,70)
+[22:16:57.580] LOG   [w_Ilyandra] event goto_start: target=(1480,1574) from=(1487,1547)
+[22:16:57.580] INFO  [w_Ilyandra] [bot] running from (1487,1547,70) to (1480,1574)
+[22:16:57.580] INFO  [w_Ilyandra] [bot] planning path to (1480,1574) in background
+[22:16:57.640] INFO  [w_Ilyandra] [bot] replan to (1480,1574): 49 steps in 9227.6us
+[22:16:59.334] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:17:04.351] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:17:09.385] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:17:12.579] INFO  [w_Ilyandra] [bot] arrived at (1480,1574,30)
+[22:17:12.579] INFO  [w_Ilyandra] [action] goto finished at (1480,1574,30); target (1480,1574); ARRIVED (off by 0 tile(s))
+[22:17:12.579] LOG   [w_Ilyandra] event goto_done: at=(1480,1574) target=(1480,1574) arrived=1 off=0
+[22:17:12.579] INFO  [w_Ilyandra] [travel] avoiding 2 teleporter pad(s) on this leg
+[22:17:12.579] INFO  [w_Ilyandra] [action] goto (1464,1608) from (1480,1574,30)
+[22:17:12.579] LOG   [w_Ilyandra] event goto_start: target=(1464,1608) from=(1480,1574)
+[22:17:12.579] INFO  [w_Ilyandra] [bot] running from (1480,1574,30) to (1464,1608)
+[22:17:12.579] INFO  [w_Ilyandra] [bot] planning path to (1464,1608) in background
+[22:17:12.639] INFO  [w_Ilyandra] [bot] replan to (1464,1608): 48 steps in 2816.6us
+[22:17:14.408] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:17:19.446] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:17:24.478] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:17:25.463] INFO  [w_Ilyandra] [bot] arrived at (1464,1608,20)
+[22:17:25.463] INFO  [w_Ilyandra] [action] goto finished at (1464,1608,20); target (1464,1608); ARRIVED (off by 0 tile(s))
+[22:17:25.463] LOG   [w_Ilyandra] event goto_done: at=(1464,1608) target=(1464,1608) arrived=1 off=0
+[22:17:25.463] INFO  [w_Ilyandra] [travel] avoiding 2 teleporter pad(s) on this leg
+[22:17:25.463] INFO  [w_Ilyandra] [action] goto (1464,1640) from (1464,1608,20)
+[22:17:25.463] LOG   [w_Ilyandra] event goto_start: target=(1464,1640) from=(1464,1608)
+[22:17:25.463] INFO  [w_Ilyandra] [bot] running from (1464,1608,20) to (1464,1640)
+[22:17:25.463] INFO  [w_Ilyandra] [bot] planning path to (1464,1640) in background
+[22:17:25.524] INFO  [w_Ilyandra] [bot] replan to (1464,1640): 32 steps in 3252.8us
+[22:17:26.020] INFO  [w_Ilyandra] [chat ascii] System: Kaelen has departed from Britain.
+[22:17:29.482] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:17:34.376] INFO  [w_Ilyandra] [bot] arrived at (1464,1640,20)
+[22:17:34.376] INFO  [w_Ilyandra] [action] goto finished at (1464,1640,20); target (1464,1640); ARRIVED (off by 0 tile(s))
+[22:17:34.376] LOG   [w_Ilyandra] event goto_done: at=(1464,1640) target=(1464,1640) arrived=1 off=0
+[22:17:34.376] INFO  [w_Ilyandra] [travel] avoiding 2 teleporter pad(s) on this leg
+[22:17:34.376] INFO  [w_Ilyandra] [action] goto (1448,1672) from (1464,1640,20)
+[22:17:34.376] LOG   [w_Ilyandra] event goto_start: target=(1448,1672) from=(1464,1640)
+[22:17:34.376] INFO  [w_Ilyandra] [bot] running from (1464,1640,20) to (1448,1672)
+[22:17:34.376] INFO  [w_Ilyandra] [bot] planning path to (1448,1672) in background
+[22:17:34.436] INFO  [w_Ilyandra] [bot] replan to (1448,1672): 37 steps in 6340.2us
+[22:17:34.498] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:17:39.512] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:17:44.527] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:17:45.266] INFO  [w_Ilyandra] [bot] arrived at (1448,1672,10)
+[22:17:45.266] INFO  [w_Ilyandra] [action] goto finished at (1448,1672,10); target (1448,1672); ARRIVED (off by 0 tile(s))
+[22:17:45.266] LOG   [w_Ilyandra] event goto_done: at=(1448,1672) target=(1448,1672) arrived=1 off=0
+[22:17:45.266] INFO  [w_Ilyandra] [action] goto (1425,1690) from (1448,1672,10)
+[22:17:45.266] LOG   [w_Ilyandra] event goto_start: target=(1425,1690) from=(1448,1672)
+[22:17:45.266] INFO  [w_Ilyandra] [bot] running from (1448,1672,10) to (1425,1690,z0)
+[22:17:45.266] INFO  [w_Ilyandra] [bot] planning path to (1425,1690) in background
+[22:17:45.326] INFO  [w_Ilyandra] [bot] replan to (1425,1690): 41 steps in 7747.3us
+[22:17:49.536] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:17:50.198] INFO  [w_Ilyandra] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=24 in 472.9us
+[22:17:53.321] INFO  [w_Ilyandra] [bot] door ahead at (1438,1692,z0); OpenDoor before step
+[22:17:53.321] INFO  [w_Ilyandra] [chat ascii] System: Opening door...
+[22:17:54.582] INFO  [w_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[22:17:57.003] INFO  [w_Ilyandra] [travel] Britain banker ARRIVED at (1430,1691,0)
+[22:17:57.003] LOG   [w_Ilyandra] event travel_done: label='Britain banker' ok=1 at=(1430,1691) legs=5 plans=1 why=''
+[22:17:57.065] INFO  [life] wind-down: arrived somewhere safe at 1430,1691
+[22:17:57.065] INFO  [life] session_summary duration=779s goals=16/59 gold=684->444 skills=130.0->130.0 logs=+0 kills=0 deaths=0 places=10 suppliers=0
+[22:17:57.065] INFO  [life] session_goals families=3 picks=59 top=59% varied=0 self_superseded=1 | upkeep=15(25%) training=35(59%) wander=9(15%) | REPLACE_EQUIPMENT=2(3%) PRACTICE_SKILL=35(59%) FILL_SPELLBOOK=5(8%) EXPLORE=9(15%) UPGRADE_GEAR=8(14%)
+[22:17:57.067] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh13.ilyandra/state.json
+[22:17:57.067] INFO  [life] logging out
+[22:17:57.067] INFO  [w_Ilyandra] [action] logout requested
+[22:17:57.067] LOG   [w_Ilyandra] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[22:17:57.080] INFO  [w_Ilyandra] [0xD1] logout acknowledged (accepted=1)
+[22:17:57.080] LOG   [w_Ilyandra] event logout_ack: accepted
+[22:17:57.080] INFO  [w_Ilyandra] [net] closing connection (logout acknowledged)
+[22:17:57.080] LOG   [w_Ilyandra] event logout_complete: acked

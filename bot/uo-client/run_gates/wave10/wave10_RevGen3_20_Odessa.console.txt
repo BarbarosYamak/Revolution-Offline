@@ -1,0 +1,1350 @@
+[17:29:35.221] LOG   [wave10_RevGen3_20_Odess] event session_start: text log opened
+[17:29:35.223] LOG   [wave10_RevGen3_20_Odess] event net_connect_begin: connect 127.0.0.1:2593
+[17:29:35.224] INFO  [wave10_RevGen3_20_Odess] [net] connecting to 127.0.0.1:2593 ...
+[17:29:35.226] LOG   [wave10_RevGen3_20_Odess] event net_connected: connect 127.0.0.1:2593
+[17:29:35.227] INFO  [wave10_RevGen3_20_Odess] [net] connected.
+[17:29:35.229] INFO  [wave10_RevGen3_20_Odess] [seed] sent 0x7F000001 (plaintext)
+[17:29:35.229] LOG   [wave10_RevGen3_20_Odess] event seed_out: 0x7F000001 hex=7f000001
+[17:29:35.236] INFO  [wave10_RevGen3_20_Odess] [life] autonomous player active for 'Odessa' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 30 min)
+[17:29:35.237] INFO  [wave10_RevGen3_20_Odess] [0xA8] 1 server(s):
+[17:29:35.237] INFO  [wave10_RevGen3_20_Odess]   [0] MyShard                   1.0.0.127  full=8%  tz=0
+[17:29:35.238] INFO  [wave10_RevGen3_20_Odess] [chat ascii] System: Dorvar has arrived in Magincia.
+[17:29:35.247] INFO  [wave10_RevGen3_20_Odess] [chat ascii] System: Ithion has arrived in Magincia.
+[17:29:35.248] INFO  [wave10_RevGen3_20_Odess] [0x8C] game server = 127.0.0.1:2593  seed=0x2F192066
+[17:29:35.249] LOG   [wave10_RevGen3_20_Odess] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x2F192066
+[17:29:35.249] INFO  [wave10_RevGen3_20_Odess] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[17:29:35.250] LOG   [wave10_RevGen3_20_Odess] event relay_same_socket: no seed re-sent; 0x91 follows
+[17:29:35.250] INFO  [wave10_RevGen3_20_Odess] [0xB9] server features = 0x0005
+[17:29:35.250] INFO  [wave10_RevGen3_20_Odess] [0xA9] 5 slot(s) (populated 1):
+[17:29:35.251] INFO  [wave10_RevGen3_20_Odess]   [0] Odessa
+[17:29:35.251] INFO  [wave10_RevGen3_20_Odess]   [1] <empty>
+[17:29:35.251] INFO  [wave10_RevGen3_20_Odess]   [2] <empty>
+[17:29:35.251] INFO  [wave10_RevGen3_20_Odess]   [3] <empty>
+[17:29:35.251] INFO  [wave10_RevGen3_20_Odess]   [4] <empty>
+[17:29:35.251] INFO  [wave10_RevGen3_20_Odess] [ui] playing slot 0 ('Odessa')
+[17:29:35.253] INFO  [wave10_RevGen3_20_Odess] [0x1B] serial=0x000194DE body=0x0191 pos=(1430,1691,0)
+[17:29:35.253] LOG   [wave10_RevGen3_20_Odess] event login_confirm: serial=0x000194DE body=0x0191 pos=(1430,1691,0)
+[17:29:35.254] INFO  [wave10_RevGen3_20_Odess] [0x20] player @(1430,1691,0) facing=6
+[17:29:35.254] INFO  [wave10_RevGen3_20_Odess] [0x55] login complete — entering world
+[17:29:35.254] LOG   [wave10_RevGen3_20_Odess] event in_world: 0x55 received
+[17:29:35.254] INFO  [wave10_RevGen3_20_Odess] [backpack] opening 0x400194D9
+[17:29:35.254] INFO  [wave10_RevGen3_20_Odess] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[17:29:35.255] INFO  [wave10_RevGen3_20_Odess] [chat ascii] System: There are 21 other players here.
+[17:29:35.256] INFO  [wave10_RevGen3_20_Odess] [chat ascii] System: Last logged: 2026/08/31 18:12:43
+[17:29:35.257] INFO  [wave10_RevGen3_20_Odess] [chat ascii] System: You are under the protection of the city guards
+[17:29:35.262] INFO  [wave10_RevGen3_20_Odess] [action] requesting the skill list
+[17:29:35.264] INFO  [wave10_RevGen3_20_Odess] [0x24] open container 0x400194D9 gump=60
+[17:29:35.264] INFO  [wave10_RevGen3_20_Odess] [0x3C] container contents: 8 item(s)
+[17:29:35.264] LOG   [wave10_RevGen3_20_Odess] event backpack_contents: serial=0x400194D9 items=8
+[17:29:35.279] INFO  [wave10_RevGen3_20_Odess] [chat ascii] System: Serena has arrived in Britain.
+[17:29:35.306] INFO  [wave10_RevGen3_20_Odess] [chat ascii] System: Aurelius has arrived in Britain.
+[17:29:35.326] INFO  [wave10_RevGen3_20_Odess] [chat ascii] System: Leander has arrived in Britain.
+[17:29:35.327] INFO  [wave10_RevGen3_20_Odess] [chat ascii] System: Illyria has arrived in Britain.
+[17:29:35.341] INFO  [wave10_RevGen3_20_Odess] [chat ascii] System: Hector has arrived in Trinsic.
+[17:29:35.360] INFO  [wave10_RevGen3_20_Odess] [chat ascii] System: Castor has arrived in The Rusty Anchor.
+[17:29:35.371] INFO  [wave10_RevGen3_20_Odess] [chat ascii] System: Faustus has arrived in Britain.
+[17:29:35.385] INFO  [wave10_RevGen3_20_Odess] [chat ascii] System: Titus has arrived in Britain Territory.
+[17:29:35.403] INFO  [wave10_RevGen3_20_Odess] [chat ascii] System: Rhea has arrived in Yew.
+[17:29:35.403] INFO  [wave10_RevGen3_20_Odess] [chat ascii] System: Xerxes has arrived in Ocllo Island.
+[17:29:35.434] INFO  [wave10_RevGen3_20_Odess] [chat ascii] System: Thane has arrived in Britain.
+[17:29:35.434] INFO  [wave10_RevGen3_20_Odess] [chat ascii] System: Varek has arrived in Britain Territory.
+[17:29:35.449] INFO  [wave10_RevGen3_20_Odess] [chat ascii] System: Nyx has arrived in Trinsic.
+[17:29:37.260] INFO  [wave10_RevGen3_20_Odess] [chat uni  ] : WTS 10 i_ingot_iron 35gp
+[17:29:37.260] INFO  [wave10_RevGen3_20_Odess] [chat ascii] Hyman: What?
+[17:29:37.851] INFO  [wave10_RevGen3_20_Odess] [bot] world data loaded (0 blacklisted spot(s)).
+[17:29:37.853] INFO  [wave10_RevGen3_20_Odess] [survival] on
+[17:29:37.854] LOG   [wave10_RevGen3_20_Odess] event survival_mode: on
+[17:29:37.859] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:29:37.917] INFO  [wave10_RevGen3_20_Odess] [action] say: WTB i_ingot_iron
+[17:29:37.933] INFO  [wave10_RevGen3_20_Odess] [chat uni  ] Odessa: WTB i_ingot_iron
+[17:29:37.934] INFO  [wave10_RevGen3_20_Odess] [chat ascii] Hyman: Huh?
+[17:29:37.934] INFO  [wave10_RevGen3_20_Odess] [travel] mobile 0x00016AE8 -> (1430,1688) r=1 from (1430,1691)
+[17:29:37.934] LOG   [wave10_RevGen3_20_Odess] event travel_start: label='mobile 0x00016AE8' target=(1430,1688) radius=1 from=(1430,1691)
+[17:29:37.935] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:29:37.935] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:29:37.935] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:37.935] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:37.935] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:29:37.935] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:29:37.994] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:29:37.994] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:29:37.994] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:29:37.994] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:29:40.023] WARN  [wave10_RevGen3_20_Odess] [bot] no path to (1430,1688) avoiding 0 block(s); stopping (search 1972742.3us)
+[17:29:40.024] WARN  [wave10_RevGen3_20_Odess] [bot] start (1430,1691,0) exits: open=4 terrain=3 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 35 item(s), 11 mobile(s))
+[17:29:40.085] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:29:40.085] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:29:41.313] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:29:41.314] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:29:41.314] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:41.314] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:41.314] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:29:41.314] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:29:42.859] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:29:42.860] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:29:42.860] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:29:42.860] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:29:42.860] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:29:44.516] WARN  [wave10_RevGen3_20_Odess] [bot] no path to (1430,1688) avoiding 0 block(s); stopping (search 1629410.3us)
+[17:29:44.517] WARN  [wave10_RevGen3_20_Odess] [bot] start (1430,1691,0) exits: open=4 terrain=3 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 35 item(s), 11 mobile(s))
+[17:29:44.578] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:29:44.579] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:29:45.814] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:29:45.814] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:29:45.815] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:45.815] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:45.815] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:29:45.815] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:29:47.906] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:29:48.832] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:29:48.832] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:29:48.832] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:29:48.833] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:29:50.690] WARN  [wave10_RevGen3_20_Odess] [bot] no path to (1430,1688) avoiding 0 block(s); stopping (search 1816956.7us)
+[17:29:50.691] WARN  [wave10_RevGen3_20_Odess] [bot] start (1430,1691,0) exits: open=4 terrain=3 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 35 item(s), 11 mobile(s))
+[17:29:50.752] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:29:50.752] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:29:51.986] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:29:51.987] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:29:51.987] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:51.987] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:51.987] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:29:51.987] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:29:52.910] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:29:56.492] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:29:56.492] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:29:56.492] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:29:56.493] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:29:57.938] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:29:58.123] WARN  [wave10_RevGen3_20_Odess] [bot] no path to (1430,1688) avoiding 0 block(s); stopping (search 1602402.3us)
+[17:29:58.124] WARN  [wave10_RevGen3_20_Odess] [bot] start (1430,1691,0) exits: open=4 terrain=3 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 35 item(s), 13 mobile(s))
+[17:29:58.185] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:29:58.185] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:29:58.185] INFO  [wave10_RevGen3_20_Odess] [travel] mobile 0x00016AE8 ARRIVED at (1430,1691,0) -- arrived nearby; the destination tile was not free
+[17:29:58.186] LOG   [wave10_RevGen3_20_Odess] event travel_done: label='mobile 0x00016AE8' ok=1 at=(1430,1691) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:29:58.200] INFO  [wave10_RevGen3_20_Odess] [travel] mobile 0x00016AE8 -> (1430,1688) r=1 from (1430,1691)
+[17:29:58.201] LOG   [wave10_RevGen3_20_Odess] event travel_start: label='mobile 0x00016AE8' target=(1430,1688) radius=1 from=(1430,1691)
+[17:29:58.201] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:29:58.201] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:29:58.201] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:58.201] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:58.202] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:29:58.202] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:29:58.262] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:29:58.262] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:29:58.262] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:29:58.262] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:29:59.862] WARN  [wave10_RevGen3_20_Odess] [bot] no path to (1430,1688) avoiding 0 block(s); stopping (search 1563632.6us)
+[17:29:59.862] WARN  [wave10_RevGen3_20_Odess] [bot] start (1430,1691,0) exits: open=4 terrain=3 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 35 item(s), 13 mobile(s))
+[17:29:59.923] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:29:59.924] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:30:01.142] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:30:01.142] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:30:01.142] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:01.142] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:01.142] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:30:01.143] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:30:02.692] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:30:02.693] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:30:02.693] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:30:02.693] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:30:02.998] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:30:03.855] WARN  [wave10_RevGen3_20_Odess] [bot] no path to (1430,1688) avoiding 0 block(s); stopping (search 1150272.0us)
+[17:30:03.856] WARN  [wave10_RevGen3_20_Odess] [bot] start (1430,1691,0) exits: open=4 terrain=3 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 35 item(s), 13 mobile(s))
+[17:30:03.857] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:30:03.857] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:30:05.101] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:30:05.102] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:30:05.102] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:05.102] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:05.102] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:30:05.103] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:30:08.039] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:30:08.162] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:30:08.162] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:30:08.163] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:30:08.163] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:30:09.342] WARN  [wave10_RevGen3_20_Odess] [bot] no path to (1430,1688) avoiding 0 block(s); stopping (search 1120569.9us)
+[17:30:09.342] WARN  [wave10_RevGen3_20_Odess] [bot] start ([17:30:09.402] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stoppe[17:30:09.402] INFO  [wave10[17:30:09.402] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3[1[17:30:09.819] INFO  [wave10_RevGen3_20_Odess] [chat ascii] Hyman: I'm listenin'.
+[17:30:09.819] INFO  [wave10_RevGen3_20_Odess] [chat ascii] Hyman: Hmm?
+[17:30:09.819] INFO  [wave10_RevGen3_20_Odess] [chat ascii] Hyman: Hmm?
+[17:30:10.646] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:30:10.646] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:30:10.646] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that d[17:30:10.64[17:30:10.646] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for tha[17:30:10.646] [17:30:10.646] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:30:10.646] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles trans[17:30:10.646][17:30:13.100] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:30:15.168] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:30:15.168] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)[[17:30:15.168] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:30:15.169] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:30:16.315] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:30:16.315] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:30:16.315] INFO  [wave10_RevGen3_20_Odess] [travel] mobile 0x00016AE8 ARRIVED at (1430,1691,0) -- arrived nearby; the destination tile was not free
+[17:30:16.315] LOG   [wave10_RevGen3_20_Odess] event travel_done: label='mobile 0x00016AE8' ok=1 at=(1430,1691) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:30:16.391] INFO  [wave10_RevGen3_20_Odess] [travel] mobile 0x00016AE8 -> (1430,1688) r=1 from (1430,1691)
+[17:30:16.392] LOG   [wave10_RevGen3_20_Odess] event travel_start: label='mobile 0x00016AE8' target=(1430,1688) radius=1 from=(1430,1691)
+[17:30:16.392] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:30:16.392] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:30:16.392] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:16.392] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:16.392] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:30:16.392] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:30:16.452] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:30:16.452] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:30:16.452] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:30:16.452] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:30:17.755] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:30:17.755] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:30:18.155] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:30:18.986] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:30:18.986] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:30:18.986] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:18.986] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:18.986] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:30:18.986] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:30:20.517] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:30:20.517] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:30:20.517] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:30:20.517] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:30:21.746] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:30:21.746] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:30:22.975] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:30:22.975] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:30:22.976] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:22.976] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:22.976] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:30:22.976] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:30:23.191] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:30:26.011] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:30:26.012] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:30:26.012] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:30:26.012] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:30:27.129] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:30:27.129] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:30:28.219] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:30:28.342] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:30:28.343] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:30:28.343] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:28.343] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:28.343] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:30:28.343] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:30:32.844] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:30:32.845] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:30:32.845] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:30:32.845] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:30:33.230] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:30:34.096] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:30:34.096] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:30:34.096] INFO  [wave10_RevGen3_20_Odess] [travel] mobile 0x00016AE8 ARRIVED at (1430,1691,0) -- arrived nearby; the destination tile was not free
+[17:30:34.097] LOG   [wave10_RevGen3_20_Odess] event travel_done: label='mobile 0x00016AE8' ok=1 at=(1430,1691) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:30:34.157] INFO  [wave10_RevGen3_20_Odess] [travel] mobile 0x00016AE8 -> (1430,1688) r=1 from (1430,1691)
+[17:30:34.157] LOG   [wave10_RevGen3_20_Odess] event travel_start: label='mobile 0x00016AE8' target=(1430,1688) radius=1 from=(1430,1691)
+[17:30:34.157] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:30:34.157] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:30:34.157] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:34.157] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:34.157] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:30:34.158] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:30:34.219] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:30:34.219] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:30:34.219] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:30:34.219] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:30:35.422] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:30:35.422] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:30:36.674] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:30:36.674] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:30:36.674] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:36.674] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:36.674] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:30:36.674] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:30:37.907] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_20.odessa/state.json
+[17:30:38.209] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:30:38.210] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:30:38.210] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:30:38.210] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:30:38.272] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:30:39.314] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:30:39.314] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:30:40.548] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:30:40.548] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:30:40.548] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:40.548] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:40.548] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:30:40.549] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:30:43.314] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:30:43.559] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:30:43.560] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:30:43.560] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:30:43.560] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:30:44.730] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:30:44.730] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:30:45.958] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:30:45.958] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:30:45.958] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:45.958] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:45.958] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:30:45.958] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:30:48.355] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:30:50.507] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:30:50.507] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:30:50.507] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:30:50.507] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:30:51.744] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:30:51.744] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:30:51.744] INFO  [wave10_RevGen3_20_Odess] [travel] mobile 0x00016AE8 ARRIVED at (1430,1691,0) -- arrived nearby; the destination tile was not free
+[17:30:51.745] LOG   [wave10_RevGen3_20_Odess] event travel_done: label='mobile 0x00016AE8' ok=1 at=(1430,1691) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:30:51.867] INFO  [wave10_RevGen3_20_Odess] [travel] mobile 0x00016AE8 -> (1430,1688) r=1 from (1430,1691)
+[17:30:51.867] LOG   [wave10_RevGen3_20_Odess] event travel_start: label='mobile 0x00016AE8' target=(1430,1688) radius=1 from=(1430,1691)
+[17:30:51.868] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:30:51.868] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:30:51.868] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:51.868] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:51.868] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:30:51.868] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:30:51.929] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:30:51.929] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:30:51.929] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:30:51.929] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:30:53.340] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:30:53.340] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:30:53.403] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:30:54.574] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:30:54.575] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:30:54.575] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:54.575] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:54.575] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:30:54.575] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:30:56.116] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:30:56.116] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:30:56.116] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:30:56.116] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:30:57.345] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:30:57.345] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:30:58.455] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:30:58.580] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:30:58.581] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:30:58.581] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:58.581] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:58.581] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:30:58.581] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:31:01.588] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:31:01.588] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:31:01.588] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:31:01.588] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:31:03.192] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:31:03.192] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:31:03.501] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:31:04.441] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:31:04.442] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:31:04.442] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:04.442] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:04.442] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:31:04.442] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:31:08.561] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:31:08.993] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:31:08.994] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:31:08.994] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:31:08.994] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:31:10.700] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:31:10.701] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:31:10.701] INFO  [wave10_RevGen3_20_Odess] [travel] mobile 0x00016AE8 ARRIVED at (1430,1691,0) -- arrived nearby; the destination tile was not free
+[17:31:10.701] LOG   [wave10_RevGen3_20_Odess] event travel_done: label='mobile 0x00016AE8' ok=1 at=(1430,1691) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:31:10.808] INFO  [wave10_RevGen3_20_Odess] [travel] mobile 0x00016AE8 -> (1430,1688) r=1 from (1430,1691)
+[17:31:10.808] LOG   [wave10_RevGen3_20_Odess] event travel_start: label='mobile 0x00016AE8' target=(1430,1688) radius=1 from=(1430,1691)
+[17:31:10.808] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:31:10.808] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:31:10.808] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:10.808] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:10.809] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:31:10.809] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:31:10.869] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:31:10.869] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:31:10.869] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:31:10.869] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:31:12.778] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:31:12.778] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:31:13.568] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:31:14.001] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:31:14.001] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:31:14.001] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:14.001] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:14.001] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:31:14.001] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:31:15.524] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:31:15.524] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:31:15.524] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:31:15.524] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:31:17.287] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:31:17.307] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:31:18.501] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:31:18.583] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:31:18.739] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:18.889] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:18.964] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:31:19.017] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:31:19.069] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:31:20.792] INFO  [wave10_RevGen3_20_Odess] [chat ascii] Hyman: I'm listenin'.
+[17:31:20.792] INFO  [wave10_RevGen3_20_Odess] [chat ascii] Hyman: What's thee wantin'?
+[17:31:22.073] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:31:22.076] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:31:22.076] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:31:22.076] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:31:23.710] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:31:23.710] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:31:24.126] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:31:24.941] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:31:24.941] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:31:24.941] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:24.941] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:24.941] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:31:24.941] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:31:29.147] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:31:29.502] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:31:29.502] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:31:29.502] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:31:29.502] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:31:30.961] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:31:30.961] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:31:30.961] INFO  [wave10_RevGen3_20_Odess] [travel] mobile 0x00016AE8 ARRIVED at (1430,1691,0) -- arrived nearby; the destination tile was not free
+[17:31:30.961] LOG   [wave10_RevGen3_20_Odess] event travel_done: label='mobile 0x00016AE8' ok=1 at=(1430,1691) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:31:31.083] INFO  [wave10_RevGen3_20_Odess] [travel] mobile 0x00016AE8 -> (1430,1688) r=1 from (1430,1691)
+[17:31:31.084] LOG   [wave10_RevGen3_20_Odess] event travel_start: label='mobile 0x00016AE8' target=(1430,1688) radius=1 from=(1430,1691)
+[17:31:31.084] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:31:31.084] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:31:31.084] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:31.084] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:31.084] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:31:31.084] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:31:31.145] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:31:31.145] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:31:31.145] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:31:31.145] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:31:32.870] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:31:32.870] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:31:34.119] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:31:34.120] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:31:34.120] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:34.120] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:34.120] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:31:34.120] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:31:34.181] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:31:35.677] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:31:35.678] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:31:35.678] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:31:35.678] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:31:37.093] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:31:37.094] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:31:37.962] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_20.odessa/state.json
+[17:31:38.324] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:31:38.324] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:31:38.324] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:38.324] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:38.324] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:31:38.324] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:31:39.189] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:31:41.338] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:31:41.338] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:31:41.338] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:31:41.338] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:31:42.690] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:31:42.690] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:31:43.904] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:31:43.904] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:31:43.904] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:43.904] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:43.905] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:31:43.905] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:31:44.214] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:31:48.466] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:31:48.466] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:31:48.466] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:31:48.466] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:31:49.223] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:31:49.776] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:31:49.776] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:31:49.776] INFO  [wave10_RevGen3_20_Odess] [travel] mobile 0x00016AE8 ARRIVED at (1430,1691,0) -- arrived nearby; the destination tile was not free
+[17:31:49.776] LOG   [wave10_RevGen3_20_Odess] event travel_done: label='mobile 0x00016AE8' ok=1 at=(1430,1691) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:31:49.899] INFO  [wave10_RevGen3_20_Odess] [travel] mobile 0x00016AE8 -> (1430,1688) r=1 from (1430,1691)
+[17:31:49.899] LOG   [wave10_RevGen3_20_Odess] event travel_start: label='mobile 0x00016AE8' target=(1430,1688) radius=1 from=(1430,1691)
+[17:31:49.899] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:31:49.899] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:31:49.899] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:49.899] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:49.900] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:31:49.900] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:31:49.960] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:31:49.960] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:31:49.960] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:31:49.960] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:31:51.481] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:31:51.481] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:31:52.715] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:31:52.715] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:31:52.716] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:52.716] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:52.716] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:31:52.716] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:31:54.254] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:31:54.254] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:31:54.254] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:31:54.254] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:31:54.254] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:31:55.810] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:31:55.810] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:31:57.045] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:31:57.045] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:31:57.045] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:57.045] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:57.045] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:31:57.045] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:31:59.285] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:32:00.105] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:32:00.105] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:32:00.106] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:32:00.106] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:32:01.460] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:32:01.460] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:32:02.666] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:32:02.666] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:32:02.666] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:02.666] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:02.666] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:32:02.666] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:32:04.322] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:32:07.213] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:32:07.213] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:32:07.213] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:32:07.213] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:32:08.653] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:32:08.653] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:32:08.653] INFO  [wave10_RevGen3_20_Odess] [travel] mobile 0x00016AE8 ARRIVED at (1430,1691,0) -- arrived nearby; the destination tile was not free
+[17:32:08.653] LOG   [wave10_RevGen3_20_Odess] event travel_done: label='mobile 0x00016AE8' ok=1 at=(1430,1691) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:32:08.714] INFO  [wave10_RevGen3_20_Odess] [travel] mobile 0x00016AE8 -> (1430,1688) r=1 from (1430,1691)
+[17:32:08.714] LOG   [wave10_RevGen3_20_Odess] event travel_start: label='mobile 0x00016AE8' target=(1430,1688) radius=1 from=(1430,1691)
+[17:32:08.714] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:32:08.714] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:32:08.714] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:08.714] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:08.714] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:32:08.714] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:32:08.776] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:32:08.776] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:32:08.776] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:32:08.776] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:32:09.378] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:32:10.366] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:32:10.366] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:32:11.599] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:32:11.599] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:32:11.600] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:11.600] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:11.600] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:32:11.600] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:32:13.136] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:32:13.136] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:32:13.136] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:32:13.137] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:32:14.429] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:32:14.523] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:32:14.523] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:32:15.739] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:32:15.739] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:32:15.739] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:15.739] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:15.739] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:32:15.739] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:32:15.834] INFO  [wave10_RevGen3_20_Odess] [chat uni  ] : bank
+[17:32:15.834] INFO  [wave10_RevGen3_20_Odess] [chat ascii] Lyndon: What's thou need?
+[17:32:15.834] INFO  [wave10_RevGen3_20_Odess] [chat ascii] Lyndon: Keeping the money of others is my job.
+[17:32:18.747] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:32:18.747] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:32:18.747] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:32:18.747] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:32:19.486] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:32:20.254] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:32:20.254] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:32:21.483] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:32:21.483] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:32:21.483] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:21.484] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:21.484] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:32:21.484] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:32:24.508] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:32:26.044] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:32:26.044] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:32:26.044] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:32:26.045] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:32:27.403] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:32:27.404] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:32:27.404] INFO  [wave10_RevGen3_20_Odess] [travel] mobile 0x00016AE8 ARRIVED at (1430,1691,0) -- arrived nearby; the destination tile was not free
+[17:32:27.404] LOG   [wave10_RevGen3_20_Odess] event travel_done: label='mobile 0x00016AE8' ok=1 at=(1430,1691) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:32:27.528] INFO  [wave10_RevGen3_20_Odess] [travel] mobile 0x00016AE8 -> (1430,1688) r=1 from (1430,1691)
+[17:32:27.528] LOG   [wave10_RevGen3_20_Odess] event travel_start: label='mobile 0x00016AE8' target=(1430,1688) radius=1 from=(1430,1691)
+[17:32:27.528] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:32:27.528] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:32:27.528] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:27.528] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:27.528] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:32:27.529] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:32:27.588] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:32:27.589] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:32:27.589] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:32:27.589] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:32:28.928] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:32:28.928] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:32:29.544] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:32:30.158] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:32:30.158] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:32:30.158] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:30.158] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:30.158] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:32:30.158] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:32:31.701] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:32:31.701] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:32:31.702] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:32:31.702] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:32:32.812] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:32:32.812] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:32:34.040] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:32:34.040] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:32:34.040] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:34.040] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:34.041] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:32:34.041] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:32:34.593] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:32:37.083] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:32:37.083] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:32:37.083] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:32:37.084] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:32:38.015] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_20.odessa/state.json
+[17:32:38.318] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:32:38.318] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:32:39.528] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:32:39.528] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:32:39.528] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:39.528] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:39.528] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:32:39.528] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:32:39.651] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:32:44.056] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:32:44.057] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:32:44.057] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:32:44.057] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:32:44.658] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:32:45.285] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:32:45.286] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:32:45.286] INFO  [wave10_RevGen3_20_Odess] [travel] mobile 0x00016AE8 ARRIVED at (1430,1691,0) -- arrived nearby; the destination tile was not free
+[17:32:45.286] LOG   [wave10_RevGen3_20_Odess] event travel_done: label='mobile 0x00016AE8' ok=1 at=(1430,1691) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:32:45.362] INFO  [wave10_RevGen3_20_Odess] [travel] mobile 0x00016AE8 -> (1430,1688) r=1 from (1430,1691)
+[17:32:45.363] LOG   [wave10_RevGen3_20_Odess] event travel_start: label='mobile 0x00016AE8' target=(1430,1688) radius=1 from=(1430,1691)
+[17:32:45.363] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:32:45.363] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:32:45.363] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:45.363] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:45.363] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:32:45.363] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:32:45.424] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:32:45.424] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:32:45.425] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:32:45.425] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:32:46.765] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:32:46.765] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:32:47.977] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:32:47.977] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:32:47.977] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:47.977] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:47.978] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:32:47.978] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:32:49.506] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:32:49.506] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:32:49.506] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:32:49.506] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:32:49.706] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:32:51.370] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:32:51.371] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:32:52.207] INFO  [wave10_RevGen3_20_Odess] [chat uni  ] : bank
+[17:32:52.207] INFO  [wave10_RevGen3_20_Odess] [chat ascii] Lyndon: Good morrow!  How can I help thee?
+[17:32:52.207] INFO  [wave10_RevGen3_20_Odess] [chat ascii] Lyndon: Yes, banking is my unfortunate lot in life.
+[17:32:52.591] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:32:52.591] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:32:52.591] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:52.592] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:52.592] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:32:52.592] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:32:54.760] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:32:55.622] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:32:55.622] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:32:55.622] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:32:55.623] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:32:57.276] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:32:57.276] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:32:58.476] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:32:58.477] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:32:58.477] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:58.477] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:58.477] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:32:58.477] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:32:59.802] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:33:02.994] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:33:02.994] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:33:02.994] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:33:02.995] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:33:04.704] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:33:04.704] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:33:04.704] INFO  [wave10_RevGen3_20_Odess] [travel] mobile 0x00016AE8 ARRIVED at (1430,1691,0) -- arrived nearby; the destination tile was not free
+[17:33:04.705] LOG   [wave10_RevGen3_20_Odess] event travel_done: label='mobile 0x00016AE8' ok=1 at=(1430,1691) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:33:04.721] INFO  [wave10_RevGen3_20_Odess] [travel] mobile 0x00016AE8 -> (1430,1688) r=1 from (1430,1691)
+[17:33:04.721] LOG   [wave10_RevGen3_20_Odess] event travel_start: label='mobile 0x00016AE8' target=(1430,1688) radius=1 from=(1430,1691)
+[17:33:04.721] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:33:04.721] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:33:04.721] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:04.721] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:04.721] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:33:04.721] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:33:04.782] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:33:04.782] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:33:04.783] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:33:04.783] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:33:04.843] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:33:06.279] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:33:06.280] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:33:07.514] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:33:07.514] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:33:07.514] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:07.514] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:07.514] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:33:07.514] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:33:09.024] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:33:09.024] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:33:09.024] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:33:09.024] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:33:09.855] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:33:10.615] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:33:10.615] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:33:11.860] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:33:11.860] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:33:11.860] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:11.860] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:11.860] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:33:11.860] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:33:12.850] INFO  [wave10_RevGen3_20_Odess] [chat ascii] Lyndon: What's thee wantin'?
+[17:33:12.850] INFO  [wave10_RevGen3_20_Odess] [chat ascii] Lyndon: Aye?
+[17:33:12.850] INFO  [wave10_RevGen3_20_Odess] [chat ascii] Lyndon: I'm listenin'.
+[17:33:14.881] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:33:14.881] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:33:14.881] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:33:14.882] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:33:14.882] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:33:16.223] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:33:16.223] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:33:17.444] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:33:17.444] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:33:17.444] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:17.444] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:17.445] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:33:17.445] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:33:19.887] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:33:21.983] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:33:21.983] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:33:21.983] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:33:21.984] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:33:23.816] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:33:23.816] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:33:23.816] INFO  [wave10_RevGen3_20_Odess] [travel] mobile 0x00016AE8 ARRIVED at (1430,1691,0) -- arrived nearby; the destination tile was not free
+[17:33:23.816] LOG   [wave10_RevGen3_20_Odess] event travel_done: label='mobile 0x00016AE8' ok=1 at=(1430,1691) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:33:23.922] INFO  [wave10_RevGen3_20_Odess] [travel] mobile 0x00016AE8 -> (1430,1688) r=1 from (1430,1691)
+[17:33:23.922] LOG   [wave10_RevGen3_20_Odess] event travel_start: label='mobile 0x00016AE8' target=(1430,1688) radius=1 from=(1430,1691)
+[17:33:23.922] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:33:23.923] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:33:23.923] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:23.923] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:23.923] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:33:23.923] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:33:23.983] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:33:23.983] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:33:23.983] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:33:23.983] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:33:24.933] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:33:25.987] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:33:25.987] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:33:27.229] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:33:27.229] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:33:27.230] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:27.230] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:27.230] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:33:27.230] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:33:28.738] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:33:28.738] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:33:28.738] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:33:28.739] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:33:29.959] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:33:30.036] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:33:30.036] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:33:31.259] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:33:31.260] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:33:31.260] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:31.260] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:31.260] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:33:31.260] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:33:34.277] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:33:34.278] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:33:34.278] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:33:34.278] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:33:34.400] INFO  [wave10_RevGen3_20_Odess] [chat ascii] Hyman: Hmm?
+[17:33:35.005] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:33:35.874] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:33:35.874] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:33:37.088] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:33:37.088] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:33:37.088] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:37.088] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:37.088] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:33:37.088] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:33:38.070] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_20.odessa/state.json
+[17:33:40.012] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:33:41.608] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:33:41.608] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:33:41.608] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:33:41.608] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:33:42.676] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:33:42.676] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:33:42.676] INFO  [wave10_RevGen3_20_Odess] [travel] mobile 0x00016AE8 ARRIVED at (1430,1691,0) -- arrived nearby; the destination tile was not free
+[17:33:42.676] LOG   [wave10_RevGen3_20_Odess] event travel_done: label='mobile 0x00016AE8' ok=1 at=(1430,1691) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:33:42.801] INFO  [wave10_RevGen3_20_Odess] [travel] mobile 0x00016AE8 -> (1430,1688) r=1 from (1430,1691)
+[17:33:42.801] LOG   [wave10_RevGen3_20_Odess] event travel_start: label='mobile 0x00016AE8' target=(1430,1688) radius=1 from=(1430,1691)
+[17:33:42.801] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:33:42.801] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:33:42.801] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:42.801] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:42.801] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:33:42.801] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:33:42.802] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:33:42.802] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:33:42.802] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:33:42.802] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:33:44.151] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:33:44.151] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:33:45.026] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:33:45.364] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:33:45.364] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:33:45.364] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:45.364] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:45.364] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:33:45.364] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:33:46.915] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:33:46.915] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:33:46.915] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:33:46.916] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:33:48.069] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:33:48.069] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:33:49.278] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:33:49.279] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:33:49.279] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:49.279] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:49.279] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:33:49.279] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:33:50.034] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:33:52.310] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:33:52.310] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:33:52.310] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:33:52.311] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:33:53.863] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:33:53.863] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:33:54.568] INFO  [wave10_RevGen3_20_Odess] [chat ascii] System: World save in 10 seconds
+[17:33:55.089] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:33:55.089] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:33:55.089] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:55.089] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:55.089] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:33:55.090] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:33:55.090] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:33:59.618] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:33:59.618] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:33:59.618] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:33:59.618] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:34:00.108] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:34:01.279] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:34:01.279] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:34:01.279] INFO  [wave10_RevGen3_20_Odess] [travel] mobile 0x00016AE8 ARRIVED at (1430,1691,0) -- arrived nearby; the destination tile was not free
+[17:34:01.279] LOG   [wave10_RevGen3_20_Odess] event travel_done: label='mobile 0x00016AE8' ok=1 at=(1430,1691) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:34:01.404] INFO  [wave10_RevGen3_20_Odess] [travel] mobile 0x00016AE8 -> (1430,1688) r=1 from (1430,1691)
+[17:34:01.404] LOG   [wave10_RevGen3_20_Odess] event travel_start: label='mobile 0x00016AE8' target=(1430,1688) radius=1 from=(1430,1691)
+[17:34:01.404] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:34:01.405] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:34:01.405] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:01.405] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:01.405] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:34:01.405] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:34:01.467] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:34:01.467] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:34:01.467] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:34:01.467] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:34:03.252] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:34:03.252] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:34:04.501] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:34:04.502] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:34:04.502] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:04.502] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:04.502] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:34:04.502] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:34:04.598] INFO  [wave10_RevGen3_20_Odess] [chat ascii] System: World save has been initiated.
+[17:34:05.157] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:34:06.032] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:34:06.032] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:34:06.032] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:34:06.032] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:34:07.838] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:34:07.838] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:34:09.081] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:34:09.082] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:34:09.082] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:09.082] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:09.082] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:34:09.082] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:34:10.179] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:34:12.121] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:34:12.121] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:34:12.122] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:34:12.122] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:34:13.649] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:34:13.649] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:34:14.862] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:34:14.863] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:34:14.863] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:14.863] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:14.863] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:34:14.863] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:34:15.236] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:34:19.401] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:34:19.402] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:34:19.402] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:34:19.402] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:34:20.263] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:34:21.234] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:34:21.234] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:34:21.234] INFO  [wave10_RevGen3_20_Odess] [travel] mobile 0x00016AE8 ARRIVED at (1430,1691,0) -- arrived nearby; the destination tile was not free
+[17:34:21.234] LOG   [wave10_RevGen3_20_Odess] event travel_done: label='mobile 0x00016AE8' ok=1 at=(1430,1691) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:34:21.293] INFO  [wave10_RevGen3_20_Odess] [travel] mobile 0x00016AE8 -> (1430,1688) r=1 from (1430,1691)
+[17:34:21.294] LOG   [wave10_RevGen3_20_Odess] event travel_start: label='mobile 0x00016AE8' target=(1430,1688) radius=1 from=(1430,1691)
+[17:34:21.294] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:34:21.294] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:34:21.294] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:21.294] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:21.294] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:34:21.294] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:34:21.354] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:34:21.355] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:34:21.355] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:34:21.355] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:34:21.602] INFO  [wave10_RevGen3_20_Odess] [chat ascii] Hyman: Hmm?
+[17:34:21.603] INFO  [wave10_RevGen3_20_Odess] [chat ascii] Hyman: What's thee wantin'?
+[17:34:21.603] INFO  [wave10_RevGen3_20_Odess] [chat ascii] Hyman: Aye?
+[17:34:21.603] INFO  [wave10_RevGen3_20_Odess] [chat ascii] Hyman: Aye?
+[17:34:23.254] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:34:23.255] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:34:24.509] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:34:24.509] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:34:24.509] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:24.509] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:24.509] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:34:24.509] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:34:25.313] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:34:26.023] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:34:26.023] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:34:26.023] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:34:26.023] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:34:27.464] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:34:27.464] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:34:28.684] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:34:28.685] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:34:28.685] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:28.685] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:28.685] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:34:28.685] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:34:30.363] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:34:31.722] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:34:31.722] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:34:31.722] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:34:31.722] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:34:33.070] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:34:33.070] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:34:34.298] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:34:34.298] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:34:34.298] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:34.299] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:34.299] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:34:34.299] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:34:35.409] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:34:38.120] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_20.odessa/state.json
+[17:34:38.852] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:34:38.853] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:34:38.853] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:34:38.853] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:34:40.159] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:34:40.160] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:34:40.160] INFO  [wave10_RevGen3_20_Odess] [travel] mobile 0x00016AE8 ARRIVED at (1430,1691,0) -- arrived nearby; the destination tile was not free
+[17:34:40.160] LOG   [wave10_RevGen3_20_Odess] event travel_done: label='mobile 0x00016AE8' ok=1 at=(1430,1691) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:34:40.281] INFO  [wave10_RevGen3_20_Odess] [travel] mobile 0x00016AE8 -> (1430,1688) r=1 from (1430,1691)
+[17:34:40.281] LOG   [wave10_RevGen3_20_Odess] event travel_start: label='mobile 0x00016AE8' target=(1430,1688) radius=1 from=(1430,1691)
+[17:34:40.282] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:34:40.282] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:34:40.282] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:40.282] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:40.282] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:34:40.282] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:34:40.342] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:34:40.343] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:34:40.343] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:34:40.343] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:34:40.466] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:34:42.130] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:34:42.131] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:34:43.369] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:34:43.370] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:34:43.370] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:43.370] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:43.370] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:34:43.370] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:34:44.910] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:34:44.910] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:34:44.911] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:34:44.911] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:34:45.480] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:34:46.644] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:34:46.645] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:34:47.351] INFO  [wave10_RevGen3_20_Odess] [chat ascii] Lyndon: Aye?
+[17:34:47.876] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:34:47.876] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:34:47.876] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:47.876] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:47.876] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:34:47.876] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:34:50.496] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:34:50.928] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:34:50.928] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:34:50.928] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:34:50.928] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:34:52.543] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:34:52.543] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:34:53.773] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:34:53.773] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:34:53.773] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:53.774] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:53.774] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:34:53.774] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:34:55.516] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:34:58.292] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:34:58.293] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:34:58.293] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:34:58.293] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:34:59.338] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:34:59.339] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:34:59.339] INFO  [wave10_RevGen3_20_Odess] [travel] mobile 0x00016AE8 ARRIVED at (1430,1691,0) -- arrived nearby; the destination tile was not free
+[17:34:59.339] LOG   [wave10_RevGen3_20_Odess] event travel_done: label='mobile 0x00016AE8' ok=1 at=(1430,1691) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:34:59.460] INFO  [wave10_RevGen3_20_Odess] [travel] mobile 0x00016AE8 -> (1430,1688) r=1 from (1430,1691)
+[17:34:59.460] LOG   [wave10_RevGen3_20_Odess] event travel_start: label='mobile 0x00016AE8' target=(1430,1688) radius=1 from=(1430,1691)
+[17:34:59.460] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:34:59.460] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:34:59.460] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:59.461] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:59.461] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:34:59.461] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:34:59.522] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:34:59.522] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:34:59.522] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:34:59.522] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:35:00.569] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:35:00.630] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:35:00.631] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:35:01.864] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:35:01.864] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:35:01.864] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:01.865] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:01.865] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:35:01.865] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:35:03.408] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:35:03.409] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:35:03.409] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:35:03.409] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:35:05.609] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:35:07.088] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:35:07.089] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:35:08.318] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:35:08.318] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:35:08.319] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:08.319] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:08.319] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:35:08.319] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:35:10.655] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:35:11.332] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:35:11.332] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:35:11.332] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:35:11.332] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:35:12.503] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:35:12.504] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:35:13.737] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:35:13.737] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:35:13.737] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:13.737] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:13.737] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:35:13.737] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:35:15.662] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:35:18.285] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:35:18.285] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:35:18.285] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:35:18.285] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:35:19.520] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:35:19.520] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:35:19.520] INFO  [wave10_RevGen3_20_Odess] [travel] mobile 0x00016AE8 ARRIVED at (1430,1691,0) -- arrived nearby; the destination tile was not free
+[17:35:19.520] LOG   [wave10_RevGen3_20_Odess] event travel_done: label='mobile 0x00016AE8' ok=1 at=(1430,1691) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:35:19.582] INFO  [wave10_RevGen3_20_Odess] [travel] mobile 0x00016AE8 -> (1430,1688) r=1 from (1430,1691)
+[17:35:19.582] LOG   [wave10_RevGen3_20_Odess] event travel_start: label='mobile 0x00016AE8' target=(1430,1688) radius=1 from=(1430,1691)
+[17:35:19.582] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:35:19.582] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:35:19.582] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:19.582] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:19.582] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:35:19.583] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:35:19.642] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:35:19.643] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:35:19.643] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:35:19.644] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:35:20.693] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:35:20.838] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:35:20.838] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:35:22.047] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:35:22.047] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:35:22.048] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:22.048] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:22.048] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:35:22.048] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:35:23.578] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:35:23.578] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:35:23.578] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:35:23.578] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:35:24.808] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:35:24.809] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:35:25.706] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:35:26.058] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:35:26.058] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:35:26.059] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:26.059] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:26.059] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:35:26.059] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:35:28.934] INFO  [wave10_RevGen3_20_Odess] [chat ascii] Lyndon: I'm listenin'.
+[17:35:28.934] INFO  [wave10_RevGen3_20_Odess] [chat ascii] Lyndon: What's thee wantin'?
+[17:35:28.934] INFO  [wave10_RevGen3_20_Odess] [chat ascii] Lyndon: Aye?
+[17:35:29.119] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:35:29.119] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:35:29.119] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:35:29.120] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:35:30.505] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:35:30.505] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:35:30.750] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:35:31.763] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:35:31.763] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:35:31.763] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:31.764] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:31.764] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:35:31.764] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:35:35.801] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:35:36.322] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:35:36.323] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:35:36.323] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:35:36.323] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:35:37.633] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:35:37.633] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:35:37.634] INFO  [wave10_RevGen3_20_Odess] [travel] mobile 0x00016AE8 ARRIVED at (1430,1691,0) -- arrived nearby; the destination tile was not free
+[17:35:37.634] LOG   [wave10_RevGen3_20_Odess] event travel_done: label='mobile 0x00016AE8' ok=1 at=(1430,1691) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:35:37.756] INFO  [wave10_RevGen3_20_Odess] [travel] mobile 0x00016AE8 -> (1430,1688) r=1 from (1430,1691)
+[17:35:37.756] LOG   [wave10_RevGen3_20_Odess] event travel_start: label='mobile 0x00016AE8' target=(1430,1688) radius=1 from=(1430,1691)
+[17:35:37.756] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:35:37.756] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:35:37.757] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:37.757] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:37.757] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:35:37.757] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:35:37.757] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:35:37.757] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:35:37.758] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:35:37.758] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:35:38.143] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_20.odessa/state.json
+[17:35:39.035] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:35:39.035] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:35:39.329] INFO  [wave10_RevGen3_20_Odess] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.345] INFO  [wave10_RevGen3_20_Odess] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.346] INFO  [wave10_RevGen3_20_Odess] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.362] INFO  [wave10_RevGen3_20_Odess] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.362] INFO  [wave10_RevGen3_20_Odess] [chat ascii] System: Lyra has departed from Moonglow.
+round
+[17:34:52.480] WARN  [wave10_RevGen3_20_Odess] [bot] no path to (1430,1688) avoiding 0 block(s); stopping (search 1524020.1us)
+[17:34:52.481] WARN  [wave10_RevGen3_20_Odess] [bot] start (1430,1691,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 35 item(s), 7 mobile(s))
+[17:34:52.543] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:34:52.543] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:34:53.773] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:34:53.773] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:34:53.773] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:53.774] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:53.774] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:34:53.774] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:34:55.516] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:34:58.292] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:34:58.293] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:34:58.293] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:34:58.293] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:34:59.278] WARN  [wave10_RevGen3_20_Odess] [bot] no path to (1430,1688) avoiding 0 block(s); stopping (search 971349.1us)
+[17:34:59.279] WARN  [wave10_RevGen3_20_Odess] [bot] start (1430,1691,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 35 item(s), 5 mobile(s))
+[17:34:59.338] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:34:59.339] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:34:59.339] INFO  [wave10_RevGen3_20_Odess] [travel] mobile 0x00016AE8 ARRIVED at (1430,1691,0) -- arrived nearby; the destination tile was not free
+[17:34:59.339] LOG   [wave10_RevGen3_20_Odess] event travel_done: label='mobile 0x00016AE8' ok=1 at=(1430,1691) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:34:59.460] INFO  [wave10_RevGen3_20_Odess] [travel] mobile 0x00016AE8 -> (1430,1688) r=1 from (1430,1691)
+[17:34:59.460] LOG   [wave10_RevGen3_20_Odess] event travel_start: label='mobile 0x00016AE8' target=(1430,1688) radius=1 from=(1430,1691)
+[17:34:59.460] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:34:59.460] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:34:59.460] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:59.461] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:59.461] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:34:59.461] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:34:59.522] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:34:59.522] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:34:59.522] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:34:59.522] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:35:00.569] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:35:00.570] WARN  [wave10_RevGen3_20_Odess] [bot] no path to (1430,1688) avoiding 0 block(s); stopping (search 1023527.6us)
+[17:35:00.570] WARN  [wave10_RevGen3_20_Odess] [bot] start (1430,1691,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 35 item(s), 5 mobile(s))
+[17:35:00.630] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:35:00.631] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:35:01.864] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:35:01.864] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:35:01.864] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:01.865] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:01.865] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:35:01.865] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:35:03.408] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:35:03.409] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:35:03.409] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:35:03.409] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:35:05.609] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:35:07.028] WARN  [wave10_RevGen3_20_Odess] [bot] no path to (1430,1688) avoiding 0 block(s); stopping (search 3593482.1us)
+[17:35:07.031] WARN  [wave10_RevGen3_20_Odess] [bot] start (1430,1691,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 35 item(s), 5 mobile(s))
+[17:35:07.088] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:35:07.089] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:35:08.318] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:35:08.318] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:35:08.319] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:08.319] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:08.319] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:35:08.319] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:35:10.655] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:35:11.332] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:35:11.332] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:35:11.332] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:35:11.332] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:35:12.442] WARN  [wave10_RevGen3_20_Odess] [bot] no path to (1430,1688) avoiding 0 block(s); stopping (search 1087433.0us)
+[17:35:12.442] WARN  [wave10_RevGen3_20_Odess] [bot] start (1430,1691,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 35 item(s), 5 mobile(s))
+[17:35:12.503] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:35:12.504] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:35:13.737] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:35:13.737] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:35:13.737] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:13.737] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:13.737] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:35:13.737] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:35:15.662] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:35:18.285] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:35:18.285] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:35:18.285] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:35:18.285] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:35:19.458] WARN  [wave10_RevGen3_20_Odess] [bot] no path to (1430,1688) avoiding 0 block(s); stopping (search 1129175.9us)
+[17:35:19.459] WARN  [wave10_RevGen3_20_Odess] [bot] start (1430,1691,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 35 item(s), 5 mobile(s))
+[17:35:19.520] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:35:19.520] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:35:19.520] INFO  [wave10_RevGen3_20_Odess] [travel] mobile 0x00016AE8 ARRIVED at (1430,1691,0) -- arrived nearby; the destination tile was not free
+[17:35:19.520] LOG   [wave10_RevGen3_20_Odess] event travel_done: label='mobile 0x00016AE8' ok=1 at=(1430,1691) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:35:19.582] INFO  [wave10_RevGen3_20_Odess] [travel] mobile 0x00016AE8 -> (1430,1688) r=1 from (1430,1691)
+[17:35:19.582] LOG   [wave10_RevGen3_20_Odess] event travel_start: label='mobile 0x00016AE8' target=(1430,1688) radius=1 from=(1430,1691)
+[17:35:19.582] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:35:19.582] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:35:19.582] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:19.582] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:19.582] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:35:19.583] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:35:19.642] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:35:19.643] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:35:19.643] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:35:19.644] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:35:20.693] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:35:20.833] WARN  [wave10_RevGen3_20_Odess] [bot] no path to (1430,1688) avoiding 0 block(s); stopping (search 1187079.5us)
+[17:35:20.837] WARN  [wave10_RevGen3_20_Odess] [bot] start (1430,1691,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 35 item(s), 6 mobile(s))
+[17:35:20.838] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:35:20.838] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:35:22.047] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:35:22.047] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:35:22.048] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:22.048] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:22.048] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:35:22.048] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:35:23.578] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:35:23.578] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:35:23.578] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:35:23.578] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:35:24.807] WARN  [wave10_RevGen3_20_Odess] [bot] no path to (1430,1688) avoiding 0 block(s); stopping (search 1221429.1us)
+[17:35:24.808] WARN  [wave10_RevGen3_20_Odess] [bot] start (1430,1691,0) exits: open=4 terrain=3 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 35 item(s), 7 mobile(s))
+[17:35:24.808] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:35:24.809] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:35:25.706] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:35:26.058] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:35:26.058] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:35:26.059] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:26.059] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:26.059] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:35:26.059] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:35:28.934] INFO  [wave10_RevGen3_20_Odess] [chat ascii] Lyndon: I'm listenin'.
+[17:35:28.934] INFO  [wave10_RevGen3_20_Odess] [chat ascii] Lyndon: What's thee wantin'?
+[17:35:28.934] INFO  [wave10_RevGen3_20_Odess] [chat ascii] Lyndon: Aye?
+[17:35:29.119] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:35:29.119] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:35:29.119] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:35:29.120] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:35:30.504] WARN  [wave10_RevGen3_20_Odess] [bot] no path to (1430,1688) avoiding 0 block(s); stopping (search 1377514.1us)
+[17:35:30.504] WARN  [wave10_RevGen3_20_Odess] [bot] start (1430,1691,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 35 item(s), 7 mobile(s))
+[17:35:30.505] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:35:30.505] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:35:30.750] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:35:31.763] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:35:31.763] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:35:31.763] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:31.764] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:31.764] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:35:31.764] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:35:35.801] INFO  [wave10_RevGen3_20_Odess] [survival] hp 50/50 (100%) -> fight
+[17:35:36.322] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:35:36.323] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:35:36.323] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:35:36.323] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:35:37.571] WARN  [wave10_RevGen3_20_Odess] [bot] no path to (1430,1688) avoiding 0 block(s); stopping (search 1246164.6us)
+[17:35:37.571] WARN  [wave10_RevGen3_20_Odess] [bot] start (1430,1691,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 35 item(s), 6 mobile(s))
+[17:35:37.633] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:35:37.633] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:35:37.634] INFO  [wave10_RevGen3_20_Odess] [travel] mobile 0x00016AE8 ARRIVED at (1430,1691,0) -- arrived nearby; the destination tile was not free
+[17:35:37.634] LOG   [wave10_RevGen3_20_Odess] event travel_done: label='mobile 0x00016AE8' ok=1 at=(1430,1691) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:35:37.756] INFO  [wave10_RevGen3_20_Odess] [travel] mobile 0x00016AE8 -> (1430,1688) r=1 from (1430,1691)
+[17:35:37.756] LOG   [wave10_RevGen3_20_Odess] event travel_start: label='mobile 0x00016AE8' target=(1430,1688) radius=1 from=(1430,1691)
+[17:35:37.756] INFO  [wave10_RevGen3_20_Odess] [travel] mode walk             usable   <- chosen
+[17:35:37.756] INFO  [wave10_RevGen3_20_Odess] [travel] mode moongate         usable
+[17:35:37.757] INFO  [wave10_RevGen3_20_Odess] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:37.757] INFO  [wave10_RevGen3_20_Odess] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:37.757] LOG   [wave10_RevGen3_20_Odess] event travel_mode: walk
+[17:35:37.757] INFO  [wave10_RevGen3_20_Odess] [travel] plan mobile 0x00016AE8: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:35:37.757] INFO  [wave10_RevGen3_20_Odess] [action] goto (1430,1688) from (1430,1691,0)
+[17:35:37.757] LOG   [wave10_RevGen3_20_Odess] event goto_start: target=(1430,1688) from=(1430,1691)
+[17:35:37.758] INFO  [wave10_RevGen3_20_Odess] [bot] running from (1430,1691,0) to (1430,1688,z0)
+[17:35:37.758] INFO  [wave10_RevGen3_20_Odess] [bot] planning path to (1430,1688) in background
+[17:35:38.973] WARN  [wave10_RevGen3_20_Odess] [bot] no path to (1430,1688) avoiding 0 block(s); stopping (search 1196261.3us)
+[17:35:38.973] WARN  [wave10_RevGen3_20_Odess] [bot] start (1430,1691,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 35 item(s), 6 mobile(s))
+[17:35:39.035] INFO  [wave10_RevGen3_20_Odess] [action] goto finished at (1430,1691,0); target (1430,1688); stopped short (off by 3 tile(s))
+[17:35:39.035] LOG   [wave10_RevGen3_20_Odess] event goto_done: at=(1430,1691) target=(1430,1688) arrived=0 off=3
+[17:35:39.329] INFO  [wave10_RevGen3_20_Odess] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.345] INFO  [wave10_RevGen3_20_Odess] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.346] INFO  [wave10_RevGen3_20_Odess] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.362] INFO  [wave10_RevGen3_20_Odess] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.362] INFO  [wave10_RevGen3_20_Odess] [chat ascii] System: Lyra has departed from Moonglow.

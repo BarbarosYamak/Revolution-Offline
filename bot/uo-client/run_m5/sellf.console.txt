@@ -1,0 +1,984 @@
+[18:33:00.748] INFO  session 0: 127.0.0.1:2593 user='RevolutionSoak31' char=Bryn tag='sellf'
+[18:33:00.750] LOG   [sellf] event session_start: text log opened
+[18:33:00.750] LOG   [sellf] event net_connect_begin: connect 127.0.0.1:2593
+[18:33:00.750] INFO  [sellf] [net] connecting to 127.0.0.1:2593 ...
+[18:33:00.751] LOG   [sellf] event net_connected: connect 127.0.0.1:2593
+[18:33:00.751] INFO  [sellf] [net] connected.
+[18:33:00.751] INFO  [sellf] [seed] sent 0x7F000001 (plaintext)
+[18:33:00.751] LOG   [sellf] event seed_out: 0x7F000001 hex=7f000001
+[18:33:00.751] INFO  [life] loaded persistent state for Bryn (11 places, 0 suppliers, 4 events, 0 prior sessions)
+[18:33:00.751] INFO  [life] needs: reading 'fisher' from the profession catalogue
+[18:33:00.751] INFO  [life] build plan 'fisher': 150.0 resolved + 550.0 unresolved = 700.0/700.0, stats 80/50/45 = 175
+[18:33:00.751] INFO  [sellf] [life] autonomous player active for 'Bryn' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 25 min)
+[18:33:00.795] INFO  [sellf] [0xA8] 1 server(s):
+[18:33:00.795] INFO  [sellf]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[18:33:00.810] INFO  [sellf] [0x8C] game server = 127.0.0.1:2593  seed=0x26FC00BA
+[18:33:00.810] LOG   [sellf] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x26FC00BA
+[18:33:00.810] INFO  [sellf] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[18:33:00.810] LOG   [sellf] event relay_same_socket: no seed re-sent; 0x91 follows
+[18:33:00.811] INFO  [sellf] [0xB9] server features = 0x0005
+[18:33:00.811] INFO  [sellf] [0xA9] 5 slot(s) (populated 1):
+[18:33:00.811] INFO  [sellf]   [0] Bryn
+[18:33:00.811] INFO  [sellf]   [1] <empty>
+[18:33:00.811] INFO  [sellf]   [2] <empty>
+[18:33:00.811] INFO  [sellf]   [3] <empty>
+[18:33:00.811] INFO  [sellf]   [4] <empty>
+[18:33:00.811] INFO  [sellf] [ui] playing slot 0 ('Bryn')
+[18:33:00.825] INFO  [sellf] [0x1B] serial=0x00012E10 body=0x0190 pos=(1440,1754,-2)
+[18:33:00.825] LOG   [sellf] event login_confirm: serial=0x00012E10 body=0x0190 pos=(1440,1754,-2)
+[18:33:00.825] INFO  [sellf] [0x20] player @(1440,1754,-2) facing=4
+[18:33:00.825] INFO  [sellf] [0x55] login complete — entering world
+[18:33:00.825] LOG   [sellf] event in_world: 0x55 received
+[18:33:00.825] INFO  [sellf] [backpack] opening 0x40012DD6
+[18:33:00.825] INFO  [sellf] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[18:33:00.826] INFO  [sellf] [chat ascii] System: There is 1 other player here.
+[18:33:00.826] INFO  [sellf] [chat ascii] System: Last logged: 2026/08/28 18:29:04
+[18:33:00.826] INFO  [sellf] [chat ascii] System: You are under the protection of the city guards
+[18:33:00.829] INFO  [sellf] [action] requesting the skill list
+[18:33:00.829] INFO  [life] in world; asked the server for the skill list
+[18:33:00.829] INFO  [sellf] [0x24] open container 0x40012DD6 gump=60
+[18:33:00.829] INFO  [sellf] [0x3C] container contents: 11 item(s)
+[18:33:00.829] LOG   [sellf] event backpack_contents: serial=0x40012DD6 items=11
+[18:33:03.416] INFO  [sellf] [bot] world data loaded (0 blacklisted spot(s)).
+[18:33:03.416] INFO  [life] reconciliation: resuming a life, 0 field(s) differed
+[18:33:03.416] INFO  [life]   gold         persisted=1000       server=1000       -> server value accepted
+[18:33:03.416] INFO  [life]   str          persisted=25         server=25         -> server value accepted
+[18:33:03.416] INFO  [life]   dex          persisted=15         server=15         -> server value accepted
+[18:33:03.416] INFO  [life]   int          persisted=10         server=10         -> server value accepted
+[18:33:03.416] INFO  [life]   skill_18     persisted=50.4       server=50.4       -> server value accepted
+[18:33:03.416] INFO  [life]   skill_13     persisted=50.0       server=50.0       -> server value accepted
+[18:33:03.416] INFO  [life]   position     persisted=1440,1754  server=1440,1754  -> server value accepted
+[18:33:03.416] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[18:33:03.416] INFO  [life]   restored objective KEPT: BANK (progress 0)
+[18:33:03.416] INFO  [sellf] [survival] on
+[18:33:03.416] LOG   [sellf] event survival_mode: on
+[18:33:03.418] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak31.bryn/state.json
+[18:33:03.418] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:33:03.473] INFO  [life] bank: returning to a remembered bank at 1435,1754 (trip 1)
+[18:33:03.473] INFO  [sellf] [travel] bank -> (1435,1754) r=2 from (1440,1754)
+[18:33:03.473] LOG   [sellf] event travel_start: label='bank' target=(1435,1754) radius=2 from=(1440,1754)
+[18:33:03.473] INFO  [sellf] [travel] mode walk             usable   <- chosen
+[18:33:03.473] INFO  [sellf] [travel] mode moongate         usable
+[18:33:03.473] INFO  [sellf] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:33:03.473] INFO  [sellf] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:33:03.473] LOG   [sellf] event travel_mode: walk
+[18:33:03.473] INFO  [sellf] [travel] plan bank: ok legs=1 ~5 tiles transit=0 nodes=0
+[18:33:03.534] INFO  [sellf] [action] goto (1435,1754) from (1440,1754,-2)
+[18:33:03.534] LOG   [sellf] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:33:03.534] INFO  [sellf] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:33:03.534] INFO  [sellf] [bot] planning path to (1435,1754) in background
+[18:33:03.656] INFO  [sellf] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:33:03.656] LOG   [sellf] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:33:03.888] INFO  [sellf] [chat ascii] System: Ysolde has arrived in Britain.
+[18:33:04.870] INFO  [sellf] [action] goto (1435,1754) from (1440,1754,-2)
+[18:33:04.870] LOG   [sellf] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:33:04.870] INFO  [sellf] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:33:04.870] INFO  [sellf] [bot] planning path to (1435,1754) in background
+[18:33:04.962] INFO  [sellf] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:33:04.962] LOG   [sellf] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:33:06.187] INFO  [sellf] [action] goto (1435,1754) from (1440,1754,-2)
+[18:33:06.188] LOG   [sellf] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:33:06.188] INFO  [sellf] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:33:06.188] INFO  [sellf] [bot] planning path to (1435,1754) in background
+[18:33:06.263] INFO  [sellf] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:33:06.263] LOG   [sellf] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:33:07.469] INFO  [sellf] [travel] mode walk             usable   <- chosen
+[18:33:07.469] INFO  [sellf] [travel] mode moongate         usable
+[18:33:07.469] INFO  [sellf] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:33:07.469] INFO  [sellf] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:33:07.469] LOG   [sellf] event travel_mode: walk
+[18:33:07.469] INFO  [sellf] [travel] plan bank: ok legs=1 ~5 tiles transit=0 nodes=0
+[18:33:08.421] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:33:08.974] INFO  [sellf] [action] goto (1435,1754) from (1440,1754,-2)
+[18:33:08.974] LOG   [sellf] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:33:08.974] INFO  [sellf] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:33:08.974] INFO  [sellf] [bot] planning path to (1435,1754) in background
+[18:33:09.097] INFO  [sellf] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:33:09.097] LOG   [sellf] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:33:10.344] INFO  [sellf] [action] goto (1435,1754) from (1440,1754,-2)
+[18:33:10.344] LOG   [sellf] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:33:10.344] INFO  [sellf] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:33:10.344] INFO  [sellf] [bot] planning path to (1435,1754) in background
+[18:33:10.465] INFO  [sellf] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:33:10.465] LOG   [sellf] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:33:11.699] INFO  [sellf] [action] goto (1435,1754) from (1440,1754,-2)
+[18:33:11.699] LOG   [sellf] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:33:11.699] INFO  [sellf] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:33:11.699] INFO  [sellf] [bot] planning path to (1435,1754) in background
+[18:33:11.822] INFO  [sellf] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:33:11.822] LOG   [sellf] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:33:13.049] INFO  [sellf] [travel] mode walk             usable   <- chosen
+[18:33:13.049] INFO  [sellf] [travel] mode moongate         usable
+[18:33:13.049] INFO  [sellf] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:33:13.049] INFO  [sellf] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:33:13.049] LOG   [sellf] event travel_mode: walk
+[18:33:13.049] INFO  [sellf] [travel] plan bank: ok legs=1 ~5 tiles transit=0 nodes=0
+[18:33:13.429] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:33:16.052] INFO  [sellf] [action] goto (1435,1754) from (1440,1754,-2)
+[18:33:16.052] LOG   [sellf] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:33:16.052] INFO  [sellf] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:33:16.052] INFO  [sellf] [bot] planning path to (1435,1754) in background
+[18:33:16.173] INFO  [sellf] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:33:16.173] LOG   [sellf] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:33:17.386] INFO  [sellf] [action] goto (1435,1754) from (1440,1754,-2)
+[18:33:17.387] LOG   [sellf] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:33:17.387] INFO  [sellf] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:33:17.387] INFO  [sellf] [bot] planning path to (1435,1754) in background
+[18:33:17.509] INFO  [sellf] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:33:17.509] LOG   [sellf] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:33:18.476] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:33:18.723] INFO  [sellf] [action] goto (1435,1754) from (1440,1754,-2)
+[18:33:18.723] LOG   [sellf] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:33:18.723] INFO  [sellf] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:33:18.723] INFO  [sellf] [bot] planning path to (1435,1754) in background
+[18:33:18.847] INFO  [sellf] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:33:18.847] LOG   [sellf] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:33:20.086] INFO  [sellf] [travel] mode walk             usable   <- chosen
+[18:33:20.086] INFO  [sellf] [travel] mode moongate         usable
+[18:33:20.086] INFO  [sellf] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:33:20.086] INFO  [sellf] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:33:20.086] LOG   [sellf] event travel_mode: walk
+[18:33:20.086] INFO  [sellf] [travel] plan bank: ok legs=1 ~5 tiles transit=0 nodes=0
+[18:33:23.479] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:33:24.620] INFO  [sellf] [action] goto (1435,1754) from (1440,1754,-2)
+[18:33:24.620] LOG   [sellf] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:33:24.620] INFO  [sellf] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:33:24.620] INFO  [sellf] [bot] planning path to (1435,1754) in background
+[18:33:24.681] INFO  [sellf] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:33:24.681] LOG   [sellf] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:33:25.927] INFO  [sellf] [action] goto (1435,1754) from (1440,1754,-2)
+[18:33:25.927] LOG   [sellf] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:33:25.927] INFO  [sellf] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:33:25.927] INFO  [sellf] [bot] planning path to (1435,1754) in background
+[18:33:26.049] INFO  [sellf] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:33:26.049] LOG   [sellf] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:33:27.255] INFO  [sellf] [action] goto (1435,1754) from (1440,1754,-2)
+[18:33:27.255] LOG   [sellf] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:33:27.255] INFO  [sellf] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:33:27.255] INFO  [sellf] [bot] planning path to (1435,1754) in background
+[18:33:27.316] INFO  [sellf] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:33:27.316] LOG   [sellf] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:33:27.316] INFO  [sellf] [travel] bank ARRIVED at (1440,1754,-2) -- arrived nearby; the destination tile was not free
+[18:33:27.316] LOG   [sellf] event travel_done: label='bank' ok=1 at=(1440,1754) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[18:33:27.377] INFO  [life] bank: arrived at 1440,1754 -- asking who is here
+[18:33:27.377] INFO  [sellf] [action] scanning nearby mobiles for names
+[18:33:27.377] INFO  [sellf] [action] requested 1 paperdoll(s) for trade titles
+[18:33:27.392] INFO  [sellf] [mobiles] nearby (5):
+[18:33:27.392] INFO  [sellf]   Rat 0x00000A46
+[18:33:27.392] INFO  [sellf]   Lulu 0x00000A87
+[18:33:27.392] INFO  [sellf]   Shika 0x00000A93
+[18:33:27.392] INFO  [sellf]   Kintan 0x00000AAB
+[18:33:27.392] INFO  [sellf]   Rat 0x00000FAB
+[18:33:27.392] INFO  [sellf] [0x20] player @(1440,1754,-2) facing=6
+[18:33:27.392] INFO  [sellf] [0x88] paperdoll 0x00000A87: "Lulu, the sailor"
+[18:33:28.492] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:33:29.902] INFO  [life] bank: returning to a remembered bank at 1435,1754 (trip 2)
+[18:33:29.902] INFO  [sellf] [travel] bank -> (1435,1754) r=2 from (1440,1754)
+[18:33:29.902] LOG   [sellf] event travel_start: label='bank' target=(1435,1754) radius=2 from=(1440,1754)
+[18:33:29.902] INFO  [sellf] [travel] mode walk             usable   <- chosen
+[18:33:29.902] INFO  [sellf] [travel] mode moongate         usable
+[18:33:29.902] INFO  [sellf] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:33:29.902] INFO  [sellf] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:33:29.902] LOG   [sellf] event travel_mode: walk
+[18:33:29.902] INFO  [sellf] [travel] plan bank: ok legs=1 ~5 tiles transit=0 nodes=0
+[18:33:29.962] INFO  [sellf] [action] goto (1435,1754) from (1440,1754,-2)
+[18:33:29.962] LOG   [sellf] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:33:29.962] INFO  [sellf] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:33:29.962] INFO  [sellf] [bot] planning path to (1435,1754) in background
+[18:33:30.084] INFO  [sellf] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:33:30.084] LOG   [sellf] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:33:31.343] INFO  [sellf] [action] goto (1435,1754) from (1440,1754,-2)
+[18:33:31.343] LOG   [sellf] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:33:31.343] INFO  [sellf] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:33:31.343] INFO  [sellf] [bot] planning path to (1435,1754) in background
+[18:33:31.466] INFO  [sellf] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:33:31.466] LOG   [sellf] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:33:32.706] INFO  [sellf] [action] goto (1435,1754) from (1440,1754,-2)
+[18:33:32.706] LOG   [sellf] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:33:32.706] INFO  [sellf] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:33:32.706] INFO  [sellf] [bot] planning path to (1435,1754) in background
+[18:33:32.829] INFO  [sellf] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:33:32.829] LOG   [sellf] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:33:33.502] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:33:34.055] INFO  [sellf] [travel] mode walk             usable   <- chosen
+[18:33:34.056] INFO  [sellf] [travel] mode moongate         usable
+[18:33:34.056] INFO  [sellf] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:33:34.056] INFO  [sellf] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:33:34.056] LOG   [sellf] event travel_mode: walk
+[18:33:34.056] INFO  [sellf] [travel] plan bank: ok legs=1 ~5 tiles transit=0 nodes=0
+[18:33:35.588] INFO  [sellf] [action] goto (1435,1754) from (1440,1754,-2)
+[18:33:35.588] LOG   [sellf] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:33:35.588] INFO  [sellf] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:33:35.588] INFO  [sellf] [bot] planning path to (1435,1754) in background
+[18:33:35.709] INFO  [sellf] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:33:35.709] LOG   [sellf] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:33:36.921] INFO  [sellf] [action] goto (1435,1754) from (1440,1754,-2)
+[18:33:36.921] LOG   [sellf] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:33:36.921] INFO  [sellf] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:33:36.921] INFO  [sellf] [bot] planning path to (1435,1754) in background
+[18:33:37.042] INFO  [sellf] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:33:37.042] LOG   [sellf] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:33:38.268] INFO  [sellf] [action] goto (1435,1754) from (1440,1754,-2)
+[18:33:38.268] LOG   [sellf] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:33:38.268] INFO  [sellf] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:33:38.268] INFO  [sellf] [bot] planning path to (1435,1754) in background
+[18:33:38.390] INFO  [sellf] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:33:38.390] LOG   [sellf] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:33:38.557] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:33:39.607] INFO  [sellf] [travel] mode walk             usable   <- chosen
+[18:33:39.607] INFO  [sellf] [travel] mode moongate         usable
+[18:33:39.607] INFO  [sellf] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:33:39.607] INFO  [sellf] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:33:39.607] LOG   [sellf] event travel_mode: walk
+[18:33:39.607] INFO  [sellf] [travel] plan bank: ok legs=1 ~5 tiles transit=0 nodes=0
+[18:33:42.642] INFO  [sellf] [action] goto (1435,1754) from (1440,1754,-2)
+[18:33:42.642] LOG   [sellf] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:33:42.642] INFO  [sellf] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:33:42.642] INFO  [sellf] [bot] planning path to (1435,1754) in background
+[18:33:42.763] INFO  [sellf] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:33:42.763] LOG   [sellf] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:33:43.576] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:33:44.003] INFO  [sellf] [action] goto (1435,1754) from (1440,1754,-2)
+[18:33:44.003] LOG   [sellf] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:33:44.004] INFO  [sellf] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:33:44.004] INFO  [sellf] [bot] planning path to (1435,1754) in background
+[18:33:44.125] INFO  [sellf] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:33:44.125] LOG   [sellf] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:33:45.352] INFO  [sellf] [action] goto (1435,1754) from (1440,1754,-2)
+[18:33:45.352] LOG   [sellf] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:33:45.352] INFO  [sellf] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:33:45.352] INFO  [sellf] [bot] planning path to (1435,1754) in background
+[18:33:45.414] INFO  [sellf] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:33:45.414] LOG   [sellf] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:33:46.648] INFO  [sellf] [travel] mode walk             usable   <- chosen
+[18:33:46.648] INFO  [sellf] [travel] mode moongate         usable
+[18:33:46.648] INFO  [sellf] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:33:46.648] INFO  [sellf] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:33:46.648] LOG   [sellf] event travel_mode: walk
+[18:33:46.648] INFO  [sellf] [travel] plan bank: ok legs=1 ~5 tiles transit=0 nodes=0
+[18:33:48.591] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:33:51.193] INFO  [sellf] [action] goto (1435,1754) from (1440,1754,-2)
+[18:33:51.193] LOG   [sellf] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:33:51.193] INFO  [sellf] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:33:51.193] INFO  [sellf] [bot] planning path to (1435,1754) in background
+[18:33:51.315] INFO  [sellf] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:33:51.315] LOG   [sellf] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:33:52.526] INFO  [sellf] [action] goto (1435,1754) from (1440,1754,-2)
+[18:33:52.526] LOG   [sellf] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:33:52.526] INFO  [sellf] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:33:52.526] INFO  [sellf] [bot] planning path to (1435,1754) in background
+[18:33:52.588] INFO  [sellf] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:33:52.588] LOG   [sellf] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:33:53.628] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:33:53.811] INFO  [sellf] [action] goto (1435,1754) from (1440,1754,-2)
+[18:33:53.811] LOG   [sellf] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:33:53.811] INFO  [sellf] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:33:53.811] INFO  [sellf] [bot] planning path to (1435,1754) in background
+[18:33:53.934] INFO  [sellf] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:33:53.934] LOG   [sellf] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:33:53.934] INFO  [sellf] [travel] bank ARRIVED at (1440,1754,-2) -- arrived nearby; the destination tile was not free
+[18:33:53.934] LOG   [sellf] event travel_done: label='bank' ok=1 at=(1440,1754) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[18:33:53.996] INFO  [life] bank: arrived at 1440,1754 -- asking who is here
+[18:33:53.996] INFO  [sellf] [action] scanning nearby mobiles for names
+[18:33:53.996] INFO  [sellf] [action] requested 1 paperdoll(s) for trade titles
+[18:33:54.011] INFO  [sellf] [mobiles] nearby (5):
+[18:33:54.011] INFO  [sellf]   Rat 0x00000A46
+[18:33:54.011] INFO  [sellf]   Lulu 0x00000A87
+[18:33:54.011] INFO  [sellf]   Shika 0x00000A93
+[18:33:54.011] INFO  [sellf]   Kintan 0x00000AAB
+[18:33:54.011] INFO  [sellf]   Rat 0x00000FAB
+[18:33:54.011] INFO  [sellf] [0x88] paperdoll 0x00000A93: "Shika, the fisherwoman"
+[18:33:54.011] INFO  [sellf] [world] Shika, the fisherwoman is a fisherman at (1434,1755)
+[18:33:56.508] INFO  [life] bank: two trips to 1435,1754 found no banker -- forgetting that place
+[18:33:56.508] INFO  [life] bank: returning to a remembered bank at 1435,1747 (trip 3)
+[18:33:56.508] INFO  [sellf] [travel] bank -> (1435,1747) r=2 from (1440,1754)
+[18:33:56.508] LOG   [sellf] event travel_start: label='bank' target=(1435,1747) radius=2 from=(1440,1754)
+[18:33:56.508] INFO  [sellf] [travel] mode walk             usable   <- chosen
+[18:33:56.508] INFO  [sellf] [travel] mode moongate         usable
+[18:33:56.508] INFO  [sellf] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:33:56.508] INFO  [sellf] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:33:56.508] LOG   [sellf] event travel_mode: walk
+[18:33:56.508] INFO  [sellf] [travel] plan bank: ok legs=1 ~7 tiles transit=0 nodes=0
+[18:33:56.568] INFO  [sellf] [action] goto (1435,1747) from (1440,1754,-2)
+[18:33:56.568] LOG   [sellf] event goto_start: target=(1435,1747) from=(1440,1754)
+[18:33:56.568] INFO  [sellf] [bot] running from (1440,1754,-2) to (1435,1747)
+[18:33:56.568] INFO  [sellf] [bot] planning path to (1435,1747) in background
+[18:33:56.630] INFO  [sellf] [bot] replan to (1435,1747): 15 steps in 298.3us
+[18:33:58.638] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:34:01.289] INFO  [sellf] [travel] bank ARRIVED at (1434,1749,15)
+[18:34:01.289] LOG   [sellf] event travel_done: label='bank' ok=1 at=(1434,1749) legs=1 plans=1 why=''
+[18:34:01.353] INFO  [life] bank: arrived at 1434,1749 -- asking who is here
+[18:34:01.353] INFO  [sellf] [action] scanning nearby mobiles for names
+[18:34:01.366] INFO  [sellf] [mobiles] nearby (6):
+[18:34:01.366] INFO  [sellf]   Shika 0x00000A93
+[18:34:01.366] INFO  [sellf]   Lulu 0x00000A87
+[18:34:01.366] INFO  [sellf]   Rat 0x00000A46
+[18:34:01.366] INFO  [sellf]   Bess 0x00000A6D
+[18:34:01.366] INFO  [sellf]   Kintan 0x00000AAB
+[18:34:01.366] INFO  [sellf]   Rat 0x00000FAB
+[18:34:02.284] INFO  [sellf] [bot] arrived at (1435,1747,16)
+[18:34:03.464] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak31.bryn/state.json
+[18:34:03.644] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:34:03.905] INFO  [life] bank: two trips to 1435,1747 found no banker -- forgetting that place
+[18:34:03.905] INFO  [life] bank: returning to a remembered bank at 1437,1740 (trip 4)
+[18:34:03.905] INFO  [sellf] [travel] bank -> (1437,1740) r=2 from (1435,1747)
+[18:34:03.905] LOG   [sellf] event travel_start: label='bank' target=(1437,1740) radius=2 from=(1435,1747)
+[18:34:03.905] INFO  [sellf] [travel] mode walk             usable   <- chosen
+[18:34:03.905] INFO  [sellf] [travel] mode moongate         usable
+[18:34:03.905] INFO  [sellf] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:34:03.905] INFO  [sellf] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:34:03.905] LOG   [sellf] event travel_mode: walk
+[18:34:03.905] INFO  [sellf] [travel] plan bank: ok legs=1 ~7 tiles transit=0 nodes=0
+[18:34:03.967] INFO  [sellf] [action] goto finished at (1435,1747,16); target (1435,1747); ARRIVED (off by 0 tile(s))
+[18:34:03.967] LOG   [sellf] event goto_done: at=(1435,1747) target=(1435,1747) arrived=1 off=0
+[18:34:03.967] INFO  [sellf] [action] goto (1437,1740) from (1435,1747,16)
+[18:34:03.967] LOG   [sellf] event goto_start: target=(1437,1740) from=(1435,1747)
+[18:34:03.967] INFO  [sellf] [bot] running from (1435,1747,16) to (1437,1740)
+[18:34:03.967] INFO  [sellf] [bot] planning path to (1437,1740) in background
+[18:34:04.029] INFO  [sellf] [bot] replan to (1437,1740): 7 steps in 24.9us
+[18:34:05.438] INFO  [sellf] [travel] bank ARRIVED at (1435,1742,18)
+[18:34:05.438] LOG   [sellf] event travel_done: label='bank' ok=1 at=(1435,1742) legs=1 plans=1 why=''
+[18:34:05.927] INFO  [life] bank: arrived at 1436,1741 -- asking who is here
+[18:34:05.927] INFO  [sellf] [action] scanning nearby mobiles for names
+[18:34:05.928] INFO  [sellf] [mobiles] nearby (4):
+[18:34:05.928] INFO  [sellf]   Rat 0x00000A46
+[18:34:05.928] INFO  [sellf]   Shika 0x00000A93
+[18:34:05.928] INFO  [sellf]   Lulu 0x00000A87
+[18:34:05.928] INFO  [sellf]   Bess 0x00000A6D
+[18:34:06.050] INFO  [sellf] [bot] arrived at (1437,1740,20)
+[18:34:08.443] INFO  [life] goal_failed=BANK reason="4 trips and still no banker in reach; the pack stays full"
+[18:34:08.504] INFO  [life] goal=BANK reason="previous goal abandoned: no banker reachable"
+[18:34:08.504] INFO  [life] needs considered: NeedBank(deposit carried load 0.74) NeedGold(sell surplus 0.45) NeedCatch(fish 0.45) NeedTraining(Fishing BLOCKED 0.27) NeedFood(food 0.25)  | tools defined=1 held=[fishing pole,]
+[18:34:08.504] INFO  [life]   score=178.1
+[18:34:08.504] INFO  [life]   reason: NeedBank urgency 0.74 x 240 = 178.1
+[18:34:08.504] INFO  [life]   reason: weight=126/127 (99%) logs=0
+[18:34:08.504] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Fishing 50.4 -> 100.0)
+[18:34:08.685] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:34:13.738] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:34:18.790] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:34:23.809] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:34:28.829] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:34:33.837] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:34:38.477] INFO  [life] bank: returning to a remembered bank at 1437,1740 (trip 1)
+[18:34:38.477] INFO  [sellf] [travel] bank -> (1437,1740) r=2 from (1437,1740)
+[18:34:38.477] LOG   [sellf] event travel_start: label='bank' target=(1437,1740) radius=2 from=(1437,1740)
+[18:34:38.477] INFO  [sellf] [travel] bank ARRIVED at (1437,1740,20)
+[18:34:38.477] LOG   [sellf] event travel_done: label='bank' ok=1 at=(1437,1740) legs=0 plans=0 why=''
+[18:34:38.844] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:34:40.490] INFO  [life] bank: arrived at 1437,1740 -- asking who is here
+[18:34:40.490] INFO  [sellf] [action] scanning nearby mobiles for names
+[18:34:40.490] INFO  [sellf] [mobiles] nearby (5):
+[18:34:40.490] INFO  [sellf]   Marina 0x00001153
+[18:34:40.490] INFO  [sellf]   Rat 0x00000A46
+[18:34:40.490] INFO  [sellf]   Lulu 0x00000A87
+[18:34:40.490] INFO  [sellf]   Sitembile 0x00000AB7
+[18:34:40.490] INFO  [sellf]   Krister 0x000011A3
+[18:34:43.006] INFO  [life] bank: returning to a remembered bank at 1437,1740 (trip 2)
+[18:34:43.006] INFO  [sellf] [travel] bank -> (1437,1740) r=2 from (1437,1740)
+[18:34:43.006] LOG   [sellf] event travel_start: label='bank' target=(1437,1740) radius=2 from=(1437,1740)
+[18:34:43.006] INFO  [sellf] [travel] bank ARRIVED at (1437,1740,20)
+[18:34:43.006] LOG   [sellf] event travel_done: label='bank' ok=1 at=(1437,1740) legs=0 plans=0 why=''
+[18:34:43.876] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:34:45.041] INFO  [life] bank: arrived at 1437,1740 -- asking who is here
+[18:34:45.041] INFO  [sellf] [action] scanning nearby mobiles for names
+[18:34:45.056] INFO  [sellf] [mobiles] nearby (5):
+[18:34:45.056] INFO  [sellf]   Marina 0x00001153
+[18:34:45.056] INFO  [sellf]   Rat 0x00000A46
+[18:34:45.056] INFO  [sellf]   Lulu 0x00000A87
+[18:34:45.056] INFO  [sellf]   Krister 0x000011A3
+[18:34:45.056] INFO  [sellf]   Sitembile 0x00000AB7
+[18:34:47.568] INFO  [life] bank: two trips to 1437,1740 found no banker -- forgetting that place
+[18:34:47.568] INFO  [life] bank: returning to a remembered bank at 1437,1733 (trip 3)
+[18:34:47.568] INFO  [sellf] [travel] bank -> (1437,1733) r=2 from (1437,1740)
+[18:34:47.568] LOG   [sellf] event travel_start: label='bank' target=(1437,1733) radius=2 from=(1437,1740)
+[18:34:47.568] INFO  [sellf] [travel] mode walk             usable   <- chosen
+[18:34:47.568] INFO  [sellf] [travel] mode moongate         usable
+[18:34:47.568] INFO  [sellf] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:34:47.568] INFO  [sellf] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:34:47.568] LOG   [sellf] event travel_mode: walk
+[18:34:47.568] INFO  [sellf] [travel] plan bank: ok legs=1 ~7 tiles transit=0 nodes=0
+[18:34:47.630] INFO  [sellf] [action] goto finished at (1437,1740,20); target (1437,1740); ARRIVED (off by 0 tile(s))
+[18:34:47.630] LOG   [sellf] event goto_done: at=(1437,1740) target=(1437,1740) arrived=1 off=0
+[18:34:47.630] INFO  [sellf] [action] goto (1437,1733) from (1437,1740,20)
+[18:34:47.630] LOG   [sellf] event goto_start: target=(1437,1733) from=(1437,1740)
+[18:34:47.630] INFO  [sellf] [bot] running from (1437,1740,20) to (1437,1733)
+[18:34:47.630] INFO  [sellf] [bot] planning path to (1437,1733) in background
+[18:34:47.691] INFO  [sellf] [bot] replan to (1437,1733): 7 steps in 26.8us
+[18:34:48.912] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:34:49.157] INFO  [sellf] [travel] bank ARRIVED at (1437,1735,20)
+[18:34:49.158] LOG   [sellf] event travel_done: label='bank' ok=1 at=(1437,1735) legs=1 plans=1 why=''
+[18:34:49.573] INFO  [life] bank: arrived at 1437,1734 -- asking who is here
+[18:34:49.573] INFO  [sellf] [action] scanning nearby mobiles for names
+[18:34:49.573] INFO  [sellf] [mobiles] nearby (6):
+[18:34:49.573] INFO  [sellf]   Marina 0x00001153
+[18:34:49.573] INFO  [sellf]   Krister 0x000011A3
+[18:34:49.573] INFO  [sellf]   Bergren 0x0000122F
+[18:34:49.573] INFO  [sellf]   Jacinda 0x000011E8
+[18:34:49.573] INFO  [sellf]   Colton 0x0000104C
+[18:34:49.573] INFO  [sellf]   Rat 0x00000A46
+[18:34:49.573] INFO  [sellf] [bot] arrived at (1437,1733,18)
+[18:34:52.081] INFO  [life] bank: two trips to 1437,1733 found no banker -- forgetting that place
+[18:34:52.081] INFO  [life] bank: returning to a remembered bank at 1443,1726 (trip 4)
+[18:34:52.081] INFO  [sellf] [travel] bank -> (1443,1726) r=2 from (1437,1733)
+[18:34:52.081] LOG   [sellf] event travel_start: label='bank' target=(1443,1726) radius=2 from=(1437,1733)
+[18:34:52.081] INFO  [sellf] [travel] mode walk             usable   <- chosen
+[18:34:52.081] INFO  [sellf] [travel] mode moongate         usable
+[18:34:52.081] INFO  [sellf] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:34:52.081] INFO  [sellf] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:34:52.081] LOG   [sellf] event travel_mode: walk
+[18:34:52.081] INFO  [sellf] [travel] plan bank: ok legs=1 ~7 tiles transit=0 nodes=0
+[18:34:52.141] INFO  [sellf] [action] goto finished at (1437,1733,18); target (1437,1733); ARRIVED (off by 0 tile(s))
+[18:34:52.142] LOG   [sellf] event goto_done: at=(1437,1733) target=(1437,1733) arrived=1 off=0
+[18:34:52.142] INFO  [sellf] [action] goto (1443,1726) from (1437,1733,18)
+[18:34:52.142] LOG   [sellf] event goto_start: target=(1443,1726) from=(1437,1733)
+[18:34:52.142] INFO  [sellf] [bot] running from (1437,1733,18) to (1443,1726)
+[18:34:52.142] INFO  [sellf] [bot] planning path to (1443,1726) in background
+[18:34:52.202] INFO  [sellf] [bot] replan to (1443,1726): 7 steps in 25.6us
+[18:34:53.670] INFO  [sellf] [travel] bank ARRIVED at (1442,1727,3)
+[18:34:53.670] LOG   [sellf] event travel_done: label='bank' ok=1 at=(1442,1727) legs=1 plans=1 why=''
+[18:34:53.915] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:34:54.053] INFO  [sellf] [bot] arrived at (1443,1726,0)
+[18:34:54.115] INFO  [life] bank: arrived at 1443,1726 -- asking who is here
+[18:34:54.115] INFO  [sellf] [action] scanning nearby mobiles for names
+[18:34:54.116] INFO  [sellf] [action] requested 1 paperdoll(s) for trade titles
+[18:34:54.131] INFO  [sellf] [mobiles] nearby (7):
+[18:34:54.132] INFO  [sellf]   Krister 0x000011A3
+[18:34:54.132] INFO  [sellf]   Bergren 0x0000122F
+[18:34:54.132] INFO  [sellf]   Jacinda 0x000011E8
+[18:34:54.132] INFO  [sellf]   Elkan 0x000012E2
+[18:34:54.132] INFO  [sellf]   Krischan 0x00001068
+[18:34:54.132] INFO  [sellf]   Marina 0x00001153
+[18:34:54.132] INFO  [sellf]   Colton 0x0000104C
+[18:34:54.132] INFO  [sellf] [0x88] paperdoll 0x000011A3: "Krister, the butcher"
+[18:34:54.132] INFO  [sellf] [world] Krister, the butcher is a butcher at (1448,1722)
+[18:34:56.626] INFO  [life] goal_failed=BANK reason="4 trips and still no banker in reach; the pack stays full"
+[18:34:56.689] INFO  [life] goal=BANK reason="previous goal abandoned: no banker reachable"
+[18:34:56.689] INFO  [life] needs considered: NeedBank(deposit carried load 0.74) NeedGold(sell surplus 0.45) NeedCatch(fish 0.45) NeedTraining(Fishing BLOCKED 0.27) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20)  | tools defined=1 held=[fishing pole,]
+[18:34:56.689] INFO  [life]   score=178.1
+[18:34:56.689] INFO  [life]   reason: NeedBank urgency 0.74 x 240 = 178.1
+[18:34:56.689] INFO  [life]   reason: weight=126/127 (99%) logs=0
+[18:34:56.689] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Fishing 50.4 -> 100.0)
+[18:34:58.975] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:35:03.478] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak31.bryn/state.json
+[18:35:04.028] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:35:09.034] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:35:14.096] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:35:19.152] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:35:24.177] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:35:26.656] INFO  [life] bank: returning to a remembered bank at 1443,1726 (trip 1)
+[18:35:26.656] INFO  [sellf] [travel] bank -> (1443,1726) r=2 from (1443,1726)
+[18:35:26.656] LOG   [sellf] event travel_start: label='bank' target=(1443,1726) radius=2 from=(1443,1726)
+[18:35:26.656] INFO  [sellf] [travel] bank ARRIVED at (1443,1726,0)
+[18:35:26.656] LOG   [sellf] event travel_done: label='bank' ok=1 at=(1443,1726) legs=0 plans=0 why=''
+[18:35:28.675] INFO  [life] bank: arrived at 1443,1726 -- asking who is here
+[18:35:28.675] INFO  [sellf] [action] scanning nearby mobiles for names
+[18:35:28.690] INFO  [sellf] [mobiles] nearby (7):
+[18:35:28.690] INFO  [sellf]   Bergren 0x0000122F
+[18:35:28.690] INFO  [sellf]   Krister 0x000011A3
+[18:35:28.690] INFO  [sellf]   Krischan 0x00001068
+[18:35:28.690] INFO  [sellf]   Jacinda 0x000011E8
+[18:35:28.690] INFO  [sellf]   Elkan 0x000012E2
+[18:35:28.690] INFO  [sellf]   Marina 0x00001153
+[18:35:28.690] INFO  [sellf]   Colton 0x0000104C
+[18:35:29.229] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:35:31.211] INFO  [life] bank: returning to a remembered bank at 1443,1726 (trip 2)
+[18:35:31.211] INFO  [sellf] [travel] bank -> (1443,1726) r=2 from (1443,1726)
+[18:35:31.211] LOG   [sellf] event travel_start: label='bank' target=(1443,1726) radius=2 from=(1443,1726)
+[18:35:31.211] INFO  [sellf] [travel] bank ARRIVED at (1443,1726,0)
+[18:35:31.211] LOG   [sellf] event travel_done: label='bank' ok=1 at=(1443,1726) legs=0 plans=0 why=''
+[18:35:33.219] INFO  [life] bank: arrived at 1443,1726 -- asking who is here
+[18:35:33.219] INFO  [sellf] [action] scanning nearby mobiles for names
+[18:35:33.234] INFO  [sellf] [mobiles] nearby (7):
+[18:35:33.234] INFO  [sellf]   Krister 0x000011A3
+[18:35:33.234] INFO  [sellf]   Bergren 0x0000122F
+[18:35:33.234] INFO  [sellf]   Jacinda 0x000011E8
+[18:35:33.234] INFO  [sellf]   Krischan 0x00001068
+[18:35:33.234] INFO  [sellf]   Elkan 0x000012E2
+[18:35:33.234] INFO  [sellf]   Marina 0x00001153
+[18:35:33.234] INFO  [sellf]   Colton 0x0000104C
+[18:35:34.263] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:35:35.720] INFO  [life] bank: two trips to 1443,1726 found no banker -- forgetting that place
+[18:35:35.720] INFO  [life] bank: returning to a remembered bank at 1446,1719 (trip 3)
+[18:35:35.720] INFO  [sellf] [travel] bank -> (1446,1719) r=2 from (1443,1726)
+[18:35:35.720] LOG   [sellf] event travel_start: label='bank' target=(1446,1719) radius=2 from=(1443,1726)
+[18:35:35.720] INFO  [sellf] [travel] mode walk             usable   <- chosen
+[18:35:35.720] INFO  [sellf] [travel] mode moongate         usable
+[18:35:35.720] INFO  [sellf] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:35:35.720] INFO  [sellf] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:35:35.720] LOG   [sellf] event travel_mode: walk
+[18:35:35.720] INFO  [sellf] [travel] plan bank: ok legs=1 ~7 tiles transit=0 nodes=0
+[18:35:35.781] INFO  [sellf] [action] goto finished at (1443,1726,0); target (1443,1726); ARRIVED (off by 0 tile(s))
+[18:35:35.781] LOG   [sellf] event goto_done: at=(1443,1726) target=(1443,1726) arrived=1 off=0
+[18:35:35.781] INFO  [sellf] [action] goto (1446,1719) from (1443,1726,0)
+[18:35:35.781] LOG   [sellf] event goto_start: target=(1446,1719) from=(1443,1726)
+[18:35:35.781] INFO  [sellf] [bot] running from (1443,1726,0) to (1446,1719)
+[18:35:35.781] INFO  [sellf] [bot] planning path to (1446,1719) in background
+[18:35:35.842] INFO  [sellf] [bot] replan to (1446,1719): 7 steps in 72.9us
+[18:35:37.863] INFO  [sellf] [travel] bank ARRIVED at (1444,1721,0)
+[18:35:37.863] LOG   [sellf] event travel_done: label='bank' ok=1 at=(1444,1721) legs=1 plans=1 why=''
+[18:35:37.923] INFO  [life] bank: arrived at 1444,1721 -- asking who is here
+[18:35:37.923] INFO  [sellf] [action] scanning nearby mobiles for names
+[18:35:37.923] INFO  [sellf] [action] requested 1 paperdoll(s) for trade titles
+[18:35:37.938] INFO  [sellf] [mobiles] nearby (7):
+[18:35:37.938] INFO  [sellf]   Krister 0x000011A3
+[18:35:37.938] INFO  [sellf]   Bergren 0x0000122F
+[18:35:37.938] INFO  [sellf]   Jacinda 0x000011E8
+[18:35:37.938] INFO  [sellf]   Elkan 0x000012E2
+[18:35:37.938] INFO  [sellf]   Krischan 0x00001068
+[18:35:37.939] INFO  [sellf]   Marina 0x00001153
+[18:35:37.939] INFO  [sellf]   Colton 0x0000104C
+[18:35:37.939] INFO  [sellf] [0x20] player @(1444,1721,0) facing=6
+[18:35:37.939] INFO  [sellf] [0x88] paperdoll 0x0000122F: "Bergren, the provisioner"
+[18:35:37.939] INFO  [sellf] [world] Bergren, the provisioner is a provisioner at (1436,1718)
+[18:35:39.274] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:35:40.435] INFO  [life] bank: two trips to 1446,1719 found no banker -- forgetting that place
+[18:35:40.435] INFO  [life] bank: returning to a remembered bank at 1445,1712 (trip 4)
+[18:35:40.435] INFO  [sellf] [travel] bank -> (1445,1712) r=2 from (1444,1721)
+[18:35:40.435] LOG   [sellf] event travel_start: label='bank' target=(1445,1712) radius=2 from=(1444,1721)
+[18:35:40.435] INFO  [sellf] [travel] mode walk             usable   <- chosen
+[18:35:40.435] INFO  [sellf] [travel] mode moongate         usable
+[18:35:40.435] INFO  [sellf] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:35:40.435] INFO  [sellf] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:35:40.435] LOG   [sellf] event travel_mode: walk
+[18:35:40.435] INFO  [sellf] [travel] plan bank: ok legs=1 ~9 tiles transit=0 nodes=0
+[18:35:40.497] INFO  [sellf] [action] goto finished at (1444,1721,0); target (1446,1719); stopped short (off by 4 tile(s))
+[18:35:40.497] LOG   [sellf] event goto_done: at=(1444,1721) target=(1446,1719) arrived=0 off=4
+[18:35:40.497] INFO  [sellf] [action] goto (1445,1712) from (1444,1721,0)
+[18:35:40.497] LOG   [sellf] event goto_start: target=(1445,1712) from=(1444,1721)
+[18:35:40.497] INFO  [sellf] [bot] running from (1444,1721,0) to (1445,1712)
+[18:35:40.497] INFO  [sellf] [bot] planning path to (1445,1712) in background
+[18:35:40.543] INFO  [sellf] [bot] replan to (1445,1712): 9 steps in 60.0us
+[18:35:42.581] INFO  [sellf] [travel] bank ARRIVED at (1444,1714,0)
+[18:35:42.581] LOG   [sellf] event travel_done: label='bank' ok=1 at=(1444,1714) legs=1 plans=1 why=''
+[18:35:42.597] INFO  [life] bank: arrived at 1444,1713 -- asking who is here
+[18:35:42.597] INFO  [sellf] [action] scanning nearby mobiles for names
+[18:35:42.611] INFO  [sellf] [mobiles] nearby (7):
+[18:35:42.611] INFO  [sellf]   Krister 0x000011A3
+[18:35:42.611] INFO  [sellf]   Bergren 0x0000122F
+[18:35:42.611] INFO  [sellf]   Krischan 0x00001068
+[18:35:42.611] INFO  [sellf]   Jacinda 0x000011E8
+[18:35:42.611] INFO  [sellf]   Elkan 0x000012E2
+[18:35:42.611] INFO  [sellf]   Marina 0x00001153
+[18:35:42.611] INFO  [sellf]   Colton 0x0000104C
+[18:35:43.456] INFO  [sellf] [bot] arrived at (1445,1712,0)
+[18:35:44.284] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:35:45.147] INFO  [life] goal_failed=BANK reason="4 trips and still no banker in reach; the pack stays full"
+[18:35:45.209] INFO  [life] goal=BANK reason="previous goal abandoned: no banker reachable"
+[18:35:45.209] INFO  [life] needs considered: NeedBank(deposit carried load 0.74) NeedGold(sell surplus 0.45) NeedCatch(fish 0.45) NeedTraining(Fishing BLOCKED 0.27) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20)  | tools defined=1 held=[fishing pole,]
+[18:35:45.209] INFO  [life]   score=178.1
+[18:35:45.209] INFO  [life]   reason: NeedBank urgency 0.74 x 240 = 178.1
+[18:35:45.209] INFO  [life]   reason: weight=126/127 (99%) logs=0
+[18:35:45.209] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Fishing 50.4 -> 100.0)
+[18:35:49.313] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:35:54.323] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:35:59.366] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:36:03.518] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak31.bryn/state.json
+[18:36:04.372] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:36:09.411] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:36:14.468] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:36:15.201] INFO  [life] bank: returning to a remembered bank at 1445,1712 (trip 1)
+[18:36:15.201] INFO  [sellf] [travel] bank -> (1445,1712) r=2 from (1445,1712)
+[18:36:15.201] LOG   [sellf] event travel_start: label='bank' target=(1445,1712) radius=2 from=(1445,1712)
+[18:36:15.201] INFO  [sellf] [travel] bank ARRIVED at (1445,1712,0)
+[18:36:15.201] LOG   [sellf] event travel_done: label='bank' ok=1 at=(1445,1712) legs=0 plans=0 why=''
+[18:36:17.225] INFO  [life] bank: arrived at 1445,1712 -- asking who is here
+[18:36:17.225] INFO  [sellf] [action] scanning nearby mobiles for names
+[18:36:17.240] INFO  [sellf] [mobiles] nearby (6):
+[18:36:17.240] INFO  [sellf]   Bergren 0x0000122F
+[18:36:17.240] INFO  [sellf]   Krister 0x000011A3
+[18:36:17.240] INFO  [sellf]   Jacinda 0x000011E8
+[18:36:17.240] INFO  [sellf]   Krischan 0x00001068
+[18:36:17.240] INFO  [sellf]   Colton 0x0000104C
+[18:36:17.240] INFO  [sellf]   Marina 0x00001153
+[18:36:19.488] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:36:19.732] INFO  [life] bank: returning to a remembered bank at 1445,1712 (trip 2)
+[18:36:19.732] INFO  [sellf] [travel] bank -> (1445,1712) r=2 from (1445,1712)
+[18:36:19.732] LOG   [sellf] event travel_start: label='bank' target=(1445,1712) radius=2 from=(1445,1712)
+[18:36:19.732] INFO  [sellf] [travel] bank ARRIVED at (1445,1712,0)
+[18:36:19.732] LOG   [sellf] event travel_done: label='bank' ok=1 at=(1445,1712) legs=0 plans=0 why=''
+[18:36:21.766] INFO  [life] bank: arrived at 1445,1712 -- asking who is here
+[18:36:21.766] INFO  [sellf] [action] scanning nearby mobiles for names
+[18:36:21.782] INFO  [sellf] [mobiles] nearby (6):
+[18:36:21.782] INFO  [sellf]   Bergren 0x0000122F
+[18:36:21.782] INFO  [sellf]   Krister 0x000011A3
+[18:36:21.782] INFO  [sellf]   Jacinda 0x000011E8
+[18:36:21.782] INFO  [sellf]   Krischan 0x00001068
+[18:36:21.782] INFO  [sellf]   Colton 0x0000104C
+[18:36:21.782] INFO  [sellf]   Marina 0x00001153
+[18:36:24.269] INFO  [life] bank: two trips to 1445,1712 found no banker -- forgetting that place
+[18:36:24.269] INFO  [life] bank: returning to a remembered bank at 1443,1705 (trip 3)
+[18:36:24.269] INFO  [sellf] [travel] bank -> (1443,1705) r=2 from (1445,1712)
+[18:36:24.269] LOG   [sellf] event travel_start: label='bank' target=(1443,1705) radius=2 from=(1445,1712)
+[18:36:24.269] INFO  [sellf] [travel] mode walk             usable   <- chosen
+[18:36:24.269] INFO  [sellf] [travel] mode moongate         usable
+[18:36:24.269] INFO  [sellf] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:36:24.269] INFO  [sellf] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:36:24.269] LOG   [sellf] event travel_mode: walk
+[18:36:24.269] INFO  [sellf] [travel] plan bank: ok legs=1 ~7 tiles transit=0 nodes=0
+[18:36:24.330] INFO  [sellf] [action] goto finished at (1445,1712,0); target (1445,1712); ARRIVED (off by 0 tile(s))
+[18:36:24.330] LOG   [sellf] event goto_done: at=(1445,1712) target=(1445,1712) arrived=1 off=0
+[18:36:24.330] INFO  [sellf] [action] goto (1443,1705) from (1445,1712,0)
+[18:36:24.330] LOG   [sellf] event goto_start: target=(1443,1705) from=(1445,1712)
+[18:36:24.330] INFO  [sellf] [bot] running from (1445,1712,0) to (1443,1705)
+[18:36:24.330] INFO  [sellf] [bot] planning path to (1443,1705) in background
+[18:36:24.390] INFO  [sellf] [bot] replan to (1443,1705): 7 steps in 58.7us
+[18:36:24.529] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:36:25.843] INFO  [sellf] [travel] bank ARRIVED at (1444,1707,0)
+[18:36:25.843] LOG   [sellf] event travel_done: label='bank' ok=1 at=(1444,1707) legs=1 plans=1 why=''
+[18:36:26.270] INFO  [life] bank: arrived at 1443,1706 -- asking who is here
+[18:36:26.270] INFO  [sellf] [action] scanning nearby mobiles for names
+[18:36:26.286] INFO  [sellf] [mobiles] nearby (6):
+[18:36:26.286] INFO  [sellf]   Krischan 0x00001068
+[18:36:26.286] INFO  [sellf]   Bergren 0x0000122F
+[18:36:26.286] INFO  [sellf]   Jacinda 0x000011E8
+[18:36:26.286] INFO  [sellf]   Colton 0x0000104C
+[18:36:26.286] INFO  [sellf]   Elkan 0x000012E2
+[18:36:26.286] INFO  [sellf]   Lyndon 0x0000124E
+[18:36:26.901] INFO  [sellf] [bot] arrived at (1443,1705,0)
+[18:36:28.792] INFO  [life] bank: two trips to 1443,1705 found no banker -- forgetting that place
+[18:36:28.792] INFO  [life] bank: returning to a remembered bank at 1438,1698 (trip 4)
+[18:36:28.792] INFO  [sellf] [travel] bank -> (1438,1698) r=2 from (1443,1705)
+[18:36:28.792] LOG   [sellf] event travel_start: label='bank' target=(1438,1698) radius=2 from=(1443,1705)
+[18:36:28.792] INFO  [sellf] [travel] mode walk             usable   <- chosen
+[18:36:28.792] INFO  [sellf] [travel] mode moongate         usable
+[18:36:28.792] INFO  [sellf] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:36:28.792] INFO  [sellf] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:36:28.792] LOG   [sellf] event travel_mode: walk
+[18:36:28.792] INFO  [sellf] [travel] plan bank: ok legs=1 ~7 tiles transit=0 nodes=0
+[18:36:28.852] INFO  [sellf] [action] goto finished at (1443,1705,0); target (1443,1705); ARRIVED (off by 0 tile(s))
+[18:36:28.852] LOG   [sellf] event goto_done: at=(1443,1705) target=(1443,1705) arrived=1 off=0
+[18:36:28.852] INFO  [sellf] [action] goto (1438,1698) from (1443,1705,0)
+[18:36:28.852] LOG   [sellf] event goto_start: target=(1438,1698) from=(1443,1705)
+[18:36:28.852] INFO  [sellf] [bot] running from (1443,1705,0) to (1438,1698)
+[18:36:28.852] INFO  [sellf] [bot] planning path to (1438,1698) in background
+[18:36:28.913] INFO  [sellf] [bot] replan to (1438,1698): 7 steps in 77.0us
+[18:36:29.552] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:36:30.321] INFO  [sellf] [travel] bank ARRIVED at (1439,1699,0)
+[18:36:30.321] LOG   [sellf] event travel_done: label='bank' ok=1 at=(1439,1699) legs=1 plans=1 why=''
+[18:36:30.763] INFO  [sellf] [bot] arrived at (1438,1698,0)
+[18:36:30.825] INFO  [life] bank: arrived at 1438,1698 -- asking who is here
+[18:36:30.825] INFO  [sellf] [action] scanning nearby mobiles for names
+[18:36:30.840] INFO  [sellf] [mobiles] nearby (5):
+[18:36:30.840] INFO  [sellf]   Lyndon 0x0000124E
+[18:36:30.840] INFO  [sellf]   Hyman 0x00001033
+[18:36:30.840] INFO  [sellf]   Colton 0x0000104C
+[18:36:30.840] INFO  [sellf]   Bergren 0x0000122F
+[18:36:30.840] INFO  [sellf]   Joelliane 0x00001136
+[18:36:33.337] INFO  [life] goal_failed=BANK reason="4 trips and still no banker in reach; the pack stays full"
+[18:36:33.399] INFO  [life] goal=BANK reason="previous goal abandoned: no banker reachable"
+[18:36:33.399] INFO  [life] needs considered: NeedBank(deposit carried load 0.74) NeedGold(sell surplus 0.45) NeedCatch(fish 0.45) NeedTraining(Fishing BLOCKED 0.27) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20)  | tools defined=1 held=[fishing pole,]
+[18:36:33.399] INFO  [life]   score=178.1
+[18:36:33.399] INFO  [life]   reason: NeedBank urgency 0.74 x 240 = 178.1
+[18:36:33.399] INFO  [life]   reason: weight=126/127 (99%) logs=0
+[18:36:33.399] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Fishing 50.4 -> 100.0)
+[18:36:34.567] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:36:39.583] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:36:44.623] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:36:49.655] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:36:54.665] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:36:59.668] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:37:03.340] INFO  [life] bank: returning to a remembered bank at 1438,1698 (trip 1)
+[18:37:03.340] INFO  [sellf] [travel] bank -> (1438,1698) r=2 from (1438,1698)
+[18:37:03.340] LOG   [sellf] event travel_start: label='bank' target=(1438,1698) radius=2 from=(1438,1698)
+[18:37:03.340] INFO  [sellf] [travel] bank ARRIVED at (1438,1698,0)
+[18:37:03.340] LOG   [sellf] event travel_done: label='bank' ok=1 at=(1438,1698) legs=0 plans=0 why=''
+[18:37:03.526] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak31.bryn/state.json
+[18:37:04.716] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:37:05.392] INFO  [life] bank: arrived at 1438,1698 -- asking who is here
+[18:37:05.392] INFO  [sellf] [action] scanning nearby mobiles for names
+[18:37:05.407] INFO  [sellf] [mobiles] nearby (5):
+[18:37:05.407] INFO  [sellf]   Hyman 0x00001033
+[18:37:05.407] INFO  [sellf]   Lyndon 0x0000124E
+[18:37:05.407] INFO  [sellf]   Krischan 0x00001068
+[18:37:05.407] INFO  [sellf]   Colton 0x0000104C
+[18:37:05.407] INFO  [sellf]   Joelliane 0x00001136
+[18:37:07.934] INFO  [life] bank: returning to a remembered bank at 1438,1698 (trip 2)
+[18:37:07.934] INFO  [sellf] [travel] bank -> (1438,1698) r=2 from (1438,1698)
+[18:37:07.934] LOG   [sellf] event travel_start: label='bank' target=(1438,1698) radius=2 from=(1438,1698)
+[18:37:07.934] INFO  [sellf] [travel] bank ARRIVED at (1438,1698,0)
+[18:37:07.934] LOG   [sellf] event travel_done: label='bank' ok=1 at=(1438,1698) legs=0 plans=0 why=''
+[18:37:09.731] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:37:09.977] INFO  [life] bank: arrived at 1438,1698 -- asking who is here
+[18:37:09.977] INFO  [sellf] [action] scanning nearby mobiles for names
+[18:37:09.991] INFO  [sellf] [mobiles] nearby (4):
+[18:37:09.991] INFO  [sellf]   Hyman 0x00001033
+[18:37:09.991] INFO  [sellf]   Lyndon 0x0000124E
+[18:37:09.991] INFO  [sellf]   Colton 0x0000104C
+[18:37:09.991] INFO  [sellf]   Krischan 0x00001068
+[18:37:12.483] INFO  [life] bank: two trips to 1438,1698 found no banker -- forgetting that place
+[18:37:12.483] INFO  [life] bank: returning to a remembered bank at 1437,1691 (trip 3)
+[18:37:12.483] INFO  [sellf] [travel] bank -> (1437,1691) r=2 from (1438,1698)
+[18:37:12.483] LOG   [sellf] event travel_start: label='bank' target=(1437,1691) radius=2 from=(1438,1698)
+[18:37:12.483] INFO  [sellf] [travel] mode walk             usable   <- chosen
+[18:37:12.483] INFO  [sellf] [travel] mode moongate         usable
+[18:37:12.483] INFO  [sellf] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:37:12.483] INFO  [sellf] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:37:12.483] LOG   [sellf] event travel_mode: walk
+[18:37:12.483] INFO  [sellf] [travel] plan bank: ok legs=1 ~7 tiles transit=0 nodes=0
+[18:37:12.544] INFO  [sellf] [action] goto finished at (1438,1698,0); target (1438,1698); ARRIVED (off by 0 tile(s))
+[18:37:12.544] LOG   [sellf] event goto_done: at=(1438,1698) target=(1438,1698) arrived=1 off=0
+[18:37:12.544] INFO  [sellf] [action] goto (1437,1691) from (1438,1698,0)
+[18:37:12.544] LOG   [sellf] event goto_start: target=(1437,1691) from=(1438,1698)
+[18:37:12.544] INFO  [sellf] [bot] running from (1438,1698,0) to (1437,1691)
+[18:37:12.544] INFO  [sellf] [bot] planning path to (1437,1691) in background
+[18:37:12.606] INFO  [sellf] [bot] replan to (1437,1691): 8 steps in 71.3us
+[18:37:13.800] INFO  [sellf] [bot] door ahead at (1438,1692,z0); OpenDoor before step
+[18:37:13.800] INFO  [sellf] [chat ascii] System: Opening door...
+[18:37:14.108] INFO  [sellf] [travel] bank ARRIVED at (1438,1693,0)
+[18:37:14.109] LOG   [sellf] event travel_done: label='bank' ok=1 at=(1438,1693) legs=1 plans=1 why=''
+[18:37:14.536] INFO  [life] bank: arrived at 1438,1693 -- asking who is here
+[18:37:14.537] INFO  [sellf] [action] scanning nearby mobiles for names
+[18:37:14.552] INFO  [sellf] [mobiles] nearby (3):
+[18:37:14.552] INFO  [sellf]   Hyman 0x00001033
+[18:37:14.552] INFO  [sellf]   Lyndon 0x0000124E
+[18:37:14.552] INFO  [sellf]   Joelliane 0x00001136
+[18:37:14.739] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:37:15.620] INFO  [sellf] [bot] arrived at (1437,1691,0)
+[18:37:17.091] INFO  [life] bank: two trips to 1437,1691 found no banker -- forgetting that place
+[18:37:17.091] INFO  [life] bank: returning to a remembered bank at 1430,1690 (trip 4)
+[18:37:17.091] INFO  [sellf] [travel] bank -> (1430,1690) r=2 from (1437,1691)
+[18:37:17.091] LOG   [sellf] event travel_start: label='bank' target=(1430,1690) radius=2 from=(1437,1691)
+[18:37:17.091] INFO  [sellf] [travel] mode walk             usable   <- chosen
+[18:37:17.091] INFO  [sellf] [travel] mode moongate         usable
+[18:37:17.091] INFO  [sellf] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:37:17.091] INFO  [sellf] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:37:17.091] LOG   [sellf] event travel_mode: walk
+[18:37:17.091] INFO  [sellf] [travel] plan bank: ok legs=1 ~7 tiles transit=0 nodes=0
+[18:37:17.152] INFO  [sellf] [action] goto finished at (1437,1691,0); target (1437,1691); ARRIVED (off by 0 tile(s))
+[18:37:17.152] LOG   [sellf] event goto_done: at=(1437,1691) target=(1437,1691) arrived=1 off=0
+[18:37:17.152] INFO  [sellf] [action] goto (1430,1690) from (1437,1691,0)
+[18:37:17.152] LOG   [sellf] event goto_start: target=(1430,1690) from=(1437,1691)
+[18:37:17.152] INFO  [sellf] [bot] running from (1437,1691,0) to (1430,1690)
+[18:37:17.152] INFO  [sellf] [bot] planning path to (1430,1690) in background
+[18:37:17.213] INFO  [sellf] [bot] replan to (1430,1690): 7 steps in 80.0us
+[18:37:19.183] INFO  [sellf] [travel] bank ARRIVED at (1431,1690,0)
+[18:37:19.183] LOG   [sellf] event travel_done: label='bank' ok=1 at=(1431,1690) legs=1 plans=1 why=''
+[18:37:19.244] INFO  [life] bank: arrived at 1431,1690 -- asking who is here
+[18:37:19.244] INFO  [sellf] [action] scanning nearby mobiles for names
+[18:37:19.244] INFO  [sellf] [action] requested 2 paperdoll(s) for trade titles
+[18:37:19.259] INFO  [sellf] [mobiles] nearby (2):
+[18:37:19.259] INFO  [sellf]   Hyman 0x00001033
+[18:37:19.259] INFO  [sellf]   Lyndon 0x0000124E
+[18:37:19.259] INFO  [sellf] [0x88] paperdoll 0x0000124E: "Lyndon, the minter"
+[18:37:19.259] INFO  [sellf] [world] Lyndon, the minter is a banker at (1424,1691)
+[18:37:19.259] INFO  [sellf] [0x20] player @(1431,1690,0) facing=7
+[18:37:19.259] INFO  [sellf] [0x88] paperdoll 0x00001033: "Hyman, the banker"
+[18:37:19.259] INFO  [sellf] [world] Hyman, the banker is a banker at (1427,1685)
+[18:37:19.750] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:37:21.798] INFO  [sellf] [ACTION] open_bank start
+[18:37:21.798] INFO  [sellf] [ACTION] open_bank banker=0x00001033 phrase='bank'
+[18:37:21.799] INFO  [sellf] [chat uni  ] : bank
+[18:37:21.799] INFO  [sellf] [chat ascii] Lyndon: Yes?
+[18:37:21.799] INFO  [sellf] [chat ascii] Lyndon: Keeping the money of others is my job.
+[18:37:21.799] INFO  [sellf] [chat ascii] System: You have 0 stones in your Bank Box
+[18:37:21.799] INFO  [sellf] [0x24] open container 0x40012E05 gump=74
+[18:37:21.799] INFO  [sellf] [STATE] bank container=0x40012E05 gump=0x004A
+[18:37:21.799] LOG   [sellf] event bank_opened: container recognised
+[18:37:21.799] INFO  [sellf] [ACTION_RESULT] open_bank success (1ms) bank container opened
+[18:37:21.799] LOG   [sellf] event action_result: open_bank success took=1ms bank container opened
+[18:37:21.799] INFO  [sellf] [0x3C] container contents: 0 item(s)
+[18:37:24.312] INFO  [life] banking 15 i_fish_big_3
+[18:37:24.312] INFO  [sellf] [ACTION] move_item start
+[18:37:24.312] INFO  [sellf] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:37:24.312] INFO  [sellf] [ITEM] drag serial=0x4001032F amount=15
+[18:37:24.312] INFO  [sellf] [ITEM] drop container=0x40012E05
+[18:37:24.327] INFO  [sellf] [ACTION_RESULT] move_item success (15ms) item is in the destination
+[18:37:24.327] LOG   [sellf] event action_result: move_item success took=15ms item is in the destination
+[18:37:24.467] INFO  [life] goal_changed=EARN_GOLD from=BANK reason="EARN_GOLD 67.5 superseded BANK 0.0"
+[18:37:24.467] INFO  [life] needs considered: NeedGold(sell surplus 0.45) NeedCatch(fish 0.45) NeedTraining(Fishing BLOCKED 0.27) NeedFood(food 0.25)  | tools defined=1 held=[fishing pole,]
+[18:37:24.467] INFO  [life]   score=67.5
+[18:37:24.467] INFO  [life]   reason: NeedGold urgency 0.45 x 150 = 67.5
+[18:37:24.467] INFO  [life]   reason: 15 x i_fish_big_3 spare, a load is 20, buyer: an NPC
+[18:37:24.467] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Fishing 50.4 -> 100.0)
+[18:37:24.770] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:37:25.812] INFO  [life] earn_gold: withdrawing 15 i_fish_big_3 to sell
+[18:37:27.864] INFO  [life] earn_gold: looking for a 'fisher' to buy 15 i_fish_big_3 (trip 1)
+[18:37:27.865] INFO  [sellf] [travel] Britain fisherman -> (1438,1761) r=6 from (1431,1690)
+[18:37:27.865] LOG   [sellf] event travel_start: label='Britain fisherman' target=(1438,1761) radius=6 from=(1431,1690)
+[18:37:27.865] INFO  [sellf] [travel] mode moongate         usable   <- chosen
+[18:37:27.865] INFO  [sellf] [travel] mode walk             usable
+[18:37:27.865] INFO  [sellf] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:37:27.865] INFO  [sellf] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:37:27.865] LOG   [sellf] event travel_mode: moongate
+[18:37:27.865] INFO  [sellf] [travel] plan Britain fisherman: ok legs=3 ~96 tiles transit=0 nodes=23
+[18:37:27.925] INFO  [sellf] [action] goto finished at (1431,1690,0); target (1430,1690); stopped short (off by 1 tile(s))
+[18:37:27.925] LOG   [sellf] event goto_done: at=(1431,1690) target=(1430,1690) arrived=0 off=1
+[18:37:27.925] INFO  [sellf] [action] goto (1448,1718) from (1431,1690,0)
+[18:37:27.925] LOG   [sellf] event goto_start: target=(1448,1718) from=(1431,1690)
+[18:37:27.925] INFO  [sellf] [bot] running from (1431,1690,0) to (1448,1718)
+[18:37:27.925] INFO  [sellf] [bot] planning path to (1448,1718) in background
+[18:37:27.986] INFO  [sellf] [bot] replan to (1448,1718): 34 steps in 689.7us
+[18:37:29.792] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:37:34.840] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:37:39.057] INFO  [sellf] [bot] arrived at (1448,1718,0)
+[18:37:39.057] INFO  [sellf] [action] goto finished at (1448,1718,0); target (1448,1718); ARRIVED (off by 0 tile(s))
+[18:37:39.057] LOG   [sellf] event goto_done: at=(1448,1718) target=(1448,1718) arrived=1 off=0
+[18:37:39.057] INFO  [sellf] [action] goto (1440,1754) from (1448,1718,0)
+[18:37:39.057] LOG   [sellf] event goto_start: target=(1440,1754) from=(1448,1718)
+[18:37:39.057] INFO  [sellf] [bot] running from (1448,1718,0) to (1440,1754)
+[18:37:39.057] INFO  [sellf] [bot] planning path to (1440,1754) in background
+[18:37:39.118] INFO  [sellf] [bot] replan to (1440,1754): 46 steps in 4991.5us
+[18:37:39.875] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:37:44.479] INFO  [life] goal_changed=BANK from=EARN_GOLD reason="BANK 238.1 superseded EARN_GOLD 67.5"
+[18:37:44.479] INFO  [life] needs considered: NeedBank(deposit carried load 0.74) NeedGold(sell surplus 0.45) NeedCatch(fish 0.45) NeedTraining(Fishing BLOCKED 0.27) NeedFood(food 0.25)  | tools defined=1 held=[fishing pole,]
+[18:37:44.479] INFO  [life]   score=238.1
+[18:37:44.479] INFO  [life]   reason: NeedBank urgency 0.74 x 240 = 178.1
+[18:37:44.479] INFO  [life]   reason: weight=126/127 (99%) logs=0
+[18:37:44.479] INFO  [life]   reason: already standing at the bank +60
+[18:37:44.479] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Fishing 50.4 -> 100.0)
+[18:37:44.479] INFO  [life] banking 15 i_fish_big_3
+[18:37:44.479] INFO  [sellf] [ACTION] move_item start
+[18:37:44.479] INFO  [sellf] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:37:44.479] INFO  [sellf] [ITEM] drag serial=0x4001032F amount=15
+[18:37:44.479] INFO  [sellf] [ITEM] drop container=0x40012E05
+[18:37:44.494] LOG   [sellf] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:37:44.893] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:37:45.996] INFO  [life] banking 15 i_fish_big_3
+[18:37:45.996] INFO  [sellf] [ACTION] move_item start
+[18:37:45.996] INFO  [sellf] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:37:45.996] INFO  [sellf] [ITEM] drag serial=0x4001032F amount=15
+[18:37:45.996] INFO  [sellf] [ITEM] drop container=0x40012E05
+[18:37:45.996] LOG   [sellf] event action_result: move_item server_failure took=0ms item landed in a different container
+[18:37:47.512] INFO  [life] banking 15 i_fish_big_3
+[18:37:47.512] INFO  [sellf] [ACTION] move_item start
+[18:37:47.512] INFO  [sellf] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:37:47.512] INFO  [sellf] [ITEM] drag serial=0x4001032F amount=15
+[18:37:47.512] INFO  [sellf] [ITEM] drop container=0x40012E05
+[18:37:47.527] LOG   [sellf] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:37:49.012] INFO  [life] banking 15 i_fish_big_3
+[18:37:49.012] INFO  [sellf] [ACTION] move_item start
+[18:37:49.012] INFO  [sellf] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:37:49.012] INFO  [sellf] [ITEM] drag serial=0x4001032F amount=15
+[18:37:49.012] INFO  [sellf] [ITEM] drop container=0x40012E05
+[18:37:49.028] LOG   [sellf] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:37:49.946] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:37:50.254] INFO  [sellf] [travel] Britain fisherman ARRIVED at (1435,1756,2)
+[18:37:50.254] LOG   [sellf] event travel_done: label='Britain fisherman' ok=1 at=(1435,1756) legs=3 plans=1 why=''
+[18:37:50.517] INFO  [life] banking 15 i_fish_big_3
+[18:37:50.517] INFO  [sellf] [ACTION] move_item start
+[18:37:50.517] INFO  [sellf] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:37:50.517] INFO  [sellf] [ITEM] drag serial=0x4001032F amount=15
+[18:37:50.517] INFO  [sellf] [ITEM] drop container=0x40012E05
+[18:37:50.533] LOG   [sellf] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:37:52.067] INFO  [life] banking 15 i_fish_big_3
+[18:37:52.068] INFO  [sellf] [ACTION] move_item start
+[18:37:52.068] INFO  [sellf] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:37:52.068] INFO  [sellf] [ITEM] drag serial=0x4001032F amount=15
+[18:37:52.068] INFO  [sellf] [ITEM] drop container=0x40012E05
+[18:37:52.084] LOG   [sellf] event action_result: move_item server_failure took=17ms item landed in a different container
+[18:37:52.928] INFO  [sellf] [bot] arrived at (1440,1754,-2)
+[18:37:53.602] INFO  [life] banking 15 i_fish_big_3
+[18:37:53.602] INFO  [sellf] [ACTION] move_item start
+[18:37:53.602] INFO  [sellf] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:37:53.602] INFO  [sellf] [ITEM] drag serial=0x4001032F amount=15
+[18:37:53.602] INFO  [sellf] [ITEM] drop container=0x40012E05
+[18:37:53.602] LOG   [sellf] event action_result: move_item server_failure took=0ms item landed in a different container
+[18:37:54.979] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:37:55.132] INFO  [life] banking 15 i_fish_big_3
+[18:37:55.132] INFO  [sellf] [ACTION] move_item start
+[18:37:55.132] INFO  [sellf] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:37:55.132] INFO  [sellf] [ITEM] drag serial=0x4001032F amount=15
+[18:37:55.133] INFO  [sellf] [ITEM] drop container=0x40012E05
+[18:37:55.133] LOG   [sellf] event action_result: move_item server_failure took=1ms item landed in a different container
+[18:37:56.665] INFO  [life] banking 15 i_fish_big_3
+[18:37:56.665] INFO  [sellf] [ACTION] move_item start
+[18:37:56.665] INFO  [sellf] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:37:56.665] INFO  [sellf] [ITEM] drag serial=0x4001032F amount=15
+[18:37:56.665] INFO  [sellf] [ITEM] drop container=0x40012E05
+[18:37:56.666] LOG   [sellf] event action_result: move_item server_failure took=1ms item landed in a different container
+[18:37:58.211] INFO  [life] banking 15 i_fish_big_3
+[18:37:58.211] INFO  [sellf] [ACTION] move_item start
+[18:37:58.211] INFO  [sellf] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:37:58.211] INFO  [sellf] [ITEM] drag serial=0x4001032F amount=15
+[18:37:58.211] INFO  [sellf] [ITEM] drop container=0x40012E05
+[18:37:58.227] LOG   [sellf] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:37:59.718] INFO  [life] banking 15 i_fish_big_3
+[18:37:59.718] INFO  [sellf] [ACTION] move_item start
+[18:37:59.718] INFO  [sellf] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:37:59.718] INFO  [sellf] [ITEM] drag serial=0x4001032F amount=15
+[18:37:59.718] INFO  [sellf] [ITEM] drop container=0x40012E05
+[18:37:59.734] LOG   [sellf] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:37:59.995] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:38:01.221] INFO  [life] banking 15 i_fish_big_3
+[18:38:01.221] INFO  [sellf] [ACTION] move_item start
+[18:38:01.221] INFO  [sellf] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:38:01.221] INFO  [sellf] [ITEM] drag serial=0x4001032F amount=15
+[18:38:01.222] INFO  [sellf] [ITEM] drop container=0x40012E05
+[18:38:01.237] LOG   [sellf] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:38:02.725] INFO  [life] banking 15 i_fish_big_3
+[18:38:02.725] INFO  [sellf] [ACTION] move_item start
+[18:38:02.725] INFO  [sellf] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:38:02.725] INFO  [sellf] [ITEM] drag serial=0x4001032F amount=15
+[18:38:02.725] INFO  [sellf] [ITEM] drop container=0x40012E05
+[18:38:02.740] LOG   [sellf] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:38:03.553] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak31.bryn/state.json
+[18:38:04.226] INFO  [life] banking 15 i_fish_big_3
+[18:38:04.226] INFO  [sellf] [ACTION] move_item start
+[18:38:04.226] INFO  [sellf] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:38:04.226] INFO  [sellf] [ITEM] drag serial=0x4001032F amount=15
+[18:38:04.226] INFO  [sellf] [ITEM] drop container=0x40012E05
+[18:38:04.243] LOG   [sellf] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:38:05.039] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:38:05.773] INFO  [life] banking 15 i_fish_big_3
+[18:38:05.773] INFO  [sellf] [ACTION] move_item start
+[18:38:05.773] INFO  [sellf] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:38:05.773] INFO  [sellf] [ITEM] drag serial=0x4001032F amount=15
+[18:38:05.773] INFO  [sellf] [ITEM] drop container=0x40012E05
+[18:38:05.774] LOG   [sellf] event action_result: move_item server_failure took=1ms item landed in a different container
+[18:38:07.319] INFO  [life] banking 15 i_fish_big_3
+[18:38:07.319] INFO  [sellf] [ACTION] move_item start
+[18:38:07.319] INFO  [sellf] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:38:07.319] INFO  [sellf] [ITEM] drag serial=0x4001032F amount=15
+[18:38:07.319] INFO  [sellf] [ITEM] drop container=0x40012E05
+[18:38:07.335] LOG   [sellf] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:38:08.854] INFO  [life] banking 15 i_fish_big_3
+[18:38:08.854] INFO  [sellf] [ACTION] move_item start
+[18:38:08.854] INFO  [sellf] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:38:08.855] INFO  [sellf] [ITEM] drag serial=0x4001032F amount=15
+[18:38:08.855] INFO  [sellf] [ITEM] drop container=0x40012E05
+[18:38:08.869] LOG   [sellf] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:38:10.063] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:38:10.369] INFO  [life] banking 15 i_fish_big_3
+[18:38:10.369] INFO  [sellf] [ACTION] move_item start
+[18:38:10.369] INFO  [sellf] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:38:10.369] INFO  [sellf] [ITEM] drag serial=0x4001032F amount=15
+[18:38:10.369] INFO  [sellf] [ITEM] drop container=0x40012E05
+[18:38:10.369] LOG   [sellf] event action_result: move_item server_failure took=0ms item landed in a different container
+[18:38:11.891] INFO  [life] banking 15 i_fish_big_3
+[18:38:11.891] INFO  [sellf] [ACTION] move_item start
+[18:38:11.891] INFO  [sellf] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:38:11.891] INFO  [sellf] [ITEM] drag serial=0x4001032F amount=15
+[18:38:11.891] INFO  [sellf] [ITEM] drop container=0x40012E05
+[18:38:11.906] LOG   [sellf] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:38:13.429] INFO  [life] banking 15 i_fish_big_3
+[18:38:13.429] INFO  [sellf] [ACTION] move_item start
+[18:38:13.429] INFO  [sellf] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:38:13.429] INFO  [sellf] [ITEM] drag serial=0x4001032F amount=15
+[18:38:13.429] INFO  [sellf] [ITEM] drop container=0x40012E05
+[18:38:13.444] LOG   [sellf] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:38:14.969] INFO  [life] banking 15 i_fish_big_3
+[18:38:14.969] INFO  [sellf] [ACTION] move_item start
+[18:38:14.969] INFO  [sellf] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:38:14.969] INFO  [sellf] [ITEM] drag serial=0x4001032F amount=15
+[18:38:14.969] INFO  [sellf] [ITEM] drop container=0x40012E05
+[18:38:14.985] LOG   [sellf] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:38:15.092] INFO  [sellf] [survival] hp 25/25 (100%) -> fight
+[18:38:16.516] INFO  [life] banking 15 i_fish_big_3
+[18:38:16.516] INFO  [sellf] [ACTION] move_item start
+[18:38:16.516] INFO  [sellf] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:38:16.516] INFO  [sellf] [ITEM] drag serial=0x4001032F amount=15
+[18:38:16.516] INFO  [sellf] [ITEM] drop container=0x40012E05
+[18:38:16.532] LOG   [sellf] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:38:18.041] INFO  [life] banking 15 i_fish_big_3
+[18:38:18.041] INFO  [sellf] [ACTION] move_item start
+[18:38:18.041] INFO  [sellf] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:38:18.042] INFO  [sellf] [ITEM] drag serial=0x4001032F amount=15
+[18:38:18.042] INFO  [sellf] [ITEM] drop container=0x40012E05
+[18:38:18.042] LOG   [sellf] event action_result: move_item server_failure took=1ms item landed in a different container
+[18:38:19.577] INFO  [life] banking 15 i_fish_big_3
+[18:38:19.577] INFO  [sellf] [ACTION] move_item start
+[18:38:19.577] INFO  [sellf] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:38:19.577] INFO  [sellf] [ITEM] drag serial=0x4001032F amount=15
+[18:38:19.577] INFO  [sellf] [ITEM] drop container=0x40012E05
+[18:38:19.577] LOG   [sellf] event action_result: move_item server_failure took=0ms item landed in a different container
+[18:38:20.131] INFO  [sellf] [survival] hp 25/25 (100%) -> fight

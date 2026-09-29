@@ -1,0 +1,105 @@
+# Owner-approved mount thinning on the LIVE world -- SECOND ATTEMPT, 2026-09-03.
+#
+# RUN ONLY AS THE ADMIN ACCOUNT (character "Observer") via run_admin.ps1:
+#   .\run_admin.ps1 -Scenario reduce_mount_spawners_2 -Tag mountthin2 -TimeoutSec 420
+#
+# WRITTEN, NOT RUN. Nothing below has been executed against the shard.
+#
+# WHY THERE IS A SECOND SCENARIO
+#
+# reduce_mount_spawners.txt ran 11:52-11:53 and did NOTHING to the gems:
+#   (f_revo_mount_thin.scp,376) ... wildlife gems 00 ... nightmare gems 00 ...
+# All 5030 i_worldgem_bit gems fell through the loop because of two script bugs,
+# both now fixed in runtime/scripts/revolution/f_revo_mount_thin.scp:
+#   1. STRCMP is case-SENSITIVE (Source-X common/CExpression.cpp:1133-1140) and
+#      the saved arrays are capitalised ("Boar,Cougar,...", "Horse,Ridablellama").
+#      Every string test is now STRCMPI (CExpression.cpp:1147).
+#   2. <TAG0.x> on a missing tag returns the literal "0"
+#      (common/CVarDefMap.cpp:26), and ISEMPTY("0") is 0, so the single-species
+#      ELSE branch was unreachable. The array test is now "<argv> >= 2".
+# <TYPE>==t_spawn_char was never the problem -- it is the pack-wide idiom and
+# f_m40_graveyards removed 049 gems with it on 2026-09-02.
+#
+# The cull DID work (415 unowned mounts removed, all 5 memory_ipet mounts kept),
+# but it logged "Can't resolve <MEMORYFINDTYPE.memory_ipet.UID>" 415 times: a
+# null REF plus any trailing key other than ISVALID returns false
+# (common/CScriptObj.cpp:517-524). The test is now .ISVALID, same meaning, no
+# error. It is re-run here because the untouched gems have been refilling to the
+# OLD capacity ever since 11:53, and the cull is what hands the newly reduced
+# spawners their empty slots.
+#
+# GUARD. The old guard VAR.revo_mount_thin_v1 was set by the no-op run, so the
+# function was renamed to guard on VAR.revo_mount_thin_v2 -- v1 is burned and is
+# deliberately never reused. Both are cleared below anyway so the state is
+# explicit and this scenario does not depend on which build is loaded.
+#
+# RUN THIS ONCE. The keep-every-Nth rules are counter based and are NOT
+# idempotent: a second effective pass would strip a second quarter of the
+# wildlife gems. VAR.revo_mount_thin_v2 is what stops that -- do not clear it
+# again after this run.
+#
+# UNICORN/KIRIN ARE NOT PLACED TWICE. The 11:52 run got as far as
+# f_create_spawner and both gems are in the save (SPAWNID=c_m_unicorn AMOUNT=2,
+# SPAWNID=c_m_kirin AMOUNT=2, one each). The function now counts them in the
+# same FORINSTANCES pass and only places what is missing, so the check reads the
+# world instead of a VAR and holds even though the guard was cleared. Expect the
+# log to say "unicorn gems found 01, kirin gems found 01, new ... placed 00".
+#
+# EXPECTED COUNTS THIS TIME (from runtime/save/sphereworld.scp, 11:45 save):
+#   wildlife gems 178 (162 AMOUNT 7 + 16 AMOUNT 1), horse stripped from ~134
+#   horse/llama gems 28  (removed ~14)
+#   llama gems 39        (removed ~20)
+#   forest ostard 25     (removed ~8)
+#   desert ostard 4      (AMOUNT -> 2)
+#   frenzied ostard 1    (AMOUNT -> 6)
+#   nightmare 10         (removed 8, the 1st and 6th survive)
+# A second run of "wildlife gems 00" means the fix did not take -- STOP and
+# report, do not clear the guard and try again.
+#
+# WHAT IT DOES NOT TOUCH: c_horse_sea (115 gems, sea creature), tamed/owned/
+# stabled pets (memory_ipet), c_animaltrainer figurine stock, and the six other
+# species on the shared wildlife gems -- their AMOUNT drops 7 -> 6 as the horse
+# leaves the list, so boar/cougar/goat/panther/pig/sheep keep their old density.
+
+wait_world
+sleep 3000
+
+# Picks up the edited f_revo_mount_thin.scp. It is already a known resource
+# (loaded 11:47 and 11:52), so resync alone would reload it; the explicit
+# SERV.LOAD below is the belt-and-braces path for a file created since boot
+# (CServerConfig::LoadResourcesAdd, Source-X CServer.cpp:2092; the path is
+# relative to ScpFiles= = "scripts/").
+say .serv.resync
+sleep 30000
+
+say .serv.load revolution/f_revo_mount_thin.scp
+sleep 5000
+
+# Clear the guards. v1 was set by the 11:52 no-op; v2 has never been set, so
+# this line is a no-op today and is here to make the precondition explicit.
+say .var.revo_mount_thin_v1=
+sleep 1500
+say .var.revo_mount_thin_v2=
+sleep 1500
+
+# Pass 1: capacity. Walks all ~5030 worldgem bits once, strips the horse from
+# ~134 of 178 wildlife lists, removes the surplus single-species gems (removing
+# a gem takes its own children with it -- CCSpawn::KillChildren, CCSpawn.cpp:283)
+# and places NO new unicorn/kirin spawner, because both already exist.
+say .f_revo_mount_thin
+sleep 25000
+
+# Pass 2: population. Lowering AMOUNT deletes nothing, and a large share of the
+# live mounts are orphans no gem tracks any more, so the surplus has to be
+# cleared by hand. Tamed/owned mounts are skipped. The reduced spawners refill
+# within each gem's TIMELO..TIMEHI, 2-15 minutes.
+say .f_revo_mount_cull
+sleep 20000
+
+# The gems are ATTR=080, not attr_static, so a plain .save writes them out.
+say .save
+sleep 30000
+
+say mount spawners thinned pass two
+sleep 1500
+logout

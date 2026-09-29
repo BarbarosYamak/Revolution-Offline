@@ -1,0 +1,1204 @@
+[17:29:35.158] LOG   [wave10_RevGen3_16_Lyra] event session_start: text log opened
+[17:29:35.160] LOG   [wave10_RevGen3_16_Lyra] event net_connect_begin: connect 127.0.0.1:2593
+[17:29:35.161] INFO  [wave10_RevGen3_16_Lyra] [net] connecting to 127.0.0.1:2593 ...
+[17:29:35.163] LOG   [wave10_RevGen3_16_Lyra] event net_connected: connect 127.0.0.1:2593
+[17:29:35.164] INFO  [wave10_RevGen3_16_Lyra] [net] connected.
+[17:29:35.167] INFO  [wave10_RevGen3_16_Lyra] [seed] sent 0x7F000001 (plaintext)
+[17:29:35.170] LOG   [wave10_RevGen3_16_Lyra] event seed_out: 0x7F000001 hex=7f000001
+[17:29:35.173] INFO  [wave10_RevGen3_16_Lyra] [life] autonomous player active for 'Lyra' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 30 min)
+[17:29:35.184] INFO  [wave10_RevGen3_16_Lyra] [0xA8] 1 server(s):
+[17:29:35.185] INFO  [wave10_RevGen3_16_Lyra]   [0] MyShard                   1.0.0.127  full=6%  tz=0
+[17:29:35.187] INFO  [wave10_RevGen3_16_Lyra] [0x8C] game server = 127.0.0.1:2593  seed=0xED57D690
+[17:29:35.188] LOG   [wave10_RevGen3_16_Lyra] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xED57D690
+[17:29:35.189] INFO  [wave10_RevGen3_16_Lyra] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[17:29:35.189] LOG   [wave10_RevGen3_16_Lyra] event relay_same_socket: no seed re-sent; 0x91 follows
+[17:29:35.190] INFO  [wave10_RevGen3_16_Lyra] [0xB9] server features = 0x0005
+[17:29:35.190] INFO  [wave10_RevGen3_16_Lyra] [0xA9] 5 slot(s) (populated 1):
+[17:29:35.190] INFO  [wave10_RevGen3_16_Lyra]   [0] Lyra
+[17:29:35.190] INFO  [wave10_RevGen3_16_Lyra]   [1] <empty>
+[17:29:35.190] INFO  [wave10_RevGen3_16_Lyra]   [2] <empty>
+[17:29:35.190] INFO  [wave10_RevGen3_16_Lyra]   [3] <empty>
+[17:29:35.191] INFO  [wave10_RevGen3_16_Lyra]   [4] <empty>
+[17:29:35.191] INFO  [wave10_RevGen3_16_Lyra] [ui] playing slot 0 ('Lyra')
+[17:29:35.201] INFO  [wave10_RevGen3_16_Lyra] [chat ascii] System: Selene has arrived in Britain.
+[17:29:35.203] INFO  [wave10_RevGen3_16_Lyra] [0x1B] serial=0x0000C990 body=0x0191 pos=(4458,1171,0)
+[17:29:35.203] LOG   [wave10_RevGen3_16_Lyra] event login_confirm: serial=0x0000C990 body=0x0191 pos=(4458,1171,0)
+[17:29:35.204] INFO  [wave10_RevGen3_16_Lyra] [0x20] player @(4458,1171,0) facing=2
+[17:29:35.205] INFO  [wave10_RevGen3_16_Lyra] [0x55] login complete — entering world
+[17:29:35.206] LOG   [wave10_RevGen3_16_Lyra] event in_world: 0x55 received
+[17:29:35.207] INFO  [wave10_RevGen3_16_Lyra] [backpack] opening 0x4000C91D
+[17:29:35.209] INFO  [wave10_RevGen3_16_Lyra] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[17:29:35.209] INFO  [wave10_RevGen3_16_Lyra] [chat ascii] System: There are 17 other players here.
+[17:29:35.209] INFO  [wave10_RevGen3_16_Lyra] [chat ascii] System: Last logged: 2026/08/31 18:12:43
+[17:29:35.211] INFO  [wave10_RevGen3_16_Lyra] [chat ascii] System: You are under the protection of the town guards
+[17:29:35.217] INFO  [wave10_RevGen3_16_Lyra] [action] requesting the skill list
+[17:29:35.217] INFO  [wave10_RevGen3_16_Lyra] [chat ascii] System: You are fairly content
+[17:29:35.218] INFO  [wave10_RevGen3_16_Lyra] [chat ascii] Lyra: *You looks fairly content*
+[17:29:35.219] INFO  [wave10_RevGen3_16_Lyra] [0x24] open container 0x4000C91D gump=60
+[17:29:35.219] INFO  [wave10_RevGen3_16_Lyra] [0x3C] container contents: 13 item(s)
+[17:29:35.219] LOG   [wave10_RevGen3_16_Lyra] event backpack_contents: serial=0x4000C91D items=13
+[17:29:35.219] INFO  [wave10_RevGen3_16_Lyra] [chat ascii] System: Thalia has arrived in Jhelom Territory.
+[17:29:35.236] INFO  [wave10_RevGen3_16_Lyra] [chat ascii] System: Dorvar has arrived in Magincia.
+[17:29:35.247] INFO  [wave10_RevGen3_16_Lyra] [chat ascii] System: Ithion has arrived in Magincia.
+[17:29:35.253] INFO  [wave10_RevGen3_16_Lyra] [chat ascii] System: Odessa has arrived in Britain.
+[17:29:35.278] INFO  [wave10_RevGen3_16_Lyra] [chat ascii] System: Serena has arrived in Britain.
+[17:29:35.306] INFO  [wave10_RevGen3_16_Lyra] [chat ascii] System: Aurelius has arrived in Britain.
+[17:29:35.326] INFO  [wave10_RevGen3_16_Lyra] [chat ascii] System: Leander has arrived in Britain.
+[17:29:35.327] INFO  [wave10_RevGen3_16_Lyra] [chat ascii] System: Illyria has arrived in Britain.
+[17:29:35.340] INFO  [wave10_RevGen3_16_Lyra] [chat ascii] System: Hector has arrived in Trinsic.
+[17:29:35.360] INFO  [wave10_RevGen3_16_Lyra] [chat ascii] System: Castor has arrived in The Rusty Anchor.
+[17:29:35.371] INFO  [wave10_RevGen3_16_Lyra] [chat ascii] System: Faustus has arrived in Britain.
+[17:29:35.385] INFO  [wave10_RevGen3_16_Lyra] [chat ascii] System: Titus has arrived in Britain Territory.
+[17:29:35.402] INFO  [wave10_RevGen3_16_Lyra] [chat ascii] System: Rhea has arrived in Yew.
+[17:29:35.403] INFO  [wave10_RevGen3_16_Lyra] [chat ascii] System: Xerxes has arrived in Ocllo Island.
+[17:29:35.434] INFO  [wave10_RevGen3_16_Lyra] [chat ascii] System: Thane has arrived in Britain.
+[17:29:35.434] INFO  [wave10_RevGen3_16_Lyra] [chat ascii] System: Varek has arrived in Britain Territory.
+[17:29:35.449] INFO  [wave10_RevGen3_16_Lyra] [chat ascii] System: Nyx has arrived in Trinsic.
+[17:29:37.804] INFO  [wave10_RevGen3_16_Lyra] [bot] world data loaded (0 blacklisted spot(s)).
+[17:29:37.806] INFO  [wave10_RevGen3_16_Lyra] [survival] on
+[17:29:37.806] LOG   [wave10_RevGen3_16_Lyra] event survival_mode: on
+[17:29:37.809] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:29:37.872] INFO  [wave10_RevGen3_16_Lyra] [travel] seeded_bank -> (4471,1156) r=5 from (4458,1171)
+[17:29:37.872] LOG   [wave10_RevGen3_16_Lyra] event travel_start: label='seeded_bank' target=(4471,1156) radius=5 from=(4458,1171)
+[17:29:37.872] INFO  [wave10_RevGen3_16_Lyra] [travel] mode walk             usable   <- chosen
+[17:29:37.872] INFO  [wave10_RevGen3_16_Lyra] [travel] mode moongate         usable
+[17:29:37.873] INFO  [wave10_RevGen3_16_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:37.873] INFO  [wave10_RevGen3_16_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:37.873] LOG   [wave10_RevGen3_16_Lyra] event travel_mode: walk
+[17:29:37.873] INFO  [wave10_RevGen3_16_Lyra] [travel] plan seeded_bank: ok legs=1 ~15 tiles transit=0 nodes=0
+[17:29:37.932] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:29:37.932] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4458,1171,0)
+[17:29:37.933] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4458,1171)
+[17:29:37.933] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4458,1171,0) to (4471,1156)
+[17:29:37.933] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:29:39.961] WARN  [wave10_RevGen3_16_Lyra] [bot] no path to (4471,1156) avoiding 0 block(s); stopping (search 2002830.2us)
+[17:29:39.963] WARN  [wave10_RevGen3_16_Lyra] [bot] start (4458,1171,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 151 item(s), 3 mobile(s))
+[17:29:40.023] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4458,1171,0); target (4471,1156); stopped short (off by 28 tile(s))
+[17:29:40.024] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4458,1171) target=(4471,1156) arrived=0 off=28
+[17:29:41.252] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:29:41.252] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4458,1171,0)
+[17:29:41.252] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4458,1171)
+[17:29:41.252] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4458,1171,0) to (4471,1156)
+[17:29:41.252] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:29:42.814] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:29:42.998] WARN  [wave10_RevGen3_16_Lyra] [bot] no path to (4471,1156) avoiding 0 block(s); stopping (search 1745710.8us)
+[17:29:42.999] WARN  [wave10_RevGen3_16_Lyra] [bot] start (4458,1171,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 151 item(s), 3 mobile(s))
+[17:29:43.060] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4458,1171,0); target (4471,1156); stopped short (off by 28 tile(s))
+[17:29:43.061] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4458,1171) target=(4471,1156) arrived=0 off=28
+[17:29:44.300] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:29:44.301] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4458,1171,0)
+[17:29:44.301] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4458,1171)
+[17:29:44.301] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4458,1171,0) to (4471,1156)
+[17:29:44.301] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:29:46.092] WARN  [wave10_RevGen3_16_Lyra] [bot] no path to (4471,1156) avoiding 0 block(s); stopping (search 1748623.6us)
+[17:29:46.092] WARN  [wave10_RevGen3_16_Lyra] [bot] start (4458,1171,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 151 item(s), 3 mobile(s))
+[17:29:46.152] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4458,1171,0); target (4471,1156); stopped short (off by 28 tile(s))
+[17:29:46.153] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4458,1171) target=(4471,1156) arrived=0 off=28
+[17:29:47.383] INFO  [wave10_RevGen3_16_Lyra] [travel] mode walk             usable   <- chosen
+[17:29:47.383] INFO  [wave10_RevGen3_16_Lyra] [travel] mode moongate         usable
+[17:29:47.383] INFO  [wave10_RevGen3_16_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:47.383] INFO  [wave10_RevGen3_16_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:47.384] LOG   [wave10_RevGen3_16_Lyra] event travel_mode: walk
+[17:29:47.384] INFO  [wave10_RevGen3_16_Lyra] [travel] plan seeded_bank: ok legs=1 ~15 tiles transit=0 nodes=0
+[17:29:47.876] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:29:48.926] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:29:48.927] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4458,1171,0)
+[17:29:48.927] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4458,1171)
+[17:29:48.927] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4458,1171,0) to (4471,1156)
+[17:29:48.927] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:29:50.829] WARN  [wave10_RevGen3_16_Lyra] [bot] no path to (4471,1156) avoiding 0 block(s); stopping (search 1847162.1us)
+[17:29:50.829] WARN  [wave10_RevGen3_16_Lyra] [bot] start (4458,1171,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 151 item(s), 3 mobile(s))
+[17:29:50.889] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4458,1171,0); target (4471,1156); stopped short (off by 28 tile(s))
+[17:29:50.890] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4458,1171) target=(4471,1156) arrived=0 off=28
+[17:29:52.141] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:29:52.141] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4458,1171,0)
+[17:29:52.142] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4458,1171)
+[17:29:52.142] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4458,1171,0) to (4471,1156)
+[17:29:52.142] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:29:52.880] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:29:53.740] WARN  [wave10_RevGen3_16_Lyra] [bot] no path to (4471,1156) avoiding 0 block(s); stopping (search 1579306.5us)
+[17:29:53.741] WARN  [wave10_RevGen3_16_Lyra] [bot] start (4458,1171,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 151 item(s), 3 mobile(s))
+[17:29:53.801] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4458,1171,0); target (4471,1156); stopped short (off by 28 tile(s))
+[17:29:53.801] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4458,1171) target=(4471,1156) arrived=0 off=28
+[17:29:55.005] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:29:55.006] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4458,1171,0)
+[17:29:55.006] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4458,1171)
+[17:29:55.006] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4458,1171,0) to (4471,1156)
+[17:29:55.006] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:29:56.753] WARN  [wave10_RevGen3_16_Lyra] [bot] no path to (4471,1156) avoiding 0 block(s); stopping (search 1688409.5us)
+[17:29:56.753] WARN  [wave10_RevGen3_16_Lyra] [bot] start (4458,1171,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 151 item(s), 3 mobile(s))
+[17:29:56.815] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4458,1171,0); target (4471,1156); stopped short (off by 28 tile(s))
+[17:29:56.815] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4458,1171) target=(4471,1156) arrived=0 off=28
+[17:29:57.922] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:29:58.047] INFO  [wave10_RevGen3_16_Lyra] [travel] mode walk             usable   <- chosen
+[17:29:58.047] INFO  [wave10_RevGen3_16_Lyra] [travel] mode moongate         usable
+[17:29:58.047] INFO  [wave10_RevGen3_16_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:58.047] INFO  [wave10_RevGen3_16_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:58.047] LOG   [wave10_RevGen3_16_Lyra] event travel_mode: walk
+[17:29:58.048] INFO  [wave10_RevGen3_16_Lyra] [travel] plan seeded_bank: ok legs=1 ~15 tiles transit=0 nodes=0
+[17:30:01.110] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:30:01.110] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4458,1171,0)
+[17:30:01.110] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4458,1171)
+[17:30:01.110] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4458,1171,0) to (4471,1156)
+[17:30:01.111] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:30:02.828] WARN  [wave10_RevGen3_16_Lyra] [bot] no path to (4471,1156) avoiding 0 block(s); stopping (search 1707397.3us)
+[17:30:02.829] WARN  [wave10_RevGen3_16_Lyra] [bot] start (4458,1171,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 black[17:30:02.890] INFO  [wave10_RevGen3_16_Lyra] [17:30:02.890] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4458,1171,0); target (4[17:30:02.890] LOG   [wave10_RevGen3_16_Lyra][17:30:02.890] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(445[17:30:02.951] INFO  [wave10_RevGen3_16_Lyra[17:30:02.951] INFO  [wave10_RevGen3_16[17:30:04.148] INFO  [wave10_RevGen3_16_Lyr[17:30:04.148] INFO  [wave10_RevGen3_16_Lyra] [travel][17:30:04.149] INFO  [wave10_RevGen3_16_Ly[17:30:04.149] INFO  [wave10_RevGen3_16_Lyra] [act[17:30:04.149] LOG   [wave10_RevGen3_16_L[17:30:04.149] LOG   [wave10_RevGen3_16_Lyra] event goto_sta[17:30:04.149] INFO  [wave10_RevGen3_16_[17:30:04.149] INFO  [wave10_RevGen3_16_Lyra] [bot] run[17:30:04.149] INFO  [wave10_RevGen3_16[17:30:04.149] INFO  [wave10_RevGen3_16_Lyra] [bot] plann[17:30:05.534] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4458,1171,0); target (4471,1156); stopped short (off by 28 tile(s))
+[17:30:05.534] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4458,1171) target=(4471,1156) arrived=0 off=28
+[17:30:06.770] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:30:06.770] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4458,1171,0)
+[17:30:06.770] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4458,1171)
+[17:30:06.770] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4458,1171,0) to (4471,1156)
+[17:30:06.770] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:30:08.008] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:30:08.070] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4458,1171,0); target (4471,1156); stopped short (off by 28 tile(s))
+[17:30:08.070] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4458,1171) target=(4471,1156) arrived=0 off=28
+[17:30:09.280] INFO  [wave10_RevGen3_16_Lyra] [travel] mode walk             usable   <- chosen
+[17:30:09.281] INFO  [wave10_RevGen3_16_Lyra] [travel] mode moongate         usable
+[17:30:09.281] INFO  [wave10_RevGen3_16_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:09.281] INFO  [wave10_RevGen3_16_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:09.281] LOG   [wave10_RevGen3_16_Lyra] event travel_mode: walk
+[17:30:09.281] INFO  [wave10_RevGen3_16_Lyra] [travel] plan seeded_bank: ok legs=1 ~15 tiles transit=0 nodes=0
+[17:30:13.038] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:30:13.781] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:30:13.781] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4458,1171,0)
+[17:30:13.781] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4458,1171)
+[17:30:13.781] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4458,1171,0) to (4471,1156)
+[17:30:13.782] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:30:15.077] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4458,1171,0); target (4471,1156); stopped short (off by 28 tile(s))
+[17:30:15.077] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4458,1171) target=(4471,1156) arrived=0 off=28
+[17:30:16.314] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:30:16.314] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4458,1171,0)
+[17:30:16.314] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4458,1171)
+[17:30:16.314] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4458,1171,0) to (4471,1156)
+[17:30:16.314] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:30:17.738] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4458,1171,0); target (4471,1156); stopped short (off by 28 tile(s))
+[17:30:17.738] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4458,1171) target=(4471,1156) arrived=0 off=28
+[17:30:17.739] LOG   [wave10_RevGen3_16_Lyra] event travel_escape: from=(4458,1171,0) to=(4456,1160) attempt=1
+[17:30:17.739] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4456,1160) from (4458,1171,0)
+[17:30:17.739] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4456,1160) from=(4458,1171)
+[17:30:17.739] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4458,1171,0) to (4456,1160,z0)
+[17:30:17.739] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4456,1160) in background
+[17:30:17.800] INFO  [wave10_RevGen3_16_Lyra] [bot] replan to (4456,1160): 11 steps in 175.8us
+[17:30:18.047] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:30:21.422] INFO  [wave10_RevGen3_16_Lyra] [bot] arrived at (4456,1160,0)
+[17:30:21.422] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4456,1160,0); target (4456,1160); ARRIVED (off by 0 tile(s))
+[17:30:21.422] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4456,1160) target=(4456,1160) arrived=1 off=0
+[17:30:21.423] INFO  [wave10_RevGen3_16_Lyra] [travel] recovery walk reached its anchor at (4456,1160,0) (off 0); attempt 1/3
+[17:30:21.423] LOG   [wave10_RevGen3_16_Lyra] event travel_recovery_done: reached=1 at=(4456,1160,0) off=0 attempt=1
+[17:30:21.483] INFO  [wave10_RevGen3_16_Lyra] [travel] mode walk             usable   <- chosen
+[17:30:21.484] INFO  [wave10_RevGen3_16_Lyra] [travel] mode moongate         usable
+[17:30:21.484] INFO  [wave10_RevGen3_16_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:21.484] INFO  [wave10_RevGen3_16_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:21.484] LOG   [wave10_RevGen3_16_Lyra] event travel_mode: walk
+[17:30:21.484] INFO  [wave10_RevGen3_16_Lyra] [travel] plan seeded_bank: ok legs=1 ~15 tiles transit=0 nodes=0
+[17:30:21.544] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:30:21.544] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[17:30:21.544] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[17:30:21.544] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[17:30:21.544] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:30:22.776] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[17:30:22.777] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[17:30:23.083] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:30:23.993] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:30:23.993] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[17:30:23.993] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[17:30:23.993] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[17:30:23.993] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:30:25.258] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[17:30:25.258] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[17:30:26.478] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:30:26.478] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[17:30:26.478] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[17:30:26.478] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[17:30:26.478] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:30:27.819] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[17:30:27.820] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[17:30:28.127] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:30:29.020] INFO  [wave10_RevGen3_16_Lyra] [travel] mode walk             usable   <- chosen
+[17:30:29.021] INFO  [wave10_RevGen3_16_Lyra] [travel] mode moongate         usable
+[17:30:29.021] INFO  [wave10_RevGen3_16_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:29.021] INFO  [wave10_RevGen3_16_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:29.021] LOG   [wave10_RevGen3_16_Lyra] event travel_mode: walk
+[17:30:29.021] INFO  [wave10_RevGen3_16_Lyra] [travel] plan seeded_bank: ok legs=1 ~15 tiles transit=0 nodes=0
+[17:30:30.529] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:30:30.530] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[17:30:30.530] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[17:30:30.530] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[17:30:30.530] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:30:31.718] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[17:30:31.719] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[17:30:32.968] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:30:32.968] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[17:30:32.969] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[17:30:32.969] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[17:30:32.969] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:30:33.168] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:30:34.219] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[17:30:34.219] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[17:30:35.437] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:30:35.437] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[17:30:35.437] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[17:30:35.437] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[17:30:35.437] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:30:36.612] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[17:30:36.612] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[17:30:37.843] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_16.lyra/state.json
+[17:30:37.844] INFO  [wave10_RevGen3_16_Lyra] [travel] mode walk             usable   <- chosen
+[17:30:37.844] INFO  [wave10_RevGen3_16_Lyra] [travel] mode moongate         usable
+[17:30:37.844] INFO  [wave10_RevGen3_16_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:37.844] INFO  [wave10_RevGen3_16_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:37.844] LOG   [wave10_RevGen3_16_Lyra] event travel_mode: walk
+[17:30:37.844] INFO  [wave10_RevGen3_16_Lyra] [travel] plan seeded_bank: ok legs=1 ~15 tiles transit=0 nodes=0
+[17:30:38.209] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:30:40.899] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:30:40.900] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[17:30:40.900] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[17:30:40.900] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[17:30:40.900] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:30:41.993] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[17:30:41.993] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[17:30:43.253] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:30:43.253] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[17:30:43.253] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[17:30:43.253] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[17:30:43.253] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:30:43.253] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:30:44.455] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[17:30:44.455] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[17:30:45.713] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:30:45.713] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[17:30:45.714] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[17:30:45.714] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[17:30:45.714] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:30:46.881] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[17:30:46.882] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[17:30:48.095] INFO  [wave10_RevGen3_16_Lyra] [travel] mode walk             usable   <- chosen
+[17:30:48.095] INFO  [wave10_RevGen3_16_Lyra] [travel] mode moongate         usable
+[17:30:48.095] INFO  [wave10_RevGen3_16_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:48.095] INFO  [wave10_RevGen3_16_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:48.095] LOG   [wave10_RevGen3_16_Lyra] event travel_mode: walk
+[17:30:48.095] INFO  [wave10_RevGen3_16_Lyra] [travel] plan seeded_bank: ok legs=1 ~15 tiles transit=0 nodes=0
+[17:30:48.279] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:30:52.649] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:30:52.649] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[17:30:52.649] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[17:30:52.649] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[17:30:52.650] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:30:53.324] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:30:54.021] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[17:30:54.021] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[17:30:55.255] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:30:55.255] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[17:30:55.255] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[17:30:55.255] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[17:30:55.255] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:30:56.421] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[17:30:56.421] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[17:30:57.622] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:30:57.623] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4456,1160,0)
+[17:30:57.623] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4456,1160)
+[17:30:57.623] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4456,1160,0) to (4471,1156)
+[17:30:57.623] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:30:58.362] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:30:58.977] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4456,1160,0); target (4471,1156); stopped short (off by 19 tile(s))
+[17:30:58.977] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4456,1160) target=(4471,1156) arrived=0 off=19
+[17:30:58.978] LOG   [wave10_RevGen3_16_Lyra] event travel_escape: from=(4456,1160,0) to=(4440,1144) attempt=2
+[17:30:58.978] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4440,1144) from (4456,1160,0)
+[17:30:58.978] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4440,1144) from=(4456,1160)
+[17:30:58.978] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4456,1160,0) to (4440,1144,z0)
+[17:30:58.978] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4440,1144) in background
+[17:30:59.038] INFO  [wave10_RevGen3_16_Lyra] [bot] replan to (4440,1144): 28 steps in 1307.3us
+[17:31:03.424] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:31:06.761] INFO  [wave10_RevGen3_16_Lyra] [bot] arrived at (4440,1144,0)
+[17:31:06.761] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4440,1144); ARRIVED (off by 0 tile(s))
+[17:31:06.761] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4440,1144) arrived=1 off=0
+[17:31:06.761] INFO  [wave10_RevGen3_16_Lyra] [travel] recovery walk reached its anchor at (4440,1144,0) (off 0); attempt 2/3
+[17:31:06.761] LOG   [wave10_RevGen3_16_Lyra] event travel_recovery_done: reached=1 at=(4440,1144,0) off=0 attempt=2
+[17:31:06.822] INFO  [wave10_RevGen3_16_Lyra] [travel] mode walk             usable   <- chosen
+[17:31:06.822] INFO  [wave10_RevGen3_16_Lyra] [travel] mode moongate         usable
+[17:31:06.822] INFO  [wave10_RevGen3_16_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:06.822] INFO  [wave10_RevGen3_16_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:06.822] LOG   [wave10_RevGen3_16_Lyra] event travel_mode: walk
+[17:31:06.822] INFO  [wave10_RevGen3_16_Lyra] [travel] plan seeded_bank: ok legs=1 ~31 tiles transit=0 nodes=0
+[17:31:06.883] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:31:06.883] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:31:06.884] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:31:06.885] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:31:06.885] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:31:08.439] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:31:08.439] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:31:08.439] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:31:09.671] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:31:09.671] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:31:09.672] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:31:09.672] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:31:09.672] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:31:11.606] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:31:11.606] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:31:12.855] INFO  [wave10_RevGen3_16_Lyra] [travel] mode walk             usable   <- chosen
+[17:31:12.855] INFO  [wave10_RevGen3_16_Lyra] [travel] mode moongate         usable
+[17:31:12.855] INFO  [wave10_RevGen3_16_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:12.855] INFO  [wave10_RevGen3_16_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:12.855] LOG   [wave10_RevGen3_16_Lyra] event travel_mode: walk
+[17:31:12.855] INFO  [wave10_RevGen3_16_Lyra] [travel] plan seeded_bank: ok legs=1 ~31 tiles transit=0 nodes=0
+[17:31:13.445] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:31:14.386] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:31:14.386] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:31:14.386] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:31:14.386] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:31:14.386] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:31:16.125] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:31:16.125] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:31:17.343] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:31:17.360] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:31:17.381] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:31:17.402] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:31:17.423] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:31:18.501] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:31:19.516] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:31:19.596] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:31:20.760] INFO  [wave10_RevGen3_16_Lyra] [travel] mode walk             usable   <- chosen
+[17:31:20.762] INFO  [wave10_RevGen3_16_Lyra] [travel] mode moongate         usable
+[17:31:20.762] INFO  [wave10_RevGen3_16_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:20.762] INFO  [wave10_RevGen3_16_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:20.762] LOG   [wave10_RevGen3_16_Lyra] event travel_mode: walk
+[17:31:20.762] INFO  [wave10_RevGen3_16_Lyra] [travel] plan seeded_bank: ok legs=1 ~31 tiles transit=0 nodes=0
+[17:31:23.539] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:31:23.786] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:31:23.787] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:31:23.787] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:31:23.787] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:31:23.787] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:31:25.832] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:31:25.832] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:31:27.059] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:31:27.059] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:31:27.059] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:31:27.059] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:31:27.059] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:31:28.561] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:31:28.807] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:31:28.807] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:31:30.060] INFO  [wave10_RevGen3_16_Lyra] [travel] mode walk             usable   <- chosen
+[17:31:30.060] INFO  [wave10_RevGen3_16_Lyra] [travel] mode moongate         usable
+[17:31:30.060] INFO  [wave10_RevGen3_16_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:30.060] INFO  [wave10_RevGen3_16_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:30.060] LOG   [wave10_RevGen3_16_Lyra] event travel_mode: walk
+[17:31:30.060] INFO  [wave10_RevGen3_16_Lyra] [travel] plan seeded_bank: ok legs=1 ~31 tiles transit=0 nodes=0
+[17:31:33.564] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:31:34.613] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:31:34.613] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:31:34.613] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:31:34.613] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:31:34.614] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:31:36.386] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:31:36.386] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:31:37.647] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:31:37.647] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:31:37.647] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:31:37.647] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:31:37.647] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:31:37.896] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_16.lyra/state.json
+[17:31:38.571] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:31:39.328] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:31:39.329] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:31:40.533] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:31:40.534] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:31:40.534] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:31:40.534] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:31:40.534] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:31:41.892] INFO  [life] bank: trip reported failure but no bank is within reach of 4440,1144
+[17:31:43.599] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:31:44.893] INFO  [life] bank: nothing proven yet -- trying what common knowledge says is nearest, Moonglow Bank banker at 4471,1156 (31 tiles)
+[17:31:44.893] INFO  [wave10_RevGen3_16_Lyra] [travel] seeded_bank -> (4471,1156) r=5 from (4440,1144)
+[17:31:44.894] LOG   [wave10_RevGen3_16_Lyra] event travel_start: label='seeded_bank' target=(4471,1156) radius=5 from=(4440,1144)
+[17:31:44.894] INFO  [wave10_RevGen3_16_Lyra] [travel] mode walk             usable   <- chosen
+[17:31:44.894] INFO  [wave10_RevGen3_16_Lyra] [travel] mode moongate         usable
+[17:31:44.894] INFO  [wave10_RevGen3_16_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:44.894] INFO  [wave10_RevGen3_16_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:44.894] LOG   [wave10_RevGen3_16_Lyra] event travel_mode: walk
+[17:31:44.894] INFO  [wave10_RevGen3_16_Lyra] [travel] plan seeded_bank: ok legs=1 ~31 tiles transit=0 nodes=0
+[17:31:44.955] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:31:44.956] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:31:44.956] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:31:44.956] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:31:44.956] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:31:44.956] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:31:44.956] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:31:46.324] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:31:46.324] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:31:47.528] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:31:47.528] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:31:47.528] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:31:47.528] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:31:47.528] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:31:48.605] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:31:48.915] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:31:48.915] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:31:50.159] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:31:50.160] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:31:50.160] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:31:50.160] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:31:50.160] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:31:51.884] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:31:51.884] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:31:53.100] INFO  [wave10_RevGen3_16_Lyra] [travel] mode walk             usable   <- chosen
+[17:31:53.100] INFO  [wave10_RevGen3_16_Lyra] [travel] mode moongate         usable
+[17:31:53.101] INFO  [wave10_RevGen3_16_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:53.101] INFO  [wave10_RevGen3_16_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:53.101] LOG   [wave10_RevGen3_16_Lyra] event travel_mode: walk
+[17:31:53.101] INFO  [wave10_RevGen3_16_Lyra] [travel] plan seeded_bank: ok legs=1 ~31 tiles transit=0 nodes=0
+[17:31:53.609] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:31:54.639] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:31:54.639] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:31:54.639] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:31:54.639] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:31:54.639] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:31:56.379] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:31:56.379] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:31:57.614] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:31:57.614] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:31:57.614] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:31:57.615] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:31:57.615] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:31:58.629] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:31:59.330] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:31:59.330] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:32:00.580] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:32:00.580] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:32:00.580] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:32:00.581] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:32:00.581] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:32:02.018] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:32:02.018] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:32:03.233] INFO  [wave10_RevGen3_16_Lyra] [travel] mode walk             usable   <- chosen
+[17:32:03.233] INFO  [wave10_RevGen3_16_Lyra] [travel] mode moongate         usable
+[17:32:03.233] INFO  [wave10_RevGen3_16_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:03.233] INFO  [wave10_RevGen3_16_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:03.234] LOG   [wave10_RevGen3_16_Lyra] event travel_mode: walk
+[17:32:03.234] INFO  [wave10_RevGen3_16_Lyra] [travel] plan seeded_bank: ok legs=1 ~31 tiles transit=0 nodes=0
+[17:32:03.680] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:32:06.243] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:32:06.243] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:32:06.243] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:32:06.243] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:32:06.243] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:32:07.615] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:32:07.616] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:32:08.683] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:32:08.870] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:32:08.870] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:32:08.870] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:32:08.870] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:32:08.870] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:32:10.580] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:32:10.580] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:32:11.798] INFO  [wave10_RevGen3_16_Lyra] [travel] mode walk             usable   <- chosen
+[17:32:11.799] INFO  [wave10_RevGen3_16_Lyra] [travel] mode moongate         usable
+[17:32:11.799] INFO  [wave10_RevGen3_16_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:11.799] INFO  [wave10_RevGen3_16_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:11.799] LOG   [wave10_RevGen3_16_Lyra] event travel_mode: walk
+[17:32:11.799] INFO  [wave10_RevGen3_16_Lyra] [travel] plan seeded_bank: ok legs=1 ~31 tiles transit=0 nodes=0
+[17:32:13.706] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:32:16.346] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:32:16.346] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:32:16.346] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:32:16.346] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:32:16.347] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:32:18.115] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:32:18.115] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:32:18.732] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:32:19.350] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:32:19.350] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:32:19.350] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:32:19.350] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:32:19.350] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:32:21.071] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:32:21.072] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:32:21.072] LOG   [wave10_RevGen3_16_Lyra] event travel_escape: from=(4440,1144,0) to=(4424,1128) attempt=1
+[17:32:21.072] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4424,1128) from (4440,1144,0)
+[17:32:21.072] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4424,1128) from=(4440,1144)
+[17:32:21.072] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4424,1128,z0)
+[17:32:21.072] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4424,1128) in background
+[17:32:21.132] INFO  [wave10_RevGen3_16_Lyra] [bot] replan to (4424,1128): 26 steps in 580.0us
+[17:32:23.767] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:32:28.775] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:32:29.713] INFO  [wave10_RevGen3_16_Lyra] [bot] arrived at (4424,1128,0)
+[17:32:29.713] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4424,1128,0); target (4424,1128); ARRIVED (off by 0 tile(s))
+[17:32:29.713] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4424,1128) target=(4424,1128) arrived=1 off=0
+[17:32:29.713] INFO  [wave10_RevGen3_16_Lyra] [travel] recovery walk reached its anchor at (4424,1128,0) (off 0); attempt 1/3
+[17:32:29.713] LOG   [wave10_RevGen3_16_Lyra] event travel_recovery_done: reached=1 at=(4424,1128,0) off=0 attempt=1
+[17:32:29.773] INFO  [wave10_RevGen3_16_Lyra] [travel] mode walk             usable   <- chosen
+[17:32:29.773] INFO  [wave10_RevGen3_16_Lyra] [travel] mode moongate         usable
+[17:32:29.774] INFO  [wave10_RevGen3_16_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:29.774] INFO  [wave10_RevGen3_16_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:29.774] LOG   [wave10_RevGen3_16_Lyra] event travel_mode: walk
+[17:32:29.781] INFO  [wave10_RevGen3_16_Lyra] [travel] plan seeded_bank: no world route to the destination legs=0 ~0 tiles transit=0 nodes=23752
+[17:32:29.781] LOG   [wave10_RevGen3_16_Lyra] event travel_escape: from=(4424,1128,0) to=(4408,1112) attempt=2
+[17:32:29.781] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4408,1112) from (4424,1128,0)
+[17:32:29.781] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4408,1112) from=(4424,1128)
+[17:32:29.781] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4424,1128,0) to (4408,1112,z0)
+[17:32:29.781] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4408,1112) in background
+[17:32:31.007] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4424,1128,0); target (4408,1112); stopped short (off by 32 tile(s))
+[17:32:31.007] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4424,1128) target=(4408,1112) arrived=0 off=32
+[17:32:31.007] INFO  [wave10_RevGen3_16_Lyra] [travel] recovery walk fell short at (4424,1128,0) (off 16); attempt 2/3
+[17:32:31.007] LOG   [wave10_RevGen3_16_Lyra] event travel_recovery_done: reached=0 at=(4424,1128,0) off=16 attempt=2
+[17:32:31.008] LOG   [wave10_RevGen3_16_Lyra] event travel_escape: from=(4424,1128,0) to=(4424,1112) attempt=3
+[17:32:31.008] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4424,1112) from (4424,1128,0)
+[17:32:31.008] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4424,1112) from=(4424,1128)
+[17:32:31.008] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4424,1128,0) to (4424,1112,z0)
+[17:32:31.008] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4424,1112) in background
+[17:32:31.069] INFO  [wave10_RevGen3_16_Lyra] [bot] replan to (4424,1112): 17 steps in 300.4us
+[17:32:33.823] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:32:36.356] INFO  [wave10_RevGen3_16_Lyra] [bot] arrived at (4424,1112,0)
+[17:32:36.357] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4424,1112,0); target (4424,1112); ARRIVED (off by 0 tile(s))
+[17:32:36.357] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4424,1112) target=(4424,1112) arrived=1 off=0
+[17:32:36.357] INFO  [wave10_RevGen3_16_Lyra] [travel] recovery walk reached its anchor at (4424,1112,0) (off 0); attempt 2/3
+[17:32:36.357] LOG   [wave10_RevGen3_16_Lyra] event travel_recovery_done: reached=1 at=(4424,1112,0) off=0 attempt=2
+[17:32:36.417] INFO  [wave10_RevGen3_16_Lyra] [travel] mode walk             usable   <- chosen
+[17:32:36.417] INFO  [wave10_RevGen3_16_Lyra] [travel] mode moongate         usable
+[17:32:36.417] INFO  [wave10_RevGen3_16_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:36.417] INFO  [wave10_RevGen3_16_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:36.418] LOG   [wave10_RevGen3_16_Lyra] event travel_mode: walk
+[17:32:36.425] INFO  [wave10_RevGen3_16_Lyra] [travel] plan seeded_bank: no world route to the destination legs=0 ~0 tiles transit=0 nodes=23752
+[17:32:36.425] INFO  [wave10_RevGen3_16_Lyra] [travel] seeded_bank FAILED at (4424,1112,0) -- no world route to the destination
+[17:32:36.425] LOG   [wave10_RevGen3_16_Lyra] event travel_failed: label='seeded_bank' ok=0 at=(4424,1112) legs=0 plans=1 why='no world route to the destination'
+[17:32:36.479] INFO  [life] bank: trip reported failure but no bank is within reach of 4424,1112
+[17:32:37.937] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_16.lyra/state.json
+[17:32:38.826] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:32:39.527] INFO  [life] bank: nothing proven yet -- trying what common knowledge says is nearest, Moonglow Bank banker at 4471,1156 (47 tiles)
+[17:32:39.528] INFO  [wave10_RevGen3_16_Lyra] [travel] seeded_bank -> (4471,1156) r=5 from (4424,1112)
+[17:32:39.528] LOG   [wave10_RevGen3_16_Lyra] event travel_start: label='seeded_bank' target=(4471,1156) radius=5 from=(4424,1112)
+[17:32:39.528] INFO  [wave10_RevGen3_16_Lyra] [travel] mode walk             usable   <- chosen
+[17:32:39.528] INFO  [wave10_RevGen3_16_Lyra] [travel] mode moongate         usable
+[17:32:39.528] INFO  [wave10_RevGen3_16_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:39.528] INFO  [wave10_RevGen3_16_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:39.528] LOG   [wave10_RevGen3_16_Lyra] event travel_mode: walk
+[17:32:39.528] INFO  [wave10_RevGen3_16_Lyra] [travel] plan seeded_bank: ok legs=2 ~104 tiles transit=0 nodes=177
+[17:32:39.590] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:32:39.590] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4440,1144) from (4424,1112,0)
+[17:32:39.590] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4440,1144) from=(4424,1112)
+[17:32:39.590] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4424,1112,0) to (4440,1144)
+[17:32:39.591] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4440,1144) in background
+[17:32:39.651] INFO  [wave10_RevGen3_16_Lyra] [bot] replan to (4440,1144): 43 steps in 2369.6us
+[17:32:43.872] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:32:48.921] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:32:51.168] INFO  [wave10_RevGen3_16_Lyra] [bot] arrived at (4440,1144,0)
+[17:32:51.169] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4440,1144); ARRIVED (off by 0 tile(s))
+[17:32:51.169] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4440,1144) arrived=1 off=0
+[17:32:51.169] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:32:51.169] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:32:51.169] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:32:51.169] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:32:51.169] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:32:53.023] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:32:53.024] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:32:53.946] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:32:54.251] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:32:54.251] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:32:54.252] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:32:54.252] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:32:54.252] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:32:56.286] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:32:56.286] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:32:57.493] INFO  [wave10_RevGen3_16_Lyra] [travel] mode walk             usable   <- chosen
+[17:32:57.493] INFO  [wave10_RevGen3_16_Lyra] [travel] mode moongate         usable
+[17:32:57.493] INFO  [wave10_RevGen3_16_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:57.493] INFO  [wave10_RevGen3_16_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:57.493] LOG   [wave10_RevGen3_16_Lyra] event travel_mode: walk
+[17:32:57.493] INFO  [wave10_RevGen3_16_Lyra] [travel] plan seeded_bank: ok legs=1 ~31 tiles transit=0 nodes=0
+[17:32:58.985] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:32:59.047] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:32:59.047] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:32:59.047] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:32:59.047] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:32:59.047] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:33:01.048] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:33:01.049] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:33:02.267] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:33:02.267] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:33:02.268] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:33:02.268] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:33:02.268] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:33:03.871] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:33:03.871] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:33:03.994] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:33:05.091] INFO  [wave10_RevGen3_16_Lyra] [travel] mode walk             usable   <- chosen
+[17:33:05.091] INFO  [wave10_RevGen3_16_Lyra] [travel] mode moongate         usable
+[17:33:05.091] INFO  [wave10_RevGen3_16_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:05.091] INFO  [wave10_RevGen3_16_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:05.091] LOG   [wave10_RevGen3_16_Lyra] event travel_mode: walk
+[17:33:05.091] INFO  [wave10_RevGen3_16_Lyra] [travel] plan seeded_bank: ok legs=1 ~31 tiles transit=0 nodes=0
+[17:33:08.142] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:33:08.143] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:33:08.143] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:33:08.143] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:33:08.143] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:33:09.008] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:33:09.685] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:33:09.685] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:33:10.920] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:33:10.920] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:33:10.920] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:33:10.920] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:33:10.920] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:33:12.771] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:33:12.771] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:33:14.001] INFO  [wave10_RevGen3_16_Lyra] [travel] mode walk             usable   <- chosen
+[17:33:14.001] INFO  [wave10_RevGen3_16_Lyra] [travel] mode moongate         usable
+[17:33:14.001] INFO  [wave10_RevGen3_16_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:14.001] INFO  [wave10_RevGen3_16_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:14.002] LOG   [wave10_RevGen3_16_Lyra] event travel_mode: walk
+[17:33:14.002] INFO  [wave10_RevGen3_16_Lyra] [travel] plan seeded_bank: ok legs=1 ~31 tiles transit=0 nodes=0
+[17:33:14.063] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:33:18.513] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:33:18.513] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:33:18.513] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:33:18.513] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:33:18.513] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:33:19.067] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:33:20.367] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:33:20.367] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:33:21.597] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:33:21.597] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:33:21.597] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:33:21.597] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:33:21.598] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:33:23.616] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:33:23.616] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:33:24.105] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:33:24.842] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:33:24.842] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:33:24.842] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:33:24.842] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:33:24.842] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:33:26.540] INFO  [life] bank: trip reported failure but no bank is within reach of 4440,1144
+[17:33:29.153] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:33:29.585] INFO  [life] bank: nothing proven yet -- trying what common knowledge says is nearest, Moonglow Bank banker at 4471,1156 (31 tiles)
+[17:33:29.585] INFO  [wave10_RevGen3_16_Lyra] [travel] seeded_bank -> (4471,1156) r=5 from (4440,1144)
+[17:33:29.585] LOG   [wave10_RevGen3_16_Lyra] event travel_start: label='seeded_bank' target=(4471,1156) radius=5 from=(4440,1144)
+[17:33:29.585] INFO  [wave10_RevGen3_16_Lyra] [travel] mode walk             usable   <- chosen
+[17:33:29.585] INFO  [wave10_RevGen3_16_Lyra] [travel] mode moongate         usable
+[17:33:29.585] INFO  [wave10_RevGen3_16_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:29.585] INFO  [wave10_RevGen3_16_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:29.585] LOG   [wave10_RevGen3_16_Lyra] event travel_mode: walk
+[17:33:29.586] INFO  [wave10_RevGen3_16_Lyra] [travel] plan seeded_bank: ok legs=1 ~31 tiles transit=0 nodes=0
+[17:33:29.646] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:33:29.646] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:33:29.646] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:33:29.646] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:33:29.646] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:33:29.646] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:33:29.646] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:33:31.570] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:33:31.570] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:33:32.797] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:33:32.797] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:33:32.797] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:33:32.797] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:33:32.797] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:33:34.155] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:33:34.741] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:33:34.742] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:33:35.949] INFO  [wave10_RevGen3_16_Lyra] [travel] mode walk             usable   <- chosen
+[17:33:35.949] INFO  [wave10_RevGen3_16_Lyra] [travel] mode moongate         usable
+[17:33:35.949] INFO  [wave10_RevGen3_16_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:35.949] INFO  [wave10_RevGen3_16_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:35.949] LOG   [wave10_RevGen3_16_Lyra] event travel_mode: walk
+[17:33:35.950] INFO  [wave10_RevGen3_16_Lyra] [travel] plan seeded_bank: ok legs=1 ~31 tiles transit=0 nodes=0
+[17:33:37.488] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:33:37.488] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:33:37.488] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:33:37.488] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:33:37.488] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:33:37.986] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_16.lyra/state.json
+[17:33:39.109] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:33:39.109] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:33:39.170] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:33:40.321] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:33:40.321] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:33:40.321] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:33:40.321] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:33:40.321] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:33:41.685] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:33:41.685] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:33:42.893] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:33:42.894] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:33:42.894] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:33:42.894] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:33:42.894] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:33:44.228] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:33:44.350] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:33:44.350] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:33:45.565] INFO  [wave10_RevGen3_16_Lyra] [travel] mode walk             usable   <- chosen
+[17:33:45.565] INFO  [wave10_RevGen3_16_Lyra] [travel] mode moongate         usable
+[17:33:45.565] INFO  [wave10_RevGen3_16_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:45.565] INFO  [wave10_RevGen3_16_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:45.565] LOG   [wave10_RevGen3_16_Lyra] event travel_mode: walk
+[17:33:45.566] INFO  [wave10_RevGen3_16_Lyra] [travel] plan seeded_bank: ok legs=1 ~31 tiles transit=0 nodes=0
+[17:33:48.566] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:33:48.567] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:33:48.567] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:33:48.567] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:33:48.567] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:33:49.263] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:33:50.511] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:33:50.511] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:33:51.726] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:33:51.727] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:33:51.727] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:33:51.727] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:33:51.727] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:33:53.542] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:33:53.543] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:33:54.276] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:33:54.568] INFO  [wave10_RevGen3_16_Lyra] [chat ascii] System: World save in 10 seconds
+[17:33:54.752] INFO  [wave10_RevGen3_16_Lyra] [travel] mode walk             usable   <- chosen
+[17:33:54.752] INFO  [wave10_RevGen3_16_Lyra] [travel] mode moongate         usable
+[17:33:54.752] INFO  [wave10_RevGen3_16_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:54.752] INFO  [wave10_RevGen3_16_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:54.752] LOG   [wave10_RevGen3_16_Lyra] event travel_mode: walk
+[17:33:54.752] INFO  [wave10_RevGen3_16_Lyra] [travel] plan seeded_bank: ok legs=1 ~31 tiles transit=0 nodes=0
+[17:33:59.267] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:33:59.267] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:33:59.267] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:33:59.267] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:33:59.267] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:33:59.329] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:34:01.063] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:34:01.063] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:34:02.304] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:34:02.305] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:34:02.305] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:34:02.305] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:34:02.305] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:34:04.150] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:34:04.151] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:34:04.332] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:34:04.598] INFO  [wave10_RevGen3_16_Lyra] [chat ascii] System: World save has been initiated.
+[17:34:05.407] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:34:05.407] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:34:05.407] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:34:05.407] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:34:05.407] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:34:06.593] INFO  [life] bank: trip reported failure but no bank is within reach of 4440,1144
+[17:34:09.389] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:34:09.636] INFO  [life] bank: nothing proven yet -- trying what common knowledge says is nearest, Moonglow Bank banker at 4471,1156 (31 tiles)
+[17:34:09.636] INFO  [wave10_RevGen3_16_Lyra] [travel] seeded_bank -> (4471,1156) r=5 from (4440,1144)
+[17:34:09.636] LOG   [wave10_RevGen3_16_Lyra] event travel_start: label='seeded_bank' target=(4471,1156) radius=5 from=(4440,1144)
+[17:34:09.636] INFO  [wave10_RevGen3_16_Lyra] [travel] mode walk             usable   <- chosen
+[17:34:09.636] INFO  [wave10_RevGen3_16_Lyra] [travel] mode moongate         usable
+[17:34:09.636] INFO  [wave10_RevGen3_16_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:09.636] INFO  [wave10_RevGen3_16_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:09.636] LOG   [wave10_RevGen3_16_Lyra] event travel_mode: walk
+[17:34:09.637] INFO  [wave10_RevGen3_16_Lyra] [travel] plan seeded_bank: ok legs=1 ~31 tiles transit=0 nodes=0
+[17:34:09.700] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:34:09.700] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:34:09.700] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:34:09.700] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:34:09.700] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:34:09.700] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:34:09.700] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:34:11.487] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:34:11.487] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:34:12.723] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:34:12.723] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:34:12.723] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:34:12.723] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:34:12.723] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:34:14.445] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:34:14.506] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:34:14.506] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:34:15.745] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:34:15.746] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:34:15.746] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:34:15.746] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:34:15.746] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:34:17.500] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:34:17.501] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:34:18.734] INFO  [wave10_RevGen3_16_Lyra] [travel] mode walk             usable   <- chosen
+[17:34:18.734] INFO  [wave10_RevGen3_16_Lyra] [travel] mode moongate         usable
+[17:34:18.735] INFO  [wave10_RevGen3_16_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:18.735] INFO  [wave10_RevGen3_16_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:18.735] LOG   [wave10_RevGen3_16_Lyra] event travel_mode: walk
+[17:34:18.735] INFO  [wave10_RevGen3_16_Lyra] [travel] plan seeded_bank: ok legs=1 ~31 tiles transit=0 nodes=0
+[17:34:19.463] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:34:20.263] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:34:20.263] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:34:20.263] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:34:20.263] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:34:20.263] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:34:22.577] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:34:22.578] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:34:23.814] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:34:23.814] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:34:23.814] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:34:23.815] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:34:23.815] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:34:24.494] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:34:25.498] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:34:25.499] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:34:26.732] INFO  [wave10_RevGen3_16_Lyra] [travel] mode walk             usable   <- chosen
+[17:34:26.733] INFO  [wave10_RevGen3_16_Lyra] [travel] mode moongate         usable
+[17:34:26.733] INFO  [wave10_RevGen3_16_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:26.733] INFO  [wave10_RevGen3_16_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:26.733] LOG   [wave10_RevGen3_16_Lyra] event travel_mode: walk
+[17:34:26.733] INFO  [wave10_RevGen3_16_Lyra] [travel] plan seeded_bank: ok legs=1 ~31 tiles transit=0 nodes=0
+[17:34:29.549] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:34:29.734] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:34:29.734] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:34:29.734] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:34:29.734] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:34:29.734] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:34:31.446] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:34:31.447] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:34:32.672] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:34:32.672] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:34:32.672] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:34:32.672] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:34:32.672] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:34:34.594] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:34:34.839] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:34:34.840] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:34:36.072] INFO  [wave10_RevGen3_16_Lyra] [travel] mode walk             usable   <- chosen
+[17:34:36.072] INFO  [wave10_RevGen3_16_Lyra] [travel] mode moongate         usable
+[17:34:36.072] INFO  [wave10_RevGen3_16_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:36.073] INFO  [wave10_RevGen3_16_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:36.073] LOG   [wave10_RevGen3_16_Lyra] event travel_mode: walk
+[17:34:36.073] INFO  [wave10_RevGen3_16_Lyra] [travel] plan seeded_bank: ok legs=1 ~31 tiles transit=0 nodes=0
+[17:34:37.822] INFO  [life] goal_changed=BANK from=BANK reason="previous goal abandoned: ran 300s without finishing (limit 300s)"
+[17:34:37.823] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedTrade(buy from a player 0.55) NeedSkillTraining(Meditation 0.55) NeedPractice(Meditation 0.45) NeedSupplies(buy craft inputs 0.44) NeedPractice(Magery 0.33) NeedGold(sell surplus 0.25)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
+[17:34:37.823] INFO  [life]   score=150.0
+[17:34:37.823] INFO  [life]   reason: NeedBank urgency 0.75 x 240 = 180.0
+[17:34:37.823] INFO  [life]   reason: on_hand=8531 (total 9831) reserve=5000 carry=1300 spare=7231 risk=1.00
+[17:34:37.823] INFO  [life]   reason: no bank learned yet -30
+[17:34:38.010] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_16.lyra/state.json
+[17:34:39.650] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:34:40.590] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:34:40.590] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:34:40.590] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:34:40.591] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:34:40.591] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:34:42.626] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:34:42.626] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:34:43.880] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:34:43.880] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:34:43.881] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:34:43.881] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:34:43.881] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:34:44.710] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:34:45.882] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:34:45.883] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:34:45.883] LOG   [wave10_RevGen3_16_Lyra] event travel_escape: from=(4440,1144,0) to=(4424,1128) attempt=1
+[17:34:45.883] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4424,1128) from (4440,1144,0)
+[17:34:45.883] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4424,1128) from=(4440,1144)
+[17:34:45.883] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4424,1128,z0)
+[17:34:45.883] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4424,1128) in background
+[17:34:45.946] INFO  [wave10_RevGen3_16_Lyra] [bot] replan to (4424,1128): 26 steps in 1056.3us
+[17:34:49.728] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:34:54.577] INFO  [wave10_RevGen3_16_Lyra] [bot] arrived at (4424,1128,0)
+[17:34:54.577] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4424,1128,0); target (4424,1128); ARRIVED (off by 0 tile(s))
+[17:34:54.577] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4424,1128) target=(4424,1128) arrived=1 off=0
+[17:34:54.577] INFO  [wave10_RevGen3_16_Lyra] [travel] recovery walk reached its anchor at (4424,1128,0) (off 0); attempt 1/3
+[17:34:54.578] LOG   [wave10_RevGen3_16_Lyra] event travel_recovery_done: reached=1 at=(4424,1128,0) off=0 attempt=1
+[17:34:54.638] INFO  [wave10_RevGen3_16_Lyra] [travel] mode walk             usable   <- chosen
+[17:34:54.638] INFO  [wave10_RevGen3_16_Lyra] [travel] mode moongate         usable
+[17:34:54.638] INFO  [wave10_RevGen3_16_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:54.638] INFO  [wave10_RevGen3_16_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:54.638] LOG   [wave10_RevGen3_16_Lyra] event travel_mode: walk
+[17:34:54.647] INFO  [wave10_RevGen3_16_Lyra] [travel] plan seeded_bank: no world route to the destination legs=0 ~0 tiles transit=0 nodes=23752
+[17:34:54.647] LOG   [wave10_RevGen3_16_Lyra] event travel_escape: from=(4424,1128,0) to=(4408,1112) attempt=2
+[17:34:54.647] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4408,1112) from (4424,1128,0)
+[17:34:54.647] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4408,1112) from=(4424,1128)
+[17:34:54.647] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4424,1128,0) to (4408,1112,z0)
+[17:34:54.648] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4408,1112) in background
+[17:34:54.763] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:34:56.554] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4424,1128,0); target (4408,1112); stopped short (off by 32 tile(s))
+[17:34:56.554] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4424,1128) target=(4408,1112) arrived=0 off=32
+[17:34:56.554] INFO  [wave10_RevGen3_16_Lyra] [travel] recovery walk fell short at (4424,1128,0) (off 16); attempt 2/3
+[17:34:56.554] LOG   [wave10_RevGen3_16_Lyra] event travel_recovery_done: reached=0 at=(4424,1128,0) off=16 attempt=2
+[17:34:56.555] LOG   [wave10_RevGen3_16_Lyra] event travel_escape: from=(4424,1128,0) to=(4424,1112) attempt=3
+[17:34:56.555] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4424,1112) from (4424,1128,0)
+[17:34:56.555] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4424,1112) from=(4424,1128)
+[17:34:56.555] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4424,1128,0) to (4424,1112,z0)
+[17:34:56.555] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4424,1112) in background
+[17:34:56.615] INFO  [wave10_RevGen3_16_Lyra] [bot] replan to (4424,1112): 17 steps in 430.2us
+[17:34:59.784] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:35:01.849] INFO  [wave10_RevGen3_16_Lyra] [bot] arrived at (4424,1112,0)
+[17:35:01.849] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4424,1112,0); target (4424,1112); ARRIVED (off by 0 tile(s))
+[17:35:01.850] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4424,1112) target=(4424,1112) arrived=1 off=0
+[17:35:01.850] INFO  [wave10_RevGen3_16_Lyra] [travel] recovery walk reached its anchor at (4424,1112,0) (off 0); attempt 2/3
+[17:35:01.850] LOG   [wave10_RevGen3_16_Lyra] event travel_recovery_done: reached=1 at=(4424,1112,0) off=0 attempt=2
+[17:35:01.910] INFO  [wave10_RevGen3_16_Lyra] [travel] mode walk             usable   <- chosen
+[17:35:01.911] INFO  [wave10_RevGen3_16_Lyra] [travel] mode moongate         usable
+[17:35:01.911] INFO  [wave10_RevGen3_16_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:01.911] INFO  [wave10_RevGen3_16_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:01.911] LOG   [wave10_RevGen3_16_Lyra] event travel_mode: walk
+[17:35:01.918] INFO  [wave10_RevGen3_16_Lyra] [travel] plan seeded_bank: no world route to the destination legs=0 ~0 tiles transit=0 nodes=23752
+[17:35:01.918] INFO  [wave10_RevGen3_16_Lyra] [travel] seeded_bank FAILED at (4424,1112,0) -- no world route to the destination
+[17:35:01.918] LOG   [wave10_RevGen3_16_Lyra] event travel_failed: label='seeded_bank' ok=0 at=(4424,1112) legs=0 plans=1 why='no world route to the destination'
+[17:35:01.973] INFO  [life] bank: trip reported failure but no bank is within reach of 4424,1112
+[17:35:04.824] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:35:05.008] INFO  [life] bank: nothing proven yet -- trying what common knowledge says is nearest, Moonglow Bank banker at 4471,1156 (47 tiles)
+[17:35:05.008] INFO  [wave10_RevGen3_16_Lyra] [travel] seeded_bank -> (4471,1156) r=5 from (4424,1112)
+[17:35:05.009] LOG   [wave10_RevGen3_16_Lyra] event travel_start: label='seeded_bank' target=(4471,1156) radius=5 from=(4424,1112)
+[17:35:05.009] INFO  [wave10_RevGen3_16_Lyra] [travel] mode walk             usable   <- chosen
+[17:35:05.009] INFO  [wave10_RevGen3_16_Lyra] [travel] mode moongate         usable
+[17:35:05.009] INFO  [wave10_RevGen3_16_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:05.009] INFO  [wave10_RevGen3_16_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:05.009] LOG   [wave10_RevGen3_16_Lyra] event travel_mode: walk
+[17:35:05.009] INFO  [wave10_RevGen3_16_Lyra] [travel] plan seeded_bank: ok legs=2 ~104 tiles transit=0 nodes=177
+[17:35:05.070] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:35:05.070] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4440,1144) from (4424,1112,0)
+[17:35:05.071] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4440,1144) from=(4424,1112)
+[17:35:05.072] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4424,1112,0) to (4440,1144)
+[17:35:05.072] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4440,1144) in background
+[17:35:05.132] INFO  [wave10_RevGen3_16_Lyra] [bot] replan to (4440,1144): 43 steps in 4457.4us
+[17:35:09.858] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:35:14.864] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:35:16.743] INFO  [wave10_RevGen3_16_Lyra] [bot] arrived at (4440,1144,0)
+[17:35:16.743] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4440,1144); ARRIVED (off by 0 tile(s))
+[17:35:16.743] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4440,1144) arrived=1 off=0
+[17:35:16.743] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:35:16.743] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:35:16.744] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:35:16.744] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:35:16.744] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:35:18.010] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:35:18.010] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:35:19.212] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:35:19.213] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:35:19.213] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:35:19.213] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:35:19.213] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:35:19.885] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:35:20.633] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:35:20.637] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:35:21.861] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:35:21.866] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:35:21.866] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:35:21.866] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:35:21.867] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:35:23.204] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:35:23.205] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:35:24.450] INFO  [wave10_RevGen3_16_Lyra] [travel] mode walk             usable   <- chosen
+[17:35:24.451] INFO  [wave10_RevGen3_16_Lyra] [travel] mode moongate         usable
+[17:35:24.451] INFO  [wave10_RevGen3_16_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:24.451] INFO  [wave10_RevGen3_16_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:24.451] LOG   [wave10_RevGen3_16_Lyra] event travel_mode: walk
+[17:35:24.451] INFO  [wave10_RevGen3_16_Lyra] [travel] plan seeded_bank: ok legs=1 ~31 tiles transit=0 nodes=0
+[17:35:24.947] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:35:25.998] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:35:25.998] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:35:25.998] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:35:25.998] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:35:25.998] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:35:27.350] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:35:27.356] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:35:28.566] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:35:28.566] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:35:28.566] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:35:28.566] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:35:28.566] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:35:29.979] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:35:30.133] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:35:30.133] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:35:31.394] INFO  [wave10_RevGen3_16_Lyra] [travel] mode walk             usable   <- chosen
+[17:35:31.394] INFO  [wave10_RevGen3_16_Lyra] [travel] mode moongate         usable
+[17:35:31.394] INFO  [wave10_RevGen3_16_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:31.394] INFO  [wave10_RevGen3_16_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:31.394] LOG   [wave10_RevGen3_16_Lyra] event travel_mode: walk
+[17:35:31.394] INFO  [wave10_RevGen3_16_Lyra] [travel] plan seeded_bank: ok legs=1 ~31 tiles transit=0 nodes=0
+[17:35:34.433] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:35:34.434] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:35:34.434] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:35:34.434] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:35:34.434] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:35:35.030] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:35:35.833] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:35:35.833] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:35:37.094] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:35:37.094] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:35:37.095] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:35:37.095] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:35:37.095] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:35:38.021] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_16.lyra/state.json
+[17:35:38.543] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:35:38.543] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:35:39.329] INFO  [wave10_RevGen3_16_Lyra] [chat ascii] System: Serena has departed from Britain.
+ runebook_recall  no: no runebook page for that destination
+[17:34:36.073] LOG   [wave10_RevGen3_16_Lyra] event travel_mode: walk
+[17:34:36.073] INFO  [wave10_RevGen3_16_Lyra] [travel] plan seeded_bank: ok legs=1 ~31 tiles transit=0 nodes=0
+[17:34:39.650] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:34:40.590] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:34:40.590] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:34:40.590] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:34:40.591] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:34:40.591] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:34:42.565] WARN  [wave10_RevGen3_16_Lyra] [bot] no path to (4471,1156) avoiding 0 block(s); stopping (search 1947265.6us)
+[17:34:42.565] WARN  [wave10_RevGen3_16_Lyra] [bot] start (4440,1144,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 215 item(s), 3 mobile(s))
+[17:34:42.626] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:34:42.626] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:34:43.880] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:34:43.880] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:34:43.881] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:34:43.881] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:34:43.881] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:34:44.710] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:34:45.820] WARN  [wave10_RevGen3_16_Lyra] [bot] no path to (4471,1156) avoiding 0 block(s); stopping (search 1885618.6us)
+[17:34:45.820] WARN  [wave10_RevGen3_16_Lyra] [bot] start (4440,1144,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 215 item(s), 2 mobile(s))
+[17:34:45.882] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:34:45.883] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:34:45.883] WARN  [wave10_RevGen3_16_Lyra] [travel] route exhausted at (4440,1144,0); trying to reach (4424,1128,0) to get somewhere routable (escape 1/3)
+[17:34:45.883] LOG   [wave10_RevGen3_16_Lyra] event travel_escape: from=(4440,1144,0) to=(4424,1128) attempt=1
+[17:34:45.883] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4424,1128) from (4440,1144,0)
+[17:34:45.883] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4424,1128) from=(4440,1144)
+[17:34:45.883] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4424,1128,z0)
+[17:34:45.883] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4424,1128) in background
+[17:34:45.946] INFO  [wave10_RevGen3_16_Lyra] [bot] replan to (4424,1128): 26 steps in 1056.3us
+[17:34:49.728] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:34:54.577] INFO  [wave10_RevGen3_16_Lyra] [bot] arrived at (4424,1128,0)
+[17:34:54.577] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4424,1128,0); target (4424,1128); ARRIVED (off by 0 tile(s))
+[17:34:54.577] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4424,1128) target=(4424,1128) arrived=1 off=0
+[17:34:54.577] INFO  [wave10_RevGen3_16_Lyra] [travel] recovery walk reached its anchor at (4424,1128,0) (off 0); attempt 1/3
+[17:34:54.578] LOG   [wave10_RevGen3_16_Lyra] event travel_recovery_done: reached=1 at=(4424,1128,0) off=0 attempt=1
+[17:34:54.638] INFO  [wave10_RevGen3_16_Lyra] [travel] mode walk             usable   <- chosen
+[17:34:54.638] INFO  [wave10_RevGen3_16_Lyra] [travel] mode moongate         usable
+[17:34:54.638] INFO  [wave10_RevGen3_16_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:54.638] INFO  [wave10_RevGen3_16_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:54.638] LOG   [wave10_RevGen3_16_Lyra] event travel_mode: walk
+[17:34:54.647] INFO  [wave10_RevGen3_16_Lyra] [travel] plan seeded_bank: no world route to the destination legs=0 ~0 tiles transit=0 nodes=23752
+[17:34:54.647] WARN  [wave10_RevGen3_16_Lyra] [travel] route exhausted at (4424,1128,0); trying to reach (4408,1112,0) to get somewhere routable (escape 2/3)
+[17:34:54.647] LOG   [wave10_RevGen3_16_Lyra] event travel_escape: from=(4424,1128,0) to=(4408,1112) attempt=2
+[17:34:54.647] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4408,1112) from (4424,1128,0)
+[17:34:54.647] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4408,1112) from=(4424,1128)
+[17:34:54.647] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4424,1128,0) to (4408,1112,z0)
+[17:34:54.648] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4408,1112) in background
+[17:34:54.763] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:34:56.492] WARN  [wave10_RevGen3_16_Lyra] [bot] no path to (4408,1112) avoiding 0 block(s); stopping (search 1823892.0us)
+[17:34:56.492] WARN  [wave10_RevGen3_16_Lyra] [bot] start (4424,1128,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 215 item(s), 14 mobile(s))
+[17:34:56.554] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4424,1128,0); target (4408,1112); stopped short (off by 32 tile(s))
+[17:34:56.554] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4424,1128) target=(4408,1112) arrived=0 off=32
+[17:34:56.554] INFO  [wave10_RevGen3_16_Lyra] [travel] recovery walk fell short at (4424,1128,0) (off 16); attempt 2/3
+[17:34:56.554] LOG   [wave10_RevGen3_16_Lyra] event travel_recovery_done: reached=0 at=(4424,1128,0) off=16 attempt=2
+[17:34:56.554] WARN  [wave10_RevGen3_16_Lyra] [travel] route exhausted at (4424,1128,0); trying to reach (4424,1112,0) to get somewhere routable (escape 3/3)
+[17:34:56.555] LOG   [wave10_RevGen3_16_Lyra] event travel_escape: from=(4424,1128,0) to=(4424,1112) attempt=3
+[17:34:56.555] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4424,1112) from (4424,1128,0)
+[17:34:56.555] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4424,1112) from=(4424,1128)
+[17:34:56.555] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4424,1128,0) to (4424,1112,z0)
+[17:34:56.555] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4424,1112) in background
+[17:34:56.615] INFO  [wave10_RevGen3_16_Lyra] [bot] replan to (4424,1112): 17 steps in 430.2us
+[17:34:59.784] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:35:01.849] INFO  [wave10_RevGen3_16_Lyra] [bot] arrived at (4424,1112,0)
+[17:35:01.849] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4424,1112,0); target (4424,1112); ARRIVED (off by 0 tile(s))
+[17:35:01.850] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4424,1112) target=(4424,1112) arrived=1 off=0
+[17:35:01.850] INFO  [wave10_RevGen3_16_Lyra] [travel] recovery walk reached its anchor at (4424,1112,0) (off 0); attempt 2/3
+[17:35:01.850] LOG   [wave10_RevGen3_16_Lyra] event travel_recovery_done: reached=1 at=(4424,1112,0) off=0 attempt=2
+[17:35:01.910] INFO  [wave10_RevGen3_16_Lyra] [travel] mode walk             usable   <- chosen
+[17:35:01.911] INFO  [wave10_RevGen3_16_Lyra] [travel] mode moongate         usable
+[17:35:01.911] INFO  [wave10_RevGen3_16_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:01.911] INFO  [wave10_RevGen3_16_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:01.911] LOG   [wave10_RevGen3_16_Lyra] event travel_mode: walk
+[17:35:01.918] INFO  [wave10_RevGen3_16_Lyra] [travel] plan seeded_bank: no world route to the destination legs=0 ~0 tiles transit=0 nodes=23752
+[17:35:01.918] INFO  [wave10_RevGen3_16_Lyra] [travel] seeded_bank FAILED at (4424,1112,0) -- no world route to the destination
+[17:35:01.918] LOG   [wave10_RevGen3_16_Lyra] event travel_failed: label='seeded_bank' ok=0 at=(4424,1112) legs=0 plans=1 why='no world route to the destination'
+[17:35:04.824] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:35:05.008] INFO  [wave10_RevGen3_16_Lyra] [travel] seeded_bank -> (4471,1156) r=5 from (4424,1112)
+[17:35:05.009] LOG   [wave10_RevGen3_16_Lyra] event travel_start: label='seeded_bank' target=(4471,1156) radius=5 from=(4424,1112)
+[17:35:05.009] INFO  [wave10_RevGen3_16_Lyra] [travel] mode walk             usable   <- chosen
+[17:35:05.009] INFO  [wave10_RevGen3_16_Lyra] [travel] mode moongate         usable
+[17:35:05.009] INFO  [wave10_RevGen3_16_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:05.009] INFO  [wave10_RevGen3_16_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:05.009] LOG   [wave10_RevGen3_16_Lyra] event travel_mode: walk
+[17:35:05.009] INFO  [wave10_RevGen3_16_Lyra] [travel] plan seeded_bank: ok legs=2 ~104 tiles transit=0 nodes=177
+[17:35:05.070] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:35:05.070] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4440,1144) from (4424,1112,0)
+[17:35:05.071] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4440,1144) from=(4424,1112)
+[17:35:05.072] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4424,1112,0) to (4440,1144)
+[17:35:05.072] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4440,1144) in background
+[17:35:05.132] INFO  [wave10_RevGen3_16_Lyra] [bot] replan to (4440,1144): 43 steps in 4457.4us
+[17:35:09.858] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:35:14.864] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:35:16.743] INFO  [wave10_RevGen3_16_Lyra] [bot] arrived at (4440,1144,0)
+[17:35:16.743] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4440,1144); ARRIVED (off by 0 tile(s))
+[17:35:16.743] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4440,1144) arrived=1 off=0
+[17:35:16.743] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:35:16.743] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:35:16.744] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:35:16.744] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:35:16.744] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:35:17.949] WARN  [wave10_RevGen3_16_Lyra] [bot] no path to (4471,1156) avoiding 0 block(s); stopping (search 1147593.0us)
+[17:35:17.949] WARN  [wave10_RevGen3_16_Lyra] [bot] start (4440,1144,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 215 item(s), 2 mobile(s))
+[17:35:18.010] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:35:18.010] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:35:19.212] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:35:19.213] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:35:19.213] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:35:19.213] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:35:19.213] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:35:19.885] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:35:20.573] WARN  [wave10_RevGen3_16_Lyra] [bot] no path to (4471,1156) avoiding 0 block(s); stopping (search 1310623.0us)
+[17:35:20.577] WARN  [wave10_RevGen3_16_Lyra] [bot] start (4440,1144,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 215 item(s), 3 mobile(s))
+[17:35:20.633] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:35:20.637] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:35:21.861] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:35:21.866] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:35:21.866] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:35:21.866] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:35:21.867] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:35:23.142] WARN  [wave10_RevGen3_16_Lyra] [bot] no path to (4471,1156) avoiding 0 block(s); stopping (search 1237347.5us)
+[17:35:23.142] WARN  [wave10_RevGen3_16_Lyra] [bot] start (4440,1144,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 215 item(s), 3 mobile(s))
+[17:35:23.204] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:35:23.205] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:35:24.450] INFO  [wave10_RevGen3_16_Lyra] [travel] mode walk             usable   <- chosen
+[17:35:24.451] INFO  [wave10_RevGen3_16_Lyra] [travel] mode moongate         usable
+[17:35:24.451] INFO  [wave10_RevGen3_16_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:24.451] INFO  [wave10_RevGen3_16_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:24.451] LOG   [wave10_RevGen3_16_Lyra] event travel_mode: walk
+[17:35:24.451] INFO  [wave10_RevGen3_16_Lyra] [travel] plan seeded_bank: ok legs=1 ~31 tiles transit=0 nodes=0
+[17:35:24.947] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:35:25.998] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:35:25.998] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:35:25.998] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:35:25.998] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:35:25.998] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:35:27.289] WARN  [wave10_RevGen3_16_Lyra] [bot] no path to (4471,1156) avoiding 0 block(s); stopping (search 1284026.9us)
+[17:35:27.289] WARN  [wave10_RevGen3_16_Lyra] [bot] start (4440,1144,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 215 item(s), 3 mobile(s))
+[17:35:27.350] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:35:27.356] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:35:28.566] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:35:28.566] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:35:28.566] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:35:28.566] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:35:28.566] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:35:29.979] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:35:30.071] WARN  [wave10_RevGen3_16_Lyra] [bot] no path to (4471,1156) avoiding 0 block(s); stopping (search 1452920.9us)
+[17:35:30.071] WARN  [wave10_RevGen3_16_Lyra] [bot] start (4440,1144,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 215 item(s), 3 mobile(s))
+[17:35:30.133] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:35:30.133] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:35:31.394] INFO  [wave10_RevGen3_16_Lyra] [travel] mode walk             usable   <- chosen
+[17:35:31.394] INFO  [wave10_RevGen3_16_Lyra] [travel] mode moongate         usable
+[17:35:31.394] INFO  [wave10_RevGen3_16_Lyra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:31.394] INFO  [wave10_RevGen3_16_Lyra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:31.394] LOG   [wave10_RevGen3_16_Lyra] event travel_mode: walk
+[17:35:31.394] INFO  [wave10_RevGen3_16_Lyra] [travel] plan seeded_bank: ok legs=1 ~31 tiles transit=0 nodes=0
+[17:35:34.433] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:35:34.434] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:35:34.434] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:35:34.434] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:35:34.434] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:35:35.030] INFO  [wave10_RevGen3_16_Lyra] [survival] hp 16/16 (100%) -> fight
+[17:35:35.770] WARN  [wave10_RevGen3_16_Lyra] [bot] no path to (4471,1156) avoiding 0 block(s); stopping (search 1333549.5us)
+[17:35:35.771] WARN  [wave10_RevGen3_16_Lyra] [bot] start (4440,1144,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 215 item(s), 2 mobile(s))
+[17:35:35.833] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:35:35.833] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:35:37.094] INFO  [wave10_RevGen3_16_Lyra] [travel] avoiding 4 teleporter pad(s) on this leg
+[17:35:37.094] INFO  [wave10_RevGen3_16_Lyra] [action] goto (4471,1156) from (4440,1144,0)
+[17:35:37.095] LOG   [wave10_RevGen3_16_Lyra] event goto_start: target=(4471,1156) from=(4440,1144)
+[17:35:37.095] INFO  [wave10_RevGen3_16_Lyra] [bot] running from (4440,1144,0) to (4471,1156)
+[17:35:37.095] INFO  [wave10_RevGen3_16_Lyra] [bot] planning path to (4471,1156) in background
+[17:35:38.511] WARN  [wave10_RevGen3_16_Lyra] [bot] no path to (4471,1156) avoiding 0 block(s); stopping (search 1374012.1us)
+[17:35:38.512] WARN  [wave10_RevGen3_16_Lyra] [bot] start (4440,1144,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 215 item(s), 2 mobile(s))
+[17:35:38.543] INFO  [wave10_RevGen3_16_Lyra] [action] goto finished at (4440,1144,0); target (4471,1156); stopped short (off by 43 tile(s))
+[17:35:38.543] LOG   [wave10_RevGen3_16_Lyra] event goto_done: at=(4440,1144) target=(4471,1156) arrived=0 off=43
+[17:35:39.329] INFO  [wave10_RevGen3_16_Lyra] [chat ascii] System: Serena has departed from Britain.

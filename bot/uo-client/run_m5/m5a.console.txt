@@ -1,0 +1,98 @@
+[13:47:20.750] INFO  session 0: 127.0.0.1:2593 user='revolutionmage01' char=Ilyandra tag='m5a'
+[13:47:20.751] LOG   [m5a] event session_start: text log opened
+[13:47:20.751] LOG   [m5a] event net_connect_begin: connect 127.0.0.1:2593
+[13:47:20.751] INFO  [m5a] [net] connecting to 127.0.0.1:2593 ...
+[13:47:20.752] LOG   [m5a] event net_connected: connect 127.0.0.1:2593
+[13:47:20.752] INFO  [m5a] [net] connected.
+[13:47:20.752] INFO  [m5a] [seed] sent 0x7F000001 (plaintext)
+[13:47:20.752] LOG   [m5a] event seed_out: 0x7F000001 hex=7f000001
+[13:47:20.752] INFO  [life] no prior state for revolutionmage01.ilyandra: a new Pure Mage
+[13:47:20.752] INFO  [life] creation request: skill 50.0 + skill 50.0, stats 15/10/25 = 50
+[13:47:20.752] INFO  [life] build plan 'mage': 350.0 resolved + 350.0 unresolved = 700.0/700.0, stats 25/25/100 = 150
+[13:47:20.752] INFO  [m5a] [life] autonomous player active for 'Ilyandra' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 20 min)
+[13:47:20.752] INFO  [m5a] [0xA8] 1 server(s):
+[13:47:20.752] INFO  [m5a]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[13:47:20.761] INFO  [m5a] [0x8C] game server = 127.0.0.1:2593  seed=0xB45B826E
+[13:47:20.761] LOG   [m5a] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xB45B826E
+[13:47:20.761] INFO  [m5a] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[13:47:20.761] LOG   [m5a] event relay_same_socket: no seed re-sent; 0x91 follows
+[13:47:20.761] INFO  [m5a] [0xB9] server features = 0x0005
+[13:47:20.761] INFO  [m5a] [0xA9] 5 slot(s) (populated 0):
+[13:47:20.761] INFO  [m5a]   [0] <empty>
+[13:47:20.761] INFO  [m5a]   [1] <empty>
+[13:47:20.761] INFO  [m5a]   [2] <empty>
+[13:47:20.761] INFO  [m5a]   [3] <empty>
+[13:47:20.761] INFO  [m5a]   [4] <empty>
+[13:47:20.761] INFO  [m5a] [0x00] requested skills 25:50 46:50 0:0
+[13:47:20.761] INFO  [m5a] [0x00] requested stats STR 15 DEX 10 INT 25
+[13:47:20.761] INFO  [m5a] [0x00] creating character 'Ilyandra' in slot 0
+[13:47:20.761] LOG   [m5a] event char_create_sent: Ilyandra
+[13:47:20.779] INFO  [m5a] [0x1B] serial=0x0001616F body=0x0190 pos=(633,858,0)
+[13:47:20.779] LOG   [m5a] event login_confirm: serial=0x0001616F body=0x0190 pos=(633,858,0)
+[13:47:20.779] INFO  [m5a] [0x20] player @(633,858,0) facing=3
+[13:47:20.779] INFO  [m5a] [0x55] login complete — entering world
+[13:47:20.779] LOG   [m5a] event in_world: 0x55 received
+[13:47:20.779] INFO  [m5a] [backpack] opening 0x4001606B
+[13:47:20.779] INFO  [m5a] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[13:47:20.779] INFO  [m5a] [chat ascii] System: There are 0 other players here.
+[13:47:20.779] INFO  [m5a] [chat ascii] System: You are under the protection of the town guards
+[13:47:20.782] INFO  [m5a] [action] requesting the skill list
+[13:47:20.783] INFO  [life] in world; asked the server for the skill list
+[13:47:20.783] INFO  [m5a] [0x24] open container 0x4001606B gump=60
+[13:47:20.783] INFO  [m5a] [0x3C] container contents: 10 item(s)
+[13:47:20.783] LOG   [m5a] event backpack_contents: serial=0x4001606B items=10
+[13:47:23.352] INFO  [m5a] [bot] world data loaded (0 blacklisted spot(s)).
+[13:47:23.353] INFO  [life] common knowledge: Yew woods at 664,1030 (172 tiles away)
+[13:47:23.353] INFO  [life] common knowledge: Yew Territory woods at 776,1030 (172 tiles away)
+[13:47:23.353] INFO  [life] common knowledge: Yew woods at 520,1160 (302 tiles away)
+[13:47:23.353] INFO  [life] seeded 3 forest hint(s) of 43 the atlas knows -- everything else is earned
+[13:47:23.353] INFO  [life] reconciliation: first ever login, 9 field(s) differed
+[13:47:23.353] INFO  [life]   gold         persisted=0          server=1000       -> server value accepted
+[13:47:23.353] INFO  [life]   str          persisted=0          server=15         -> server value accepted
+[13:47:23.353] INFO  [life]   dex          persisted=0          server=10         -> server value accepted
+[13:47:23.353] INFO  [life]   int          persisted=0          server=25         -> server value accepted
+[13:47:23.353] INFO  [life]   skill_25     persisted=0.0        server=50.0       -> server value accepted
+[13:47:23.353] INFO  [life]   skill_46     persisted=0.0        server=50.0       -> server value accepted
+[13:47:23.353] INFO  [life]   skill_16     persisted=0.0        server=11.8       -> server value accepted
+[13:47:23.353] INFO  [life]   skill_23     persisted=0.0        server=7.7        -> server value accepted
+[13:47:23.353] INFO  [life]   position     persisted=0,0        server=633,858    -> server value accepted
+[13:47:23.353] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[13:47:23.353] INFO  [m5a] [survival] on
+[13:47:23.353] LOG   [m5a] event survival_mode: on
+[13:47:23.354] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionmage01.ilyandra/state.json
+[13:47:23.354] INFO  [m5a] [survival] hp 15/15 (100%) -> fight
+[13:47:23.407] INFO  [life] goal=REPLACE_EQUIPMENT reason="no goal was running"
+[13:47:23.407] INFO  [life]   score=130.0
+[13:47:23.407] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[13:47:23.407] INFO  [life]   reason: bandages=0 low=8
+[13:47:23.407] INFO  [life]   BLOCKED_NEED GET_TOOL: no usable axe: a lumberjack cannot work without one (no known supplier of a hatchet)
+[13:47:23.407] INFO  [life]   BLOCKED_NEED GATHER_LOGS: logs are this character's income and its Lumberjacking training (a lead on Yew woods at 664,1030, untested)
+[13:47:23.407] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Evaluating Intelligence 11.8 -> 100.0)
+[13:47:23.407] INFO  [life] BLOCKED_NEED bandages: vendor policy refuses (UNKNOWN)
+[13:47:28.380] INFO  [m5a] [survival] hp 15/15 (100%) -> fight
+[13:47:33.426] INFO  [m5a] [survival] hp 15/15 (100%) -> fight
+[13:47:38.459] INFO  [m5a] [survival] hp 15/15 (100%) -> fight
+[13:47:43.490] INFO  [m5a] [survival] hp 15/15 (100%) -> fight
+[13:47:48.535] INFO  [m5a] [survival] hp 15/15 (100%) -> fight
+[13:47:53.458] INFO  [life] BLOCKED_NEED bandages: vendor policy refuses (UNKNOWN)
+[13:47:53.579] INFO  [m5a] [survival] hp 15/15 (100%) -> fight
+[13:47:58.637] INFO  [m5a] [survival] hp 15/15 (100%) -> fight
+[13:48:03.677] INFO  [m5a] [survival] hp 15/15 (100%) -> fight
+[13:48:08.721] INFO  [m5a] [survival] hp 15/15 (100%) -> fight
+[13:48:13.766] INFO  [m5a] [survival] hp 15/15 (100%) -> fight
+[13:48:18.798] INFO  [m5a] [survival] hp 15/15 (100%) -> fight
+[13:48:23.351] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionmage01.ilyandra/state.json
+[13:48:23.471] INFO  [life] BLOCKED_NEED bandages: vendor policy refuses (UNKNOWN)
+[13:48:23.840] INFO  [m5a] [survival] hp 15/15 (100%) -> fight
+[13:48:28.888] INFO  [m5a] [survival] hp 15/15 (100%) -> fight
+[13:48:33.933] INFO  [m5a] [survival] hp 15/15 (100%) -> fight
+[13:48:38.979] INFO  [m5a] [survival] hp 15/15 (100%) -> fight
+[13:48:44.026] INFO  [m5a] [survival] hp 15/15 (100%) -> fight
+[13:48:49.068] INFO  [m5a] [survival] hp 15/15 (100%) -> fight
+[13:48:53.502] INFO  [life] BLOCKED_NEED bandages: vendor policy refuses (UNKNOWN)
+[13:48:54.116] INFO  [m5a] [survival] hp 15/15 (100%) -> fight
+[13:48:59.167] INFO  [m5a] [survival] hp 15/15 (100%) -> fight
+[13:49:04.228] INFO  [m5a] [survival] hp 15/15 (100%) -> fight
+[13:49:09.264] INFO  [m5a] [survival] hp 15/15 (100%) -> fight
+[13:49:14.304] INFO  [m5a] [survival] hp 15/15 (100%) -> fight
+[13:49:19.337] INFO  [m5a] [survival] hp 15/15 (100%) -> fight
