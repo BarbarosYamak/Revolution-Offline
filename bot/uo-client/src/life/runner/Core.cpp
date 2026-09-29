@@ -177,6 +177,18 @@ bool Runner::Configure(const RunnerConfig& cfg, std::string* err) {
                 state_.homeCity.c_str());
     }
 
+    // Which Revolution this character lives in (uo/era.h).
+    eraDate_ = cfg.eraDate ? cfg.eraDate : era::kDefaultDate;
+    {
+        int n = 0, known = 0;
+        const era::Change* changes = era::Changes(&n);
+        for (int i = 0; i < n; ++i) known += changes[i].date <= eraDate_;
+        LogLine("era: living on %s (%d of %d dated Revolution changes have happened)%s",
+                era::Format(eraDate_).c_str(), known, n,
+                era::InProfile(eraDate_) ? "" : " -- OUTSIDE the server's 2009-2010 profile: "
+                "the character may expect things the server does not have");
+    }
+
     // Temperament and play hours, once per life (uo/persona.h). A file saved
     // before personas existed gets the one its identity id always implied.
     if (!state_.persona.set) {
@@ -1393,6 +1405,7 @@ void Runner::PublishStatus(Client& client, const Observation& obs, const char* p
     s.homeCity = state_.homeCity;
     s.rhythm = persona::RhythmName(state_.persona.rhythm);
     s.schedule = persona::Describe(state_.persona);
+    s.era = era::Format(eraDate_);
     s.phase = phase;
     s.online = obs.inWorld;
     s.dead = obs.dead;

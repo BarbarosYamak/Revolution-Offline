@@ -58,6 +58,7 @@ struct RunnerConfig {
     // persists, and logs out properly.
     i64 sessionLimitMs = 30 * 60 * 1000;
     i32 goalLimit = 0;              // 0 = no goal-count limit
+    i32 eraDate = 0;                // uo/era.h yyyymmdd; 0 = era::kDefaultDate
 
     // Bounded checkpoint frequency. Too often and a 300-bot host is writing
     // constantly; too rarely and a crash loses a session's learning.
@@ -578,6 +579,7 @@ private:
     bool windDownUnsafeLogout_ = false;
 
     SessionSummary session_;
+    i32 eraDate_ = 0;                          // uo/era.h, set in Configure
     static constexpr i64 kStatusIntervalMs = 10000;
     i64 lastStatusMs_ = 0;
     LiveStatus status_;

@@ -144,5 +144,21 @@ class PopulationDecisionTests(unittest.TestCase):
             self.assertEqual(len(status["online"]), 3)
 
 
+
+class EraClockTests(unittest.TestCase):
+    def test_fixed_and_advancing_calendar(self):
+        self.assertEqual(fleet_ramp.era_date("2009-05-01"), "2009-05-01")
+        self.assertEqual(fleet_ramp.era_date("2009-05-01", 30, since=0, now=86400), "2009-05-31")
+        self.assertEqual(fleet_ramp.era_date("2016-12-01", 30, since=0, now=86400 * 10), "2016-12-31")
+
+    def test_population_scale_is_owner_data(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "era_population.tsv"
+            self.assertEqual(fleet_ramp.era_population_scale("2012-01-01", path), 1.0)
+            path.write_text("# year\tscale\n2012\t0.4\n")
+            self.assertEqual(fleet_ramp.era_population_scale("2012-06-01", path), 0.4)
+            self.assertEqual(fleet_ramp.era_population_scale("2009-06-01", path), 1.0)
+
+
 if __name__ == "__main__":
     unittest.main()

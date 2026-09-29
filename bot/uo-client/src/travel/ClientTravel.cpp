@@ -1101,7 +1101,9 @@ void Client::TravelPlanRoute() {
     // still has to match a page named for its town.
     const int rbPage = RunebookPageFor(travelLabel_);
     cap.haveRunebookPage = (rbPage != 0);
-    cap.runebookCharges  = runebookCharges_;
+    // A charged runebook needs no Magery only from 13.05.2009 (uo/era.h);
+    // before that a character does not know to rely on charges.
+    cap.runebookCharges  = era::Active(era::Feature::RunebookCharges, EraDate()) ? runebookCharges_ : 0;
 
     const i32 straightTiles =
         Chebyshev(playerX_, playerY_, journey_.GoalX(), journey_.GoalY());

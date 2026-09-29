@@ -855,3 +855,8 @@ target_include_directories(chatter PRIVATE
     ${CMAKE_SOURCE_DIR}/include
     ${CMAKE_SOURCE_DIR}/src)
 add_test(NAME chatter COMMAND chatter)
+
+# The shard calendar -- dated Revolution changes, pure.
+add_executable(era era.cpp)
+target_include_directories(era PRIVATE ${CMAKE_SOURCE_DIR}/include)
+add_test(NAME era COMMAND era)

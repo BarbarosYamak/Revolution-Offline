@@ -41,6 +41,7 @@ void PrintUsage() {
         "                     observation, not from a script (M4)\n"
         "  --bot-data <dir>   where persistent character state lives (bot_data)\n"
         "  --life-minutes <n> autonomous session length before a clean logout (30)\n"
+        "  --era-date <date>  the day of Revolution's history to live in, YYYY-MM-DD (2010-06-01)\n"
         "  --life-goals <n>   end the session after N completed goals (0 = off)\n"
         "  --run              always run (default: auto, which runs unless\n"
         "                     stamina or encumbrance say otherwise)\n"
@@ -226,6 +227,11 @@ int main(int argc, char** argv) {
         else if (ArgIs(a, "--profession")) { base.professionId = next; ++i; }
         else if (ArgIs(a, "--life-minutes")) { base.lifeMinutes = std::atoi(next); ++i; }
         else if (ArgIs(a, "--life-goals"))   { base.lifeGoalLimit = std::atoi(next); ++i; }
+        else if (ArgIs(a, "--era-date")) {
+            base.eraDate = uo::era::Parse(next ? next : "");
+            if (!base.eraDate) { std::fprintf(stderr, "--era-date wants YYYY-MM-DD\n"); return 2; }
+            ++i;
+        }
         else if (ArgIs(a, "--keepalive")) { base.keepaliveIntervalMs = static_cast<uo::u32>(std::atoi(next)); ++i; }
         else if (ArgIs(a, "--tag"))       { base.sessionTag = next; ++i; }
         else if (ArgIs(a, "--log"))       { baseLog = next; ++i; }

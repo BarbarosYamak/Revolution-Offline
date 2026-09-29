@@ -2326,6 +2326,7 @@ struct RecentGoal {
 struct LiveStatus {
     std::string character, account, family, homeCity;
     std::string rhythm, schedule;
+    std::string era;               // uo/era.h date this character lives in
     std::string phase;             // live / wind_down / logging_out / offline
     bool        online = false;
     bool        dead = false;

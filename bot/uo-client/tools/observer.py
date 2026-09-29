@@ -65,6 +65,7 @@ def collect(bot_data, run_dir=None, now=None):
         'by_goal': dict(Counter(b.get('goal', '?') for b in live).most_common()),
         'by_goal_family': dict(Counter(b.get('goal_family', '?') for b in live).most_common()),
         'by_city': dict(Counter(b.get('home_city', '?') for b in live).most_common()),
+        'era': sorted({b.get('era') for b in live if b.get('era')}),
     }
     population = read_json(Path(run_dir) / 'population.json') if run_dir else None
     return {'generated': time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(now)),
@@ -134,7 +135,7 @@ function bars(el,obj){const max=Math.max(1,...Object.values(obj));
  el.innerHTML=Object.entries(obj).slice(0,14).map(([k,v])=>
  `<div><span title="${esc(k)}">${esc(k)}</span><i style="width:${Math.round(200*v/max)}px"></i>${v}</div>`).join('')||'<span class="muted">nobody on line</span>';}
 function render(){if(!DATA)return;const s=DATA.summary,p=DATA.population;
- document.getElementById('when').textContent='Updated '+DATA.generated+(p?` · manager: ${p.online.length}/${p.max_online} on line, ${p.wanting_now} want to play`:'');
+ document.getElementById('when').textContent='Updated '+DATA.generated+(s.era&&s.era.length?' · era '+s.era.join(', '):'')+(p?` · manager: ${p.online.length}/${p.max_online} on line, ${p.wanting_now} want to play`:'');
  const cards=[['On line',s.online],['Known',s.known],['Crashed/stale',s.stale],['In a party',s.in_party],
   ['Kills (session)',s.kills],['Deaths (session)',s.deaths],['Gold carried',s.gold_on_line.toLocaleString()],['Gold earned',s.gold_earned.toLocaleString()]];
  document.getElementById('cards').innerHTML=cards.map(([k,v])=>`<div class="card"><span class="muted">${k}</span><b>${v}</b></div>`).join('');

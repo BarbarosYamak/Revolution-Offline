@@ -11,6 +11,7 @@
 #include "travel/WarMode.h"
 #include "uo/actions.h"
 #include "uo/sparring.h"
+#include "uo/era.h"
 #include "uo/log.h"
 #include "uo/progression.h"
 #include "uo/trade.h"
@@ -142,6 +143,10 @@ public:
         const char* professionId = nullptr;   // uo::prof::All() id; required with --autonomous
         i32         lifeMinutes = 30;         // session length before a clean logout
         i32         lifeGoalLimit = 0;        // 0 = no goal-count limit
+        // Which day of Revolution's history this character lives in
+        // (uo/era.h); 0 = era::kDefaultDate. Changes what it knows to do,
+        // never what the server allows.
+        i32         eraDate = 0;
         bool        logPackets;       // write PKT hex lines to the log file
         u32         keepaliveIntervalMs;  // 0 = use the built-in default
         bool        acceptDoors;      // A* routes through door tiles, opened at runtime
@@ -197,6 +202,8 @@ public:
     // -----------------------------------------------------------------
     bool IsInWorld() const { return state_ == State::InWorld; }
     u32  PlayerSerial() const { return playerSerial_; }
+    // The day of Revolution's history this character lives in (uo/era.h).
+    i32  EraDate() const { return cfg_.eraDate ? cfg_.eraDate : era::kDefaultDate; }
     i32  PlayerX() const { return playerX_; }
     i32  PlayerY() const { return playerY_; }
     i8   PlayerZ() const { return playerZ_; }

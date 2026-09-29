@@ -830,6 +830,7 @@ json::Value ToJson(const LiveStatus& s) {
     o.Set("home_city", s.homeCity);
     o.Set("rhythm", s.rhythm);
     o.Set("schedule", s.schedule);
+    o.Set("era", s.era);
     o.Set("phase", s.phase);
     o.Set("online", s.online);
     o.Set("dead", s.dead);

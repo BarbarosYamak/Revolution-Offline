@@ -262,6 +262,39 @@ def persona_for(account, name, bot_data=None):
     return make_persona(ident)
 
 
+# ---- the era clock (include/uo/era.h) ----------------------------------------
+# Which day of Revolution's history the fleet lives in. A fixed date by
+# default; with a speed, the shard's calendar advances (e.g. 30 era days per
+# real day walks 2008 -> 2016 in about three months). Each client is launched
+# with its day and keeps it for the session.
+ERA_DEFAULT = '2010-06-01'
+ERA_POPULATION = BOT / 'data' / 'era_population.tsv'
+
+
+def era_date(start, per_day=0.0, since=None, now=None):
+    """start: 'YYYY-MM-DD'; per_day: era days per real day; since/now: epoch s."""
+    day = datetime.date.fromisoformat(start)
+    if per_day and since is not None:
+        now = time.time() if now is None else now
+        day += datetime.timedelta(days=int((now - since) / 86400.0 * per_day))
+    return min(day, datetime.date(2016, 12, 31)).isoformat()
+
+
+def era_population_scale(date, path=None):
+    """Owner-supplied share of the fleet on line in that era, from
+    data/era_population.tsv (`year<TAB>scale`). How busy Revolution was in
+    each year is UNKNOWN, so without the file every year is 1.0."""
+    path = ERA_POPULATION if path is None else path
+    year = int(date[:4])
+    try:
+        rows = [line.split('\t') for line in path.read_text().splitlines()
+                if line.strip() and not line.startswith('#')]
+    except OSError:
+        return 1.0
+    table = {int(r[0]): float(r[1]) for r in rows if len(r) >= 2}
+    return table.get(year, 1.0)
+
+
 def plan_hours(personas, weekday):
     """How many characters would be on line at half past each hour."""
     return [sum(1 for p in personas if minutes_left(p, weekday, h * 60 + 30))
@@ -413,7 +446,7 @@ def watch(directory):
 
 
 def launch(exe, bot_data, data_dir, directory, name, account, family, minutes,
-           password, stem=None):
+           password, stem=None, era=None):
     """Start one real client for one character; it logs itself out after
     `minutes` (the runner's session limit) and the process then exits."""
     stem = stem or name
@@ -425,6 +458,8 @@ def launch(exe, bot_data, data_dir, directory, name, account, family, minutes,
                '--create-char', '--autonomous', '--bot-data', str(bot_data),
                '--life-minutes', str(minutes), '--mul-dir', str(ROOT / 'runtime/mul'),
                '--data-dir', str(data_dir), '--log', str(directory / (stem + '.log'))]
+    if era:
+        command += ['--era-date', era]
     flags = (subprocess.DETACHED_PROCESS | subprocess.CREATE_NEW_PROCESS_GROUP
              if os.name == 'nt' else 0)
     with (directory / (stem + '.console.txt')).open('wb') as con, \
@@ -434,7 +469,8 @@ def launch(exe, bot_data, data_dir, directory, name, account, family, minutes,
 
 
 def live(roster, directory, max_online, max_session=240, tick=60, exe=None,
-         bot_data=None, data_dir=None, clock=datetime.datetime.now, once=False):
+         bot_data=None, data_dir=None, clock=datetime.datetime.now, once=False,
+         era_start=ERA_DEFAULT, era_per_day=0.0):
     """The population manager: keep the shard populated by play schedules.
 
     Every tick: reap finished clients, then launch whoever's window is open
@@ -455,10 +491,13 @@ def live(roster, directory, max_online, max_session=240, tick=60, exe=None,
     running = {}          # name -> (process, started, stem, minutes)
     cooldown = {}
     sessions = directory / 'population_log.tsv'
+    era_since = time.time()
     if not sessions.exists():
         sessions.write_text('name\tfamily\trhythm\tstarted\tended\tplanned_min\texit\n')
     while True:
         now = clock()
+        era = era_date(era_start, era_per_day, era_since)
+        cap = max(1, round(max_online * era_population_scale(era)))
         for name, (process, started, stem, minutes) in list(running.items()):
             code = process.poll()
             if code is None:
@@ -474,7 +513,7 @@ def live(roster, directory, max_online, max_session=240, tick=60, exe=None,
                           f'{time.strftime("%Y-%m-%d %H:%M", time.localtime(started))}\t'
                           f'{time.strftime("%Y-%m-%d %H:%M")}\t{minutes}\t'
                           f'{"denied" if denied else code}\n')
-        for row, minutes in decide(roster, personas, set(running), now, max_online,
+        for row, minutes in decide(roster, personas, set(running), now, cap,
                                    cooldown, max_session=max_session):
             if memory_free_gib() < 2:
                 print('population: holding launches, less than 2 GiB free', flush=True)
@@ -486,13 +525,13 @@ def live(roster, directory, max_online, max_session=240, tick=60, exe=None,
                 continue
             stem = f'{name}.{now.strftime("%Y%m%d-%H%M")}'
             process = launch(exe, bot_data, data_dir, directory, name, account, family,
-                             minutes, passwords[account.lower()], stem)
+                             minutes, passwords[account.lower()], stem, era)
             running[name] = (process, time.time(), stem, minutes)
             print(f'{now:%a %H:%M} login {name} ({family}, '
                   f'{personas[name]["rhythm"]}) for {minutes} min', flush=True)
             time.sleep(3)
         (directory / 'population.json').write_text(json.dumps({
-            'at': now.isoformat(timespec='minutes'), 'max_online': max_online,
+            'at': now.isoformat(timespec='minutes'), 'max_online': cap, 'era': era,
             'online': sorted(running),
             'by_family': dict(Counter(next(r[2] for r in roster if r[0] == n) for n in running)),
             'wanting_now': sum(1 for r in roster if minutes_left(
@@ -565,6 +604,10 @@ if __name__ == '__main__':
     parser.add_argument('--max-online', type=int, default=40)
     parser.add_argument('--max-session', type=int, default=240,
                         help='longest single session in minutes')
+    parser.add_argument('--era-start', default=ERA_DEFAULT,
+                        help="the day of Revolution's history to live in (YYYY-MM-DD)")
+    parser.add_argument('--era-days-per-day', type=float, default=0.0,
+                        help='advance the era calendar this many days per real day (0 = fixed)')
     parser.add_argument('--plan', action='store_true',
                         help='print the hourly population the schedules imply')
     args = parser.parse_args()
@@ -574,7 +617,8 @@ if __name__ == '__main__':
     if args.live:
         if not args.directory:
             parser.error('--directory is required for --live')
-        live(roster, args.directory.resolve(), args.max_online, args.max_session)
+        live(roster, args.directory.resolve(), args.max_online, args.max_session,
+             era_start=args.era_start, era_per_day=args.era_days_per_day)
     elif args.admit or args.status or args.watch:
         if not args.directory:
             parser.error('--directory is required for admission/status')
