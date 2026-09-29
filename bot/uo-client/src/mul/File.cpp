@@ -13,8 +13,14 @@ bool File::Open(const char* path) {
     f_ = std::fopen(path, "rb");
     if (!f_) return false;
 
+#if defined(__MINGW32__)
+    // MinGW's msvcrt import library has no _stat32; _stat64 is in both runtimes.
+    struct _stat64 st{};
+    if (::_stat64(path, &st) == 0) {
+#else
     struct _stat32 st{};
     if (::_stat32(path, &st) == 0) {
+#endif
         size_ = static_cast<u64>(st.st_size);
     } else {
         size_ = 0;

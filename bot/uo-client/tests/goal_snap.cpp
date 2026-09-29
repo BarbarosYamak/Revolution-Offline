@@ -11,6 +11,7 @@
 
 #include "uo/nav_rules.h"
 
+#include <cstdlib>
 #include <cstdio>
 #include <set>
 #include <utility>
