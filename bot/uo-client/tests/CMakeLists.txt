@@ -865,3 +865,8 @@ add_test(NAME era COMMAND era)
 add_executable(recall_plan recall_plan.cpp)
 target_include_directories(recall_plan PRIVATE ${CMAKE_SOURCE_DIR}/include)
 add_test(NAME recall_plan COMMAND recall_plan)
+
+# Treasure hunting -- the pure step machine.
+add_executable(treasure treasure.cpp)
+target_include_directories(treasure PRIVATE ${CMAKE_SOURCE_DIR}/include)
+add_test(NAME treasure COMMAND treasure)

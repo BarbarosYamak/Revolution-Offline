@@ -1858,6 +1858,7 @@ void Runner::Tick(Client& client, i64 nowMs) {
                 AssessNeeds(state_.plan, state_.memory, planningObs, needCfg_);
             AddSocialNeeds(client, planningObs, needs);
             AddCraftOrderNeeds(planningObs, needs);
+            AddTreasureNeeds(client, planningObs, needs);
             std::string why;
             const GoalKind previous = planner_.Current().kind;
             const bool wasActive = planner_.Current().active;
@@ -2891,6 +2892,7 @@ void Runner::RunGoal(Client& client, const Observation& obs) {
         case GoalKind::StatFarm:             done = DoStatFarm(client, obs); break;
         case GoalKind::IdleBriefly:           done = DoIdle(client, obs); break;
         case GoalKind::Socialize:             done = DoSocialize(client, obs); break;
+        case GoalKind::HuntTreasure:          done = DoHuntTreasure(client, obs); break;
         case GoalKind::Count:                 break;
     }
 

@@ -560,6 +560,23 @@ public:
     // ground beside a spinning wheel answers "You can't think of a way to use
     // that item."
     u32  FindWorldItemByGraphic(u16 graphic, i32 maxDist = 8) const;
+    // The nearest world item of any of these graphics within `radius` of a
+    // POINT (not of the player): the chest a dig raised at the map's spot.
+    u32  FindWorldItemNear(const u16* graphics, usize count, i32 x, i32 y, i32 radius) const;
+
+    // A MAP THE SERVER SHOWED US (0x90 map details + 0x56 pins). A decoded
+    // treasure map arrives as exactly this: the map's world rectangle, its
+    // pixel size, and a pin on the spot (uo/treasure.h converts the pin).
+    struct MapView {
+        u32 serial = 0;
+        i32 ulx = 0, uly = 0, lrx = 0, lry = 0, width = 0, height = 0;
+        std::vector<std::pair<i32, i32>> pins;   // pixel coordinates
+        i64 seenMs = 0;
+    };
+    const MapView* MapViewOf(u32 serial) const {
+        const auto it = maps_.find(serial);
+        return it == maps_.end() ? nullptr : &it->second;
+    }
     // The same search, ignoring stations this caller has already struck off --
     // a loom behind a counter with no walkable tile beside it is not a loom
     // this character can use, and the next-nearest one is the answer.
@@ -1378,6 +1395,9 @@ private:
     void OnOpenPaperdoll      (const u8* data, usize size);  // 0x88 paperdoll (carries title)
     void OnOverallLightLevel  (const u8* data, usize size);  // 0x4F
     void OnPersonalLightLevel (const u8* data, usize size);  // 0x4E
+    void OnMapDetails         (const u8* data, usize size);  // 0x90
+    void OnMapPin             (const u8* data, usize size);  // 0x56
+    std::unordered_map<u32, MapView> maps_;
     void OnMobileMove         (const u8* data, usize size);  // 0x77
     void OnMobileIncoming     (const u8* data, usize size);  // 0x78
     void OnSwing              (const u8* data, usize size);  // 0x2F fight/swing

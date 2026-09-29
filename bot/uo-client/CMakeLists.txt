@@ -120,6 +120,7 @@ set(UO_CLIENT_SOURCES
     src/life/runner/Cloth.cpp
     src/life/runner/Craft.cpp
     src/life/runner/Social.cpp
+    src/life/runner/Treasure.cpp
     src/progression/ClientSocial.cpp
     src/life/runner/Train.cpp
     src/life/runner/Tame.cpp

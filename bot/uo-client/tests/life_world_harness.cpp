@@ -55,6 +55,10 @@ struct RunnerHarnessAccess {
         r.state_.persona.sociability = sociability;
     }
     static void SocialEnd(Runner& r, Client& c) { r.EndSocialGroup(c, "test finished"); }
+    static bool Treasure(Runner& r, Client& c, const Observation& o) { return r.DoHuntTreasure(c, o); }
+    static void TreasureNeeds(Runner& r, Client& c, const Observation& o, std::vector<Need>& needs) {
+        r.AddTreasureNeeds(c, o, needs);
+    }
     static void SocialPendingAcceptance(Runner& r) { r.socialOwnParty_ = true; }
     static void SocialJustSpoke(Runner& r, i64 nowMs) { r.socialChatMs_ = nowMs; }
     static void SocialNeeds(Runner& r, Client& c, const Observation& o, std::vector<Need>& needs) {
@@ -482,6 +486,47 @@ std::vector<u8> MakeGump(u32 serial, u32 context, const std::string& layout,
         for (char c : t) { p.push_back(0); p.push_back(static_cast<u8>(c)); }
     }
     StoreBE16(&p[1], static_cast<u16>(p.size()));
+    return p;
+}
+
+// 0x1A WORLD_ITEM (old form, no amount/hue/flags): serial(4) graphic(2)
+// x(2) y(2) z(1).
+std::vector<u8> MakeWorldItem(u32 serial, u16 graphic, u16 x, u16 y) {
+    std::vector<u8> p(14, 0);
+    p[0] = 0x1A;
+    StoreBE16(&p[1], 14);
+    StoreBE32(&p[3], serial);
+    StoreBE16(&p[7], graphic);
+    StoreBE16(&p[9], x);
+    StoreBE16(&p[11], y);
+    return p;
+}
+
+// 0x6C TARGET_CURSOR from the server: type(1) cursorId(4) cursorType(1) + 12.
+std::vector<u8> MakeTargetCursor(u8 type, u32 cursorId) {
+    std::vector<u8> p(19, 0);
+    p[0] = 0x6C;
+    p[1] = type;
+    StoreBE32(&p[2], cursorId);
+    return p;
+}
+
+// 0x90 MAP_DETAILS and 0x56 MAP_PIN (add pin), as Sphere sends a decoded map.
+std::vector<u8> MakeMapDetails(u32 serial, u16 ulx, u16 uly, u16 lrx, u16 lry, u16 w, u16 h) {
+    std::vector<u8> p(19, 0);
+    p[0] = 0x90;
+    StoreBE32(&p[1], serial);
+    StoreBE16(&p[5], 0x139D);
+    StoreBE16(&p[7], ulx); StoreBE16(&p[9], uly); StoreBE16(&p[11], lrx); StoreBE16(&p[13], lry);
+    StoreBE16(&p[15], w); StoreBE16(&p[17], h);
+    return p;
+}
+std::vector<u8> MakeMapPin(u32 serial, u16 px, u16 py) {
+    std::vector<u8> p(11, 0);
+    p[0] = 0x56;
+    StoreBE32(&p[1], serial);
+    p[5] = 1;
+    StoreBE16(&p[7], px); StoreBE16(&p[9], py);
     return p;
 }
 
@@ -1790,6 +1835,91 @@ int main(int argc, char** argv) {
               "a trip to a Britain shop picks the Britain page by its point, whatever the trip's label");
         Check(client->RunebookPageForGoal(2520, 500) == 2, "and a Minoc trip the Minoc page");
         Check(client->RunebookPageForGoal(150, 120) == 0, "a short trip just walks");
+    }
+
+    // --- treasure: decode, dig, open, loot -- every step read back from state
+    {
+        Client::Config config{};
+        auto client = std::make_unique<Client>(config);
+        client->SetOfflineForTest(true);
+        client->SetClockForTest(500000);
+        auto login = MakeLoginConfirm(0x2002, 1000, 1000);
+        client->DispatchPacketForTest(login.data(), login.size());
+        auto pack = MakeEquip(0x40008000, 0x0E75, 0x15, 0x2002);
+        client->DispatchPacketForTest(pack.data(), pack.size());
+        const u32 kMap = 0x40008001, kShovel = 0x40008002, kPick = 0x40008003, kChest = 0x40008100;
+        for (auto item : {MakeAddItem(kMap, 0x14EB, 1, 0x40008000), MakeAddItem(kShovel, 0x0F39, 1, 0x40008000),
+                          MakeAddItem(kPick, 0x14FC, 1, 0x40008000)})
+            client->DispatchPacketForTest(item.data(), item.size());
+        life::Runner runner;
+        life::RunnerConfig rc;
+        rc.dataRoot = root + "/treasure";
+        rc.accountName = "offline_world";
+        rc.characterName = "treasure_hunter";
+        rc.professionId = "treasure_hunter";
+        std::string error;
+        Check(runner.Configure(rc, &error), error.c_str());
+        life::Observation obs; obs.inWorld = true; obs.nowMs = 500000; obs.x = obs.y = 1000;
+        obs.hp = obs.hpMax = 80; obs.maxWeight = 400; obs.weight = 50;
+        obs.skills = {{rules::kCartography, 1000}, {rules::kLockpicking, 1000}};
+        std::vector<life::Need> needs;
+        life::RunnerHarnessAccess::TreasureNeeds(runner, *client, obs, needs);
+        Check(needs.size() == 1 && needs[0].kind == life::NeedKind::NeedTreasure,
+              "a treasure hunter with a map in the pack needs to hunt it");
+        auto used = [&](u32 serial) {
+            for (const auto& p : client->SentForTest())
+                if (p.opcode == 0x06 && p.bytes.size() >= 5 && (LoadBE32(p.bytes.data() + 1) & 0x7FFFFFFF) == serial)
+                    return true;
+            return false;
+        };
+        client->ClearSentForTest();
+        life::RunnerHarnessAccess::Treasure(runner, *client, obs);
+        Check(used(kMap), "first step: double-click the map to decode it");
+        client->CompleteActionForTest(act::Result::Success, "map shown");
+        // The server shows the decoded map: a 200x200-tile area at 100x100
+        // pixels with a pin at pixel 50,50 -> world 1000,1000 (where we stand).
+        auto details = MakeMapDetails(kMap, 900, 900, 1100, 1100, 100, 100);
+        client->DispatchPacketForTest(details.data(), details.size());
+        auto pin = MakeMapPin(kMap, 50, 50);
+        client->DispatchPacketForTest(pin.data(), pin.size());
+        Check(client->MapViewOf(kMap) && client->MapViewOf(kMap)->pins.size() == 1, "the map view and its pin are kept");
+        obs.nowMs += 6000; client->SetClockForTest(obs.nowMs);
+        client->ClearSentForTest();
+        life::RunnerHarnessAccess::Treasure(runner, *client, obs);
+        Check(used(kShovel), "standing on the pinned spot: dig with the shovel");
+        auto cursor = MakeTargetCursor(1, 0x77);
+        client->DispatchPacketForTest(cursor.data(), cursor.size());
+        client->ClearSentForTest();
+        obs.nowMs += 600; client->SetClockForTest(obs.nowMs);
+        life::RunnerHarnessAccess::Treasure(runner, *client, obs);
+        bool groundAt = false;
+        for (const auto& p : client->SentForTest())
+            if (p.opcode == 0x6C && p.bytes.size() >= 19 && LoadBE16(p.bytes.data() + 11) == 1000 &&
+                LoadBE16(p.bytes.data() + 13) == 1000) groundAt = true;
+        Check(groundAt, "the dig cursor is answered with the pinned tile");
+        client->CompleteActionForTest(act::Result::Success, "dug");
+        auto chest = MakeWorldItem(kChest, 0x0E40, 1001, 1000);
+        client->DispatchPacketForTest(chest.data(), chest.size());
+        obs.nowMs += 5000; client->SetClockForTest(obs.nowMs);
+        client->ClearSentForTest();
+        life::RunnerHarnessAccess::Treasure(runner, *client, obs);
+        Check(used(kChest), "the chest that came up is opened");
+        client->CompleteActionForTest(act::Result::Success, "opened");
+        auto gold = MakeAddItem(0x40008101, 0x0EED, 500, kChest);
+        client->DispatchPacketForTest(gold.data(), gold.size());
+        obs.nowMs += 4000; client->SetClockForTest(obs.nowMs);
+        client->ClearSentForTest();
+        life::RunnerHarnessAccess::Treasure(runner, *client, obs);
+        bool lifted = false;
+        for (const auto& p : client->SentForTest())
+            if (p.opcode == 0x07 && p.bytes.size() >= 5 && LoadBE32(p.bytes.data() + 1) == 0x40008101) lifted = true;
+        Check(lifted, "the treasure is lifted into the pack");
+        obs.hostilesNear = 2;
+        client->CompleteActionForTest(act::Result::Success, "moved");
+        client->ClearSentForTest();
+        obs.nowMs += 2000;
+        life::RunnerHarnessAccess::Treasure(runner, *client, obs);
+        Check(client->SentForTest().empty(), "guardians near: the treasure step waits and lets the fight run");
     }
 
     // --- small talk: "sa" is answered "as", once, never a handshake --------

@@ -588,6 +588,8 @@ void Client::Dispatch(const u8* data, usize size) {
         case 0xAF: OnDeathAnimation(data, size); break;
         case 0x3A: OnSkills(data, size); break;
         case 0x4E: OnPersonalLightLevel(data, size); break;
+        case 0x90: OnMapDetails(data, size); break;
+        case 0x56: OnMapPin(data, size); break;
         case 0x4F: OnOverallLightLevel(data, size); break;
         case 0xD1: OnLogoutAck(data, size); break;
         case 0x27: OnDragCancel(data, size); break;
@@ -3348,6 +3350,51 @@ u32 Client::FindWorldItemByGraphic(u16 graphic, i32 maxDist,
         if (d < bestD) { bestD = d; best = kv.first; }
     }
     return best;
+}
+
+u32 Client::FindWorldItemNear(const u16* graphics, usize count, i32 x, i32 y, i32 radius) const {
+    u32 best = 0;
+    i32 bestD = radius + 1;
+    for (const auto& kv : items_) {
+        bool match = false;
+        for (usize i = 0; i < count && !match; ++i) match = kv.second.itemId == graphics[i];
+        if (!match) continue;
+        const i32 dx = std::abs(kv.second.x - x), dy = std::abs(kv.second.y - y);
+        const i32 d = dx > dy ? dx : dy;
+        if (d < bestD) { bestD = d; best = kv.first; }
+    }
+    return best;
+}
+
+// 0x90 MAP DETAILS (19): serial(4) gumpArt(2) ulx(2) uly(2) lrx(2) lry(2)
+// width(2) height(2). Sphere sends it when a map is opened (CItemMap); a new
+// one replaces the old view of that map, pins included.
+void Client::OnMapDetails(const u8* data, usize size) {
+    if (size < 19) return;
+    MapView v;
+    v.serial = LoadBE32(data + 1);
+    v.ulx = LoadBE16(data + 7);  v.uly = LoadBE16(data + 9);
+    v.lrx = LoadBE16(data + 11); v.lry = LoadBE16(data + 13);
+    v.width = LoadBE16(data + 15); v.height = LoadBE16(data + 17);
+    v.seenMs = NowMs();
+    maps_[v.serial] = v;
+    LogInfo("[map] 0x%08X shows (%d,%d)-(%d,%d) at %dx%d\n", v.serial, v.ulx, v.uly,
+            v.lrx, v.lry, v.width, v.height);
+}
+
+// 0x56 MAP PIN (11): serial(4) command(1) pin(1) x(2) y(2). Command 1 adds a
+// pin, 5 clears them; the rest are the owner editing their own map.
+void Client::OnMapPin(const u8* data, usize size) {
+    if (size < 11) return;
+    const u32 serial = LoadBE32(data + 1);
+    MapView& v = maps_[serial];
+    v.serial = serial;
+    const u8 command = data[5];
+    if (command == 5) { v.pins.clear(); return; }
+    if (command == 1 || command == 2) {
+        v.pins.emplace_back(LoadBE16(data + 7), LoadBE16(data + 9));
+        LogInfo("[map] 0x%08X pin at pixel %u,%u\n", serial, LoadBE16(data + 7), LoadBE16(data + 9));
+    }
 }
 
 bool Client::WorldItemPosition(u32 serial, i32* x, i32* y, i8* z) const {

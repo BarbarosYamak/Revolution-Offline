@@ -1410,6 +1410,8 @@ enum class NeedKind : u8 {
     // Papua case this was written for.
     NeedHome,
     NeedSocial,
+    // A treasure map in the pack (or a dug chest waiting): uo/treasure.h.
+    NeedTreasure,
     Count,
 };
 
@@ -1902,6 +1904,8 @@ enum class GoalKind : u8 {
     ReturnHome,
     IdleBriefly,
     Socialize,
+    // Decode a map, go there, dig, open the chest, fight its guardians, loot.
+    HuntTreasure,
     Count,
 };
 

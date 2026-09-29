@@ -120,6 +120,17 @@ public:
     void PublishStatus(Client& client, const Observation& obs, const char* phase);
     void PublishOffline();
     void TickRunebook(Client& client, const Observation& obs);
+    // Treasure hunting (runner/Treasure.cpp, uo/treasure.h).
+    bool WantsTreasure() const;
+    void AddTreasureNeeds(Client& client, const Observation& obs, std::vector<Need>& needs);
+    bool DoHuntTreasure(Client& client, const Observation& obs);
+    void EndTreasure(const char* why);
+    u32  treasureMap_ = 0, treasureChest_ = 0;
+    bool treasurePointKnown_ = false;
+    i32  treasureX_ = 0, treasureY_ = 0;
+    int  treasureDecodeTries_ = 0, treasureDigTries_ = 0, treasureOpenTries_ = 0, treasurePickTries_ = 0;
+    int  treasureCursorPending_ = 0;     // 1 = dig cursor, 2 = lockpick cursor
+    i64  treasureLastMs_ = 0;
     i64  runebookTryMs_ = 0;
     bool runebookLogged_ = false;
 

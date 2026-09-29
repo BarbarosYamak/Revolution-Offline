@@ -40,6 +40,7 @@ const char* GoalKindName(GoalKind g) {
         case GoalKind::ReturnHome:           return "RETURN_HOME";
         case GoalKind::IdleBriefly:           return "IDLE_BRIEFLY";
         case GoalKind::Socialize:             return "SOCIALIZE";
+        case GoalKind::HuntTreasure:          return "HUNT_TREASURE";
         case GoalKind::Count:                 break;
     }
     return "?";
@@ -100,6 +101,7 @@ GoalFamily FamilyOf(GoalKind k) {
         // the tailor SELLS, not something it needs for itself.
         case GoalKind::MakeBandagesForSale:
         case GoalKind::HarvestWool:
+        case GoalKind::HuntTreasure:
             return GoalFamily::Work;
         case GoalKind::TrainCombat:
         case GoalKind::TrainAtNpc:
@@ -251,6 +253,10 @@ const GoalSpec kGoals[] = {
     // shorter errand, and the player market is for what it refuses.
     {GoalKind::TradeWithPlayer,       NeedKind::NeedTrade,         145.0},
     {GoalKind::Socialize,             NeedKind::NeedSocial,        150.0},
+    // A treasure hunter's work, a little above ordinary gathering: a map is
+    // a rare, finite opportunity, and a dug chest (urgency 1.0) must not be
+    // abandoned for a routine errand.
+    {GoalKind::HuntTreasure,          NeedKind::NeedTreasure,      135.0},
     // Beside GatherLogs: it is the same kind of thing, the productive work
     // this life does, and it must not outrank housekeeping.
     {GoalKind::Fish,                  NeedKind::NeedCatch,         130.0},
@@ -607,6 +613,7 @@ i64 Planner::TimeLimitFor(GoalKind k) const {
     // trip budget (kMarketTripMs + kWindDownBudgetMs) with margin.
     if (k == GoalKind::Socialize) return 180000;
     if (k == GoalKind::TradeWithPlayer) return 14 * 60 * 1000;
+    if (k == GoalKind::HuntTreasure) return 20 * 60 * 1000;   // the trip, the dig and the guardians
     return cfg_.maxGoalMs;
 }
 
