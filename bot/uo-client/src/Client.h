@@ -1129,6 +1129,12 @@ private:
     // One buy request row (JS Vendor.buy): how many of `serial` to buy from `layer`.
     struct VendorBuyReq { u32 serial; u16 qty; u8 layer; };
     void SendVendorBuy(u32 vendor, const std::vector<VendorBuyReq>& items);  // 0x3B
+    // 0x9F: sell several rows of the vendor's current 0x9E offer at once. Rows
+    // the vendor did not offer to buy, or quantities above what it listed, are
+    // dropped here rather than sent -- the offer is the server's statement of
+    // what it will take. Returns the number of rows actually sent.
+    struct VendorSellReq { u32 serial; u16 qty; };
+    usize SendVendorSell(u32 vendor, const std::vector<VendorSellReq>& items);
 
     // Recent mobiles (players/NPCs) from 0x77/0x78. A reject at a tile that
     // holds a mobile is a moving obstacle (or a stamina-gated shove), never a

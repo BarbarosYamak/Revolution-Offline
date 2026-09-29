@@ -38,6 +38,17 @@ class Lumberjack extends BehaviorScript {
         'bread': { name: ['lamb', 'bread'], target: 10, coords: { x: 1854, y: 2793 }, title: 'provisioner' },
     };
 
+    // --- economy (lib/economy.js) ---
+    // Logs are NOT kept: they are offered to the vendors below first, and only
+    // what nobody buys goes into the bank. Whether the provisioner buys logs is
+    // the server's answer (its sell list), not an assumption here.
+    KEEP = [];
+    SELL_VENDORS = [
+        { title: 'provisioner', coords: { x: 1852, y: 2831 } },  // atlas trinsic_provisioner
+    ];
+    GOLD_RESERVE = 100;
+    MAX_CARRY_GOLD = 800;
+
     CHOP_WAIT_MS = 15000;
     MAX_RETRY = 5;
 
@@ -66,6 +77,7 @@ class Lumberjack extends BehaviorScript {
         });
 
         this.installCombatSensing();
+        this.economyInit();
     }
 
     // ===== combat hook =====
@@ -224,7 +236,8 @@ class Lumberjack extends BehaviorScript {
         return [
             { name: 'resurrect', when: () => Player.dead, step: this.step('resurrect') },
             { name: 'fight', when: () => !this.fleeing && Boolean(this.threat?.exists), step: this.sequence('fight', 'rest') },
-            { name: 'bank', when: () => this.fleeing || this.full(), step: this.sequence('goToBank', 'depositLogs', 'withdrawGold', 'restock', 'rest') },
+            { name: 'bank', when: () => this.fleeing || ((this.full() || this.carryingTooMuchGold()) && this.bankTripDue()),
+                step: this.sequence('sellLoot', 'goToBank', 'depositLogs', 'bankSurplusGold', 'withdrawGold', 'restock', 'economyReport', 'rest') },
             { name: 'eat', when: () => Date.now() - this.lastAteMs > this.EAT_INTERVAL_MS &&
                     Player.equipment.backpack.items.some((item) => [].concat(this.FOOD).some((name) => item.name.includes(name))),
                 step: this.step('eatFood') },
@@ -253,6 +266,6 @@ class Lumberjack extends BehaviorScript {
     }
 }
 
-Object.assign(Lumberjack.prototype, BankSkill, SurvivalSkill, CombatSkill);
+Object.assign(Lumberjack.prototype, BankSkill, SurvivalSkill, CombatSkill, EconomySkill);
 
 new Lumberjack().start();

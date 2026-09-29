@@ -6,6 +6,7 @@
 
 #include "quickjs.h"
 
+#include <cctype>
 #include <cstddef>
 #include <cstdio>
 #include <string>
@@ -295,6 +296,31 @@ namespace uo::js {
                     JS_SetPropertyStr(ctx, e, "price", JS_NewInt64(ctx, vi.price));
                     JS_SetPropertyStr(ctx, e, "layer", JS_NewInt32(ctx, vi.layer));
                     JS_SetPropertyStr(ctx, e, "name", JS_NewString(ctx, vi.name.c_str()));
+                    JS_SetPropertyUint32(ctx, items, i++, e);
+                }
+            }
+            JS_SetPropertyStr(ctx, o, "items", items);
+            return o;
+        }
+
+        // { vendor, items:[{serial,graphic,amount,price,name}] } from the 0x9E
+        // sell list -- what this vendor is willing to buy from us, and for how
+        // much. Payload of the `vendor_sell` event.
+        static JSValue VendorSellOfferToJS(JSContext *ctx, unsigned vendor) {
+            JSValue o = JS_NewObject(ctx);
+            JS_SetPropertyStr(ctx, o, "vendor", JS_NewInt64(ctx, vendor));
+            JSValue items = JS_NewArray(ctx);
+            if (client) {
+                uint32_t i = 0;
+                for (const Client::VendorItem &vi : client->vendorSellOffer_) {
+                    JSValue e = JS_NewObject(ctx);
+                    JS_SetPropertyStr(ctx, e, "serial", JS_NewInt64(ctx, vi.serial));
+                    JS_SetPropertyStr(ctx, e, "graphic", JS_NewInt32(ctx, vi.graphic));
+                    JS_SetPropertyStr(ctx, e, "amount", JS_NewInt32(ctx, vi.amount));
+                    JS_SetPropertyStr(ctx, e, "price", JS_NewInt64(ctx, vi.price));
+                    std::string nm = vi.name;
+                    for (char &ch : nm) ch = static_cast<char>(std::tolower(static_cast<unsigned char>(ch)));
+                    JS_SetPropertyStr(ctx, e, "name", JS_NewString(ctx, nm.c_str()));
                     JS_SetPropertyUint32(ctx, items, i++, e);
                 }
             }
@@ -656,6 +682,82 @@ namespace uo::js {
             return JS_NewInt32(ctx, static_cast<int32_t>(reqs.size()));
         }
 
+        // Vendor.sell(vendorSerial, [{serial, qty}]) -> number of rows sent.
+        // `serial` must come from a `vendor_sell` offer row; the client drops
+        // rows the vendor did not offer to buy and clamps quantities to what it
+        // listed, so a script cannot sell something the server never asked for.
+        static JSValue VendorSell(JSContext *ctx, JSValueConst, int argc, JSValueConst *argv) {
+            if (!client || argc < 2)
+                return JS_ThrowTypeError(ctx, "Vendor.sell(vendorSerial, items)");
+            int64_t vendor = 0;
+            if (JS_ToInt64(ctx, &vendor, argv[0]))
+                return JS_EXCEPTION;
+            uint32_t len = 0;
+            JSValue lenv = JS_GetPropertyStr(ctx, argv[1], "length");
+            JS_ToUint32(ctx, &len, lenv);
+            JS_FreeValue(ctx, lenv);
+            std::vector<Client::VendorSellReq> reqs;
+            for (uint32_t i = 0; i < len; ++i) {
+                JSValue e = JS_GetPropertyUint32(ctx, argv[1], i);
+                int64_t serial = 0;
+                int32_t qty = 0;
+                JSValue sv = JS_GetPropertyStr(ctx, e, "serial");
+                JS_ToInt64(ctx, &serial, sv); JS_FreeValue(ctx, sv);
+                JSValue qv = JS_GetPropertyStr(ctx, e, "qty");
+                JS_ToInt32(ctx, &qty, qv); JS_FreeValue(ctx, qv);
+                JS_FreeValue(ctx, e);
+                if (serial && qty > 0)
+                    reqs.push_back(Client::VendorSellReq{static_cast<u32>(serial),
+                                                         static_cast<u16>(qty > 65535 ? 65535 : qty)});
+            }
+            const usize sent = client->SendVendorSell(static_cast<u32>(vendor), reqs);
+            return JS_NewInt32(ctx, static_cast<int32_t>(sent));
+        }
+
+        // World.items(x, y[, radius]) -> ground items in the square around
+        // (x, y): [{serial, graphic, x, y, z, name, corpse, corpseOf}].
+        // `corpse` is true for 0x2006; `corpseOf` is the serial of the mobile
+        // that died, when the preceding 0xAF told us (0 otherwise). Radius
+        // defaults to 8 and is capped at 24 -- this is what the character can
+        // see, not a world query.
+        static JSValue WorldItems(JSContext *ctx, JSValueConst, int argc, JSValueConst *argv) {
+            if (!client)
+                return JS_ThrowTypeError(ctx, "World.items: no client");
+            int32_t x, y, radius = 8;
+            if (argc < 2 || JS_ToInt32(ctx, &x, argv[0]) || JS_ToInt32(ctx, &y, argv[1]))
+                return JS_ThrowTypeError(ctx, "World.items(x, y[, radius])");
+            if (argc >= 3 && !JS_IsUndefined(argv[2]))
+                JS_ToInt32(ctx, &radius, argv[2]);
+            if (radius < 0) radius = 0;
+            if (radius > 24) radius = 24;
+            JSValue arr = JS_NewArray(ctx);
+            uint32_t i = 0;
+            for (const auto &kv : client->items_) {
+                const Client::ItemObj &it = kv.second;
+                const int32_t dx = it.x > x ? it.x - x : x - it.x;
+                const int32_t dy = it.y > y ? it.y - y : y - it.y;
+                if (dx > radius || dy > radius) continue;
+                JSValue o = JS_NewObject(ctx);
+                JS_SetPropertyStr(ctx, o, "serial", JS_NewInt64(ctx, kv.first));
+                JS_SetPropertyStr(ctx, o, "graphic", JS_NewInt32(ctx, it.itemId));
+                JS_SetPropertyStr(ctx, o, "x", JS_NewInt32(ctx, it.x));
+                JS_SetPropertyStr(ctx, o, "y", JS_NewInt32(ctx, it.y));
+                JS_SetPropertyStr(ctx, o, "z", JS_NewInt32(ctx, it.z));
+                const std::string nm = client->ItemNameLower(it.itemId);
+                JS_SetPropertyStr(ctx, o, "name", JS_NewString(ctx, nm.c_str()));
+                const bool corpse = it.itemId == 0x2006;
+                JS_SetPropertyStr(ctx, o, "corpse", JS_NewBool(ctx, corpse));
+                uint32_t of = 0;
+                if (corpse) {
+                    auto c = client->corpses_.find(kv.first);
+                    if (c != client->corpses_.end()) of = c->second.deadMobile;
+                }
+                JS_SetPropertyStr(ctx, o, "corpseOf", JS_NewInt64(ctx, of));
+                JS_SetPropertyUint32(ctx, arr, i++, o);
+            }
+            return arr;
+        }
+
         // ---- events: on / off / once ----------------------------------------
 
         static JSValue On(JSContext *ctx, JSValueConst, int argc, JSValueConst *argv) {
@@ -963,6 +1065,7 @@ namespace uo::js {
 
         const JSCFunctionListEntry kWorldApi[] = {
             JS_CFUNC_DEF("statics", 2, ClientBindings::WorldStatics),
+            JS_CFUNC_DEF("items", 2, ClientBindings::WorldItems),
             JS_CFUNC_DEF("markStump", 4, ClientBindings::WorldMarkStump),
             // Same shared event registry as Player.on — events are global by
             // name; World.on('container_open'/...) reads naturally for world events.
@@ -973,6 +1076,7 @@ namespace uo::js {
 
         const JSCFunctionListEntry kVendorApi[] = {
             JS_CFUNC_DEF("buy", 2, ClientBindings::VendorBuy),
+            JS_CFUNC_DEF("sell", 2, ClientBindings::VendorSell),
             // Shared event registry: Vendor.once('vendor_buy') / .on('vendor_done').
             JS_CFUNC_DEF("on", 2, ClientBindings::On),
             JS_CFUNC_DEF("off", 1, ClientBindings::Off),
@@ -1118,6 +1222,13 @@ namespace uo::js {
         JS_SetPropertyStr(ctx, p, "vendor", JS_NewInt64(ctx, vendorSerial));
         JS_SetPropertyStr(ctx, p, "flag", JS_NewInt32(ctx, flag));
         ClientBindings::Emit("vendor_done", p);
+    }
+
+    void EmitVendorSellOffer(unsigned vendorSerial) {
+        if (!ClientBindings::context)
+            return;
+        ClientBindings::Emit("vendor_sell",
+                             ClientBindings::VendorSellOfferToJS(ClientBindings::context, vendorSerial));
     }
 
     void EmitPaperdoll(unsigned serial, const char *title) {

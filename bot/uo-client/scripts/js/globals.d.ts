@@ -121,6 +121,20 @@ interface VendorItem {
  *  heard "buy"). `vendor` is the vendor mobile serial; pass it to Vendor.buy(). */
 interface VendorBuyEvent { vendor: number; items: VendorItem[]; }
 
+/** `vendor_sell`: what a vendor will BUY from us (0x9E), after saying "sell".
+ *  Rows carry our own item serials and the vendor's price. The only source of
+ *  market knowledge a bot is allowed. Pass rows to Vendor.sell(). */
+interface VendorSellEvent { vendor: number; items: { serial: UoSerial; graphic: number; amount: number; price: number; name: string }[]; }
+
+/** A ground item from World.items(). */
+interface UoGroundItem {
+    serial: UoSerial; graphic: number; x: number; y: number; z: number; name: string;
+    /** True for a corpse (0x2006). */
+    corpse: boolean;
+    /** Serial of the mobile whose corpse this is, when known; 0 otherwise. */
+    corpseOf: UoSerial;
+}
+
 /** `vendor_done`: a vendor transaction closed (0x3B). */
 interface VendorDoneEvent { vendor: number; flag: number; }
 
@@ -210,6 +224,8 @@ interface UoEventMap {
     vendor_buy: VendorBuyEvent;
     /** A vendor buy/sell transaction closed (0x3B). */
     vendor_done: VendorDoneEvent;
+    /** A vendor's sell list arrived after "sell" was spoken in range. */
+    vendor_sell: VendorSellEvent;
     /** A paperdoll (0x88) arrived after a double-click; carries the NPC title. */
     paperdoll: PaperdollEvent;
 }
@@ -319,6 +335,8 @@ interface UoWorld extends UoEvents {
      * Use after a tree reports depleted to reflect the chop in the world view.
      */
     markStump(x: number, y: number, z: number, graphic: number, ttlMs?: number): void;
+    /** Ground items the client has seen around (x, y); radius default 8, max 24. */
+    items(x: number, y: number, radius?: number): UoGroundItem[];
 }
 
 /** Live mobile collection. Handles are live (see UoMobile). */
@@ -339,6 +357,10 @@ interface UoVendor extends UoEvents {
      *  offer's rows ({serial, qty}; layer defaults to 0x1A stock). Sends 0x3B and
      *  returns the number of rows sent. The server closes with `vendor_done`. */
     buy(vendorSerial: UoSerial, items: VendorBuyRequest[]): number;
+    /** Sell to a vendor: rows from a `vendor_sell` offer ({serial, qty}). Rows
+     *  the vendor did not list are dropped and quantities clamped to what it
+     *  listed. Sends 0x9F; returns the number of rows sent. */
+    sell(vendorSerial: UoSerial, items: { serial: UoSerial; qty: number }[]): number;
 }
 
 declare const Player: UoPlayer;

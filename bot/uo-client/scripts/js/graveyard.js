@@ -8,7 +8,12 @@
 // in the forest, and every cemetery visit so far was a one-shot M3.9 scenario
 // that walked in, fought once and ended. Nothing ever PATROLLED a graveyard.
 //
-// Priority:  resurrect > fight > bank > eat > recover > patrol.
+// Priority:  resurrect > fight > loot > bank > eat > recover > patrol.
+//
+//   loot     open the corpse of what we just killed (lib/economy.js).
+//   bank     when the pack is full OR we carry more gold than we can afford to
+//            lose: sell what vendors will buy, bank the gold, stash junk,
+//            restock within budget, print the ledger.
 //
 //   patrol   pick a random tile inside the graveyard's AREADEF rects, walk
 //            there, pause briefly, look for undead in range, repeat. Walking is
@@ -59,6 +64,22 @@ class GraveyardHunter extends BehaviorScript {
         'bandage': { target: 20, coords: { x: 1471, y: 1611 }, title: 'healer' },
     };
 
+    // --- economy (lib/economy.js) ---
+    // Never sold. Weapons, bandages and food are kept automatically.
+    KEEP = [];
+    // Where loot is offered, from data/revolution_atlas.txt (Britain PLACEs).
+    // Whether each one actually buys a given item is NOT assumed: the vendor's
+    // own sell list decides, and the bot remembers the answer.
+    SELL_VENDORS = [
+        { title: 'blacksmith', coords: { x: 1418, y: 1547 } },  // britain_blacksmith
+        { title: 'armorer',    coords: { x: 1481, y: 1584 } },  // britain_armorer
+        { title: 'tanner',     coords: { x: 1431, y: 1612 } },  // britain_tanner
+        { title: 'provisioner',coords: { x: 1469, y: 1668 } },  // britain_provisioner_2
+    ];
+    WALLET = 150;           // gold carried for bandages and food
+    GOLD_RESERVE = 100;     // never spent on anything but essentials
+    MAX_CARRY_GOLD = 800;   // bank before carrying more than death should take
+
     threat = null;
     fleeing = false;
     lastAteMs = 0;
@@ -73,6 +94,7 @@ class GraveyardHunter extends BehaviorScript {
             onDanger: (topSerial) => { if (topSerial) this.engage(topSerial, 'threat'); },
         });
         this.installCombatSensing();
+        this.economyInit();
     }
 
     // ===== helpers =====
@@ -212,7 +234,9 @@ class GraveyardHunter extends BehaviorScript {
         return [
             { name: 'resurrect', when: () => Player.dead, step: this.step('resurrect') },
             { name: 'fight', when: () => !this.fleeing && Boolean(this.threat?.exists), step: this.step('fight') },
-            { name: 'bank', when: () => this.full(), step: this.sequence('goToBank', 'withdrawGold', 'restock') },
+            { name: 'loot', when: () => Boolean(this.lastKill) && !this.full(), step: this.step('lootKill') },
+            { name: 'bank', when: () => (this.full() || this.carryingTooMuchGold()) && this.bankTripDue(),
+                step: this.sequence('sellLoot', 'bankSurplusGold', 'stashJunk', 'withdrawGold', 'restock', 'economyReport') },
             { name: 'eat', when: () => Date.now() - this.lastAteMs > this.EAT_INTERVAL_MS &&
                     Player.equipment.backpack.items.some((item) => [].concat(this.FOOD).some((name) => item.name.includes(name))),
                 step: this.step('eatFood') },
@@ -241,6 +265,6 @@ class GraveyardHunter extends BehaviorScript {
     }
 }
 
-Object.assign(GraveyardHunter.prototype, BankSkill, SurvivalSkill, CombatSkill);
+Object.assign(GraveyardHunter.prototype, BankSkill, SurvivalSkill, CombatSkill, EconomySkill);
 
 new GraveyardHunter().start();

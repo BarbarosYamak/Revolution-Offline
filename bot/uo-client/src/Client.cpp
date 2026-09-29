@@ -2194,6 +2194,7 @@ void Client::OnVendorSellList(const u8* data, usize size) {
     std::snprintf(ev, sizeof(ev), "vendor=0x%08X items=%zu",
                   vendor, vendorSellOffer_.size());
     LogEvent("vendor_sell_list", ev);
+    uo::js::EmitVendorSellOffer(vendor);
 
     if (action_.Active() && action_.kind == act::Kind::VendorSell &&
         action_.subject == action_.destination) {
@@ -3146,6 +3147,32 @@ void Client::ActionVendorSell(u32 vendorSerial, u32 itemSerial, u16 qty) {
     u8 buf[64];
     const usize n = build::VendorSell(buf, vendorSerial, &e, 1);
     Send(buf, n, "0x9F VendorSell");
+}
+
+usize Client::SendVendorSell(u32 vendorSerial, const std::vector<VendorSellReq>& items) {
+    std::vector<build::VendorSellEntry> entries;
+    for (const VendorSellReq& r : items) {
+        if (!r.serial || !r.qty) continue;
+        const VendorItem* offered = nullptr;
+        for (const VendorItem& v : vendorSellOffer_)
+            if (v.serial == r.serial) { offered = &v; break; }
+        if (!offered) {
+            LogWarn("[VENDOR] sell 0x%08X skipped: not in the vendor's offer\n", r.serial);
+            continue;
+        }
+        const u16 qty = r.qty > offered->amount ? offered->amount : r.qty;
+        entries.push_back(build::VendorSellEntry{r.serial, qty});
+    }
+    if (entries.empty()) return 0;
+    LogInfo("[VENDOR] sell %zu row(s) to vendor=0x%08X gold=%d\n",
+            entries.size(), vendorSerial, PlayerGold());
+    std::vector<u8> buf(16 + entries.size() * 6);
+    const usize n = build::VendorSell(buf.data(), vendorSerial, entries.data(), entries.size());
+    Send(buf.data(), n, "0x9F VendorSell");
+    char ev[96];
+    std::snprintf(ev, sizeof(ev), "vendor=0x%08X rows=%zu", vendorSerial, entries.size());
+    LogEvent("vendor_sell", ev);
+    return entries.size();
 }
 
 // --- resurrection ----------------------------------------------------------

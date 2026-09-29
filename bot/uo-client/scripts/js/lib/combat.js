@@ -114,7 +114,9 @@
             let followSerial = 0;
             let lastStatusMs = Date.now();
             const baseline = { startMs: 0, startMyHp: -1, startFoeHp: -1 };
+            let lastSeen = null;
             while (this.threat?.exists && !Player.dead) {
+                lastSeen = { serial: this.threat.serial, x: this.threat.x, y: this.threat.y };
                 const verdict = this.assessFight(baseline);
                 if (verdict.flee) {
                     const foeName = this.threat?.name || '0x' + (this.threat?.serial ?? 0).toString(16);
@@ -150,6 +152,12 @@
             }
             Player.follow(false);
             if (Player.warMode) Player.setWarMode(false);
+            // The foe left view while we were alive and not fleeing: it died or
+            // it ran. Record where, and let a corpse carrying its serial decide
+            // which (lib/economy.js lootKill) -- the corpse is the proof, not
+            // our guess.
+            if (lastSeen && !Player.dead && !this.fleeing)
+                this.lastKill = { ...lastSeen, atMs: Date.now() };
             this.threat = null;
         },
 

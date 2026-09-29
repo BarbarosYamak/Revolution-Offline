@@ -37,6 +37,7 @@ void EmitCombatEvent(unsigned serial);                       // 0x2F we swing at
 void EmitResurrectMenu(unsigned action);                     // 0x2C resurrect menu prompt ({action})
 void EmitVendorOffer(unsigned vendorSerial);                 // 0x24 gump 0x30: buy window ready (built from pendingVendor_)
 void EmitVendorDone(unsigned vendorSerial, int flag);        // 0x3B vendor transaction closed
+void EmitVendorSellOffer(unsigned vendorSerial);             // 0x9E what a vendor will buy from us
 void EmitPaperdoll(unsigned serial, const char* title);      // 0x88 paperdoll title learned
 void EmitDialogEvent();                                      // 0x7C open dialog/menu (built from activeDialog_)
 void TickClientEvents(long long nowMs);                      // dispatch events + sweep timeouts

@@ -145,22 +145,35 @@
             let need = Math.max(0, target - this.backpackCount(nameVariants));
             if (need <= 0) return true;
 
+            // Budget (lib/economy.js when mixed in): consumables are essentials
+            // and may use the reserve, but never more gold than we carry.
+            let budget = typeof this.spendable === 'function'
+                ? this.spendable(true) : Infinity;
             const buyList = [];
             for (const row of matching) {
                 if (need <= 0) break;
-                const qty = Math.min(need, row.amount);
+                const affordable = row.price > 0 ? Math.floor(budget / row.price) : row.amount;
+                const qty = Math.min(need, row.amount, affordable);
+                if (qty <= 0 && affordable <= 0) {
+                    console.warn(`[restock] cannot afford ${row.name} @${row.price}gp (budget ${budget})`);
+                    break;
+                }
                 if (qty <= 0) continue;
                 console.log(`[restock] buying ${qty}x ${row.name} @${row.price}gp`);
                 buyList.push({ serial: row.serial, qty });
                 need -= qty;
+                budget -= qty * row.price;
             }
             if (buyList.length === 0) {
                 console.warn(`[restock] ${vendor.title} out of ${displayName} (stock 0)`);
                 return true;
             }
+            const goldBefore = this.backpackCount(['gold']);
             Vendor.buy(offer.vendor, buyList);
             try { await token.wait(Vendor.once('vendor_done', 4000)); }
             catch (error) { if (token.cancelled) throw CANCELLED; }
+            const spent = goldBefore - this.backpackCount(['gold']);
+            if (spent > 0 && this.ledger) this.ledger.record('buy', spent, `${vendor.title}: ${displayName}`);
             return true;
         },
 
