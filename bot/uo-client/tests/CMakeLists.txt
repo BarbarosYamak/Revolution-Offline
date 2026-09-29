@@ -870,3 +870,8 @@ add_test(NAME recall_plan COMMAND recall_plan)
 add_executable(treasure treasure.cpp)
 target_include_directories(treasure PRIVATE ${CMAKE_SOURCE_DIR}/include)
 add_test(NAME treasure COMMAND treasure)
+
+# PvP -- the PK's victim choice, anti-PK targets, break-off, alarm. Pure.
+add_executable(pvp pvp.cpp)
+target_include_directories(pvp PRIVATE ${CMAKE_SOURCE_DIR}/include)
+add_test(NAME pvp COMMAND pvp)

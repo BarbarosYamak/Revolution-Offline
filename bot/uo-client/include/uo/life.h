@@ -1412,6 +1412,8 @@ enum class NeedKind : u8 {
     NeedSocial,
     // A treasure map in the pack (or a dug chest waiting): uo/treasure.h.
     NeedTreasure,
+    // A PK's roam for a victim, or an anti-PK's lawful target / alarm (uo/pvp.h).
+    NeedPvp,
     Count,
 };
 
@@ -1906,6 +1908,8 @@ enum class GoalKind : u8 {
     Socialize,
     // Decode a map, go there, dig, open the chest, fight its guardians, loot.
     HuntTreasure,
+    // Ambush a victim (PK) or engage a red / criminal / war enemy (anti-PK).
+    HuntPlayers,
     Count,
 };
 

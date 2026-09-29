@@ -41,6 +41,7 @@ const char* GoalKindName(GoalKind g) {
         case GoalKind::IdleBriefly:           return "IDLE_BRIEFLY";
         case GoalKind::Socialize:             return "SOCIALIZE";
         case GoalKind::HuntTreasure:          return "HUNT_TREASURE";
+        case GoalKind::HuntPlayers:           return "HUNT_PLAYERS";
         case GoalKind::Count:                 break;
     }
     return "?";
@@ -110,6 +111,7 @@ GoalFamily FamilyOf(GoalKind k) {
         // a stat: the character is putting hours in rather than earning or
         // shopping, and the day's balance should count it that way.
         case GoalKind::StatFarm:
+        case GoalKind::HuntPlayers:
             return GoalFamily::Training;
         case GoalKind::TradeWithPlayer:
         case GoalKind::Socialize:
@@ -257,6 +259,9 @@ const GoalSpec kGoals[] = {
     // a rare, finite opportunity, and a dug chest (urgency 1.0) must not be
     // abandoned for a routine errand.
     {GoalKind::HuntTreasure,          NeedKind::NeedTreasure,      135.0},
+    // Beside TRAIN_COMBAT: for a PK this IS the fighting it trains by, and a
+    // good opening (0.90) or a rescue (0.85) outbids a routine hunt.
+    {GoalKind::HuntPlayers,           NeedKind::NeedPvp,           130.0},
     // Beside GatherLogs: it is the same kind of thing, the productive work
     // this life does, and it must not outrank housekeeping.
     {GoalKind::Fish,                  NeedKind::NeedCatch,         130.0},

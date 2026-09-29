@@ -446,7 +446,7 @@ def watch(directory):
 
 
 def launch(exe, bot_data, data_dir, directory, name, account, family, minutes,
-           password, stem=None, era=None):
+           password, stem=None, era=None, no_pvp=False):
     """Start one real client for one character; it logs itself out after
     `minutes` (the runner's session limit) and the process then exits."""
     stem = stem or name
@@ -460,6 +460,8 @@ def launch(exe, bot_data, data_dir, directory, name, account, family, minutes,
                '--data-dir', str(data_dir), '--log', str(directory / (stem + '.log'))]
     if era:
         command += ['--era-date', era]
+    if no_pvp:
+        command.append('--no-pvp')
     flags = (subprocess.DETACHED_PROCESS | subprocess.CREATE_NEW_PROCESS_GROUP
              if os.name == 'nt' else 0)
     with (directory / (stem + '.console.txt')).open('wb') as con, \
@@ -470,7 +472,7 @@ def launch(exe, bot_data, data_dir, directory, name, account, family, minutes,
 
 def live(roster, directory, max_online, max_session=240, tick=60, exe=None,
          bot_data=None, data_dir=None, clock=datetime.datetime.now, once=False,
-         era_start=ERA_DEFAULT, era_per_day=0.0):
+         era_start=ERA_DEFAULT, era_per_day=0.0, no_pvp=False):
     """The population manager: keep the shard populated by play schedules.
 
     Every tick: reap finished clients, then launch whoever's window is open
@@ -525,7 +527,7 @@ def live(roster, directory, max_online, max_session=240, tick=60, exe=None,
                 continue
             stem = f'{name}.{now.strftime("%Y%m%d-%H%M")}'
             process = launch(exe, bot_data, data_dir, directory, name, account, family,
-                             minutes, passwords[account.lower()], stem, era)
+                             minutes, passwords[account.lower()], stem, era, no_pvp)
             running[name] = (process, time.time(), stem, minutes)
             print(f'{now:%a %H:%M} login {name} ({family}, '
                   f'{personas[name]["rhythm"]}) for {minutes} min', flush=True)
@@ -608,6 +610,8 @@ if __name__ == '__main__':
                         help="the day of Revolution's history to live in (YYYY-MM-DD)")
     parser.add_argument('--era-days-per-day', type=float, default=0.0,
                         help='advance the era calendar this many days per real day (0 = fixed)')
+    parser.add_argument('--no-pvp', action='store_true',
+                        help='no PK ambushes and no anti-PK hunting this run')
     parser.add_argument('--plan', action='store_true',
                         help='print the hourly population the schedules imply')
     args = parser.parse_args()
@@ -618,7 +622,7 @@ if __name__ == '__main__':
         if not args.directory:
             parser.error('--directory is required for --live')
         live(roster, args.directory.resolve(), args.max_online, args.max_session,
-             era_start=args.era_start, era_per_day=args.era_days_per_day)
+             era_start=args.era_start, era_per_day=args.era_days_per_day, no_pvp=args.no_pvp)
     elif args.admit or args.status or args.watch:
         if not args.directory:
             parser.error('--directory is required for admission/status')

@@ -18,6 +18,7 @@
 #include "uo/life.h"
 #include "uo/needgate.h"
 #include "uo/chatter.h"
+#include "uo/pvp.h"
 #include "uo/world_model.h"
 #include "uo/activities/acquire.h"
 #include "uo/activities/buy.h"
@@ -59,6 +60,7 @@ struct RunnerConfig {
     i64 sessionLimitMs = 30 * 60 * 1000;
     i32 goalLimit = 0;              // 0 = no goal-count limit
     i32 eraDate = 0;                // uo/era.h yyyymmdd; 0 = era::kDefaultDate
+    bool noPvp = false;             // --no-pvp: no PK ambushes, no anti-PK hunting
 
     // Bounded checkpoint frequency. Too often and a 300-bot host is writing
     // constantly; too rarely and a crash loses a session's learning.
@@ -120,6 +122,16 @@ public:
     void PublishStatus(Client& client, const Observation& obs, const char* phase);
     void PublishOffline();
     void TickRunebook(Client& client, const Observation& obs);
+    // PvP (runner/Pvp.cpp, uo/pvp.h).
+    pvp::Role PvpRole() const;
+    pvp::Self PvpSelf(Client& client, const Observation& obs) const;
+    std::vector<pvp::Target> PvpTargets(Client& client, const Observation& obs) const;
+    void ObservePvp(Client& client, const Observation& obs);
+    void AddPvpNeeds(Client& client, const Observation& obs, std::vector<Need>& needs);
+    bool DoHuntPlayers(Client& client, const Observation& obs);
+    i64  pvpAlarmSaidMs_ = 0, pvpHeardMs_ = 0, pvpAlarmUntilMs_ = 0, pvpRoamMs_ = 0;
+    i32  pvpAlarmX_ = 0, pvpAlarmY_ = 0;
+    bool pvpRoamFlip_ = false;
     // Treasure hunting (runner/Treasure.cpp, uo/treasure.h).
     bool WantsTreasure() const;
     void AddTreasureNeeds(Client& client, const Observation& obs, std::vector<Need>& needs);

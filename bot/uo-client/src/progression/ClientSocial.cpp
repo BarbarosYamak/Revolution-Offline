@@ -100,6 +100,14 @@ sparring::Kit Client::SparringKitOf(u32 serial) const {
     return sparring::KitFor(worn.data(), worn.size());
 }
 
+u16 Client::MobileEquipGraphic(u32 serial, u8 layer) const {
+    const auto* mobile = FindMobileBySerial(serial);
+    if (serial != playerSerial_ && !mobile) return 0;
+    const auto& equipment = serial == playerSerial_ ? playerEquip_ : mobile->equip;
+    for (const auto& e : equipment) if (e.layer == layer) return e.graphic;
+    return 0;
+}
+
 bool Client::SparringHealthFresh(u32 peer) const {
     const auto* m = FindMobileBySerial(peer);
     const i64 now = NowMs();

@@ -148,6 +148,7 @@ public:
         // (uo/era.h); 0 = era::kDefaultDate. Changes what it knows to do,
         // never what the server allows.
         i32         eraDate = 0;
+        bool        noPvp = false;            // --no-pvp
         bool        logPackets;       // write PKT hex lines to the log file
         u32         keepaliveIntervalMs;  // 0 = use the built-in default
         bool        acceptDoors;      // A* routes through door tiles, opened at runtime
@@ -213,6 +214,8 @@ public:
         int n = 0; for (const auto& p : runebookPages_) n += p.filled; return n;
     }
     int  RunebookPageForGoal(i32 toX, i32 toY) const;            // by map point, 0 = none
+    // What another mobile wears on a layer (1/2 hands, 25 mount), 0 = nothing seen.
+    u16  MobileEquipGraphic(u32 serial, u8 layer) const;
     // Open the book only to read it; the gump is closed once its pages are noted.
     bool ActionReadRunebook();
     // Enough reagents for one uncharged Recall under this era's cost.

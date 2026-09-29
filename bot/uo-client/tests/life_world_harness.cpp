@@ -56,6 +56,10 @@ struct RunnerHarnessAccess {
     }
     static void SocialEnd(Runner& r, Client& c) { r.EndSocialGroup(c, "test finished"); }
     static bool Treasure(Runner& r, Client& c, const Observation& o) { return r.DoHuntTreasure(c, o); }
+    static void PvpObserve(Runner& r, Client& c, const Observation& o) { r.ObservePvp(c, o); }
+    static void PvpNeeds(Runner& r, Client& c, const Observation& o, std::vector<Need>& needs) { r.AddPvpNeeds(c, o, needs); }
+    static bool PvpHunt(Runner& r, Client& c, const Observation& o) { return r.DoHuntPlayers(c, o); }
+    static const char* PvpRoleName(const Runner& r) { return pvp::RoleName(r.PvpRole()); }
     static void TreasureNeeds(Runner& r, Client& c, const Observation& o, std::vector<Need>& needs) {
         r.AddTreasureNeeds(c, o, needs);
     }
@@ -1920,6 +1924,81 @@ int main(int argc, char** argv) {
         obs.nowMs += 2000;
         life::RunnerHarnessAccess::Treasure(runner, *client, obs);
         Check(client->SentForTest().empty(), "guardians near: the treasure step waits and lets the fight run");
+    }
+
+    // --- PvP: the PK ambushes a lone miner; nobody ambushes inside the rules --
+    {
+        auto makePlayer = [](Client& c, u32 serial, u16 x, u16 y, u8 noto, const char* nm) {
+            SpawnHostile(c, serial, x, y, noto);
+            u8 doll[66]{}; doll[0] = 0x88;
+            StoreBE32(doll + 1, serial);
+            std::memcpy(doll + 5, nm, std::strlen(nm));
+            c.DispatchPacketForTest(doll, sizeof(doll));
+            auto name = MakeMobName(serial, nm);
+            c.DispatchPacketForTest(name.data(), name.size());
+        };
+        Client::Config config{};
+        auto client = std::make_unique<Client>(config);
+        client->SetOfflineForTest(true);
+        client->SetClockForTest(600000);
+        auto login = MakeLoginConfirm(0x2002, 2000, 2000);
+        client->DispatchPacketForTest(login.data(), login.size());
+        makePlayer(*client, 0x1004, 2004, 2000, 1, "Miner");
+        auto pick = MakeEquip(0x40009100, 0x0E86, 1, 0x1004);
+        client->DispatchPacketForTest(pick.data(), pick.size());
+        life::Runner pk;
+        life::RunnerConfig rc;
+        rc.dataRoot = root + "/pvp_pk";
+        rc.accountName = "offline_world";
+        rc.characterName = "pk";
+        rc.professionId = "pk";
+        std::string error;
+        Check(pk.Configure(rc, &error), error.c_str());
+        Check(std::string(life::RunnerHarnessAccess::PvpRoleName(pk)) == "pk", "the pk profession plays the PK role");
+        life::Observation obs; obs.inWorld = true; obs.nowMs = 600000; obs.x = obs.y = 2000;
+        obs.hp = obs.hpMax = 90; obs.bandages = 30;
+        std::vector<life::Need> needs;
+        life::RunnerHarnessAccess::PvpNeeds(pk, *client, obs, needs);
+        Check(needs.size() == 1 && needs[0].urgency > 0.85, "a lone miner in the wild is an opening");
+        client->ClearSentForTest();
+        life::RunnerHarnessAccess::PvpHunt(pk, *client, obs);
+        bool attacked = false;
+        for (const auto& p : client->SentForTest())
+            if (p.opcode == 0x05 && p.bytes.size() >= 5 && LoadBE32(p.bytes.data() + 1) == 0x1004) attacked = true;
+        Check(attacked, "the PK ambushes with a real attack request");
+
+        // A witness changes everything: two more players beside the miner.
+        makePlayer(*client, 0x1005, 2005, 2001, 1, "Friend");
+        makePlayer(*client, 0x1006, 2003, 2001, 1, "Other");
+        needs.clear();
+        life::RunnerHarnessAccess::PvpNeeds(pk, *client, obs, needs);
+        Check(needs.size() == 1 && needs[0].urgency < 0.5, "with witnesses beside the victim there is no opening");
+
+        // The victim's side: attacked by a player, the character shouts for help.
+        life::Runner victim;
+        rc.dataRoot = root + "/pvp_victim";
+        rc.characterName = "victim";
+        rc.professionId = "miner_smith";
+        Check(victim.Configure(rc, &error), error.c_str());
+        Client::Config vconfig{};
+        auto vclient = std::make_unique<Client>(vconfig);
+        vclient->SetOfflineForTest(true);
+        vclient->SetClockForTest(700000);
+        auto vlogin = MakeLoginConfirm(0x2003, 2000, 2000);
+        vclient->DispatchPacketForTest(vlogin.data(), vlogin.size());
+        makePlayer(*vclient, 0x1007, 2001, 2000, 6, "Reddy");
+        u8 swing[10] = {0x2F};   // 0x2F SWING: attacker(4)@2 defender(4)@6
+        StoreBE32(swing + 2, 0x1007);
+        StoreBE32(swing + 6, 0x2003);
+        vclient->DispatchPacketForTest(swing, sizeof(swing));
+        vclient->ClearSentForTest();
+        life::Observation vobs = obs; vobs.nowMs = 700000;
+        life::RunnerHarnessAccess::PvpObserve(victim, *vclient, vobs);
+        bool shouted = false;
+        for (const auto& p : vclient->SentForTest())
+            if (p.opcode == 0x03 && p.bytes.size() > 8 &&
+                std::string(reinterpret_cast<const char*>(p.bytes.data() + 8)).find("PK var") == 0) shouted = true;
+        Check(shouted, "a player attacked by a red shouts \"PK var! yardim!\"");
     }
 
     // --- small talk: "sa" is answered "as", once, never a handshake --------
