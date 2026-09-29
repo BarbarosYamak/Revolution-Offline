@@ -153,9 +153,21 @@
                     return;
                 }
                 if (!Player.warMode) Player.setWarMode(true);
-                Player.attack(this.threat.serial);
+                // Style hooks, all OPTIONAL and bot-defined (lib/fighter.js):
+                //   meleeInFight()  false for a mage/tamer that should not swing
+                //   followRange()   1 for melee, further for archers/casters
+                //   combatTick()    spells, ammo, pet commands -- once per tick
+                const melee = typeof this.meleeInFight === 'function' ? this.meleeInFight() : true;
+                if (melee) Player.attack(this.threat.serial);
+                const range = typeof this.followRange === 'function' ? this.followRange() : 1;
 
-                if (followSerial !== this.threat.serial) { Player.follow(this.threat.serial, 1); followSerial = this.threat.serial; }
+                if (followSerial !== this.threat.serial || this.lastFollowRange !== range) {
+                    Player.follow(this.threat.serial, range);
+                    followSerial = this.threat.serial;
+                    this.lastFollowRange = range;
+                }
+                if (typeof this.combatTick === 'function') await this.combatTick();
+                if (!this.threat?.exists) break;
 
                 // Keep the foe's health bar fresh: a reading that never moves
                 // looks exactly like a foe we cannot hurt.
@@ -167,7 +179,7 @@
                 // Mid-fight bandage: only when genuinely hurt, never on a foe we
                 // are about to kill, and throttled. The gate is set before the
                 // await so a no-op (no bandage) still throttles.
-                if (this.hpFrac() < this.HEAL_HP_FRAC && !this.foeNearlyDead() &&
+                if (this.hpFrac() < this.HEAL_HP_FRAC && !this.foeNearlyDead() && this.USES_BANDAGES !== false &&
                     Date.now() - (this.lastBandageMs || 0) > this.BANDAGE_INTERVAL_MS) {
                     this.lastBandageMs = Date.now();
                     await this.bandageSelf();

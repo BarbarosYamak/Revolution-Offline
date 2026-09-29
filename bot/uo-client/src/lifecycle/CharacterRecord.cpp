@@ -285,7 +285,10 @@ CharacterRecord NewLumberjackSwordsman(const char* name, const char* account,
 RecordCheck ValidateRecord(const CharacterRecord& r, const rules::Profile& p) {
     RecordCheck c;
     if (r.name.empty()) { c.why = "character has no name"; return c; }
-    if (r.aspiration == Aspiration::Unknown) { c.why = "aspiration unknown"; return c; }
+    if (r.aspiration == Aspiration::Unknown && r.archetype.empty()) {
+        c.why = "neither an aspiration nor an archetype";
+        return c;
+    }
 
     // The same skill twice would let a build look like 700 while training one
     // skill to 200.
@@ -524,6 +527,7 @@ std::string Serialize(const CharacterRecord& r) {
     Line("identity").Str(r.name).Str(r.account).Str(AspirationName(r.aspiration))
         .Int(r.createdWallMs).Int(r.sessions).Int(r.lastLoginWallMs)
         .Int(r.lastSavedWallMs).To(&out);
+    if (!r.archetype.empty()) Line("archetype").Str(r.archetype).To(&out);
     Line("stats").Int(r.targetStr).Int(r.targetDex).Int(r.targetInt).To(&out);
     for (const rules::BuildSkill& s : r.targetBuild)
         Line("skill").Int(s.skillId).Int(s.tenths).To(&out);
@@ -626,6 +630,9 @@ ParseResult Parse(std::string_view text, CharacterRecord* out) {
             if (f.Ok() && !EnumFromName(asp, &AspirationName, &r.aspiration))
                 f.Fail("unknown aspiration");
             sawIdentity = true;
+        } else if (kind == "archetype") {
+            r.archetype = f.Str();
+            if (f.Ok() && r.archetype.empty()) f.Fail("empty archetype");
         } else if (kind == "stats") {
             r.targetStr = ToI32(f.IntIn(kI32Min, kI32Max));
             r.targetDex = ToI32(f.IntIn(kI32Min, kI32Max));
@@ -882,6 +889,120 @@ std::string RecordFileName(std::string_view characterName) {
     if (out.empty()) out = "unnamed";
     out += ".life";
     return out;
+}
+
+// ---------------------------------------------------------------------------
+// archetypes (M4.5)
+// ---------------------------------------------------------------------------
+
+const ArchetypeRow* ArchetypeTable::Find(std::string_view id) const {
+    for (const ArchetypeRow& r : rows)
+        if (r.id == id) return &r;
+    return nullptr;
+}
+
+bool ParseArchetypes(std::string_view text, ArchetypeTable* out, std::string* err) {
+    ArchetypeTable t;
+    usize pos = 0;
+    int lineNo = 0;
+    auto fail = [&](const std::string& why) {
+        if (err) *err = "line " + std::to_string(lineNo) + ": " + why;
+        return false;
+    };
+    while (pos < text.size()) {
+        usize nl = text.find('\n', pos);
+        if (nl == std::string_view::npos) nl = text.size();
+        std::string_view raw = text.substr(pos, nl - pos);
+        pos = nl + 1;
+        ++lineNo;
+        if (!raw.empty() && raw.back() == '\r') raw.remove_suffix(1);
+        if (raw.empty()) continue;
+        if (lineNo == 1) {
+            if (raw.substr(0, 3) != "id\t") return fail("missing header");
+            continue;
+        }
+        // Fields treats the first column as the record kind; here it is the id.
+        Fields f(raw);
+        ArchetypeRow r;
+        r.id = std::string(f.Kind());
+        r.kind = f.Str();
+        r.style = f.Str();
+        r.ref = f.Str();
+        r.evidence = f.Str();
+        const std::string skills = f.Str();
+        r.str = ToI32(f.IntIn(0, 100));
+        r.dex = ToI32(f.IntIn(0, 100));
+        r.intel = ToI32(f.IntIn(0, 100));
+        r.home = f.Str();
+        if (!f.Done()) return fail(r.id + ": " + (f.Ok() ? std::string("too many fields") : f.Error()));
+        if (r.id.empty()) return fail("empty id");
+        if (r.kind != "fighter" && r.kind != "crafter" && r.kind != "gatherer")
+            return fail(r.id + ": unknown kind " + r.kind);
+
+        usize s = 0;
+        while (s < skills.size()) {
+            usize comma = skills.find(',', s);
+            if (comma == std::string::npos) comma = skills.size();
+            const std::string item = skills.substr(s, comma - s);
+            s = comma + 1;
+            const usize colon = item.find(':');
+            if (colon == std::string::npos) return fail(r.id + ": bad skill '" + item + "'");
+            char* end = nullptr;
+            const long id = std::strtol(item.c_str(), &end, 10);
+            const long tenths = std::strtol(item.c_str() + colon + 1, &end, 10);
+            if (id < 0 || id > 57 || tenths < 0 || tenths > 1000) return fail(r.id + ": skill out of range");
+            r.skills.push_back({static_cast<int>(id), static_cast<i32>(tenths)});
+        }
+
+        // Every template must obey the profile, or nothing loads.
+        CharacterRecord probe = NewRecordFromArchetype(r, "probe", "probe", 1);
+        const RecordCheck c = ValidateRecord(probe);
+        if (!c.ok) return fail(r.id + ": " + c.why);
+        if (t.Find(r.id)) return fail(r.id + ": duplicate id");
+        t.rows.push_back(std::move(r));
+    }
+    if (t.rows.empty()) return fail("no archetypes");
+    *out = std::move(t);
+    return true;
+}
+
+bool LoadArchetypes(const std::string& path, ArchetypeTable* out, std::string* err) {
+    std::FILE* f = std::fopen(path.c_str(), "rb");
+    if (!f) {
+        if (err) *err = "cannot open " + path + ": " + std::strerror(errno);
+        return false;
+    }
+    std::string text;
+    char buf[4096];
+    for (;;) {
+        const usize n = std::fread(buf, 1, sizeof(buf), f);
+        if (n) text.append(buf, n);
+        if (n < sizeof(buf)) break;
+    }
+    std::fclose(f);
+    return ParseArchetypes(text, out, err);
+}
+
+CharacterRecord NewRecordFromArchetype(const ArchetypeRow& row, const char* name,
+                                       const char* account, i64 wallNowMs) {
+    CharacterRecord r;
+    r.name = name ? name : "";
+    r.account = account ? account : "";
+    r.archetype = row.id;
+    r.aspiration = row.id == "lumberjack" ? Aspiration::LumberjackSwordsman : Aspiration::Unknown;
+    r.createdWallMs = wallNowMs;
+    r.targetBuild = row.skills;
+    r.targetStr = row.str;
+    r.targetDex = row.dex;
+    r.targetInt = row.intel;
+    // Bandages for anyone who trains Healing; everything else the bot scripts
+    // decide from the same table (tools per craft, ammo per style).
+    for (const rules::BuildSkill& s : row.skills)
+        if (s.skillId == rules::kHealing) r.equipment.push_back({"i_bandage", 1, true});
+    r.economy.goldReserve = row.kind == "crafter" ? 150 : 100;
+    r.economy.bankAboveGold = row.kind == "crafter" ? 1500 : 800;
+    r.economy.unloadAtWeightPercent = 80;
+    return r;
 }
 
 }  // namespace uo::life

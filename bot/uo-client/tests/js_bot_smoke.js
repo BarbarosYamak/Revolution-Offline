@@ -23,7 +23,9 @@ g.Mobiles={all:()=>mobs, get:(s)=>mobs.find(m=>m.serial===s)||{serial:s,exists:f
 g.createThreatMeter=()=>({start(){},stop(){},count:0});
 g.createBehaviorRunner=()=>({start(){},stop(){}}); g.makeToken=()=>({});
 g.CANCELLED={};
-for (const f of ['bootstrap.js','lib/bot.js','lib/bank.js','lib/survival.js','lib/combat.js','lib/economy.js','lib/memory.js','lib/crafting.js'])
+// Every lib in the engine's own order: sorted file names (JsEngine.cpp EvalLibs).
+const libs = fs.readdirSync(path + 'lib').filter((f) => f.endsWith('.js')).sort();
+for (const f of ['bootstrap.js', ...libs.map((l) => 'lib/' + l)])
   vm.runInThisContext(fs.readFileSync(path+f,'utf8'),{filename:f});
 g.BehaviorScript.prototype._bootstrap=function(){};
 // ---- combat assessFight
@@ -53,11 +55,12 @@ R.rest().then(()=>{
   check(bandaged===1, '60% HP: rest() bandages');
   // ---- graveyard
   g.BehaviorScript.prototype.start=function(){return this};
-  vm.runInThisContext(fs.readFileSync(path+'graveyard.js','utf8').replace('new GraveyardHunter().start();','globalThis.GH=GraveyardHunter;'),{filename:'graveyard.js'});
+  // graveyard.js is now a swordsman on the generic fighter engine.
+  g.GH = function () { const b = new FighterBot('swordsman', { grounds: ['britain_graveyard'] });
+    b.ground = { id: 'britain_graveyard', ...Archetypes.GROUNDS.britain_graveyard }; return b; };
   const h=new GH();
-  let inside=true; for(let i=0;i<500;i++){const p=h.randomWaypoint(); if(!h.inGraveyard(p.x,p.y)) inside=false;}
+  let inside=true; for(let i=0;i<500;i++){const p=h.waypoint(); if(!h.inGround(p.x,p.y)) inside=false;}
   check(inside,'every patrol waypoint is inside the graveyard rects');
-  check(!h.inGraveyard(h.REST_SPOT.x,h.REST_SPOT.y),'the rest spot is outside the graveyard');
   mobs=[{serial:20,exists:true,notoriety:3,body:0x03,x:1383,y:1480},
         {serial:21,exists:true,notoriety:1,body:0x190,x:1381,y:1480},   // blue human
         {serial:22,exists:true,notoriety:3,body:0x1a,x:1395,y:1480}];   // ghost, out of range? 15 tiles
@@ -68,7 +71,7 @@ R.rest().then(()=>{
   h.onFlee({x:1383,y:1480}); mobs=[{serial:20,exists:true,notoriety:3,body:0x03,x:1383,y:1480}];
   check(h.findPrey()===null,'does not go straight back to a mob it fled from');
   const names=h.behaviors().map(x=>x.name).join('>');
-  check(names==='resurrect>offline>fight>loot>bank>eat>recover>patrol','priority order '+names);
+  check(names==='resurrect>offline>fight>loot>bank>collect>gear>eat>recover>patrol','priority order '+names);
   return economyTests();
 }).then(() => {
   finished = true;
@@ -241,7 +244,7 @@ async function economyTests() {
   check(OP.orderDone(ord) && OP.nextPiece(ord) === null, 'all pieces made -> done');
 
   // the crafter bot, end to end on stubs
-  vm.runInThisContext(fs.readFileSync(path + 'crafter.js', 'utf8').replace('new Crafter().start();', 'globalThis.CR = Crafter;'), { filename: 'crafter.js' });
+  g.CR = function () { return new CrafterBot('tinker'); };
   const said = [];
   Player.say = (t) => said.push(t);
   Player.name = 'Ahmet';
@@ -252,7 +255,7 @@ async function economyTests() {
   mobs = [{ serial: 9, exists: true, name: 'Mehmet', x: 0, y: 0 }];
   cr.onSpeech({ text: 'Ahmet order 3 pickaxes', serial: 9, system: false });
   check(cr.orders.length === 1 && cr.orders[0].items[0].qty === 3 && /will be \d+ gold/.test(said.pop()), 'crafter quotes a spoken order');
-  cr.onSpeech({ text: 'Ahmet order ringmail set', serial: 9, system: false });
+  cr.onSpeech({ text: 'Ahmet order platemail', serial: 9, system: false });
   check(cr.orders.length === 1 && /cannot make/.test(said.pop()), 'crafter declines what its menu does not offer, and says why');
   check(cr.wanted && cr.wanted.size === 1, 'a declined piece becomes a training goal');
   cr.onSpeech({ text: 'Ahmet order tinker tools set', serial: 9, system: false });
@@ -306,8 +309,152 @@ async function economyTests() {
   mi = 0; chosen = [];
   check(await cr.craftOne({ category: 'Tools', label: 'Platemail' }) === 'not_offered', 'craftOne: an item the menu lacks is not attempted');
 
+  // ===== every archetype (lib/archetypes.js, fighter.js, crafterbot.js, gathering.js) =====
+  const AR = Archetypes;
+  check(fs.readFileSync(path + '../../data/revolution_archetypes.tsv', 'utf8') === AR.toTsv(),
+        'data/revolution_archetypes.tsv matches lib/archetypes.js (regenerate if you changed a build)');
+  const kinds = { fighter: 0, crafter: 0, gatherer: 0 };
+  for (const [id, a] of Object.entries(AR.A)) {
+    const v = AR.validate(id);
+    check(v.ok, `${id}: build is legal (${v.why || v.total + ' pts'})`);
+    check(AR.TOWNS[a.home], `${id}: home town ${a.home} exists`);
+    check(fs.existsSync(path + id + '.js'), `${id}: has a launcher script ${id}.js`);
+    kinds[a.kind]++;
+    if (a.kind === 'crafter') check(AR.CRAFTS[a.craft] && AR.CRAFTS[a.craft].skill === AR.SK[Object.keys(AR.SK).find((k) => AR.SK[k] === AR.CRAFTS[a.craft].skill)],
+        `${id}: craft ${a.craft} defined`);
+    if (a.build.cls === 'HISTORICAL_EXACT') check(v.total === 700, `${id}: an exact historical build spends all 700`);
+  }
+  check(kinds.fighter >= 10 && kinds.crafter >= 8 && kinds.gatherer >= 3, `all types present (${JSON.stringify(kinds)})`);
+  for (const c of ['alchemist', 'scribe', 'bowyer', 'blacksmith', 'tailor', 'carpenter', 'tinker', 'cook'])
+    check(AR.CRAFTS[c], `craft ${c} exists`);
+  check(!AR.validate('warlock').canUsePoisonedWeapon && AR.validate('swordsman').canUsePoisonedWeapon,
+        'L4: Magery>40 warlock may not wield a poisoned blade; the warrior may');
+  for (const [gid, gr] of Object.entries(AR.GROUNDS)) check(AR.TOWNS[gr.town], `ground ${gid}: town ${gr.town} exists`);
+
+  const FP = FighterPolicy;
+  check(FP.bestAttackSpell(0).id === FP.SPELL.MAGIC_ARROW && FP.bestAttackSpell(1000).id === FP.SPELL.FLAMESTRIKE,
+        'spell choice follows Magery: Magic Arrow at 0, Flamestrike at GM');
+  check(FP.levelFor(100) === 1 && FP.levelFor(600) === 3 && FP.levelFor(950) === 4, 'hunting level from skill');
+
+  // every fighter constructs, and its style hooks behave
+  const mk = (id, opts) => { const f = new FighterBot(id, opts); f.token = h.token; return f; };
+  const fighters = {};
+  for (const [id, a] of Object.entries(AR.A)) if (a.kind === 'fighter') {
+    let ok = true; try { fighters[id] = mk(id); } catch (e) { ok = false; console.log(e.message); }
+    check(ok, `fighter ${id} constructs`);
+  }
+  Player.mana = 50; Player.manaMax = 100;
+  check(fighters.pure_mage.followRange() === 6 && !fighters.pure_mage.meleeInFight(), 'mage fights from range 6 and does not swing');
+  Player.mana = 5;
+  check(fighters.pure_mage.meleeInFight(), 'mage out of mana wrestles');
+  const packItems = Player.equipment.backpack.items;
+  Player.equipment.backpack.items = [{ serial: 70, name: 'arrow', amount: 50 }];
+  fighters.archer.backpackCount = FighterBot.prototype.backpackCount;
+  check(fighters.archer.followRange() === 4, 'archer with arrows keeps range 4');
+  Player.equipment.backpack.items = [];
+  check(fighters.archer.followRange() === 1, 'archer without arrows closes to melee');
+  check(fighters.tamer.meleeInFight() && fighters.tamer.followRange() === 1, 'tamer without a pet defends itself');
+  check(fighters.swordsman.CONSUMABLES.bandage && !fighters.pure_mage.CONSUMABLES.arrow, 'consumables follow the build');
+  check(fighters.archer.CONSUMABLES.arrow && fighters.archer.CONSUMABLES.arrow.title === 'bowyer', 'archer restocks arrows at the bowyer');
+  check(fighters.pure_mage.CONSUMABLES['black pearl'], 'mage restocks reagents');
+
+  // combatTick per style
+  const casts = []; Player.cast = (sp, t) => casts.push([sp, t]); Player.skill = (i) => (i === AR.SK.MAGERY ? 1000 : 500);
+  Player.mana = 90; Player.hp = 50; Player.hpMax = 50;
+  mobs = [{ serial: 88, exists: true, notoriety: 3, body: 0x03, x: 1381, y: 1480, hpPct: 1 }];
+  const pm = fighters.pure_mage; pm.threat = Mobiles.get(88); pm.lastCastMs = 0;
+  await pm.combatTick();
+  check(casts.length === 1 && casts[0][0] === FP.SPELL.FLAMESTRIKE && casts[0][1] === 88, 'GM mage opens with Flamestrike on the foe');
+  Player.hp = 20; pm.lastCastMs = 0; casts.length = 0;
+  await pm.combatTick();
+  check(casts[0] && casts[0][0] === FP.SPELL.GREATER_HEAL && casts[0][1] === Player.serial, 'hurt mage heals itself by spell first');
+  Player.hp = 50; casts.length = 0;
+  const wl = fighters.warlock; wl.threat = Mobiles.get(88); wl.lastCastMs = 0;
+  await wl.combatTick(); await wl.combatTick();
+  check(casts.filter((c) => c[0] === FP.SPELL.POISON).length === 1, 'warlock opens with the Poison spell once per foe');
+  const said2 = []; Player.say = (t) => said2.push(t);
+  let targeted = null; Player.target = (x) => { targeted = x; };
+  Player.once = (ev) => ev === 'target' ? Promise.resolve({}) : Promise.reject(new Error('t'));
+  const tm = fighters.tamer; tm.pet = 99; mobs.push({ serial: 99, exists: true, notoriety: 2, body: 0xe1, x: 1380, y: 1481 });
+  tm.threat = Mobiles.get(88);
+  await tm.combatTick();
+  check(said2.includes('all kill') && targeted === 88, 'tamer sends its pet: "all kill" + target the foe');
+  check(!tm.meleeInFight() && tm.followRange() === 4, 'tamer with a pet stays back');
+
+  // ground choice and PvP gating
+  const sw = fighters.swordsman;
+  Player.skill = () => 150;
+  check(sw.chooseGround().level === 1, 'a novice hunts a level-1 ground');
+  Player.skill = () => 900;
+  check(sw.chooseGround().level >= 3, 'a GM hunts a harder ground near home');
+  const pk = fighters.pk; pk.ground = { id: 'x', prey: 'wildlife', centre: { x: 1000, y: 1000 }, radius: 10 };
+  Player.x = 1000; Player.y = 1000;
+  mobs = [{ serial: 55, exists: true, notoriety: 1, body: 0x190, x: 1002, y: 1000 }];
+  check(pk.findPrey() === null, 'pk without ALLOW_PVP never targets a player');
+  const pk2 = mk('pk', { allowPvp: true }); pk2.ground = pk.ground;
+  check(pk2.findPrey() && pk2.findPrey().serial === 55, 'pk with ALLOW_PVP targets a blue player in the wild');
+  mobs[0].x = 1426; mobs[0].y = 1690; Player.x = 1425; Player.y = 1690;
+  check(pk2.findPrey() === null, 'pk never targets a player near a town bank');
+  check(sw.findPrey() === null && !sw.shouldDefend(55), 'a normal fighter never starts on a player');
+  check(!pk2.behaviors().find((x) => x.name === 'bank').when(), 'a pk does not walk into guarded towns to bank');
+
+  // every crafter and gatherer constructs
+  const crafters = {};
+  for (const [id, a] of Object.entries(AR.A)) if (a.kind === 'crafter') {
+    let ok = true; try { crafters[id] = new CrafterBot(id); crafters[id].token = h.token; } catch (e) { ok = false; console.log(e.message); }
+    check(ok, `crafter ${id} constructs`);
+  }
+  for (const id of ['miner', 'fisher']) { let ok = true; try { new GathererBot(id); } catch (e) { ok = false; console.log(e.message); } check(ok, `gatherer ${id} constructs`); }
+  let refused = false; try { new GathererBot('lumberjack'); } catch (e) { refused = true; }
+  check(refused, 'lumberjack keeps its own proven script');
+  check(crafters.blacksmith.MATERIAL && crafters.blacksmith.MATERIAL.title === 'blacksmith', 'blacksmith buys ingots');
+  check(crafters.tailor.MATERIAL && crafters.tailor.MATERIAL.name[0] === 'bolt', 'tailor buys cloth BOLTS (cloth itself is not NPC-sold)');
+  check(!crafters.carpenter.MATERIAL && crafters.carpenter.craftName === 'carpenter' && AR.CRAFTS.carpenter.material.gather === 'lumber', 'carpenter gathers its own logs');
+  check(!crafters.scribe.MATERIAL, 'scribe cannot buy blank scrolls (policy UNKNOWN -> refused)');
+  check(crafters.alchemist.MATERIAL, 'alchemist can buy reagents');
+  check(crafters.blacksmith.WORK_SPOT === AR.TOWNS.minoc.vendors.blacksmith, 'blacksmith works at the smithy (forge + anvil)');
+
+  // craftTarget: material vs station
+  Player.equipment.backpack.items = [{ serial: 301, name: 'iron ingot', amount: 20 }];
+  let tgt = null; Player.target = (x) => { tgt = x; };
+  crafters.blacksmith.findInPack = FighterBot.prototype.findInPack;
+  await crafters.blacksmith.craftTarget();
+  check(tgt === 301, 'blacksmith answers the hammer cursor with its ingots');
+  g.World = { items: () => [{ serial: 400, name: 'oven', x: 0, y: 0 }], statics: () => [] };
+  tgt = null; await crafters.cook.craftTarget();
+  check(tgt === 400, 'cook answers with a nearby heat source');
+
+  // tailor turns bolts into cloth with scissors
+  const t = crafters.tailor;
+  Player.equipment.backpack.items = [{ serial: 510, name: 'scissors', amount: 1 }, { serial: 511, name: 'bolt of cloth', amount: 1 }];
+  t.restockMaterials = async () => {};
+  const used = []; Player.use = (sr) => { used.push(sr); };
+  Player.target = (sr) => { if (sr === 511) Player.equipment.backpack.items = Player.equipment.backpack.items.filter((i) => i.serial !== 511).concat([{ serial: 512, name: 'cloth', amount: 50 }]); };
+  await t.getMaterial();
+  check(used[0] === 510 && t.backpackCount(['cloth']) === 50, 'tailor: scissors on the bolt -> cloth');
+
+  // an UNVERIFIED flow that opens no menu backs off instead of looping
+  const bw = crafters.bowyer; bw.atWork = async () => {}; bw.readCatalogue = async () => { bw.catalogue = []; bw.catalogueMs = Date.now(); return []; };
+  await bw.craftStep();
+  check(bw.flowFailures === 1 && bw.flowBlockedUntil > Date.now(), 'bowyer: no menu -> reported and backed off');
+
+  // crafters advertise; customers remember who they heard
+  const saidAd = []; Player.say = (x) => saidAd.push(x); Player.name = 'Ahmet';
+  const bs = crafters.blacksmith; bs.catalogue = [{ category: 'Armor', label: 'Ringmail Tunic' }];
+  await bs.advertise();
+  const ad = saidAd.pop();
+  check(OrderPolicy.ADVERT_RE.test(ad) && ad.includes('ringmail'), 'blacksmith advert names its trade and sets');
+  const cust = mk('swordsman'); cust.crafters = new Map();
+  let jh = null; Player.on = (n, f) => { if (n === 'journal') jh = f; }; cust.listenForCrafters();
+  mobs = [{ serial: 123, exists: true, name: 'Ahmet', x: 2471, y: 564 }];
+  jh({ text: ad, serial: 123, system: false });
+  check(cust.knownCrafter('blacksmith') && cust.knownCrafter('blacksmith').name === 'Ahmet', 'a fighter who hears the advert knows the blacksmith');
+  check(cust.gearOrder().craft === 'blacksmith' && fighters.archer.gearOrder().craft === 'bowyer' && fighters.pure_mage.gearOrder().craft === 'tailor',
+        'gear orders go to the right craft per style');
+  Player.equipment.backpack.items = packItems;
+
   // no mixin method may shadow another or a bot's own
-  const mix = { BankSkill, SurvivalSkill, CombatSkill, EconomySkill, MemorySkill, CraftSkill, CustomerSkill };
+  const mix = { BankSkill, SurvivalSkill, CombatSkill, EconomySkill, MemorySkill, CraftSkill, CustomerSkill, GatherSkill };
   const seen = {};
   for (const [m, obj] of Object.entries(mix)) for (const k of Object.keys(obj)) {
     if (typeof obj[k] !== 'function') continue;

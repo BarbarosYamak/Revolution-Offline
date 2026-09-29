@@ -145,7 +145,7 @@ target_include_directories(m4_lifecycle PRIVATE
     ${CMAKE_SOURCE_DIR}/include
     ${CMAKE_SOURCE_DIR}/src)
 
-add_test(NAME m4_lifecycle COMMAND m4_lifecycle)
+add_test(NAME m4_lifecycle COMMAND m4_lifecycle ${CMAKE_SOURCE_DIR}/data)
 
 # JS bot behaviour smoke test (combat thresholds, rest, graveyard patrol, the
 # mixin-overwrite trap). Needs Node, which the client does not; skipped when

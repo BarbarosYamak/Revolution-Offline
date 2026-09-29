@@ -154,6 +154,9 @@ struct CharacterRecord {
     std::string name;
     std::string account;
     Aspiration  aspiration = Aspiration::Unknown;
+    // M4.5: the archetype id from data/revolution_archetypes.tsv. Empty for
+    // records made before the table existed (they keep `aspiration`).
+    std::string archetype;
     i64         createdWallMs = 0;
     i32         sessions = 0;
     i64         lastLoginWallMs = 0;
@@ -189,6 +192,38 @@ struct CharacterRecord {
 // The frontier Lumberjack / Swordsman of M4_LIFECYCLE_PLAN.md section 1.
 CharacterRecord NewLumberjackSwordsman(const char* name, const char* account,
                                        i64 wallNowMs);
+
+// --- every archetype (M4.5) ---------------------------------------------------
+//
+// data/revolution_archetypes.tsv is generated from scripts/js/lib/archetypes.js
+// (the smoke test fails if the two drift). Each row: id, kind, style or trade,
+// compendium ref, evidence class, skills as "id:tenths,...", STR, DEX, INT,
+// home town. The record stores the archetype id; the build targets come from
+// the row, so one table decides every character type.
+struct ArchetypeRow {
+    std::string id;
+    std::string kind;        // fighter | crafter | gatherer
+    std::string style;       // melee/ranged/mage/... or the trade
+    std::string ref;         // Build Compendium entry
+    std::string evidence;    // HISTORICAL_EXACT ... UNSOURCED
+    std::vector<rules::BuildSkill> skills;
+    i32 str = 0, dex = 0, intel = 0;
+    std::string home;
+};
+
+struct ArchetypeTable {
+    std::vector<ArchetypeRow> rows;
+    const ArchetypeRow* Find(std::string_view id) const;
+};
+
+// Loads and VALIDATES every row against the Revolution profile. A row that
+// breaks the 700/225 caps or names an inactive skill fails the whole load:
+// a bad template would steer every character built from it.
+bool LoadArchetypes(const std::string& path, ArchetypeTable* out, std::string* err);
+bool ParseArchetypes(std::string_view text, ArchetypeTable* out, std::string* err);
+
+CharacterRecord NewRecordFromArchetype(const ArchetypeRow& row, const char* name,
+                                       const char* account, i64 wallNowMs);
 
 // --- validation --------------------------------------------------------------
 //

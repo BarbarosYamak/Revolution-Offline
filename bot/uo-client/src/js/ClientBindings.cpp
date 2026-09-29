@@ -475,6 +475,31 @@ namespace uo::js {
             return JS_NewInt32(ctx, client->PlayerSkillBase(static_cast<u16>(index)));
         }
 
+        // Player.cast(spellId[, targetSerial]): cast a spell from the book, the
+        // way a player does from the spellbook gump. The client answers the
+        // spell's target cursor with `targetSerial` (0 = none; pass
+        // Player.serial for self). Reagents, mana and fizzle are the server's.
+        static JSValue Cast(JSContext *ctx, JSValueConst, int argc, JSValueConst *argv) {
+            int32_t spell = 0; int64_t target = 0;
+            if (!client || argc < 1 || JS_ToInt32(ctx, &spell, argv[0]) || spell < 1 || spell > 64)
+                return JS_ThrowTypeError(ctx, "Player.cast(spellId 1..64[, targetSerial])");
+            if (argc >= 2 && !JS_IsUndefined(argv[1])) JS_ToInt64(ctx, &target, argv[1]);
+            client->ActionCastSpell(spell, static_cast<u32>(target));
+            return JS_UNDEFINED;
+        }
+
+        // Player.useSkill(skillId[, targetSerial]): use a skill from the skill
+        // list (Meditation, Animal Taming, Hiding, ...). A skill that asks for
+        // a target is answered with `targetSerial`.
+        static JSValue UseSkill(JSContext *ctx, JSValueConst, int argc, JSValueConst *argv) {
+            int32_t skill = 0; int64_t target = 0;
+            if (!client || argc < 1 || JS_ToInt32(ctx, &skill, argv[0]) || skill < 0 || skill > 57)
+                return JS_ThrowTypeError(ctx, "Player.useSkill(skillId[, targetSerial])");
+            if (argc >= 2 && !JS_IsUndefined(argv[1])) JS_ToInt64(ctx, &target, argv[1]);
+            client->ActionUseSkill(skill, static_cast<u32>(target));
+            return JS_UNDEFINED;
+        }
+
         // Player.requestSkills(): ask the server for the full skill list
         // (0x34 subtype 5), the same request the client's skill gump makes.
         static JSValue RequestSkills(JSContext *ctx, JSValueConst, int, JSValueConst *) {
@@ -1125,6 +1150,8 @@ namespace uo::js {
             JS_CFUNC_DEF("skill", 1, ClientBindings::Skill),
             JS_CFUNC_DEF("requestSkills", 0, ClientBindings::RequestSkills),
             JS_CFUNC_DEF("logout", 0, ClientBindings::Logout),
+            JS_CFUNC_DEF("cast", 1, ClientBindings::Cast),
+            JS_CFUNC_DEF("useSkill", 1, ClientBindings::UseSkill),
             JS_CGETSET_MAGIC_DEF("maxWeight", ClientBindings::PlayerGet, nullptr, ClientBindings::PF_MAXWEIGHT),
             JS_CGETSET_MAGIC_DEF("equipment", ClientBindings::PlayerGet, nullptr, ClientBindings::PF_EQUIPMENT),
 

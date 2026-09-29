@@ -55,6 +55,10 @@ void PrintUsage() {
         "  --life-dir <dir>   M4: keep each character's persistent life in\n"
         "                     <dir>/<Name>.life (created if missing). Loaded on\n"
         "                     login, saved on logout, death and every minute.\n"
+        "  --archetype <id>   M4.5: what a NEW life begins as (swordsman, archer,\n"
+        "                     pure_mage, blacksmith, tailor, alchemist, ... -- see\n"
+        "                     data/revolution_archetypes.tsv). Pair it with the\n"
+        "                     matching scripts/js/<id>.js.\n"
         "  -h, --help         this text\n"
         "\n"
         "Multiple sessions in one process:\n"
@@ -158,7 +162,7 @@ int main(int argc, char** argv) {
 
     std::string mulDir;
     std::string dataDir = "data";
-    std::string atlasPath, navgridPath;
+    std::string atlasPath, navgridPath, archetypesPath;
     std::string baseLog = "uo-client.log";
     std::vector<std::string> sessionSpecs;
 
@@ -218,6 +222,7 @@ int main(int argc, char** argv) {
         else if (ArgIs(a, "--mul-dir"))   { mulDir = next; ++i; }
         else if (ArgIs(a, "--data-dir"))  { dataDir = next; ++i; }
         else if (ArgIs(a, "--life-dir"))  { base.lifeDir = next; ++i; }
+        else if (ArgIs(a, "--archetype")) { base.archetype = next; ++i; }
         else if (ArgIs(a, "--session"))   { sessionSpecs.push_back(next); ++i; }
         else {
             std::fprintf(stderr, "unknown option: %s\n", a);
@@ -233,6 +238,8 @@ int main(int argc, char** argv) {
         navgridPath = dataDir + "/revolution_navgrid.bin";
         base.atlasPath   = atlasPath.c_str();
         base.navgridPath = navgridPath.c_str();
+        archetypesPath = dataDir + "/revolution_archetypes.tsv";
+        base.archetypesPath = archetypesPath.c_str();
     }
 
     // A bare invocation is just the one-session case of the same code path.

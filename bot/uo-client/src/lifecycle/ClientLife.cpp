@@ -69,15 +69,34 @@ void Client::LifeBegin() {
                         rec.lastLogout.placeId.c_str());
             break;
 
-        case life::LoadStatus::NotFound:
-            // The only archetype built so far. When there is a second, the
-            // choice is made here from configuration, not guessed.
-            rec = life::NewLumberjackSwordsman(name.c_str(), cfg_.username,
-                                               clock.wallMs);
+        case life::LoadStatus::NotFound: {
+            // The archetype comes from configuration (--archetype), never a
+            // guess. Without one, the M4.1 default: the Lumberjack/Swordsman.
+            bool made = false;
+            if (cfg_.archetype && cfg_.archetype[0]) {
+                life::ArchetypeTable table;
+                std::string err;
+                const char* path = cfg_.archetypesPath ? cfg_.archetypesPath : "data/revolution_archetypes.tsv";
+                if (!life::LoadArchetypes(path, &table, &err)) {
+                    LogError("[life] cannot load archetypes (%s); persistence OFF\n", err.c_str());
+                    return;
+                }
+                const life::ArchetypeRow* row = table.Find(cfg_.archetype);
+                if (!row) {
+                    LogError("[life] unknown archetype '%s'; persistence OFF\n", cfg_.archetype);
+                    return;
+                }
+                rec = life::NewRecordFromArchetype(*row, name.c_str(), cfg_.username, clock.wallMs);
+                made = true;
+            }
+            if (!made)
+                rec = life::NewLumberjackSwordsman(name.c_str(), cfg_.username, clock.wallMs);
             LogInfo("[life] no record for %s; beginning a new %s life at %s\n",
-                    name.c_str(), life::AspirationName(rec.aspiration),
+                    name.c_str(),
+                    rec.archetype.empty() ? life::AspirationName(rec.aspiration) : rec.archetype.c_str(),
                     lifePath_.c_str());
             break;
+        }
 
         case life::LoadStatus::Corrupt:
         case life::LoadStatus::Invalid:

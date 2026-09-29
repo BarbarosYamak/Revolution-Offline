@@ -483,9 +483,66 @@ void TestNames() {
           "an aspiration not yet built is Unknown");
 }
 
+// --------------------------------------------------------------------------
+void TestArchetypes(const char* dataDir) {
+    Section("archetypes: every fighter and crafter from one table");
+    life::ArchetypeTable t;
+    std::string err;
+    const std::string path = std::string(dataDir) + "/revolution_archetypes.tsv";
+    const bool ok = life::LoadArchetypes(path, &t, &err);
+    Check(ok, "data/revolution_archetypes.tsv loads and every row passes the profile");
+    if (!ok) { std::printf("    %s\n", err.c_str()); return; }
+    Check(t.rows.size() >= 21, "all archetypes present");
+    const char* want[] = {"swordsman", "archer", "fencer", "macer", "warlock", "fencing_warlock",
+                          "double_warlock", "pure_mage", "tamer", "pk", "blacksmith", "tinker",
+                          "tailor", "carpenter", "bowyer", "alchemist", "scribe", "cook",
+                          "lumberjack", "miner", "fisher"};
+    for (const char* id : want) Check(t.Find(id) != nullptr, id);
+
+    const life::ArchetypeRow* archer = t.Find("archer");
+    if (archer) {
+        life::CharacterRecord r = life::NewRecordFromArchetype(*archer, "Ayse", "acct", kWall0);
+        Check(life::ValidateRecord(r).ok, "an archer record validates");
+        bool hasArch = false;
+        for (const auto& sk : r.targetBuild) hasArch |= sk.skillId == 31 && sk.tenths == 1000;
+        Check(hasArch, "archer targets Archery 100.0");
+        Check(r.targetStr + r.targetDex + r.targetInt == 225, "archer stats are an attested 225 split");
+        Check(r.archetype == "archer", "record remembers its archetype");
+        life::CharacterRecord back;
+        Check(life::Parse(life::Serialize(r), &back).ok && back.archetype == "archer",
+              "archetype survives the text format");
+        bool bandage = false;
+        for (const auto& e : r.equipment) bandage |= e.itemdef == "i_bandage";
+        Check(bandage, "a Healing build carries bandages as a goal");
+    }
+    const life::ArchetypeRow* mage = t.Find("pure_mage");
+    if (mage) {
+        i32 total = 0;
+        for (const auto& sk : mage->skills) total += sk.tenths;
+        Check(total == 7000, "PM-01 (HISTORICAL_EXACT) spends exactly 700.0");
+    }
+
+    const char* hdr = "id\tkind\tstyle_or_trade\tref\tclass\tskills\tstr\tdex\tint\thome\n";
+    life::ArchetypeTable bad;
+    Check(!life::ParseArchetypes(std::string(hdr) + "x\tfighter\tmelee\t-\tU\t40:1000,27:1000,17:1000,1:1000,5:1000,30:1000,31:1000,42:1000\t100\t100\t25\tbritain\n", &bad, &err),
+          "a template over 700.0 is refused");
+    Check(!life::ParseArchetypes(std::string(hdr) + "x\tfighter\tmelee\t-\tU\t26:500\t100\t100\t25\tbritain\n", &bad, &err),
+          "a template with Resisting Spells (inactive) is refused");
+    Check(!life::ParseArchetypes(std::string(hdr) + "x\tfighter\tmelee\t-\tU\t40:1000\t100\t100\t100\tbritain\n", &bad, &err),
+          "a template over the 225 stat cap is refused");
+    Check(!life::ParseArchetypes(std::string(hdr) + "x\twizard\tmelee\t-\tU\t40:1000\t100\t100\t25\tbritain\n", &bad, &err),
+          "an unknown kind is refused");
+    const std::string row = "x\tfighter\tmelee\t-\tU\t40:1000\t100\t100\t25\tbritain\n";
+    Check(!life::ParseArchetypes(std::string(hdr) + row + row, &bad, &err), "a duplicate id is refused");
+
+    // Records made before the table existed still load.
+    life::CharacterRecord old = life::NewLumberjackSwordsman("Ahmet", "acct", kWall0);
+    Check(old.archetype.empty() && life::ValidateRecord(old).ok, "a pre-table record (aspiration only) still validates");
+}
+
 }  // namespace
 
-int main() {
+int main(int argc, char** argv) {
     TestArchetype();
     TestValidation();
     TestRoundTrip();
@@ -496,6 +553,7 @@ int main() {
     TestRoutes();
     TestFiles();
     TestNames();
+    TestArchetypes(argc > 1 ? argv[1] : "data");
     std::printf("%d checks, %d failures\n", g_checks, g_failures);
     return g_failures ? 1 : 0;
 }

@@ -116,7 +116,7 @@
 
     function orderDone(order) { return order.items.every((it) => it.made >= it.qty); }
 
-    g.OrderPolicy = { SETS, parseOrder, catalogueMatch, checkOrder, quote, createOrder, nextPiece, orderDone };
+    g.OrderPolicy = { ADVERT_RE: /^(.+?) the (\w+) takes orders/i, SETS, parseOrder, catalogueMatch, checkOrder, quote, createOrder, nextPiece, orderDone };
 
     // ---- the crafter ------------------------------------------------------
 
@@ -262,7 +262,7 @@
 
         onSpeech(msg) {
             if (!msg || msg.system || !msg.serial || msg.serial === Player.serial) return;
-            const parsed = parseOrder(msg.text, Player.name);
+            const parsed = parseOrder(msg.text, Player.name, this.SETS || SETS);
             if (!parsed) return;
             const who = Mobiles.get(msg.serial);
             const customer = { serial: msg.serial, name: who.name || '' };
@@ -409,7 +409,32 @@
 
     // ---- the customer -----------------------------------------------------
 
+    // Crafters announce themselves ("Ahmet the blacksmith takes orders ...");
+    // customers remember who they HEARD, where, and when. That is the only way
+    // a bot learns a crafter exists -- no directory, no global list.
+    const ADVERT_RE = /^(.+?) the (\w+) takes orders/i;
+
     const CustomerSkill = {
+        listenForCrafters() {
+            this.crafters = this.crafters || new Map();   // craft -> {name, serial, x, y, heardMs}
+            Player.on('journal', (msg) => {
+                if (!msg || msg.system || !msg.serial || msg.serial === Player.serial) return;
+                const m = String(msg.text || '').match(ADVERT_RE);
+                if (!m) return;
+                const who = Mobiles.get(msg.serial);
+                const craft = lower(m[2]);
+                this.crafters.set(craft, { name: m[1].trim(), serial: msg.serial,
+                    x: who.exists ? who.x : Player.x, y: who.exists ? who.y : Player.y, heardMs: Date.now() });
+                console.log(`[customer] heard ${m[1].trim()} the ${craft} at (${who.x},${who.y})`);
+            });
+        },
+
+        knownCrafter(craft) {
+            const c = this.crafters && this.crafters.get(lower(craft));
+            // A crafter heard more than a day ago may have moved or quit.
+            return c && Date.now() - c.heardMs < 24 * 3600 * 1000 ? c : null;
+        },
+
         // Walk to a crafter, say the order, pay when quoted, collect when told.
         //   crafterName  as it appears to us; coords where it works
         async placeOrder(crafterName, coords, orderText) {

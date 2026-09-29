@@ -145,6 +145,11 @@ public:
         // (<dir>/<Name>.life). nullptr = no persistence, which is what every
         // pre-M4 scenario expects.
         const char* lifeDir = nullptr;
+        // M4.5: which archetype a NEW life begins as (data/revolution_archetypes.tsv
+        // id, e.g. "archer"), and where that table is. An existing life keeps
+        // the archetype it was created with.
+        const char* archetype = nullptr;
+        const char* archetypesPath = nullptr;
     };
 
     explicit Client(const Config& cfg);
