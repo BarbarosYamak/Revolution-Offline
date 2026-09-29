@@ -860,3 +860,8 @@ add_test(NAME chatter COMMAND chatter)
 add_executable(era era.cpp)
 target_include_directories(era PRIVATE ${CMAKE_SOURCE_DIR}/include)
 add_test(NAME era COMMAND era)
+
+# Recall travel -- which runebook page shortens a trip, pure.
+add_executable(recall_plan recall_plan.cpp)
+target_include_directories(recall_plan PRIVATE ${CMAKE_SOURCE_DIR}/include)
+add_test(NAME recall_plan COMMAND recall_plan)

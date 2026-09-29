@@ -1395,6 +1395,24 @@ bool Runner::Checkpoint(Client& client, i64 nowMs, const char* why) {
     return true;
 }
 
+// A player knows what is in their own runebook because they looked. Once per
+// session, when nothing else is going on, open the book so the travel layer
+// can pick a page by where a trip is going (uo/recall_plan.h). Opening is an
+// ordinary double-click; the gump is closed again as soon as it is read.
+void Runner::TickRunebook(Client& client, const Observation& obs) {
+    const bool safe = !obs.dead && !obs.underAttack && obs.attackersOnMe == 0 && obs.hostilesNear == 0;
+    const bool busy = client.ActionBusy() || client.TravelBusy();
+    if (client.RunebookRead() && !runebookLogged_) {
+        runebookLogged_ = true;
+        LogLine("travel: runebook read -- %d marked page(s); recall %s", client.RunebookFilledPages(),
+                client.HasRecallReagents() ? "reagents in the pack" : "needs reagents or charges");
+    }
+    if (!recall::ShouldReadBook(client.HasRunebook(), client.RunebookRead(), safe, busy,
+                                obs.nowMs, runebookTryMs_)) return;
+    runebookTryMs_ = obs.nowMs;
+    if (client.ActionReadRunebook()) LogLine("travel: opening the runebook to see its pages");
+}
+
 void Runner::PublishStatus(Client& client, const Observation& obs, const char* phase) {
     if (!configured_) return;
     lastStatusMs_ = obs.nowMs;
@@ -1668,6 +1686,7 @@ void Runner::Tick(Client& client, i64 nowMs) {
             if (TickPoisonPractice(client, obs)) return;
             if (TickSparring(client, obs)) return;
             if (TickSparHealer(client, obs)) return;
+            TickRunebook(client, obs);
             TickCraftOrders(client, obs);
             if (needCfg_.profession && !ActiveCraftOrder(false, obs.nowMs)) {
                 const std::string beforeItem = state_.productionBatch.item;

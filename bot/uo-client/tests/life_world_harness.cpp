@@ -465,6 +465,26 @@ std::vector<u8> MakeEquip(u32 item, u16 graphic, u8 layer, u32 mobile) {
 
 // 0x25 ADD_ITEM_TO_CONTAINER: serial(4) graphic(2) gfxOffset(1) amount(2)
 // x(2) y(2) container(4) hue(2).
+// 0xB0 GENERIC_GUMP: serial(4) context(4) x(4) y(4) layoutLen(2) layout,
+// then count(2) and UTF-16BE texts -- the shape Client::OnGenericGump reads.
+std::vector<u8> MakeGump(u32 serial, u32 context, const std::string& layout,
+                         const std::vector<std::string>& texts) {
+    std::vector<u8> p(21, 0);
+    p[0] = 0xB0;
+    StoreBE32(&p[3], serial);
+    StoreBE32(&p[7], context);
+    StoreBE16(&p[19], static_cast<u16>(layout.size() + 1));
+    for (char c : layout) p.push_back(static_cast<u8>(c));
+    p.push_back(0);
+    p.push_back(static_cast<u8>(texts.size() >> 8)); p.push_back(static_cast<u8>(texts.size()));
+    for (const std::string& t : texts) {
+        p.push_back(static_cast<u8>(t.size() >> 8)); p.push_back(static_cast<u8>(t.size()));
+        for (char c : t) { p.push_back(0); p.push_back(static_cast<u8>(c)); }
+    }
+    StoreBE16(&p[1], static_cast<u16>(p.size()));
+    return p;
+}
+
 std::vector<u8> MakeAddItem(u32 serial, u16 graphic, u16 amount, u32 container) {
     std::vector<u8> p(20, 0);
     p[0] = 0x25;
@@ -1730,6 +1750,46 @@ int main(int argc, char** argv) {
               status["character"].AsString() == "winddown_guard" &&
               status["family"].AsString() == "fencer" && !status["rhythm"].AsString().empty(),
               "the status file marks the character offline with its family and play rhythm");
+    }
+
+    // --- travel: the runebook is read, then chosen by where the trip goes --
+    {
+        Client::Config config{};
+        auto client = std::make_unique<Client>(config);
+        client->SetOfflineForTest(true);
+        client->SetClockForTest(400000);
+        auto login = MakeLoginConfirm(0x2002, 100, 100);
+        client->DispatchPacketForTest(login.data(), login.size());
+        auto pack = MakeEquip(0x40007000, 0x0E75, 0x15, 0x2002);
+        client->DispatchPacketForTest(pack.data(), pack.size());
+        auto book = MakeAddItem(0x40007001, 0x22C5, 1, 0x40007000);
+        client->DispatchPacketForTest(book.data(), book.size());
+        Check(client->HasRunebook() && !client->RunebookRead(), "a carried book has not been read yet");
+        Check(!client->HasRecallReagents(), "no reagents in the pack: an uncharged Recall is not affordable");
+        for (u16 g : {0x0F7A, 0x0F7B, 0x0F86}) {
+            auto reg = MakeAddItem(0x40007100 + g, g, 5, 0x40007000);
+            client->DispatchPacketForTest(reg.data(), reg.size());
+        }
+        Check(client->HasRecallReagents(), "one of each Recall reagent counted from the pack");
+
+        client->ClearSentForTest();
+        Check(client->ActionReadRunebook(), "the runner can open its book to read it");
+        std::vector<std::string> texts = {"Runebook", "Charges: 00", "Page", "Name", "Destination", "Travel", "Rune",
+                                          "1", "Britain", "1490,1555,30", "2", "Minoc", "2500,480,0"};
+        for (int n = 3; n <= 8; ++n) { texts.push_back(std::to_string(n)); texts.push_back("(empty)"); texts.push_back("-"); }
+        std::string layout;
+        for (int n = 1; n <= 8; ++n) layout += "{ button 10 10 2103 2104 1 0 " + std::to_string(10 + n) + " }";
+        auto gump = MakeGump(0x40007001, 0x1234, layout, texts);
+        client->DispatchPacketForTest(gump.data(), gump.size());
+        bool closed = false;
+        for (const auto& p : client->SentForTest())
+            if (p.opcode == 0xB1 && p.bytes.size() >= 15 && LoadBE32(p.bytes.data() + 11) == 0) closed = true;
+        Check(client->RunebookRead() && client->RunebookFilledPages() == 2, "both marked pages are read from the gump");
+        Check(closed, "a book opened only to read it is closed again (button 0)");
+        Check(client->RunebookPageForGoal(1480, 1600) == 1,
+              "a trip to a Britain shop picks the Britain page by its point, whatever the trip's label");
+        Check(client->RunebookPageForGoal(2520, 500) == 2, "and a Minoc trip the Minoc page");
+        Check(client->RunebookPageForGoal(150, 120) == 0, "a short trip just walks");
     }
 
     // --- small talk: "sa" is answered "as", once, never a handshake --------

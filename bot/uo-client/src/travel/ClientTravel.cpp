@@ -1076,7 +1076,9 @@ void Client::TravelPlanRoute() {
     // per-character reagent count yet, so this stays true and is recorded as
     // debt rather than faked: a Recall arm that silently assumed reagents would
     // be exactly the kind of unearned optimism this project keeps withdrawing.
-    cap.haveReagents = true;
+    // Counted from the pack now (black pearl, blood moss, mandrake root, at
+    // the era's per-cast cost). A charged book spends a stored scroll instead.
+    cap.haveReagents = HasRecallReagents();
     cap.dead         = IsDead();
     cap.inCombat     = WarModeOn();
     cap.moongateRouteKnown = true;   // M2.5 proved the gate network live
@@ -1099,7 +1101,10 @@ void Client::TravelPlanRoute() {
     // near moongate, other cities") is exactly why: a rune marked inside the
     // Britain mage shop is named for Britain, so a route labelled for a shop
     // still has to match a page named for its town.
-    const int rbPage = RunebookPageFor(travelLabel_);
+    // By name first (a trip labelled for a town), then by map point: the
+    // page whose rune lands nearest the goal, if that clearly beats walking.
+    int rbPage = RunebookPageFor(travelLabel_);
+    if (!rbPage) rbPage = RunebookPageForGoal(journey_.GoalX(), journey_.GoalY());
     cap.haveRunebookPage = (rbPage != 0);
     // A charged runebook needs no Magery only from 13.05.2009 (uo/era.h);
     // before that a character does not know to rely on charges.
@@ -2084,6 +2089,12 @@ void Client::OnGenericGump(const u8* data, usize size) {
 
     // A recall we started is waiting for exactly this gump.
     if (pendingRunebookPage_ && AnswerRunebookTravelGump()) return;
+    // Opened only to read it: the pages are noted, close the book (button 0).
+    if (runebookReadPending_ && !gump_.texts.empty() && gump_.texts[0] == "Runebook") {
+        runebookReadPending_ = false;
+        AnswerGump(0, 0);
+        return;
+    }
     char ev[128];
     std::snprintf(ev, sizeof(ev), "serial=0x%08X context=0x%08X options=%zu",
                   serial, context, gump_.options.size());
@@ -2159,6 +2170,7 @@ void Client::NoteRunebookGump() {
         p.point = (nameIdx + 1 < gump_.texts.size()) ? gump_.texts[nameIdx + 1]
                                                      : std::string();
         p.filled = (p.name != "(empty)" && !p.name.empty());
+        if (p.filled && !recall::ParsePoint(p.point, &p.x, &p.y)) p.x = p.y = 0;
         runebookPages_.push_back(std::move(p));
     }
 
@@ -2196,6 +2208,24 @@ int Client::RunebookPageFor(const std::string& destination) const {
             return p.page;
     }
     return 0;
+}
+
+// Which page lands nearest this goal, if landing there clearly beats walking
+// (uo/recall_plan.h). Pages whose point did not parse only match by name.
+int Client::RunebookPageForGoal(i32 toX, i32 toY) const {
+    std::vector<recall::Page> pages;
+    for (const RunebookPage& p : runebookPages_)
+        pages.push_back({p.page, p.name, p.x, p.y, p.filled && p.x > 0});
+    return recall::BestPage(pages, playerX_, playerY_, toX, toY).page;
+}
+
+bool Client::ActionReadRunebook() {
+    const u32 book = FindBackpackItemByGraphic(0x22C5);
+    if (!book || pendingRunebookPage_) return false;
+    runebookReadPending_ = true;
+    LogInfo("[runebook] opening book 0x%08X to read its pages\n", book);
+    ActionUseObject(book);
+    return true;
 }
 
 // Start a Recall the travel layer decided on: open the book so its gump comes

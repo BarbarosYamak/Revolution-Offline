@@ -12,6 +12,7 @@
 #include "uo/actions.h"
 #include "uo/sparring.h"
 #include "uo/era.h"
+#include "uo/recall_plan.h"
 #include "uo/log.h"
 #include "uo/progression.h"
 #include "uo/trade.h"
@@ -204,6 +205,21 @@ public:
     u32  PlayerSerial() const { return playerSerial_; }
     // The day of Revolution's history this character lives in (uo/era.h).
     i32  EraDate() const { return cfg_.eraDate ? cfg_.eraDate : era::kDefaultDate; }
+    // Runebook knowledge for the life runner: does the pack hold a book, and
+    // has this session read its pages yet (RunebookPageForGoal needs them).
+    bool HasRunebook() const { return FindBackpackItemByGraphic(0x22C5) != 0; }
+    bool RunebookRead() const { return runebookSerial_ != 0; }
+    int  RunebookFilledPages() const {
+        int n = 0; for (const auto& p : runebookPages_) n += p.filled; return n;
+    }
+    int  RunebookPageForGoal(i32 toX, i32 toY) const;            // by map point, 0 = none
+    // Open the book only to read it; the gump is closed once its pages are noted.
+    bool ActionReadRunebook();
+    // Enough reagents for one uncharged Recall under this era's cost.
+    bool HasRecallReagents() const {
+        return recall::HasRecallReagents(BackpackItemCount(0x0F7A), BackpackItemCount(0x0F7B),
+                                         BackpackItemCount(0x0F86), era::RecallReagentsEach(EraDate()));
+    }
     i32  PlayerX() const { return playerX_; }
     i32  PlayerY() const { return playerY_; }
     i8   PlayerZ() const { return playerZ_; }
@@ -2165,9 +2181,11 @@ private:
         int         page = 0;
         std::string name;
         std::string point;
+        i32         x = 0, y = 0;   // parsed from `point`; 0 = unreadable
         bool        filled = false;
     };
     std::vector<RunebookPage> runebookPages_;
+    bool runebookReadPending_ = false;  // opened only to read it; close the gump
     u32  runebookSerial_ = 0;    // the book whose gump filled the list above
     int  runebookCharges_ = 0;
     void NoteRunebookGump();                       // called after a gump parse

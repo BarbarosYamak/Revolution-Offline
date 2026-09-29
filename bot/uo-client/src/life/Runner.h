@@ -119,6 +119,9 @@ public:
     // kStatusIntervalMs while live, and once more at logout marked offline.
     void PublishStatus(Client& client, const Observation& obs, const char* phase);
     void PublishOffline();
+    void TickRunebook(Client& client, const Observation& obs);
+    i64  runebookTryMs_ = 0;
+    bool runebookLogged_ = false;
 
     // Ends the session deliberately: finish the current safe action, head
     // somewhere safe, persist, and log out.
