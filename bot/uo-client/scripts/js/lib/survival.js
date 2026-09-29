@@ -31,10 +31,16 @@
 
     const SurvivalSkill = {
         // Apply one bandage to ourselves; returns true if it started.
+        // A bandage in progress is not restarted (uo-offline's bandage-busy
+        // lock): a second double-click mid-heal wastes the first. The lock is a
+        // fixed BANDAGE_LOCK_MS because the "finished" journal text and the
+        // exact Revolution heal time are UNKNOWN; skill17 DELAY=3.0 plus margin.
         async bandageSelf() {
             const { token } = this;
+            if (Date.now() < (this.bandageBusyUntil || 0)) return false;
             const bandage = this.findInPack(this.BANDAGE);
             if (!bandage) return false;
+            this.bandageBusyUntil = Date.now() + (this.BANDAGE_LOCK_MS ?? 5000);
             try {
                 Player.use(bandage.serial);
                 await token.wait(Player.once('target', 2000));

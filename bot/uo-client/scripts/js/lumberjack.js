@@ -28,6 +28,7 @@ class Lumberjack extends BehaviorScript {
     SEARCH_RADIUS = 24;
 
     FOOD = ['bread', 'lamb'];
+    PERSONA = { riskTolerance: 0.4, activeHours: [] };   // lib/memory.js
 
     // Consumables to keep stocked. When the backpack runs OUT of one (count 0),
     // the `restock` step (end of the bank cycle) walks to coords, finds the vendor
@@ -78,6 +79,7 @@ class Lumberjack extends BehaviorScript {
 
         this.installCombatSensing();
         this.economyInit();
+        this.memoryInit();
     }
 
     // ===== combat hook =====
@@ -166,6 +168,7 @@ class Lumberjack extends BehaviorScript {
             }
             if (kind === 'depleted') {
                 World.markStump(x, y, z, graphic);
+                this.noteEmptySpot(x, y);   // skip it for EMPTY_SPOT_MS, not just this pass
                 console.log('[lj] depleted -> stump at', x, y);
             }
             break;
@@ -213,6 +216,7 @@ class Lumberjack extends BehaviorScript {
                 .filter((staticTile) => this.isTree(staticTile))
                 .filter((candidate) => !visited.has(candidate.x + ',' + candidate.y))
                 .filter((candidate) => !this.isAvoided(candidate.x, candidate.y))
+                .filter((candidate) => !this.isEmptySpot(candidate.x, candidate.y))
                 .reduce((best, candidate) =>
                     (!best || tileDistance(here, candidate) < tileDistance(here, best) ? candidate : best), null);
 
@@ -235,6 +239,7 @@ class Lumberjack extends BehaviorScript {
     behaviors() {
         return [
             { name: 'resurrect', when: () => Player.dead, step: this.step('resurrect') },
+            { name: 'offline', when: () => !this.isActiveNow() && !this.threat?.exists, step: this.step('endSession') },
             { name: 'fight', when: () => !this.fleeing && Boolean(this.threat?.exists), step: this.sequence('fight', 'rest') },
             { name: 'bank', when: () => this.fleeing || ((this.full() || this.carryingTooMuchGold()) && this.bankTripDue()),
                 step: this.sequence('sellLoot', 'goToBank', 'depositLogs', 'bankSurplusGold', 'withdrawGold', 'restock', 'economyReport', 'rest') },
@@ -266,6 +271,6 @@ class Lumberjack extends BehaviorScript {
     }
 }
 
-Object.assign(Lumberjack.prototype, BankSkill, SurvivalSkill, CombatSkill, EconomySkill);
+Object.assign(Lumberjack.prototype, BankSkill, SurvivalSkill, CombatSkill, EconomySkill, MemorySkill);
 
 new Lumberjack().start();

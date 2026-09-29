@@ -57,6 +57,9 @@ class GraveyardHunter extends BehaviorScript {
     AVOID_TTL_MS = 2 * 60 * 1000;
 
     FOOD = ['bread', 'lamb'];
+    // Who this character is (lib/memory.js). riskTolerance 0 = cautious,
+    // 1 = reckless; activeHours = local-time windows it plays in ([] = always).
+    PERSONA = { riskTolerance: 0.5, activeHours: [] };
     WEAPONS = ['katana', 'broadsword', 'longsword', 'scimitar', 'cutlass', 'viking', 'axe', 'hatchet'];
     // atlas PLACE britain_healer; the healer sells bandages on this shard
     // (lumberjack.js buys them from a healer the same way).
@@ -95,6 +98,7 @@ class GraveyardHunter extends BehaviorScript {
         });
         this.installCombatSensing();
         this.economyInit();
+        this.memoryInit();
     }
 
     // ===== helpers =====
@@ -109,7 +113,15 @@ class GraveyardHunter extends BehaviorScript {
         return this.avoidAreas.some((area) => tileDistance(area, { x, y }) <= this.AVOID_RADIUS);
     }
 
+    // Several random candidates, then a danger-weighted pick among them: a
+    // corner where this character died recently is visited a quarter as often.
     randomWaypoint() {
+        const candidates = [];
+        for (let i = 0; i < 5; i++) candidates.push(this.randomTile());
+        return this.pickByDanger(candidates) || this.GRAVEYARD.centre;
+    }
+
+    randomTile() {
         // Pick a rect weighted by area, then a tile in it; skip avoided spots.
         const rects = this.GRAVEYARD.rects;
         const areas = rects.map((r) => (r.x2 - r.x1 + 1) * (r.y2 - r.y1 + 1));
@@ -148,7 +160,9 @@ class GraveyardHunter extends BehaviorScript {
     // ===== combat hook =====
 
     onFlee(mob) {
-        this.avoidAreas.push({ x: mob.x, y: mob.y, until: Date.now() + this.AVOID_TTL_MS });
+        // Hunted (fled the same foe twice in a minute): stay away three times longer.
+        const ttl = this.isHunted() ? 3 * this.AVOID_TTL_MS : this.AVOID_TTL_MS;
+        this.avoidAreas.push({ x: mob.x, y: mob.y, until: Date.now() + ttl });
         console.log(`[gy] avoiding (${mob.x},${mob.y}) r=${this.AVOID_RADIUS} for ${this.AVOID_TTL_MS / 1000}s`);
     }
 
@@ -175,7 +189,9 @@ class GraveyardHunter extends BehaviorScript {
         // re-entering the graveyard wounded.
         if (this.backpackCount(this.BANDAGE) === 0) await this.restock();
         // Nothing to heal with: wait it out (natural regeneration).
-        while (!Player.dead && this.hpFrac() < this.ENGAGE_MIN_HP_FRAC && !this.threat?.exists) {
+        // Hunted: come back only at full health.
+        const until = this.isHunted() ? 0.99 : this.ENGAGE_MIN_HP_FRAC;
+        while (!Player.dead && this.hpFrac() < until && !this.threat?.exists) {
             await this.token.sleep(5000);
         }
     }
@@ -233,6 +249,7 @@ class GraveyardHunter extends BehaviorScript {
     behaviors() {
         return [
             { name: 'resurrect', when: () => Player.dead, step: this.step('resurrect') },
+            { name: 'offline', when: () => !this.isActiveNow() && !this.threat?.exists, step: this.step('endSession') },
             { name: 'fight', when: () => !this.fleeing && Boolean(this.threat?.exists), step: this.step('fight') },
             { name: 'loot', when: () => Boolean(this.lastKill) && !this.full(), step: this.step('lootKill') },
             { name: 'bank', when: () => (this.full() || this.carryingTooMuchGold()) && this.bankTripDue(),
@@ -265,6 +282,6 @@ class GraveyardHunter extends BehaviorScript {
     }
 }
 
-Object.assign(GraveyardHunter.prototype, BankSkill, SurvivalSkill, CombatSkill, EconomySkill);
+Object.assign(GraveyardHunter.prototype, BankSkill, SurvivalSkill, CombatSkill, EconomySkill, MemorySkill);
 
 new GraveyardHunter().start();

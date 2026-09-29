@@ -20,7 +20,7 @@ g.Mobiles={all:()=>mobs, get:(s)=>mobs.find(m=>m.serial===s)||{serial:s,exists:f
 g.createThreatMeter=()=>({start(){},stop(){},count:0});
 g.createBehaviorRunner=()=>({start(){},stop(){}}); g.makeToken=()=>({});
 g.CANCELLED={};
-for (const f of ['bootstrap.js','lib/bot.js','lib/bank.js','lib/survival.js','lib/combat.js','lib/economy.js'])
+for (const f of ['bootstrap.js','lib/bot.js','lib/bank.js','lib/survival.js','lib/combat.js','lib/economy.js','lib/memory.js'])
   vm.runInThisContext(fs.readFileSync(path+f,'utf8'),{filename:f});
 g.BehaviorScript.prototype._bootstrap=function(){};
 // ---- combat assessFight
@@ -65,7 +65,7 @@ R.rest().then(()=>{
   h.onFlee({x:1383,y:1480}); mobs=[{serial:20,exists:true,notoriety:3,body:0x03,x:1383,y:1480}];
   check(h.findPrey()===null,'does not go straight back to a mob it fled from');
   const names=h.behaviors().map(x=>x.name).join('>');
-  check(names==='resurrect>fight>loot>bank>eat>recover>patrol','priority order '+names);
+  check(names==='resurrect>offline>fight>loot>bank>eat>recover>patrol','priority order '+names);
   return economyTests();
 }).then(() => {
   console.log(`${checks} checks, ${fails} failures`); process.exit(fails?1:0);
@@ -168,8 +168,8 @@ async function economyTests() {
   const one = h.fleeFloor();
   mobs = [1, 2, 3].map((i) => ({ serial: 40 + i, exists: true, notoriety: 3, body: 0x03, x: 100 + i % 2, y: 100 }));
   const three = h.fleeFloor();
-  check(Math.abs(one - h.FLEE_HP_FRAC) < 1e-9, 'one-on-one: the normal floor');
-  check(Math.abs(three - (h.FLEE_HP_FRAC + 0.2)) < 1e-9, 'three attackers: floor raised by two steps');
+  check(Math.abs(one - h.baseFleeFloor()) < 1e-9, 'one-on-one: the character\'s own floor');
+  check(Math.abs(three - Math.min(Math.max(h.GANG_MAX_FLOOR, one), one + 0.2)) < 1e-9, 'three attackers: floor raised by two steps (capped)');
   mobs = Array.from({ length: 12 }, (_, i) => ({ serial: 60 + i, exists: true, notoriety: 6, body: 0x03, x: 101, y: 101 }));
   check(h.fleeFloor() === h.GANG_MAX_FLOOR, 'the raised floor is capped');
   mobs = [];
@@ -182,8 +182,34 @@ async function economyTests() {
   check(h.consumableIsLow({ target: 20 }, ['bandage']) === true, '5 of 20: low -> restock before running out');
   check(h.consumableIsLow({ target: 20, low: 8 }, ['bandage']) === true, 'an explicit low mark wins');
 
+  // --- memory / persona (lib/memory.js) ---
+  const { decayed, isActiveAt, personalFloor } = MemoryPolicy;
+  check(Math.abs(decayed(4, 45 * 60000, 45 * 60000) - 2) < 1e-9, 'danger heat halves every half-life');
+  const at = (h) => { const d = new Date(2026, 0, 1, h, 0); return d; };
+  check(isActiveAt([], at(3)), 'no schedule = always active');
+  check(isActiveAt([[18, 23]], at(20)) && !isActiveAt([[18, 23]], at(12)), 'evening window');
+  check(isActiveAt([[22, 2]], at(1)) && !isActiveAt([[22, 2]], at(3)), 'a window can wrap midnight');
+  check(personalFloor(0.3, 0.5, 0) > personalFloor(0.3, 0.5, 1000), 'a novice leaves earlier than a GM');
+  check(personalFloor(0.3, 0.0, 500) > personalFloor(0.3, 1.0, 500), 'a cautious persona leaves earlier than a reckless one');
+  check(personalFloor(0.3, 0, 0) <= 0.6 && personalFloor(0.9, 1, 1000) >= 0.15, 'floor stays within 15..60%');
+
+  h.memoryInit();
+  h.noteDanger(1370, 1480, 5, 'test');
+  check(h.dangerAt(1370, 1480) > 4.9 && h.dangerAt(1500, 1600) === 0, 'danger is local to where it happened');
+  let hot = 0; const rnd = (() => { let i = 0; return () => ((i++ * 0.6180339) % 1); })();
+  for (let i = 0; i < 1000; i++) if (h.pickByDanger([{ x: 1370, y: 1480 }, { x: 1500, y: 1600 }], rnd).x === 1370) hot++;
+  check(hot > 100 && hot < 350, `a hot place is picked ~1/5 as often, not never (${hot}/1000)`);
+  check(!h.noteFlee(0x55, 1, 1) && !h.isHunted(), 'first flee: not hunted');
+  check(h.noteFlee(0x55, 1, 1) && h.isHunted(), 'second flee from the same foe within a minute: hunted');
+  h.noteEmptySpot(10, 20);
+  check(h.isEmptySpot(10, 20) && !h.isEmptySpot(10, 21), 'an exhausted spot is remembered exactly');
+
+  // bandage lock
+  h.bandageBusyUntil = Date.now() + 5000;
+  check(await h.bandageSelf() === false, 'no second bandage while one is being applied');
+
   // no mixin method may shadow another or a bot's own
-  const mix = { BankSkill, SurvivalSkill, CombatSkill, EconomySkill };
+  const mix = { BankSkill, SurvivalSkill, CombatSkill, EconomySkill, MemorySkill };
   const seen = {};
   for (const [m, obj] of Object.entries(mix)) for (const k of Object.keys(obj)) {
     if (typeof obj[k] !== 'function') continue;

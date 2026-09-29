@@ -223,7 +223,7 @@ namespace uo::js {
         enum PlayerField {
             PF_SERIAL, PF_NAME, PF_X, PF_Y, PF_Z, PF_FACING, PF_RUNNING, PF_WARMODE,
             PF_ALIVE, PF_DEAD, PF_HP, PF_HPMAX, PF_MANA, PF_MANAMAX, PF_STAM, PF_STAMMAX,
-            PF_WEIGHT, PF_MAXWEIGHT, PF_EQUIPMENT, PF_DIALOG
+            PF_WEIGHT, PF_MAXWEIGHT, PF_EQUIPMENT, PF_DIALOG, PF_SKILLSUM
         };
 
         // Build { serial, items:[{serial,graphic,amount,hue,name}] } for a worn
@@ -351,6 +351,7 @@ namespace uo::js {
                 case PF_STAM: return JS_NewInt32(ctx, c->player_.stamCur);
                 case PF_STAMMAX: return JS_NewInt32(ctx, c->player_.stamMax);
                 case PF_WEIGHT: return JS_NewInt32(ctx, c->player_.weight);
+                case PF_SKILLSUM: return JS_NewInt64(ctx, static_cast<int64_t>(c->PlayerSkillSum()));
                 case PF_MAXWEIGHT: return JS_NewInt32(ctx, c->player_.maxWeight);
                 case PF_EQUIPMENT: {
                     JSValue eq = JS_NewObject(ctx);
@@ -463,6 +464,34 @@ namespace uo::js {
         // Player.stop(): abort any in-flight goto path and stop following. This is
         // the JS-side cancel primitive — it makes a parked Player.goto() reject, so
         // a behaviour step can be preempted cleanly. Mirrors the `stop` console cmd.
+        // Player.skill(index) -> trained value in tenths (500 = 50.0), or -1
+        // when the server has not reported it. `index` is the Sphere
+        // [SKILL n] number (Swordsmanship 40). Read-only: a skill changes only
+        // when the shard says so.
+        static JSValue Skill(JSContext *ctx, JSValueConst, int argc, JSValueConst *argv) {
+            int32_t index = 0;
+            if (!client || argc < 1 || JS_ToInt32(ctx, &index, argv[0]) || index < 0 || index > 0xFFFF)
+                return JS_ThrowTypeError(ctx, "Player.skill(index)");
+            return JS_NewInt32(ctx, client->PlayerSkillBase(static_cast<u16>(index)));
+        }
+
+        // Player.requestSkills(): ask the server for the full skill list
+        // (0x34 subtype 5), the same request the client's skill gump makes.
+        static JSValue RequestSkills(JSContext *ctx, JSValueConst, int, JSValueConst *) {
+            if (!client) return JS_ThrowTypeError(ctx, "Player.requestSkills()");
+            client->SendSkillsRequest();
+            return JS_UNDEFINED;
+        }
+
+        // Player.logout(): the ordinary logout (0xD1, then socket close). The
+        // persistent life is saved at the spot and the logout is judged safe
+        // or not (M4.1). A script should walk somewhere safe FIRST.
+        static JSValue Logout(JSContext *ctx, JSValueConst, int, JSValueConst *) {
+            if (!client) return JS_ThrowTypeError(ctx, "Player.logout()");
+            client->ActionLogout();
+            return JS_UNDEFINED;
+        }
+
         static JSValue Stop(JSContext *ctx, JSValueConst, int, JSValueConst *) {
             if (!client) return JS_ThrowTypeError(ctx, "Player.stop()");
             client->BotStopFollow("stop (js)");
@@ -758,6 +787,62 @@ namespace uo::js {
             return arr;
         }
 
+        // ---- secure trade (0x6F) --------------------------------------------
+        // The M3 trade state machine (uo/trade.h), exposed as-is. A trade is
+        // how one player pays another and hands over goods; nothing here moves
+        // an item or a coin except through that window, and the server
+        // completes the exchange only when BOTH sides have accepted.
+
+        // Trade.start(partnerSerial, itemSerial): drag an item from our pack
+        // onto the partner -- how a player opens a trade window.
+        static JSValue TradeStart(JSContext *ctx, JSValueConst, int argc, JSValueConst *argv) {
+            int64_t partner = 0, item = 0;
+            if (!client || argc < 2 || JS_ToInt64(ctx, &partner, argv[0]) || JS_ToInt64(ctx, &item, argv[1]))
+                return JS_ThrowTypeError(ctx, "Trade.start(partnerSerial, itemSerial)");
+            client->ActionTradeStart(static_cast<u32>(partner), static_cast<u32>(item));
+            return JS_UNDEFINED;
+        }
+        // Trade.offer(itemSerial[, amount]): add a pack item to our side.
+        static JSValue TradeOffer(JSContext *ctx, JSValueConst, int argc, JSValueConst *argv) {
+            int64_t item = 0;
+            int32_t amount = 1;
+            if (!client || argc < 1 || JS_ToInt64(ctx, &item, argv[0]))
+                return JS_ThrowTypeError(ctx, "Trade.offer(itemSerial[, amount])");
+            if (argc >= 2 && !JS_IsUndefined(argv[1])) JS_ToInt32(ctx, &amount, argv[1]);
+            if (amount < 1) amount = 1;
+            if (amount > 65535) amount = 65535;
+            client->ActionTradeOffer(static_cast<u32>(item), static_cast<u16>(amount));
+            return JS_UNDEFINED;
+        }
+        // Trade.accept(bool): tick or untick our accept box.
+        static JSValue TradeAccept(JSContext *ctx, JSValueConst, int argc, JSValueConst *argv) {
+            if (!client) return JS_ThrowTypeError(ctx, "Trade.accept(on)");
+            const bool on = argc < 1 || JS_ToBool(ctx, argv[0]);
+            return JS_NewBool(ctx, client->ActionTradeAccept(on));
+        }
+        static JSValue TradeCancel(JSContext *ctx, JSValueConst, int, JSValueConst *) {
+            if (!client) return JS_ThrowTypeError(ctx, "Trade.cancel()");
+            return JS_NewBool(ctx, client->ActionTradeCancel());
+        }
+        // Trade.state -> {active, phase, partner, partnerName, myContainer,
+        // theirContainer, myCheck, theirCheck, closeReason}. Read their offer
+        // with Player.containerItems(theirContainer).
+        static JSValue TradeStateGet(JSContext *ctx, JSValueConst) {
+            JSValue o = JS_NewObject(ctx);
+            if (!client) return o;
+            const trade::TradeState &t = client->Trade();
+            JS_SetPropertyStr(ctx, o, "active", JS_NewBool(ctx, t.Active()));
+            JS_SetPropertyStr(ctx, o, "phase", JS_NewString(ctx, trade::PhaseName(t.CurrentPhase())));
+            JS_SetPropertyStr(ctx, o, "partner", JS_NewInt64(ctx, t.PartnerSerial()));
+            JS_SetPropertyStr(ctx, o, "partnerName", JS_NewString(ctx, t.PartnerName().c_str()));
+            JS_SetPropertyStr(ctx, o, "myContainer", JS_NewInt64(ctx, t.MyContainer()));
+            JS_SetPropertyStr(ctx, o, "theirContainer", JS_NewInt64(ctx, t.TheirContainer()));
+            JS_SetPropertyStr(ctx, o, "myCheck", JS_NewBool(ctx, t.MyCheck()));
+            JS_SetPropertyStr(ctx, o, "theirCheck", JS_NewBool(ctx, t.TheirCheck()));
+            JS_SetPropertyStr(ctx, o, "closeReason", JS_NewString(ctx, trade::CloseReasonName(t.Reason())));
+            return o;
+        }
+
         // ---- events: on / off / once ----------------------------------------
 
         static JSValue On(JSContext *ctx, JSValueConst, int argc, JSValueConst *argv) {
@@ -1036,6 +1121,10 @@ namespace uo::js {
             JS_CGETSET_MAGIC_DEF("stam", ClientBindings::PlayerGet, nullptr, ClientBindings::PF_STAM),
             JS_CGETSET_MAGIC_DEF("stamMax", ClientBindings::PlayerGet, nullptr, ClientBindings::PF_STAMMAX),
             JS_CGETSET_MAGIC_DEF("weight", ClientBindings::PlayerGet, nullptr, ClientBindings::PF_WEIGHT),
+            JS_CGETSET_MAGIC_DEF("skillSum", ClientBindings::PlayerGet, nullptr, ClientBindings::PF_SKILLSUM),
+            JS_CFUNC_DEF("skill", 1, ClientBindings::Skill),
+            JS_CFUNC_DEF("requestSkills", 0, ClientBindings::RequestSkills),
+            JS_CFUNC_DEF("logout", 0, ClientBindings::Logout),
             JS_CGETSET_MAGIC_DEF("maxWeight", ClientBindings::PlayerGet, nullptr, ClientBindings::PF_MAXWEIGHT),
             JS_CGETSET_MAGIC_DEF("equipment", ClientBindings::PlayerGet, nullptr, ClientBindings::PF_EQUIPMENT),
 
@@ -1110,6 +1199,17 @@ namespace uo::js {
         JS_SetPropertyStr(ctx, mobiles, "all",
                           JS_NewCFunction(ctx, ClientBindings::MobilesAll, "all", 0));
         JS_SetPropertyStr(ctx, global, "Mobiles", mobiles); // consumes mobiles
+
+        const JSCFunctionListEntry kTradeApi[] = {
+            JS_CFUNC_DEF("start", 2, ClientBindings::TradeStart),
+            JS_CFUNC_DEF("offer", 1, ClientBindings::TradeOffer),
+            JS_CFUNC_DEF("accept", 1, ClientBindings::TradeAccept),
+            JS_CFUNC_DEF("cancel", 0, ClientBindings::TradeCancel),
+            JS_CGETSET_DEF("state", ClientBindings::TradeStateGet, nullptr),
+        };
+        const JSValue tradeObj = JS_NewObject(ctx);
+        JS_SetPropertyFunctionList(ctx, tradeObj, kTradeApi, std::size(kTradeApi));
+        JS_SetPropertyStr(ctx, global, "Trade", tradeObj);
 
         const JSValue vendor = JS_NewObject(ctx);
         JS_SetPropertyFunctionList(ctx, vendor, kVendorApi, std::size(kVendorApi));

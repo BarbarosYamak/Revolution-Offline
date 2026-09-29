@@ -84,7 +84,9 @@
 
         fleeFloor() {
             const extra = Math.max(0, this.hostilesNear() - 1);
-            return Math.min(this.GANG_MAX_FLOOR, this.FLEE_HP_FRAC + extra * this.GANG_STEP);
+            // Persona + experience (lib/memory.js) when mixed in.
+            const base = typeof this.baseFleeFloor === 'function' ? this.baseFleeFloor() : this.FLEE_HP_FRAC;
+            return Math.min(Math.max(this.GANG_MAX_FLOOR, base), base + extra * this.GANG_STEP);
         },
 
         foeNearlyDead() {
@@ -142,6 +144,8 @@
                     const foeName = this.threat?.name || '0x' + (this.threat?.serial ?? 0).toString(16);
                     console.warn(`[combat] ${verdict.why} -> flee from ${foeName} (hp ${Player.hp}/${Player.hpMax})`);
                     this.fleeing = true;
+                    if (typeof this.noteFlee === 'function' && this.threat)
+                        this.noteFlee(this.threat.serial, Player.x, Player.y);
                     // Optional bot hook. NOT defined here: Object.assign onto
                     // the prototype would overwrite the bot's own method.
                     if (typeof this.onFlee === 'function')
@@ -183,6 +187,7 @@
 
         async resurrect() {
             console.warn('[combat] DEAD -> heading to healer to resurrect');
+            if (typeof this.noteDanger === 'function') this.noteDanger(Player.x, Player.y, 5, 'died here');
             this.threat = null;
             this.fleeing = false;
             Player.follow(false);
