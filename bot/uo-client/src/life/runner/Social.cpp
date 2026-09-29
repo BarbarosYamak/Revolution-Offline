@@ -30,6 +30,71 @@ bool Runner::SocialSay(Client& client, i64 nowMs, const std::string& text) {
     return true;
 }
 
+bool Runner::Chat(Client& client, i64 nowMs, chatter::Topic topic, const std::string& to) {
+    const char* line = chatter::Pick(topic, state_.identity.characterName, nowMs / 60000);
+    if (!line[0] || !SocialSay(client, nowMs, line)) return false;
+    if (!to.empty()) chatWith_[to] = nowMs;
+    LogLine("chat: %s%s%s", chatter::TopicName(topic), to.empty() ? "" : " to ", to.c_str());
+    return true;
+}
+
+// Unprompted small talk: a word after a kill or a death, "kolay gelsin" to a
+// friend at work, idle town talk, a cold word to a foe at a safe distance.
+// All gated by sociability and by being safe; none of it changes behaviour.
+void Runner::TickSmallTalk(Client& client, const Observation& obs, bool safe) {
+    if (!safe || obs.dead || (socialPeer_ && sparActive_)) return;
+    std::vector<Client::HostileHit> players;
+    client.NearbyPlayers(10, players);
+    if (players.empty()) return;
+    const std::string& me = state_.identity.characterName;
+    const i32 sociable = state_.persona.sociability;
+    if (chatAfterDeath_) {
+        chatAfterDeath_ = false;
+        if (chatter::WantsToSpeak(sociable, me, obs.nowMs / 60000, 30))
+            Chat(client, obs.nowMs, chatter::Topic::AfterDeath);
+        return;
+    }
+    if (chatKillMs_ && obs.nowMs - chatKillMs_ < 20000) {
+        chatKillMs_ = 0;
+        if (socialPeer_ || chatter::WantsToSpeak(sociable / 2, me, obs.nowMs / 60000, 5))
+            Chat(client, obs.nowMs, chatter::Topic::AfterKill);
+        return;
+    }
+    chatKillMs_ = 0;
+    const bool guarded = client.CurrentRegion() && client.CurrentRegion()->flags.guarded;
+    for (const auto& p : players) {
+        if (p.name.empty() || p.serial == client.PlayerSerial()) continue;
+        const auto* rel = social::Find(state_.memory.relationships, p.name);
+        const auto last = chatWith_.find(p.name);
+        const bool recent = last != chatWith_.end() && obs.nowMs - last->second < 900000;
+        if (recent) continue;
+        if (rel && rel->foe) {
+            // Words, never a fight: only inside guards and not face to face.
+            const i32 d = TileDist(obs.x, obs.y, p.x, p.y);
+            if (guarded && d >= 4 && chatter::WantsToSpeak(sociable, me + p.name, obs.nowMs / 600000, 10))
+                Chat(client, obs.nowMs, chatter::Topic::Rival, p.name);
+            else
+                chatWith_[p.name] = obs.nowMs;
+            return;
+        }
+        if (rel && rel->trust >= 2 && (p.noto == 1 || p.noto == 2)) {
+            if (chatter::WantsToSpeak(sociable, me + p.name, obs.nowMs / 600000, 30))
+                Chat(client, obs.nowMs, client.ActionBusy() ? chatter::Topic::GreetFriend
+                                                            : chatter::Topic::WorkerGreet, p.name);
+            else
+                chatWith_[p.name] = obs.nowMs;
+            return;
+        }
+    }
+    const GoalKind g = planner_.Current().kind;
+    if (guarded && FamilyOf(g) == GoalFamily::Wander && obs.nowMs - chatIdleMs_ >= 300000 &&
+        players.size() >= 2) {
+        chatIdleMs_ = obs.nowMs;
+        if (chatter::WantsToSpeak(sociable, me, obs.nowMs / 300000, 5))
+            Chat(client, obs.nowMs, chatter::Topic::Idle);
+    }
+}
+
 void Runner::EndSocialGroup(Client& client, const char* reason) {
     if (socialActivity_ == social::Activity::Poison) client.AbandonGoalOwnedAction(reason);
     client.StopSparring(reason);
@@ -189,10 +254,20 @@ void Runner::ObserveSocial(Client& client, const Observation& obs) {
                    h.text == social::JoinReply(state_.identity.characterName, socialActivity_)) {
             socialPeer_ = h.speaker; socialPeerName_ = h.name;
             socialConsented_ = true; socialAgreedMs_ = obs.nowMs;
-        } else if ((h.text == "Hello." || h.text == "Hello!" || h.text == "Hi." ||
-                    h.text == "hello" || h.text == "hi") &&
-                   SocialSay(client, obs.nowMs, h.name + ": Good to see you. I'm working nearby.")) {
-            social::Remember(state_.memory.relationships, h.name, social::Encounter::Greeting, obs.nowMs);
+        } else if (h.speaker != client.PlayerSerial()) {
+            // Small talk: "sa" gets "as", "selam" gets a greeting back, a
+            // friend gets a warmer one. Once per person per ten minutes, so
+            // two bots greeting each other stop after one exchange.
+            const chatter::Heard kind = chatter::Classify(invitationText);
+            const auto* known = social::Find(state_.memory.relationships, h.name);
+            const chatter::Topic answer = chatter::AnswerTo(kind, known && known->trust >= 2 && !known->foe);
+            const auto last = chatWith_.find(h.name);
+            if (answer != chatter::Topic::Count &&
+                (last == chatWith_.end() || obs.nowMs - last->second >= 600000) &&
+                Chat(client, obs.nowMs, answer, h.name)) {
+                if (kind != chatter::Heard::Farewell)
+                    social::Remember(state_.memory.relationships, h.name, social::Encounter::Greeting, obs.nowMs);
+            }
         }
     }
     if (safe && !socialPeer_ && obs.nowMs - socialChatMs_ >= 60000) {
@@ -200,16 +275,22 @@ void Runner::ObserveSocial(Client& client, const Observation& obs) {
             if (person.name.empty() || SocialFoe(person.name) ||
                 (person.noto != 1 && person.noto != 2) ||
                 TileDist(obs.x, obs.y, person.x, person.y) > 8 ||
-                social::Find(state_.memory.relationships, person.name)) continue;
+                social::Find(state_.memory.relationships, person.name) ||
+                chatWith_.count(person.name)) continue;
             // Speech does not own the action slot: a brief greeting can
             // accompany a productive bulk run without cancelling its work.
-            if (SocialSay(client, obs.nowMs, person.name + ": Hello. I'm working nearby; let me know if you need supplies."))
+            if (chatter::WantsToSpeak(state_.persona.sociability, state_.identity.characterName + person.name,
+                                      obs.nowMs / 600000, 25) &&
+                Chat(client, obs.nowMs, chatter::Topic::Greet, person.name))
                 social::Remember(state_.memory.relationships, person.name, social::Encounter::Greeting, obs.nowMs);
+            else
+                chatWith_[person.name] = obs.nowMs;   // decided not to; do not reconsider every tick
             break;
         }
     }
     if (!safe && socialPeer_ && obs.HpFraction() < 0.6)
         SocialSay(client, obs.nowMs, socialPeerName_ + ": Let's stop and regroup.");
+    TickSmallTalk(client, obs, safe);
 }
 
 void Runner::AddSocialNeeds(Client& client, const Observation& obs, std::vector<Need>& needs) {

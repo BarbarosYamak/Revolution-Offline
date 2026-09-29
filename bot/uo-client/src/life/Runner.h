@@ -17,6 +17,7 @@
 
 #include "uo/life.h"
 #include "uo/needgate.h"
+#include "uo/chatter.h"
 #include "uo/world_model.h"
 #include "uo/activities/acquire.h"
 #include "uo/activities/buy.h"
@@ -34,6 +35,7 @@
 #include <map>
 #include <set>
 #include <string>
+#include <unordered_map>
 #include <vector>
 
 namespace uo {
@@ -310,6 +312,14 @@ private:
     u32 socialPreferred_ = 0;
     std::string socialPeerName_;
     i64 socialHeardMs_ = 0, socialChatMs_ = 0, socialRestUntilMs_ = 0;
+    // Small talk (uo/chatter.h). chatWith_ remembers when we last exchanged
+    // words with each name this session, so two bots answering each other's
+    // "selam" cannot ping-pong forever.
+    std::unordered_map<std::string, i64> chatWith_;
+    i64  chatIdleMs_ = 0, chatKillMs_ = 0;
+    bool chatAfterDeath_ = false;
+    bool Chat(Client& client, i64 nowMs, chatter::Topic topic, const std::string& to = "");
+    void TickSmallTalk(Client& client, const Observation& obs, bool safe);
     i64 socialStartedMs_ = 0, socialAgreedMs_ = 0, socialLastSeenMs_ = 0;
     i64 socialInviteMs_ = 0, socialScanMs_ = 0, socialGroupUntilMs_ = 0;
     i64 socialMarketUntilMs_ = 0, socialPracticeMs_ = 0;

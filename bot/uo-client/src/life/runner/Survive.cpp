@@ -143,6 +143,7 @@ bool Runner::ProcessHuntAftermath(Client& client, const Observation& obs) {
         const u32 corpse = client.CorpseOfMobile(currentFoe_);
         if (corpse) {
             ++session_.kills;
+            chatKillMs_ = obs.nowMs;       // small talk: a word after the kill
             // The trip's owner gets the credit, not whichever goal happens
             // to hold the slot during the fight. See Runner::huntKillsPending_.
             ++huntKillsPending_;

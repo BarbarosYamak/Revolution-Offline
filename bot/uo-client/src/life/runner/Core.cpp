@@ -1485,6 +1485,7 @@ void Runner::TrackDeathEdge(Client& client, i64 nowMs) {
         ++state_.recentDeaths;
         // AND THE SESSION'S OWN TALLY.
         ++session_.deaths;
+        chatAfterDeath_ = true;            // small talk once back on our feet
         state_.lastDeathMs = nowMs;
         const i32 x = client.PlayerX(), y = client.PlayerY();
         // NAME THE KILLER, NOT JUST THE TILE. This used to tag the danger
@@ -2309,6 +2310,14 @@ void Runner::Tick(Client& client, i64 nowMs) {
 
             Checkpoint(client, nowMs, "clean logout");
             PublishOffline();
+            if (client.PlayersNearby(10) > 0) {
+                // "iyi oyunlar": a word to whoever is standing here. Direct,
+                // not through the chat timer -- this is the last tick.
+                const char* bye = chatter::Pick(chatter::Topic::Farewell,
+                                                state_.identity.characterName, nowMs / 60000);
+                client.ActionSay(bye);
+                LogLine("chat: farewell ('%s')", bye);
+            }
             LogLine("logging out");
             client.ActionLogout();
             phase_ = Phase::LoggingOut;

@@ -50,6 +50,10 @@ struct RunnerHarnessAccess {
         r.state_.identity.characterName = "Student";
         r.state_.plan.skills.push_back({rules::kAnatomy, 1000});
     }
+    static void SocialChatty(Runner& r, i32 sociability) {
+        r.state_.persona.set = true;
+        r.state_.persona.sociability = sociability;
+    }
     static void SocialEnd(Runner& r, Client& c) { r.EndSocialGroup(c, "test finished"); }
     static void SocialPendingAcceptance(Runner& r) { r.socialOwnParty_ = true; }
     static void SocialJustSpoke(Runner& r, i64 nowMs) { r.socialChatMs_ = nowMs; }
@@ -592,6 +596,7 @@ int main(int argc, char** argv) {
         client->DispatchPacketForTest(name.data(), name.size());
         life::Runner runner;
         life::RunnerHarnessAccess::SocialIdentity(runner);
+        life::RunnerHarnessAccess::SocialChatty(runner, 100);
         life::Observation obs; obs.nowMs = 200000; obs.x = obs.y = 100;
         obs.hp = obs.hpMax = 50;
         client->ClearSentForTest();
@@ -1725,6 +1730,58 @@ int main(int argc, char** argv) {
               status["character"].AsString() == "winddown_guard" &&
               status["family"].AsString() == "fencer" && !status["rhythm"].AsString().empty(),
               "the status file marks the character offline with its family and play rhythm");
+    }
+
+    // --- small talk: "sa" is answered "as", once, never a handshake --------
+    {
+        Client::Config config{};
+        auto client = std::make_unique<Client>(config);
+        client->SetOfflineForTest(true);
+        client->SetClockForTest(300000);
+        auto login = MakeLoginConfirm(0x2002, 100, 100);
+        client->DispatchPacketForTest(login.data(), login.size());
+        SpawnHostile(*client, 0x1003, 102, 100, 1);
+        u8 doll[66]{}; doll[0] = 0x88;
+        StoreBE32(doll + 1, 0x1003);
+        std::memcpy(doll + 5, "Mert", 4);
+        client->DispatchPacketForTest(doll, sizeof(doll));
+        auto name = MakeMobName(0x1003, "Mert");
+        client->DispatchPacketForTest(name.data(), name.size());
+        life::Runner runner;
+        life::RunnerHarnessAccess::SocialIdentity(runner);
+        life::RunnerHarnessAccess::SocialChatty(runner, 100);
+        life::Observation obs; obs.nowMs = 300000; obs.x = obs.y = 100;
+        obs.hp = obs.hpMax = 50;
+        auto said = [&]() {
+            std::vector<std::string> lines;
+            for (const auto& p : client->SentForTest())
+                if (p.opcode == 0x03 && p.bytes.size() > 8)
+                    lines.emplace_back(reinterpret_cast<const char*>(p.bytes.data() + 8));
+            return lines;
+        };
+        auto sa = MakeAsciiMessage(0x1003, "Mert", "Sa!");
+        client->DispatchPacketForTest(sa.data(), sa.size());
+        client->ClearSentForTest();
+        life::RunnerHarnessAccess::SocialObserve(runner, *client, obs);
+        const auto first = said();
+        bool answered = false;
+        for (const auto& line : first)
+            answered = answered || line == "as" || line == "as hosgeldin" || line == "aleykumselam";
+        Check(answered, "a nearby player's \"sa\" is answered with \"as\"");
+        bool handshake = false;
+        for (const auto& line : first) {
+            social::Activity a = social::Activity::None;
+            handshake = handshake || social::IsInvitation(line, &a);
+        }
+        Check(!handshake, "small talk never reads as an invitation");
+
+        client->SetClockForTest(340000); obs.nowMs = 340000;
+        auto again = MakeAsciiMessage(0x1003, "Mert", "selam");
+        client->DispatchPacketForTest(again.data(), again.size());
+        client->ClearSentForTest();
+        life::RunnerHarnessAccess::SocialObserve(runner, *client, obs);
+        Check(said().empty(), "a second greeting from the same person within ten minutes gets no reply "
+                              "(two bots cannot greet each other forever)");
     }
 
     // --- wind-down regression: "arrived somewhere safe" must not repeat ----

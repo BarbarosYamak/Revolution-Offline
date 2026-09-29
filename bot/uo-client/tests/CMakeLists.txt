@@ -841,3 +841,17 @@ add_test(NAME sparring_rounds COMMAND sparring_rounds)
 add_executable(persona persona.cpp)
 target_include_directories(persona PRIVATE ${CMAKE_SOURCE_DIR}/include)
 add_test(NAME persona COMMAND persona ${CMAKE_CURRENT_SOURCE_DIR}/data/persona_vectors.tsv)
+
+# Small talk -- the phrasebook never collides with a handshake or a trade line.
+add_executable(chatter chatter.cpp
+    ${CMAKE_SOURCE_DIR}/src/economy/Market.cpp
+    ${CMAKE_SOURCE_DIR}/src/life/activities/AcquirePlan.cpp
+    ${CMAKE_SOURCE_DIR}/src/economy/Faucets.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/Production.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/VendorPolicy.cpp
+    ${CMAKE_SOURCE_DIR}/src/life/Professions.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/Rules.cpp)
+target_include_directories(chatter PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+add_test(NAME chatter COMMAND chatter)
