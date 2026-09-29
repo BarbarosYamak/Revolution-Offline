@@ -177,6 +177,19 @@ bool Runner::Configure(const RunnerConfig& cfg, std::string* err) {
                 state_.homeCity.c_str());
     }
 
+    // Temperament and play hours, once per life (uo/persona.h). A file saved
+    // before personas existed gets the one its identity id always implied.
+    if (!state_.persona.set) {
+        state_.persona = persona::Make(state_.identity.identityId);
+        LogLine("persona: %s is a new %s player", state_.identity.characterName.c_str(),
+                persona::RhythmName(state_.persona.rhythm));
+    }
+    needCfg_.riskShift = state_.persona.riskShift / 100.0;
+    LogLine("persona: rhythm=%s nerve=%.2f sociability=%d schedule=\"%s\" (%d min/week)",
+            persona::RhythmName(state_.persona.rhythm), Nerve(needCfg_),
+            state_.persona.sociability, persona::Describe(state_.persona).c_str(),
+            persona::WeeklyMinutes(state_.persona));
+
     // Whatever the source -- a fresh plan or one reloaded from disk -- it has
     // to be a legal Revolution build before the character acts on it.
     const PlanCheck check = ValidatePlan(rules::Revolution(), state_.plan);

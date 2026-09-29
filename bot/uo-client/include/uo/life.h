@@ -25,6 +25,7 @@
 
 #include "uo/market.h"
 #include "uo/social.h"
+#include "uo/persona.h"
 #include "uo/professions.h"
 #include "uo/production.h"
 #include "uo/rules.h"
@@ -1452,6 +1453,9 @@ struct NeedConfig {
     const ProductionBatch* productionBatch = nullptr;
     double fleeHpFraction   = 0.32;  // M3.9.1 live: disengaged at ~32% and survived
     double healHpFraction   = 0.80;
+    // This character's own nerve on top of its profession's (persona.h),
+    // in the same 0..1 units as Profession::riskTolerance.
+    double riskShift        = 0.0;
     // RESOLVED PER CHARACTER, NOT A GLOBAL. See ResolveConsumableThresholds:
     // these two are rewritten every planning tick from the life's own
     // catalogue entry and its purse. The values here are only what a
@@ -1632,6 +1636,14 @@ inline BandageSupplyPlan PlanBandageSupply(const prof::Profession* p, i32 gold,
 
 inline const char* BandageSupplyName(BandageSupply r) {
     return r == BandageSupply::AskPlayers ? "ASK_PLAYERS" : "CUT_CLOTH";
+}
+
+// THIS CHARACTER'S NERVE: the profession's riskTolerance plus its own
+// persona shift, clamped. Every reader of riskTolerance goes through here so
+// the need model, the flee interrupt and prey choice agree.
+inline double Nerve(const NeedConfig& cfg) {
+    const double base = cfg.profession ? cfg.profession->riskTolerance : 0.5;
+    return std::min(0.95, std::max(0.05, base + cfg.riskShift));
 }
 
 // WHERE "TOO HEAVY" STARTS for this life. A fighter's line is the hunt gate
@@ -2267,6 +2279,11 @@ struct PersistentState {
     // tourist, and the whole point is that the same smith is at the same forge
     // every evening.
     std::string homeCity;
+
+    // TEMPERAMENT AND PLAY HOURS (uo/persona.h). Chosen once from the identity
+    // id, like the home, and kept: the population manager reads the same
+    // schedule to decide when this character logs in.
+    persona::Persona persona;
 
     // The current objective, so a session RESUMES rather than restarts. It is
     // re-validated against server truth on login and may be dropped.

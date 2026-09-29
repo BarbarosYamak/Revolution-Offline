@@ -241,7 +241,7 @@ void Runner::AddSocialNeeds(Client& client, const Observation& obs, std::vector<
     if (!socialConsented_ && client.TravelBusy() && planner_.Current().kind != GoalKind::Socialize) return;
     if (!socialConsented_ && client.PlayersNearby(12) == 0 && planner_.Current().kind != GoalKind::Socialize) return;
     Need n; n.kind = NeedKind::NeedSocial;
-    n.urgency = socialConsented_ ? 1.0 : 0.65;
+    n.urgency = socialConsented_ ? 1.0 : persona::SocialUrgency(state_.persona);
     n.what = socialConsented_ ? "meet an agreed companion" : "local company";
     n.reason = "train, hunt or meet nearby players between work loops";
     needs.push_back(n);

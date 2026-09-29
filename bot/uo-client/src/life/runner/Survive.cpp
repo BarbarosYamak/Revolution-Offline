@@ -653,7 +653,7 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
     double bailAt = needCfg_.fleeHpFraction;
     double nerve = 0.5;
     if (needCfg_.profession) {
-        nerve = needCfg_.profession->riskTolerance;
+        nerve = Nerve(needCfg_);
         bailAt = std::min(0.75, std::max(0.20,
                     needCfg_.fleeHpFraction + (0.5 - nerve) * 0.4));
     }
@@ -1556,7 +1556,7 @@ bool Runner::DoRecoverCorpse(Client& client, const Observation& obs) {
     see.gearInPack = false;
 
     RecoveryTuning tune;
-    if (needCfg_.profession) tune.riskTolerance = needCfg_.profession->riskTolerance;
+    if (needCfg_.profession) tune.riskTolerance = Nerve(needCfg_);
     tune.minHpToReturn = needCfg_.healHpFraction;
 
     // Starting a trip consumes its attempt. Let that last permitted trip

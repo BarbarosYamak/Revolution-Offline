@@ -3,10 +3,16 @@
 Accounts are created through normal login, never through edits to shard saves.
 Credentials remain under local/dev and travel only through child environments.
 Each stage requires an explicit --admit command; inspect --status before advancing.
+
+Population manager (--live): instead of a fixed stage, every character logs
+in during its own play hours (include/uo/persona.h, mirrored below) and plays
+until its window closes, capped by --max-online and free memory. --plan prints
+the hourly population the schedules imply, without launching anything.
 """
 import argparse
 from collections import Counter, deque
 import ctypes
+import datetime
 import json
 import os
 from pathlib import Path
@@ -121,12 +127,186 @@ def prepare():
     return roster
 
 
+# ---- personas and play schedules --------------------------------------------
+# An exact mirror of include/uo/persona.h. tests/data/persona_vectors.tsv is
+# checked by both tests/persona.cpp and tests/test_fleet_ramp.py, so a change
+# to one generator without the other fails a test instead of silently giving
+# the manager and the character two different evenings.
+RHYTHMS = ('evening', 'late_night', 'afternoon', 'weekender', 'morning')
+MON, TUE, WED, THU, FRI, SAT, SUN = (1 << d for d in range(7))
+WEEKDAYS = MON | TUE | WED | THU | FRI
+WEEKEND = SAT | SUN
+EVERY_DAY = WEEKDAYS | WEEKEND
+DAY_MIN = 24 * 60
+WEEK_MIN = 7 * DAY_MIN
+_M32 = 0xFFFFFFFF
+
+
+def identity_id(account, character):
+    """Mirror of life::MakeIdentityId."""
+    def clean(text):
+        # Byte by byte, as the C++ does, so a non-ASCII name maps the same.
+        return ''.join(chr(b).lower() if chr(b).isascii() and chr(b).isalnum() else
+                       chr(b) if chr(b) in '-_' else '_' for b in text.encode('utf-8'))
+    return clean(account) + '.' + clean(character)
+
+
+def fnv1a(text):
+    h = 2166136261
+    for byte in text.encode('utf-8'):
+        h = ((h ^ byte) * 16777619) & _M32
+    return h
+
+
+class Draw:
+    def __init__(self, seed):
+        self.state = seed or 0x9E3779B9
+
+    def next(self):
+        x = self.state
+        x ^= (x << 13) & _M32
+        x ^= x >> 17
+        x ^= (x << 5) & _M32
+        self.state = x
+        return x
+
+    def below(self, n):
+        return self.next() % n if n > 0 else 0
+
+    def range(self, lo, hi):
+        return lo + self.below(hi - lo + 1)
+
+
+def _rest_day(draw):
+    return (MON, TUE, WED, THU, FRI)[draw.below(5)]
+
+
+def make_persona(ident):
+    draw = Draw(fnv1a(ident))
+    roll = draw.below(100)
+    rhythm = ('evening' if roll < 40 else 'late_night' if roll < 60 else
+              'afternoon' if roll < 75 else 'weekender' if roll < 90 else 'morning')
+    risk = draw.range(-15, 15)
+    sociability = draw.range(15, 95)
+    windows = []
+    if rhythm == 'evening':
+        rest = _rest_day(draw)
+        windows.append((WEEKDAYS & ~rest, 19 * 60 + draw.range(0, 90), draw.range(120, 240)))
+        windows.append((WEEKEND, 16 * 60 + draw.range(0, 180), draw.range(240, 360)))
+    elif rhythm == 'late_night':
+        windows.append((EVERY_DAY, 21 * 60 + draw.range(0, 90), draw.range(150, 270)))
+    elif rhythm == 'afternoon':
+        rest = _rest_day(draw)
+        windows.append((WEEKDAYS & ~rest, 15 * 60 + draw.range(0, 90), draw.range(120, 180)))
+        windows.append((WEEKEND, 12 * 60 + draw.range(0, 60), draw.range(240, 300)))
+    elif rhythm == 'weekender':
+        windows.append((FRI, 20 * 60 + draw.range(0, 60), draw.range(180, 300)))
+        windows.append((WEEKEND, 11 * 60 + draw.range(0, 120), draw.range(360, 480)))
+    else:
+        windows.append((EVERY_DAY, 8 * 60 + draw.range(0, 240), draw.range(90, 150)))
+        a = _rest_day(draw)
+        b = _rest_day(draw)
+        if b == a:
+            b = MON if a == FRI else a << 1
+        windows.append((a | b, 20 * 60 + draw.range(0, 60), draw.range(90, 150)))
+    return {'rhythm': rhythm, 'risk_shift': risk, 'sociability': sociability,
+            'windows': windows}
+
+
+def describe(persona):
+    names = ('Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su')
+    return ' '.join(''.join(names[d] for d in range(7) if days & (1 << d)) +
+                    f'@{start // 60:02d}:{start % 60:02d}+{length}'
+                    for days, start, length in persona['windows'])
+
+
+def minutes_left(persona, weekday, minute):
+    now = (weekday % 7) * DAY_MIN + minute
+    best = 0
+    for days, start, length in persona['windows']:
+        for day in range(7):
+            if days & (1 << day):
+                since = (now - (day * DAY_MIN + start)) % WEEK_MIN
+                if since < length:
+                    best = max(best, length - since)
+    return best
+
+
+def minutes_until_next(persona, weekday, minute):
+    if minutes_left(persona, weekday, minute):
+        return 0
+    now = (weekday % 7) * DAY_MIN + minute
+    gaps = [(day * DAY_MIN + start - now) % WEEK_MIN
+            for days, start, _ in persona['windows'] for day in range(7) if days & (1 << day)]
+    return min(gaps) if gaps else -1
+
+
+def persona_for(account, name, bot_data=None):
+    """The character's saved persona if it has one (an owner may have edited
+    it), otherwise the one its identity implies -- which is what the client
+    will write on its first login."""
+    ident = identity_id(account, name)
+    for folder in ((bot_data / ident, bot_data / (account + '.' + name)) if bot_data else ()):
+        path = folder / 'state.json'
+        if path.exists():
+            try:
+                saved = json.loads(path.read_text(encoding='utf-8')).get('persona')
+            except (OSError, ValueError):
+                saved = None
+            if saved and saved.get('windows'):
+                return {'rhythm': saved.get('rhythm', 'evening'),
+                        'risk_shift': saved.get('risk_shift', 0),
+                        'sociability': saved.get('sociability', 50),
+                        'windows': [(w['days'], w['start_min'], w['length_min'])
+                                    for w in saved['windows']]}
+    return make_persona(ident)
+
+
+def plan_hours(personas, weekday):
+    """How many characters would be on line at half past each hour."""
+    return [sum(1 for p in personas if minutes_left(p, weekday, h * 60 + 30))
+            for h in range(24)]
+
+
+def decide(roster, personas, running, now, max_online, cooldown_until,
+           min_minutes=15, max_session=240):
+    """Who to launch this tick: pure, so it is tested without processes.
+
+    roster: [name, account, family] rows; personas: name -> persona;
+    running: set of names on line; now: datetime (local shard clock);
+    cooldown_until: name -> epoch seconds before which it may not relaunch.
+    Returns [(row, minutes)], at most enough to reach max_online. When more
+    characters want to play than may, the day's order is a stable hash of
+    name and date, so a different subset gets the evening each day."""
+    weekday, minute = now.weekday(), now.hour * 60 + now.minute
+    stamp = now.timestamp()
+    wanting = []
+    for row in roster:
+        name = row[0]
+        if name in running or cooldown_until.get(name, 0) > stamp:
+            continue
+        left = minutes_left(personas[name], weekday, minute)
+        if left >= min_minutes:
+            wanting.append((fnv1a(name + now.strftime('%Y-%m-%d')), row, min(left, max_session)))
+    wanting.sort(key=lambda item: item[0])
+    room = max(0, max_online - len(running))
+    return [(row, minutes) for _, row, minutes in wanting[:room]]
+
+
 def memory_free_gib():
     class Memory(ctypes.Structure):
         _fields_ = [('length', ctypes.c_ulong), ('load', ctypes.c_ulong)] + [
             (n, ctypes.c_ulonglong) for n in
             ('total', 'available', 'page_total', 'page_available', 'virtual_total',
              'virtual_available', 'extended')]
+    if os.name != 'nt':
+        try:
+            for line in Path('/proc/meminfo').read_text().splitlines():
+                if line.startswith('MemAvailable:'):
+                    return int(line.split()[1]) / 2**20
+        except OSError:
+            pass
+        return 64.0
     data = Memory()
     data.length = ctypes.sizeof(data)
     if not ctypes.windll.kernel32.GlobalMemoryStatusEx(ctypes.byref(data)):
@@ -232,6 +412,109 @@ def watch(directory):
     print('Wrote results.md and per-character grades.', flush=True)
 
 
+def launch(exe, bot_data, data_dir, directory, name, account, family, minutes,
+           password, stem=None):
+    """Start one real client for one character; it logs itself out after
+    `minutes` (the runner's session limit) and the process then exits."""
+    stem = stem or name
+    env = dict(os.environ)
+    env['UO_BOT_PASS_' + name.upper()] = password
+    command = [str(exe), '--headless',
+               '--host', '127.0.0.1', '--port', '2593',
+               '--session', f'{account}::{name}::{name}:{family}',
+               '--create-char', '--autonomous', '--bot-data', str(bot_data),
+               '--life-minutes', str(minutes), '--mul-dir', str(ROOT / 'runtime/mul'),
+               '--data-dir', str(data_dir), '--log', str(directory / (stem + '.log'))]
+    flags = (subprocess.DETACHED_PROCESS | subprocess.CREATE_NEW_PROCESS_GROUP
+             if os.name == 'nt' else 0)
+    with (directory / (stem + '.console.txt')).open('wb') as con, \
+         (directory / (stem + '.err.txt')).open('wb') as err:
+        return subprocess.Popen(command, cwd=BOT, env=env, stdout=con, stderr=err,
+                                creationflags=flags)
+
+
+def live(roster, directory, max_online, max_session=240, tick=60, exe=None,
+         bot_data=None, data_dir=None, clock=datetime.datetime.now, once=False):
+    """The population manager: keep the shard populated by play schedules.
+
+    Every tick: reap finished clients, then launch whoever's window is open
+    (decide()), one every 3 s, while memory allows. A client that exits within
+    five minutes, or reports LOGIN DENIED, is not relaunched for an hour, so a
+    broken character cannot crash-loop. Nothing is ever killed: each client
+    ends its own session at its window's end and logs out properly.
+    population.json records who is on line; population_log.tsv one row per
+    session for the observer."""
+    exe = Path(exe) if exe else BOT / 'build-m1/uo_client.exe'
+    bot_data = Path(bot_data) if bot_data else BOT / 'bot_data'
+    data_dir = Path(data_dir) if data_dir else BOT / 'data'
+    directory.mkdir(parents=True, exist_ok=True)
+    passwords = account_passwords()
+    if CREDS.exists():
+        passwords.update({k.lower(): v for k, v in json.loads(CREDS.read_text()).items()})
+    personas = {row[0]: persona_for(row[1], row[0], bot_data) for row in roster}
+    running = {}          # name -> (process, started, stem, minutes)
+    cooldown = {}
+    sessions = directory / 'population_log.tsv'
+    if not sessions.exists():
+        sessions.write_text('name\tfamily\trhythm\tstarted\tended\tplanned_min\texit\n')
+    while True:
+        now = clock()
+        for name, (process, started, stem, minutes) in list(running.items()):
+            code = process.poll()
+            if code is None:
+                continue
+            del running[name]
+            err = directory / (stem + '.err.txt')
+            denied = err.exists() and 'LOGIN DENIED' in err.read_text(errors='replace')
+            short = time.time() - started < 300
+            cooldown[name] = time.time() + (3600 if denied or short else 1200)
+            family = next(r[2] for r in roster if r[0] == name)
+            with sessions.open('a') as out:
+                out.write(f'{name}\t{family}\t{personas[name]["rhythm"]}\t'
+                          f'{time.strftime("%Y-%m-%d %H:%M", time.localtime(started))}\t'
+                          f'{time.strftime("%Y-%m-%d %H:%M")}\t{minutes}\t'
+                          f'{"denied" if denied else code}\n')
+        for row, minutes in decide(roster, personas, set(running), now, max_online,
+                                   cooldown, max_session=max_session):
+            if memory_free_gib() < 2:
+                print('population: holding launches, less than 2 GiB free', flush=True)
+                break
+            name, account, family = row
+            if account.lower() not in passwords:
+                cooldown[name] = time.time() + 86400
+                print(f'population: no credentials for {account}; skipped today', flush=True)
+                continue
+            stem = f'{name}.{now.strftime("%Y%m%d-%H%M")}'
+            process = launch(exe, bot_data, data_dir, directory, name, account, family,
+                             minutes, passwords[account.lower()], stem)
+            running[name] = (process, time.time(), stem, minutes)
+            print(f'{now:%a %H:%M} login {name} ({family}, '
+                  f'{personas[name]["rhythm"]}) for {minutes} min', flush=True)
+            time.sleep(3)
+        (directory / 'population.json').write_text(json.dumps({
+            'at': now.isoformat(timespec='minutes'), 'max_online': max_online,
+            'online': sorted(running),
+            'by_family': dict(Counter(next(r[2] for r in roster if r[0] == n) for n in running)),
+            'wanting_now': sum(1 for r in roster if minutes_left(
+                personas[r[0]], now.weekday(), now.hour * 60 + now.minute) >= 15),
+        }, indent=2))
+        if once:
+            return running
+        time.sleep(tick)
+
+
+def print_plan(roster, bot_data=None, day=None):
+    bot_data = Path(bot_data) if bot_data else BOT / 'bot_data'
+    personas = [persona_for(r[1], r[0], bot_data) for r in roster]
+    days = ('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun')
+    print('rhythms:', dict(Counter(p['rhythm'] for p in personas)))
+    for weekday in ([day] if day is not None else range(7)):
+        hours = plan_hours(personas, weekday)
+        print(f'{days[weekday]} ' + ' '.join(f'{n:3d}' for n in hours) +
+              f'   peak {max(hours)} at {hours.index(max(hours)):02d}:30')
+    return personas
+
+
 def admit(roster, directory, target, minutes, exe=None, bot_data=None, data_dir=None):
     """exe/bot_data/data_dir default to this tree's build-m1 exe and state;
     tools/smoke.py passes a worktree exe with the main tree's state."""
@@ -259,19 +542,8 @@ def admit(roster, directory, target, minutes, exe=None, bot_data=None, data_dir=
             shutil.copy2(state, before)
         else:
             before.write_text('{"bank":[]}')
-        env = dict(os.environ)
-        env['UO_BOT_PASS_' + name.upper()] = passwords[account.lower()]
-        command = [str(exe), '--headless',
-                   '--host', '127.0.0.1', '--port', '2593',
-                   '--session', f'{account}::{name}::{name}:{family}',
-                   '--create-char', '--autonomous', '--bot-data', str(bot_data),
-                   '--life-minutes', str(minutes), '--mul-dir', str(ROOT / 'runtime/mul'),
-                   '--data-dir', str(data_dir), '--log', str(directory / (name + '.log'))]
-        with (directory / (name + '.console.txt')).open('wb') as con, \
-             (directory / (name + '.err.txt')).open('wb') as err:
-            process = subprocess.Popen(command, cwd=BOT, env=env, stdout=con, stderr=err,
-                                       creationflags=subprocess.DETACHED_PROCESS |
-                                                     subprocess.CREATE_NEW_PROCESS_GROUP)
+        process = launch(exe, bot_data, data_dir, directory, name, account, family,
+                         minutes, passwords[account.lower()])
         admitted[name] = {'pid': process.pid, 'at': time.time(), 'family': family,
                           'account': account, 'minutes': minutes}
         record.write_text(json.dumps(admitted, indent=2))
@@ -288,9 +560,22 @@ if __name__ == '__main__':
     parser.add_argument('--minutes', type=int, default=45)
     parser.add_argument('--status', action='store_true')
     parser.add_argument('--watch', action='store_true')
+    parser.add_argument('--live', action='store_true',
+                        help='population manager: log characters in by their play hours')
+    parser.add_argument('--max-online', type=int, default=40)
+    parser.add_argument('--max-session', type=int, default=240,
+                        help='longest single session in minutes')
+    parser.add_argument('--plan', action='store_true',
+                        help='print the hourly population the schedules imply')
     args = parser.parse_args()
     roster = prepare()
-    if args.admit or args.status or args.watch:
+    if args.plan:
+        print_plan(roster)
+    if args.live:
+        if not args.directory:
+            parser.error('--directory is required for --live')
+        live(roster, args.directory.resolve(), args.max_online, args.max_session)
+    elif args.admit or args.status or args.watch:
         if not args.directory:
             parser.error('--directory is required for admission/status')
         if args.admit:
@@ -299,5 +584,5 @@ if __name__ == '__main__':
             status(args.directory.resolve())
         if args.watch:
             watch(args.directory.resolve())
-    else:
+    elif not args.plan:
         print('Prepared:', len(roster), 'accounts;', dict(Counter(r[2] for r in roster)))

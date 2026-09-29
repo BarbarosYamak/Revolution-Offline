@@ -681,7 +681,7 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
             // on" -- while Professions.cpp said 0.70-0.75 all along.
             combat::EngagePolicy policy;
             if (needCfg_.profession)
-                policy.riskTolerance = needCfg_.profession->riskTolerance;
+                policy.riskTolerance = Nerve(needCfg_);
             // AND WHAT KIND OF THING THIS CHARACTER MAY OPEN ON. Under 60.0
             // that is the weak band and nothing else -- the rule the four
             // 2026-09-07 knight deaths cost (combat.h, SpeciesCeiling).
@@ -1307,7 +1307,7 @@ bool Runner::DoStatFarm(Client& client, const Observation& obs) {
 
             combat::EngagePolicy policy;
             if (needCfg_.profession)
-                policy.riskTolerance = needCfg_.profession->riskTolerance;
+                policy.riskTolerance = Nerve(needCfg_);
             policy.maxSpeciesDanger =
                 combat::SpeciesCeiling(BestFightSkillTenths(obs));
             // HALVED on purpose. Bare-handed at Wrestling 0.0 is not the same

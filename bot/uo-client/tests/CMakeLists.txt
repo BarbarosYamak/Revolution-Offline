@@ -835,3 +835,9 @@ target_include_directories(sparring_rounds PRIVATE
     ${CMAKE_SOURCE_DIR}/include
     ${CMAKE_SOURCE_DIR}/src)
 add_test(NAME sparring_rounds COMMAND sparring_rounds)
+
+# Personas and play schedules -- pure; the vectors are shared with
+# tools/fleet_ramp.py so the population manager and the bot agree.
+add_executable(persona persona.cpp)
+target_include_directories(persona PRIVATE ${CMAKE_SOURCE_DIR}/include)
+add_test(NAME persona COMMAND persona ${CMAKE_CURRENT_SOURCE_DIR}/data/persona_vectors.tsv)

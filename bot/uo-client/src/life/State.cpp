@@ -245,6 +245,24 @@ json::Value ToJson(const PersistentState& st) {
 
         root.Set("home_city", st.homeCity);
 
+        if (st.persona.set) {
+            json::Value per = json::Value::MakeObject();
+            per.Set("rhythm", persona::RhythmName(st.persona.rhythm));
+            per.Set("risk_shift", static_cast<i64>(st.persona.riskShift));
+            per.Set("sociability", static_cast<i64>(st.persona.sociability));
+            json::Value wins = json::Value::MakeArray();
+            for (const persona::Window& w : st.persona.windows) {
+                json::Value o = json::Value::MakeObject();
+                o.Set("days", static_cast<i64>(w.days));
+                o.Set("start_min", static_cast<i64>(w.startMin));
+                o.Set("length_min", static_cast<i64>(w.lengthMin));
+                wins.Push(std::move(o));
+            }
+            per.Set("windows", std::move(wins));
+            per.Set("schedule", persona::Describe(st.persona));   // human-readable, not read back
+            root.Set("persona", std::move(per));
+        }
+
         root.Set("memory", std::move(m));
 
     {
@@ -459,6 +477,32 @@ bool FromJson(const json::Value& v, PersistentState* out, std::string* err) {
     }
 
     st.homeCity = v["home_city"].AsString();
+
+    {
+        // Absent before the population manager: Runner::Configure derives it
+        // from the identity id, which gives the same persona the file would.
+        const json::Value& per = v["persona"];
+        if (per.isObject()) {
+            const std::string rhythm = per["rhythm"].AsString();
+            for (int r = 0; r < static_cast<int>(persona::Rhythm::Count); ++r)
+                if (rhythm == persona::RhythmName(static_cast<persona::Rhythm>(r)))
+                    st.persona.rhythm = static_cast<persona::Rhythm>(r);
+            st.persona.riskShift = static_cast<i32>(std::min<i64>(15, std::max<i64>(-15, per["risk_shift"].AsInt(0))));
+            st.persona.sociability = static_cast<i32>(std::min<i64>(100, std::max<i64>(0, per["sociability"].AsInt(50))));
+            const json::Value& wins = per["windows"];
+            for (usize i = 0; i < wins.Size(); ++i) {
+                const json::Value& e = wins.At(i);
+                persona::Window w;
+                w.days = static_cast<u8>(e["days"].AsInt(0) & persona::kEveryDay);
+                w.startMin = static_cast<i32>(e["start_min"].AsInt(0));
+                w.lengthMin = static_cast<i32>(e["length_min"].AsInt(0));
+                if (w.days && w.startMin >= 0 && w.startMin < persona::kDayMin &&
+                    w.lengthMin > 0 && w.lengthMin <= persona::kDayMin)
+                    st.persona.windows.push_back(w);
+            }
+            st.persona.set = !st.persona.windows.empty();
+        }
+    }
 
     const json::Value& m = v["memory"];
     {
