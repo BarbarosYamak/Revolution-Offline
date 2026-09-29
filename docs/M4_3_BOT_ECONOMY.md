@@ -99,3 +99,30 @@ pack full, or carrying > MAX_CARRY_GOLD
 
 Live proof: 30 minutes of `graveyard.js`. Expect `[econ] looted`,
 `[econ] selling`, and a positive net on the ledger line.
+
+## 6. Ideas adopted from other UO bot projects
+
+On the owner's request I surveyed existing projects. **Ideas only, no code:**
+RazorEnhanced, ClassicAssist and UOTerm are GPL/AGPL, and Klein187/uo-offline
+is inspiration-only under CLAUDE.md. uo-offline also cheats by our rules: it
+sets `bot.Hits` while resting and deposits gold server-side. Upstream
+xrip/uo-client has nothing newer than our fork; it only supports buying.
+
+| Adopted | From | Where |
+|---|---|---|
+| Restock at a **low mark** (default: ¼ of target, or `low`), not at zero, with a 10-minute errand cooldown | uo-offline `BotSupplies` | `survival.js consumableIsLow` |
+| **Minimum sell price** per item (`MIN_PRICE`) | ClassicAssist / RazorEnhanced sell agents | `economy.js planSale` |
+| One sale capped at **255 units** | our `sphere.ini` `VendorMaxSell=255` | `planSale` |
+| **Looted set** (a corpse is never opened twice), **no looting with a hostile within 2 tiles** (the kill is kept for later; corpses last 7 minutes per `sphere.ini`), **human-bodied corpses never looted** | uo-offline, UOTerm loot playbook, ClassicAssist autoloot | `economy.js lootKill` |
+| **Gang pressure:** each extra hostile within 2 tiles raises the flee floor by 0.1, capped at 0.6 | uo-offline `CheckRetreat` | `combat.js fleeFloor` |
+
+Deferred, worth doing next:
+* experience-scaled retreat thresholds, so novices flee earlier;
+* a "hunted" escalation after a second flee from the same foe;
+* a per-bot danger map built only from what the bot itself witnessed, with
+  heat that decays;
+* a cooldown on resource spots the server reported as empty;
+* persona `active_hours` and `risk_tolerance` feeding a play schedule;
+* a bandage lock that waits for the "finish applying" journal line (Revolution
+  timing UNKNOWN);
+* a rate-limited action queue with retry on "you must wait".

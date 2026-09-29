@@ -39,6 +39,13 @@
         LOSE_MIN_HP_LOST: 0.2,      // and only once we have lost this much
         LOSE_MARGIN: 0.75,          // flee only if clearly losing, not on a tie
         STATUS_REFRESH_MS: 5000,    // re-request the foe's bar so it is not stale
+        // Outnumbered: each extra hostile within GANG_RADIUS raises the flee
+        // floor by GANG_STEP, up to GANG_MAX_FLOOR. Three undead killed a bot
+        // in 27 s at the Britain cemetery (M3.9); a one-on-one floor is wrong
+        // for that. Idea from Klein187/uo-offline CheckRetreat. DERIVED.
+        GANG_RADIUS: 2,
+        GANG_STEP: 0.1,
+        GANG_MAX_FLOOR: 0.6,
         RESS_WAIT_MS: 8000,
 
         installCombatSensing() {
@@ -68,6 +75,18 @@
                 ` at ${this.threat.x},${this.threat.y}`);
         },
 
+        hostilesNear() {
+            const here = { x: Player.x, y: Player.y };
+            return Mobiles.all().filter((m) => m.exists && m.serial !== Player.serial &&
+                m.notoriety >= 3 && m.notoriety <= 6 &&
+                tileDistance(here, { x: m.x, y: m.y }) <= this.GANG_RADIUS).length;
+        },
+
+        fleeFloor() {
+            const extra = Math.max(0, this.hostilesNear() - 1);
+            return Math.min(this.GANG_MAX_FLOOR, this.FLEE_HP_FRAC + extra * this.GANG_STEP);
+        },
+
         foeNearlyDead() {
             const foeHp = this.threat ? this.threat.hpPct : -1;
             return foeHp >= 0 && foeHp <= this.FINISH_FOE_FRAC;
@@ -84,9 +103,10 @@
                 baseline.startFoeHp = foeHp;
             }
 
-            // Hard floor. Checked first: a nearly dead foe can still land the
-            // hit that kills a nearly dead bot.
-            if (myHp < this.FLEE_HP_FRAC) return { flee: true, why: `HP ${(myHp * 100) | 0}% < floor` };
+            // Hard floor, raised when outnumbered. Checked first: a nearly dead
+            // foe can still land the hit that kills a nearly dead bot.
+            const floor = this.fleeFloor();
+            if (myHp < floor) return { flee: true, why: `HP ${(myHp * 100) | 0}% < floor ${(floor * 100) | 0}%` };
 
             // Above the floor, never turn your back on a foe one swing from dead.
             if (this.foeNearlyDead()) return { flee: false };

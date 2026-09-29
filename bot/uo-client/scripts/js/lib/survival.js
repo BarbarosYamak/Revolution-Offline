@@ -181,15 +181,31 @@
         // `target`. Consumables sharing a vendor title+coords are grouped into one
         // stop; the stops are then ordered into the shortest total route from the
         // current position before visiting them.
+        // A consumable is restocked when it falls to its `low` mark (default:
+        // a quarter of target), not only when it hits zero -- running out
+        // mid-hunt is how a bot ends up bandage-less at 20% HP. Idea from
+        // Klein187/uo-offline BotSupplies (low mark -> errand, with a cooldown so
+        // a bot that cannot afford anything does not loop at the counter).
+        consumableIsLow(consumable, nameVariants) {
+            const low = consumable.low ?? Math.floor((consumable.target || 0) / 4);
+            return this.backpackCount(nameVariants) <= low;
+        },
+
         async restockConsumables(consumables) {
             const { token } = this;
+            const cooldown = this.RESTOCK_COOLDOWN_MS ?? 10 * 60 * 1000;
+            if (this.lastRestockMs && Date.now() - this.lastRestockMs < cooldown &&
+                Object.keys(consumables).every((key) => this.backpackCount(
+                    [].concat(consumables[key].name || key).map((n) => n.toLowerCase())) > 0)) {
+                return;   // restocked recently and nothing is actually OUT
+            }
 
             const stops = new Map(); // `${title}|${x}|${y}` -> { title, coords, items }
             for (const key of Object.keys(consumables)) {
                 const consumable = consumables[key];
                 const names = [].concat(consumable.name || key);
                 const nameVariants = names.map((name) => name.toLowerCase());
-                if (this.backpackCount(nameVariants) > 0) continue;
+                if (!this.consumableIsLow(consumable, nameVariants)) continue;
                 const stopKey = `${consumable.title}|${consumable.coords.x}|${consumable.coords.y}`;
                 if (!stops.has(stopKey))
                     stops.set(stopKey, { title: consumable.title, coords: consumable.coords, items: [] });
@@ -199,6 +215,7 @@
             }
             if (stops.size === 0) return;
 
+            this.lastRestockMs = Date.now();
             const route = orderByShortestRoute({ x: Player.x, y: Player.y }, [...stops.values()]);
             for (const stop of route) {
                 token.check();

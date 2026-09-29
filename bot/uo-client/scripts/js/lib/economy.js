@@ -25,6 +25,11 @@
 // Tunables are DERIVED bot policy, not Revolution mechanics.
 (function (g) {
     const CORPSE_GRAPHIC = 0x2006;
+    // runtime/sphere.ini VendorMaxSell=255: the most a vendor takes in one sale.
+    const VENDOR_MAX_SELL = 255;
+    // Human bodies. A human corpse may be a player's, and looting one is a
+    // crime; our kills are monsters, so a human corpse is never touched.
+    const HUMAN_BODIES = [0x190, 0x191, 0x192, 0x193];
 
     // ---- pure helpers (exported for tests) --------------------------------
 
@@ -47,20 +52,28 @@
     // Which rows of a vendor's sell offer to sell, and how many of each.
     //   offerItems   rows of a `vendor_sell` event: {serial, amount, price, name}
     //   packCount    (name) -> how many of that the backpack holds in total
+    //   rules.minPrice  {nameSubstring: gold} -- below this, keep it (idea from
+    //                   ClassicAssist/RazorEnhanced sell agents)
     // Items the vendor pays 0 for are skipped: giving loot away is not selling.
+    // The whole sale is capped at VendorMaxSell units.
     function planSale(offerItems, rules, packCount) {
         const plan = [];
+        let units = 0;
         const budgetLeft = new Map();   // name -> how many we may still sell
         for (const row of offerItems) {
             if (!row || !row.serial || !(row.amount > 0) || !(row.price > 0)) continue;
             const name = lower(row.name);
+            const floor = Object.entries(rules.minPrice || {})
+                .find(([sub]) => name.includes(lower(sub)));
+            if (floor && row.price < floor[1]) continue;
             if (!budgetLeft.has(name)) {
                 const keep = keepAmount(name, rules);
                 const have = packCount ? packCount(name) : row.amount;
                 budgetLeft.set(name, keep === Infinity ? 0 : Math.max(0, have - keep));
             }
-            const qty = Math.min(row.amount, budgetLeft.get(name));
+            const qty = Math.min(row.amount, budgetLeft.get(name), VENDOR_MAX_SELL - units);
             if (qty <= 0) continue;
+            units += qty;
             budgetLeft.set(name, budgetLeft.get(name) - qty);
             plan.push({ serial: row.serial, qty, name, price: row.price });
         }
@@ -91,7 +104,7 @@
         };
     }
 
-    g.EconomyPolicy = { keepAmount, planSale, createLedger, matchesAny };
+    g.EconomyPolicy = { keepAmount, planSale, createLedger, matchesAny, VENDOR_MAX_SELL };
 
     // ---- the mixin --------------------------------------------------------
 
@@ -99,9 +112,11 @@
         LOOT_WINDOW_MS: 90 * 1000,  // a kill older than this is not worth walking back for
         LOOT_RADIUS: 3,             // corpse search around where the foe fell
         LOOT_TAKE_GAP_MS: 700,      // between lifts: a player drags one at a time
+        LOOT_SAFE_RADIUS: 2,        // never loot with a hostile this close (UOTerm playbook)
 
         economyInit() {
             this.ledger = createLedger(Date.now());
+            this.looted = new Set();   // corpse serials already opened (uo-offline)
             // name -> { buyers: {title: {price, seenMs}}, refusedBy: Set(title) }
             this.market = new Map();
         },
@@ -114,7 +129,7 @@
                 stock.push({ names: [].concat(c.name || key), target: c.target });
             }
             if (this.FOOD && this.FOOD.length) stock.push({ names: [].concat(this.FOOD), target: 5 });
-            return { keep, stock };
+            return { keep, stock, minPrice: this.MIN_PRICE || {} };
         },
 
         goldInPack() { return this.backpackCount(['gold']); },
@@ -236,6 +251,22 @@
                 if (unknown.length === 1) corpse = unknown[0];
             }
             if (!corpse) { console.log(`[econ] no corpse for 0x${kill.serial.toString(16)} -- it fled, or someone else's`); return; }
+            if (this.looted.has(corpse.serial)) return;
+            // Our corpse record carries the dead body; a human body is never ours.
+            const deadBody = Mobiles.get(kill.serial).body;
+            if (HUMAN_BODIES.includes(deadBody)) { console.warn('[econ] kill was human-bodied; not looting'); return; }
+            const hostileNear = Mobiles.all().some((m) => m.exists && m.serial !== Player.serial &&
+                m.notoriety >= 3 && m.notoriety <= 6 &&
+                tileDistance({ x: m.x, y: m.y }, { x: corpse.x, y: corpse.y }) <= this.LOOT_SAFE_RADIUS);
+            if (hostileNear) {
+                // Put the kill back: `fight` will take the hostile first, and
+                // the corpse (7-minute decay, sphere.ini) will still be there.
+                this.lastKill = kill;
+                console.log('[econ] hostile beside the corpse; looting later');
+                return;
+            }
+            this.looted.add(corpse.serial);
+            if (this.looted.size > 96) this.looted.delete(this.looted.values().next().value);
 
             if (!await this.walkTo({ x: corpse.x, y: corpse.y }, { adjacent: true })) return;
             try { await this.openContainer(corpse.serial); }

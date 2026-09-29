@@ -141,6 +141,47 @@ async function economyTests() {
   check(h.spendable(false) === 20, 'discretionary spending leaves the reserve alone');
   check(h.spendable(true) === 120, 'essentials may use the reserve');
 
+  // --- ideas adopted from other UO bot projects (M4.3 research) ---
+  const floorPlan = planSale([{ serial: 9, amount: 3, price: 2, name: 'bone helmet' }],
+    { keep: [], stock: [], minPrice: { 'bone': 5 } }, () => 3);
+  check(floorPlan.length === 0, 'minPrice: not sold below the floor');
+  const big = planSale([{ serial: 1, amount: 200, price: 1, name: 'log' }, { serial: 2, amount: 200, price: 1, name: 'log' }],
+    { keep: [], stock: [] }, () => 400);
+  check(big.reduce((a, p) => a + p.qty, 0) === EconomyPolicy.VENDOR_MAX_SELL, 'one sale never exceeds VendorMaxSell=255');
+
+  opened = []; h.looted = new Set([500]);
+  worldItems = [{ serial: 500, corpse: true, corpseOf: 77, x: 1, y: 1 }];
+  h.lastKill = { serial: 77, x: 1, y: 1, atMs: Date.now() };
+  await h.lootKill();
+  check(opened.length === 0, 'a corpse is never looted twice');
+  opened = []; h.looted = new Set();
+  mobs = [{ serial: 30, exists: true, notoriety: 3, body: 0x03, x: 2, y: 1 }];
+  h.lastKill = { serial: 77, x: 1, y: 1, atMs: Date.now() };
+  await h.lootKill();
+  check(opened.length === 0 && h.lastKill && h.lastKill.serial === 77,
+        'hostile beside the corpse: do not loot now, keep the kill for later');
+  mobs = [];
+
+  // gang pressure
+  Player.x = 100; Player.y = 100;
+  mobs = [];
+  const one = h.fleeFloor();
+  mobs = [1, 2, 3].map((i) => ({ serial: 40 + i, exists: true, notoriety: 3, body: 0x03, x: 100 + i % 2, y: 100 }));
+  const three = h.fleeFloor();
+  check(Math.abs(one - h.FLEE_HP_FRAC) < 1e-9, 'one-on-one: the normal floor');
+  check(Math.abs(three - (h.FLEE_HP_FRAC + 0.2)) < 1e-9, 'three attackers: floor raised by two steps');
+  mobs = Array.from({ length: 12 }, (_, i) => ({ serial: 60 + i, exists: true, notoriety: 6, body: 0x03, x: 101, y: 101 }));
+  check(h.fleeFloor() === h.GANG_MAX_FLOOR, 'the raised floor is capped');
+  mobs = [];
+
+  // low-mark restock
+  let bandages = 6;
+  h.backpackCount = (n) => [].concat(n).some((x) => String(x).includes('bandage')) ? bandages : 0;
+  check(h.consumableIsLow({ target: 20 }, ['bandage']) === false, '6 of 20 bandages: not low yet (mark 5)');
+  bandages = 5;
+  check(h.consumableIsLow({ target: 20 }, ['bandage']) === true, '5 of 20: low -> restock before running out');
+  check(h.consumableIsLow({ target: 20, low: 8 }, ['bandage']) === true, 'an explicit low mark wins');
+
   // no mixin method may shadow another or a bot's own
   const mix = { BankSkill, SurvivalSkill, CombatSkill, EconomySkill };
   const seen = {};
