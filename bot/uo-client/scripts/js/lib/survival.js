@@ -47,10 +47,14 @@
             }
         },
 
-        // Bandage until full HP, bailing out the moment a threat appears.
+        // Bandage back up to REST_UNTIL_FRAC of max HP, bailing out the moment a
+        // threat appears. It used to bandage until EXACTLY full, so a single
+        // point of damage after every fight meant another bandage -- and
+        // another trip to buy more when they ran out.
         async rest() {
             const { token } = this;
-            while (!Player.dead && Player.hpMax > Player.hp) {
+            const until = this.REST_UNTIL_FRAC ?? 0.9;
+            while (!Player.dead && Player.hpMax > 0 && Player.hp < Player.hpMax * until) {
                 if (this.threat?.exists) return;
                 await this.bandageSelf();
                 await token.sleep(10_000);

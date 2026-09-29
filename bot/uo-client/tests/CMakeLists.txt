@@ -146,3 +146,13 @@ target_include_directories(m4_lifecycle PRIVATE
     ${CMAKE_SOURCE_DIR}/src)
 
 add_test(NAME m4_lifecycle COMMAND m4_lifecycle)
+
+# JS bot behaviour smoke test (combat thresholds, rest, graveyard patrol, the
+# mixin-overwrite trap). Needs Node, which the client does not; skipped when
+# Node is not installed.
+find_program(NODE_EXECUTABLE node)
+if(NODE_EXECUTABLE)
+    add_test(NAME js_bot_smoke
+             COMMAND ${NODE_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/js_bot_smoke.js
+                     ${CMAKE_SOURCE_DIR}/scripts/js)
+endif()

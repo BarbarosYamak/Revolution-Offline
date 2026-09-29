@@ -1071,10 +1071,23 @@ void Client::OnMobileHp(const u8* data, usize size) {
         // here). This must fire even when the bot is standing still -- in the
         // 21:53 huntdbg3 run the wolf killed a stationary bot without the
         // watchdog ever seeing one combat event.
-        war_.OnCombatEvent(NowMs());
-        if (nav_.bot.active || !nav_.movement.pending.empty()) {
+        const i64 now = NowMs();
+        war_.OnCombatEvent(now);
+        lastHurtMs_ = now;
+        // Halt an oblivious journey on the FIRST hit so the brain can react --
+        // but not on every hit after it. The old rule aborted any walk on any
+        // HP drop, which also aborted the reaction: a bot that decided to flee
+        // had its flee cancelled by the next swing, stood still, and was
+        // beaten to death out of war mode. Nor while a survival retreat is
+        // under way, which is the reaction.
+        const bool moving = nav_.bot.active || !nav_.movement.pending.empty();
+        const bool retreating = now < survivalRetreatUntilMs_;
+        const bool cooledDown = lastThreatInterruptMs_ == 0 ||
+                                now - lastThreatInterruptMs_ >= kThreatInterruptCooldownMs;
+        if (moving && !retreating && cooledDown) {
             char reason[48];
             std::snprintf(reason, sizeof(reason), "HP %d -> %d", player_.hpCur, curHp);
+            lastThreatInterruptMs_ = now;
             BotInterruptForThreat(reason);
         }
     }

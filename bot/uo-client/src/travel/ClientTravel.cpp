@@ -991,6 +991,7 @@ void Client::SurvivalTick() {
     v.hpNow    = PlayerHp();
     v.hpMax    = PlayerHpMax();
     v.inCombat = WarModeOn();
+    v.underAttack = lastHurtMs_ != 0 && now - lastHurtMs_ <= combat::kUnderAttackMs;
 
     // "Adjacent" means something we are actually fighting is within a tile.
     // A bandage takes ~3 seconds (SKILL 17 DELAY=3.0); that is the whole reason
@@ -1002,6 +1003,11 @@ void Client::SurvivalTick() {
             const i32 dx = tx > playerX_ ? tx - playerX_ : playerX_ - tx;
             const i32 dy = ty > playerY_ ? ty - playerY_ : playerY_ - ty;
             v.enemyAdjacent = (dx <= 1 && dy <= 1);
+        }
+        // The foe's own health bar, when the server has sent it (0xA1/0x11).
+        if (const MobileObj* m = FindMobileBySerial(target)) {
+            if (m->hpCur >= 0 && m->hpMax > 0)
+                v.foeHpPercent = (m->hpCur * 100) / m->hpMax;
         }
     }
 
@@ -1044,13 +1050,18 @@ void Client::SurvivalTick() {
 
         case combat::Tactic::Disengage:
         case combat::Tactic::Flee:
-            // Leaving war mode is the disengage. Walking away is the travel
-            // layer's job, not this tick's -- issuing steps from here would
-            // fight whatever journey is already running.
+            // Leaving war mode alone is not a disengage: a bot that sheathed
+            // and stood still kept being hit, out of war mode and no longer
+            // hitting back, which is strictly worse than fighting on. So
+            // disengaging is also a WALK away from the attacker -- an ordinary
+            // move a player makes. A journey already running is left alone:
+            // it is somebody's deliberate way out.
             if (WarModeOn()) {
                 LogEvent("survival_disengage", combat::TacticName(t));
                 ExitWarMode();
             }
+            if ((v.enemyAdjacent || v.underAttack) && !journey_.Active())
+                SurvivalRetreat(target);
             survivalNextActionMs_ = now + 1500;
             break;
 
@@ -1072,6 +1083,37 @@ void Client::SurvivalTick() {
         case combat::Tactic::Count:
             break;
     }
+}
+
+// Walk kRetreatTiles directly away from the attacker. Deliberately dumb: one
+// straight leg, re-aimed every survival tick while we are still being hit. No
+// teleport, no speed a player lacks -- the same ActionGoto the bot uses for
+// every other walk, and the server may refuse any step of it.
+void Client::SurvivalRetreat(u32 fromSerial) {
+    const i64 now = NowMs();
+    if (now < survivalRetreatUntilMs_ && (nav_.bot.active || !nav_.movement.pending.empty()))
+        return;   // the current leg is still walking; let it
+
+    i32 fx = 0, fy = 0;
+    if (!fromSerial || !MobilePosition(fromSerial, &fx, &fy)) {
+        // No known attacker: something is hitting us, but we cannot see what.
+        // Walking a random way is as likely to go toward it as away, so stay.
+        return;
+    }
+    i32 dx = playerX_ - fx, dy = playerY_ - fy;
+    if (dx == 0 && dy == 0) dx = 1;   // same tile: any direction is "away"
+    const i32 ax = dx < 0 ? -dx : dx, ay = dy < 0 ? -dy : dy;
+    const i32 len = ax > ay ? ax : ay;
+    const i32 tx = playerX_ + dx * kRetreatTiles / len;
+    const i32 ty = playerY_ + dy * kRetreatTiles / len;
+
+    LogInfo("[survival] retreating from 0x%08X (%d,%d) -> (%d,%d)\n",
+            fromSerial, fx, fy, tx, ty);
+    char ev[96];
+    std::snprintf(ev, sizeof(ev), "from=0x%08X to=(%d,%d)", fromSerial, tx, ty);
+    LogEvent("survival_retreat", ev);
+    survivalRetreatUntilMs_ = now + 6000;
+    ActionGoto(tx, ty);
 }
 
 void Client::WarModeTick() {

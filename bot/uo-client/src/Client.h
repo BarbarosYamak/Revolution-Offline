@@ -1288,7 +1288,21 @@ private:
     i64  survivalNextActionMs_ = 0;   // don't re-decide every single tick
     i64  survivalLastLogMs_ = 0;
     int  survivalLastTactic_ = -1;
+    // When our own HP last went down, whoever did it. Feeds
+    // combat::Vitals::underAttack, so "out of war mode" is never mistaken for
+    // "out of danger". 0 = never.
+    i64  lastHurtMs_ = 0;
+    // A disengage is a WALK, not just a 0x72: until this time the retreat leg
+    // is ours, and the HP-drop threat interrupt must not cancel it.
+    i64  survivalRetreatUntilMs_ = 0;
+    // The HP-drop threat interrupt halts travel ONCE per episode so the brain
+    // can react; it must not also cancel the reaction (a flee walk) on every
+    // subsequent hit. See OnMobileHp.
+    i64  lastThreatInterruptMs_ = 0;
+    static constexpr i64 kThreatInterruptCooldownMs = 10000;
+    static constexpr i32 kRetreatTiles = 12;
     void SurvivalTick();
+    void SurvivalRetreat(u32 fromSerial);
 public:
     void SetSurvivalEnabled(bool on);
     bool SurvivalEnabled() const { return survivalEnabled_; }
