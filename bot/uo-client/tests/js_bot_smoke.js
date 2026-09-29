@@ -8,7 +8,10 @@
 'use strict';
 const fs=require('fs'), vm=require('vm');
 const path=require('path').join(process.argv[2] || require('path').join(__dirname,'..','scripts','js'),'/');
-let fails=0, checks=0; const check=(c,m)=>{checks++; if(!c){fails++;console.log('FAIL',m);}};
+let fails=0, checks=0, finished=false;
+// A promise that never settles lets Node exit quietly with code 0 -- which would
+// read as a pass. Treat an unfinished run as a failure.
+process.on('beforeExit', () => { if (!finished) { console.error('js_bot_smoke: exited before finishing (a promise never settled)'); process.exit(1); } }); const check=(c,m)=>{checks++; if(!c){fails++;console.log('FAIL',m);}};
 const g=globalThis;
 g.__stdout=(m)=>{ if(/FAIL|checks/.test(m)) process.stdout.write(m+"\n"); }; g.__stderr=(m)=>console.error(m); g.__setTimeout=setTimeout; g.__clearTimeout=clearTimeout;
 const handlers={};
@@ -20,7 +23,7 @@ g.Mobiles={all:()=>mobs, get:(s)=>mobs.find(m=>m.serial===s)||{serial:s,exists:f
 g.createThreatMeter=()=>({start(){},stop(){},count:0});
 g.createBehaviorRunner=()=>({start(){},stop(){}}); g.makeToken=()=>({});
 g.CANCELLED={};
-for (const f of ['bootstrap.js','lib/bot.js','lib/bank.js','lib/survival.js','lib/combat.js','lib/economy.js','lib/memory.js'])
+for (const f of ['bootstrap.js','lib/bot.js','lib/bank.js','lib/survival.js','lib/combat.js','lib/economy.js','lib/memory.js','lib/crafting.js'])
   vm.runInThisContext(fs.readFileSync(path+f,'utf8'),{filename:f});
 g.BehaviorScript.prototype._bootstrap=function(){};
 // ---- combat assessFight
@@ -68,6 +71,7 @@ R.rest().then(()=>{
   check(names==='resurrect>offline>fight>loot>bank>eat>recover>patrol','priority order '+names);
   return economyTests();
 }).then(() => {
+  finished = true;
   console.log(`${checks} checks, ${fails} failures`); process.exit(fails?1:0);
 }).catch((e) => { console.error(e); process.exit(1); });
 
@@ -208,8 +212,102 @@ async function economyTests() {
   h.bandageBusyUntil = Date.now() + 5000;
   check(await h.bandageSelf() === false, 'no second bandage while one is being applied');
 
+  // --- crafting & orders (lib/crafting.js) ---
+  const OP = OrderPolicy;
+  let po = OP.parseOrder('Ahmet order pickaxe', 'Ahmet');
+  check(po && po.kind === 'order' && po.items[0].name === 'pickaxe' && po.items[0].qty === 1 && !po.set, 'order: one piece');
+  po = OP.parseOrder('ahmet, order 10 pickaxes', 'Ahmet');
+  check(po.items[0].qty === 10 && po.items[0].name === 'pickaxe', 'order: a quantity (plural folded)');
+  po = OP.parseOrder('Ahmet order ringmail set', 'Ahmet');
+  check(po.set === 'ringmail' && po.items.length === 4 && po.items.every((i) => i.qty === 1), 'order: a whole set expands to its pieces');
+  po = OP.parseOrder('Ahmet order dragon set', 'Ahmet');
+  check(po.error && po.items.length === 0, 'order: unknown set is refused with a reason');
+  check(OP.parseOrder('Mehmet order pickaxe', 'Ahmet') === null, 'order: not addressed to us -> ignored');
+  check(OP.parseOrder('Ahmet status', 'Ahmet').kind === 'status' && OP.parseOrder('Ahmet cancel', 'Ahmet').kind === 'cancel', 'status / cancel');
+  po = OP.parseOrder('Ahmet order 500 pickaxe', 'Ahmet');
+  check(po === null || po.items[0].qty <= 100, 'absurd quantities are capped or rejected');
+
+  const cat = [{ category: 'Tools', label: 'Pickaxe' }, { category: 'Tools', label: 'Scissors' }, { category: 'Tools', label: 'Tinker Tools' },
+               { category: 'Parts', label: 'Nails' }];
+  check(OP.checkOrder([{ name: 'pickaxe', qty: 3 }], cat).ok, 'the live menu offers it: accept');
+  const miss = OP.checkOrder(OP.parseOrder('Ahmet order ringmail set', 'Ahmet').items, cat);
+  check(!miss.ok && miss.missing.length === 4, 'a set with pieces the menu does not offer is declined (menu oracle)');
+  check(OP.checkOrder(OP.parseOrder('Ahmet order tinker tools set', 'Ahmet').items, cat).ok, 'a set the menu fully covers is accepted');
+  check(OP.quote([{ name: 'pickaxe', qty: 3 }], () => 0, { minPerPiece: 10 }) === 30, 'quote: per-piece floor when cost unknown');
+  check(OP.quote([{ name: 'pickaxe', qty: 2 }], () => 20, { margin: 0.5 }) === 60, 'quote: observed cost + 50%');
+  const ord = OP.createOrder(1, { serial: 9, name: 'Mehmet' }, OP.parseOrder('Ahmet order tinker tools set', 'Ahmet'), 90, 0);
+  check(ord.status === 'quoted' && OP.nextPiece(ord).name === 'tinker tools', 'new order: quoted, first piece next');
+  ord.items.forEach((it) => { it.made = it.qty; });
+  check(OP.orderDone(ord) && OP.nextPiece(ord) === null, 'all pieces made -> done');
+
+  // the crafter bot, end to end on stubs
+  vm.runInThisContext(fs.readFileSync(path + 'crafter.js', 'utf8').replace('new Crafter().start();', 'globalThis.CR = Crafter;'), { filename: 'crafter.js' });
+  const said = [];
+  Player.say = (t) => said.push(t);
+  Player.name = 'Ahmet';
+  Player.skill = () => 450;
+  g.Trade = { state: { active: false }, start() {}, offer() {}, accept() { return true; }, cancel() { return true; } };
+  const cr = new CR();
+  cr.catalogue = cat; cr.catalogueMs = Date.now(); cr.catalogueSkill = 450;
+  mobs = [{ serial: 9, exists: true, name: 'Mehmet', x: 0, y: 0 }];
+  cr.onSpeech({ text: 'Ahmet order 3 pickaxes', serial: 9, system: false });
+  check(cr.orders.length === 1 && cr.orders[0].items[0].qty === 3 && /will be \d+ gold/.test(said.pop()), 'crafter quotes a spoken order');
+  cr.onSpeech({ text: 'Ahmet order ringmail set', serial: 9, system: false });
+  check(cr.orders.length === 1 && /cannot make/.test(said.pop()), 'crafter declines what its menu does not offer, and says why');
+  check(cr.wanted && cr.wanted.size === 1, 'a declined piece becomes a training goal');
+  cr.onSpeech({ text: 'Ahmet order tinker tools set', serial: 9, system: false });
+  cr.onSpeech({ text: 'Ahmet order nails', serial: 9, system: false });
+  cr.onSpeech({ text: 'Ahmet order scissors', serial: 9, system: false });
+  check(cr.openOrders().length === 3 && /too many orders/.test(said.pop()), 'at most MAX_OPEN_ORDERS open');
+  cr.onSpeech({ text: 'Ahmet cancel', serial: 9, system: false });
+  check(cr.orders.filter((o) => o.status === 'cancelled').length === 1, 'cancel drops an unpaid quote');
+  cr.orders[0].createdMs = Date.now() - 10 * 60 * 1000; cr.expireQuotes();
+  check(cr.orders[0].status === 'cancelled', 'an unpaid quote expires');
+
+  // payment through the trade window
+  const o2 = cr.orders.find((o) => o.status === 'quoted');
+  let gold = 100;
+  cr.goldInPack = () => gold;
+  cr.token = { sleep: async () => {}, check() {}, wait: (p) => p, cancelled: false };
+  g.Trade = { state: { active: true, partner: 9, theirContainer: 77, closeReason: 'none' },
+    accept() { gold += o2.price; this.state.active = false; this.state.closeReason = 'both_accepted'; return true; },
+    cancel() { this.state.active = false; return true; }, offer() {} };
+  Player.containerItems = (s) => s === 77 ? [{ serial: 5, name: 'gold coin', amount: o2.price }] : [];
+  await cr.handleTrade();
+  check(o2.status === 'paid' && cr.ledger.totals.sale >= o2.price, 'gold >= price in the trade window: accepted, order paid, ledgered');
+  check(cr.reservedNames().includes(o2.items[0].name), 'paid order items are reserved from sale');
+
+  g.Trade.state = { active: true, partner: 9, theirContainer: 77, closeReason: 'none' };
+  const o3 = cr.orders.find((o) => o.status === 'quoted');
+  if (o3) {
+    Player.containerItems = () => [{ serial: 5, name: 'gold coin', amount: 1 }];
+    let cancelled = false; g.Trade.cancel = function () { cancelled = true; this.state.active = false; return true; };
+    await cr.handleTrade();
+    check(cancelled && o3.status === 'quoted', 'too little gold: trade cancelled, order stays unpaid');
+  }
+
+  // training picks something sellable and never the kept tool/material
+  cr.market.set('scissors', { buyers: { blacksmith: { price: 5 } }, refusedBy: new Set() });
+  let picks = new Set(); for (let i = 0; i < 30; i++) picks.add(cr.chooseTrainingItem().label);
+  check(!picks.has('Tinker Tools'), 'training never makes the kept tool');
+  check(picks.size === 1 && picks.has('Scissors'), 'training prefers what a vendor is known to buy');
+
+  // craftOne through a stubbed menu
+  const menus = [{ options: [{ index: 1, text: 'Tools' }, { index: 2, text: 'Parts' }] },
+                 { options: [{ index: 1, text: 'Pickaxe' }, { index: 2, text: 'Scissors' }] }];
+  let mi = 0, chosen = [];
+  Player.once = (ev) => ev === 'dialog' ? Promise.resolve(menus[mi++]) : Promise.reject(new Error('timeout'));
+  Player.dialogRespond = (i) => chosen.push(i);
+  Player.use = () => {};
+  Player.equipment.backpack.items = [{ serial: 1, name: "tinker's tools", amount: 1 }];
+  g.waitForJournal = () => { Player.equipment.backpack.items.push({ serial: 2, name: 'scissors', amount: 1 }); return Promise.resolve('You create the item.'); };
+  const res = await cr.craftOne({ category: 'Tools', label: 'Scissors' });
+  check(res === 'ok' && chosen.join() === '1,2', 'craftOne: category then item, chosen BY NAME from the live menu');
+  mi = 0; chosen = [];
+  check(await cr.craftOne({ category: 'Tools', label: 'Platemail' }) === 'not_offered', 'craftOne: an item the menu lacks is not attempted');
+
   // no mixin method may shadow another or a bot's own
-  const mix = { BankSkill, SurvivalSkill, CombatSkill, EconomySkill, MemorySkill };
+  const mix = { BankSkill, SurvivalSkill, CombatSkill, EconomySkill, MemorySkill, CraftSkill, CustomerSkill };
   const seen = {};
   for (const [m, obj] of Object.entries(mix)) for (const k of Object.keys(obj)) {
     if (typeof obj[k] !== 'function') continue;

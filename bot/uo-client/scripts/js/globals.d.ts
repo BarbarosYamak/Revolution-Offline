@@ -311,6 +311,16 @@ interface UoPlayer extends UoEvents {
     follow(serial: UoSerial, distance?: number): void;
     follow(off: false): void;
     follow(off: 0 | null): void;
+    /** Trained skill value in tenths (500 = 50.0) by Sphere [SKILL n] index, or
+     *  -1 until the server reports it. Read-only: skills change only server-side. */
+    skill(index: number): number;
+    /** Sum of trained skills in tenths (what the 700.0 cap is measured against). */
+    readonly skillSum: number;
+    /** Ask the server for the full skill list (0x34 subtype 5). */
+    requestSkills(): void;
+    /** Ordinary logout (0xD1). Saves the M4.1 life and judges the spot safe --
+     *  walk somewhere guarded first. */
+    logout(): void;
     /** Abort any in-flight goto path and stop following. Makes a parked
      *  Player.goto() reject — the cancel primitive behaviour steps rely on. */
     stop(): void;
@@ -362,6 +372,24 @@ interface UoVendor extends UoEvents {
      *  listed. Sends 0x9F; returns the number of rows sent. */
     sell(vendorSerial: UoSerial, items: { serial: UoSerial; qty: number }[]): number;
 }
+
+/** Secure trade (0x6F), over the client's trade state machine. The server
+ *  completes an exchange only when BOTH sides accept. */
+interface UoTrade {
+    /** Open a trade by dragging ONE unit of `itemSerial` onto the partner. */
+    start(partnerSerial: UoSerial, itemSerial: UoSerial): void;
+    /** Add `amount` (default 1) of a pack item to our side. */
+    offer(itemSerial: UoSerial, amount?: number): void;
+    accept(on?: boolean): boolean;
+    cancel(): boolean;
+    readonly state: {
+        active: boolean; phase: string; partner: UoSerial; partnerName: string;
+        myContainer: UoSerial; theirContainer: UoSerial; myCheck: boolean; theirCheck: boolean;
+        /** none | both_accepted | we_cancelled | partner_cancelled | partner_gone */
+        closeReason: string;
+    };
+}
+declare const Trade: UoTrade;
 
 declare const Player: UoPlayer;
 declare const World: UoWorld;

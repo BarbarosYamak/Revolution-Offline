@@ -122,7 +122,9 @@
         },
 
         economyRules() {
-            const keep = [].concat(this.KEEP || [], this.AXE || [], this.WEAPONS || [], this.BANDAGE || []);
+            // reservedNames(): a bot-defined hook (the crafter's paid orders).
+            const reserved = typeof this.reservedNames === 'function' ? this.reservedNames() : [];
+            const keep = [].concat(this.KEEP || [], this.AXE || [], this.WEAPONS || [], this.BANDAGE || [], reserved);
             const stock = [];
             for (const key of Object.keys(this.CONSUMABLES || {})) {
                 const c = this.CONSUMABLES[key];
